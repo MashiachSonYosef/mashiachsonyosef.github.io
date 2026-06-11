@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_repo_pipeline_contracts_release_consumption",
+  "generated_at": "2026-06-05T13:20:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "release_owner": "Agent 10",
+  "posture": "direct_release_package_decision_mode",
+  "inputs_consumed": [
+    "reports/agent10-agent6-repo-pipeline-release-integration-needs-2026-06-05.md",
+    "reports/agent6-repo-dirt-classification-support-2026-06-05.md",
+    "reports/agent6-repo-dirt-classification-support-2026-06-05.json",
+    "reports/agent6-repo-cleaning-validation-queue-pipeline-contracts-2026-06-05.md",
+    "reports/agent6-repo-cleaning-validation-queue-pipeline-contracts-2026-06-05.json",
+    "reports/agent4-agent6-repo-dirt-classification-support-gate-proof-2026-06-05.md",
+    "reports/agent4-agent6-repo-dirt-classification-support-gate-proof-2026-06-05.json",
+    "reports/agent4-agent6-repo-cleaning-validation-queue-pipeline-contracts-gate-proof-2026-06-05.md",
+    "reports/agent4-agent6-repo-cleaning-validation-queue-pipeline-contracts-gate-proof-2026-06-05.json"
+  ],
+  "repo_dirt_counts": {
+    "dirty_records_total": 17239,
+    "tracked_deletions": 12231,
+    "tracked_modified": 1490,
+    "tracked_added": 22,
+    "untracked": 3496,
+    "data_public_hud_records": 11937,
+    "reports_records": 2777,
+    "site_pages_records": 1541,
+    "scripts_records": 442,
+    "data_control_records": 16,
+    "deleted_reports": 236,
+    "deleted_scripts": 55
+  },
+  "agent6_contract_counts": {
+    "contracts_authored": 3,
+    "implementation_backlog_items": 5,
+    "exact_blockers": 5,
+    "queue_items_observed": 37,
+    "pending_or_queued_like_items_observed": 6
+  },
+  "rows": [
+    {
+      "release_question": "Can Agent 6 repo-dirt classification be used as release/package truth?",
+      "current_package_boundary_state": "Agent 6 produced a WARN-BLOCKING non-destructive repo-dirt classification docket with 17239 dirty records, including 12231 tracked deletions, 3496 untracked records, 11937 data/public-hud records, 2777 report records, 442 script records, and 16 data/control records. Agent 4 validator/prereq proof passed for the classification artifact.",
+      "agent6_route_needed": "no_new_agent6_route; Agent 6 already authored the classification support docket",
+      "agent5_preservation_handoff": "Preserve Agent 6 classification md/json and Agent 4 gate proof md/json. Use as blocker evidence only for public HUD package truth, provenance/recountability, control truth, runtime claims, source provenance claims, and destructive cleanup authorization.",
+      "exact_blocker": "public_hud_package_truth_blocked; provenance_and_validator_recountability_blocked; control_truth_blocked_if_untracked_files_are_relied_on; runtime_public_claims_blocked; source_provenance_claims_blocked; destructive_cleanup_not_authorized",
+      "stop_condition": "Stop at classification-only release-owner consumption. Do not stage, delete, reset, clean, publish, or claim acceptance from repo-dirt evidence."
+    },
+    {
+      "release_question": "Can the Agent 6 repo-cleaning / repo-validation / queued-item contracts be churned as durable pipeline work?",
+      "current_package_boundary_state": "Agent 6 authored three contracts but marked them contract-authored-not-implemented. Agent 4 validator/prereq proof passed for the contract artifact. The contracts are repo-cleaning classification, repo-validation, and queued-item validation.",
+      "agent6_route_needed": "no_boundary_route_from_contract_consumption_alone",
+      "agent5_preservation_handoff": "Preserve the Agent 6 contract md/json and Agent 4 gate proof md/json. Control-state publication or durable queue-state recording remains Agent 5/7 territory where required.",
+      "exact_blocker": "durable_churn_blocked_until_proposed_scripts_or_equivalent_exact_commands_exist_and_are_validated; repo_cleanup_blocked_from_destructive_execution_until_file_families_are_classified_and_owner_release_lane_approval_exists; public_runtime_cleanup_blocked_by_11937_data_public_hud_dirty_deleted_records_until_agent10_changed_input_proof_exists; control_state_cleanup_blocked_by_16_untracked_data_control_files_until_agent5_agent7_publish_reject_or_mark_local_only; queue_item_acceptance_blocked_per_item_until_dated_agent6_verdict_exists",
+      "stop_condition": "Stop at contract-only release-owner consumption. Implement only through separate exact scripts/commands and validators; no cleanup or queue item acceptance is authorized."
+    }
+  ],
+  "implementation_backlog": [
+    "scripts/classify_agent6_repo_dirt.mjs",
+    "scripts/validate_agent6_repo_dirt_classification.mjs",
+    "scripts/validate_agent6_repo_dirt_batch.mjs",
+    "scripts/select_agent6_queue_item.mjs",
+    "scripts/validate_agent6_queue_item_evidence.mjs"
+  ],
+  "agent7_approval_publication_need": [
+    "control_state_activation",
+    "strategy_or_staffing_changes",
+    "durable_law_sop_publication",
+    "publication_path_or_release_activation",
+    "durable_queue_state_recording_beyond_agent6_docket_artifact"
+  ],
+  "zero_counters": {
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "route_jsonl_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0,
+    "repo_cleanup_actions": 0,
+    "staging_actions": 0,
+    "deletion_actions": 0,
+    "queue_state_updates": 0
+  },
+  "highest_permissible_claim": "Agent 10 consumed Agent 6 repo-pipeline contracts and repo-dirt classification as release/package blocker evidence only.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "repo cleanup authorization",
+    "staging authorization",
+    "deletion authorization",
+    "queue item acceptance",
+    "release action"
+  ]
+}

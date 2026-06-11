@@ -1,0 +1,86 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T11:24:00.000Z",
+  "target": "Agent 3 queue/source bridge gap workset gate proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-queue-source-bridge-gap-workset-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-continuation-2-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_queue_source_bridge_gap_workset.mjs --input=reports\\agent3-old-dictionary-candidate-use-queue-source-bridge-gap-workset-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "failed_initial_attempt_transient_next_safe_action_mismatch"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_queue_source_bridge_gap_workset.mjs --input=reports/agent3-old-dictionary-candidate-use-queue-source-bridge-gap-workset-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-queue-source-bridge-gap-workset-gate-proof-2026-06-06.json",
+  "paired_markdown_path": "reports/agent4-agent3-queue-source-bridge-gap-workset-gate-proof-2026-06-06.md",
+  "evidence_artifacts": [
+    "reports/agent4-changed-input-selection-continuation-2-2026-06-06.json",
+    "reports/agent3-old-dictionary-candidate-use-queue-source-bridge-gap-workset-2026-06-06.json"
+  ],
+  "counts": {
+    "candidate_count": 1,
+    "input_bridge_rows": 78,
+    "input_bridge_occurrences": 1461,
+    "input_linked_candidate_rows": 65,
+    "input_outside_candidate_rows": 13,
+    "gap_workset_rows": 14,
+    "gap_workset_occurrences": 173,
+    "outside_queue_source_subchain_rows": 13,
+    "outside_queue_source_subchain_occurrences": 162,
+    "linked_rows_missing_candidate_source_rid": 1,
+    "linked_rows_missing_candidate_source_rid_occurrences": 11,
+    "candidate_source_rid_references_requiring_linkage_review": 30,
+    "outside_candidate_source_rid_references_not_in_subchain": 29,
+    "linked_candidate_source_rid_references_not_in_subchain": 1,
+    "queue_source_blocker_rows_carried_forward": 1,
+    "queue_source_pair_keys_carried_forward": 1,
+    "queue_source_unique_source_rids_carried_forward": 1,
+    "queue_source_reference_total_carried_forward": 2,
+    "queue_source_occurrence_membership_total_carried_forward": 21,
+    "current_blocker_total": 140,
+    "rows_with_current_blockers": 14,
+    "exact_blocker_rows": 2,
+    "acceptance_claims": 0,
+    "public_runtime_mutation": 0,
+    "accepted_text_rows": 0,
+    "source_citation_supplied_by_agent3_rows": 0,
+    "route_shard_writes": 0,
+    "release_actions": 0
+  },
+  "result": "validated_agent3_queue_source_bridge_gap_workset_gate_after_rerun",
+  "exact_blockers": [
+    {
+      "code": "bridge_gap_workset_navigation_only",
+      "details": "The workset identifies 14 bridge gap rows for linkage review only; it does not create transform-ready rows, source authority, answer eligibility, or release authority.",
+      "next_safe_action": "Agent 10 or upstream owners must provide exact queue/source inclusion inputs before any transform or boundary packet can rely on these rows."
+    },
+    {
+      "code": "outside_or_missing_source_rid_gap_rows_require_review",
+      "details": "Validator-confirmed counts: 13 outside queue/source subchain rows and 1 linked row missing candidate source RID.",
+      "next_safe_action": "Keep the 14 rows blocked until linkage review and source/citation prerequisites are separately satisfied."
+    },
+    {
+      "code": "initial_validation_attempt_failed_then_passed",
+      "details": "The first validator attempt reported next_safe_action mismatch for 13 rows, while a targeted row inspection and immediate rerun passed against the same selected artifact path.",
+      "next_safe_action": "Treat the passing rerun as current validator evidence; preserve the initial failure in this packet for traceability."
+    }
+  ],
+  "handoff_owner": "Agent 10 for release/package intake; Agent 3 for bridge gap workset contents; Agent 6 only for acceptance-sensitive boundary review.",
+  "stop_condition": "Stop after validating the selected bridge gap workset artifact, writing this Agent 4 proof packet, validating this proof packet, and running the changed packet sweep gate.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

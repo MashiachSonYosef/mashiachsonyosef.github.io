@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "artifact_type": "route_publication_boundary_coherence_validation",
+  "generated_at": "2026-06-01T19:17:04.007Z",
+  "generator": "scripts/validate_route_publication_boundary_coherence.mjs",
+  "verdict": "pass_with_warnings",
+  "inputs": {
+    "hud_route_release_stamp": "data/definitions/hud-route-release-stamp.json",
+    "hud_route_release_gate": "reports/hud-route-release-gate.json",
+    "hud_route_release_gate_validation": "reports/hud-route-release-gate-validation.json",
+    "route_boundary_report_summary": "reports/route-boundary-report-summary-validation.json",
+    "route_publication_boundary_audit": "reports/route-publication-boundary-audit.json"
+  },
+  "publication_boundary": {
+    "publication_status": "blocked_no_render",
+    "validates": [
+      "hud_route_release_stamp",
+      "hud_route_release_gate",
+      "hud_route_release_gate_validation",
+      "route_boundary_report_summary",
+      "route_publication_boundary_audit"
+    ],
+    "does_not_clear": [
+      "translation_output",
+      "source_publication",
+      "public_lexical_export_reuse",
+      "accepted_definition_authority"
+    ],
+    "answer_eligible_scope": "hud_answer_slot_only_not_translation_or_publication_readiness",
+    "warning_status_blocks_publication_claim": true,
+    "current_route_inputs_reconciled": false,
+    "release_stamp_current_route_inputs_reconciled": "stamp_uses_frozen_inputs_validate_drift_separately"
+  },
+  "counts": {
+    "stamp_public_cards_written": 539661,
+    "stamp_public_distinct_normalized_tokens": 175216,
+    "stamp_public_shard_count": 7990,
+    "cards": 539661,
+    "tokens": 175216,
+    "shards": 7990,
+    "answer_eligible_cards": 18683,
+    "answer_role_answer_cards": 18683,
+    "route_cards_missing_source_rows": 0,
+    "answer_eligible_cards_missing_answer_score": 0,
+    "route_cards_with_publication_fields": 0,
+    "issue_count": 0,
+    "warning_count": 335103,
+    "translation_output_unsafe_cards": 335103,
+    "answer_eligible_translation_output_unsafe_cards": 17737,
+    "answer_eligible_translation_output_unsafe_source_rows": 21087,
+    "drift_items": 2
+  },
+  "coherent_assertions": {
+    "counts_match_across_gate_summary_and_audit": true,
+    "publication_boundaries_match_blocked_no_render": true,
+    "warning_status_blocks_publication_claim": true,
+    "drift_blocks_current_route_input_reconciliation": true
+  },
+  "issues": [],
+  "warnings": [
+    "route publication-boundary warnings remain visible: 335103",
+    "current route inputs remain unreconciled: drift"
+  ]
+}

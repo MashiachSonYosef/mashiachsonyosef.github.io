@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_current_lane_returns_consumption",
+  "generated_at": "2026-06-04T16:08:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "status": "release_intake_consumed_current_lane_returns_with_agent2_count_blocker",
+  "consumed_returns": {
+    "agent1_current_source_license_custody_lane_return": {
+      "path": "reports/agent1-current-source-license-custody-lane-return-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_current_source_license_custody_lane_return.mjs",
+      "validation_result": "passed",
+      "status": "agent1_current_source_license_custody_lane_return_ready_for_release_intake_only",
+      "output_count": 12,
+      "deuteronomy_rows": 1334,
+      "deuteronomy_occurrences": 2964,
+      "active_agent6_route_related_output": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+      "release_read": "source/license/custody lane discovery only; no source/license/legal acceptance"
+    },
+    "agent3_deuteronomy_source_license_custody_continuity": {
+      "path": "reports/agent3-deuteronomy-source-license-custody-verdict-continuity-package-2026-06-04.json",
+      "validator": "node scripts/validate_agent3_deuteronomy_source_license_custody_verdict_continuity_package.mjs",
+      "validation_result": "passed",
+      "status": "agent6_warn_accepted_nonpublic_planning_observed_by_agent3",
+      "rows": 1334,
+      "occurrences": 2964,
+      "exact_blocker_rows": 6779,
+      "external_lane_rows_copied": 0,
+      "executable_output_authorized": false,
+      "release_read": "continuity evidence only; no new Agent3 executable route"
+    },
+    "agent2_orot_missed_dictionary_reader_hint_candidates": {
+      "path": "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+      "validator": "node scripts/validate_agent2_orot_missed_dictionary_reader_hint_candidates.mjs",
+      "validation_result": "passed",
+      "status": "pre_agent6_orot_missed_dictionary_reader_hint_candidate_packet",
+      "candidate_rows": 0,
+      "candidate_occurrences": 0,
+      "unmatched_rows": 168,
+      "release_read": "zero-row candidate closure only; no Agent6 route and no append/output action"
+    },
+    "agent2_current_handoff_bundle": {
+      "path": "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json",
+      "validator": "node scripts/validate_agent2_weekly_lexicon_current_handoff_bundle.mjs",
+      "validation_result": "failed",
+      "issue": "validator-only check count mismatch",
+      "manifest_validator_only_checks": 15,
+      "bundle_validator_only_checks": 14,
+      "output_receipt_validator_only_states_checked": 14,
+      "bundle_validator_only_states_checked": 13,
+      "manifest_receipt_validator_only_check_count": 15,
+      "manifest_receipt_status": "passed",
+      "release_read": "exact Agent2 packaging refresh blocker; do not consume as valid aggregate until refreshed"
+    },
+    "agent2_pipeline_inventory": {
+      "path": "reports/agent2-weekly-lexicon-pipeline-inventory-2026-06-04.json",
+      "validator": "node scripts/validate_agent2_weekly_lexicon_pipeline_inventory.mjs",
+      "validation_result": "failed",
+      "issue": "Spark-1 manifest must have 14 validator-only checks; current manifest has 15",
+      "release_read": "stale count blocker tied to current manifest update"
+    }
+  },
+  "active_agent6_wait": {
+    "route_packet": "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.json",
+    "agent8_submission_id": "019e9360-1529-7d53-b55f-177a4cfaeb2f",
+    "stop_condition": "wait_for_agent6_verdict_artifact_path_or_exact_delivery_review_blocker"
+  },
+  "exact_blockers": [
+    {
+      "blocker": "agent2_handoff_bundle_count_mismatch_refresh_needed",
+      "owner": "Agent 2",
+      "paths": [
+        "reports/agent2-spark1-runnable-command-manifest-2026-06-04.json",
+        "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json",
+        "reports/agent2-weekly-lexicon-pipeline-inventory-2026-06-04.json",
+        "reports/agent2-spark1-manifest-output-state-validation-receipt-2026-06-04.json",
+        "reports/agent2-spark1-command-manifest-validation-receipt-2026-06-04.json"
+      ],
+      "required_fix": "refresh Agent 2 weekly handoff bundle and pipeline inventory counts against current Spark-1 runnable command manifest, then rerun Agent 2 validators",
+      "current_fact": {
+        "manifest_validator_only_checks": 15,
+        "bundle_validator_only_checks": 14,
+        "output_receipt_validator_only_states_checked": 14,
+        "bundle_validator_only_states_checked": 13,
+        "manifest_receipt_validator_only_check_count": 15
+      }
+    }
+  ],
+  "next_release_owner_action": "wait_for_old_dictionary_agent6_verdict_and_agent2_count_refresh_or_new_exact_packet",
+  "zero_boundary": {
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligible": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "publication_readiness": false,
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_content_storage": false,
+    "candidate_text_export": false,
+    "commercial_export_permission": false,
+    "nc_commercial_authorization": false
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate-text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

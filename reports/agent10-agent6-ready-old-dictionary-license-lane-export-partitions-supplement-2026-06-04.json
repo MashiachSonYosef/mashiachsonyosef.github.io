@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_ready_old_dictionary_license_lane_export_partitions_supplement",
+  "generated_at": "2026-06-04T16:17:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / controlled Spark support",
+  "status": "agent6_ready_supplemental_partition_evidence_not_accepted",
+  "primary_boundary_packet": "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.json",
+  "supplemental_artifact": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+  "review_scope": "supplemental_nonpublic_lane_partition_planning_evidence_only",
+  "review_question": "As supplemental evidence to the already-routed old-dictionary license-lane re-audit packet, pass/warn/block whether the exact Agent 1 separated export-partition artifact may be carried as non-public lane-partition planning evidence only, without authorizing candidate text export, source/license acceptance, commercial export, NC commercial use, public/runtime mutation, answer eligibility, Definition authority, or publication readiness.",
+  "inputs": {
+    "primary_old_dictionary_packet": "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.json",
+    "agent1_reaudit": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+    "agent1_export_partitions": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+    "agent1_export_partitions_md": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.md",
+    "agent10_refresh_consumption": "reports/agent10-current-lane-returns-refresh-consumption-2026-06-04.json"
+  },
+  "partition_counts": {
+    "commercial_clean_candidate": {
+      "source_family_count": 3,
+      "row_count": 500,
+      "occurrence_count": 10940
+    },
+    "noncommercial_educational_candidate": {
+      "source_family_count": 1,
+      "row_count": 214,
+      "occurrence_count": 4444
+    },
+    "metadata_or_link_only": {
+      "source_family_count": 0,
+      "row_count": 0,
+      "occurrence_count": 0
+    },
+    "blocked_or_needs_review": {
+      "source_family_count": 1,
+      "row_count": 222,
+      "occurrence_count": 4435
+    }
+  },
+  "count_semantics": {
+    "partition_counts_are_source_family_hit_totals": true,
+    "row_count_is_not_exclusive_export_row_count": true,
+    "reason": "The same token row may have hits in multiple source families, so lane row_count and occurrence_count sum source-family evidence hits rather than mutually exclusive export rows.",
+    "exclusive_export_row_counts_authorized_now": false
+  },
+  "lane_controls": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true,
+    "commercial_export_allowed_now": false,
+    "public_emit_now": false,
+    "answer_eligible_now": false
+  },
+  "nc_controls": {
+    "klein_license_lane": "noncommercial_educational_candidate",
+    "derived_from_nc": true,
+    "commercial_export_allowed": false,
+    "attribution_required": true,
+    "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+    "corpus_contamination": false
+  },
+  "zero_output_counts": {
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "validation_commands": [
+    "node scripts/validate_agent1_old_dictionary_license_lane_export_partitions.mjs",
+    "node -e \"JSON.parse(require('fs').readFileSync('reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.json','utf8')); console.log('partition supplement JSON parse passed')\""
+  ],
+  "validation_status": "passed",
+  "boundary": {
+    "nonpublic_planning_evidence_only": true,
+    "supplemental_to_primary_boundary_only": true,
+    "source_license_acceptance_authorized": false,
+    "license_legal_acceptance_authorized": false,
+    "candidate_text_export_authorized": false,
+    "commercial_export_permission_authorized": false,
+    "nc_commercial_authorization": false,
+    "answer_eligibility_authorized": false,
+    "definition_content_storage_authorized": false,
+    "public_runtime_mutation_authorized": false,
+    "route_shard_write_authorized": false,
+    "publication_readiness_authorized": false
+  },
+  "next_executable_route": "route_as_supplemental_evidence_to_agent6_old_dictionary_boundary_review_or_record_delivery_blocker",
+  "stop_condition": "wait_for_agent6_verdict_or_supplemental_receipt_artifact_path_or_exact_delivery_review_blocker",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate-text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

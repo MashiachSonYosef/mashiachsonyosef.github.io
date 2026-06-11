@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_source_lane_assignment_preflight_fixture_package",
+  "date": "2026-06-04",
+  "target": "fixture proving Agent 2 source-lane preflight validator accepts correctly shaped lane assignment packets",
+  "files": [
+    "scripts/validate_agent2_source_lane_assignment_packet.mjs",
+    "data/definitions/agent2-source-lane-assignment-preflight-fixture.json"
+  ],
+  "command": "node scripts/validate_agent2_source_lane_assignment_packet.mjs data/definitions/agent2-source-lane-assignment-preflight-fixture.json",
+  "expected_result": "Agent 2 source-lane assignment packet validation passed. Rows: 4; lanes: {\"commercial_clean_candidate\":1,\"noncommercial_educational_candidate\":1,\"metadata_or_link_only\":1,\"blocked_or_needs_review\":1}.",
+  "counts": {
+    "fixture_rows": 4,
+    "commercial_clean_candidate": 1,
+    "noncommercial_educational_candidate": 1,
+    "metadata_or_link_only": 1,
+    "blocked_or_needs_review": 1,
+    "candidate_rows_emitted": 0,
+    "definition_text_rows_emitted": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0
+  },
+  "real_workset_blocker_preserved": "missing_agent1_old_dictionary_excluded_row_license_lane_assignment",
+  "what_must_not_be_accepted": [
+    "Agent 1 acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public output",
+    "NC commercial authorization",
+    "publication readiness",
+    "public/runtime mutation"
+  ]
+}

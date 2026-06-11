@@ -1,0 +1,128 @@
+{
+  "artifact_type": "agent10_direct_release_package_intake_refresh",
+  "generated_at": "2026-06-06T02:39:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "status": "agent2_transform_reaudit_boundary_blocker_consumed_no_agent6_packet_until_missing_fields_supplied",
+  "consumed_state": {
+    "previous_agent10_refresh": "reports/agent10-direct-release-package-intake-refresh-2026-06-05p.json",
+    "agent2_transform_reaudit_boundary_blocker": "reports/agent2-old-dictionary-transform-reaudit-boundary-blocker-2026-06-05.json",
+    "agent4_gate_proof": "reports/agent4-agent2-transform-reaudit-boundary-blocker-gate-proof-2026-06-05.json"
+  },
+  "blocker_consumed": {
+    "target": "Agent 2 definition/lemma/reader-hint transform after Agent 1 classified lanes (old-dictionary reaudit)",
+    "status": "blocked_for_missing_exact_agent1_agent6_boundary_fields",
+    "row_subset_blockers": 5,
+    "required_agent1_input_fields": 16,
+    "required_agent6_boundary_fields": 6,
+    "commercial_clean_candidate_row_subsets": 3,
+    "noncommercial_educational_candidate_row_subsets": 1,
+    "blocked_or_needs_review_row_subsets": 1,
+    "validator_command": "node scripts\\validate_agent2_old_dictionary_transform_reaudit_boundary_blocker.mjs reports\\agent2-old-dictionary-transform-reaudit-boundary-blocker-2026-06-05.json",
+    "validator_result": "passed"
+  },
+  "row_subset_blockers": [
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-dictionary",
+      "source_family": "BDB Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "blocker": "missing_exact_agent6_boundary_and_approved_morphology_relation",
+      "handoff_owner": "Agent 10 for package assembly; Agent 6 for exact row/subset boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-aramaic-dictionary",
+      "source_family": "BDB Aramaic Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "blocker": "missing_exact_agent6_boundary_and_approved_morphology_relation",
+      "handoff_owner": "Agent 10 for package assembly; Agent 6 for exact row/subset boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::jastrow-dictionary",
+      "source_family": "Jastrow Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "blocker": "missing_exact_agent6_boundary_and_approved_morphology_relation",
+      "handoff_owner": "Agent 10 for package assembly; Agent 6 for exact row/subset boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+      "source_family": "Klein Dictionary",
+      "license_lane": "noncommercial_educational_candidate",
+      "blocker": "missing_exact_agent6_nc_boundary_no_commercial_export_authorization_and_public_boundary_before_display_storage_public_answer_export_behavior",
+      "handoff_owner": "Agent 1 for NC lane packet; Agent 6 for exact NC row/subset boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+      "source_family": "BDB Augmented Strong",
+      "license_lane": "blocked_or_needs_review",
+      "blocker": "missing_independent_source_license_custody_basis",
+      "handoff_owner": "Agent 1 if evidence appears; otherwise blocked/review"
+    }
+  ],
+  "required_agent1_input_fields": [
+    "row_subset_id",
+    "source_family",
+    "license_lane",
+    "transform_lane",
+    "evidence_path",
+    "occurrences",
+    "derived_from_nc",
+    "commercial_export_allowed",
+    "attribution_required",
+    "corpus_contamination",
+    "agent6_boundary_required",
+    "agent2_transform_allowed_now",
+    "answer_eligible",
+    "public_emit",
+    "missing_evidence",
+    "handoff_owner"
+  ],
+  "required_agent6_boundary_fields": [
+    "exact_row_or_row_subset_id",
+    "agent6_boundary_verdict",
+    "agent6_morphology_relation_status",
+    "morphology_relation_basis",
+    "candidate_use_scope",
+    "exact_agent6_manifest_or_packet_path"
+  ],
+  "current_exact_blocker": {
+    "blocker": "missing_exact_agent1_agent6_boundary_fields_for_old_dictionary_transform_reaudit_row_subsets",
+    "agent6_boundary_need_now": "not_ready_until_exact_row_subset_fields_and_morphology_relation_boundary_are_supplied",
+    "next_handoff": "Agent 10 package assembly plus Agent 6 exact boundary for commercial-clean row-subsets; Agent 1 plus Agent 6 for Klein NC and BDB Augmented Strong custody/review."
+  },
+  "global_zero_counters": {
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "commercial_export_authorization_rows": 0,
+    "nc_commercial_authorization_rows": 0,
+    "release_actions": 0
+  },
+  "next_release_owner_action": "Do not assemble or route an Agent 6 transform boundary packet until the missing exact Agent 1 row-subset fields and Agent 6 morphology/boundary fields are supplied.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

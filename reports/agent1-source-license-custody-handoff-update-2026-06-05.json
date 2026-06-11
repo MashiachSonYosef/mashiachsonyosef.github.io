@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_source_license_custody_handoff_update",
+  "generated_at": "2026-06-05T10:16:20.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "owner": "Agent 1",
+  "objective": "produce runnable source/license/custody packet(s) or exact blockers with explicit lane separation",
+  "validation": {
+    "pipeline_set": {
+      "artifact": "reports/agent1-source-license-custody-pipeline-set-validation-result-2026-06-04.json",
+      "command": "node scripts/validate_agent1_source_license_custody_pipeline_set.mjs",
+      "ok": true,
+      "runnable_contract_count": 22,
+      "supporting_packet_count": 24,
+      "exact_blocker_count": 1,
+      "lane_return_output_count": 48
+    },
+    "command_manifest": {
+      "artifact": "reports/agent1-source-license-custody-command-manifest-validation-result-2026-06-04.json",
+      "command": "node scripts/validate_agent1_source_license_custody_command_manifest.mjs",
+      "ok": true,
+      "runnable_command_set_count": 22,
+      "non_routable_blocker_count": 1,
+      "aggregate_gate_count": 4
+    }
+  },
+  "targets": [
+    {
+      "target": "orot/nc_klein_source_family",
+      "files": {
+        "map_json": "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+        "map_md": "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.md",
+        "contract_json": "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-2026-06-04.json"
+      },
+      "commands": [
+        "node scripts/build_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_nc_klein_source_family_contract.mjs"
+      ],
+      "counts": {
+        "rows": 17,
+        "occurrences": 259,
+        "lane_split": {
+          "noncommercial_educational_candidate": {
+            "rows": 17,
+            "occurrences": 259
+          }
+        }
+      },
+      "flags": {
+        "license_lane": "noncommercial_educational_candidate",
+        "derived_from_nc": true,
+        "commercial_export_allowed": false,
+        "attribution_required": true,
+        "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+        "corpus_contamination": false,
+        "agent6_boundary_required": true,
+        "answer_eligible": false,
+        "public_emit": false
+      },
+      "runnable": {
+        "pipeline_ok": true,
+        "contract_ok": true,
+        "spark1_routable": true
+      },
+      "handoff": {
+        "agent10": "consume now",
+        "agent6": "boundary review before storage/display/export"
+      }
+    },
+    {
+      "target": "orot/next_missed_source_family",
+      "files": {
+        "map_json": "reports/agent1-orot-next-missed-source-family-map-2026-06-04.json",
+        "map_md": "reports/agent1-orot-next-missed-source-family-map-2026-06-04.md",
+        "contract_json": "reports/agent1-spark1-pipeline-contract-orot-next-missed-source-family-2026-06-04.json"
+      },
+      "commands": [
+        "node scripts/build_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_next_missed_source_family_contract.mjs"
+      ],
+      "counts": {
+        "rows": 50,
+        "occurrences": 1193,
+        "lane_split": {
+          "commercial_clean_candidate": {
+            "rows": 50,
+            "occurrences": 1193
+          }
+        }
+      },
+      "flags": {
+        "license_lane": "commercial_clean_candidate",
+        "derived_from_nc": false,
+        "commercial_export_allowed": true,
+        "attribution_required": false,
+        "corpus_contamination": false
+      },
+      "runnable": {
+        "pipeline_ok": true,
+        "contract_ok": true,
+        "spark1_routable": true
+      },
+      "handoff": {
+        "agent10": "consume now",
+        "agent6": "boundary only if export posture changes"
+      }
+    },
+    {
+      "target": "orot/third_missed_source_family",
+      "files": {
+        "map_json": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+        "map_md": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.md",
+        "contract_json": "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+        "resolution": "reports/agent1-third-missed-source-family-target-or-blocker-resolution-2026-06-05.json"
+      },
+      "commands": [
+        "node scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs"
+      ],
+      "counts": {
+        "rows": 169,
+        "occurrences": 2148,
+        "lane_split": {
+          "commercial_clean_candidate": {
+            "rows": 138,
+            "occurrences": 1672
+          },
+          "blocked_or_needs_review": {
+            "rows": 31,
+            "occurrences": 476
+          },
+          "noncommercial_educational_candidate": {
+            "rows": 0,
+            "occurrences": 0
+          },
+          "metadata_or_link_only": {
+            "rows": 0,
+            "occurrences": 0
+          }
+        },
+        "blocked_reasons": {
+          "missing_lexicon_entry_id_in_input_row": {
+            "rows": 17,
+            "occurrences": 331
+          },
+          "source_license_boundary_review_needed": {
+            "rows": 14,
+            "occurrences": 145
+          }
+        }
+      },
+      "flags": {
+        "agent6_boundary_required": true
+      },
+      "runnable": {
+        "pipeline_ok": true,
+        "contract_ok": true,
+        "spark1_routable": true
+      },
+      "handoff": {
+        "agent10": "consume commercial-clean subset now",
+        "agent6": "boundary packet for blocked_or_needs_review subset"
+      }
+    },
+    {
+      "target": "old_dictionary_excluded_row_license_lane_reaudit",
+      "files": {
+        "map_json": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+        "map_md": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.md",
+        "contract_json": "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json"
+      },
+      "commands": [
+        "node scripts/build_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+        "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+        "node scripts/validate_agent1_spark1_old_dictionary_reaudit_pipeline_contract.mjs"
+      ],
+      "counts": {
+        "rows": 500,
+        "occurrences": 8427,
+        "source_families": 5,
+        "lane_split": {
+          "commercial_clean_candidate": {
+            "rows": 3
+          },
+          "noncommercial_educational_candidate": {
+            "rows": 1
+          },
+          "metadata_or_link_only": {
+            "rows": 0
+          },
+          "blocked_or_needs_review": {
+            "rows": 1
+          }
+        }
+      },
+      "runnable": {
+        "pipeline_ok": true,
+        "contract_ok": true,
+        "spark1_routable": true
+      },
+      "blockers": [
+        {
+          "scope": "old_dictionary_excluded_row_license_lane_reaudit::klein-dictionary",
+          "rows": 214,
+          "occurrences": 4444,
+          "type": "agent6_boundary_required",
+          "license_lane": "noncommercial_educational_candidate",
+          "required": [
+            "agent6_boundary_required"
+          ],
+          "notes": "preserve NC lane separation; no commercial-contam."
+        },
+        {
+          "scope": "old_dictionary_excluded_row_license_lane_reaudit::bdb-augmented-strong",
+          "rows": 222,
+          "occurrences": 4435,
+          "type": "missing_independent_source_license_custody_basis",
+          "license_lane": "blocked_or_needs_review",
+          "required": [
+            "source_url_or_citation",
+            "license_label",
+            "allow fields",
+            "agent6_boundary_required"
+          ]
+        }
+      ],
+      "handoff": {
+        "agent10": "consume non-blocked families",
+        "agent6": "boundary decisions and evidence review for both blocked families"
+      }
+    }
+  ],
+  "exact_blocker_records": {
+    "legacy": {
+      "artifact": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+      "status": "legacy_mismatch_with_current_schema",
+      "replacement": "reports/agent1-third-missed-source-family-target-or-blocker-resolution-2026-06-05.json"
+    },
+    "active": [
+      {
+        "target": "orot_third_missed_source_family::blocked_or_needs_review",
+        "rows": 31,
+        "occurrences": 476,
+        "type": "agent6_boundary_required"
+      },
+      {
+        "target": "old_dictionary_excluded_row_license_lane_reaudit::bdb-augmented-strong",
+        "rows": 222,
+        "occurrences": 4435,
+        "type": "missing_independent_source_license_custody_basis"
+      }
+    ]
+  },
+  "compliance": {
+    "no_source_license_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_source_provenance_legal_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true
+  },
+  "next_command": "rerun on evidence/boundary change: node scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs; node scripts/build_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+  "stop_condition": "hold until external boundary/evidence updates; no source acceptance claims; no render/runtime publication."
+}

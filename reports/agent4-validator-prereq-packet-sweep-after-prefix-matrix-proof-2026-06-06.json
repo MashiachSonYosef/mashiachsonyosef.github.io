@@ -1,0 +1,68 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "Agent 4 validator/prereq packet split sweep after source-citation prefix-matrix proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent4-agent3-source-citation-prefix-matrix-gate-proof-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep.mjs --out=reports/agent4-validator-prereq-packet-sweep-result-after-prefix-matrix-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "pass",
+      "observed_output": "count=43; passed=43; failed=0; command_count_total=111; blocker_count_total=83"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_result.mjs --input=reports\\agent4-validator-prereq-packet-sweep-result-after-prefix-matrix-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "count=43; passed=43; failed=0"
+    },
+    {
+      "command": "if (Test-Path reports\\agent4-validator-prereq-packet-sweep-gate-result-after-prefix-matrix-2026-06-06.json) { 'gate-result-exists' } else { 'gate-result-not-run-split-sweep-only' }",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "gate-result-not-run-split-sweep-only"
+    }
+  ],
+  "counts": {
+    "agent4_packet_count": 43,
+    "agent4_packet_passed": 43,
+    "agent4_packet_failed": 0,
+    "proof_shape_count": 37,
+    "proof_with_blocker_shape_count": 4,
+    "blocker_shape_count": 2,
+    "command_count_total": 111,
+    "blocker_count_total": 83
+  },
+  "result": "validated_agent4_packet_split_sweep_after_prefix_matrix",
+  "exact_blockers": [
+    {
+      "code": "combined_sweep_gate_not_run_for_current_cycle",
+      "class": "harness_timeout_avoidance",
+      "handoff_owner": "Agent 4 validator/prereq harness owner",
+      "next_safe_action": "Continue using split sweep plus result validator for this corpus size unless the combined gate timeout is raised."
+    }
+  ],
+  "generated_outputs": [
+    "reports/agent4-validator-prereq-packet-sweep-result-after-prefix-matrix-2026-06-06.json"
+  ],
+  "output_artifact_path": "reports/agent4-validator-prereq-packet-sweep-after-prefix-matrix-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-validator-prereq-packet-sweep-after-prefix-matrix-proof-2026-06-06.md",
+  "handoff_owner": "Agent 4 validator/prereq harness owner; Agent 10 may consume as package-validation evidence only",
+  "next_safe_action": "Preserve the 43/43 split sweep as current Agent 4 proof-corpus validation; avoid rerunning unchanged aggregate gates unless a new Agent 4 proof/blocker packet appears.",
+  "stop_condition": "Stop after validating the updated Agent 4 proof corpus by split sweep; no acceptance claims.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

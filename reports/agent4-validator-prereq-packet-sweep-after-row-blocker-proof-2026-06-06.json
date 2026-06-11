@@ -1,0 +1,95 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "Agent 4 validator/prereq packet sweep after row-blocker matrix proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifacts": [
+    "reports/agent4-agent3-row-blocker-matrix-gate-proof-2026-06-06.json",
+    "reports/agent4-agent3-row-blocker-matrix-gate-proof-2026-06-06.md"
+  ],
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent4_validator_prereq_packet_sweep_gate.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node --check scripts\\validate_agent4_validator_prereq_packet_sweep_gate_result.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node --check scripts\\validate_agent4_validator_prereq_packet_sweep.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_gate.mjs --out=reports/agent4-validator-prereq-packet-sweep-result-after-row-blocker-2026-06-06.json --gateOut=reports/agent4-validator-prereq-packet-sweep-gate-result-after-row-blocker-2026-06-06.json --requireSelfCheck",
+      "timeout_ms": 30000,
+      "result": "process_timeout_with_partial_valid_outputs",
+      "observed_output": "command timed out after 34131 milliseconds; both out and gateOut files were written and validated by follow-up commands"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_gate_result.mjs --input=reports\\agent4-validator-prereq-packet-sweep-gate-result-after-row-blocker-2026-06-06.json --requireSelfCheck",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "status=passed; count=33; passed=33; failed=0"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_result.mjs --input=reports\\agent4-validator-prereq-packet-sweep-result-after-row-blocker-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "count=33; passed=33; failed=0; command_count_total=72; blocker_count_total=51"
+    }
+  ],
+  "process_timeouts": [
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_gate.mjs --out=reports/agent4-validator-prereq-packet-sweep-result-after-row-blocker-2026-06-06.json --gateOut=reports/agent4-validator-prereq-packet-sweep-gate-result-after-row-blocker-2026-06-06.json --requireSelfCheck",
+      "timeout_ms": 30000,
+      "partial_output_or_artifact": "reports/agent4-validator-prereq-packet-sweep-result-after-row-blocker-2026-06-06.json and reports/agent4-validator-prereq-packet-sweep-gate-result-after-row-blocker-2026-06-06.json were written; both validated in separate follow-up commands",
+      "next_safe_action": "Use the validated output files as bounded evidence for this run; if rerunning the combined gate is required, raise the wrapper timeout or split sweep and gate-result validation into separate commands."
+    }
+  ],
+  "counts": {
+    "agent4_packet_count": 33,
+    "agent4_packet_passed": 33,
+    "agent4_packet_failed": 0,
+    "proof_shape_count": 27,
+    "proof_with_blocker_shape_count": 4,
+    "blocker_shape_count": 2,
+    "command_count_total": 72,
+    "blocker_count_total": 51
+  },
+  "result": "validated_agent4_packet_sweep_outputs_after_timeout",
+  "exact_blockers": [
+    {
+      "code": "combined_sweep_gate_outer_timeout_30000ms",
+      "class": "process_timeout",
+      "handoff_owner": "Agent 4 validator/prereq harness owner",
+      "next_safe_action": "Use separate sweep-output and gate-result validators, or increase the combined wrapper timeout for this 33-packet corpus."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-validator-prereq-packet-sweep-after-row-blocker-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-validator-prereq-packet-sweep-after-row-blocker-proof-2026-06-06.md",
+  "generated_outputs": [
+    "reports/agent4-validator-prereq-packet-sweep-result-after-row-blocker-2026-06-06.json",
+    "reports/agent4-validator-prereq-packet-sweep-gate-result-after-row-blocker-2026-06-06.json"
+  ],
+  "handoff_owner": "Agent 4 validator/prereq harness owner; Agent 10 may consume as package-validation evidence only",
+  "next_safe_action": "Preserve the 33/33 packet sweep as current Agent 4 proof-corpus validation; avoid rerunning unchanged aggregate gate unless a new Agent 4 proof/blocker packet appears.",
+  "stop_condition": "Stop after validating the updated Agent 4 proof corpus and recording the timeout behavior; no acceptance claims.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_definition_workbench_1000_sample_pipeline_package",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "larger Definition Workbench expansion pipeline beyond the 500-row sample",
+  "files": {
+    "inputs": [
+      ".local-cache/workbench-evidence/token-inventory.json",
+      "data/definitions/hud-route-lookup/manifest.json",
+      "data/definitions/hud-route-lookup/shards/*"
+    ],
+    "pipeline": [
+      "scripts/build_definition_workbench_sample.mjs",
+      "scripts/validate_definition_workbench_sample.mjs"
+    ],
+    "outputs": [
+      "data/definitions/definition-workbench-sample-1000.json",
+      "reports/definition-workbench-sample-1000-report.md",
+      "reports/agent2-definition-workbench-1000-sample-pipeline-package-2026-06-04.md",
+      "reports/agent2-definition-workbench-1000-sample-pipeline-package-2026-06-04.json"
+    ]
+  },
+  "commands_run": {
+    "build": "node scripts/build_definition_workbench_sample.mjs --limit=1000 --output=data/definitions/definition-workbench-sample-1000.json --report=reports/definition-workbench-sample-1000-report.md",
+    "validate": "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample-1000.json",
+    "diff_check": "git diff --check -- data/definitions/definition-workbench-sample-1000.json reports/definition-workbench-sample-1000-report.md"
+  },
+  "output_artifact": "data/definitions/definition-workbench-sample-1000.json",
+  "report_artifact": "reports/definition-workbench-sample-1000-report.md",
+  "counts": {
+    "rows": 1000,
+    "rows_with_route_cards": 996,
+    "rows_without_route_cards_no_hint_repair_targets": 4,
+    "rows_with_complete_source_license": 996,
+    "status_counts": {
+      "conflicting": 293,
+      "missing": 4,
+      "proposed_only": 361,
+      "single_answer_source_complete": 342
+    },
+    "review_status_counts": {
+      "unreviewed_machine_sample": 1000
+    },
+    "multi_answer_rows": 293,
+    "answer_eligible_rows_emitted": 0,
+    "public_reader_rows_emitted": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutations": 0
+  },
+  "validator": {
+    "command": "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample-1000.json",
+    "result": "passed",
+    "stdout": "Definition Workbench sample validation passed. Rows: 1000.",
+    "diff_check": "passed"
+  },
+  "missing_field_blocker": {
+    "builder_validator_blocker": null,
+    "boundary_blocker_before_public_or_authority_use": "agent6_boundary_needed_for_any_public_or_authority_use",
+    "blocked_uses": [
+      "Definition authority",
+      "answer eligibility",
+      "accepted gloss/text",
+      "public reader output",
+      "route publication support",
+      "source/provenance acceptance",
+      "license acceptance",
+      "public/runtime mutation"
+    ]
+  },
+  "spark1_handoff": {
+    "allowed": true,
+    "condition": "mechanical rerun only with exact command/output/validator supplied",
+    "must_not_infer": [
+      "Definition authority",
+      "answer eligibility",
+      "public-reader readiness"
+    ]
+  },
+  "agent6_boundary_question": "Can the exact 1000-row Definition Workbench sample be treated as non-authoritative route-shape / reader-planning evidence only, preserving review_status=unreviewed_machine_sample for all rows, no review_status=verified, no accepted gloss/text, no answer eligibility emitted, no public reader output, no route shard edit, no public/runtime mutation, multi-answer rows as warnings, and single_answer_source_complete as machine route-shape status only?",
+  "stop_condition": "Stop after producing the 1000-row sample package and validator results. Do not proceed toward public output, answer eligibility, reviewed Definition authority, or broader expansion without a named command/output/validator and Agent 6 boundary route.",
+  "what_must_not_be_accepted": [
+    "Definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation"
+  ]
+}

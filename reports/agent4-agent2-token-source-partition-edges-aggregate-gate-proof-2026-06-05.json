@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T00:00:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane_owner": "Agent 4",
+  "target": "agent2-workbench-token-source-partition-edges-aggregate",
+  "input_artifacts": {
+    "readiness": "reports/agent2-workbench-token-source-partition-edges-aggregate-readiness-2026-06-04.json",
+    "chunk_manifest": "reports/agent2-workbench-token-source-partition-edges-chunk-manifest-2026-06-04.json",
+    "aggregate_summary": {
+      "path": "reports/workbench-token-source-partition-edges-5000-summary.json",
+      "sha256": "535f868b9178f54be624a17af21732274ff5f296a6245592a1e6f50ccd66efaf"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts/validate_agent2_workbench_token_source_partition_edges_aggregate_readiness.mjs reports/agent2-workbench-token-source-partition-edges-aggregate-readiness-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/build_agent2_workbench_token_source_partition_edges_aggregate.mjs --manifest=reports/agent2-workbench-token-source-partition-edges-chunk-manifest-2026-06-04.json --output=.local-cache/workbench-evidence/token-source-partition-edges-5000.jsonl --summary=reports/workbench-token-source-partition-edges-5000-summary.json --report=reports/workbench-token-source-partition-edges-5000.md",
+      "command": "node scripts/build_agent2_workbench_token_source_partition_edges_aggregate.mjs --manifest=reports/agent2-workbench-token-source-partition-edges-chunk-manifest-2026-06-04.json --output-dir=.local-cache/workbench-evidence/token-source-partition-edges-5000-shards --summary=reports/workbench-token-source-partition-edges-5000-summary.json --report=reports/workbench-token-source-partition-edges-5000.md --bucket-count=256",
+      "result": "passed",
+      "caveat": "Builder was hardened from full in-memory/single-output mode to bucketed sharded output mode after heap and timeout failures."
+    },
+    {
+      "command": "node scripts/validate_agent2_workbench_token_source_partition_edges_aggregate.mjs reports/workbench-token-source-partition-edges-5000-summary.json",
+      "result": "passed"
+    }
+  ],
+  "files": {
+    "builder": "scripts/build_agent2_workbench_token_source_partition_edges_aggregate.mjs",
+    "aggregate_edge_shards": ".local-cache/workbench-evidence/token-source-partition-edges-5000-shards/*.jsonl",
+    "aggregate_summary": "reports/workbench-token-source-partition-edges-5000-summary.json",
+    "aggregate_report": "reports/workbench-token-source-partition-edges-5000.md",
+    "proof_json": "reports/agent4-agent2-token-source-partition-edges-aggregate-gate-proof-2026-06-05.json",
+    "proof_markdown": "reports/agent4-agent2-token-source-partition-edges-aggregate-gate-proof-2026-06-05.md"
+  },
+  "counts": {
+    "source_files_selected": 1337,
+    "source_files_read": 1337,
+    "units_read": 717459,
+    "units_with_partition": 637508,
+    "unjoined_units": 79951,
+    "total_token_occurrences_scanned": 66320359,
+    "matched_token_occurrences": 49791095,
+    "chunk_count": 54,
+    "chunks_merged": 54,
+    "aggregate_edge_rows": 1951013,
+    "aggregate_shard_count": 256,
+    "aggregate_shard_bytes": 1653256657,
+    "candidate_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0
+  },
+  "result": "aggregate_built_and_validated_sharded_output",
+  "blocker_if_any": {
+    "blocker": "none_for_agent4_validator_prereq_gate",
+    "details": "Readiness validates, the sharded aggregate build completed, and the hardened aggregate validator passed across all shard files."
+  },
+  "next_handoff": "Agent10 may consume this as non-public token-source partition edge metadata evidence. Any candidate use, answer use, source/license acceptance, public/runtime mutation, route-shard write, or release action still requires a separate exact boundary.",
+  "stop_condition": "Do not rerun unless chunk outputs, aggregate summary, validator, or builder changes.",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action"
+  ]
+}

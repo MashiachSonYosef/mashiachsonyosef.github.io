@@ -1,8 +1,18 @@
 # HUD Route Release Stamp
 
 Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
-Generated: 2026-05-31T17:28:57.522Z
+Generated: 2026-06-01T16:00:31.659Z
 Status: release_candidate
+
+## Publication Boundary
+
+- Publication status: blocked_no_render
+- Validates: hud_route_release_stamp, public_hud_route_lookup_reconciliation
+- Does not clear: translation_output, source_publication, public_lexical_export_reuse, accepted_definition_authority
+- Answer eligibility scope: hud_answer_slot_only_not_translation_or_publication_readiness
+- Release-candidate scope: route_data_release_candidate_not_publication_readiness
+- Warning status blocks publication claim: true
+- Current route inputs reconciled: stamp_uses_frozen_inputs_validate_drift_separately
 
 ## Frozen Inputs
 
@@ -23,6 +33,7 @@ Status: release_candidate
 
 - Manifest: `data/definitions/hud-route-lookup/manifest.json`
 - Published at: 2026-05-31T17:04:16.011Z
+- Publication status: blocked_no_render
 - Cards: 539661
 - Distinct normalized tokens: 175216
 - Shards in manifest: 7990
@@ -43,4 +54,4 @@ None.
 
 ## Boundary
 
-This stamp records a release-candidate route-data generation. It does not introduce route families, source imports, or English source-text translations.
+This stamp records a release-candidate route-data generation. It does not introduce route families, source imports, English source-text translations, accepted translation output, or publication readiness.

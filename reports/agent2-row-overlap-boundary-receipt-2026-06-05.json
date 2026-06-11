@@ -1,0 +1,345 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_row_overlap_boundary_receipt",
+  "generated_at": "2026-06-05T23:59:59.950Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / source-lane separated lexicon expansion",
+  "target": "old-dictionary row-overlap lane boundary and Agent6 supplement receipt",
+  "status": "agent1_row_overlap_boundary_consumed_as_nonpublic_planning_evidence_not_delivered_to_agent6",
+  "inputs": {
+    "row_overlap_boundary": "reports/agent1-old-dictionary-row-overlap-lane-boundary-2026-06-05.json",
+    "row_overlap_boundary_validation": "reports/agent1-old-dictionary-row-overlap-lane-boundary-validation-result-2026-06-05.json",
+    "agent6_boundary_supplement": "reports/agent1-old-dictionary-row-overlap-agent6-boundary-supplement-2026-06-05.json",
+    "agent6_boundary_supplement_validation": "reports/agent1-old-dictionary-row-overlap-agent6-boundary-supplement-validation-result-2026-06-05.json"
+  },
+  "row_overlap_totals": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_clean_evidence_rows": 297,
+    "commercial_clean_evidence_occurrences": 5747,
+    "noncommercial_educational_evidence_rows": 214,
+    "noncommercial_educational_evidence_occurrences": 4444,
+    "blocked_review_evidence_rows": 222,
+    "blocked_review_evidence_occurrences": 4435,
+    "metadata_or_link_only_rows": 0,
+    "metadata_or_link_only_occurrences": 0,
+    "no_sefaria_source_hit_rows": 186,
+    "no_sefaria_source_hit_occurrences": 2421,
+    "public_domain_only_unique_rows": 18,
+    "klein_only_unique_rows": 17,
+    "bdb_augmented_strong_only_unique_rows": 0,
+    "multi_lane_overlap_rows": 279,
+    "multi_lane_overlap_occurrences": 5253
+  },
+  "classification_lanes": [
+    {
+      "license_lane": "commercial_clean_candidate",
+      "source_families": [
+        "Jastrow Dictionary",
+        "BDB Dictionary",
+        "BDB Aramaic Dictionary"
+      ],
+      "row_count": 297,
+      "candidate_text_rows_now": 0,
+      "commercial_export_allowed_now": false,
+      "derived_from_nc": false,
+      "attribution_required": false,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true
+    },
+    {
+      "license_lane": "noncommercial_educational_candidate",
+      "source_families": [
+        "Klein Dictionary"
+      ],
+      "row_count": 214,
+      "candidate_text_rows_now": 0,
+      "commercial_export_allowed_now": false,
+      "derived_from_nc": true,
+      "attribution_required": true,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true
+    },
+    {
+      "license_lane": "metadata_or_link_only",
+      "source_families": [],
+      "row_count": 0,
+      "candidate_text_rows_now": 0,
+      "commercial_export_allowed_now": false,
+      "derived_from_nc": false,
+      "attribution_required": false,
+      "corpus_contamination": false,
+      "agent6_boundary_required": false
+    },
+    {
+      "license_lane": "blocked_or_needs_review",
+      "source_families": [
+        "BDB Augmented Strong"
+      ],
+      "row_count": 222,
+      "candidate_text_rows_now": 0,
+      "commercial_export_allowed_now": false,
+      "derived_from_nc": false,
+      "attribution_required": false,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true
+    }
+  ],
+  "boundary_question_counts": {
+    "total_boundary_question_records": 8,
+    "nonzero_boundary_question_records": 6,
+    "zero_row_boundary_records": 2,
+    "total_rows_represented": 500,
+    "total_occurrences_represented": 8427,
+    "commercial_clean_only_rows": 18,
+    "commercial_clean_plus_nc_rows": 57,
+    "commercial_clean_plus_blocked_rows": 82,
+    "triple_overlap_rows": 140,
+    "nc_only_rows": 17,
+    "metadata_or_link_only_rows": 0,
+    "blocked_review_only_rows": 0,
+    "no_source_hit_rows": 186,
+    "delivered_to_agent6_now": 0,
+    "future_candidate_use_questions_opened_now": 0
+  },
+  "boundary_question_summaries": [
+    {
+      "question_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::commercial-clean-only::agent6_boundary_supplement_question",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::commercial-clean-only",
+      "row_overlap_bucket": "commercial_clean_only",
+      "classification_lanes": [
+        "commercial_clean_candidate"
+      ],
+      "rows": 18,
+      "occurrences": 494,
+      "boundary_question_type": "future_commercial_clean_candidate_use",
+      "exact_blocker": "commercial_clean_only_missing_future_agent6_candidate_use_boundary_and_morphology_relation",
+      "current_allowed_now": {
+        "planning_evidence": true,
+        "agent2_transform": false,
+        "candidate_text_export": false,
+        "definition_content_storage": false,
+        "answer_eligibility": false,
+        "public_emit": false,
+        "release_action": false,
+        "agent6_delivery": false
+      },
+      "handoff_owner": "Agent 10 for future package assembly; Agent 6 for exact row/subset boundary"
+    },
+    {
+      "question_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::commercial-clean-plus-nc::agent6_boundary_supplement_question",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::commercial-clean-plus-nc",
+      "row_overlap_bucket": "commercial_clean_plus_noncommercial_educational",
+      "classification_lanes": [
+        "commercial_clean_candidate",
+        "noncommercial_educational_candidate"
+      ],
+      "rows": 57,
+      "occurrences": 818,
+      "boundary_question_type": "commercial_clean_with_nc_overlap_source_family_selection",
+      "exact_blocker": "commercial_clean_plus_nc_overlap_missing_agent6_source_family_selection_boundary",
+      "current_allowed_now": {
+        "planning_evidence": true,
+        "agent2_transform": false,
+        "candidate_text_export": false,
+        "definition_content_storage": false,
+        "answer_eligibility": false,
+        "public_emit": false,
+        "release_action": false,
+        "agent6_delivery": false
+      },
+      "handoff_owner": "Agent 6 for source-family selection boundary; Agent 2 blocked until boundary exists"
+    },
+    {
+      "question_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::commercial-clean-plus-blocked-review::agent6_boundary_supplement_question",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::commercial-clean-plus-blocked-review",
+      "row_overlap_bucket": "commercial_clean_plus_blocked_review",
+      "classification_lanes": [
+        "commercial_clean_candidate",
+        "blocked_or_needs_review"
+      ],
+      "rows": 82,
+      "occurrences": 1068,
+      "boundary_question_type": "commercial_clean_with_blocked_overlap_source_family_selection",
+      "exact_blocker": "commercial_clean_plus_blocked_overlap_missing_agent6_source_family_selection_boundary",
+      "current_allowed_now": {
+        "planning_evidence": true,
+        "agent2_transform": false,
+        "candidate_text_export": false,
+        "definition_content_storage": false,
+        "answer_eligibility": false,
+        "public_emit": false,
+        "release_action": false,
+        "agent6_delivery": false
+      },
+      "handoff_owner": "Agent 6 for source-family selection boundary; Agent 1 if BDB Augmented Strong custody evidence appears"
+    },
+    {
+      "question_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::commercial-clean-plus-nc-plus-blocked-review::agent6_boundary_supplement_question",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::commercial-clean-plus-nc-plus-blocked-review",
+      "row_overlap_bucket": "commercial_clean_plus_noncommercial_educational_plus_blocked_review",
+      "classification_lanes": [
+        "commercial_clean_candidate",
+        "noncommercial_educational_candidate",
+        "blocked_or_needs_review"
+      ],
+      "rows": 140,
+      "occurrences": 3367,
+      "boundary_question_type": "triple_overlap_source_family_selection",
+      "exact_blocker": "triple_overlap_missing_agent6_source_family_selection_boundary",
+      "current_allowed_now": {
+        "planning_evidence": true,
+        "agent2_transform": false,
+        "candidate_text_export": false,
+        "definition_content_storage": false,
+        "answer_eligibility": false,
+        "public_emit": false,
+        "release_action": false,
+        "agent6_delivery": false
+      },
+      "handoff_owner": "Agent 6 for source-family selection boundary; Agent 10 for future package assembly only"
+    },
+    {
+      "question_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::noncommercial-educational-only::agent6_boundary_supplement_question",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::noncommercial-educational-only",
+      "row_overlap_bucket": "noncommercial_educational_only",
+      "classification_lanes": [
+        "noncommercial_educational_candidate"
+      ],
+      "rows": 17,
+      "occurrences": 259,
+      "boundary_question_type": "nc_educational_only_no_commercial_export",
+      "exact_blocker": "nc_educational_only_missing_agent6_nc_boundary_no_commercial_authorization",
+      "current_allowed_now": {
+        "planning_evidence": true,
+        "agent2_transform": false,
+        "candidate_text_export": false,
+        "definition_content_storage": false,
+        "answer_eligibility": false,
+        "public_emit": false,
+        "release_action": false,
+        "agent6_delivery": false
+      },
+      "handoff_owner": "Agent 6 for NC boundary; Agent 1 preserves NC lane only"
+    },
+    {
+      "question_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::blocked-review-only::agent6_boundary_supplement_question",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::blocked-review-only",
+      "row_overlap_bucket": "blocked_review_only",
+      "classification_lanes": [
+        "blocked_or_needs_review"
+      ],
+      "rows": 0,
+      "occurrences": 0,
+      "boundary_question_type": "zero_row_record_no_current_boundary_delivery",
+      "exact_blocker": "blocked_review_only_zero_rows_no_current_boundary_delivery",
+      "current_allowed_now": {
+        "planning_evidence": true,
+        "agent2_transform": false,
+        "candidate_text_export": false,
+        "definition_content_storage": false,
+        "answer_eligibility": false,
+        "public_emit": false,
+        "release_action": false,
+        "agent6_delivery": false
+      },
+      "handoff_owner": "Agent 1 if future rows or evidence appear"
+    },
+    {
+      "question_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::metadata-or-link-only::agent6_boundary_supplement_question",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::metadata-or-link-only",
+      "row_overlap_bucket": "metadata_or_link_only",
+      "classification_lanes": [
+        "metadata_or_link_only"
+      ],
+      "rows": 0,
+      "occurrences": 0,
+      "boundary_question_type": "zero_row_record_no_current_boundary_delivery",
+      "exact_blocker": "metadata_or_link_only_zero_rows_no_current_boundary_delivery",
+      "current_allowed_now": {
+        "planning_evidence": true,
+        "agent2_transform": false,
+        "candidate_text_export": false,
+        "definition_content_storage": false,
+        "answer_eligibility": false,
+        "public_emit": false,
+        "release_action": false,
+        "agent6_delivery": false
+      },
+      "handoff_owner": "Agent 1 if metadata/link-only evidence appears"
+    },
+    {
+      "question_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::no-sefaria-source-hit::agent6_boundary_supplement_question",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-overlap::no-sefaria-source-hit",
+      "row_overlap_bucket": "no_sefaria_source_hit",
+      "classification_lanes": [
+        "blocked_or_needs_review"
+      ],
+      "rows": 186,
+      "occurrences": 2421,
+      "boundary_question_type": "missing_source_lane_evidence",
+      "exact_blocker": "no_sefaria_source_hit_missing_source_license_custody_evidence",
+      "current_allowed_now": {
+        "planning_evidence": true,
+        "agent2_transform": false,
+        "candidate_text_export": false,
+        "definition_content_storage": false,
+        "answer_eligibility": false,
+        "public_emit": false,
+        "release_action": false,
+        "agent6_delivery": false
+      },
+      "handoff_owner": "Agent 1 if new source evidence appears; Agent 2 blocked now"
+    }
+  ],
+  "delivery_state": {
+    "delivered_to_agent6_now": 0,
+    "future_candidate_use_questions_opened_now": 0,
+    "agent6_boundary_required_before_agent2_use": true
+  },
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows_now": 0,
+    "lemma_content_rows_now": 0,
+    "reader_hint_content_rows_now": 0,
+    "answer_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "public_runtime_mutation": 0,
+    "route_jsonl_rows_now": 0,
+    "route_shard_writes": 0,
+    "accepted_text_rows_now": 0,
+    "agent6_delivery_now": 0,
+    "source_license_legal_acceptance": 0,
+    "commercial_export_authorization": 0,
+    "release_actions": 0
+  },
+  "exact_blockers": [
+    "row_overlap_boundary_questions_not_delivered_to_agent6_no_agent2_transform_or_candidate_use",
+    "commercial_clean_only_missing_future_agent6_candidate_use_boundary_and_morphology_relation",
+    "commercial_clean_plus_nc_overlap_missing_agent6_source_family_selection_boundary",
+    "commercial_clean_plus_blocked_overlap_missing_agent6_source_family_selection_boundary",
+    "triple_overlap_missing_agent6_source_family_selection_boundary",
+    "nc_educational_only_missing_agent6_nc_boundary_no_commercial_authorization",
+    "blocked_review_only_zero_rows_no_current_boundary_delivery",
+    "metadata_or_link_only_zero_rows_no_current_boundary_delivery",
+    "no_sefaria_source_hit_missing_source_license_custody_evidence"
+  ],
+  "handoff_owner": "Agent 10/Agent 6 for future row-overlap boundary delivery and verdict; Agent 2 remains no-output until exact delivery and verdict exist.",
+  "stop_condition": "Stop at Agent2 row-overlap boundary receipt. Do not transform, store candidate text, store definition/lemma/reader-hint content, mark answers, write routes/shards, mutate runtime/public/source/token-index/lexical files, export candidate text, claim accepted text, commercial export, publication readiness, or release action.",
+  "non_acceptance_boundary": [
+    "No Definition authority",
+    "No answer acceptance",
+    "No answer eligibility",
+    "No source/license/legal acceptance",
+    "No accepted gloss/text",
+    "No public/runtime mutation",
+    "No route-shard edit",
+    "No candidate text export",
+    "No definition/lemma/reader-hint content storage",
+    "No commercial export authorization",
+    "No NC commercial authorization",
+    "No release action"
+  ]
+}

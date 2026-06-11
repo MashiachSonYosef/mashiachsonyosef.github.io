@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_changed_package_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05",
+  "status": "runnable_contract_authored_changed_input_present",
+  "target": "orot-third-missed-source-family-pipeline",
+  "changed_package_input_path": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+  "changed_package_hash": "sha256:02b4cb3ed928d2ea573fb07af5bc32ae6f56a87ebc553d2087504b998ae0a14f",
+  "files": [
+    "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+    "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+    "reports/agent1-orot-third-missed-source-family-pipeline-validation-result-2026-06-05.json",
+    "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-validation-result-2026-06-05.json",
+    "reports/agent4-orot-third-missed-source-family-pipeline-changed-input-2026-06-05.json",
+    "reports/agent4-orot-third-missed-source-family-pipeline-runnable-contract-2026-06-05.json",
+    "reports/agent4-orot-third-missed-source-family-pipeline-runnable-contract-2026-06-05.md"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_orot_third_missed_source_family_pipeline.mjs reports\\agent1-orot-third-missed-source-family-map-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_spark1_orot_third_missed_source_family_contract.mjs reports\\agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\build_agent4_changed_package_validator_prereq_gate.mjs --date 2026-06-05 --changed-input reports\\agent4-orot-third-missed-source-family-pipeline-changed-input-2026-06-05.json --out-json reports\\agent4-orot-third-missed-source-family-pipeline-runnable-contract-2026-06-05.json --out-md reports\\agent4-orot-third-missed-source-family-pipeline-runnable-contract-2026-06-05.md",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-orot-third-missed-source-family-pipeline-runnable-contract-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "hashes": {
+    "spark1_contract_sha256": "a719685bf10f982097c08d18823a68854540782dcba3e506cb854bb85512ee7a",
+    "output_validation_result_sha256": "0c72991c822b5cb61533cbed4b0758695f9e7fa5db50e760e094bfaf9be3545b",
+    "contract_validation_result_sha256": "a17f13ac0ff33ba6b13eb66bd59dac2c047573b5eded6f9564401be696409f42"
+  },
+  "counts": {
+    "rows": 169,
+    "occurrences": 2148,
+    "commercial_clean_candidate_rows": 138,
+    "noncommercial_educational_candidate_rows": 0,
+    "metadata_or_link_only_rows": 0,
+    "blocked_or_needs_review_rows": 31,
+    "validators_passed": 2,
+    "runnable_contracts_authored": 1,
+    "runnable_contracts_checked": 1
+  },
+  "result": "runnable contract generated and checked",
+  "blocker_if_any": "no Agent4 validator blocker; Agent6 boundary remains required before source/license custody acceptance, candidate text use, public display, answer use, export behavior, or publication",
+  "next_handoff": "Agent10/Agent6 boundary review only if this candidate is promoted",
+  "stop_condition": "do not rerun unless package/input changes",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action",
+    "NC commercial authorization",
+    "public/runtime mutation"
+  ]
+}

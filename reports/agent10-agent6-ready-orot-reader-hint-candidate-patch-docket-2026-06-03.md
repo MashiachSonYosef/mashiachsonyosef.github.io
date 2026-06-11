@@ -1,6 +1,6 @@
 # Agent 10 Agent-6-Ready Orot Reader-Hint Candidate Patch Docket
 
-Generated: 2026-06-03T09:58:10.645Z
+Generated: 2026-06-04T00:11:52.251Z
 
 ## Boundary
 
@@ -45,13 +45,13 @@ Specific questions:
 ## Inputs
 
 - candidate_patch: reports/agent2-orot-reader-hint-candidate-patch-2026-06-03.json
-- candidate_patch_sha256: 06c8fb307852ad533ab029d563ef54e0a49512e202052756b39d66a49978929c
+- candidate_patch_sha256: 20c40b37c7a6d4a1ee1e50d9348599af6c11596c778ffbfa48b902981f45bfbe
 - preview: reports/agent2-orot-counterpart-hint-patch-preview-2026-06-03.json
-- preview_sha256: bf8d9b614463341f2ac8057b19f051ccc2bb3c5a0af84262677e6948b1fd3d2a
+- preview_sha256: ed1881554bf6965a550e1cf744b2c09d60e62669b985ce2a56b21e7a695bdc30
 - prefix_contract: reports/agent10-agent6-ready-orot-prefix-stem-contract-packet-2026-06-03.json
-- prefix_contract_sha256: e3bfb5ebf3c74f37f1d5c624f856575595235a5038be68ac50e45cde3a4ffb7c
+- prefix_contract_sha256: a70f4a3322a6eb3944d7d8d22031cfd4f00cf8d5b154e7a9ed661ebc982f802e
 - project_preferred_contract: reports/agent10-agent6-ready-orot-project-preferred-contract-packet-2026-06-03.json
-- project_preferred_contract_sha256: 6cf1d4a19af089a0f27af6e8277e10b47261b92e7359f06a9378161d8272d2c9
+- project_preferred_contract_sha256: b8958ad0f4b25c1806ae956a1ba37c5f42343e1910140ff33d7edd13a47ae78c
 - live_old_hud_guard: reports/agent10-live-public-old-hud-guard-2026-06-03-post-orot-reader-hint-candidate-patch.json
 - live_old_hud_guard_sha256: d5523c45c8c5bc070927088b894c33bbd8d963df7668732f5fbea23a287eda40
 

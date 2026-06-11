@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_old_dictionary_excluded_row_lane_reaudit_blocker",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "workset": "old-dictionary-excluded-row-license-lane-reaudit",
+  "target": "consume old excluded dictionary rows only after Agent 1 source-family / license-lane assignment exists",
+  "policy_inputs": [
+    "reports/oracle9-nc-educational-lane-owner-policy-2026-06-04.md",
+    "reports/oracle9-new-dictionary-source-lane-policy-2026-06-04.md",
+    "reports/oracle9-dictionary-lane-classification-correction-2026-06-04.md"
+  ],
+  "required_lanes": [
+    "commercial_clean_candidate",
+    "noncommercial_educational_candidate",
+    "metadata_or_link_only",
+    "blocked_or_needs_review"
+  ],
+  "required_fields_for_agent2_consumption": [
+    "source_family",
+    "source_name",
+    "source_or_dictionary",
+    "license_label",
+    "license_lane",
+    "source_url_or_citation",
+    "attribution_required",
+    "derived_from_nc",
+    "commercial_export_allowed",
+    "owner_use_attestation when NC educational use is the basis",
+    "corpus_contamination=false for NC lane",
+    "agent6_boundary_required",
+    "agent1_classification_artifact"
+  ],
+  "nc_required_flags": {
+    "license_lane": "noncommercial_educational_candidate",
+    "derived_from_nc": true,
+    "commercial_export_allowed": false,
+    "attribution_required": true,
+    "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+    "corpus_contamination": false,
+    "answer_eligible": false,
+    "public_emit": false
+  },
+  "current_agent2_pipeline_state": {
+    "builder": "scripts/build_agent2_orot_missed_dictionary_reader_hint_candidates.mjs",
+    "validator": "scripts/validate_agent2_orot_missed_dictionary_reader_hint_candidates.mjs",
+    "current_output": "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+    "current_rows": 0,
+    "current_occurrences": 0,
+    "current_unmatched": 168,
+    "source_family_preflight_required": true,
+    "candidate_rows_checked": 0,
+    "missing_classified_rows": 0,
+    "nonzero_unclassified_rows_block_candidate_text_export": true
+  },
+  "validator": {
+    "command": "node scripts/validate_agent2_orot_missed_dictionary_reader_hint_candidates.mjs reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+    "result": "passed",
+    "stdout": "Agent 2 Orot missed-dictionary reader-hint candidate validation passed for reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json. Rows: 0; occurrences: 0."
+  },
+  "exact_blocker": {
+    "id": "missing_agent1_old_dictionary_excluded_row_license_lane_assignment",
+    "missing_upstream_evidence": [
+      "source/dictionary list for old excluded rows",
+      "row/subset counts by source/dictionary",
+      "Agent 1 lane assignment artifact",
+      "row-level required fields",
+      "Agent 6 row/subset boundary question"
+    ]
+  },
+  "needed_agent1_handoff": [
+    "workset id old-dictionary-excluded-row-license-lane-reaudit",
+    "source/dictionary names",
+    "row/subset counts",
+    "lane counts by required lane",
+    "required row fields",
+    "evidence paths",
+    "NC flags where applicable",
+    "statement that Agent 2 must preserve lanes without recasting"
+  ],
+  "spark1_handoff": {
+    "current_status": "do_not_generate_agent2_candidate_rows_from_old_excluded_dictionaries_until_agent1_lane_assignment_exists",
+    "if_unclassified_nonzero_rows": "builder stops with source-lane blocker"
+  },
+  "agent6_boundary": {
+    "requested_now": false,
+    "future_question": "May these exact Agent-1-classified rows be used/stored/displayed within their assigned lane, preserving commercial-clean separation, NC educational flags, metadata/link-only no-text restrictions, blocked/review exclusion, zero answer eligibility, and zero public emit?"
+  },
+  "stop_condition": "Stop after recording the exact Agent 1 lane-assignment blocker for old excluded dictionary rows.",
+  "what_must_not_be_accepted": [
+    "Definition authority",
+    "source/license/legal acceptance",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public output",
+    "NC commercial authorization",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "route-shard edit",
+    "public/runtime mutation"
+  ]
+}

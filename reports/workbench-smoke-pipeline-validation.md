@@ -1,16 +1,16 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-06-01T15:01:48.001Z
+Generated: 2026-06-01T20:27:49.750Z
 
 ## Summary
 
-- Steps: 117
+- Steps: 132
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
 - Missing smoke artifacts: 0
 - Zero-useful smoke targets: 0
-- Source freshness: stale, count delta 165, modified after artifact 170
+- Source freshness: stale, count delta 168, modified after artifact 173
 - Reshit source coverage: 271/271, uncovered 0
 - Handoff coverage: 55 manifests, missing targets 0
 - Public handoff index: 55 selected, validation failed 0, eligible 2390, ambiguous count-only 2064, zero-useful 0, ambiguous reader-facing no
@@ -25,7 +25,7 @@ Generated: 2026-06-01T15:01:48.001Z
 - Usage search rows: present, rows 2390, works 271, categories 15, clusters 2, route payload hits 0
 - Usage provenance: present, rows 2390, licenses 4, version sources 185, license metadata 2390, source links 2390, version metadata 2390, unsafe license rows 0, route payload hits 0
 - Usage search shard index: present, shards 74, rows 2390, categories 15, clusters 2, statuses 3, route payload hits 0
-- Usage refresh priority: present, pending 170, known-use candidates 0, review-only 170, promoted 0, blocked broad refresh files 170, route payload hits 0
+- Usage refresh priority: present, pending 173, known-use candidates 0, review-only 173, promoted 0, blocked broad refresh files 173, route payload hits 0
 - Usage unit density: present, units 1673, rows 2390, multi-occurrence units 418, max occurrences per unit 11, works 271, route payload hits 0
 - Usage phrase recurrence: present, rows 2390, n-gram instances 32425, recurring groups 2244, rows with recurring groups 2303, skipped rows without focus 0, route payload hits 0
 - Usage context offset: present, rows 2390, rows with context 2390, token observations 36525, immediate neighbor observations 4731, offsets 16, token buckets 17103, skipped rows without focus 0, route payload hits 0
@@ -78,19 +78,34 @@ Generated: 2026-06-01T15:01:48.001Z
 - Candidate artifact audit: useful 59, zero-useful non-smoke 30, orphan smoke 2
 - Definition Workbench usage-link packet: pass_with_warnings, warnings 1, sample rows 200, current usage links 0, usage tokens 1, usage occurrence rows 2390, selected occurrence samples 12
 - Definition Workbench usage seed/join smoke: seed passed, seed rows 1, absent 1, occurrence links 12; join passed, join rows 1, projected rows 201, projected usage-link rows 2390
-- Definition Workbench usage Agent 6 packet: passed, proof rows 12, supported 11, candidate 1, weak 0, route IDs 1, frames 2, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage Agent 6 packet: pass_with_warnings, proof rows 12, supported 11, candidate 1, weak 0, route IDs 1, frames 2, reader-facing 0, route payload hits 0, forbidden authority hits 0
 - Definition Workbench usage Hebrew/context guard: Hebrew token rows 12, Hebrew context rows 12, focus marker rows 12, mojibake rows 0
 - Definition Workbench usage occurrence links: passed, rows 49, source refs 38, works 20, Hebrew context 49, focus markers 49, mojibake 0, reader-facing 0, route payload hits 0, forbidden authority hits 0, audit-only ambiguous 2064/0
-- Definition Workbench usage queue-ready packet: passed, required fields 10/10, evidence artifacts 11/11, validators 6/6, queue mutations 0, submitted 0
-- Agent 3 usage state packet: passed, worker evidence-ready, QA not_agent6_accepted, evidence artifacts 14/14, validators 8/8, queue mutations 0, submitted 0, state smoke 117/0
+- Definition Workbench usage route resolution: passed, occurrence route rows 49, route IDs 1, resolved/unresolved 1/0, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage crossmatch neighbors: passed, source rows 49, links 2352, same/bridge 1192/1160, route IDs 1, unresolved routes 0, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage source-ref buckets: passed, source refs 38, source-cluster buckets 40, rows 49, duplicate source refs 8/19, cross-cluster source refs 2/7, route IDs 1, unresolved routes 0, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage work buckets: passed, works 20, work-frame buckets 25, rows 49, source refs 38, multi-source works 9/33, multi-frame works 5/26, route IDs 1, unresolved routes 0, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage provenance buckets: passed, provenance buckets 5, provenance-frame buckets 10, rows 49, source refs 38, licenses 2, version sources 4, multi-work 4/46, multi-frame 5/49, route IDs 1, unresolved routes 0, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage occurrence detail index: passed, rows 49, source refs 38, works 20, route IDs 1, unresolved routes 0, bucket-linked rows 49, neighbor links 2352, same/bridge 1192/1160, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage facet index: pass_with_warnings, occurrence rows 49, groups 10, facets 75, route IDs 1, max route share 10000/10000, concentration warning 1, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage route diversity probe: pass_with_warnings, occurrence rows 49, route IDs 1, probes 1, max route share 10000/10000, concentration warning 1, semantic independence allowed 0, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage sample gap audit: pass_with_warnings, gap rows 1, sample usage links 0/200, usage tokens not in sample 1, selected links 12, route IDs 1, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage consumer manifest: pass_with_warnings, entries 10, passed 10, data/report/validator 10-10/10-10/10-10, rows 49/49, route IDs 1, unresolved 0, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage planning packet: pass_with_warnings, planning rows 1, occurrence links 49, sample usage links 0, usage tokens not in sample 1, route IDs 1, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage anchor audit: passed, rows 49, pages 49, anchors 49, source refs 49, token/focus 49/49, context/license/version 49/49/49, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage occurrence support packet: pass_with_warnings, rows 49, supported/candidate/weak 11/26/12, source/anchor/context/focus/route/license/version 49/49/49/49/49/49/49, audit-only ambiguous 2064/0, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage concordance navigation packet: passed, rows 2390, supported/candidate/weak 339/1351/700, selected 49, source/work/category/route 1673/271/15/1, source/anchor/context/focus/route/license/version 2390/2390/2390/2390/2390/2390/2390, audit-only ambiguous 2064/0, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage freshness impact packet: passed, pending 173, overlap/no-overlap 0/173, impacted rows 0, selected impact 0, promoted 0, source-text/broad-expansion 0/0, reader-facing 0, route payload hits 0, forbidden authority hits 0
+- Definition Workbench usage queue-ready packet: pass_with_warnings, required fields 10/10, evidence artifacts 41/41, validators 24/24, queue mutations 0, submitted 0
+- Agent 3 usage state packet: pass_with_warnings, worker evidence-ready, QA not_agent6_accepted, evidence artifacts 44/44, validators 23/23, queue mutations 0, submitted 0, state smoke 132/0
 
 ## Steps
 
 | step | status | output |
 |---|---|---|
 | validate_smoke_queue | passed | Workbench smoke target validation passed. Targets: 55. |
-| report_source_freshness | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.md / Source freshness stale; current 1357; scanned 1192; modified after artifact 170; created after artifact 165 |
-| validate_source_freshness | passed | Validated workbench source freshness .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json: status stale; pending 170 |
+| report_source_freshness | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.md / Source freshness stale; current 1360; scanned 1192; modified after artifact 173; created after artifact 168 |
+| validate_source_freshness | passed | Validated workbench source freshness .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json: status stale; pending 173 |
 | report_reshit_smoke_coverage | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-coverage.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-coverage.md / Known nonzero source files 271; covered 271; uncovered 0; suggested gap targets 0 |
 | report_workbench_smoke_counts | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-counts.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-counts.md / Targets 55; supported 339; candidate 1351; weak 700; ambiguous 2064; missing 0; zero useful 0 |
 | build_complete_handoff_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/handoff-index-smoke-complete.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/handoff-index-smoke-complete.md / Target queue coverage: 55/55; missing 0 |
@@ -115,8 +130,8 @@ Generated: 2026-06-01T15:01:48.001Z
 | validate_usage_provenance_index | passed | Validated usage provenance index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-provenance-index.json: licenses 4; version sources 185; rows 2390 |
 | build_usage_search_shard_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.md / Usage search shard index shards 74; rows 2390 |
 | validate_usage_search_shard_index | passed | Validated usage search shard index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.json: shards 74; rows 2390 |
-| build_usage_refresh_priority_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.md / Usage refresh priority pending 170; known-use candidates 0; promoted 0 |
-| validate_usage_refresh_priority_index | passed | Validated usage refresh priority index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json: pending 170; promoted 0 |
+| build_usage_refresh_priority_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.md / Usage refresh priority pending 173; known-use candidates 0; promoted 0 |
+| validate_usage_refresh_priority_index | passed | Validated usage refresh priority index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json: pending 173; promoted 0 |
 | build_usage_unit_density_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-unit-density-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-unit-density-index.md / Usage unit density units 1673; multi 418; rows 2390 |
 | validate_usage_unit_density_index | passed | Validated usage unit density index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-unit-density-index.json: units 1673; rows 2390 |
 | build_usage_phrase_recurrence_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-phrase-recurrence-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-phrase-recurrence-index.md / Usage phrase recurrence groups 2244; instances 32425; rows 2390 |
@@ -203,8 +218,23 @@ Generated: 2026-06-01T15:01:48.001Z
 | validate_definition_workbench_usage_join_smoke | passed | Definition Workbench usage join smoke validation passed. / Join rows: 1; absent seeds: 1; occurrence links: 12. |
 | validate_definition_workbench_usage_agent6_packet | passed | Definition Workbench usage Agent 6 packet validation passed. / Proof rows: 12; route IDs: 1; absent seeds: 1. |
 | validate_definition_workbench_usage_occurrence_links | passed | Definition Workbench usage occurrence links validation passed. / Occurrence links: 49; source refs: 38; reader-facing: 0. |
-| validate_definition_workbench_usage_queue_ready_packet | passed | Definition Workbench usage queue-ready packet validation passed. / Required fields: 10/10; evidence artifacts: 11/11; submitted: 0. |
-| validate_agent3_usage_state | passed | Agent 3 usage state validation passed. / Evidence artifacts: 14/14; validators: 8/8; smoke failed: 0. |
+| validate_definition_workbench_usage_route_resolution | passed | Definition Workbench usage route resolution validation passed. / Route IDs: 1; unresolved: 0; rows: 49. |
+| validate_definition_workbench_usage_crossmatch_neighbors | passed | Definition Workbench usage crossmatch neighbors validation passed. / Rows: 49; links: 2352; reader-facing: 0. |
+| validate_definition_workbench_usage_source_ref_buckets | passed | Definition Workbench usage source-ref buckets validation passed. / Source refs: 38; source/cluster buckets: 40; duplicate rows: 19. |
+| validate_definition_workbench_usage_work_buckets | passed | Definition Workbench usage work buckets validation passed. / Works: 20; work/frame buckets: 25; occurrence rows: 49. |
+| validate_definition_workbench_usage_provenance_buckets | passed | Definition Workbench usage provenance buckets validation passed. / Provenance buckets: 5; provenance/frame buckets: 10; occurrence rows: 49. |
+| validate_definition_workbench_usage_occurrence_detail_index | passed | Definition Workbench usage occurrence-detail index validation passed. / Occurrence detail rows: 49; bucket-linked rows: 49; neighbor links: 2352. |
+| validate_definition_workbench_usage_facet_index | passed | Definition Workbench usage facet index validation passed with 1 warning(s). / - route-linked selected rows remain concentrated on one route ID / Occurrences: 49; facets: 75; route IDs: 1; concentration warning: 1. |
+| validate_definition_workbench_usage_route_diversity_probe | passed | Definition Workbench usage route-diversity probe validation passed with 1 warning(s). / - selected occurrence links remain concentrated on one route ID / Occurrences: 49; route IDs: 1; max route share: 10000/10000. |
+| validate_definition_workbench_usage_sample_gap_audit | passed | Definition Workbench usage sample-gap audit validation passed. / Gap rows: 1; sample usage links: 0/200; route IDs: 1. |
+| validate_definition_workbench_usage_consumer_manifest | passed | Definition Workbench usage consumer manifest validation passed. / Manifest entries: 10; data artifacts: 10/10; validators: 10/10. |
+| validate_definition_workbench_usage_planning_packet | passed | Definition Workbench usage planning packet validation passed. / Planning rows: 1; occurrence links: 49; reader-facing: 0. |
+| validate_definition_workbench_usage_anchor_audit | passed | Definition Workbench usage anchor audit validation passed. / Audit rows: 49; anchors: 49/49; source refs: 49/49. |
+| validate_definition_workbench_usage_occurrence_support_packet | passed | Definition Workbench usage occurrence support packet validation passed. / Support rows: 49; supported/candidate/weak: 11/26/12; reader-facing: 0. |
+| validate_definition_workbench_usage_concordance_navigation_packet | passed | Validated data/definitions/definition-workbench-usage-concordance-navigation-packet.json: rows 2390; supported/candidate/weak 339/1351/700; ambiguous emitted 0; reader-facing 0 |
+| validate_definition_workbench_usage_freshness_impact_packet | passed | Validated data/definitions/definition-workbench-usage-freshness-impact-packet.json: pending 173; impacted usage rows 0; promoted 0; reader-facing 0 |
+| validate_definition_workbench_usage_queue_ready_packet | passed | Definition Workbench usage queue-ready packet validation passed. / Required fields: 10/10; evidence artifacts: 41/41; submitted: 0. |
+| validate_agent3_usage_state | passed | Agent 3 usage state validation passed. / Evidence artifacts: 44/44; validators: 23/23; smoke failed: 0. |
 
 ## Boundary
 

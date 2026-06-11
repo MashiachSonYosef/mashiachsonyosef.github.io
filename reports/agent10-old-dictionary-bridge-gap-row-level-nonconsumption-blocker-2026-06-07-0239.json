@@ -1,0 +1,95 @@
+{
+  "artifact_type": "agent10_old_dictionary_bridge_gap_row_level_nonconsumption_blocker",
+  "generated_at": "2026-06-07T02:39:35Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "old-dictionary bridge-gap direct source-RID row-level release/package intake",
+  "status": "agent10_row_level_nonconsumption_blocker_returned",
+  "files_used": {
+    "agent2_latest_watch_blocker": "reports/agent2-old-dictionary-bridge-gap-row-level-return-watch-blocker-2026-06-07-0232.json",
+    "agent2_latest_watch_blocker_validation": "reports/agent2-old-dictionary-bridge-gap-row-level-return-watch-blocker-validation-result-2026-06-07-0232.json",
+    "agent2_row_level_return_contract_consumption": "reports/agent2-old-dictionary-bridge-gap-row-level-return-contract-consumption-2026-06-06.json",
+    "agent10_agent1_source_citation_workset": "reports/agent10-agent1-ready-old-dictionary-78-row-source-citation-enrichment-workset-2026-06-06.json",
+    "agent10_agent1_live_route_blocker": "reports/agent10-agent1-old-dictionary-78-row-source-citation-enrichment-live-route-blocker-2026-06-06.json"
+  },
+  "process_timeout_reports": [],
+  "route_correction_preserved": {
+    "approval_sop_final_validation_release_gate_owner": "A07",
+    "evidence_validators_repo_cleaning_production_owner": "A06",
+    "a06_outputs_evidence_ready_until_a07_approves": true,
+    "do_not_ask_a06_for_approval": true,
+    "existing_validated_words_preserved": true,
+    "redo_only_changed_or_flagged_rows": true
+  },
+  "lane_counts_rows_consumed": {
+    "contract_rows": 3,
+    "contract_occurrences": 42,
+    "agent10_contract_consumed_as_blocker_rows": 3,
+    "agent10_row_level_text_consumed_rows": 0,
+    "agent1_agent2_source_citation_return_rows": 0,
+    "source_citation_or_url_present_rows": 0,
+    "owner_action_resolution_present_rows": 0,
+    "transform_rule_present_rows": 0,
+    "transform_rule_still_blocked_rows": 3,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "publication_or_release_claims": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "row_level_return": [
+    {
+      "queue_id": "agent2-orot-gap-tok-126d54d64a8c",
+      "source_rid": "P00280",
+      "owner_action_kind": "queue_scope_dedupe_required",
+      "row_level_consumption_artifact_or_exact_nonconsumption_blocker": "exact_nonconsumption_blocker::missing_queue_scope_dedupe_resolution_for_duplicate_source_rid_locator_and_missing_source_citation_or_url",
+      "consumed_agent3_gap_artifact": "reports/agent3-old-dictionary-candidate-use-bridge-gap-direct-source-rid-downstream-gap-crossmatch-2026-06-06.json",
+      "downstream_owner_next_step": "Agent1/Agent2 must return queue-scope dedupe resolution plus row-level source_citation_or_url or exact blocker before Agent2 transform work can proceed.",
+      "approval_route_owner": "A07"
+    },
+    {
+      "queue_id": "agent2-orot-gap-tok-d29b2c27700e",
+      "source_rid": "M00032",
+      "owner_action_kind": "source_citation_ref_gap_resolution_required",
+      "row_level_consumption_artifact_or_exact_nonconsumption_blocker": "exact_nonconsumption_blocker::missing_source_citation_resolution_for_zero_ref_gap_source_rid_and_missing_source_citation_or_url",
+      "consumed_agent3_gap_artifact": "reports/agent3-old-dictionary-candidate-use-bridge-gap-direct-source-rid-downstream-gap-crossmatch-2026-06-06.json",
+      "downstream_owner_next_step": "Agent1/Agent2 must return ref-gap source citation resolution plus row-level source_citation_or_url or exact blocker before Agent2 transform work can proceed.",
+      "approval_route_owner": "A07"
+    },
+    {
+      "queue_id": "agent2-orot-gap-tok-e50370ece8ba",
+      "source_rid": "E00687",
+      "owner_action_kind": "exact_rid_scope_required",
+      "row_level_consumption_artifact_or_exact_nonconsumption_blocker": "exact_nonconsumption_blocker::missing_exact_rid_scope_for_multi_rid_custody_row_and_missing_source_citation_or_url",
+      "consumed_agent3_gap_artifact": "reports/agent3-old-dictionary-candidate-use-bridge-gap-direct-source-rid-downstream-gap-crossmatch-2026-06-06.json",
+      "downstream_owner_next_step": "Agent1/Agent2 must return exact RID scope resolution plus row-level source_citation_or_url or exact blocker before Agent2 transform work can proceed.",
+      "approval_route_owner": "A07"
+    }
+  ],
+  "agent6_boundary_need": "not_ready",
+  "agent6_boundary_blocker": "Agent6 packet is blocked until Agent1/Agent2 supply row-level source_citation_or_url or exact missing-citation blockers and Agent10 supplies an exact transform rule or a narrowed no-text boundary question.",
+  "exact_blockers": [
+    "missing_agent1_agent2_source_citation_or_owner_action_return_after_contract",
+    "missing_source_field::source_citation_or_url",
+    "missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text",
+    "missing_transform_output_proposal_matrix_or_exact_transform_rule",
+    "missing_queue_scope_dedupe_resolution_for_duplicate_source_rid_locator",
+    "missing_source_citation_resolution_for_zero_ref_gap_source_rid",
+    "missing_exact_rid_scope_for_multi_rid_custody_row",
+    "stale_agent1_registry_target_current_agent1_thread_required"
+  ],
+  "handoff_owner": {
+    "Agent10": "This artifact returns the row-level non-consumption blocker and preserves the release/package boundary.",
+    "Agent1_Agent2": "Return source_citation_or_url or exact missing-source blocker plus owner-action resolution or exact blocker for P00280, M00032, and E00687.",
+    "Agent5_coordination": "Provide or route through the current Agent1 thread for the existing 78-row source-citation workset.",
+    "A07": "Approval, SOP, final validation, and release gate where required.",
+    "A06": "Evidence/validator production only; not approval."
+  },
+  "stop_condition": "Stop at Agent10 row-level non-consumption blocker. No source text, candidate text, definition/lemma/reader-hint content, answer eligibility, route writes, A06 approval request, source/license/legal/Definition/product/answer/accepted-text acceptance, repo cleanup action, public/runtime mutation, export, publication readiness, or release action."
+}

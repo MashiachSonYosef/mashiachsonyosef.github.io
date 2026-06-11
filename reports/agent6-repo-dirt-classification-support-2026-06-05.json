@@ -1,0 +1,133 @@
+{
+  "artifact": "reports/agent6-repo-dirt-classification-support-2026-06-05.md",
+  "date": "2026-06-05",
+  "agent": "Agent 6",
+  "disposition": "warn_blocking_support_docket",
+  "scope": "non_destructive_repo_dirt_classification_only",
+  "repo": {
+    "workdir": "C:/Users/owner/Documents/translations",
+    "branch": "main",
+    "head_short": "e7f6da84a",
+    "status_command": "git status --porcelain=v1 -z --untracked-files=all"
+  },
+  "counts": {
+    "dirty_records_total": 17239,
+    "tracked_deletions": 12231,
+    "tracked_modified": 1490,
+    "tracked_added": 22,
+    "untracked": 3496
+  },
+  "path_family_counts": {
+    "data/public-hud": 11937,
+    "reports": 2777,
+    "site-pages": 1541,
+    "scripts": 442,
+    "other_data": 435,
+    "tanakh": 49,
+    "data/definitions": 19,
+    "data/control": 16,
+    "temp_noise": 9,
+    "data/translation-memory": 4,
+    "assets_hud_preview_orot_root": 10
+  },
+  "deletion_classification": {
+    "data/public-hud": {
+      "count": 11937,
+      "classification": "generated_output_churn_candidate_but_p0_until_reconciled"
+    },
+    "reports": {
+      "count": 236,
+      "classification": "provenance_docket_loss_risk_hold"
+    },
+    "scripts": {
+      "count": 55,
+      "classification": "validator_builder_loss_risk_hold"
+    },
+    "deployment_runtime_support": {
+      "count": 3,
+      "classification": "needs_owner_release_owner_review"
+    }
+  },
+  "proposed_batches": [
+    {
+      "id": "A",
+      "name": "qa_support_docket",
+      "condition": "owner wants checkpoint only"
+    },
+    {
+      "id": "B",
+      "name": "evidence_reports",
+      "condition": "exclude deleted reports and raw logs unless explicitly wanted"
+    },
+    {
+      "id": "C",
+      "name": "validators_and_builders",
+      "condition": "only with matching report packet and no orphan deletion"
+    },
+    {
+      "id": "D",
+      "name": "control_state",
+      "condition": "only with Agent 5/7 publication or queue-health proof"
+    },
+    {
+      "id": "E",
+      "name": "runtime_public_hud_site_surface",
+      "condition": "requires Agent 10 changed-input release packet"
+    },
+    {
+      "id": "F",
+      "name": "temporary_noise",
+      "condition": "delete only after explicit owner approval"
+    }
+  ],
+  "exact_blockers": [
+    {
+      "blocker": "public_hud_package_truth_blocked",
+      "evidence": "11937 tracked deletions under data/public-hud",
+      "handoff_owner": "Agent 10"
+    },
+    {
+      "blocker": "provenance_and_validator_recountability_blocked",
+      "evidence": "236 deleted reports and 55 deleted scripts",
+      "handoff_owner": "Agent 5/7 plus source worker lanes"
+    },
+    {
+      "blocker": "control_truth_blocked_if_untracked_files_are_relied_on",
+      "evidence": "16 untracked data/control files",
+      "handoff_owner": "Agent 5/7"
+    },
+    {
+      "blocker": "runtime_public_claims_blocked",
+      "evidence": "1541 dirty site-page records and 49 dirty tanakh records",
+      "handoff_owner": "Agent 10 with Agent 4 proof after changed package"
+    },
+    {
+      "blocker": "source_provenance_claims_blocked",
+      "evidence": "untracked or modified source/lexical/translation-memory data",
+      "handoff_owner": "Agent 1 then Agent 6 if QA-relevant"
+    },
+    {
+      "blocker": "destructive_cleanup_not_authorized",
+      "evidence": "owner requested classification/cleanup support but forbade blind cleanup through Agent 13 allocation",
+      "handoff_owner": "owner"
+    }
+  ],
+  "must_not_be_accepted": [
+    "staging",
+    "deletion",
+    "revert",
+    "cleanup_complete",
+    "qa_acceptance",
+    "source_provenance_acceptance",
+    "license_legal_acceptance",
+    "runtime_public_acceptance",
+    "definition_authority",
+    "answer_eligibility",
+    "publication_readiness",
+    "accepted_text",
+    "commercial_export_authorization",
+    "nc_commercial_authorization",
+    "release_action"
+  ],
+  "stop_condition": "classification_artifact_exists_no_destructive_action_taken"
+}

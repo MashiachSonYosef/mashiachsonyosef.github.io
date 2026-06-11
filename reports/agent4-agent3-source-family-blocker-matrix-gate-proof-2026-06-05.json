@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:26:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent3-old-dictionary-candidate-use-source-family-blocker-matrix",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-source-family-blocker-matrix-2026-06-05.json",
+  "validator_proof_commands": [
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_source_family_blocker_matrix.mjs reports\\agent3-old-dictionary-candidate-use-source-family-blocker-matrix-2026-06-05.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "Agent 3 candidate-use source-family blocker matrix passed: candidate_rows=78 memberships=159 families=3 family_sets=4 blockers=3"
+    },
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_source_family_blocker_matrix.mjs",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "syntax check passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-source-family-blocker-matrix-gate-proof-2026-06-05.md",
+  "files": [
+    "reports/agent3-old-dictionary-candidate-use-source-family-blocker-matrix-2026-06-05.json",
+    "reports/agent3-old-dictionary-candidate-use-continuity-crossmatch-2026-06-05.json",
+    "scripts/validate_agent3_old_dictionary_candidate_use_source_family_blocker_matrix.mjs"
+  ],
+  "counts": {
+    "candidate_use_rows": 78,
+    "candidate_use_occurrences": 1461,
+    "unique_queue_ids": 78,
+    "unique_token_ids": 78,
+    "duplicate_queue_ids": 0,
+    "duplicate_token_ids": 0,
+    "source_family_rows": 3,
+    "source_family_set_rows": 4,
+    "source_family_membership_rows": 159,
+    "source_family_membership_occurrences": 3304,
+    "multi_family_candidate_rows": 60,
+    "multi_family_candidate_occurrences": 1227,
+    "single_family_candidate_rows": 18,
+    "single_family_candidate_occurrences": 234,
+    "row_overlap_sample_linked_rows": 19,
+    "row_overlap_sample_unlinked_rows": 59,
+    "source_family_rows_with_blocker_links": 3,
+    "source_family_set_rows_with_blocker_links": 4,
+    "exact_blocker_rows": 3,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "release_actions": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "family_membership_counts": {
+    "one_family_rows": 18,
+    "two_family_rows": 39,
+    "three_family_rows": 21
+  },
+  "exact_blockers": [
+    "BDB Aramaic Dictionary row-subset missing exact Agent6 boundary and approved morphology relation",
+    "BDB Dictionary row-subset missing exact Agent6 boundary and approved morphology relation",
+    "Jastrow Dictionary row-subset missing exact Agent6 boundary and approved morphology relation",
+    "source-family set rows require boundary selection before transform"
+  ],
+  "handoff_owner": {
+    "package_owner": "Agent 10",
+    "transform_owner_after_exact_boundary": "Agent 2",
+    "qa_boundary_owner_if_needed": "Agent 6"
+  },
+  "hashes": {
+    "agent3_source_family_blocker_matrix_sha256": "a8168483b0341962cc1c86f55ea7122b3c04d2e0e72fbf061415d01c111d64f2",
+    "agent3_candidate_use_continuity_crossmatch_sha256": "9a5b1960e650f3d474f713f0e5a477a5544f02d97454f48c92271a756a2ba4ff",
+    "validator_sha256": "2a22dcf9afe2f1e5344fc3076fcd0fe6f35549a5608eef0e75fff9b0bffced3e"
+  },
+  "result": "target | agent3-old-dictionary-candidate-use-source-family-blocker-matrix | changed input/artifact | reports/agent3-old-dictionary-candidate-use-source-family-blocker-matrix-2026-06-05.json | validator/proof command with timeout | node scripts\\validate_agent3_old_dictionary_candidate_use_source_family_blocker_matrix.mjs reports\\agent3-old-dictionary-candidate-use-source-family-blocker-matrix-2026-06-05.json, timeout 30000 ms, passed | output artifact path | reports/agent4-agent3-source-family-blocker-matrix-gate-proof-2026-06-05.md/json | exact blockers | 3 source-family blocker rows plus source-family-set boundary selection blockers; no output authorization | handoff owner | Agent10 package owner, Agent2 transform after exact boundary, Agent6 QA boundary | stop condition | use only to distinguish unique candidate rows from duplicated source-family memberships and blocker rows; no candidate text, definition/lemma/reader-hint content, answer rows, route writes, public/runtime mutations, accepted text, commercial export, or release action from this matrix",
+  "stop_condition": "Use this matrix only to distinguish unique candidate rows from duplicated source-family memberships and blocker rows. Do not emit candidate text, definition/lemma/reader-hint content, answer rows, route writes, public/runtime mutations, accepted text, commercial export, or release action from this matrix.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Orot War 1:1 Pre-HUD Route Preview</title>
+  <style>
+    :root {
+      --bg: #101113;
+      --panel: #18191c;
+      --panel-2: #202126;
+      --text: #efe6d2;
+      --muted: #c8bca5;
+      --line: #3a3329;
+      --line-2: #6f5c3c;
+      --accent: #d6be8a;
+      --blue: #9db7df;
+      --green: #9cc8a1;
+      --warn: #dfc06f;
+      --hebrew: #f4ead8;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.55 Georgia, "Times New Roman", serif;
+    }
+
+    button,
+    a { color: inherit; }
+
+    main {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+      padding: 26px 16px 48px;
+    }
+
+    .hero,
+    .preview-unit {
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .hero {
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .crumbs {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 0.78rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-weight: 400;
+      line-height: 1.18;
+    }
+
+    h1 { font-size: clamp(2rem, 4.5vw, 4.1rem); }
+
+    .hero-summary,
+    .source-strip,
+    .pipeline-note {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .hero-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-top: 16px;
+    }
+
+    .metric {
+      border: 1px solid rgba(214,190,138,0.2);
+      background: rgba(255,255,255,0.02);
+      padding: 5px 8px;
+    }
+
+    .preview-unit { padding: 18px; }
+
+    .unit-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .unit-head a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .source-strip {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 16px;
+      padding: 10px 12px;
+      border: 1px solid rgba(214,190,138,0.16);
+      background: rgba(255,255,255,0.018);
+    }
+
+    .source-label {
+      color: var(--accent);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hebrew-source {
+      margin: 0;
+      color: var(--hebrew);
+      direction: rtl;
+      unicode-bidi: plaintext;
+      text-align: right;
+      font-size: clamp(1.08rem, 2.1vw, 1.45rem);
+      line-height: 1.75;
+      max-height: 9.2em;
+      overflow: auto;
+    }
+
+    .pipeline-note {
+      margin: 0 0 14px;
+      max-width: 94ch;
+    }
+
+    .prehud-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .prehud-row {
+      display: grid;
+      grid-template-columns: 4.4rem minmax(7rem, 0.78fr) minmax(16rem, 2.8fr) minmax(6rem, 0.5fr);
+      gap: 10px;
+      align-items: stretch;
+      border: 1px solid rgba(214,190,138,0.18);
+      background: rgba(255,255,255,0.018);
+      min-height: 58px;
+    }
+
+    .row-index,
+    .prehud-word,
+    .prehud-match {
+      display: grid;
+      align-items: center;
+      padding: 8px 10px;
+    }
+
+    .row-index,
+    .prehud-match {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .row-index {
+      border-right: 1px solid rgba(214,190,138,0.14);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .prehud-word {
+      border-right: 1px solid rgba(214,190,138,0.14);
+      color: var(--hebrew);
+      direction: rtl;
+      unicode-bidi: plaintext;
+      font-size: clamp(1.18rem, 2.2vw, 1.72rem);
+      line-height: 1.2;
+      text-align: right;
+    }
+
+    .prehud-word a {
+      text-decoration: none;
+      border-bottom: 1px solid rgba(214,190,138,0.36);
+    }
+
+    .prehud-gloss {
+      min-width: 0;
+      padding: 9px 10px;
+    }
+
+    .gloss-main {
+      display: block;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.48;
+      max-width: 82ch;
+      overflow-wrap: anywhere;
+    }
+
+    .gloss-main[data-state="tbd"] {
+      color: var(--warn);
+      font-style: italic;
+    }
+
+    .gloss-note {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .prehud-match {
+      border-left: 1px solid rgba(214,190,138,0.14);
+      text-align: left;
+    }
+
+    .prehud-match[data-state="hud-only"] { color: var(--blue); }
+    .prehud-match[data-state="selectable"] { color: var(--green); }
+    .prehud-match[data-state="missing"] { color: var(--muted); }
+
+    .loading,
+    .error {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.025);
+      padding: 14px;
+      color: var(--muted);
+    }
+
+    .error { color: var(--warn); }
+
+    .lexical-hud {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 10;
+      width: min(560px, 100vw);
+      height: 100vh;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      border-left: 1px solid var(--line-2);
+      background: #15161a;
+      box-shadow: -18px 0 42px rgba(0,0,0,0.42);
+    }
+
+    .lexical-hud[hidden] { display: none; }
+
+    .hud-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel-2);
+    }
+
+    .hud-head h2 {
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .hud-close,
+    .hud-action {
+      border: 1px solid rgba(214,190,138,0.34);
+      background: rgba(214,190,138,0.08);
+      color: var(--text);
+      padding: 6px 9px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .hud-action:disabled {
+      cursor: default;
+      opacity: 0.56;
+    }
+
+    .route-hud-panel {
+      min-height: 0;
+      overflow: auto;
+      padding: 14px;
+    }
+
+    .route-selected-token {
+      border: 1px solid var(--line-2);
+      background: rgba(214,190,138,0.05);
+      color: var(--hebrew);
+      padding: 12px;
+      text-align: center;
+      font-size: clamp(2rem, 8vw, 4.4rem);
+      line-height: 1.04;
+      direction: rtl;
+      unicode-bidi: plaintext;
+    }
+
+    .hud-card {
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.025);
+      padding: 11px;
+    }
+
+    .hud-card h3 {
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .hud-definition {
+      margin: 0 0 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .hud-meta,
+    .hud-boundary {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+    .hud-boundary {
+      margin: 10px 0 0;
+      border-top: 1px solid rgba(214,190,138,0.14);
+      padding-top: 8px;
+    }
+
+    @media (max-width: 760px) {
+      main { padding: 18px 10px 36px; }
+      .preview-unit { padding: 12px; }
+      .unit-head { display: grid; }
+      .prehud-row {
+        grid-template-columns: 3.2rem minmax(5.5rem, 0.74fr) minmax(0, 2.2fr);
+      }
+      .prehud-match {
+        grid-column: 3;
+        border-left: 0;
+        border-top: 1px solid rgba(214,190,138,0.14);
+        padding-top: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <p class="crumbs">Disposable route preview</p>
+      <h1 id="page-title">Orot War 1:1</h1>
+      <div class="hero-summary" data-summary>
+        <span class="metric">Loading current route data</span>
+      </div>
+    </section>
+
+    <section class="preview-unit" aria-label="War 1:1 pre-HUD preview">
+      <div class="unit-head">
+        <div>
+          <h2>Row-per-word pre-HUD</h2>
+        </div>
+        <a href="../orot/index.html#orot-lights-from-darkness-war-1-1">Open current Orot page</a>
+      </div>
+
+      <div class="source-strip" aria-label="Tokenized Hebrew source">
+        <span class="source-label">Tokenized source stream</span>
+        <p class="hebrew-source" data-hebrew-source>Loading...</p>
+      </div>
+
+      <p class="pipeline-note">
+        Pipeline rule in this preview: current lemma cards are allowed in the HUD as source/license evidence, but they do not auto-fill the pre-HUD. The pre-HUD shows a full wrapped gloss only when the current route/default-selection layer makes a candidate selectable; otherwise it shows TBD. This standalone snapshot embeds the current War 1:1 route data so it works when opened directly as a local file.
+      </p>
+
+      <div class="loading" data-loading>Loading War 1:1 occurrence roster, lexical chunks, and current reader hints...</div>
+      <div class="prehud-list" data-prehud-list></div>
+    </section>
+  </main>
+
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head">
+      <h2 id="route-hud-title">Route HUD</h2>
+      <button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button>
+    </div>
+    <div class="route-hud-panel" data-route-hud-panel>
+      <p class="hud-meta">Click a Hebrew form to load route evidence.</p>
+    </div>
+  </section>
+
+  <script type="application/json" id="war-preview-data">{"unit_id":"orot-lights-from-darkness-war-1-1","source_ref":"Orot, Lights from Darkness, War 1:1","generated_from":["data/lexical/occurrences/orot.json","data/lexical/orot.manifest.json","data/public-hud/orot/reader-hints.json"],"rows":[{"index":1,"tokenId":"tok-575e043f31dd","word":"כשיש","tokenStatus":"matched","lexiconEntryId":"lex-c9fa1872f18c","card":null},{"index":2,"tokenId":"tok-d33442bda557","word":"מלחמה","tokenStatus":"matched","lexiconEntryId":"lex-95dad83b8aaa","card":{"display":"war, battle","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-b585eecd7322ed30","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-cbb3b60a541ab9d7","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":3,"tokenId":"tok-26b87e0389de","word":"גדולה","tokenStatus":"matched","lexiconEntryId":"lex-b12e5b71cf83","card":{"display":"big, large; great, important","match_percent":56,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-d65ba2c766c65e3e","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-e12306e14cacb104","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":4,"tokenId":"tok-b495f46dc5c6","word":"בעולם","tokenStatus":"matched","lexiconEntryId":"lex-fe6e31ddfb78","card":{"display":"world: (the) Earth, (the) globe.; world: the states and nations of the world.; A world: an area, a field of study.; Ever, eternity.; A world: the entirety of a person's life and experience.","match_percent":60,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-5fa612f5b4de1c77","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-68166f005d814de1","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":5,"tokenId":"tok-9303967c7980","word":"מתעורר","tokenStatus":"matched","lexiconEntryId":"lex-12afe7d686fd","card":null},{"index":6,"tokenId":"tok-7e53711bfa3c","word":"כח","tokenStatus":"matched","lexiconEntryId":"lex-ec6b1f8a67fa","card":{"display":"vigor; literally (force; in a good; a bad sense); figuratively (capacity; means; produce); also (from its hardiness) a large lizard","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-5ce6eace2fa9925b","source":"OpenScriptures HebrewLexicon","source_family":"openscriptures","source_id":"H3581","source_url":"https://github.com/openscriptures/HebrewLexicon/blob/master/HebrewStrong.xml","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":7,"tokenId":"tok-ddd75c156221","word":"משיח","tokenStatus":"matched","lexiconEntryId":"lex-mashiach-h4899","card":{"display":"messiah","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-add3a83c180e1fe0","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-33e63b233eaee050","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":8,"tokenId":"tok-6dba4fc4861c","word":"עת","tokenStatus":"matched","lexiconEntryId":"lex-5332d1a0f2f2","card":{"display":"A time.; A period of time, a season, an era.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-7da0c5d71dd0d247","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-2f70106b1c841fd6","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":9,"tokenId":"tok-c60d780af3d1","word":"הזמיר","tokenStatus":"matched","lexiconEntryId":"lex-f8ae16bc00a7","card":{"display":"a twig (as pruned); branch.","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-f4f8096ff26abf96","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H2159","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":10,"tokenId":"tok-1b1f086ce818","word":"הגיע","tokenStatus":"matched","lexiconEntryId":"lex-3ad545a15a0a","card":{"display":"to arrive, to get, to reach; to be deserved, to serve someone right","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-ba1c0755b39f043a","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-6bc7c7912dcd6984","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":11,"tokenId":"tok-1d2fc8c746f1","word":"זמיר","tokenStatus":"matched","lexiconEntryId":"lex-64d9f1357bb9","card":{"display":"nightingale","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-406b338346e87be4","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-55bfa095bfee3501","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":12,"tokenId":"tok-d2a0c395c0bf","word":"עריצים","tokenStatus":"matched","lexiconEntryId":"lex-5323ae9d86b3","card":{"display":"fearful; i.e. powerful; tyrannical; mighty; oppressor; in great power; strong; terrible","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-231a314b480f0f95","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H6184","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":13,"tokenId":"tok-d0645f5b2a57","word":"הרשעים","tokenStatus":"matched","lexiconEntryId":"lex-1a7f013b354d","card":{"display":"morally wrong; concretely; an (actively) bad person; condemned; guilty; ungodly; wicked (man); that did wrong.","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-b682689198701c6f","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H7563","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":14,"tokenId":"tok-c6ebfb46ff10","word":"נכחדים","tokenStatus":"unmatched","lexiconEntryId":"","card":null},{"index":15,"tokenId":"tok-98e275bb513b","word":"מן","tokenStatus":"matched","lexiconEntryId":"lex-function-word-b6c935d4f3c7","card":{"display":"manna","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-d185909b63ef7576","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-bd03698b96d7d6bc","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":16,"tokenId":"tok-18d218591c2e","word":"העולם","tokenStatus":"matched","lexiconEntryId":"lex-cb803d06190e","card":{"display":"the world: singular definite form of עוֹלָם (olám).","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-6f536ecf93cbe6fd","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-2326319e0d777169","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":17,"tokenId":"tok-6252835fcc3c","word":"והעולם","tokenStatus":"matched","lexiconEntryId":"lex-21441d08f879","card":null},{"index":18,"tokenId":"tok-d1319dd245b8","word":"מתבסם","tokenStatus":"unmatched","lexiconEntryId":"","card":null},{"index":19,"tokenId":"tok-39e946a5a6c4","word":"וקול","tokenStatus":"matched","lexiconEntryId":"lex-850f522ae973","card":{"display":"a voice; sound; aloud; bleating; crackling; cry ( out); fame; lightness","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-f1b057ca0b9098ba","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H6963","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":20,"tokenId":"tok-a259cd88996a","word":"התור","tokenStatus":"matched","lexiconEntryId":"lex-2b96764d310e","card":{"display":"a ring-dove; often (figuratively) as a term of endearment; (turtle) dove.","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-9c92d42f4e0e89d7","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H8449","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":21,"tokenId":"tok-294ab7fa432b","word":"נשמע","tokenStatus":"matched","lexiconEntryId":"lex-e71709230578","card":{"display":"to be heard","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-533926bd8057fb12","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-d90cd0fc2c1f3e97","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":22,"tokenId":"tok-f670ad475bb7","word":"בארצנו","tokenStatus":"matched","lexiconEntryId":"lex-207880085ae9","card":{"display":"the earth (at large; partitively a land ); × common; country; earth; field; ground; land","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-10aa6cca94751493","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H776","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":23,"tokenId":"tok-8de6860ae6cf","word":"היחידים","tokenStatus":"matched","lexiconEntryId":"lex-5678001aecd1","card":null},{"index":24,"tokenId":"tok-8a645fcb2d05","word":"הנספים","tokenStatus":"unmatched","lexiconEntryId":"","card":null},{"index":25,"tokenId":"tok-071ba6517f33","word":"בלא","tokenStatus":"matched","lexiconEntryId":"lex-95738c78ebb3","card":{"display":"without","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-1898368544b75f61","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-2054f2bf439266dd","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":26,"tokenId":"tok-dec2174742d8","word":"משפט","tokenStatus":"matched","lexiconEntryId":"lex-5d5aa6efa025","card":{"display":"A trial: a legal proceeding before a court.; Law: a body of laws or commandments, taken collectively.; A judgment, verdict, ruling: the ruling of a court.; Justice, righteousness, just and righteous action.; sentence (a grammatically complete series of words consisting of a subject and predicate, even if one or the other is implied); A theorem: a mathematical claim that can be proven.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-5d3e45cf3ac778bf","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-9ba05eb353ea6d4b","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":27,"tokenId":"tok-dbfb08c66924","word":"שבתוך","tokenStatus":"matched","lexiconEntryId":"lex-09ed9b8d562b","card":null},{"index":28,"tokenId":"tok-650259330d33","word":"המהפכה","tokenStatus":"matched","lexiconEntryId":"lex-81606e30e1ce","card":null},{"index":29,"tokenId":"tok-c0837689307a","word":"של","tokenStatus":"matched","lexiconEntryId":"lex-expr-2b6526dbcaa3","card":{"display":"Of, belonging to, owned by, pertaining to.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-9e63bb441ff1d28c","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-e80731c033aaac0e","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":30,"tokenId":"tok-33fea96b2167","word":"שטף","tokenStatus":"matched","lexiconEntryId":"lex-9527f5f0f60c","card":{"display":"to wash; to rinse; to erode, to wash away.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-ba52da12f0815f4f","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-a9afa0ac591acaaa","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":31,"tokenId":"tok-10402364c33e","word":"המלחמה","tokenStatus":"matched","lexiconEntryId":"lex-fb1237bab4c0","card":{"display":"a battle (i.e. the engagement ); generally; war (i.e. war-fare ); battle; fight(-ing); war(-rior).","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-68eec38087b18ea5","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H4421","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":32,"tokenId":"tok-8d8273ee8557","word":"יש","tokenStatus":"matched","lexiconEntryId":"lex-1f70207bab84","card":{"display":"Being, existence.; Being, entity.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-465db8cdb22011f0","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-3ba9b44cce47680e","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":33,"tokenId":"tok-e858e9fa8bb8","word":"בה","tokenStatus":"matched","lexiconEntryId":"lex-30a953890b8e","card":null},{"index":34,"tokenId":"tok-6f748fc618a0","word":"ממדת","tokenStatus":"matched","lexiconEntryId":"lex-8d454e80e109","card":{"display":"measure","match_percent":56,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-c4e070a09c7f96d9","source":"Wikidata Lexeme","source_family":"wikidata","source_id":"L66216","source_url":"https://www.wikidata.org/wiki/Lexeme:L66216","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":35,"tokenId":"tok-dfc5b0a66474","word":"מיתת","tokenStatus":"matched","lexiconEntryId":"lex-5758a6914727","card":{"display":"dying","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-69c798a439534598","source":"Wikidata Lexeme","source_family":"wikidata","source_id":"L66255","source_url":"https://www.wikidata.org/wiki/Lexeme:L66255","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":36,"tokenId":"tok-26f668ffb19e","word":"צדיקים","tokenStatus":"matched","lexiconEntryId":"lex-afefe91a2555","card":{"display":"tzadik","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-423c51bf3c7c3804","source":"Wikidata Lexeme","source_family":"wikidata","source_id":"L67613","source_url":"https://www.wikidata.org/wiki/Lexeme:L67613","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":37,"tokenId":"tok-1509e07e5433","word":"המכפרת","tokenStatus":"matched","lexiconEntryId":"lex-60bee43317dd","card":{"display":"Euphrates","match_percent":52,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-114e3b940a10072d","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-fd40f76515dbe128","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":38,"tokenId":"tok-75f307bb87fc","word":"עולים","tokenStatus":"matched","lexiconEntryId":"lex-4a96a7638d75","card":null},{"index":39,"tokenId":"tok-03a517f60519","word":"הם","tokenStatus":"matched","lexiconEntryId":"lex-2a211473204c","card":{"display":"heme","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-1d9a1b67b4cace2a","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-8adffb46c262ed9c","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":40,"tokenId":"tok-f75a96a07b2f","word":"למעלה","tokenStatus":"matched","lexiconEntryId":"lex-5192d415d896","card":{"display":"up, upward; up there, above, upstairs; above, aforementioned (referring to text that came before); in heaven; more than, over (a certain number)","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-2d52c9248807ed56","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-7b4aef9189d3f26c","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":41,"tokenId":"tok-bf576be10b83","word":"בשורש","tokenStatus":"matched","lexiconEntryId":"lex-6c21f2b63752","card":null},{"index":42,"tokenId":"tok-0f5a457d49b8","word":"החיים","tokenStatus":"matched","lexiconEntryId":"lex-0eac01c3d878","card":{"display":"alive; hence; raw (flesh); fresh (plant; water; year); strong; also (as noun","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-29d1187e4de506b9","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H2416","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":43,"tokenId":"tok-3b7480a1b945","word":"ועצמות","tokenStatus":"matched","lexiconEntryId":"lex-d690e82d035a","card":{"display":"a bone (as strong ); by extension; the body; figuratively; the substance; i.e. (as pron.) selfsame; body; bone","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-cfeb4d9d69a44ba7","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H6106","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":44,"tokenId":"tok-cebc99232666","word":"חייהם","tokenStatus":"matched","lexiconEntryId":"lex-8519db620ac6","card":null},{"index":45,"tokenId":"tok-6275ef15a741","word":"מביא","tokenStatus":"matched","lexiconEntryId":"lex-f01213232980","card":null},{"index":46,"tokenId":"tok-81eb57d9f1ea","word":"ערך","tokenStatus":"matched","lexiconEntryId":"lex-92b6874e25fc","card":{"display":"value; set, order; entry (i.e. in a dictionary)","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-0e783971e3401fb5","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-78a8a92e52ae105e","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":47,"tokenId":"tok-f437343dd411","word":"כללי","tokenStatus":"matched","lexiconEntryId":"lex-e2ffe3187080","card":{"display":"general","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-74b1b066cd39f38e","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-3ea502ac6a8e099a","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":48,"tokenId":"tok-4b0f45dce407","word":"לטובה","tokenStatus":"matched","lexiconEntryId":"lex-5d387d466cf4","card":{"display":"good (as an adjective) in the widest sense; used likewise as a noun; both in the masculine and the feminine; the singular and the plural (good; a good; good thing; a good man; woman","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-7402391435f5f3ca","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H2896","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":49,"tokenId":"tok-4916fae37aae","word":"ולברכה","tokenStatus":"matched","lexiconEntryId":"lex-83c696ed3e46","card":null},{"index":50,"tokenId":"tok-6938d9aa39eb","word":"אל","tokenStatus":"matched","lexiconEntryId":"lex-function-word-4f1ea4f09db2","card":{"display":"not, do not","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-099acabac0c4980d","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-a1880c6ce1039855","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":51,"tokenId":"tok-dcd18a445012","word":"כלל","tokenStatus":"matched","lexiconEntryId":"lex-27ffec8165fa","card":{"display":"at all","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-3ef71a441441a7cd","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-e2b9f691b598e955","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":52,"tokenId":"tok-748a73ebab48","word":"בנין","tokenStatus":"matched","lexiconEntryId":"lex-412881780414","card":{"display":"Benin (a country in West Africa, formerly Dahomey)","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-7d09d67c85e33448","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-70b56091737ae0ee","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":53,"tokenId":"tok-18d218591c2e","word":"העולם","tokenStatus":"matched","lexiconEntryId":"lex-cb803d06190e","card":{"display":"the world: singular definite form of עוֹלָם (olám).","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-6f536ecf93cbe6fd","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-2326319e0d777169","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":54,"tokenId":"tok-20d2e105fd77","word":"בכל","tokenStatus":"matched","lexiconEntryId":"lex-6076abad07e6","card":null},{"index":55,"tokenId":"tok-030c0b8f94df","word":"ערכיו","tokenStatus":"matched","lexiconEntryId":"lex-92b6874e25fc","card":null},{"index":56,"tokenId":"tok-dc038c8940ad","word":"ומובניו","tokenStatus":"matched","lexiconEntryId":"lex-972a51f3d869","card":null},{"index":57,"tokenId":"tok-c6f9f1e981c3","word":"ואח״כ","tokenStatus":"matched","lexiconEntryId":"lex-abbrev-764eba405900","card":{"display":"and afterward; and after that","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-f6753ea5b015c1ee","source":"Project-authored Midrash/Aggadah formula table","source_family":"workspace","source_id":"project-midrash-formula:vav-achar-kach","source_url":"local:project-midrash-formula-table","license":"project-authored / CC0","license_url":"https://creativecommons.org/publicdomain/zero/1.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":58,"tokenId":"tok-93cfc5613e59","word":"כתום","tokenStatus":"matched","lexiconEntryId":"lex-58e906ebdc49","card":{"display":"orange (the colour of a ripe fruit of an orange tree, midway between red and yellow)","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-4c5ae13a23b6ed7c","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-f630d3866479b1f0","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":59,"tokenId":"tok-10402364c33e","word":"המלחמה","tokenStatus":"matched","lexiconEntryId":"lex-fb1237bab4c0","card":{"display":"a battle (i.e. the engagement ); generally; war (i.e. war-fare ); battle; fight(-ing); war(-rior).","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-68eec38087b18ea5","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H4421","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":60,"tokenId":"tok-1741109670f0","word":"מתחדש","tokenStatus":"matched","lexiconEntryId":"lex-b4eebe47c641","card":null},{"index":61,"tokenId":"tok-18d218591c2e","word":"העולם","tokenStatus":"matched","lexiconEntryId":"lex-cb803d06190e","card":{"display":"the world: singular definite form of עוֹלָם (olám).","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-6f536ecf93cbe6fd","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-2326319e0d777169","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":62,"tokenId":"tok-6e2969ee121b","word":"ברוח","tokenStatus":"matched","lexiconEntryId":"lex-ruach-h7307","card":{"display":"Wind, a wind: (a) movement of atmospheric air.; Air, atmosphere.; A direction, a cardinal direction: any of north, south, east, or west.; breath; A person's spirit, soul.; A person's spirit, mind: his or her desires, emotions, personality, and so on, taken collectively.; The spirit of something: its core, its essence, its purpose.; The spirit of something: its manner or style.; A spirit, a ghost: a supernatural creature.","match_percent":60,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-6c28628ae98a7da8","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-dd4e17610890e54e","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":63,"tokenId":"tok-bdb39cee14a4","word":"חדש","tokenStatus":"matched","lexiconEntryId":"lex-08bca18d3b71","card":{"display":"grain from a new crop","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-3e3ff6257d2f5aab","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-25076533040c4a23","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":64,"tokenId":"tok-75736d66dc48","word":"ורגלי","tokenStatus":"matched","lexiconEntryId":"lex-5b53754f99d0","card":{"display":"a foot (as used in walking); by implication; a step; by euphemistically the pudenda; × be able to endure; × according as; × after; × coming","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-6dbc246d01d9c6a3","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H7272","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":65,"tokenId":"tok-ddd75c156221","word":"משיח","tokenStatus":"matched","lexiconEntryId":"lex-mashiach-h4899","card":{"display":"messiah","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-add3a83c180e1fe0","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-33e63b233eaee050","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":66,"tokenId":"tok-87404fc5a656","word":"מתגלים","tokenStatus":"matched","lexiconEntryId":"lex-c2d4ed9f58a9","card":{"display":"to appear/be discovered","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-f06df94ba8529714","source":"Wikidata Lexeme","source_family":"wikidata","source_id":"L209397","source_url":"https://www.wikidata.org/wiki/Lexeme:L209397","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":67,"tokenId":"tok-37d32bd2c4f5","word":"ביותר","tokenStatus":"matched","lexiconEntryId":"lex-a6bba0827a06","card":{"display":"Most.; Quite, most.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-34d4c1c289b49fb9","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-3c470ef90661ddfb","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":68,"tokenId":"tok-83c2aa126b25","word":"ולפי","tokenStatus":"matched","lexiconEntryId":"lex-d6aef07638b3","card":{"display":"the mouth (as the means of blowing ); whether literal; figurative (particularly speech ); specifically edge; portion; side; adverbially (with preposition) according to; accord(-ing as","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-efc447a982e11dc7","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H6310","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":69,"tokenId":"tok-386c777b9eba","word":"ערכה","tokenStatus":"matched","lexiconEntryId":"lex-597eab2c70ab","card":{"display":"kit, box","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-8b071719a41e2ecb","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-5e56e13415fb9ed0","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":70,"tokenId":"tok-c0837689307a","word":"של","tokenStatus":"matched","lexiconEntryId":"lex-expr-2b6526dbcaa3","card":{"display":"Of, belonging to, owned by, pertaining to.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-9e63bb441ff1d28c","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-e80731c033aaac0e","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":71,"tokenId":"tok-55a66a9e9d92","word":"גודל","tokenStatus":"matched","lexiconEntryId":"lex-a46174296231","card":{"display":"size, magnitude, greatness","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-1dc32423e4d53e4f","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-f2bd9dfc855df0ec","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":72,"tokenId":"tok-10402364c33e","word":"המלחמה","tokenStatus":"matched","lexiconEntryId":"lex-fb1237bab4c0","card":{"display":"a battle (i.e. the engagement ); generally; war (i.e. war-fare ); battle; fight(-ing); war(-rior).","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-68eec38087b18ea5","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H4421","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":73,"tokenId":"tok-d435e48f655f","word":"בכמותה","tokenStatus":"matched","lexiconEntryId":"lex-57dde9bd1011","card":null},{"index":74,"tokenId":"tok-329f9d101519","word":"ואיכותה","tokenStatus":"unmatched","lexiconEntryId":"","card":{"display":"quality","match_percent":56,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-b471dbe96f1048b2","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-6210a7faf1c31aca","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":75,"tokenId":"tok-3551c4fb5c19","word":"ככה","tokenStatus":"matched","lexiconEntryId":"lex-29e142e59d37","card":{"display":"thus (in this way, like so)","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-10b98ab5ac037c45","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-79fcf047bf3b32a6","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":76,"tokenId":"tok-fa6ed3b5a908","word":"תגדל","tokenStatus":"matched","lexiconEntryId":"lex-570134fd2972","card":null},{"index":77,"tokenId":"tok-78b74905fe6a","word":"הצפיה","tokenStatus":"matched","lexiconEntryId":"lex-2b1e4e47a57d","card":null},{"index":78,"tokenId":"tok-f68938fa40ac","word":"לרגלי","tokenStatus":"matched","lexiconEntryId":"lex-ba5f2eb50076","card":{"display":"a foot (as used in walking); by implication; a step; by euphemistically the pudenda; × be able to endure; × according as; × after; × coming","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-bbc2545f890a7d63","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H7272","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":79,"tokenId":"tok-ddd75c156221","word":"משיח","tokenStatus":"matched","lexiconEntryId":"lex-mashiach-h4899","card":{"display":"messiah","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-add3a83c180e1fe0","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-33e63b233eaee050","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":80,"tokenId":"tok-8bf393b880db","word":"שבה","tokenStatus":"matched","lexiconEntryId":"lex-171b57bbdabe","card":{"display":"to capture (took captive).","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-03b2123e85f46993","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-f5a1fb21683d0ea7","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":81,"tokenId":"tok-88d2d689becb","word":"מלחמת","tokenStatus":"matched","lexiconEntryId":"lex-dfd583799d01","card":{"display":"war","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-f7018ff5944ee1c1","source":"Wikidata Lexeme","source_family":"wikidata","source_id":"L66306","source_url":"https://www.wikidata.org/wiki/Lexeme:L66306","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":82,"tokenId":"tok-ef719e9660ac","word":"עולם","tokenStatus":"matched","lexiconEntryId":"lex-52e79fe85085","card":{"display":"world: (the) Earth, (the) globe.; world: the states and nations of the world.; A world: an area, a field of study.; Ever, eternity.; A world: the entirety of a person's life and experience.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-5fa612f5b4de1c77","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-68166f005d814de1","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":83,"tokenId":"tok-c0837689307a","word":"של","tokenStatus":"matched","lexiconEntryId":"lex-expr-2b6526dbcaa3","card":{"display":"Of, belonging to, owned by, pertaining to.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-9e63bb441ff1d28c","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-e80731c033aaac0e","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":84,"tokenId":"tok-99dee40f8257","word":"עכשיו","tokenStatus":"matched","lexiconEntryId":"lex-a26f165a9986","card":{"display":"now","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-e5441f35dae0bf1b","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-9c80aba98ec4543d","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":85,"tokenId":"tok-7fe249670a25","word":"צפיה","tokenStatus":"matched","lexiconEntryId":"lex-938004ec4706","card":null},{"index":86,"tokenId":"tok-95c6f9bfca3b","word":"נוראה","tokenStatus":"matched","lexiconEntryId":"lex-822dc9417712","card":null},{"index":87,"tokenId":"tok-26b87e0389de","word":"גדולה","tokenStatus":"matched","lexiconEntryId":"lex-b12e5b71cf83","card":{"display":"big, large; great, important","match_percent":56,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-d65ba2c766c65e3e","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-e12306e14cacb104","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":88,"tokenId":"tok-694f80f07f4b","word":"ועמוקה","tokenStatus":"matched","lexiconEntryId":"lex-73cea2d6afb5","card":{"display":"deep","match_percent":56,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-0962a5060fda4bb1","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-4a32bb9405305fd1","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":89,"tokenId":"tok-8d8273ee8557","word":"יש","tokenStatus":"matched","lexiconEntryId":"lex-1f70207bab84","card":{"display":"Being, existence.; Being, entity.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-465db8cdb22011f0","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-3ba9b44cce47680e","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":90,"tokenId":"tok-e858e9fa8bb8","word":"בה","tokenStatus":"matched","lexiconEntryId":"lex-30a953890b8e","card":null},{"index":91,"tokenId":"tok-55dd10482bfd","word":"מצורף","tokenStatus":"matched","lexiconEntryId":"lex-14d2541f93fd","card":null},{"index":92,"tokenId":"tok-1b76a9f88fc7","word":"לכל","tokenStatus":"matched","lexiconEntryId":"lex-c45beedcfc7c","card":null},{"index":93,"tokenId":"tok-aff3e3c3be47","word":"גלגולי","tokenStatus":"matched","lexiconEntryId":"lex-kaikki-5dd54eec5085","card":{"display":"The act of rolling.; The preparation of a cigarette or a joint by folding paper.; metamorphosis; reincarnation","match_percent":56,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-f94c7c8b1b383f35","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-b5421d8e9aba10bf","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":94,"tokenId":"tok-bc8968b15463","word":"הזמנים","tokenStatus":"matched","lexiconEntryId":"lex-6ca1257baefe","card":{"display":"time (inevitable passing of events); a time (duration of time); a time (measurement of a quantity of time); a tense (verb form distinguishing time); an era, times","match_percent":62,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-2062ca4563bb8f9d","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-ae9957c1c79cf99b","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":95,"tokenId":"tok-ce7d5b4fa79a","word":"והוראת","tokenStatus":"unmatched","lexiconEntryId":"","card":null},{"index":96,"tokenId":"tok-3f6c490a9e18","word":"קץ","tokenStatus":"matched","lexiconEntryId":"lex-e8213bf978e6","card":{"display":"to cut off","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-9d4920a149ecfc37","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-4ee24b4d677c6fe3","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":97,"tokenId":"tok-633b4f691f4e","word":"המגולה","tokenStatus":"matched","lexiconEntryId":"lex-c452a76a77d3","card":null},{"index":98,"tokenId":"tok-c0837689307a","word":"של","tokenStatus":"matched","lexiconEntryId":"lex-expr-2b6526dbcaa3","card":{"display":"Of, belonging to, owned by, pertaining to.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-9e63bb441ff1d28c","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-e80731c033aaac0e","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":99,"tokenId":"tok-e934dbb80add","word":"התישבות","tokenStatus":"matched","lexiconEntryId":"lex-kaikki-c5f2b9ff26a8","card":null},{"index":100,"tokenId":"tok-8981c3895930","word":"ארץ","tokenStatus":"matched","lexiconEntryId":"lex-48497cac8b05","card":{"display":"country, land; territory, district, region; Earth (the third planet of the Solar System; the world upon which humans live); ground, soil; Israel","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-199b8099d620c983","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-ea1a01fab50b4344","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":101,"tokenId":"tok-d543615ef1e0","word":"ישראל","tokenStatus":"matched","lexiconEntryId":"lex-7810f5bcd243","card":{"display":"Israel (a country in Western Asia in the Middle East, at the eastern shore of the Mediterranean); the Kingdom of Israel","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-af5a43850fdee2dd","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-31c5b01734cfccc0","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":102,"tokenId":"tok-52495218a766","word":"בדעה","tokenStatus":"matched","lexiconEntryId":"lex-e13f2ef38924","card":{"display":"opinion, point of view; knowledge","match_percent":60,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-52a53c404262a89c","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-cc64cb543ed0b8c2","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":103,"tokenId":"tok-26b87e0389de","word":"גדולה","tokenStatus":"matched","lexiconEntryId":"lex-b12e5b71cf83","card":{"display":"big, large; great, important","match_percent":56,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-d65ba2c766c65e3e","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-e12306e14cacb104","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":104,"tokenId":"tok-a031a7b57ec2","word":"בגבורה","tokenStatus":"matched","lexiconEntryId":"lex-823fd345f7f1","card":{"display":"force (literally; figuratively); by implication; valor; victory; force; mastery; might","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-ec3e0a4188c6b2d0","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H1369","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":105,"tokenId":"tok-52965c2c4c71","word":"עצומה","tokenStatus":"matched","lexiconEntryId":"lex-4f105072f662","card":{"display":"petition","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-649148c22d431b08","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-a92d2197579a4960","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":106,"tokenId":"tok-41245080be0a","word":"ובהגיון","tokenStatus":"matched","lexiconEntryId":"lex-27265774941a","card":null},{"index":107,"tokenId":"tok-8a384c3675de","word":"עמוק","tokenStatus":"matched","lexiconEntryId":"lex-a5a5afa76fca","card":{"display":"deep","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-0962a5060fda4bb1","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-4a32bb9405305fd1","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":108,"tokenId":"tok-f1f5cd5837bc","word":"וחודר","tokenStatus":"matched","lexiconEntryId":"lex-c3b8cf56a2d6","card":null},{"index":109,"tokenId":"tok-ab727c95c6dd","word":"בתשוקת","tokenStatus":"matched","lexiconEntryId":"lex-8ac13f65e1d5","card":{"display":"lust","match_percent":56,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-d94e354cf57da0da","source":"Wikidata Lexeme","source_family":"wikidata","source_id":"L68764","source_url":"https://www.wikidata.org/wiki/Lexeme:L68764","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":110,"tokenId":"tok-8e5141d7cb9c","word":"אמת","tokenStatus":"matched","lexiconEntryId":"lex-fe00403755ad","card":{"display":"truth","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-93a1c873048a9eec","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-1d05b82267fbd942","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":111,"tokenId":"tok-32050af0f83c","word":"וברעיון","tokenStatus":"matched","lexiconEntryId":"lex-fb89f541b8bb","card":{"display":"desire; vexation.","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-c08798ae52478692","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H7475","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":112,"tokenId":"tok-77594ec8b159","word":"בהיר","tokenStatus":"matched","lexiconEntryId":"lex-8c1fa16ed6bb","card":{"display":"light, bright; clear (not cloudy)","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-6ed53ebe59f951c6","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-c12d4c06d677f800","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":113,"tokenId":"tok-44daf9befb34","word":"צריכים","tokenStatus":"matched","lexiconEntryId":"lex-21ac2c137941","card":{"display":"Needing, in need of (something).; Needing to, having to, obligated to (do something), should.","match_percent":62,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-85e14befa0e8ac16","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-80efbc78c3fd9a7a","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":114,"tokenId":"tok-c5cd29a58bb8","word":"לקבל","tokenStatus":"matched","lexiconEntryId":"lex-2d2e4fe7cfca","card":{"display":"(adverbially) in front of; usually (with other particles) on account of; so as; since; hence; according to; as; because","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-f9c7b7afaefd1e1f","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H6903","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":115,"tokenId":"tok-9d6e4e57944f","word":"את","tokenStatus":"matched","lexiconEntryId":"lex-function-word-a5bc1d9b2ae7","card":{"display":"You, thou: (the feminine singular second-person personal pronoun).","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-071d3e787822a45f","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-825fc2f5e70ecbf3","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":116,"tokenId":"tok-2d405861c735","word":"התוכן","tokenStatus":"unmatched","lexiconEntryId":"","card":{"display":"contents; content","match_percent":60,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-e8ae424f887c3562","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-0110ea49447d5545","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":117,"tokenId":"tok-8bb5810a980a","word":"הנשא","tokenStatus":"matched","lexiconEntryId":"lex-a7531fa1aa3c","card":{"display":"to lift; in a great variety of applications; literal and figurative; absolute and relative; accept; advance; arise; (able to","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-d218fc2bdab25f22","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H5375","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":118,"tokenId":"tok-c0837689307a","word":"של","tokenStatus":"matched","lexiconEntryId":"lex-expr-2b6526dbcaa3","card":{"display":"Of, belonging to, owned by, pertaining to.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-9e63bb441ff1d28c","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-e80731c033aaac0e","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":119,"tokenId":"tok-8ef0938bc10a","word":"אור","tokenStatus":"matched","lexiconEntryId":"lex-3e7def4c84d1","card":{"display":"Ur (an ancient city-state in Sumer)","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-61d7b055b8dac3f6","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-e3647990c333ab6c","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":120,"tokenId":"tok-22c5b73f6190","word":"ד׳","tokenStatus":"matched","lexiconEntryId":"lex-yhwh-h3068","card":{"display":"Used to denote /ð/ (the sound of the in English this).","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-44b8c6d405733cb3","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-0a58703184376c3a","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":121,"tokenId":"tok-232d4cdc325c","word":"המתגלה","tokenStatus":"matched","lexiconEntryId":"lex-de0803b5d525","card":{"display":"to appear/be discovered","match_percent":56,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-f24db58677853801","source":"Wikidata Lexeme","source_family":"wikidata","source_id":"L209397","source_url":"https://www.wikidata.org/wiki/Lexeme:L209397","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":122,"tokenId":"tok-5dd39667cf3f","word":"בפעולה","tokenStatus":"matched","lexiconEntryId":"lex-kaikki-e5cb2608f471","card":{"display":"an action, a move","match_percent":60,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-cc83294f0c092ddf","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-1802bb23d907bf74","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":123,"tokenId":"tok-1119e2e7e632","word":"נפלאה","tokenStatus":"matched","lexiconEntryId":"lex-9ca3bc560eab","card":{"display":"wonderful, superb, excellent, great; inexplicable, inconceivable, source of amazement","match_percent":56,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-1e0ac83bad5a1e1b","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-5a75409bc9162892","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":124,"tokenId":"tok-32b4ad9c147f","word":"בעלילות","tokenStatus":"matched","lexiconEntryId":"lex-53ba6f1d920b","card":{"display":"an exploit (of God); a performance (of man; often in a bad sense); by implication; an opportunity; act(-ion); deed; doing","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-09bb654441074395","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H5949","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":125,"tokenId":"tok-0aa94126edfd","word":"המלחמות","tokenStatus":"matched","lexiconEntryId":"lex-aa21cfea31c7","card":{"display":"a battle (i.e. the engagement ); generally; war (i.e. war-fare ); battle; fight(-ing); war(-rior).","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-850bd33b5d80b31d","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H4421","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":126,"tokenId":"tok-b6d45733020c","word":"הללו","tokenStatus":"matched","lexiconEntryId":"lex-b26f24b53559","card":{"display":"these, those","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-85e1521ad0ec97e2","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-2f8a86d4862c2f9e","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":127,"tokenId":"tok-62c6f038fbe2","word":"ביחוד","tokenStatus":"matched","lexiconEntryId":"lex-32138041dafe","card":null},{"index":128,"tokenId":"tok-a93c0fca4e06","word":"בעל","tokenStatus":"matched","lexiconEntryId":"lex-490004c5a054","card":{"display":"Baal (Canaanite deity)","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-0c2e69e787833df5","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-25ab76a4dc399bff","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":129,"tokenId":"tok-c8d633d52672","word":"מלחמות","tokenStatus":"matched","lexiconEntryId":"lex-e5420418be4e","card":{"display":"war","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-1828a0f10f85781b","source":"Wikidata Lexeme","source_family":"wikidata","source_id":"L66306","source_url":"https://www.wikidata.org/wiki/Lexeme:L66306","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":130,"tokenId":"tok-d1c74c6619a3","word":"זורע","tokenStatus":"matched","lexiconEntryId":"lex-d52dbd59476b","card":null},{"index":131,"tokenId":"tok-ef5d5361c990","word":"צדקות","tokenStatus":"matched","lexiconEntryId":"lex-e48fc6022257","card":{"display":"alms","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-f0da616da4377710","source":"Wikidata Lexeme","source_family":"wikidata","source_id":"L67616","source_url":"https://www.wikidata.org/wiki/Lexeme:L67616","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":132,"tokenId":"tok-e9943b201fe7","word":"מצמיח","tokenStatus":"matched","lexiconEntryId":"lex-bfd3b9f5ebd2","card":null},{"index":133,"tokenId":"tok-becfb04f3106","word":"ישועות","tokenStatus":"matched","lexiconEntryId":"lex-e9ee5cfd13eb","card":{"display":"Salvation, freeing someone, redemption; salvation","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-ee12ae7543265acd","source":"Wikidata Lexeme","source_family":"wikidata","source_id":"L65648","source_url":"https://www.wikidata.org/wiki/Lexeme:L65648","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":134,"tokenId":"tok-61bf4cd84eaf","word":"בורא","tokenStatus":"matched","lexiconEntryId":"lex-b13c40cff705","card":{"display":"creator","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-6833eb93d3ed7870","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-8c054f7e3050c327","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":135,"tokenId":"tok-f78c24f2f3e4","word":"רפואות","tokenStatus":"matched","lexiconEntryId":"lex-bdba3e2d802c","card":{"display":"medicine","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-f70561299d0efb3b","source":"Wikidata Lexeme","source_family":"wikidata","source_id":"L68160","source_url":"https://www.wikidata.org/wiki/Lexeme:L68160","license":"CC0","license_url":"https://www.wikidata.org/wiki/Wikidata:Licensing","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":136,"tokenId":"tok-4fdf9714716f","word":"נורא","tokenStatus":"matched","lexiconEntryId":"lex-e2ce77542004","card":{"display":"very","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-39f904afacf4d4bf","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-0bdcfe3ee27fb6ed","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":137,"tokenId":"tok-e6b88ff3eb99","word":"תהלות","tokenStatus":"matched","lexiconEntryId":"lex-f29d22a9fcca","card":{"display":"laudation; specifically (concretely) a hymn; praise.","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-c26c486db0e79e6b","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H8416","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":138,"tokenId":"tok-9e45cf9d5a29","word":"אדון","tokenStatus":"matched","lexiconEntryId":"lex-969fc8b877fc","card":{"display":"lord; Mr.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-b96bb0e155a873b2","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-3616a012db53a270","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":139,"tokenId":"tok-65c2d697c368","word":"הנפלאות","tokenStatus":"matched","lexiconEntryId":"lex-779882e9aa16","card":{"display":"wonderful, superb, excellent, great; inexplicable, inconceivable, source of amazement","match_percent":62,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-1e0ac83bad5a1e1b","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-5a75409bc9162892","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":140,"tokenId":"tok-0210f5bf9cde","word":"המחדש","tokenStatus":"matched","lexiconEntryId":"lex-1de9e6932d4d","card":null},{"index":141,"tokenId":"tok-14c94d73837b","word":"בטובו","tokenStatus":"matched","lexiconEntryId":"lex-7eabb505a25c","card":{"display":"good (as a noun); in the widest sense; especially goodness (superlative concretely; the best ); beauty; gladness; welfare; fair","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-c7c16adc270d66e0","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H2898","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":142,"tokenId":"tok-20d2e105fd77","word":"בכל","tokenStatus":"matched","lexiconEntryId":"lex-6076abad07e6","card":null},{"index":143,"tokenId":"tok-e0b9ac0ab4c4","word":"יום","tokenStatus":"matched","lexiconEntryId":"lex-f5841cca37dc","card":{"display":"Day: the period between dawn and dusk.; A day: a unit of time corresponding to the period of Earth's rotation.; Daylight.; A time period from a nightfall until the following nightfall","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-bb6253e1724e712f","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-6ffb79a73fdb870c","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":144,"tokenId":"tok-476fa5e5e4b1","word":"תמיד","tokenStatus":"matched","lexiconEntryId":"lex-bf5734ac2b91","card":{"display":"Always, ever.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-387c26bf69255ffd","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-5cabcf8dee6a9465","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":145,"tokenId":"tok-afca9395f3e3","word":"מעשה","tokenStatus":"matched","lexiconEntryId":"lex-9a126316972a","card":{"display":"deed, action, act; event, incident; tale, story, narrative","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-bcd957ff430204b9","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-790b2d68861a3687","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":146,"tokenId":"tok-60208a88106f","word":"בראשית","tokenStatus":"matched","lexiconEntryId":"lex-0feab681ba10","card":{"display":"at first, firstly, initially; in the beginning","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-052c60e4c3f4243b","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-8a4fbb9771190199","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":147,"tokenId":"tok-8ef0938bc10a","word":"אור","tokenStatus":"matched","lexiconEntryId":"lex-3e7def4c84d1","card":{"display":"Ur (an ancient city-state in Sumer)","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-61d7b055b8dac3f6","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-e3647990c333ab6c","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":148,"tokenId":"tok-bdb39cee14a4","word":"חדש","tokenStatus":"matched","lexiconEntryId":"lex-08bca18d3b71","card":{"display":"grain from a new crop","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-3e3ff6257d2f5aab","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-25076533040c4a23","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":149,"tokenId":"tok-cffe23053bf1","word":"על","tokenStatus":"matched","lexiconEntryId":"lex-function-word-2f9ee2b33668","card":{"display":"Super-: above; more than; larger than.","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-8ef29292ce889872","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-3192e591e7fd1d87","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":150,"tokenId":"tok-55fca7746ac7","word":"ציון","tokenStatus":"matched","lexiconEntryId":"lex-cd75a5e72c29","card":{"display":"a male given name","match_percent":80,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-0743045a8c941bc7","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-bf40ce4737bf95f9","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":151,"tokenId":"tok-cb10e565d740","word":"תאיר","tokenStatus":"matched","lexiconEntryId":"lex-b2621a8c859d","card":{"display":"to be (causative; make ) luminous (literally and metaphorically); × break of day; glorious; kindle; (be; en-; give","match_percent":76,"route_type":"lemma","match_type":"lemma","route_card_id":"def-layer-6c317ba1b856b54c","source":"OpenScriptures morphHB","source_family":"openscriptures","source_id":"H215","source_url":"https://github.com/openscriptures/morphhb/tree/master/wlc","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0/","basis":"current_route_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":152,"tokenId":"tok-24bc4661677b","word":"ונזכה","tokenStatus":"matched","lexiconEntryId":"lex-ad51d7d6587d","card":null},{"index":153,"tokenId":"tok-0daad3049adc","word":"כולנו","tokenStatus":"matched","lexiconEntryId":"lex-df8ff1112008","card":{"display":"excessive spelling of כֹּל","match_percent":56,"route_type":"lemma","match_type":"lemma","route_card_id":"def-kaikki-lemma-8e597239f6381628","source":"Hebrew Wiktionary data via Kaikki/Wiktextract","source_family":"kaikki","source_id":"kaikki-1b9944ac47bfc20a","source_url":"https://kaikki.org/dictionary/Hebrew/index.html","license":"CC BY-SA 4.0 / GFDL","license_url":"https://en.wiktionary.org/wiki/Wiktionary:Copyrights","basis":"lookup_candidate_current_route_answer_candidate","candidate_status":"candidate_not_authority","placeholder_kind":"","review_state":""}},{"index":154,"tokenId":"tok-cba106dec4fa","word":"מהרה","tokenStatus":"matched","lexiconEntryId":"lex-e409e5a4a23b","card":null},{"index":155,"tokenId":"tok-4a0399339446","word":"לאורו\"","tokenStatus":"matched","lexiconEntryId":"lex-aeb2b9b53e11","card":null}]}</script>
+  <script>
+    (() => {
+      const UNIT_ID = "orot-lights-from-darkness-war-1-1";
+      const DISPLAY_FLOOR = 76;
+      const paths = {
+        occurrences: "../data/lexical/occurrences/orot.json",
+        manifest: "../data/lexical/orot.manifest.json",
+        readerHints: "../data/public-hud/orot/reader-hints.json",
+        chunkBase: "../data/lexical/orot-chunks/"
+      };
+
+      const state = { rows: [] };
+      const list = document.querySelector("[data-prehud-list]");
+      const loading = document.querySelector("[data-loading]");
+      const source = document.querySelector("[data-hebrew-source]");
+      const summary = document.querySelector("[data-summary]");
+      const hud = document.querySelector("[data-lexical-hud]");
+      const hudPanel = document.querySelector("[data-route-hud-panel]");
+
+      const create = (tag, className, text) => {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      };
+
+      const firstValue = (values) => {
+        for (const value of values) {
+          if (value !== undefined && value !== null && String(value).trim() !== "") return value;
+        }
+        return "";
+      };
+
+      const numeric = (value) => {
+        if (value === undefined || value === null || value === "") return null;
+        const parsed = Number(value);
+        return Number.isFinite(parsed) ? parsed : null;
+      };
+
+      const loadJson = async (url) => {
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) throw new Error(`${url} returned ${response.status}`);
+        return response.json();
+      };
+
+      const routeCardFromHint = (hint) => {
+        if (!hint) return null;
+        const display = firstValue([hint.inline_display, hint.short_display, hint.reader_hint, hint.display, hint.definition, hint.gloss]);
+        if (!display) return null;
+        const score = numeric(firstValue([hint.match_percent, hint.confidence_percent, hint.adjusted_score, hint.raw_score]));
+        const routeType = firstValue([hint.route_type, hint.match_type, "unknown"]);
+        const isLemma = routeType === "lemma" || hint.match_type === "lemma";
+        const pending = hint.placeholder_kind === "reader_hint_pending_review"
+          || hint.review_state === "placeholder_pending_review"
+          || hint.review_state === "pending_reader_hint_review";
+        const selectable = !isLemma && !pending && (score === null || score >= DISPLAY_FLOOR);
+
+        return {
+          display,
+          score,
+          routeType,
+          isLemma,
+          selectable,
+          cardId: firstValue([hint.route_card_id, hint.card_id, hint.source_id, "current-reader-hint"]),
+          source: firstValue([hint.source, hint.source_name, hint.source_family, "current reader hint"]),
+          sourceFamily: firstValue([hint.source_family, "unknown"]),
+          sourceId: firstValue([hint.source_id, ""]),
+          sourceUrl: firstValue([hint.source_url, ""]),
+          license: firstValue([hint.license, ""]),
+          licenseUrl: firstValue([hint.license_url, ""]),
+          basis: firstValue([hint.basis, "current route candidate"]),
+          candidateStatus: firstValue([hint.candidate_status, hint.status, "candidate_not_authority"]),
+          failure: isLemma
+            ? "lemma_hud_only_no_prehud_default"
+            : pending
+              ? "pending_review_placeholder"
+              : selectable
+                ? ""
+                : "below_display_floor_or_not_selectable"
+        };
+      };
+
+      const selectedCard = (row) => {
+        const card = row.card;
+        return card && card.selectable ? card : null;
+      };
+
+      const renderSummary = () => {
+        const total = state.rows.length;
+        const withHint = state.rows.filter((row) => row.card).length;
+        const lemmaOnly = state.rows.filter((row) => row.card && row.card.isLemma).length;
+        const selectable = state.rows.filter((row) => selectedCard(row)).length;
+        const missing = state.rows.filter((row) => !row.card).length;
+        summary.replaceChildren(
+          create("span", "metric", `${total} tokens`),
+          create("span", "metric", `${selectable} pre-HUD selectable`),
+          create("span", "metric", `${lemmaOnly} lemma HUD-only`),
+          create("span", "metric", `${missing} no current hint`),
+          create("span", "metric", `${withHint} inspectable HUD cards`)
+        );
+      };
+
+      const renderRow = (row) => {
+        const card = selectedCard(row);
+        const hasHudEvidence = Boolean(row.card);
+        const article = create("article", "prehud-row");
+        article.id = `row-${row.index}`;
+        article.dataset.tokenId = row.tokenId;
+        article.dataset.routeState = card ? "selectable" : hasHudEvidence ? "hud-only" : "missing";
+
+        const index = create("div", "row-index", String(row.index));
+
+        const word = create("div", "prehud-word");
+        const link = create("a", "", row.word);
+        link.href = "#route-hud-title";
+        link.dataset.openHud = String(row.index);
+        word.append(link);
+
+        const gloss = create("div", "prehud-gloss");
+        const main = create("span", "gloss-main", card ? card.display : "TBD");
+        main.dataset.state = card ? "selected" : "tbd";
+        const noteText = card
+          ? `Current route selected by non-lemma/default layer. ${card.score === null ? "Unscored." : `${Math.round(card.score)}% match.`}`
+          : row.card
+            ? "Current route is lemma evidence; HUD-only under this preview gate."
+            : "No current reader hint/card for this token.";
+        gloss.append(main, create("span", "gloss-note", noteText));
+
+        const match = create("div", "prehud-match");
+        match.dataset.state = card ? "selectable" : hasHudEvidence ? "hud-only" : "missing";
+        match.textContent = card && card.score !== null
+          ? `${Math.round(card.score)}%`
+          : hasHudEvidence
+            ? "HUD only"
+            : "no hint";
+
+        article.append(index, word, gloss, match);
+        return article;
+      };
+
+      const renderHud = (row) => {
+        hudPanel.replaceChildren();
+        hudPanel.append(create("div", "route-selected-token", row.word));
+
+        if (!row.card) {
+          const card = create("div", "hud-card");
+          card.append(
+            create("h3", "", "No current route card"),
+            create("p", "hud-definition", "No reader hint/card exists for this token in the current War 1:1 route data."),
+            create("p", "hud-boundary", "Pre-HUD remains TBD. No fallback, manual definition, or lemma promotion is being invented in this preview.")
+          );
+          hudPanel.append(card);
+          return;
+        }
+
+        const card = create("div", "hud-card");
+        card.append(
+          create("h3", "", row.card.selectable ? "Route gloss option" : "HUD evidence only"),
+          create("p", "hud-definition", row.card.display),
+          create("p", "hud-meta", `${row.card.score === null ? "unscored" : `${Math.round(row.card.score)}%`} | ${row.card.routeType} | ${row.card.candidateStatus}`),
+          create("p", "hud-meta", `Source: ${row.card.source}${row.card.sourceId ? ` (${row.card.sourceId})` : ""}`),
+          create("p", "hud-meta", `License: ${row.card.license || "not listed in hint row"}`),
+          create("p", "hud-meta", `Basis: ${row.card.basis}`),
+          create("button", "hud-action", row.card.selectable ? "Selectable in pre-HUD" : "HUD only")
+        );
+        card.querySelector("button").disabled = !row.card.selectable;
+        const boundary = row.card.selectable
+          ? "This candidate passes the preview selectability gate. It is still a preview display, not acceptance or source/license approval."
+          : `Pre-HUD blocked: ${row.card.failure}. Lemma evidence stays inspectable in HUD but does not become the reader-facing default.`;
+        card.append(create("p", "hud-boundary", boundary));
+        hudPanel.append(card);
+      };
+
+      const openHud = (row) => {
+        renderHud(row);
+        hud.hidden = false;
+        hud.focus();
+      };
+
+      const closeHud = () => {
+        hud.hidden = true;
+      };
+
+      const renderRows = () => {
+        source.textContent = state.rows.map((row) => row.word).join(" ");
+        list.replaceChildren(...state.rows.map(renderRow));
+        renderSummary();
+        loading.remove();
+      };
+
+      const buildRows = async () => {
+        const embedded = document.getElementById("war-preview-data");
+        if (!embedded) throw new Error("Embedded War 1:1 preview payload missing");
+        const payload = JSON.parse(embedded.textContent);
+        if (!payload || payload.unit_id !== UNIT_ID || !Array.isArray(payload.rows)) {
+          throw new Error("Embedded War 1:1 preview payload is invalid");
+        }
+        state.rows = payload.rows.map((row) => {
+          const rawCard = row.card;
+          return {
+            index: row.index,
+            tokenId: row.tokenId,
+            word: row.word,
+            tokenStatus: row.tokenStatus || "unknown",
+            lexiconEntryId: row.lexiconEntryId || "",
+            card: routeCardFromHint(rawCard)
+          };
+        });
+      };
+
+      document.addEventListener("click", (event) => {
+        const opener = event.target.closest("[data-open-hud]");
+        if (opener) {
+          event.preventDefault();
+          const row = state.rows[Number(opener.dataset.openHud) - 1];
+          if (row) openHud(row);
+        }
+        if (event.target.closest("[data-hud-close]")) closeHud();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeHud();
+      });
+
+      buildRows().then(renderRows).catch((error) => {
+        loading.className = "error";
+        loading.textContent = `Preview blocked: ${error.message}`;
+      });
+    })();
+  </script>
+</body>
+</html>

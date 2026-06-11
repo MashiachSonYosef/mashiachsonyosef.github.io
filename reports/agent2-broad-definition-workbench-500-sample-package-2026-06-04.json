@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent2_broad_definition_workbench_500_sample_package",
+  "generated_at": "2026-06-04T08:44:46-04:00",
+  "status": "packaged_non_authoritative_route_shape_reader_planning_evidence_with_proof_blocker",
+  "active_mode": "BROAD_CORPUS_EXPANSION",
+  "workset_id": "spark2-broad-definition-workbench-500-sample-refresh",
+  "package_result": {
+    "lane": "Agent 2 broad lexical / definition / lemma / reader-hint",
+    "output_artifact_consumed": "data/definitions/definition-workbench-sample-500.json",
+    "report_consumed": "reports/definition-workbench-sample-500-report.md",
+    "expected_spark2_report": "reports/spark2-broad-definition-workbench-500-sample-refresh-2026-06-04.md",
+    "expected_spark2_report_status": "missing_locally",
+    "package_artifact": "reports/agent2-broad-definition-workbench-500-sample-package-2026-06-04.md",
+    "next_definition_lemma_reader_hint_workset": "no_queued_item"
+  },
+  "commands_relayed": [
+    "node scripts/build_definition_workbench_sample.mjs --limit=500 --output=data/definitions/definition-workbench-sample-500.json --report=reports/definition-workbench-sample-500-report.md",
+    "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample-500.json",
+    "git diff --check -- data/definitions/definition-workbench-sample-500.json reports/definition-workbench-sample-500-report.md"
+  ],
+  "local_artifacts_found": [
+    "data/definitions/definition-workbench-sample-500.json",
+    "reports/definition-workbench-sample-500-report.md"
+  ],
+  "local_artifacts_missing": [
+    "reports/spark2-broad-definition-workbench-500-sample-refresh-2026-06-04.md"
+  ],
+  "counts": {
+    "rows": 500,
+    "rows_with_route_cards": 498,
+    "rows_without_route_cards": 2,
+    "rows_with_complete_source_license": 498,
+    "multi_answer_rows": 183,
+    "usage_link_count_null_rows": 500,
+    "route_lookup_distinct_normalized_tokens": 175216,
+    "route_lookup_cards": 539661,
+    "status_counts": {
+      "conflicting": 183,
+      "missing": 2,
+      "proposed_only": 148,
+      "single_answer_source_complete": 167
+    },
+    "review_status_counts": {
+      "unreviewed_machine_sample": 500,
+      "verified": 0
+    },
+    "public_reader_rows_emitted": 0,
+    "route_shard_edits": 0,
+    "public_runtime_mutations": 0,
+    "answer_rows_accepted": 0,
+    "accepted_gloss_text_rows": 0,
+    "definition_authority_rows_accepted": 0
+  },
+  "validators_and_gates": [
+    {
+      "command": "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample-500.json",
+      "result": "pass",
+      "stdout": "Definition Workbench sample validation passed. Rows: 500."
+    },
+    {
+      "command": "git diff --check -- data/definitions/definition-workbench-sample-500.json reports/definition-workbench-sample-500-report.md",
+      "result": "pass",
+      "stdout": ""
+    }
+  ],
+  "exact_blockers": [
+    {
+      "id": "missing_spark2_return_report",
+      "detail": "Expected reports/spark2-broad-definition-workbench-500-sample-refresh-2026-06-04.md is not present locally."
+    },
+    {
+      "id": "queue_item_not_present_in_local_standing_queue",
+      "detail": "spark2-broad-definition-workbench-500-sample-refresh was not found in data/control/spark_standing_queue.json."
+    }
+  ],
+  "next_wake_condition": {
+    "status": "no_queued_item",
+    "needed": "Next exact broad definition/lemma/reader-hint workset must include target workset, commands, inputs, output path/schema, and validator."
+  },
+  "semantics_preserved": [
+    "Sample contract only, not a full Definition Workbench index.",
+    "status is machine route-shape status, not reviewed lexical authority.",
+    "single_answer_source_complete is not a verified definition, answer, accepted gloss, or publication claim.",
+    "review_status=verified is not emitted.",
+    "conflicting multi-answer rows remain warnings and are not collapsed into hidden winners.",
+    "missing rows remain linkage/workset gaps, not hidden failures or accepted rows.",
+    "source/license completeness is a completeness indicator only, not source/provenance or license acceptance."
+  ],
+  "stop_condition": "Stop after this Agent 2 500-row package because the generated 500-row sample was found, validator-confirmed, and packaged; further broad work requires a new exact queued workset or the missing Spark-2 return report.",
+  "boundary": {
+    "non_authoritative_route_shape_reader_planning_evidence_only": true,
+    "definition_authority": false,
+    "answer_acceptance": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "public_runtime_mutation": false,
+    "source_provenance_acceptance": false,
+    "license_acceptance": false,
+    "product_data_acceptance": false,
+    "route_publication_support": false,
+    "publication_readiness": false,
+    "completed_200_row_artifacts_overwritten": false
+  }
+}

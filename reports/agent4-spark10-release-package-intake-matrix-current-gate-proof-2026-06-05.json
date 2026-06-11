@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T00:00:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane_owner": "Agent 4",
+  "target": "spark10-release-package-intake-matrix-current",
+  "input_artifact": {
+    "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "sha256": "b1b49879e21e7f3d9e4a9a476049d884a958dbd9a67f0f2fc12040847278e361",
+    "generated_at": "2026-06-05T10:49:40.882Z"
+  },
+  "commands": [
+    {
+      "command": "node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "inputs_checked": 351,
+    "missing_required_inputs": 0,
+    "release_relevant_rows": 71,
+    "agent6_handoff_candidates": 0,
+    "public_runtime_mutation_authorized": false,
+    "answer_definition_release_authorized": false
+  },
+  "boundary": {
+    "public_runtime_mutation_authorized": false,
+    "route_shard_edit_authorized": false,
+    "answer_eligibility_authorized": false,
+    "definition_content_storage_authorized": false,
+    "accepted_text_authorized": false,
+    "publication_readiness_authorized": false
+  },
+  "result": "validator_passed_current_matrix_snapshot",
+  "blocker_if_any": {
+    "blocker": "no_new_agent6_handoff_candidates_from_current_matrix",
+    "details": "The matrix validates as current local intake evidence with 0 Agent6 handoff candidates and no authorized mutation/answer/publication flags."
+  },
+  "next_handoff": "Agent10 consumes as local release/package intake evidence; changed package owners provide exact new candidate packets before Agent4 reruns matrix proof.",
+  "stop_condition": "Do not rerun unless the matrix, intake contract, or changed package input set changes.",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action"
+  ]
+}

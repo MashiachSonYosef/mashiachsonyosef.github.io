@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_source_license_custody_lane_refresh",
+  "generated_at": "2026-06-05T09:12:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "validation_snapshot": {
+    "set_validator": "node scripts/validate_agent1_source_license_custody_pipeline_set.mjs",
+    "set_ok": true,
+    "set_runnable_contract_count": 22,
+    "set_exact_blocker_count": 1
+  },
+  "targets": [
+    {
+      "target": "orot_nc_klein_source_family",
+      "files": [
+        "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-2026-06-04.json"
+      ],
+      "commands": [
+        "node scripts/build_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_nc_klein_source_family_contract.mjs"
+      ],
+      "counts": {
+        "rows": 17,
+        "occurrences": 259,
+        "license_lane": {
+          "noncommercial_educational_candidate": {
+            "rows": 17,
+            "occurrences": 259
+          }
+        }
+      },
+      "validator": {
+        "ok": true,
+        "spark1_routable": true
+      },
+      "missing_field_blocker": null,
+      "handoff_owner": [
+        "Agent 10",
+        "Agent 6"
+      ],
+      "stop_condition": "hold until evidence or boundary update"
+    },
+    {
+      "target": "orot_next_missed_source_family",
+      "files": [
+        "reports/agent1-orot-next-missed-source-family-map-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-orot-next-missed-source-family-2026-06-04.json"
+      ],
+      "commands": [
+        "node scripts/build_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_next_missed_source_family_contract.mjs"
+      ],
+      "counts": {
+        "rows": 50,
+        "occurrences": 1193,
+        "license_lane": {
+          "commercial_clean_candidate": {
+            "rows": 50,
+            "occurrences": 1193
+          }
+        }
+      },
+      "validator": {
+        "ok": true
+      },
+      "missing_field_blocker": null,
+      "handoff_owner": [
+        "Agent 10",
+        "Agent 6"
+      ],
+      "stop_condition": "hold until evidence or boundary update"
+    },
+    {
+      "target": "orot_third_missed_source_family",
+      "files": [
+        "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+        "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+        "reports/agent1-third-missed-source-family-target-or-blocker-resolution-2026-06-05.json"
+      ],
+      "commands": [
+        "node scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs"
+      ],
+      "counts": {
+        "rows": 169,
+        "occurrences": 2148,
+        "license_lane": {
+          "commercial_clean_candidate": {
+            "rows": 138,
+            "occurrences": 1672
+          },
+          "noncommercial_educational_candidate": {
+            "rows": 0,
+            "occurrences": 0
+          },
+          "metadata_or_link_only": {
+            "rows": 0,
+            "occurrences": 0
+          },
+          "blocked_or_needs_review": {
+            "rows": 31,
+            "occurrences": 476
+          }
+        }
+      },
+      "validator": {
+        "ok": true,
+        "spark1_routable": true
+      },
+      "missing_field_blocker": "boundary-only: agent6_boundary_required for 31/476",
+      "handoff_owner": [
+        "Agent 10",
+        "Agent 6"
+      ],
+      "stop_condition": "await Agent 6 boundary update for blocked rows"
+    },
+    {
+      "target": "old_dictionary_excluded_row_license_lane_reaudit",
+      "files": [
+        "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json"
+      ],
+      "commands": [
+        "node scripts/build_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+        "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+        "node scripts/validate_agent1_spark1_old_dictionary_reaudit_pipeline_contract.mjs"
+      ],
+      "counts": {
+        "audited_rows": 500,
+        "audited_occurrences": 8427,
+        "lane_source_family_counts": {
+          "commercial_clean_candidate": 3,
+          "noncommercial_educational_candidate": 1,
+          "metadata_or_link_only": 0,
+          "blocked_or_needs_review": 1
+        },
+        "known_row_level_blocker_counts": [
+          {
+            "row_subset_id": "old_dictionary_excluded_row_license_lane_reaudit::klein-dictionary",
+            "rows": 214,
+            "occurrences": 4444
+          },
+          {
+            "row_subset_id": "old_dictionary_excluded_row_license_lane_reaudit::bdb-augmented-strong",
+            "rows": 222,
+            "occurrences": 4435
+          }
+        ]
+      },
+      "validator": {
+        "ok": true,
+        "spark1_routable": true
+      },
+      "missing_field_blocker": [
+        {
+          "row_subset_id": "old_dictionary_excluded_row_license_lane_reaudit::bdb-augmented-strong",
+          "rows": 222,
+          "occurrences": 4435,
+          "missing_fields": [
+            "source_url_or_citation",
+            "license_label",
+            "license allow fields",
+            "independent source/license basis"
+          ]
+        },
+        {
+          "row_subset_id": "old_dictionary_excluded_row_license_lane_reaudit::klein-dictionary",
+          "rows": 214,
+          "occurrences": 4444,
+          "missing_fields": [
+            "Agent 6 boundary decision for noncommercial display/storage/export"
+          ]
+        }
+      ],
+      "handoff_owner": [
+        "Agent 10",
+        "Agent 6"
+      ],
+      "stop_condition": "await boundary and missing evidence updates"
+    }
+  ],
+  "non_acceptance_boundary": {
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_authority": false,
+    "source_provenance_acceptance": false,
+    "runtime_public_acceptance": false,
+    "publication_readiness": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "accepted_gloss_text": false,
+    "nc_commercial_authorization": false
+  }
+}

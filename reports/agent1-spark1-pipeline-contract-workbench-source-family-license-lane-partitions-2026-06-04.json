@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "generated_at": "2026-06-05T01:05:00.000Z",
+  "package_owner": "Agent 1",
+  "target": {
+    "workset": "workbench-source-family-license-lane-partitions",
+    "source_family_license_lane_partition_count": 4,
+    "source_family_count": 1,
+    "source_name_partition_count": 351,
+    "source_row_count": 105747
+  },
+  "inputs": [
+    "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.json"
+  ],
+  "command_or_script": {
+    "build": "node scripts/build_agent1_workbench_source_family_license_lane_partitions.mjs"
+  },
+  "outputs": {
+    "json": "reports/agent1-workbench-source-family-license-lane-partitions-2026-06-04.json",
+    "markdown": "reports/agent1-workbench-source-family-license-lane-partitions-2026-06-04.md"
+  },
+  "output_schema": {
+    "required_top_level_fields": [
+      "schema_version",
+      "artifact_type",
+      "status",
+      "counts",
+      "lane_counts",
+      "rows",
+      "export_rule",
+      "non_acceptance_boundary"
+    ],
+    "required_row_fields": [
+      "source_family",
+      "license_lane",
+      "license_label",
+      "source_name_partition_count",
+      "source_row_count",
+      "attribution_required",
+      "derived_from_nc",
+      "commercial_export_allowed",
+      "corpus_contamination",
+      "agent6_boundary_required",
+      "answer_eligible",
+      "public_emit",
+      "export_authorized_now"
+    ]
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_workbench_source_family_license_lane_partitions.mjs",
+    "contract_validator": "node scripts/validate_agent1_spark1_workbench_source_family_license_lane_partitions_contract.mjs"
+  },
+  "license_flags": {
+    "commercial_clean_export_excludes_nc": true,
+    "noncommercial_educational_export_separate": true,
+    "derived_from_nc_preserved": true,
+    "commercial_export_allowed_preserved_by_partition": true,
+    "attribution_required_preserved_by_partition": true,
+    "corpus_contamination_preserved_by_partition": true
+  },
+  "agent6_boundary_need": "Agent 6/release boundary required before source/license custody acceptance, public display, answer use, definition text storage, or package/export behavior.",
+  "spark1_stop_condition": "Return validated source-family/license-lane partition packet and contract result, or exact missing input/schema/validator blocker.",
+  "non_acceptance_boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_export_authorization": true,
+    "no_public_runtime_mutation": true
+  }
+}

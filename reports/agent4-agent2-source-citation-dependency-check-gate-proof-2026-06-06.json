@@ -1,0 +1,61 @@
+{
+  "artifact_type": "agent4_agent2_source_citation_dependency_check_gate_proof",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Agent2 old-dictionary 78-row source-citation dependency check",
+  "changed_input_artifact": "reports/agent2-old-dictionary-78-row-source-citation-dependency-check-2026-06-06.json",
+  "validator_proof_command": {
+    "command": "node scripts\\validate_agent2_old_dictionary_78_row_source_citation_dependency_check.mjs reports\\agent2-old-dictionary-78-row-source-citation-dependency-check-2026-06-06.json",
+    "timeout_ms": 30000,
+    "result": "passed",
+    "stdout": "Agent2 source-citation dependency check validation passed. Rows: 78; occurrences: 1461; Agent1 route blocker preserved."
+  },
+  "files": {
+    "validator": "scripts/validate_agent2_old_dictionary_78_row_source_citation_dependency_check.mjs",
+    "dependency_check": "reports/agent2-old-dictionary-78-row-source-citation-dependency-check-2026-06-06.json",
+    "dependency_check_validation_result": "reports/agent2-old-dictionary-78-row-source-citation-dependency-check-validation-result-2026-06-06.json",
+    "agent10_agent1_source_citation_workset": "reports/agent10-agent1-ready-old-dictionary-78-row-source-citation-enrichment-workset-2026-06-06.json",
+    "agent10_agent1_source_citation_route_blocker": "reports/agent10-agent1-old-dictionary-78-row-source-citation-enrichment-live-route-blocker-2026-06-06.json"
+  },
+  "counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "result": "changed_dependency_check_validated_agent2_remains_blocked",
+  "exact_blockers": [
+    "missing_source_field::source_citation_or_url",
+    "missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text",
+    "stale_agent1_registry_target_current_agent1_thread_required",
+    "missing_source_citation_or_url_for_78_row_subset",
+    "new_exact_agent6_packet_required_before_transform_output_candidate_text_definition_lemma_reader_hint_content_storage_answer_eligibility_route_write_public_runtime_mutation_export_accepted_text_publication_readiness_or_release"
+  ],
+  "next_handoff_owner": "Agent 5 / coordination should reroute Agent10 Agent1 source-citation enrichment workset to current Agent 1; Agent 10 returns to Agent 2 only after source_citation_or_url plus transform rule inputs are supplied.",
+  "stop_condition": "Stop at Agent2 dependency-check proof. Do not rerun without a changed dependency-check artifact, Agent1 source-citation enrichment return, Agent1 exact blocker, Agent10 consumption packet, or validator. Do not emit transform output, candidate text, definition/lemma/reader-hint content, answer rows, public/runtime mutation, route writes, accepted text, source-license/legal acceptance, export, publication readiness, or release action.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

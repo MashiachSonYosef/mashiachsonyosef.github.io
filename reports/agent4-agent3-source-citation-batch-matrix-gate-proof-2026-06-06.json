@@ -1,0 +1,118 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "Agent 3 source-citation batch matrix",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-source-citation-batch-matrix-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_source_citation_batch_matrix.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_source_citation_batch_matrix.mjs --input=reports/agent3-old-dictionary-candidate-use-source-citation-batch-matrix-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent 3 source-citation batch matrix passed: rows=30 memberships=836 unique=344"
+    }
+  ],
+  "counts": {
+    "batch_rows": 30,
+    "worklist_rows": 344,
+    "source_rid_batch_memberships": 836,
+    "source_rid_references": 1043,
+    "occurrence_memberships": 24354,
+    "unique_source_rids": 344,
+    "unique_queue_ids": 78,
+    "unique_token_ids": 78,
+    "source_family_count": 3,
+    "partition_count": 2,
+    "triage_group_count": 4,
+    "mechanical_impact_bucket_count": 3,
+    "source_citation_required_memberships": 836,
+    "transform_rule_still_blocked_memberships": 836,
+    "agent6_boundary_after_prereq_memberships": 836,
+    "max_source_rids_per_batch": 191,
+    "max_queue_ids_per_batch": 40,
+    "max_references_per_batch": 191,
+    "max_occurrences_per_batch": 2585,
+    "bdb_aramaic_dictionary_batches": 9,
+    "bdb_dictionary_batches": 9,
+    "jastrow_dictionary_batches": 12,
+    "overlap_workset_batches": 23,
+    "pure_commercial_workset_batches": 7,
+    "commercial_clean_blocked_overlap_batches": 9,
+    "commercial_clean_nc_blocked_overlap_batches": 12,
+    "commercial_clean_nc_overlap_batches": 2,
+    "commercial_clean_only_batches": 7,
+    "shared_source_rid_multi_queue_batches": 15,
+    "single_queue_high_occurrence_batches": 7,
+    "single_queue_standard_batches": 8,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "source_acceptance_claims": 0,
+    "source_citation_supplied_by_agent3_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_source_citation_batch_matrix_only",
+  "exact_blockers": [
+    {
+      "code": "source_citation_batch_matrix_navigation_only",
+      "class": "source_citation_dependency",
+      "affected_batches": 30,
+      "affected_memberships": 836,
+      "handoff_owner": "Agent 1 / Agent 2 source-citation enrichment before Agent 10 package intake"
+    },
+    {
+      "code": "source_citation_required_not_supplied_by_agent3",
+      "class": "source_citation_dependency",
+      "affected_memberships": 836,
+      "handoff_owner": "Agent 1 / Agent 2 source-citation lane"
+    },
+    {
+      "code": "transform_rule_still_blocked",
+      "class": "transform_output_prereq_blocker",
+      "affected_memberships": 836,
+      "handoff_owner": "Agent 2 transform-output proposal lane after source-citation prerequisite"
+    },
+    {
+      "code": "agent6_boundary_after_prereq_required",
+      "class": "agent6_boundary_dependency",
+      "affected_memberships": 836,
+      "handoff_owner": "Agent 10 prepares exact Agent 6 boundary only after source-citation and transform-rule prerequisites exist"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-source-citation-batch-matrix-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-source-citation-batch-matrix-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 10 package intake may consume as source-citation batch validation evidence; Agent 1/Agent 2 own source-citation and transform prerequisites",
+  "next_safe_action": "Use this batch matrix for bounded source-citation enrichment planning only; no source text read, candidate text, transform output, or acceptance.",
+  "stop_condition": "Stop after validating and packaging the source-citation batch matrix; do not claim acceptance.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

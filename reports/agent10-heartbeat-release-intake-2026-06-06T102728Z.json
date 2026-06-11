@@ -1,0 +1,51 @@
+{
+  "artifact_type": "agent10_heartbeat_release_intake",
+  "generated_at": "2026-06-06T10:27:28Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "automation_id": "agent-10-weekly-release-work",
+  "target_package": "old-dictionary-commercial-clean-78-row-release-director-state",
+  "files_used": [
+    "reports/agent10-release-director-state-old-dictionary-boundaries-2026-06-06.json",
+    "reports/agent10-agent5-handoff-old-dictionary-78-row-agent1-route-blocker-2026-06-06.json",
+    "reports/agent10-agent1-ready-old-dictionary-78-row-source-citation-enrichment-workset-2026-06-06.json",
+    "reports/agent10-agent1-old-dictionary-78-row-source-citation-enrichment-live-route-blocker-2026-06-06.json"
+  ],
+  "process_timeouts": [
+    {
+      "process_timeout": true,
+      "command": "node exact-known-file release-state mtime/director check",
+      "timeout": "10000ms",
+      "partial_output_or_artifact": "Printed current director blocker stale_agent1_registry_target_current_agent1_thread_required and Agent 5 handoff reports/agent10-agent5-handoff-old-dictionary-78-row-agent1-route-blocker-2026-06-06.json before timeout.",
+      "next_safe_action": "Do not treat as clean validator proof; retain current blocker and use a shorter/simpler exact read if needed."
+    },
+    {
+      "process_timeout": true,
+      "command": "node exact-known-file Agent 5 handoff zero-counter check",
+      "timeout": "10000ms",
+      "partial_output_or_artifact": "Printed exact known handoff still valid before timeout.",
+      "next_safe_action": "Do not widen claim beyond partial evidence; current stop condition remains Agent 5 / coordination route proof or Agent 1 return."
+    }
+  ],
+  "current_partial_evidence": {
+    "exact_blocker": "stale_agent1_registry_target_current_agent1_thread_required",
+    "agent5_preservation_handoff": "reports/agent10-agent5-handoff-old-dictionary-78-row-agent1-route-blocker-2026-06-06.json",
+    "agent6_route_needed": "not_until_source_citation_or_url_and_exact_transform_rule_exist_or_narrowed_no_text_question_is_selected"
+  },
+  "agent6_boundary_questions": [
+    {
+      "question": "No new Agent 6 packet is ready from this heartbeat.",
+      "reason": "Partial exact-file output preserved the same Agent 1 route/source-citation blocker and did not show a changed Agent 1/2/3/4 return."
+    }
+  ],
+  "zero_counters_preserved_by_prior_validated_handoff": {
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "candidate_text_export": 0,
+    "definition_lemma_reader_hint_content_storage": 0,
+    "answer_eligibility": 0,
+    "accepted_text": 0,
+    "release_actions": 0
+  },
+  "next_owner": "Agent 5 / coordination for current Agent 1 route proof or delivery; Agent 10 only after changed return or release/package judgment need.",
+  "stop_condition": "Stop at timeout-with-partial-output heartbeat intake. Do not mutate public/runtime/output/answer/Definition/accepted-text surfaces."
+}

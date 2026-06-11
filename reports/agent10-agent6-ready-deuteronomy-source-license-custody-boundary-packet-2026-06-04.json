@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_ready_deuteronomy_source_license_custody_boundary_packet",
+  "generated_at": "2026-06-04T15:45:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "tanakh/deuteronomy",
+  "review_scope": "nonpublic_source_license_custody_planning_evidence_only",
+  "status": "agent6_ready_source_license_custody_boundary_packet_not_accepted",
+  "review_question": "Pass/warn/block whether the exact Agent 1 Deuteronomy source/license/custody map may be carried as non-public planning evidence only for the 1334 commercial-clean candidate rows / 2964 occurrences already bounded in Deuteronomy phase-2 planning, preserving source lanes, exact blocker rows, and all zero-emission counters.",
+  "inputs": {
+    "agent1_source_license_custody_map": "reports/agent1-deuteronomy-source-license-custody-map-2026-06-04.json",
+    "agent1_source_license_custody_map_md": "reports/agent1-deuteronomy-source-license-custody-map-2026-06-04.md",
+    "agent10_downstream_workset": "reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.json",
+    "agent2_transform_readiness_matrix": "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.json",
+    "agent3_linkage_matrix": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+    "agent6_transform_readiness_verdict": "reports/agent6-deuteronomy-phase2-transform-readiness-boundary-verdict-2026-06-04.md",
+    "agent6_agent3_supplemental_receipt": "reports/agent6-deuteronomy-phase2-agent3-supplemental-receipt-2026-06-04.md",
+    "agent3_frontier_checkpoint": "reports/agent3-linkage-navigation-frontier-checkpoint-2026-06-04.json"
+  },
+  "counts": {
+    "source_license_custody_rows": 1334,
+    "source_license_custody_occurrences": 2964,
+    "commercial_clean_candidate_rows": 1334,
+    "commercial_clean_candidate_occurrences": 2964,
+    "noncommercial_educational_rows": 0,
+    "noncommercial_educational_occurrences": 0,
+    "metadata_or_link_only_rows": 0,
+    "blocked_or_needs_review_rows": 0,
+    "unmatched_rows": 0,
+    "agent3_exact_blocker_rows_outside_workset": 6779,
+    "agent3_exact_blocker_occurrences_outside_workset": 9631,
+    "answer_rows": 0,
+    "source_rows_emitted": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "source_lane_counts": {
+    "license_lanes": {
+      "commercial_clean_candidate": {
+        "rows": 1334,
+        "occurrences": 2964
+      },
+      "noncommercial_educational_candidate": {
+        "rows": 0,
+        "occurrences": 0
+      },
+      "metadata_or_link_only": {
+        "rows": 0,
+        "occurrences": 0
+      },
+      "blocked_or_needs_review": {
+        "rows": 0,
+        "occurrences": 0
+      }
+    },
+    "licenses": {
+      "CC0": {
+        "rows": 244,
+        "occurrences": 402
+      },
+      "CC BY 4.0": {
+        "rows": 895,
+        "occurrences": 1535
+      },
+      "project-authored / CC0": {
+        "rows": 130,
+        "occurrences": 951
+      },
+      "CC0; CC BY 4.0": {
+        "rows": 65,
+        "occurrences": 76
+      }
+    },
+    "source_families": {
+      "Wikidata Lexeme": {
+        "rows": 244,
+        "occurrences": 402
+      },
+      "OpenScriptures morphHB": {
+        "rows": 695,
+        "occurrences": 1249
+      },
+      "Project-authored function word table": {
+        "rows": 130,
+        "occurrences": 951
+      },
+      "OpenScriptures HebrewLexicon": {
+        "rows": 200,
+        "occurrences": 286
+      },
+      "mixed_source_families": {
+        "rows": 65,
+        "occurrences": 76
+      }
+    }
+  },
+  "prior_agent6_context": {
+    "transform_readiness_verdict": "Agent 6 WARN-ACCEPTED the exact 1334-row / 2964-occurrence Deuteronomy phase-2 transform/readiness matrix as non-public planning evidence only.",
+    "agent3_supplemental_receipt": "Agent 6 received Agent 3 supplemental linkage/dedupe/navigation provenance evidence without widening the transform/readiness boundary.",
+    "this_packet_does_not_widen_prior_verdicts": true
+  },
+  "validation_commands": [
+    "node scripts/validate_agent1_deuteronomy_source_license_custody_map.mjs",
+    "node scripts/validate_agent10_deuteronomy_phase2_downstream_transform_workset.mjs reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.json",
+    "node scripts/validate_agent2_deuteronomy_phase2_transform_readiness_matrix.mjs reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.json",
+    "node scripts/validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+    "node scripts/validate_agent3_linkage_navigation_frontier_checkpoint.mjs"
+  ],
+  "validation_status": "passed",
+  "boundary": {
+    "review_packet_only": true,
+    "nonpublic_planning_evidence_only": true,
+    "does_not_widen_prior_deuteronomy_verdicts": true,
+    "no_source_provenance_acceptance": true,
+    "no_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_usage_as_definition_authority": true,
+    "no_answer_acceptance": true,
+    "no_answer_eligibility": true,
+    "no_public_runtime_acceptance": true,
+    "no_publication_readiness": true,
+    "no_route_publication_support": true,
+    "no_product_data_acceptance": true,
+    "no_translation_output": true,
+    "no_accepted_gloss_text": true,
+    "no_public_reader_output": true,
+    "no_route_shard_edit": true,
+    "no_public_runtime_mutation": true,
+    "no_definition_content_storage": true,
+    "commercial_export_allowed_now": false,
+    "nc_commercial_authorization": false
+  },
+  "next_executable_route": "Route this packet to Agent 6 for pass/warn/block review as non-public source/license/custody planning evidence only.",
+  "stop_condition": "Wait for Agent 6 verdict artifact path or exact delivery blocker.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate-text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

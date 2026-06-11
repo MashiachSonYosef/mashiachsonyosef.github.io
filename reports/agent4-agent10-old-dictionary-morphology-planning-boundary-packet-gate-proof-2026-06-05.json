@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent10_old_dictionary_morphology_planning_boundary_packet_gate_proof",
+  "generated_at": "2026-06-05T14:25:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet",
+  "status": "validator_passed_agent6_ready_nonpublic_planning_boundary_only",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, candidate-use authorization, candidate text export, accepted gloss/text, commercial export permission, NC commercial authorization, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.json",
+      "sha256": "46e513b3351fd0286e51bdfa0b27fb19db6437e99d42e6ccd302eef711c7942c",
+      "artifact_type": "agent10_agent6_ready_old_dictionary_morphology_planning_boundary_packet",
+      "status": "agent6_ready_nonpublic_morphology_planning_boundary_packet"
+    },
+    {
+      "path": "scripts/validate_agent10_old_dictionary_morphology_planning_boundary_packet.mjs",
+      "sha256": "2561fcfbd515187d875ef41e23e1877c82db20529adb34c3dfc1e61acc100e0c",
+      "artifact_type": "validator_script",
+      "status": "existing_exact_validator_for_agent10_old_dictionary_morphology_planning_boundary_packet"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_morphology_planning_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Planning rows: 78; occurrences: 1461."
+    }
+  ],
+  "counts": {
+    "matrix_rows": 297,
+    "matrix_occurrences": 5747,
+    "commercial_clean_source_family_hit_rows": 500,
+    "commercial_clean_source_family_hit_occurrences": 10940,
+    "morphology_planning_rows": 78,
+    "morphology_planning_occurrences": 1461,
+    "morphology_blocked_rows": 219,
+    "commercial_clean_candidate_rows": 78,
+    "commercial_clean_candidate_occurrences": 1461,
+    "noncommercial_educational_candidate_rows": 0,
+    "metadata_or_link_only_rows": 0,
+    "blocked_or_needs_review_rows": 219,
+    "source_family_groups": 3,
+    "bdb_aramaic_planning_rows": 21,
+    "bdb_dictionary_planning_rows": 63,
+    "jastrow_dictionary_planning_rows": 75,
+    "prefix_or_clitic_possible_rows": 129,
+    "prefix_or_clitic_possible_occurrences": 3035,
+    "needs_morphology_disambiguation_rows": 90,
+    "needs_morphology_disambiguation_occurrences": 1251
+  },
+  "zero_counters": {
+    "allowed_candidate_use_rows": 0,
+    "allowed_transform_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "accepted_gloss_text_rows": 0,
+    "accepted_text_rows": 0,
+    "release_rows": 0,
+    "release_action_rows": 0
+  },
+  "blockers": [
+    "missing_exact_agent6_row_subset_boundary_for_candidate_use",
+    "missing_agent10_exact_agent6_candidate_use_packet_for_the_specific_planning_rows",
+    "definition_lane_must_still_emit_no_public_or_answer_acceptance",
+    "prefix_or_clitic_possible_requires_morphology_disambiguation",
+    "needs_morphology_disambiguation"
+  ],
+  "result": "target | agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet | files in packet | commands passed: Agent10 old-dictionary morphology planning boundary packet validator | counts: 297 matrix rows, 5747 matrix occurrences, 500 commercial-clean source-family hit rows, 10940 hit occurrences, 78 morphology-planning rows, 1461 planning occurrences, 219 morphology-blocked rows, 3 source-family groups, 129 prefix/clitic blocked rows, 90 needs-disambiguation rows, 0 allowed candidate-use/transform/candidate/definition/lemma/reader-hint/answer/public/route/runtime/accepted-text/release rows | result: validator passed as Agent6-ready nonpublic planning boundary packet only | blocker if any: exact Agent6 verdict still required; candidate-use/transform/display/export/answer/Definition/public/runtime/release remains blocked | next handoff: Agent10 may route to Agent6 as a boundary question; Agent2 may not use this as candidate-use authorization | stop condition: do not rerun unless boundary packet, morphology matrix, Agent2 blocker, source-lane addendum, or validator changes",
+  "handoff_owner": "Agent 10 release/package intake for Agent6 routing; Agent 6 boundary verdict authority; Agent 2 transform lane remains blocked until exact verdict and candidate-use packet exist.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not emit candidate text, execute transforms, write routes, mark answers, store definition content, mutate runtime, publish, export, or claim acceptance from this packet."
+}

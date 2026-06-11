@@ -1,0 +1,135 @@
+{
+  "artifact": "reports/agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.md",
+  "date": "2026-06-05",
+  "agent": "Agent 6",
+  "disposition": "warn_accepted_nonpublic_morphology_planning_evidence_only",
+  "scope": "nonpublic_old_dictionary_morphology_relation_planning_only",
+  "accepted_boundary": {
+    "rows": 78,
+    "occurrences": 1461,
+    "selector": {
+      "preview_relation_class": "exact_after_mark_strip",
+      "agent2_morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning"
+    },
+    "source_license_lane": "commercial_clean_candidate_planning_lane_only",
+    "noncommercial_educational_candidate_rows": 0
+  },
+  "evidence_reviewed": [
+    "reports/agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.md",
+    "reports/agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.json",
+    "reports/agent10-agent2-ready-old-dictionary-commercial-clean-morphology-relation-workset-2026-06-05.json",
+    "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+    "reports/agent2-morphology-planning-candidate-use-blocker-2026-06-05.json"
+  ],
+  "validators_run": [
+    {
+      "command": "node scripts/validate_agent10_agent2_old_dictionary_morphology_relation_workset.mjs reports/agent10-agent2-ready-old-dictionary-commercial-clean-morphology-relation-workset-2026-06-05.json",
+      "result": "passed",
+      "rows": 297,
+      "occurrences": 5747
+    },
+    {
+      "command": "node scripts/validate_agent2_old_dictionary_commercial_clean_morphology_relation_matrix.mjs reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+      "result": "passed",
+      "rows": 297,
+      "planning_approved_rows": 78,
+      "transform_rows": 0
+    },
+    {
+      "command": "node scripts/validate_agent2_morphology_planning_candidate_use_blocker.mjs reports/agent2-morphology-planning-candidate-use-blocker-2026-06-05.json",
+      "result": "passed",
+      "planning_rows": 78,
+      "candidate_use_rows": 0
+    },
+    {
+      "command": "node scripts/validate_agent10_old_dictionary_morphology_planning_boundary_packet.mjs reports/agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.json",
+      "result": "passed",
+      "planning_rows": 78,
+      "occurrences": 1461
+    }
+  ],
+  "independent_recount": {
+    "matrix_rows": 297,
+    "selected_planning_rows": 78,
+    "selected_planning_occurrences": 1461,
+    "blocked_rows_preserved_outside_subset": 219,
+    "forbidden_flag_rows_observed": 0,
+    "relation_class_counts": {
+      "exact_after_mark_strip": 78,
+      "prefix_or_clitic_possible": 129,
+      "needs_morphology_disambiguation": 90
+    },
+    "relation_status_counts": {
+      "agent2_morphology_relation_approved_for_nonpublic_planning": 78,
+      "agent2_morphology_relation_blocked_prefix_or_clitic_possible": 129,
+      "agent2_morphology_relation_blocked_needs_disambiguation": 90
+    },
+    "source_family_presence_counts_nonexclusive": {
+      "BDB Aramaic Dictionary": {
+        "rows": 21,
+        "occurrences": 616
+      },
+      "BDB Dictionary": {
+        "rows": 63,
+        "occurrences": 1271
+      },
+      "Jastrow Dictionary": {
+        "rows": 75,
+        "occurrences": 1417
+      }
+    }
+  },
+  "warnings": [
+    "planning_only_boundary_no_candidate_use_or_transform_cleared",
+    "source_license_lane_metadata_only_no_source_provenance_license_legal_or_export_acceptance",
+    "219_rows_remain_blocked_outside_reviewed_subset",
+    "later_candidate_use_or_transform_requires_new_exact_agent6_packet"
+  ],
+  "blockers_preserved": [
+    "missing_exact_agent6_row_subset_boundary_for_candidate_use",
+    "missing_agent10_exact_agent6_candidate_use_packet_for_the_specific_planning_rows",
+    "definition_lane_must_still_emit_no_public_or_answer_acceptance",
+    "prefix_or_clitic_possible_requires_morphology_disambiguation",
+    "needs_morphology_disambiguation"
+  ],
+  "affected_agents": {
+    "Agent 10": "may_carry_exact_78_row_1461_occurrence_subset_as_nonpublic_planning_evidence_only",
+    "Agent 2": "may_reference_subset_as_morphology_planning_evidence_only_no_transform_or_candidate_text",
+    "Agent 1": "no_new_source_provenance_license_acceptance",
+    "Agent 4": "no_runtime_public_proof_route_opened",
+    "Agent 7": "required_for_later_control_publication_release_activation_or_durable_queue_state_recording"
+  },
+  "affected_gates": {
+    "old_dictionary_morphology_planning_gate": "warn_accepted_exact_subset_only",
+    "candidate_use_gate": "blocked",
+    "transform_gate": "blocked",
+    "definition_authority_gate": "blocked",
+    "public_runtime_gate": "not_accepted",
+    "publication_release_gate": "not_accepted",
+    "source_provenance_license_legal_gate": "not_accepted"
+  },
+  "must_not_be_accepted": [
+    "qa_acceptance_beyond_this_docket",
+    "source_provenance_acceptance",
+    "license_legal_acceptance",
+    "definition_authority",
+    "usage_as_definition_authority",
+    "answer_acceptance",
+    "answer_eligibility",
+    "public_runtime_acceptance",
+    "publication_readiness",
+    "route_publication_support",
+    "product_data_acceptance",
+    "translation_output",
+    "accepted_gloss_text",
+    "public_reader_output",
+    "route_shard_edit",
+    "public_runtime_mutation",
+    "definition_content_storage",
+    "candidate_text_export",
+    "commercial_export_permission",
+    "nc_commercial_authorization",
+    "release_action"
+  ],
+  "stop_condition": "dated_agent6_verdict_exists_for_exact_old_dictionary_commercial_clean_morphology_planning_subset_only_no_mutation_or_release_performed"
+}

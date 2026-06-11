@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_old_dictionary_transform_readiness_restore_work_validation_result",
+  "generated_at": "2026-06-05T23:24:00.275Z",
+  "target": "reports/agent2-old-dictionary-transform-readiness-restore-work-2026-06-05.json",
+  "validator": "scripts/validate_agent2_old_dictionary_transform_readiness_restore_work.mjs",
+  "command": "node scripts\\validate_agent2_old_dictionary_transform_readiness_restore_work.mjs reports\\agent2-old-dictionary-transform-readiness-restore-work-2026-06-05.json",
+  "timeout_ms": 120000,
+  "timed_out": false,
+  "result": "passed",
+  "stdout_summary": "Agent 2 transform readiness restore-work validation passed. Rows consumed for output: 0; blockers preserved: 6.",
+  "lane_result": {
+    "commercial_clean_candidate": "preserved_waiting_exact_agent6_boundary_and_approved_morphology_relation",
+    "noncommercial_educational_candidate": "preserved_separate_nc_lane_no_commercial_export",
+    "metadata_or_link_only": "zero_rows",
+    "blocked_or_needs_review": "preserved_blocked_review_hold"
+  },
+  "zero_output_assertions": {
+    "definition_lemma_reader_hint_rows_consumed_now": 0,
+    "candidate_text_rows_consumed_now": 0,
+    "answer_rows": 0,
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "release_action": 0
+  },
+  "next_safe_action": "Wait for exact Agent 6 row/subset boundary verdict artifacts and approved morphology relation before writing any transform rows.",
+  "stop_condition": "No Definition authority, public/runtime mutation, answer acceptance, source-license/legal acceptance, accepted text, publication readiness, commercial export authorization, candidate text, or definition/lemma/reader-hint content output."
+}

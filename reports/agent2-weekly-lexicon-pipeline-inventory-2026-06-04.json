@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_weekly_lexicon_pipeline_inventory",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "pipelines": {
+    "deuteronomy_phase2_transform_readiness": {
+      "route": "reports/agent10-agent2-deuteronomy-phase2-transform-readiness-route-2026-06-04.md",
+      "input_workset": "reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.json",
+      "builder": "scripts/build_agent2_deuteronomy_phase2_transform_readiness_matrix.mjs",
+      "validator": "scripts/validate_agent2_deuteronomy_phase2_transform_readiness_matrix.mjs",
+      "output": "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.json",
+      "report": "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.md",
+      "status": "validated",
+      "counts": {
+        "rows": 1334,
+        "occurrences": 2964,
+        "commercial_clean_candidate_rows": 1334,
+        "noncommercial_educational_candidate_rows": 0,
+        "answer_eligible_rows": 0,
+        "public_emit_rows": 0,
+        "definition_text_rows": 0,
+        "accepted_text_rows": 0,
+        "route_shard_writes": 0
+      }
+    },
+    "deuteronomy_phase2_partition_export_plan": {
+      "input_matrix": "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.json",
+      "builder": "scripts/build_agent2_deuteronomy_phase2_partition_export_plan.mjs",
+      "validator": "scripts/validate_agent2_deuteronomy_phase2_partition_export_plan.mjs",
+      "output": "reports/agent2-deuteronomy-phase2-partition-export-plan-2026-06-04.json",
+      "report": "reports/agent2-deuteronomy-phase2-partition-export-plan-2026-06-04.md",
+      "status": "validated_nonpublic_partition_export_planning_only",
+      "counts": {
+        "rows": 1334,
+        "occurrences": 2964,
+        "commercial_clean_candidate_rows": 1334,
+        "noncommercial_educational_candidate_rows": 0,
+        "candidate_text_export_rows": 0,
+        "answer_eligible_rows": 0,
+        "public_emit_rows": 0,
+        "route_shard_writes": 0
+      }
+    },
+    "orot_missed_dictionary_reader_hint_candidates": {
+      "builder": "scripts/build_agent2_orot_missed_dictionary_reader_hint_candidates.mjs",
+      "validator": "scripts/validate_agent2_orot_missed_dictionary_reader_hint_candidates.mjs",
+      "output": "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+      "status": "validated_zero_candidate_closure_with_source_lane_preflight",
+      "counts": {
+        "rows": 0,
+        "occurrences": 0,
+        "unmatched": 168
+      }
+    },
+    "definition_workbench_1000_sample": {
+      "builder": "scripts/build_definition_workbench_sample.mjs",
+      "validator": "scripts/validate_definition_workbench_sample.mjs",
+      "output": "data/definitions/definition-workbench-sample-1000.json",
+      "report": "reports/definition-workbench-sample-1000-report.md",
+      "status": "validated",
+      "counts": {
+        "rows": 1000,
+        "rows_with_route_cards": 996,
+        "no_hint_repair_targets": 4
+      }
+    },
+    "definition_workbench_usage_joined_sample_planning": {
+      "builder": "scripts/build_agent2_definition_workbench_usage_joined_sample_planning.mjs",
+      "validator": "scripts/validate_agent2_definition_workbench_usage_joined_sample_planning.mjs",
+      "output": "data/definitions/agent2-definition-workbench-usage-joined-sample-planning.json",
+      "report": "reports/agent2-definition-workbench-usage-joined-sample-planning.md",
+      "status": "validated",
+      "counts": {
+        "projected_rows": 1,
+        "occurrence_links": 12,
+        "route_ids": 1
+      }
+    },
+    "source_lane_assignment_preflight": {
+      "validator": "scripts/validate_agent2_source_lane_assignment_packet.mjs",
+      "fixture": "data/definitions/agent2-source-lane-assignment-preflight-fixture.json",
+      "fixture_status": "validated",
+      "real_workset_status": "resolved_for_nonpublic_source_family_license_lane_planning_evidence_intake_only",
+      "blocker": "old_dictionary_candidate_text_consumption_export_storage_requires_new_exact_agent6_boundary"
+    },
+    "old_dictionary_lane_planning_intake": {
+      "builder": "scripts/build_agent2_old_dictionary_lane_planning_intake.mjs",
+      "validator": "scripts/validate_agent2_old_dictionary_lane_planning_intake.mjs",
+      "output": "reports/agent2-old-dictionary-lane-planning-intake-2026-06-04.json",
+      "report": "reports/agent2-old-dictionary-lane-planning-intake-2026-06-04.md",
+      "status": "old_dictionary_lane_planning_evidence_intaked_nonpublic_only",
+      "counts": {
+        "audited_rows": 500,
+        "audited_occurrences": 8427,
+        "next_missed_rows": 50,
+        "next_missed_occurrences": 1193,
+        "candidate_rows_emitted": 0,
+        "candidate_occurrences_emitted": 0
+      },
+      "remaining_blocker": "old_dictionary_candidate_text_consumption_export_storage_requires_new_exact_agent6_boundary"
+    },
+    "orot_counterpart_hint_patch_preview": {
+      "builder": "scripts/build_agent2_orot_counterpart_hint_patch_preview.mjs",
+      "validator": "scripts/validate_agent2_orot_counterpart_hint_patch_preview.mjs",
+      "output": "reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.json",
+      "report": "reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.md",
+      "constraint": "reports/agent2-orot-counterpart-preview-source-lane-constraint-2026-06-04.json",
+      "status": "validated_preview_blocked_from_promotion",
+      "counts": {
+        "candidate_preview_rows": 31,
+        "candidate_preview_occurrences": 1202,
+        "approved_patch_rows": 0,
+        "answer_rows_emitted": 0,
+        "public_hud_rows_emitted": 0,
+        "route_jsonl_rows_emitted": 0
+      }
+    },
+    "orot_tbd_13_placeholder_inventory_consumption": {
+      "builder": "scripts/build_agent2_orot_tbd_placeholder_inventory_consumption.mjs",
+      "validator": "scripts/validate_agent2_orot_tbd_placeholder_inventory_consumption.mjs",
+      "output": "reports/agent2-orot-tbd-13-placeholder-inventory-consumption-2026-06-04.json",
+      "report": "reports/agent2-orot-tbd-13-placeholder-inventory-consumption-2026-06-04.md",
+      "status": "validated_existing_nonpublic_display_integrity_inventory_consumed",
+      "counts": {
+        "display_integrity_tbd_rows": 13,
+        "display_integrity_tbd_occurrences": 129,
+        "answer_rows_emitted": 0,
+        "public_hud_rows_emitted": 0,
+        "route_jsonl_rows_emitted": 0,
+        "route_shards_written": 0,
+        "definition_content_rows_emitted": 0,
+        "accepted_text_rows": 0
+      }
+    },
+    "spark1_manifest_output_state_gate": {
+      "manifest": "reports/agent2-spark1-runnable-command-manifest-2026-06-04.json",
+      "validator": "scripts/validate_agent2_spark1_manifest_outputs.mjs",
+      "receipt": "reports/agent2-spark1-manifest-output-state-validation-receipt-2026-06-04.json",
+      "status": "validated_non_mutating_output_state_gate",
+      "counts": {
+        "runnable_outputs_checked": 7,
+        "validator_only_states_checked": 23,
+        "builders_run": 0,
+        "public_runtime_mutations": 0,
+        "answer_rows": 0
+      },
+      "blocker_observed": "child_process_spawn_eperm_avoided_by_output_state_validation"
+    }
+  },
+  "exact_blockers": [
+    "old_dictionary_candidate_text_consumption_export_storage_requires_new_exact_agent6_boundary",
+    "missing_larger_token_inventory_workset",
+    "missing_joined_definition_workbench_sample_artifact_contract",
+    "orot_counterpart_preview_not_promotable_without_agent1_source_lane_and_agent6_boundary"
+  ],
+  "zero_emission_boundary": {
+    "qa_acceptance": false,
+    "source_provenance_acceptance": false,
+    "license_acceptance": false,
+    "legal_acceptance": false,
+    "definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligibility": false,
+    "public_runtime_acceptance": false,
+    "publication_readiness": false,
+    "route_publication_support": false,
+    "product_data_acceptance": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "definition_content_storage": false,
+    "nc_commercial_authorization": false
+  }
+}

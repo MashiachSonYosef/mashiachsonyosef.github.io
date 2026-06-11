@@ -1,0 +1,3268 @@
+{
+  "schema_version": 1,
+  "artifact_type": "spark10_release_package_intake_pipeline_contract",
+  "generated_at": "2026-06-04T00:00:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / direct Agent run mode",
+  "release_owner": "Agent 10",
+  "spark_thread_id": "019e92c2-00a7-78f3-b9ab-6f3c11305a0a",
+  "supersedes_spark10_thread_ids": [
+    "019e925b-f976-73f2-a859-af586ac3887c"
+  ],
+  "objective": "Local Agent 10 release/package intake and changed-artifact standing check. Spark-10-named artifacts are preserved as historical/mechanical evidence only; Agent 10 runs and validates this matrix directly unless owner explicitly re-enables a repaired assistant lane.",
+  "commands": {
+    "build": "node scripts/build_spark10_release_package_intake.mjs --contract=reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+    "validate": "node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "build_owner": "Agent 10 direct local run",
+    "validate_owner": "Agent 10 direct local run"
+  },
+  "inputs": [
+    {
+      "path": "data/control/spark_standing_queue.json",
+      "lane_owner": "Agent 7",
+      "required": true,
+      "release_relevance_hint": "control_state_only",
+      "notes": "current broad/Spark control state"
+    },
+    {
+      "path": "data/control/agent_goal_board.json",
+      "lane_owner": "Agent 7",
+      "required": true,
+      "release_relevance_hint": "control_state_only",
+      "notes": "goal board and active mode"
+    },
+    {
+      "path": "reports/spark10-standing-goal-mode-status-2026-06-04.md",
+      "lane_owner": "Spark-10",
+      "required": true,
+      "release_relevance_hint": "spark_status",
+      "notes": "current Spark-10 standing blocker"
+    },
+    {
+      "path": "reports/spark1-standing-goal-mode-status-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "historical_source_lane_status_paused",
+      "notes": "Historical Spark-1 standing blocker evidence only; assistant-1/Spark-1 remains paused and no route/wait is opened.",
+      "agent6_handoff_needed": false
+    },
+    {
+      "path": "reports/agent1-weekly-source-license-custody-pipeline-authoring-status-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_pipeline_contract_status",
+      "notes": "Agent 1 weekly source/license/custody runnable pipeline status"
+    },
+    {
+      "path": "reports/agent1-lowmode-source-license-custody-contract-status-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_pipeline_contract_status",
+      "notes": "Agent 1 low-mode source/license/custody contract status"
+    },
+    {
+      "path": "reports/agent1-lowmode-source-license-custody-contract-status-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_pipeline_contract_status",
+      "notes": "Agent 1 low-mode source/license/custody contract status JSON"
+    },
+    {
+      "path": "reports/spark3-standing-goal-mode-status-2026-06-04.md",
+      "lane_owner": "Spark-3",
+      "required": false,
+      "release_relevance_hint": "linkage_lane_status",
+      "notes": "Spark-3 replacement blocker or status"
+    },
+    {
+      "path": "reports/spark3-orot-169-row-route-card-candidate-card-dedupe-contract-run-2026-06-04.md",
+      "lane_owner": "Spark-3",
+      "required": false,
+      "release_relevance_hint": "linkage_pipeline_run_status",
+      "notes": "Spark-3 Orot 169-row contract run and validator result"
+    },
+    {
+      "path": "reports/agent3-spark3-linkage-dedupe-navigation-pipeline-contract-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "linkage_pipeline_contract_status",
+      "notes": "Agent 3 runnable linkage/dedupe/navigation contract for Orot first target"
+    },
+    {
+      "path": "reports/agent3-spark1-pipeline-contract-deuteronomy-phase2-linkage-dedupe-source-route-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "linkage_pipeline_contract_status",
+      "notes": "Agent 3 runnable Deuteronomy phase-2 linkage/dedupe/source-route contract; historical artifact naming only, no active Spark-1 route",
+      "agent6_handoff_needed": false
+    },
+    {
+      "path": "reports/agent3-spark1-pipeline-contract-deuteronomy-phase2-linkage-dedupe-source-route-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "linkage_pipeline_contract_status",
+      "notes": "Agent 3 runnable Deuteronomy phase-2 linkage/dedupe/source-route contract JSON; historical artifact naming only, no active Spark-1 route",
+      "agent6_handoff_needed": false
+    },
+    {
+      "path": "reports/spark1-deuteronomy-phase2-linkage-dedupe-source-route-run-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "historical_linkage_pipeline_run_status",
+      "notes": "Historical Spark-1 Deuteronomy phase-2 run/check return already consumed by Agent 3; assistant-1/Spark-1 remains paused and no route/wait is opened.",
+      "agent6_handoff_needed": false
+    },
+    {
+      "path": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "linkage_pipeline_matrix_status",
+      "notes": "Agent 3 Deuteronomy phase-2 matrix report"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "linkage_pipeline_matrix_status",
+      "notes": "Agent 3 Deuteronomy phase-2 matrix JSON"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-phase2-spark1-return-consumption-package-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "linkage_pipeline_matrix_status",
+      "notes": "Agent 3 supplemental historical Spark-1 return consumption package JSON; consumed evidence only, no active Spark-1 route.",
+      "agent6_handoff_needed": false
+    },
+    {
+      "path": "reports/agent10-orot-current-goal-audit-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_owner_audit",
+      "notes": "current release-owner audit ledger"
+    },
+    {
+      "path": "reports/agent10-weekly-lexicon-release-next-boundary-or-blocker-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "current Agent 10 next-boundary handoff; may name exact Agent 6 route need"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-orot-reader-hint-candidate-patch-docket-2026-06-04-current.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "current Orot 31-row reader-hint candidate patch docket report; Agent 6 verdict has now been consumed"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-orot-reader-hint-candidate-patch-docket-2026-06-04-current.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "current Orot 31-row reader-hint candidate patch docket JSON; Agent 6 verdict has now been consumed"
+    },
+    {
+      "path": "reports/agent6-orot-reader-hint-candidate-patch-current-verdict-2026-06-04.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 carried current Orot reader-hint candidate patch forward as warn-only non-public evidence-sufficiency planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-orot-reader-hint-candidate-patch-current-verdict-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of current Orot reader-hint candidate patch Agent 6 verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-orot-reader-hint-candidate-patch-current-verdict-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON for current Orot reader-hint candidate patch Agent 6 verdict"
+    },
+    {
+      "path": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "linkage_blocker_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 evidence-only buckets for the 13 Orot rows missing lexicon_entry_id; no approved linkage assignment rule"
+    },
+    {
+      "path": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "linkage_blocker_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 evidence-only JSON for the 13 Orot rows missing lexicon_entry_id; no mutation authorized"
+    },
+    {
+      "path": "reports/agent10-agent1-ready-orot-dry-run-source-license-display-review-request-2026-06-03.md",
+      "lane_owner": "Agent 10",
+      "required": false,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1-ready request regenerated for the 31-row Orot dry-run; route is superseded by existing Agent 1 review and Agent 6 dry-run/current verdicts"
+    },
+    {
+      "path": "reports/agent10-agent1-ready-orot-dry-run-source-license-display-review-request-2026-06-03.json",
+      "lane_owner": "Agent 10",
+      "required": false,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1-ready request JSON regenerated for the 31-row Orot dry-run; route is superseded by existing Agent 1 review and Agent 6 dry-run/current verdicts"
+    },
+    {
+      "path": "reports/agent1-orot-dry-run-source-license-display-review-2026-06-03.json",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_license_display_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Existing Agent 1 row-level source/license/display review: 20 allowed, 10 external-link-only, 1 metadata-only"
+    },
+    {
+      "path": "reports/agent6-orot-dry-run-source-license-display-boundary-verdict-2026-06-03.json",
+      "lane_owner": "Agent 6",
+      "required": false,
+      "release_relevance_hint": "agent6_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Existing Agent 6 dry-run source/license/display boundary verdict; allows only one 20-row zero-or-safe non-public step"
+    },
+    {
+      "path": "reports/agent2-spark1-runnable-command-manifest-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_command_manifest",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 runnable command manifest for historical Spark-1; command surface only; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-spark1-runnable-command-manifest-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_command_manifest",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 runnable command manifest JSON for historical Spark-1; command surface only; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-spark1-command-manifest-validation-receipt-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_command_manifest",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 validation receipt: 5 runnable pipelines and 9 validator-only checks; no new exact Agent2 workset; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-spark1-command-manifest-validation-receipt-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_command_manifest",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 validation receipt JSON; no Agent 6 route opened; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent6-orot-nc-klein-source-family-map-boundary-verdict-2026-06-04.md",
+      "lane_owner": "Agent 6",
+      "required": false,
+      "release_relevance_hint": "agent6_boundary_evidence",
+      "notes": "NC/Klein row-scoped planning verdict only"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_pipeline_contract_status",
+      "notes": "Agent-1-authored contract status; historical artifact naming only, no active Spark-1 route",
+      "agent6_handoff_needed": false
+    },
+    {
+      "path": "reports/agent2-spark2-pipeline-contract-orot-missed-dictionary-reader-hints-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_contract_status",
+      "notes": "Agent-2-authored contract status"
+    },
+    {
+      "path": "reports/agent2-lowmode-definition-workbench-500-package-and-next-target-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "notes": "Agent 2 low-mode 500-row Definition Workbench package plus 1000-row continuation target"
+    },
+    {
+      "path": "reports/agent2-lowmode-definition-workbench-500-package-and-next-target-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "notes": "Agent 2 low-mode 500-row Definition Workbench package plus 1000-row continuation target JSON"
+    },
+    {
+      "path": "reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": false,
+      "release_relevance_hint": "release_relevant",
+      "notes": "Agent10-prepared Deuteronomy phase-2 Agent2-ready downstream transform workset"
+    },
+    {
+      "path": "reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": false,
+      "release_relevance_hint": "release_relevant",
+      "notes": "Agent10-prepared Deuteronomy phase-2 Agent2-ready downstream transform workset JSON"
+    },
+    {
+      "path": "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "release_relevant",
+      "notes": "Agent 2 Deuteronomy phase-2 transform/readiness matrix report"
+    },
+    {
+      "path": "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "release_relevant",
+      "notes": "Agent 2 Deuteronomy phase-2 transform/readiness matrix JSON"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-deuteronomy-phase2-transform-readiness-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": false,
+      "release_relevance_hint": "release_relevant",
+      "notes": "Agent10 Agent6-ready Deuteronomy phase-2 transform/readiness boundary packet JSON"
+    },
+    {
+      "path": "reports/agent10-agent6-deuteronomy-phase2-transform-readiness-verdict-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": false,
+      "release_relevance_hint": "release_relevant",
+      "notes": "Agent10 consumed Agent 6 Deuteronomy phase-2 verdict as warn-only planning evidence only"
+    },
+    {
+      "path": "reports/agent6-deuteronomy-phase2-agent3-supplemental-receipt-2026-06-04.md",
+      "lane_owner": "Agent 6",
+      "required": false,
+      "release_relevance_hint": "agent6_boundary_evidence",
+      "notes": "Agent 6 supplemental receipt for Agent 3 Deuteronomy provenance evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-deuteronomy-phase2-agent3-supplemental-receipt-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": false,
+      "release_relevance_hint": "release_relevant",
+      "notes": "Agent10 consumed Agent 6 supplemental receipt without widening prior Deuteronomy boundary"
+    },
+    {
+      "path": "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "linkage_blocker_evidence",
+      "notes": "Orot route-card/candidate-card dedupe blocker evidence"
+    },
+    {
+      "path": "reports/agent4-deuteronomy-baseline-runtime-prereq-evidence-2026-06-04.md",
+      "lane_owner": "Agent 4",
+      "required": false,
+      "release_relevance_hint": "runtime_prereq_evidence",
+      "notes": "Deuteronomy baseline runtime/prereq evidence only"
+    },
+    {
+      "path": "reports/agent4-changed-input-only-wake-condition-2026-06-04.md",
+      "lane_owner": "Agent 4",
+      "required": false,
+      "release_relevance_hint": "validator_changed_input_status",
+      "notes": "Agent 4 changed-input-only wake condition"
+    },
+    {
+      "path": "reports/oracle9-nc-educational-lane-owner-policy-2026-06-04.md",
+      "lane_owner": "Oracle 9",
+      "required": false,
+      "release_relevance_hint": "source_lane_policy",
+      "notes": "NC educational lane owner policy"
+    },
+    {
+      "path": "reports/oracle9-new-dictionary-source-lane-policy-2026-06-04.md",
+      "lane_owner": "Oracle 9",
+      "required": false,
+      "release_relevance_hint": "source_lane_policy",
+      "notes": "New dictionary source lane policy"
+    },
+    {
+      "path": "reports/oracle9-dictionary-lane-classification-correction-2026-06-04.md",
+      "lane_owner": "Oracle 9",
+      "required": false,
+      "release_relevance_hint": "source_lane_policy",
+      "agent6_handoff_needed": false,
+      "notes": "Dictionary lane classification correction"
+    },
+    {
+      "path": "reports/agent12-agent8-nc-csv-separation-cap-rule-2026-06-04.md",
+      "lane_owner": "Agent 12",
+      "required": false,
+      "release_relevance_hint": "source_lane_policy",
+      "notes": "NC CSV separation cap rule"
+    },
+    {
+      "path": "reports/agent12-agent8-nc-educational-lane-cap-delta-2026-06-04.md",
+      "lane_owner": "Agent 12",
+      "required": false,
+      "release_relevance_hint": "source_lane_policy",
+      "notes": "NC educational lane cap delta"
+    },
+    {
+      "path": "data/build/orot/reader-hint-placeholder-candidates.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "package_anchor",
+      "notes": "current non-public Orot placeholder package anchor"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-deuteronomy-source-license-custody-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Deuteronomy source/license/custody boundary packet report; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-deuteronomy-source-license-custody-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Deuteronomy source/license/custody boundary packet JSON; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent1-deuteronomy-source-license-custody-map-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_license_custody_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 Deuteronomy source/license/custody map report; 1334 commercial-clean planning rows / 2964 occurrences"
+    },
+    {
+      "path": "reports/agent1-deuteronomy-source-license-custody-map-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_license_custody_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 Deuteronomy source/license/custody map JSON; preserves source lanes and zero-emission counters"
+    },
+    {
+      "path": "reports/agent3-linkage-navigation-frontier-checkpoint-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "linkage_navigation_frontier_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 linkage/navigation frontier checkpoint report; evidence-ready only"
+    },
+    {
+      "path": "reports/agent3-linkage-navigation-frontier-checkpoint-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "linkage_navigation_frontier_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 linkage/navigation frontier checkpoint JSON; includes Deuteronomy blockers and external Orot linkage observations only"
+    },
+    {
+      "path": "reports/oracle9-owner-forced-current-action-corrections-callback-2026-06-04.md",
+      "lane_owner": "Oracle 9",
+      "required": false,
+      "release_relevance_hint": "owner_control_policy",
+      "agent6_handoff_needed": false,
+      "notes": "Owner forced current-action corrections callback; control posture only"
+    },
+    {
+      "path": "reports/spark10-primary-agent8-13-status-2026-06-04.md",
+      "lane_owner": "Spark-10",
+      "required": false,
+      "release_relevance_hint": "spark_status",
+      "agent6_handoff_needed": false,
+      "notes": "Spark-10 primary status for Agent8-13 support; status only, no acceptance"
+    },
+    {
+      "path": "reports/agent6-deuteronomy-source-license-custody-planning-verdict-2026-06-04.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 carried exact Deuteronomy source/license/custody map forward as warn-only non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-deuteronomy-source-license-custody-verdict-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Deuteronomy source/license/custody Agent 6 verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-deuteronomy-source-license-custody-verdict-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON for Deuteronomy source/license/custody Agent 6 verdict"
+    },
+    {
+      "path": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_license_custody_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 old-dictionary excluded-row license-lane re-audit report"
+    },
+    {
+      "path": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_license_custody_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 old-dictionary excluded-row license-lane re-audit JSON; 500 audited rows / 8427 occurrences"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready old-dictionary excluded-row license-lane re-audit boundary packet report; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready old-dictionary excluded-row license-lane re-audit boundary packet JSON; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly current handoff bundle; no new Agent2 exact workset after Deuteronomy return"
+    },
+    {
+      "path": "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly current handoff bundle JSON; blockers and runnable pipeline inventory only"
+    },
+    {
+      "path": "reports/agent2-next-workset-needed-after-deuteronomy-return-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 exact blocker: no new Agent2 workset after Deuteronomy return"
+    },
+    {
+      "path": "reports/agent2-next-workset-needed-after-deuteronomy-return-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 exact blocker JSON: no new Agent2 workset after Deuteronomy return"
+    },
+    {
+      "path": "reports/agent10-current-lane-returns-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of current Agent 1/2/3 lane returns and Agent 2 count blocker"
+    },
+    {
+      "path": "reports/agent10-current-lane-returns-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON for current Agent 1/2/3 lane returns and Agent 2 count blocker"
+    },
+    {
+      "path": "reports/agent1-current-source-license-custody-lane-return-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_lane_aggregate_handoff",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 current source/license/custody lane return report"
+    },
+    {
+      "path": "reports/agent1-current-source-license-custody-lane-return-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_lane_aggregate_handoff",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 current source/license/custody lane return JSON; release intake only"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-source-license-custody-verdict-continuity-package-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "linkage_navigation_frontier_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 continuity package after Deuteronomy source/license verdict"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-source-license-custody-verdict-continuity-package-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "linkage_navigation_frontier_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 continuity package JSON after Deuteronomy source/license verdict"
+    },
+    {
+      "path": "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 Orot missed-dictionary reader-hint candidates report; zero candidate rows"
+    },
+    {
+      "path": "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 Orot missed-dictionary reader-hint candidates JSON; zero rows and 168 unmatched"
+    },
+    {
+      "path": "reports/agent2-current-handoff-aggregate-validation-receipt-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 aggregate validation receipt; regenerated and validated with current 18 validator-only checks and 17 validator-only output states"
+    },
+    {
+      "path": "reports/agent2-current-handoff-aggregate-validation-receipt-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": false,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 aggregate validation receipt JSON; regenerated and validated with current 18 validator-only checks and 17 validator-only output states"
+    },
+    {
+      "path": "reports/agent10-current-lane-returns-refresh-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumed refreshed Agent 2 counts and Agent 1 old-dictionary export partitions"
+    },
+    {
+      "path": "reports/agent10-current-lane-returns-refresh-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON for refreshed Agent 2 counts and Agent 1 old-dictionary export partitions"
+    },
+    {
+      "path": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_license_custody_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 old-dictionary separated lane export partitions report; pre-Agent6 boundary only"
+    },
+    {
+      "path": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": false,
+      "release_relevance_hint": "source_license_custody_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 old-dictionary separated lane export partitions JSON; pre-Agent6 boundary only"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready supplemental old-dictionary export-partitions packet report; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready supplemental old-dictionary export-partitions packet JSON; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-old-dictionary-license-lane-boundary-delivery-proof-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 delivery proof for old-dictionary primary and supplemental packets sent to Agent 6"
+    },
+    {
+      "path": "reports/agent10-agent6-old-dictionary-license-lane-boundary-delivery-proof-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 delivery proof JSON for old-dictionary primary and supplemental packets sent to Agent 6"
+    },
+    {
+      "path": "reports/agent6-old-dictionary-license-lane-planning-verdict-2026-06-04.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 carried old-dictionary source-family/license-lane and lane-partition forward as warn-only planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-old-dictionary-license-lane-verdict-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 6 old-dictionary license-lane planning verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-old-dictionary-license-lane-verdict-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON for Agent 6 old-dictionary license-lane planning verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-agent2-weekly-lexicon-handoff-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready Agent 2 weekly lexicon handoff packet report; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-agent2-weekly-lexicon-handoff-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready Agent 2 weekly lexicon handoff packet JSON; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent6-agent2-weekly-lexicon-handoff-boundary-verdict-2026-06-04.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 carried Agent 2 weekly lexicon handoff forward as warn-only non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-agent2-weekly-lexicon-handoff-verdict-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 6 Agent 2 weekly lexicon handoff verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-agent2-weekly-lexicon-handoff-verdict-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON for Agent 6 Agent 2 weekly lexicon handoff verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-agent2-weekly-lexicon-handoff-refresh-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready refresh packet for current Agent 2 weekly lexicon handoff; Agent 6 refresh verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-agent2-weekly-lexicon-handoff-refresh-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready refresh packet JSON for current Agent 2 weekly lexicon handoff; Agent 6 refresh verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-agent2-weekly-lexicon-handoff-refresh-delivery-proof-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 delivery proof for refreshed Agent 2 weekly lexicon handoff packet sent to Agent 6"
+    },
+    {
+      "path": "reports/agent10-agent6-agent2-weekly-lexicon-handoff-refresh-delivery-proof-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 delivery proof JSON for refreshed Agent 2 weekly lexicon handoff packet sent to Agent 6"
+    },
+    {
+      "path": "reports/agent6-agent2-weekly-lexicon-handoff-refresh-verdict-2026-06-04.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 carried refreshed Agent 2 weekly lexicon handoff forward as warn-only non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-agent2-weekly-lexicon-handoff-refresh-verdict-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 6 refreshed Agent 2 weekly lexicon handoff verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-agent2-weekly-lexicon-handoff-refresh-verdict-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON for Agent 6 refreshed Agent 2 weekly lexicon handoff verdict"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-source-name-custody-partitions-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_pipeline_contract_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 runnable contract for broad workbench source-name custody partitions; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-source-name-custody-partitions-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_pipeline_contract_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 runnable contract JSON for broad workbench source-name custody partitions; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent1-workbench-source-name-custody-partitions-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_lane_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 broad source-name custody partition planning evidence"
+    },
+    {
+      "path": "reports/agent1-workbench-source-name-custody-partitions-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_lane_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 broad source-name custody partition planning evidence JSON"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-source-name-custody-partitions-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_pipeline_contract_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 validation result for broad source-name custody partition contract; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent10-agent1-workbench-source-name-custody-partitions-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 1 broad source-name custody partition planning evidence"
+    },
+    {
+      "path": "reports/agent10-agent1-workbench-source-name-custody-partitions-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON of Agent 1 broad source-name custody partition planning evidence"
+    },
+    {
+      "path": "reports/agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent2-ready future workset packet for larger broad workbench token inventory mechanics"
+    },
+    {
+      "path": "reports/agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent2-ready future workset packet JSON for larger broad workbench token inventory mechanics"
+    },
+    {
+      "path": "reports/workbench-token-inventory-5000.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Validated 5000-token broad workbench token inventory report; non-public planning mechanics only"
+    },
+    {
+      "path": "data/definitions/definition-workbench-sample-5000.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Validated 5000-row Definition Workbench sample; Agent6-ready packet prepared separately"
+    },
+    {
+      "path": "reports/definition-workbench-sample-5000-report.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Validated 5000-row Definition Workbench sample report"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-broad-definition-workbench-5000-sample-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready broad Definition Workbench 5000-row sample boundary packet report; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-broad-definition-workbench-5000-sample-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready broad Definition Workbench 5000-row sample boundary packet JSON; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-broad-definition-workbench-5000-sample-delivery-proof-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 delivery proof for broad Definition Workbench 5000-row sample packet sent to Agent 6"
+    },
+    {
+      "path": "reports/agent10-agent6-broad-definition-workbench-5000-sample-delivery-proof-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 delivery proof JSON for broad Definition Workbench 5000-row sample packet sent to Agent 6"
+    },
+    {
+      "path": "reports/agent6-broad-definition-workbench-5000-sample-boundary-verdict-2026-06-04.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 carried broad Definition Workbench 5000-row sample forward as warn-only non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-broad-definition-workbench-5000-sample-verdict-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 6 broad Definition Workbench 5000-row sample verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-broad-definition-workbench-5000-sample-verdict-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON for Agent 6 broad Definition Workbench 5000-row sample verdict"
+    },
+    {
+      "path": "reports/spark10-hybrid-floor-release-relevance-shadow-2026-06-04.md",
+      "lane_owner": "Spark-10",
+      "required": true,
+      "release_relevance_hint": "spark_status",
+      "agent6_handoff_needed": false,
+      "notes": "Spark-10 hybrid shadow blocker status; consumed by Agent 10"
+    },
+    {
+      "path": "reports/agent10-spark10-hybrid-shadow-blocker-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Spark-10 hybrid shadow blockers"
+    },
+    {
+      "path": "reports/agent10-spark10-hybrid-shadow-blocker-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON of Spark-10 hybrid shadow blockers"
+    },
+    {
+      "path": "reports/agent2-weekly-lexicon-pipeline-inventory-validation-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly lexicon pipeline inventory validation report"
+    },
+    {
+      "path": "reports/agent2-weekly-lexicon-pipeline-inventory-validation-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly lexicon pipeline inventory validation JSON"
+    },
+    {
+      "path": "reports/agent3-spark3-contract-status-reconciliation-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "linkage_pipeline_contract_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 reconciliation: Spark-3 status stale, Orot 169-row contract exists"
+    },
+    {
+      "path": "reports/agent3-spark3-contract-status-reconciliation-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "linkage_pipeline_contract_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 reconciliation JSON: Spark-3 status stale, Orot 169-row contract exists"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-agent2-weekly-lexicon-handoff-current2-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready current2 Agent 2 weekly lexicon handoff packet report; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-agent2-weekly-lexicon-handoff-current2-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 Agent6-ready current2 Agent 2 weekly lexicon handoff packet JSON; Agent 6 verdict has now been consumed as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-agent2-weekly-lexicon-handoff-current2-delivery-proof-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 delivery proof for current2 Agent 2 weekly lexicon handoff packet sent to Agent 6"
+    },
+    {
+      "path": "reports/agent10-agent6-agent2-weekly-lexicon-handoff-current2-delivery-proof-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10 delivery proof JSON for current2 Agent 2 weekly lexicon handoff packet sent to Agent 6"
+    },
+    {
+      "path": "reports/agent6-agent2-weekly-lexicon-handoff-current2-verdict-2026-06-04.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 carried current2 Agent 2 weekly lexicon handoff forward as warn-only non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-agent2-weekly-lexicon-handoff-current2-verdict-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 6 current2 Agent 2 weekly lexicon handoff verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-agent2-weekly-lexicon-handoff-current2-verdict-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON for Agent 6 current2 Agent 2 weekly lexicon handoff verdict"
+    },
+    {
+      "path": "reports/agent2-spark1-execution-order-contract-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_validation_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 historical Spark-1 execution-order contract; validation-only phases and gated builder phase; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-spark1-execution-order-validation-receipt-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_validation_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 historical Spark-1 execution-order validation receipt report; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-spark1-execution-order-validation-receipt-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_validation_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 historical Spark-1 execution-order validation receipt JSON; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-weekly-lexicon-script-syntax-receipt-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_validation_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly script syntax receipt report; 42 script checks"
+    },
+    {
+      "path": "reports/agent2-weekly-lexicon-script-syntax-receipt-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_validation_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly script syntax receipt JSON; 42 script checks"
+    },
+    {
+      "path": "reports/agent2-weekly-zero-boundary-audit-receipt-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_zero_boundary_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly zero-boundary audit receipt report; 16 artifacts checked"
+    },
+    {
+      "path": "reports/agent2-weekly-zero-boundary-audit-receipt-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_zero_boundary_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly zero-boundary audit receipt JSON; 16 artifacts checked"
+    },
+    {
+      "path": "reports/agent10-agent2-post-current2-validation-hardening-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 2 post-current2 validation-hardening receipts"
+    },
+    {
+      "path": "reports/agent10-agent2-post-current2-validation-hardening-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON of Agent 2 post-current2 validation-hardening receipts"
+    },
+    {
+      "path": "reports/agent10-agent6-old-dictionary-license-lane-planning-verdict-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 6 old-dictionary source-family/license-lane planning verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-old-dictionary-license-lane-planning-verdict-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON of Agent 6 old-dictionary source-family/license-lane planning verdict"
+    },
+    {
+      "path": "reports/agent10-live-public-old-hud-guard-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "runtime_guard_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Static live public old-HUD guard evidence only; no public/runtime acceptance"
+    },
+    {
+      "path": "reports/agent10-live-public-old-hud-guard-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "runtime_guard_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Static live public old-HUD guard JSON evidence only; no public/runtime acceptance"
+    },
+    {
+      "path": "reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Regenerated Orot counterpart hint patch preview; not approved and no public/output mutation"
+    },
+    {
+      "path": "reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Regenerated Orot counterpart hint patch preview JSON; not approved and no public/output mutation"
+    },
+    {
+      "path": "reports/agent2-orot-reader-hint-candidate-patch-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Regenerated Orot reader-hint candidate patch; not approved and no public/output mutation"
+    },
+    {
+      "path": "reports/agent2-orot-reader-hint-candidate-patch-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Regenerated Orot reader-hint candidate patch JSON; not approved and no public/output mutation"
+    },
+    {
+      "path": "reports/agent3-current-control-drift-refresh-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "linkage_pipeline_contract_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 current-control drift refresh report; includes validation/schema blocker for current artifact shape"
+    },
+    {
+      "path": "reports/agent3-current-control-drift-refresh-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "linkage_pipeline_contract_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 current-control drift refresh JSON; parseable but validator currently fails against referenced Orot dedupe summary shape"
+    },
+    {
+      "path": "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "linkage_pipeline_contract_status",
+      "agent6_handoff_needed": false,
+      "notes": "Dedicated Agent 3 blocker package for Spark-3 Oracle9 missed-dictionary evidence diff; input-present but missing pipeline commands/schema/validator"
+    },
+    {
+      "path": "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "linkage_pipeline_contract_status",
+      "agent6_handoff_needed": false,
+      "notes": "Dedicated Agent 3 blocker JSON for Spark-3 Oracle9 missed-dictionary evidence diff; route-exact blocker package"
+    },
+    {
+      "path": "reports/agent10-release-intake-refreshed-blocker-action-state-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 refreshed release/package blocker/action state after old-dictionary verdict and current artifact intake"
+    },
+    {
+      "path": "reports/agent10-release-intake-refreshed-blocker-action-state-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 refreshed release/package blocker/action state JSON after old-dictionary verdict and current artifact intake"
+    },
+    {
+      "path": "reports/agent10-spark10-release-intake-queue-contract-fill-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 filled missing Spark-10 queue contract fields for release/package intake"
+    },
+    {
+      "path": "reports/agent10-spark10-release-intake-queue-contract-fill-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 filled missing Spark-10 queue contract fields for release/package intake JSON"
+    },
+    {
+      "path": "reports/agent2-orot-pilot-answer-claims-2026-06-03.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_zero_boundary_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 Orot pilot answer-claims dry run report; zero-safe blocker only"
+    },
+    {
+      "path": "reports/agent2-orot-pilot-answer-claims-2026-06-03.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_zero_boundary_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 Orot pilot answer-claims dry run JSON; zero emitted answer rows and 100 blocked rows"
+    },
+    {
+      "path": "data/definitions/definition-workbench-sample-500.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Definition Workbench 500-row sample; non-authoritative route-shape planning evidence"
+    },
+    {
+      "path": "reports/definition-workbench-sample-500-report.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Definition Workbench 500-row sample report"
+    },
+    {
+      "path": "reports/agent10-current-spark10-pilot-answer-and-500-sample-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of current Spark-10 status, Orot pilot answer dry run, live guard, and 500-sample refresh"
+    },
+    {
+      "path": "reports/agent10-current-spark10-pilot-answer-and-500-sample-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON of current Spark-10 status, Orot pilot answer dry run, live guard, and 500-sample refresh"
+    },
+    {
+      "path": "reports/agent2-current-stale-reference-scan-receipt-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_validation_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 current stale-reference scan receipt report; zero stale hits"
+    },
+    {
+      "path": "reports/agent2-current-stale-reference-scan-receipt-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_validation_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 current stale-reference scan receipt JSON; zero stale hits"
+    },
+    {
+      "path": "reports/agent10-agent2-current-validation-receipts-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 2 current validation receipts"
+    },
+    {
+      "path": "reports/agent10-agent2-current-validation-receipts-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON of Agent 2 current validation receipts"
+    },
+    {
+      "path": "reports/agent3-state.md",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "definition_workbench_usage_navigation_state",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 current state for Definition Workbench usage/navigation queue-ready packet; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent3-state.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "definition_workbench_usage_navigation_state",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 current state JSON for Definition Workbench usage/navigation queue-ready packet; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "data/definitions/definition-workbench-usage-queue-ready-packet.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "agent6_delivered_boundary_packet_awaiting_verdict",
+      "agent6_handoff_needed": false,
+      "notes": "Definition Workbench usage queue-ready packet; intended submitter Agent 5; control queue not mutated; delivered to Agent 6 submission 019e95f3-b68c-7f11-8328-dca18b105b1d; await verdict or exact blocker"
+    },
+    {
+      "path": "data/definitions/definition-workbench-usage-agent6-packet.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "agent6_delivered_boundary_packet_awaiting_verdict",
+      "agent6_handoff_needed": false,
+      "notes": "Definition Workbench usage Agent 6 packet with proof occurrence rows and zero forbidden-authority hits; delivered to Agent 6 submission 019e95f3-b68c-7f11-8328-dca18b105b1d; await verdict or exact blocker"
+    },
+    {
+      "path": "data/definitions/definition-workbench-usage-occurrence-links.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "usage_occurrence_link_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Definition Workbench usage occurrence links; non-public planning evidence only; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "data/definitions/definition-workbench-usage-route-resolution.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "usage_route_resolution_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Definition Workbench usage route-resolution evidence; route IDs only; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "data/definitions/definition-workbench-usage-consumer-manifest.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "usage_navigation_consumer_manifest",
+      "agent6_handoff_needed": false,
+      "notes": "Definition Workbench usage consumer manifest and prohibited consumer-use boundary; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent10-agent3-workbench-usage-navigation-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_agent6_ready_boundary",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 release-owner consumption of Agent 3 Definition Workbench usage/navigation packet; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent10-agent3-workbench-usage-navigation-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_agent6_ready_boundary",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 release-owner consumption JSON for Agent 3 Definition Workbench usage/navigation packet; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-definition-workbench-usage-navigation-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivered_boundary_packet_awaiting_verdict",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 boundary packet for Definition Workbench usage/navigation planning evidence; delivered to Agent 6 submission 019e95f3-b68c-7f11-8328-dca18b105b1d; await verdict or exact blocker"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-definition-workbench-usage-navigation-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivered_boundary_packet_awaiting_verdict",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 boundary packet JSON for Definition Workbench usage/navigation planning evidence; delivered to Agent 6 submission 019e95f3-b68c-7f11-8328-dca18b105b1d; await verdict or exact blocker"
+    },
+    {
+      "path": "reports/agent1-current-source-license-custody-lane-return-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_lane_return",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 current source/license/custody lane return report; release intake only"
+    },
+    {
+      "path": "reports/agent1-source-license-custody-pipeline-registry-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_registry",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 source/license/custody registry report with runnable contracts and exact blocker"
+    },
+    {
+      "path": "reports/agent1-source-license-custody-pipeline-registry-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_registry",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 source/license/custody registry JSON with 9 runnable contracts and 1 blocker"
+    },
+    {
+      "path": "reports/agent1-source-license-custody-aggregate-handoff-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_aggregate_handoff",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 aggregate handoff report for release/package intake"
+    },
+    {
+      "path": "reports/agent1-source-license-custody-aggregate-handoff-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_aggregate_handoff",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 aggregate handoff JSON for release/package intake"
+    },
+    {
+      "path": "reports/agent1-lowmode-source-license-custody-contract-status-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_contract_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 low-mode source/license/custody contract status report"
+    },
+    {
+      "path": "reports/agent1-lowmode-source-license-custody-contract-status-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_contract_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 low-mode source/license/custody contract status JSON"
+    },
+    {
+      "path": "reports/agent1-missed-dictionary-current-input-reconciliation-blocker-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_lane_current_input_reconciliation_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 missed-dictionary current input reconciliation blocker validation result"
+    },
+    {
+      "path": "reports/agent1-third-missed-source-family-missing-workset-blocker-handoff-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_lane_missing_workset_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 third missed source-family missing-workset blocker validation result"
+    },
+    {
+      "path": "reports/agent10-agent1-current-source-license-custody-lane-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_source_lane_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 release-owner consumption of current Agent 1 source/license/custody lane return"
+    },
+    {
+      "path": "reports/agent10-agent1-current-source-license-custody-lane-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_source_lane_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 release-owner consumption JSON of current Agent 1 source/license/custody lane return"
+    },
+    {
+      "path": "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_sa_share_alike_boundary_map",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 Workbench CC-BY-SA/share-alike boundary map report; non-public planning evidence only; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_sa_share_alike_boundary_map",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 Workbench CC-BY-SA/share-alike boundary map JSON; export/display blocked pending Agent 6/legal boundary; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_sa_share_alike_pipeline_contract",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 historical Spark-1 pipeline contract for Workbench CC-BY-SA/share-alike boundary map; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_sa_share_alike_pipeline_contract",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 historical Spark-1 pipeline contract JSON for Workbench CC-BY-SA/share-alike boundary map; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_sa_share_alike_validation_result",
+      "agent6_handoff_needed": false,
+      "notes": "Validation result for Agent 1 Workbench CC-BY-SA/share-alike boundary map; validation result evidence only, not an Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_sa_share_alike_contract_validation_result",
+      "agent6_handoff_needed": false,
+      "notes": "Validation result for Agent 1 historical Spark-1 CC-BY-SA/share-alike boundary map contract; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent10-agent1-workbench-cc-by-sa-boundary-map-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_cc_by_sa_boundary_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Workbench CC-BY-SA/share-alike boundary map; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent10-agent1-workbench-cc-by-sa-boundary-map-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_cc_by_sa_boundary_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON of Workbench CC-BY-SA/share-alike boundary map; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-workbench-cc-by-sa-share-alike-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivered_boundary_packet_awaiting_verdict",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 boundary packet for Workbench CC-BY-SA/share-alike map; delivered to Agent 6 submission 019e95f3-b68c-7f11-8328-dca18b105b1d; await verdict or exact blocker"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-workbench-cc-by-sa-share-alike-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivered_boundary_packet_awaiting_verdict",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 boundary packet JSON for Workbench CC-BY-SA/share-alike map; delivered to Agent 6 submission 019e95f3-b68c-7f11-8328-dca18b105b1d; await verdict or exact blocker"
+    },
+    {
+      "path": "reports/agent2-spark1-runnable-command-manifest-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_spark1_command_manifest",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 historical Spark-1 runnable command manifest; non-mutating pipeline mechanics; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-spark1-runnable-command-manifest-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_spark1_command_manifest",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 historical Spark-1 runnable command manifest JSON; 7 runnable pipelines and 21 validator-only checks; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-spark1-command-manifest-validation-receipt-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_manifest_validation_receipt",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 command manifest validation receipt; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-spark1-manifest-output-state-validation-receipt-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_manifest_output_state_receipt",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 manifest output-state validation receipt; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-spark1-execution-order-contract-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_spark1_execution_order_contract",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 historical Spark-1 execution order contract; builders gated; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-spark1-execution-order-validation-receipt-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_spark1_execution_order_validation",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 historical Spark-1 execution order validation receipt; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent2-weekly-lexicon-pipeline-inventory-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_weekly_pipeline_inventory",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly lexicon pipeline inventory report"
+    },
+    {
+      "path": "reports/agent2-weekly-lexicon-pipeline-inventory-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_weekly_pipeline_inventory",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly lexicon pipeline inventory JSON"
+    },
+    {
+      "path": "reports/agent2-weekly-lexicon-pipeline-inventory-validation-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_weekly_pipeline_inventory_validation",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly lexicon pipeline inventory validation receipt"
+    },
+    {
+      "path": "reports/agent2-broad-workbench-token-inventory-5000-return-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_token_inventory_5000_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 broad Workbench 5000-token inventory return; source-family lane join missing"
+    },
+    {
+      "path": "reports/agent2-broad-workbench-token-inventory-5000-return-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_token_inventory_5000_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 broad Workbench 5000-token inventory return JSON; zero transform candidates"
+    },
+    {
+      "path": "reports/agent2-old-dictionary-lane-planning-intake-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "old_dictionary_lane_planning_intake",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 old-dictionary lane planning intake report; candidate text still blocked"
+    },
+    {
+      "path": "reports/agent2-old-dictionary-lane-planning-intake-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "old_dictionary_lane_planning_intake",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 old-dictionary lane planning intake JSON; non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_current_handoff_bundle",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 weekly lexicon current handoff bundle"
+    },
+    {
+      "path": "reports/agent2-weekly-lexicon-script-syntax-receipt-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_script_syntax_receipt",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 script syntax receipt; 50 scripts checked"
+    },
+    {
+      "path": "reports/agent2-lane-preservation-handoff-receipt-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_lane_preservation_handoff",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 lane-preservation handoff receipt report after stale-count repair"
+    },
+    {
+      "path": "reports/agent2-lane-preservation-handoff-receipt-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "agent2_lane_preservation_handoff",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 lane-preservation handoff receipt JSON after validator-only checks alignment"
+    },
+    {
+      "path": "reports/agent10-agent2-weekly-pipeline-and-5000-token-intake-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_agent2_pipeline_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 2 weekly pipeline and 5000-token source-license inventory intake"
+    },
+    {
+      "path": "reports/agent10-agent2-weekly-pipeline-and-5000-token-intake-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_agent2_pipeline_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON of Agent 2 weekly pipeline and 5000-token source-license inventory intake"
+    },
+    {
+      "path": "reports/agent10-agent2-refreshed-weekly-pipeline-and-next-workset-blocker-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_agent2_refreshed_blocker_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 refreshed Agent 2 weekly pipeline and next-workset blocker consumption"
+    },
+    {
+      "path": "reports/agent10-agent2-refreshed-weekly-pipeline-and-next-workset-blocker-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_agent2_refreshed_blocker_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 refreshed Agent 2 weekly pipeline and next-workset blocker consumption JSON"
+    },
+    {
+      "path": "reports/agent11-weekly-lexicon-reception-corrections-2026-06-04.md",
+      "lane_owner": "Agent 11",
+      "required": true,
+      "release_relevance_hint": "release_intake_wording_cap_corrections",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 11 owner-facing wording corrections and release-intake caps"
+    },
+    {
+      "path": "reports/agent10-agent11-reception-corrections-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_intake_wording_cap_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 11 reception corrections as wording/cap evidence only"
+    },
+    {
+      "path": "reports/agent10-agent11-reception-corrections-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_intake_wording_cap_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON of Agent 11 reception corrections as wording/cap evidence only"
+    },
+    {
+      "path": "reports/agent1-workbench-cc-by-attribution-boundary-map-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_attribution_boundary_map",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 Workbench CC-BY attribution boundary map report; non-public planning evidence only; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent1-workbench-cc-by-attribution-boundary-map-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_attribution_boundary_map",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 Workbench CC-BY attribution boundary map JSON; export/display blocked pending Agent 6/legal attribution boundary; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-cc-by-attribution-boundary-map-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_attribution_pipeline_contract",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 historical Spark-1 pipeline contract for Workbench CC-BY attribution boundary map; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-cc-by-attribution-boundary-map-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_attribution_pipeline_contract",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 historical Spark-1 pipeline contract JSON for Workbench CC-BY attribution boundary map; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent10-agent1-workbench-cc-by-attribution-boundary-map-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_cc_by_attribution_boundary_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Workbench CC-BY attribution boundary map; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent10-agent1-workbench-cc-by-attribution-boundary-map-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_cc_by_attribution_boundary_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON of Workbench CC-BY attribution boundary map; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-workbench-cc-by-attribution-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivered_boundary_packet_awaiting_verdict",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 boundary packet for Workbench CC-BY attribution map; delivered to Agent 6 submission 019e95f3-b68c-7f11-8328-dca18b105b1d; await verdict or exact blocker"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-workbench-cc-by-attribution-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivered_boundary_packet_awaiting_verdict",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 boundary packet JSON for Workbench CC-BY attribution map; delivered to Agent 6 submission 019e95f3-b68c-7f11-8328-dca18b105b1d; await verdict or exact blocker"
+    },
+    {
+      "path": "reports/agent1-workbench-cc-by-attribution-boundary-map-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_attribution_validation_result",
+      "agent6_handoff_needed": false,
+      "notes": "Validation result for Agent 1 Workbench CC-BY attribution boundary map; validation result evidence only, not an Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-cc-by-attribution-boundary-map-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "cc_by_attribution_contract_validation_result",
+      "agent6_handoff_needed": false,
+      "notes": "Validation result for Agent 1 historical Spark-1 CC-BY attribution boundary contract; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent3-post-custody-wake-condition-audit-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "agent3_no_new_workset_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 post-custody wake-condition audit report; no runnable Agent 3 workset"
+    },
+    {
+      "path": "reports/agent3-post-custody-wake-condition-audit-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "agent3_no_new_workset_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 post-custody wake-condition audit JSON; missing changed artifact or exact workset"
+    },
+    {
+      "path": "reports/agent12-waste-cap-unblock-sweep-2026-06-04.md",
+      "lane_owner": "Agent 12",
+      "required": true,
+      "release_relevance_hint": "control_cap_release_posture",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 12 waste-cap/unblock sweep; cap broad sweeps and allow exact-contract productive work"
+    },
+    {
+      "path": "reports/agent10-agent3-post-custody-wake-and-control-cap-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_agent3_no_workset_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 3 post-custody no-new-workset blocker and control cap posture"
+    },
+    {
+      "path": "reports/agent10-agent3-post-custody-wake-and-control-cap-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_agent3_no_workset_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON of Agent 3 post-custody no-new-workset blocker and control cap posture"
+    },
+    {
+      "path": "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_full_source_name_custody_partitions",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 full Workbench source-name custody partition map; non-public planning evidence only; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_full_source_name_custody_partitions",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 full Workbench source-name custody partition map JSON; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-full-source-name-custody-partitions-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_full_source_name_custody_partitions_contract",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 historical Spark-1 runnable contract for full Workbench source-name custody partitions; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-full-source-name-custody-partitions-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_full_source_name_custody_partitions_contract",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 historical Spark-1 runnable contract JSON for full Workbench source-name custody partitions; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent1-workbench-full-source-name-custody-partitions-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_full_source_name_custody_partitions_validation",
+      "agent6_handoff_needed": false,
+      "notes": "Validation result for full Workbench source-name custody partitions; validation result evidence only, not an Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-workbench-full-source-name-custody-partitions-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_full_source_name_custody_partitions_contract_validation",
+      "agent6_handoff_needed": false,
+      "notes": "Validation result for full Workbench source-name custody partitions contract; historical artifact naming only, no active Spark-1 route"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-workbench-full-source-name-custody-partitions-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_verdict_consumed_nonpublic_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 boundary packet for full Workbench source-name custody partitions; Agent 6 current release/package verdict consumed; no duplicate route"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-workbench-full-source-name-custody-partitions-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_verdict_consumed_nonpublic_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 boundary packet JSON for full Workbench source-name custody partitions; Agent 6 current release/package verdict consumed; no duplicate route"
+    },
+    {
+      "path": "reports/agent2-old-dictionary-lane-partition-transform-planning-matrix-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "old_dictionary_lane_partition_transform_planning",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 old-dictionary lane-partition transform planning matrix; zero candidate text/export/storage; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent2-old-dictionary-lane-partition-transform-planning-matrix-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "old_dictionary_lane_partition_transform_planning",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 old-dictionary lane-partition transform planning matrix JSON; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-lane-partition-transform-planning-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_verdict_consumed_nonpublic_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 boundary packet for old-dictionary lane-partition transform planning; Agent 6 current release/package verdict consumed; no duplicate route"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-lane-partition-transform-planning-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_verdict_consumed_nonpublic_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 boundary packet JSON for old-dictionary lane-partition transform planning; Agent 6 current release/package verdict consumed; no duplicate route"
+    },
+    {
+      "path": "reports/agent4-deuteronomy-source-license-custody-changed-input-2026-06-04.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "deuteronomy_source_license_custody_agent4_gate",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 changed-input descriptor for Deuteronomy source/license custody boundary packet"
+    },
+    {
+      "path": "reports/agent4-deuteronomy-source-license-custody-runnable-contract-2026-06-04.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "deuteronomy_source_license_custody_agent4_gate",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 runnable validator/prereq contract for Deuteronomy source/license custody"
+    },
+    {
+      "path": "reports/agent4-deuteronomy-source-license-custody-runnable-contract-2026-06-04.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "deuteronomy_source_license_custody_agent4_gate",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 runnable validator/prereq contract JSON for Deuteronomy source/license custody"
+    },
+    {
+      "path": "reports/agent4-deuteronomy-source-license-custody-gate-proof-2026-06-04.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "deuteronomy_source_license_custody_agent4_gate_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 gate proof for Deuteronomy source/license custody changed input; no new Agent 6 route by itself"
+    },
+    {
+      "path": "reports/agent4-deuteronomy-source-license-custody-gate-proof-2026-06-04.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "deuteronomy_source_license_custody_agent4_gate_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 gate proof JSON for Deuteronomy source/license custody changed input"
+    },
+    {
+      "path": "reports/agent10-current-changed-lane-outputs-consumption-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_changed_lane_outputs_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 changed lane output consumption and two Agent6-ready packet handoffs; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent10-current-changed-lane-outputs-consumption-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_changed_lane_outputs_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 changed lane output consumption JSON and two Agent6-ready packet handoffs; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "scripts/validate_agent10_workbench_cc_boundary_packets.mjs",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent10_boundary_packet_validator",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 validator for Workbench CC-BY, CC-BY-SA, and full source-name custody boundary packets"
+    },
+    {
+      "path": "scripts/validate_agent10_old_dictionary_lane_partition_transform_boundary_packet.mjs",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent10_boundary_packet_validator",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 validator for old-dictionary lane-partition transform-planning boundary packet"
+    },
+    {
+      "path": "reports/agent10-current-agent6-boundary-packet-delivery-blocker-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Superseded delivery blocker evidence; direct delivery later succeeded after Agent 6 resume; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent10-current-agent6-boundary-packet-delivery-blocker-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Superseded delivery blocker JSON; direct delivery later succeeded after Agent 6 resume; support/planning evidence only, not a direct Agent 6 handoff packet"
+    },
+    {
+      "path": "reports/agent10-agent6-current-boundary-packets-delivery-proof-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 delivery proof for the current Workbench full source-name and old-dictionary lane-partition packet pairs; submission 019e953c-928c-7053-9d52-beab1343a644"
+    },
+    {
+      "path": "reports/agent10-agent6-current-boundary-packets-delivery-proof-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 delivery proof JSON for the current Workbench full source-name and old-dictionary lane-partition packet pairs"
+    },
+    {
+      "path": "reports/agent6-current-release-package-boundary-packets-verdict-2026-06-05.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_boundary_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 combined verdict: both current release/package packets carried only as exact non-public planning evidence"
+    },
+    {
+      "path": "reports/agent10-agent6-current-release-package-boundary-packets-verdict-consumption-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_verdict_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 release-owner consumption of the combined Agent 6 verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-current-release-package-boundary-packets-verdict-consumption-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_verdict_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 release-owner consumption JSON for the combined Agent 6 verdict"
+    },
+    {
+      "path": "reports/agent5-broad-floor-queue-proof-2026-06-04.md",
+      "lane_owner": "Agent 5",
+      "required": true,
+      "release_relevance_hint": "delivery_queue_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 5 broad floor queue proof; delivery/reseed proof only"
+    },
+    {
+      "path": "reports/agent6-validation-queue-health.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_queue_health",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 validation queue health; queue hygiene only, not substantive verdict"
+    },
+    {
+      "path": "reports/agent1-current-source-license-custody-lane-return-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_validation_result",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 current source/license/custody lane return validation result"
+    },
+    {
+      "path": "reports/agent1-source-license-custody-pipeline-set-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_validation_result",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 source/license/custody pipeline set validation result"
+    },
+    {
+      "path": "reports/agent1-source-license-custody-aggregate-handoff-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_validation_result",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 source/license/custody aggregate handoff validation result"
+    },
+    {
+      "path": "reports/agent1-source-license-custody-command-manifest-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_validation_result",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 source/license/custody command manifest validation result"
+    },
+    {
+      "path": "reports/agent1-weekly-source-license-custody-pipeline-authoring-status-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "source_license_custody_validation_result",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 weekly source/license/custody pipeline authoring status validation result"
+    },
+    {
+      "path": "reports/agent12-waste-cap-unblock-sweep-2026-06-04.md",
+      "lane_owner": "Agent 12",
+      "required": true,
+      "release_relevance_hint": "control_cap_release_posture_current",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 12 current waste-cap/unblock sweep; assistant-1/Spark-1 paused, exact-contract work only"
+    },
+    {
+      "path": "reports/agent10-post-matrix-lane-output-consumption-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_post_matrix_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 post-matrix consumption of Agent 3 continuity, Agent 4 5000 gate proof, Workbench chunk 003 edge metadata, and Agent 6/11 reception check-in"
+    },
+    {
+      "path": "reports/agent10-post-matrix-lane-output-consumption-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_post_matrix_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Structured Agent 10 post-matrix consumption preserving exact blockers and zero-emission counters"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.md",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "deuteronomy_phase2_continuity_registration",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 continuity package over existing Deuteronomy phase-2 Agent 6 verdict; no widened boundary"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "deuteronomy_phase2_continuity_registration",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 continuity package JSON; exact 1334 row / 2964 occurrence planning boundary remains unchanged"
+    },
+    {
+      "path": "reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.md",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "agent3_registration_audit_exact_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 post-continuity release-intake registration audit; no direct runnable Agent3 queue item and no new Agent6 route"
+    },
+    {
+      "path": "reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "agent3_registration_audit_exact_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 post-continuity release-intake registration audit; no direct runnable Agent3 queue item and no new Agent6 route"
+    },
+    {
+      "path": "reports/agent4-broad-definition-workbench-5000-sample-gate-proof-2026-06-04.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_workbench_5000_validator_prereq_gate",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq gate proof for 5000-row Workbench sample; planning evidence only"
+    },
+    {
+      "path": "reports/agent4-broad-definition-workbench-5000-sample-gate-proof-2026-06-04.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_workbench_5000_validator_prereq_gate",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 gate proof JSON; 5000-row sample remains unreviewed machine sample with zero mutation counters"
+    },
+    {
+      "path": "reports/workbench-token-source-partition-edges-5000-chunk-003.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_source_partition_edge_metadata_chunk",
+      "agent6_handoff_needed": false,
+      "notes": "Workbench token-source partition edge chunk 003 report; partial non-public metadata only"
+    },
+    {
+      "path": "reports/workbench-token-source-partition-edges-5000-chunk-003-summary.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_source_partition_edge_metadata_chunk",
+      "agent6_handoff_needed": false,
+      "notes": "Workbench token-source partition edge chunk 003 summary; aggregate readiness still required before candidate use"
+    },
+    {
+      "path": ".local-cache/workbench-evidence/token-source-partition-edges-5000-chunk-003.jsonl",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_source_partition_edge_metadata_chunk_local_cache",
+      "agent6_handoff_needed": false,
+      "notes": "Large local-cache JSONL edge payload referenced by chunk 003 report; non-public metadata only"
+    },
+    {
+      "path": "reports/agent6-agent11-reception-work-checkin-2026-06-05.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_agent11_reception_checkin",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 check-in for Agent 11 reception work; no QA or release acceptance created"
+    },
+    {
+      "path": "reports/agent1-workbench-source-family-license-lane-release-intake-packet-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_source_family_license_lane_release_intake",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 release-intake packet for 4 source-family/license-lane rows"
+    },
+    {
+      "path": "reports/agent1-workbench-source-family-license-lane-release-intake-packet-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_source_family_license_lane_release_intake",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 release-intake packet JSON"
+    },
+    {
+      "path": "reports/agent1-workbench-source-family-license-lane-release-intake-packet-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_source_family_license_lane_release_intake_validation",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 release-intake validator result"
+    },
+    {
+      "path": "reports/agent1-workbench-source-family-license-lane-agent6-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_source_family_license_lane_agent6_boundary_source",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 source-family/license-lane Agent 6 boundary packet source"
+    },
+    {
+      "path": "reports/agent1-workbench-source-family-license-lane-agent6-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_source_family_license_lane_agent6_boundary_source",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 source-family/license-lane Agent 6 boundary packet source JSON"
+    },
+    {
+      "path": "reports/agent1-workbench-source-family-license-lane-agent6-boundary-packet-validation-result-2026-06-04.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "workbench_source_family_license_lane_agent6_boundary_source_validation",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 source-family/license-lane boundary packet validator result"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-workbench-source-family-license-lane-release-intake-boundary-packet-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivered_boundary_packet_awaiting_verdict",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 packet for Workbench source-family/license-lane release intake; delivered to Agent 6 submission 019e9560-f8ef-7763-8a2e-cdb0a1b89466; await verdict or exact blocker"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-workbench-source-family-license-lane-release-intake-boundary-packet-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivered_boundary_packet_awaiting_verdict",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Agent 6 packet JSON for Workbench source-family/license-lane release intake; delivered to Agent 6 submission 019e9560-f8ef-7763-8a2e-cdb0a1b89466; await verdict or exact blocker"
+    },
+    {
+      "path": "scripts/validate_agent10_workbench_source_family_license_lane_release_intake_boundary_packet.mjs",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent10_boundary_packet_validator",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 validator for Workbench source-family/license-lane release-intake boundary packet"
+    },
+    {
+      "path": "reports/agent10-agent6-workbench-source-family-license-lane-release-intake-delivery-proof-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Delivery proof for Workbench source-family/license-lane release-intake packet"
+    },
+    {
+      "path": "reports/agent10-agent6-workbench-source-family-license-lane-release-intake-delivery-proof-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Delivery proof JSON for Workbench source-family/license-lane release-intake packet"
+    },
+    {
+      "path": "reports/workbench-token-source-partition-edges-5000-chunk-008.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_source_partition_edge_metadata_chunk",
+      "agent6_handoff_needed": false,
+      "notes": "Workbench token-source partition edge chunk 008 report; non-public metadata only"
+    },
+    {
+      "path": "reports/workbench-token-source-partition-edges-5000-chunk-008-summary.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_source_partition_edge_metadata_chunk",
+      "agent6_handoff_needed": false,
+      "notes": "Workbench token-source partition edge chunk 008 summary"
+    },
+    {
+      "path": ".local-cache/workbench-evidence/token-source-partition-edges-5000-chunk-008.jsonl",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_source_partition_edge_metadata_chunk_local_cache",
+      "agent6_handoff_needed": false,
+      "notes": "Large local-cache JSONL edge payload referenced by chunk 008 report; non-public metadata only"
+    },
+    {
+      "path": "reports/agent2-workbench-token-source-partition-edges-aggregate-readiness-2026-06-04.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_source_partition_edge_aggregate_readiness",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 aggregate readiness blocker for 5000-token source-partition edges"
+    },
+    {
+      "path": "reports/agent2-workbench-token-source-partition-edges-aggregate-readiness-2026-06-04.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_source_partition_edge_aggregate_readiness",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 aggregate readiness blocker JSON; 45 chunk output sets still missing"
+    },
+    {
+      "path": "reports/agent4-orot-205-row-commercial-clean-subset-changed-input-2026-06-04.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_orot_205_changed_input_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 Orot 205 changed-input descriptor missing exact command list"
+    },
+    {
+      "path": "reports/agent4-orot-205-row-commercial-clean-subset-runnable-contract-2026-06-04.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_orot_205_validator_prereq_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 Orot 205 missing-pipeline blocker report"
+    },
+    {
+      "path": "reports/agent4-orot-205-row-commercial-clean-subset-runnable-contract-2026-06-04.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_orot_205_validator_prereq_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 Orot 205 missing-pipeline blocker JSON"
+    },
+    {
+      "path": "reports/spark10-release-package-intake-current-refresh-after-source-family-release-intake-2026-06-05.md",
+      "lane_owner": "Spark-10",
+      "required": true,
+      "release_relevance_hint": "spark10_validator_backed_status",
+      "agent6_handoff_needed": false,
+      "notes": "Spark-10 returned validator-backed status for 313-input release/package intake matrix"
+    },
+    {
+      "path": "reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.md",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "agent3_no_executable_workset_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 consumed Agent 10 post-matrix registration; no executable workset created; observed stale pre-fix Spark10 cap drift"
+    },
+    {
+      "path": "reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.json",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "agent3_no_executable_workset_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 post-matrix registration consumption JSON; no executable workset created"
+    },
+    {
+      "path": "reports/agent3-spark10-matrix-delta-audit-2026-06-05.md",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "agent3_no_executable_workset_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 Spark10 matrix delta audit from older snapshot; no Agent3 executable workset"
+    },
+    {
+      "path": "reports/agent3-spark10-matrix-delta-audit-2026-06-05.json",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "agent3_no_executable_workset_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 Spark10 matrix delta audit JSON from older snapshot; no Agent3 executable workset"
+    },
+    {
+      "path": "reports/agent3-post-refresh-no-new-workset-audit-2026-06-05.md",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "agent3_no_executable_workset_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 post-refresh audit; no new workset"
+    },
+    {
+      "path": "reports/agent3-post-refresh-no-new-workset-audit-2026-06-05.json",
+      "lane_owner": "Agent 3",
+      "required": false,
+      "release_relevance_hint": "agent3_no_executable_workset_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 post-refresh audit JSON; no new workset"
+    },
+    {
+      "path": "reports/agent10-direct-release-package-goal-state-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "direct_agent10_release_package_goal_state",
+      "agent6_handoff_needed": false,
+      "notes": "Direct Agent 10 release/package goal state in Agent13 requested shape"
+    },
+    {
+      "path": "reports/agent10-direct-release-package-goal-state-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "direct_agent10_release_package_goal_state",
+      "agent6_handoff_needed": false,
+      "notes": "Direct Agent 10 release/package goal state JSON"
+    },
+    {
+      "path": "reports/agent10-agent6-current-direct-boundary-packets-delivery-proof-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Delivery proof for Definition Workbench usage/navigation, Workbench CC-BY-SA, and Workbench CC-BY attribution packets sent to Agent 6"
+    },
+    {
+      "path": "reports/agent10-agent6-current-direct-boundary-packets-delivery-proof-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Delivery proof JSON for Definition Workbench usage/navigation, Workbench CC-BY-SA, and Workbench CC-BY attribution packets sent to Agent 6"
+    },
+    {
+      "path": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "orot_third_missed_source_family_source_lane_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 Orot third-missed source-family/source-license custody evidence consumed by Agent 10 as non-public planning evidence"
+    },
+    {
+      "path": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "orot_third_missed_source_family_source_lane_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 Orot third-missed source-family/source-license custody evidence consumed by Agent 10 as non-public planning evidence"
+    },
+    {
+      "path": "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "orot_third_missed_source_family_source_lane_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 Orot third-missed source-family/source-license custody evidence consumed by Agent 10 as non-public planning evidence"
+    },
+    {
+      "path": "reports/agent1-source-license-custody-handoff-update-2026-06-05.md",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "orot_third_missed_source_family_source_lane_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 Orot third-missed source-family/source-license custody evidence consumed by Agent 10 as non-public planning evidence"
+    },
+    {
+      "path": "reports/agent1-source-license-custody-handoff-update-2026-06-05.json",
+      "lane_owner": "Agent 1",
+      "required": true,
+      "release_relevance_hint": "orot_third_missed_source_family_source_lane_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 1 Orot third-missed source-family/source-license custody evidence consumed by Agent 10 as non-public planning evidence"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-orot-third-missed-source-family-boundary-packet-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_verdict_consumed_nonpublic_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Orot third-missed source-family boundary packet delivered to Agent 6 submission 019e974f-9818-73d0-b3e5-bc39ebdf726c; await verdict or exact blocker; Agent 6 Orot third-missed source-family verdict consumed; no duplicate route"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-orot-third-missed-source-family-boundary-packet-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_verdict_consumed_nonpublic_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent10-ready Orot third-missed source-family boundary packet delivered to Agent 6 submission 019e974f-9818-73d0-b3e5-bc39ebdf726c; await verdict or exact blocker; Agent 6 Orot third-missed source-family verdict consumed; no duplicate route"
+    },
+    {
+      "path": "reports/agent10-agent6-orot-third-missed-source-family-delivery-proof-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Delivery proof for Orot third-missed source-family boundary packet sent to Agent 6"
+    },
+    {
+      "path": "reports/agent10-agent6-orot-third-missed-source-family-delivery-proof-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Delivery proof for Orot third-missed source-family boundary packet sent to Agent 6"
+    },
+    {
+      "path": "scripts/validate_agent10_orot_third_missed_source_family_boundary_packet.mjs",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent10_boundary_packet_validator",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 validator for Orot third-missed source-family boundary packet"
+    },
+    {
+      "path": "reports/agent6-orot-third-missed-source-family-boundary-verdict-2026-06-05.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_verdict_consumed_nonpublic_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 Orot third-missed source-family verdict consumed by Agent 10 as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-orot-third-missed-source-family-verdict-consumption-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_verdict_consumed_nonpublic_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 Orot third-missed source-family verdict consumed by Agent 10 as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-orot-third-missed-source-family-verdict-consumption-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_verdict_consumed_nonpublic_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 Orot third-missed source-family verdict consumed by Agent 10 as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent3-crossmatch-inventory-packet-2026-06-05.md",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "agent3_crossmatch_inventory_exact_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 crossmatch inventory exact blocker; dirty/uncommitted artifacts prevent package evidence use"
+    },
+    {
+      "path": "reports/agent3-crossmatch-inventory-packet-2026-06-05.json",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "agent3_crossmatch_inventory_exact_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 crossmatch inventory exact blocker; dirty/uncommitted artifacts prevent package evidence use"
+    },
+    {
+      "path": "scripts/validate_agent3_crossmatch_inventory_packet.mjs",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "agent3_crossmatch_inventory_exact_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 crossmatch inventory exact blocker; dirty/uncommitted artifacts prevent package evidence use"
+    },
+    {
+      "path": "reports/agent4-orot-third-missed-source-family-pipeline-gate-proof-2026-06-05.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_orot_third_missed_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq gate proof for Orot third-missed source-family packet; no new Agent 6 route from proof alone"
+    },
+    {
+      "path": "reports/agent4-orot-third-missed-source-family-pipeline-gate-proof-2026-06-05.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_orot_third_missed_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq gate proof for Orot third-missed source-family packet; no new Agent 6 route from proof alone"
+    },
+    {
+      "path": "reports/agent4-orot-third-missed-source-family-pipeline-runnable-contract-2026-06-05.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_orot_third_missed_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq gate proof for Orot third-missed source-family packet; no new Agent 6 route from proof alone"
+    },
+    {
+      "path": "reports/agent4-orot-third-missed-source-family-pipeline-runnable-contract-2026-06-05.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_orot_third_missed_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq gate proof for Orot third-missed source-family packet; no new Agent 6 route from proof alone"
+    },
+    {
+      "path": "reports/agent10-agent3-agent4-fresh-output-consumption-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_fresh_output_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 3 crossmatch inventory blocker and Agent 4 Orot third-missed gate proof"
+    },
+    {
+      "path": "reports/agent10-agent3-agent4-fresh-output-consumption-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_fresh_output_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 3 crossmatch inventory blocker and Agent 4 Orot third-missed gate proof"
+    },
+    {
+      "path": "scripts/validate_agent3_post_continuity_release_intake_registration_audit.mjs",
+      "lane_owner": "Agent 3",
+      "required": true,
+      "release_relevance_hint": "agent3_registration_audit_exact_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 3 post-continuity release-intake registration audit; no direct runnable Agent3 queue item and no new Agent6 route"
+    },
+    {
+      "path": "reports/agent4-agent3-crossmatch-inventory-packet-gate-proof-2026-06-05.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent3_validator_prereq_evidence_or_stale_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq evidence over Agent 3 outputs; no new Agent 6 route from proof alone"
+    },
+    {
+      "path": "reports/agent4-agent3-crossmatch-inventory-packet-gate-proof-2026-06-05.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent3_validator_prereq_evidence_or_stale_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq evidence over Agent 3 outputs; no new Agent 6 route from proof alone"
+    },
+    {
+      "path": "reports/agent4-agent3-post-continuity-release-intake-registration-audit-gate-proof-2026-06-05.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent3_validator_prereq_evidence_or_stale_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq evidence over Agent 3 outputs; no new Agent 6 route from proof alone"
+    },
+    {
+      "path": "reports/agent4-agent3-post-continuity-release-intake-registration-audit-gate-proof-2026-06-05.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent3_validator_prereq_evidence_or_stale_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq evidence over Agent 3 outputs; no new Agent 6 route from proof alone"
+    },
+    {
+      "path": "reports/workbench-token-source-partition-edges-5000-summary.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_source_partition_edge_aggregate_metadata",
+      "agent6_handoff_needed": false,
+      "notes": "Complete non-public token-source partition edge metadata aggregate; 54 chunks merged; zero candidate rows and no output/mutation authorization"
+    },
+    {
+      "path": "reports/workbench-token-source-partition-edges-5000.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "workbench_source_partition_edge_aggregate_metadata",
+      "agent6_handoff_needed": false,
+      "notes": "Complete non-public token-source partition edge metadata aggregate report; planning evidence only"
+    },
+    {
+      "path": "scripts/build_agent2_workbench_token_source_partition_edges_aggregate.mjs",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_builder",
+      "agent6_handoff_needed": false,
+      "notes": "Aggregate builder normalized repo-style output paths and streams JSONL output"
+    },
+    {
+      "path": "reports/agent4-orot-205-row-commercial-clean-subset-gate-proof-2026-06-05.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_orot_205_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 Orot 205-row validator/prereq gate proof; no new Agent 6 route from proof alone"
+    },
+    {
+      "path": "reports/agent4-orot-205-row-commercial-clean-subset-gate-proof-2026-06-05.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_orot_205_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 Orot 205-row validator/prereq gate proof JSON; planning-only boundary remains"
+    },
+    {
+      "path": "reports/agent10-agent2-agent4-fresh-output-consumption-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_fresh_output_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of completed Agent 2 aggregate and Agent 4 Orot 205-row gate proof"
+    },
+    {
+      "path": "reports/agent10-agent2-agent4-fresh-output-consumption-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_fresh_output_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption JSON for completed Agent 2 aggregate and Agent 4 Orot 205-row gate proof"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-commercial-clean-transform-enablement-boundary-packet-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent6-ready old-dictionary commercial-clean transform enablement packet exists, but direct Agent 6 route currently returns not_found; preserve as delivery blocker, do not duplicate route"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-commercial-clean-transform-enablement-boundary-packet-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant",
+      "agent6_handoff_needed": false,
+      "notes": "Agent6-ready old-dictionary commercial-clean transform enablement packet JSON; delivery blocked by unavailable Agent 6 route"
+    },
+    {
+      "path": "scripts/validate_agent10_old_dictionary_commercial_clean_transform_enablement_boundary_packet.mjs",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent10_boundary_packet_validator",
+      "agent6_handoff_needed": false,
+      "notes": "Validator for old-dictionary commercial-clean transform enablement boundary packet"
+    },
+    {
+      "path": "reports/agent2-old-dictionary-excluded-row-reaudit-consumption-prep-2026-06-05.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 confirms current Agent 1 source-family classification exists and transform remains blocked on exact Agent 6 row/subset boundary"
+    },
+    {
+      "path": "reports/agent2-old-dictionary-excluded-row-reaudit-consumption-prep-2026-06-05.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 consumption-prep JSON for old-dictionary excluded-row re-audit"
+    },
+    {
+      "path": "reports/agent2-old-dictionary-excluded-row-transform-readiness-matrix-2026-06-05.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 transform-readiness matrix for old-dictionary excluded-row re-audit; validates 5 source-family rows, preserves source lanes, and reports 0 allowed transform rows now"
+    },
+    {
+      "path": "reports/agent2-old-dictionary-excluded-row-transform-readiness-matrix-2026-06-05.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_package_status",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 transform-readiness matrix JSON; transform remains blocked on exact Agent 6 boundary and approved morphology relation"
+    },
+    {
+      "path": "reports/agent10-agent2-old-dictionary-excluded-row-readiness-consumption-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_readiness_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumed Agent 2 old-dictionary readiness as non-public readiness/blocker evidence only; no current Agent 6 route because candidate-use rows are 0"
+    },
+    {
+      "path": "reports/agent10-agent2-old-dictionary-excluded-row-readiness-consumption-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_readiness_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 old-dictionary readiness consumption JSON; future Agent 6 route requires exact row/subset candidate-use package"
+    },
+    {
+      "path": "reports/agent4-agent3-crossmatch-inventory-packet-refresh-gate-proof-2026-06-05.md",
+      "lane_owner": "Agent 4",
+      "required": false,
+      "release_relevance_hint": "agent4_agent3_validator_prereq_evidence_or_stale_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 refresh proof over Agent 3 crossmatch inventory; superseded for release intake by current clean Agent 3 inventory validation"
+    },
+    {
+      "path": "reports/agent4-agent3-crossmatch-inventory-packet-refresh-gate-proof-2026-06-05.json",
+      "lane_owner": "Agent 4",
+      "required": false,
+      "release_relevance_hint": "agent4_agent3_validator_prereq_evidence_or_stale_support",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 refresh proof JSON over Agent 3 crossmatch inventory; no Agent 6 route from proof alone"
+    },
+    {
+      "path": "reports/agent4-old-dictionary-transform-readiness-gate-proof-2026-06-05.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_old_dictionary_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq gate proof for old-dictionary transform readiness; blockers preserved and no release/action route opened"
+    },
+    {
+      "path": "reports/agent4-old-dictionary-transform-readiness-gate-proof-2026-06-05.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_old_dictionary_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq gate proof JSON for old-dictionary transform readiness; 0 allowed transform rows and lane separation preserved"
+    },
+    {
+      "path": "scripts/build_agent10_agent2_old_dictionary_morphology_relation_workset.mjs",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent10_agent2_ready_workset_builder",
+      "agent6_handoff_needed": false,
+      "notes": "Builder for exact Agent2-ready old-dictionary commercial-clean morphology relation workset"
+    },
+    {
+      "path": "scripts/validate_agent10_agent2_old_dictionary_morphology_relation_workset.mjs",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent10_agent2_ready_workset_validator",
+      "agent6_handoff_needed": false,
+      "notes": "Validator for exact Agent2-ready old-dictionary commercial-clean morphology relation workset"
+    },
+    {
+      "path": "reports/agent10-agent2-ready-old-dictionary-commercial-clean-morphology-relation-workset-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent2_ready_morphology_relation_workset",
+      "agent6_handoff_needed": false,
+      "notes": "Agent2-ready morphology relation workset report; 297 unique commercial-clean preview rows / 5747 occurrences; no current Agent 6 route"
+    },
+    {
+      "path": "reports/agent10-agent2-ready-old-dictionary-commercial-clean-morphology-relation-workset-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent2_ready_morphology_relation_workset",
+      "agent6_handoff_needed": false,
+      "notes": "Agent2-ready morphology relation workset JSON; future Agent 6 route only after Agent 2 returns relation matrix or candidate-use package"
+    },
+    {
+      "path": "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_morphology_relation_matrix",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 old-dictionary commercial-clean morphology relation matrix report; 78 planning rows and 219 blocked rows; candidate use remains blocked"
+    },
+    {
+      "path": "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_morphology_relation_matrix",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 morphology relation matrix JSON; non-public planning only, 0 candidate text rows"
+    },
+    {
+      "path": "reports/agent2-morphology-planning-candidate-use-blocker-2026-06-05.md",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_candidate_use_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 candidate-use blocker report; 78 planning rows have no candidate-use boundary"
+    },
+    {
+      "path": "reports/agent2-morphology-planning-candidate-use-blocker-2026-06-05.json",
+      "lane_owner": "Agent 2",
+      "required": true,
+      "release_relevance_hint": "definition_pipeline_candidate_use_blocker",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 2 candidate-use blocker JSON; candidate-use rows remain 0"
+    },
+    {
+      "path": "reports/agent4-agent2-old-dictionary-morphology-relation-gate-proof-2026-06-05.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent2_morphology_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq proof for Agent 2 old-dictionary morphology relation matrix"
+    },
+    {
+      "path": "reports/agent4-agent2-old-dictionary-morphology-relation-gate-proof-2026-06-05.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent2_morphology_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 gate proof JSON for Agent 2 morphology relation matrix"
+    },
+    {
+      "path": "reports/agent4-agent2-morphology-planning-candidate-use-blocker-gate-proof-2026-06-05.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent2_candidate_use_blocker_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq proof for Agent 2 morphology-planning candidate-use blocker"
+    },
+    {
+      "path": "reports/agent4-agent2-morphology-planning-candidate-use-blocker-gate-proof-2026-06-05.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent2_candidate_use_blocker_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 gate proof JSON for Agent 2 candidate-use blocker"
+    },
+    {
+      "path": "scripts/validate_agent10_old_dictionary_morphology_planning_boundary_packet.mjs",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent10_boundary_packet_validator",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 validator for old-dictionary morphology-planning boundary packet"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_ready_boundary_packet_delivered",
+      "agent6_handoff_needed": false,
+      "notes": "Agent6-ready old-dictionary morphology-planning boundary packet report; delivered to Agent 6"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_ready_boundary_packet_delivered",
+      "agent6_handoff_needed": false,
+      "notes": "Agent6-ready old-dictionary morphology-planning boundary packet JSON; 78 planning rows / 1461 occurrences"
+    },
+    {
+      "path": "reports/agent10-agent6-old-dictionary-morphology-planning-delivery-proof-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Delivery proof for old-dictionary morphology-planning boundary packet sent to Agent 6"
+    },
+    {
+      "path": "reports/agent10-agent6-old-dictionary-morphology-planning-delivery-proof-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_delivery_proof",
+      "agent6_handoff_needed": false,
+      "notes": "Delivery proof JSON for old-dictionary morphology-planning boundary packet sent to Agent 6"
+    },
+    {
+      "path": "reports/agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_verdict_consumed_nonpublic_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 WARN-ACCEPTED old-dictionary morphology-planning subset as non-public planning evidence only"
+    },
+    {
+      "path": "reports/agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.json",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_verdict_consumed_nonpublic_planning_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 old-dictionary morphology-planning verdict JSON; candidate-use and transform remain blocked"
+    },
+    {
+      "path": "reports/agent10-agent6-old-dictionary-morphology-planning-verdict-consumption-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_agent6_verdict_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 consumption of Agent 6 old-dictionary morphology-planning verdict"
+    },
+    {
+      "path": "reports/agent10-agent6-old-dictionary-morphology-planning-verdict-consumption-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_agent6_verdict_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 old-dictionary morphology-planning verdict consumption JSON"
+    },
+    {
+      "path": "reports/agent10-agent6-repo-pipeline-release-integration-needs-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "agent6_repo_pipeline_release_integration_requirements",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 release/package requirements for Agent 6 repo-cleaning, repo-validation, and queued-item validation contracts; no cleanup or release action authorized"
+    },
+    {
+      "path": "reports/agent6-repo-dirt-classification-support-2026-06-05.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_repo_dirt_classification_blocker_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 non-destructive repo-dirt classification support docket; release-owner consumption only"
+    },
+    {
+      "path": "reports/agent6-repo-dirt-classification-support-2026-06-05.json",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_repo_dirt_classification_blocker_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 repo-dirt classification JSON; no cleanup, staging, deletion, or acceptance authorized"
+    },
+    {
+      "path": "reports/agent6-repo-cleaning-validation-queue-pipeline-contracts-2026-06-05.md",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_repo_pipeline_contracts_blocker_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 repo-cleaning, repo-validation, and queued-item validation contracts; contract-authored-not-implemented"
+    },
+    {
+      "path": "reports/agent6-repo-cleaning-validation-queue-pipeline-contracts-2026-06-05.json",
+      "lane_owner": "Agent 6",
+      "required": true,
+      "release_relevance_hint": "agent6_repo_pipeline_contracts_blocker_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 6 repo pipeline contract JSON; implementation backlog remains blocked"
+    },
+    {
+      "path": "reports/agent4-agent6-repo-dirt-classification-support-gate-proof-2026-06-05.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent6_repo_dirt_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq proof for Agent 6 repo-dirt classification support"
+    },
+    {
+      "path": "reports/agent4-agent6-repo-dirt-classification-support-gate-proof-2026-06-05.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent6_repo_dirt_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 gate proof JSON for Agent 6 repo-dirt classification support"
+    },
+    {
+      "path": "reports/agent4-agent6-repo-cleaning-validation-queue-pipeline-contracts-gate-proof-2026-06-05.md",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent6_repo_pipeline_contract_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 validator/prereq proof for Agent 6 repo-cleaning/validation/queue pipeline contracts"
+    },
+    {
+      "path": "reports/agent4-agent6-repo-cleaning-validation-queue-pipeline-contracts-gate-proof-2026-06-05.json",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent6_repo_pipeline_contract_validator_prereq_evidence",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 4 gate proof JSON for Agent 6 repo-cleaning/validation/queue pipeline contracts"
+    },
+    {
+      "path": "scripts/validate_agent6_repo_dirt_classification_support.mjs",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent6_repo_dirt_validator",
+      "agent6_handoff_needed": false,
+      "notes": "Validator for Agent 6 repo-dirt classification support docket"
+    },
+    {
+      "path": "scripts/validate_agent6_repo_cleaning_validation_queue_pipeline_contracts.mjs",
+      "lane_owner": "Agent 4",
+      "required": true,
+      "release_relevance_hint": "agent4_agent6_repo_pipeline_contract_validator",
+      "agent6_handoff_needed": false,
+      "notes": "Validator for Agent 6 repo-cleaning/validation/queue pipeline contract artifact"
+    },
+    {
+      "path": "reports/agent10-agent6-repo-pipeline-contracts-release-consumption-2026-06-05.md",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_repo_pipeline_contract_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 release-owner consumption of Agent 6 repo-dirt classification and repo-pipeline contracts as blocker evidence only"
+    },
+    {
+      "path": "reports/agent10-agent6-repo-pipeline-contracts-release-consumption-2026-06-05.json",
+      "lane_owner": "Agent 10",
+      "required": true,
+      "release_relevance_hint": "release_relevant_repo_pipeline_contract_consumption",
+      "agent6_handoff_needed": false,
+      "notes": "Agent 10 repo-pipeline contract consumption JSON; no cleanup or release action authorized"
+    }
+  ],
+  "release_relevance_checks": [
+    "all required inputs exist",
+    "JSON inputs parse when extension is .json",
+    "row/work/occurrence counts are extracted only when already present",
+    "mutation counters must remain zero when present",
+    "blocker class is copied or inferred from existing text only",
+    "Agent 6 handoff candidate is only a row with exact package path and exact boundary language",
+    "no public/runtime/output/answer/definition/accepted-text mutation is authorized"
+  ],
+  "output": {
+    "json": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "md": "reports/spark10-release-package-intake-matrix-current-2026-06-04.md"
+  },
+  "agent6_handoff_condition": "Only if the generated matrix identifies an exact changed package artifact or exact Agent6-ready packet with path, row/occurrence boundary, source/license lane, zero-emission counters, and review question. Otherwise Agent 6 remains held.",
+  "stop_condition": "Agent 10 stops after producing the local release/package intake matrix plus validator pass, or exact missing_input_blocker/missing_pipeline_blocker naming the missing input, command, output, schema, or validator. Do not route, queue, or wait on Spark/assistant lanes unless owner explicitly re-enables repaired capacity.",
+  "boundary": {
+    "public_runtime_mutation_authorized": false,
+    "route_shard_edit_authorized": false,
+    "answer_eligibility_authorized": false,
+    "definition_content_storage_authorized": false,
+    "accepted_text_authorized": false,
+    "publication_readiness_authorized": false
+  },
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output"
+  ],
+  "spark_capacity_status": "unavailable_glitched_historical_support_only_unless_owner_reenables",
+  "spark_thread_id_status": "historical_non_capacity_reference"
+}

@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_spark2_orot_missed_dictionary_reader_hint_pipeline_contract",
+  "date": "2026-06-04",
+  "owner_lane": "Agent 2 / definition-lemma-reader-hint pipeline builder",
+  "mode": "BROAD_CORPUS_EXPANSION_WITH_OROT_PROTOTYPE_HARDENING_FIRST",
+  "source_order": "reports/oracle9-weekly-goal-mode-lexicon-expansion-order-2026-06-04.md",
+  "status": "pipeline_runnable",
+  "missing_pipeline_blocker": null,
+  "target": {
+    "work": "Orot",
+    "pipeline": "missed_safe_dictionary_reader_hint_candidates",
+    "highest_permissible_claim": "agent2_pipeline_contract_authored_for_spark2_independent_mechanical_run_after_builder_validator_exist"
+  },
+  "inputs": [
+    "reports/oracle9-weekly-goal-mode-lexicon-expansion-order-2026-06-04.md",
+    "reports/agent2-orot-sefaria-lexicon-hit-audit-2026-06-03.json",
+    "data/public-hud/orot/reader-hints.json",
+    "data/build/orot/reader-hint-placeholder-candidates.json",
+    "reports/agent10-orot-license-safe-coverage-repair-add-candidates-2026-06-03.json",
+    "reports/agent10-orot-next-missed-dictionary-placeholder-candidates-2026-06-03.json",
+    "reports/agent10-orot-next-missed-dictionary-cleared-append-2026-06-03.json",
+    "reports/agent6-orot-next-missed-dictionary-placeholder-candidates-verdict-2026-06-03.md",
+    "reports/oracle9-owner-pulse-2026-06-03-0410Z.md",
+    "reports/oracle9-owner-pulse-2026-06-03-1039Z.md"
+  ],
+  "required_scripts": {
+    "builder": "scripts/build_agent2_orot_missed_dictionary_reader_hint_candidates.mjs",
+    "validator": "scripts/validate_agent2_orot_missed_dictionary_reader_hint_candidates.mjs"
+  },
+  "commands": {
+    "build": "node scripts/build_agent2_orot_missed_dictionary_reader_hint_candidates.mjs --limit=50 --output=reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json --report=reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.md",
+    "validate": "node scripts/validate_agent2_orot_missed_dictionary_reader_hint_candidates.mjs reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json"
+  },
+  "output_schema": {
+    "top_level_fields": [
+      "schema_version",
+      "artifact_type",
+      "generated_at",
+      "generator",
+      "boundary",
+      "inputs",
+      "selection",
+      "summary",
+      "source_license_counts",
+      "rows",
+      "outputs_now",
+      "what_must_not_be_accepted"
+    ],
+    "row_fields": [
+      "token_id",
+      "headword",
+      "occurrence_count",
+      "work",
+      "source_family",
+      "source_ref",
+      "license",
+      "license_status",
+      "candidate_label",
+      "candidate_text_status",
+      "selected_edge",
+      "competing_edges",
+      "evidence_paths",
+      "answer_eligible",
+      "promote_to_answer",
+      "approved_for_public_emit",
+      "public_hud_rows_emitted",
+      "route_jsonl_rows_emitted",
+      "route_shards_written",
+      "blocker_to_answer_or_public_emit"
+    ]
+  },
+  "license_flags": {
+    "allowed_buckets": [
+      "commercial_clean_candidate",
+      "noncommercial_educational_candidate",
+      "metadata_link_only",
+      "blocked",
+      "unmatched"
+    ],
+    "commercial_clean_candidate": [
+      "BDB",
+      "BDB Aramaic",
+      "Jastrow",
+      "PUBLIC_DOMAIN_OBSERVED"
+    ],
+    "noncommercial_educational_candidate": [
+      "Klein",
+      "CC_BY_NC",
+      "commercial_export_allowed=false",
+      "derived_from_nc=true"
+    ],
+    "nc_rows_must_remain_row_scoped": true
+  },
+  "deterministic_transform_rule": {
+    "include": [
+      "already_identified_orot_missed_safe_dictionary_evidence",
+      "source_family_and_license_status_present_or_inherited_from_agent1_reviewed_family_rules",
+      "candidate_text_is_non_authoritative_reader_hint_candidate_only",
+      "selected_and_competing_edges_preserved",
+      "answer_eligible_false",
+      "promote_to_answer_false",
+      "approved_for_public_emit_false"
+    ],
+    "exclude_or_block": [
+      "manual_definition_required",
+      "manual_semantic_judgment_required",
+      "kaikki_or_wiktionary_stored_or_displayed_text_required",
+      "metadata_link_only_row",
+      "missing_source_family_or_license_status",
+      "public_hud_or_route_or_runtime_or_source_or_lexical_or_token_index_mutation_required"
+    ]
+  },
+  "validator_gate": {
+    "required": true,
+    "assertions": [
+      "exact_schema_fields",
+      "all_answer_public_route_runtime_source_token_index_mutation_counters_false_or_zero",
+      "candidate_labels_only",
+      "no_definition_accepted_gloss_translation_answer_verified_or_top_match_labels",
+      "selected_and_competing_evidence_preserved_where_present",
+      "source_family_and_license_status_present_or_explicitly_blocked",
+      "no_kaikki_or_wiktionary_text_stored_or_displayed",
+      "no_metadata_only_row_promoted_to_candidate_text",
+      "counts_by_license_status_bucket_and_occurrence_total"
+    ]
+  },
+  "owners": {
+    "contract_owner": "Agent 2",
+    "mechanical_runner": "Spark-2",
+    "source_license_family_blocker_owner": "Agent 1",
+    "boundary_reviewer": "Agent 6",
+    "release_consumer": "Agent 10 first, then Agent 6 if routed"
+  },
+  "agent6_boundary_question": "Can the exact generated row/subset packet be treated as non-public reader-hint candidate evidence only, with zero answer eligibility, zero accepted gloss/text, zero Definition authority, zero public HUD output, zero route JSONL/shard writes, and preserved row-scoped source/license labels?",
+  "stop_condition": "Spark-2 may run because the Agent2-owned builder and validator exist. Stop after one candidate artifact plus validator result, or after recording the exact missing input/output/schema blocker. A zero-row output is a bounded closure result when all deterministic candidates are already public, packaged, or prior-candidate-consumed.",
+  "weekly_priority_linkage": [
+    "1. Orot missed safe-dictionary reader-hint candidate pipeline",
+    "2. Deuteronomy reader-hint candidate pipeline",
+    "3. Larger Definition Workbench expansion pipeline beyond the 500-row sample",
+    "4. Unmatched/no-hint coverage pipeline by work/book"
+  ],
+  "outputs_authorized_now": {
+    "answer_rows": 0,
+    "answer_eligible": false,
+    "promote_to_answer": false,
+    "approved_for_public_emit": false,
+    "public_hud_rows_emitted": 0,
+    "route_jsonl_rows_emitted": 0,
+    "route_shards_written": 0,
+    "public_runtime_mutation": false,
+    "source_payload_mutation": false,
+    "lexical_payload_mutation": false,
+    "token_index_mutation": false
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss",
+    "accepted text"
+  ]
+}

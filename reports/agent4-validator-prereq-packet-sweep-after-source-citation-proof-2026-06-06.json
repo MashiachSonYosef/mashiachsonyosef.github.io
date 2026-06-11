@@ -1,0 +1,101 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "Agent 4 validator/prereq packet sweep after source-citation worklist proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifacts": [
+    "reports/agent4-agent3-source-citation-enrichment-worklist-gate-proof-2026-06-06.json",
+    "reports/agent4-identity-monitor-ack-ledger-discrepancy-proof-2026-06-06.json"
+  ],
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent4_validator_prereq_packet_sweep_gate.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node --check scripts\\validate_agent4_validator_prereq_packet_sweep_result.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node --check scripts\\validate_agent4_validator_prereq_packet_sweep_gate_result.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_gate.mjs --out=reports/agent4-validator-prereq-packet-sweep-result-after-source-citation-2026-06-06.json --gateOut=reports/agent4-validator-prereq-packet-sweep-gate-result-after-source-citation-2026-06-06.json --requireSelfCheck",
+      "timeout_ms": 60000,
+      "result": "process_timeout_with_late_valid_outputs",
+      "observed_output": "command timed out after 64095 milliseconds; output files were later present and validated"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep.mjs --out=reports/agent4-validator-prereq-packet-sweep-result-after-source-citation-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "pass",
+      "observed_output": "count=39; passed=39; failed=0; command_count_total=97; blocker_count_total=73"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_result.mjs --input=reports/agent4-validator-prereq-packet-sweep-result-after-source-citation-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "count=39; passed=39; failed=0"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_gate_result.mjs --input=reports\\agent4-validator-prereq-packet-sweep-gate-result-after-source-citation-2026-06-06.json --requireSelfCheck",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "status=passed; count=39; passed=39; failed=0"
+    }
+  ],
+  "process_timeouts": [
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_gate.mjs --out=reports/agent4-validator-prereq-packet-sweep-result-after-source-citation-2026-06-06.json --gateOut=reports/agent4-validator-prereq-packet-sweep-gate-result-after-source-citation-2026-06-06.json --requireSelfCheck",
+      "timeout_ms": 60000,
+      "partial_output_or_artifact": "reports/agent4-validator-prereq-packet-sweep-result-after-source-citation-2026-06-06.json and reports/agent4-validator-prereq-packet-sweep-gate-result-after-source-citation-2026-06-06.json were present and validated after the timeout; split sweep completed in 120000 ms budget",
+      "next_safe_action": "Use split sweep plus direct result validators for the current 39-packet corpus; avoid combined gate wrapper unless timeout is increased beyond 60 seconds."
+    }
+  ],
+  "counts": {
+    "agent4_packet_count": 39,
+    "agent4_packet_passed": 39,
+    "agent4_packet_failed": 0,
+    "proof_shape_count": 33,
+    "proof_with_blocker_shape_count": 4,
+    "blocker_shape_count": 2,
+    "command_count_total": 97,
+    "blocker_count_total": 73
+  },
+  "result": "validated_agent4_packet_sweep_outputs_after_source_citation_packets",
+  "exact_blockers": [
+    {
+      "code": "combined_sweep_gate_outer_timeout_60000ms",
+      "class": "process_timeout",
+      "handoff_owner": "Agent 4 validator/prereq harness owner",
+      "next_safe_action": "Use split sweep and gate-result validation, or increase combined wrapper timeout for this corpus size."
+    }
+  ],
+  "generated_outputs": [
+    "reports/agent4-validator-prereq-packet-sweep-result-after-source-citation-2026-06-06.json",
+    "reports/agent4-validator-prereq-packet-sweep-gate-result-after-source-citation-2026-06-06.json"
+  ],
+  "output_artifact_path": "reports/agent4-validator-prereq-packet-sweep-after-source-citation-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-validator-prereq-packet-sweep-after-source-citation-proof-2026-06-06.md",
+  "handoff_owner": "Agent 4 validator/prereq harness owner; Agent 10 may consume as package-validation evidence only",
+  "next_safe_action": "Preserve the 39/39 packet sweep as current Agent 4 proof-corpus validation; avoid rerunning unchanged aggregate gates unless a new Agent 4 proof/blocker packet appears.",
+  "stop_condition": "Stop after validating the updated Agent 4 proof corpus and recording timeout behavior; no acceptance claims.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_orot_finished_as_far_as_current_pipeline_blockers",
+  "generated_at": "2026-06-04T11:23:53.332Z",
+  "status": "no_next_agent6_cleared_subset_found_current_pipeline_blockers_recorded",
+  "package_anchor": {
+    "path": "data/build/orot/reader-hint-placeholder-candidates.json",
+    "sha256": "fe9afeb52556157cbd2aeb4eb7a75fa01e64d035bd4c1620db49d594240f9feb",
+    "placeholder_rows": 127,
+    "placeholder_occurrences": 4389,
+    "commercial_clean_rows": 97,
+    "commercial_clean_occurrences": 4001,
+    "noncommercial_educational_rows": 17,
+    "noncommercial_educational_occurrences": 259,
+    "display_integrity_tbd_rows": 13,
+    "display_integrity_tbd_occurrences": 129,
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "inputs": {
+    "pkg": {
+      "path": "data/build/orot/reader-hint-placeholder-candidates.json",
+      "sha256": "fe9afeb52556157cbd2aeb4eb7a75fa01e64d035bd4c1620db49d594240f9feb"
+    },
+    "measurement": {
+      "path": "reports/agent2-orot-sefaria-nc-aware-coverage-measurement-2026-06-03.json",
+      "sha256": "a3347219c3d0976bc7aed25adcaa2a59846acf34f36da3cb9f47e99efdca0316"
+    },
+    "preview": {
+      "path": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+      "sha256": "3027e6ecdc72bc2307ad5b5b3ec2aef6c1bea72352e13677f04440c78d0ade58"
+    },
+    "familyVerdict": {
+      "path": "reports/agent6-orot-sefaria-nc-aware-family-boundary-final-verdict-2026-06-03.json",
+      "sha256": "4b9a1c8dbc460f23b0f24bd0c9dbc40d391bf6131e0d3e20545e400cd01f1024"
+    },
+    "missingLinkage": {
+      "path": "reports/agent1-orot-missing-linkage-review-2026-06-04.json",
+      "sha256": "303eb160907bed878f14e789d4aa7fac36fe1d9cbe54a1aaf8ddf763d6dd9432"
+    },
+    "pilot": {
+      "path": "reports/agent2-orot-pilot-answer-claims-2026-06-03.json",
+      "sha256": "32c40259406fec029f50af045e4b946ba97e77e9c365058c4214b9fe3feac290"
+    }
+  },
+  "applied_or_represented": {
+    "current_package_rows": 127,
+    "current_package_occurrences": 4389,
+    "nc_educational_rows_represented": 17,
+    "nc_educational_occurrences_represented": 259,
+    "commercial_clean_from_scoped_preview_represented": 92,
+    "commercial_clean_from_scoped_preview_occurrences_represented": 3980
+  },
+  "blockers": [
+    {
+      "lane": "Agent 10 + Agent 6",
+      "blocker": "commercial_clean_candidates_need_exact_transform_package_review",
+      "rows": 205,
+      "occurrences": 1767,
+      "owner": "Agent 10 prepares exact subset; Agent 6 reviews row/subset boundary",
+      "evidence": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json"
+    },
+    {
+      "lane": "Agent 2 / transform",
+      "blocker": "fill_producing_answer_pipeline_zero_safe_blocker",
+      "rows": 100,
+      "occurrences": 1960,
+      "owner": "Agent 2 transform implementation; Agent 10 consumes only if validated output appears",
+      "evidence": "reports/agent2-orot-pilot-answer-claims-2026-06-03.json"
+    },
+    {
+      "lane": "Agent 1 / linkage",
+      "blocker": "missing_linkage_review_remaining_exclude_or_block",
+      "rows": 10,
+      "occurrences": 106,
+      "owner": "Agent 1 for source/linkage unblock, then Agent 6",
+      "evidence": "reports/agent1-orot-missing-linkage-review-2026-06-04.json"
+    },
+    {
+      "lane": "Agent 1 / Agent 6 / source discovery later",
+      "blocker": "scoped_sefaria_no_hit_or_unusable_remaining",
+      "rows": 183,
+      "occurrences": 2308,
+      "owner": "Objective 4 broad discovery only after Orot closeout or exact authorization",
+      "evidence": "reports/agent2-orot-sefaria-nc-aware-coverage-measurement-2026-06-03.json"
+    }
+  ],
+  "excluded_or_unmatched_counts": {
+    "commercial_clean_candidate_missing_from_package": 205,
+    "commercial_clean_candidate_missing_occurrences": 1767,
+    "nc_educational_missing_from_package": 0,
+    "nc_educational_missing_occurrences": 0,
+    "no_hit_or_unusable_missing_from_package": 183,
+    "no_hit_or_unusable_missing_occurrences": 2308,
+    "missing_linkage_excluded_rows": 6,
+    "missing_linkage_excluded_occurrences": 32,
+    "missing_linkage_blocked_rows": 4,
+    "missing_linkage_blocked_occurrences": 74
+  },
+  "agent4_status": "held_no_changed_public_runtime_package",
+  "frozen_work": [
+    "same 20-row proof repetition",
+    "Zechariah",
+    "broad discovery/import",
+    "public/runtime mutation",
+    "route-shard edits",
+    "non-exact Spark work",
+    "status/governance loops"
+  ],
+  "zero_counts": {
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "next_possible_agent6_ready_subset": "A new exact subset from the 205 missing commercial-clean Sefaria/public-domain candidate rows can be prepared only as a new non-public transform/package review packet; none is currently Agent6-cleared.",
+  "highest_permissible_claim": "Agent 10 identified exact blockers after completing all currently Agent6-cleared/applied Orot package movement.",
+  "not_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss",
+    "accepted text",
+    "public reader output"
+  ]
+}

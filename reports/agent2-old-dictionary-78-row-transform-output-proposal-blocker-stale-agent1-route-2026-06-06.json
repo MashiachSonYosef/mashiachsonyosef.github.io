@@ -1,0 +1,70 @@
+{
+  "artifact_type": "agent2_old_dictionary_78_row_transform_output_proposal_blocker",
+  "generated_at": "2026-06-06T23:59:00Z",
+  "target": "old-dictionary-commercial-clean-78-row-transform-output-proposal-preboundary",
+  "required_agent_1_fields": {
+    "queue_id": true,
+    "token_id": true,
+    "lexicon_entry_id": true,
+    "occurrences": true,
+    "source_family": true,
+    "license_lane": true,
+    "source_rids": true,
+    "morphology_relation_basis": true,
+    "agent2_morphology_relation_status": true,
+    "candidate_use_scope": true,
+    "derived_from_nc": true,
+    "commercial_export_allowed": true,
+    "attribution_required": true,
+    "corpus_contamination": true,
+    "answer_eligible": true,
+    "public_emit": true,
+    "agent6_boundary_required": true,
+    "source_citation_or_url": true
+  },
+  "transform_action_once_classified": "If source_citation_or_url and exact Agent2 transform rule are supplied, produce a compact non-public matrix for exact 78 queue IDs including proposed_candidate_text/proposed_definition_text/proposed_lemma_text/proposed_reader_hint_text proposal fields plus route/acceptance-blocking counters fixed to zero.",
+  "files_used": {
+    "agent10_transform_workset": "reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.json",
+    "agent10_transform_workset_handoff": "reports/agent10-agent2-old-dictionary-78-row-transform-output-proposal-workset-handoff-2026-06-06.json",
+    "agent10_transform_blocker_consumption": "reports/agent10-old-dictionary-78-row-agent2-transform-output-blocker-consumption-2026-06-06.json",
+    "agent10_wait_state": "reports/agent10-agent2-old-dictionary-78-row-transform-output-proposal-wait-state-2026-06-06.json",
+    "agent10_source_citation_workset": "reports/agent10-agent1-ready-old-dictionary-78-row-source-citation-enrichment-workset-2026-06-06.json",
+    "agent10_source_citation_route_blocker": "reports/agent10-agent1-old-dictionary-78-row-source-citation-enrichment-live-route-blocker-2026-06-06.json",
+    "agent2_current_blocker": "reports/agent2-old-dictionary-78-row-transform-output-proposal-missing-pipeline-blocker-2026-06-06.json",
+    "agent2_source_citation_dependency_check": "reports/agent2-old-dictionary-78-row-source-citation-dependency-check-2026-06-06.json",
+    "zero_text_package_anchor": "reports/agent10-old-dictionary-78-row-zero-text-candidate-use-package-planning-2026-06-06.json",
+    "preboundary_matrix": "reports/agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json",
+    "agent1_lane_handoff": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json"
+  },
+  "lane_counts_rows_consumed": {
+    "rows": 78,
+    "occurrences": 1461,
+    "source_license_lane": "commercial_clean_candidate",
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "exact_blockers": [
+    "missing_source_field::source_citation_or_url",
+    "missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text",
+    "next_transform_output_or_candidate_text_boundary_not_supplied",
+    "stale_agent1_registry_target_current_agent1_thread_required"
+  ],
+  "handoff_owner": {
+    "agent1": "Supply source_citation_or_url for exact 78 rows OR return exact missing-source blocker to the current live Agent 1 thread.",
+    "agent5_coordination": "Reroute Agent 10/Agent 1 source-citation enrichment workset to current Agent 1 thread id.",
+    "agent10": "Consume Agent1 return only if both source_citation_or_url and exact transform-rule inputs are supplied; do not reroute by stale thread id again.",
+    "agent2": "Wait; do not emit matrix until both blockers are cleared.",
+    "agent6": "Prepare a narrowed boundary question only if input excludes proposed text/schema fields."
+  },
+  "command_timeout_log": [],
+  "output_artifact_path": "reports/agent2-old-dictionary-78-row-transform-output-proposal-blocker-stale-agent1-route-2026-06-06.json",
+  "stop_condition": "Stop at blocker state. Do not perform definition/lemma/reader-hint content storage, answer acceptance, public emit, route shard write, public/runtime mutation, source/license/legal/product/data acceptance, export, publication readiness, or release action."
+}

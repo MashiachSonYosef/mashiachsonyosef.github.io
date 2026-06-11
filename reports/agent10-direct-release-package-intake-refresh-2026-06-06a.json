@@ -1,0 +1,114 @@
+{
+  "artifact_type": "agent10_direct_release_package_intake_refresh",
+  "generated_at": "2026-06-06T00:24:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "status": "bounded_old_dictionary_coverage_summary_consumed_no_concrete_candidate_use_or_transform_packet",
+  "consumed_state": {
+    "coverage_summary_json": "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current.json",
+    "coverage_summary_md": "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current.md",
+    "coverage_summary_builder": "scripts/build_agent10_old_dictionary_coverage_summary.mjs",
+    "coverage_summary_validator": "scripts/validate_agent10_old_dictionary_coverage_summary.mjs",
+    "prior_final_reconciliation": "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-reconciliation-final-2026-06-05.json"
+  },
+  "bounded_check": {
+    "command": "$cutoff = Get-Date '2026-06-06T00:08:00'; Get-ChildItem -LiteralPath reports -File | Where-Object { $_.LastWriteTime -gt $cutoff -and $_.Name -match '^(agent[1-6]|agent10).*\\\\.(json|md)$' } | Sort-Object LastWriteTime -Descending | Select-Object -First 80 LastWriteTime,Name",
+    "timeout": "20000ms",
+    "result": "passed_no_new_agent1_6_or_agent10_release_relevant_artifact",
+    "partial_output_or_artifact": "empty result set",
+    "next_safe_action": "keep current bounded coverage summary as latest release-owner state"
+  },
+  "current_coverage": {
+    "commercial_clean_source_families": 3,
+    "commercial_clean_subsets": [
+      {
+        "source_family": "Jastrow Dictionary",
+        "rows": 210,
+        "occurrences": 4474,
+        "transform_allowed_now": false
+      },
+      {
+        "source_family": "BDB Dictionary",
+        "rows": 221,
+        "occurrences": 4418,
+        "transform_allowed_now": false
+      },
+      {
+        "source_family": "BDB Aramaic Dictionary",
+        "rows": 69,
+        "occurrences": 2048,
+        "transform_allowed_now": false
+      }
+    ],
+    "prior_agent6_morphology_planning": {
+      "disposition": "warn_accepted_nonpublic_morphology_planning_evidence_only",
+      "rows": 78,
+      "occurrences": 1461,
+      "blocked_rows_preserved_outside_subset": 219
+    },
+    "prior_agent6_source_family_overlap": {
+      "disposition": "warn_accepted_nonpublic_source_family_overlap_planning_evidence_only",
+      "rows": 500,
+      "occurrences": 8427,
+      "exact_blockers": 23
+    },
+    "prior_agent6_exact_row_subset_manifest": {
+      "disposition": "warn_accepted_nonpublic_source_lane_row_subset_planning_evidence_only",
+      "rows": 500,
+      "occurrences": 8427,
+      "unique_token_ids": 500,
+      "unique_queue_ids": 500
+    }
+  },
+  "agent6_boundary_questions": [
+    {
+      "status": "not_ready",
+      "question": "Pass/warn/block exact candidate use or transform for a specific selected old-dictionary row/subset.",
+      "missing_before_routing": [
+        "specific selected row/subset queue_ids and token_ids",
+        "intended use",
+        "candidate text/output fields if any, or explicit zero text/output",
+        "source-family selection/exclusion rule for overlap buckets",
+        "morphology relation basis and Agent 2 status",
+        "zero route/public/runtime/export/answer/release counters"
+      ]
+    }
+  ],
+  "exact_blocker": "candidate_use_or_transform_intent_not_supplied_for_specific_subset",
+  "next_owner": "Agent 10 after concrete candidate-use or transform intent exists; Agent 6 only for that exact later packet.",
+  "global_zero_counters": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "route_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "stop_condition": "Stop at current bounded release-owner state. Do not route Agent 6, transform, store text, emit source rows, write routes, mutate public/runtime, export, or release until a concrete candidate-use/transform packet exists.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

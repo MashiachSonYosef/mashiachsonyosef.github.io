@@ -1,0 +1,132 @@
+{
+  "artifact_type": "agent10_old_dictionary_bridge_gap_no_text_transform_rule_and_boundary_blocker",
+  "generated_at": "2026-06-07T03:40:42Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target_package": "old-dictionary bridge-gap 3-row transform-rule gap",
+  "status": "exact_no_text_transform_rule_returned_with_boundary_blocker",
+  "files_used": {
+    "agent2_agent10_nonconsumption_consumption": "reports/agent2-agent10-old-dictionary-bridge-gap-row-level-nonconsumption-blocker-consumption-2026-06-07-0332.json",
+    "agent2_agent10_nonconsumption_consumption_validation": "reports/agent2-agent10-old-dictionary-bridge-gap-row-level-nonconsumption-blocker-consumption-validation-result-2026-06-07-0332.json",
+    "agent10_row_level_nonconsumption_blocker": "reports/agent10-old-dictionary-bridge-gap-row-level-nonconsumption-blocker-2026-06-07-0239.json",
+    "agent2_row_level_return_contract_consumption": "reports/agent2-old-dictionary-bridge-gap-row-level-return-contract-consumption-2026-06-06.json"
+  },
+  "agent_1_4_inputs_consumed": {
+    "Agent2": [
+      "reports/agent2-agent10-old-dictionary-bridge-gap-row-level-nonconsumption-blocker-consumption-2026-06-07-0332.json",
+      "reports/agent2-agent10-old-dictionary-bridge-gap-row-level-nonconsumption-blocker-consumption-validation-result-2026-06-07-0332.json"
+    ],
+    "Agent3": [
+      "reports/agent3-old-dictionary-candidate-use-bridge-gap-direct-source-rid-downstream-gap-crossmatch-2026-06-06.json"
+    ],
+    "Agent1": [
+      "reports/agent10-agent1-ready-old-dictionary-78-row-source-citation-enrichment-workset-2026-06-06.json",
+      "reports/agent10-agent1-old-dictionary-78-row-source-citation-enrichment-live-route-blocker-2026-06-06.json"
+    ],
+    "Agent4": []
+  },
+  "rows": [
+    {
+      "queue_id": "agent2-orot-gap-tok-126d54d64a8c",
+      "source_rid": "P00280",
+      "occurrences": 13,
+      "source_license_lane": "commercial_clean_candidate",
+      "owner_action_kind": "queue_scope_dedupe_required",
+      "transform_rule": "no_text_transform_until_prereqs_clear",
+      "proposed_candidate_text": null,
+      "proposed_definition_text": null,
+      "proposed_lemma_text": null,
+      "proposed_reader_hint_text": null,
+      "row_status": "blocked_pending_queue_scope_dedupe_and_source_citation",
+      "exact_blocker": "missing_queue_scope_dedupe_resolution_for_duplicate_source_rid_locator_and_missing_source_citation_or_url"
+    },
+    {
+      "queue_id": "agent2-orot-gap-tok-d29b2c27700e",
+      "source_rid": "M00032",
+      "occurrences": 18,
+      "source_license_lane": "commercial_clean_candidate",
+      "owner_action_kind": "source_citation_ref_gap_resolution_required",
+      "transform_rule": "no_text_transform_until_prereqs_clear",
+      "proposed_candidate_text": null,
+      "proposed_definition_text": null,
+      "proposed_lemma_text": null,
+      "proposed_reader_hint_text": null,
+      "row_status": "blocked_pending_ref_gap_source_citation",
+      "exact_blocker": "missing_source_citation_resolution_for_zero_ref_gap_source_rid_and_missing_source_citation_or_url"
+    },
+    {
+      "queue_id": "agent2-orot-gap-tok-e50370ece8ba",
+      "source_rid": "E00687",
+      "occurrences": 11,
+      "source_license_lane": "commercial_clean_candidate",
+      "owner_action_kind": "exact_rid_scope_required",
+      "transform_rule": "no_text_transform_until_prereqs_clear",
+      "proposed_candidate_text": null,
+      "proposed_definition_text": null,
+      "proposed_lemma_text": null,
+      "proposed_reader_hint_text": null,
+      "row_status": "blocked_pending_exact_rid_scope_and_source_citation",
+      "exact_blocker": "missing_exact_rid_scope_for_multi_rid_custody_row_and_missing_source_citation_or_url"
+    }
+  ],
+  "lane_counts": {
+    "rows": 3,
+    "occurrences": 42,
+    "commercial_clean_candidate_rows": 3,
+    "noncommercial_educational_candidate_rows": 0,
+    "metadata_or_link_only_rows": 0,
+    "blocked_or_needs_review_rows": 3,
+    "proposed_candidate_text_rows": 0,
+    "proposed_definition_text_rows": 0,
+    "proposed_lemma_text_rows": 0,
+    "proposed_reader_hint_text_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "exact_transform_rule": {
+    "rule_id": "agent10_no_text_transform_until_source_and_owner_action_prereqs_clear",
+    "applies_to_rows": [
+      "agent2-orot-gap-tok-126d54d64a8c",
+      "agent2-orot-gap-tok-d29b2c27700e",
+      "agent2-orot-gap-tok-e50370ece8ba"
+    ],
+    "allowed_transform_output_before_prereqs": "blocker rows only",
+    "required_text_field_values_before_prereqs": {
+      "proposed_candidate_text": null,
+      "proposed_definition_text": null,
+      "proposed_lemma_text": null,
+      "proposed_reader_hint_text": null
+    },
+    "tbd_display_integrity_note": "TBD may be used only as UI display integrity where a renderer requires a placeholder; it is not candidate text, definition text, lemma text, reader-hint text, accepted gloss, or answer.",
+    "prereqs_to_reopen_transform": [
+      "row-level source_citation_or_url or exact missing-citation blocker",
+      "owner-action resolution or exact blocker for each row",
+      "A07 route for approval/final-validation/release gate where required",
+      "Agent6 evidence/boundary packet only after row/subset scope is ready"
+    ]
+  },
+  "agent6_boundary_questions": [],
+  "agent6_boundary_need": "no_agent6_packet_now",
+  "agent6_boundary_blocker": "No Agent6 boundary packet is ready from this three-row bridge-gap state because all proposed text fields are locked null and source/owner-action prerequisites remain unresolved.",
+  "exact_blockers": [
+    "missing_agent1_agent2_source_citation_or_owner_action_return_after_contract",
+    "missing_source_field::source_citation_or_url",
+    "missing_queue_scope_dedupe_resolution_for_duplicate_source_rid_locator",
+    "missing_source_citation_resolution_for_zero_ref_gap_source_rid",
+    "missing_exact_rid_scope_for_multi_rid_custody_row",
+    "stale_agent1_registry_target_current_agent1_thread_required"
+  ],
+  "next_owner": {
+    "Agent2": "May consume this as the Agent10 no-text transform rule and keep rows blocked/null; no transform text output is authorized.",
+    "Agent1_Agent2": "Return row-level source citation and owner-action resolution/blocker for P00280, M00032, and E00687.",
+    "Agent5_coordination": "Provide or route through current Agent1 thread for the existing 78-row source-citation enrichment workset.",
+    "A07": "Approval, SOP, final validation, and release gate where required.",
+    "A06": "Evidence/validator production only; not approval."
+  },
+  "stop_condition": "Stop at exact no-text transform rule and boundary blocker. No candidate text, definition text, lemma text, reader-hint text, answer eligibility, route writes, source/license/legal/Definition/product/answer/accepted-text acceptance, public/runtime mutation, export, publication readiness, or release action."
+}

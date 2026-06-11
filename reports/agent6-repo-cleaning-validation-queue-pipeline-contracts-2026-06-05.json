@@ -1,0 +1,180 @@
+{
+  "artifact": "reports/agent6-repo-cleaning-validation-queue-pipeline-contracts-2026-06-05.md",
+  "date": "2026-06-05",
+  "agent": "Agent 6",
+  "disposition": "contract_authored_not_implemented",
+  "scope": "pipeline_contracts_for_repo_cleaning_repo_validation_and_queued_item_validation",
+  "boundaries": {
+    "agent6_may": [
+      "classify_dirty_repo_state",
+      "validate_repo_dirt_classification_artifacts_through_dated_agent6_dockets_when_qa_relevant",
+      "validate_queued_agent6_items_through_normal_dated_docket_flow",
+      "propose_non_destructive_batches_and_exact_blockers"
+    ],
+    "agent6_may_not": [
+      "git_add_A",
+      "git_reset_hard",
+      "blind_deletion",
+      "destructive_cleanup_from_classification_alone",
+      "agent7_publication_substitution",
+      "accept_product_source_license_legal_runtime_publication_answer_without_exact_docket"
+    ]
+  },
+  "contracts": [
+    {
+      "pipeline": "repo-cleaning classification pipeline",
+      "target_scope": "full_working_tree_dirt_grouped_by_status_path_family_and_cleanup_risk",
+      "inputs": [
+        "git status --porcelain=v1 -z --untracked-files=all",
+        "git rev-parse --show-toplevel",
+        "git branch --show-current",
+        "git rev-parse --short HEAD",
+        "optional_prior_classification_docket"
+      ],
+      "command_or_script": "node scripts/classify_agent6_repo_dirt.mjs --output reports/agent6-repo-dirt-classification-support-YYYY-MM-DD.json --markdown reports/agent6-repo-dirt-classification-support-YYYY-MM-DD.md",
+      "output_artifact_schema": [
+        "artifact",
+        "date",
+        "agent",
+        "disposition",
+        "scope",
+        "repo",
+        "counts",
+        "path_family_counts",
+        "deletion_classification",
+        "proposed_batches",
+        "exact_blockers",
+        "must_not_be_accepted",
+        "stop_condition"
+      ],
+      "validator_docket_rule": "counts_must_reconcile_no_destructive_action_or_acceptance_claims_agent6_docket_may_validate_classification_only",
+      "queued_item_handling": "queue_not_changed_dirty_tree_blockers_may_be_referenced_without_disposition",
+      "agent7_handoff": "required_for_control_release_strategy_staffing_publication_path_law_or_activation_changes",
+      "blocker": "missing_or_unreconciled_git_status_requested_cleanup_without_classification_or_destructive_request",
+      "stop_condition": "classification_artifact_exists_with_counts_batches_blockers_handoff_owners_no_destructive_action"
+    },
+    {
+      "pipeline": "repo-validation pipeline",
+      "target_scope": "validation_of_repo_dirt_classification_and_proposed_cleanup_or_staging_batches",
+      "inputs": [
+        "latest_classification_markdown_json",
+        "selected_proposed_batch",
+        "git_status_snapshot",
+        "optional_file_existence_sample",
+        "optional_queue_health_report"
+      ],
+      "command_or_script": "node scripts/validate_agent6_repo_dirt_classification.mjs reports/agent6-repo-dirt-classification-support-YYYY-MM-DD.json",
+      "output_artifact_schema": [
+        "repo_scope",
+        "files_classified",
+        "category_counts",
+        "queued_items_also_validated",
+        "proposed_non_destructive_batch",
+        "exact_blocker",
+        "agent7_approval_publication_need",
+        "handoff_owner",
+        "stop_condition"
+      ],
+      "validator_docket_rule": "agent6_dated_docket_required_when_qa_relevant_json_parse_and_count_reconciliation_minimum_checks",
+      "queued_item_handling": "queue_health_may_be_checked_separately_no_item_acceptance_without_item_specific_verdict",
+      "agent7_handoff": "required_for_control_state_publication_durable_law_strategy_staffing_publication_path_release_activation_or_cleanup_plan_affecting_public_runtime_source_control",
+      "blocker": "classification_missing_current_status_changed_mixed_owner_batch_deleted_files_without_replacement_or_quarantine_proof",
+      "stop_condition": "validation_docket_exists_and_batch_is_cleared_for_non_destructive_proposal_only_or_blocked_with_exact_owner"
+    },
+    {
+      "pipeline": "queued-item validation pipeline",
+      "target_scope": "agent6_queue_items_requiring_pass_warn_block_or_exact_blocker",
+      "inputs": [
+        "data/control/agent6_validation_queue.json",
+        "reports/agent6-validation-workhorse-operating-protocol-2026-06-01.md",
+        "item_evidence_artifacts",
+        "item_validators",
+        "prior_agent6_dockets_for_same_scope"
+      ],
+      "command_or_script": "node scripts/validate_agent6_validation_queue.mjs; node scripts/select_agent6_queue_item.mjs --risk-order --max-items 1; node scripts/validate_agent6_queue_item_evidence.mjs --request-id <id>",
+      "output_artifact_schema": [
+        "request_id",
+        "gate",
+        "scope",
+        "evidence_reviewed",
+        "validators_run",
+        "disposition",
+        "row_or_subset_boundary",
+        "warnings",
+        "blockers",
+        "affected_agents",
+        "affected_gates",
+        "what_must_not_be_accepted",
+        "agent8_callback_if_routed",
+        "stop_condition"
+      ],
+      "validator_docket_rule": "queue_health_pass_is_not_item_acceptance_item_pending_until_dated_agent6_verdict_exists",
+      "queued_item_handling": "select_highest_risk_pending_item_first_unless_owner_user_agent7_exact_priority_says_otherwise_do_not_merge_unrelated_boundaries",
+      "agent7_handoff": "required_for_control_state_publication_law_promotion_strategy_staffing_public_runtime_activation_publication_path_or_durable_queue_state_update",
+      "blocker": "missing_evidence_failing_validator_overclaim_blocked_no_render_publication_request_source_license_without_rows_usage_to_definition_authority_drift_or_public_runtime_proof_gap",
+      "stop_condition": "one_dated_agent6_verdict_or_exact_blocker_exists_for_selected_item_queue_control_updates_left_to_agent5_or_agent7"
+    }
+  ],
+  "current_calibration_snapshot": {
+    "repo_dirt": {
+      "dirty_records": 17239,
+      "tracked_deletions": 12231,
+      "tracked_modified": 1490,
+      "tracked_added": 22,
+      "untracked": 3496,
+      "data_public_hud_dirty_records": 11937,
+      "reports_dirty_records": 2777,
+      "site_page_dirty_records": 1541,
+      "scripts_dirty_records": 442,
+      "data_control_untracked_records": 16
+    },
+    "agent6_queue": {
+      "artifact": "data/control/agent6_validation_queue.json",
+      "version_observed": 67,
+      "items_observed": 37,
+      "pending_or_queued_like_items_observed": 6,
+      "validator_command": "node scripts/validate_agent6_validation_queue.mjs",
+      "validator_result": "passed_0_warnings"
+    }
+  },
+  "required_pipeline_implementation_backlog": [
+    "scripts/classify_agent6_repo_dirt.mjs",
+    "scripts/validate_agent6_repo_dirt_classification.mjs",
+    "scripts/validate_agent6_repo_dirt_batch.mjs",
+    "scripts/select_agent6_queue_item.mjs",
+    "scripts/validate_agent6_queue_item_evidence.mjs"
+  ],
+  "exact_blockers": [
+    "durable_churn_blocked_until_proposed_scripts_or_equivalent_exact_commands_exist_and_are_validated",
+    "repo_cleanup_blocked_from_destructive_execution_until_file_families_are_classified_and_owner_release_lane_approval_exists",
+    "public_runtime_cleanup_blocked_by_11937_data_public_hud_dirty_deleted_records_until_agent10_changed_input_proof_exists",
+    "control_state_cleanup_blocked_by_16_untracked_data_control_files_until_agent5_agent7_publish_reject_or_mark_local_only",
+    "queue_item_acceptance_blocked_per_item_until_dated_agent6_verdict_exists"
+  ],
+  "agent7_approval_publication_need": [
+    "control_state_activation",
+    "strategy_or_staffing_changes",
+    "durable_law_sop_publication",
+    "publication_path_or_release_activation",
+    "durable_queue_state_recording_beyond_agent6_docket_artifact"
+  ],
+  "must_not_be_accepted": [
+    "implementation",
+    "staging",
+    "deletion",
+    "cleanup",
+    "queue_state_update",
+    "control_state_activation",
+    "product_acceptance",
+    "source_license_legal_acceptance",
+    "public_runtime_acceptance",
+    "definition_authority",
+    "answer_eligibility",
+    "publication_readiness",
+    "accepted_text",
+    "commercial_export_authorization",
+    "nc_commercial_authorization",
+    "release_action"
+  ],
+  "stop_condition": "three_reusable_contracts_authored_with_required_fields_no_implementation_or_acceptance_created"
+}

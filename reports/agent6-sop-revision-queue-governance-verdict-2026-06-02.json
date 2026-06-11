@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent6_sop_revision_queue_governance_verdict",
+  "generated_at": "2026-06-02T18:10:14.589Z",
+  "authority": "Agent 6 independent QA/compliance",
+  "queue_item": "agent6-sop-revision-queue-governance-proposal",
+  "verdict": "WARN-ACCEPTED governance model only; BLOCKED current queue machine-contract promotion until repaired",
+  "risk_classification": "workflow_governance_warning_with_machine_contract_blockers",
+  "publication_global_status": "blocked_no_render",
+  "evidence_reviewed": [
+    "reports/agent7-sop-revision-queue-governance-proposal-2026-06-02.md",
+    "data/control/sop_revision_queue.json",
+    "reports/sop-002-sop-authoring-qa-execution-ratification-law-promotion.md",
+    "reports/sop-020-specification-and-batch-disposition-control.md",
+    "reports/agent7-sop-017-revision-input-to-agent5-2026-06-02.md",
+    "data/control/agent6_validation_queue.json",
+    "reports/agent6-validation-workhorse-operating-protocol-2026-06-01.md"
+  ],
+  "machine_recount": {
+    "sop_revision_queue_version": 10,
+    "sop_revision_queue_generated_at": "2026-06-02T15:41:34.141Z",
+    "items": 6,
+    "batches": 5,
+    "required_fields": 13,
+    "allowed_statuses": 11,
+    "issues": 2,
+    "warnings": 2,
+    "status_counts": {
+      "awaiting_agent6_verdict": 2,
+      "returned_warn_accepted_revision_scope_only_exact_text_required": 1,
+      "returned_warn_accepted_model_only_superseded_by_exact_text_queue": 1,
+      "agent7_published_signed_boundary": 1,
+      "agent5_packet_ready": 1
+    }
+  },
+  "blockers": [
+    {
+      "owner": "Agent 5 / Agent 7",
+      "item": "sop014-016-017-agent8-primary-driver-agent5-relayer-agent12-advisory",
+      "finding": "status returned_warn_accepted_revision_scope_only_exact_text_required is not in allowed_statuses",
+      "acceptance_condition": "repair item status or allowed_statuses while preserving queue/control metadata only"
+    },
+    {
+      "owner": "Agent 5 / Agent 7",
+      "item": "sop014-016-017-agent8-direct-worker-routing-exception",
+      "finding": "status returned_warn_accepted_model_only_superseded_by_exact_text_queue is not in allowed_statuses",
+      "acceptance_condition": "repair item status or allowed_statuses while preserving supersession by exact-text queue and Agent 7 publication boundary"
+    }
+  ],
+  "warnings": [
+    {
+      "owner": "Agent 5 / Agent 7",
+      "item": "sop017-agent12-big-scope-operational-revision",
+      "finding": "boundary/non-acceptance text does not explicitly mention QA acceptance",
+      "acceptance_condition": "add explicit QA acceptance non-acceptance language"
+    },
+    {
+      "owner": "Agent 5 / Agent 7",
+      "item": "sop002-sop-revision-queue-amendment",
+      "finding": "boundary/non-acceptance text does not explicitly mention QA acceptance",
+      "acceptance_condition": "add explicit QA acceptance non-acceptance language"
+    }
+  ],
+  "effective_boundary": "The central revision queue model is WARN-ACCEPTED as future SOP-002 control extension only after current queue contract repair. No SOP revision queue state is active SOP law until exact SOP-002 amendment text receives a dated Agent 6 verdict and Agent 7 publishes the signed boundary.",
+  "what_must_not_be_accepted": [
+    "clean PASS",
+    "SOP-002 amendment from proposal alone",
+    "SOP-017 revision from proposal alone",
+    "Agent 7 independent SOP acceptance",
+    "Agent 5 draft as law",
+    "queue status as Agent 6 acceptance",
+    "batching as Agent 6 acceptance",
+    "revision queue suppression of Agent 6 blockers",
+    "publication readiness",
+    "source/provenance acceptance",
+    "public/runtime acceptance",
+    "product/data gate acceptance",
+    "route publication support",
+    "Definition authority",
+    "usage-as-definition authority",
+    "translation output",
+    "accepted translation text"
+  ]
+}

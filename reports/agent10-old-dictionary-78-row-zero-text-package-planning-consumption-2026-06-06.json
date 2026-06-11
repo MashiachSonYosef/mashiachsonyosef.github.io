@@ -1,0 +1,95 @@
+{
+  "artifact_type": "agent10_old_dictionary_78_row_zero_text_package_planning_consumption",
+  "generated_at": "2026-06-06T02:08:00Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target_package": "old-dictionary-commercial-clean-78-row-zero-text-candidate-use-package-planning",
+  "status": "agent6_warn_accepted_zero_text_package_planning_consumed_and_materialized",
+  "files_used": {
+    "agent6_zero_text_verdict": "reports/agent6-old-dictionary-78-row-zero-text-candidate-use-package-verdict-2026-06-06.json",
+    "materialized_package": "reports/agent10-old-dictionary-78-row-zero-text-candidate-use-package-planning-2026-06-06.json",
+    "builder": "scripts/build_agent10_old_dictionary_78_row_zero_text_candidate_use_package.mjs",
+    "validator": "scripts/validate_agent10_old_dictionary_78_row_zero_text_candidate_use_package.mjs"
+  },
+  "agent1_4_inputs_consumed": [
+    {
+      "lane": "Agent 1",
+      "input": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+      "release_package_impact": "source lane preserved as commercial_clean_candidate"
+    },
+    {
+      "lane": "Agent 2",
+      "input": "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+      "release_package_impact": "exact 78-row morphology-approved selector preserved"
+    },
+    {
+      "lane": "Agent 3",
+      "input": null,
+      "release_package_impact": "not required for this package planning artifact"
+    },
+    {
+      "lane": "Agent 4",
+      "input": null,
+      "release_package_impact": "no changed public/runtime package"
+    },
+    {
+      "lane": "Agent 6",
+      "input": "reports/agent6-old-dictionary-78-row-zero-text-candidate-use-package-verdict-2026-06-06.json",
+      "release_package_impact": "WARN-ACCEPTED only for non-public zero-text package planning"
+    }
+  ],
+  "package_state": {
+    "rows": 78,
+    "occurrences": 1461,
+    "unique_queue_ids": 78,
+    "unique_token_ids": 78,
+    "source_license_lane": "commercial_clean_candidate",
+    "candidate_text_rows": 0,
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "release_package_decision": {
+    "may_carry_forward_as_nonpublic_zero_text_candidate_use_package_planning": true,
+    "transform_output_authorized": false,
+    "candidate_text_authorized": false,
+    "definition_lemma_reader_hint_content_storage_authorized": false,
+    "answer_eligibility_authorized": false,
+    "route_write_authorized": false,
+    "public_runtime_mutation_authorized": false,
+    "export_authorized": false,
+    "accepted_text_authorized": false,
+    "publication_readiness_authorized": false,
+    "release_action_authorized": false
+  },
+  "next_agent6_boundary_need": "Any move from this package planning artifact into transform output, candidate text, definition/lemma/reader-hint content storage, answer eligibility, route write, public/runtime mutation, export, accepted text, publication readiness, or release requires a new exact Agent 6 packet.",
+  "exact_blocker": "next_transform_output_or_candidate_text_boundary_not_supplied",
+  "stop_condition": "Stop at non-public zero-text package planning. Do not mutate public/runtime files, route shards, source files, token indexes, lexical payloads, candidate text, definition content, accepted text, export files, publication state, or release state.",
+  "what_must_not_be_accepted": [
+    "QA acceptance beyond the exact docket",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

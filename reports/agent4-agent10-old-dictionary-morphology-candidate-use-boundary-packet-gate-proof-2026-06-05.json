@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:55:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent10-old-dictionary-morphology-candidate-use-boundary-packet",
+  "changed_package_input": "reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json",
+  "files": [
+    "reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json",
+    "reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json",
+    "scripts/validate_agent10_old_dictionary_morphology_candidate_use_boundary_packet.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_morphology_candidate_use_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Agent10 old-dictionary morphology candidate-use boundary packet validation passed. Rows: 78; occurrences: 1461."
+    }
+  ],
+  "counts": {
+    "candidate_use_boundary_rows": 78,
+    "candidate_use_boundary_occurrences": 1461,
+    "source_family_count": 3,
+    "bdb_aramaic_planning_rows_with_family": 21,
+    "bdb_aramaic_planning_occurrences_with_family": 616,
+    "bdb_planning_rows_with_family": 63,
+    "bdb_planning_occurrences_with_family": 1271,
+    "jastrow_planning_rows_with_family": 75,
+    "jastrow_planning_occurrences_with_family": 1417,
+    "morphology_blocked_rows_excluded": 219,
+    "prefix_or_clitic_possible_rows_excluded": 129,
+    "needs_morphology_disambiguation_rows_excluded": 90,
+    "public_hud_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "definition_content_rows": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "candidate_text_export_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "hashes": {
+    "changed_package_input_sha256": "904b8d2b33de3e8dec06cde315bd2a15a2460b9ca6d0086c4966f36e22083ad2",
+    "validator_sha256": "56df33b0a9a414f8ea411923d850bd2164e93e7950884b2b338104ba29ba05dd",
+    "source_preflight_handoff_sha256": "16524a123e1b322324f2e4c29a3dc00357b931374af38292a11eac4779816103"
+  },
+  "result": "target | agent10-old-dictionary-morphology-candidate-use-boundary-packet | files above | commands passed: Agent10 old-dictionary morphology candidate-use boundary packet validator | counts: 78 rows, 1461 occurrences, 3 source families, 219 excluded morphology-blocked rows, 129 excluded prefix/clitic possible rows, 90 excluded morphology-disambiguation rows, zero public/runtime/route/definition/lemma/reader-hint/answer/accepted-text/release rows | result: validator passed and packet is Agent6-ready evidence only | blocker if any: await Agent6 candidate-use boundary for the exact 78 old-dictionary morphology-planning rows | next handoff: Agent 7/8/10 may route to Agent 6; Agent 4 does not self-accept | stop condition: do not rerun unless the packet, source preflight handoff, or validator changes",
+  "blocker_if_any": "await_agent6_candidate_use_boundary_for_78_old_dictionary_morphology_planning_rows",
+  "next_handoff": "Agent 7/8/10 route this Agent10 packet plus Agent4 validator proof to Agent 6 if live Agent 6 delivery is needed.",
+  "stop_condition": "Do not rerun unless reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json, reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json, or scripts/validate_agent10_old_dictionary_morphology_candidate_use_boundary_packet.mjs changes.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no public/runtime acceptance",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no translation output",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no candidate text export",
+    "no definition-content storage",
+    "no commercial export authorization",
+    "no release action"
+  ]
+}

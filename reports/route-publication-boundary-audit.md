@@ -1,12 +1,21 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T08:28:34.458Z
+Generated: 2026-06-01T16:15:43.187Z
 
 ## Boundary
 
 - `answer_eligible` means the route card can be considered for the HUD answer slot.
 - `answer_eligible` is not accepted translation-output readiness.
 - Publication readiness must come from a later renderer/translation gate, not from this route lookup.
+
+## Publication Boundary
+
+- Publication status: blocked_no_render
+- Validates: route_publication_boundary_audit, route_card_publication_boundary, public_hud_route_lookup_publication_boundary
+- Does not clear: translation_output, source_publication, public_lexical_export_reuse, accepted_definition_authority
+- Answer eligibility scope: hud_answer_slot_only_not_translation_or_publication_readiness
+- Warning status blocks publication claim: true
+- Current route inputs reconciled: not_checked_by_route_publication_boundary_audit
 
 ## Counts
 
@@ -70,8 +79,8 @@ Generated: 2026-06-01T08:28:34.458Z
 - Cards with publication-readiness fields: 0
 - Issues: 0
 - Warnings: 335103
-- Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
-- Validator SHA-256: `c6c60f42c27b57098e1340e077ec80db1a4c933e674213464eb382a53af55781`
+- Manifest SHA-256: `3d0c5cb147e3b87e63a032a69802174f86b4eb3aff41ed6037ae758a14dded7a`
+- Validator SHA-256: `1ea55f44cb841a01ef6e470fabf364801ce25cb4af76d94caad596f269d223a7`
 - Fixture cases checked: 35
 - Fixture bytes: 59390
 - Fixture SHA-256: `6f7a6e19a22a347fce1f7538ce3573098732dd1989e5abd3d4c93612df7e4e80`

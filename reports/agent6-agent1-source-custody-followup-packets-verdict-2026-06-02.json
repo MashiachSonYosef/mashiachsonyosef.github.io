@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-06-02T09:40:00-04:00",
+  "authority": "Agent 6 independent QA/compliance",
+  "verdict": "warn_accepted_followup_packets_as_disposition_evidence_only_source_provenance_blocked",
+  "gate": "source_provenance_custody_gate",
+  "evidence_artifacts": [
+    "reports/agent1-source-custody-followup-packets-index.json",
+    "reports/agent1-source-custody-followup-packets-index.md",
+    "reports/agent1-source-custody-packet-a-tracking-review.json",
+    "reports/agent1-source-custody-packet-a-tracking-review.md",
+    "reports/agent1-source-custody-packet-b-missing-manifest.json",
+    "reports/agent1-source-custody-packet-b-missing-manifest.md",
+    "reports/agent1-source-custody-packet-c-license-label-normalization.json",
+    "reports/agent1-source-custody-packet-c-license-label-normalization.md",
+    "reports/agent1-source-custody-followup-packets-validator-result.json",
+    "scripts/validate_agent1_source_custody_followup_packets.mjs"
+  ],
+  "validation": {
+    "validate_agent1_source_custody_followup_packets": "passed",
+    "live_untracked_sources": 23,
+    "live_modified_tracked_sources": 6,
+    "packet_c_independent_parsed_json_diff": {
+      "total_scalar_diff_count": 1406,
+      "total_non_license_diff_count": 0,
+      "total_non_pd_to_public_domain_diff_count": 0
+    }
+  },
+  "packet_a": {
+    "verdict": "warn_accepted_tracking_review_candidate_packet_only",
+    "source_files": 17,
+    "units": 7492,
+    "blocked_downstream_direct_paths": 153,
+    "blocked_content_reference_unique_paths": 13,
+    "blocked_content_reference_source_rows": 34
+  },
+  "packet_b": {
+    "verdict": "blocker_preserved_missing_manifest_remediation_or_exclusion_required",
+    "source_files": 6,
+    "expected_lexical_manifest_paths": 6,
+    "units": 77918,
+    "blocked_downstream_direct_paths": 30,
+    "blocked_content_reference_unique_paths": 1,
+    "blocked_content_reference_source_rows": 6
+  },
+  "packet_c": {
+    "verdict": "warn_accepted_license_label_normalization_evidence_only",
+    "source_files": 6,
+    "total_scalar_diff_count": 1406,
+    "total_non_license_diff_count": 0,
+    "total_non_pd_to_public_domain_diff_count": 0,
+    "blocked_downstream_direct_paths": 59,
+    "blocked_content_reference_unique_paths": 10,
+    "blocked_content_reference_source_rows": 31
+  },
+  "warning_limits": [
+    "Packet summaries use unique content-reference path counts; controlling quarantine row reliance remains 71 source-reference rows across A/B/C.",
+    "Packet A does not approve source-file tracking, staging, commit, merge, publication, or downstream release.",
+    "Packet B remains a blocker until missing lexical manifests are generated and validated or explicit exclusion/quarantine is docketed.",
+    "Packet C accepts only license-label-only drift classification evidence, not source/provenance custody or staging."
+  ],
+  "what_must_not_be_accepted": [
+    "source/provenance acceptance",
+    "source publication",
+    "source-file tracking approval",
+    "source-file staging, commit, or merge",
+    "downstream direct artifact acceptance",
+    "downstream content-reference acceptance",
+    "public/runtime acceptance",
+    "route publication support",
+    "Definition authority",
+    "usage-as-definition authority",
+    "product/data gate acceptance",
+    "publication readiness",
+    "future publication support",
+    "translation output",
+    "accepted translation text"
+  ]
+}

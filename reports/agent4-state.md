@@ -1,0 +1,1016 @@
+# Agent 4 State
+
+Updated: 2026-06-03
+
+## Current Lane
+
+- Owner lane: HUD runtime, Reader Workbench boundary, ranking display behavior, and evidence handoff quality.
+- Current task: safe HUD rollout watch and bounded render recovery.
+- Boundary: local-only Guided Gloss Assembly; `publication_status=not_a_translation`.
+- Not claimed: publication readiness, accepted translation text, broad rollout, or deferred-page acceptance.
+
+## Current Goal (Pipeline)
+
+- Goal file: [agent4-pipeline-goal-2026-06-04.md](agent4-pipeline-goal-2026-06-04.md)
+- Pipeline mode: perpetual cycle: candidate refresh -> drift-aware render/watch -> representative validation -> handoff packet queueing -> resume bounded watch
+- Status: `perpetual_active`
+- Boundary: evidence-only; no staging, commit, push, deploy, publication, or acceptance.
+- Hold/Review: run continuously in this bounded loop until **2026-06-07**, then pause for 4-day review handoff.
+
+## Latest Completed Chunk
+
+- Rendered eight tracked Halakhah pages from the current sample while leaving untracked `other` pages and larger tracked pages untouched for later bounded chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-kereti-kessef-8.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `kereti-on-shulchan-arukh-yoreh-deah`, `kesher-gudal`, `kessef-hakodashim-on-shulchan-arukh-choshen-mishpat`, `kessef-mishneh-on-mishneh-torah-admission-into-the-sanctuary`, `kessef-mishneh-on-mishneh-torah-agents-and-partners`, `kessef-mishneh-on-mishneh-torah-appraisals-and-devoted-property`, `kessef-mishneh-on-mishneh-torah-blessings`, and `kessef-mishneh-on-mishneh-torah-circumcision`.
+- Pre-render note: all eight target pages were already modified generated files and older than `scripts\render_site.ps1`; selected pages were about 4.26 MiB, 0.63 MiB, 3.74 MiB, 1.14 MiB, 0.77 MiB, 0.78 MiB, 0.86 MiB, and 0.22 MiB after render.
+- Target validation passed for all eight pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,352 cached page audits reused, 8 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,013 generated pages remain older than `scripts\render_site.ps1`.
+- Route/control validators passed: public HUD route lookup, route answer safety, Agent 6 validation queue, Agent 5 control readiness, and Agent 7 governance control after this chunk.
+- Representative route HUD validation passed for 30 pages, including all eight pages in this chunk.
+- `git diff --numstat` reported 1,726 insertions / 2,398 deletions for `halakhah\kereti-on-shulchan-arukh-yoreh-deah\index.html`, 630 insertions / 1,268 deletions for `halakhah\kesher-gudal\index.html`, 4,187 insertions / 2,294 deletions for `halakhah\kessef-hakodashim-on-shulchan-arukh-choshen-mishpat\index.html`, 450 insertions / 1,088 deletions for `halakhah\kessef-mishneh-on-mishneh-torah-admission-into-the-sanctuary\index.html`, 302 insertions / 940 deletions for `halakhah\kessef-mishneh-on-mishneh-torah-agents-and-partners\index.html`, 352 insertions / 990 deletions for `halakhah\kessef-mishneh-on-mishneh-torah-appraisals-and-devoted-property\index.html`, 523 insertions / 1,161 deletions for `halakhah\kessef-mishneh-on-mishneh-torah-blessings\index.html`, and 203 insertions / 841 deletions for `halakhah\kessef-mishneh-on-mishneh-torah-circumcision\index.html`.
+- `git diff --numstat` also emitted a line-ending warning for `halakhah\kereti-on-shulchan-arukh-yoreh-deah\index.html`; no manual normalization was performed.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 151.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered eight tracked pages from the current sample while leaving untracked `other` pages and larger tracked pages untouched for later bounded chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-jonah-kedushat-levi-8.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `jonah`, `joshua`, `judges`, `kad-hakemach`, `kaf-achat`, `kalach-pitchei-chokhmah`, `kav-hayashar`, and `kedushat-levi`.
+- Pre-render note: all eight target pages were already modified generated files and older than `scripts\render_site.ps1`; selected pages were about 0.08 MiB, 0.86 MiB, 0.81 MiB, 2.04 MiB, 0.29 MiB, 3.05 MiB, 2.90 MiB, and 4.69 MiB after render.
+- Target validation passed for all eight pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,352 cached page audits reused, 8 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,021 generated pages remain older than `scripts\render_site.ps1`.
+- Route/control validators passed: public HUD route lookup, route answer safety, Agent 6 validation queue, Agent 5 control readiness, and Agent 7 governance control after this chunk.
+- Representative route HUD validation passed for 30 pages, including all eight pages in this chunk.
+- `git diff --numstat` reported 1,789 insertions / 2,461 deletions for `chasidut\kedushat-levi\index.html`, 282 insertions / 920 deletions for `halakhah\kaf-achat\index.html`, 2,225 insertions / 2,863 deletions for `kabbalah\kalach-pitchei-chokhmah\index.html`, 752 insertions / 1,390 deletions for `musar\kad-hakemach\index.html`, 1,240 insertions / 1,912 deletions for `musar\kav-hayashar\index.html`, 162 insertions / 800 deletions for `tanakh\jonah\index.html`, 766 insertions / 1,424 deletions for `tanakh\joshua\index.html`, and 732 insertions / 1,370 deletions for `tanakh\judges\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 150.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered eight tracked small drift pages from the current sample while leaving untracked `other` pages and larger tracked pages untouched for later bounded chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-isaiah-joel-small-8.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `isaiah`, `issur-veheter-haarokh`, `issur-veheter-lerashi`, `issur-vheter-lrabbeinu-yerucham`, `jeremiah`, `jerusalem-talmud-taanit`, `job`, and `joel`.
+- Pre-render note: all eight target pages were already modified generated files and older than `scripts\render_site.ps1`; selected pages were about 1.62 MiB, 2.15 MiB, 0.40 MiB, 0.35 MiB, 1.80 MiB, 0.16 MiB, 1.20 MiB, and 0.11 MiB after render.
+- Target validation passed for all eight pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,352 cached page audits reused, 8 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,029 generated pages remain older than `scripts\render_site.ps1`.
+- Route/control validators passed: public HUD route lookup, route answer safety, Agent 6 validation queue, Agent 5 control readiness, and Agent 7 governance control after this chunk.
+- Representative route HUD validation passed for 30 pages, including all eight pages in this chunk.
+- `git diff --numstat` reported 1,091 insertions / 1,729 deletions for `halakhah\issur-veheter-haarokh\index.html`, 290 insertions / 928 deletions for `halakhah\issur-veheter-lerashi\index.html`, 273 insertions / 911 deletions for `halakhah\issur-vheter-lrabbeinu-yerucham\index.html`, 170 insertions / 828 deletions for `talmud\jerusalem-talmud-taanit\index.html`, 1,406 insertions / 2,044 deletions for `tanakh\isaiah\index.html`, 1,478 insertions / 2,116 deletions for `tanakh\jeremiah\index.html`, 1,185 insertions / 1,823 deletions for `tanakh\job\index.html`, and 187 insertions / 825 deletions for `tanakh\joel\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 149.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered eight tracked small mixed drift pages from the current sample while leaving untracked `other` pages and larger tracked pages untouched for later bounded chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-small-mixed-8.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `ibn-ezra-on-numbers`, `ibn-ezra-on-zechariah`, `iggeret-hagra`, `iggeret-haramban`, `ii-chronicles`, `ii-kings`, `ii-samuel`, and `imrei-binah`.
+- Pre-render note: all eight target pages were already modified generated files and older than `scripts\render_site.ps1`; selected pages were about 2.12 MiB, 0.71 MiB, 0.06 MiB, 0.05 MiB, 1.14 MiB, 0.96 MiB, 0.94 MiB, and 2.63 MiB after render.
+- Target validation passed for all eight pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,352 cached page audits reused, 8 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,037 generated pages remain older than `scripts\render_site.ps1`.
+- Route/control validators passed: public HUD route lookup, route answer safety, Agent 6 validation queue, Agent 5 control readiness, and Agent 7 governance control after this chunk.
+- Representative route HUD validation passed for 30 pages, including all eight pages in this chunk.
+- `git diff --numstat` reported 130 insertions / 768 deletions for `gra\iggeret-hagra\index.html`, 1,333 insertions / 1,971 deletions for `jewish-thought\imrei-binah\index.html`, 128 insertions / 766 deletions for `musar\iggeret-haramban\index.html`, 1,223 insertions / 1,861 deletions for `tanakh\ibn-ezra-on-numbers\index.html`, 460 insertions / 1,098 deletions for `tanakh\ibn-ezra-on-zechariah\index.html`, 936 insertions / 1,574 deletions for `tanakh\ii-chronicles\index.html`, 834 insertions / 1,472 deletions for `tanakh\ii-kings\index.html`, and 809 insertions / 1,447 deletions for `tanakh\ii-samuel\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 148.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered eight tracked Tanakh/Ibn Ezra drift pages from the current sample while leaving untracked `other` pages and larger tracked pages untouched for later bounded chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-tanakh-ibn-ezra-8.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `hosea`, `i-chronicles`, `i-kings`, `i-samuel`, `ibn-ezra-on-deuteronomy`, `ibn-ezra-on-exodus`, `ibn-ezra-on-genesis`, and `ibn-ezra-on-leviticus`.
+- Pre-render note: all eight target pages were already modified generated files and older than `scripts\render_site.ps1`; selected pages were about 0.26 MiB, 1.24 MiB, 1.07 MiB, 1.09 MiB, 2.41 MiB, 4.25 MiB, 3.36 MiB, and 2.01 MiB after render.
+- Target validation passed for all eight pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,352 cached page audits reused, 8 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,045 generated pages remain older than `scripts\render_site.ps1`.
+- Route/control validators passed: public HUD route lookup, route answer safety, Agent 6 validation queue, Agent 5 control readiness, and Agent 7 governance control after this chunk.
+- Representative route HUD validation passed for 30 pages, including all eight pages in this chunk.
+- `git diff --numstat` reported 311 insertions / 949 deletions for `tanakh\hosea\index.html`, 1,058 insertions / 1,696 deletions for `tanakh\i-chronicles\index.html`, 931 insertions / 1,569 deletions for `tanakh\i-kings\index.html`, 925 insertions / 1,563 deletions for `tanakh\i-samuel\index.html`, 1,332 insertions / 1,970 deletions for `tanakh\ibn-ezra-on-deuteronomy\index.html`, 1,772 insertions / 2,410 deletions for `tanakh\ibn-ezra-on-exodus\index.html`, 1,442 insertions / 2,080 deletions for `tanakh\ibn-ezra-on-genesis\index.html`, and 1,142 insertions / 1,780 deletions for `tanakh\ibn-ezra-on-leviticus\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 147.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered eight tracked drift pages from the current sample while leaving untracked `other` pages untouched and leaving the largest tracked pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-medium-small-8.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `beur-haradal-on-pirkei-derabbi-eliezer`, `darkhei-moshe`, `ein-yaakov`, `hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary`, `hasagot-haraavad-on-mishneh-torah-festival-offering`, `hasagot-haraavad-on-mishneh-torah-red-heifer`, `hasagot-haraavad-on-mishneh-torah-shofar-sukkah-and-lulav`, and `hasagot-haramban-on-sefer-hamitzvot`.
+- Pre-render note: all eight target pages were already modified generated files and older than `scripts\render_site.ps1`; selected pages were about 8.02 MiB, 8.10 MiB, 9.43 MiB, 0.10 MiB, 0.05 MiB, 0.16 MiB, 0.11 MiB, and 0.91 MiB after render.
+- Target validation passed for all eight pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,352 cached page audits reused, 8 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,053 generated pages remain older than `scripts\render_site.ps1`.
+- Route/control validators passed: public HUD route lookup, route answer safety, Agent 6 validation queue, Agent 5 control readiness, and Agent 7 governance control after this chunk.
+- Representative route HUD validation passed for 30 pages, including all eight pages in this chunk.
+- `git diff --numstat` reported 4,470 insertions / 5,108 deletions for `halakhah\darkhei-moshe\index.html`, 139 insertions / 777 deletions for `halakhah\hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary\index.html`, 121 insertions / 759 deletions for `halakhah\hasagot-haraavad-on-mishneh-torah-festival-offering\index.html`, 429 insertions / 871 deletions for `halakhah\hasagot-haraavad-on-mishneh-torah-red-heifer\index.html`, 143 insertions / 781 deletions for `halakhah\hasagot-haraavad-on-mishneh-torah-shofar-sukkah-and-lulav\index.html`, 293 insertions / 965 deletions for `halakhah\hasagot-haramban-on-sefer-hamitzvot\index.html`, 3,513 insertions / 4,151 deletions for `midrash\beur-haradal-on-pirkei-derabbi-eliezer\index.html`, and 3,480 insertions / 4,118 deletions for `midrash\ein-yaakov\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 146.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered five tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-har-hamoriyah-offerings-5.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `har-hamoriyah-on-mishneh-torah-offerings-for-those-with-incomplete-atonement`, `har-hamoriyah-on-mishneh-torah-offerings-for-unintentional-transgressions`, `har-hamoriyah-on-mishneh-torah-paschal-offering`, `har-hamoriyah-on-mishneh-torah-sacrifices-rendered-unfit`, and `har-hamoriyah-on-mishneh-torah-sacrificial-procedure`.
+- Pre-render note: all five target pages were already modified generated files and older than `scripts\render_site.ps1`; selected pages were about 0.62 MiB, 1.77 MiB, 1.20 MiB, 2.76 MiB, and 3.11 MiB after render.
+- Target validation passed for all five pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,355 cached page audits reused, 5 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,066 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, Agent 6 validation queue, and Agent 5 control readiness after this chunk.
+- `git diff --numstat` reported 268 insertions / 906 deletions for `halakhah\har-hamoriyah-on-mishneh-torah-offerings-for-those-with-incomplete-atonement\index.html`, 510 insertions / 1,148 deletions for `halakhah\har-hamoriyah-on-mishneh-torah-offerings-for-unintentional-transgressions\index.html`, 456 insertions / 1,094 deletions for `halakhah\har-hamoriyah-on-mishneh-torah-paschal-offering\index.html`, 901 insertions / 1,539 deletions for `halakhah\har-hamoriyah-on-mishneh-torah-sacrifices-rendered-unfit\index.html`, and 1,024 insertions / 1,662 deletions for `halakhah\har-hamoriyah-on-mishneh-torah-sacrificial-procedure\index.html`.
+- `git diff --numstat` also emitted line-ending warnings for all five generated pages; no manual normalization was performed.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 145.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered five tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-halakhot-gedolot-har-hamoriyah-5.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `halakhot-gedolot`, `har-hamoriyah-on-mishneh-torah-admission-into-the-sanctuary`, `har-hamoriyah-on-mishneh-torah-daily-offerings-and-additional-offerings`, `har-hamoriyah-on-mishneh-torah-festival-offering`, and `har-hamoriyah-on-mishneh-torah-firstlings`.
+- Pre-render note: all five target pages were already modified generated files and older than `scripts\render_site.ps1`; selected pages were about 3.55 MiB, 1.49 MiB, 2.00 MiB, 0.43 MiB, and 0.80 MiB after render.
+- Target validation passed for all five pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,355 cached page audits reused, 5 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,071 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, Agent 6 validation queue, and Agent 5 control readiness after this chunk.
+- `git diff --numstat` reported 966 insertions / 1,638 deletions for `halakhah\halakhot-gedolot\index.html`, 499 insertions / 1,137 deletions for `halakhah\har-hamoriyah-on-mishneh-torah-admission-into-the-sanctuary\index.html`, 595 insertions / 1,233 deletions for `halakhah\har-hamoriyah-on-mishneh-torah-daily-offerings-and-additional-offerings\index.html`, 216 insertions / 854 deletions for `halakhah\har-hamoriyah-on-mishneh-torah-festival-offering\index.html`, and 377 insertions / 1,015 deletions for `halakhah\har-hamoriyah-on-mishneh-torah-firstlings\index.html`.
+- `git diff --numstat` also emitted line-ending warnings for the four `har-hamoriyah` pages; no manual normalization was performed.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 144.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered five tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-haggahot-haggai-hagra-small-medium-5.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars`, `haggahot-of-radal-on-sefer-haparnas`, `haggahot-rabbeinu-peretz-on-sefer-mitzvot-katan`, `haggai`, and `hagra-on-sefer-yetzirah-gra-version`.
+- Pre-render note: all five target pages were already modified generated files and older than `scripts\render_site.ps1`; selected pages were about 0.31 MiB, 0.09 MiB, 2.21 MiB, 0.07 MiB, and 0.15 MiB after render.
+- Target validation passed for all five pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,355 cached page audits reused, 5 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,076 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 192 insertions / 830 deletions for `halakhah\haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars\index.html`, 133 insertions / 805 deletions for `halakhah\haggahot-of-radal-on-sefer-haparnas\index.html`, 817 insertions / 1,489 deletions for `halakhah\haggahot-rabbeinu-peretz-on-sefer-mitzvot-katan\index.html`, 152 insertions / 790 deletions for `tanakh\haggai\index.html`, and 150 insertions / 788 deletions for `gra\hagra-on-sefer-yetzirah-gra-version\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 143.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered five tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-mixed-small-medium-5.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `gras-nuschah-on-tractate-soferim`, `habakkuk`, `haemunot-vehadeot`, `haggahot-chadashot-on-sefer-mitzvot-katan`, and `haggahot-imrei-barukh-on-shulchan-arukh-choshen-mishpat`.
+- Pre-render note: all five target pages were already modified generated files and older than `scripts\render_site.ps1`; selected pages were about 0.11 MiB, 0.09 MiB, 0.55 MiB, 3.06 MiB, and 2.97 MiB after render.
+- Target validation passed for all five pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,355 cached page audits reused, 5 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,081 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 145 insertions / 783 deletions for `gra\gras-nuschah-on-tractate-soferim\index.html`, 170 insertions / 808 deletions for `tanakh\habakkuk\index.html`, 287 insertions / 925 deletions for `jewish-thought\haemunot-vehadeot\index.html`, 1,144 insertions / 1,816 deletions for `halakhah\haggahot-chadashot-on-sefer-mitzvot-katan\index.html`, and 669 insertions / 1,341 deletions for `halakhah\haggahot-imrei-barukh-on-shulchan-arukh-choshen-mishpat\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 142.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two medium tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-chelkat-mechokek-chokhmat-adam-medium-2.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `chelkat-mechokek` and `chokhmat-adam`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 5.95 MiB and 6.04 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,086 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 10,139 insertions / 5,141 deletions for `halakhah\chelkat-mechokek\index.html` and 3,293 insertions / 3,931 deletions for `halakhah\chokhmat-adam\index.html`.
+- `git diff --numstat` also emitted a line-ending warning for `halakhah\chelkat-mechokek\index.html`; no manual normalization was performed.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 141.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two medium tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-brit-moshe-chayyei-adam-medium-2.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `brit-moshe` and `chayyei-adam`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 6.35 MiB and 6.46 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,088 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 1,531 insertions / 2,203 deletions for `halakhah\brit-moshe\index.html` and 3,455 insertions / 4,093 deletions for `halakhah\chayyei-adam\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 140.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered one medium tracked drift page from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-bnei-yissaschar-medium-1.txt`.
+- Work ID rendered through `scripts\render_site.ps1`: `bnei-yissaschar`.
+- Pre-render note: the target page was already a modified generated file and older than `scripts\render_site.ps1`; the selected page was about 6.13 MiB after render.
+- Target validation passed; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,359 cached page audits reused, 1 page file scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,090 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 2,264 insertions / 2,902 deletions for `chasidut\bnei-yissaschar\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 139.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered one tracked drift page from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-gras-nuschah-semachot-small-1.txt`.
+- Work ID rendered through `scripts\render_site.ps1`: `gras-nuschah-on-tractate-semachot`.
+- Pre-render note: the target page was already a modified generated file and older than `scripts\render_site.ps1`; the selected page was about 0.05 MiB after render.
+- Target validation passed; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,359 cached page audits reused, 1 page file scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,091 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 135 insertions / 773 deletions for `gra\gras-nuschah-on-tractate-semachot\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 138.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered one tracked drift page from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-gras-nuschah-kallah-small-1.txt`.
+- Work ID rendered through `scripts\render_site.ps1`: `gras-nuschah-on-tractate-kallah`.
+- Pre-render note: the target page was already a modified generated file and older than `scripts\render_site.ps1`; the selected page was about 0.04 MiB after render.
+- Target validation passed; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,359 cached page audits reused, 1 page file scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,092 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 121 insertions / 759 deletions for `gra\gras-nuschah-on-tractate-kallah\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 137.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered one tracked drift page from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-gras-nuschah-derekh-eretz-zuta-small-1.txt`.
+- Work ID rendered through `scripts\render_site.ps1`: `gras-nuschah-on-tractate-derekh-eretz-zuta`.
+- Operational note: the first render attempt timed out at 300 seconds and left render PID `16548` running without updating the page timestamp; that stale renderer was stopped, and one retry with a 600-second timeout completed successfully.
+- Pre-render note: the target page was already a modified generated file and older than `scripts\render_site.ps1`; the selected page was about 0.03 MiB after render.
+- Target validation passed; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,359 cached page audits reused, 1 page file scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,093 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 125 insertions / 763 deletions for `gra\gras-nuschah-on-tractate-derekh-eretz-zuta\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 136.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered one tracked drift page from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-gras-nuschah-derekh-eretz-rabbah-small-1.txt`.
+- Work ID rendered through `scripts\render_site.ps1`: `gras-nuschah-on-tractate-derekh-eretz-rabbah`.
+- Pre-render note: the target page was already a modified generated file and older than `scripts\render_site.ps1`; the selected page was about 0.08 MiB after render.
+- Target validation passed; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,359 cached page audits reused, 1 page file scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,094 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 131 insertions / 769 deletions for `gra\gras-nuschah-on-tractate-derekh-eretz-rabbah\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 135.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered one tracked drift page from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-gras-nuschah-avot-drabbi-natan-small-1.txt`.
+- Work ID rendered through `scripts\render_site.ps1`: `gras-nuschah-on-avot-drabbi-natan`.
+- Pre-render note: the target page was already a modified generated file and older than `scripts\render_site.ps1`; the selected page was about 0.16 MiB after render.
+- Target validation passed; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,359 cached page audits reused, 1 page file scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,095 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 218 insertions / 856 deletions for `gra\gras-nuschah-on-avot-drabbi-natan\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 134.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered one tracked drift page from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-gra-pirkei-avot-small-1.txt`.
+- Work ID rendered through `scripts\render_site.ps1`: `gra-on-pirkei-avot`.
+- Pre-render note: the target page was already a modified generated file and older than `scripts\render_site.ps1`; the selected page was about 0.07 MiB after render.
+- Target validation passed; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,359 cached page audits reused, 1 page file scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,096 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 135 insertions / 773 deletions for `gra\gra-on-pirkei-avot\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 133.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered one tracked drift page from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, `other\derush-al-hatorah\index.html`, and `other\gevurot-hashem\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-gevurat-anashim-small-1.txt`.
+- Work ID rendered through `scripts\render_site.ps1`: `gevurat-anashim`.
+- Pre-render note: the target page was already a modified generated file and older than `scripts\render_site.ps1`; the selected page was about 0.51 MiB after render.
+- Target validation passed; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,359 cached page audits reused, 1 page file scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,097 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 311 insertions / 983 deletions for `halakhah\gevurat-anashim\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 132.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-geder-olam-genesis-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `geder-olam` and `genesis`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.17 MiB and 1.89 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,098 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 197 insertions / 869 deletions for `halakhah\geder-olam\index.html` and 1,649 insertions / 2,287 deletions for `tanakh\genesis\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 131.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-ezer-mikodesh-ezra-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `ezer-mikodesh-on-shulchan-arukh-even-haezer` and `ezra`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.90 MiB and 0.38 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,100 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 238 insertions / 910 deletions for `halakhah\ezer-mikodesh-on-shulchan-arukh-even-haezer\index.html` and 394 insertions / 1,032 deletions for `tanakh\ezra\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 130.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-tanakh-exodus-ezekiel-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `exodus` and `ezekiel`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 1.51 MiB and 1.64 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,102 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 1,326 insertions / 1,964 deletions for `tanakh\exodus\index.html` and 1,387 insertions / 2,025 deletions for `tanakh\ezekiel\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 129.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-forbidden-virgin-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-things-forbidden-on-the-altar` and `even-haazel-on-mishneh-torah-virgin-maiden`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 1.11 MiB and 0.07 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,104 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 161 insertions / 799 deletions for `halakhah\even-haazel-on-mishneh-torah-things-forbidden-on-the-altar\index.html` and 120 insertions / 758 deletions for `halakhah\even-haazel-on-mishneh-torah-virgin-maiden\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 128.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-temple-sanhedrin-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-the-chosen-temple` and `even-haazel-on-mishneh-torah-the-sanhedrin-and-the-penalties-within-their-jurisdiction`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.46 MiB and 0.03 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,106 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 145 insertions / 783 deletions for `halakhah\even-haazel-on-mishneh-torah-the-chosen-temple\index.html` and 125 insertions / 757 deletions for `halakhah\even-haazel-on-mishneh-torah-the-sanhedrin-and-the-penalties-within-their-jurisdiction\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 127.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-slaves-testimony-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-slaves` and `even-haazel-on-mishneh-torah-testimony`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.48 MiB and 0.24 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,108 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 148 insertions / 786 deletions for `halakhah\even-haazel-on-mishneh-torah-slaves\index.html` and 237 insertions / 799 deletions for `halakhah\even-haazel-on-mishneh-torah-testimony\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 126.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-sales-esther-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-sales` and `even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 1.71 MiB and 0.04 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,110 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 1,189 insertions / 1,156 deletions for `halakhah\even-haazel-on-mishneh-torah-sales\index.html` and 121 insertions / 759 deletions for `halakhah\even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 125.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-robbery-sacrifices-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-robbery-and-lost-property` and `even-haazel-on-mishneh-torah-sacrifices-rendered-unfit`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 1.05 MiB and 1.32 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,112 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 853 insertions / 1,030 deletions for `halakhah\even-haazel-on-mishneh-torah-robbery-and-lost-property\index.html` and 917 insertions / 1,054 deletions for `halakhah\even-haazel-on-mishneh-torah-sacrifices-rendered-unfit\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 124.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-shema-slaughter-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-reading-the-shema` and `even-haazel-on-mishneh-torah-ritual-slaughter`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.22 MiB and 0.38 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,114 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 127 insertions / 765 deletions for `halakhah\even-haazel-on-mishneh-torah-reading-the-shema\index.html` and 405 insertions / 862 deletions for `halakhah\even-haazel-on-mishneh-torah-ritual-slaughter\index.html`.
+- Operational note: the first post-render `node scripts\audit_route_hud_rollout_watch.mjs` run timed out at 120 seconds; a rerun with a 300-second timeout passed.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 123.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-ownerless-plaintiff-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-ownerless-property-and-gifts` and `even-haazel-on-mishneh-torah-plaintiff-and-defendant`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.62 MiB and 0.74 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,116 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 573 insertions / 925 deletions for `halakhah\even-haazel-on-mishneh-torah-ownerless-property-and-gifts\index.html` and 421 insertions / 868 deletions for `halakhah\even-haazel-on-mishneh-torah-plaintiff-and-defendant\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 122.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-marriage-mourning-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-marriage` and `even-haazel-on-mishneh-torah-mourning`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 1.63 MiB and 0.27 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,118 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 773 insertions / 1,000 deletions for `halakhah\even-haazel-on-mishneh-torah-marriage\index.html` and 205 insertions / 787 deletions for `halakhah\even-haazel-on-mishneh-torah-mourning\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 121.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-leavened-levirate-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-leavened-and-unleavened-bread` and `even-haazel-on-mishneh-torah-levirate-marriage-and-release`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.25 MiB and 0.53 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,120 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 253 insertions / 805 deletions for `halakhah\even-haazel-on-mishneh-torah-leavened-and-unleavened-bread\index.html` and 373 insertions / 850 deletions for `halakhah\even-haazel-on-mishneh-torah-levirate-marriage-and-release\index.html`.
+- Git warned `halakhah\even-haazel-on-mishneh-torah-levirate-marriage-and-release\index.html` will be normalized from LF to CRLF the next time Git touches it; no manual line-ending rewrite was performed.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 120.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-divorce-kings-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-divorce` and `even-haazel-on-mishneh-torah-kings-and-wars`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.69 MiB and 0.13 MiB after render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,122 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 485 insertions / 892 deletions for `halakhah\even-haazel-on-mishneh-torah-divorce\index.html` and 133 insertions / 771 deletions for `halakhah\even-haazel-on-mishneh-torah-kings-and-wars\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 119.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-daily-damages-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-daily-offerings-and-additional-offerings` and `even-haazel-on-mishneh-torah-damages-to-property`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.39 MiB and 2.38 MiB before render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,124 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 365 insertions / 847 deletions for `halakhah\even-haazel-on-mishneh-torah-daily-offerings-and-additional-offerings\index.html` and 1,101 insertions / 1,123 deletions for `halakhah\even-haazel-on-mishneh-torah-damages-to-property\index.html`.
+- Git warned `halakhah\even-haazel-on-mishneh-torah-damages-to-property\index.html` will be normalized from LF to CRLF the next time Git touches it; no manual line-ending rewrite was performed.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 118.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two small tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-even-haazel-borrowing-creditor-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `even-haazel-on-mishneh-torah-borrowing-and-deposit` and `even-haazel-on-mishneh-torah-creditor-and-debtor`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.49 MiB and 1.49 MiB before render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,126 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 141 insertions / 779 deletions for `halakhah\even-haazel-on-mishneh-torah-borrowing-and-deposit\index.html` and 837 insertions / 1,024 deletions for `halakhah\even-haazel-on-mishneh-torah-creditor-and-debtor\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 117.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two small tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-etz-yosef-vayikra-even-haazel-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `etz-yosef-on-vayikra-rabbah` and `even-haazel-on-mishneh-torah-admission-into-the-sanctuary`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 1.03 MiB and 1.04 MiB before render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,128 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 796 insertions / 1,434 deletions for `midrash\etz-yosef-on-vayikra-rabbah\index.html` and 171 insertions / 809 deletions for `halakhah\even-haazel-on-mishneh-torah-admission-into-the-sanctuary\index.html`.
+- Git warned `halakhah\even-haazel-on-mishneh-torah-admission-into-the-sanctuary\index.html` will be normalized from LF to CRLF the next time Git touches it; no manual line-ending rewrite was performed.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 116.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-etz-yosef-shemot-shir-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `etz-yosef-on-shemot-rabbah` and `etz-yosef-on-shir-hashirim-rabbah`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 1.07 MiB and 6.03 MiB before render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,130 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 835 insertions / 1,473 deletions for `midrash\etz-yosef-on-shemot-rabbah\index.html` and 2,732 insertions / 3,370 deletions for `midrash\etz-yosef-on-shir-hashirim-rabbah\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 115.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-etz-yosef-kohelet-ruth-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `etz-yosef-on-kohelet-rabbah` and `etz-yosef-on-ruth-rabbah`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 4.33 MiB and 0.18 MiB before render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,132 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 2,269 insertions / 2,907 deletions for `midrash\etz-yosef-on-kohelet-rabbah\index.html` and 211 insertions / 849 deletions for `midrash\etz-yosef-on-ruth-rabbah\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 114.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two small tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-etz-yosef-eichah-esther-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `etz-yosef-on-eichah-rabbah` and `etz-yosef-on-esther-rabbah`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.93 MiB and 0.31 MiB before render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,134 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 716 insertions / 1,354 deletions for `midrash\etz-yosef-on-eichah-rabbah\index.html` and 302 insertions / 940 deletions for `midrash\etz-yosef-on-esther-rabbah\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 113.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two small tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-etz-yosef-bereishit-devarim-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `etz-yosef-on-bereishit-rabbah` and `etz-yosef-on-devarim-rabbah`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 1.19 MiB and 0.17 MiB before render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,136 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 894 insertions / 1,532 deletions for `midrash\etz-yosef-on-bereishit-rabbah\index.html` and 215 insertions / 853 deletions for `midrash\etz-yosef-on-devarim-rabbah\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 112.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two very small tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-et-haochel-etz-yosef-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `et-haochel` and `etz-yosef-on-bamidbar-rabbah`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.09 MiB and 0.47 MiB before render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,138 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 125 insertions / 797 deletions for `chasidut\et-haochel\index.html` and 426 insertions / 1,064 deletions for `midrash\etz-yosef-on-bamidbar-rabbah\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 111.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two very small tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-essay-esther-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `essay-on-fundamentals` and `esther`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 0.14 MiB and 0.24 MiB before render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,140 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 183 insertions / 821 deletions for `jewish-thought\essay-on-fundamentals\index.html` and 284 insertions / 922 deletions for `tanakh\esther\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 110.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages from the current sample while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked; leaving `halakhah\beit-yosef\index.html`, large Gra pages, `halakhah\biur-halacha\index.html`, `halakhah\drisha\index.html`, `midrash\ein-yaakov\index.html`, and other large pages isolated for later chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-eshel-beur-hareem-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `eshel-avraham-on-shulchan-arukh-orach-chayim` and `beur-hareem-on-midrash-lekach-tov`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the selected pages were about 2.07 MiB and 4.95 MiB before render.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,142 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup and route answer safety after this chunk.
+- `git diff --numstat` reported 3,887 insertions / 2,174 deletions for `halakhah\eshel-avraham-on-shulchan-arukh-orach-chayim\index.html` and 3,062 insertions / 3,700 deletions for `midrash\beur-hareem-on-midrash-lekach-tov\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 109.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages while leaving `halakhah\drisha\index.html` deferred as huge at about 14.6 MB, leaving `midrash\ein-yaakov\index.html` deferred as huge at about 9.9 MB, leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-eikhah-ben-ish-hai-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `eikhah-rabbah` and `ben-ish-hai`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,144 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 107, Chunk 106, Chunk 105, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 1,599 insertions / 2,237 deletions for `halakhah\ben-ish-hai\index.html` and 211 insertions / 849 deletions for `midrash\eikhah-rabbah\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 108.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two small tracked drift pages while leaving `halakhah\drisha\index.html` deferred as huge at about 14.6 MB, leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-efodi-eight-chapters-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `efodi-on-guide-for-the-perplexed` and `eight-chapters`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,146 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 106, Chunk 105, Chunk 104, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 290 insertions / 928 deletions for `jewish-thought\efodi-on-guide-for-the-perplexed\index.html` and 188 insertions / 826 deletions for `jewish-thought\eight-chapters\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 107.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two tracked drift pages while leaving `halakhah\drisha\index.html` deferred as huge at about 14.6 MB, leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-duties-ecclesiastes-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `duties-of-the-heart` and `ecclesiastes`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,148 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 105, Chunk 104, Chunk 103, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 643 insertions / 1,281 deletions for `jewish-thought\duties-of-the-heart\index.html` and 338 insertions / 976 deletions for `tanakh\ecclesiastes\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 106.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered three tracked drift pages while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-divrei-dover-drashot-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `divrei-yirmiyahu-on-mishneh-torah-torah-study`, `dover-tzedek`, and `drashot-maharal`.
+- Pre-render note: all three target pages were already modified generated files and older than `scripts\render_site.ps1`; `chasidut\dover-tzedek\index.html` was the largest target in this chunk at about 1.6 MB.
+- Target validation passed for all three pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,357 cached page audits reused, 3 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,150 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 104, Chunk 103, Chunk 102, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 167 insertions / 805 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-torah-study\index.html`, 467 insertions / 1,139 deletions for `chasidut\dover-tzedek\index.html`, and 266 insertions / 938 deletions for `other\drashot-maharal\index.html`.
+- Git warned `chasidut\dover-tzedek\index.html` will be normalized from LF to CRLF the next time Git touches it; no manual line-ending rewrite was performed.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 105.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered three Divrei Yirmiyahu Halakhah drift pages while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-divrei-yirmiyahu-small-6.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `divrei-yirmiyahu-on-mishneh-torah-sheqel-dues`, `divrei-yirmiyahu-on-mishneh-torah-shofar-sukkah-and-lulav`, and `divrei-yirmiyahu-on-mishneh-torah-tefillin-mezuzah-and-the-torah-scroll`.
+- Pre-render note: all three target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all three pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,357 cached page audits reused, 3 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,153 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 103, Chunk 102, Chunk 101, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 146 insertions / 784 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-sheqel-dues\index.html`, 177 insertions / 815 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-shofar-sukkah-and-lulav\index.html`, and 192 insertions / 830 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-tefillin-mezuzah-and-the-torah-scroll\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 104.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered three Divrei Yirmiyahu Halakhah drift pages while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-divrei-yirmiyahu-small-5.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `divrei-yirmiyahu-on-mishneh-torah-sabbath`, `divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month`, and `divrei-yirmiyahu-on-mishneh-torah-scroll-of-esther-and-hanukkah`.
+- Pre-render note: all three target pages were already modified generated files and older than `scripts\render_site.ps1`; the Sabbath page was the largest target in this chunk at about 2.0 MB.
+- Target validation passed for all three pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,357 cached page audits reused, 3 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,156 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 102, Chunk 101, Chunk 100, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 2,669 insertions / 1,711 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-sabbath\index.html`, 205 insertions / 787 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month\index.html`, and 144 insertions / 782 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-scroll-of-esther-and-hanukkah\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 103.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered three small Divrei Yirmiyahu Halakhah drift pages while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-divrei-yirmiyahu-small-4.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `divrei-yirmiyahu-on-mishneh-torah-repentance`, `divrei-yirmiyahu-on-mishneh-torah-rest-on-a-holiday`, and `divrei-yirmiyahu-on-mishneh-torah-rest-on-the-tenth-of-tishrei`.
+- Pre-render note: all three target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all three pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,357 cached page audits reused, 3 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,159 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 101, Chunk 100, Chunk 99, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 156 insertions / 794 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-repentance\index.html`, 917 insertions / 1,054 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-rest-on-a-holiday\index.html`, and 135 insertions / 773 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-rest-on-the-tenth-of-tishrei\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 102.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered three small Divrei Yirmiyahu Halakhah drift pages while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-divrei-yirmiyahu-small-3.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `divrei-yirmiyahu-on-mishneh-torah-leavened-and-unleavened-bread`, `divrei-yirmiyahu-on-mishneh-torah-prayer-and-the-priestly-blessing`, and `divrei-yirmiyahu-on-mishneh-torah-reading-the-shema`.
+- Pre-render note: all three target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all three pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,357 cached page audits reused, 3 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,162 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 100, Chunk 99, Chunk 98, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 429 insertions / 871 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-leavened-and-unleavened-bread\index.html`, 1,285 insertions / 1,192 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-prayer-and-the-priestly-blessing\index.html`, and 160 insertions / 798 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-reading-the-shema\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 101.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered three small Divrei Yirmiyahu Halakhah drift pages while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-divrei-yirmiyahu-small-2.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `divrei-yirmiyahu-on-mishneh-torah-foundations-of-the-torah`, `divrei-yirmiyahu-on-mishneh-torah-fringes`, and `divrei-yirmiyahu-on-mishneh-torah-human-dispositions`.
+- Pre-render note: all three target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all three pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,357 cached page audits reused, 3 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,165 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 99, Chunk 98, Chunk 97, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 190 insertions / 828 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-foundations-of-the-torah\index.html`, 153 insertions / 791 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-fringes\index.html`, and 151 insertions / 789 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-human-dispositions\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 100.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered three small Divrei Yirmiyahu Halakhah drift pages while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-divrei-yirmiyahu-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `divrei-yirmiyahu-on-mishneh-torah-circumcision`, `divrei-yirmiyahu-on-mishneh-torah-fasts`, and `divrei-yirmiyahu-on-mishneh-torah-foreign-worship-and-customs-of-the-nations`.
+- Runtime note: the shell wrapper timed out after 300 seconds, but the underlying `render_site.ps1` process had already exited by the next process check; no duplicate render was started.
+- Pre-render note: all three target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all three pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,357 cached page audits reused, 3 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,168 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 98, Chunk 97, Chunk 96, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 142 insertions / 780 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-circumcision\index.html`, 129 insertions / 767 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-fasts\index.html`, and 301 insertions / 939 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-foreign-worship-and-customs-of-the-nations\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 99.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered three small Chasidut / Halakhah drift pages while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-divrei-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `divrei-soferim`, `divrei-yirmiyahu-on-mishneh-torah-blessings`, and `divrei-shaul-edut-beyosef-on-mishneh-torah-testimony`.
+- Pre-render note: all three target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all three pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,357 cached page audits reused, 3 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,171 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 97, Chunk 96, Chunk 95, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 171 insertions / 843 deletions for `chasidut\divrei-soferim\index.html`, 226 insertions / 864 deletions for `halakhah\divrei-yirmiyahu-on-mishneh-torah-blessings\index.html`, and 1,101 insertions / 1,123 deletions for `halakhah\divrei-shaul-edut-beyosef-on-mishneh-torah-testimony\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 98.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered three small Second Temple / Chasidut drift pages while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-ben-sira-divrei-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `ben-sira`, `divrei-chalomot`, and `divrei-emet`.
+- Pre-render note: all three target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all three pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,357 cached page audits reused, 3 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,174 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 96, Chunk 95, Chunk 94, recent Benei Binyamin pages, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 1,132 insertions / 1,770 deletions for `second-temple\ben-sira\index.html`, 141 insertions / 813 deletions for `chasidut\divrei-chalomot\index.html`, and 810 insertions / 1,448 deletions for `chasidut\divrei-emet\index.html`; Git warned `chasidut\divrei-chalomot\index.html` will be normalized from LF to CRLF the next time Git touches it.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 97.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two small Derush / Halakhah drift pages while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-derush-dina-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `derush-chiddushei-halevanah` and `dina-degarmei`.
+- Runtime note: the shell wrapper timed out after 120 seconds, but the underlying `render_site.ps1` process kept running; I waited for that exact process to exit and did not start a duplicate render.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,177 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 95, Chunk 94, Chunk 93, Chunk 92, Chunk 91, Chunk 90, Chunk 89, recent Benei Binyamin pages, Genesis, Deuteronomy, `urim-vetumim-urim`, and Targum Genesis.
+- `git diff --numstat` reported 369 insertions / 1,041 deletions for `other\derush-chiddushei-halevanah\index.html` and 156 insertions / 794 deletions for `halakhah\dina-degarmei\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 96.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered two small Ramchal / Derekh Hashem drift pages while leaving `other\beer-hagolah\index.html`, `other\derashat-shabbat-hagadol\index.html`, and `other\derush-al-hatorah\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-ramchal-derekh-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `derech-etz-chayim-ramchal` and `derekh-hashem`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,179 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 94, Chunk 93, Chunk 92, Chunk 91, Chunk 90, Chunk 89, and recent Benei Binyamin pages.
+- `git diff --numstat` reported 192 insertions / 830 deletions for `kabbalah\derech-etz-chayim-ramchal\index.html` and 386 insertions / 1,024 deletions for `jewish-thought\derekh-hashem\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 95.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered three small Daniel/Chasidut drift pages while leaving `other\beer-hagolah\index.html` and `other\derashat-shabbat-hagadol\index.html` untouched because they are untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-daniel-chasidut-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `daniel`, `darkhei-yesharim`, and `degel-machaneh-ephraim`.
+- Pre-render note: all three target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all three pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,357 cached page audits reused, 3 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,181 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 93, Chunk 92, Chunk 91, Chunk 90, Chunk 89, and recent Benei Binyamin pages.
+- `git diff --numstat` reported 472 insertions / 1,110 deletions for `tanakh\daniel\index.html`, 257 insertions / 895 deletions for `chasidut\darkhei-yesharim\index.html`, and 1,300 insertions / 1,938 deletions for `chasidut\degel-machaneh-ephraim\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 94.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered five small Mahari Kurkus/Radbaz, Crescas, and Dagul Merevava drift pages while leaving `other\beer-hagolah\index.html` untouched because it is untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-mahari-crescas-dagul-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary`, `commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-the-chosen-temple`, `commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein`, `crescas-on-guide-for-the-perplexed`, and `dagul-merevava-on-shulchan-arukh-orach-chayim`.
+- Pre-render note: all five target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all five pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,355 cached page audits reused, 5 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,184 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 92, Chunk 91, Chunk 90, Chunk 89, and recent Benei Binyamin pages.
+- `git diff --numstat` reported 244 insertions / 882 deletions for `halakhah\commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary\index.html`, 224 insertions / 862 deletions for `halakhah\commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-the-chosen-temple\index.html`, 1,509 insertions / 1,276 deletions for `halakhah\commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein\index.html`, 209 insertions / 847 deletions for `jewish-thought\crescas-on-guide-for-the-perplexed\index.html`, and 2,117 insertions / 1,504 deletions for `halakhah\dagul-merevava-on-shulchan-arukh-orach-chayim\index.html`; Git warned the three Mahari Kurkus/Radbaz generated files will be normalized from LF to CRLF the next time Git touches them.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 93.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered four small Kabbalah/Halakhah drift pages while leaving `other\beer-hagolah\index.html` untouched because it is untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-kabbalah-halakhah-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `chesed-leavraham`, `chidushim-of-machaneh-ephraim-on-mishneh-torah-mourning`, `chokhmat-shlomo-on-shulchan-arukh-even-haezer`, and `chokhmat-shlomo-on-shulchan-arukh-orach-chayim`.
+- Pre-render note: all four target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all four pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,356 cached page audits reused, 4 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,189 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 91, Chunk 90, Chunk 89, recent Benei Binyamin pages, and Be'er HaGolah / Ba'er Hetev chunks.
+- `git diff --numstat` reported 1,485 insertions / 2,123 deletions for `kabbalah\chesed-leavraham\index.html`, 125 insertions / 757 deletions for `halakhah\chidushim-of-machaneh-ephraim-on-mishneh-torah-mourning\index.html`, 3,441 insertions / 2,003 deletions for `halakhah\chokhmat-shlomo-on-shulchan-arukh-even-haezer\index.html`, and 4,605 insertions / 2,437 deletions for `halakhah\chokhmat-shlomo-on-shulchan-arukh-orach-chayim\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 92.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered four smaller Halakhah drift pages while leaving `other\beer-hagolah\index.html` untouched because it is untracked, continuing to defer `halakhah\beit-yosef\index.html` as huge, and leaving larger Gra, Midrash, Chasidut, and Halakhah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-halakhah-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `binat-adam`, `brit-olam-on-sefer-chasidim`, `chafetz-chaim`, and `chatam-sofer-on-shulchan-arukh-orach-chayim`.
+- Pre-render note: all four target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all four pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,356 cached page audits reused, 4 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,193 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 90, Chunk 89, recent Benei Binyamin pages, and Be'er HaGolah / Ba'er Hetev chunks.
+- `git diff --numstat` reported 1,018 insertions / 1,656 deletions for `halakhah\binat-adam\index.html`, 505 insertions / 1,177 deletions for `halakhah\brit-olam-on-sefer-chasidim\index.html`, 614 insertions / 1,252 deletions for `halakhah\chafetz-chaim\index.html`, and 5,583 insertions / 2,835 deletions for `halakhah\chatam-sofer-on-shulchan-arukh-orach-chayim\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 91.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered three small Second Temple book drift pages while leaving `other\beer-hagolah\index.html` untouched because it is untracked, continuing to defer `halakhah\beit-yosef\index.html`, `halakhah\ben-ish-hai\index.html`, `second-temple\ben-sira\index.html`, the larger Gra Orach Chayim / Yoreh Deah pages, and larger Midrash/Halakhah pages by size/scope.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-second-temple-books-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `book-of-jubilees`, `book-of-judith`, and `book-of-tobit`.
+- Pre-render note: all three target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all three pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,357 cached page audits reused, 3 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,197 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 89, Chunks 86-88, recent Benei Binyamin pages, and Be'er HaGolah / Ba'er Hetev chunks.
+- `git diff --numstat` reported 1,872 insertions / 2,510 deletions for `second-temple\book-of-jubilees\index.html`, 497 insertions / 1,135 deletions for `second-temple\book-of-judith\index.html`, and 190 insertions / 828 deletions for `second-temple\book-of-tobit\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 90.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered six small Kabbalah/Gra drift pages while leaving `other\beer-hagolah\index.html` untouched because it is untracked, continuing to defer `halakhah\beit-yosef\index.html`, `halakhah\ben-ish-hai\index.html`, and `second-temple\ben-sira\index.html` by size/scope, and leaving the larger Gra Orach Chayim / Yoreh Deah pages for separate chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-beur-gra-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `beur-eser-sefirot`, `beur-hagra-on-jerusalem-talmud-bikkurim`, `beur-hagra-on-jerusalem-talmud-challah`, `beur-hagra-on-shulchan-arukh-choshen-mishpat`, `beur-hagra-on-shulchan-arukh-even-haezer`, and `beur-hagra-on-sifra-detzniuta`.
+- Pre-render note: all six target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all six pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,354 cached page audits reused, 6 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,200 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunks 86-88, recent Benei Binyamin pages, and Be'er HaGolah / Ba'er Hetev chunks.
+- `git diff --numstat` reported 160 insertions / 798 deletions for `kabbalah\beur-eser-sefirot\index.html`, 285 insertions / 923 deletions for `gra\beur-hagra-on-jerusalem-talmud-bikkurim\index.html`, 772 insertions / 1,410 deletions for `gra\beur-hagra-on-jerusalem-talmud-challah\index.html`, 206 insertions / 813 deletions for `gra\beur-hagra-on-shulchan-arukh-choshen-mishpat\index.html`, 506 insertions / 1,073 deletions for `gra\beur-hagra-on-shulchan-arukh-even-haezer\index.html`, and 412 insertions / 1,050 deletions for `gra\beur-hagra-on-sifra-detzniuta\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 89.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered the final four Benei Binyamin Mishneh Torah pages from the current watch sample while leaving `other\beer-hagolah\index.html` untouched because it is untracked and continuing to defer `halakhah\beit-yosef\index.html`, `halakhah\ben-ish-hai\index.html`, and `second-temple\ben-sira\index.html` by size/scope.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-benei-binyamin-small-3.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `benei-binyamin-on-mishneh-torah-sanctification-of-the-new-month`, `benei-binyamin-on-mishneh-torah-scroll-of-esther-and-hanukkah`, `benei-binyamin-on-mishneh-torah-sheqel-dues`, and `benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav`.
+- Pre-render note: all four target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all four pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,356 cached page audits reused, 4 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,206 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 87, Chunk 86, Chunk 85, Chunk 84, and recent Be'er HaGolah / Ba'er Hetev chunks.
+- `git diff --numstat` reported 317 insertions / 829 deletions for `halakhah\benei-binyamin-on-mishneh-torah-sanctification-of-the-new-month\index.html`, 129 insertions / 767 deletions for `halakhah\benei-binyamin-on-mishneh-torah-scroll-of-esther-and-hanukkah\index.html`, 126 insertions / 764 deletions for `halakhah\benei-binyamin-on-mishneh-torah-sheqel-dues\index.html`, and 146 insertions / 784 deletions for `halakhah\benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav\index.html`; Git warned all four generated files will be normalized from LF to CRLF the next time Git touches them.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 88.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered four additional small Benei Binyamin Mishneh Torah drift pages while leaving `other\beer-hagolah\index.html` untouched because it is untracked, continuing to defer the huge `halakhah\beit-yosef\index.html`, leaving `halakhah\ben-ish-hai\index.html` plus `second-temple\ben-sira\index.html` for medium follow-up chunks, and leaving the remaining four Benei Binyamin pages for a separate small chunk.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-benei-binyamin-small-2.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing`, `benei-binyamin-on-mishneh-torah-reading-the-shema`, `benei-binyamin-on-mishneh-torah-repentance`, and `benei-binyamin-on-mishneh-torah-sabbath`.
+- Pre-render note: all four target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all four pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,356 cached page audits reused, 4 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,210 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 86, Chunk 85, Chunk 84, and recent Be'er HaGolah / Ba'er Hetev chunks.
+- `git diff --numstat` reported 477 insertions / 889 deletions for `halakhah\benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing\index.html`, 124 insertions / 762 deletions for `halakhah\benei-binyamin-on-mishneh-torah-reading-the-shema\index.html`, 162 insertions / 800 deletions for `halakhah\benei-binyamin-on-mishneh-torah-repentance\index.html`, and 461 insertions / 883 deletions for `halakhah\benei-binyamin-on-mishneh-torah-sabbath\index.html`; Git warned all four generated files will be normalized from LF to CRLF the next time Git touches them.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 87.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered four small Benei Binyamin Mishneh Torah drift pages while leaving `other\beer-hagolah\index.html` untouched because it is untracked, continuing to defer the huge `halakhah\beit-yosef\index.html`, and leaving `halakhah\ben-ish-hai\index.html` plus `second-temple\ben-sira\index.html` for medium follow-up chunks.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-benei-binyamin-small-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `benei-binyamin-on-mishneh-torah-blessings`, `benei-binyamin-on-mishneh-torah-circumcision`, `benei-binyamin-on-mishneh-torah-fasts`, and `benei-binyamin-on-mishneh-torah-fringes`.
+- Pre-render note: all four target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all four pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,356 cached page audits reused, 4 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,214 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk, Chunk 85, Chunk 84, and recent Be'er HaGolah / Ba'er Hetev chunks.
+- `git diff --numstat` reported 157 insertions / 795 deletions for `halakhah\benei-binyamin-on-mishneh-torah-blessings\index.html`, 135 insertions / 773 deletions for `halakhah\benei-binyamin-on-mishneh-torah-circumcision\index.html`, 133 insertions / 771 deletions for `halakhah\benei-binyamin-on-mishneh-torah-fasts\index.html`, and 125 insertions / 763 deletions for `halakhah\benei-binyamin-on-mishneh-torah-fringes\index.html`; Git warned all four generated files will be normalized from LF to CRLF the next time Git touches them.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 86.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered four tiny Ben Aryeh drift pages while leaving `other\beer-hagolah\index.html` untouched because it is untracked and continuing to defer the much larger `halakhah\beit-yosef\index.html`.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-ben-aryeh-small.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `ben-aryeh-on-mishneh-torah-festival-offering`, `ben-aryeh-on-mishneh-torah-mourning`, `ben-aryeh-on-mishneh-torah-paschal-offering`, and `ben-aryeh-on-mishneh-torah-repentance`.
+- Pre-render note: all four target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all four pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,356 cached page audits reused, 4 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,218 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 26 representative route-HUD pages including this chunk, Chunk 84, and recent Be'er HaGolah / Ba'er Hetev chunks.
+- `git diff --numstat` reported 119 insertions / 757 deletions for `halakhah\ben-aryeh-on-mishneh-torah-festival-offering\index.html`, 173 insertions / 775 deletions for `halakhah\ben-aryeh-on-mishneh-torah-mourning\index.html`, 124 insertions / 762 deletions for `halakhah\ben-aryeh-on-mishneh-torah-paschal-offering\index.html`, and 119 insertions / 757 deletions for `halakhah\ben-aryeh-on-mishneh-torah-repentance\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 85.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered a four-page tracked Beit drift sample while leaving `other\beer-hagolah\index.html` untouched because it is untracked and deferring the much larger `halakhah\beit-yosef\index.html`.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-03-render-authority-beit-sample.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `beit-aharon`, `beit-elohim`, `beit-meir-on-shulchan-arukh-even-haezer`, and `beit-shmuel`.
+- Pre-render note: all four target pages were already modified generated files and older than `scripts\render_site.ps1`.
+- Target validation passed for all four pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,356 cached page audits reused, 4 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,222 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 22 representative route-HUD pages including this chunk and recent Be'er HaGolah / Ba'er Hetev chunks.
+- `git diff --numstat` reported 2,771 insertions / 3,409 deletions for `chasidut\beit-aharon\index.html`, 1,975 insertions / 2,613 deletions for `jewish-thought\beit-elohim\index.html`, 1,440 insertions / 2,112 deletions for `halakhah\beit-meir-on-shulchan-arukh-even-haezer\index.html`, and 3,441 insertions / 4,113 deletions for `halakhah\beit-shmuel\index.html`; Git warned `halakhah\beit-shmuel\index.html` will be normalized from LF to CRLF the next time Git touches it.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 84.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered the remaining two tracked Be'er HaGolah drift pages while leaving the untracked `other\beer-hagolah\index.html` untouched.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-02-render-authority-beer-hagolah-orach-yoreh.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `beer-hagolah-on-shulchan-arukh-orach-chayim` and `beer-hagolah-on-shulchan-arukh-yoreh-deah`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; `other\beer-hagolah\index.html` remains a separate scoped decision because it is untracked.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,226 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 18 representative route-HUD pages including this chunk, both prior Be'er HaGolah pages, recent Ba'er Hetev chunks, `bedikat-hasakin`, `arukh-hashulchan`, Genesis, Deuteronomy, `urim-vetumim-urim`, Targum Psalms, Kuzari, Baal Shem Tov, Siddur Sefard, and Tosefta Brief Commentary on Yoma.
+- `git diff --numstat` reported 37,141 insertions / 16,923 deletions for `halakhah\beer-hagolah-on-shulchan-arukh-orach-chayim\index.html` and 33,440 insertions / 15,577 deletions for `halakhah\beer-hagolah-on-shulchan-arukh-yoreh-deah\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 83.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered the first Be'er HaGolah bounded drift chunk.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-02-render-authority-beer-hagolah-choshen-even.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `beer-hagolah-on-shulchan-arukh-choshen-mishpat` and `beer-hagolah-on-shulchan-arukh-even-haezer`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; untracked `other\beer-hagolah\index.html` was deliberately left untouched for a later scoped decision.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,228 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 16 representative route-HUD pages including both chunk pages and recent Ba'er Hetev chunks.
+- `git diff --numstat` reported 35,843 insertions / 18,025 deletions for `halakhah\beer-hagolah-on-shulchan-arukh-choshen-mishpat\index.html` and 17,352 insertions / 8,849 deletions for `halakhah\beer-hagolah-on-shulchan-arukh-even-haezer\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 82.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered the remaining two Ba'er Hetev drift pages, completing the current Ba'er Hetev set under `scripts\render_site.ps1`.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-02-render-authority-baer-hetev-orach-yoreh.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `baer-hetev-on-shulchan-arukh-orach-chayim` and `baer-hetev-on-shulchan-arukh-yoreh-deah`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; the next drift sample now starts with Be'er HaGolah pages and should be handled as separate bounded chunks.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,230 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 14 representative route-HUD pages including both chunk pages and all prior Ba'er Hetev pages.
+- `git diff --numstat` reported 31,880 insertions / 13,747 deletions for `halakhah\baer-hetev-on-shulchan-arukh-orach-chayim\index.html` and 26,717 insertions / 11,724 deletions for `halakhah\baer-hetev-on-shulchan-arukh-yoreh-deah\index.html`; Git warned both generated files will be normalized from LF to CRLF the next time Git touches them.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 81.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered a two-work bounded drift chunk: one medium Ba'er Hetev page plus the tiny `bedikat-hasakin` page.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-02-render-authority-baer-hetev-even-haezer-bedikat.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `baer-hetev-on-shulchan-arukh-even-haezer` and `bedikat-hasakin`.
+- Pre-render note: both target pages were already modified generated files and older than `scripts\render_site.ps1`; larger Ba'er Hetev Orach Chayim / Yoreh Deah pages remain isolated for later.
+- Target validation passed for both pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,358 cached page audits reused, 2 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,232 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 12 representative route-HUD pages including both chunk pages and the prior Choshen Mishpat Ba'er Hetev page.
+- `git diff --numstat` reported 12,216 insertions / 5,813 deletions for `halakhah\baer-hetev-on-shulchan-arukh-even-haezer\index.html` and 150 insertions / 788 deletions for `halakhah\bedikat-hasakin\index.html`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 80.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered the first large Ba'er Hetev drift page as a one-work chunk rather than bundling the remaining large Ba'er Hetev / Be'er HaGolah pages.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-02-render-authority-baer-hetev-choshen-mishpat.txt`.
+- Work ID rendered through `scripts\render_site.ps1`: `baer-hetev-on-shulchan-arukh-choshen-mishpat`.
+- Pre-render note: `halakhah\baer-hetev-on-shulchan-arukh-choshen-mishpat\index.html` was already modified in the worktree and older than `scripts\render_site.ps1`; it was rendered as a generated artifact and as the only work in this chunk.
+- Target validation passed for `halakhah\baer-hetev-on-shulchan-arukh-choshen-mishpat\index.html`; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,359 cached page audits reused, 1 page file scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,234 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 10 representative route-HUD pages including this chunk.
+- `git diff --numstat` reported 30,800 insertions and 13,987 deletions in the generated page; Git warned LF will be replaced by CRLF the next time Git touches it.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 79.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Produced the bounded live Deuteronomy browser-click/fallback proof packet requested by Agent 6 / Agent 8.
+- Evidence path: `reports/agent4-live-deuteronomy-post-swap-browser-click-fallback-proof-2026-06-02.md`.
+- JSON/screenshot: `reports/agent4-live-deuteronomy-post-swap-browser-click-fallback-proof-2026-06-02.json` and `reports/agent4-live-deuteronomy-post-swap-browser-click-fallback-proof-2026-06-02.png`.
+- Scope: live `https://mashiachsonyosef.github.io/tanakh/deuteronomy/` only; no Genesis, `/hud-preview/`, broad runtime sweep, render, deploy, source custody, publication, or acceptance claims.
+- Live Chrome headless checks passed for cache-busted static page current/no-old markers, click-to-HUD opening, visible source/license rows after click, route shard load, hard-refresh current/no-old state, old-HUD query-string negative control, and poisoned localStorage/IndexedDB negative control.
+- Evidence details: clicked token `tok-21613e763fe6`, 56 route cards visible, 6 source footnote rows visible, route shard `data/public-hud/deuteronomy/route-lookup/shards/05d0-05dc-05d4.json` loaded with HTTP 200, and old-HUD markers absent after all tested interactions.
+- Warning preserved: runtime script URL is not visibly versioned/cache-busted in live page markup, so CDN/stale-bundle closure is not accepted.
+- Agent 6 verdict `reports/agent6-live-deuteronomy-runtime-source-of-truth-verdict-2026-06-02.md` WARN-ACCEPTED this lane for exact live Deuteronomy current-HUD runtime evidence only; no further Deuteronomy live-click work is needed unless new drift appears or Agent 6 requests clean CDN/versioning proof.
+- Boundary remains evidence only: no broad public/runtime acceptance, Genesis acceptance, `/hud-preview/` acceptance, source/provenance custody, publication readiness, route publication support, Definition authority, usage-as-definition authority, product/data acceptance, or accepted translation text.
+- Rendered a 5-work small-page sample before the large Ba'er Hetev / Be'er HaGolah drift set.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-02-render-authority-sample-6.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `avot-derabbi-natan`, `azharot-of-solomon-ibn-gabirol`, `baal-shem-tov`, `baalei-hanefesh`, and `bechinat-olam`.
+- Selection note: several very large Ba'er Hetev and Be'er HaGolah pages were left for later isolated or smaller batches.
+- Target validation passed for all 5 rendered pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,355 cached page audits reused, 5 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,235 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 14 representative route-HUD pages including this chunk.
+- `git diff --numstat` showed only the 5 rendered page files changed for this chunk; Git warned that `chasidut\baal-shem-tov\index.html` will be normalized from LF to CRLF the next time Git touches it.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 78.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, live browser-click proof, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered an 8-work mixed Chasidut/Halakhah/Midrash sample from the render-authority drift queue without broad rendering.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-02-render-authority-sample-5.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `arvei-nachal`, `ateret-zekenim-on-shulchan-arukh-orach-chayim`, `avodat-hamelekh-on-mishneh-torah-foreign-worship-and-customs-of-the-nations`, `avodat-hamelekh-on-mishneh-torah-human-dispositions`, `avodat-hamelekh-on-mishneh-torah-torah-study`, `avodat-hamelekh-on-mishneh-torah-transmission-of-the-oral-law`, `avodat-yisrael`, and `avot-derabbi-natan-recension-b`.
+- Selection note: `baal-shem-tov` was left out because it is a larger standard representative page and can be isolated in a later bounded pass.
+- Target validation passed for all 8 rendered pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,352 cached page audits reused, 8 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,240 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 16 representative route-HUD pages including this chunk and `arukh-hashulchan`.
+- `git diff --numstat` showed only the 8 rendered page files changed for this chunk; Git warned that `halakhah\avodat-hamelekh-on-mishneh-torah-torah-study\index.html` and `halakhah\avodat-hamelekh-on-mishneh-torah-transmission-of-the-oral-law\index.html` will be normalized from LF to CRLF the next time Git touches them.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 77.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, live browser-click proof, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered the large `arukh-hashulchan` page as a single-work chunk rather than bundling it with other drift pages.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-02-render-authority-arukh-hashulchan.txt`.
+- Pre-render note: `halakhah\arukh-hashulchan\index.html` was already modified before this cycle but remained older than `scripts\render_site.ps1`; because it is a generated page and the next render-authority drift target, it was rendered as the only work in this chunk.
+- Target validation passed for `halakhah\arukh-hashulchan\index.html`; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,359 cached page audits reused, 1 page file scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,248 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 14 representative route-HUD pages including `arukh-hashulchan`.
+- `git diff --numstat -- halakhah\arukh-hashulchan\index.html` reported 21,499 insertions and 22,137 deletions in the generated page.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 76.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, live browser-click proof, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered a 5-work large-page-aware sample from the render-authority drift queue without broad rendering.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-01-render-authority-sample-4.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `arukh-hashulchan-heatid`, `asarah-perakim-leramchal`, `avodat-hakodesh`, `avodat-hamelekh-on-mishneh-torah-foundations-of-the-torah`, and `avodat-hamelekh-on-mishneh-torah-repentance`.
+- Selection note: the current drift sample included `arukh-hashulchan\index.html` at roughly 55 MB, so this chunk intentionally stayed smaller and rendered `arukh-hashulchan-heatid` plus four medium/small pages instead of a broad or very-large batch.
+- Target validation passed for all 5 rendered pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,355 cached page audits reused, 5 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,249 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 35 representative route-HUD pages including this chunk and prior chunks.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 75.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, live browser-click proof, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered a 10-work halakhah/Targum sample from the render-authority drift queue without broad rendering.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-01-render-authority-sample-3.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `annotations-of-r-yeshaya-berlin-on-mishneh-torah-sabbath`, `annotations-of-r-zalman-of-vilna-on-mishneh-torah-repentance`, `aramaic-targum-to-ecclesiastes`, `aramaic-targum-to-esther`, `aramaic-targum-to-job`, `aramaic-targum-to-lamentations`, `aramaic-targum-to-proverbs`, `aramaic-targum-to-psalms`, `aramaic-targum-to-ruth`, and `aramaic-targum-to-song-of-songs`.
+- Target validation passed for all 10 rendered pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,350 cached page audits reused, 10 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,254 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 40 representative route-HUD pages including this chunk and prior chunks.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 74.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, live browser-click proof, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered a 10-work sample from the render-authority drift queue without broad rendering.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-01-render-authority-sample-2.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `ahavat-chesed`, `akeidat-yitzchak`, `alphabet-of-ben-sira`, `annotations-of-maharatz-chajes-on-mishneh-torah-foreign-worship-and-customs-of-the-nations`, `annotations-of-maharatz-chajes-on-mishneh-torah-mourning`, `annotations-of-maharatz-chajes-on-mishneh-torah-repentance`, `annotations-of-minchat-chinukh-on-mishneh-torah-daily-offerings-and-additional-offerings`, `annotations-of-minchat-chinukh-on-mishneh-torah-diverse-species`, `annotations-of-minchat-chinukh-on-mishneh-torah-fasts`, and `annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering`.
+- Target validation passed for all 10 rendered pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,350 cached page audits reused, 10 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,264 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 30 representative route-HUD pages including this chunk and prior chunks.
+- `git diff --numstat` showed only the 10 rendered page files changed for this chunk; Git warned that `halakhah\annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering\index.html` will be normalized from LF to CRLF the next time Git touches it.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 73.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, live browser-click proof, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Rendered a seven-work sample from the render-authority drift queue without broad rendering.
+- Chunk file: `.local-cache\hud-render-chunks\chunk-2026-06-01-render-authority-sample-1.txt`.
+- Work IDs rendered through `scripts\render_site.ps1`: `abarbanel-on-guide-for-the-perplexed`, `abudarham`, `aderet-eliyahu`, `against-apion`, `aggadat-bereshit`, `agra-dekala`, and `amos`.
+- Target validation passed for all seven rendered pages; target stale-marker grep found none of the old-HUD marker set.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,353 cached page audits reused, 7 page files scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,274 generated pages remain older than `scripts\render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 20 representative route-HUD pages including the seven rendered pages.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 72.
+- Boundary remains evidence only: no staging, commit, push, deploy, broad render, live browser-click proof, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Added render-authority drift detection to `scripts\audit_route_hud_rollout_watch.mjs`; the watcher now records generated pages older than `scripts/render_site.ps1` as a bounded warning instead of silently treating them as fully synchronized or forcing a broad render.
+- Pre-render watch passed with 1,360 generated/current HUD pages, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that `scripts/render_site.ps1` was newer than 1,282 generated pages.
+- Ran one bounded render for the highest-value stale-template target: `powershell -ExecutionPolicy Bypass -File scripts\render_site.ps1 -WorkIds deuteronomy -SkipOverlayExports -SkipLexicalPayloadFiles`.
+- Deuteronomy target validation passed: `node scripts\validate_route_hud_page.mjs --page tanakh\deuteronomy\index.html` passed and a stale-marker grep found none of the old-HUD marker set in `tanakh\deuteronomy\index.html`.
+- Post-render watch passed with 1,360 generated/current HUD pages, 1,359 cached page audits reused, 1 page scanned, 0 missing pages, 0 source-newer-than-page rows, 0 stale marker rows, and 1 warning that 1,281 generated pages remain older than `scripts/render_site.ps1`.
+- Route validators passed: public HUD route lookup, route answer safety, and 14 representative route-HUD pages.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 71.
+- Boundary remains evidence only: no staging, commit, push, broad render, live browser-click proof, public/runtime acceptance, source/provenance acceptance, publication readiness, or accepted translation text.
+- Remaining delivery blocker: the live Deuteronomy public-runtime blocker is not cleared by this local render. It still requires an explicitly authorized bounded deploy/swap and post-swap live evidence.
+- Refreshed the SPEC-003-shaped dynamic/fallback old-HUD exposure packet without rendering or changing public pages.
+- `node scripts\audit_old_hud_dynamic_fallback.mjs` rewrote `reports\agent4-old-hud-dynamic-fallback-exposure-report-2026-06-01.md` and `.json` with warning-level evidence: 1,360 / 1,360 generated pages present, 0 generated old-HUD marker hits, 0 generated imports of `scripts/upgrade_route_hud_pages.mjs`, 2,726 public navigation href targets resolved, 0 public navigation old-HUD marker hits, 0 dynamic runtime control failures, and 3 warnings.
+- Updated `scripts\audit_old_hud_dynamic_fallback.mjs` so future markdown packets expose route/index/generated inventory and source/license/citation visibility counts directly.
+- Direct shell validators passed: `node scripts\audit_route_hud_rollout_watch.mjs`, `node scripts\validate_public_hud_route_lookup.mjs --skip-release-stamp`, `node scripts\validate_route_answer_safety.mjs`, 13 representative route-HUD pages, and Genesis click-contract prevalidation.
+- Updated `reports\agent4-old-hud-dynamic-validator-evidence-2026-06-01.md` to record the direct validator passes and the sandbox `EPERM` limitation for embedded child validators.
+- Control hygiene passed: `node scripts\validate_agent6_validation_queue.mjs` passed with 0 warnings, `node scripts\validate_agent5_control_readiness.mjs` passed with 3 warnings, and `node scripts\build_agent5_agent6_handoff_index.mjs` rebuilt the handoff index.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 70.
+- Boundary remains evidence only: no self-acceptance, no live browser-click proof, no deployed/CDN stale-bundle proof, no public/runtime acceptance, no source/provenance acceptance, no publication readiness, and no accepted translation text.
+- Added `reports/agent4-live-deuteronomy-pre-swap-evidence-2026-06-01.md` after the refreshed Agent 5/6 handoff exposed a live Deuteronomy old-HUD public-runtime blocker.
+- Live Deuteronomy pre-swap check confirmed the blocker still exists: the live page returns HTTP 200 with `Clicked Hebrew form`, `sourceSummary =`, `No lexical entry yet.`, and `allowLowConfidenceFallback`; live `assets/js/reader-workbench.js` returns 404.
+- Local Deuteronomy remains current: `node scripts\validate_route_hud_page.mjs --page tanakh\deuteronomy\index.html` passed and local marker grep found `Route HUD`, `selectRouteAnswer`, `lookupCandidateTreatments`, `Usage evidence`, `Sources and licenses`, and `reader-workbench.js`.
+- Boundary: this is pre-swap evidence only; no deploy, no public/runtime clearance, no browser-click proof, no publication readiness, and no accepted translation text.
+- Ran a no-render HUD rollout watch cycle using the optimized watcher cache. The clean run reported 1,360 cached page audits reused, 0 page files scanned, 1,360 generated/current HUD pages, 0 missing pages, 0 source-newer-than-page rows, 0 missing marker rows, 0 stale marker rows, and 0 empty occurrence URL rows.
+- Added local unchanged-page caching to `scripts/audit_route_hud_rollout_watch.mjs`; cache entries are invalidated by generated-page mtime and size, while source freshness is recomputed from current source mtimes.
+- The cache file is `.local-cache\route-hud-rollout-watch-cache.json`, which is already under ignored local cache.
+- Updated `scripts\validate_agent5_control_readiness.mjs` so the remaining stale HUD contract warning names the exact positive legacy marker assumption.
+- No render was run because the source/page/HUD drift audit did not justify a render chunk.
+- Direct validators passed: public HUD route lookup, route answer safety, 13 representative route-HUD pages, route preview validation, HUD contract validation, `node --check scripts\audit_route_hud_rollout_watch.mjs`, and Agent 6 queue hygiene.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 69.
+- Boundary remains evidence only: no self-acceptance, no live browser-click proof, no public/runtime acceptance, no source/provenance acceptance, no publication readiness, and no accepted translation text.
+- Ran a no-render HUD rollout watch cycle after the Agent 6 old-HUD queue update. Agent 6 has returned the old-HUD kill-switch packet as warning/evidence-only; `agent6-reader-workbench-followup-targets` remains the only pending Agent 6 item in the handoff index.
+- The first `node scripts\audit_route_hud_rollout_watch.mjs` attempt printed a passed report but hit the tool timeout, so it was rerun with a longer timeout and exited cleanly.
+- The clean rerun passed with 1,360 source records, 1,360 generated pages, 1,360 current route-HUD pages, 1,360 pages with `Usage evidence`, 0 missing pages, 0 source-newer-than-page rows, 0 missing marker rows, 0 stale marker rows, and 0 empty occurrence URL rows.
+- No render was run because the source/page/HUD drift audit did not justify a render chunk.
+- Direct validators passed: public HUD route lookup, route answer safety, 13 representative route-HUD pages, route preview validation, HUD contract validation, and `node --check scripts\validate_agent5_control_readiness.mjs`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 68.
+- Boundary remains evidence only: no self-acceptance, no live browser-click proof, no public/runtime acceptance, no source/provenance acceptance, no publication readiness, and no accepted translation text.
+- Ran a no-render HUD rollout watch cycle: `node scripts\audit_route_hud_rollout_watch.mjs` passed with 1,360 source records, 1,360 generated pages, 1,360 current route-HUD pages, 1,360 pages with `Usage evidence`, 0 missing pages, 0 source-newer-than-page rows, 0 missing marker rows, 0 stale marker rows, and 0 empty occurrence URL rows.
+- No render was run because the source/page/HUD drift audit did not justify a render chunk.
+- Direct validators passed: public HUD route lookup, route answer safety, and 13 representative route-HUD pages across Tanakh, halakhah, other, Jewish thought, midrash, targum, mishnah, chasidut, gra, liturgy, and Tosefta.
+- Fixed `hud-preview/routes/index.html` to load `app.js` instead of the Reader Workbench runtime, restoring the route preview renderer path.
+- Updated `scripts/validate_agent5_control_readiness.mjs` so negative old-label checks are not counted as positive stale HUD contract assumptions.
+- Additional checks passed: `node scripts\validate_hud_route_preview.mjs`, `node scripts\validate_hud_contract.mjs`, and `node --check scripts\validate_agent5_control_readiness.mjs`.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 67.
+- Boundary remains evidence only: no self-acceptance, no live browser-click proof, no public/runtime acceptance, no source/provenance acceptance, no publication readiness, and no accepted translation text.
+- Ran a no-render HUD rollout watch cycle: `node scripts\audit_route_hud_rollout_watch.mjs` passed with 1,360 source records, 1,360 generated pages, 1,360 current route-HUD pages, 1,360 pages with `Usage evidence`, 0 missing pages, 0 source-newer-than-page rows, 0 missing marker rows, 0 stale marker rows, and 0 empty occurrence URL rows.
+- No render was run because the source/page/HUD drift audit did not justify a render chunk.
+- Direct validators passed: public HUD route lookup, route answer safety, and 13 representative route-HUD pages across Tanakh, halakhah, other, Jewish thought, midrash, targum, mishnah, chasidut, gra, liturgy, and Tosefta.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 66 as a stable no-render watch cycle.
+- Boundary remains evidence only: no self-acceptance, no live browser-click proof, no public/runtime acceptance, no source/provenance acceptance, no publication readiness, and no accepted translation text.
+- Ran a no-render HUD rollout watch cycle: `node scripts\audit_route_hud_rollout_watch.mjs` passed with 1,360 source records, 1,360 generated pages, 1,360 current route-HUD pages, 1,360 pages with `Usage evidence`, 0 missing pages, 0 source-newer-than-page rows, 0 missing marker rows, 0 stale marker rows, and 0 empty occurrence URL rows.
+- No render was run because the source/page/HUD drift audit did not justify a render chunk.
+- Direct validators passed: public HUD route lookup, route answer safety, and 13 representative route-HUD pages across Tanakh, halakhah, other, Jewish thought, midrash, targum, mishnah, chasidut, gra, liturgy, and Tosefta.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 65 as a stable no-render watch cycle.
+- Boundary remains evidence only: no self-acceptance, no live browser-click proof, no public/runtime acceptance, no source/provenance acceptance, no publication readiness, and no accepted translation text.
+- Ran a no-render HUD rollout watch cycle: `node scripts\audit_route_hud_rollout_watch.mjs` passed with 1,360 source records, 1,360 generated pages, 1,360 current route-HUD pages, 1,360 pages with `Usage evidence`, 0 missing pages, 0 source-newer-than-page rows, 0 missing marker rows, 0 stale marker rows, and 0 empty occurrence URL rows.
+- No render was run because the source/page/HUD drift audit did not justify a render chunk.
+- Direct validators passed: public HUD route lookup, route answer safety, and 13 representative route-HUD pages across Tanakh, halakhah, other, Jewish thought, midrash, targum, mishnah, chasidut, gra, liturgy, and Tosefta.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 64 as a stable no-render watch cycle.
+- Boundary remains evidence only: no self-acceptance, no live browser-click proof, no public/runtime acceptance, no source/provenance acceptance, no publication readiness, and no accepted translation text.
+- Ran a no-render HUD rollout watch cycle: `node scripts\audit_route_hud_rollout_watch.mjs` passed with 1,360 source records, 1,360 generated pages, 1,360 current route-HUD pages, 1,360 pages with `Usage evidence`, 0 missing pages, 0 source-newer-than-page rows, 0 missing marker rows, 0 stale marker rows, and 0 empty occurrence URL rows.
+- No render was run because the source/page/HUD drift audit did not justify a render chunk.
+- Direct validators passed: public HUD route lookup, route answer safety, and 13 representative route-HUD pages across Tanakh, halakhah, other, Jewish thought, midrash, targum, mishnah, chasidut, gra, liturgy, and Tosefta.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 63 as a stable no-render watch cycle.
+- Boundary remains evidence only: no self-acceptance, no live browser-click proof, no public/runtime acceptance, no source/provenance acceptance, no publication readiness, and no accepted translation text.
+- Ran another no-render HUD rollout watch cycle: `node scripts\audit_route_hud_rollout_watch.mjs` passed with 1,360 source records, 1,360 generated pages, 1,360 current route-HUD pages, 1,360 pages with `Usage evidence`, 0 missing pages, 0 source-newer-than-page rows, 0 missing marker rows, 0 stale marker rows, and 0 empty occurrence URL rows.
+- No render was run because the source/page/HUD drift audit did not justify a render chunk.
+- Direct validators passed: public HUD route lookup, route answer safety, and 13 representative route-HUD pages across Tanakh, halakhah, other, Jewish thought, midrash, targum, mishnah, chasidut, gra, liturgy, and Tosefta.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 62 as a stable no-render watch cycle.
+- Boundary remains evidence only: no self-acceptance, no live browser-click proof, no public/runtime acceptance, no source/provenance acceptance, no publication readiness, and no accepted translation text.
+- Ran a fresh no-render HUD rollout watch cycle: `node scripts\audit_route_hud_rollout_watch.mjs` passed with 1,360 source records, 1,360 generated pages, 1,360 current route-HUD pages, 1,360 pages with `Usage evidence`, 0 missing pages, 0 source-newer-than-page rows, 0 missing marker rows, 0 stale marker rows, and 0 empty occurrence URL rows.
+- No render was run because the source/page/HUD drift audit did not justify a render chunk.
+- Direct validators passed: public HUD route lookup, route answer safety, and 13 representative route-HUD pages across Tanakh, halakhah, other, Jewish thought, midrash, targum, mishnah, chasidut, gra, liturgy, and Tosefta.
+- Updated `reports/route-hud-page-upgrade-report.md` with Chunk 61 as a stable no-render watch cycle.
+- Produced a SPEC-003-shaped dynamic/fallback old-HUD exposure packet: `reports/agent4-old-hud-dynamic-fallback-exposure-report-2026-06-01.md`.
+- Added `scripts/audit_old_hud_dynamic_fallback.mjs` to run Node VM simulated runtime controls for answer safety, query-string behavior, localStorage import rejection, IndexedDB fallback import, and usage-as-definition negative tests.
+- Dynamic packet evidence: 1,360/1,360 generated pages present, 0 generated old-HUD marker hits, 0 imports of `scripts/upgrade_route_hud_pages.mjs`, 2,726 public navigation href targets resolved with 0 old-HUD marker hits, and 0 dynamic runtime control failures.
+- Direct shell validators passed: public route lookup, route answer safety, 13 representative route-HUD pages, and Genesis click-contract prevalidation.
+- Queued the dynamic/fallback packet to Agent 6 under `agent6-old-hud-quarantine-killswitch-coverage`; queue health passes with 0 issues and 0 warnings, and `reports/agent5-agent6-handoff-index.md` was regenerated.
+- Boundary: evidence only; no self-acceptance, no live browser-click proof, no public/runtime acceptance, no source/provenance acceptance, no publication readiness, and no accepted translation text.
+- Patched the shared Reader Workbench runtime to align visible compound tokens against split occurrence rows before wrapping click targets.
+- Synced the same split-token alignment behavior back into `scripts/render_site.ps1` for future renders.
+- Updated `scripts/audit_route_hud_click_contract.mjs` to decode HTML entities and classify split-token/hyphen alignments separately from fatal token shifts.
+- Reran static click-contract prevalidation for `rashi-on-genesis`, `abudarham`, `ketem-paz-on-zohar`, and `orot-ha-kodesh`; all four passed with 0 alignment failures.
+- Reran bounded follow-up validators: follow-up target file, Abudarham import/export source round trip, runtime boundary, Reader Workbench boundary, and four route HUD pages all passed.
+- Wrote `reports/agent4-reader-workbench-followup-recheck-packet-2026-06-01.md`.
+- Added `scripts/validate_reader_workbench_followup_continuity.mjs` and wrote `reports/reader-workbench-followup-continuity-audit.md`; it passed with 4 included targets, 1 blocked Beer Hagolah target, 0 issues, 0 warnings, 0 paragraph alignment failures, and 52/52 sampled answer/source-license rows.
+- Updated `data/control/agent6_validation_queue.json` to queue a recheck for `agent6-reader-workbench-followup-targets`; queue health passes with 0 issues and 0 warnings.
+- Regenerated `reports/agent5-agent6-handoff-index.md`; it now shows 1 pending Agent 6 item and explicitly says not to self-accept.
+- Added `scripts/audit_route_hud_rollout_watch.mjs` for fresh static source/page/HUD drift checks.
+- Recovered six missing liturgy pages through a targeted chunk using `scripts/render_site.ps1` only after a targeted lexical build.
+- Current rollout watch now passes with 1,360 source records, 1,360 generated pages, 1,360 current route-HUD pages, 0 missing pages, 0 source-newer-than-page rows, 0 missing marker rows, and 0 stale marker rows.
+- Recovered twelve missing Tosefta brief-commentary pages through three targeted chunks using `scripts/render_site.ps1` only after targeted lexical builds.
+- Public route lookup passes and representative route-HUD validation passes for 13 cross-category pages including `liturgy/siddur-sefard/index.html` and `tosefta/brief-commentary-on-yoma/index.html`.
+- Latest cycle was no-render; the current filesystem already satisfied the HUD rollout watch.
+- Latest no-render watch revalidated the 1,360-page state with public route lookup and 13 representative route-HUD pages passing.
+- Current no-render watch again revalidated the 1,360-page state with public route lookup and 13 representative route-HUD pages passing.
+- Latest render cycle recovered ten additional Tosefta brief-commentary pages through targeted chunks using `scripts/render_site.ps1` only after targeted lexical builds.
+- Caveat for the latest render window: additional Tosefta pages/artifacts changed or appeared while the targeted chunks ran; the current claim is the post-render all-source watch result, not a narrow changed-file inventory.
+
+## Previous Completed Chunk
+
+- Added `data/control/reader_workbench_followup_targets.json` for the four recovered deferred pages.
+- Added `scripts/validate_reader_workbench_followup_targets.mjs` and validated the proposed follow-up set.
+- Reused `scripts/validate_reader_workbench_expansion_sample.mjs` with `--targets` / `--work-id` to prove `abudarham` source fields survive import/export/reimport.
+- Wrote `reports/reader-workbench-followup-target-evidence.md` for Agent 5 packaging toward Agent 6.
+- Kept the packet as evidence only; these pages are not accepted until Agent 6 writes that verdict.
+
+## Earlier Completed Chunk
+
+- Ran a targeted deferred-page recovery render for `rashi-on-genesis`, `abudarham`, `ketem-paz-on-zohar`, and `orot-ha-kodesh`.
+- Used `scripts/render_site.ps1` with named `-WorkIds`, `-SkipOverlayExports`, and `-SkipLexicalPayloadFiles`.
+- Added deferred-target validation and classified 4 pages as ready after rerender.
+- Kept `beer-hagolah` blocked because its source file is outside tracked audit scope and its page still lacks Reader Workbench markers.
+- Did not count recovered deferred pages as accepted expansion targets.
+
+## Evidence Artifacts
+
+- `reports/reader-workbench-expansion-evidence.md`
+- `reports/reader-workbench-followup-target-evidence.md`
+- `reports/reader-workbench-deferred-recovery-report.md`
+- `reports/reader-workbench-boundary-report.md`
+- `reports/agent4-reader-workbench-followup-recheck-packet-2026-06-01.md`
+- `reports/reader-workbench-followup-continuity-audit.md`
+- `reports/reader-workbench-followup-continuity-audit.json`
+- `reports/agent4-old-hud-dynamic-fallback-exposure-report-2026-06-01.md`
+- `reports/agent4-old-hud-dynamic-fallback-exposure-report-2026-06-01.json`
+- `reports/agent4-old-hud-dynamic-validator-evidence-2026-06-01.md`
+- `reports/agent4-old-hud-dynamic-click-contract-genesis-2026-06-01.md`
+- `reports/agent4-old-hud-dynamic-click-contract-genesis-2026-06-01.json`
+- `reports/route-hud-rollout-watch.md`
+- `reports/route-hud-rollout-watch.json`
+- `reports/route-hud-page-upgrade-report.md`
+- `reports/liturgy-missing-pages-lexical-build-report.md`
+- `reports/tosefta-brief-commentary-lexical-build-report.md`
+- `reports/tosefta-brief-commentary-2-lexical-build-report.md`
+- `reports/tosefta-brief-commentary-3-lexical-build-report.md`
+- `reports/tosefta-brief-commentary-4-lexical-build-report.md`
+- `reports/tosefta-brief-commentary-5-lexical-build-report.md`
+- `reports/tosefta-brief-commentary-6-lexical-build-report.md`
+- `reports/agent4-rashi-reader-workbench-click-prevalidation-2026-06-01.md`
+- `reports/agent4-abudarham-reader-workbench-click-prevalidation-2026-06-01.md`
+- `reports/agent4-ketem-paz-reader-workbench-click-prevalidation-2026-06-01.md`
+- `reports/agent4-orot-ha-kodesh-reader-workbench-click-prevalidation-2026-06-01.md`
+- `data/control/reader_workbench_followup_targets.json`
+- `scripts/validate_reader_workbench_followup_targets.mjs`
+- `scripts/validate_reader_workbench_expansion_targets.mjs`
+- `scripts/validate_reader_workbench_expansion_sample.mjs`
+- `scripts/validate_reader_workbench_deferred_targets.mjs`
+- `scripts/validate_reader_workbench_runtime.mjs`
+- `scripts/validate_reader_workbench_boundary.mjs`
+- `scripts/validate_reader_workbench_followup_continuity.mjs`
+- `scripts/audit_route_hud_rollout_watch.mjs`
+- `scripts/audit_old_hud_dynamic_fallback.mjs`
+- `scripts/audit_route_hud_click_contract.mjs`
+- `data/control/agent6_validation_queue.json`
+- `reports/agent5-agent6-handoff-index.md`
+
+## Known Risks
+
+- Browser click proof is not included in this packet.
+- The old-HUD dynamic/fallback packet uses Node VM simulated runtime controls and static navigation target resolution; it is not live browser-click proof.
+- `hud-preview/` and `scripts/upgrade_route_hud_pages.mjs` remain quarantined reference/tooling surfaces, not public HUD acceptance.
+- Generated pages import `reader-workbench.js` without observable cache-busting query strings, so stale deployed bundle/CDN risk remains outside file evidence.
+- The liturgy render command hit the tool timeout boundary; post-timeout filesystem evidence and validators passed, but the command completion itself is not claimed.
+- Latest Tosefta render/import activity touched additional Tosefta pages beyond the explicit brief-commentary chunk files; those changes were not reverted, and the current rollout watch validates the resulting 1,360-page state.
+- The four follow-up pages remain pending, not accepted, until Agent 6 writes a new verdict.
+- `beer-hagolah` remains blocked by source custody and missing Reader Workbench markers.
+- Live browser click proof is still absent for follow-up pages.
+- Abudarham, Ketem Paz, and Orot HaKodesh still have no-shard lookup metrics for generated/no-route candidates; the click-contract audit keeps those visible but no longer treats them as warnings by themselves.
+- Publication remains `blocked_no_render`.
+
+## Next Useful Chunk
+
+- Wait for Agent 6 to docket the dynamic/fallback old-HUD packet; continue routine HUD/runtime watch only if new source/page drift appears, rendering only missing or stale pages through `scripts/render_site.ps1`.
+

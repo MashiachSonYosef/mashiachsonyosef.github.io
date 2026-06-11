@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_current_spark10_pilot_answer_and_500_sample_consumption",
+  "generated_at": "2026-06-04T19:25:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "status": "agent10_consumed_current_pilot_answer_dry_run_and_500_sample_refresh",
+  "consumed_artifacts": [
+    "reports/agent2-orot-pilot-answer-claims-2026-06-03.md",
+    "reports/agent2-orot-pilot-answer-claims-2026-06-03.json",
+    "data/definitions/definition-workbench-sample-500.json",
+    "reports/definition-workbench-sample-500-report.md",
+    "reports/agent10-live-public-old-hud-guard-2026-06-04.md",
+    "reports/agent10-live-public-old-hud-guard-2026-06-04.json",
+    "reports/spark10-hybrid-floor-release-relevance-shadow-2026-06-04.md",
+    "reports/spark10-standing-goal-mode-status-2026-06-04.md",
+    "reports/spark10-primary-agent8-13-status-2026-06-04.md"
+  ],
+  "lane_state": [
+    {
+      "lane": "orot_pilot_answer_claims_dry_run",
+      "artifact": "reports/agent2-orot-pilot-answer-claims-2026-06-03.json",
+      "release_relevance": "zero_safe_output_blocker_only",
+      "counts": {
+        "target_rows": 100,
+        "target_occurrences": 1960,
+        "source_clean_rows": 87,
+        "source_blocked_rows": 13,
+        "rows_with_exact_upstream_claim": 0,
+        "rows_with_route_cards": 100,
+        "route_cards": 1897,
+        "route_answer_cards": 0,
+        "route_phrase_evidence_cards": 470,
+        "route_citable_evidence_cards": 1341,
+        "route_form_cards": 67,
+        "route_lemma_cards": 19,
+        "emitted_answer_rows": 0,
+        "blocked_rows": 100
+      },
+      "exact_blocker": "missing exact upstream definition claim for all 100 target rows; current route cards are non-answer evidence/form-reference cards",
+      "next_package_action": "No answer or route claim JSONL may be emitted. Generate or authorize an upstream definition-route claim source, then rerun dry run and route an exact Agent 6 boundary before any answer use.",
+      "agent6_boundary": "none_now"
+    },
+    {
+      "lane": "definition_workbench_500_sample_refresh",
+      "artifact": "data/definitions/definition-workbench-sample-500.json",
+      "release_relevance": "non_authoritative_route_shape_reader_planning_evidence_only",
+      "counts": {
+        "rows": 500,
+        "rows_with_route_cards": 498,
+        "rows_without_route_cards": 2,
+        "multi_answer_rows": 183,
+        "proposed_only_rows": 148,
+        "single_answer_source_complete_rows": 167,
+        "unreviewed_machine_sample_rows": 500
+      },
+      "exact_blocker": "non-authoritative sample only; no answer acceptance, Definition authority, route publication support, public reader output, or candidate text export",
+      "next_package_action": "Carry as planning/QA-targeting evidence only under prior Agent 6 sample boundary; route a new exact Agent 6 packet only for changed stronger use.",
+      "agent6_boundary": "none_now"
+    },
+    {
+      "lane": "spark10_status_refresh",
+      "artifact": "reports/spark10-standing-goal-mode-status-2026-06-04.md",
+      "release_relevance": "mechanical_status_only",
+      "counts": {
+        "reported_inputs_checked": 161,
+        "reported_missing_required_inputs": 0,
+        "reported_release_relevant_rows": 65,
+        "reported_agent6_handoff_candidates": 0
+      },
+      "exact_blocker": "status artifact predates this consumption and is stale relative to the final rebuilt matrix after new inputs are added",
+      "next_package_action": "Spark-10 should rerun the exact queue contract on changed artifacts; Agent 10 rebuilds current matrix now to preserve release-owner state.",
+      "agent6_boundary": "none_now"
+    },
+    {
+      "lane": "live_public_old_hud_guard_refresh",
+      "artifact": "reports/agent10-live-public-old-hud-guard-2026-06-04.json",
+      "release_relevance": "evidence_only_static_live_guard",
+      "counts": {
+        "old_hud_exposure": "no",
+        "checks": 36,
+        "hard_old_marker_hit_checks": 0,
+        "watch_old_marker_hit_checks": 1,
+        "issues": 0,
+        "warnings": 1
+      },
+      "exact_blocker": "not browser-click proof and not public/runtime acceptance",
+      "next_package_action": "Carry as static guard evidence only.",
+      "agent6_boundary": "none_now"
+    }
+  ],
+  "zero_emission_state": {
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "spark10_matrix_after_consumption": {
+    "matrix_json": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "matrix_md": "reports/spark10-release-package-intake-matrix-current-2026-06-04.md",
+    "inputs_checked": 169,
+    "missing_required_inputs": 0,
+    "release_relevant_rows": 69,
+    "agent6_handoff_candidates": 0,
+    "public_runtime_mutation_authorized": false,
+    "answer_definition_release_authorized": false
+  },
+  "validation_results": [
+    {
+      "command": "node scripts/validate_agent2_orot_pilot_answer_claims.mjs reports/agent2-orot-pilot-answer-claims-2026-06-03.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample-500.json",
+      "result": "passed"
+    }
+  ],
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate-text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

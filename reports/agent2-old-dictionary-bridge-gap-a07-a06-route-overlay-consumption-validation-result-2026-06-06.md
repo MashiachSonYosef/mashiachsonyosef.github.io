@@ -1,0 +1,64 @@
+# Agent2 A07/A06 Route Overlay Consumption Validation Result (2026-06-06)
+
+## target
+Old-dictionary bridge-gap A07/A06 route overlay consumption for Agent2 transform readiness.
+
+## files used
+- `reports/agent2-old-dictionary-bridge-gap-a07-a06-route-overlay-consumption-2026-06-06.json`
+- `scripts/validate_agent2_old_dictionary_bridge_gap_a07_a06_route_overlay_consumption.mjs`
+
+## validator result
+- command: `node scripts\validate_agent2_old_dictionary_bridge_gap_a07_a06_route_overlay_consumption.mjs reports\agent2-old-dictionary-bridge-gap-a07-a06-route-overlay-consumption-2026-06-06.json`
+- timeout: `120000ms`
+- process_timeout: `false`
+- result: `passed`
+- stdout: `Agent2 A07/A06 route overlay consumption validation passed. Overlay rows: 14; direct rows: 5; A06 evidence rows: 9.`
+
+## lane counts/rows consumed
+- overlay_rows: 14
+- overlay_occurrences: 173
+- source_rid_route_links: 30
+- unique_source_rids: 30
+- direct_source_citation_workset_rows: 5
+- direct_source_citation_workset_occurrences: 58
+- A06 evidence-boundary workset rows: 9
+- A06 evidence-boundary workset occurrences: 115
+- source_citation_or_url_missing_links: 30
+- transform_rule_still_blocked_links: 30
+- A07 approval route rows: 14
+- A06 evidence-validator-only rows: 14
+- A06 approval requested rows: 0
+- candidate_text_rows: 0
+- definition_content_rows: 0
+- lemma_content_rows: 0
+- reader_hint_content_rows: 0
+- answer_eligible_rows: 0
+- route_shard_writes: 0
+- source_text_rows: 0
+- accepted_text_rows: 0
+- public_runtime_mutation: 0
+- publication_or_release_claims: 0
+- release_actions: 0
+
+## route correction consumed
+- A07 owns approval, SOP, final validation, release gate.
+- A06 owns evidence, validators, repo-cleaning production evidence only.
+- A06 outputs are evidence-ready until A07 approves where approval is required.
+- Do not ask A06 for approval.
+
+## exact blockers
+- `a07_route_overlay_a06_evidence_boundary_prereq_still_blocked_no_a06_approval`
+- `a07_route_overlay_direct_source_citation_prereq_still_blocked`
+- `approval_request_misrouted_to_A06`
+- `A06_output_is_evidence_ready_only_until_A07_approval`
+- `missing_source_field::source_citation_or_url`
+- `missing_transform_output_proposal_matrix_or_exact_transform_rule`
+- `missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text`
+- `next_transform_output_or_candidate_text_boundary_not_supplied`
+- `stale_agent1_registry_target_current_agent1_thread_required`
+
+## handoff owner
+A07 owns approval/SOP/final validation/release gate. A06 owns evidence/validators/repo-cleaning production evidence only. Agent1 and Agent10 supply source-citation and transform-rule inputs. Agent2 remains transform-readiness only.
+
+## stop condition
+Stop at validated A07/A06 route overlay consumption. No source text, candidate text, definition/lemma/reader-hint content, answer eligibility, route writes, A06 approval request, source/license/legal/Definition/product/answer/accepted-text acceptance, repo cleanup action, public/runtime mutation, export, publication readiness, or release action.

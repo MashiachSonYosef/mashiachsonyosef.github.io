@@ -1,6 +1,6 @@
 # HUD Route Release Gate
 
-Generated: 2026-06-01T14:58:10.973Z
+Generated: 2026-06-01T17:46:41.411Z
 Status: pass_with_warnings
 Release scope: public_lookup_integrity_passed_current_route_source_reconciliation_unproven
 Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
@@ -21,8 +21,8 @@ Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 
 - Report: `reports/route-publication-boundary-audit.json`
 - Generator: `scripts/validate_route_publication_boundary.mjs`
-- Validator SHA-256: `c6c60f42c27b57098e1340e077ec80db1a4c933e674213464eb382a53af55781`
-- Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
+- Validator SHA-256: `1ea55f44cb841a01ef6e470fabf364801ce25cb4af76d94caad596f269d223a7`
+- Manifest SHA-256: `3d0c5cb147e3b87e63a032a69802174f86b4eb3aff41ed6037ae758a14dded7a`
 - HUD contract: `data/definitions/hud-route-contract.json`
 - Allowed display sections: answer, audit, biblical_paraphrase_evidence, citable_paraphrase_evidence, lemma, morphology, phrase_evidence, source_license, strict_aramaic, strict_hebrew, subphrase_evidence
 - Boundary issues: 0
@@ -88,16 +88,19 @@ Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 - Drift items: 2
 - source-phrase-evidence.jsonl: current source differs from frozen release input
 - source-citable-paraphrase-evidence.jsonl: current source differs from frozen release input
+- Input-freeze publication status: blocked_no_render
+- Input-freeze current route inputs reconciled: false
+- Input-freeze public lookup artifacts changed: false
 
 ## Boundary
 
 - Publication status: `blocked_no_render`
-- Validates: hud_route_lookup_integrity, route_card_publication_boundary
+- Validates: hud_route_release_stamp, hud_route_lookup_integrity, route_card_publication_boundary
 - Does not clear: translation_output, source_publication, public_lexical_export_reuse, accepted_definition_authority
 - Answer eligibility scope: hud_answer_slot_only_not_translation_or_publication_readiness
 - Warning status blocks publication claim: true
 - Current route sources reconciled: false
-- This gate validates HUD route lookup integrity and the route-card/publication boundary only.
+- This gate validates the HUD route release stamp, HUD route lookup integrity, and the route-card/publication boundary only.
 - It does not clear translation output, source publication, public lexical export reuse, or accepted definition authority.
 - A warning status means current route-source reconciliation is not proven for the frozen public lookup release.
 - Publication remains blocked_no_render.

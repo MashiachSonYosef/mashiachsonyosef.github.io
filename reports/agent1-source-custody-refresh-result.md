@@ -1,0 +1,262 @@
+# Agent 1 Source Custody Refresh Result
+
+Started: 2026-06-04T00:11:13.633Z
+Completed: 2026-06-04T00:16:00.104Z
+
+## Boundary
+
+- Publication state: blocked_no_render
+- Source/provenance acceptance: not claimed.
+- Publication readiness: not claimed.
+- Route/runtime/page/render/Definition/product-gate/translation acceptance: not claimed.
+
+## Result
+
+- OK: true
+- Direct untracked sources: 23
+- Audit untracked sources: 23
+- Source rows fingerprinted: 29/29
+- Missing lexical manifests: 0
+- Blocked source rows: 29
+- Blocked direct artifact paths: 248
+- Blocked content-reference paths: 183
+- Missing required artifacts: 0
+- Reference diagnostics blocking content-reference rows: 183
+- Reference diagnostics report/audit rows: 0
+- Untracked track candidates with lexical manifests: 23
+- Untracked sources requiring missing lexical manifest remediation/exclusion: 0
+- Modified tracked license-label normalization review rows: 6
+- Reconciliation preflight source-only track candidates: 23
+- Reconciliation preflight missing manifest expected paths: 0
+- Reconciliation preflight modified tracked source files: 6
+- Agent 6 decision packet track-candidate source files: 23
+- Agent 6 decision packet blocked downstream direct paths: 248
+- Agent 6 decision packet blocked downstream content-reference paths: 183
+- Queue refresh notice stale control surfaces: 4
+- Control sync packet stale control surfaces: 4
+- Queue intake candidate stale queue markers: missing_current_183_content_reference_rows, missing_current_decision_packet_timestamp, missing_current_packet_timestamp
+- Manifest remediation queue candidate: agent6-agent1-source-custody-manifest-remediation-review
+- Tracking action queue candidate: agent6-agent1-source-custody-tracking-action-review
+- License normalization queue candidate: agent6-agent1-source-custody-license-normalization-review
+- Source file reconciliation action plan validator OK: true
+- Source file reconciliation action performed: false
+- Source file reconciliation owner checklist validator OK: true
+- Source file reconciliation owner checklist action performed: false
+- Source file reconciliation owner checklist queue mutation performed: false
+- Agent 6 decision matrix validator OK: true
+- Agent 6 decision matrix request IDs: 5
+- Agent 6 decision matrix action performed: false
+- Agent 6 decision matrix queue mutation performed: false
+- Orot Stage C source-unblock plan validator OK: true
+- Orot Stage C source-unblock plan status: source_rows_clear_awaiting_agent6_disposition
+- Orot fill source-row queue candidate: agent6-agent1-orot-fill-source-row-review
+- Public-HUD source-row queue candidate: agent6-agent1-public-hud-source-row-review
+- Agent 6-ready docket review items: agent6-agent1-source-custody-manifest-remediation-review, agent6-agent1-source-custody-tracking-action-review, agent6-agent1-source-custody-license-normalization-review, agent6-agent1-public-hud-source-row-review, agent6-agent1-orot-fill-source-row-review
+- Agent 5/6 relay packet status: relay_needed_control_surfaces_missing_request_ids
+- Agent 6 intake-contract validator OK: true
+- Agent 6 intake-contract blocking findings: 0
+- Agent 5/8 relay-readiness checkpoint validator OK: true
+- Agent 5/8 relay-readiness checkpoint blocker: agent1_request_ids_absent_from_agent6_agent5_control_surfaces
+- Agent 6 disposition watch validator OK: true
+- Agent 6 disposition watch status: awaiting_relay_no_agent6_disposition_detected
+- Current blocker packet validator OK: true
+- Current blocker packet exact blockers: 6
+- Objective completion audit status: not_complete_evidence_current_awaiting_agent5_or_agent8_relay_and_agent6_disposition
+- Objective completion audit validator OK: true
+- Objective completion claimed: false
+- Refresh result validator OK: true
+- Agent 6 queue dry-run validator OK: true
+- Agent 6 queue dry-run item count: 41
+- Agent 6 queue dry-run live queue mutation performed: false
+- Agent 5/6 control-surface delta validator OK: true
+- Agent 5/6 control-surface delta status: current_agent1_request_ids_absent_historical_agent1_queue_items_present
+- Agent 5/6 control-surface delta current request IDs missing everywhere: 5
+- Agent 5/6 control-surface delta historical Agent 1 queue items present: 4
+- Agent 5/6 queue insertion patch validator OK: true
+- Agent 5/6 queue insertion patch operations: 5
+- Agent 5/6 queue insertion patch live queue mutation performed: false
+- Agent 5/8 direct relay prompt validator OK: true
+- Agent 5/8 direct relay prompt status: direct_relay_prompt_ready_no_agent1_mutation
+- Agent 5/8 direct relay prompt request IDs: 5
+- Agent 5/8 direct relay prompt patch operations: 5
+
+## Commands
+
+- `git ls-files --others --exclude-standard -- data/sources/*.json`
+- `node scripts/audit_untracked_source_scope.mjs --untracked-list reports/untracked-source-files-direct.txt --json reports/untracked-source-scope-audit.json --report reports/untracked-source-scope-audit.md`
+- `node scripts/build_agent1_source_custody_packet.mjs`
+- `node scripts/build_agent1_source_custody_reference_diagnostics.mjs`
+- `node scripts/build_agent1_source_custody_closure_options.mjs`
+- `node scripts/build_agent1_source_custody_reconciliation_preflight.mjs`
+- `node scripts/build_agent1_agent6_source_custody_decision_packet.mjs`
+- `node scripts/build_agent1_source_custody_queue_refresh_notice.mjs`
+- `node scripts/build_agent1_source_custody_control_sync_packet.mjs`
+- `node scripts/build_agent1_source_custody_queue_intake_candidate.mjs`
+- `node scripts/validate_agent1_source_custody_packet.mjs`
+- `node scripts/build_agent1_source_custody_manifest_remediation_packet.mjs`
+- `node scripts/validate_agent1_source_custody_manifest_remediation_packet.mjs`
+- `node scripts/build_agent1_source_custody_manifest_remediation_queue_candidate.mjs`
+- `node scripts/validate_agent1_source_custody_manifest_remediation_queue_candidate.mjs`
+- `node scripts/build_agent1_source_custody_tracking_action_packet.mjs`
+- `node scripts/validate_agent1_source_custody_tracking_action_packet.mjs`
+- `node scripts/build_agent1_source_custody_tracking_action_queue_candidate.mjs`
+- `node scripts/validate_agent1_source_custody_tracking_action_queue_candidate.mjs`
+- `node scripts/build_agent1_source_custody_license_normalization_action_packet.mjs`
+- `node scripts/validate_agent1_source_custody_license_normalization_action_packet.mjs`
+- `node scripts/build_agent1_source_custody_license_normalization_queue_candidate.mjs`
+- `node scripts/validate_agent1_source_custody_license_normalization_queue_candidate.mjs`
+- `node scripts/build_agent1_source_file_reconciliation_action_plan.mjs`
+- `node scripts/validate_agent1_source_file_reconciliation_action_plan.mjs`
+- `node scripts/build_agent1_wartime_public_hud_source_row_evidence.mjs`
+- `node scripts/validate_agent1_wartime_public_hud_source_row_evidence.mjs`
+- `node scripts/build_agent1_orot_fill_source_row_evidence.mjs`
+- `node scripts/validate_agent1_orot_fill_source_row_evidence.mjs`
+- `node scripts/build_agent1_orot_stage_c_source_unblock_plan.mjs`
+- `node scripts/validate_agent1_orot_stage_c_source_unblock_plan.mjs`
+- `node scripts/build_agent1_orot_fill_source_row_queue_candidate.mjs`
+- `node scripts/validate_agent1_orot_fill_source_row_queue_candidate.mjs`
+- `node scripts/build_agent1_wartime_public_hud_source_row_queue_candidate.mjs`
+- `node scripts/validate_agent1_wartime_public_hud_source_row_queue_candidate.mjs`
+- `node scripts/build_agent1_source_provenance_agent6_ready_docket.mjs`
+- `node scripts/validate_agent1_source_provenance_agent6_ready_docket.mjs`
+- `node scripts/build_agent1_agent5_agent6_docket_relay_packet.mjs`
+- `node scripts/validate_agent1_agent5_agent6_docket_relay_packet.mjs`
+- `node scripts/validate_agent1_agent6_queue_intake_contract_for_relay_packet.mjs`
+- `node scripts/build_agent1_agent6_queue_dry_run_with_relay_items.mjs`
+- `node scripts/validate_agent1_agent6_queue_dry_run_with_relay_items.mjs`
+- `node scripts/build_agent1_agent5_agent8_relay_readiness_checkpoint.mjs`
+- `node scripts/validate_agent1_agent5_agent8_relay_readiness_checkpoint.mjs`
+- `node scripts/build_agent1_agent5_agent6_control_surface_delta_packet.mjs`
+- `node scripts/validate_agent1_agent5_agent6_control_surface_delta_packet.mjs`
+- `node scripts/build_agent1_agent5_agent6_queue_insertion_patch_packet.mjs`
+- `node scripts/validate_agent1_agent5_agent6_queue_insertion_patch_packet.mjs`
+- `node scripts/build_agent1_agent6_disposition_watch.mjs`
+- `node scripts/validate_agent1_agent6_disposition_watch.mjs`
+- `node scripts/build_agent1_agent5_agent8_direct_relay_prompt.mjs`
+- `node scripts/validate_agent1_agent5_agent8_direct_relay_prompt.mjs`
+- `node scripts/build_agent1_source_custody_completion_audit.mjs`
+- `node scripts/validate_agent1_source_custody_completion_audit.mjs`
+- `node scripts/build_agent1_source_custody_current_blocker_packet.mjs`
+- `node scripts/validate_agent1_source_custody_current_blocker_packet.mjs`
+- `node scripts/build_agent1_source_file_reconciliation_owner_checklist.mjs`
+- `node scripts/validate_agent1_source_file_reconciliation_owner_checklist.mjs`
+- `node scripts/build_agent1_source_custody_agent6_decision_matrix.mjs`
+- `node scripts/validate_agent1_source_custody_agent6_decision_matrix.mjs`
+- `node scripts/validate_agent1_source_custody_refresh_result.mjs`
+
+## Artifacts Refreshed
+
+- `reports/untracked-source-files-direct.txt`
+- `reports/untracked-source-scope-audit.json`
+- `reports/untracked-source-scope-audit.md`
+- `reports/agent1-source-provenance-custody-packet.json`
+- `reports/agent1-source-provenance-custody-packet.md`
+- `reports/agent1-downstream-quarantine-manifest.json`
+- `reports/agent1-downstream-quarantine-manifest.md`
+- `reports/agent1-custody-blocklist.json`
+- `reports/agent1-custody-blocklist.md`
+- `reports/agent1-agent6-custody-intake-docket.json`
+- `reports/agent1-agent6-custody-intake-docket.md`
+- `reports/agent1-source-custody-reference-diagnostics.json`
+- `reports/agent1-source-custody-reference-diagnostics.md`
+- `reports/agent1-source-custody-closure-options.json`
+- `reports/agent1-source-custody-closure-options.md`
+- `reports/agent1-source-custody-reconciliation-preflight.json`
+- `reports/agent1-source-custody-reconciliation-preflight.md`
+- `reports/agent1-agent6-source-custody-decision-packet.json`
+- `reports/agent1-agent6-source-custody-decision-packet.md`
+- `reports/agent1-source-custody-queue-refresh-notice.json`
+- `reports/agent1-source-custody-queue-refresh-notice.md`
+- `reports/agent1-source-custody-control-sync-packet.json`
+- `reports/agent1-source-custody-control-sync-packet.md`
+- `reports/agent1-source-custody-queue-intake-candidate.json`
+- `reports/agent1-source-custody-queue-intake-candidate.md`
+- `reports/agent1-source-custody-manifest-remediation-packet.json`
+- `reports/agent1-source-custody-manifest-remediation-packet.md`
+- `reports/agent1-source-custody-manifest-remediation-validator-result.json`
+- `reports/agent1-source-custody-manifest-remediation-queue-candidate.json`
+- `reports/agent1-source-custody-manifest-remediation-queue-candidate.md`
+- `reports/agent1-source-custody-manifest-remediation-queue-validator-result.json`
+- `reports/agent1-source-custody-tracking-action-packet.json`
+- `reports/agent1-source-custody-tracking-action-packet.md`
+- `reports/agent1-source-custody-tracking-action-validator-result.json`
+- `reports/agent1-source-custody-tracking-action-queue-candidate.json`
+- `reports/agent1-source-custody-tracking-action-queue-candidate.md`
+- `reports/agent1-source-custody-tracking-action-queue-validator-result.json`
+- `reports/agent1-source-custody-license-normalization-action-packet.json`
+- `reports/agent1-source-custody-license-normalization-action-packet.md`
+- `reports/agent1-source-custody-license-normalization-action-validator-result.json`
+- `reports/agent1-source-custody-license-normalization-queue-candidate.json`
+- `reports/agent1-source-custody-license-normalization-queue-candidate.md`
+- `reports/agent1-source-custody-license-normalization-queue-validator-result.json`
+- `reports/agent1-source-file-reconciliation-action-plan-2026-06-03.json`
+- `reports/agent1-source-file-reconciliation-action-plan-2026-06-03.md`
+- `reports/agent1-source-file-reconciliation-action-plan-validator-result-2026-06-03.json`
+- `reports/agent1-source-file-reconciliation-action-plan-validator-result-2026-06-03.md`
+- `reports/agent1-source-file-reconciliation-owner-checklist-2026-06-03.json`
+- `reports/agent1-source-file-reconciliation-owner-checklist-2026-06-03.md`
+- `reports/agent1-source-file-reconciliation-owner-checklist-validator-result-2026-06-03.json`
+- `reports/agent1-source-file-reconciliation-owner-checklist-validator-result-2026-06-03.md`
+- `reports/agent1-source-custody-agent6-decision-matrix-2026-06-03.json`
+- `reports/agent1-source-custody-agent6-decision-matrix-2026-06-03.md`
+- `reports/agent1-source-custody-agent6-decision-matrix-validator-result-2026-06-03.json`
+- `reports/agent1-source-custody-agent6-decision-matrix-validator-result-2026-06-03.md`
+- `reports/agent1-wartime-public-hud-source-row-evidence-2026-06-03.json`
+- `reports/agent1-wartime-public-hud-source-row-evidence-2026-06-03.md`
+- `reports/agent1-wartime-public-hud-source-row-evidence-validator-result-2026-06-03.json`
+- `reports/agent1-orot-fill-source-row-evidence-2026-06-03.json`
+- `reports/agent1-orot-fill-source-row-evidence-2026-06-03.md`
+- `reports/agent1-orot-fill-source-row-evidence-validator-result-2026-06-03.json`
+- `reports/agent1-orot-stage-c-source-unblock-plan-2026-06-03.json`
+- `reports/agent1-orot-stage-c-source-unblock-plan-2026-06-03.md`
+- `reports/agent1-orot-stage-c-source-unblock-plan-validator-result-2026-06-03.json`
+- `reports/agent1-orot-stage-c-source-unblock-plan-validator-result-2026-06-03.md`
+- `reports/agent1-orot-fill-source-row-queue-candidate-2026-06-03.json`
+- `reports/agent1-orot-fill-source-row-queue-candidate-2026-06-03.md`
+- `reports/agent1-orot-fill-source-row-queue-validator-result-2026-06-03.json`
+- `reports/agent1-wartime-public-hud-source-row-queue-candidate-2026-06-03.json`
+- `reports/agent1-wartime-public-hud-source-row-queue-candidate-2026-06-03.md`
+- `reports/agent1-wartime-public-hud-source-row-queue-validator-result-2026-06-03.json`
+- `reports/agent1-source-provenance-agent6-ready-docket-2026-06-03.json`
+- `reports/agent1-source-provenance-agent6-ready-docket-2026-06-03.md`
+- `reports/agent1-source-provenance-agent6-ready-docket-validator-result-2026-06-03.json`
+- `reports/agent1-agent5-agent6-docket-relay-packet-2026-06-03.json`
+- `reports/agent1-agent5-agent6-docket-relay-packet-2026-06-03.md`
+- `reports/agent1-agent5-agent6-docket-relay-validator-result-2026-06-03.json`
+- `reports/agent1-agent6-queue-intake-contract-validator-result-2026-06-03.json`
+- `reports/agent1-agent6-queue-intake-contract-validator-result-2026-06-03.md`
+- `reports/agent1-agent5-agent8-relay-readiness-checkpoint-2026-06-03.json`
+- `reports/agent1-agent5-agent8-relay-readiness-checkpoint-2026-06-03.md`
+- `reports/agent1-agent5-agent8-relay-readiness-checkpoint-validator-result-2026-06-03.json`
+- `reports/agent1-agent5-agent6-control-surface-delta-packet-2026-06-03.json`
+- `reports/agent1-agent5-agent6-control-surface-delta-packet-2026-06-03.md`
+- `reports/agent1-agent5-agent6-control-surface-delta-validator-result-2026-06-03.json`
+- `reports/agent1-agent5-agent6-queue-insertion-patch-packet-2026-06-03.json`
+- `reports/agent1-agent5-agent6-queue-insertion-patch-packet-2026-06-03.md`
+- `reports/agent1-agent5-agent6-queue-insertion-patch-validator-result-2026-06-03.json`
+- `reports/agent1-agent5-agent6-queue-insertion-patch-validator-result-2026-06-03.md`
+- `reports/agent1-agent6-disposition-watch-2026-06-03.json`
+- `reports/agent1-agent6-disposition-watch-2026-06-03.md`
+- `reports/agent1-agent6-disposition-watch-validator-result-2026-06-03.json`
+- `reports/agent1-source-custody-current-blocker-packet-2026-06-03.json`
+- `reports/agent1-source-custody-current-blocker-packet-2026-06-03.md`
+- `reports/agent1-source-custody-current-blocker-packet-validator-result-2026-06-03.json`
+- `reports/agent1-source-custody-current-blocker-packet-validator-result-2026-06-03.md`
+- `reports/agent1-agent5-agent8-direct-relay-prompt-2026-06-03.json`
+- `reports/agent1-agent5-agent8-direct-relay-prompt-2026-06-03.md`
+- `reports/agent1-agent5-agent8-direct-relay-prompt-validator-result-2026-06-03.json`
+- `reports/agent1-agent5-agent8-direct-relay-prompt-validator-result-2026-06-03.md`
+- `reports/agent1-agent6-validation-queue-dry-run-with-relay-items-2026-06-03.json`
+- `reports/agent1-agent6-validation-queue-dry-run-with-relay-items-2026-06-03.md`
+- `reports/agent1-agent6-validation-queue-dry-run-health-2026-06-03.md`
+- `reports/agent1-agent6-validation-queue-dry-run-validator-result-2026-06-03.json`
+- `reports/agent1-agent6-validation-queue-dry-run-validator-result-2026-06-03.md`
+- `reports/agent1-source-custody-objective-completion-audit-2026-06-03.json`
+- `reports/agent1-source-custody-objective-completion-audit-2026-06-03.md`
+- `reports/agent1-source-custody-objective-completion-audit-validator-result-2026-06-03.json`
+- `reports/agent1-source-custody-objective-completion-audit-validator-result-2026-06-03.md`
+- `reports/agent1-source-custody-refresh-result-validator-result-2026-06-03.json`
+- `reports/agent1-source-custody-refresh-result-validator-result-2026-06-03.md`
+- `reports/agent1-source-provenance-custody-validator-result.json`
+- `reports/agent1-source-custody-refresh-result.json`
+- `reports/agent1-source-custody-refresh-result.md`

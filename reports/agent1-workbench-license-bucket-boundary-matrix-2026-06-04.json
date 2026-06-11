@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_workbench_license_bucket_boundary_matrix",
+  "generated_at": "2026-06-05T00:16:00.000Z",
+  "generator": "scripts/build_agent1_workbench_license_bucket_boundary_matrix.mjs",
+  "status": "agent1_workbench_license_bucket_boundary_matrix_prepared_for_agent6_boundary_only",
+  "input": "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.json",
+  "target": "workbench-license-bucket-boundary-matrix",
+  "counts": {
+    "license_bucket_count": 4,
+    "source_name_partition_count": 351,
+    "source_row_count": 105747,
+    "public_domain_partition_count": 307,
+    "cc_by_sa_partition_count": 37,
+    "cc_by_partition_count": 5,
+    "cc0_partition_count": 2
+  },
+  "rows": [
+    {
+      "license_label": "Public Domain",
+      "partition_count": 307,
+      "source_row_count": 99045,
+      "source_family": "hebrew_source_text",
+      "license_lane": "commercial_clean_candidate",
+      "attribution_required": false,
+      "share_alike_required": false,
+      "derived_from_nc": false,
+      "commercial_export_allowed": true,
+      "bucket_boundary_status": "public_domain_release_boundary_required",
+      "export_authorized_now": false,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true,
+      "answer_eligible": false,
+      "public_emit": false,
+      "definition_content_storage_now": false,
+      "missing_boundary_fields": [
+        "Agent 6/release boundary verdict for Public Domain bucket",
+        "package/export handling rule for Public Domain bucket",
+        "public/runtime/display authorization if any"
+      ]
+    },
+    {
+      "license_label": "CC-BY-SA",
+      "partition_count": 37,
+      "source_row_count": 5581,
+      "source_family": "hebrew_source_text",
+      "license_lane": "commercial_clean_candidate",
+      "attribution_required": true,
+      "share_alike_required": true,
+      "derived_from_nc": false,
+      "commercial_export_allowed": false,
+      "bucket_boundary_status": "share_alike_boundary_required",
+      "export_authorized_now": false,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true,
+      "answer_eligible": false,
+      "public_emit": false,
+      "definition_content_storage_now": false,
+      "missing_boundary_fields": [
+        "Agent 6/release boundary verdict for CC-BY-SA bucket",
+        "package/export handling rule for CC-BY-SA bucket",
+        "public/runtime/display authorization if any"
+      ]
+    },
+    {
+      "license_label": "CC-BY",
+      "partition_count": 5,
+      "source_row_count": 625,
+      "source_family": "hebrew_source_text",
+      "license_lane": "commercial_clean_candidate",
+      "attribution_required": true,
+      "share_alike_required": false,
+      "derived_from_nc": false,
+      "commercial_export_allowed": true,
+      "bucket_boundary_status": "attribution_boundary_required",
+      "export_authorized_now": false,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true,
+      "answer_eligible": false,
+      "public_emit": false,
+      "definition_content_storage_now": false,
+      "missing_boundary_fields": [
+        "Agent 6/release boundary verdict for CC-BY bucket",
+        "package/export handling rule for CC-BY bucket",
+        "public/runtime/display authorization if any"
+      ]
+    },
+    {
+      "license_label": "CC0",
+      "partition_count": 2,
+      "source_row_count": 496,
+      "source_family": "hebrew_source_text",
+      "license_lane": "commercial_clean_candidate",
+      "attribution_required": false,
+      "share_alike_required": false,
+      "derived_from_nc": false,
+      "commercial_export_allowed": true,
+      "bucket_boundary_status": "cc0_release_boundary_required",
+      "export_authorized_now": false,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true,
+      "answer_eligible": false,
+      "public_emit": false,
+      "definition_content_storage_now": false,
+      "missing_boundary_fields": [
+        "Agent 6/release boundary verdict for CC0 bucket",
+        "package/export handling rule for CC0 bucket",
+        "public/runtime/display authorization if any"
+      ]
+    }
+  ],
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "all_buckets_export_authorized_now": false,
+    "public_emit_now": false,
+    "answer_eligible_now": false,
+    "definition_content_storage_now": false
+  },
+  "exact_blocker": {
+    "id": "license_bucket_agent6_boundary_required",
+    "blocker_reason": "All four workbench license buckets require Agent 6/release boundary treatment before source/license custody acceptance, public display, answer use, definition text use, or package/export behavior."
+  },
+  "zero_output_counts": {
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "non_acceptance_boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_export_authorization": true,
+    "no_public_runtime_mutation": true
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_release_intake_refresh_observer_consumption",
+  "generated_at": "2026-06-04T16:59:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "status": "release_intake_refresh_consumed_no_new_authority",
+  "consumed_artifacts": {
+    "spark10_primary_status": "reports/spark10-primary-agent8-13-status-2026-06-04.md",
+    "spark10_matrix": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "agent3_observer": "reports/agent3-spark10-release-intake-refresh-observer-package-2026-06-04.json",
+    "agent3_observer_md": "reports/agent3-spark10-release-intake-refresh-observer-package-2026-06-04.md",
+    "agent1_old_dictionary_reaudit": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+    "agent10_old_dictionary_packet": "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.json",
+    "agent10_old_dictionary_supplement": "reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.json",
+    "agent2_zero_candidate_consumption": "reports/agent10-agent2-orot-missed-dictionary-zero-candidate-consumption-2026-06-04.json"
+  },
+  "spark10_matrix_summary": {
+    "inputs_checked": 90,
+    "missing_required_inputs": 0,
+    "release_relevant_rows": 26,
+    "agent6_handoff_candidates": 4,
+    "public_runtime_mutation_authorized": false,
+    "answer_definition_release_authorized": false
+  },
+  "spark10_primary_status_read": {
+    "status": "awaiting_agent_8_13_contract_or_changed_artifact",
+    "status_detail": "missing release-support executable contract/changed artifact",
+    "release_owner_intake_matrix_still_valid": true,
+    "notes": "The primary status is for Agents 8-13 release-support execution. Agent 10 release/package intake remains represented by the validated Spark-10 matrix."
+  },
+  "agent3_observer_read": {
+    "status": "spark10_release_intake_refresh_observed_no_agent3_executable_workset",
+    "spark10_inputs_checked": 90,
+    "spark10_missing_required_inputs": 0,
+    "spark10_release_relevant_rows": 26,
+    "spark10_agent6_handoff_candidates": 4,
+    "agent3_rows_observed": 11,
+    "agent3_handoff_candidate_rows": 0,
+    "external_agent10_handoff_candidate_rows": 4,
+    "agent3_rows_with_public_or_mutation_action": 0,
+    "publication_state": "blocked_no_render"
+  },
+  "agent1_old_dictionary_reaudit_current_read": {
+    "status": "agent1_old_dictionary_excluded_row_license_lane_reaudit_prepared_for_agent6_boundary_only",
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "blocked_only_non_public_domain_or_unresolved_rows": 17,
+    "blocked_only_non_public_domain_or_unresolved_occurrences": 259,
+    "no_sefaria_hit_rows": 186,
+    "no_sefaria_hit_occurrences": 2421,
+    "next_missed_rows": 50,
+    "next_missed_occurrences": 1193,
+    "lane_source_family_counts": {
+      "commercial_clean_candidate": 3,
+      "noncommercial_educational_candidate": 1,
+      "blocked_or_needs_review": 1
+    },
+    "agent10_packet_counts_still_match_current_agent1_counts": true
+  },
+  "release_owner_decision": {
+    "new_agent6_packet_needed_now": false,
+    "reason": "No new row/subset boundary was produced. The refreshed Agent 1 old-dictionary counts still match the already-routed Agent 10 primary packet; Agent 3 observer has zero Agent 3 handoff rows; Agent 2 missed-dictionary packet has zero candidate rows.",
+    "active_wait": "Agent 6 verdict or supplemental receipt for old-dictionary primary and export-partition supplemental packets",
+    "next_agent10_action": "consume Agent 6 verdict/receipt if returned; otherwise hold zero-mutation planning state"
+  },
+  "validation": {
+    "spark10_build": "node scripts/build_spark10_release_package_intake.mjs --contract=reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+    "spark10_validate": "node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "agent1_reaudit_validate": "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+    "agent3_observer_validate": "node scripts/validate_agent3_spark10_release_intake_refresh_observer_package.mjs",
+    "validation_status": "passed_with_agent3_volatile_matrix_warnings",
+    "agent3_observer_warning_read": [
+      "Spark-10 current matrix changed after Agent 3 observer build because Agent 10 refreshed Spark-10 intake.",
+      "Agent 3 validator still passed and validates the embedded Agent 3 snapshot only.",
+      "This creates no new Agent 3 handoff, public/runtime mutation, or authority boundary."
+    ]
+  },
+  "zero_output_counts": {
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "NC commercial authorization"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_changed_package_input_descriptor",
+  "changed_package_input_path": "reports/agent10-agent6-ready-agent2-weekly-lexicon-handoff-refresh-boundary-packet-2026-06-04.json",
+  "package_hash_or_commit_or_mtime": "sha256:037d36a728836997321b3b1d3943c9ef7c9674534f54755454e8866cfbb0e9c3",
+  "exact_command_list": [
+    "node scripts\\validate_agent2_weekly_lexicon_current_handoff_bundle.mjs",
+    "node scripts\\validate_agent2_weekly_lexicon_pipeline_inventory.mjs",
+    "node scripts\\validate_agent2_current_handoff_aggregate_validation_receipt.mjs",
+    "node scripts\\validate_definition_workbench_sample.mjs data\\definitions\\definition-workbench-sample-1000.json",
+    "node scripts\\validate_agent2_deuteronomy_phase2_partition_export_plan.mjs reports\\agent2-deuteronomy-phase2-partition-export-plan-2026-06-04.json",
+    "node scripts\\validate_agent2_orot_missed_dictionary_reader_hint_candidates.mjs reports\\agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+    "node scripts\\validate_agent2_orot_counterpart_hint_patch_preview.mjs reports\\agent2-orot-counterpart-hint-patch-preview-2026-06-04.json",
+    "node scripts\\validate_agent2_orot_reader_hint_candidate_patch.mjs reports\\agent2-orot-reader-hint-candidate-patch-2026-06-04.json",
+    "node scripts\\validate_agent2_orot_pilot_answer_claims.mjs",
+    "node scripts\\validate_agent2_orot_tbd_placeholder_inventory_consumption.mjs reports\\agent2-orot-tbd-13-placeholder-inventory-consumption-2026-06-04.json"
+  ],
+  "expected_output_path_schema": "reports/agent4-agent2-weekly-lexicon-handoff-refresh-gate-proof-2026-06-04.md",
+  "validator_gate": "Agent 2 weekly lexicon current handoff bundle, pipeline inventory, aggregate receipt, Workbench 1000 sample, Deuteronomy partition plan, Orot missed-dictionary, Orot counterpart preview, Orot reader-hint patch, Orot pilot answer claims, and Orot TBD inventory validators must pass on explicit 2026-06-04 inputs.",
+  "package_owner": "Agent 10 release/package intake; Agent 2 definition/lemma/reader-hint pipeline owner",
+  "agent6_boundary_trigger": "Agent 6 review only as non-public definition/lemma/reader-hint pipeline planning evidence; no candidate text export, Definition authority, answer eligibility, public/runtime mutation, route-shard writes, source/license acceptance, publication readiness, accepted text, or release action is requested.",
+  "stop_condition": "Stop after runnable Agent 4 validator/prereq contract is generated and checked, or exact blocker if any listed validator fails."
+}

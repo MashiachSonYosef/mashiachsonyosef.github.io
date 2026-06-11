@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_ready_old_dictionary_morphology_candidate_use_boundary_packet",
+  "generated_at": "2026-06-05T23:35:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "release_owner": "Agent 10",
+  "source_lane_owner": {
+    "agent_id": "019e975d-dc9f-7020-a7c8-885d083a837e",
+    "label": "Agent 1 - importer"
+  },
+  "review_scope": "nonpublic_old_dictionary_morphology_candidate_use_boundary_only",
+  "target": "old-dictionary morphology-planning rows approved by Agent 2 for non-public planning only",
+  "inputs_consumed": [
+    "reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json",
+    "reports/agent2-morphology-planning-candidate-use-blocker-2026-06-05.json",
+    "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+    "reports/agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.json",
+    "reports/agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.json",
+    "reports/agent1-current-source-license-custody-lane-return-addendum-2026-06-05.json"
+  ],
+  "exact_subset": {
+    "row_source_path": "reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json",
+    "row_source_pointer": "exact_subset_for_future_question.queue_ids",
+    "relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "relation_basis": "exact_after_mark_strip",
+    "row_count": 78,
+    "occurrence_count": 1461,
+    "license_lane": "commercial_clean_candidate",
+    "source_families": [
+      "BDB Aramaic Dictionary",
+      "BDB Dictionary",
+      "Jastrow Dictionary"
+    ],
+    "source_family_group_counts": {
+      "BDB Aramaic Dictionary": {
+        "planning_rows_with_family": 21,
+        "planning_occurrences_with_family": 616
+      },
+      "BDB Dictionary": {
+        "planning_rows_with_family": 63,
+        "planning_occurrences_with_family": 1271
+      },
+      "Jastrow Dictionary": {
+        "planning_rows_with_family": 75,
+        "planning_occurrences_with_family": 1417
+      }
+    },
+    "count_semantics": "source-family counts can overlap; exact row boundary is the 78 queue IDs in the row source pointer"
+  },
+  "excluded_rows": {
+    "morphology_blocked_rows": 219,
+    "morphology_blocked_occurrences": null,
+    "prefix_or_clitic_possible_rows": 129,
+    "needs_morphology_disambiguation_rows": 90,
+    "excluded_reason": "not in the exact Agent 2 morphology relation approved-for-planning subset"
+  },
+  "agent6_review_question": "Pass/warn/block whether the exact 78 row / 1461 occurrence old-dictionary commercial-clean morphology-planning subset may be carried one step further as non-public candidate-use planning input for Agent 2 package authoring, using only the row IDs in reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json exact_subset_for_future_question.queue_ids, while preserving zero candidate text export, zero definition/lemma/reader-hint content storage, zero answer eligibility, zero public/runtime mutation, zero route writes, zero accepted text, and no source/license/legal acceptance.",
+  "candidate_use_request": {
+    "requested_candidate_use_scope": "nonpublic_candidate_use_planning_input_only",
+    "agent2_may_author_nonpublic_candidate_package_if_warn_accepted": true,
+    "agent2_may_store_definition_text_now": false,
+    "agent2_may_store_lemma_text_now": false,
+    "agent2_may_store_reader_hint_text_now": false,
+    "agent2_may_export_candidate_text_now": false,
+    "agent2_may_emit_public_reader_output_now": false,
+    "agent2_may_create_answer_eligible_rows_now": false,
+    "agent2_may_write_route_jsonl_or_shards_now": false,
+    "agent2_may_mutate_runtime_or_public_files_now": false,
+    "agent2_may_claim_source_license_legal_acceptance_now": false,
+    "commercial_export_allowed_now": false,
+    "release_action_allowed_now": false
+  },
+  "required_fields_to_preserve_in_any_later_agent2_package": [
+    "queue_id",
+    "token_id",
+    "lexicon_entry_id",
+    "occurrences",
+    "source_family",
+    "license_lane",
+    "source_rids",
+    "morphology_relation_basis",
+    "agent2_morphology_relation_status",
+    "candidate_use_scope",
+    "derived_from_nc",
+    "commercial_export_allowed",
+    "attribution_required",
+    "corpus_contamination",
+    "answer_eligible",
+    "public_emit",
+    "agent6_boundary_required"
+  ],
+  "zero_counters": {
+    "public_hud_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "candidate_text_export_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "delivery_state": {
+    "status": "agent6_ready_not_delivered_by_agent10_in_this_artifact",
+    "known_prior_agent6_target": "019e7f09-a04b-7f30-b36c-87aa8ecaae5d",
+    "handoff_owner": "Agent 8 or Agent 7 if live Agent 6 routing is required"
+  },
+  "exact_blocker_if_not_routed": "await_agent6_candidate_use_boundary_for_78_old_dictionary_morphology_planning_rows",
+  "stop_condition": "Stop at Agent6-ready boundary packet or Agent 6 verdict. No Agent 2 candidate package authoring, candidate text export, definition/lemma/reader-hint content, answer rows, route writes, public/runtime mutation, accepted text, commercial export, or release action is authorized by this packet alone.",
+  "highest_permissible_claim": "Agent 10 assembled the exact Agent6-ready candidate-use boundary packet for the 78 old-dictionary morphology-planning rows as non-public planning input only.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

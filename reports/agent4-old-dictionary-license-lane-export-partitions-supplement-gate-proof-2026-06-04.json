@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "status": "runnable_contract_authored_changed_input_present",
+  "target": "old-dictionary-license-lane-export-partitions-supplement",
+  "changed_package_input_path": "reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.json",
+  "changed_package_input_sha256": "9eba2a991364f06ea921928eebe501f650b680dcbf7846f120af877295a1cb08",
+  "files": [
+    "reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.json",
+    "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+    "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.json",
+    "reports/agent4-old-dictionary-license-lane-export-partitions-supplement-changed-input-2026-06-04.json",
+    "reports/agent4-old-dictionary-license-lane-export-partitions-supplement-runnable-contract-2026-06-04.json",
+    "reports/agent4-old-dictionary-license-lane-export-partitions-supplement-runnable-contract-2026-06-04.md"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_license_lane_export_partitions.mjs",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_license_lane_boundary_packets.mjs",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\build_agent4_changed_package_validator_prereq_gate.mjs --date 2026-06-04 --changed-input reports\\agent4-old-dictionary-license-lane-export-partitions-supplement-changed-input-2026-06-04.json --out-json reports\\agent4-old-dictionary-license-lane-export-partitions-supplement-runnable-contract-2026-06-04.json --out-md reports\\agent4-old-dictionary-license-lane-export-partitions-supplement-runnable-contract-2026-06-04.md",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-old-dictionary-license-lane-export-partitions-supplement-runnable-contract-2026-06-04.json",
+      "result": "pass"
+    }
+  ],
+  "counts": {
+    "commercial_clean_candidate_source_families": 3,
+    "commercial_clean_candidate_row_count": 500,
+    "commercial_clean_candidate_occurrence_count": 10940,
+    "noncommercial_educational_candidate_source_families": 1,
+    "noncommercial_educational_candidate_row_count": 214,
+    "noncommercial_educational_candidate_occurrence_count": 4444,
+    "metadata_or_link_only_source_families": 0,
+    "metadata_or_link_only_row_count": 0,
+    "metadata_or_link_only_occurrence_count": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "blocked_or_needs_review_row_count": 222,
+    "blocked_or_needs_review_occurrence_count": 4435,
+    "validator_commands_passed": 2,
+    "runnable_contracts_authored": 1,
+    "runnable_contracts_checked": 1,
+    "answer_rows": 0,
+    "source_rows_emitted": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0,
+    "acceptance_claims": 0
+  },
+  "result": "Runnable Agent4 changed-package validator/prereq contract generated and checked for exact old-dictionary export-partitions supplement changed input.",
+  "blocker_if_any": {
+    "agent4_validator_gate": "none",
+    "remaining_boundary": [
+      "Supplement is non-public lane-partition planning evidence only.",
+      "Candidate text export, source/license acceptance, commercial export, NC commercial use, public/runtime mutation, answer eligibility, Definition authority, and publication readiness remain unauthorized.",
+      "Row counts are source-family hit totals, not mutually exclusive export rows."
+    ]
+  },
+  "next_handoff": "Agent10 owns release/package intake; Agent6 boundary review only.",
+  "stop_condition": "Stop after exact changed-input gate proof and runnable contract check; do not rerun this validator chain unless the package/input changes.",
+  "non_acceptance_boundary": {
+    "qa_acceptance": false,
+    "public_runtime_acceptance": false,
+    "source_provenance_acceptance": false,
+    "license_legal_acceptance": false,
+    "definition_authority": false,
+    "publication_readiness": false,
+    "route_publication_support": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "accepted_gloss_text": false,
+    "release_action": false,
+    "candidate_text_export_storage": false,
+    "commercial_export_authorization": false,
+    "nc_commercial_authorization": false,
+    "public_runtime_mutation": false
+  }
+}

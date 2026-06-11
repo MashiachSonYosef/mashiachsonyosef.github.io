@@ -1,0 +1,99 @@
+{
+  "artifact_type": "agent10_agent2_ready_old_dictionary_78_row_candidate_use_workset",
+  "generated_at": "2026-06-06T00:42:00Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target_package": "old-dictionary-commercial-clean-78-row-candidate-use-preboundary-workset",
+  "status": "ready_for_agent2_preboundary_matrix_or_exact_blocker",
+  "files_used": [
+    "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+    "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+    "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current.json",
+    "reports/agent10-direct-release-package-intake-refresh-2026-06-06a.json"
+  ],
+  "selection_rule": {
+    "preview_relation_class": "exact_after_mark_strip",
+    "agent2_morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "license_lane": "commercial_clean_candidate"
+  },
+  "expected_counts": {
+    "rows": 78,
+    "occurrences": 1461
+  },
+  "source_license_lane": "commercial_clean_candidate",
+  "current_use_status": "nonpublic_planning_evidence_only_no_transform_or_candidate_use_approval",
+  "agent2_required_output": {
+    "artifact": "compact_preboundary_candidate_use_matrix",
+    "required_fields": [
+      "queue_id",
+      "token_id",
+      "lexicon_entry_id",
+      "surface",
+      "normalized",
+      "occurrences",
+      "source_family_hits",
+      "public_domain_headwords",
+      "public_domain_rids",
+      "license_lane",
+      "preview_relation_class",
+      "morphology_relation_status",
+      "intended_candidate_use",
+      "candidate_text_rows_now",
+      "definition_candidate_rows_now",
+      "lemma_candidate_rows_now",
+      "reader_hint_candidate_rows_now",
+      "answer_eligible_rows_now",
+      "public_emit_rows_now",
+      "route_writes",
+      "accepted_text_rows",
+      "exact_agent6_question"
+    ],
+    "required_intended_candidate_use": "candidate_use_preboundary_review_only_no_text_emission",
+    "required_zero_counters": {
+      "candidate_text_rows_now": 0,
+      "definition_candidate_rows_now": 0,
+      "lemma_candidate_rows_now": 0,
+      "reader_hint_candidate_rows_now": 0,
+      "answer_eligible_rows_now": 0,
+      "public_emit_rows_now": 0,
+      "route_writes": 0,
+      "accepted_text_rows": 0
+    }
+  },
+  "agent6_boundary_question_to_prepare": "Pass/warn/block whether the exact 78 row / 1461 occurrence commercial-clean old-dictionary subset may be carried from non-public morphology planning evidence into a non-public candidate-use preboundary review matrix only, preserving zero candidate text, zero definition/lemma/reader-hint content rows, zero answer eligibility, zero public emit, zero route writes, zero accepted text, and no release/public/runtime mutation.",
+  "exact_blocker_if_unavailable": "missing_pipeline_blocker with the exact missing input, selector, output schema field, validator, or row-count mismatch",
+  "next_owner": "Agent 2 produces the preboundary matrix or exact blocker; Agent 10 consumes it and assembles the Agent 6 packet only after validated row count, occurrence count, source lane, intended-use field, and zero counters.",
+  "global_zero_counters": {
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "route_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "stop_condition": "Stop after the Agent 2 preboundary matrix or exact blocker. Do not emit candidate text, definition content, lemma content, reader-hint content, answers, public/runtime files, route shards, accepted text, export files, publication readiness, or release action.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

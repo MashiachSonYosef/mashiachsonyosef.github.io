@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent2_old_dictionary_morphology_candidate_use_package_consumption",
+  "generated_at": "2026-06-05T16:30:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "release_owner": "Agent 10",
+  "package_workset": "old_dictionary_morphology_candidate_use_planning_package",
+  "inputs_consumed": [
+    "reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.md",
+    "reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json",
+    "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.md",
+    "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json",
+    "reports/agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption-2026-06-05.md",
+    "reports/agent10-agent2-old-dictionary-morphology-candidate-use-handoff-2026-06-05.md"
+  ],
+  "row_occurrence_counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "unique_queue_ids": 78,
+    "morphology_blocked_rows_excluded": 219
+  },
+  "lane_split": {
+    "commercial_clean_candidate": 78,
+    "noncommercial_educational_candidate": 0
+  },
+  "validator_results": [
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_morphology_candidate_use_package.mjs reports\\agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent6_old_dictionary_morphology_candidate_use_boundary_verdict.mjs reports\\agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "agent6_boundary_need": "no_current_agent6_route_for_package_carry_forward_any_text_storage_transform_output_export_answer_route_public_runtime_accepted_text_commercial_export_or_release_step_requires_later_exact_agent6_packet",
+  "exact_blocker": "candidate_text_rows_0_actual_text_storage_transform_output_export_answer_or_runtime_mutation_requires_new_agent6_verdict",
+  "next_handoff": "Agent 10 release/package state only; no Agent 2 wait remains for this package.",
+  "stop_condition": "Stop at non-public candidate-use planning package.",
+  "zero_counters": {
+    "candidate_text_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0,
+    "source_license_legal_acceptance": 0,
+    "commercial_export_authorization": 0
+  },
+  "highest_permissible_claim": "Agent 10 consumed Agent 2's exact 78-row non-public candidate-use planning package and resolved the prior Agent 2 wait for that package.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}
+

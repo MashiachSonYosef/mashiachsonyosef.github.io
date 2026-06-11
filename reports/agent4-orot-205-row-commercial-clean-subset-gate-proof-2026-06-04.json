@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "status": "missing_pipeline_blocker",
+  "target": "orot-205-row-commercial-clean-subset",
+  "changed_package_input_path": "reports/agent10-agent6-ready-orot-205-row-commercial-clean-subset-2026-06-04.json",
+  "changed_package_input_sha256": "6af0825af96a658d670c7ab95c8f3d428af964f69fefc76a8039aca7f15632b3",
+  "commands": [
+    {
+      "command": "node scripts\\build_agent4_changed_package_validator_prereq_gate.mjs --date 2026-06-04 --changed-input reports\\agent4-orot-205-row-commercial-clean-subset-changed-input-2026-06-04.json --out-json reports\\agent4-orot-205-row-commercial-clean-subset-runnable-contract-2026-06-04.json --out-md reports\\agent4-orot-205-row-commercial-clean-subset-runnable-contract-2026-06-04.md",
+      "result": "missing_pipeline_blocker"
+    },
+    {
+      "command": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-orot-205-row-commercial-clean-subset-runnable-contract-2026-06-04.json",
+      "result": "pass"
+    }
+  ],
+  "counts": {
+    "subset_rows": 205,
+    "subset_occurrences": 1767,
+    "source_license_lane": "commercial_clean_candidate",
+    "observed_license_group": "PUBLIC_DOMAIN_OBSERVED",
+    "families": [
+      "BDB Aramaic Dictionary",
+      "BDB Dictionary",
+      "Jastrow Dictionary"
+    ],
+    "needs_morphology_disambiguation_rows": 71,
+    "needs_morphology_disambiguation_occurrences": 641,
+    "prefix_or_clitic_possible_rows": 82,
+    "prefix_or_clitic_possible_occurrences": 677,
+    "exact_after_mark_strip_rows": 52,
+    "exact_after_mark_strip_occurrences": 449,
+    "missing_agent1_6_custody_disposition_blockers": 205,
+    "answer_text_not_stored_blockers": 205,
+    "missing_approved_morphology_relation_blockers": 153,
+    "definition_text_stored_now": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_ready_rows": 0,
+    "route_jsonl_emit_allowed_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation_rows": 0,
+    "supported_validator_commands_supplied": 0,
+    "runnable_contracts_authored": 0,
+    "missing_pipeline_blocker_artifacts_authored": 1,
+    "acceptance_claims": 0
+  },
+  "result": "Missing-pipeline blocker emitted because exact changed package exists but no declared/supported validator command list exists for this Agent10 packet.",
+  "blocker_if_any": {
+    "class": "missing_pipeline_blocker",
+    "changed_package_path": "reports/agent10-agent6-ready-orot-205-row-commercial-clean-subset-2026-06-04.json",
+    "command_list_needed": "Named validator command list for the Orot 205-row commercial-clean subset packet.",
+    "expected_output_schema": "reports/agent4-orot-205-row-commercial-clean-subset-gate-proof-2026-06-04.md",
+    "validator_gate": "Validate packet shape, 205 rows / 1767 occurrences, relation-class counts, transform-blocker counts, commercial-clean/public-domain-observed lane, excluded families, and zero definition/answer/public/runtime emissions.",
+    "package_owner": "Agent10 release/package intake; Agent2 definition/reader-hint transform owner",
+    "agent6_trigger": "Boundary-only review after supported validator list exists; no acceptance requested.",
+    "next_harness_gap": "Named validator for Agent10 Orot 205-row commercial-clean subset packet.",
+    "stop_condition": "Stop at exact blocker until validator command list or changed package/input appears."
+  },
+  "next_handoff": "Agent10/Agent2 provide named validator command list; Agent4 reruns only after changed input or validator list exists.",
+  "stop_condition": "Stop at exact missing-pipeline blocker; do not rerun this validator chain until package/input or validator list changes.",
+  "non_acceptance_boundary": {
+    "qa_acceptance": false,
+    "public_runtime_acceptance": false,
+    "source_provenance_acceptance": false,
+    "license_legal_acceptance": false,
+    "definition_authority": false,
+    "route_publication_support": false,
+    "publication_readiness": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "answer_eligibility": false,
+    "candidate_text_export": false,
+    "accepted_gloss_text": false,
+    "release_action": false,
+    "route_shard_write": false,
+    "public_runtime_mutation": false
+  }
+}

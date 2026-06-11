@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent2_old_dictionary_morphology_candidate_use_handoff",
+  "generated_at": "2026-06-05T23:59:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "release_owner": "Agent 10",
+  "handoff_owner": "Agent 2",
+  "target": "019e027b-7533-7272-9474-7abaf8712b29",
+  "submission_id": "019e97e5-31dc-7ae3-a63d-0836d3284d65",
+  "request": "author_nonpublic_old_dictionary_morphology_candidate_use_package_over_exact_78_queue_ids_only",
+  "inputs": [
+    "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.md",
+    "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json",
+    "reports/agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption-2026-06-05.md",
+    "reports/agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption-2026-06-05.json",
+    "reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json"
+  ],
+  "row_source": {
+    "path": "reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json",
+    "pointer": "exact_subset_for_future_question.queue_ids",
+    "rows": 78,
+    "occurrences": 1461,
+    "license_lane": "commercial_clean_candidate",
+    "preview_relation_class": "exact_after_mark_strip",
+    "agent2_morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "noncommercial_educational_candidate_rows": 0,
+    "excluded_morphology_blocked_rows": 219
+  },
+  "required_fields": [
+    "queue_id",
+    "token_id",
+    "lexicon_entry_id",
+    "occurrences",
+    "source_family",
+    "license_lane",
+    "source_rids",
+    "morphology_relation_basis",
+    "agent2_morphology_relation_status",
+    "candidate_use_scope",
+    "derived_from_nc",
+    "commercial_export_allowed",
+    "attribution_required",
+    "corpus_contamination",
+    "answer_eligible",
+    "public_emit",
+    "agent6_boundary_required"
+  ],
+  "expected_output": {
+    "artifact": "non-public old-dictionary morphology candidate-use package",
+    "paths": "reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.md/json or exact blocker",
+    "validator": "Agent 2-authored validator or exact missing_pipeline_blocker"
+  },
+  "stop_condition": "Agent 2 returns package artifact paths plus validator result, or exact blocker naming missing command/input/schema/field.",
+  "zero_counters_required": {
+    "candidate_text_export": 0,
+    "definition_lemma_reader_hint_content_storage": 0,
+    "answer_eligibility": 0,
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "accepted_text": 0,
+    "release_actions": 0
+  },
+  "must_not_be_accepted": [
+    "candidate text storage",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "answer eligibility",
+    "route writes",
+    "public/runtime mutation",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "accepted gloss/text",
+    "commercial export authorization",
+    "publication readiness",
+    "release action"
+  ],
+  "highest_permissible_claim": "Agent 10 handed Agent 6-cleared non-public candidate-use planning input to Agent 2 for package authoring only."
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_orot_205_row_agent6_wait_state",
+  "generated_at": "2026-06-04",
+  "status": "waiting_for_agent6_row_subset_disposition",
+  "active_packet": {
+    "markdown": "reports/agent10-agent6-ready-orot-205-row-commercial-clean-subset-2026-06-04.md",
+    "json": "reports/agent10-agent6-ready-orot-205-row-commercial-clean-subset-2026-06-04.json",
+    "rows": 205,
+    "occurrences": 1767,
+    "lane": "commercial_clean_candidate",
+    "license_group": "PUBLIC_DOMAIN_OBSERVED"
+  },
+  "anchor": {
+    "package": "data/build/orot/reader-hint-placeholder-candidates.json",
+    "rows": 127,
+    "occurrences": 4389
+  },
+  "relation_classes": {
+    "exact_after_mark_strip": {
+      "rows": 52,
+      "occurrences": 449
+    },
+    "prefix_or_clitic_possible": {
+      "rows": 82,
+      "occurrences": 677
+    },
+    "needs_morphology_disambiguation": {
+      "rows": 71,
+      "occurrences": 641
+    }
+  },
+  "preflight": {
+    "path": "reports/agent10-orot-205-row-commercial-clean-append-preflight-2026-06-04.json",
+    "absent_rows": 205,
+    "absent_occurrences": 1767,
+    "projected_rows_if_all_cleared": 332,
+    "projected_occurrences_if_all_cleared": 6156
+  },
+  "validation": [
+    "node scripts/validate_agent10_orot_non_public_reader_hint_placeholder_package.mjs"
+  ],
+  "stop_condition": "No append, public/runtime/output mutation, answer eligibility, definition-content storage, route JSONL/shard writes, or accepted text unless Agent 6 returns exact row/subset clearance.",
+  "not_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss",
+    "accepted text",
+    "public reader output"
+  ]
+}

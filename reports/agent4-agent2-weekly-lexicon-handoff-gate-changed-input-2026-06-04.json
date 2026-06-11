@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_changed_package_input_descriptor",
+  "changed_package_input_path": "reports/agent10-agent6-ready-agent2-weekly-lexicon-handoff-boundary-packet-2026-06-04.json",
+  "package_hash_or_commit_or_mtime": "sha256:f090246ab7d55c0d9978b46758fd7dd37d00c72b9ac3565bc125fd6549817ab2",
+  "exact_command_list": [
+    "node scripts/validate_agent2_weekly_lexicon_current_handoff_bundle.mjs",
+    "node scripts/validate_agent2_weekly_lexicon_pipeline_inventory.mjs",
+    "node scripts/validate_agent2_current_handoff_aggregate_validation_receipt.mjs",
+    "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample-1000.json",
+    "node scripts/validate_agent2_deuteronomy_phase2_partition_export_plan.mjs reports/agent2-deuteronomy-phase2-partition-export-plan-2026-06-04.json",
+    "node scripts/validate_agent2_orot_missed_dictionary_reader_hint_candidates.mjs reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+    "node scripts/validate_agent2_orot_tbd_placeholder_inventory_consumption.mjs reports/agent2-orot-tbd-13-placeholder-inventory-consumption-2026-06-04.json"
+  ],
+  "expected_output_path_schema": "reports/agent4-agent2-weekly-lexicon-handoff-gate-proof-2026-06-04.md",
+  "validator_gate": "All validation commands declared by the Agent10 Agent2 weekly lexicon handoff boundary packet must pass on the exact 2026-06-04 packet inputs.",
+  "package_owner": "Agent 10 release/package intake; Agent 2 weekly lexicon pipeline owner",
+  "agent6_boundary_trigger": "Agent 6 review only as non-public definition/lemma/reader-hint pipeline planning evidence; no QA acceptance, source/provenance acceptance, license/legal acceptance, Definition authority, public/runtime acceptance, publication readiness, product/data acceptance, answer acceptance, accepted gloss/text, or release action is requested.",
+  "stop_condition": "Stop after runnable Agent 4 validator/prereq contract is generated and checked, or exact blocker if any declared validator fails."
+}

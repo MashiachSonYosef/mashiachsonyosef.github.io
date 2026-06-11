@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_third_missed_source_family_target_or_blocker",
+  "generated_at": "2026-06-05T18:00:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "status": "missing_workset_blocker",
+  "target": "third_missed_source_family",
+  "task_shape": {
+    "target": "third_missed_source_family",
+    "files": [
+      "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+      "reports/agent1-third-missed-source-family-input-rows-2026-06-05.json",
+      "reports/agent1-third-missed-source-family-missing-workset-blocker-handoff-2026-06-04.json",
+      "reports/agent3-broad-linkage-dedupe-navigation-package-2026-06-04.json",
+      "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
+      "reports/agent10-orot-186-row-nohit-inventory-packet-2026-06-04.json"
+    ],
+    "exact_command_or_script_to_run": [
+      "node scripts/validate_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+      "node scripts/validate_agent1_third_missed_source_family_missing_workset_blocker_handoff.mjs"
+    ],
+    "output_artifact": [
+      "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-05.json",
+      "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-05.md",
+      "reports/agent1-third-missed-source-family-input-contract-2026-06-05.json"
+    ],
+    "schema_counts": {
+      "source_no_hit_inventory_rows": 186,
+      "source_no_hit_inventory_occurrences": 2421,
+      "local_route_card_matrix_rows": 169,
+      "local_route_card_matrix_occurrences": 2148,
+      "exact_linkage_blocker_rows": 168,
+      "exact_linkage_blocker_occurrences": 2117,
+      "rows_already_in_placeholder_package": 1,
+      "occurrences_already_in_placeholder_package": 31,
+      "route_cards_total": 7476,
+      "candidate_cards_total": 559,
+      "ambiguity_cards_total": 203,
+      "spark1_route_allowed_now": false
+    },
+    "validator": [
+      "node scripts/validate_agent1_orot_third_missed_source_family_target_or_blocker.mjs reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+      "node scripts/validate_agent1_third_missed_source_family_missing_workset_blocker_handoff.mjs reports/agent1-third-missed-source-family-missing-workset-blocker-handoff-2026-06-04.json"
+    ],
+    "required_scripts_for_future_contract_3": {
+      "build_script": "scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+      "validate_script": "scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+      "contract_file": "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+      "contract_validator": "scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs"
+    },
+    "missing_field_blocker": [
+      "missing row-level source-family/source_name/license_lane source/family mapping for each of the 168 exact linkage blockers",
+      "missing license_lane assignment into one of commercial_clean_candidate, noncommercial_educational_candidate, metadata_or_link_only, blocked_or_needs_review for the 168 blocked rows",
+      "missing attribution_required / derived_from_nc / commercial_export_allowed for blocker rows",
+      "missing source_url_or_citation for blocker rows",
+      "missing agent6_boundary_required field for blocker rows",
+      "missing exact third-missed Contract-3 build/validate scripts and Spark-1 contract validator",
+      "missing exact third-missed output schema for input rows -> contract-ready map path"
+    ],
+    "handoff_owner": {
+      "agent10_owner": "release-package intake after exact row-level source-family/license-lane artifact exists",
+      "agent6_owner": "exact boundary packet only after full lane fields exist",
+      "agent1_owner": "hold source/license/custody blocker and package-ready blockers until upstream row/field packet arrives"
+    },
+    "stop_condition": "wait for exact third-missed row-level source-family/license-lane input rows, then run build+validate pipeline scripts and Spark-1 contract validator; otherwise hold exact blocker packet only."
+  },
+  "lane_separation": {
+    "commercial_clean_candidate": {
+      "rows": 0,
+      "occurrences": 0,
+      "status": "not_assignable_from_current_evidence"
+    },
+    "noncommercial_educational_candidate": {
+      "rows": 0,
+      "occurrences": 0,
+      "status": "not_assignable_from_current_evidence"
+    },
+    "metadata_or_link_only": {
+      "rows": 0,
+      "occurrences": 0,
+      "status": "not_assignable_from_current_evidence"
+    },
+    "blocked_or_needs_review": {
+      "rows": 168,
+      "occurrences": 2117,
+      "status": "current_exact_row_blocker_set"
+    }
+  },
+  "next_command": "node scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs (only if exact third-missed source-family/license-row input is supplied; otherwise none)",
+  "non_acceptance_boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true
+  }
+}

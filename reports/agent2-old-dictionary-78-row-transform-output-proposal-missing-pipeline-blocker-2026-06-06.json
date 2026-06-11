@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_old_dictionary_78_row_transform_output_proposal_missing_pipeline_blocker",
+  "generated_at": "2026-06-06T04:30:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "old-dictionary transform-output proposal matrix for exact 78 queue IDs",
+  "return_type": "missing_pipeline_blocker",
+  "files_used": {
+    "agent10_workset": "reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.json",
+    "agent10_workset_md": "reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.md",
+    "zero_text_package_planning_anchor": "reports/agent10-old-dictionary-78-row-zero-text-candidate-use-package-planning-2026-06-06.json",
+    "agent10_zero_text_consumption": "reports/agent10-old-dictionary-78-row-zero-text-package-planning-consumption-2026-06-06.json",
+    "agent6_zero_text_verdict": "reports/agent6-old-dictionary-78-row-zero-text-candidate-use-package-verdict-2026-06-06.json",
+    "preboundary_matrix": "reports/agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json",
+    "agent10_workset_handoff": "reports/agent10-agent2-old-dictionary-78-row-transform-output-proposal-workset-handoff-2026-06-06.json",
+    "agent10_delivery_proof": "reports/agent10-agent2-old-dictionary-78-row-transform-output-proposal-delivery-proof-2026-06-06.json"
+  },
+  "lane_counts_rows_consumed": {
+    "rows": 78,
+    "occurrences": 1461,
+    "source_license_lane": "commercial_clean_candidate",
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "matrix_not_produced_reason": "The validated Agent10 workset and row-level preboundary matrix do not supply an exact Agent2 transform rule for proposed_candidate_text/proposed_definition_text/proposed_lemma_text/proposed_reader_hint_text, and do not supply the required row-level output schema source field source_citation_or_url.",
+  "missing_pipeline_blocker": {
+    "blocker_id": "missing_transform_output_proposal_matrix_or_exact_transform_rule",
+    "missing_input": "Agent2 transform-output rule artifact for converting exact 78 queue IDs into proposed_candidate_text/proposed_definition_text/proposed_lemma_text/proposed_reader_hint_text proposal fields.",
+    "missing_source_field": "source_citation_or_url is required by agent2_required_return.required_fields_if_matrix but is absent from reports/agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json rows and absent from reports/agent10-old-dictionary-78-row-zero-text-candidate-use-package-planning-2026-06-06.json package_rows.",
+    "missing_transform_rule": "No rule is provided for deriving proposed_candidate_text, proposed_definition_text, proposed_lemma_text, or proposed_reader_hint_text from surface, normalized, public_domain_headwords, public_domain_rids, or source_family_hits while preserving proposal-only status.",
+    "missing_output_schema_field": "source_citation_or_url",
+    "validator": "scripts/validate_agent2_old_dictionary_78_row_transform_output_proposal_missing_pipeline_blocker.mjs",
+    "row_count_mismatch": false,
+    "row_count_observed": 78,
+    "occurrence_count_observed": 1461
+  },
+  "output_artifact_path": "reports/agent2-old-dictionary-78-row-transform-output-proposal-missing-pipeline-blocker-2026-06-06.md",
+  "exact_blockers": [
+    "missing_transform_output_proposal_matrix_or_exact_transform_rule",
+    "missing_source_field::source_citation_or_url",
+    "missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text",
+    "next_transform_output_or_candidate_text_boundary_not_supplied",
+    "new_exact_agent6_packet_required_before_transform_output_candidate_text_definition_lemma_reader_hint_content_storage_answer_eligibility_route_write_public_runtime_mutation_export_accepted_text_publication_readiness_or_release"
+  ],
+  "handoff_owner": {
+    "agent2": "Return exact blocker; do not synthesize proposal text or citation fields.",
+    "agent10": "Consume blocker and either supply an exact transform rule/source_citation_or_url input or prepare a narrowed Agent 6 question.",
+    "agent6": "Boundary still required before any transform output, candidate text, content storage, answer eligibility, route write, public/runtime mutation, export, accepted text, publication readiness, or release.",
+    "agent1": "Source-license lane remains commercial_clean_candidate for this exact subset; no new source/license/legal acceptance is claimed here."
+  },
+  "required_rules_preserved": {
+    "rows_exactly_78": true,
+    "occurrences_exactly_1461": true,
+    "source_license_lane": "commercial_clean_candidate",
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "answer_eligible": false,
+    "public_emit": false,
+    "route_writes": 0,
+    "accepted_text": false,
+    "agent6_boundary_required": true,
+    "public_runtime_mutation": false,
+    "route_shard_write": false,
+    "export": false,
+    "publication_readiness": false,
+    "release_action": false
+  },
+  "command_timeout_records": [
+    {
+      "command": "Get-Content -Path 'reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.json' -TotalCount 260",
+      "timeout_ms": 120000,
+      "timed_out": false,
+      "partial_output_or_artifact": "reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.json",
+      "next_safe_action": "Validate workset and inspect row-level source fields."
+    },
+    {
+      "command": "node -e \"const fs=require('fs'); ... inspect preboundary and zero-text row shapes ...\"",
+      "timeout_ms": 120000,
+      "timed_out": false,
+      "partial_output_or_artifact": "preboundary rows=78 occurrences=1461; row keys do not include source_citation_or_url",
+      "next_safe_action": "Return missing_pipeline_blocker instead of fabricating output fields."
+    },
+    {
+      "command": "node scripts\\validate_agent10_agent2_old_dictionary_78_row_transform_output_proposal_workset.mjs reports\\agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.json reports\\agent10-agent2-old-dictionary-78-row-transform-output-proposal-workset-handoff-2026-06-06.json",
+      "timeout_ms": 120000,
+      "timed_out": false,
+      "partial_output_or_artifact": "Agent10 Agent2 transform-output proposal workset validation passed. Rows: 78; occurrences: 1461; route blocker: missing_current_agent2_thread_route_for_live_delivery.",
+      "next_safe_action": "Return exact Agent2 blocker for missing transform rule/source field."
+    }
+  ],
+  "stop_condition": "Stop at missing_pipeline_blocker. Do not mutate public/runtime files, route shards, source files, token indexes, lexical payloads, accepted text, export files, publication state, release state, candidate text, or definition/lemma/reader-hint content.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

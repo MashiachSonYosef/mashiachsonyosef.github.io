@@ -1,0 +1,144 @@
+{
+  "artifact_type": "agent10_agent6_ready_old_dictionary_commercial_clean_only_metadata_custody_boundary_packet",
+  "generated_at": "2026-06-05T18:59:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "review_scope": "nonpublic_commercial_clean_only_metadata_custody_planning_evidence_only",
+  "inputs": {
+    "agent1_custody_md": "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-2026-06-05.md",
+    "agent1_custody_json": "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-2026-06-05.json",
+    "agent1_validation_json": "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-validation-result-2026-06-05.json",
+    "agent6_source_family_overlap_verdict": "reports/agent6-old-dictionary-source-family-overlap-matrix-boundary-verdict-2026-06-05.md",
+    "agent6_ref_sample_gap_verdict": "reports/agent6-old-dictionary-public-domain-ref-sample-gap-boundary-verdict-2026-06-05.md"
+  },
+  "exact_custody_source": {
+    "path": "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-2026-06-05.json",
+    "row_payload_pointer": "commercial_clean_only_metadata_rows[]",
+    "ref_gap_rows_pointer": "ref_gap_rows[]",
+    "exact_blockers_pointer": "exact_blockers[]",
+    "row_duplication_in_this_packet": false
+  },
+  "custody_counts": {
+    "commercial_clean_only_rows": 18,
+    "commercial_clean_only_occurrences": 494,
+    "source_family": "Jastrow Dictionary",
+    "jastrow_only_rows": 18,
+    "rows_with_nc_overlap": 0,
+    "rows_with_blocked_overlap": 0,
+    "rows_with_refs": 17,
+    "occurrences_with_refs": 476,
+    "rows_without_refs": 1,
+    "occurrences_without_refs": 18,
+    "rid_total": 22,
+    "headword_total": 22
+  },
+  "classification_lanes": [
+    {
+      "license_lane": "commercial_clean_candidate",
+      "row_count": 18,
+      "occurrence_count": 494,
+      "source_family": "Jastrow Dictionary",
+      "rows_with_refs": 17,
+      "rows_without_refs": 1,
+      "candidate_text_rows_now": 0,
+      "agent6_boundary_required": true
+    },
+    {
+      "license_lane": "noncommercial_educational_candidate",
+      "row_count": 0,
+      "occurrence_count": 0,
+      "note": "No Klein NC overlap in this exact subset."
+    },
+    {
+      "license_lane": "metadata_or_link_only",
+      "row_count": 0,
+      "occurrence_count": 0
+    },
+    {
+      "license_lane": "blocked_or_needs_review",
+      "row_count": 0,
+      "occurrence_count": 0,
+      "note": "No BDB Augmented Strong overlap in this exact subset."
+    }
+  ],
+  "exact_blockers": [
+    {
+      "blocker": "commercial_clean_only_rows_still_need_agent6_candidate_use_boundary_and_morphology_relation",
+      "rows": 18,
+      "occurrences": 494,
+      "handoff_owner": "Agent 6 for future exact row/subset boundary; Agent 10 for package assembly"
+    },
+    {
+      "blocker": "commercial_clean_only_metadata_is_not_definition_or_candidate_text",
+      "rows": 18,
+      "occurrences": 494,
+      "handoff_owner": "Agent 1 preserves metadata custody only; Agent 2 blocked now"
+    },
+    {
+      "blocker": "commercial_clean_only_ref_gap_row_needs_ref_boundary_if_refs_required",
+      "rows": 1,
+      "occurrences": 18,
+      "handoff_owner": "Agent 6 for ref requirement boundary if future package uses refs"
+    }
+  ],
+  "requested_carry_forward": {
+    "carry_as_nonpublic_planning_evidence_only": true,
+    "source_family_selection_allowed_now": false,
+    "candidate_use_allowed_now": false,
+    "transform_allowed_now": false,
+    "source_row_emit_allowed_now": false,
+    "candidate_text_export_allowed_now": false,
+    "definition_text_storage_allowed_now": false,
+    "answer_eligibility_allowed_now": false,
+    "public_runtime_mutation_allowed_now": false,
+    "route_shard_write_allowed_now": false,
+    "source_license_legal_acceptance_allowed_now": false,
+    "commercial_export_allowed_now": false,
+    "release_action_allowed_now": false
+  },
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "agent6_review_question": "Pass/warn/block whether the exact Agent 1 commercial-clean-only metadata custody artifact may be carried as non-public package-assembly planning evidence only for the 18 Jastrow-only commercial-clean rows / 494 occurrences.",
+  "delivery_state": {
+    "status": "agent6_ready_not_delivered_by_agent10_in_this_artifact",
+    "exact_blocker_if_not_routed": "await_agent6_commercial_clean_only_metadata_custody_boundary_for_old_dictionary_18_row_subset"
+  },
+  "highest_permissible_claim": "Agent 10 prepared an Agent6-ready old-dictionary commercial-clean-only metadata custody boundary packet for non-public planning evidence only.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "source-family selection acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export permission",
+    "release action"
+  ],
+  "stop_condition": "Stop at Agent6-ready packet unless and until Agent 6 returns an exact verdict; no source-family selection, candidate use, transform, source-row emission, candidate text, output, public/runtime, answer, definition, export, or release step is authorized by this packet."
+}

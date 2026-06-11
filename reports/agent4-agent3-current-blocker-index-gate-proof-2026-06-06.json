@@ -1,0 +1,116 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "Agent 3 old-dictionary candidate-use current blocker index",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-current-blocker-index-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_current_blocker_index.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_current_blocker_index.mjs --input=reports/agent3-old-dictionary-candidate-use-current-blocker-index-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent 3 current blocker index passed: rows=8 affected=78/1461"
+    }
+  ],
+  "counts": {
+    "blocker_rows": 8,
+    "observed_blocker_rows": 8,
+    "unobserved_blocker_rows": 0,
+    "affected_candidate_use_rows": 78,
+    "affected_candidate_use_occurrences": 1461,
+    "source_citation_missing_rows": 78,
+    "transform_rule_missing_rows": 78,
+    "gate_proof_missing_rows": 2,
+    "route_recheck_required_rows": 1,
+    "agent6_zero_text_preserved_blockers": 10,
+    "source_rid_references": 393,
+    "unique_source_rids": 344,
+    "candidate_output_rows": 0,
+    "accepted_text_rows": 0,
+    "runtime_publication_rows": 0,
+    "release_rows": 0
+  },
+  "result": "validated_current_blocker_index_only",
+  "exact_blockers": [
+    {
+      "code": "missing_source_field::source_citation_or_url",
+      "class": "source_citation_dependency",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 1 / Agent 2 source-citation enrichment before Agent 10 can assemble transform-output packet"
+    },
+    {
+      "code": "missing_transform_output_proposal_matrix_or_exact_transform_rule",
+      "class": "transform_rule_dependency",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 2 transform-output proposal lane"
+    },
+    {
+      "code": "missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text",
+      "class": "proposed_text_rule_dependency",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 2 transform-output proposal lane"
+    },
+    {
+      "code": "next_transform_output_or_candidate_text_boundary_not_supplied",
+      "class": "agent6_boundary_dependency",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 10 prepares new Agent 6 boundary only after prerequisites exist"
+    },
+    {
+      "code": "candidate_text_blocked",
+      "class": "zero_text_boundary_preserved",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 10 / Agent 6"
+    },
+    {
+      "code": "missing_agent4_gate_proof_for_boundary_chain_crossmatch",
+      "class": "gate_proof_navigation_dependency",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 4 or release owner if queue-visible"
+    },
+    {
+      "code": "missing_agent4_gate_proof_for_source_citation_dependency_crossmatch",
+      "class": "gate_proof_navigation_dependency",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 4 or release owner if queue-visible"
+    },
+    {
+      "code": "recheck_required_current_registry_contradicts_older_route_blocker",
+      "class": "agent1_route_recheck_navigation",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 10 / Agent 5 routing coordination; Agent 1 source-citation lane"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-current-blocker-index-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-current-blocker-index-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 10 release/package intake; Agent 6 only through exact boundary packet",
+  "next_safe_action": "Resolve source_citation_or_url and exact transform-output rule first, or preserve the index as package-navigation evidence only.",
+  "stop_condition": "Stop after validating and packaging the current changed blocker index; do not promote candidate text, runtime/publication, release, or acceptance.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

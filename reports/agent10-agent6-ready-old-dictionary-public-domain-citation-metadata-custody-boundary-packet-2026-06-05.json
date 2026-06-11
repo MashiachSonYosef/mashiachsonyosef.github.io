@@ -1,0 +1,154 @@
+{
+  "artifact_type": "agent10_agent6_ready_old_dictionary_public_domain_citation_metadata_custody_boundary_packet",
+  "generated_at": "2026-06-05T18:18:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "review_scope": "nonpublic_public_domain_citation_metadata_custody_planning_evidence_only",
+  "inputs": {
+    "agent1_custody_md": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.md",
+    "agent1_custody_json": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.json",
+    "agent1_validation_json": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-validation-result-2026-06-05.json",
+    "prior_agent6_manifest_verdict": "reports/agent6-old-dictionary-exact-row-subset-manifest-boundary-verdict-2026-06-05.md",
+    "prior_agent1_source_family_overlap_matrix": "reports/agent1-old-dictionary-source-family-overlap-matrix-2026-06-05.json"
+  },
+  "exact_custody_source": {
+    "path": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.json",
+    "row_payload_pointer": "public_domain_metadata_rows[]",
+    "no_public_domain_metadata_subsets_pointer": "no_public_domain_citation_metadata_subsets[]",
+    "exact_blockers_pointer": "exact_blockers[]",
+    "row_duplication_in_this_packet": false
+  },
+  "citation_coverage_counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "public_domain_citation_metadata_present_rows": 297,
+    "public_domain_rid_rows": 297,
+    "public_domain_rid_total": 1276,
+    "public_domain_headword_rows": 297,
+    "public_domain_headword_total": 1120,
+    "public_domain_refs_rows": 204,
+    "public_domain_refs_count_total": 4478,
+    "public_domain_rows_without_refs_sample": 93,
+    "rows_without_public_domain_citation_metadata": 203,
+    "nc_only_rows_without_public_domain_citation_metadata": 17,
+    "no_source_hit_rows_without_public_domain_citation_metadata": 186
+  },
+  "classification_lanes": [
+    {
+      "license_lane": "commercial_clean_candidate",
+      "row_count": 297,
+      "occurrence_count": 5747,
+      "citation_metadata_present_rows": 297,
+      "definition_text_rows_now": 0,
+      "candidate_text_rows_now": 0,
+      "agent6_boundary_required": true
+    },
+    {
+      "license_lane": "noncommercial_educational_candidate",
+      "row_count": 17,
+      "occurrence_count": 259,
+      "public_domain_citation_metadata_present_rows": 0,
+      "commercial_export_allowed_now": false,
+      "agent6_boundary_required": true
+    },
+    {
+      "license_lane": "metadata_or_link_only",
+      "row_count": 0,
+      "occurrence_count": 0,
+      "candidate_text_rows_now": 0
+    },
+    {
+      "license_lane": "blocked_or_needs_review",
+      "row_count": 186,
+      "occurrence_count": 2421,
+      "public_domain_citation_metadata_present_rows": 0,
+      "source_license_custody_evidence_missing_now": true
+    }
+  ],
+  "exact_blockers": [
+    {
+      "blocker": "public_domain_metadata_is_citation_metadata_only_not_definition_text",
+      "rows": 297,
+      "occurrences": 5747,
+      "handoff_owner": "Agent 6 for candidate-use boundary; Agent 2 blocked from transform now"
+    },
+    {
+      "blocker": "public_domain_rows_without_ref_samples_need_source_family_boundary_if_refs_required",
+      "rows": 93,
+      "occurrences": 1362,
+      "handoff_owner": "Agent 1 records metadata gap; Agent 6 decides future boundary requirements"
+    },
+    {
+      "blocker": "nc_only_rows_have_no_public_domain_citation_metadata_and_no_commercial_authorization",
+      "rows": 17,
+      "occurrences": 259,
+      "handoff_owner": "Agent 6 for NC boundary; Agent 1 preserves NC lane"
+    },
+    {
+      "blocker": "no_source_hit_rows_have_no_public_domain_citation_metadata_or_source_lane_evidence",
+      "rows": 186,
+      "occurrences": 2421,
+      "handoff_owner": "Agent 1 if source evidence appears; Agent 2 blocked now"
+    }
+  ],
+  "requested_carry_forward": {
+    "carry_as_nonpublic_planning_evidence_only": true,
+    "candidate_use_allowed_now": false,
+    "source_row_emit_allowed_now": false,
+    "candidate_text_export_allowed_now": false,
+    "definition_text_storage_allowed_now": false,
+    "answer_eligibility_allowed_now": false,
+    "public_runtime_mutation_allowed_now": false,
+    "route_shard_write_allowed_now": false,
+    "source_license_legal_acceptance_allowed_now": false,
+    "commercial_export_allowed_now": false,
+    "nc_commercial_authorization_allowed_now": false,
+    "release_action_allowed_now": false
+  },
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "agent6_review_question": "Pass/warn/block whether the exact Agent 1 old-dictionary public-domain citation metadata custody artifact may be carried as non-public citation/source-custody planning evidence only, preserving lane separation, citation-metadata-only status, blockers, and all zero-output counters.",
+  "delivery_state": {
+    "status": "agent6_ready_not_delivered_by_agent10_in_this_artifact",
+    "exact_blocker_if_not_routed": "await_agent6_public_domain_citation_metadata_custody_boundary_for_old_dictionary_500_row_matrix"
+  },
+  "highest_permissible_claim": "Agent 10 prepared an Agent6-ready old-dictionary public-domain citation metadata custody boundary packet for non-public planning evidence only.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export permission",
+    "NC commercial authorization",
+    "release action"
+  ],
+  "stop_condition": "Stop at Agent6-ready packet unless and until Agent 6 returns an exact verdict; no candidate use, transform, source-row emission, candidate text, output, public/runtime, answer, definition, export, or release step is authorized by this packet."
+}

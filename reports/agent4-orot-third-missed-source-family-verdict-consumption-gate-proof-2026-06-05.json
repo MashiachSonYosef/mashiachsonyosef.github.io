@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_orot_third_missed_source_family_verdict_consumption_gate_proof",
+  "generated_at": "2026-06-05T12:15:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "orot-third-missed-source-family-verdict-consumption",
+  "status": "validator_authored_and_passed",
+  "boundary": "validator/prereq evidence only; no QA beyond exact docket, source/provenance, license/legal, Definition, usage-as-definition, runtime, publication, product/data, answer, accepted gloss/text, public reader output, or release acceptance",
+  "files": [
+    {
+      "path": "scripts/validate_agent10_orot_third_missed_source_family_verdict_consumption.mjs",
+      "sha256": "75668bf577c1c9f942a9bc110a15c5091bb5b74b0df6395a23283737b8693a2e",
+      "role": "new narrow validator for current verdict-consumption changed input"
+    },
+    {
+      "path": "reports/agent10-agent6-orot-third-missed-source-family-verdict-consumption-2026-06-05.json",
+      "sha256": "bfa68ee5bf47756a60ea85d18d8069cd974c5372b17a33ddf57f42d1a7d424d2",
+      "artifact_type": "agent10_agent6_orot_third_missed_source_family_verdict_consumption"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-orot-third-missed-source-family-boundary-packet-2026-06-05.json",
+      "sha256": "b678242ca6470104da8ccdee88179557dfa61294e9af8a140243421163a98a66",
+      "artifact_type": "agent10_agent6_ready_orot_third_missed_source_family_boundary_packet"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_orot_third_missed_source_family_verdict_consumption.mjs reports\\agent10-agent6-orot-third-missed-source-family-verdict-consumption-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Reviewed rows: 169; commercial planning rows: 138; blocked rows: 31; public/runtime mutations: 0."
+    }
+  ],
+  "counts": {
+    "reviewed_rows": 169,
+    "reviewed_occurrences": 2148,
+    "commercial_clean_candidate_planning_rows": 138,
+    "commercial_clean_candidate_planning_occurrences": 1672,
+    "blocked_or_needs_review_rows": 31,
+    "blocked_or_needs_review_occurrences": 476,
+    "missing_lexicon_entry_id_rows": 17,
+    "missing_lexicon_entry_id_occurrences": 331,
+    "source_license_boundary_review_needed_rows": 14,
+    "source_license_boundary_review_needed_occurrences": 145,
+    "noncommercial_educational_candidate_rows": 0,
+    "metadata_or_link_only_rows": 0
+  },
+  "zero_mutation_counters": {
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "route_jsonl_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_hud_rows": 0
+  },
+  "blockers": [
+    {
+      "blocker": "missing_lexicon_entry_id_in_input_row",
+      "rows": 17,
+      "occurrences": 331,
+      "owner": "Agent 1 / Agent 3 source-linkage evidence before any stronger Agent 6 boundary"
+    },
+    {
+      "blocker": "source_license_boundary_review_needed",
+      "rows": 14,
+      "occurrences": 145,
+      "owner": "Agent 1 source/license/custody evidence before any stronger Agent 6 boundary"
+    }
+  ],
+  "result": "target | orot-third-missed-source-family-verdict-consumption | files in packet | commands passed: new Agent10 Orot third-missed verdict-consumption validator | counts: 169 reviewed rows, 2148 occurrences, 138 commercial-clean planning rows, 31 blocked/review rows, 17 missing lexicon-entry rows, 14 source/license boundary rows, 0 public/runtime/route/candidate-text/definition/answer/accepted-text rows | result: validator authored and passed; verdict consumption remains non-public planning evidence only | blocker if any: 31 blocked/review rows remain; any downstream candidate/export/storage/display/answer/definition/public/release use needs a new exact boundary | next handoff: Agent10 may carry 138 rows as non-public planning evidence; Agent1/Agent3 own exact blocker cleanup | stop condition: do not rerun unless verdict consumption, reviewed packet, or validator changes",
+  "handoff_owner": "Agent 10 release/package intake; Agent 1/Agent 3 for blocker cleanup; Agent 6 for any future boundary decision.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not export, store, display, answer, publish, write routes, mutate runtime, or claim acceptance from this packet."
+}

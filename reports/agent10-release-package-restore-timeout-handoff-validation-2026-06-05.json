@@ -1,0 +1,64 @@
+{
+  "artifact_type": "agent10_release_package_restore_timeout_handoff_validation",
+  "generated_at": "2026-06-05T23:05:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "validated_artifact_json": "reports/agent10-release-package-restore-timeout-handoff-2026-06-05.json",
+  "validated_artifact_md": "reports/agent10-release-package-restore-timeout-handoff-2026-06-05.md",
+  "process_timeout_reports_preserved": 6,
+  "commands": [
+    {
+      "command": "$json = Get-Content -LiteralPath 'reports\\agent10-release-package-restore-timeout-handoff-2026-06-05.json' -Raw; $null = $json | ConvertFrom-Json; 'restore timeout handoff JSON parse passed'",
+      "timeout": "20000ms",
+      "result": "passed",
+      "partial_output_or_artifact": "restore timeout handoff JSON parse passed",
+      "next_safe_action": "artifact can be consumed as validated timeout-aware Agent 10 handoff"
+    },
+    {
+      "command": "git diff --check -- reports\\agent10-release-package-restore-timeout-handoff-2026-06-05.md reports\\agent10-release-package-restore-timeout-handoff-2026-06-05.json",
+      "timeout": "20000ms",
+      "result": "passed",
+      "partial_output_or_artifact": "no scoped diff whitespace errors",
+      "next_safe_action": "artifact can be consumed as scoped whitespace-checked"
+    }
+  ],
+  "target_package": "old_dictionary_transform_reaudit_boundary_blocker_and_release_package_intake",
+  "exact_blocker_preserved": "missing_exact_agent1_agent6_boundary_fields_for_old_dictionary_transform_reaudit_row_subsets",
+  "agent6_boundary_need_now": "not_ready_until_exact_row_subset_fields_and_morphology_relation_boundary_are_supplied",
+  "global_zero_counters": {
+    "public_runtime_mutation": 0,
+    "public_reader_output": 0,
+    "route_shard_writes": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "candidate_text_export_rows": 0,
+    "release_actions": 0,
+    "repo_cleanup_actions": 0,
+    "staging_actions": 0
+  },
+  "stop_condition": "Validated timeout-aware handoff only. Do not route Agent 6 until exact missing fields are supplied.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action",
+    "destructive repo cleanup"
+  ]
+}

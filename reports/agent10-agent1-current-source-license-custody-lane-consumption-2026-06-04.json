@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_release_owner_consumption",
+  "generated_at": "2026-06-04T19:25:30.1056172-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "package_workset": "agent1_current_source_license_custody_lane_return",
+  "release_owner": "Agent 10",
+  "inputs_consumed": [
+    "reports/agent1-current-source-license-custody-lane-return-2026-06-04.md",
+    "reports/agent1-current-source-license-custody-lane-return-2026-06-04.json",
+    "reports/agent1-source-license-custody-pipeline-registry-2026-06-04.md",
+    "reports/agent1-source-license-custody-pipeline-registry-2026-06-04.json",
+    "reports/agent1-source-license-custody-aggregate-handoff-2026-06-04.md",
+    "reports/agent1-source-license-custody-aggregate-handoff-2026-06-04.json",
+    "reports/agent1-lowmode-source-license-custody-contract-status-2026-06-04.md",
+    "reports/agent1-lowmode-source-license-custody-contract-status-2026-06-04.json",
+    "reports/agent1-missed-dictionary-current-input-reconciliation-blocker-2026-06-04.json",
+    "reports/agent1-third-missed-source-family-missing-workset-blocker-handoff-2026-06-04.json",
+    "reports/agent2-current-handoff-aggregate-validation-receipt-2026-06-04.json",
+    "reports/agent2-weekly-zero-boundary-audit-receipt-2026-06-04.json",
+    "reports/agent2-current-stale-reference-scan-receipt-2026-06-04.json"
+  ],
+  "counts": {
+    "lane_return_outputs": 22,
+    "runnable_contracts": 9,
+    "supporting_packets": 11,
+    "exact_blockers": 1,
+    "orot_nc_klein_rows": 17,
+    "orot_nc_klein_occurrences": 259,
+    "orot_next_missed_source_family_rows": 50,
+    "orot_next_missed_source_family_occurrences": 1193,
+    "deuteronomy_source_license_custody_rows": 1334,
+    "deuteronomy_source_license_custody_occurrences": 2964,
+    "old_dictionary_reaudit_rows": 500,
+    "old_dictionary_reaudit_occurrences": 8427,
+    "old_dictionary_source_families": 5,
+    "old_dictionary_partition_commercial_clean_source_families": 3,
+    "old_dictionary_partition_nc_educational_source_families": 1,
+    "old_dictionary_partition_metadata_link_only_source_families": 0,
+    "old_dictionary_partition_blocked_review_source_families": 1,
+    "workbench_source_inventory_source_rows": 105747,
+    "workbench_source_inventory_licenses": 4,
+    "workbench_source_inventory_works": 1112,
+    "workbench_source_name_partitions": 351,
+    "orot_missing_linkage_rows": 13,
+    "orot_missing_linkage_occurrences": 129,
+    "third_missed_source_family_rows_checked": 169,
+    "third_missed_source_family_occurrences_checked": 2148,
+    "third_missed_source_family_exact_linkage_blocker_rows": 168,
+    "missed_dictionary_agent2_candidate_rows": 0,
+    "missed_dictionary_agent2_unmatched_rows": 168,
+    "missed_dictionary_agent3_missing_contract_fields": 4,
+    "agent2_zero_boundary_artifacts_checked": 18,
+    "agent2_stale_reference_hits": 0
+  },
+  "lane_split": {
+    "commercial_clean_export_excludes_nc_rows": true,
+    "nc_educational_export_separate": true,
+    "metadata_link_only_no_definition_text": true,
+    "blocked_review_no_candidate_text": true,
+    "commercial_export_allowed_now": false,
+    "new_dictionary_auto_nc": false,
+    "old_excluded_dictionary_auto_blocked": false
+  },
+  "validator_results": [
+    {
+      "command": "node scripts\\validate_agent1_current_source_license_custody_lane_return.mjs reports\\agent1-current-source-license-custody-lane-return-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_source_license_custody_pipeline_registry.mjs reports\\agent1-source-license-custody-pipeline-registry-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_source_license_custody_aggregate_handoff.mjs reports\\agent1-source-license-custody-aggregate-handoff-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_lowmode_source_license_custody_contract_status.mjs reports\\agent1-lowmode-source-license-custody-contract-status-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_missed_dictionary_current_input_reconciliation_blocker.mjs reports\\agent1-missed-dictionary-current-input-reconciliation-blocker-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_third_missed_source_family_missing_workset_blocker_handoff.mjs reports\\agent1-third-missed-source-family-missing-workset-blocker-handoff-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_current_handoff_aggregate_validation_receipt.mjs reports\\agent2-current-handoff-aggregate-validation-receipt-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_weekly_zero_boundary_audit.mjs reports\\agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_current_stale_reference_scan_receipt.mjs reports\\agent2-current-stale-reference-scan-receipt-2026-06-04.json",
+      "result": "passed"
+    }
+  ],
+  "agent6_boundary_question": null,
+  "agent6_boundary_reason": "No new Agent 6 route from this packet. Agent 6 routing requires an Agent 10 packet with exact row/subset review question; this intake only records source-lane evidence and blockers.",
+  "exact_blockers": [
+    {
+      "blocker": "third-missed-source-family-target-or-blocker",
+      "status": "missing_workset_blocker",
+      "rows_checked": 169,
+      "occurrences_checked": 2148,
+      "exact_linkage_blocker_rows": 168,
+      "missing_field": "row-level source-family/license split",
+      "spark1_routable": false
+    },
+    {
+      "blocker": "missed-dictionary-current-input-reconciliation",
+      "status": "exact_current_input_reconciliation_blocker_returned",
+      "agent2_candidate_rows": 0,
+      "agent2_unmatched_rows": 168,
+      "agent3_missing_contract_fields": 4,
+      "spark1_routable": false
+    }
+  ],
+  "next_handoff": {
+    "spark1": "Run only the 9 registry-listed Agent-1-authored contracts and validators; do not invent source/license/custody work.",
+    "agent2": "Consume only after exact source-lane assignment and transform workset exist.",
+    "spark10": "Track this intake as release/package planning evidence.",
+    "agent10": "Prepare Agent 6 packet only after a concrete changed package/workset exists."
+  },
+  "stop_condition": "Stop at source-lane planning evidence until exact changed package, exact row/subset boundary packet, or exact blocker resolution arrives.",
+  "zero_counters": {
+    "public_runtime_output_answer_definition_accepted_text_emissions": 0,
+    "route_shard_writes": 0,
+    "source_license_legal_acceptance": 0,
+    "candidate_text_export_authorization": 0
+  },
+  "highest_permissible_claim": "Agent 10 consumed the current Agent 1 source/license/custody lane return as release/package planning evidence and preserved exact blockers for missed-dictionary continuation.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "commercial export permission",
+    "NC commercial authorization",
+    "broad corpus completion"
+  ]
+}

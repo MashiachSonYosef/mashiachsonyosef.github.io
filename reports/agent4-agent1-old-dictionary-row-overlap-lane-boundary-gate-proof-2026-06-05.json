@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:58.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent1-old-dictionary-row-overlap-lane-boundary",
+  "changed_package_input": "reports/agent1-old-dictionary-row-overlap-lane-boundary-2026-06-05.json",
+  "files": [
+    "reports/agent1-old-dictionary-row-overlap-lane-boundary-2026-06-05.json",
+    "reports/agent1-old-dictionary-row-overlap-lane-boundary-validation-result-2026-06-05.json",
+    "scripts/validate_agent1_old_dictionary_row_overlap_lane_boundary.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_row_overlap_lane_boundary.mjs reports\\agent1-old-dictionary-row-overlap-lane-boundary-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Agent1 row-overlap boundary validation passed; audited rows 500; multi-lane overlap rows 279; exact blockers 4; zero output counts preserved."
+    }
+  ],
+  "counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_clean_evidence_rows": 297,
+    "commercial_clean_evidence_occurrences": 5747,
+    "noncommercial_educational_evidence_rows": 214,
+    "noncommercial_educational_evidence_occurrences": 4444,
+    "blocked_review_evidence_rows": 222,
+    "blocked_review_evidence_occurrences": 4435,
+    "metadata_or_link_only_rows": 0,
+    "metadata_or_link_only_occurrences": 0,
+    "no_sefaria_source_hit_rows": 186,
+    "no_sefaria_source_hit_occurrences": 2421,
+    "public_domain_only_unique_rows": 18,
+    "klein_only_unique_rows": 17,
+    "bdb_augmented_strong_only_unique_rows": 0,
+    "multi_lane_overlap_rows": 279,
+    "multi_lane_overlap_occurrences": 5253,
+    "exact_blocker_count": 4,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0
+  },
+  "hashes": {
+    "changed_package_input_sha256": "bbb80f993b1a819ac426fdeabd15e32e6002368527fdf8ce958aa9da6680b76b",
+    "validator_sha256": "09c7f64a099a986bb9f160087f980f96c880bae9caa71ea85fa8b13550f83d32",
+    "validation_result_sha256": "5f4e16ae8761028ab37d6b746c0c4e402ec681175694b6bf895e6d1bce981e8f"
+  },
+  "result": "target | agent1-old-dictionary-row-overlap-lane-boundary | files above | commands passed: Agent1 row-overlap lane boundary validator | counts: 500 audited rows, 8427 audited occurrences, 297 commercial-clean evidence rows, 214 NC educational evidence rows, 222 blocked/review evidence rows, 279 multi-lane overlap rows, 5253 multi-lane overlap occurrences, 18 public-domain-only unique rows, 17 Klein-only unique rows, 0 BDB Augmented Strong-only unique rows, 4 exact blockers, zero transform/candidate/answer/definition/source/public/route/delivery/queue/render/staging rows | result: overlap boundary validates and prevents reuse of source-family hit totals as exclusive row/export counts | blocker if any: downstream transform/export still requires exact Agent6 row/subset boundary and source-lane custody disposition | next handoff: Agent2/Agent10 consume row-overlap counts as source-lane prerequisite evidence only | stop condition: do not rerun unless boundary artifact, validation result, or validator changes",
+  "blocker_if_any": "downstream_transform_export_requires_exact_agent6_row_subset_boundary_and_source_lane_custody_disposition",
+  "next_handoff": "Agent 2 and Agent 10 may consume row-overlap counts as source-lane prerequisite evidence only; no transform/export/public use is authorized.",
+  "stop_condition": "Do not rerun unless reports/agent1-old-dictionary-row-overlap-lane-boundary-2026-06-05.json, reports/agent1-old-dictionary-row-overlap-lane-boundary-validation-result-2026-06-05.json, or scripts/validate_agent1_old_dictionary_row_overlap_lane_boundary.mjs changes.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no candidate text export",
+    "no definition-content storage",
+    "no source rows emitted",
+    "no public HUD rows",
+    "no route JSONL rows",
+    "no public/runtime mutation",
+    "no Agent 6 delivery",
+    "no queue mutation",
+    "no render mutation",
+    "no staging",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

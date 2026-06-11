@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "target": {
+    "work": "Deuteronomy",
+    "work_id": "deuteronomy",
+    "workset": "deuteronomy-source-license-custody-map",
+    "rows": 1334,
+    "occurrences": 2964,
+    "commercial_clean_candidate_rows": 1334,
+    "commercial_clean_candidate_occurrences": 2964,
+    "noncommercial_educational_candidate_rows": 0,
+    "noncommercial_educational_candidate_occurrences": 0,
+    "metadata_or_link_only_rows": 0,
+    "blocked_or_needs_review_rows": 0,
+    "outside_workset_blocker_rows": 6779,
+    "outside_workset_blocker_occurrences": 9631
+  },
+  "inputs": [
+    "data/control/spark_standing_queue.json",
+    "reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.json",
+    "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json"
+  ],
+  "command_or_script": {
+    "build": "node scripts/build_agent1_deuteronomy_source_license_custody_map.mjs",
+    "current_status": "runnable"
+  },
+  "outputs": {
+    "json": "reports/agent1-deuteronomy-source-license-custody-map-2026-06-04.json",
+    "markdown": "reports/agent1-deuteronomy-source-license-custody-map-2026-06-04.md"
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_deuteronomy_source_license_custody_map.mjs",
+    "contract_validator": "node scripts/validate_agent1_spark1_deuteronomy_source_license_custody_contract.mjs",
+    "current_status": "validated"
+  },
+  "required_classifications": [
+    "commercial_clean_candidate",
+    "noncommercial_educational_candidate",
+    "metadata_or_link_only",
+    "blocked_or_needs_review"
+  ],
+  "expected_classification_from_current_evidence": {
+    "commercial_clean_candidate": {
+      "rows": 1334,
+      "occurrences": 2964,
+      "source_names": [
+        "Wikidata Lexeme",
+        "OpenScriptures morphHB",
+        "Project-authored function word table",
+        "OpenScriptures HebrewLexicon"
+      ],
+      "license_labels": [
+        "CC0",
+        "CC BY 4.0",
+        "project-authored / CC0",
+        "CC0; CC BY 4.0"
+      ]
+    },
+    "noncommercial_educational_candidate": {
+      "rows": 0,
+      "occurrences": 0
+    },
+    "metadata_or_link_only": {
+      "rows": 0
+    },
+    "blocked_or_needs_review": {
+      "covered_workset_rows": 0,
+      "outside_workset_rows_from_agent3_matrix": 6779,
+      "outside_workset_occurrences_from_agent3_matrix": 9631
+    }
+  },
+  "required_source_fields": [
+    "source_family",
+    "source_name",
+    "license_label",
+    "license_lane",
+    "attribution_required",
+    "derived_from_nc",
+    "commercial_export_allowed",
+    "owner_use_attestation",
+    "corpus_contamination",
+    "source_url_or_citation",
+    "agent6_boundary_required",
+    "answer_eligible",
+    "public_emit"
+  ],
+  "nc_policy": {
+    "preserve_if_future_rows_exist": true,
+    "license_lane": "noncommercial_educational_candidate",
+    "derived_from_nc": true,
+    "commercial_export_allowed": false,
+    "attribution_required": true,
+    "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+    "corpus_contamination": false,
+    "answer_eligible": false,
+    "public_emit": false
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true,
+    "commercial_export_allowed_now": false
+  },
+  "package_owner": "Agent 1",
+  "agent6_boundary_need": "Agent 6 must decide exact Deuteronomy row/subset behavior before package/export/display/public/answer use.",
+  "spark1_stop_condition": "output plus validator pass, or exact missing input/output/schema/validator/count blocker",
+  "what_must_not_be_accepted": [
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "QA acceptance",
+    "public/runtime mutation",
+    "Definition authority",
+    "answer acceptance",
+    "accepted gloss/text",
+    "publication readiness",
+    "NC commercial authorization"
+  ]
+}

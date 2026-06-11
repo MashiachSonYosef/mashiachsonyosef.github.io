@@ -1,0 +1,133 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "Agent 10 old-dictionary release-director validator repair and prereq gate",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifacts": [
+    "reports/agent10-heartbeat-release-intake-2026-06-06T082633Z.json",
+    "reports/agent10-release-director-state-old-dictionary-boundaries-2026-06-06.json",
+    "reports/agent10-agent5-handoff-old-dictionary-78-row-agent1-route-blocker-2026-06-06.json",
+    "reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.json",
+    "reports/agent2-old-dictionary-78-row-transform-output-proposal-missing-pipeline-blocker-2026-06-06.json",
+    "reports/agent10-old-dictionary-78-row-agent2-transform-output-blocker-consumption-2026-06-06.json"
+  ],
+  "files_touched": [
+    "scripts/validate_agent10_release_director_old_dictionary_boundaries.mjs",
+    "reports/agent4-agent10-release-director-validator-repair-proof-2026-06-06.json",
+    "reports/agent4-agent10-release-director-validator-repair-proof-2026-06-06.md"
+  ],
+  "validator_commands": [
+    {
+      "command": "rg -n \"agent10_agent1_ready_old_dictionary_78_row_source_citation_enrichment_workset|agent10_agent1_old_dictionary_78_row_source_citation_enrichment_live_route_blocker|source_citation_enrichment_workset|live_route_blocker\" scripts reports -g \"*.mjs\" -g \"*.json\" -g \"*.md\"",
+      "timeout_ms": 30000,
+      "result": "process_timeout",
+      "observed_output": "command timed out after 34018 milliseconds"
+    },
+    {
+      "command": "node scripts\\validate_agent10_agent5_old_dictionary_78_row_agent1_route_blocker_handoff.mjs reports\\agent10-agent5-handoff-old-dictionary-78-row-agent1-route-blocker-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent10 Agent5 Agent1-route blocker handoff validation passed. Rows: 78; occurrences: 1461; blocker: stale_agent1_registry_target_current_agent1_thread_required."
+    },
+    {
+      "command": "node scripts\\validate_agent10_release_director_old_dictionary_boundaries.mjs reports\\agent10-release-director-state-old-dictionary-boundaries-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "failed_before_repair",
+      "observed_output": "Validation failed: transform route-needed mismatch"
+    },
+    {
+      "command": "node scripts\\validate_agent10_agent2_old_dictionary_78_row_transform_output_proposal_workset.mjs reports\\agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent10 Agent2 transform-output proposal workset validation passed. Rows: 78; occurrences: 1461; route blocker: missing_current_agent2_thread_route_for_live_delivery."
+    },
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_78_row_transform_output_proposal_missing_pipeline_blocker.mjs reports\\agent2-old-dictionary-78-row-transform-output-proposal-missing-pipeline-blocker-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent2 transform-output proposal missing-pipeline blocker validation passed. Rows: 78; occurrences: 1461; blocker: missing_transform_output_proposal_matrix_or_exact_transform_rule."
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_78_row_agent2_transform_output_blocker_consumption.mjs reports\\agent10-old-dictionary-78-row-agent2-transform-output-blocker-consumption-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent10 Agent2 transform-output blocker consumption validation passed. Rows: 78; occurrences: 1461; blocker: missing_source_citation_or_url_and_exact_transform_output_rule_for_78_row_packet."
+    },
+    {
+      "command": "node --check scripts\\validate_agent10_release_director_old_dictionary_boundaries.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent10_release_director_old_dictionary_boundaries.mjs reports\\agent10-release-director-state-old-dictionary-boundaries-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent10 release director old-dictionary boundaries validation passed. Klein blocker: owner_license_policy_boundary_required_before_any_klein_nc_use_beyond_nonpublic_lane_planning; transform blocker: stale_agent1_registry_target_current_agent1_thread_required."
+    }
+  ],
+  "process_timeouts": [
+    {
+      "command": "rg -n \"agent10_agent1_ready_old_dictionary_78_row_source_citation_enrichment_workset|agent10_agent1_old_dictionary_78_row_source_citation_enrichment_live_route_blocker|source_citation_enrichment_workset|live_route_blocker\" scripts reports -g \"*.mjs\" -g \"*.json\" -g \"*.md\"",
+      "timeout_ms": 30000,
+      "partial_output_or_artifact": "No reliable full output; command timed out during broad search.",
+      "next_safe_action": "Use exact known file reads and named validators instead of broad repo search for release-intake validation."
+    }
+  ],
+  "counts": {
+    "handoff_rows": 78,
+    "handoff_occurrences": 1461,
+    "transform_workset_rows": 78,
+    "transform_workset_occurrences": 1461,
+    "missing_pipeline_blocker_rows": 78,
+    "missing_pipeline_blocker_occurrences": 1461,
+    "director_release_questions": 2,
+    "preserved_zero_counter_failures": 0
+  },
+  "result": "repaired_stale_release_director_validator_and_validated_current_prereq_state",
+  "exact_blockers": [
+    {
+      "code": "stale_validator_expected_agent2_delivery_proof_route",
+      "class": "deterministic_harness_gap_repaired",
+      "handoff_owner": "Agent 4 validator/prereq harness owner"
+    },
+    {
+      "code": "stale_agent1_registry_target_current_agent1_thread_required",
+      "class": "agent1_route_blocker",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 10 / Agent 5 routing coordination; Agent 1 source-citation lane"
+    },
+    {
+      "code": "missing_source_citation_or_url_and_exact_transform_output_rule_for_78_row_packet",
+      "class": "transform_output_prereq_blocker",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 1 / Agent 2 before Agent 10 prepares a new boundary packet"
+    },
+    {
+      "code": "owner_license_policy_boundary_required_before_any_klein_nc_use_beyond_nonpublic_lane_planning",
+      "class": "klein_nc_boundary_blocker",
+      "handoff_owner": "Owner / Agent 10 / Agent 6 exact boundary route"
+    }
+  ],
+  "patch_summary": "Updated scripts/validate_agent10_release_director_old_dictionary_boundaries.mjs so the 78-row transform branch validates the current source-citation plus transform-rule blocker path and Agent5 Agent1-route handoff, instead of stale Agent2 delivery-proof expectations.",
+  "output_artifact_path": "reports/agent4-agent10-release-director-validator-repair-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent10-release-director-validator-repair-proof-2026-06-06.md",
+  "handoff_owner": "Agent 10 release/package intake may consume as prereq validation evidence; Agent 4 owns the repaired validator",
+  "next_safe_action": "Use the repaired director validator for current exact-known-file release-intake checks; do not route or publish until Agent 1 source citation, exact transform rule, and Agent 6 boundary prerequisites exist.",
+  "stop_condition": "Stop after repairing and validating the current director-state harness; no acceptance claims.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

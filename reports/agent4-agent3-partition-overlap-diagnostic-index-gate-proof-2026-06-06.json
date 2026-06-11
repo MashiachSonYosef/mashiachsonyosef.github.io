@@ -1,0 +1,96 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T10:30:00.000Z",
+  "target": "Agent 3 old-dictionary candidate-use partition overlap diagnostic index gate",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-partition-overlap-diagnostic-index-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-queue-partition-blocker-second-continuation-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_partition_overlap_diagnostic_index.mjs --input=reports\\agent3-old-dictionary-candidate-use-partition-overlap-diagnostic-index-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "failed_transient_pre_settle_count_mismatch",
+      "partial_output_or_artifact": "- expected 117 cross references in batch diagnostics\n- expected 3109 cross occurrences in batch diagnostics",
+      "next_safe_action": "Re-read the artifact counts and rerun once because the current file showed expected counts after upstream write settlement."
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_partition_overlap_diagnostic_index.mjs --input=reports\\agent3-old-dictionary-candidate-use-partition-overlap-diagnostic-index-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "queue_partition_rows": 2,
+    "input_queue_rows": 65,
+    "input_queue_source_pairs": 363,
+    "queue_overlap_rows": 0,
+    "queue_source_pair_overlap_rows": 0,
+    "source_rid_overlap_rows": 7,
+    "source_rid_overlap_cross_queue_count": 4,
+    "source_rid_overlap_single_queue_count": 2,
+    "source_rid_overlap_cross_pair_count": 9,
+    "source_rid_overlap_single_pair_count": 7,
+    "source_rid_overlap_cross_reference_total": 24,
+    "source_rid_overlap_single_reference_total": 16,
+    "source_rid_overlap_cross_occurrence_total": 651,
+    "source_rid_overlap_single_occurrence_total": 471,
+    "batch_id_overlap_rows": 9,
+    "batch_id_overlap_cross_queue_memberships": 30,
+    "batch_id_overlap_single_queue_memberships": 38,
+    "batch_id_overlap_cross_reference_total": 117,
+    "batch_id_overlap_single_reference_total": 207,
+    "batch_id_overlap_cross_occurrence_total": 3109,
+    "batch_id_overlap_single_occurrence_total": 3256,
+    "source_family_selection_claims": 0,
+    "source_acceptance_claims": 0,
+    "source_citation_supplied_by_agent3_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_agent3_partition_overlap_diagnostic_index_navigation_only_no_selection_or_acceptance",
+  "exact_blockers": [
+    {
+      "code": "source_rid_overlap_diagnostic_only",
+      "blocked_rows": 7,
+      "details": "Source RID overlaps are diagnostic only; downstream packages must use queue_id/source_rid pairs and must not collapse source RIDs across queue partitions."
+    },
+    {
+      "code": "batch_id_overlap_diagnostic_only",
+      "blocked_rows": 9,
+      "details": "Batch ID overlaps are diagnostic only; downstream packages must preserve queue/source-pair partition authority."
+    },
+    {
+      "code": "no_source_or_acceptance_authority",
+      "details": "The artifact contains no source text read, source-family selection, source acceptance, route writes, public runtime mutation, accepted text, or release action authority."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-partition-overlap-diagnostic-index-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-partition-overlap-diagnostic-index-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 3 for partition-overlap diagnostics; Agent 10 for release/package intake only after required boundary packets exist.",
+  "next_safe_action": "Run a triggered Agent4 packet sweep because this proof packet was added, then select from that sweep anchor with lookback scanning.",
+  "stop_condition": "Stop after validating and packaging the Agent3 partition overlap diagnostic index as an Agent4 gate proof.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

@@ -1,0 +1,364 @@
+{
+  "artifact_type": "agent4_changed_input_blocker",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T12:05:57.857Z",
+  "target": "Agent 4 changed-input candidate selection",
+  "changed_input_artifact": "reports/agent4-changed-input-selection-continuation-5-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\select_agent4_changed_input_candidate.mjs --after=reports\\agent4-changed-input-selection-continuation-5-2026-06-06.json --out=reports\\agent4-changed-input-selection-continuation-6-2026-06-06.json --lookbackMs=900000",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "anchor": "reports/agent4-changed-input-selection-continuation-5-2026-06-06.json",
+  "anchor_mtime_ms": 1780747437821.463,
+  "lookback_ms": 900000,
+  "scan_start_mtime_ms": 1780746537821.463,
+  "scanned_roots": [
+    "reports",
+    "data/control"
+  ],
+  "limit": 50,
+  "newer_file_count": 26,
+  "candidate_count": 0,
+  "selected_candidate": null,
+  "changed_input_blocker": {
+    "code": "changed_package_input_missing",
+    "changed_package_path_missing": true,
+    "command_list_needed": "Exact validator/prereq command for the next changed package or candidate artifact.",
+    "expected_output_schema": "Agent4 proof packet with changed_input_artifact, validator_commands including timeout_ms/result, counts, exact blockers, handoff_owner, stop_condition, and non_acceptance_boundary.",
+    "validator_gate": "Run only an existing named validator for the selected changed package/input, then validate the Agent4 packet with scripts/validate_agent4_validator_prereq_packet.mjs.",
+    "package_owner": "Agent 10 release/package intake or the upstream package-producing agent for the next changed artifact.",
+    "approval_boundary_trigger": "Only after a concrete boundary-ready packet exists and A07 approval, SOP, final validation, or release-gate review is explicitly needed.",
+    "stop_condition": "Stop after selecting one changed package/input or returning this exact blocker."
+  },
+  "exact_blockers": [
+    {
+      "code": "changed_package_input_missing",
+      "changed_package_path_missing": true,
+      "details": "No changed package/input candidate was selected after the provided anchor."
+    }
+  ],
+  "handoff_owner": "Agent 4 for changed-input-only validation discipline; Agent 10 or upstream package owner must provide the next changed package/input.",
+  "stop_condition": "Stop after returning an exact changed-input blocker.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, repo cleanup action, destructive command, or release action."
+  ],
+  "rows": [
+    {
+      "path": "reports/agent4-changed-input-selection-continuation-5-2026-06-06.json",
+      "name": "agent4-changed-input-selection-continuation-5-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780747437821.463,
+      "size": 14736,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-after-candidate-prereq-closure-matrix-sweep-gate-2026-06-06.json",
+      "name": "agent4-changed-input-selection-after-candidate-prereq-closure-matrix-sweep-gate-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780747369397.5918,
+      "size": 14267,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-gate-after-candidate-prereq-closure-matrix-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-gate-after-candidate-prereq-closure-matrix-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780747349632.1814,
+      "size": 1367,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-result-after-candidate-prereq-closure-matrix-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-result-after-candidate-prereq-closure-matrix-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780747349289.046,
+      "size": 48402,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/a14-a08-splash-header-org-pipeline-2026-06-06.md",
+      "name": "a14-a08-splash-header-org-pipeline-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780747229295.2805,
+      "size": 6076,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-agent3-bridge-gap-candidate-prereq-closure-matrix-gate-proof-2026-06-06.md",
+      "name": "agent4-agent3-bridge-gap-candidate-prereq-closure-matrix-gate-proof-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780747209815.1382,
+      "size": 1506,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-agent3-bridge-gap-candidate-prereq-closure-matrix-gate-proof-2026-06-06.json",
+      "name": "agent4-agent3-bridge-gap-candidate-prereq-closure-matrix-gate-proof-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780747209814.1404,
+      "size": 4614,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-after-selector-a07-boundary-contract-sweep-gate-2026-06-06.json",
+      "name": "agent4-changed-input-selection-after-selector-a07-boundary-contract-sweep-gate-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780747155695.1045,
+      "size": 16308,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-gate-after-selector-a07-boundary-contract-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-gate-after-selector-a07-boundary-contract-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780747140177.0454,
+      "size": 1365,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-result-after-selector-a07-boundary-contract-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-result-after-selector-a07-boundary-contract-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780747137929.0044,
+      "size": 47755,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent3-state.md",
+      "name": "agent3-state.md",
+      "root": "reports",
+      "mtime_ms": 1780747125733.403,
+      "size": 36269,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent3-state.json",
+      "name": "agent3-state.json",
+      "root": "reports",
+      "mtime_ms": 1780747125730.4106,
+      "size": 128083,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "lane_state_or_status_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent3-old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix-2026-06-06.json",
+      "name": "agent3-old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780747003870.7466,
+      "size": 71927,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "upstream_input_already_packaged_by_agent4",
+        "suggested_validator": "scripts/validate_agent3_old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_matrix.mjs"
+      }
+    },
+    {
+      "path": "reports/agent3-old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix-2026-06-06.md",
+      "name": "agent3-old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780747003870.7466,
+      "size": 2075,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-selector-a07-boundary-contract-harness-proof-2026-06-06.json",
+      "name": "agent4-selector-a07-boundary-contract-harness-proof-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780746951329.0532,
+      "size": 3621,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-selector-a07-boundary-contract-harness-proof-2026-06-06.md",
+      "name": "agent4-selector-a07-boundary-contract-harness-proof-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780746951329.0532,
+      "size": 1728,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-continuation-4-2026-06-06.json",
+      "name": "agent4-changed-input-selection-continuation-4-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780746919701.9128,
+      "size": 17371,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-continuation-3-2026-06-06.json",
+      "name": "agent4-changed-input-selection-continuation-3-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780746817027.263,
+      "size": 17415,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-after-a06-repo-cleaning-adoption-sweep-gate-2026-06-06.json",
+      "name": "agent4-changed-input-selection-after-a06-repo-cleaning-adoption-sweep-gate-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780746751305.6946,
+      "size": 16951,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-gate-after-a06-repo-cleaning-adoption-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-gate-after-a06-repo-cleaning-adoption-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780746741900.3955,
+      "size": 1357,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-result-after-a06-repo-cleaning-adoption-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-result-after-a06-repo-cleaning-adoption-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780746741748.402,
+      "size": 46497,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-a06-repo-cleaning-production-pipeline-adoption-gate-proof-2026-06-06.md",
+      "name": "agent4-a06-repo-cleaning-production-pipeline-adoption-gate-proof-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780746680414.078,
+      "size": 1410,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-a06-repo-cleaning-production-pipeline-adoption-gate-proof-2026-06-06.json",
+      "name": "agent4-a06-repo-cleaning-production-pipeline-adoption-gate-proof-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780746680407.1074,
+      "size": 3768,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-after-agent2-a07-route-correction-sweep-gate-2026-06-06.json",
+      "name": "agent4-changed-input-selection-after-agent2-a07-route-correction-sweep-gate-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780746594217.0474,
+      "size": 16357,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-gate-after-agent2-a07-route-correction-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-gate-after-agent2-a07-route-correction-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780746582648.5938,
+      "size": 1359,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-result-after-agent2-a07-route-correction-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-result-after-agent2-a07-route-correction-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780746582402.501,
+      "size": 45856,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_release_intake_refreshed_blocker_action_state",
+  "generated_at": "2026-06-04T19:08:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "status": "refreshed_release_package_intake_state_recorded",
+  "spark10_matrix": {
+    "contract": "reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+    "matrix_json": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "matrix_md": "reports/spark10-release-package-intake-matrix-current-2026-06-04.md",
+    "inputs_checked": 161,
+    "missing_required_inputs": 0,
+    "release_relevant_rows": 65,
+    "agent6_handoff_candidates": 0,
+    "public_runtime_mutation_authorized": false,
+    "answer_definition_release_authorized": false
+  },
+  "lane_state": [
+    {
+      "lane": "old_dictionary_license_lane_planning",
+      "latest_pipeline_or_return": "reports/agent6-old-dictionary-license-lane-planning-verdict-2026-06-04.md",
+      "consumption_artifact": "reports/agent10-agent6-old-dictionary-license-lane-planning-verdict-consumption-2026-06-04.json",
+      "release_relevance": "nonpublic_source_family_license_lane_and_lane_partition_planning_evidence_only",
+      "counts": {
+        "audited_rows": 500,
+        "audited_occurrences": 8427,
+        "public_domain_observed_rows": 297,
+        "public_domain_observed_occurrences": 5747,
+        "blocked_or_unresolved_rows": 17,
+        "blocked_or_unresolved_occurrences": 259,
+        "no_sefaria_hit_rows": 186,
+        "no_sefaria_hit_occurrences": 2421,
+        "next_missed_rows": 50,
+        "next_missed_occurrences": 1193
+      },
+      "exact_blocker": "stronger downstream use remains blocked: candidate text consumption/export, source/license/legal acceptance, definition authority, answer eligibility, public/runtime mutation, route-shard writes, publication readiness, accepted text, commercial export, NC commercial use, and definition-content storage",
+      "next_package_action": "carry as non-public planning context only; prepare a new exact Agent 6 packet only for a changed package requesting stronger use",
+      "agent6_boundary": "none_now_existing_verdict_consumed"
+    },
+    {
+      "lane": "orot_current_patch_and_live_guard_refresh",
+      "latest_pipeline_or_return": "reports/agent2-orot-reader-hint-candidate-patch-2026-06-04.json",
+      "release_relevance": "candidate_patch_and_preview_remain_not_approved_nonpublic_planning_evidence_only",
+      "counts": {
+        "candidate_patch_rows": 31,
+        "candidate_patch_occurrences": 1202,
+        "prefix_contract_rows": 12,
+        "project_preferred_rows": 19,
+        "missing_linkage_rows_outside_patch": 13,
+        "missing_linkage_occurrences_outside_patch": 129,
+        "live_old_hud_exposure": "no",
+        "live_guard_warnings": 1
+      },
+      "exact_blocker": "no public/output/answer/definition/release action; regenerated files remain warn/not-approved and stronger use would require a new exact boundary",
+      "next_package_action": "hold as planning evidence only",
+      "agent6_boundary": "none_now"
+    },
+    {
+      "lane": "agent3_current_control_drift_refresh",
+      "latest_pipeline_or_return": "reports/agent3-current-control-drift-refresh-2026-06-04.json",
+      "release_relevance": "control_drift_evidence_with_validation_schema_blocker",
+      "counts": {
+        "inputs_observed": 7,
+        "returned_validated_agent3_worksets": 2,
+        "new_agent3_executable_worksets": 0,
+        "missing_pipeline_blockers_preserved": 1,
+        "stale_or_contradictory_agent3_queue_fields": 4
+      },
+      "exact_blocker": "validator_schema_mismatch: node scripts/validate_agent3_current_control_drift_refresh.mjs reports/agent3-current-control-drift-refresh-2026-06-04.json failed because reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json.summary.rows was undefined",
+      "next_package_action": "Agent 3 must align the validator/artifact shape or supply an exact command packet before this becomes validated release intake evidence",
+      "agent6_boundary": "none_now"
+    }
+  ],
+  "zero_emission_state": {
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "validation_results": [
+    {
+      "command": "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_agent1_old_dictionary_license_lane_export_partitions.mjs",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_agent2_orot_reader_hint_candidate_patch.mjs reports/agent2-orot-reader-hint-candidate-patch-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_agent2_orot_counterpart_hint_patch_preview.mjs reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_agent3_current_control_drift_refresh.mjs reports/agent3-current-control-drift-refresh-2026-06-04.json",
+      "result": "failed_validator_schema_mismatch"
+    },
+    {
+      "command": "node scripts/validate_spark10_release_package_intake.mjs reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/build_spark10_release_package_intake.mjs --contract=reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+      "result": "passed_with_final_summary_161_inputs_0_missing_65_release_relevant_0_agent6_handoff_candidates"
+    },
+    {
+      "command": "node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "result": "passed"
+    }
+  ],
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate-text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

@@ -1,6 +1,6 @@
 # Sefaria Safe Candidate Report
 
-Generated: 2026-05-20T07:16:46.038Z
+Generated: 2026-06-01T09:21:01.125Z
 
 Categories: Midrash
 Scanned: 134
@@ -109,7 +109,7 @@ Already imported: 94
 | Perush Maharzu on Shir HaShirim Rabbah | Public Domain | yes | yes | yes | already imported |
 | Perush Maharzu on Vayikra Rabbah | Public Domain | yes | yes | yes | already imported |
 | Pesikta DeRav Kahana | CC-BY | yes | yes | yes | already imported |
-| Pesikta Rabbati | unknown | no | yes | yes | already imported |
+| Pesikta Rabbati | Public Domain | yes | yes | yes | already imported |
 | Pirkei DeRabbi Eliezer | Public Domain | yes | yes | yes | already imported |
 | Ra'avad on Sifra | Public Domain | yes | yes | yes | already imported |
 | Rashi on Bereshit Rabbah | Public Domain | yes | yes | yes | already imported |

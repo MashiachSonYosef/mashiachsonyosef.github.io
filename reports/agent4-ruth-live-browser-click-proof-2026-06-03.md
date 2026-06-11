@@ -1,11 +1,11 @@
 # Agent 4 Live Ruth Browser Runtime Evidence
 
-Generated: 2026-06-03T10:52:25.209Z
+Generated: 2026-06-03T12:36:24.948Z
 
 ## Boundary
 
 - Evidence only. Agent 4 does not self-accept.
-- Scope is live Ruth only: `https://mashiachsonyosef.github.io/tanakh/ruth/`.
+- Scope is Ruth candidate public reader surface #6 only: `https://mashiachsonyosef.github.io/tanakh/ruth/`.
 - Forbidden scope: non-Ruth routes, `/hud-preview/`, source custody, publication, broad rollout, fixes, deployments, and acceptance claims.
 - Highest permissible claim: evidence-ready for Agent 6.
 
@@ -25,11 +25,11 @@ Generated: 2026-06-03T10:52:25.209Z
 
 ## Static HTTP / Cache-Busted Page
 
-- URL: `https://mashiachsonyosef.github.io/tanakh/ruth/?agent4_static=1780483945210`
+- URL: `https://mashiachsonyosef.github.io/tanakh/ruth/?agent4_static=1780490184950`
 - HTTP: 200
 - Bytes: 130196
 - SHA-256: `fea7011a5419a1ea63471f2b4f3c52f161d578e90e4c180e93b7974ec293f943`
-- Last-Modified: Wed, 03 Jun 2026 10:45:11 GMT
+- Last-Modified: Wed, 03 Jun 2026 12:31:39 GMT
 - Cache-Control: max-age=600
 - Current markers: Route HUD, selectRouteAnswer, lookupCandidateTreatments, Sources and licenses, source-footnotes, answer_eligible, answer_role, hud_route_lookup_manifest_url, data/public-hud/ruth
 - Old-HUD markers: none
@@ -38,6 +38,8 @@ Generated: 2026-06-03T10:52:25.209Z
 
 - Clicked token: וַיְהִ֗י
 - Token dataset lexical index: tok-e1e6213a83a3
+- Target token id: tok-e1e6213a83a3
+- Target token found: true
 - Tried tokens before source/license HUD: 1
 - HUD open: true
 - HUD title: Route HUD: וַיְהִ֗י
@@ -50,10 +52,10 @@ Generated: 2026-06-03T10:52:25.209Z
 ## Route Shard Load Behavior
 
 - Route manifest responses: 1
-- 200 https://mashiachsonyosef.github.io/data/public-hud/ruth/route-lookup/manifest.json cache=max-age=600 lastModified=Wed, 03 Jun 2026 10:45:12 GMT diskCache=false
+- 200 https://mashiachsonyosef.github.io/data/public-hud/ruth/route-lookup/manifest.json cache=max-age=600 lastModified=Wed, 03 Jun 2026 12:31:40 GMT diskCache=false
 - Route shard responses: 2
-- 200 https://mashiachsonyosef.github.io/data/public-hud/ruth/route-lookup/shards/05d5-05d9-05d4.json cache=max-age=600 lastModified=Wed, 03 Jun 2026 10:45:12 GMT diskCache=false
-- 200 https://mashiachsonyosef.github.io/data/public-hud/ruth/route-lookup/shards/05d9-05d4-05d9.json cache=max-age=600 lastModified=Wed, 03 Jun 2026 10:45:12 GMT diskCache=false
+- 200 https://mashiachsonyosef.github.io/data/public-hud/ruth/route-lookup/shards/05d5-05d9-05d4.json cache=max-age=600 lastModified=Wed, 03 Jun 2026 12:31:40 GMT diskCache=false
+- 200 https://mashiachsonyosef.github.io/data/public-hud/ruth/route-lookup/shards/05d9-05d4-05d9.json cache=max-age=600 lastModified=Wed, 03 Jun 2026 12:31:40 GMT diskCache=false
 - Failed interesting statuses: 0
 
 ## Hard Refresh / Cache-Busting
@@ -61,8 +63,8 @@ Generated: 2026-06-03T10:52:25.209Z
 - Page old-HUD markers after ignore-cache reload: none
 - Page current markers after ignore-cache reload: Route HUD, selectRouteAnswer, lookupCandidateTreatments, Sources and licenses, source-footnotes, answer_eligible, answer_role, hud_route_lookup_manifest_url, data/public-hud/ruth
 - Runtime responses observed: 2
-- 200 https://mashiachsonyosef.github.io/assets/js/reader-workbench.js cache=max-age=600 lastModified=Wed, 03 Jun 2026 10:45:12 GMT diskCache=false
-- 200 https://mashiachsonyosef.github.io/assets/js/reader-workbench.js cache=max-age=600 lastModified=Wed, 03 Jun 2026 10:45:12 GMT diskCache=false
+- 200 https://mashiachsonyosef.github.io/assets/js/reader-workbench.js cache=max-age=600 lastModified=Wed, 03 Jun 2026 12:31:40 GMT diskCache=false
+- 200 https://mashiachsonyosef.github.io/assets/js/reader-workbench.js cache=max-age=600 lastModified=Wed, 03 Jun 2026 12:31:40 GMT diskCache=false
 
 ## Negative Controls
 
@@ -99,4 +101,14 @@ Generated: 2026-06-03T10:52:25.209Z
 - Product/data gates.
 - Accepted translation text.
 - This Agent 4 packet as Agent 6 acceptance.
+
+## Agent 8 Callback
+
+- status: proof packet produced for Agent 6 review
+- completed proof packet: `reports/agent4-ruth-live-browser-click-proof-2026-06-03.md`
+- json: `reports/agent4-ruth-live-browser-click-proof-2026-06-03.json`
+- screenshot: `reports/agent4-ruth-live-browser-click-proof-2026-06-03.png`
+- blockers: none
+- next action needed: Agent 6 review; Agent 4 does not self-accept.
+- continue condition: continue only for explicitly routed bounded candidate-surface runtime proof.
 

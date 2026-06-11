@@ -1,0 +1,492 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_source_license_custody_pipeline_registry",
+  "generated_at": "2026-06-04T15:22:00.000Z",
+  "status": "agent1_source_license_custody_pipeline_registry_validated_for_discovery_only",
+  "source": "reports/agent1-current-source-license-custody-lane-return-2026-06-04.json",
+  "aggregate_validator": "node scripts/validate_agent1_source_license_custody_pipeline_set.mjs",
+  "aggregate_validation_result": "reports/agent1-source-license-custody-pipeline-set-validation-result-2026-06-04.json",
+  "lane": "Agent 1 / Spark-1 source/license/custody",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "runnable_contracts": [
+    {
+      "target": "orot-nc-klein-source-family-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_orot_nc_klein_source_family_contract.mjs",
+      "rows": 17,
+      "occurrences": 259,
+      "license_lane": "noncommercial_educational_candidate",
+      "spark1_routable": true
+    },
+    {
+      "target": "orot-next-missed-source-family-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-orot-next-missed-source-family-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_orot_next_missed_source_family_contract.mjs",
+      "rows": 50,
+      "occurrences": 1193,
+      "commercial_clean_rows": 50,
+      "nc_rows": 0,
+      "spark1_routable": true
+    },
+    {
+      "target": "deuteronomy-source-license-custody-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-deuteronomy-source-license-custody-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_deuteronomy_source_license_custody_contract.mjs",
+      "rows": 1334,
+      "occurrences": 2964,
+      "commercial_clean_rows": 1334,
+      "nc_rows": 0,
+      "outside_workset_blocker_rows": 6779,
+      "spark1_routable": true
+    },
+    {
+      "target": "old-dictionary-excluded-row-license-lane-reaudit-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_old_dictionary_reaudit_pipeline_contract.mjs",
+      "audited_rows": 500,
+      "audited_occurrences": 8427,
+      "source_family_count": 5,
+      "spark1_routable": true
+    },
+    {
+      "target": "old-dictionary-license-lane-export-partitions-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_old_dictionary_license_lane_export_partitions_contract.mjs",
+      "commercial_clean_source_families": 3,
+      "noncommercial_educational_source_families": 1,
+      "blocked_or_needs_review_source_families": 1,
+      "spark1_routable": true
+    },
+    {
+      "target": "old-dictionary-agent2-transform-lane-handoff-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_old_dictionary_agent2_transform_lane_handoff_contract.mjs",
+      "source_family_count": 5,
+      "audited_rows": 500,
+      "audited_occurrences": 8427,
+      "agent2_transform_allowed_now_rows": 0,
+      "spark1_routable": true
+    },
+    {
+      "target": "old-dictionary-planning-boundary-state-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-old-dictionary-planning-boundary-state-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_old_dictionary_planning_boundary_state_contract.mjs",
+      "source_family_count": 5,
+      "audited_rows": 500,
+      "audited_occurrences": 8427,
+      "planning_evidence_allowed_source_families": 5,
+      "candidate_text_consumption_allowed_rows": 0,
+      "spark1_routable": true
+    },
+    {
+      "target": "broad-source-mechanics-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-broad-source-mechanics-queue-package-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_broad_source_mechanics_contract.mjs",
+      "source_row_targets": 4,
+      "source_row_occurrences": 19,
+      "missing_linkage_rows": 13,
+      "missing_linkage_occurrences": 129,
+      "exact_blocker": "missing_linkage_assignment_rule_blocker",
+      "spark1_routable": true
+    },
+    {
+      "target": "broad-workbench-token-inventory-5000-source-lane-blocker-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-broad-workbench-token-inventory-5000-source-lane-blocker-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_broad_workbench_token_inventory_5000_source_lane_blocker_contract.mjs",
+      "inventory_top_token_rows": 5000,
+      "source_lane_blocker_rows": 5000,
+      "source_lane_complete_rows": 0,
+      "candidate_text_rows_now": 0,
+      "exact_blocker": "token_inventory_rows_do_not_carry_source_family_source_name_license_lane_source_url_or_citation",
+      "spark1_routable": true
+    },
+    {
+      "target": "orot-missing-lexicon-linkage-candidates-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_orot_missing_lexicon_linkage_candidates_contract.mjs",
+      "missing_lexicon_linkage_rows": 13,
+      "missing_lexicon_linkage_occurrences": 129,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-license-custody-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-source-license-custody-inventory-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_source_license_custody_contract.mjs",
+      "input_file_count": 10,
+      "source_row_count": 105747,
+      "license_count": 4,
+      "unique_work_count": 1112,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-name-custody-partitions-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-source-name-custody-partitions-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_source_name_custody_partitions_contract.mjs",
+      "source_row_count": 105747,
+      "source_name_partition_count": 351,
+      "top_partition_count": 100,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-full-source-name-custody-partitions-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-full-source-name-custody-partitions-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_full_source_name_custody_partitions_contract.mjs",
+      "source_row_count": 105747,
+      "source_name_partition_count": 351,
+      "full_partition_count": 351,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-license-bucket-boundary-matrix-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-license-bucket-boundary-matrix-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_license_bucket_boundary_matrix_contract.mjs",
+      "license_bucket_count": 4,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-family-boundary-matrix-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-source-family-boundary-matrix-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_source_family_boundary_matrix_contract.mjs",
+      "source_family_count": 1,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-family-license-lane-partitions-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-source-family-license-lane-partitions-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_source_family_license_lane_partitions_contract.mjs",
+      "source_family_license_lane_partition_count": 4,
+      "source_family_count": 1,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-family-license-lane-agent6-boundary-packet-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-source-family-license-lane-agent6-boundary-packet-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_source_family_license_lane_agent6_boundary_packet_contract.mjs",
+      "boundary_question_count": 4,
+      "source_family_license_lane_partition_count": 4,
+      "source_family_count": 1,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-family-license-lane-release-intake-packet-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-source-family-license-lane-release-intake-packet-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_source_family_license_lane_release_intake_packet_contract.mjs",
+      "release_intake_row_count": 4,
+      "boundary_question_count": 4,
+      "source_family_license_lane_partition_count": 4,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-cc-by-sa-share-alike-boundary-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_cc_by_sa_share_alike_boundary_contract.mjs",
+      "declared_cc_by_sa_partition_count": 37,
+      "declared_cc_by_sa_source_row_count": 5581,
+      "sampled_cc_by_sa_partition_count": 5,
+      "sampled_cc_by_sa_source_row_count": 4436,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-cc-by-attribution-boundary-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-cc-by-attribution-boundary-map-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_cc_by_attribution_boundary_contract.mjs",
+      "declared_cc_by_partition_count": 5,
+      "declared_cc_by_source_row_count": 625,
+      "sampled_cc_by_partition_count": 1,
+      "sampled_cc_by_source_row_count": 239,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-cc0-public-domain-zero-boundary-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-cc0-public-domain-zero-boundary-map-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_cc0_public_domain_zero_boundary_contract.mjs",
+      "declared_cc0_partition_count": 2,
+      "declared_cc0_source_row_count": 496,
+      "sampled_cc0_partition_count": 1,
+      "sampled_cc0_source_row_count": 267,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-public-domain-boundary-contract",
+      "contract": "reports/agent1-spark1-pipeline-contract-workbench-public-domain-boundary-map-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_spark1_workbench_public_domain_boundary_contract.mjs",
+      "declared_public_domain_partition_count": 307,
+      "declared_public_domain_source_row_count": 99045,
+      "sampled_public_domain_partition_count": 93,
+      "sampled_public_domain_source_row_count": 88100,
+      "spark1_routable": true
+    }
+  ],
+  "supporting_packets": [
+    {
+      "target": "tanakh/deuteronomy",
+      "artifact": "reports/agent1-deuteronomy-source-license-custody-map-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_deuteronomy_source_license_custody_map.mjs",
+      "rows": 1334,
+      "occurrences": 2964
+    },
+    {
+      "target": "old-dictionary-excluded-row-license-lane-reaudit",
+      "artifact": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+      "source_family_count": 5
+    },
+    {
+      "target": "old-dictionary-license-lane-export-partitions",
+      "artifact": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_old_dictionary_license_lane_export_partitions.mjs",
+      "commercial_clean_source_families": 3,
+      "noncommercial_educational_source_families": 1,
+      "metadata_or_link_only_source_families": 0,
+      "blocked_or_needs_review_source_families": 1
+    },
+    {
+      "target": "old-dictionary-agent2-transform-lane-handoff",
+      "artifact": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_old_dictionary_agent2_transform_lane_handoff.mjs",
+      "source_family_count": 5,
+      "audited_rows": 500,
+      "audited_occurrences": 8427,
+      "agent2_transform_allowed_now_rows": 0,
+      "spark1_routable": true
+    },
+    {
+      "target": "old-dictionary-planning-boundary-state",
+      "artifact": "reports/agent1-old-dictionary-planning-boundary-state-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_old_dictionary_planning_boundary_state.mjs",
+      "source_family_count": 5,
+      "audited_rows": 500,
+      "audited_occurrences": 8427,
+      "planning_evidence_allowed_source_families": 5,
+      "candidate_text_consumption_allowed_rows": 0,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-license-custody-inventory",
+      "artifact": "reports/agent1-workbench-source-license-custody-inventory-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_source_license_custody_inventory.mjs",
+      "input_file_count": 10,
+      "source_row_count": 105747,
+      "license_count": 4,
+      "unique_work_count": 1112
+    },
+    {
+      "target": "workbench-source-name-custody-partitions",
+      "artifact": "reports/agent1-workbench-source-name-custody-partitions-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_source_name_custody_partitions.mjs",
+      "source_row_count": 105747,
+      "source_name_partition_count": 351,
+      "top_partition_count": 100
+    },
+    {
+      "target": "workbench-full-source-name-custody-partitions",
+      "artifact": "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_full_source_name_custody_partitions.mjs",
+      "source_row_count": 105747,
+      "source_name_partition_count": 351,
+      "full_partition_count": 351,
+      "public_domain_partition_count": 307,
+      "cc_by_sa_partition_count": 37,
+      "cc_by_partition_count": 5,
+      "cc0_partition_count": 2
+    },
+    {
+      "target": "workbench-license-bucket-boundary-matrix",
+      "artifact": "reports/agent1-workbench-license-bucket-boundary-matrix-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_license_bucket_boundary_matrix.mjs",
+      "license_bucket_count": 4,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747
+    },
+    {
+      "target": "workbench-source-family-boundary-matrix",
+      "artifact": "reports/agent1-workbench-source-family-boundary-matrix-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_source_family_boundary_matrix.mjs",
+      "source_family_count": 1,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747
+    },
+    {
+      "target": "workbench-source-family-license-lane-partitions",
+      "artifact": "reports/agent1-workbench-source-family-license-lane-partitions-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_source_family_license_lane_partitions.mjs",
+      "source_family_license_lane_partition_count": 4,
+      "source_family_count": 1,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-family-license-lane-agent6-boundary-packet",
+      "artifact": "reports/agent1-workbench-source-family-license-lane-agent6-boundary-packet-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_source_family_license_lane_agent6_boundary_packet.mjs",
+      "boundary_question_count": 4,
+      "source_family_license_lane_partition_count": 4,
+      "source_family_count": 1,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-family-license-lane-release-intake-packet",
+      "artifact": "reports/agent1-workbench-source-family-license-lane-release-intake-packet-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_source_family_license_lane_release_intake_packet.mjs",
+      "release_intake_row_count": 4,
+      "boundary_question_count": 4,
+      "source_family_license_lane_partition_count": 4,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-cc-by-sa-share-alike-boundary-map",
+      "artifact": "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_cc_by_sa_share_alike_boundary_map.mjs",
+      "declared_cc_by_sa_partition_count": 37,
+      "declared_cc_by_sa_source_row_count": 5581,
+      "sampled_cc_by_sa_partition_count": 5,
+      "sampled_cc_by_sa_source_row_count": 4436
+    },
+    {
+      "target": "workbench-cc-by-attribution-boundary-map",
+      "artifact": "reports/agent1-workbench-cc-by-attribution-boundary-map-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_cc_by_attribution_boundary_map.mjs",
+      "declared_cc_by_partition_count": 5,
+      "declared_cc_by_source_row_count": 625,
+      "sampled_cc_by_partition_count": 1,
+      "sampled_cc_by_source_row_count": 239
+    },
+    {
+      "target": "workbench-cc0-public-domain-zero-boundary-map",
+      "artifact": "reports/agent1-workbench-cc0-public-domain-zero-boundary-map-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_cc0_public_domain_zero_boundary_map.mjs",
+      "declared_cc0_partition_count": 2,
+      "declared_cc0_source_row_count": 496,
+      "sampled_cc0_partition_count": 1,
+      "sampled_cc0_source_row_count": 267
+    },
+    {
+      "target": "workbench-public-domain-boundary-map",
+      "artifact": "reports/agent1-workbench-public-domain-boundary-map-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_workbench_public_domain_boundary_map.mjs",
+      "declared_public_domain_partition_count": 307,
+      "declared_public_domain_source_row_count": 99045,
+      "sampled_public_domain_partition_count": 93,
+      "sampled_public_domain_source_row_count": 88100
+    },
+    {
+      "target": "spark1-broad-source-mechanics",
+      "artifact": "reports/agent1-broad-source-mechanics-queue-package-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_broad_source_mechanics_queue_package.mjs",
+      "source_row_targets": 4,
+      "missing_linkage_rows": 13
+    },
+    {
+      "target": "broad-workbench-token-inventory-5000-source-lane-blocker",
+      "artifact": "reports/agent1-broad-workbench-token-inventory-5000-source-lane-blocker-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_broad_workbench_token_inventory_5000_source_lane_blocker.mjs",
+      "inventory_top_token_rows": 5000,
+      "source_lane_blocker_rows": 5000,
+      "source_lane_complete_rows": 0,
+      "candidate_text_rows_now": 0,
+      "exact_blocker": "token_inventory_rows_do_not_carry_source_family_source_name_license_lane_source_url_or_citation",
+      "spark1_routable": true
+    },
+    {
+      "target": "orot-missing-lexicon-linkage-candidates",
+      "artifact": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_orot_missing_lexicon_linkage_candidates.mjs reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "missing_lexicon_linkage_rows": 13,
+      "missing_lexicon_linkage_occurrences": 129
+    },
+    {
+      "target": "agent1-source-license-custody-aggregate-handoff",
+      "artifact": "reports/agent1-source-license-custody-aggregate-handoff-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_source_license_custody_aggregate_handoff.mjs",
+      "runnable_contract_count": 22,
+      "supporting_packet_count": 24,
+      "exact_blocker_count": 1,
+      "lane_return_output_count": 48
+    },
+    {
+      "target": "third-missed-source-family-missing-workset-blocker-handoff",
+      "artifact": "reports/agent1-third-missed-source-family-missing-workset-blocker-handoff-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_third_missed_source_family_missing_workset_blocker_handoff.mjs",
+      "rows_checked": 169,
+      "occurrences_checked": 2148,
+      "exact_linkage_blocker_rows": 168,
+      "exact_linkage_blocker_occurrences": 2117,
+      "spark1_routable": false
+    },
+    {
+      "target": "missed-dictionary-current-input-reconciliation-blocker",
+      "artifact": "reports/agent1-missed-dictionary-current-input-reconciliation-blocker-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_missed_dictionary_current_input_reconciliation_blocker.mjs",
+      "agent1_rows_checked": 169,
+      "agent2_candidate_rows": 0,
+      "agent2_unmatched_rows": 168,
+      "agent3_missing_contract_fields": 4,
+      "spark1_routable": false
+    },
+    {
+      "target": "agent1-source-license-custody-command-manifest",
+      "artifact": "reports/agent1-source-license-custody-command-manifest-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_source_license_custody_command_manifest.mjs",
+      "runnable_command_set_count": 22,
+      "non_routable_blocker_count": 1,
+      "aggregate_gate_count": 4
+    }
+  ],
+  "exact_blockers": [
+    {
+      "target": "third-missed-source-family-target-or-blocker",
+      "artifact": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+      "status": "missing_workset_blocker",
+      "rows_checked": 169,
+      "occurrences_checked": 2148,
+      "exact_linkage_blocker_rows": 168,
+      "exact_linkage_blocker_occurrences": 2117,
+      "spark1_routable": false,
+      "missing_field": "row-level source-family/license split"
+    }
+  ],
+  "counts": {
+    "lane_return_output_count": 48,
+    "runnable_contract_count": 22,
+    "supporting_packet_count": 24,
+    "exact_blocker_count": 1,
+    "spark1_routable_contracts": 22,
+    "non_routable_blockers": 1
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true,
+    "commercial_export_allowed_now": false
+  },
+  "non_acceptance_boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true
+  }
+}

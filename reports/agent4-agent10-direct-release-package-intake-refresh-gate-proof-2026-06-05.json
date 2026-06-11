@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:59.500Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent10-direct-release-package-intake-refresh",
+  "changed_package_input": "reports/agent10-direct-release-package-intake-refresh-2026-06-05.json",
+  "files": [
+    "reports/agent10-direct-release-package-intake-refresh-2026-06-05.json",
+    "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "scripts/validate_agent10_direct_release_package_intake_refresh.mjs",
+    "scripts/validate_spark10_release_package_intake.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_direct_release_package_intake_refresh.mjs reports\\agent10-direct-release-package-intake-refresh-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Agent10 direct release/package intake refresh validation passed. Inputs: 405; release rows: 73; Agent6 candidates: 0."
+    },
+    {
+      "command": "node scripts\\validate_spark10_release_package_intake.mjs reports\\spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "result": "passed",
+      "stdout_summary": "Agent 10 release/package intake validation passed for reports/spark10-release-package-intake-matrix-current-2026-06-04.json."
+    }
+  ],
+  "counts": {
+    "inputs_checked": 405,
+    "missing_required_inputs": 0,
+    "release_relevant_rows": 73,
+    "agent6_handoff_candidates": 0,
+    "current_release_boundary_state_rows": 3,
+    "old_dictionary_candidate_use_rows": 78,
+    "old_dictionary_candidate_use_occurrences": 1461,
+    "workbench_source_family_release_intake_rows": 4,
+    "workbench_source_name_partition_count": 351,
+    "workbench_source_row_count": 105747,
+    "usage_concordance_rows": 2390,
+    "occurrence_link_rows": 49,
+    "cc_by_sa_source_rows": 5581,
+    "cc_by_source_rows": 625,
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "route_jsonl_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0,
+    "release_actions": 0
+  },
+  "hashes": {
+    "changed_package_input_sha256": "113bd5fe5f88f24dd75dd260417c1ce7beaacb0eec3a8d307552038119a96b6a",
+    "validator_sha256": "96022f6a412796169da49e24166c47b4f0df3881ee6cc39f65538b5e2ce962bd",
+    "intake_matrix_sha256": "d43510238e05b05a90177bc425a7296bbadb46ee6e17ad1a6f21a01de3eab81d"
+  },
+  "result": "target | agent10-direct-release-package-intake-refresh | files above | commands passed: Agent10 direct release/package intake refresh validator and release/package intake matrix validator | counts: 405 inputs checked, 0 missing required inputs, 73 release-relevant rows, 0 new Agent6 handoff candidates, 3 current release boundary rows, old-dictionary 78 rows / 1461 occurrences, workbench source-family 4 release-intake rows / 351 partitions / 105747 source rows, usage 2390 concordance rows / 49 occurrence links / 5581 CC-BY-SA rows / 625 CC-BY rows, zero public/runtime/route/candidate-text/definition/answer/accepted-text/public-reader/release rows | result: release-intake refresh validates and opens no new Agent6 route by itself | blocker if any: existing boundary rows remain awaiting Agent2 package or Agent6 verdicts as listed in the refresh artifact | next handoff: Agent10 owns release/package intake; Agent4 only preserves validator evidence | stop condition: do not rerun unless refresh artifact, intake matrix, or validators change",
+  "blocker_if_any": "existing_boundary_rows_remain_awaiting_agent2_package_or_agent6_verdicts_no_new_agent6_handoff_candidate",
+  "next_handoff": "Agent 10 owns release/package intake; Agent 4 preserves validator evidence only.",
+  "stop_condition": "Do not rerun unless reports/agent10-direct-release-package-intake-refresh-2026-06-05.json, reports/spark10-release-package-intake-matrix-current-2026-06-04.json, scripts/validate_agent10_direct_release_package_intake_refresh.mjs, or scripts/validate_spark10_release_package_intake.mjs changes.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no public/runtime acceptance",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no translation output",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no candidate text export",
+    "no definition-content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

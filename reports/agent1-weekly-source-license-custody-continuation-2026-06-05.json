@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_weekly_source_license_custody_continuation",
+  "generated_at": "2026-06-05T09:25:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "objective": "produce runnable source/lane packets or exact blockers for weekly lexicon expansion with NC separation",
+  "runnable_packets": [
+    {
+      "target": "orot / nc_klein_source_family",
+      "files": [
+        "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-2026-06-04.json",
+        "reports/agent1-orot-nc-klein-source-family-pipeline-validation-result-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-validation-result-2026-06-04.json"
+      ],
+      "commands": [
+        "node scripts/build_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_nc_klein_source_family_contract.mjs"
+      ],
+      "counts": {
+        "rows": 17,
+        "occurrences": 259,
+        "commercial_clean_candidate_rows": 0,
+        "commercial_clean_candidate_occurrences": 0,
+        "noncommercial_educational_candidate_rows": 17,
+        "noncommercial_educational_candidate_occurrences": 259,
+        "metadata_or_link_only_rows": 0,
+        "metadata_or_link_only_occurrences": 0,
+        "blocked_or_needs_review_rows": 0,
+        "blocked_or_needs_review_occurrences": 0
+      },
+      "validator": {
+        "pipeline_ok": true,
+        "contract_ok": true,
+        "spark1_routable": true
+      },
+      "handoff_owner": [
+        "Agent 10",
+        "Agent 6 (agent6_boundary_required=true)"
+      ]
+    },
+    {
+      "target": "orot / next_missed_source_family",
+      "files": [
+        "reports/agent1-orot-next-missed-source-family-map-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-orot-next-missed-source-family-2026-06-04.json",
+        "reports/agent1-orot-next-missed-source-family-pipeline-validation-result-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-orot-next-missed-source-family-validation-result-2026-06-04.json"
+      ],
+      "commands": [
+        "node scripts/build_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_next_missed_source_family_contract.mjs"
+      ],
+      "counts": {
+        "rows": 50,
+        "occurrences": 1193,
+        "commercial_clean_candidate_rows": 50,
+        "commercial_clean_candidate_occurrences": 1193,
+        "noncommercial_educational_candidate_rows": 0,
+        "noncommercial_educational_candidate_occurrences": 0,
+        "metadata_or_link_only_rows": 0,
+        "metadata_or_link_only_occurrences": 0,
+        "blocked_or_needs_review_rows": 0,
+        "blocked_or_needs_review_occurrences": 0
+      },
+      "validator": {
+        "pipeline_ok": true,
+        "contract_ok": true,
+        "spark1_routable": true
+      },
+      "handoff_owner": [
+        "Agent 10",
+        "Agent 6 (posture)"
+      ]
+    },
+    {
+      "target": "orot / third_missed_source_family",
+      "files": [
+        "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+        "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+        "reports/agent1-third-missed-source-family-target-or-blocker-resolution-2026-06-05.json",
+        "reports/agent1-orot-third-missed-source-family-pipeline-validation-result-2026-06-05.json",
+        "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-validation-result-2026-06-05.json"
+      ],
+      "commands": [
+        "node scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs"
+      ],
+      "counts": {
+        "rows": 169,
+        "occurrences": 2148,
+        "commercial_clean_candidate_rows": 138,
+        "commercial_clean_candidate_occurrences": 1672,
+        "noncommercial_educational_candidate_rows": 0,
+        "noncommercial_educational_candidate_occurrences": 0,
+        "metadata_or_link_only_rows": 0,
+        "metadata_or_link_only_occurrences": 0,
+        "blocked_or_needs_review_rows": 31,
+        "blocked_or_needs_review_occurrences": 476
+      },
+      "validator": {
+        "pipeline_ok": true,
+        "contract_ok": true,
+        "spark1_routable": true
+      },
+      "boundary_blocker": {
+        "type": "agent6_boundary_required",
+        "rows": 31,
+        "occurrences": 476
+      },
+      "handoff_owner": [
+        "Agent 10",
+        "Agent 6"
+      ]
+    },
+    {
+      "target": "old_dictionary_excluded_row_license_lane_reaudit",
+      "files": [
+        "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+        "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-validation-result-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-validation-result-2026-06-04.json"
+      ],
+      "commands": [
+        "node scripts/build_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+        "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+        "node scripts/validate_agent1_spark1_old_dictionary_reaudit_pipeline_contract.mjs"
+      ],
+      "counts": {
+        "rows": 500,
+        "occurrences": 8427,
+        "commercial_clean_candidate_rows": 3,
+        "commercial_clean_candidate_occurrences": 210,
+        "noncommercial_educational_candidate_rows": 1,
+        "noncommercial_educational_candidate_occurrences": 4444,
+        "metadata_or_link_only_rows": 0,
+        "metadata_or_link_only_occurrences": 0,
+        "blocked_or_needs_review_rows": 1,
+        "blocked_or_needs_review_occurrences": 4435
+      },
+      "validator": {
+        "pipeline_ok": true,
+        "contract_ok": true,
+        "spark1_routable": true
+      },
+      "exact_blockers": [
+        {
+          "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+          "rows": 222,
+          "occurrences": 4435,
+          "type": "missing_evidence",
+          "missing_fields": [
+            "source_url_or_citation",
+            "license_label",
+            "allow fields",
+            "independent source/license/custody basis"
+          ],
+          "handoff_owner": "Agent 6 + evidence supplier"
+        },
+        {
+          "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+          "rows": 214,
+          "occurrences": 4444,
+          "type": "agent6_boundary_required",
+          "notes": "NC educational posture remains boundary-only",
+          "handoff_owner": "Agent 6"
+        }
+      ],
+      "handoff_owner": [
+        "Agent 10",
+        "Agent 6"
+      ]
+    }
+  ],
+  "aggregate_validation": {
+    "set_validator": "node scripts/validate_agent1_source_license_custody_pipeline_set.mjs",
+    "ok": true,
+    "runnable_contract_count": 22,
+    "supporting_packet_count": 24,
+    "exact_blocker_count": 1,
+    "lane_return_output_count": 48
+  },
+  "stop_condition": "rerun when workset input, row/subset, or Agent 6 boundary evidence changes"
+}

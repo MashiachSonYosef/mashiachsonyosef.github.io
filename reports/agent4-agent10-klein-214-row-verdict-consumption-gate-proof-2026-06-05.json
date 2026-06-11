@@ -1,0 +1,66 @@
+{
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T21:19:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent10-old-dictionary-klein-214-row-agent6-verdict-consumption",
+  "changed_input_artifact": "reports/agent10-old-dictionary-klein-214-row-agent6-verdict-consumption-2026-06-06.json",
+  "validator": {
+    "script": "scripts/validate_agent10_old_dictionary_klein_214_row_agent6_verdict_consumption.mjs",
+    "syntax_check": {
+      "command": "node --check scripts\\validate_agent10_old_dictionary_klein_214_row_agent6_verdict_consumption.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    "contract_check": {
+      "command": "node scripts\\validate_agent10_old_dictionary_klein_214_row_agent6_verdict_consumption.mjs reports\\agent10-old-dictionary-klein-214-row-agent6-verdict-consumption-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 Klein 214-row Agent6 verdict consumption validation passed. Rows: 214; occurrences: 4444; blocker: owner_license_policy_boundary_required_before_any_klein_nc_use_beyond_nonpublic_lane_planning."
+    }
+  },
+  "supporting_validator": {
+    "script": "scripts/validate_agent10_agent6_old_dictionary_klein_214_row_nc_lane_planning.mjs",
+    "status": "previously_passed_this_session",
+    "stdout": "Agent10/Agent6 Klein 214-row NC lane planning validation passed. Rows: 214; occurrences: 4444; prior Orot rows: 17."
+  },
+  "counts": {
+    "old_dictionary_klein_rows": 214,
+    "old_dictionary_klein_occurrences": 4444,
+    "prior_orot_nc_klein_rows": 17,
+    "prior_orot_nc_klein_occurrences": 259,
+    "scopes_are_not_interchangeable": true
+  },
+  "lane_flags": {
+    "license_lane": "noncommercial_educational_candidate",
+    "derived_from_nc": true,
+    "commercial_export_allowed": false,
+    "attribution_required": true,
+    "corpus_contamination": false
+  },
+  "result": "validator_prereq_gate_passed_for_klein_verdict_consumption_only",
+  "exact_blocker": "owner_license_policy_boundary_required_before_any_klein_nc_use_beyond_nonpublic_lane_planning",
+  "handoff_owner": "Agent 10 remains release/package owner; any later Klein NC display/storage/transform/export/public/commercial/release movement needs owner license-policy boundary plus new exact Agent6 docket.",
+  "stop_condition": "Stop at Klein verdict consumption proof. Do not rerun unless consumption artifact, Agent6 verdict, routed packet, Agent1/Agent2 Klein evidence, or validator changes.",
+  "non_acceptance_boundary": [
+    "no QA acceptance beyond exact validator evidence",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

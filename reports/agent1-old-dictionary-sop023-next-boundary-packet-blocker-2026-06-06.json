@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_old_dictionary_sop023_next_packet_blocker",
+  "generated_at": "2026-06-06T00:10:00.000Z",
+  "agent": "Agent 1",
+  "thread_title": "Agent 1 - importer",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / direct Agent run mode",
+  "current_goal": "old-dictionary-excluded-row-license-lane-reaudit continuation -> broader 2000-work corpus source-lane coverage",
+  "current_artifact_source": {
+    "queue": "data/control/spark_standing_queue.json",
+    "current_boundary_state": "reports/agent1-old-dictionary-downstream-consumption-alignment-audit-2026-06-05.json",
+    "latest_classifier_artifact": "reports/agent1-old-dictionary-sop023-continuation-boundary-split-2026-06-05.json",
+    "latest_validation": "reports/agent1-old-dictionary-sop023-continuation-boundary-split-validation-result-2026-06-05.json"
+  },
+  "next_25_100_source_rows_subsets_to_classify": [
+    {
+      "source_family": "Klein Dictionary",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-subset::klein-only-excluded",
+      "rows": 17,
+      "occurrences": 259,
+      "license_lane": "noncommercial_educational_candidate"
+    },
+    {
+      "source_family": "Jastrow Dictionary",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-subset::commercial-clean-only",
+      "rows": 18,
+      "occurrences": 494,
+      "license_lane": "commercial_clean_candidate"
+    },
+    {
+      "source_family": "BDB Dictionary / BDB Augmented Strong overlap",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-subset::commercial-nc-overlap-nonblocked",
+      "rows": 57,
+      "occurrences": 818,
+      "license_lane": "commercial_clean_candidate"
+    },
+    {
+      "source_family": "BDB Augmented Strong / blocked overlap",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-subset::commercial-blocked-overlap",
+      "rows": 82,
+      "occurrences": 1068,
+      "license_lane": "blocked_or_needs_review"
+    },
+    {
+      "source_family": "BDB Augmented Strong + Klein triple-overlap",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::row-subset::triple-overlap-commercial-nc-blocked",
+      "rows": 140,
+      "occurrences": 3367,
+      "license_lane": "commercial_clean_candidate"
+    }
+  ],
+  "output_artifact_to_create_or_update": "reports/agent1-old-dictionary-sop023-continuation-boundary-split-update-2026-06-06.json",
+  "required_fields_for_next_classified_row_subset": {
+    "source_family": "required",
+    "source_name": "required",
+    "license_label": "required",
+    "license_lane": "required; one of commercial_clean_candidate|noncommercial_educational_candidate|metadata_or_link_only|blocked_or_needs_review",
+    "attribution_required": "required",
+    "derived_from_nc": "required",
+    "commercial_export_allowed": "required",
+    "owner_use_attestation": "required when NC",
+    "corpus_contamination": "required",
+    "source_url_or_citation": "required",
+    "agent6_boundary_required": "required"
+  },
+  "exact_blocker": {
+    "code": "missing_classification_inputs_for_row_subset_schema",
+    "detail": "Current source-lane manifests and handoff artifacts carry token buckets and manifest counts only (e.g., row_subset_id, token_ids, row_count), and do not provide per-subset `source_name` plus authoritative `source_url_or_citation` fields needed for the required output schema. Cannot safely advance next 25-100 classified rows/subsets without introducing unbound assumptions.",
+    "missing_field": [
+      "source_name",
+      "source_url_or_citation",
+      "license_label",
+      "corpus_contamination for NC rows"
+    ],
+    "downstream_impact": [
+      "No compliant Agent 1 next packet can be authored in required format",
+      "Cannot dispatch new Agent 2 row/subset transforms safely",
+      "Cannot create Orot/weekly release-support packet beyond current scoped split"
+    ]
+  },
+  "next_owner": {
+    "Agent 6": "Provide exact source-name and source-url/citation-boundary evidence for bucket rows (including Klein and BDB Augmented Strong intersections) and lane-preserving attribution/custody tags",
+    "Agent 1": "Resume once source-boundary source_name/url fields are emitted in the next input artifact; then emit required 25-100 row/subset packet and handoff to Agent 2 only"
+  },
+  "stop_condition": "Stop until required input fields arrive: `source_name` and `source_url_or_citation` for each next 25-100 row subset, plus verified `license_label` and `corpus_contamination` fields."
+}

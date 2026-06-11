@@ -1,15 +1,32 @@
 {
   "schema_version": 1,
   "artifact_type": "route_publication_boundary_audit",
-  "generated_at": "2026-06-01T08:28:34.458Z",
+  "generated_at": "2026-06-01T16:15:43.187Z",
   "generator": "scripts/validate_route_publication_boundary.mjs",
   "policy": "HUD route answer eligibility may select a definition card inside the lexical HUD. It is not publication readiness for accepted translation output. Route cards must keep source/license rows; translation-output safety is flagged separately from HUD route safety.",
+  "publication_boundary": {
+    "publication_status": "blocked_no_render",
+    "validates": [
+      "route_publication_boundary_audit",
+      "route_card_publication_boundary",
+      "public_hud_route_lookup_publication_boundary"
+    ],
+    "does_not_clear": [
+      "translation_output",
+      "source_publication",
+      "public_lexical_export_reuse",
+      "accepted_definition_authority"
+    ],
+    "answer_eligible_scope": "hud_answer_slot_only_not_translation_or_publication_readiness",
+    "warning_status_blocks_publication_claim": true,
+    "current_route_inputs_reconciled": "not_checked_by_route_publication_boundary_audit"
+  },
   "inputs": {
     "manifest": "data/definitions/hud-route-lookup/manifest.json",
     "manifest_file": {
       "path": "data/definitions/hud-route-lookup/manifest.json",
-      "byte_length": 1599371,
-      "sha256": "558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1"
+      "byte_length": 1600063,
+      "sha256": "3d0c5cb147e3b87e63a032a69802174f86b4eb3aff41ed6037ae758a14dded7a"
     },
     "contract": "data/definitions/hud-route-contract.json",
     "fixture": "data/definitions/route-publication-boundary-fixtures.json",
@@ -21,8 +38,8 @@
     },
     "generator_file": {
       "path": "scripts/validate_route_publication_boundary.mjs",
-      "byte_length": 46107,
-      "sha256": "c6c60f42c27b57098e1340e077ec80db1a4c933e674213464eb382a53af55781"
+      "byte_length": 50152,
+      "sha256": "1ea55f44cb841a01ef6e470fabf364801ce25cb4af76d94caad596f269d223a7"
     },
     "public_lookup": "data/definitions/hud-route-lookup",
     "max_issues": 100,

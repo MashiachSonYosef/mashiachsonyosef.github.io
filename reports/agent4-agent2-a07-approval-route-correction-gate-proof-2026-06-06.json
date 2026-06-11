@@ -1,0 +1,67 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T11:47:30.000Z",
+  "target": "Agent 2 A07 approval route correction gate proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent2-a07-approval-route-correction-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-prereq-route-crossmatch-sweep-gate-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_a07_approval_route_correction.mjs --input=reports/agent2-a07-approval-route-correction-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent2-a07-approval-route-correction-gate-proof-2026-06-06.json",
+  "paired_markdown_path": "reports/agent4-agent2-a07-approval-route-correction-gate-proof-2026-06-06.md",
+  "evidence_artifacts": [
+    "reports/agent4-changed-input-selection-after-prereq-route-crossmatch-sweep-gate-2026-06-06.json",
+    "reports/agent2-a07-approval-route-correction-2026-06-06.json"
+  ],
+  "files_added": [
+    "scripts/validate_agent2_a07_approval_route_correction.mjs"
+  ],
+  "counts": {
+    "candidate_count": 3,
+    "misroute_blocker_count": 3,
+    "approval_owner_A07": 1,
+    "evidence_owner_A06": 1,
+    "approval_requests_to_A06_allowed": 0,
+    "publication_or_release_allowed": 0,
+    "repo_cleanup_action_allowed": 0,
+    "destructive_command_allowed": 0,
+    "accepted_text_acceptance_allowed": 0
+  },
+  "result": "validated_agent2_A07_approval_route_correction_gate",
+  "route_boundary": {
+    "approval_sop_final_validation_release_gate": "A07",
+    "evidence_validators_repo_cleaning_production": "A06",
+    "a06_output_status": "evidence_ready_until_A07_approves",
+    "do_not_ask_a06_for_approval": true,
+    "redo_scope": "changed_or_flagged_rows_only"
+  },
+  "exact_blockers": [
+    {
+      "code": "approval_request_misrouted_to_A06",
+      "details": "Agent 2 route correction states A06 is evidence/validator/repo-cleaning production only.",
+      "next_safe_action": "Route approval, SOP, final validation, and release gate to A07."
+    },
+    {
+      "code": "A06_output_is_evidence_ready_only_until_A07_approval",
+      "details": "A06 outputs must not be treated as approval or accepted-text authority.",
+      "next_safe_action": "Preserve A06 outputs as evidence-ready only unless A07 approval is separately present."
+    }
+  ],
+  "handoff_owner": "A07 for approval/SOP/final validation/release gate; A06 for evidence/validators/repo-cleaning production; Agent 2 for transform lane after source-lane evidence exists.",
+  "stop_condition": "Stop after validating the selected Agent 2 route correction, writing this Agent 4 proof packet, validating this proof packet, and running the changed packet sweep gate.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, repo cleanup action, destructive command, or release action."
+  ]
+}

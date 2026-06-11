@@ -1,0 +1,291 @@
+{
+  "artifact_type": "agent2_a14_pipeline_redesign_input",
+  "generated_at": "2026-06-07T05:40:00Z",
+  "target": "A14 pipeline redesign input from Agent2",
+  "status": "non_public_design_input_no_runtime_mutation",
+  "files_used": {
+    "a14_identity_and_communication_anchor": "reports/agent14-mutiny-recovery-communication-paths-2026-06-06.md",
+    "oracle9_a14_invariants": "reports/oracle9-agent14-invariants-anti-stale-process-2026-06-05.md",
+    "agent2_pipeline_inventory": "reports/agent2-weekly-lexicon-pipeline-inventory-2026-06-04.md",
+    "agent2_current_blocker_state": "reports/agent2-agent10-old-dictionary-bridge-gap-current-release-blocker-state-consumption-2026-06-07-0533.md"
+  },
+  "message_to_a14": "Agent2 should be redesigned from a roaming definition worker into a spec-bound compiler stage. Its job is not to think forever, watch forever, or repeat blockers forever. Its job is to convert classified lane evidence into one of two usable outputs: a page-ready non-public lexicon payload that can be validated without authority leakage, or a single exact blocker that names the missing prerequisite and next owner. If nothing changed, Agent2 should stay quiet.",
+  "agent2_pipeline_spec": {
+    "pipeline_name": "definition_lemma_reader_hint_spec_pipeline",
+    "primary_output": "usable_page_ready_lexicon_payload_or_exact_blocker",
+    "authority_boundary": "non_authoritative_until_A07_where_required",
+    "model_target": "runnable_by_dumber_models_with_schema_and_validators",
+    "success_measure": "fewer artifacts, more rendered/page-ready payloads, no dirty-repo churn, no repeated no-change blockers",
+    "non_goals": [
+      "no source/license/legal acceptance",
+      "no Definition authority",
+      "no answer acceptance",
+      "no public/runtime mutation",
+      "no release action",
+      "no repetitive hourly no-change blocker artifacts"
+    ]
+  },
+  "runes": [
+    {
+      "name": "LANE",
+      "meaning": "Every row must carry exactly one source/license lane before Agent2 acts.",
+      "valid_values": [
+        "commercial_clean_candidate",
+        "noncommercial_educational_candidate",
+        "metadata_or_link_only",
+        "blocked_or_needs_review"
+      ]
+    },
+    {
+      "name": "PREREQ",
+      "meaning": "A named input field or upstream artifact required before text transform or page packaging.",
+      "minimum_fields": [
+        "source_citation_or_url",
+        "owner_action_resolution",
+        "transform_rule",
+        "gate_proof",
+        "A07_route_where_required"
+      ]
+    },
+    {
+      "name": "NULL_TEXT",
+      "meaning": "A rule that locks candidate, definition, lemma, and reader-hint fields to null until prerequisites clear."
+    },
+    {
+      "name": "MUTATION",
+      "meaning": "Any write outside reports/scripts, especially route shards, public HUD, lexical payloads, source files, token indexes, rendered pages, or release state."
+    },
+    {
+      "name": "PAGE_READY",
+      "meaning": "A non-public package with enough row fields, lane fields, null/text state, route target, and validation proof for a page renderer to consume later without guessing."
+    },
+    {
+      "name": "BLOCKER",
+      "meaning": "A single exact missing prerequisite with owner and stop condition; never a narrative substitute for work."
+    },
+    {
+      "name": "VALIDATE",
+      "meaning": "A deterministic script that checks counts, fields, zero counters, stale blockers, and authority boundaries."
+    },
+    {
+      "name": "HANDOFF",
+      "meaning": "The next owner and the exact field they must return, not a vague request for review."
+    },
+    {
+      "name": "STOP",
+      "meaning": "A hard boundary that prevents filler work after the useful output is complete."
+    }
+  ],
+  "stage_contract": [
+    {
+      "stage_id": "S0_changed_input_check",
+      "purpose": "Decide if Agent2 should work at all.",
+      "input_required": [
+        "new classified rows",
+        "new source-citation/owner-action return",
+        "new transform rule",
+        "new gate proof",
+        "new page-output target"
+      ],
+      "output": "continue_or_quiet_no_change",
+      "validator": "changed_input_present_or_dont_notify",
+      "churn_control": "If no changed input exists, do not write a new report."
+    },
+    {
+      "stage_id": "S1_lane_intake",
+      "purpose": "Consume source/license lane evidence without accepting it.",
+      "input_required": [
+        "queue_id",
+        "token_id",
+        "lexicon_entry_id",
+        "occurrences",
+        "source_family",
+        "license_lane",
+        "source_rids",
+        "derived_from_nc",
+        "commercial_export_allowed",
+        "attribution_required"
+      ],
+      "output": "lane_intake_matrix",
+      "validator": "row_count_and_lane_exclusivity"
+    },
+    {
+      "stage_id": "S2_prereq_matrix",
+      "purpose": "Determine which rows are transformable, null-locked, metadata-only, NC-only, or blocked.",
+      "input_required": [
+        "source_citation_or_url_or_exact_blocker",
+        "owner_action_resolution_or_exact_blocker",
+        "transform_rule",
+        "gate_proof"
+      ],
+      "output": "row_prereq_matrix",
+      "validator": "all_missing_fields_named_with_owner"
+    },
+    {
+      "stage_id": "S3_text_transform",
+      "purpose": "Produce candidate/definition/lemma/reader-hint proposal text only where all prerequisites authorize it.",
+      "input_required": [
+        "commercial_clean_candidate lane or explicit NC-only educational target",
+        "source citation",
+        "owner-action resolution",
+        "text transform rule",
+        "A07/A06 route boundaries"
+      ],
+      "output": "proposal_text_rows_or_null_text_rows",
+      "validator": "zero_text_when_null_locked_and_no_text_when_blocked"
+    },
+    {
+      "stage_id": "S4_no_text_blocker_rows",
+      "purpose": "Represent blocked rows as useful page/planning data without storing text.",
+      "input_required": [
+        "no_text_transform_rule",
+        "row_status",
+        "exact_blocker",
+        "handoff_owner"
+      ],
+      "output": "null_text_blocker_rows",
+      "validator": "all_text_fields_null_and_blockers_specific"
+    },
+    {
+      "stage_id": "S5_validator_pack",
+      "purpose": "Emit one deterministic validator per artifact type.",
+      "input_required": [
+        "expected rows",
+        "expected occurrences",
+        "required fields",
+        "zero counters",
+        "stale blockers to reject"
+      ],
+      "output": "validator_script_and_result",
+      "validator": "node_validator_with_timeout"
+    },
+    {
+      "stage_id": "S6_dirty_repo_control",
+      "purpose": "Prevent endless untracked reports and repeated no-change artifacts.",
+      "input_required": [
+        "artifact_intent",
+        "changed_input_hash_or_mtime",
+        "target_id"
+      ],
+      "output": "write_allowed_or_quiet_status",
+      "validator": "no_duplicate_no_change_receipts_for_same_target"
+    },
+    {
+      "stage_id": "S7_page_ready_packaging",
+      "purpose": "Package validated rows for a future renderer without mutating public/runtime files.",
+      "input_required": [
+        "page_id",
+        "route_target",
+        "rows",
+        "display-safe null/text state",
+        "source lane",
+        "validator result",
+        "remaining blockers"
+      ],
+      "output": "page_ready_non_public_payload",
+      "validator": "page_payload_has_no_authority_leakage",
+      "public_runtime_mutation_allowed": false
+    }
+  ],
+  "dirty_repo_policy": {
+    "allow_repetitive_no_change_blockers": false,
+    "max_no_change_receipts_per_target": 1,
+    "preferred_no_change_behavior": "DONT_NOTIFY quiet status, no file write",
+    "write_allowed_only_when": [
+      "new upstream artifact is consumed",
+      "new validator is created",
+      "new page-ready package is created",
+      "stale blocker is removed or refined",
+      "changed input alters row counts or owners"
+    ],
+    "current_agent2_lesson": "The 3-row bridge-gap loop became useful only when Agent10 returned new nonconsumption/no-text/current-blocker artifacts; hourly no-change watch blockers should be deprecated."
+  },
+  "page_output_pressure": {
+    "principle": "Agent2 should optimize toward real rendered-page inputs, not endless planning receipts.",
+    "recommended_near_term_page_target": "one non-public page-ready lexicon payload for a small commercial-clean subset where all prerequisites are present",
+    "if_text_not_authorized": "emit null-text blocker rows that a renderer can display as disabled/provenance-needed state without pretending they are definitions",
+    "renderer_contract_fields": [
+      "page_id",
+      "queue_id",
+      "token_id",
+      "lexicon_entry_id",
+      "display_label_or_null",
+      "definition_text_or_null",
+      "lemma_text_or_null",
+      "reader_hint_text_or_null",
+      "row_status",
+      "source_license_lane",
+      "source_citation_or_url_or_blocker",
+      "answer_eligible",
+      "public_emit",
+      "exact_blocker",
+      "validator_result"
+    ]
+  },
+  "role_redesign_recommendations": [
+    {
+      "role": "Agent2",
+      "new_name": "Lexicon Spec Compiler",
+      "responsibility": "Compile lane evidence and transform rules into validated proposal/null/page-ready payloads.",
+      "must_not_do": "Do not accept sources, licenses, definitions, answers, or releases."
+    },
+    {
+      "role": "Agent1",
+      "new_name": "Source Lane Resolver",
+      "responsibility": "Return row-level lane, citation, owner-action, and exact blockers in schema."
+    },
+    {
+      "role": "Agent3",
+      "new_name": "Locator Evidence Builder",
+      "responsibility": "Produce row linkage and route evidence only; no authority."
+    },
+    {
+      "role": "Agent4",
+      "new_name": "Changed-Input Validator",
+      "responsibility": "Validate changed inputs and zero counters; do not validate unchanged churn."
+    },
+    {
+      "role": "Agent6",
+      "new_name": "Boundary Evidence Reviewer",
+      "responsibility": "Return pass/warn/block evidence only when a packet is actually ready."
+    },
+    {
+      "role": "Agent7",
+      "new_name": "Publication Gate",
+      "responsibility": "Approve/reject final public/runtime/release transitions where required."
+    },
+    {
+      "role": "Agent10",
+      "new_name": "Package Director",
+      "responsibility": "Assemble exact worksets and boundary questions; avoid sending Agent2 vague asks."
+    },
+    {
+      "role": "Agent14",
+      "new_name": "Pipeline Firebreak Designer",
+      "responsibility": "Turn agents into executable specs, define runes, kill stale loops, and force usable page outputs."
+    }
+  ],
+  "deprecations": [
+    "hourly no-change blocker receipts",
+    "SOP language for normal production work",
+    "status-only artifacts",
+    "authority labels that look like acceptance",
+    "broad repo scans without bounded target",
+    "dirty report accumulation without changed input",
+    "asking Agent6/A07/A06 questions before packet readiness",
+    "watching forever instead of producing page-ready payloads"
+  ],
+  "stop_conditions": {
+    "no_public_runtime_mutation": true,
+    "no_definition_or_answer_acceptance": true,
+    "no_source_license_legal_acceptance": true,
+    "no_release_action": true,
+    "no_repetitive_no_change_blockers": true,
+    "quiet_when_no_changed_input": true
+  },
+  "automation_update": {
+    "automation_id": "agent-2-weekly-lexicon-work",
+    "updated": true,
+    "reason": "reduce repetitive no-change blocker churn and require usable output or quiet no-change status"
+  }
+}

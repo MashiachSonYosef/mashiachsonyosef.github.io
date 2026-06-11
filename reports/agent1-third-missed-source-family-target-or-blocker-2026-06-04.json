@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_third_missed_source_family_target_or_blocker",
+  "generated_at": "2026-06-05T09:52:02.889Z",
+  "generator": "scripts/build_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+  "status": "missing_workset_blocker",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "sequence_slot": 3,
+  "prior_completed_pipelines": [
+    {
+      "name": "Orot NC/Klein educational source-family pipeline",
+      "rows": 17,
+      "occurrences": 259,
+      "status": "runnable_validated"
+    },
+    {
+      "name": "Orot next missed source-family pipeline",
+      "rows": 50,
+      "occurrences": 1193,
+      "status": "runnable_validated"
+    }
+  ],
+  "candidate_evidence_checked": [
+    "reports/agent3-broad-linkage-dedupe-navigation-package-2026-06-04.json",
+    "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
+    "reports/agent10-orot-186-row-nohit-inventory-packet-2026-06-04.json",
+    "data/build/orot/reader-hint-placeholder-candidates.json"
+  ],
+  "counts_found": {
+    "source_no_hit_inventory_rows": 186,
+    "source_no_hit_inventory_occurrences": 2421,
+    "local_route_card_matrix_rows": 169,
+    "local_route_card_matrix_occurrences": 2148,
+    "rows_already_in_placeholder_package": 1,
+    "occurrences_already_in_placeholder_package": 31,
+    "rows_with_exact_linkage_blocker": 168,
+    "occurrences_with_exact_linkage_blocker": 2117,
+    "route_cards_total": 7476,
+    "candidate_cards_total": 559,
+    "ambiguity_cards_total": 203,
+    "package_anchor_rows": 332,
+    "package_anchor_occurrences": 6156
+  },
+  "source_family_detection": {
+    "spark10_row_count_observed": 169,
+    "has_row_level_source_family_or_license_fields": false,
+    "reason": "The checked 169-row matrix is linkage/dedupe/navigation evidence and lacks row-level source-family/license split needed for an Agent 1 source/license/custody contract."
+  },
+  "blocker_reason": "The 169-row matrix is a linkage/dedupe/navigation workset, not an Agent 1 source/license/custody source-family workset.",
+  "missing_fields": [
+    "exact source family or source-family buckets",
+    "row-level source/license split",
+    "commercial-clean / noncommercial_educational_candidate / metadata-link-only / blocked classification",
+    "derived_from_nc flags where applicable",
+    "commercial_export_allowed flags where applicable",
+    "attribution requirements",
+    "source/custody manifest requirements",
+    "Agent 1 output path/schema for source-family contract",
+    "Agent 1 build script name for source-family contract",
+    "Agent 1 validator/gate command for source-family contract",
+    "Agent 6 boundary question"
+  ],
+  "next_command": null,
+  "spark1_route_allowed_now": false,
+  "handoff_owner": {
+    "agent1": "source/license/custody package owner once exact source-family workset exists",
+    "agent3_agent2": "likely prerequisite mechanics owners if the 169-row matrix must be converted into source-family evidence",
+    "spark1": "not routable for Contract 3 yet"
+  },
+  "agent6_boundary": "No Agent 6 source/license/custody boundary question can be asked yet because exact source family/license split is missing.",
+  "stop_condition": "Stop until exact third missed source-family workset, contract-ready Agent 1 input artifact, or explicit owner route to convert the 169-row matrix is supplied.",
+  "zero_output_counts": {
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "what_must_not_be_accepted": [
+    "source/license acceptance",
+    "NC flattening",
+    "QA acceptance",
+    "Definition authority",
+    "runtime/public acceptance",
+    "publication readiness",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "public/runtime mutation"
+  ]
+}

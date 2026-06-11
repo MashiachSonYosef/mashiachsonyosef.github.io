@@ -1,6 +1,6 @@
 # Agent 10 Orot 20-Row Reader-Hint Candidate Package Handoff
 
-Generated: 2026-06-03T13:49:17.323Z
+Generated: 2026-06-04T01:13:54.050Z
 
 ## Boundary
 

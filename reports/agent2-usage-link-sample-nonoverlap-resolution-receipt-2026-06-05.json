@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_usage_link_sample_nonoverlap_resolution_receipt",
+  "generated_at": "2026-06-05T12:04:13.820Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / source-lane separated lexicon expansion",
+  "target": "Definition Workbench usage-link current-sample non-overlap risk",
+  "status": "nonoverlap_resolved_as_separate_nonpublic_joined_sample_planning_row_no_live_sample_mutation",
+  "resolved_risk": "usage-link packet has no overlap with current 200-row sample",
+  "validated_artifacts": {
+    "definition_workbench_sample": "data/definitions/definition-workbench-sample.json",
+    "usage_join_smoke": "data/definitions/definition-workbench-usage-join-smoke.json",
+    "agent2_joined_sample_planning": "data/definitions/agent2-definition-workbench-usage-joined-sample-planning.json"
+  },
+  "validator_commands": [
+    "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample.json",
+    "node scripts/validate_definition_workbench_usage_join_smoke.mjs data/definitions/definition-workbench-usage-join-smoke.json",
+    "node scripts/validate_agent2_definition_workbench_usage_joined_sample_planning.mjs data/definitions/agent2-definition-workbench-usage-joined-sample-planning.json",
+    "node scripts/validate_agent2_usage_link_sample_nonoverlap_resolution_receipt.mjs reports/agent2-usage-link-sample-nonoverlap-resolution-receipt-2026-06-05.json"
+  ],
+  "current_sample_snapshot": {
+    "sample_rows": 200,
+    "review_status": {
+      "unreviewed_machine_sample": 200
+    },
+    "usage_link_status": "not_mutated_by_agent3_join_smoke",
+    "live_sample_mutated": false
+  },
+  "nonoverlap_resolution": {
+    "join_rows": 1,
+    "seed_rows_absent_from_sample": 1,
+    "projected_rows_to_add": 1,
+    "projected_total_rows_if_separate_joined_artifact": 201,
+    "projected_planning_rows": 1,
+    "projected_usage_link_rows": 2390,
+    "selected_occurrence_links": 12,
+    "route_ids": 1,
+    "audit_only_ambiguous_rows": 2064,
+    "resolved_by": "separate Agent 2 nonpublic joined-sample planning artifact, not by mutating the current Definition Workbench sample"
+  },
+  "zero_output_counts": {
+    "live_sample_mutations": 0,
+    "reader_facing_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_rows_emitted": 0,
+    "route_shards_written": 0,
+    "public_runtime_mutations": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "definition_authority_rows": 0,
+    "accepted_gloss_text_rows": 0
+  },
+  "authority_boundary": {
+    "nonpublic_planning_only": true,
+    "live_sample_unchanged": true,
+    "usage_navigation_only": true,
+    "observed_usage_only": true,
+    "route_ids_only": true,
+    "reader_facing": false,
+    "ranks_routes": false,
+    "selects_visible_result": false,
+    "semantic_arbitration": false,
+    "copies_route_payloads": false,
+    "copies_definition_payloads": false,
+    "copies_translation_payloads": false,
+    "answer_eligibility": false,
+    "publication_claim": false
+  },
+  "remaining_blockers_not_resolved_by_this_receipt": [
+    "Agent 6 definition authority boundary remains unaccepted",
+    "old-dictionary commercial-clean families still need exact Agent 6 row/subset boundary plus approved morphology relation",
+    "Klein remains noncommercial_educational_candidate with no commercial export authorization",
+    "BDB Augmented Strong remains blocked pending independent source/license/custody basis"
+  ],
+  "handoff_owner": "Agent 2 owns this nonpublic usage-link/sample reconciliation receipt; Agent 10/Agent 6 only consume a future exact candidate-use packet if one is prepared.",
+  "stop_condition": "Stop at nonpublic joined-sample planning evidence. Do not mutate the live Definition Workbench sample, copy route payloads, rank answers, decide Definition authority, emit public reader output, or mark answer eligibility.",
+  "non_acceptance_boundary": [
+    "No Definition authority",
+    "No answer acceptance",
+    "No answer eligibility",
+    "No accepted gloss/text",
+    "No public reader output",
+    "No route-shard edit",
+    "No public/runtime mutation"
+  ]
+}

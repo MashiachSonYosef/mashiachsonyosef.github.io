@@ -1,0 +1,97 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T11:13:00.000Z",
+  "target": "Agent 3 old-dictionary candidate-use queue/source boundary blocker matrix gate",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-queue-source-boundary-blocker-matrix-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-subchain-blocker-second-continuation-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_queue_source_boundary_blocker_matrix.mjs --input=reports\\agent3-old-dictionary-candidate-use-queue-source-boundary-blocker-matrix-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "input_dedupe_key_rows": 363,
+    "input_source_rid_coverage_rows": 314,
+    "input_subchain_handoff_entries": 8,
+    "blocker_matrix_rows": 363,
+    "unique_queue_source_pair_keys": 363,
+    "duplicate_queue_source_pair_keys": 0,
+    "unique_source_rids": 314,
+    "unique_queue_ids": 65,
+    "partition_rows": 2,
+    "blocker_signature_rows": 1,
+    "exact_blocker_rows": 1,
+    "cross_batch_blocker_rows": 163,
+    "single_batch_blocker_rows": 200,
+    "source_citation_required_rows": 363,
+    "source_citation_or_url_present_rows": 0,
+    "transform_rule_still_blocked_rows": 363,
+    "agent6_boundary_after_prereq_rows": 363,
+    "source_family_selection_boundary_blocker_rows": 363,
+    "source_family_boundary_packet_exists_rows": 0,
+    "route_write_allowed_rows": 0,
+    "candidate_text_allowed_rows": 0,
+    "public_mutation_allowed_rows": 0,
+    "source_rid_overlap_diagnostic_rows": 16,
+    "batch_id_overlap_diagnostic_rows": 288,
+    "source_and_batch_overlap_diagnostic_rows": 16,
+    "reference_total": 475,
+    "occurrence_total": 12111,
+    "source_level_occurrence_total": 7795,
+    "source_family_selection_claims": 0,
+    "source_acceptance_claims": 0,
+    "source_citation_supplied_by_agent3_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_agent3_queue_source_boundary_blocker_matrix_navigation_only_no_selection_or_acceptance",
+  "exact_blockers": [
+    {
+      "code": "source_citation_required_for_all_queue_source_rows",
+      "blocked_rows": 363,
+      "details": "All queue/source rows still require source_citation_or_url or exact missing-source blocker."
+    },
+    {
+      "code": "transform_rule_still_blocked_for_all_queue_source_rows",
+      "blocked_rows": 363,
+      "details": "No transform text may be generated from this matrix."
+    },
+    {
+      "code": "single_blocker_signature_only",
+      "signature_rows": 1,
+      "details": "The matrix consolidates blocker reporting to one signature; it does not create source-family selection, source custody, route write, runtime mutation, or release authority."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-queue-source-boundary-blocker-matrix-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-queue-source-boundary-blocker-matrix-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 3 for queue/source blocker navigation; Agent 1 for source citation prerequisites; Agent 10 for release/package intake only after required boundary packets exist.",
+  "next_safe_action": "Run a triggered Agent4 packet sweep because this proof packet was added, then select from that sweep anchor with lookback scanning.",
+  "stop_condition": "Stop after validating and packaging the Agent3 queue/source boundary blocker matrix as an Agent4 gate proof.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

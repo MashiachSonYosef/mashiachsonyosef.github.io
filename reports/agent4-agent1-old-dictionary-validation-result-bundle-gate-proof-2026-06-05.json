@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:08:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent1-old-dictionary-validation-result-bundle",
+  "changed_input_artifact": [
+    "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-validation-result-2026-06-05.json",
+    "reports/agent1-old-dictionary-downstream-consumption-alignment-audit-validation-result-2026-06-05.json",
+    "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-validation-result-2026-06-05.json"
+  ],
+  "validator_proof_commands": [
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_validation_result_bundle.mjs",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "Agent1 old-dictionary validation-result bundle passed. Commercial-only rows: 18; source families: 5; overlap rows: 197."
+    },
+    {
+      "command": "node --check scripts\\validate_agent1_old_dictionary_validation_result_bundle.mjs",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "syntax check passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent1-old-dictionary-validation-result-bundle-gate-proof-2026-06-05.md",
+  "files": [
+    "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-validation-result-2026-06-05.json",
+    "reports/agent1-old-dictionary-downstream-consumption-alignment-audit-validation-result-2026-06-05.json",
+    "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-validation-result-2026-06-05.json",
+    "scripts/validate_agent1_old_dictionary_validation_result_bundle.mjs"
+  ],
+  "counts": {
+    "commercial_clean_only_rows": 18,
+    "commercial_clean_only_occurrences": 494,
+    "commercial_clean_only_rows_with_refs": 17,
+    "commercial_clean_only_occurrences_with_refs": 476,
+    "commercial_clean_only_rows_without_refs": 1,
+    "commercial_clean_only_occurrences_without_refs": 18,
+    "commercial_clean_only_exact_blockers": 3,
+    "source_family_rows": 5,
+    "commercial_clean_candidate_source_families": 3,
+    "noncommercial_educational_candidate_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "downstream_alignment_exact_blockers": 5,
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_nc_overlap_rows": 197,
+    "commercial_nc_overlap_occurrences": 4185,
+    "commercial_nc_without_bdb_augmented_strong_rows": 57,
+    "commercial_nc_with_bdb_augmented_strong_rows": 140,
+    "klein_only_excluded_rows": 17,
+    "klein_only_excluded_occurrences": 259,
+    "overlap_exact_blockers": 4,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "release_route_opened_now": 0,
+    "source_rows_emitted_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0
+  },
+  "exact_blockers": [
+    "commercial-clean-only metadata custody has 3 blockers and 0 output rows",
+    "downstream consumption alignment has 5 blockers and 0 transform/candidate/public/release rows",
+    "commercial+NC overlap exclusion has 4 blockers and 0 Agent2 transform/Agent6 delivery/candidate/answer rows",
+    "Klein-related NC rows remain separated and noncommercial; no commercial authorization",
+    "BDB Augmented Strong overlap remains blocked/review where applicable"
+  ],
+  "handoff_owner": {
+    "source_lane": "Agent 1 preserves source-lane validation evidence",
+    "definition_transform_lane": "Agent 2 only after exact Agent6 boundary and approved morphology relation",
+    "release_package_lane": "Agent 10 only after concrete changed release-relevant output",
+    "boundary_authority": "Agent 6 for exact boundary verdicts"
+  },
+  "command_timeout_records": [
+    {
+      "command": "Get-ChildItem scripts -File -Filter 'validate_agent1_old_dictionary_commercial_clean_only_metadata_custody*.mjs' | Select-Object -ExpandProperty Name",
+      "timeout_ms": 10000,
+      "result": "process_timeout",
+      "partial_output_or_artifact": "",
+      "next_safe_action": "Used exact bundle validator authored for the three changed Agent1 validation-result artifacts."
+    },
+    {
+      "command": "Get-ChildItem scripts -File -Filter 'validate_agent1_old_dictionary_downstream_consumption_alignment*.mjs' | Select-Object -ExpandProperty Name",
+      "timeout_ms": 10000,
+      "result": "process_timeout",
+      "partial_output_or_artifact": "",
+      "next_safe_action": "Used exact bundle validator authored for the three changed Agent1 validation-result artifacts."
+    },
+    {
+      "command": "Get-ChildItem scripts -File -Filter 'validate_agent1_old_dictionary_commercial_nc_overlap_exclusion_manifest*.mjs' | Select-Object -ExpandProperty Name",
+      "timeout_ms": 10000,
+      "result": "process_timeout",
+      "partial_output_or_artifact": "",
+      "next_safe_action": "Used exact bundle validator authored for the three changed Agent1 validation-result artifacts."
+    }
+  ],
+  "hashes": {
+    "commercial_clean_only_metadata_custody_validation_result_sha256": "26ec2eb32a4d1d03778d2afcc7e7643c39f81fa6fa7a4aab98195f81acb80fb8",
+    "downstream_consumption_alignment_audit_validation_result_sha256": "2cae9548d216d45ae39e4cc24e33dcc77f3b7e5558f60b8c930c008c54934216",
+    "commercial_nc_overlap_exclusion_manifest_validation_result_sha256": "bb664d21bb1ab4c11ad50b24fdc0ee058cdc3486052a89574753e1526d732b02",
+    "validator_sha256": "a15a88c284561925b19d5a664ecba4c15008b3048ac462a1f466e3b0a31349f4"
+  },
+  "result": "target | agent1-old-dictionary-validation-result-bundle | changed input/artifact | three Agent1 validation-result JSONs listed above | validator/proof command with timeout | node scripts\\validate_agent1_old_dictionary_validation_result_bundle.mjs, timeout 30000 ms, passed | output artifact path | reports/agent4-agent1-old-dictionary-validation-result-bundle-gate-proof-2026-06-05.md/json | exact blockers | source-lane validation evidence remains zero-output with commercial/NC/blocker separation and no transform/public/release authorization | handoff owner | Agent1 source lane, Agent2 transform lane after Agent6 boundary, Agent10 package lane after concrete output, Agent6 boundary authority | stop condition | do not use these validation results for transform/output/public/release until exact Agent6 boundaries and required morphology/source custody evidence exist",
+  "stop_condition": "Do not use these validation results for transform rows, candidate text, source-row emission, answer eligibility, route writes, public/runtime behavior, export, accepted text, or release until exact Agent6 boundaries and required morphology/source custody evidence exist.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

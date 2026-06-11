@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_old_dictionary_78_row_transform_output_proposal_missing_pipeline_blocker_validation_result",
+  "generated_at": "2026-06-06T04:40:00.000Z",
+  "target": "reports/agent2-old-dictionary-78-row-transform-output-proposal-missing-pipeline-blocker-2026-06-06.json",
+  "validator": "scripts/validate_agent2_old_dictionary_78_row_transform_output_proposal_missing_pipeline_blocker.mjs",
+  "command": "node scripts\\validate_agent2_old_dictionary_78_row_transform_output_proposal_missing_pipeline_blocker.mjs reports\\agent2-old-dictionary-78-row-transform-output-proposal-missing-pipeline-blocker-2026-06-06.json",
+  "timeout_ms": 120000,
+  "timed_out": false,
+  "result": "passed",
+  "stdout_summary": "Agent2 transform-output proposal missing-pipeline blocker validation passed. Rows: 78; occurrences: 1461; blocker: missing_transform_output_proposal_matrix_or_exact_transform_rule.",
+  "validated_blocker": {
+    "blocker_id": "missing_transform_output_proposal_matrix_or_exact_transform_rule",
+    "missing_source_field": "source_citation_or_url",
+    "missing_transform_rule_fields": [
+      "proposed_candidate_text",
+      "proposed_definition_text",
+      "proposed_lemma_text",
+      "proposed_reader_hint_text"
+    ],
+    "row_count_mismatch": false,
+    "rows": 78,
+    "occurrences": 1461
+  },
+  "zero_output_counts": {
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "stop_condition": "Stop at missing_pipeline_blocker. No Definition authority, public/runtime mutation, answer acceptance, source-license/legal acceptance, accepted text, publication readiness, release action, commercial export authorization, candidate text, or definition/lemma/reader-hint content output."
+}

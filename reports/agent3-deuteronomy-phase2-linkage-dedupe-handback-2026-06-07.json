@@ -1,0 +1,85 @@
+{
+  "artifact_type": "agent3_phase2_deuteronomy_linkage_dedupe_handoff",
+  "generated_at": "2026-06-07T08:10:00Z",
+  "lane": "agent3",
+  "target": {
+    "work_id": "deuteronomy",
+    "work_title": "Deuteronomy",
+    "workset": "deuteronomy-linkage-dedupe-source-route-matrix",
+    "rows": 8113,
+    "occurrences": 12595
+  },
+  "contract": {
+    "markdown": "reports/agent3-spark1-pipeline-contract-deuteronomy-phase2-linkage-dedupe-source-route-2026-06-04.md",
+    "json": "reports/agent3-spark1-pipeline-contract-deuteronomy-phase2-linkage-dedupe-source-route-2026-06-04.json",
+    "runner": "Spark-1",
+    "thread": "019e92c1-89b1-7821-898b-2106638345cb",
+    "commands": [
+      "node scripts/build_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+      "node scripts/validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs"
+    ],
+    "output": {
+      "json": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+      "markdown": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.md"
+    }
+  },
+  "route_buckets": {
+    "agent2_agent6_boundary_candidate": {
+      "rows": 1334,
+      "occurrences": 2964
+    },
+    "confidence_below_safe_min60_blocker": {
+      "rows": 1594,
+      "occurrences": 2922
+    },
+    "missing_lexical_entry_blocker": {
+      "rows": 5185,
+      "occurrences": 6709
+    }
+  },
+  "match_summary": {
+    "matched_rows": 1334,
+    "matched_occurrences": 2964,
+    "unmatched_rows": 6779,
+    "unmatched_occurrences": 9631,
+    "exact_blockers": 6779
+  },
+  "validation": {
+    "runner": "node scripts/validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+    "status": "passed",
+    "validator_last_run": "2026-06-07T05:48:43.631Z",
+    "gates_passed": [
+      "row_count",
+      "occurrence_count",
+      "token_index_join_complete",
+      "duplicate_keys_unique",
+      "safe_claim_rows",
+      "below_threshold_rows",
+      "unresolved_rows",
+      "authority_zero_gate"
+    ],
+    "authority_zero": true
+  },
+  "handoff": {
+    "agent2": {
+      "action": "consume 1334 rows / 2964 occurrences as downstream-boundary candidates only after mechanical matrix intake"
+    },
+    "agent6": {
+      "action": "required for source/provenance/license/Definition/public-runtime/answer acceptance"
+    },
+    "agent10": {
+      "action": "release/package planning for blocked rows and downstream continuity"
+    }
+  },
+  "constraints": {
+    "do_not_accept": [
+      "route publication support",
+      "definition/answer selection",
+      "usage-as-definition authority",
+      "source/provenance/license acceptance",
+      "runtime/publication acceptance",
+      "accepted-text output"
+    ]
+  },
+  "stop_condition": "Re-run only if this matrix JSON/markdown input set changes or a new exact pipeline command/input/output contract is introduced."
+}

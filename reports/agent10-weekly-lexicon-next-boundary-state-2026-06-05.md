@@ -1,0 +1,17 @@
+# Agent 10 Weekly Lexicon Next Boundary State - 2026-06-05
+
+Active mode: `WEEKLY_LEXICON_EXPANSION_GOAL_MODE`.
+
+Posture: direct release/package decision mode.
+
+| package/workset | inputs consumed | row/occurrence counts | lane split | validator results | Agent 6 boundary question | exact blocker | next handoff | stop condition |
+| --- | --- | ---: | --- | --- | --- | --- | --- | --- |
+| Old-dictionary morphology candidate-use | Agent 2 preflight handoff; Agent 2 candidate-use blocker; Agent 2 morphology relation matrix; Agent 6 planning verdict; Agent 1 lane addendum; delivery proof `019e97dd-fdef-7280-8530-4e81a70c02ed`; Agent 6 candidate-use verdict consumed; Agent 2 handoff `019e97e5-31dc-7ae3-a63d-0836d3284d65` | 78 rows / 1461 occurrences; 219 morphology-blocked rows excluded | included `commercial_clean_candidate`; excluded 129 `prefix_or_clitic_possible`, 90 `needs_morphology_disambiguation` | `node scripts/validate_agent10_old_dictionary_morphology_candidate_use_boundary_packet.mjs reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json` passed; Agent 6 validator/recount passed | Agent 6 WARN-ACCEPTED exact 78 rows as non-public candidate-use planning input only | `await_agent2_exact_nonpublic_candidate_use_package_or_exact_blocker_for_78_old_dictionary_rows` | Agent 2 request delivered; await package artifact paths plus validator result, or exact blocker naming missing command/input/schema/field | Stop at Agent 2 candidate-use package or exact blocker; later text storage, transform output, export, answer eligibility, route write, public/runtime mutation, accepted text, commercial export, or release action requires another exact Agent 6 verdict |
+| Workbench source-family/license-lane release intake | Delivered packet and delivery proof | 4 release-intake rows; 351 source-name partitions; 105747 source rows | 4 source-family/license-lane partitions | validator passed in delivery proof | Already delivered; do not duplicate route without changed artifacts | `await_agent6_verdict_for_workbench_source_family_license_lane_release_intake` | Watch for Agent 6 verdict artifact or exact blocker | No storage/display/export/answer/definition-content/route-shard/public-runtime/accepted-text/release mutation |
+| Definition Workbench usage/navigation plus CC-BY/CC-BY-SA custody | Current direct boundary delivery proof | 2390 usage concordance rows; 49 occurrence-link rows; 5581 CC-BY-SA source rows; 625 CC-BY source rows | usage-navigation planning; CC-BY-SA custody planning; CC-BY custody planning | validators passed in delivery proof | Already delivered; do not duplicate route without changed artifacts | `await_agent6_verdict_for_definition_workbench_usage_navigation_cc_by_sa_cc_by_packets` | Watch for Agent 6 verdict artifact or exact blocker | No candidate text/export/display/answer/Definition/public-runtime/release use |
+
+Zero counters preserved: public/runtime mutation `0`; route-shard writes `0`; route JSONL rows `0`; candidate text export rows `0`; definition-content rows `0`; answer rows `0`; answer-eligible rows `0`; accepted-text rows `0`; public reader output rows `0`; release actions `0`.
+
+Highest permissible claim: Agent 10 assembled one new Agent6-ready candidate-use boundary packet and preserved current release/package blockers.
+
+No QA/source/license/legal/Definition/runtime/publication/product/answer acceptance, no accepted gloss/text, no NC commercial authorization, no public/runtime mutation, and no release action.

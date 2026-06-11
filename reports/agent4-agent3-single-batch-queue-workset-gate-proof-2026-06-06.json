@@ -1,0 +1,82 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T23:58:00.000Z",
+  "target": "Agent 3 old-dictionary candidate-use single-batch queue workset gate",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-single-batch-queue-workset-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-selector-lookback-validator-hardening-sweep-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_single_batch_queue_workset.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_single_batch_queue_workset.mjs --input=reports\\agent3-old-dictionary-candidate-use-single-batch-queue-workset-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "input_queue_rows": 65,
+    "input_queue_source_links": 363,
+    "workset_rows": 40,
+    "queue_source_links": 200,
+    "batch_queue_links": 40,
+    "unique_source_rids": 200,
+    "unique_queue_ids": 40,
+    "unique_token_ids": 44,
+    "unique_batch_ids": 11,
+    "multi_source_queue_rows": 36,
+    "single_source_queue_rows": 4,
+    "cross_batch_queue_rows": 0,
+    "max_queue_source_rid_count": 12,
+    "max_queue_occurrence_total": 450,
+    "reference_total": 209,
+    "occurrence_total": 3300,
+    "batch_rows": 11,
+    "source_family_signature_rows": 4,
+    "triage_signature_rows": 3,
+    "impact_bucket_rows": 3,
+    "source_citation_required_links": 200,
+    "source_citation_or_url_present_links": 0,
+    "transform_rule_still_blocked_links": 200,
+    "agent6_boundary_after_prereq_links": 200,
+    "source_family_boundary_packet_exists_links": 0,
+    "source_family_selection_boundary_blocker_links": 200,
+    "route_write_allowed_links": 0,
+    "candidate_text_allowed_links": 0,
+    "public_mutation_allowed_links": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_agent3_single_batch_queue_workset_navigation_only_no_selection_or_acceptance",
+  "exact_blockers": [
+    {
+      "code": "single_batch_queue_still_missing_source_citation_transform_and_boundary_packet",
+      "blocked_links": 200,
+      "details": "The single-batch queue workset is navigation-only. Every source RID link still requires source citation and source-family boundary packetization before transform, route, runtime, or release work."
+    },
+    {
+      "code": "source_citation_missing_for_all_single_batch_links",
+      "blocked_links": 200,
+      "details": "The artifact reports source_citation_required_links=200 and source_citation_or_url_present_links=0."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-single-batch-queue-workset-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-single-batch-queue-workset-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 3 for single-batch queue workset navigation; Agent 10 for release/package intake only after required boundary packets exist.",
+  "next_safe_action": "Run a triggered Agent4 packet sweep because this proof packet was added, then select from that sweep anchor with lookback scanning.",
+  "stop_condition": "Stop after validating and packaging the Agent3 single-batch queue workset as an Agent4 gate proof.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

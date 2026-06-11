@@ -1,0 +1,388 @@
+{
+  "artifact_type": "agent4_changed_input_blocker",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T10:06:48.083Z",
+  "target": "Agent 4 changed-input candidate selection",
+  "changed_input_artifact": "reports/agent4-changed-input-selection-after-cross-batch-queue-guard-sweep-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\select_agent4_changed_input_candidate.mjs --after=reports\\agent4-changed-input-selection-after-cross-batch-queue-guard-sweep-2026-06-06.json --out=reports\\agent4-changed-input-selection-after-cross-batch-queue-guard-blocker-continuation-2026-06-06.json --lookbackMs=900000",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "anchor": "reports/agent4-changed-input-selection-after-cross-batch-queue-guard-sweep-2026-06-06.json",
+  "anchor_mtime_ms": 1780740339385.38,
+  "lookback_ms": 900000,
+  "scan_start_mtime_ms": 1780739439385.38,
+  "scanned_roots": [
+    "reports",
+    "data/control"
+  ],
+  "limit": 50,
+  "newer_file_count": 28,
+  "candidate_count": 0,
+  "selected_candidate": null,
+  "changed_input_blocker": {
+    "code": "changed_package_input_missing",
+    "changed_package_path_missing": true,
+    "command_list_needed": "Exact validator/prereq command for the next changed package or candidate artifact.",
+    "expected_output_schema": "Agent4 proof packet with changed_input_artifact, validator_commands including timeout_ms/result, counts, exact blockers, handoff_owner, stop_condition, and non_acceptance_boundary.",
+    "validator_gate": "Run only an existing named validator for the selected changed package/input, then validate the Agent4 packet with scripts/validate_agent4_validator_prereq_packet.mjs.",
+    "package_owner": "Agent 10 release/package intake or the upstream package-producing agent for the next changed artifact.",
+    "agent6_boundary_trigger": "Only after a concrete boundary-ready packet exists and Agent 6 review is explicitly needed.",
+    "stop_condition": "Stop after selecting one changed package/input or returning this exact blocker."
+  },
+  "exact_blockers": [
+    {
+      "code": "changed_package_input_missing",
+      "changed_package_path_missing": true,
+      "details": "No changed package/input candidate was selected after the provided anchor."
+    }
+  ],
+  "handoff_owner": "Agent 4 for changed-input-only validation discipline; Agent 10 or upstream package owner must provide the next changed package/input.",
+  "stop_condition": "Stop after returning an exact changed-input blocker.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ],
+  "rows": [
+    {
+      "path": "reports/agent10-scheduled-task-last.md",
+      "name": "agent10-scheduled-task-last.md",
+      "root": "reports",
+      "mtime_ms": 1780740382755.2446,
+      "size": 0,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent10-it-loop-heartbeat.md",
+      "name": "agent10-it-loop-heartbeat.md",
+      "root": "reports",
+      "mtime_ms": 1780740376647.7378,
+      "size": 492,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-after-cross-batch-queue-guard-sweep-2026-06-06.json",
+      "name": "agent4-changed-input-selection-after-cross-batch-queue-guard-sweep-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780740339385.38,
+      "size": 14928,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/orot-prehud-row-preview.html",
+      "name": "orot-prehud-row-preview.html",
+      "root": "reports",
+      "mtime_ms": 1780740334977.8716,
+      "size": 20891,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "preview_html_not_package_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-after-cross-batch-queue-guard-proof-2026-06-06.md",
+      "name": "agent4-validator-prereq-packet-sweep-after-cross-batch-queue-guard-proof-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780740315619.3381,
+      "size": 1508,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-after-cross-batch-queue-guard-proof-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-after-cross-batch-queue-guard-proof-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780740315612.646,
+      "size": 2593,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-result-after-cross-batch-queue-guard-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-result-after-cross-batch-queue-guard-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780740275598.0305,
+      "size": 30041,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-agent3-cross-batch-queue-guard-gate-proof-2026-06-06.md",
+      "name": "agent4-agent3-cross-batch-queue-guard-gate-proof-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780740158029.3672,
+      "size": 2843,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-agent3-cross-batch-queue-guard-gate-proof-2026-06-06.json",
+      "name": "agent4-agent3-cross-batch-queue-guard-gate-proof-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780740157978.9739,
+      "size": 4418,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent3-state.json",
+      "name": "agent3-state.json",
+      "root": "reports",
+      "mtime_ms": 1780740083960.4502,
+      "size": 111826,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "lane_state_or_status_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent3-state.md",
+      "name": "agent3-state.md",
+      "root": "reports",
+      "mtime_ms": 1780740083960.4502,
+      "size": 31890,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-after-selector-lookback-patch-no-lookback-2026-06-06.json",
+      "name": "agent4-changed-input-selection-after-selector-lookback-patch-no-lookback-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780740066486.131,
+      "size": 4251,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-lookback-after-queue-batch-crossmatch-sweep-2026-06-06.json",
+      "name": "agent4-changed-input-selection-lookback-after-queue-batch-crossmatch-sweep-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780740066441.8418,
+      "size": 16757,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent3-old-dictionary-candidate-use-cross-batch-queue-guard-2026-06-06.md",
+      "name": "agent3-old-dictionary-candidate-use-cross-batch-queue-guard-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780740025116.224,
+      "size": 3123,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent3-old-dictionary-candidate-use-cross-batch-queue-guard-2026-06-06.json",
+      "name": "agent3-old-dictionary-candidate-use-cross-batch-queue-guard-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780740025115.2266,
+      "size": 339401,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "upstream_input_already_packaged_by_agent4",
+        "suggested_validator": "scripts/validate_agent3_old_dictionary_candidate_use_cross_batch_queue_guard.mjs"
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-after-latest-queue-batch-crossmatch-blocker-continuation-2026-06-06.json",
+      "name": "agent4-changed-input-selection-after-latest-queue-batch-crossmatch-blocker-continuation-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780739950207.9766,
+      "size": 2840,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-after-source-family-selection-queue-batch-crossmatch-sweep-2026-06-06.json",
+      "name": "agent4-changed-input-selection-after-source-family-selection-queue-batch-crossmatch-sweep-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780739883080.213,
+      "size": 2861,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-after-source-family-selection-queue-batch-crossmatch-proof-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-after-source-family-selection-queue-batch-crossmatch-proof-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780739867543.2493,
+      "size": 3301,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-after-source-family-selection-queue-batch-crossmatch-proof-2026-06-06.md",
+      "name": "agent4-validator-prereq-packet-sweep-after-source-family-selection-queue-batch-crossmatch-proof-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780739867543.2493,
+      "size": 1822,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-result-after-source-family-selection-queue-batch-crossmatch-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-result-after-source-family-selection-queue-batch-crossmatch-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780739815207.3933,
+      "size": 28044,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-agent3-source-family-selection-queue-batch-crossmatch-gate-proof-2026-06-06.json",
+      "name": "agent4-agent3-source-family-selection-queue-batch-crossmatch-gate-proof-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780739688278.062,
+      "size": 4552,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-agent3-source-family-selection-queue-batch-crossmatch-gate-proof-2026-06-06.md",
+      "name": "agent4-agent3-source-family-selection-queue-batch-crossmatch-gate-proof-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780739688278.062,
+      "size": 2434,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent3-old-dictionary-candidate-use-source-family-selection-queue-batch-crossmatch-2026-06-06.json",
+      "name": "agent3-old-dictionary-candidate-use-source-family-selection-queue-batch-crossmatch-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780739569266.306,
+      "size": 736746,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "upstream_input_already_packaged_by_agent4",
+        "suggested_validator": "scripts/validate_agent3_old_dictionary_candidate_use_source_family_selection_queue_batch_crossmatch.mjs"
+      }
+    },
+    {
+      "path": "reports/agent3-old-dictionary-candidate-use-source-family-selection-queue-batch-crossmatch-2026-06-06.md",
+      "name": "agent3-old-dictionary-candidate-use-source-family-selection-queue-batch-crossmatch-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780739569266.306,
+      "size": 3480,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-changed-input-selection-after-source-family-selection-batch-plan-sweep-2026-06-06.json",
+      "name": "agent4-changed-input-selection-after-source-family-selection-batch-plan-sweep-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780739562535.5068,
+      "size": 2813,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-after-source-family-selection-batch-plan-proof-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-after-source-family-selection-batch-plan-proof-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780739549247.7898,
+      "size": 2698,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-after-source-family-selection-batch-plan-proof-2026-06-06.md",
+      "name": "agent4-validator-prereq-packet-sweep-after-source-family-selection-batch-plan-proof-2026-06-06.md",
+      "root": "reports",
+      "mtime_ms": 1780739549247.7898,
+      "size": 1563,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "markdown_status_or_companion_file",
+        "suggested_validator": null
+      }
+    },
+    {
+      "path": "reports/agent4-validator-prereq-packet-sweep-result-after-source-family-selection-batch-plan-2026-06-06.json",
+      "name": "agent4-validator-prereq-packet-sweep-result-after-source-family-selection-batch-plan-2026-06-06.json",
+      "root": "reports",
+      "mtime_ms": 1780739505949.5044,
+      "size": 27047,
+      "classification": {
+        "changed_input_candidate": false,
+        "reason": "agent4_owned_output_not_upstream_input",
+        "suggested_validator": null
+      }
+    }
+  ]
+}

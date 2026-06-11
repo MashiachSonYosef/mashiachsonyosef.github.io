@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:59.980Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent6-public-domain-citation-metadata-custody-verdict-consumption",
+  "status": "agent6_verdict_consumed_as_warn_accepted_nonpublic_citation_source_custody_planning_evidence_only",
+  "files": {
+    "agent6_verdict": {
+      "path": "reports/agent6-old-dictionary-public-domain-citation-metadata-custody-boundary-verdict-2026-06-05.json",
+      "sha256": "51628b33e51c552e79c182c31d18f7cb3bdc9ef7922e853139077895ed883d3d"
+    },
+    "agent10_boundary_packet": {
+      "path": "reports/agent10-agent6-ready-old-dictionary-public-domain-citation-metadata-custody-boundary-packet-2026-06-05.json",
+      "sha256": "0b3494da3145a4c40569d53fcd8a8e6984cef060d59d88a60cf3aa7d736b1f1c"
+    },
+    "agent1_rid_namespace_inventory": {
+      "path": "reports/agent1-old-dictionary-public-domain-rid-namespace-inventory-2026-06-05.json",
+      "sha256": "ffc0fec51283d23db40d69199d519f0b9dbfd1d38747f4b85774367d09a747f8"
+    },
+    "agent1_rid_namespace_inventory_validation": {
+      "path": "reports/agent1-old-dictionary-public-domain-rid-namespace-inventory-validation-result-2026-06-05.json",
+      "sha256": "a4781a6efffe5326b2333d1af2d533c9afe2b9cddd5dda1ff458b5bc39a143b6"
+    },
+    "agent6_verdict_validator": {
+      "path": "scripts/validate_agent6_old_dictionary_public_domain_citation_metadata_custody_boundary_verdict.mjs",
+      "sha256": "9a365ed5b9a596af884c9f3e5eac9e0beec932cfbbc0ef74bd25d0d667c7a8ea"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent6_old_dictionary_public_domain_citation_metadata_custody_boundary_verdict.mjs reports\\agent6-old-dictionary-public-domain-citation-metadata-custody-boundary-verdict-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_public_domain_citation_metadata_custody_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-public-domain-citation-metadata-custody-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_public_domain_rid_namespace_inventory.mjs reports\\agent1-old-dictionary-public-domain-rid-namespace-inventory-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "public_domain_citation_metadata_present_rows": 297,
+    "rows_without_public_domain_citation_metadata": 203,
+    "public_domain_rid_rows": 297,
+    "public_domain_rid_total": 1276,
+    "public_domain_headword_rows": 297,
+    "public_domain_headword_total": 1120,
+    "public_domain_refs_rows": 204,
+    "public_domain_refs_total": 4478,
+    "public_domain_rows_without_refs_sample": 93,
+    "rid_namespace_count": 22,
+    "unique_rid_count": 847,
+    "rid_occurrence_count": 1276,
+    "bdb_prefix_rows": 221,
+    "bdba_prefix_rows": 67,
+    "single_letter_prefix_count": 20,
+    "rows_with_no_public_domain_rids": 0
+  },
+  "agent6_disposition": "warn_accepted_nonpublic_citation_source_custody_planning_evidence_only",
+  "permitted_next_step": "Agent_10_may_carry_artifact_as_nonpublic_citation_source_custody_planning_evidence_only",
+  "blocked_gates": [
+    "source_provenance_license_legal_gate",
+    "source_family_selection_gate",
+    "candidate_use_gate",
+    "transform_gate",
+    "source_row_emission_gate",
+    "definition_authority_gate",
+    "answer_eligibility_gate",
+    "public_runtime_gate",
+    "publication_release_gate",
+    "commercial_export_gate",
+    "nc_commercial_authorization_gate"
+  ],
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "result": "Agent 6 verdict validates and is consumed as WARN-ACCEPTED nonpublic citation/source custody planning evidence only; RID namespace inventory validates as subordinate zero-output support.",
+  "blocker_if_any": "candidate_use_transform_source_row_emission_text_export_definition_storage_answer_route_public_runtime_export_or_release_requires_later_exact_agent6_packet",
+  "next_handoff": "Agent 10 may carry the exact citation metadata custody artifact as nonpublic planning evidence only; Agent 2 still has no transform/source-row/answer authority.",
+  "stop_condition": "Do not rerun unless Agent6 verdict, Agent10 packet, RID namespace inventory, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance beyond this docket",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

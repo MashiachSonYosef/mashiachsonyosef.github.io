@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_release_owner_consumption",
+  "generated_at": "2026-06-04T19:30:52.0433649-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "package_workset": "workbench-cc-by-sa-share-alike-boundary-map",
+  "release_owner": "Agent 10",
+  "inputs_consumed": [
+    "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.md",
+    "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+    "reports/agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.md",
+    "reports/agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+    "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-validation-result-2026-06-04.json",
+    "reports/agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-validation-result-2026-06-04.json"
+  ],
+  "counts": {
+    "declared_cc_by_sa_partition_count": 37,
+    "declared_cc_by_sa_source_row_count": 5581,
+    "sampled_cc_by_sa_partition_count": 5,
+    "sampled_cc_by_sa_source_row_count": 4436,
+    "sampled_unique_source_id_count": 40,
+    "sampled_unique_work_count": 40
+  },
+  "lane_split": {
+    "license_lane": "commercial_clean_candidate",
+    "boundary_status": "blocked_or_needs_review_for_export_until_agent6_share_alike_boundary",
+    "attribution_required": true,
+    "derived_from_nc": false,
+    "commercial_export_allowed": false,
+    "share_alike_required": true,
+    "corpus_contamination": false,
+    "answer_eligible": false,
+    "public_emit": false,
+    "agent6_boundary_required": true
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "cc_by_sa_requires_share_alike_boundary": true,
+    "cc_by_sa_export_allowed_now": false,
+    "public_emit_now": false,
+    "answer_eligible_now": false,
+    "definition_content_storage_now": false
+  },
+  "validator_results": [
+    {
+      "command": "node scripts\\validate_agent1_workbench_cc_by_sa_share_alike_boundary_map.mjs reports\\agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_spark1_workbench_cc_by_sa_share_alike_boundary_contract.mjs reports\\agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+      "result": "passed"
+    }
+  ],
+  "agent6_boundary_question": "Pass/warn/block whether the exact Agent 1 Workbench CC-BY-SA/share-alike boundary map may be carried as non-public source/license custody planning evidence only, preserving attribution-required and share-alike-required flags, commercial_export_allowed=false, answer_eligible=false, public_emit=false, and zero output/mutation counters.",
+  "exact_blockers": [
+    {
+      "id": "cc_by_sa_share_alike_boundary_required",
+      "blocker_reason": "CC-BY-SA source-name partitions require Agent 6/legal share-alike boundary treatment before source/license custody acceptance, commercial export, public display, answer use, definition text use, or package use.",
+      "missing_fields": [
+        "Agent 6 row/subset boundary verdict for CC-BY-SA partition use",
+        "share-alike handling rule for package/export behavior",
+        "attribution display/export rule for exact rows/subset",
+        "commercial export authorization if any",
+        "public/runtime/display authorization if any"
+      ]
+    }
+  ],
+  "next_handoff": {
+    "agent10": "Agent 10 assembled a separate Agent6-ready packet for this exact boundary question.",
+    "spark1": "May rerun only the deterministic Agent-1-authored build/validator; do not authorize export or display.",
+    "spark10": "Track this release/package intake evidence."
+  },
+  "stop_condition": "Stop after Agent 6 verdict path or exact delivery blocker; otherwise keep all CC-BY-SA rows blocked from export/display/answer/definition/package use.",
+  "zero_counters": {
+    "answer_rows": 0,
+    "source_mutation_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0
+  },
+  "highest_permissible_claim": "Agent 10 consumed the Agent 1 Workbench CC-BY-SA/share-alike boundary map as non-public source/license custody planning evidence and prepared a narrow Agent6-ready boundary question.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "commercial export permission",
+    "CC-BY-SA commercial export authorization",
+    "broad corpus completion"
+  ]
+}

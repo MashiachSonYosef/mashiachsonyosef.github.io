@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orot War 1:1 Current Mockup</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0b0d;
+      --panel: rgba(15, 17, 23, 0.96);
+      --panel-2: rgba(22, 26, 34, 0.96);
+      --ink: #efe8da;
+      --muted: #aaa18f;
+      --line: rgba(214, 190, 138, 0.18);
+      --line-strong: rgba(214, 190, 138, 0.36);
+      --accent: #d6be8a;
+      --blue: #93a7d1;
+      --hebrew: #fff5df;
+      --hold: #d4a24f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(147, 167, 209, 0.16), transparent 34rem),
+        linear-gradient(180deg, #0a0b0d 0%, #10131a 100%);
+      color: var(--ink);
+      font: 16px/1.55 Georgia, "Times New Roman", serif;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    .shell {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(17, 19, 24, 0.95), rgba(10, 11, 13, 0.95));
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr);
+      gap: 18px;
+      padding: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .crumbs {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 5vw, 4.9rem);
+      line-height: 0.95;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 16px;
+    }
+
+    .summary span,
+    .badge {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.025);
+      color: var(--muted);
+      padding: 3px 8px;
+      font-size: 0.84rem;
+    }
+
+    .hero-note {
+      border-left: 1px solid var(--line);
+      padding-left: 14px;
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    .reader {
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr) 330px;
+      gap: 18px;
+      padding: 22px;
+    }
+
+    .toc,
+    .text-card,
+    .hud {
+      min-width: 0;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .toc {
+      padding: 14px;
+      align-self: start;
+      position: sticky;
+      top: 14px;
+    }
+
+    .toc h2,
+    .hud h2 {
+      color: var(--accent);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .toc-row {
+      display: block;
+      color: var(--muted);
+      text-decoration: none;
+      border-top: 1px solid var(--line);
+      padding: 10px 0;
+    }
+
+    .toc-row.active {
+      color: var(--ink);
+    }
+
+    .text-card {
+      padding: 18px;
+    }
+
+    .unit-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+
+    .unit-head h2 {
+      color: var(--ink);
+      font-size: 1.1rem;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      margin: 0;
+    }
+
+    .anchor {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .hebrew {
+      direction: rtl;
+      text-align: right;
+      color: var(--hebrew);
+      font-size: clamp(1.25rem, 2.1vw, 1.72rem);
+      line-height: 1.9;
+      margin: 0;
+    }
+
+    .token {
+      display: inline-grid;
+      justify-items: center;
+      vertical-align: baseline;
+      margin: 0 0.08em;
+      padding: 0.04em 0.08em;
+      border: 1px solid transparent;
+      border-radius: 7px;
+    }
+
+    .token.focus {
+      border-color: var(--accent);
+      background: rgba(214, 190, 138, 0.11);
+      outline: 2px solid rgba(214, 190, 138, 0.44);
+      outline-offset: 2px;
+    }
+
+    .cue {
+      direction: ltr;
+      color: var(--muted);
+      font: 600 0.52em/1.05 Arial, sans-serif;
+      max-width: 7.5rem;
+      text-align: center;
+      margin-top: 0.1em;
+      opacity: 0.78;
+    }
+
+    .mock-note {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border: 1px solid rgba(147, 167, 209, 0.28);
+      background: rgba(147, 167, 209, 0.06);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .hud {
+      align-self: start;
+      position: sticky;
+      top: 14px;
+      padding: 16px;
+    }
+
+    .selected {
+      border: 1px solid var(--line-strong);
+      background: rgba(214, 190, 138, 0.07);
+      color: var(--hebrew);
+      text-align: center;
+      font-size: 3.2rem;
+      line-height: 1.1;
+      padding: 18px 8px;
+      margin-bottom: 12px;
+      direction: rtl;
+    }
+
+    .state {
+      display: grid;
+      gap: 8px;
+    }
+
+    .row {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.025);
+      padding: 10px;
+    }
+
+    .label {
+      display: block;
+      color: var(--blue);
+      font: 700 0.72rem/1.2 Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 5px;
+    }
+
+    .value {
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .hold {
+      color: var(--hold);
+    }
+
+    .source {
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .boundary {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .reader {
+        grid-template-columns: 1fr;
+      }
+
+      .toc,
+      .hud {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="shell" aria-label="Orot War 1:1 current mockup">
+      <header class="hero">
+        <div>
+          <p class="crumbs">Orot / Lights from Darkness / War</p>
+          <h1>War 1:1</h1>
+          <div class="summary" aria-label="Current Orot data summary">
+            <span>Current page style mockup</span>
+            <span>416 source units</span>
+            <span>17,307 HUD forms</span>
+            <span>Route HUD active</span>
+          </div>
+        </div>
+        <p class="hero-note">This is a static mockup of the current Orot War 1:1 reader surface. It is not wired into `orot/index.html` and does not change runtime behavior.</p>
+      </header>
+
+      <div class="reader">
+        <nav class="toc" aria-label="Mock table of contents">
+          <h2>Contents</h2>
+          <a class="toc-row" href="#">Lights from Darkness</a>
+          <a class="toc-row" href="#">Land of Israel</a>
+          <a class="toc-row active" href="#">War / Chapter 1 / 1:1 <span class="badge">active</span></a>
+          <a class="toc-row" href="#">War / Chapter 2 / 2:1</a>
+        </nav>
+
+        <article class="text-card">
+          <div class="unit-head">
+            <h2>Orot, Lights from Darkness, War 1:1</h2>
+            <a class="anchor" href="#orot-lights-from-darkness-war-1-1">#</a>
+          </div>
+
+          <p class="hebrew" lang="he" dir="rtl">
+            כשיש
+            <span class="token focus">מלחמה<span class="cue">reader cue</span></span>
+            גדולה בעולם מתעורר כח
+            <span class="token">משיח<span class="cue">held</span></span>.
+            עת הזמיר הגיע, זמיר עריצים, הרשעים נכחדים מן העולם והעולם מתבסם, וקול התור נשמע בארצנו.
+            היחידים הנספים בלא משפט, שבתוך המהפכה של שטף המלחמה, יש בה ממדת מיתת צדיקים המכפרת,
+            עולים הם למעלה בשורש החיים ועצמות חייהם מביא ערך כללי לטובה ולברכה אל כלל בנין העולם בכל ערכיו ומובניו.
+            ואח&quot;כ כתום המלחמה מתחדש העולם ברוח חדש ורגלי משיח מתגלים ביותר,
+            ולפי ערכה של גודל המלחמה בכמותה ואיכותה ככה תגדל הצפיה לרגלי משיח שבה.
+            מלחמת עולם של עכשיו צפיה נוראה גדולה ועמוקה יש בה,
+            מצורף לכל גלגולי הזמנים והוראת קץ המגולה של התישבות ארץ ישראל.
+            בדעה גדולה, בגבורה עצומה, ובהגיון עמוק וחודר, בתשוקת אמת וברעיון בהיר,
+            צריכים לקבל את התוכן הנשא של אור ד׳ המתגלה בפעולה נפלאה בעלילות המלחמות הללו ביחוד.
+            &quot;בעל מלחמות זורע צדקות, מצמיח ישועות, בורא רפואות, נורא תהלות, אדון הנפלאות,
+            המחדש בטובו בכל יום תמיד מעשה בראשית, אור חדש על ציון תאיר ונזכה כולנו מהרה לאורו&quot;[1].
+          </p>
+
+          <p class="mock-note">Mock interaction: clicking a Hebrew word opens a compact evidence panel. The small under-word line is a reader cue only, not a translation or accepted definition.</p>
+        </article>
+
+        <aside class="hud" aria-label="Mock route HUD panel">
+          <h2>Route HUD mock</h2>
+          <div class="selected" lang="he" dir="rtl">מלחמה</div>
+          <div class="state">
+            <div class="row">
+              <span class="label">Reader cue</span>
+              <p class="value">war / conflict <span class="hold">(mock cue only)</span></p>
+            </div>
+            <div class="row">
+              <span class="label">Current treatment</span>
+              <p class="value hold">Evidence panel only. No final reader definition accepted.</p>
+            </div>
+            <div class="row">
+              <span class="label">Package boundary</span>
+              <p class="value">Orot reader hints remain non-authoritative; candidate rows do not create answer eligibility.</p>
+            </div>
+            <div class="row">
+              <span class="label">Next useful UI decision</span>
+              <p class="value">Keep the Hebrew text primary; show one short cue and one clear evidence state before detailed source rows.</p>
+            </div>
+          </div>
+          <p class="source">Source text pulled from the current `orot/index.html` unit `orot-lights-from-darkness-war-1-1`.</p>
+          <p class="boundary">Boundary: static product mockup only. No HUD behavior change, Definition authority, accepted gloss/text, source/license/legal/public/runtime/product/answer acceptance, route writes, or public output.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

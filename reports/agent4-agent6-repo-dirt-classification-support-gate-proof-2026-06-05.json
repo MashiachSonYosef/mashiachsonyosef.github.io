@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent6_repo_dirt_classification_support_gate_proof",
+  "generated_at": "2026-06-05T12:25:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent6-repo-dirt-classification-support",
+  "status": "validator_authored_and_passed_blocker_preserved",
+  "boundary": "validator/prereq evidence only; no cleanup, staging, deletion, revert, QA acceptance, public/runtime acceptance, source/provenance acceptance, license/legal acceptance, Definition authority, answer eligibility, publication readiness, accepted text, or release action",
+  "files": [
+    {
+      "path": "scripts/validate_agent6_repo_dirt_classification_support.mjs",
+      "sha256": "d7de4ad1627557a042aeca4db2d9c73328372163bbe73d4d40942c197ef18487",
+      "role": "new narrow validator for Agent 6 repo-dirt classification support docket"
+    },
+    {
+      "path": "reports/agent6-repo-dirt-classification-support-2026-06-05.json",
+      "sha256": "df5408aa7919de8ea2ab8f3f891c2a2cde6708ad8f2ed1ecf5d97dd556527e6f",
+      "role": "Agent 6 non-destructive repo-dirt classification support docket"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent6_repo_dirt_classification_support.mjs reports\\agent6-repo-dirt-classification-support-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Dirty records: 17239; tracked deletions: 12231; untracked: 3496; blockers: 6."
+    }
+  ],
+  "counts": {
+    "dirty_records_total": 17239,
+    "tracked_deletions": 12231,
+    "tracked_modified": 1490,
+    "tracked_added": 22,
+    "untracked": 3496,
+    "data_public_hud_records": 11937,
+    "reports_records": 2777,
+    "site_pages_records": 1541,
+    "scripts_records": 442,
+    "data_control_records": 16,
+    "deleted_data_public_hud": 11937,
+    "deleted_reports": 236,
+    "deleted_scripts": 55,
+    "exact_blockers": 6
+  },
+  "exact_blockers": [
+    {
+      "blocker": "public_hud_package_truth_blocked",
+      "evidence": "11937 tracked deletions under data/public-hud",
+      "handoff_owner": "Agent 10"
+    },
+    {
+      "blocker": "provenance_and_validator_recountability_blocked",
+      "evidence": "236 deleted reports and 55 deleted scripts",
+      "handoff_owner": "Agent 5/7 plus source worker lanes"
+    },
+    {
+      "blocker": "control_truth_blocked_if_untracked_files_are_relied_on",
+      "evidence": "16 untracked data/control files",
+      "handoff_owner": "Agent 5/7"
+    },
+    {
+      "blocker": "runtime_public_claims_blocked",
+      "evidence": "1541 dirty site-page records and 49 dirty tanakh records",
+      "handoff_owner": "Agent 10 with Agent 4 proof after changed package"
+    },
+    {
+      "blocker": "source_provenance_claims_blocked",
+      "evidence": "untracked or modified source/lexical/translation-memory data",
+      "handoff_owner": "Agent 1 then Agent 6 if QA-relevant"
+    },
+    {
+      "blocker": "destructive_cleanup_not_authorized",
+      "evidence": "owner requested classification/cleanup support but forbade blind cleanup through Agent 13 allocation",
+      "handoff_owner": "owner"
+    }
+  ],
+  "result": "target | agent6-repo-dirt-classification-support | files in packet | commands passed: new Agent6 repo-dirt classification support validator | counts: 17239 dirty records, 12231 tracked deletions, 1490 tracked modified, 22 tracked added, 3496 untracked, 11937 data/public-hud records, 2777 report records, 442 script records, 6 exact blockers | result: validator authored and passed; classification-only blocker preserved | blocker if any: public HUD package truth, provenance/recountability, control truth, runtime public claims, source provenance claims, and destructive cleanup remain blocked | next handoff: Agent10/Agent5/Agent7/Agent1/owner per blocker owner; no Agent4 cleanup action | stop condition: do not rerun unless repo-dirt classification support docket, validator, or classified dirty state changes",
+  "handoff_owner": "Agent 10 for public HUD/package truth; Agent 5/7 for provenance/control recountability; Agent 1 for source provenance; owner for destructive cleanup authorization.",
+  "stop_condition": "Stop at classification-only validator/prereq evidence. Do not stage, delete, revert, clean up, or claim acceptance from this packet."
+}

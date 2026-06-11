@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_old_dictionary_morphology_candidate_use_delivery_proof",
+  "generated_at": "2026-06-05T23:48:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "release_owner": "Agent 10",
+  "reviewer": "Agent 6",
+  "delivery_target": "019e7f09-a04b-7f30-b36c-87aa8ecaae5d",
+  "delivery_submission_id": "019e97dd-fdef-7280-8530-4e81a70c02ed",
+  "delivered_packets": [
+    "reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.md",
+    "reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json"
+  ],
+  "delivered_scope": {
+    "review_scope": "nonpublic_old_dictionary_morphology_candidate_use_boundary_only",
+    "rows": 78,
+    "occurrences": 1461,
+    "license_lane": "commercial_clean_candidate",
+    "relation_basis": "exact_after_mark_strip",
+    "relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "excluded_morphology_blocked_rows": 219,
+    "prefix_or_clitic_possible_rows": 129,
+    "needs_morphology_disambiguation_rows": 90
+  },
+  "validator_results": [
+    {
+      "command": "node scripts/validate_agent10_old_dictionary_morphology_candidate_use_boundary_packet.mjs reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.md reports/agent10-weekly-lexicon-next-boundary-state-2026-06-05.json reports/agent10-weekly-lexicon-next-boundary-state-2026-06-05.md scripts/validate_agent10_old_dictionary_morphology_candidate_use_boundary_packet.mjs",
+      "result": "passed"
+    }
+  ],
+  "review_question": "Pass/warn/block whether the exact 78 row / 1461 occurrence old-dictionary commercial-clean morphology-planning subset may be carried one step further as non-public candidate-use planning input for Agent 2 package authoring, while preserving zero candidate text export, zero definition/lemma/reader-hint content storage, zero answer eligibility, zero public/runtime mutation, zero route writes, zero accepted text, and no source/license/legal acceptance.",
+  "stop_condition": "Await Agent 6 verdict artifact path or exact blocker. No Agent 2 candidate package authoring, candidate text export, definition/lemma/reader-hint content, answer rows, route writes, public/runtime mutation, accepted text, commercial export, or release action is authorized by delivery proof.",
+  "zero_counters": {
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "route_jsonl_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0,
+    "release_actions": 0
+  },
+  "highest_permissible_claim": "Agent 10 delivered the exact old-dictionary morphology candidate-use boundary packet to Agent 6 for review only.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

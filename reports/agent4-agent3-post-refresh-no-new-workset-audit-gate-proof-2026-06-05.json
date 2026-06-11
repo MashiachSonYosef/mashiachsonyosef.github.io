@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T00:00:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane_owner": "Agent 4",
+  "target": "agent3-post-refresh-no-new-workset-audit",
+  "input_artifact": {
+    "path": "reports/agent3-post-refresh-no-new-workset-audit-2026-06-05.json",
+    "sha256": "1d67fdfbf5e78a4897a5ea20797d27a662e8d291abce8e202e6c588c03702f50"
+  },
+  "commands": [
+    {
+      "command": "node scripts/validate_agent3_post_refresh_no_new_workset_audit.mjs reports/agent3-post-refresh-no-new-workset-audit-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "live_refresh_inputs_checked": 263,
+    "live_refresh_release_relevant_rows": 116,
+    "live_refresh_agent6_handoff_candidates": 45,
+    "current_matrix_inputs_checked": 263,
+    "current_matrix_release_relevant_rows": 116,
+    "current_matrix_agent6_handoff_candidates": 45,
+    "input_delta": 0,
+    "release_relevant_delta": 0,
+    "agent6_handoff_delta": 0,
+    "runnable_queue_items": 0,
+    "direct_queue_runnable_items": 0,
+    "changed_artifacts_found": 0,
+    "exact_new_worksets_found": 0,
+    "zero_authority_outputs": true
+  },
+  "warnings": [
+    "reviewed input changed after package build: reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "reviewed input changed after package build: data/control/spark_standing_queue.json",
+    "reviewed input changed after package build: data/control/agent_goal_board.json",
+    "reviewed input changed after package build: reports/agent3-state.json",
+    "current Spark-10 matrix changed after package build; validated package-time snapshot only"
+  ],
+  "result": "validator_passed_no_new_workset_package_time_snapshot_only",
+  "blocker_if_any": {
+    "blocker": "missing_changed_artifact_or_exact_workset",
+    "details": "The audited post-refresh snapshot has 0 runnable queue items, 0 direct queue runnable items, 0 changed artifacts, and 0 exact new worksets.",
+    "wake_condition": "Provide a changed Agent3 artifact path or exact workset with named inputs, row/occurrence bounds, output schema/path, validator/gate, handoff owner, and stop condition."
+  },
+  "next_handoff": "Agent10/Agent3 must provide a changed exact Agent3 workset before another deterministic Agent4 validator pass.",
+  "stop_condition": "Do not rerun this validator unless the post-refresh audit, Spark10 matrix, queue, or Agent3 state changes.",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action"
+  ]
+}

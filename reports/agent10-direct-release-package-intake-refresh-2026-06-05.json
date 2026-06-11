@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_direct_release_package_intake_refresh",
+  "generated_at": "2026-06-05T13:20:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "release_owner": "Agent 10",
+  "posture": "direct_release_package_decision_mode",
+  "local_intake_run": {
+    "contract": "reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+    "matrix_json": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "matrix_md": "reports/spark10-release-package-intake-matrix-current-2026-06-04.md",
+    "build_command": "node scripts\\build_spark10_release_package_intake.mjs --contract=reports\\agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+    "build_result": "passed",
+    "validate_command": "node scripts\\validate_spark10_release_package_intake.mjs reports\\spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "validate_result": "passed",
+    "summary": {
+      "inputs_checked": 405,
+      "missing_required_inputs": 0,
+      "release_relevant_rows": 73,
+      "agent6_handoff_candidates": 0,
+      "public_runtime_mutation_authorized": false,
+      "answer_definition_release_authorized": false
+    }
+  },
+  "current_release_boundary_state": [
+    {
+      "package_workset": "old_dictionary_morphology_candidate_use",
+      "row_occurrence_counts": {
+        "rows": 78,
+        "occurrences": 1461
+      },
+      "lane_split": {
+        "commercial_clean_candidate": 78,
+        "noncommercial_educational_candidate": 0
+      },
+      "inputs_consumed": [
+        "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.md",
+        "reports/agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption-2026-06-05.md",
+        "reports/agent10-agent2-old-dictionary-morphology-candidate-use-handoff-2026-06-05.md"
+      ],
+      "agent6_boundary_need": "no_current_route_verdict_consumed",
+      "exact_blocker": "await_agent2_exact_nonpublic_candidate_use_package_or_exact_blocker_for_78_old_dictionary_rows",
+      "next_handoff": "Agent 2 package or exact blocker from submission 019e97e5-31dc-7ae3-a63d-0836d3284d65",
+      "stop_condition": "Stop before text storage, transform output, export, answer eligibility, route write, public/runtime mutation, accepted text, commercial export, or release action."
+    },
+    {
+      "package_workset": "workbench_source_family_license_lane_release_intake",
+      "row_occurrence_counts": {
+        "release_intake_rows": 4,
+        "source_name_partition_count": 351,
+        "source_row_count": 105747
+      },
+      "lane_split": {
+        "source_family_license_lane_partition_count": 4
+      },
+      "inputs_consumed": [
+        "reports/agent10-agent6-ready-workbench-source-family-license-lane-release-intake-boundary-packet-2026-06-05.md",
+        "reports/agent10-agent6-workbench-source-family-license-lane-release-intake-delivery-proof-2026-06-05.md"
+      ],
+      "agent6_boundary_need": "already_delivered_await_verdict_or_exact_blocker",
+      "exact_blocker": "await_agent6_verdict_for_workbench_source_family_license_lane_release_intake",
+      "next_handoff": "Agent 6 verdict or exact blocker for submission 019e9560-f8ef-7763-8a2e-cdb0a1b89466",
+      "stop_condition": "Stop before storage/display/export/answer/definition-content/route-shard/public-runtime/accepted-text/release mutation."
+    },
+    {
+      "package_workset": "definition_workbench_usage_navigation_cc_by_cc_by_sa_custody_packets",
+      "row_occurrence_counts": {
+        "usage_concordance_rows": 2390,
+        "occurrence_link_rows": 49,
+        "cc_by_sa_source_rows": 5581,
+        "cc_by_source_rows": 625
+      },
+      "lane_split": {
+        "usage_navigation": "nonpublic_planning_only",
+        "cc_by_sa": "source_license_custody_planning_only",
+        "cc_by": "source_license_custody_planning_only"
+      },
+      "inputs_consumed": [
+        "reports/agent10-agent6-current-direct-boundary-packets-delivery-proof-2026-06-05.md",
+        "reports/agent10-agent6-current-direct-boundary-packets-delivery-proof-2026-06-05.json"
+      ],
+      "agent6_boundary_need": "already_delivered_await_verdict_or_exact_blocker",
+      "exact_blocker": "await_agent6_verdict_for_definition_workbench_usage_navigation_cc_by_sa_cc_by_packets",
+      "next_handoff": "Agent 6 verdict or exact blocker for submission 019e95f3-b68c-7f11-8328-dca18b105b1d",
+      "stop_condition": "Stop before candidate text/export/display/answer/Definition/public-runtime/release use."
+    }
+  ],
+  "zero_counters": {
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "route_jsonl_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0,
+    "release_actions": 0
+  },
+  "highest_permissible_claim": "Agent 10 refreshed local release/package intake and found zero new Agent 6 handoff candidates in the refreshed matrix.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

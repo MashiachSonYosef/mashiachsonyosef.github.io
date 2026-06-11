@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "status": "runnable_contract_authored_changed_input_present",
+  "target": "broad-definition-workbench-5000-sample",
+  "changed_package_input_path": "reports/agent10-agent6-ready-broad-definition-workbench-5000-sample-boundary-packet-2026-06-04.json",
+  "changed_package_input_sha256": "2f87f18468d28033222b13a3ed2608650b8af91650a125dc07ff08da909f13c4",
+  "files": [
+    "reports/agent10-agent6-ready-broad-definition-workbench-5000-sample-boundary-packet-2026-06-04.json",
+    "reports/agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.json",
+    ".local-cache/workbench-evidence/token-inventory-5000.json",
+    "data/definitions/definition-workbench-sample-5000.json",
+    "reports/agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.md",
+    "reports/definition-workbench-sample-5000-report.md",
+    "reports/workbench-token-inventory-5000.md",
+    "reports/agent4-broad-definition-workbench-5000-sample-changed-input-2026-06-04.json",
+    "reports/agent4-broad-definition-workbench-5000-sample-runnable-contract-2026-06-04.json",
+    "reports/agent4-broad-definition-workbench-5000-sample-runnable-contract-2026-06-04.md"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent2_future_workset_intake_packet.mjs reports\\agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_workbench_token_inventory.mjs .local-cache\\workbench-evidence\\token-inventory-5000.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_sample.mjs data\\definitions\\definition-workbench-sample-5000.json",
+      "result": "pass"
+    },
+    {
+      "command": "git diff --check -- reports\\agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.md reports\\agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.json data\\definitions\\definition-workbench-sample-5000.json reports\\definition-workbench-sample-5000-report.md reports\\workbench-token-inventory-5000.md",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\build_agent4_changed_package_validator_prereq_gate.mjs --date 2026-06-04 --changed-input reports\\agent4-broad-definition-workbench-5000-sample-changed-input-2026-06-04.json --out-json reports\\agent4-broad-definition-workbench-5000-sample-runnable-contract-2026-06-04.json --out-md reports\\agent4-broad-definition-workbench-5000-sample-runnable-contract-2026-06-04.md",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-broad-definition-workbench-5000-sample-runnable-contract-2026-06-04.json",
+      "result": "pass"
+    }
+  ],
+  "counts": {
+    "inventory_top_token_rows": 5000,
+    "inventory_total_tokens": 75290880,
+    "inventory_distinct_normalized_tokens": 698873,
+    "inventory_source_files_read": 1360,
+    "inventory_allowed_units": 802869,
+    "inventory_blocked_units": 0,
+    "sample_rows": 5000,
+    "sample_rows_with_route_cards": 4856,
+    "sample_rows_without_route_cards": 144,
+    "sample_multi_answer_rows": 725,
+    "sample_rows_with_complete_source_license": 4856,
+    "sample_status_conflicting": 725,
+    "sample_status_missing": 144,
+    "sample_status_proposed_only": 2706,
+    "sample_status_single_answer_source_complete": 1425,
+    "sample_review_status_unreviewed_machine_sample": 5000,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0,
+    "validator_commands_passed": 4,
+    "runnable_contracts_authored": 1,
+    "runnable_contracts_checked": 1,
+    "acceptance_claims": 0
+  },
+  "result": "Runnable Agent4 changed-package validator/prereq contract generated and checked for exact broad Definition Workbench 5000 sample changed input.",
+  "blocker_if_any": {
+    "agent4_validator_gate": "none",
+    "remaining_boundary": [
+      "Sample is an unreviewed machine sample.",
+      "Single-answer source-complete rows are machine route-shape only.",
+      "Answer card IDs are evidence identifiers only.",
+      "Source/license completeness is not license/legal acceptance.",
+      "Conflicting rows cannot be collapsed into hidden winners.",
+      "Proposed-only rows remain proposed-only.",
+      "Missing rows are repair targets only."
+    ]
+  },
+  "next_handoff": "Agent10 owns release/package intake; Agent6 boundary review only.",
+  "stop_condition": "Stop after exact changed-input gate proof and runnable contract check; do not rerun this validator chain unless the package/input changes.",
+  "non_acceptance_boundary": {
+    "qa_acceptance_beyond_exact_docket": false,
+    "public_runtime_acceptance": false,
+    "source_provenance_acceptance": false,
+    "license_legal_acceptance": false,
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "route_publication_support": false,
+    "publication_readiness": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "answer_eligibility": false,
+    "candidate_text_export": false,
+    "accepted_gloss_text": false,
+    "release_action": false,
+    "public_runtime_mutation": false
+  }
+}

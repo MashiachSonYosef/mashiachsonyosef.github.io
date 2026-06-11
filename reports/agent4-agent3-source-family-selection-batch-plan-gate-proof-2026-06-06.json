@@ -1,0 +1,78 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T23:12:00.000Z",
+  "target": "Agent 3 old-dictionary candidate-use source-family selection batch plan gate",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-source-family-selection-batch-plan-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_source_family_selection_batch_plan.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_source_family_selection_batch_plan.mjs --input=reports\\agent3-old-dictionary-candidate-use-source-family-selection-batch-plan-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "input_workset_rows": 314,
+    "batch_rows": 16,
+    "multi_row_batches": 12,
+    "single_row_batches": 4,
+    "max_batch_rows": 138,
+    "max_batch_occurrences": 1261,
+    "source_rid_references": 363,
+    "occurrence_total": 7795,
+    "unique_source_rids": 314,
+    "unique_source_rid_prefixes": 19,
+    "unique_queue_ids": 65,
+    "unique_token_ids": 65,
+    "unique_lexicon_entry_ids": 65,
+    "source_family_signature_rows": 4,
+    "triage_signature_rows": 4,
+    "impact_bucket_rows": 3,
+    "partition_signature_rows": 2,
+    "source_citation_required_rows": 314,
+    "source_citation_or_url_present_rows": 0,
+    "transform_rule_still_blocked_rows": 314,
+    "agent6_boundary_after_prereq_rows": 314,
+    "source_family_boundary_packet_exists_rows": 0,
+    "source_family_selection_boundary_blocker_rows": 314,
+    "route_write_allowed_rows": 0,
+    "candidate_text_allowed_rows": 0,
+    "public_mutation_allowed_rows": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_agent3_source_family_selection_batch_plan_navigation_only_no_selection_or_acceptance",
+  "exact_blockers": [
+    {
+      "code": "source_family_selection_boundary_not_yet_packetized_for_agent6_prereq",
+      "blocked_rows": 314,
+      "details": "The batch plan is navigation-only. Every row still requires a source-family selection boundary packet before transform, route, runtime, or release work."
+    },
+    {
+      "code": "source_citation_missing_for_all_rows",
+      "blocked_rows": 314,
+      "details": "The artifact reports source_citation_required_rows=314 and source_citation_or_url_present_rows=0."
+    },
+    {
+      "code": "selector_anchor_gap_observed",
+      "details": "This upstream Agent3 package was newer than the unpacketized workset proof but older than the later Agent4 sweep wrapper anchor, so latest-anchor selection alone would miss it."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-source-family-selection-batch-plan-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-source-family-selection-batch-plan-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 3 for source-family-selection batch navigation; Agent 10 for release/package intake only after required boundary packets exist.",
+  "next_safe_action": "Run a triggered Agent4 packet sweep because this proof packet was added, then select from that sweep anchor and also perform backlog-aware review.",
+  "stop_condition": "Stop after validating and packaging the Agent3 source-family selection batch plan as an Agent4 gate proof.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

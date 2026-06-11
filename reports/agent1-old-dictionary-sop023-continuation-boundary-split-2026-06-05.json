@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_old_dictionary_sop023_continuation_boundary_split",
+  "generated_at": "2026-06-05T23:12:00.000Z",
+  "agent": "Agent 1",
+  "thread_title": "Agent 1 - importer",
+  "source_thread_id": "019e83d8-08f4-7c83-a096-68e7fefc5e3c",
+  "current_agent1_thread_id": "019e975d-dc9f-7020-a7c8-885d083a837e",
+  "old_agent1_thread_id": "019dc487-5973-7693-aebf-fb0a75936f50",
+  "old_agent1_policy": "archived_do_not_use",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / SOP-023 rerun SOP-022",
+  "production_lane": "Hebrew import/source/license/custody/source-lane classification evidence",
+  "target": "old-dictionary-excluded-row-license-lane-reaudit continuation",
+  "status": "sop023_continuation_boundary_split_recorded_zero_output_no_acceptance",
+  "purpose": "Advance the current old-dictionary reaudit by splitting Agent 6/Agent 10 handoff questions into exact source-lane subsets while preserving Klein as noncommercial_educational_candidate and BDB Augmented Strong as blocked_or_needs_review.",
+  "required_output_shape": "target | files used | lane counts/rows | classification lanes | exact blockers | handoff owner | stop condition",
+  "files_used": [
+    "reports/agent1-old-dictionary-downstream-consumption-alignment-audit-2026-06-05.json",
+    "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-2026-06-05.json",
+    "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-2026-06-05.json",
+    "reports/agent1-old-dictionary-klein-nc-lane-preservation-2026-06-05.json",
+    "reports/agent1-old-dictionary-bdb-augmented-strong-blocked-review-exclusion-manifest-2026-06-05.json",
+    "reports/agent10-agent2-old-dictionary-excluded-row-readiness-consumption-2026-06-05.json"
+  ],
+  "lane_counts": {
+    "scoped_preview_rows": 500,
+    "scoped_preview_occurrences": 8427,
+    "source_family_rows": 5,
+    "commercial_clean_candidate_source_families": 3,
+    "noncommercial_educational_candidate_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "per_family_rows_can_overlap": true,
+    "agent2_transform_allowed_now_rows": 0,
+    "candidate_text_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "release_route_opened_now": 0
+  },
+  "source_family_rows": [
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::jastrow-dictionary",
+      "source_family": "Jastrow Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "rows": 210,
+      "occurrences": 4474,
+      "derived_from_nc": false,
+      "commercial_export_allowed_planning_flag_only": true,
+      "attribution_required": false,
+      "corpus_contamination": false,
+      "allowed_transform_now": false,
+      "exact_blocker": "missing_exact_agent6_boundary_and_approved_morphology_relation"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-dictionary",
+      "source_family": "BDB Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "rows": 221,
+      "occurrences": 4418,
+      "derived_from_nc": false,
+      "commercial_export_allowed_planning_flag_only": true,
+      "attribution_required": false,
+      "corpus_contamination": false,
+      "allowed_transform_now": false,
+      "exact_blocker": "missing_exact_agent6_boundary_and_approved_morphology_relation"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-aramaic-dictionary",
+      "source_family": "BDB Aramaic Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "rows": 69,
+      "occurrences": 2048,
+      "derived_from_nc": false,
+      "commercial_export_allowed_planning_flag_only": true,
+      "attribution_required": false,
+      "corpus_contamination": false,
+      "allowed_transform_now": false,
+      "exact_blocker": "missing_exact_agent6_boundary_and_approved_morphology_relation"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+      "source_family": "Klein Dictionary",
+      "license_lane": "noncommercial_educational_candidate",
+      "rows": 214,
+      "occurrences": 4444,
+      "derived_from_nc": true,
+      "commercial_export_allowed": false,
+      "attribution_required": true,
+      "corpus_contamination": false,
+      "allowed_transform_now": false,
+      "exact_blocker": "missing_exact_agent6_nc_boundary_no_commercial_export_authorization"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+      "source_family": "BDB Augmented Strong",
+      "license_lane": "blocked_or_needs_review",
+      "rows": 222,
+      "occurrences": 4435,
+      "derived_from_nc": false,
+      "commercial_export_allowed": false,
+      "attribution_required": false,
+      "corpus_contamination": false,
+      "allowed_transform_now": false,
+      "exact_blocker": "missing_independent_source_license_custody_basis"
+    }
+  ],
+  "boundary_split_rows": [
+    {
+      "split_id": "commercial_clean_only_metadata_custody",
+      "classification_lanes": [
+        "commercial_clean_candidate"
+      ],
+      "rows": 18,
+      "occurrences": 494,
+      "source_family_scope": "Jastrow Dictionary only",
+      "rows_with_refs": 17,
+      "rows_without_refs": 1,
+      "agent6_question": "Can this clean-only metadata subset be carried as non-public candidate-use planning evidence, and is a ref-gap boundary required for the 1 row without refs?",
+      "exact_blockers": [
+        "commercial_clean_only_rows_still_need_agent6_candidate_use_boundary_and_morphology_relation",
+        "commercial_clean_only_metadata_is_not_definition_or_candidate_text",
+        "commercial_clean_only_ref_gap_row_needs_ref_boundary_if_refs_required"
+      ]
+    },
+    {
+      "split_id": "commercial_nc_overlap_nonblocked",
+      "classification_lanes": [
+        "commercial_clean_candidate",
+        "noncommercial_educational_candidate"
+      ],
+      "rows": 57,
+      "occurrences": 818,
+      "source_family_scope": "public-domain source evidence plus Klein NC evidence, without BDB Augmented Strong",
+      "agent6_question": "Select or exclude source-family evidence row/subset before any Agent 2 transform; Klein remains NC and is not commercially authorized.",
+      "exact_blockers": [
+        "commercial_nc_overlap_requires_agent6_source_family_selection_boundary",
+        "klein_nc_content_not_commercially_authorized"
+      ]
+    },
+    {
+      "split_id": "commercial_blocked_without_klein",
+      "classification_lanes": [
+        "commercial_clean_candidate",
+        "blocked_or_needs_review"
+      ],
+      "rows": 82,
+      "occurrences": 1068,
+      "source_family_scope": "public-domain source evidence plus BDB Augmented Strong blocked/review evidence, without Klein",
+      "agent6_question": "Exclude or resolve BDB Augmented Strong custody before any Agent 2 transform from this subset.",
+      "exact_blockers": [
+        "bdb_augmented_strong_requires_independent_source_license_custody_basis",
+        "commercial_blocked_overlap_requires_agent6_source_family_selection_or_exclusion_boundary"
+      ]
+    },
+    {
+      "split_id": "triple_overlap_commercial_nc_blocked",
+      "classification_lanes": [
+        "commercial_clean_candidate",
+        "noncommercial_educational_candidate",
+        "blocked_or_needs_review"
+      ],
+      "rows": 140,
+      "occurrences": 3367,
+      "source_family_scope": "public-domain source evidence plus Klein NC plus BDB Augmented Strong blocked/review",
+      "agent6_question": "This subset requires both NC preservation and BDB Augmented Strong exclusion/resolution before any downstream transform.",
+      "exact_blockers": [
+        "triple_overlap_requires_agent6_source_family_selection_boundary",
+        "klein_nc_content_not_commercially_authorized",
+        "bdb_augmented_strong_requires_source_custody_resolution_or_exclusion"
+      ]
+    },
+    {
+      "split_id": "klein_only_excluded",
+      "classification_lanes": [
+        "noncommercial_educational_candidate"
+      ],
+      "rows": 17,
+      "occurrences": 259,
+      "source_family_scope": "Klein Dictionary only",
+      "agent6_question": "Keep as NC educational candidate only unless Agent 6 gives an exact non-public NC boundary; no commercial export path is opened.",
+      "exact_blockers": [
+        "missing_exact_agent6_nc_boundary_no_commercial_export_authorization"
+      ]
+    },
+    {
+      "split_id": "metadata_or_link_only",
+      "classification_lanes": [
+        "metadata_or_link_only"
+      ],
+      "rows": 0,
+      "occurrences": 0,
+      "source_family_scope": "none in current scoped preview",
+      "agent6_question": "No current row action.",
+      "exact_blockers": [
+        "metadata_only_no_definition_or_candidate_text"
+      ]
+    }
+  ],
+  "classification_lanes": [
+    "commercial_clean_candidate",
+    "noncommercial_educational_candidate",
+    "metadata_or_link_only",
+    "blocked_or_needs_review"
+  ],
+  "exact_blockers": [
+    "missing_exact_agent6_boundary_and_approved_morphology_relation",
+    "commercial_nc_overlap_requires_agent6_source_family_selection_boundary",
+    "klein_nc_content_not_commercially_authorized",
+    "missing_exact_agent6_nc_boundary_no_commercial_export_authorization",
+    "bdb_augmented_strong_requires_independent_source_license_custody_basis",
+    "commercial_blocked_overlap_requires_agent6_source_family_selection_or_exclusion_boundary",
+    "triple_overlap_requires_agent6_source_family_selection_boundary",
+    "metadata_only_no_definition_or_candidate_text"
+  ],
+  "handoff_owner": {
+    "Agent 2": "May consume this split only as source-lane evidence; allowed transform rows remain 0 until exact Agent 6 row/subset boundary plus approved morphology relation exists.",
+    "Agent 6": "Future exact row/subset boundary owner for clean-only, commercial+NC overlap, commercial+blocked overlap, triple-overlap, Klein-only NC, and BDB Augmented Strong exclusion/resolution questions.",
+    "Agent 10": "Release/package owner may assemble a future Agent 6 question packet from these split rows only; no release route is opened here."
+  },
+  "timeout_log": [
+    {
+      "process_timeout": false,
+      "command": "node_repl targeted read of six named current Agent 1/10 JSON inputs",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "all six named inputs parsed; summary returned",
+      "next_safe_action": "write bounded continuation artifact"
+    },
+    {
+      "process_timeout": false,
+      "command": "node_repl targeted extraction of Klein, BDB Augmented Strong, and downstream lane rows",
+      "timeout": "15000ms",
+      "partial_output_or_artifact": "source-family rows and blocked-review counts extracted",
+      "next_safe_action": "validate new JSON/MD artifacts"
+    }
+  ],
+  "zero_output_counts": {
+    "agent2_transform_allowed_now_rows": 0,
+    "candidate_text_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "answer_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "agent6_delivery_rows_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_actions": 0
+  },
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no runtime/publication/product acceptance",
+    "no answer acceptance",
+    "no accepted text",
+    "no candidate text export",
+    "no public/runtime mutation",
+    "no release action",
+    "no NC commercial authorization"
+  ],
+  "stop_condition": "Stop after this bounded Agent 1 continuation boundary-split artifact and validation; downstream use remains blocked until exact Agent 6 row/subset boundary plus any required morphology relation or custody-resolution evidence exists."
+}

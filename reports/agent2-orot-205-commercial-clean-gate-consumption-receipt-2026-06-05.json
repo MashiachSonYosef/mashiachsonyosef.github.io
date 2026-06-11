@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_orot_205_commercial_clean_gate_consumption_receipt",
+  "generated_at": "2026-06-05T14:00:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / source-lane separated lexicon expansion",
+  "target": "Orot 205-row commercial-clean planning subset gate-proof consumption",
+  "status": "commercial_clean_205_row_gate_proof_consumed_as_planning_only_evidence",
+  "inputs": {
+    "agent4_gate_proof": "reports/agent4-orot-205-row-commercial-clean-subset-gate-proof-2026-06-05.json",
+    "agent10_consumption": "reports/agent10-agent2-agent4-fresh-output-consumption-2026-06-05.json",
+    "changed_package": "reports/agent10-agent6-ready-orot-205-row-commercial-clean-subset-2026-06-04.json",
+    "runnable_contract": "reports/agent4-orot-205-row-commercial-clean-subset-runnable-contract-2026-06-05.json"
+  },
+  "counts": {
+    "rows": 205,
+    "occurrences": 1767,
+    "exact_after_mark_strip_rows": 52,
+    "exact_after_mark_strip_occurrences": 449,
+    "prefix_or_clitic_possible_rows": 82,
+    "prefix_or_clitic_possible_occurrences": 677,
+    "needs_morphology_disambiguation_rows": 71,
+    "needs_morphology_disambiguation_occurrences": 641,
+    "missing_agent1_6_custody_disposition_rows": 205,
+    "answer_text_not_stored_by_preview_rows": 205,
+    "missing_approved_morphology_relation_rows": 153,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0
+  },
+  "agent10_consumption_state": {
+    "validator_result": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-orot-205-row-commercial-clean-subset-runnable-contract-2026-06-05.json passed",
+    "release_relevance": "Agent 4 validator/prereq evidence for the already bounded Orot 205-row commercial-clean planning packet.",
+    "exact_blocker": "planning_only_boundary_remains",
+    "agent6_boundary_question": null,
+    "next_handoff": "Keep as validator/prereq support. Any downstream candidate text, export, storage, display, answer, Definition, public/runtime, accepted-text, or release use needs a later exact Agent 6 boundary."
+  },
+  "blockers_preserved": [
+    "planning_only_boundary_remains",
+    "missing_agent1_6_custody_disposition",
+    "answer_text_not_stored_by_preview",
+    "missing_approved_morphology_relation_for_153_rows",
+    "separate_exact_agent6_boundary_required_for_any_downstream_candidate_use"
+  ],
+  "zero_output_counts": {
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "accepted_gloss_text_rows": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "release_rows": 0
+  },
+  "highest_permissible_claim": "Agent2 consumed the Orot 205-row commercial-clean gate proof as nonpublic planning/prereq evidence only.",
+  "handoff_owner": "Agent 2 definition/reader-hint transform owner remains blocked; Agent10/Agent6 own any later exact downstream boundary.",
+  "stop_condition": "Stop at 205-row gate-proof consumption. Do not emit definition, lemma, reader-hint candidates, candidate text, answer rows, public output, route writes, accepted text, definition content, export rows, or release artifacts.",
+  "non_acceptance_boundary": [
+    "No QA acceptance",
+    "No Definition authority",
+    "No answer acceptance",
+    "No source/license/legal acceptance",
+    "No accepted gloss/text",
+    "No public/runtime mutation",
+    "No route-shard edit",
+    "No candidate text export",
+    "No NC commercial authorization",
+    "No release action"
+  ]
+}

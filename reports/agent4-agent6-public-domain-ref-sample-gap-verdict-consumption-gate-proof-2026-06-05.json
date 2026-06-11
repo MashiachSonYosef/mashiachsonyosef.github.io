@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:59.995Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent6-public-domain-ref-sample-gap-verdict-consumption",
+  "status": "agent6_verdict_consumed_as_warn_accepted_nonpublic_metadata_gap_planning_evidence_only",
+  "files": {
+    "agent6_verdict": {
+      "path": "reports/agent6-old-dictionary-public-domain-ref-sample-gap-boundary-verdict-2026-06-05.json",
+      "sha256": "89e181ef76f1b1d583827e6516401ef0b783456faab71946f136847c63760628"
+    },
+    "agent10_boundary_packet": {
+      "path": "reports/agent10-agent6-ready-old-dictionary-public-domain-ref-sample-gap-boundary-packet-2026-06-05.json",
+      "sha256": "7c9b421adbe54489ea470417059310fd6d1fb376e0a30c84b115b2876f8f4781"
+    },
+    "agent1_gap_manifest": {
+      "path": "reports/agent1-old-dictionary-public-domain-ref-sample-gap-manifest-2026-06-05.json",
+      "sha256": "e500df0a913814319d5e7d6f0446da2faa1f8e455d7622b408a00bc49410084e"
+    },
+    "agent6_verdict_validator": {
+      "path": "scripts/validate_agent6_old_dictionary_public_domain_ref_sample_gap_boundary_verdict.mjs",
+      "sha256": "7ac290594a48c856aabd1f4a557a8d65c00bc8314e8484de687968d06ce202b9"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent6_old_dictionary_public_domain_ref_sample_gap_boundary_verdict.mjs reports\\agent6-old-dictionary-public-domain-ref-sample-gap-boundary-verdict-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_public_domain_ref_sample_gap_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-public-domain-ref-sample-gap-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "public_domain_rows": 297,
+    "public_domain_occurrences": 5747,
+    "rows_with_ref_samples_or_ref_count": 204,
+    "occurrences_with_ref_samples_or_ref_count": 4385,
+    "gap_rows": 93,
+    "gap_occurrences": 1362,
+    "unique_gap_token_ids": 93,
+    "duplicate_gap_token_ids": 0,
+    "unique_gap_queue_ids": 93,
+    "gap_rid_rows": 93,
+    "gap_rid_total": 270,
+    "gap_headword_rows": 93,
+    "gap_headword_total": 251,
+    "family_partition_token_id_total": 119,
+    "family_partition_unique_token_ids": 93
+  },
+  "family_partitions_nonexclusive": {
+    "Jastrow Dictionary": {
+      "rows": 6,
+      "occurrences": 89
+    },
+    "BDB Dictionary": {
+      "rows": 91,
+      "occurrences": 1339
+    },
+    "BDB Aramaic Dictionary": {
+      "rows": 22,
+      "occurrences": 434
+    }
+  },
+  "agent6_disposition": "warn_accepted_nonpublic_metadata_gap_planning_evidence_only",
+  "permitted_next_step": "Agent_10_may_carry_manifest_as_nonpublic_metadata_gap_planning_evidence_only",
+  "blocked_gates": [
+    "source_provenance_license_legal_gate",
+    "source_family_selection_gate",
+    "candidate_use_gate",
+    "transform_gate",
+    "source_row_emission_gate",
+    "definition_authority_gate",
+    "answer_eligibility_gate",
+    "public_runtime_gate",
+    "publication_release_gate",
+    "commercial_export_gate"
+  ],
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "result": "Agent 6 verdict validates and is consumed as WARN-ACCEPTED nonpublic metadata-gap planning evidence only for the exact 93-row ref-sample gap.",
+  "blocker_if_any": "later_ref_samples_source_family_selection_source_row_emission_candidate_use_transform_storage_answer_route_public_runtime_export_or_release_requires_exact_agent6_packet",
+  "next_handoff": "Agent 10 may carry the exact ref-sample gap manifest as nonpublic metadata-gap planning evidence only; Agent 2 still has no transform/source-row/answer authority.",
+  "stop_condition": "Do not rerun unless Agent6 verdict, Agent10 packet, gap manifest, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance beyond this docket",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

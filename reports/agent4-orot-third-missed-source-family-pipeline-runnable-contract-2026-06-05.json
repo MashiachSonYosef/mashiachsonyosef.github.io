@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_spark4_pipeline_contract_changed_package_validator_prereq",
+  "generated_at": "2026-06-05",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / controlled Spark support",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "status": "runnable_contract_authored_changed_input_present",
+  "changed_package_input_path": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+  "package_hash_or_commit_or_mtime": "sha256:02b4cb3ed928d2ea573fb07af5bc32ae6f56a87ebc553d2087504b998ae0a14f",
+  "exact_command_list": [
+    "node scripts\\validate_agent1_orot_third_missed_source_family_pipeline.mjs reports\\agent1-orot-third-missed-source-family-map-2026-06-05.json",
+    "node scripts\\validate_agent1_spark1_orot_third_missed_source_family_contract.mjs reports\\agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json"
+  ],
+  "expected_output_path_schema": "reports/agent4-orot-third-missed-source-family-pipeline-gate-proof-2026-06-05.md",
+  "validator_gate": "Agent1 Orot third-missed source-family output and its Spark1 pipeline contract validators must pass on the exact 2026-06-05 candidate artifacts.",
+  "package_owner": "Agent 1 source/license custody lane; Agent 10 release/package intake if promoted to a boundary packet",
+  "agent6_boundary_trigger": "Agent 6 review only as source-family license-lane boundary evidence; no QA acceptance, source/provenance acceptance, license/legal acceptance, Definition authority, usage-as-definition authority, public/runtime acceptance, publication readiness, product/data acceptance, answer acceptance, accepted gloss/text, release action, or public/runtime mutation is requested.",
+  "stop_condition": "Stop after runnable Agent 4 validator/prereq contract is generated and checked, or exact blocker if either validator fails.",
+  "route": {
+    "target_spark": "Spark-4",
+    "target_lane": "Agent 4 direct validator/prereq lane",
+    "assistant1_spark1_route_allowed": false,
+    "route_now": true
+  },
+  "evidence_inputs": [
+    {
+      "path": "data/control/spark_standing_queue.json",
+      "exists": true,
+      "sha256": "3bd58bdd364b979aba89fac1848553404ee15f198889f01cde1e71e34c4bcf50",
+      "observed_status": "direct_agent_shape_only_agent13_constraint",
+      "observed_generated_at": "2026-06-04T16:20:00Z",
+      "relevant_finding": "No spark4-broad-validator-runtime-prereq-mechanics queue item found."
+    },
+    {
+      "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "exists": true,
+      "sha256": "52c987ecbbc63ced25a759e71ddb0fa58a8fecc2163e42322dfc834a51ee234c",
+      "observed_generated_at": "2026-06-05T04:06:32.858Z",
+      "summary": {
+        "inputs_checked": 324,
+        "missing_required_inputs": 0,
+        "release_relevant_rows": 71,
+        "agent6_handoff_candidates": 0,
+        "public_runtime_mutation_authorized": false,
+        "answer_definition_release_authorized": false
+      },
+      "boundary": {
+        "public_runtime_mutation_authorized": false,
+        "route_shard_edit_authorized": false,
+        "answer_eligibility_authorized": false,
+        "definition_content_storage_authorized": false,
+        "accepted_text_authorized": false,
+        "publication_readiness_authorized": false
+      },
+      "relevant_finding": "Release intake has an Agent 4-adjacent row, but this gate still requires an explicit changed input artifact before routing."
+    },
+    {
+      "path": "reports/spark-prime-30min-contract-run-2026-06-04.md",
+      "exists": true,
+      "sha256": "96094f38aa88a488db1dfc24da0e6c253e8286defc501cda755233b4c931f229",
+      "relevant_finding": null
+    },
+    {
+      "path": "reports/spark4-goal-mode-validator-prereq-next-2026-06-04.md",
+      "exists": true,
+      "sha256": "4b6cf65627e035d36377aaf35359db95e2193a4d155b08b15e448ebe30121c7a",
+      "relevant_finding": "- next_Agent4_package_action: no changed_input package available for reseed; hold"
+    }
+  ],
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss",
+    "translation output",
+    "accepted text"
+  ]
+}

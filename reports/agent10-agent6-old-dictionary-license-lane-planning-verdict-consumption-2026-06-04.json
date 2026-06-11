@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_old_dictionary_license_lane_planning_verdict_consumption",
+  "generated_at": "2026-06-04T19:05:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "status": "agent10_consumed_agent6_old_dictionary_license_lane_planning_verdict",
+  "consumed_verdict": "reports/agent6-old-dictionary-license-lane-planning-verdict-2026-06-04.md",
+  "consumed_packets": [
+    "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.md",
+    "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.json",
+    "reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.md",
+    "reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.json"
+  ],
+  "agent6_disposition": "WARN-ACCEPTED",
+  "review_scope": "nonpublic_source_family_license_lane_and_lane_partition_planning_evidence_only",
+  "counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "blocked_only_non_public_domain_or_unresolved_rows": 17,
+    "blocked_only_non_public_domain_or_unresolved_occurrences": 259,
+    "no_sefaria_hit_rows": 186,
+    "no_sefaria_hit_occurrences": 2421,
+    "next_missed_rows": 50,
+    "next_missed_occurrences": 1193,
+    "answer_rows": 0,
+    "source_rows_emitted": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "source_family_lane_planning_evidence": [
+    {
+      "source_family": "Jastrow Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "rows": 210,
+      "occurrences": 4474,
+      "release_relevance": "planning_evidence_only"
+    },
+    {
+      "source_family": "BDB Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "rows": 221,
+      "occurrences": 4418,
+      "release_relevance": "planning_evidence_only"
+    },
+    {
+      "source_family": "BDB Aramaic Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "rows": 69,
+      "occurrences": 2048,
+      "release_relevance": "planning_evidence_only"
+    },
+    {
+      "source_family": "Klein Dictionary",
+      "license_lane": "noncommercial_educational_candidate",
+      "rows": 214,
+      "occurrences": 4444,
+      "derived_from_nc": true,
+      "commercial_export_allowed": false,
+      "attribution_required": true,
+      "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+      "corpus_contamination": false,
+      "release_relevance": "separated_nc_educational_planning_evidence_only"
+    },
+    {
+      "source_family": "BDB Augmented Strong",
+      "license_lane": "blocked_or_needs_review",
+      "rows": 222,
+      "occurrences": 4435,
+      "release_relevance": "blocked_review_only"
+    }
+  ],
+  "supplemental_partition_counts": {
+    "commercial_clean_candidate": {
+      "source_family_count": 3,
+      "row_count": 500,
+      "occurrence_count": 10940
+    },
+    "noncommercial_educational_candidate": {
+      "source_family_count": 1,
+      "row_count": 214,
+      "occurrence_count": 4444
+    },
+    "metadata_or_link_only": {
+      "source_family_count": 0,
+      "row_count": 0,
+      "occurrence_count": 0
+    },
+    "blocked_or_needs_review": {
+      "source_family_count": 1,
+      "row_count": 222,
+      "occurrence_count": 4435
+    }
+  },
+  "blocker_effect": {
+    "resolved_for_nonpublic_planning_only": [
+      "missing_agent1_old_dictionary_excluded_row_license_lane_assignment"
+    ],
+    "still_blocked": [
+      "candidate_text_consumption",
+      "candidate_text_export",
+      "source_provenance_acceptance",
+      "license_legal_acceptance",
+      "definition_authority",
+      "usage_as_definition_authority",
+      "answer_eligibility",
+      "answer_acceptance",
+      "public_runtime_mutation",
+      "route_shard_writes",
+      "publication_readiness",
+      "accepted_text",
+      "commercial_export",
+      "nc_commercial_use",
+      "definition_content_storage"
+    ]
+  },
+  "next_release_package_action": "Carry old-dictionary lane evidence as non-public planning context only; prepare a new exact Agent 6 boundary only for any changed package requesting candidate text consumption/export, definition-content storage, answer eligibility, source/license acceptance, public/runtime behavior, route-shard writes, accepted text, commercial export, NC public display, or NC commercial use.",
+  "agent6_boundary_need_now": false,
+  "boundary": {
+    "nonpublic_planning_evidence_only": true,
+    "candidate_text_consumption_authorized": false,
+    "candidate_text_export_authorized": false,
+    "source_provenance_acceptance_authorized": false,
+    "license_legal_acceptance_authorized": false,
+    "definition_authority_authorized": false,
+    "answer_eligibility_authorized": false,
+    "public_runtime_mutation_authorized": false,
+    "route_shard_write_authorized": false,
+    "publication_readiness_authorized": false,
+    "commercial_export_permission_authorized": false,
+    "nc_commercial_authorization": false
+  },
+  "validation_commands_observed_or_run": [
+    "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+    "node scripts/validate_agent1_old_dictionary_license_lane_export_partitions.mjs"
+  ],
+  "what_must_not_be_accepted": [
+    "QA acceptance beyond the exact Agent 6 docket",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate-text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_packet_sweep_gate_selfcheck_proof",
+  "generated_at": "2026-06-06T02:00:00.000Z",
+  "agent": "Agent 4",
+  "target": "Self-checking Agent4 packet sweep gate",
+  "changed_input_artifacts": [
+    "scripts/validate_agent4_validator_prereq_packet_sweep.mjs",
+    "scripts/validate_agent4_validator_prereq_packet_sweep_gate.mjs"
+  ],
+  "output_artifacts": [
+    "reports/agent4-validator-prereq-packet-sweep-result-2026-06-06.json",
+    "reports/agent4-validator-prereq-packet-sweep-gate-result-2026-06-06.json"
+  ],
+  "commands": [
+    {
+      "command": "node --check scripts\\validate_agent4_validator_prereq_packet_sweep.mjs; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; node --check scripts\\validate_agent4_validator_prereq_packet_sweep_gate.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_gate.mjs --pattern='^agent4-.*2026-06-06\\.json$' --timeoutMs=30000 --out=reports/agent4-validator-prereq-packet-sweep-result-2026-06-06.json --gateOut=reports/agent4-validator-prereq-packet-sweep-gate-result-2026-06-06.json --gateResultValidator=scripts/validate_agent4_validator_prereq_packet_sweep_gate_result.mjs",
+      "timeout_ms": 180000,
+      "result": "passed",
+      "count": 27,
+      "passed": 27,
+      "failed": 0
+    }
+  ],
+  "corrected_failures": [
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_gate.mjs --pattern='^agent4-.*2026-06-06\\.json$' --timeoutMs=30000 --out=reports/agent4-validator-prereq-packet-sweep-result-2026-06-06.json --gateOut=reports/agent4-validator-prereq-packet-sweep-gate-result-2026-06-06.json --gateResultValidator=scripts/validate_agent4_validator_prereq_packet_sweep_gate_result.mjs",
+      "timeout_ms": 180000,
+      "result": "failed_corrected",
+      "blocker": "sweep included agent4-validator-prereq-packet-sweep-gate-result-2026-06-06.json as if it were an Agent4 proof packet",
+      "fix": "default sweep exclusion now skips both sweep-result and gate-result machine artifacts"
+    }
+  ],
+  "counts": {
+    "agent4_packets_swept": 27,
+    "passed": 27,
+    "failed": 0,
+    "proof_packets": 21,
+    "proof_with_blocker_packets": 4,
+    "blocker_packets": 2,
+    "command_count_total": 56,
+    "blocker_count_total": 28,
+    "gate_result_validation_status": 0
+  },
+  "result": "agent4_packet_sweep_gate_selfcheck_passed",
+  "exact_blockers": [
+    {
+      "code": "no_new_changed_package_input",
+      "detail": "No changed package/control input existed after the previous Agent4 gate-result validator proof. Work was limited to wiring the gate to validate its own gate-result output and excluding machine-output artifacts from packet sweeps."
+    }
+  ],
+  "handoff_owner": "Agent 4 for future self-checking packet sweep gates; Agent 10 or originating lane owners for future changed package inputs.",
+  "stop_condition": "Use --gateResultValidator with --gateOut when future Agent4 packet-shape gates need self-validating durable machine evidence. Do not treat packet-shape validation as QA/public/runtime/source/license/answer acceptance.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

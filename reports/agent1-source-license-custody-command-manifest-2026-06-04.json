@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_source_license_custody_command_manifest",
+  "generated_at": "2026-06-04T15:53:00.000Z",
+  "status": "agent1_source_license_custody_command_manifest_validated_for_spark1_discovery_only",
+  "lane": "Agent 1 / Spark-1 source/license/custody",
+  "source_registry": "reports/agent1-source-license-custody-pipeline-registry-2026-06-04.json",
+  "aggregate_handoff": "reports/agent1-source-license-custody-aggregate-handoff-2026-06-04.json",
+  "runnable_command_sets": [
+    {
+      "target": "old-dictionary-agent2-transform-lane-handoff-contract",
+      "build": "node scripts/build_agent1_old_dictionary_agent2_transform_lane_handoff.mjs",
+      "validate_output": "node scripts/validate_agent1_old_dictionary_agent2_transform_lane_handoff.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_old_dictionary_agent2_transform_lane_handoff_contract.mjs",
+      "expected_output": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+      "source_family_count": 5,
+      "audited_rows": 500,
+      "audited_occurrences": 8427,
+      "agent2_transform_allowed_now_rows": 0,
+      "spark1_routable": true
+    },
+    {
+      "target": "old-dictionary-planning-boundary-state-contract",
+      "build": "node scripts/build_agent1_old_dictionary_planning_boundary_state.mjs",
+      "validate_output": "node scripts/validate_agent1_old_dictionary_planning_boundary_state.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_old_dictionary_planning_boundary_state_contract.mjs",
+      "expected_output": "reports/agent1-old-dictionary-planning-boundary-state-2026-06-04.json",
+      "spark1_routable": true,
+      "stop_condition": "validated planning-boundary state packet and contract result, or exact missing input/schema/validator blocker"
+    },
+    {
+      "target": "orot-nc-klein-source-family-contract",
+      "build": "node scripts/build_agent1_orot_nc_klein_source_family_pipeline.mjs",
+      "validate_output": "node scripts/validate_agent1_orot_nc_klein_source_family_pipeline.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_orot_nc_klein_source_family_contract.mjs",
+      "expected_output": "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+      "rows": 17,
+      "occurrences": 259,
+      "spark1_routable": true
+    },
+    {
+      "target": "orot-next-missed-source-family-contract",
+      "build": "node scripts/build_agent1_orot_next_missed_source_family_pipeline.mjs",
+      "validate_output": "node scripts/validate_agent1_orot_next_missed_source_family_pipeline.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_orot_next_missed_source_family_contract.mjs",
+      "expected_output": "reports/agent1-orot-next-missed-source-family-map-2026-06-04.json",
+      "rows": 50,
+      "occurrences": 1193,
+      "spark1_routable": true
+    },
+    {
+      "target": "deuteronomy-source-license-custody-contract",
+      "build": "node scripts/build_agent1_deuteronomy_source_license_custody_map.mjs",
+      "validate_output": "node scripts/validate_agent1_deuteronomy_source_license_custody_map.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_deuteronomy_source_license_custody_contract.mjs",
+      "expected_output": "reports/agent1-deuteronomy-source-license-custody-map-2026-06-04.json",
+      "rows": 1334,
+      "occurrences": 2964,
+      "spark1_routable": true
+    },
+    {
+      "target": "old-dictionary-excluded-row-license-lane-reaudit-contract",
+      "build": "node scripts/build_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+      "validate_output": "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_old_dictionary_reaudit_pipeline_contract.mjs",
+      "expected_output": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+      "audited_rows": 500,
+      "source_family_count": 5,
+      "spark1_routable": true
+    },
+    {
+      "target": "old-dictionary-license-lane-export-partitions",
+      "build": "node scripts/build_agent1_old_dictionary_license_lane_export_partitions.mjs",
+      "validate_output": "node scripts/validate_agent1_old_dictionary_license_lane_export_partitions.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_old_dictionary_license_lane_export_partitions_contract.mjs",
+      "expected_output": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+      "commercial_clean_source_families": 3,
+      "noncommercial_educational_source_families": 1,
+      "metadata_or_link_only_source_families": 0,
+      "blocked_or_needs_review_source_families": 1,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-license-custody-inventory",
+      "build": "node scripts/build_agent1_workbench_source_license_custody_inventory.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_source_license_custody_inventory.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_source_license_custody_contract.mjs",
+      "expected_output": "reports/agent1-workbench-source-license-custody-inventory-2026-06-04.json",
+      "input_file_count": 10,
+      "source_row_count": 105747,
+      "license_count": 4,
+      "unique_work_count": 1112,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-name-custody-partitions",
+      "build": "node scripts/build_agent1_workbench_source_name_custody_partitions.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_source_name_custody_partitions.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_source_name_custody_partitions_contract.mjs",
+      "expected_output": "reports/agent1-workbench-source-name-custody-partitions-2026-06-04.json",
+      "source_row_count": 105747,
+      "source_name_partition_count": 351,
+      "top_partition_count": 100,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-full-source-name-custody-partitions-contract",
+      "build": "node scripts/build_agent1_workbench_full_source_name_custody_partitions.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_full_source_name_custody_partitions.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_full_source_name_custody_partitions_contract.mjs",
+      "expected_output": "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.json",
+      "source_row_count": 105747,
+      "source_name_partition_count": 351,
+      "full_partition_count": 351,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-license-bucket-boundary-matrix-contract",
+      "build": "node scripts/build_agent1_workbench_license_bucket_boundary_matrix.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_license_bucket_boundary_matrix.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_license_bucket_boundary_matrix_contract.mjs",
+      "expected_output": "reports/agent1-workbench-license-bucket-boundary-matrix-2026-06-04.json",
+      "license_bucket_count": 4,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-family-boundary-matrix-contract",
+      "build": "node scripts/build_agent1_workbench_source_family_boundary_matrix.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_source_family_boundary_matrix.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_source_family_boundary_matrix_contract.mjs",
+      "expected_output": "reports/agent1-workbench-source-family-boundary-matrix-2026-06-04.json",
+      "source_family_count": 1,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-family-license-lane-partitions-contract",
+      "build": "node scripts/build_agent1_workbench_source_family_license_lane_partitions.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_source_family_license_lane_partitions.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_source_family_license_lane_partitions_contract.mjs",
+      "expected_output": "reports/agent1-workbench-source-family-license-lane-partitions-2026-06-04.json",
+      "source_family_license_lane_partition_count": 4,
+      "source_family_count": 1,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-family-license-lane-agent6-boundary-packet-contract",
+      "build": "node scripts/build_agent1_workbench_source_family_license_lane_agent6_boundary_packet.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_source_family_license_lane_agent6_boundary_packet.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_source_family_license_lane_agent6_boundary_packet_contract.mjs",
+      "expected_output": "reports/agent1-workbench-source-family-license-lane-agent6-boundary-packet-2026-06-04.json",
+      "boundary_question_count": 4,
+      "source_family_license_lane_partition_count": 4,
+      "source_family_count": 1,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-source-family-license-lane-release-intake-packet-contract",
+      "build": "node scripts/build_agent1_workbench_source_family_license_lane_release_intake_packet.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_source_family_license_lane_release_intake_packet.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_source_family_license_lane_release_intake_packet_contract.mjs",
+      "expected_output": "reports/agent1-workbench-source-family-license-lane-release-intake-packet-2026-06-04.json",
+      "release_intake_row_count": 4,
+      "boundary_question_count": 4,
+      "source_family_license_lane_partition_count": 4,
+      "source_name_partition_count": 351,
+      "source_row_count": 105747,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-cc-by-sa-share-alike-boundary-contract",
+      "build": "node scripts/build_agent1_workbench_cc_by_sa_share_alike_boundary_map.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_cc_by_sa_share_alike_boundary_map.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_cc_by_sa_share_alike_boundary_contract.mjs",
+      "expected_output": "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+      "declared_cc_by_sa_partition_count": 37,
+      "declared_cc_by_sa_source_row_count": 5581,
+      "sampled_cc_by_sa_partition_count": 5,
+      "sampled_cc_by_sa_source_row_count": 4436,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-cc-by-attribution-boundary-contract",
+      "build": "node scripts/build_agent1_workbench_cc_by_attribution_boundary_map.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_cc_by_attribution_boundary_map.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_cc_by_attribution_boundary_contract.mjs",
+      "expected_output": "reports/agent1-workbench-cc-by-attribution-boundary-map-2026-06-04.json",
+      "declared_cc_by_partition_count": 5,
+      "declared_cc_by_source_row_count": 625,
+      "sampled_cc_by_partition_count": 1,
+      "sampled_cc_by_source_row_count": 239,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-cc0-public-domain-zero-boundary-contract",
+      "build": "node scripts/build_agent1_workbench_cc0_public_domain_zero_boundary_map.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_cc0_public_domain_zero_boundary_map.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_cc0_public_domain_zero_boundary_contract.mjs",
+      "expected_output": "reports/agent1-workbench-cc0-public-domain-zero-boundary-map-2026-06-04.json",
+      "declared_cc0_partition_count": 2,
+      "declared_cc0_source_row_count": 496,
+      "sampled_cc0_partition_count": 1,
+      "sampled_cc0_source_row_count": 267,
+      "spark1_routable": true
+    },
+    {
+      "target": "workbench-public-domain-boundary-contract",
+      "build": "node scripts/build_agent1_workbench_public_domain_boundary_map.mjs",
+      "validate_output": "node scripts/validate_agent1_workbench_public_domain_boundary_map.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_workbench_public_domain_boundary_contract.mjs",
+      "expected_output": "reports/agent1-workbench-public-domain-boundary-map-2026-06-04.json",
+      "declared_public_domain_partition_count": 307,
+      "declared_public_domain_source_row_count": 99045,
+      "sampled_public_domain_partition_count": 93,
+      "sampled_public_domain_source_row_count": 88100,
+      "spark1_routable": true
+    },
+    {
+      "target": "orot-missing-lexicon-linkage-candidates-contract",
+      "build": "node scripts/build_agent1_orot_missing_lexicon_linkage_candidates.mjs --json-report reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json --report reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.md",
+      "validate_output": "node scripts/validate_agent1_orot_missing_lexicon_linkage_candidates.mjs reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "validate_contract": "node scripts/validate_agent1_spark1_orot_missing_lexicon_linkage_candidates_contract.mjs",
+      "expected_output": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "missing_lexicon_linkage_rows": 13,
+      "missing_lexicon_linkage_occurrences": 129,
+      "spark1_routable": true
+    },
+    {
+      "target": "broad-source-mechanics-contract",
+      "build": [
+        "node scripts/build_agent1_orot_fill_source_row_evidence.mjs",
+        "node scripts/build_agent1_orot_missing_lexicon_linkage_candidates.mjs"
+      ],
+      "validate_output": [
+        "node scripts/validate_agent1_orot_fill_source_row_evidence.mjs",
+        "node scripts/validate_agent1_orot_missing_lexicon_linkage_candidates.mjs reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+        "node scripts/validate_agent1_broad_source_mechanics_queue_package.mjs"
+      ],
+      "validate_contract": "node scripts/validate_agent1_spark1_broad_source_mechanics_contract.mjs",
+      "expected_output": "reports/agent1-broad-source-mechanics-queue-package-2026-06-04.json",
+      "source_row_targets": 4,
+      "missing_linkage_rows": 13,
+      "spark1_routable": true,
+      "preserve_exact_blocker": "missing_linkage_assignment_rule_blocker"
+    },
+    {
+      "target": "broad-workbench-token-inventory-5000-source-lane-blocker-contract",
+      "build": "node scripts/build_agent1_broad_workbench_token_inventory_5000_source_lane_blocker.mjs",
+      "validate_output": "node scripts/validate_agent1_broad_workbench_token_inventory_5000_source_lane_blocker.mjs",
+      "validate_contract": "node scripts/validate_agent1_spark1_broad_workbench_token_inventory_5000_source_lane_blocker_contract.mjs",
+      "expected_output": "reports/agent1-broad-workbench-token-inventory-5000-source-lane-blocker-2026-06-04.json",
+      "spark1_routable": true,
+      "stop_condition": "validated source-lane join blocker packet and contract result, or exact missing input/schema/validator blocker"
+    }
+  ],
+  "non_routable_blockers": [
+    {
+      "target": "third-missed-source-family-target-or-blocker",
+      "validator": "node scripts/validate_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+      "artifact": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+      "status": "missing_workset_blocker",
+      "rows_checked": 169,
+      "occurrences_checked": 2148,
+      "spark1_routable": false,
+      "missing_field": "row-level source-family/license split"
+    }
+  ],
+  "aggregate_gates": [
+    "node scripts/validate_agent1_source_license_custody_pipeline_registry.mjs",
+    "node scripts/validate_agent1_source_license_custody_pipeline_set.mjs",
+    "node scripts/validate_agent1_source_license_custody_aggregate_handoff.mjs",
+    "node scripts/validate_agent1_current_source_license_custody_lane_return.mjs"
+  ],
+  "counts": {
+    "runnable_command_set_count": 22,
+    "non_routable_blocker_count": 1,
+    "aggregate_gate_count": 4
+  },
+  "spark_rule": "Spark-1 may run only listed commands and must return exact blocker if any listed input/output/schema/count gate fails.",
+  "non_acceptance_boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true
+  }
+}

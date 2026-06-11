@@ -1,0 +1,63 @@
+{
+  "artifact_type": "a06_repo_cleaning_production_pipeline_adoption_receipt",
+  "generated_at": "2026-06-06",
+  "disposition": "A06_PIPELINE_ACKNOWLEDGED_PRODUCTION_EVIDENCE_ONLY",
+  "reviewed_artifacts": [
+    "reports/sop-026-a06-repo-cleaning-production-pipeline-2026-06-06.md",
+    "reports/sop-025-a07-final-qa-approval-routing-pipeline-2026-06-06.md",
+    "reports/a14-a06-a07-approval-routing-handoff-2026-06-06.md"
+  ],
+  "a06_adopts_sop_026_for": [
+    "repo_dirt_classification",
+    "repo_cleaning_evidence_packet_generation",
+    "bounded_validator_runs",
+    "rollback_path_documentation",
+    "A06_REPO_CLEANUP_PACKET_READY_or_exact_blocker"
+  ],
+  "a06_does_not_own": [
+    "approval",
+    "sop_ratification",
+    "final_validation_approval",
+    "release_gate_approval",
+    "cleanup_batch_approval",
+    "publication",
+    "staging",
+    "deletion",
+    "revert",
+    "source_license_acceptance",
+    "definition_authority",
+    "accepted_gloss_text"
+  ],
+  "approval_route": "A07",
+  "first_cleanup_mode": "classification_only",
+  "required_packet_fields": [
+    "scoped_dirt_snapshot",
+    "classification_table",
+    "proposed_action_per_file",
+    "bounded_validators",
+    "rollback_paths",
+    "stop_condition"
+  ],
+  "forbidden": [
+    "git_add_A",
+    "git_reset_hard",
+    "blind_delete",
+    "destructive_cleanup_of_unknown_or_user_work",
+    "acceptance_claims",
+    "self_approval",
+    "whole_corpus_revalidation_from_dirty_tree_alone"
+  ],
+  "validated_words_policy": {
+    "default": "preserve_validated_words",
+    "redo_scope": "changed_or_flagged_rows_only",
+    "triggers": [
+      "dirty_file_touches_validated_lexical_output",
+      "source_license_evidence_changed",
+      "route_default_selection_changed",
+      "validator_detects_mismatch",
+      "a07_or_owner_requests_targeted_migration_audit"
+    ]
+  },
+  "boundary": "management_and_repo_cleaning_evidence_production_only_no_acceptance_no_destructive_action",
+  "stop_condition": "A06 acknowledged SOP-026 as repo-cleaning production evidence pipeline and A07 remains approval route"
+}

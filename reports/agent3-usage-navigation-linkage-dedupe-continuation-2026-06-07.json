@@ -1,0 +1,159 @@
+{
+  "artifact_type": "agent3_usage_navigation_linkage_dedupe_navigation_continuation_packet",
+  "generated_at": "2026-06-07T11:48:09Z",
+  "lane": "agent3",
+  "goal": "linkage_dedupe_navigation",
+  "status": "evidence_ready_no_new_exact_agent3_workset",
+  "boundary": {
+    "publication": "blocked_no_render",
+    "route_publication_support": false,
+    "definition_selection": false,
+    "usage_as_definition_authority": false,
+    "source_license_acceptance": false,
+    "runtime_publication_acceptance": false,
+    "accepted_text_output": false
+  },
+  "inputs": {
+    "control": [
+      "data/control/spark_standing_queue.json"
+    ],
+    "evidence": [
+      "reports/agent3-spark3-contract-status-reconciliation-2026-06-04.json",
+      "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json",
+      "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.md",
+      "reports/agent3-spark1-pipeline-contract-deuteronomy-phase2-linkage-dedupe-source-route-2026-06-04.md",
+      "reports/agent3-spark1-pipeline-contract-deuteronomy-phase2-linkage-dedupe-source-route-2026-06-04.json",
+      "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+      "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.md"
+    ]
+  },
+  "worksets": [
+    {
+      "name": "orot_169_row_route_card_candidate_card_dedupe_review",
+      "commands": [
+        "node scripts/build_agent3_orot_route_card_candidate_card_dedupe_review.mjs",
+        "node scripts/validate_agent3_orot_route_card_candidate_card_dedupe_review.mjs"
+      ],
+      "output": {
+        "json": "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json",
+        "markdown": "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.md"
+      },
+      "counts": {
+        "rows": 169,
+        "occurrences": 2148,
+        "exact_blocker_rows": 168,
+        "exact_blocker_occurrences": 2117,
+        "unique_duplicate_keys": 169,
+        "duplicate_key_collision_groups": 0
+      },
+      "schema_fields": [
+        "schema_version",
+        "artifact_type",
+        "status",
+        "inputs",
+        "scope",
+        "counts",
+        "duplicate_key_summary",
+        "matched_route_card_evidence_scope",
+        "exact_blocker_summary",
+        "gates",
+        "rows",
+        "stop_condition",
+        "what_remains_blocked",
+        "what_must_not_be_accepted"
+      ],
+      "validator_status": {
+        "command": "node scripts/validate_agent3_orot_route_card_candidate_card_dedupe_review.mjs",
+        "result": "passed",
+        "rows": 169,
+        "blocker_rows": 168
+      }
+    },
+    {
+      "name": "deuteronomy_linkage_dedupe_source_route_matrix",
+      "commands": [
+        "node scripts/build_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+        "node scripts/validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs"
+      ],
+      "output": {
+        "json": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+        "markdown": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.md"
+      },
+      "counts": {
+        "rows": 8113,
+        "occurrences": 12595,
+        "downstream_boundary_rows": 1334,
+        "downstream_boundary_occurrences": 2964,
+        "exact_blocker_rows": 6779,
+        "exact_blocker_occurrences": 9631,
+        "confidence_below_min60_blocker_rows": 1594,
+        "confidence_below_min60_blocker_occurrences": 2922,
+        "missing_lexical_entry_blocker_rows": 5185,
+        "missing_lexical_entry_blocker_occurrences": 6709,
+        "unique_duplicate_keys": 8113,
+        "duplicate_key_collision_groups": 0
+      },
+      "route_bucket_schema_fields": [
+        "work_id|token_index_id|normalized_form|export_status"
+      ],
+      "validator_status": {
+        "command": "node scripts/validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+        "result": "passed",
+        "rows": 8113,
+        "blocker_rows": 6779,
+        "downstream_boundary_rows": 1334
+      }
+    }
+  ],
+  "exact_blockers": [
+    {
+      "id": "spark3_oracle9_missed_dictionary_evidence_diff",
+      "owner": "Agent 7 / Agent 5 / Agent 10 queue routing",
+      "status": "missing_pipeline_contract",
+      "missing_fields": [
+        "pipeline_commands",
+        "output_path_schema",
+        "validator_gate",
+        "target",
+        "input_set",
+        "package_owner",
+        "agent_6_boundary",
+        "stop_condition"
+      ],
+      "next_safe_action": "supply exact Spark-3 command packet before rerun"
+    }
+  ],
+  "handoff": {
+    "agent2": {
+      "consume": "1334 rows / 2964 occurrences boundary-candidate rows",
+      "condition": "mechanical matrix intake only"
+    },
+    "agent6": {
+      "consume": "none",
+      "condition": "acceptance/decision authority only"
+    },
+    "agent10": {
+      "consume": "blocked-row continuity and release-package planning",
+      "condition": "no value claim or answer authority implied"
+    },
+    "agent5_7": {
+      "consume": "queue/control wake conditions",
+      "condition": "exact workset packet needed before next Agent 3 run"
+    }
+  },
+  "stop_condition": "No new exact Agent 3 executable workset present; resume only on changed exact target rows/occurrences + named command/input/output/schema/validator and downstream boundary handoff packet.",
+  "validator_runs": [
+    "node scripts/validate_agent3_orot_route_card_candidate_card_dedupe_review.mjs",
+    "node scripts/validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+    "node scripts/validate_agent3_current_control_drift_refresh.mjs"
+  ],
+  "validator_results": {
+    "current_control_drift_refresh": {
+      "status": "passed",
+      "inputs_observed": 7,
+      "returned_worksets": 2,
+      "stale_fields": 4,
+      "new_executable_worksets": 0
+    }
+  }
+}

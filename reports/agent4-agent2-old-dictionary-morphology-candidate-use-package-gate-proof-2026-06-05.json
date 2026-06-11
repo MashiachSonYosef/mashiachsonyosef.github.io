@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:45.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent2-old-dictionary-morphology-candidate-use-package",
+  "changed_package_input": "reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json",
+  "files": [
+    "reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json",
+    "reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json",
+    "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json",
+    "scripts/validate_agent2_old_dictionary_morphology_candidate_use_package.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_morphology_candidate_use_package.mjs reports\\agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Agent 2 old-dictionary morphology candidate-use package validation passed. Rows: 78; occurrences: 1461; text/output rows: 0."
+    }
+  ],
+  "counts": {
+    "package_rows": 78,
+    "package_occurrences": 1461,
+    "unique_queue_ids": 78,
+    "source_family_values_observed": 3,
+    "commercial_clean_candidate_rows": 78,
+    "noncommercial_educational_candidate_rows": 0,
+    "morphology_blocked_rows_excluded": 219,
+    "exact_after_mark_strip_rows": 78,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0
+  },
+  "hashes": {
+    "changed_package_input_sha256": "3ec752cd02ab6d357880a6d65fd1fe018d7d62f46c84c0ed24f2554f95dd6702",
+    "validator_sha256": "ef5920ad0fd24911109d77662835fe9375749a6c6205263d01a8aa148fb752c6",
+    "preflight_handoff_sha256": "16524a123e1b322324f2e4c29a3dc00357b931374af38292a11eac4779816103",
+    "agent6_verdict_sha256": "5bda8c502023c7e3eeaba26d7c9672e0332227fb00eb94ffbe80add5bea226f3"
+  },
+  "result": "target | agent2-old-dictionary-morphology-candidate-use-package | files above | commands passed: Agent2 old-dictionary morphology candidate-use package validator | counts: 78 rows, 1461 occurrences, 78 unique queue IDs, 78 commercial-clean rows, 0 NC rows, 219 morphology-blocked rows excluded, 78 exact-after-mark-strip rows, zero candidate text/definition/lemma/reader-hint/answer/answer-eligible/public/route/runtime rows | result: nonpublic candidate-use planning package validates as no-text/no-output package | blocker if any: package still requires a new Agent6 verdict before text storage, transform output, export, answer eligibility, route write, public/runtime mutation, accepted text, commercial export, or release action | next handoff: Agent10 should intake this exact Agent2 package for next Agent6 boundary review | stop condition: do not rerun unless package, preflight handoff, Agent6 verdict, or validator changes",
+  "blocker_if_any": "new_agent6_verdict_required_before_text_storage_transform_output_export_answer_route_runtime_accepted_text_commercial_export_or_release",
+  "next_handoff": "Agent 10 should intake this exact Agent 2 package for next Agent 6 boundary review.",
+  "stop_condition": "Do not rerun unless reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json, reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json, reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json, or scripts/validate_agent2_old_dictionary_morphology_candidate_use_package.mjs changes.",
+  "non_acceptance_boundary": [
+    "no Definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no source/license/legal acceptance",
+    "no accepted gloss/text",
+    "no public/runtime mutation",
+    "no route-shard edit",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

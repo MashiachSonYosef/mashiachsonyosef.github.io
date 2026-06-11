@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "status": "runnable_contract_authored_changed_input_present",
+  "target": "workbench-cc-by-attribution-boundary-map",
+  "changed_package_input_path": "reports/agent10-agent6-ready-workbench-cc-by-attribution-boundary-packet-2026-06-04.json",
+  "changed_package_input_sha256": "c8cdd9608283fccaabf0e5f855dcda790dcc79a02021c49eb8acd27c5f9bedfd",
+  "files": [
+    "reports/agent10-agent6-ready-workbench-cc-by-attribution-boundary-packet-2026-06-04.json",
+    "reports/agent1-workbench-cc-by-attribution-boundary-map-2026-06-04.json",
+    "reports/agent1-spark1-pipeline-contract-workbench-cc-by-attribution-boundary-map-2026-06-04.json",
+    "reports/agent4-workbench-cc-by-attribution-boundary-changed-input-2026-06-04.json",
+    "reports/agent4-workbench-cc-by-attribution-boundary-runnable-contract-2026-06-04.json",
+    "reports/agent4-workbench-cc-by-attribution-boundary-runnable-contract-2026-06-04.md"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_workbench_cc_by_attribution_boundary_map.mjs reports\\agent1-workbench-cc-by-attribution-boundary-map-2026-06-04.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent1_spark1_workbench_cc_by_attribution_boundary_contract.mjs reports\\agent1-spark1-pipeline-contract-workbench-cc-by-attribution-boundary-map-2026-06-04.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\build_agent4_changed_package_validator_prereq_gate.mjs --date 2026-06-04 --changed-input reports\\agent4-workbench-cc-by-attribution-boundary-changed-input-2026-06-04.json --out-json reports\\agent4-workbench-cc-by-attribution-boundary-runnable-contract-2026-06-04.json --out-md reports\\agent4-workbench-cc-by-attribution-boundary-runnable-contract-2026-06-04.md",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-workbench-cc-by-attribution-boundary-runnable-contract-2026-06-04.json",
+      "result": "pass"
+    }
+  ],
+  "counts": {
+    "declared_cc_by_partition_count": 5,
+    "declared_cc_by_source_row_count": 625,
+    "sampled_cc_by_partition_count": 1,
+    "sampled_cc_by_source_row_count": 239,
+    "sampled_unique_source_id_count": 1,
+    "sampled_unique_work_count": 1,
+    "validator_commands_passed": 2,
+    "runnable_contracts_authored": 1,
+    "runnable_contracts_checked": 1,
+    "answer_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0,
+    "acceptance_claims": 0
+  },
+  "result": "Runnable Agent4 changed-package validator/prereq contract refreshed and checked for current CC-BY attribution changed input SHA c8cdd9608283fccaabf0e5f855dcda790dcc79a02021c49eb8acd27c5f9bedfd.",
+  "blocker_if_any": {
+    "agent4_validator_gate": "none",
+    "remaining_boundary": "CC-BY source-name partitions require Agent6 attribution boundary treatment before source/license custody acceptance, public display, answer use, definition text use, package/export behavior, or publication."
+  },
+  "next_handoff": "Agent10 owns release/package intake; Agent6 boundary review only.",
+  "stop_condition": "Stop after exact changed-input gate proof and runnable contract check; do not rerun this validator chain unless the package/input changes.",
+  "non_acceptance_boundary": {
+    "qa_acceptance": false,
+    "public_runtime_acceptance": false,
+    "source_provenance_acceptance": false,
+    "license_legal_acceptance": false,
+    "definition_authority": false,
+    "publication_readiness": false,
+    "route_publication_support": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "accepted_gloss_text": false,
+    "release_action": false,
+    "package_export_authorization": false,
+    "cc_by_export_authorization": false,
+    "public_runtime_mutation": false
+  }
+}

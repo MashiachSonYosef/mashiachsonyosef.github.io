@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "artifact_type": "definition_route_claim_audit",
+  "generated_at": "2026-06-03T07:54:23.893Z",
+  "generator": "scripts/audit_definition_route_claims.mjs",
+  "policy": "Audits generated local route-claim JSONL files for source/license rows and answer-eligibility safety. It does not create definitions, change route ranking, or publish lookup artifacts.",
+  "inputs": {
+    "manifest": ".local-cache/definition-routes/definition-route-manifest.json",
+    "route_jsonl": [
+      "reports/agent2-orot-answer-candidate-disambiguation-packet-2026-06-03.jsonl"
+    ],
+    "max_issues": 100
+  },
+  "counts": {
+    "files": 1,
+    "rows": 25,
+    "answer_eligible_rows": 0,
+    "non_answer_rows": 25,
+    "source_rows": 25,
+    "issue_count": 0
+  },
+  "route_families": {
+    "agent2_orot_answer_candidate_packet": 25
+  },
+  "route_types": {
+    "answer_contract_repair_request": 18,
+    "disambiguation_evidence_packet": 6,
+    "route_row_gap_request": 1
+  },
+  "answer_roles": {
+    "evidence": 25
+  },
+  "licenses": {
+    "project-authored / CC0": 25
+  },
+  "source_families": {
+    "workspace": 25
+  },
+  "files": [
+    {
+      "path": "reports/agent2-orot-answer-candidate-disambiguation-packet-2026-06-03.jsonl",
+      "rows": 25,
+      "answer_eligible_rows": 0,
+      "non_answer_rows": 25,
+      "source_rows": 25,
+      "issue_count": 0
+    }
+  ],
+  "issues": []
+}

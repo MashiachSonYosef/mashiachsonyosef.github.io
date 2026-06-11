@@ -1,9 +1,9 @@
 # Agent 10 Orot Next Missed-Dictionary Cleared Append
 
 - Rows appended: 50
-- Occurrences appended: 1193
+- Occurrences appended: 1201
 - Package rows after: 113
-- Package occurrences after: 4239
+- Package occurrences after: 4247
 - Public HUD rows emitted: 0
 - Route JSONL rows emitted: 0
 - Definition-content rows emitted: 0

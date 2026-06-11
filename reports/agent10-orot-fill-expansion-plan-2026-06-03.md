@@ -34,6 +34,23 @@ The immediate gain should be treated as reader hints only:
 - reader convenience, not accepted translation
 - evidence pointer, not Definition acceptance
 
+## Agent 1 Source Boundary
+
+Agent 1 produced `reports/agent1-orot-fill-source-row-evidence-2026-06-03.md` with status `block` for four exact curated source rows:
+
+- `curated|lex-aph-h639|source metadata incomplete`
+- `curated|lex-mashiach-h4899|source metadata incomplete`
+- `curated|lex-ruach-h7307|source metadata incomplete`
+- `curated|lex-yhwh-h3068|source metadata incomplete`
+
+Agent 10 execution rule:
+
+- halt any Orot fill batch that depends on these four rows as source-clean evidence
+- allow unrelated Orot fill only if candidate rows are independently source-clean
+- Stage A may proceed only with an exclusion/filter or pipeline proof showing the expanded hints do not rely on the four incomplete curated rows
+
+`lex-aph-h639` and `lex-yhwh-h3068` are the hard blockers. `lex-mashiach-h4899` and `lex-ruach-h7307` have nearby clean-source evidence, but the exact curated warning rows remain incomplete and cannot be treated as source-clean.
+
 ## Click-Time HUD Size Risk
 
 Publishing every available Orot route shard directly is large:
@@ -55,10 +72,12 @@ Target:
 - increase visible hint occurrences from 33,151 toward 45,687
 - do not hand-author any English text
 - keep each hint marked as candidate/readability evidence, not accepted text
+- exclude/filter any candidate that depends on the four Agent 1-blocked curated rows unless Agent 1 later provides a clean source-row mapping
 
 Required gates:
 
 - route answer safety validation
+- source-row blocker filter proof
 - old-HUD marker scan
 - browser proof for Orot root and Orot page
 - poisoned query/localStorage proof remains current-HUD/no accepted-translation wording
@@ -123,12 +142,11 @@ Agent 1 should not approve publication or definitions. Agent 1 should return sou
 
 Goal: support Orot fill by clearing or documenting source/provenance/license evidence for current-HUD rows used by Orot.
 
-Tasks:
+Current result: `block` in `reports/agent1-orot-fill-source-row-evidence-2026-06-03.md`.
 
-- inspect only pipeline-generated Orot public-HUD/source-row evidence
-- investigate the four known incomplete lexical citation rows
-- identify whether any row is a source/provenance/licensing blocker for expanding Orot hints or bounded top-N route shards
-- produce `reports/agent1-orot-fill-source-row-evidence-2026-06-03.md` or exact blocker
+Next source action:
+
+- owner/Agent 1 source-row mapping decision for the curated entries, especially `lex-aph-h639` and `lex-yhwh-h3068`, or an explicit exclusion/replacement path
 
 Forbidden:
 
@@ -145,6 +163,7 @@ Tasks:
 
 - confirm why lookup-candidate behavior can raise inline hints from 5,720 to about 10,704 token IDs
 - produce the safest pipeline command path for Stage A reader-hint regeneration
+- prove how the Stage A output excludes or bypasses the four Agent 1-blocked source rows
 - produce a top-N route-shard recommendation for Stage B
 - use gap-queue/route builders to classify the 6,603 remaining token IDs
 - produce `reports/agent2-orot-definition-fill-plan-2026-06-03.md` or exact blocker
@@ -179,14 +198,15 @@ Forbidden:
 
 Proceed in this order:
 
-1. Stage A: regenerate expanded Orot reader hints from existing current route data, using pipeline tools/rules only.
-2. Stage A browser proof and old-HUD guard.
-3. Stage B: build a bounded top-50 route shard package for highest-frequency fillable Orot tokens.
-4. Agent 4 runtime gate.
-5. Increase top-N only after runtime proof.
-6. Route remaining true gaps to Agent 2 pipeline gap work.
+1. Stage A preflight: determine whether expanded Orot reader hints can be generated while excluding the four Agent 1-blocked rows.
+2. Stage A generation: regenerate expanded Orot reader hints from existing current route data, using pipeline tools/rules only.
+3. Stage A proof: route answer safety, source-row blocker filter, old-HUD guard, and browser proof.
+4. Stage B: build a bounded top-50 route shard package for highest-frequency source-clean fillable Orot tokens.
+5. Agent 4 runtime gate.
+6. Increase top-N only after runtime proof.
+7. Route remaining true gaps to Agent 2 pipeline gap work.
 
-Highest safe immediate claim: Orot can likely be expanded from 5,720 to about 10,704 hinted token IDs using existing pipeline data, without making semantic acceptance claims.
+Highest safe immediate claim: Orot can likely be expanded from 5,720 to about 10,704 hinted token IDs using existing pipeline data, but only after filtering around Agent 1's four source-row blockers.
 
 ## Not Accepted
 

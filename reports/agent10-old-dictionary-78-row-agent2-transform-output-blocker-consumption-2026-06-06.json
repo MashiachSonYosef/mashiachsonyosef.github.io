@@ -1,0 +1,75 @@
+{
+  "artifact_type": "agent10_old_dictionary_78_row_agent2_transform_output_blocker_consumption",
+  "generated_at": "2026-06-06T04:42:00Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target_package": "old-dictionary-commercial-clean-78-row-transform-output-proposal-preboundary",
+  "status": "agent2_missing_pipeline_blocker_consumed_no_agent6_transform_packet_ready",
+  "files_used": {
+    "agent2_blocker": "reports/agent2-old-dictionary-78-row-transform-output-proposal-missing-pipeline-blocker-2026-06-06.json",
+    "agent10_workset": "reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.json",
+    "zero_text_package_planning_anchor": "reports/agent10-old-dictionary-78-row-zero-text-candidate-use-package-planning-2026-06-06.json",
+    "delivery_proof": "reports/agent10-agent2-old-dictionary-78-row-transform-output-proposal-delivery-proof-2026-06-06.json"
+  },
+  "agent2_return_consumed": {
+    "return_type": "missing_pipeline_blocker",
+    "rows": 78,
+    "occurrences": 1461,
+    "source_license_lane": "commercial_clean_candidate",
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "exact_blockers": [
+    "missing_transform_output_proposal_matrix_or_exact_transform_rule",
+    "missing_source_field::source_citation_or_url",
+    "missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text",
+    "next_transform_output_or_candidate_text_boundary_not_supplied"
+  ],
+  "release_package_decision": {
+    "agent6_transform_output_packet_ready": false,
+    "reason": "The required row-level source_citation_or_url field is absent and no exact Agent 2 transform rule exists for proposed text fields.",
+    "candidate_text_authorized": false,
+    "transform_output_authorized": false,
+    "definition_lemma_reader_hint_content_storage_authorized": false,
+    "answer_eligibility_authorized": false,
+    "route_write_authorized": false,
+    "public_runtime_mutation_authorized": false,
+    "export_authorized": false,
+    "accepted_text_authorized": false,
+    "publication_readiness_authorized": false,
+    "release_action_authorized": false
+  },
+  "next_owner_options": [
+    "Agent 1/Agent 2 source-citation enrichment for exact 78 rows including source_citation_or_url",
+    "Agent 2 authored exact transform-output proposal rule",
+    "Agent 10 narrowed Agent 6 question that does not request transform output or proposed text fields"
+  ],
+  "exact_current_blocker": "missing_source_citation_or_url_and_exact_transform_output_rule_for_78_row_packet",
+  "stop_condition": "Stop at blocker consumption. Do not mutate public/runtime files, route shards, source files, token indexes, lexical payloads, candidate text, definition content, accepted text, export files, publication state, or release state.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

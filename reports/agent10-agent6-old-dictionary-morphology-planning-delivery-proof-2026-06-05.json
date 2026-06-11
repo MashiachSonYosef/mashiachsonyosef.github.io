@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_old_dictionary_morphology_planning_delivery_proof",
+  "generated_at": "2026-06-05T13:55:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "release_owner": "Agent 10",
+  "reviewer": "Agent 6",
+  "delivery_target": "019e7f09-a04b-7f30-b36c-87aa8ecaae5d",
+  "delivery_submission_id": "019e97c7-a492-7140-b9cf-c7e3f4bc5f4a",
+  "delivered_packets": [
+    {
+      "packet": "reports/agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.md",
+      "packet_json": "reports/agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.json",
+      "scope": {
+        "scope_type": "nonpublic_old_dictionary_morphology_relation_planning_only",
+        "morphology_planning_rows": 78,
+        "morphology_planning_occurrences": 1461,
+        "morphology_blocked_rows": 219,
+        "allowed_candidate_use_rows_now": 0,
+        "allowed_transform_rows_now": 0,
+        "candidate_text_rows_now": 0,
+        "answer_eligible_rows_now": 0,
+        "public_emit_rows_now": 0
+      },
+      "review_question": "Pass/warn/block whether the exact old-dictionary commercial-clean morphology relation subset may be carried as non-public morphology-planning evidence only for 78 rows / 1461 occurrences, while preserving 0 candidate-use, transform, definition, lemma, reader-hint, answer, public, route, runtime, accepted-text, export, and release rows."
+    }
+  ],
+  "validator_results": [
+    {
+      "command": "node scripts\\validate_agent10_agent2_old_dictionary_morphology_relation_workset.mjs reports\\agent10-agent2-ready-old-dictionary-commercial-clean-morphology-relation-workset-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_commercial_clean_morphology_relation_matrix.mjs reports\\agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_morphology_planning_candidate_use_blocker.mjs reports\\agent2-morphology-planning-candidate-use-blocker-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_morphology_planning_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "stop_condition": "Await Agent 6 verdict artifact path or exact blocker; do not route duplicate packet unless changed artifacts appear.",
+  "zero_mutation_counters": {
+    "allowed_candidate_use_rows": 0,
+    "allowed_transform_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0,
+    "release_rows": 0
+  },
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate text export",
+    "commercial export permission",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

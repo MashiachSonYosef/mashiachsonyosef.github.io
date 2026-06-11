@@ -1,0 +1,58 @@
+{
+  "artifact_type": "agent4_no_new_changed_input_blocker",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Agent 4 broad validator/prereq/runtime lane",
+  "latest_agent4_proof_anchor": "reports/agent4-agent2-source-citation-dependency-check-gate-proof-2026-06-06.json",
+  "bounded_checks": [
+    {
+      "command": "$cutoff = (Get-Item reports\\agent4-agent2-source-citation-dependency-check-gate-proof-2026-06-06.json).LastWriteTime; Get-ChildItem reports -File -Filter '*2026-06-06*.json' | Where-Object { $_.LastWriteTime -gt $cutoff -and $_.Name -match '^(agent[1-6]|agent10).*(ready|candidate|package|workset|docket|boundary|verdict|consumption|blocker|handoff|proof|return|enrichment|citation|dependency).*\\\\.json$' } | Sort-Object LastWriteTime -Descending | Select-Object -First 50 Name,LastWriteTime,Length | ConvertTo-Json -Depth 3",
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "result": "no changed candidate artifacts newer than latest Agent4 proof anchor"
+    },
+    {
+      "command": "Get-ChildItem reports -File -Filter '*2026-06-06*.json' | Where-Object { $_.Name -match '(agent1|agent2|agent10).*(source-citation|citation|enrichment|dependency|route).*\\\\.json$' } | Sort-Object LastWriteTime -Descending | Select-Object -First 50 Name,LastWriteTime,Length | ConvertTo-Json -Depth 3",
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "result": "newest source-citation dependency artifact remains already-packaged Agent4 proof; no Agent1 return or Agent10 successor consumption found"
+    },
+    {
+      "command": "Get-ChildItem reports -File -Filter '*2026-06-06*.json' | Where-Object { $_.Name -match '(agent3|crossmatch|navigation|candidate-use).*\\\\.json$' } | Sort-Object LastWriteTime -Descending | Select-Object -First 50 Name,LastWriteTime,Length | ConvertTo-Json -Depth 3",
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "result": "no newer Agent3/candidate-use artifact found after latest Agent4 proof"
+    }
+  ],
+  "changed_input_blocker": {
+    "changed_package_path_missing": "No changed Agent1 source-citation return, Agent1 exact blocker, Agent10 successor consumption packet, Agent2 dependency-check successor, Agent3 candidate-use successor, or Agent10 release/package successor was found after reports/agent4-agent2-source-citation-dependency-check-gate-proof-2026-06-06.json.",
+    "command_list_needed": [
+      "node <exact-validator-for-changed-artifact>.mjs <changed-artifact-path>"
+    ],
+    "expected_output_schema": "Agent4 proof JSON/MD with target, changed input, validator command, timeout, counts, result, blockers, handoff owner, stop condition, and non-acceptance boundary",
+    "validator_gate": "changed-input-only validator/prereq gate",
+    "package_owner": "Agent 10 for release/package intake; Agent 5/coordination for current Agent1 route; Agent1/Agent2/Agent3 only for their lane-owned changed returns",
+    "agent6_boundary_trigger": "Only for a future packet involving transform output, candidate text, Definition/lemma/reader-hint content, answer eligibility, route writes, export, publication readiness, release action, source/provenance acceptance, source/license/legal acceptance, or runtime/publication claims",
+    "next_harness_gap": "If a new Agent1 source-citation return appears, add or run a validator that checks row count 78, occurrence count 1461, non-empty row-level source_citation_or_url or exact missing-source blocker, commercial_clean_candidate lane preservation, zero public/runtime/output counters, and no acceptance claims.",
+    "stop_condition": "Stop at no-new-changed-input blocker. Do not rerun unchanged validator chains."
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "artifact_type": "agent10_old_dictionary_commercial_clean_source_family_morphology_boundary_preflight",
+  "generated_at": "2026-06-05T23:32:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "Agent 10",
+  "status": "preflight_not_routed_prior_agent6_morphology_coverage_not_verified_due_timeout",
+  "target_package": "old_dictionary_commercial_clean_source_family_morphology_boundary_preflight",
+  "files_used": [
+    "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+    "reports/agent1-old-dictionary-source-family-membership-manifest-2026-06-05.json",
+    "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+    "reports/agent2-old-dictionary-transform-reaudit-boundary-blocker-2026-06-05.json",
+    "reports/agent10-direct-release-package-intake-refresh-2026-06-05q.json"
+  ],
+  "agent_1_inputs_consumed": {
+    "transform_lane_handoff_status": "agent1_old_dictionary_agent2_transform_lane_handoff_ready_for_agent10_agent2_planning_only",
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_clean_source_families": 3,
+    "noncommercial_educational_source_families": 1,
+    "blocked_or_needs_review_source_families": 1,
+    "commercial_clean_transform_candidate_after_agent6_boundary": {
+      "source_family_count": 3,
+      "rows_nonexclusive": 500,
+      "occurrences_nonexclusive": 10940
+    },
+    "commercial_clean_source_family_subsets": [
+      {
+        "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::source-family::jastrow-dictionary",
+        "source_family": "Jastrow Dictionary",
+        "license_lane": "commercial_clean_candidate",
+        "rows": 210,
+        "occurrences": 4474,
+        "token_ids_sha256": "f2b1cb26cbf71ef1edb6647b7e95e5633f967fcd5f64aa2ad783a110bd22f8d8",
+        "blocker": "jastrow_dictionary_missing_future_agent6_candidate_use_boundary_and_morphology_relation"
+      },
+      {
+        "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::source-family::bdb-dictionary",
+        "source_family": "BDB Dictionary",
+        "license_lane": "commercial_clean_candidate",
+        "rows": 221,
+        "occurrences": 4418,
+        "token_ids_sha256": "ae686072738dc027e7298c687ca49bf3473788745b4f158de02c53167d2677fe",
+        "blocker": "bdb_dictionary_missing_future_agent6_candidate_use_boundary_and_morphology_relation"
+      },
+      {
+        "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::source-family::bdb-aramaic-dictionary",
+        "source_family": "BDB Aramaic Dictionary",
+        "license_lane": "commercial_clean_candidate",
+        "rows": 69,
+        "occurrences": 2048,
+        "token_ids_sha256": "4e4e82029d8e825c8b7d6adf6c25b24ced795753c781b476bb9f261c86201c26",
+        "blocker": "bdb_aramaic_dictionary_missing_future_agent6_candidate_use_boundary_and_morphology_relation"
+      }
+    ]
+  },
+  "agent_2_inputs_consumed": {
+    "morphology_relation_matrix_status": "nonpublic_morphology_relation_matrix_built_no_candidate_text",
+    "unique_preview_rows": 297,
+    "unique_preview_occurrences": 5747,
+    "commercial_clean_source_families": 3,
+    "commercial_clean_source_family_hit_rows_nonexclusive": 500,
+    "commercial_clean_source_family_hit_occurrences_nonexclusive": 10940,
+    "agent2_morphology_planning_approved_rows": 78,
+    "agent2_morphology_blocked_rows": 219,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0
+  },
+  "candidate_agent6_boundary_question_if_verified": "Pass/warn/block whether the three commercial-clean old-dictionary source-family manifests and Agent 2 morphology relation matrix may be carried as non-public package-assembly planning evidence only, with 78 morphology-planning-approved rows, 219 morphology-blocked rows, exact source-family token hashes preserved, and zero candidate text/output/mutation counters.",
+  "not_routed_reason": {
+    "blocker": "prior_agent6_morphology_planning_verdict_coverage_not_verified_due_timeout",
+    "details": "Bounded reads of the prior Agent 6 morphology planning verdict and prior Agent10 morphology packet timed out before usable output, so Agent 10 did not route a new Agent 6 packet from uncertain prior coverage."
+  },
+  "process_timeout_reports": [
+    {
+      "process_timeout": true,
+      "command": "PowerShell read/select of reports\\agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.json",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "timed out before usable output",
+      "next_safe_action": "retry only with a narrower exact field extraction or use a validator/report artifact that summarizes prior verdict coverage"
+    },
+    {
+      "process_timeout": true,
+      "command": "PowerShell read/select of reports\\agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.json",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "timed out before usable output",
+      "next_safe_action": "retry only with a narrower exact field extraction or use a validator/report artifact that summarizes prior packet coverage"
+    },
+    {
+      "process_timeout": true,
+      "command": "git diff --check -- reports\\agent10-old-dictionary-commercial-clean-source-family-morphology-boundary-preflight-2026-06-05.md reports\\agent10-old-dictionary-commercial-clean-source-family-morphology-boundary-preflight-2026-06-05.json",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "timed out before useful output",
+      "next_safe_action": "do not treat scoped diff validation as passed; rerun later only with changed timeout/scope or when shell responsiveness improves"
+    }
+  ],
+  "exact_blockers": [
+    "prior_agent6_morphology_planning_verdict_coverage_not_verified_due_timeout",
+    "no_transform_authorization_now",
+    "candidate_text_export_blocked",
+    "definition_lemma_reader_hint_content_storage_blocked",
+    "answer_eligibility_blocked",
+    "public_runtime_mutation_blocked",
+    "route_writes_blocked",
+    "accepted_text_blocked",
+    "release_action_blocked"
+  ],
+  "next_owner": "Agent 10 to verify prior Agent 6 morphology coverage with bounded exact-field command; Agent 6 only after complete packet coverage is verified.",
+  "stop_condition": "Stop at preflight blocker. Do not route Agent 6, transform, store text, emit source rows, write routes, mutate public/runtime files, or release until prior coverage is verified and a complete exact packet is assembled.",
+  "global_zero_counters": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "route_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

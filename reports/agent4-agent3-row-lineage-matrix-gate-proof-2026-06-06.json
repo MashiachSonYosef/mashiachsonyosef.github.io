@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent3_row_lineage_matrix_gate_proof",
+  "generated_at": "2026-06-06T00:22:00.000Z",
+  "agent": "Agent 4",
+  "target": "Agent 3 old-dictionary candidate-use row lineage matrix",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-row-lineage-matrix-2026-06-06.json",
+  "validator": {
+    "script": "scripts/validate_agent3_old_dictionary_candidate_use_row_lineage_matrix.mjs",
+    "commands": [
+      {
+        "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_row_lineage_matrix.mjs",
+        "timeout_ms": 30000,
+        "result": "passed"
+      },
+      {
+        "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_row_lineage_matrix.mjs reports\\agent3-old-dictionary-candidate-use-row-lineage-matrix-2026-06-06.json",
+        "timeout_ms": 30000,
+        "result": "failed_corrected",
+        "error": "Validator does not accept positional input; use --input=<path>."
+      },
+      {
+        "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_row_lineage_matrix.mjs --input=reports/agent3-old-dictionary-candidate-use-row-lineage-matrix-2026-06-06.json",
+        "timeout_ms": 30000,
+        "result": "passed",
+        "output": "Agent 3 row lineage passed: rows=78 linked=78/78/78/78/78 gaps=0"
+      }
+    ],
+    "extraction_note": {
+      "failed_command": "node - <<'NODE' ...",
+      "result": "failed_corrected",
+      "error": "PowerShell does not support Unix heredoc syntax.",
+      "corrected_method": "PowerShell here-string piped to node -"
+    }
+  },
+  "counts": {
+    "row_lineage_rows": 78,
+    "row_lineage_occurrences": 1461,
+    "continuity_rows_linked": 78,
+    "source_rid_rows_linked": 78,
+    "exact_subset_rows_linked": 78,
+    "boundary_triage_rows_linked": 78,
+    "split_closure_rows_linked": 78,
+    "rows_missing_continuity": 0,
+    "rows_missing_source_rid": 0,
+    "rows_missing_exact_subset": 0,
+    "rows_missing_boundary_triage": 0,
+    "rows_missing_split_closure": 0,
+    "pure_workset_rows": 5,
+    "pure_workset_occurrences": 58,
+    "overlap_workset_rows": 73,
+    "overlap_workset_occurrences": 1403,
+    "blocker_rows": 4,
+    "partition_rows": 2,
+    "source_family_set_rows": 4,
+    "lineage_gap_rows": 0,
+    "source_rid_references": 393,
+    "unique_source_rids": 344,
+    "source_rid_prefix_count": 21,
+    "handoff_artifact_roles": 9,
+    "agent2_queue_pointer_rows": 78,
+    "transform_ready_rows": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0,
+    "public_runtime_mutation": 0,
+    "release_actions": 0
+  },
+  "result": "validated_lineage_matrix_only",
+  "exact_blockers_preserved": [
+    {
+      "code": "commercial_clean_only_missing_future_agent6_candidate_use_boundary_and_morphology_relation",
+      "rows": 5,
+      "occurrences": 58,
+      "partition": "pure_commercial_workset"
+    },
+    {
+      "code": "commercial_clean_plus_blocked_overlap_missing_agent6_source_family_selection_boundary",
+      "rows": 8,
+      "occurrences": 164,
+      "partition": "overlap_workset"
+    },
+    {
+      "code": "commercial_clean_plus_nc_overlap_missing_agent6_source_family_selection_boundary",
+      "rows": 9,
+      "occurrences": 115,
+      "partition": "overlap_workset"
+    },
+    {
+      "code": "triple_overlap_missing_agent6_source_family_selection_boundary",
+      "rows": 56,
+      "occurrences": 1124,
+      "partition": "overlap_workset"
+    }
+  ],
+  "handoff_owner": "Agent 10 for release/package intake; Agent 6 for candidate-use/source-family boundary decisions before any transform or route output.",
+  "stop_condition": "Use this row lineage matrix only to navigate candidate-use planning rows and exact blockers. Do not authorize transform, candidate text export, definition or lemma content, answer eligibility, route writes, source/license acceptance, QA acceptance, public/runtime mutation, accepted text, or release action.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

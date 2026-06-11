@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_definition_workbench_expansion_ceiling_blocker",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Definition Workbench expansion beyond the validated 1000-row sample",
+  "files": {
+    "current_inputs": [
+      ".local-cache/workbench-evidence/token-inventory.json",
+      "data/definitions/hud-route-lookup/manifest.json",
+      "data/definitions/hud-route-lookup/shards/*"
+    ],
+    "pipeline": [
+      "scripts/build_definition_workbench_sample.mjs",
+      "scripts/validate_definition_workbench_sample.mjs"
+    ],
+    "current_validated_ceiling_outputs": [
+      "data/definitions/definition-workbench-sample-1000.json",
+      "reports/definition-workbench-sample-1000-report.md",
+      "reports/agent2-definition-workbench-1000-sample-pipeline-package-2026-06-04.md",
+      "reports/agent2-definition-workbench-1000-sample-pipeline-package-2026-06-04.json"
+    ],
+    "blocker_outputs": [
+      "reports/agent2-definition-workbench-expansion-ceiling-blocker-2026-06-04.md",
+      "reports/agent2-definition-workbench-expansion-ceiling-blocker-2026-06-04.json"
+    ]
+  },
+  "command_run": {
+    "inventory_ceiling_check": "node -e \"const fs=require('fs'); const inv=JSON.parse(fs.readFileSync('.local-cache/workbench-evidence/token-inventory.json','utf8')); const top=Array.isArray(inv.top_tokens)?inv.top_tokens.length:null; console.log(JSON.stringify({top_tokens:top, keys:Object.keys(inv).slice(0,20)},null,2))\"",
+    "result": {
+      "top_tokens": 1000
+    }
+  },
+  "output_artifact": "reports/agent2-definition-workbench-expansion-ceiling-blocker-2026-06-04.json",
+  "counts": {
+    "current_validated_ceiling_rows": 1000,
+    "rows_with_route_cards": 996,
+    "rows_without_route_cards_no_hint_repair_targets": 4,
+    "rows_with_complete_source_license": 996,
+    "multi_answer_rows": 293,
+    "status_counts": {
+      "conflicting": 293,
+      "missing": 4,
+      "proposed_only": 361,
+      "single_answer_source_complete": 342
+    },
+    "review_status_counts": {
+      "unreviewed_machine_sample": 1000
+    },
+    "additional_rows_available_from_current_inventory": 0,
+    "answer_eligibility_emitted": 0,
+    "public_reader_output_emitted": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutations": 0
+  },
+  "validator": {
+    "current_ceiling_command": "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample-1000.json",
+    "current_ceiling_result": "Definition Workbench sample validation passed. Rows: 1000."
+  },
+  "missing_field_blocker": {
+    "id": "missing_larger_token_inventory_workset",
+    "required_to_unblock": [
+      "refreshed .local-cache/workbench-evidence/token-inventory.json or named inventory path with more than 1000 top_tokens",
+      "exact build command using refreshed inventory",
+      "output path",
+      "validator command",
+      "Agent 6 boundary question for larger exact row count",
+      "stop condition"
+    ]
+  },
+  "spark1_handoff": {
+    "current_status": "do_not_rerun_2000_on_unchanged_inventory",
+    "allowed_after": "larger token inventory plus exact command/output/validator/Agent6 boundary"
+  },
+  "agent6_boundary": {
+    "requested_now": false,
+    "future_boundary_limits": [
+      "non-authoritative route-shape / reader-planning evidence only",
+      "review_status=unreviewed_machine_sample",
+      "no review_status=verified",
+      "no Definition authority",
+      "no answer eligibility",
+      "no accepted gloss/text",
+      "no public reader output",
+      "no route-shard edit",
+      "no public/runtime mutation"
+    ]
+  },
+  "stop_condition": "Stop after recording the exact input ceiling blocker for expansion beyond 1000 rows. Continue only when a larger inventory workset or another exact definition/lemma/reader-hint target is supplied.",
+  "what_must_not_be_accepted": [
+    "Definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation"
+  ]
+}

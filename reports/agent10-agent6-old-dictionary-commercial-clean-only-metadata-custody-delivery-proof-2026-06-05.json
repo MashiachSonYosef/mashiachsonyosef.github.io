@@ -1,0 +1,99 @@
+{
+  "artifact_type": "agent10_agent6_old_dictionary_commercial_clean_only_metadata_custody_delivery_proof",
+  "generated_at": "2026-06-05T19:06:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "delivery_target": {
+    "agent": "Agent 6",
+    "thread_id": "019e7f09-a04b-7f30-b36c-87aa8ecaae5d",
+    "submission_id": "019e981e-9d55-7ac1-a756-014f03f1073b",
+    "delivery_state": "queued_for_agent6_boundary_review"
+  },
+  "routed_packet": {
+    "md": "reports/agent10-agent6-ready-old-dictionary-commercial-clean-only-metadata-custody-boundary-packet-2026-06-05.md",
+    "json": "reports/agent10-agent6-ready-old-dictionary-commercial-clean-only-metadata-custody-boundary-packet-2026-06-05.json",
+    "validator": "node scripts\\validate_agent10_old_dictionary_commercial_clean_only_metadata_custody_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-commercial-clean-only-metadata-custody-boundary-packet-2026-06-05.json",
+    "validator_result": "passed"
+  },
+  "source_artifacts": {
+    "agent1_custody_md": "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-2026-06-05.md",
+    "agent1_custody_json": "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-2026-06-05.json",
+    "agent1_validation_json": "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-validation-result-2026-06-05.json",
+    "agent6_source_family_overlap_verdict": "reports/agent6-old-dictionary-source-family-overlap-matrix-boundary-verdict-2026-06-05.md",
+    "agent6_ref_sample_gap_verdict": "reports/agent6-old-dictionary-public-domain-ref-sample-gap-boundary-verdict-2026-06-05.md"
+  },
+  "review_scope": "nonpublic_commercial_clean_only_metadata_custody_planning_evidence_only",
+  "counts": {
+    "commercial_clean_only_rows": 18,
+    "commercial_clean_only_occurrences": 494,
+    "source_family": "Jastrow Dictionary",
+    "jastrow_only_rows": 18,
+    "rows_with_nc_overlap": 0,
+    "rows_with_blocked_overlap": 0,
+    "rows_with_refs": 17,
+    "occurrences_with_refs": 476,
+    "rows_without_refs": 1,
+    "occurrences_without_refs": 18,
+    "rid_total": 22,
+    "headword_total": 22
+  },
+  "lane_split": {
+    "commercial_clean_candidate": {
+      "rows": 18,
+      "occurrences": 494
+    },
+    "noncommercial_educational_candidate": {
+      "rows": 0,
+      "occurrences": 0
+    },
+    "metadata_or_link_only": {
+      "rows": 0,
+      "occurrences": 0
+    },
+    "blocked_or_needs_review": {
+      "rows": 0,
+      "occurrences": 0
+    }
+  },
+  "agent6_review_question": "Pass/warn/block whether the exact Agent 1 commercial-clean-only metadata custody artifact may be carried as non-public package-assembly planning evidence only for the 18 Jastrow-only commercial-clean rows / 494 occurrences.",
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now_in_source_artifact": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "highest_permissible_claim": "Agent 10 routed the old-dictionary commercial-clean-only metadata custody boundary packet to Agent 6 for non-public planning-only boundary review.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "source-family selection acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export permission",
+    "release action"
+  ],
+  "stop_condition": "Wait for Agent 6 exact verdict artifact path or exact blocker before carrying this metadata custody artifact into source-family selection, candidate use, transform, source-row emission, candidate text, output, public/runtime, answer, definition, export, or release package steps."
+}

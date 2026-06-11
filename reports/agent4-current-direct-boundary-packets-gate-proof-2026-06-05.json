@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_current_direct_boundary_packets_gate_proof",
+  "generated_at": "2026-06-05T12:10:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "current-direct-boundary-packets-usage-navigation-and-cc-license-lanes",
+  "status": "validators_passed_boundary_packets_only",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, usage-as-definition, runtime, publication, product/data, answer, accepted gloss/text, public reader output, or release acceptance",
+  "inputs": [
+    {
+      "path": "reports/agent10-agent6-current-direct-boundary-packets-delivery-proof-2026-06-05.json",
+      "sha256": "e34dcdd7002acefa6a7d77a4821ee709fa2836ffdd39118d741fa0b843c8d8ec",
+      "artifact_type": "agent10_agent6_current_direct_boundary_packets_delivery_proof"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-definition-workbench-usage-navigation-boundary-packet-2026-06-04.json",
+      "sha256": "e58eeccdbf11ab93ee5fc7718d2a29a939c1820fcd0442ed5342bbc956140bf4",
+      "artifact_type": "agent10_agent6_ready_boundary_packet"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-workbench-cc-by-sa-share-alike-boundary-packet-2026-06-04.json",
+      "sha256": "aea005cafb53ed54be8250ddfd26905ab16b7de4f51219aa17b0ad94121dcce7",
+      "artifact_type": "agent10_agent6_ready_boundary_packet"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-workbench-cc-by-attribution-boundary-packet-2026-06-04.json",
+      "sha256": "c8cdd9608283fccaabf0e5f855dcda790dcc79a02021c49eb8acd27c5f9bedfd",
+      "artifact_type": "agent10_agent6_ready_boundary_packet"
+    },
+    {
+      "path": "data/definitions/definition-workbench-usage-occurrence-links.json",
+      "sha256": "ed933146c7d82439108e9a2997daa866da40bd0828d41ad57688296b682d1a22",
+      "artifact_type": "definition_workbench_usage_occurrence_links"
+    },
+    {
+      "path": "data/definitions/definition-workbench-usage-route-resolution.json",
+      "sha256": "b277ee95e060ed3d0020105e2829e7e07f4e5e4f5e63b522ca5b54f30d32e8ff",
+      "artifact_type": "definition_workbench_usage_route_resolution"
+    },
+    {
+      "path": "data/definitions/definition-workbench-usage-consumer-manifest.json",
+      "sha256": "b05caf491b42402ad9211b700e2f73303efd206014ea898673ca95a087ce7845",
+      "artifact_type": "definition_workbench_usage_consumer_manifest"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_workbench_cc_boundary_packets.mjs",
+      "result": "passed",
+      "stdout_summary": "validated CC-BY, CC-BY-SA, and full source-name custody boundary packets"
+    },
+    {
+      "command": "node scripts\\validate_agent3_usage_state.mjs reports\\agent3-state.json",
+      "result": "passed",
+      "stdout_summary": "evidence artifacts 95/95; validators 49/49; smoke failed 0"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_usage_queue_ready_packet.mjs data\\definitions\\definition-workbench-usage-queue-ready-packet.json",
+      "result": "passed",
+      "stdout_summary": "required fields 10/10; evidence artifacts 53/53; submitted 0"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_usage_agent6_packet.mjs data\\definitions\\definition-workbench-usage-agent6-packet.json",
+      "result": "passed",
+      "stdout_summary": "proof rows 12; route IDs 1; absent seeds 1"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_usage_occurrence_links.mjs data\\definitions\\definition-workbench-usage-occurrence-links.json",
+      "result": "passed",
+      "stdout_summary": "occurrence links 49; source refs 38; reader-facing 0"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_usage_route_resolution.mjs data\\definitions\\definition-workbench-usage-route-resolution.json",
+      "result": "passed",
+      "stdout_summary": "route IDs 1; unresolved 0; rows 49"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_usage_consumer_manifest.mjs data\\definitions\\definition-workbench-usage-consumer-manifest.json",
+      "result": "passed",
+      "stdout_summary": "manifest entries 16; data artifacts 16/16; validators 16/16"
+    }
+  ],
+  "counts": {
+    "usage_concordance_rows": 2390,
+    "usage_supported_rows": 339,
+    "usage_candidate_rows": 1351,
+    "usage_weak_rows": 700,
+    "audit_only_ambiguous_rows": 2064,
+    "occurrence_link_rows": 49,
+    "occurrence_link_rows_with_complete_metadata": 49,
+    "source_refs": 38,
+    "route_ids": 1,
+    "unresolved_route_ids": 0,
+    "proof_occurrence_rows": 12,
+    "declared_cc_by_sa_partition_count": 37,
+    "declared_cc_by_sa_source_row_count": 5581,
+    "sampled_cc_by_sa_source_row_count": 4436,
+    "declared_cc_by_partition_count": 5,
+    "declared_cc_by_source_row_count": 625,
+    "sampled_cc_by_source_row_count": 239,
+    "manifest_entries": 16,
+    "data_artifacts_exist": 16,
+    "validator_scripts_exist": 16,
+    "prohibited_consumer_uses": 10,
+    "future_translation_output_blocked_rows": 49,
+    "observed_usage_only_rows": 49,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "semantic_independence_claim_allowed_rows": 0,
+    "answer_authority_allowed_rows": 0,
+    "route_ranking_allowed_rows": 0,
+    "visible_answer_selection_allowed_rows": 0
+  },
+  "zero_mutation_counters": {
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "route_jsonl_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "result": "target | current-direct-boundary-packets-usage-navigation-and-cc-license-lanes | files in packet | commands passed: seven declared validators for CC boundary packets and Definition Workbench usage/navigation artifacts | counts: 2390 usage concordance rows, 49 occurrence links, 38 source refs, 1 route ID, 0 unresolved route IDs, 37 CC-BY-SA partitions / 5581 source rows, 5 CC-BY partitions / 625 source rows, 16 manifest entries, 0 reader-facing/route-payload/forbidden-authority rows | result: validators passed as boundary/planning evidence only | blocker if any: Agent6 verdict still required for any storage/display/export/answer/Definition/public-runtime/route/publication use; usage rows remain observed-usage/navigation evidence only | next handoff: Agent10/Agent6 boundary queue only | stop condition: do not rerun unless delivered packets, usage artifacts, CC boundary packets, or validators change",
+  "blocker_if_any": "agent6_boundary_required_before_any_storage_display_export_answer_definition_public_runtime_route_publication_or_accepted_text_use",
+  "handoff_owner": "Agent 10 release/package intake; Agent 6 boundary authority for future use decisions.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not use these rows as reader-facing Definition, route ranking, visible answer selection, public/runtime output, accepted text, or release action."
+}

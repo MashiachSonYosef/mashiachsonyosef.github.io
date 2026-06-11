@@ -128,6 +128,37 @@ Agent 3 target-specific blocker:
 
 Therefore a pilot answer-claim JSONL with `answer_eligible=true`, `answer_role=answer`, `candidate_status=accepted`, `boundary_safe`, and complete source/license/citation rows requires a new authorized transform. Agent 3's subset should be the first input to that transform, but it is not itself sufficient evidence to emit answer rows.
 
+## 2026-06-04 Agent 7 Delivery Rerun
+
+This blocker was rechecked under Agent 7 direct bounded worker prompt delivery for Orot fill priority.
+
+Commands run:
+
+```powershell
+node scripts\build_orot_agent2_pilot_answer_claims.mjs --dry-run
+node scripts\validate_agent2_orot_pilot_answer_claims.mjs
+Test-Path .local-cache\definition-routes\orot-agent2-pilot-answer-claims.jsonl
+git diff --check -- reports\agent2-orot-pilot-answer-claims-2026-06-03.md reports\agent2-orot-pilot-answer-claims-2026-06-03.json reports\agent2-orot-fill-producing-transform-spec-2026-06-03.md
+```
+
+Rerun result:
+
+- Dry-run status: `zero_safe_output_blocker`.
+- Emitted answer rows: `0`.
+- Blocked rows: `100`.
+- Target rows / occurrences: `100` / `1960`.
+- Source-clean rows: `87`.
+- Source-blocked rows: `13`.
+- Route cards inspected: `1897`.
+- Route answer cards: `0`.
+- Requested JSONL exists after dry run: `false`.
+- Validator result: `Agent 2 Orot pilot answer claims validation passed for reports/agent2-orot-pilot-answer-claims-2026-06-03.json.`
+- `git diff --check` produced no whitespace errors on the scoped report paths.
+
+Exact blocker preserved: the current route-card surface does not provide route-store-consumable answer rows. All `100` target rows remain blocked by `missing_exact_upstream_definition_claim`, `current_route_cards_are_non_answer`, and `existing_cards_are_evidence_or_form_reference`; `13` rows also remain blocked by missing Orot lexical/source linkage.
+
+No pilot answer/gloss JSONL was emitted because doing so would require converting evidence/form-reference cards into answer rows without the explicit source-claim rejoin, morphology/prefix safety, and homograph safety required by Agent 6's Orot fill evidence requirements.
+
 ## Required Transform Contract
 
 A future fill-producing transform should be a new dry-run local pipeline script, not a manual report edit. Proposed path:

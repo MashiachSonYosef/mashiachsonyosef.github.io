@@ -1,6 +1,6 @@
 # Agent 10 Live Public Old-HUD Guard
 
-Generated: 2026-06-03T09:20:58.015Z
+Generated: 2026-06-03T09:28:46.207Z
 
 ## Boundary
 
@@ -14,7 +14,7 @@ Generated: 2026-06-03T09:20:58.015Z
 2. Old HUD exposure: NO
 3. Pages left public: `/`, `/orot/`, `/tanakh/deuteronomy/`, `/tanakh/genesis/`
 4. Pages quarantined/checked: `/hud-preview/`, `/hud-preview/routes/`, `/reader-workbench/`, `/sample/`, `/old-hud/`
-5. Commit/deploy id: `416a7cfe8c0ce0ff6e25f236541b0ff94a253430`
+5. Commit/deploy id: `39f75f4eaa24a74d9ba5fe9f59032ebdee996a2e`
 6. Remaining blocker: None for this bounded static live guard. Browser-click/runtime acceptance remains outside this packet.
 
 ## Summary

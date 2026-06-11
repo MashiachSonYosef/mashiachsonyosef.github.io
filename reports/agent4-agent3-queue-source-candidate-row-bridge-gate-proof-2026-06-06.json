@@ -1,0 +1,69 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T11:12:30.000Z",
+  "target": "Agent 3 queue/source candidate-row bridge gate proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-queue-source-candidate-row-bridge-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-recent-intake-snapshot-harness-gap-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_queue_source_candidate_row_bridge.mjs --input=reports\\agent3-old-dictionary-candidate-use-queue-source-candidate-row-bridge-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "passed"
+    }
+  ],
+  "process_timeouts": [
+    {
+      "command": "Get-Content scripts\\validate_agent3_old_dictionary_candidate_use_queue_source_candidate_row_bridge.mjs -TotalCount 220",
+      "timeout_ms": 30000,
+      "partial_output_or_artifact": "Partial validator source output showed the --input contract and fixed expected counts before timeout.",
+      "next_safe_action": "Run the named validator directly with explicit --input and timeout instead of reading the full source."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-queue-source-candidate-row-bridge-gate-proof-2026-06-06.json",
+  "paired_markdown_path": "reports/agent4-agent3-queue-source-candidate-row-bridge-gate-proof-2026-06-06.md",
+  "evidence_artifacts": [
+    "reports/agent4-changed-input-selection-after-recent-intake-snapshot-harness-gap-2026-06-06.json",
+    "reports/agent3-old-dictionary-candidate-use-queue-source-candidate-row-bridge-2026-06-06.json"
+  ],
+  "counts": {
+    "candidate_count": 1,
+    "input_candidate_rows": 78,
+    "input_candidate_occurrences": 1461,
+    "candidate_bridge_rows": 78,
+    "queue_source_subchain_linked_candidate_rows": 65,
+    "outside_queue_source_subchain_candidate_rows": 13,
+    "queue_source_blocker_rows_linked": 363,
+    "queue_source_pair_keys_linked_unique": 363,
+    "source_rid_missing_from_queue_source_rows": 1,
+    "exact_blocker_rows": 2,
+    "acceptance_claims": 0,
+    "public_runtime_mutation": 0,
+    "accepted_text_rows": 0
+  },
+  "result": "validated_agent3_queue_source_candidate_row_bridge_gate",
+  "exact_blockers": [
+    {
+      "code": "candidate_row_bridge_navigation_only",
+      "details": "The bridge links candidate rows to queue/source blocker rows only; it does not supply source citations, transform authority, answer eligibility, or release authority.",
+      "next_safe_action": "Keep candidate rows blocked until the upstream source/citation and Agent 6 boundary requirements are separately satisfied."
+    },
+    {
+      "code": "one_source_rid_missing_from_queue_source_subchain",
+      "details": "Validator-confirmed count: source_rid_missing_from_queue_source_rows=1.",
+      "next_safe_action": "Upstream Agent 3/Agent 10 should treat this as a navigation/coverage blocker, not as acceptance evidence."
+    }
+  ],
+  "handoff_owner": "Agent 10 for release/package intake; Agent 3 for candidate-row bridge contents; Agent 6 only for acceptance-sensitive boundary review.",
+  "stop_condition": "Stop after validating the selected candidate bridge artifact, writing this Agent 4 proof packet, and validating this proof packet.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-04T00:13:54.642Z",
+  "artifact_type": "agent1_source_custody_manifest_remediation_queue_candidate",
+  "source_verdict": "reports/agent6-agent1-source-custody-followup-packets-verdict-2026-06-02.md",
+  "requested_queue_item": {
+    "request_id": "agent6-agent1-source-custody-manifest-remediation-review",
+    "submitted_by": "Agent 5",
+    "agent1_evidence_origin": "Agent 1 evidence packet for Agent 5 relay / Agent 6 review",
+    "gate": "source_provenance_custody_gate",
+    "scope": "Packet B manifest-remediation evidence after Agent 6 preserved the missing-manifest blocker",
+    "status": "candidate_for_agent5_queue_relay_awaiting_agent6_review",
+    "priority": 0,
+    "evidence_artifacts": [
+      "reports/agent6-agent1-source-custody-followup-packets-verdict-2026-06-02.md",
+      "reports/agent1-source-custody-manifest-remediation-packet.md",
+      "reports/agent1-source-custody-manifest-remediation-packet.json",
+      "reports/agent1-source-custody-manifest-remediation-validator-result.json",
+      "reports/agent1-source-provenance-custody-validator-result.json",
+      "reports/agent1-agent6-source-custody-decision-packet.json",
+      "reports/agent1-state.md",
+      "scripts/build_agent1_source_custody_manifest_remediation_packet.mjs",
+      "scripts/validate_agent1_source_custody_manifest_remediation_packet.mjs",
+      "scripts/build_agent1_source_custody_manifest_remediation_queue_candidate.mjs"
+    ],
+    "requested_verdict": "pass_warn_block_packet_b_manifest_remediation_evidence_only",
+    "claimed_boundary": "Agent 1 generated and validated lexical manifests for the six Packet B sources only. This resolves the missing-manifest evidence gap but does not accept source/provenance custody, approve source-file tracking, stage, commit, render, publish, release downstream artifacts, or accept public/runtime state. Publication remains blocked_no_render.",
+    "known_risks": [
+      "The six remediated sources are still untracked source files and remain source/provenance-blocked until Agent 6 dockets their custody disposition.",
+      "The generated lexical manifests and chunks are downstream artifacts; their presence does not approve source tracking or downstream publication.",
+      "Packet A tracking-review candidates and Packet C license-label normalization remain separate lanes and are not accepted by this remediation candidate.",
+      "Agent 1 worker evidence and this queue candidate are not Agent 6 acceptance."
+    ],
+    "what_changed_since_last_agent6_ruling": "Agent 6 preserved Packet B as a blocker pending manifest remediation or exclusion. Agent 1 generated and validated the six missing lexical manifests without broad rendering. Current custody validation now reports 0 missing lexical manifest source files, 23 track-candidate source files, 248 blocked downstream direct paths, and 183 blocked content-reference source rows.",
+    "what_must_not_be_accepted": [
+      "source/provenance custody",
+      "source/provenance acceptance",
+      "source publication",
+      "source-file tracking approval",
+      "source-file staging, commit, or merge",
+      "downstream direct artifact acceptance",
+      "downstream content-reference acceptance",
+      "QA acceptance",
+      "public/runtime acceptance",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "product/data acceptance",
+      "product/data gate acceptance",
+      "publication readiness",
+      "future publication support",
+      "translation output",
+      "accepted translation text"
+    ],
+    "next_agent6_action": "Issue a dated pass/warn/block verdict on Packet B manifest-remediation evidence only, preserving source/provenance and downstream blocking unless Agent 6 explicitly narrows it."
+  },
+  "current_packet_summary": {
+    "remediation": {
+      "remediated_source_files": 6,
+      "generated_manifest_files": 6,
+      "current_missing_manifest_source_files": 0,
+      "current_track_candidate_source_files": 23,
+      "current_blocked_downstream_direct_paths": 248,
+      "current_blocked_content_reference_source_rows": 183,
+      "remediated_sources_blocked_downstream_direct_paths": 36,
+      "remediated_sources_content_reference_source_rows": 6,
+      "remediated_sources_unique_content_reference_paths": 1,
+      "live_untracked_sources": 23
+    },
+    "custody_validator": {
+      "ok": true,
+      "live_untracked_sources": 23,
+      "live_modified_tracked_sources": 6,
+      "untracked_license_unit_counts": {
+        "Public Domain": 10727,
+        "CC-BY": 74683
+      },
+      "missing_lexical_manifest_gaps": 0,
+      "blocked_downstream_direct_paths": 248,
+      "blocked_downstream_content_reference_rows": 183
+    }
+  },
+  "remediated_source_paths": [
+    "data/sources/machzor-rosh-hashanah-ashkenaz-linear.json",
+    "data/sources/machzor-rosh-hashanah-ashkenaz.json",
+    "data/sources/machzor-yom-kippur-ashkenaz-linear.json",
+    "data/sources/selichot-nusach-lita-linear.json",
+    "data/sources/shabbat-siddur-sefard-linear.json",
+    "data/sources/siddur-sefard.json"
+  ],
+  "generated_manifest_paths": [
+    "data/lexical/machzor-rosh-hashanah-ashkenaz-linear.manifest.json",
+    "data/lexical/machzor-rosh-hashanah-ashkenaz.manifest.json",
+    "data/lexical/machzor-yom-kippur-ashkenaz-linear.manifest.json",
+    "data/lexical/selichot-nusach-lita-linear.manifest.json",
+    "data/lexical/shabbat-siddur-sefard-linear.manifest.json",
+    "data/lexical/siddur-sefard.manifest.json"
+  ],
+  "boundary": {
+    "agent1_status": "evidence-ready / awaiting-Agent-6",
+    "publication_state": "blocked_no_render",
+    "source_provenance_acceptance_claimed": false,
+    "source_file_tracking_approval_claimed": false,
+    "source_file_staging_claimed": false,
+    "public_runtime_acceptance_claimed": false,
+    "route_publication_support_claimed": false,
+    "definition_authority_claimed": false,
+    "page_render_acceptance_claimed": false
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "target": {
+    "work": "old dictionary excluded row license-lane reaudit",
+    "workset": "old-dictionary-license-lane-export-partitions",
+    "source_artifact": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+    "commercial_clean_source_families": 3,
+    "commercial_clean_rows": 500,
+    "commercial_clean_occurrences": 10940,
+    "noncommercial_educational_source_families": 1,
+    "noncommercial_educational_rows": 214,
+    "noncommercial_educational_occurrences": 4444,
+    "metadata_or_link_only_source_families": 0,
+    "metadata_or_link_only_rows": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "blocked_or_needs_review_rows": 222,
+    "blocked_or_needs_review_occurrences": 4435
+  },
+  "inputs": [
+    "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json"
+  ],
+  "command_or_script": {
+    "build": "node scripts/build_agent1_old_dictionary_license_lane_export_partitions.mjs",
+    "current_status": "runnable"
+  },
+  "outputs": {
+    "json": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+    "markdown": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.md"
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_old_dictionary_license_lane_export_partitions.mjs",
+    "contract_validator": "node scripts/validate_agent1_spark1_old_dictionary_license_lane_export_partitions_contract.mjs",
+    "current_status": "validated"
+  },
+  "required_classifications": [
+    "commercial_clean_candidate",
+    "noncommercial_educational_candidate",
+    "metadata_or_link_only",
+    "blocked_or_needs_review"
+  ],
+  "expected_partitions": {
+    "commercial_clean_candidate": {
+      "source_family_count": 3,
+      "row_count": 500,
+      "occurrence_count": 10940,
+      "source_families": [
+        "Jastrow Dictionary",
+        "BDB Dictionary",
+        "BDB Aramaic Dictionary"
+      ]
+    },
+    "noncommercial_educational_candidate": {
+      "source_family_count": 1,
+      "row_count": 214,
+      "occurrence_count": 4444,
+      "source_families": [
+        "Klein Dictionary"
+      ],
+      "derived_from_nc": true,
+      "commercial_export_allowed": false,
+      "attribution_required": true,
+      "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+      "corpus_contamination": false
+    },
+    "metadata_or_link_only": {
+      "source_family_count": 0,
+      "row_count": 0,
+      "occurrence_count": 0
+    },
+    "blocked_or_needs_review": {
+      "source_family_count": 1,
+      "row_count": 222,
+      "occurrence_count": 4435,
+      "source_families": [
+        "BDB Augmented Strong"
+      ],
+      "missing_evidence_required": true
+    }
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true,
+    "commercial_export_allowed_now": false,
+    "public_emit_now": false,
+    "answer_eligible_now": false
+  },
+  "package_owner": "Agent 1",
+  "agent6_boundary_need": "Agent 6/legal boundary is required before source/license custody acceptance, candidate text export, public display, answer use, or definition text use. NC/Klein remains separate educational lane; BDB Augmented Strong remains blocked/review until independent custody evidence exists.",
+  "spark1_stop_condition": "output plus validator pass, or exact missing input/output/schema/validator/count blocker",
+  "what_must_not_be_accepted": [
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "QA acceptance",
+    "public/runtime mutation",
+    "Definition authority",
+    "answer acceptance",
+    "accepted gloss/text",
+    "publication readiness",
+    "NC commercial authorization",
+    "candidate text export authorization"
+  ]
+}

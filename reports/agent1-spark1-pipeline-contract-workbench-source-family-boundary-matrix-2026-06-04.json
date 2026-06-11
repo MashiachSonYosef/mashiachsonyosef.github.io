@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "target": {
+    "work": "broad workbench evidence",
+    "workset": "workbench-source-family-boundary-matrix",
+    "input": "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.json",
+    "source_family_count": 1,
+    "source_name_partition_count": 351,
+    "source_row_count": 105747
+  },
+  "inputs": [
+    "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.json"
+  ],
+  "command_or_script": {
+    "build": "node scripts/build_agent1_workbench_source_family_boundary_matrix.mjs",
+    "current_status": "runnable"
+  },
+  "outputs": {
+    "json": "reports/agent1-workbench-source-family-boundary-matrix-2026-06-04.json",
+    "markdown": "reports/agent1-workbench-source-family-boundary-matrix-2026-06-04.md"
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_workbench_source_family_boundary_matrix.mjs",
+    "contract_validator": "node scripts/validate_agent1_spark1_workbench_source_family_boundary_matrix_contract.mjs",
+    "current_status": "validated"
+  },
+  "package_owner": "Agent 1",
+  "agent6_boundary_need": "Agent 6/release boundary is required before any source-family source/license custody acceptance, public display, answer use, definition text use, or export behavior.",
+  "spark1_stop_condition": "output plus validator pass, or exact missing input/output/schema/validator/count blocker",
+  "what_must_not_be_accepted": [
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "QA acceptance",
+    "public/runtime mutation",
+    "Definition authority",
+    "answer acceptance",
+    "accepted gloss/text",
+    "publication readiness",
+    "NC commercial authorization",
+    "export authorization"
+  ]
+}

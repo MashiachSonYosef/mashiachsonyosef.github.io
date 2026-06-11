@@ -1,0 +1,95 @@
+{
+  "generated_at": "2026-06-02T22:20:00-04:00",
+  "agent_lane": "Agent 10 assistant / auxiliary IT-release support",
+  "workspace": "C:\\Users\\owner\\Documents\\translations",
+  "scope": "Orot Stage A reader-hint preflight evidence only",
+  "status": "warn_preflight",
+  "not_acceptance": [
+    "QA acceptance",
+    "source/provenance custody",
+    "source/provenance acceptance",
+    "source publication",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "Definition authority",
+    "usage-as-definition authority",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss",
+    "accepted translation text"
+  ],
+  "inputs": [
+    "reports/agent10-orot-fill-expansion-plan-2026-06-03.md",
+    "reports/agent1-orot-fill-source-row-evidence-2026-06-03.md",
+    "reports/agent2-orot-definition-fill-plan-2026-06-03.md",
+    "reports/agent4-orot-fill-runtime-gate-2026-06-03.md",
+    ".codex-tmp/hud-deploy-live/data/public-hud/orot/reader-hints.json",
+    "https://mashiachsonyosef.github.io/data/public-hud/orot/reader-hints.json?cb=agent10-assistant-orot-preflight-20260602"
+  ],
+  "local_repo_public_hud_orot_path_exists": false,
+  "staged_reader_hints": {
+    "path": ".codex-tmp/hud-deploy-live/data/public-hud/orot/reader-hints.json",
+    "bytes": 6049122,
+    "sha256": "96df95b7f5db162e44a7bc8fafcfda0c137e82d1110c261154a7975219529a83",
+    "work_id": "orot",
+    "publication_status": null,
+    "reader_surface_policy": null,
+    "hint_policy": "reader_hint_not_translation_not_definition_authority",
+    "counts": {
+      "occurrence_token_count": 59806,
+      "unique_token_id_count": 17307,
+      "existing_hint_count": 5720,
+      "added_hint_count": 3002,
+      "final_hint_count": 8722,
+      "existing_hint_occurrences": 33151,
+      "added_hint_occurrences": 6847,
+      "final_hint_occurrences": 39998
+    }
+  },
+  "live_reader_hints": {
+    "url": "https://mashiachsonyosef.github.io/data/public-hud/orot/reader-hints.json?cb=agent10-assistant-orot-preflight-20260602",
+    "status_code": 200,
+    "etag": "\"6a1f8fa7-5c4d62\"",
+    "last_modified": "Wed, 03 Jun 2026 02:21:27 GMT",
+    "cache_control": "max-age=600",
+    "content_length": 6049122,
+    "bytes": 6049122,
+    "sha256": "96df95b7f5db162e44a7bc8fafcfda0c137e82d1110c261154a7975219529a83",
+    "work_id": "orot",
+    "publication_status": null,
+    "reader_surface_policy": null,
+    "hint_policy": "reader_hint_not_translation_not_definition_authority",
+    "hint_count": 8722,
+    "policy_or_source_missing_rows": 0
+  },
+  "denylist": [
+    "lex-aph-h639",
+    "lex-mashiach-h4899",
+    "lex-ruach-h7307",
+    "lex-yhwh-h3068",
+    "curated|lex-aph-h639",
+    "curated|lex-mashiach-h4899",
+    "curated|lex-ruach-h7307",
+    "curated|lex-yhwh-h3068"
+  ],
+  "denylist_hits": {
+    "staged_reader_hints": 0,
+    "live_reader_hints": 0
+  },
+  "findings": [
+    "The staged deploy-cache Orot reader-hints artifact and the live Orot reader-hints artifact are byte-identical.",
+    "The artifact appears to be a partial Stage A expansion: 5,720 existing hints plus 3,002 added hints equals 8,722 final hints, covering 39,998 occurrences.",
+    "The artifact does not reach the 10,704-token lookup-candidate ceiling recorded by Agent 10 and Agent 2.",
+    "The artifact contains zero string hits for the four Agent 1 blocked IDs and the four curated blocked row prefixes.",
+    "All live hint rows scanned preserve source_id, source_url, license, license_url, candidate_status=candidate_not_authority, and status=reader_hint_not_translation.",
+    "The artifact is missing top-level publication_status and reader_surface_policy fields, so it should remain WARN until the generator/package is hardened to preserve the current reader-surface boundary contract.",
+    "The committed local checkout still lacks data/public-hud/orot; current proof is against .codex-tmp/hud-deploy-live and the live URL."
+  ],
+  "recommended_next_action": [
+    "Do not treat this as a clean Stage A pass yet.",
+    "Patch or surface the Orot reader-hint export path so generated reader-hints.json includes top-level publication_status=not_a_translation and reader_surface_policy not_translation/not_accepted_gloss/not_definition_truth booleans.",
+    "Rerun the denylist/source-license proof against the regenerated artifact.",
+    "Then route Agent 4 runtime gate only after the boundary fields and zero denylist hits are present in the generated package."
+  ]
+}

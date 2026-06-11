@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T22:47:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent2-old-dictionary-transform-readiness-restore-work",
+  "changed_input_artifact": "reports/agent2-old-dictionary-transform-readiness-restore-work-2026-06-05.json",
+  "validator_proof_commands": [
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_transform_readiness_restore_work.mjs reports\\agent2-old-dictionary-transform-readiness-restore-work-2026-06-05.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "Agent2 old-dictionary transform readiness restore-work validation passed. Source-family rows: 500; blockers: 6; transform rows allowed: 0."
+    },
+    {
+      "command": "node --check scripts\\validate_agent2_old_dictionary_transform_readiness_restore_work.mjs",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "syntax check passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent2-transform-readiness-restore-work-gate-proof-2026-06-05.md",
+  "files": [
+    "reports/agent2-old-dictionary-transform-readiness-restore-work-2026-06-05.json",
+    "reports/agent10-direct-release-package-intake-refresh-2026-06-05q.json",
+    "scripts/validate_agent2_old_dictionary_transform_readiness_restore_work.mjs"
+  ],
+  "counts": {
+    "source_family_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_clean_source_family_count": 3,
+    "commercial_clean_rows": 500,
+    "commercial_clean_occurrences": 10940,
+    "commercial_clean_transform_allowed_now": 0,
+    "noncommercial_educational_source_family_count": 1,
+    "noncommercial_educational_rows": 214,
+    "noncommercial_educational_occurrences": 4444,
+    "noncommercial_educational_transform_allowed_now": 0,
+    "metadata_or_link_only_rows": 0,
+    "metadata_or_link_only_occurrences": 0,
+    "blocked_or_needs_review_source_family_count": 1,
+    "blocked_or_needs_review_rows": 222,
+    "blocked_or_needs_review_occurrences": 4435,
+    "blocked_or_needs_review_transform_allowed_now": 0,
+    "candidate_text_rows_consumed_now": 0,
+    "definition_lemma_reader_hint_rows_consumed_now": 0,
+    "exact_blockers": 6,
+    "transform_rows_allowed_now": 0
+  },
+  "exact_blockers": [
+    "old-dictionary-excluded-row-license-lane-reaudit::bdb-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation",
+    "old-dictionary-excluded-row-license-lane-reaudit::bdb-aramaic-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation",
+    "old-dictionary-excluded-row-license-lane-reaudit::jastrow-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation",
+    "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary::missing_exact_agent6_nc_boundary_no_commercial_export_authorization",
+    "Agent 6/public boundary before any display/storage/public/answer/export behavior",
+    "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong::missing_independent_source_license_custody_basis"
+  ],
+  "handoff_owner": {
+    "commercial_clean": "Agent 10 release/package intake; Agent 6 exact row/subset boundary + agent6_morphology_relation_status",
+    "noncommercial_educational": "Agent 1 for NC lane packet; Agent 6 for exact NC row/subset boundary",
+    "blocked_or_needs_review": "Agent 1 for source/license/custody evidence discovery; Agent 6 for boundary if evidence appears"
+  },
+  "command_timeout_records": [
+    {
+      "command": "Get-ChildItem -Path reports -File | Sort-Object LastWriteTime -Descending | Select-Object -First 70 LastWriteTime,Name | Format-Table -AutoSize",
+      "timeout_ms": 30000,
+      "result": "process_timeout",
+      "partial_output_or_artifact": "",
+      "next_safe_action": "Used narrower report filename probes instead of broad report listing."
+    },
+    {
+      "command": "git status --short",
+      "timeout_ms": 30000,
+      "result": "process_timeout",
+      "partial_output_or_artifact": "",
+      "next_safe_action": "Skipped repo-wide status for this bounded proof; no staging, commit, reset, render, or mutation was performed."
+    },
+    {
+      "command": "Test-Path reports\\agent10-direct-release-package-intake-refresh-2026-06-05p.json; Test-Path reports\\agent2-old-dictionary-transform-reaudit-boundary-blocker-2026-06-05.json",
+      "timeout_ms": 10000,
+      "result": "process_timeout",
+      "partial_output_or_artifact": "",
+      "next_safe_action": "Used direct Get-Content on current candidate artifacts."
+    },
+    {
+      "command": "Get-ChildItem scripts -File -Filter '*transform*readiness*restore*.mjs' | Select-Object -ExpandProperty Name",
+      "timeout_ms": 10000,
+      "result": "process_timeout",
+      "partial_output_or_artifact": "",
+      "next_safe_action": "Authored exact validator for the discovered restore-work artifact."
+    }
+  ],
+  "hashes": {
+    "agent2_transform_readiness_restore_work_sha256": "54a0256c25d6edd4c7fbdb1c7ca325bb275510b8e5b46c0723d83052e2a8b3e8",
+    "agent10_refresh_q_sha256": "605ce7b7c8ca752c3397a29bc1a19e267a12ea788f6f74f1382ca7d973835ccf",
+    "validator_sha256": "37b6ec2a2fc6a8caa3f4e5a74d5a82afac732389744f3e3e8987ce12c5e91938"
+  },
+  "result": "target | agent2-old-dictionary-transform-readiness-restore-work | changed input/artifact | reports/agent2-old-dictionary-transform-readiness-restore-work-2026-06-05.json | validator/proof command with timeout | node scripts\\validate_agent2_old_dictionary_transform_readiness_restore_work.mjs reports\\agent2-old-dictionary-transform-readiness-restore-work-2026-06-05.json, timeout 30000 ms, passed | output artifact path | reports/agent4-agent2-transform-readiness-restore-work-gate-proof-2026-06-05.md/json | exact blockers | six blockers listed above | handoff owner | Agent10/Agent6 for commercial-clean, Agent1/Agent6 for NC and blocked/review | stop condition | no Agent2 definition/lemma/reader-hint content, candidate text, answer/public/runtime/route/export/release step until exact Agent6 boundary verdict, approved morphology relation, and required source/license/custody evidence are provided",
+  "stop_condition": "No Agent 2 definition/lemma/reader-hint content, candidate text, answer/public/runtime/route/export/release step until exact Agent 6 boundary verdict artifacts, approved morphology relation, and required source/license/custody evidence are provided.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

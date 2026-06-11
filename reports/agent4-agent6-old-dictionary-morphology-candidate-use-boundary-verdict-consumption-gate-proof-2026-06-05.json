@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent6-old-dictionary-morphology-candidate-use-boundary-verdict-consumption",
+  "changed_package_input": "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json",
+  "files": [
+    "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json",
+    "reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json",
+    "scripts/validate_agent6_old_dictionary_morphology_candidate_use_boundary_verdict.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent6_old_dictionary_morphology_candidate_use_boundary_verdict.mjs reports\\agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Agent6 old-dictionary morphology candidate-use boundary verdict validation passed. Rows: 78; occurrences: 1461; gate: warn_accepted_exact_78_row_planning_input_only."
+    }
+  ],
+  "counts": {
+    "warn_accepted_nonpublic_candidate_use_planning_rows": 78,
+    "warn_accepted_nonpublic_candidate_use_planning_occurrences": 1461,
+    "unique_handoff_queue_ids": 78,
+    "missing_selected_ids_from_handoff": 0,
+    "extra_handoff_ids_outside_selected_subset": 0,
+    "forbidden_row_flags_observed": 0,
+    "nonzero_packet_zero_counters": 0,
+    "blocked_rows_outside_subset": 219,
+    "candidate_text_export": 0,
+    "definition_lemma_reader_hint_content_storage": 0,
+    "answer_eligibility": 0,
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "accepted_text": 0,
+    "release_actions": 0
+  },
+  "hashes": {
+    "agent6_verdict_sha256": "5bda8c502023c7e3eeaba26d7c9672e0332227fb00eb94ffbe80add5bea226f3",
+    "validator_sha256": "180804d298087c930d4e5a85db2510920d4d62a951dd75c59315688d77734b7b",
+    "agent10_boundary_packet_sha256": "904b8d2b33de3e8dec06cde315bd2a15a2460b9ca6d0086c4966f36e22083ad2"
+  },
+  "permitted_next_step": "Agent 2 may author a later nonpublic candidate-use package over the exact 78 queue IDs only, preserving required fields and zero-output controls.",
+  "required_fields_for_later_agent2_package": [
+    "queue_id",
+    "token_id",
+    "lexicon_entry_id",
+    "occurrences",
+    "source_family",
+    "license_lane",
+    "source_rids",
+    "morphology_relation_basis",
+    "agent2_morphology_relation_status",
+    "candidate_use_scope",
+    "derived_from_nc",
+    "commercial_export_allowed",
+    "attribution_required",
+    "corpus_contamination",
+    "answer_eligible",
+    "public_emit",
+    "agent6_boundary_required"
+  ],
+  "result": "target | agent6-old-dictionary-morphology-candidate-use-boundary-verdict-consumption | files above | commands passed: Agent6 candidate-use boundary verdict validator | counts: 78 exact queue IDs, 1461 occurrences, 0 missing selected IDs, 0 extra handoff IDs, 0 forbidden row flags, 0 nonzero packet zero counters, 219 blocked rows remain outside subset, zero candidate text/export/definition/lemma/reader-hint/answer/public/runtime/route/accepted-text/release rows | result: verdict consumed as WARN-ACCEPTED nonpublic candidate-use planning input only | blocker if any: actual Agent 2 candidate-use package still requires preserving required fields and a new Agent6 verdict before text storage, transform output, export, answer, route, runtime, or release use | next handoff: Agent 2 may author later nonpublic candidate-use package for exact 78 IDs only; Agent 10 owns next boundary intake | stop condition: do not rerun unless verdict, Agent10 boundary packet, or validator changes",
+  "blocker_if_any": "actual_candidate_use_package_requires_new_agent6_verdict_before_text_storage_transform_output_export_answer_or_runtime_mutation",
+  "next_handoff": "Agent 2 may author a later nonpublic candidate-use package over the exact 78 queue IDs only; Agent 10 owns the next boundary intake before any downstream use.",
+  "stop_condition": "Do not rerun unless reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json, reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json, or scripts/validate_agent6_old_dictionary_morphology_candidate_use_boundary_verdict.mjs changes.",
+  "non_acceptance_boundary": [
+    "no QA acceptance beyond this docket",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no public/runtime acceptance",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no translation output",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no candidate text export",
+    "no definition-content storage",
+    "no commercial export authorization",
+    "no release action"
+  ]
+}

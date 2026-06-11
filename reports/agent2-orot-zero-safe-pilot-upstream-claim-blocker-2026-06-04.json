@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_orot_zero_safe_pilot_upstream_claim_blocker",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "workset": "agent10_agent2_ready_orot_zero_safe_pilot_docket",
+  "status": "exact_blocker_no_safe_upstream_definition_route_claim_generator",
+  "input": "reports/agent10-agent2-ready-orot-zero-safe-pilot-docket-2026-06-04.json",
+  "target": "Orot top-100 no-arbitration pilot follow-up",
+  "files": {
+    "input": "reports/agent10-agent2-ready-orot-zero-safe-pilot-docket-2026-06-04.json",
+    "output_json": "reports/agent2-orot-zero-safe-pilot-upstream-claim-blocker-2026-06-04.json",
+    "output_md": "reports/agent2-orot-zero-safe-pilot-upstream-claim-blocker-2026-06-04.md",
+    "builder": "scripts/build_agent2_orot_zero_safe_pilot_upstream_claim_blocker.mjs",
+    "validator": "scripts/validate_agent2_orot_zero_safe_pilot_upstream_claim_blocker.mjs"
+  },
+  "counts": {
+    "target_rows": 100,
+    "target_occurrences": 1960,
+    "source_clean_rows": 87,
+    "source_blocked_rows": 13,
+    "rows_with_exact_upstream_claim": 0,
+    "route_cards": 1897,
+    "route_answer_cards": 0,
+    "route_phrase_evidence_cards": 470,
+    "route_citable_evidence_cards": 1341,
+    "emitted_answer_rows": 0,
+    "blocked_rows": 100,
+    "missing_exact_upstream_definition_claim": 100,
+    "missing_lexicon_entry_id": 13,
+    "missing_orot_lexicon_entry": 13,
+    "missing_orot_source_rows": 13
+  },
+  "lane_split": {
+    "source_clean_consider_rows": 87,
+    "source_linkage_blocked_rows": 13,
+    "noncommercial_educational_candidate_rows_consumed": 0,
+    "unclassified_rows_consumed_as_candidate_text": 0
+  },
+  "transform_candidate_counts": {
+    "upstream_claim_generator_rows": 0,
+    "definition_route_claim_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "blocker": {
+    "exact_blocker": "missing_machine_checkable_upstream_definition_route_claim_rejoin_morphology_homograph_gates",
+    "missing_fields": [
+      "exact upstream definition-route claim per row",
+      "machine-checkable source-claim rejoin gate",
+      "machine-checkable morphology safety gate",
+      "machine-checkable homograph safety gate",
+      "Agent 1 source/linkage disposition for 13 source-blocked rows",
+      "Agent 6 exact row/subset boundary before any transform/display/source/license/Definition/public/runtime/answer use"
+    ],
+    "reason": "Current route cards are evidence/form references, not answer cards, and the pilot has 0 rows with exact upstream claims."
+  },
+  "zero_emission_counters": {
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "validator": "node scripts/validate_agent2_orot_zero_safe_pilot_upstream_claim_blocker.mjs reports/agent2-orot-zero-safe-pilot-upstream-claim-blocker-2026-06-04.json",
+  "handoff_owner": "Agent 10 first; Agent 6 only by exact boundary packet prepared through release owner",
+  "stop_condition": "Return this exact blocker until a changed workset supplies exact upstream claims plus source-claim rejoin, morphology, and homograph gates.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate-text export",
+    "NC commercial authorization"
+  ]
+}

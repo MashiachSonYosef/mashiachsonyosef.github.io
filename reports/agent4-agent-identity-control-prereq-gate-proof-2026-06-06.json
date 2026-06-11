@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent_identity_control_prereq_gate_proof",
+  "generated_at": "2026-06-06T00:30:00.000Z",
+  "agent": "Agent 4",
+  "target": "Agent identity control prerequisite gate after fake Agent13 quarantine",
+  "changed_input_artifacts": [
+    "data/control/agent_identity_registry.json",
+    "data/control/agent_identity_ack_ledger.json",
+    "reports/agent13-fake-agent13-route-quarantine-2026-06-06.md"
+  ],
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent_identity_registry.mjs; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; node scripts\\validate_agent_identity_registry.mjs data\\control\\agent_identity_registry.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "output": "Agent identity registry validation passed. Version: agent_identity_registry_v1_2026_06_06; agents: 14; hash: sha256:26f25faa13b99936e4fc6f68cb6268546e46624a61bd23993100f8f13afbf4c4."
+    },
+    {
+      "command": "node --check scripts\\validate_agent_identity_ack_ledger.mjs; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; node scripts\\validate_agent_identity_ack_ledger.mjs --registry data\\control\\agent_identity_registry.json --ledger data\\control\\agent_identity_ack_ledger.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "output": "Agent identity ack ledger validation passed. State: IDENTITY_FREEZE_ALL_A13_REVIEW_PENDING; ACKED: 0/14."
+    },
+    {
+      "command": "node --check scripts\\validate_agent_identity_message_envelope.mjs; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; node scripts\\validate_agent_identity_message_envelope.mjs --registry data\\control\\agent_identity_registry.json",
+      "timeout_ms": 30000,
+      "result": "failed_expected_missing_input",
+      "output": "Validation failed: could not read JSON data/control/agent_identity_message_envelope.json: ENOENT",
+      "blocker": "no concrete message envelope artifact supplied for direct envelope validation"
+    },
+    {
+      "command": "node scripts\\validate_agent_identity_message_envelope.mjs --registry data\\control\\agent_identity_registry.json --simulate fake-a13",
+      "timeout_ms": 30000,
+      "result": "passed_negative_control",
+      "status": "REJECTED_IDENTITY_ENVELOPE",
+      "issues": [
+        "SPOOF_OR_FORWARD_UNVERIFIED",
+        "NAME_ONLY_AUTHORITY_REJECTED",
+        "UNAUTHORIZED_IDENTITY_CREATION"
+      ]
+    },
+    {
+      "command": "node scripts\\validate_agent_identity_message_envelope.mjs --registry data\\control\\agent_identity_registry.json --simulate valid-a13",
+      "timeout_ms": 30000,
+      "result": "passed_positive_control",
+      "status": "ACCEPTABLE_IDENTITY_ENVELOPE",
+      "issues": []
+    }
+  ],
+  "process_timeouts": [
+    {
+      "process_timeout": true,
+      "command": "Get-Content scripts\\validate_agent_identity_registry.mjs -TotalCount 220 || Get-Content scripts\\validate_agent_identity_ack_ledger.mjs -TotalCount 260 || Get-Content scripts\\validate_agent_identity_message_envelope.mjs -TotalCount 220",
+      "timeout_ms": 30000,
+      "partial_output_or_artifact": "Partial script text was emitted before timeout; no file mutation occurred.",
+      "next_safe_action": "Run existing validators directly with explicit timeout instead of streaming multiple script bodies."
+    }
+  ],
+  "counts": {
+    "registry_agents": 14,
+    "ack_rows": 14,
+    "acked_rows": 0,
+    "resume_authorized": false,
+    "fake_a13_rejection_issues": 3,
+    "valid_a13_issues": 0
+  },
+  "registry": {
+    "registry_version": "agent_identity_registry_v1_2026_06_06",
+    "registry_hash": "sha256:26f25faa13b99936e4fc6f68cb6268546e46624a61bd23993100f8f13afbf4c4",
+    "publication_global_status": "blocked_no_render"
+  },
+  "result": "identity_control_prereq_validated_with_missing_concrete_envelope_blocker",
+  "exact_blockers": [
+    {
+      "code": "missing_concrete_agent_identity_message_envelope",
+      "detail": "Direct message-envelope validation cannot run against data/control/agent_identity_message_envelope.json because no concrete envelope file exists. Simulated fake-A13 and valid-A13 controls were validated instead."
+    }
+  ],
+  "handoff_owner": "Agent 7/Agent 13 for control-state routing; Agent 10 only if a changed release/package intake depends on this identity gate.",
+  "stop_condition": "Stop until a concrete changed package/input or concrete message envelope exists; do not rerun unchanged identity validators as churn.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

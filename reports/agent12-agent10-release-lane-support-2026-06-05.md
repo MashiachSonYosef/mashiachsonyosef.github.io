@@ -1,0 +1,19 @@
+# Agent 12 To Agent 10: Release Lane Support
+
+Mode: `WEEKLY_LEXICON_EXPANSION_GOAL_MODE`
+
+Highest permissible claim: Agent 12 limiter/unblock advisory only. No QA/source/license/Definition/runtime/publication/product/answer acceptance.
+
+| lane | cap/allow | reason | exact next useful work | stop condition |
+| --- | --- | --- | --- | --- |
+| Spark-10 intake | cap rerun | Current local Agent 10/Spark-10-named matrix validates: `371` inputs, `73` release-relevant rows, `0` Agent 6 handoff candidates, `0` missing required inputs. Spark/assistant lanes are not active capacity unless owner re-enables repaired capacity. | Do not rerun intake unless a named input changes. If changed, run `node scripts/build_spark10_release_package_intake.mjs --contract=reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json` then `node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json`. | Validator passes, or exact changed input / missing schema / missing validator blocker is named. |
+| Old-dictionary commercial-clean transform readiness | allow as held evidence | Agent 2/10/4 validators passed, but candidate-use rows remain `0`; the current packet is readiness/blocker evidence, not a route or release action. | Preserve `reports/agent10-agent2-old-dictionary-excluded-row-readiness-consumption-2026-06-05.md/json`, `reports/agent10-agent6-ready-old-dictionary-commercial-clean-transform-enablement-boundary-packet-2026-06-05.md/json`, and `reports/agent4-old-dictionary-transform-readiness-gate-proof-2026-06-05.md/json` as nonpublic readiness evidence. | Stop until an exact Agent 6 row/subset boundary and an approved morphology relation exist. |
+| Agent 6 route from readiness-only packet | cap | Current Agent 10 packet explicitly says no current Agent 6 route is opened because Agent 2 emitted zero candidate-use rows and direct Agent 6 delivery was unavailable. | Do not queue this to Agent 6 as an urgent validation item. If Agent 6 is available later, queue only a future exact row/subset candidate-use package, not this readiness-only state. | Future candidate-use packet exists, or blocker remains `missing_exact_agent6_row_subset_boundary_for_any_candidate_text_package_or_display_behavior`. |
+| Commercial-clean lanes | allow with separation | Jastrow, BDB, and BDB Aramaic are commercial-clean candidates only as source-family hit totals, not exclusive export rows. | Keep count semantics and lane fields visible; do not convert to candidate text, definition content, route shard, public output, or export. | Exact Agent 6 boundary plus approved morphology relation exists. |
+| NC / blocked lanes | cap mixing | Klein remains `noncommercial_educational_candidate`; BDB Augmented Strong remains `blocked_or_needs_review`. | Preserve NC and blocked lanes separately; do not collapse into commercial-clean or generic blocked. | Exact Agent 6 NC boundary or independent source/license/custody basis exists. |
+| Fresh Agent 1/2/3/4 outputs | allow only when changed | The useful Agent 10 work is release/package consumption of changed lane outputs, not absorbing all mechanics. | Consume only fresh changed outputs with validators or exact blockers; otherwise record `no_changed_release_relevant_input`. | Consumption packet exists or exact missing field is named. |
+| Live delivery to Agent 10 | blocked here | This session has no exposed `send_message_to_thread` tool. | Use this artifact as repo-visible support packet; do not claim live thread delivery. | Thread tool becomes available, or Agent 10 discovers this report through control/report intake. |
+
+One-line rule for Agent 10:
+
+`If the packet has zero candidate-use rows, no exact Agent 6 row/subset boundary, or no approved morphology relation, preserve it as nonpublic readiness evidence and stop; do not rerun intake or route release work until a named input changes.`

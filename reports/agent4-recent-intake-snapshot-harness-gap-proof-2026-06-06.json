@@ -1,0 +1,76 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T11:11:00.000Z",
+  "target": "Agent 4 bounded recent-intake snapshot harness gap closure",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent4-changed-input-selection-continuation-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-continuation-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports\\agent4-changed-input-selection-continuation-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\build_agent4_recent_intake_snapshot.mjs --out=reports\\agent4-recent-intake-snapshot-2026-06-06.json --limit=25 --roots=reports,data/control",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_recent_intake_snapshot.mjs --input=reports\\agent4-recent-intake-snapshot-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "process_timeouts": [
+    {
+      "command": "Get-ChildItem reports -File | Sort-Object LastWriteTime -Descending | Select-Object -First 20 Name,LastWriteTime,Length",
+      "timeout_ms": 30000,
+      "partial_output_or_artifact": "Partial PowerShell table output returned before timeout; no durable artifact was produced by that command.",
+      "next_safe_action": "Use scripts/build_agent4_recent_intake_snapshot.mjs with explicit limit and roots for bounded intake snapshots."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-recent-intake-snapshot-harness-gap-proof-2026-06-06.json",
+  "paired_markdown_path": "reports/agent4-recent-intake-snapshot-harness-gap-proof-2026-06-06.md",
+  "evidence_artifacts": [
+    "reports/agent4-changed-input-selection-continuation-2026-06-06.json",
+    "reports/agent4-recent-intake-snapshot-2026-06-06.json"
+  ],
+  "files_added": [
+    "scripts/build_agent4_recent_intake_snapshot.mjs",
+    "scripts/validate_agent4_recent_intake_snapshot.mjs"
+  ],
+  "counts": {
+    "selector_candidate_count": 0,
+    "selector_newer_file_count": 25,
+    "snapshot_row_count": 25,
+    "snapshot_candidate_like_count": 0,
+    "snapshot_scanned_root_count": 2,
+    "process_timeout_count": 1
+  },
+  "result": "validated_recent_intake_snapshot_harness_gap_closure_with_changed_input_blocker",
+  "exact_blockers": [
+    {
+      "code": "changed_package_input_missing",
+      "details": "No fresh changed/candidate package input was selected after the latest Agent 4 anchor.",
+      "next_safe_action": "Wait for Agent 10 or an upstream package-producing agent to provide a new changed/candidate artifact with an exact validator command."
+    },
+    {
+      "code": "no_acceptance_from_harness_snapshot",
+      "details": "The bounded snapshot is intake mechanics only and does not validate any package contents.",
+      "next_safe_action": "Use the selector and exact package validator when a candidate appears."
+    }
+  ],
+  "handoff_owner": "Agent 10 or upstream package-producing agent for the next changed/candidate artifact; Agent 4 owns the validator/prereq packet once a changed input exists.",
+  "stop_condition": "Stop after validating the changed-input blocker, producing the bounded recent-intake snapshot, validating it, and validating this proof packet.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T20:03:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent10-agent6-ready-old-dictionary-78-row-candidate-use-preboundary-packet",
+  "changed_input_artifact": "reports/agent10-agent6-ready-old-dictionary-78-row-candidate-use-preboundary-packet-2026-06-06.json",
+  "validator": {
+    "script": "scripts/validate_agent10_old_dictionary_78_row_candidate_use_preboundary_packet.mjs",
+    "command": "node scripts\\validate_agent10_old_dictionary_78_row_candidate_use_preboundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-78-row-candidate-use-preboundary-packet-2026-06-06.json",
+    "timeout_ms": 30000,
+    "result": "passed",
+    "stdout": "Agent10 78-row candidate-use preboundary packet validation passed. Rows: 78; occurrences: 1461; zero counters: 10.",
+    "syntax_check": {
+      "command": "node --check scripts\\validate_agent10_old_dictionary_78_row_candidate_use_preboundary_packet.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    "supporting_matrix_check": {
+      "command": "node scripts\\validate_agent10_old_dictionary_78_row_candidate_use_preboundary_matrix.mjs reports\\agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 78-row candidate-use preboundary matrix validation passed. Rows: 78; occurrences: 1461."
+    }
+  },
+  "inputs_cross_checked": [
+    "reports/agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json",
+    "reports/agent10-agent2-ready-old-dictionary-78-row-candidate-use-workset-2026-06-06.json",
+    "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+    "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+    "reports/agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.json",
+    "reports/agent6-old-dictionary-source-family-overlap-matrix-boundary-verdict-2026-06-05.json",
+    "reports/agent6-old-dictionary-exact-row-subset-manifest-boundary-verdict-2026-06-05.json"
+  ],
+  "counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "zero_counter_fields": 10,
+    "candidate_text_rows": 0,
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "release_actions": 0
+  },
+  "selector_verified": {
+    "source_license_lane": "commercial_clean_candidate",
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning"
+  },
+  "result": "validator_prereq_gate_passed_for_agent6_ready_preboundary_packet_only",
+  "exact_blockers": [
+    "Agent 6 disposition is required for this exact preboundary packet; Agent 4 does not self-accept it.",
+    "Any move from preboundary matrix into candidate-use package, candidate text, transform output, content storage, answer eligibility, route write, public/runtime mutation, export, accepted text, publication readiness, or release requires a new exact Agent 6 packet or verdict path.",
+    "This proof does not validate live browser behavior or public/runtime state because the packet declares no changed public/runtime package and no runtime route."
+  ],
+  "handoff_owner": "Agent 6 for pass/warn/block on this exact packet; Agent 10 consumes any verdict.",
+  "stop_condition": "Stop after packet validator proof. Do not rerun unless the packet, matrix, referenced verdicts, workset, or validator changes.",
+  "non_acceptance_boundary": [
+    "no QA acceptance by Agent 4",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

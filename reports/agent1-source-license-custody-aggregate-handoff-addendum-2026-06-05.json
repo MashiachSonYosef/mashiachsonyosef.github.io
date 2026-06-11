@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_source_license_custody_aggregate_handoff_addendum",
+  "generated_at": "2026-06-05T08:18:00.000-04:00",
+  "status": "agent1_source_license_custody_aggregate_handoff_addendum_validated_discovery_only",
+  "agent": "Agent 1",
+  "thread_title": "Agent 1 - importer",
+  "current_agent1_thread_id": "019e975d-dc9f-7020-a7c8-885d083a837e",
+  "old_agent1_thread_id": "019dc487-5973-7693-aebf-fb0a75936f50",
+  "old_agent1_policy": "archived_do_not_use",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / direct Agent run mode",
+  "lane": "Agent 1 source/license/custody aggregate handoff addendum",
+  "base_aggregate_handoff": "reports/agent1-source-license-custody-aggregate-handoff-2026-06-04.json",
+  "base_aggregate_handoff_validation_result": "reports/agent1-source-license-custody-aggregate-handoff-validation-result-2026-06-04.json",
+  "registry_addendum": "reports/agent1-source-license-custody-pipeline-registry-addendum-2026-06-05.json",
+  "registry_addendum_validation_result": "reports/agent1-source-license-custody-pipeline-registry-addendum-validation-result-2026-06-05.json",
+  "command_manifest_addendum": "reports/agent1-source-license-custody-command-manifest-addendum-2026-06-05.json",
+  "command_manifest_addendum_validation_result": "reports/agent1-source-license-custody-command-manifest-addendum-validation-result-2026-06-05.json",
+  "state_currentness_validator": "scripts/validate_agent1_state_currentness.mjs",
+  "state_currentness_validator_result": "reports/agent1-state-currentness-validator-result-2026-06-03.json",
+  "purpose": "Compact current Agent 1 handoff that preserves the June 4 base aggregate handoff while exposing June 5 old-dictionary registry and command addenda for discovery only.",
+  "base_snapshot_counts_preserved": {
+    "runnable_contract_count": 22,
+    "supporting_packet_count": 24,
+    "exact_blocker_count": 1,
+    "lane_return_output_count": 48,
+    "runnable_command_set_count": 22
+  },
+  "addendum_counts": {
+    "registry_recallable_artifact_count": 10,
+    "registry_validator_result_count": 10,
+    "command_addendum_runnable_command_set_count": 7,
+    "command_addendum_validator_only_gate_count": 3,
+    "old_dictionary_classification_lane_count": 5,
+    "commercial_clean_candidate_source_families": 3,
+    "noncommercial_educational_candidate_source_families": 1,
+    "klein_nc_lane_preservation_exact_blocker_count": 6,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "bdb_augmented_strong_live_reprobe_exact_blocker_count": 4,
+    "bdb_augmented_strong_row_linkage_exact_blocker_count": 6,
+    "downstream_alignment_exact_blocker_count": 5,
+    "boundary_question_exact_blocker_count": 6,
+    "base_handoff_mutation_count": 0,
+    "base_registry_mutation_count": 0,
+    "base_command_manifest_mutation_count": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staged_file_count": 0
+  },
+  "current_old_dictionary_handoff": {
+    "target": "old-dictionary-excluded-row-license-lane-reaudit",
+    "files_used": [
+      "reports/agent1-source-license-custody-aggregate-handoff-2026-06-04.json",
+      "reports/agent1-source-license-custody-pipeline-registry-addendum-2026-06-05.json",
+      "reports/agent1-source-license-custody-command-manifest-addendum-2026-06-05.json",
+      "reports/agent1-current-source-license-custody-lane-return-addendum-2026-06-05.json",
+      "reports/agent1-bdb-augmented-strong-live-source-custody-reprobe-2026-06-05.json",
+      "reports/agent1-bdb-augmented-strong-row-linkage-probe-2026-06-05.json",
+      "reports/agent1-old-dictionary-klein-nc-lane-preservation-2026-06-05.json",
+      "reports/agent1-old-dictionary-downstream-consumption-alignment-audit-2026-06-05.json",
+      "reports/agent1-old-dictionary-agent6-boundary-question-packet-2026-06-05.json",
+      "reports/agent1-bdb-augmented-strong-source-custody-blocker-2026-06-05.json"
+    ],
+    "lane_counts_rows": {
+      "source_family_rows": 5,
+      "commercial_clean_candidate_source_families": 3,
+      "noncommercial_educational_candidate_source_families": 1,
+      "metadata_or_link_only_source_families": 0,
+      "blocked_or_needs_review_source_families": 1,
+      "allowed_transform_rows_now": 0,
+      "candidate_text_rows_now": 0,
+      "answer_eligible_rows_now": 0,
+      "public_emit_rows_now": 0,
+      "release_route_opened_now": 0,
+      "agent6_delivery_now": 0
+    },
+    "classification_lanes": [
+      {
+        "license_lane": "commercial_clean_candidate",
+        "source_families": [
+          "Jastrow Dictionary",
+          "BDB Dictionary",
+          "BDB Aramaic Dictionary"
+        ],
+        "source_family_count": 3,
+        "handoff_status": "planning/source-lane evidence only; candidate use requires future exact Agent 6 row/subset boundary and approved morphology relation"
+      },
+      {
+        "license_lane": "noncommercial_educational_candidate",
+        "source_families": [
+          "Klein Dictionary"
+        ],
+        "source_family_count": 1,
+        "required_flags": {
+          "derived_from_nc": true,
+          "commercial_export_allowed": false,
+          "attribution_required": true,
+          "corpus_contamination": false
+        },
+        "handoff_status": "separate NC educational lane only; no commercial export or NC commercial authorization"
+      },
+      {
+        "license_lane": "metadata_or_link_only",
+        "source_families": [],
+        "source_family_count": 0,
+        "handoff_status": "zero current rows"
+      },
+      {
+        "license_lane": "blocked_or_needs_review",
+        "source_families": [
+          "BDB Augmented Strong"
+        ],
+        "source_family_count": 1,
+        "handoff_status": "blocked pending independent source/license/custody basis"
+      }
+    ],
+    "exact_blockers": [
+      "future_candidate_use_package_missing",
+      "missing_exact_agent6_row_subset_boundary_for_any_candidate_text_package_or_display_behavior",
+      "missing_approved_morphology_relation_for_definition_lemma_reader_hint_transform",
+      "noncommercial_educational_candidate::klein-dictionary_no_commercial_export_authorization",
+      "blocked_or_needs_review::bdb-augmented-strong_missing_independent_source_license_custody_basis",
+      "metadata_or_link_only_current_row_count_zero"
+    ],
+    "handoff_owner": {
+      "agent2": "May consume only current Agent 1 lane evidence and must preserve lane flags with zero output until Agent 6 future-use boundary exists.",
+      "agent6": "Receives exact row/subset boundary questions only if a future candidate-use package is assembled.",
+      "agent10": "Consumes this as source-lane/command discovery only and owns future package assembly/routing if downstream use changes."
+    },
+    "stop_condition": "Stop at aggregate discovery and exact blockers; no transform, release, Agent 6 delivery, public/runtime mutation, Definition content, answer rows, accepted text, source/license/legal acceptance, or NC commercial use."
+  },
+  "zero_output_counts": {
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "candidate_text_rows": 0,
+    "release_actions": 0,
+    "agent6_deliveries": 0
+  },
+  "non_acceptance_boundary": {
+    "no_qa_acceptance": true,
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_candidate_text_export_authorization": true,
+    "no_release_action": true,
+    "no_public_runtime_mutation": true,
+    "no_queue_mutation": true,
+    "no_staging": true,
+    "no_destructive_repo_action": true
+  },
+  "stop_condition": "Stop after validated aggregate handoff addendum and exact blockers; do not mutate the June 4 aggregate handoff, registry, command manifest, queue, render, stage, publish, route, transform, or claim acceptance."
+}

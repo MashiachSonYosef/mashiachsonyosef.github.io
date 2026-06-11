@@ -1,0 +1,95 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T10:56:00.000Z",
+  "target": "Agent 3 old-dictionary candidate-use source-RID dedupe coverage crossmatch gate",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-source-rid-dedupe-coverage-crossmatch-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-queue-source-dedupe-key-index-sweep-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_source_rid_dedupe_coverage_crossmatch.mjs --input=reports\\agent3-old-dictionary-candidate-use-source-rid-dedupe-coverage-crossmatch-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "input_workset_rows": 314,
+    "input_workset_source_rid_references": 363,
+    "dedupe_key_rows": 363,
+    "dedupe_unique_source_rids": 314,
+    "coverage_rows": 314,
+    "matched_source_rids": 314,
+    "missing_source_rids": 0,
+    "extra_source_rids": 0,
+    "workset_queue_source_pairs": 363,
+    "dedupe_queue_source_pairs": 363,
+    "queue_source_pair_missing_rows": 0,
+    "queue_source_pair_extra_rows": 0,
+    "reference_count_mismatch_rows": 0,
+    "queue_set_mismatch_rows": 0,
+    "source_level_occurrence_total": 7795,
+    "queue_source_occurrence_membership_total": 12111,
+    "multi_queue_source_rid_rows": 43,
+    "single_queue_source_rid_rows": 271,
+    "source_citation_required_rows": 314,
+    "source_citation_or_url_present_rows": 0,
+    "transform_rule_still_blocked_rows": 314,
+    "agent6_boundary_after_prereq_rows": 314,
+    "source_family_boundary_packet_exists_rows": 0,
+    "source_family_selection_boundary_blocker_rows": 314,
+    "route_write_allowed_rows": 0,
+    "candidate_text_allowed_rows": 0,
+    "public_mutation_allowed_rows": 0,
+    "source_family_selection_claims": 0,
+    "source_acceptance_claims": 0,
+    "source_citation_supplied_by_agent3_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_agent3_source_rid_dedupe_coverage_crossmatch_navigation_only_no_selection_or_acceptance",
+  "exact_blockers": [
+    {
+      "code": "source_citation_missing_for_all_source_rids",
+      "blocked_rows": 314,
+      "details": "All source RID coverage rows still require source_citation_or_url or exact missing-source blocker before transform or route work."
+    },
+    {
+      "code": "source_level_and_queue_source_counts_not_interchangeable",
+      "details": "Source-level occurrence total is 7795 while queue/source occurrence memberships total 12111; downstream packets must keep those count domains separate."
+    },
+    {
+      "code": "source_family_boundary_packet_missing_for_all_source_rids",
+      "blocked_rows": 314,
+      "details": "No source-family boundary packet exists for these source RIDs."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-source-rid-dedupe-coverage-crossmatch-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-source-rid-dedupe-coverage-crossmatch-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 3 for source-RID dedupe coverage navigation; Agent 1 for source citation prerequisites; Agent 10 for release/package intake only after required boundary packets exist.",
+  "next_safe_action": "Run a triggered Agent4 packet sweep because this proof packet was added, then select from that sweep anchor with lookback scanning.",
+  "stop_condition": "Stop after validating and packaging the Agent3 source-RID dedupe coverage crossmatch as an Agent4 gate proof.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

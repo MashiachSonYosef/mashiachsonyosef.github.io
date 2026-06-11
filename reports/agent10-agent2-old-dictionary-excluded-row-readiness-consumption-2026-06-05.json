@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent2_old_dictionary_excluded_row_readiness_consumption",
+  "generated_at": "2026-06-05T11:45:19.643Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / source-lane separated lexicon expansion",
+  "package_workset": "agent2_old_dictionary_excluded_row_transform_readiness",
+  "release_owner": "Agent 10",
+  "status": "release_owner_consumed_nonpublic_readiness_no_agent6_route_ready",
+  "inputs_consumed": [
+    "reports/agent2-old-dictionary-excluded-row-transform-readiness-matrix-2026-06-05.json",
+    "reports/agent2-old-dictionary-excluded-row-transform-readiness-matrix-2026-06-05.md",
+    "reports/agent2-old-dictionary-excluded-row-reaudit-consumption-prep-2026-06-05.json",
+    "reports/agent2-old-dictionary-excluded-row-reaudit-consumption-prep-2026-06-05.md",
+    "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+    "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-continuation-2026-06-05.json",
+    "scripts/build_agent2_old_dictionary_excluded_row_transform_readiness_matrix.mjs",
+    "scripts/validate_agent2_old_dictionary_excluded_row_transform_readiness_matrix.mjs",
+    "scripts/build_agent2_old_dictionary_excluded_row_reaudit_consumption_prep.mjs",
+    "scripts/validate_agent2_old_dictionary_excluded_row_reaudit_consumption_prep.mjs"
+  ],
+  "counts": {
+    "source_family_rows": 5,
+    "commercial_clean_candidate_source_families": 3,
+    "noncommercial_educational_candidate_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "allowed_transform_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0
+  },
+  "lane_split": {
+    "current_agent1_thread_id": "019e975d-dc9f-7020-a7c8-885d083a837e",
+    "commercial_clean_and_nc_separated": true,
+    "nc_row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+    "nc_derived_from_nc": true,
+    "nc_commercial_export_allowed": false,
+    "nc_attribution_required": true,
+    "blocked_row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+    "unclassified_rows_consumed_as_candidate_text": 0,
+    "metadata_or_link_only_rows_consumed_as_candidate_text": 0
+  },
+  "validator_results": [
+    {
+      "command": "node scripts/validate_agent2_old_dictionary_excluded_row_reaudit_consumption_prep.mjs reports/agent2-old-dictionary-excluded-row-reaudit-consumption-prep-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_agent2_old_dictionary_excluded_row_transform_readiness_matrix.mjs reports/agent2-old-dictionary-excluded-row-transform-readiness-matrix-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "exact_blockers": [
+    "old-dictionary-excluded-row-license-lane-reaudit::jastrow-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation",
+    "old-dictionary-excluded-row-license-lane-reaudit::bdb-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation",
+    "old-dictionary-excluded-row-license-lane-reaudit::bdb-aramaic-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation",
+    "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary::missing_exact_agent6_nc_boundary_no_commercial_export_authorization",
+    "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong::missing_independent_source_license_custody_basis"
+  ],
+  "agent6_boundary_question": null,
+  "agent6_boundary_reason": "No Agent 6 route is opened by this release-owner consumption packet because the Agent 2 readiness matrix emits zero candidate text/package/display/public/answer rows. Agent 6 routing requires a future exact row/subset package proposing specific candidate-use behavior.",
+  "next_handoff": {
+    "agent2": "Wait for exact Agent 6 row/subset boundary plus approved morphology relation before any commercial-clean nonpublic definition/lemma/reader-hint input rows; preserve NC and blocked lanes separately.",
+    "agent10": "Open no release action and no Agent 6 route from this readiness-only intake; consume as blocker/readiness evidence.",
+    "agent6": "Needed only if a future exact row/subset candidate-use package is prepared."
+  },
+  "zero_counters": {
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_gloss_text_rows": 0,
+    "definition_content_rows": 0,
+    "nc_commercial_authorization_rows": 0
+  },
+  "highest_permissible_claim": "Agent 10 consumed the Agent 2 old-dictionary excluded-row transform-readiness matrix as nonpublic readiness/blocker evidence. No Definition, answer, public/runtime, accepted-text, candidate-text export, or release action is authorized.",
+  "stop_condition": "Stop at release-owner intake of readiness evidence. Do not route to Agent 6, publish, mutate runtime, store Definition content, export candidate text, or mark answer eligibility until a future exact row/subset candidate-use packet exists.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate text export",
+    "commercial export permission",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

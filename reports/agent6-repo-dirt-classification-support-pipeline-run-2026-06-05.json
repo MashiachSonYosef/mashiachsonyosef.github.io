@@ -1,0 +1,164 @@
+{
+  "artifact": "reports/agent6-repo-dirt-classification-support-pipeline-run-2026-06-05.md",
+  "date": "2026-06-05",
+  "agent": "Agent 6",
+  "disposition": "warn_blocking_support_docket",
+  "scope": "non_destructive_repo_dirt_classification_only",
+  "repo": {
+    "workdir": "C:/Users/owner/Documents/translations",
+    "branch": "main",
+    "head_short": "ee36052cf",
+    "status_command": "git status --porcelain=v1 -z --untracked-files=all"
+  },
+  "counts": {
+    "dirty_records_total": 17456,
+    "tracked_deletions": 12231,
+    "tracked_modified": 1490,
+    "tracked_added": 22,
+    "untracked": 3713
+  },
+  "path_family_counts": {
+    "data/public-hud": 11937,
+    "reports": 2934,
+    "site-pages": 1541,
+    "scripts": 502,
+    "other_data": 435,
+    "tanakh": 49,
+    "data/definitions": 19,
+    "data/control": 16,
+    "temp_noise": 9,
+    "data/translation-memory": 4,
+    "assets_hud_preview_orot_root": 9
+  },
+  "by_family_status": {
+    ".github|deleted": 1,
+    "site-pages|deleted": 1,
+    "site-pages|modified": 1235,
+    "assets|deleted": 1,
+    "assets|modified": 1,
+    "data/build|modified": 1,
+    "other_data|modified": 99,
+    "data/definitions|modified": 9,
+    "data/definitions|added": 3,
+    "data/public-hud|deleted": 11937,
+    "hud-preview|modified": 3,
+    "orot|modified": 1,
+    "overlay-export.json|modified": 1,
+    "reports|deleted": 236,
+    "reports|modified": 58,
+    "reports|added": 9,
+    "scripts|deleted": 55,
+    "scripts|modified": 33,
+    "scripts|added": 10,
+    "tanakh|modified": 49,
+    "temp_noise|untracked": 9,
+    "assets|untracked": 1,
+    "site-pages|untracked": 305,
+    "data/control|untracked": 16,
+    "data/definitions|untracked": 7,
+    "other_data|untracked": 336,
+    "data/translation-memory|untracked": 4,
+    "reports|untracked": 2631,
+    "scripts|untracked": 404
+  },
+  "deletion_classification": {
+    "data/public-hud": {
+      "count": 11937,
+      "classification": "generated_output_churn_candidate_but_p0_until_reconciled"
+    },
+    "reports": {
+      "count": 236,
+      "classification": "provenance_docket_loss_risk_hold"
+    },
+    "scripts": {
+      "count": 55,
+      "classification": "validator_builder_loss_risk_hold"
+    },
+    "deployment_runtime_support": {
+      "count": 3,
+      "classification": "needs_owner_release_owner_review"
+    }
+  },
+  "proposed_batches": [
+    {
+      "id": "A",
+      "name": "qa_support_docket",
+      "condition": "owner_wants_checkpoint_only"
+    },
+    {
+      "id": "B",
+      "name": "evidence_reports",
+      "condition": "exclude_deleted_reports_and_raw_logs_unless_explicitly_wanted"
+    },
+    {
+      "id": "C",
+      "name": "validators_and_builders",
+      "condition": "only_with_matching_report_packet_and_no_orphan_deletion"
+    },
+    {
+      "id": "D",
+      "name": "control_state",
+      "condition": "only_with_agent5_agent7_publication_or_queue_health_proof"
+    },
+    {
+      "id": "E",
+      "name": "runtime_public_hud_site_surface",
+      "condition": "requires_agent10_changed_input_release_packet"
+    },
+    {
+      "id": "F",
+      "name": "temporary_noise",
+      "condition": "delete_only_after_explicit_owner_approval"
+    }
+  ],
+  "exact_blockers": [
+    {
+      "blocker": "public_hud_package_truth_blocked",
+      "evidence": "11937 tracked deletions under data/public-hud",
+      "handoff_owner": "Agent 10"
+    },
+    {
+      "blocker": "provenance_and_validator_recountability_blocked",
+      "evidence": "236 deleted reports and 55 deleted scripts",
+      "handoff_owner": "Agent 5/7 plus source worker lanes"
+    },
+    {
+      "blocker": "control_truth_blocked_if_untracked_files_are_relied_on",
+      "evidence": "16 untracked data/control files",
+      "handoff_owner": "Agent 5/7"
+    },
+    {
+      "blocker": "runtime_public_claims_blocked",
+      "evidence": "1541 dirty site-page records and 49 dirty tanakh records",
+      "handoff_owner": "Agent 10 with Agent 4 proof after changed package"
+    },
+    {
+      "blocker": "source_provenance_claims_blocked",
+      "evidence": "untracked or modified source/lexical/translation-memory data",
+      "handoff_owner": "Agent 1 then Agent 6 if QA-relevant"
+    },
+    {
+      "blocker": "destructive_cleanup_not_authorized",
+      "evidence": "classification pipeline is read-only except explicit output artifacts",
+      "handoff_owner": "owner"
+    }
+  ],
+  "must_not_be_accepted": [
+    "staging",
+    "deletion",
+    "revert",
+    "cleanup_complete",
+    "qa_acceptance",
+    "source_provenance_acceptance",
+    "license_legal_acceptance",
+    "runtime_public_acceptance",
+    "definition_authority",
+    "answer_eligibility",
+    "publication_readiness",
+    "accepted_text",
+    "commercial_export_authorization",
+    "nc_commercial_authorization",
+    "release_action"
+  ],
+  "stop_condition": "classification_artifact_exists_no_destructive_action_taken"
+}

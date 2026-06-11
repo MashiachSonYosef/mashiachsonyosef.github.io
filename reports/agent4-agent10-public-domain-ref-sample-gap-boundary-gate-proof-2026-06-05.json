@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:59.990Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent10-public-domain-ref-sample-gap-boundary",
+  "status": "validated_nonpublic_ref_sample_gap_planning_evidence_only_no_acceptance",
+  "files": {
+    "agent1_gap_manifest": {
+      "path": "reports/agent1-old-dictionary-public-domain-ref-sample-gap-manifest-2026-06-05.json",
+      "sha256": "e500df0a913814319d5e7d6f0446da2faa1f8e455d7622b408a00bc49410084e"
+    },
+    "agent1_gap_validation": {
+      "path": "reports/agent1-old-dictionary-public-domain-ref-sample-gap-manifest-validation-result-2026-06-05.json",
+      "sha256": "b6ab8f1257bf71c5f1ecd015d98906bc7133619616ad24f9618c18d85869bedc"
+    },
+    "agent10_boundary_packet": {
+      "path": "reports/agent10-agent6-ready-old-dictionary-public-domain-ref-sample-gap-boundary-packet-2026-06-05.json",
+      "sha256": "7c9b421adbe54489ea470417059310fd6d1fb376e0a30c84b115b2876f8f4781"
+    },
+    "agent10_delivery_proof": {
+      "path": "reports/agent10-agent6-old-dictionary-public-domain-ref-sample-gap-delivery-proof-2026-06-05.json",
+      "sha256": "3cb2166ac17d76e999d1f4a7160818540ad2256ea423109a9cf9c161a01eed0e"
+    },
+    "prior_agent6_citation_metadata_custody_verdict": {
+      "path": "reports/agent6-old-dictionary-public-domain-citation-metadata-custody-boundary-verdict-2026-06-05.json",
+      "sha256": "51628b33e51c552e79c182c31d18f7cb3bdc9ef7922e853139077895ed883d3d"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_public_domain_ref_sample_gap_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-public-domain-ref-sample-gap-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_public_domain_ref_sample_gap_manifest.mjs reports\\agent1-old-dictionary-public-domain-ref-sample-gap-manifest-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent6_old_dictionary_public_domain_citation_metadata_custody_boundary_verdict.mjs reports\\agent6-old-dictionary-public-domain-citation-metadata-custody-boundary-verdict-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "public_domain_rows": 297,
+    "public_domain_occurrences": 5747,
+    "rows_with_ref_samples_or_ref_count": 204,
+    "occurrences_with_ref_samples_or_ref_count": 4385,
+    "rows_without_ref_samples_or_ref_count": 93,
+    "occurrences_without_ref_samples_or_ref_count": 1362,
+    "gap_rows_with_rids": 93,
+    "gap_rid_total": 270,
+    "gap_rows_with_headwords": 93,
+    "gap_headword_total": 251
+  },
+  "family_gap_partitions": {
+    "Jastrow Dictionary": {
+      "rows": 6,
+      "occurrences": 89
+    },
+    "BDB Dictionary": {
+      "rows": 91,
+      "occurrences": 1339
+    },
+    "BDB Aramaic Dictionary": {
+      "rows": 22,
+      "occurrences": 434
+    }
+  },
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now_in_source_artifact": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "result": "Agent 10 ref-sample gap boundary packet validates over Agent 1's exact 93-row public-domain metadata gap manifest and prior Agent 6 citation metadata custody verdict.",
+  "blocker_if_any": "await_agent6_public_domain_ref_sample_gap_boundary_for_old_dictionary_93_row_gap",
+  "next_handoff": "Agent 10 delivery proof says the ref-sample gap boundary packet is queued for Agent 6 review; Agent 4 does not self-accept.",
+  "stop_condition": "Do not rerun unless gap manifest, Agent10 boundary packet, delivery proof, prior Agent6 custody verdict, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

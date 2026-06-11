@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T16:31:31.112Z
+Generated: 2026-06-01T20:53:34.062Z
 
 ## Summary
 
@@ -49,9 +49,9 @@ Generated: 2026-05-31T16:31:31.112Z
 - Corpus exhaustive: no
 - Source freshness: stale
 - Artifact source files scanned: 1192
-- Current source files: 1235
-- Count delta: 43
-- Files modified after artifact: 43
+- Current source files: 1360
+- Count delta: 168
+- Files modified after artifact: 173
 
 ## Source Metadata Summary
 

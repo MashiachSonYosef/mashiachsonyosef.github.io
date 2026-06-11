@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated_with_exact_linkage_blocker",
+  "target": {
+    "queue_item": "spark1-broad-source-mechanics",
+    "workset": "broad-source-mechanics-queue-package",
+    "source_row_targets": 4,
+    "source_row_chunk_entries": 17,
+    "source_row_occurrences": 19,
+    "missing_linkage_rows": 13,
+    "missing_linkage_occurrences": 129
+  },
+  "inputs": [
+    "reports/agent1-orot-fill-source-row-evidence-2026-06-03.json",
+    "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+    "reports/oracle9-dictionary-lane-classification-correction-2026-06-04.md",
+    "reports/oracle9-nc-educational-lane-owner-policy-2026-06-04.md",
+    "reports/oracle9-new-dictionary-source-lane-policy-2026-06-04.md"
+  ],
+  "command_or_script": {
+    "build_commands": [
+      "node scripts/build_agent1_orot_fill_source_row_evidence.mjs",
+      "node scripts/build_agent1_orot_missing_lexicon_linkage_candidates.mjs"
+    ],
+    "current_status": "runnable_from_existing_scripts"
+  },
+  "outputs": {
+    "package_json": "reports/agent1-broad-source-mechanics-queue-package-2026-06-04.json",
+    "package_markdown": "reports/agent1-broad-source-mechanics-queue-package-2026-06-04.md",
+    "source_row_evidence": "reports/agent1-orot-fill-source-row-evidence-2026-06-03.json",
+    "missing_linkage_evidence": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json"
+  },
+  "validator": {
+    "commands": [
+      "node scripts/validate_agent1_orot_fill_source_row_evidence.mjs",
+      "node scripts/validate_agent1_orot_missing_lexicon_linkage_candidates.mjs reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "node scripts/validate_agent1_broad_source_mechanics_queue_package.mjs"
+    ],
+    "contract_validator": "node scripts/validate_agent1_spark1_broad_source_mechanics_contract.mjs",
+    "current_status": "validated"
+  },
+  "required_classifications": [
+    "commercial_clean_candidate",
+    "noncommercial_educational_candidate",
+    "metadata_or_link_only",
+    "blocked_or_needs_review"
+  ],
+  "expected_classification_from_current_evidence": {
+    "commercial_clean_candidate": {
+      "source_row_targets": 4,
+      "occurrences": 19,
+      "source_families": [
+        "OpenScriptures",
+        "Wikidata Lexeme"
+      ],
+      "license_labels": [
+        "CC BY 4.0",
+        "CC0"
+      ],
+      "commercial_export_allowed_now": false
+    },
+    "metadata_or_link_only": {
+      "missing_linkage_rows": 13,
+      "occurrences": 129,
+      "reason": "No approved source/linkage rule exists here for assigning missing lexicon_entry_id values."
+    },
+    "noncommercial_educational_candidate": {
+      "rows": 0,
+      "preserve_if_future_rows_exist": true
+    },
+    "blocked_or_needs_review": {
+      "rows": 0,
+      "current_exact_blocker": "missing_linkage rows cannot receive lexicon_entry_id assignments without an approved source/linkage rule."
+    }
+  },
+  "nc_policy": {
+    "license_lane": "noncommercial_educational_candidate",
+    "derived_from_nc": true,
+    "commercial_export_allowed": false,
+    "attribution_required": true,
+    "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+    "corpus_contamination": false,
+    "answer_eligible": false,
+    "public_emit": false
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true,
+    "commercial_export_allowed_now": false
+  },
+  "exact_blocker": {
+    "status": "missing_linkage_assignment_rule_blocker",
+    "rows": 13,
+    "occurrences": 129,
+    "owner_needed": "Agent 1/Agent 6/owner route with approved source/linkage assignment rule",
+    "reason": "No approved source/linkage rule exists here for assigning missing lexicon_entry_id values.",
+    "disallowed_action": "Do not assign lexicon_entry_id values from this contract."
+  },
+  "package_owner": "Agent 1",
+  "agent6_boundary_need": "Agent 6 boundary is required before any package/export/display/public/answer behavior or any linkage-assignment behavior.",
+  "spark1_stop_condition": "output plus validator pass, or exact missing input/output/schema/validator/count blocker; linkage assignment remains blocked unless an approved assignment rule is supplied.",
+  "what_must_not_be_accepted": [
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "QA acceptance",
+    "public/runtime mutation",
+    "Definition authority",
+    "answer acceptance",
+    "accepted gloss/text",
+    "publication readiness",
+    "NC commercial authorization",
+    "lexicon_entry_id assignment"
+  ]
+}

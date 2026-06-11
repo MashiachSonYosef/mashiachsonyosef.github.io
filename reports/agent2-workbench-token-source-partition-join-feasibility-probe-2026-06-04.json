@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_workbench_token_source_partition_join_feasibility_probe",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "status": "nonpublic_join_feasibility_probe_exact_schema_blocker",
+  "target": "determine whether current 5000-token inventory can be deterministically joined to Agent 1 source-name partitions",
+  "files": {
+    "token_inventory": ".local-cache/workbench-evidence/token-inventory-5000.json",
+    "token_inventory_jsonl": ".local-cache/workbench-evidence/token-inventory-5000.tokens.jsonl",
+    "source_name_partitions": "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.json",
+    "builder": "scripts/build_agent2_workbench_token_source_partition_join_feasibility_probe.mjs",
+    "validator": "scripts/validate_agent2_workbench_token_source_partition_join_feasibility_probe.mjs",
+    "output_json": "reports/agent2-workbench-token-source-partition-join-feasibility-probe-2026-06-04.json",
+    "output_md": "reports/agent2-workbench-token-source-partition-join-feasibility-probe-2026-06-04.md"
+  },
+  "exact_command_or_script": {
+    "build": "node scripts/build_agent2_workbench_token_source_partition_join_feasibility_probe.mjs",
+    "validate": "node scripts/validate_agent2_workbench_token_source_partition_join_feasibility_probe.mjs reports/agent2-workbench-token-source-partition-join-feasibility-probe-2026-06-04.json"
+  },
+  "schema_counts": {
+    "token_inventory_top_rows": 5000,
+    "distinct_normalized_tokens": 698873,
+    "total_tokens": 75290880,
+    "source_name_partition_rows": 351,
+    "source_rows": 105747,
+    "top_work_edges_available": 39961,
+    "top_work_unique_work_ids": 556,
+    "top_work_edges_with_source_partition_join": 0,
+    "top_work_unique_work_ids_with_source_partition_join": 0,
+    "first_ref_edges_available": 25000,
+    "complete_token_occurrence_source_partition_edges_available": 0
+  },
+  "feasible_now": {
+    "can_join_capped_top_work_edges_to_work_level_source_metadata": false,
+    "can_join_complete_token_occurrences_to_source_name_partitions": false,
+    "can_emit_definition_lemma_reader_hint_candidates": false,
+    "can_emit_candidate_text": false,
+    "can_emit_public_or_answer_rows": false
+  },
+  "exact_blocker": {
+    "id": "token_inventory_lacks_complete_occurrence_level_source_partition_edges",
+    "reason": "The current token inventory stores capped top_works and first_refs, not a complete per-token occurrence/source_name/source_family/license/source_url/source_name_partition_id edge table.",
+    "required_next_artifact": ".local-cache/workbench-evidence/token-source-partition-edges-5000.jsonl",
+    "required_fields": [
+      "token_key",
+      "token_normalized",
+      "source_ref",
+      "work_id",
+      "work_title",
+      "source_name",
+      "source_family",
+      "license_label",
+      "license_lane",
+      "source_url_or_citation",
+      "source_name_partition_id",
+      "agent6_boundary_required"
+    ]
+  },
+  "transform_candidate_counts": {
+    "definition_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "candidate_text_rows": 0
+  },
+  "zero_emission_counters": {
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0
+  },
+  "sample_unjoined_top_work_edges": [
+    {
+      "token_key": "he:ל",
+      "work_id": "beit-yosef",
+      "work_title": "Beit Yosef",
+      "occurrence_count_in_top_work_edge": 40650,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:ל",
+      "work_id": "drisha",
+      "work_title": "Drisha",
+      "occurrence_count_in_top_work_edge": 29470,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:ל",
+      "work_id": "machatzit-hashekel-on-orach-chayim",
+      "work_title": "Machatzit HaShekel on Orach Chayim",
+      "occurrence_count_in_top_work_edge": 26535,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:ל",
+      "work_id": "urim-vetumim-tumim",
+      "work_title": "Urim VeTumim, Tumim",
+      "occurrence_count_in_top_work_edge": 20414,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:ל",
+      "work_id": "arukh-hashulchan",
+      "work_title": "Arukh HaShulchan",
+      "occurrence_count_in_top_work_edge": 19761,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:ל",
+      "work_id": "brit-moshe",
+      "work_title": "Brit Moshe",
+      "occurrence_count_in_top_work_edge": 19309,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:ל",
+      "work_id": "minchat-chinukh",
+      "work_title": "Minchat Chinukh",
+      "occurrence_count_in_top_work_edge": 18167,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:ל",
+      "work_id": "haamek-sheilah-on-sheiltot-drav-achai-gaon",
+      "work_title": "Haamek Sheilah on Sheiltot d'Rav Achai Gaon",
+      "occurrence_count_in_top_work_edge": 13983,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:לא",
+      "work_id": "beit-yosef",
+      "work_title": "Beit Yosef",
+      "occurrence_count_in_top_work_edge": 39162,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:לא",
+      "work_id": "arukh-hashulchan",
+      "work_title": "Arukh HaShulchan",
+      "occurrence_count_in_top_work_edge": 31193,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:לא",
+      "work_id": "urim-vetumim-tumim",
+      "work_title": "Urim VeTumim, Tumim",
+      "occurrence_count_in_top_work_edge": 14042,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:לא",
+      "work_id": "drisha",
+      "work_title": "Drisha",
+      "occurrence_count_in_top_work_edge": 13185,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:לא",
+      "work_id": "akeidat-yitzchak",
+      "work_title": "Akeidat Yitzchak",
+      "occurrence_count_in_top_work_edge": 12219,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:לא",
+      "work_id": "minchat-chinukh",
+      "work_title": "Minchat Chinukh",
+      "occurrence_count_in_top_work_edge": 11735,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:לא",
+      "work_id": "ohr-hachammah-on-zohar",
+      "work_title": "Ohr HaChammah on Zohar",
+      "occurrence_count_in_top_work_edge": 11421,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:לא",
+      "work_id": "peri-megadim-on-orach-chayim",
+      "work_title": "Peri Megadim on Orach Chayim",
+      "occurrence_count_in_top_work_edge": 10200,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:כ",
+      "work_id": "beit-yosef",
+      "work_title": "Beit Yosef",
+      "occurrence_count_in_top_work_edge": 26755,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:כ",
+      "work_id": "minchat-chinukh",
+      "work_title": "Minchat Chinukh",
+      "occurrence_count_in_top_work_edge": 20430,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:כ",
+      "work_id": "machatzit-hashekel-on-orach-chayim",
+      "work_title": "Machatzit HaShekel on Orach Chayim",
+      "occurrence_count_in_top_work_edge": 19519,
+      "source_partition_join_available": false
+    },
+    {
+      "token_key": "he:כ",
+      "work_id": "haamek-sheilah-on-sheiltot-drav-achai-gaon",
+      "work_title": "Haamek Sheilah on Sheiltot d'Rav Achai Gaon",
+      "occurrence_count_in_top_work_edge": 17096,
+      "source_partition_join_available": false
+    }
+  ],
+  "validator": "node scripts/validate_agent2_workbench_token_source_partition_join_feasibility_probe.mjs reports/agent2-workbench-token-source-partition-join-feasibility-probe-2026-06-04.json",
+  "handoff_owner": "Agent 10 first; Agent 6 only by exact boundary packet prepared through release owner",
+  "stop_condition": "Stop at feasibility probe until a complete token-source-partition edge artifact exists; do not infer candidate rows from capped top_work or first_ref samples."
+}

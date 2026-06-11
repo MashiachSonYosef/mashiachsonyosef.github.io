@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent3_direct_release_goal_state_consumption_gate_proof",
+  "generated_at": "2026-06-05T12:35:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent3-direct-release-goal-state-consumption",
+  "status": "validators_passed_no_executable_workset_blocker_preserved",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, usage-as-definition, route ranking, answer selection, public/runtime, publication, product/data, accepted gloss/text, public reader output, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent3-agent10-direct-release-goal-state-consumption-2026-06-05.json",
+      "sha256": "222d0f90933706252778e92543017da9461207f7c8459088dd98b9331d8c37ee",
+      "artifact_type": "agent3_agent10_direct_release_goal_state_consumption",
+      "status": "direct_release_goal_state_consumed_no_agent3_workset"
+    },
+    {
+      "path": "reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.json",
+      "sha256": "cf661e4c8672cc89cd8956c28b3f1cccc924b171ff9e9cfc9552be2fc3686445",
+      "artifact_type": "agent3_agent10_post_matrix_registration_consumption_package",
+      "status": "agent10_post_matrix_registration_consumed_no_executable_workset"
+    },
+    {
+      "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "sha256": "3eb35f85ac7db5141bebe946b82fdfe10e44eaecf67f42182573f9a05a6b3643",
+      "artifact_type": "spark10_release_package_intake_matrix"
+    },
+    {
+      "path": "reports/agent3-state.json",
+      "sha256": "e88cb3908de5ef00ac63342320207403f6b5f16fe481da438f923c2ae02652bb",
+      "artifact_type": "agent3_usage_navigation_state"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent3_agent10_direct_release_goal_state_consumption.mjs reports\\agent3-agent10-direct-release-goal-state-consumption-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "direct_agent3_worksets 0; spark10_inputs 371; spark10_release_relevant 73; spark10_handoff 0; remaining_blocker no_exact_changed_executable_agent3_workset"
+    },
+    {
+      "command": "node scripts\\validate_agent3_agent10_post_matrix_registration_consumption_package.mjs reports\\agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.json",
+      "result": "passed_with_warnings",
+      "stdout_summary": "transform rows 1334; occurrences 2964; direct executable worksets 0; package-time snapshot validated with volatile input warnings"
+    },
+    {
+      "command": "node scripts\\validate_spark10_release_package_intake.mjs reports\\spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "result": "passed",
+      "stdout_summary": "Agent 10 release/package intake validation passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_usage_state.mjs reports\\agent3-state.json",
+      "result": "passed",
+      "stdout_summary": "Evidence artifacts 95/95; validators 49/49; smoke failed 0"
+    }
+  ],
+  "counts": {
+    "direct_goal_rows": 8,
+    "direct_goal_agent3_rows": 1,
+    "direct_goal_transform_readiness_rows": 1334,
+    "direct_goal_transform_readiness_occurrences": 2964,
+    "direct_goal_agent3_matrix_rows": 8113,
+    "direct_goal_agent3_matrix_occurrences": 12595,
+    "direct_goal_exact_blocker_rows": 6779,
+    "direct_goal_exact_blocker_occurrences": 9631,
+    "direct_goal_agent3_executable_worksets": 0,
+    "spark10_matrix_inputs_checked": 371,
+    "spark10_matrix_release_relevant_rows": 73,
+    "spark10_matrix_agent6_handoff_candidates": 0,
+    "spark10_agent3_related_rows": 57,
+    "spark10_agent3_executable_rows": 0,
+    "spark10_agent6_handoff_rows": 0,
+    "post_matrix_package_direct_executable_worksets": 0,
+    "route_publication_support_rows": 0,
+    "definition_authority_rows": 0,
+    "usage_as_definition_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0,
+    "public_reader_output_rows": 0
+  },
+  "warnings": [
+    "post-matrix package validator reported volatile input changed after package build for Spark10 matrix files and agent3-state.md",
+    "package-time snapshot remains validated; no executable Agent3 workset is produced"
+  ],
+  "blocker_if_any": {
+    "blocker": "no_exact_changed_executable_agent3_workset",
+    "missing_fields": [
+      "changed_agent3_artifact_path_or_exact_workset_id",
+      "target_rows_and_occurrences_for_new_agent3_matrix",
+      "route_card_or_source_route_input_set",
+      "output_path_and_schema_for_new_agent3_matrix",
+      "validator_or_gate_for_new_agent3_matrix",
+      "handoff_trigger_for_agent10_release_package_intake",
+      "stop_condition_for_new_agent3_run"
+    ]
+  },
+  "result": "target | agent3-direct-release-goal-state-consumption | files in packet | commands passed: Agent3 direct-release consumption validator, Agent3 post-matrix consumption validator, Spark10 release intake validator, Agent3 usage state validator | counts: 1334 transform-readiness rows, 2964 occurrences, 8113 Agent3 matrix rows, 6779 exact blocker rows, 371 Spark10 inputs, 73 release-relevant rows, 0 Agent6 handoff candidates, 0 Agent3 executable worksets, 0 route/Definition/answer/accepted-text/public-runtime rows | result: validators passed and no-executable-workset blocker preserved | blocker if any: no_exact_changed_executable_agent3_workset with missing changed workset fields | next handoff: Agent3/Agent10 provide a changed executable workset before another deterministic Agent4 pass | stop condition: do not rerun unless direct-release consumption, Spark10 matrix, Agent3 state, post-matrix package, or exact workset changes",
+  "handoff_owner": "Agent 3 for changed executable workset; Agent 10 for release/package intake.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not claim route publication support, Definition authority, answer selection, public/runtime acceptance, accepted text, or release action from this packet."
+}

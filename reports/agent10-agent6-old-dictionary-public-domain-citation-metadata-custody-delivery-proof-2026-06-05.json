@@ -1,0 +1,100 @@
+{
+  "artifact_type": "agent10_agent6_old_dictionary_public_domain_citation_metadata_custody_delivery_proof",
+  "generated_at": "2026-06-05T18:24:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "delivery_target": {
+    "agent": "Agent 6",
+    "thread_id": "019e7f09-a04b-7f30-b36c-87aa8ecaae5d",
+    "submission_id": "019e9811-c01c-7503-96a9-0590fffc075e",
+    "delivery_state": "queued_for_agent6_boundary_review"
+  },
+  "routed_packet": {
+    "md": "reports/agent10-agent6-ready-old-dictionary-public-domain-citation-metadata-custody-boundary-packet-2026-06-05.md",
+    "json": "reports/agent10-agent6-ready-old-dictionary-public-domain-citation-metadata-custody-boundary-packet-2026-06-05.json",
+    "validator": "node scripts\\validate_agent10_old_dictionary_public_domain_citation_metadata_custody_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-public-domain-citation-metadata-custody-boundary-packet-2026-06-05.json",
+    "validator_result": "passed"
+  },
+  "source_artifacts": {
+    "agent1_custody_md": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.md",
+    "agent1_custody_json": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.json",
+    "agent1_validation_json": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-validation-result-2026-06-05.json",
+    "prior_agent6_manifest_verdict": "reports/agent6-old-dictionary-exact-row-subset-manifest-boundary-verdict-2026-06-05.md"
+  },
+  "review_scope": "nonpublic_public_domain_citation_metadata_custody_planning_evidence_only",
+  "counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "public_domain_citation_metadata_present_rows": 297,
+    "public_domain_rid_rows": 297,
+    "public_domain_rid_total": 1276,
+    "public_domain_headword_rows": 297,
+    "public_domain_headword_total": 1120,
+    "public_domain_refs_rows": 204,
+    "public_domain_refs_count_total": 4478,
+    "public_domain_rows_without_refs_sample": 93,
+    "rows_without_public_domain_citation_metadata": 203,
+    "nc_only_rows_without_public_domain_citation_metadata": 17,
+    "no_source_hit_rows_without_public_domain_citation_metadata": 186
+  },
+  "lane_split": {
+    "commercial_clean_candidate": {
+      "rows": 297,
+      "occurrences": 5747
+    },
+    "noncommercial_educational_candidate": {
+      "rows": 17,
+      "occurrences": 259
+    },
+    "metadata_or_link_only": {
+      "rows": 0,
+      "occurrences": 0
+    },
+    "blocked_or_needs_review": {
+      "rows": 186,
+      "occurrences": 2421
+    }
+  },
+  "agent6_review_question": "Pass/warn/block whether the exact Agent 1 old-dictionary public-domain citation metadata custody artifact may be carried as non-public citation/source-custody planning evidence only, preserving lane separation, citation-metadata-only status, blockers, and all zero-output counters.",
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "highest_permissible_claim": "Agent 10 routed the old-dictionary public-domain citation metadata custody boundary packet to Agent 6 for non-public planning-only boundary review.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export permission",
+    "NC commercial authorization",
+    "release action"
+  ],
+  "stop_condition": "Wait for Agent 6 exact verdict artifact path or exact blocker before carrying this custody artifact into candidate use, transform, source-row emission, candidate text, output, public/runtime, answer, definition, export, or release package steps."
+}

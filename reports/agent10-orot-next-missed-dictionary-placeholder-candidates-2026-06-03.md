@@ -1,8 +1,8 @@
 # Agent 10 Orot Next Missed-Dictionary Placeholder Candidates
 
 - Candidate rows: 50
-- Candidate occurrences: 1193
-- Commercial-clean candidates: 50 rows / 1193 occurrences
+- Candidate occurrences: 1201
+- Commercial-clean candidates: 50 rows / 1201 occurrences
 - NC/Klein candidates: 0 rows / 0 occurrences
 - Rows added now: 0
 - Rows pending Agent 6: 50

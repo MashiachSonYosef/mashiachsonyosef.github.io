@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_ready_boundary_packet",
+  "generated_at": "2026-06-04T20:13:00.0000000-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "review_scope": "old_dictionary_lane_partition_transform_planning_matrix_nonpublic_planning_evidence_only",
+  "workset": "old-dictionary-lane-partition-transform-planning-matrix",
+  "release_owner": "Agent 10",
+  "inputs": [
+    "reports/agent2-old-dictionary-lane-partition-transform-planning-matrix-2026-06-04.md",
+    "reports/agent2-old-dictionary-lane-partition-transform-planning-matrix-2026-06-04.json",
+    "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.md",
+    "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+    "reports/agent2-old-dictionary-lane-planning-intake-2026-06-04.md",
+    "reports/agent2-old-dictionary-lane-planning-intake-2026-06-04.json",
+    "reports/agent6-old-dictionary-license-lane-planning-verdict-2026-06-04.md"
+  ],
+  "counts": {
+    "source_family_planning_rows": 5,
+    "commercial_clean_candidate_source_families": 3,
+    "noncommercial_educational_candidate_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "commercial_clean_source_family_hit_rows": 500,
+    "commercial_clean_source_family_hit_occurrences": 10940,
+    "noncommercial_educational_source_family_hit_rows": 214,
+    "noncommercial_educational_source_family_hit_occurrences": 4444,
+    "blocked_or_review_source_family_hit_rows": 222,
+    "blocked_or_review_source_family_hit_occurrences": 4435,
+    "candidate_text_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0
+  },
+  "count_semantics": {
+    "partition_counts_are_source_family_hit_totals": true,
+    "row_count_is_not_exclusive_export_row_count": true,
+    "exclusive_export_row_counts_authorized_now": false
+  },
+  "lane_split": {
+    "commercial_clean_candidate": "Jastrow Dictionary, BDB Dictionary, and BDB Aramaic Dictionary source-family planning rows only; no candidate text/export/storage now",
+    "noncommercial_educational_candidate": "Klein Dictionary source-family planning row only with derived_from_nc=true, attribution_required=true, owner_use_attestation=noncommercial_educational_zero_profit_zero_kickback, commercial_export_allowed=false, corpus_contamination=false",
+    "blocked_or_needs_review": "BDB Augmented Strong remains blocked/review pending independent custody evidence",
+    "metadata_or_link_only": "0 source families"
+  },
+  "validator_results": [
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_lane_partition_transform_planning_matrix.mjs reports\\agent2-old-dictionary-lane-partition-transform-planning-matrix-2026-06-04.json",
+      "result": "passed"
+    }
+  ],
+  "agent6_boundary_question": "Pass/warn/block whether the exact Agent 2 old-dictionary lane-partition transform planning matrix may be carried as non-public transform-planning evidence only for 5 source-family planning rows, preserving source lanes, NC educational separation, blocked/review BDB Augmented Strong posture, and zero candidate-text/export/storage/public/answer/definition counters.",
+  "not_requested": [
+    "candidate text consumption",
+    "candidate text export",
+    "definition-content storage",
+    "answer eligibility",
+    "public/runtime output",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "accepted text",
+    "publication readiness"
+  ],
+  "exact_blockers": [
+    "old_dictionary_candidate_text_consumption_export_storage_requires_new_exact_agent6_boundary",
+    "changed source-family/linkage/dictionary evidence is still required for the 168 Orot unmatched rows",
+    "BDB Augmented Strong remains blocked_or_needs_review pending independent custody evidence",
+    "Klein rows remain separate noncommercial_educational_candidate lane only and are not commercial export candidates"
+  ],
+  "next_handoff": {
+    "agent6": "Review this exact packet as non-public transform-planning evidence only.",
+    "agent10": "Consume verdict as planning evidence or record exact delivery/verdict blocker.",
+    "agent2": "Do not generate candidate text/export/storage until a later exact row/subset boundary clears it."
+  },
+  "stop_condition": "Stop after Agent 6 verdict path or exact delivery blocker; otherwise keep the matrix as non-public lane-partition transform-planning evidence only.",
+  "zero_counters": {
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0
+  },
+  "highest_permissible_claim": "Agent 10 assembled an Agent6-ready boundary packet for the Agent 2 old-dictionary lane-partition transform planning matrix as non-public planning evidence only.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orot Pre-HUD Row Preview</title>
+  <style>
+    :root {
+      --bg: #101113;
+      --panel: #18191c;
+      --panel-2: #202126;
+      --text: #efe6d2;
+      --muted: #c8bca5;
+      --line: #3a3329;
+      --line-2: #6f5c3c;
+      --accent: #d6be8a;
+      --hebrew: #f4ead8;
+      --ok: #9cc8a1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.55 Georgia, "Times New Roman", serif;
+    }
+    a { color: inherit; }
+    main { padding: 28px 16px 48px; }
+    .shell { width: min(1160px, 100%); margin: 0 auto; }
+    .hero {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+    .crumbs {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, h4 { font-weight: 400; line-height: 1.18; }
+    h1 { margin: 0; font-size: clamp(2rem, 5vw, 4.4rem); }
+    .hero-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .unit {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.018);
+      padding: 18px;
+    }
+    .unit-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+    .unit-head h4 { margin: 0; color: var(--text); }
+    .source-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 10px 16px;
+      margin: 0 0 16px;
+      padding: 8px 10px;
+      border: 1px solid rgba(214,190,138,0.16);
+      background: rgba(255,255,255,0.018);
+    }
+    .source-ref {
+      color: var(--accent);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .hebrew-source {
+      margin: 0;
+      color: var(--hebrew);
+      direction: rtl;
+      unicode-bidi: plaintext;
+      text-align: right;
+      font-size: 1rem;
+      line-height: 1.35;
+      opacity: 0.78;
+      overflow-wrap: anywhere;
+    }
+    .prehud-rows {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+      direction: ltr;
+    }
+    .prehud-row {
+      display: grid;
+      grid-template-columns: minmax(5.75rem, 0.22fr) minmax(20rem, 1fr) minmax(5.25rem, 0.16fr);
+      align-items: stretch;
+      border: 1px solid rgba(214,190,138,0.24);
+      background: rgba(10,11,13,0.72);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+    }
+    .prehud-word,
+    .prehud-gloss,
+    .prehud-match {
+      min-width: 0;
+      padding: 12px 14px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .prehud-word {
+      color: var(--hebrew);
+      font-size: 1.34rem;
+      line-height: 1.1;
+      direction: rtl;
+      unicode-bidi: isolate;
+      justify-content: flex-start;
+      border-right: 1px solid rgba(214,190,138,0.18);
+      background: rgba(214,190,138,0.055);
+    }
+    .prehud-word a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(214,190,138,0.38);
+      padding-bottom: 1px;
+    }
+    .prehud-word a:hover,
+    .prehud-word a:focus-visible {
+      color: #fff5df;
+      outline: 2px solid rgba(214,190,138,0.72);
+      outline-offset: 3px;
+    }
+    .prehud-gloss {
+      display: block;
+      color: var(--text);
+      font-size: 0.97rem;
+      line-height: 1.48;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      white-space: normal;
+      background: rgba(255,255,255,0.018);
+    }
+    .prehud-gloss [data-gloss-text] {
+      display: block;
+      overflow-wrap: anywhere;
+      max-width: 76ch;
+    }
+    .prehud-note {
+      display: block;
+      margin-top: 0.42rem;
+      color: var(--accent);
+      font-size: 0.76rem;
+      line-height: 1.3;
+    }
+    .prehud-gloss a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-left: 0.26rem;
+    }
+    .prehud-gloss sup {
+      font-size: 0.72em;
+      margin-left: 0.18em;
+      vertical-align: super;
+    }
+    .prehud-match {
+      align-items: flex-start;
+      justify-content: flex-end;
+      color: var(--ok);
+      font-size: 0.88rem;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+      border-left: 1px solid rgba(214,190,138,0.18);
+      background: rgba(156,200,161,0.045);
+    }
+    .prehud-match[data-route-warning="true"] {
+      color: var(--accent);
+      background: rgba(214,190,138,0.055);
+    }
+    .lexical-hud {
+      position: fixed;
+      z-index: 1000;
+      top: 12px;
+      left: 12px;
+      width: calc(100vw - 24px);
+      max-width: calc(100vw - 24px);
+      max-height: calc(100vh - 24px);
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      padding: 18px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.42);
+      overflow: auto;
+    }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin: -18px -18px 14px;
+      padding: 14px 18px 10px;
+      background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0));
+    }
+    .hud-head h2 {
+      margin: 0;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+    .hud-close {
+      border: 1px solid var(--line-2);
+      background: transparent;
+      color: var(--muted);
+      padding: 4px 8px;
+      font: inherit;
+      cursor: pointer;
+    }
+    .hud-close:hover,
+    .hud-close:focus-visible {
+      color: var(--text);
+      border-color: var(--accent);
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .route-hud-panel {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+    .route-selected-token {
+      border: 1px solid var(--line-2);
+      background: rgba(214,190,138,0.06);
+      color: var(--hebrew);
+      padding: 12px 14px;
+      text-align: center;
+      font-size: clamp(2rem, 7vw, 4rem);
+      line-height: 1.05;
+      overflow-wrap: anywhere;
+    }
+    .route-section-card,
+    .route-audit-card,
+    .route-source-card {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.025);
+      padding: 10px;
+      min-width: 0;
+    }
+    .route-answer-card {
+      border-color: var(--line-2);
+      background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025));
+    }
+    .route-section-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .route-section-title h3 {
+      margin: 0;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    .route-section-title span {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+    }
+    .reader-gloss-options,
+    .claim-row-list {
+      display: grid;
+      gap: 8px;
+    }
+    .reader-gloss-options {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .reader-gloss-card,
+    .claim-row {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.025);
+      padding: 7px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    .reader-gloss-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+    .reader-gloss-top strong {
+      color: var(--accent);
+      font-weight: 400;
+    }
+    .reader-gloss-meta,
+    .reader-gloss-source {
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.3;
+      margin: 4px 0 0;
+    }
+    .reader-gloss-definition {
+      margin: 7px 0;
+      color: var(--text);
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+    .reader-gloss-choice {
+      border: 1px solid var(--line-2);
+      background: transparent;
+      color: var(--accent);
+      padding: 4px 8px;
+      font: inherit;
+      cursor: pointer;
+    }
+    .reader-gloss-choice:hover,
+    .reader-gloss-choice:focus-visible {
+      color: var(--text);
+      border-color: var(--accent);
+      outline: 2px solid rgba(214,190,138,0.72);
+      outline-offset: 2px;
+    }
+    .reader-gloss-choice:disabled {
+      cursor: default;
+      color: var(--muted);
+      border-color: var(--line);
+    }
+    .reader-gloss-card[data-selected="true"],
+    .claim-row[data-selected="true"] {
+      border-color: var(--line-2);
+      background: rgba(214,190,138,0.08);
+    }
+    .claim-row strong {
+      display: block;
+      color: var(--text);
+      line-height: 1.28;
+    }
+    .claim-row small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.3;
+      margin-top: 2px;
+    }
+    .claim-hebrew {
+      color: var(--hebrew);
+      font-size: 1rem;
+    }
+    .source-footnotes {
+      margin-top: 14px;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .source-footnote-row {
+      margin: 4px 0;
+      line-height: 1.28;
+    }
+    .source-footnote-row:target,
+    .source-footnote-row[data-active="true"],
+    .claim-row:target,
+    .claim-row[data-active="true"] {
+      color: var(--text);
+      background: rgba(214,190,138,0.08);
+      outline: 1px solid rgba(214,190,138,0.28);
+    }
+    .source-citation {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    .source-note-index {
+      color: var(--accent);
+      font-size: 0.64rem;
+      margin-left: 3px;
+      vertical-align: super;
+    }
+    .placeholder {
+      color: var(--muted);
+      margin: 0;
+    }
+    .preview-boundary {
+      margin: 14px 0 0;
+      border: 1px solid rgba(214,190,138,0.16);
+      background: rgba(255,255,255,0.018);
+      color: var(--muted);
+      padding: 9px 11px;
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+    @media (max-width: 720px) {
+      main { padding-inline: 10px; }
+      .hero, .unit { padding: 14px; }
+      .prehud-row {
+        grid-template-columns: minmax(4.8rem, 0.32fr) minmax(0, 1fr);
+      }
+      .prehud-word,
+      .prehud-gloss,
+      .prehud-match {
+        padding: 8px;
+      }
+      .prehud-match {
+        grid-column: 2;
+        justify-content: flex-start;
+        border-left: 0;
+        border-top: 1px solid rgba(214,190,138,0.18);
+      }
+      .lexical-hud { inset: 8px auto auto 8px; width: calc(100vw - 16px); max-width: calc(100vw - 16px); max-height: calc(100vh - 16px); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <section class="hero">
+        <p class="crumbs">Library &middot; Thought / Musar / Chasidut</p>
+        <h1>Orot</h1>
+        <p class="hero-summary">
+          <span>canonical render target</span>
+          <span>Route HUD active</span>
+          <span>pre-HUD row preview</span>
+        </p>
+      </section>
+
+      <section class="unit" id="orot-lights-from-darkness-lights-of-rebirth-70-5-preview">
+        <div class="unit-head">
+          <h4>Orot, Lights from Darkness, Lights of Rebirth 70:5</h4>
+          <a href="#orot-lights-from-darkness-lights-of-rebirth-70-5-preview" aria-label="Copy preview link">#</a>
+        </div>
+
+        <div class="source-strip" aria-label="Condensed Hebrew source">
+          <span class="source-ref">70:5</span>
+          <p class="hebrew-source" lang="he" dir="rtl">רוח אפנו משיח ד׳.</p>
+        </div>
+
+        <div class="prehud-rows" aria-label="Pre-HUD rows">
+          <div class="prehud-row" data-hud-row data-hud-target="hud-ruach" data-token-id="tok-70a0c029589a" data-token="רוח">
+            <div class="prehud-word" lang="he" dir="rtl"><a href="#hud-ruach" data-hud-open="hud-ruach">רוח</a></div>
+            <div class="prehud-gloss"><span data-gloss-text>Select gloss</span><a href="#hud-src-1" data-hud-open="hud-ruach" data-hud-source="hud-src-1" aria-label="Selected source for רוח" hidden><sup>1</sup></a></div>
+            <div class="prehud-match" data-match-text>--</div>
+          </div>
+          <div class="prehud-row" data-hud-row data-hud-target="hud-apenu" data-token-id="tok-cbc5a5938bff" data-token="אפנו">
+            <div class="prehud-word" lang="he" dir="rtl"><a href="#hud-apenu" data-hud-open="hud-apenu">אפנו</a></div>
+            <div class="prehud-gloss"><span data-gloss-text>Select gloss</span><a href="#hud-src-2" data-hud-open="hud-apenu" data-hud-source="hud-src-2" aria-label="Selected source for אפנו" hidden><sup>2</sup></a></div>
+            <div class="prehud-match" data-match-text>--</div>
+          </div>
+          <div class="prehud-row" data-hud-row data-hud-target="hud-mashiach" data-token-id="tok-ddd75c156221" data-token="משיח">
+            <div class="prehud-word" lang="he" dir="rtl"><a href="#hud-mashiach" data-hud-open="hud-mashiach">משיח</a></div>
+            <div class="prehud-gloss"><span data-gloss-text>Select gloss</span><a href="#hud-src-3" data-hud-open="hud-mashiach" data-hud-source="hud-src-3" aria-label="Selected source for משיח" hidden><sup>3</sup></a></div>
+            <div class="prehud-match" data-match-text>--</div>
+          </div>
+          <div class="prehud-row" data-hud-row data-hud-target="hud-god-marker" data-token-id="tok-22c5b73f6190" data-token="ד׳">
+            <div class="prehud-word" lang="he" dir="rtl"><a href="#hud-god-marker" data-hud-open="hud-god-marker">ד׳</a></div>
+            <div class="prehud-gloss"><span data-gloss-text>Select gloss</span><a href="#hud-src-4" data-hud-open="hud-god-marker" data-hud-source="hud-src-4" aria-label="Selected source for ד׳" hidden><sup>4</sup></a></div>
+            <div class="prehud-match" data-match-text>--</div>
+          </div>
+        </div>
+
+        <p class="preview-boundary">
+          Preview provenance: embedded cards are copied from current route-card artifacts only for this disposable mock. The route lookup artifacts remain the source of truth. This standalone page is not wired to the production Orot hydration path (`hydrateLexicalWords` / `applyReaderHints`) and creates no answer authority, accepted gloss/text, source/license acceptance, route mutation, renderer acceptance, or public/runtime change.
+        </p>
+
+      </section>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head">
+      <h2 id="route-hud-title">Route HUD</h2>
+      <button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button>
+    </div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script>
+    (() => {
+      const tokenRows = {
+        "hud-ruach": {
+          token: "רוח",
+          tokenId: "tok-70a0c029589a",
+          source: "hud-src-1",
+          normalized: "רוח",
+          cards: [
+            {
+              card_id: "def-kaikki-lemma-6c28628ae98a7da8",
+              definition: "Wind, a wind: (a) movement of atmospheric air.; Air, atmosphere.; A direction, a cardinal direction: any of north, south, east, or west.; breath; A person's spirit, soul.; A person's spirit, mind: his or her desires, emotions, personality, and so on, taken collectively.; The spirit of something: its core, its essence, its purpose.; The spirit of something: its manner or style.; A spirit, a ghost: a supernatural creature.",
+              match_percent: 80,
+              route_selectable: true,
+              reader_gloss_role: "route_gloss",
+              display_label: "Hebrew lemma match",
+              route_type: "lemma",
+              basis: "actual route card",
+              source_rows: [{ source_name: "Hebrew Wiktionary data via Kaikki/Wiktextract", source_family: "kaikki", source_id: "kaikki-dd4e17610890e54e", license: "CC BY-SA 4.0 / GFDL" }]
+            }
+          ]
+        },
+        "hud-apenu": {
+          token: "אפנו",
+          tokenId: "tok-cbc5a5938bff",
+          source: "hud-src-2",
+          normalized: "אפנו",
+          cards: [
+            {
+              card_id: "def-layer-f6dced106c65a90a",
+              definition: "our nose; our nostril; our face; our breath",
+              match_percent: 76,
+              route_selectable: true,
+              reader_gloss_role: "route_gloss",
+              display_label: "Hebrew/Aramaic lemma match",
+              route_type: "lemma",
+              basis: "actual route card",
+              source_rows: [
+                { source_name: "Wikidata Lexeme", source_family: "wikidata", source_id: "L64054", license: "CC0" },
+                { source_name: "OpenScriptures morphHB", source_family: "openscriptures", source_id: "Lam.4.20 word 25vKo; lemma 639; morph HNcmdc/Sp1cp", license: "CC BY 4.0" }
+              ]
+            }
+          ]
+        },
+        "hud-mashiach": {
+          token: "משיח",
+          tokenId: "tok-ddd75c156221",
+          source: "hud-src-3",
+          normalized: "משיח",
+          cards: [
+            {
+              card_id: "def-kaikki-lemma-add3a83c180e1fe0",
+              definition: "messiah",
+              match_percent: 80,
+              route_selectable: true,
+              reader_gloss_role: "route_gloss",
+              display_label: "Hebrew lemma match",
+              route_type: "lemma",
+              basis: "actual route card",
+              source_rows: [{ source_name: "Hebrew Wiktionary data via Kaikki/Wiktextract", source_family: "kaikki", source_id: "kaikki-33e63b233eaee050", license: "CC BY-SA 4.0 / GFDL" }]
+            },
+            {
+              card_id: "def-kaikki-lemma-e2a347ebd7ea7d14",
+              definition: "anointed",
+              match_percent: 80,
+              route_selectable: true,
+              reader_gloss_role: "route_gloss",
+              display_label: "Hebrew lemma match",
+              route_type: "lemma",
+              basis: "actual route card",
+              source_rows: [{ source_name: "Hebrew Wiktionary data via Kaikki/Wiktextract", source_family: "kaikki", source_id: "kaikki-919087c1e8e7faad", license: "CC BY-SA 4.0 / GFDL" }]
+            }
+          ]
+        },
+        "hud-god-marker": {
+          token: "ד׳",
+          tokenId: "tok-22c5b73f6190",
+          source: "hud-src-4",
+          normalized: "ד׳",
+          prehud_status: "TBD_ROUTE_MISMATCH",
+          cards: [
+            {
+              card_id: "def-kaikki-lemma-44b8c6d405733cb3",
+              definition: "Used to denote /ð/ (the sound of the in English this).",
+              match_percent: 80,
+              route_selectable: false,
+              reader_gloss_role: "route_mismatch",
+              display_label: "Current route card",
+              route_type: "lemma",
+              basis: "actual current route card; included to show the bad automatic pick",
+              source_rows: [{ source_name: "Hebrew Wiktionary data via Kaikki/Wiktextract", source_family: "kaikki", source_id: "kaikki-0a58703184376c3a", license: "CC BY-SA 4.0 / GFDL" }]
+            },
+            {
+              card_id: "def-kaikki-lemma-bae02278a899f17d",
+              definition: "Wednesday.; G-d.",
+              match_percent: 80,
+              route_selectable: false,
+              reader_gloss_role: "route_mismatch",
+              display_label: "Current route card",
+              route_type: "lemma",
+              basis: "actual route card alternative",
+              source_rows: [{ source_name: "Hebrew Wiktionary data via Kaikki/Wiktextract", source_family: "kaikki", source_id: "kaikki-453ed361a525c64b", license: "CC BY-SA 4.0 / GFDL" }]
+            }
+          ]
+        }
+      };
+      const hud = document.querySelector("[data-lexical-hud]");
+      const panel = document.querySelector("[data-route-hud-panel]");
+      const title = document.querySelector("#route-hud-title");
+      const close = document.querySelector("[data-hud-close]");
+      let activeTarget = null;
+
+      const create = (tag, className, text) => {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text) node.textContent = text;
+        return node;
+      };
+      const routeScore = (card) => Number.isFinite(card.match_percent) ? Math.max(0, Math.round(card.match_percent)) : null;
+      const sourceSummary = (rows = []) => rows.length
+        ? rows.map((row) => `${row.source_name || "Source"} | ${row.source_id || "N/A"} | ${row.license || "license missing"}`).join("; ")
+        : "Source row missing";
+      const selectedCard = (tokenRow) => tokenRow.cards.find((card) => card.selected)
+        || tokenRow.cards.find((card) => card.route_selectable === true)
+        || null;
+      const positionHud = () => {
+        if (!hud || hud.hidden) return;
+        const margin = window.matchMedia("(max-width: 720px)").matches ? 8 : 12;
+        hud.style.left = `${margin}px`;
+        hud.style.top = `${margin}px`;
+        hud.style.width = `${Math.max(320, window.innerWidth - margin * 2)}px`;
+        hud.style.maxHeight = `${Math.max(260, window.innerHeight - margin * 2)}px`;
+      };
+      const updatePreHudRow = (target, card) => {
+        const row = document.querySelector(`[data-hud-target="${target}"]`);
+        if (!row) return;
+        const gloss = row.querySelector("[data-gloss-text]");
+        const match = row.querySelector("[data-match-text]");
+        const sourceLink = row.querySelector("[data-hud-source]");
+        row.dataset.selectedGloss = card.definition;
+        row.dataset.selectedCardId = card.card_id;
+        if (gloss) gloss.textContent = card.definition;
+        if (match) match.textContent = routeScore(card) === null ? "manual" : `${routeScore(card)}%`;
+        if (sourceLink) {
+          sourceLink.hidden = false;
+          sourceLink.dataset.hudSource = tokenRows[target].source;
+        }
+      };
+      const updatePreHudTbd = (target, noteText) => {
+        const row = document.querySelector(`[data-hud-target="${target}"]`);
+        if (!row) return;
+        const gloss = row.querySelector("[data-gloss-text]");
+        const match = row.querySelector("[data-match-text]");
+        const sourceLink = row.querySelector("[data-hud-source]");
+        row.dataset.selectedGloss = "";
+        row.dataset.selectedCardId = "";
+        row.dataset.routeStatus = "tbd_route_mismatch";
+        if (gloss) {
+          gloss.textContent = "TBD";
+          const note = document.createElement("span");
+          note.className = "prehud-note";
+          note.textContent = noteText || "Current route card is evidence only; fix upstream route selection before filling this row.";
+          gloss.appendChild(note);
+        }
+        if (match) {
+          match.textContent = "TBD";
+          match.dataset.routeWarning = "true";
+        }
+        if (sourceLink) sourceLink.hidden = true;
+      };
+      const renderAnswer = (tokenRow, card) => {
+        const answer = create("section", "route-section-card route-answer-card");
+        const answerTitle = create("div", "route-section-title");
+        answerTitle.appendChild(create("h3", "", "Current pre-HUD route gloss"));
+        answerTitle.appendChild(create("span", "", card ? (routeScore(card) === null ? "unscored" : `${routeScore(card)}%`) : "none selected"));
+        answer.appendChild(answerTitle);
+        if (!card) {
+          answer.appendChild(create("p", "placeholder", "No route gloss selected yet. Use a selector card below to fill the pre-HUD row."));
+          return answer;
+        }
+        const row = create("article", "claim-row");
+        row.id = activeTarget;
+        row.dataset.selected = "true";
+        row.appendChild(create("strong", "", card.definition));
+        const token = create("small", "");
+        token.innerHTML = `<span class="claim-hebrew" lang="he" dir="rtl">${tokenRow.token}</span> · ${card.display_label || card.route_type || "gloss option"} · ${card.basis || "route evidence"}`;
+        row.appendChild(token);
+        answer.appendChild(row);
+        return answer;
+      };
+      const appendSourceDetails = (parent, card) => {
+        const details = create("details", "route-source-card");
+        details.appendChild(create("summary", "", "Source / license"));
+        (card.source_rows || []).forEach((row) => {
+          const line = create("p", "reader-gloss-source");
+          line.textContent = `${row.source_name || "Source"} | ${row.source_id || "N/A"} | ${row.license || "license missing"}`;
+          details.appendChild(line);
+        });
+        if (!(card.source_rows || []).length) details.appendChild(create("p", "reader-gloss-source", "No source row available."));
+        parent.appendChild(details);
+      };
+      const renderGlossChoice = (parent, tokenRow, card) => {
+        const article = create("article", "reader-gloss-card");
+        article.dataset.routeSelectable = card.route_selectable === true ? "true" : "false";
+        article.dataset.evidenceOnly = card.route_selectable === true ? "false" : "true";
+        article.dataset.selected = card.selected ? "true" : "false";
+        const top = create("div", "reader-gloss-top");
+        top.appendChild(create("strong", "", card.route_selectable === true ? "Route gloss option" : "Evidence only"));
+        const score = routeScore(card);
+        top.appendChild(create("span", "reader-gloss-meta", `${score === null ? "unscored" : `${score}%`} | ${card.reader_gloss_role || card.route_type || "evidence"}`));
+        article.appendChild(top);
+        article.appendChild(create("p", "reader-gloss-definition", card.definition));
+        article.appendChild(create("p", "reader-gloss-meta", [card.display_label || card.route_type, card.basis].filter(Boolean).join(" | ")));
+        appendSourceDetails(article, card);
+        const choose = create("button", "reader-gloss-choice", card.route_selectable === true ? "Preview in pre-HUD" : "Evidence only");
+        choose.type = "button";
+        choose.disabled = card.route_selectable !== true;
+        choose.addEventListener("click", () => {
+          tokenRow.cards.forEach((item) => { item.selected = item === card; });
+          updatePreHudRow(activeTarget, card);
+          renderHud(activeTarget, tokenRow.source);
+        });
+        article.appendChild(choose);
+        parent.appendChild(article);
+      };
+      const renderHud = (target, sourceId) => {
+        const tokenRow = tokenRows[target];
+        if (!hud || !panel || !tokenRow) return;
+        activeTarget = target;
+        panel.replaceChildren();
+        if (title) title.textContent = `Route HUD: ${tokenRow.token}`;
+        const token = create("div", "route-selected-token", tokenRow.token);
+        token.lang = "he";
+        token.dir = "rtl";
+        panel.appendChild(token);
+
+        const picker = create("section", "route-section-card reader-picker-intro");
+        const pickerTitle = create("div", "route-section-title");
+        pickerTitle.appendChild(create("h3", "", "Choose a study gloss"));
+        pickerTitle.appendChild(create("span", "", "local study selection"));
+        picker.appendChild(pickerTitle);
+        picker.appendChild(create("p", "placeholder", "Options below are route/token evidence for a reader gloss. They do not become accepted definitions."));
+        const options = create("div", "reader-gloss-options");
+        tokenRow.cards.forEach((card) => renderGlossChoice(options, tokenRow, card));
+        picker.appendChild(options);
+        panel.appendChild(picker);
+        panel.appendChild(renderAnswer(tokenRow, selectedCard(tokenRow)));
+
+        const sources = create("details", "route-source-card");
+        sources.open = true;
+        sources.appendChild(create("summary", "", "Sources / licenses"));
+        const footnotes = create("div", "source-footnotes");
+        Object.entries(tokenRows).forEach(([key, value]) => {
+          const row = create("p", "source-footnote-row source-citation");
+          row.id = value.source;
+          row.dataset.active = value.source === (sourceId || tokenRow.source) ? "true" : "false";
+          row.innerHTML = `<span class="source-note-index">${Object.keys(tokenRows).indexOf(key) + 1}</span> ${value.token} / ${value.tokenId} / ${value.normalized} / ${sourceSummary(value.cards.flatMap((card) => card.source_rows || []).slice(0, 2))}`;
+          footnotes.appendChild(row);
+        });
+        sources.appendChild(footnotes);
+        panel.appendChild(sources);
+        hud.hidden = false;
+        positionHud();
+        hud.focus({ preventScroll: true });
+      };
+
+      document.querySelectorAll("[data-hud-open]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          renderHud(link.dataset.hudOpen, link.dataset.hudSource);
+        });
+      });
+      document.querySelectorAll("[data-hud-row]").forEach((row) => {
+        row.addEventListener("dblclick", () => renderHud(row.dataset.hudTarget, row.dataset.source));
+      });
+      Object.entries(tokenRows).forEach(([target, tokenRow]) => {
+        const card = selectedCard(tokenRow);
+        if (!card) {
+          updatePreHudTbd(target, tokenRow.prehud_status === "TBD_ROUTE_MISMATCH" ? "Current route mismatch; inspect HUD evidence, then fix route selection upstream." : "");
+          return;
+        }
+        card.selected = true;
+        updatePreHudRow(target, card);
+      });
+      close?.addEventListener("click", () => { hud.hidden = true; });
+      window.addEventListener("resize", positionHud);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && hud && !hud.hidden) hud.hidden = true;
+      });
+    })();
+  </script>
+</body>
+</html>

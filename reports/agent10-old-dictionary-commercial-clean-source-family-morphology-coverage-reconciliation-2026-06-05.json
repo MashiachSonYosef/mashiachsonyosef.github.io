@@ -1,0 +1,156 @@
+{
+  "artifact_type": "agent10_old_dictionary_commercial_clean_source_family_morphology_coverage_reconciliation",
+  "generated_at": "2026-06-05T23:58:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "Agent 10",
+  "status": "partial_prior_agent6_coverage_verified_no_transform_or_use_route",
+  "target_package": "old_dictionary_commercial_clean_source_family_morphology_boundary_preflight",
+  "files_used": [
+    "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-boundary-preflight-2026-06-05.json",
+    "reports/agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.json",
+    "reports/agent6-old-dictionary-source-family-overlap-matrix-boundary-verdict-2026-06-05.json",
+    "reports/agent6-old-dictionary-exact-row-subset-manifest-boundary-verdict-2026-06-05.json",
+    "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+    "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json"
+  ],
+  "agent6_prior_coverage_partial_evidence": [
+    {
+      "artifact": "reports/agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.json",
+      "partial_evidence": {
+        "disposition": "warn_accepted_nonpublic_morphology_planning_evidence_only",
+        "scope": "nonpublic_old_dictionary_morphology_relation_planning_only",
+        "rows": 78,
+        "occurrences": 1461
+      },
+      "process_timeout": true,
+      "timeout": "20000ms",
+      "coverage_strength": "partial_output_only"
+    },
+    {
+      "artifact": "reports/agent6-old-dictionary-source-family-overlap-matrix-boundary-verdict-2026-06-05.json",
+      "partial_evidence": {
+        "disposition": "warn_accepted_nonpublic_source_family_overlap_planning_evidence_only",
+        "scope": "old_dictionary_source_family_overlap_matrix_planning_boundary_only",
+        "exact_source_family_combinations": 13,
+        "total_exact_combination_rows": 500,
+        "total_exact_combination_occurrences": 8427,
+        "exact_blockers": 23
+      },
+      "process_timeout": true,
+      "timeout": "20000ms",
+      "coverage_strength": "partial_output_only"
+    },
+    {
+      "artifact": "reports/agent6-old-dictionary-exact-row-subset-manifest-boundary-verdict-2026-06-05.json",
+      "partial_evidence": {
+        "disposition": "warn_accepted_nonpublic_source_lane_row_subset_planning_evidence_only",
+        "scope": "old_dictionary_exact_row_subset_manifest_planning_boundary_only",
+        "subset_manifests": 8,
+        "rows": 500,
+        "occurrences": 8427,
+        "exact_row_source": "reports/agent1-old-dictionary-exact-row-subset-manifest-2026-06-05.json",
+        "exact_row_fields": [
+          "subset_manifests[].token_ids",
+          "subset_manifests[].queue_ids"
+        ]
+      },
+      "process_timeout": true,
+      "timeout": "20000ms",
+      "coverage_strength": "partial_output_only"
+    }
+  ],
+  "release_relevance": {
+    "commercial_clean_source_family_subsets_available": 3,
+    "commercial_clean_source_family_rows_nonexclusive": 500,
+    "commercial_clean_source_family_occurrences_nonexclusive": 10940,
+    "morphology_planning_approved_rows": 78,
+    "morphology_planning_approved_occurrences": 1461,
+    "morphology_blocked_rows": 219,
+    "exact_row_subset_manifest_rows": 500,
+    "exact_row_subset_manifest_occurrences": 8427
+  },
+  "agent6_boundary_questions": [
+    {
+      "status": "not_routed",
+      "question": "Could the already-reviewed source-family overlap, exact row-subset manifest, and morphology planning evidence be combined into a non-public commercial-clean package-assembly planning boundary?",
+      "reason_not_routed": "Prior coverage was verified only from partial output because all exact reads timed out; route only after full prior verdict fields or validator summaries are retrieved under bounded commands."
+    }
+  ],
+  "exact_blockers": [
+    "full_prior_agent6_verdict_fields_not_extracted_without_timeout",
+    "no_transform_authorization_now",
+    "candidate_text_export_blocked",
+    "definition_lemma_reader_hint_content_storage_blocked",
+    "answer_eligibility_blocked",
+    "public_runtime_mutation_blocked",
+    "route_writes_blocked",
+    "accepted_text_blocked",
+    "release_action_blocked"
+  ],
+  "process_timeout_reports": [
+    {
+      "process_timeout": true,
+      "command": "Select-String reports\\agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.json for disposition/scope/rows/occurrences",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "returned disposition/scope/78 rows/1461 occurrences before timeout",
+      "next_safe_action": "use a smaller exact extractor or validator summary before routing any combined packet"
+    },
+    {
+      "process_timeout": true,
+      "command": "Select-String reports\\agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.json for packet coverage",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "returned artifact_type and review_scope before timeout",
+      "next_safe_action": "use a smaller exact extractor or validator summary before relying on full packet coverage"
+    },
+    {
+      "process_timeout": true,
+      "command": "Select-String reports\\agent6-old-dictionary-source-family-overlap-matrix-boundary-verdict-2026-06-05.json for source-family coverage",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "returned disposition/scope/13 combinations/500 rows/8427 occurrences/23 blockers before timeout",
+      "next_safe_action": "use a smaller exact extractor or validator summary before routing any combined packet"
+    },
+    {
+      "process_timeout": true,
+      "command": "Select-String reports\\agent6-old-dictionary-exact-row-subset-manifest-boundary-verdict-2026-06-05.json for manifest coverage",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "returned disposition/scope/8 subsets/500 rows/8427 occurrences/exact row source before timeout",
+      "next_safe_action": "use a smaller exact extractor or validator summary before routing any combined packet"
+    }
+  ],
+  "next_owner": "Agent 10 to retrieve full prior verdict fields with a bounded smaller extractor or consume validator summaries; Agent 6 only after complete combined packet is assembled.",
+  "stop_condition": "Stop at partial coverage reconciliation. Do not route Agent 6, transform, store text, export candidate text, write routes, mutate public/runtime, or release until full prior coverage is verified and a complete exact packet is assembled.",
+  "global_zero_counters": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "route_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

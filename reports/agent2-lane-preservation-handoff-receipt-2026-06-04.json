@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_lane_preservation_handoff_receipt",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "definition/lemma/reader-hint transforms only after source-family lane evidence exists",
+  "files": {
+    "handoff_bundle": "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json",
+    "manifest": "reports/agent2-spark1-runnable-command-manifest-2026-06-04.json",
+    "blocker": "reports/agent2-next-workset-needed-after-deuteronomy-return-2026-06-04.json",
+    "deuteronomy_readiness": "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.json",
+    "deuteronomy_partition": "reports/agent2-deuteronomy-phase2-partition-export-plan-2026-06-04.json",
+    "old_dictionary_planning": "reports/agent2-old-dictionary-lane-planning-intake-2026-06-04.json",
+    "stale_scan": "reports/agent2-current-stale-reference-scan-receipt-2026-06-04.json"
+  },
+  "exact_command_or_script": {
+    "build": "node scripts/build_agent2_lane_preservation_handoff_receipt.mjs",
+    "validate": "node scripts/validate_agent2_lane_preservation_handoff_receipt.mjs reports/agent2-lane-preservation-handoff-receipt-2026-06-04.json"
+  },
+  "output_artifact": "reports/agent2-lane-preservation-handoff-receipt-2026-06-04.json",
+  "schema_counts": {
+    "runnable_pipelines": 7,
+    "validator_only_checks": 24,
+    "deuteronomy_input_rows": 1334,
+    "deuteronomy_input_occurrences": 2964,
+    "deuteronomy_commercial_clean_candidate_rows": 1334,
+    "deuteronomy_noncommercial_educational_candidate_rows": 0,
+    "deuteronomy_partition_plan_rows": 1334,
+    "old_dictionary_planning_rows": 500,
+    "old_dictionary_planning_occurrences": 8427,
+    "old_dictionary_next_missed_rows": 50,
+    "orot_missed_dictionary_candidate_rows": 0,
+    "orot_missed_dictionary_unmatched_rows": 168,
+    "stale_reference_hits": 0
+  },
+  "lane_preservation": {
+    "consume_agent1_lane_classified_rows_only": true,
+    "blanket_nc_recast": false,
+    "blanket_block_recast": false,
+    "commercial_clean_recast_as_nc": false,
+    "unclassified_rows_consumed_as_candidate_text": 0,
+    "commercial_clean_and_nc_separated_downstream": true,
+    "metadata_link_only_definition_text_export": false,
+    "blocked_review_candidate_text_export": false
+  },
+  "transform_candidate_counts": {
+    "deuteronomy_readiness_rows": 1334,
+    "deuteronomy_partition_plan_rows": 1334,
+    "old_dictionary_candidate_text_rows": 0,
+    "orot_missed_dictionary_candidate_rows": 0
+  },
+  "zero_emission_counters": {
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "blocker_rows": {
+    "orot_unmatched_rows_requiring_changed_source_family_linkage_dictionary_evidence": 168,
+    "old_dictionary_candidate_text_consumption_export_storage_requires_new_exact_agent6_boundary": true,
+    "no_new_agent2_exact_workset_after_deuteronomy_return": true
+  },
+  "validator": "scripts/validate_agent2_lane_preservation_handoff_receipt.mjs",
+  "missing_field_blocker": "new target/workset/input/schema/validator with lane-classified source rows is required before another transform candidate packet",
+  "handoff_owner": "Agent 10 first; Agent 6 only by exact boundary packet prepared through release owner",
+  "stop_condition": "Return this validated handoff/blocker until a new exact lane-classified Agent 2 workset is supplied.",
+  "zero_boundary": {
+    "definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligibility": false,
+    "public_output": false,
+    "source_license_acceptance": false,
+    "accepted_gloss_text": false,
+    "nc_commercial_authorization": false
+  }
+}

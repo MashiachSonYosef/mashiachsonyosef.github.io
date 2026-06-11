@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:59.999Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent10-commercial-nc-overlap-exclusion-boundary",
+  "status": "validated_nonpublic_commercial_nc_overlap_exclusion_planning_evidence_only_no_acceptance",
+  "files": {
+    "agent10_boundary_packet": {
+      "path": "reports/agent10-agent6-ready-old-dictionary-commercial-nc-overlap-exclusion-boundary-packet-2026-06-05.json",
+      "sha256": "9edc9c5f3a1ad74d9183805212da202a49462016998c35134deb3cf485f88370"
+    },
+    "agent1_commercial_nc_overlap_exclusion_manifest": {
+      "path": "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-2026-06-05.json",
+      "sha256": "db45ac918da2ce76a031db342c945f2a8680732c78bc671188c77d824e494a41"
+    },
+    "agent1_bdb_augmented_strong_blocked_review_exclusion_manifest": {
+      "path": "reports/agent1-old-dictionary-bdb-augmented-strong-blocked-review-exclusion-manifest-2026-06-05.json",
+      "sha256": "eabb457f93f94c492bca1f2bd12f4ae78c8667f8d781c30e08b7e18a57ca5a69"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_commercial_nc_overlap_exclusion_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-commercial-nc-overlap-exclusion-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_commercial_nc_overlap_exclusion_manifest.mjs reports\\agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_bdb_augmented_strong_blocked_review_exclusion_manifest.mjs reports\\agent1-old-dictionary-bdb-augmented-strong-blocked-review-exclusion-manifest-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "overlap_counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_nc_overlap_rows": 197,
+    "commercial_nc_overlap_occurrences": 4185,
+    "commercial_nc_without_bdb_augmented_strong_rows": 57,
+    "commercial_nc_without_bdb_augmented_strong_occurrences": 818,
+    "commercial_nc_with_bdb_augmented_strong_rows": 140,
+    "commercial_nc_with_bdb_augmented_strong_occurrences": 3367,
+    "klein_only_excluded_rows": 17,
+    "klein_only_excluded_occurrences": 259,
+    "pairwise_klein_intersection_count": 4,
+    "exact_klein_combination_count": 7
+  },
+  "blocked_review_counts": {
+    "bdb_augmented_strong_blocked_review_rows": 222,
+    "bdb_augmented_strong_blocked_review_occurrences": 4435,
+    "commercial_blocked_without_klein_rows": 82,
+    "commercial_blocked_without_klein_occurrences": 1068,
+    "triple_overlap_with_klein_rows": 140,
+    "triple_overlap_with_klein_occurrences": 3367,
+    "blocked_review_only_rows": 0,
+    "blocked_review_only_occurrences": 0,
+    "public_domain_overlap_rows": 222,
+    "public_domain_overlap_occurrences": 4435,
+    "klein_nc_overlap_rows": 140,
+    "klein_nc_overlap_occurrences": 3367,
+    "pairwise_bdb_augmented_strong_intersection_count": 4,
+    "exact_bdb_augmented_strong_combination_count": 9
+  },
+  "zero_output_counts": {
+    "agent6_delivery_rows_now": 0,
+    "agent2_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "emitted_answer_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "answer_eligible_rows_now": 0,
+    "queue_mutations": 0,
+    "staging_mutations": 0,
+    "render_mutations": 0,
+    "release_actions": 0
+  },
+  "result": "Agent10 commercial+NC overlap exclusion boundary packet validates with Agent1 commercial/NC overlap and BDB Augmented Strong blocked/review exclusion manifests.",
+  "blocker_if_any": "await_agent6_commercial_nc_overlap_exclusion_boundary_for_old_dictionary_197_row_overlap",
+  "next_handoff": "Agent10 may route/has prepared this Agent6-ready boundary packet; Agent4 does not self-accept.",
+  "stop_condition": "Do not rerun unless overlap exclusion manifest, blocked/review exclusion manifest, Agent10 packet, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no source-family selection acceptance",
+    "no commercial clean selection",
+    "no NC educational selection",
+    "no BDB Augmented Strong exclusion acceptance",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

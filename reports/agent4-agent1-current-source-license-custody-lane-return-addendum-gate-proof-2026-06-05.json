@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent1_current_source_license_custody_lane_return_addendum_gate_proof",
+  "generated_at": "2026-06-05T13:55:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent1-current-source-license-custody-lane-return-addendum",
+  "status": "validator_passed_overlay_only_source_lane_evidence",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, candidate text export, Agent6 delivery, NC commercial authorization, accepted gloss/text, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent1-current-source-license-custody-lane-return-addendum-2026-06-05.json",
+      "sha256": "7f288ae7705ba4b5bbf27ead3f7f0df9c1f8ce1ec3a702834aa07daa4c7e009e",
+      "artifact_type": "agent1_current_source_license_custody_lane_return_addendum",
+      "status": "agent1_current_source_license_custody_lane_return_addendum_validated_overlay_only"
+    },
+    {
+      "path": "scripts/validate_agent1_current_source_license_custody_lane_return_addendum.mjs",
+      "sha256": "fd6dfcfb40318f886246e0e85aedbc9123878750e98eb5d5770cb1799c4b40f2",
+      "artifact_type": "validator_script",
+      "status": "existing_exact_validator_for_agent1_current_source_license_custody_lane_return_addendum"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_current_source_license_custody_lane_return_addendum.mjs reports\\agent1-current-source-license-custody-lane-return-addendum-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "addendum outputs 6; source-family rows 5; commercial-clean families 3; NC families 1; blocked/review families 1; allowed transform rows 0; candidate text rows 0; Agent6 delivery 0."
+    }
+  ],
+  "counts": {
+    "addendum_lane_return_output_count": 6,
+    "base_lane_return_output_count_preserved": 48,
+    "registry_recallable_artifact_count": 6,
+    "command_addendum_runnable_command_set_count": 3,
+    "source_family_rows": 5,
+    "commercial_clean_candidate_source_families": 3,
+    "noncommercial_educational_candidate_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "lane_exact_blocker_count": 2,
+    "downstream_alignment_exact_blocker_count": 5,
+    "boundary_question_exact_blocker_count": 6,
+    "aggregate_exact_blocker_count": 6,
+    "scoped_preview_rows": 500,
+    "scoped_preview_occurrences": 8427,
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "blocked_only_non_public_domain_or_unresolved_rows": 17,
+    "blocked_only_non_public_domain_or_unresolved_occurrences": 259,
+    "no_sefaria_hit_rows": 186,
+    "no_sefaria_hit_occurrences": 2421
+  },
+  "zero_counters": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "release_route_opened_now": 0,
+    "agent6_delivery_now": 0,
+    "base_lane_return_mutation_count": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staged_file_count": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "blockers": [
+    "future_candidate_use_package_missing",
+    "missing_exact_agent6_row_subset_boundary_for_any_candidate_text_package_or_display_behavior",
+    "missing_approved_morphology_relation_for_definition_lemma_reader_hint_transform",
+    "noncommercial_educational_candidate::klein-dictionary_no_commercial_export_authorization",
+    "blocked_or_needs_review::bdb-augmented-strong_missing_independent_source_license_custody_basis",
+    "metadata_or_link_only_current_row_count_zero"
+  ],
+  "result": "target | agent1-current-source-license-custody-lane-return-addendum | files in packet | commands passed: Agent1 current source/license custody lane-return addendum validator | counts: 6 addendum outputs, 48 base lane-return outputs preserved, 5 source-family rows, 3 commercial-clean families, 1 NC educational family, 1 blocked/review family, 500 scoped preview rows, 8427 occurrences, 297 public-domain observed rows, 17 blocked-only unresolved rows, 186 no-Sefaria-hit rows, 0 transform/candidate/answer/public/route/runtime/Agent6-delivery/accepted-text/release rows | result: validator passed as overlay-only source-lane evidence | blocker if any: future candidate-use package, exact Agent6 row/subset boundary, approved morphology relation, Klein NC no-commercial-export, BDB Augmented Strong independent custody, and metadata/link-only zero rows remain blockers | next handoff: Agent1/Agent2/Agent10 may consume as source-lane evidence only; Agent6 route only after a future candidate-use packet exists | stop condition: do not rerun unless addendum artifact, referenced lane evidence, validator, or candidate-use boundary state changes",
+  "handoff_owner": "Agent 1 source/license/custody lane; Agent 2 transform lane only after exact boundary and morphology relation; Agent 10 release/package intake; Agent 6 only for future exact row/subset boundary packets.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not transform, route, publish, deliver to Agent6, stage, create Definition/answer content, claim acceptance, or authorize NC commercial use from this packet."
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_old_dictionary_exact_row_subset_manifest_wait_state",
+  "generated_at": "2026-06-05T17:30:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "release_owner": "Agent 10",
+  "delivered_packet": {
+    "markdown": "reports/agent10-agent6-ready-old-dictionary-exact-row-subset-manifest-boundary-packet-2026-06-05.md",
+    "json": "reports/agent10-agent6-ready-old-dictionary-exact-row-subset-manifest-boundary-packet-2026-06-05.json",
+    "validator": "scripts/validate_agent10_old_dictionary_exact_row_subset_manifest_boundary_packet.mjs",
+    "delivery_proof": "reports/agent10-agent6-old-dictionary-exact-row-subset-manifest-delivery-proof-2026-06-05.md",
+    "delivery_proof_json": "reports/agent10-agent6-old-dictionary-exact-row-subset-manifest-delivery-proof-2026-06-05.json"
+  },
+  "delivery": {
+    "agent6_target": "019e7f09-a04b-7f30-b36c-87aa8ecaae5d",
+    "submission_id": "019e9800-4a2d-77f1-8624-98594a0d9397",
+    "delivery_mode": "queued_non_interrupting",
+    "verdict_visible_during_this_check": false
+  },
+  "review_scope": {
+    "rows": 500,
+    "occurrences": 8427,
+    "subsets": 8,
+    "source_manifest": "reports/agent1-old-dictionary-exact-row-subset-manifest-2026-06-05.json",
+    "source_pointer": "subset_manifests[].token_ids and subset_manifests[].queue_ids",
+    "requested_boundary": "nonpublic_source_lane_row_subset_planning_evidence_only"
+  },
+  "validator_results": [
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_exact_row_subset_manifest_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-exact-row-subset-manifest-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_spark10_release_package_intake.mjs reports\\spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "result": "passed"
+    }
+  ],
+  "local_intake_summary": {
+    "inputs_checked": 405,
+    "missing_required_inputs": 0,
+    "release_relevant_rows": 73,
+    "agent6_handoff_candidates": 0,
+    "public_runtime_mutation_authorized": false,
+    "answer_definition_release_authorized": false
+  },
+  "exact_blocker": "await_agent6_verdict_or_exact_blocker_for_old_dictionary_500_row_subset_manifest_boundary_packet",
+  "next_handoff": "Agent 6 verdict or exact blocker for submission 019e9800-4a2d-77f1-8624-98594a0d9397",
+  "stop_condition": "Do not duplicate delivery or open a wider packet. Stop until Agent 6 returns pass/warn/block or exact blocker for this submission.",
+  "zero_counters": {
+    "agent2_transform_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

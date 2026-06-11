@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "artifact_type": "hud_route_freeze_volume_gate",
+  "generated_at": "2026-06-02T01:54:11.215Z",
+  "generator": "scripts/validate_hud_route_freeze_volume.mjs",
+  "status": "blocked",
+  "policy": "Pre-audit volume gate for frozen HUD route inputs. It reads only route-input-freeze row counts and blocks oversized route sets before route-claim audit, route-store generation, lookup generation, public publication, release stamping, or rendering.",
+  "inputs": {
+    "freeze_manifest": ".local-cache/definition-route-freeze/current/route-input-freeze.json"
+  },
+  "thresholds": {
+    "max_lookup_cards": 1000000,
+    "max_phrase_evidence_cards": 1000000
+  },
+  "counts": {
+    "frozen_files": 5,
+    "frozen_jsonl_files": 4,
+    "frozen_route_rows": 13530537,
+    "frozen_phrase_evidence_rows": 13190876,
+    "frozen_citable_paraphrase_rows": 200000,
+    "missing_optional_files": 2,
+    "copy_bytes": 25391156548,
+    "issue_count": 0
+  },
+  "files": [
+    {
+      "file": "kaikki-definition-claims.jsonl",
+      "role": "wiktionary definition claims",
+      "required": true,
+      "byte_length": 159157420,
+      "row_count": 135184
+    },
+    {
+      "file": "source-layer-definition-claims.jsonl",
+      "role": "source-layer definition claims",
+      "required": true,
+      "byte_length": 7418794,
+      "row_count": 4477
+    },
+    {
+      "file": "source-phrase-evidence.jsonl",
+      "role": "licensed source phrase evidence",
+      "required": true,
+      "byte_length": 24658367052,
+      "row_count": 13190876
+    },
+    {
+      "file": "source-citable-paraphrase-evidence.jsonl",
+      "role": "citable paraphrase evidence",
+      "required": false,
+      "byte_length": 566201208,
+      "row_count": 200000
+    }
+  ],
+  "publication_boundary": {
+    "boundary_status": "blocked_no_render",
+    "reader_facing": false,
+    "ui_assignment": false,
+    "route_claim_audit_run": false,
+    "publication_claim": false,
+    "clears_publication_readiness": false,
+    "reviewed_lexical_authority": false,
+    "accepted_translation_output": false,
+    "source_publication": false,
+    "public_lookup_artifact": false,
+    "store_generated": false,
+    "lookup_generated": false,
+    "public_lookup_published": false,
+    "release_stamp_written": false,
+    "does_not_clear": [
+      "route_claim_audit",
+      "ui_assignment",
+      "reviewed_lexical_authority",
+      "accepted_translation",
+      "source_publication",
+      "public_lookup_publication",
+      "publication_readiness"
+    ]
+  },
+  "blocked_reasons": [
+    "frozen route rows 13530537 exceed max lookup cards 1000000",
+    "frozen phrase evidence rows 13190876 exceed max phrase evidence cards 1000000"
+  ],
+  "issues": []
+}

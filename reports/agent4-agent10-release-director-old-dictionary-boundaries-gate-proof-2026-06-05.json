@@ -1,0 +1,68 @@
+{
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T21:34:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent10-release-director-state-old-dictionary-boundaries",
+  "changed_input_artifact": "reports/agent10-release-director-state-old-dictionary-boundaries-2026-06-06.json",
+  "validator": {
+    "script": "scripts/validate_agent10_release_director_old_dictionary_boundaries.mjs",
+    "syntax_check": {
+      "command": "node --check scripts\\validate_agent10_release_director_old_dictionary_boundaries.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    "contract_check": {
+      "command": "node scripts\\validate_agent10_release_director_old_dictionary_boundaries.mjs reports\\agent10-release-director-state-old-dictionary-boundaries-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 release director old-dictionary boundaries validation passed. Klein blocker: owner_license_policy_boundary_required_before_any_klein_nc_use_beyond_nonpublic_lane_planning; transform blocker: awaiting_agent2_transform_output_proposal_matrix_or_exact_blocker."
+    }
+  },
+  "validated_state": {
+    "klein_blocker": "owner_license_policy_boundary_required_before_any_klein_nc_use_beyond_nonpublic_lane_planning",
+    "transform_blocker": "awaiting_agent2_transform_output_proposal_matrix_or_exact_blocker",
+    "stale_agent2_target_superseded": "019e8ace-7f50-76b3-a2d2-cc2a5e22391a",
+    "current_agent2_target": "019e027b-7533-7272-9474-7abaf8712b29",
+    "delivery_submission_id": "019e9a31-cff3-7762-89f4-0759d32128d4"
+  },
+  "counts": {
+    "klein_rows": 214,
+    "klein_occurrences": 4444,
+    "transform_workset_rows": 78,
+    "transform_workset_occurrences": 1461,
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "candidate_text_export": 0,
+    "definition_lemma_reader_hint_content_storage": 0,
+    "answer_eligibility": 0,
+    "accepted_text": 0,
+    "export_authorization": 0,
+    "publication_readiness": 0,
+    "release_actions": 0
+  },
+  "result": "validator_prereq_gate_passed_for_release_director_boundary_state_only",
+  "handoff_owner": "Agent 10 remains release/package owner; Agent 5/coordination watches Agent2 return and owner/license-policy boundary.",
+  "stop_condition": "Stop at release-director boundary-state proof. Do not rerun unless director state, delivery proof, stale blocker, Klein consumption, transform workset, or validator changes.",
+  "non_acceptance_boundary": [
+    "no QA acceptance beyond exact validator evidence",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

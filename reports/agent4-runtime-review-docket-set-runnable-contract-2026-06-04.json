@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_spark4_pipeline_contract_changed_package_validator_prereq",
+  "generated_at": "2026-06-04",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / controlled Spark support",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "status": "runnable_contract_authored_changed_input_present",
+  "changed_package_input_path": "reports/agent4-runtime-review-docket-set-input-manifest-2026-06-04.json",
+  "package_hash_or_commit_or_mtime": "sha256-set:amos=51ac86fbc159cd50d526be692ecef999b16ab670ed4aed61f9e8112a9803d7af;jonah=e4c17141c1020227e4c43f29efce5a9413f391c1659386d3e9af69efd7d82c4a;numbers=799291fccc11bb36e6e96f4993fec8e81fb2f8399e9576199fce9fca8abe6fcc;ruth=59aa9e7423c8e216af020e7c9b93433a3fd3ae2c0d1fbc797a073e577ce7ad4e;zechariah=a9b3f8d4903762bd03847ce73b780bb7dd4ce08c83031027b8649f859ce2bf26;leviticus=299e34e8c654b9ffcc43ff5b3e9caf21767d61f44712e4b659c258ca15cb673a",
+  "exact_command_list": [
+    "node scripts\\validate_agent10_runtime_review_docket.mjs reports\\agent10-agent6-ready-amos-runtime-review-docket-2026-06-04.json",
+    "node scripts\\validate_agent10_runtime_review_docket.mjs reports\\agent10-agent6-ready-jonah-runtime-review-docket-2026-06-04.json",
+    "node scripts\\validate_agent10_runtime_review_docket.mjs reports\\agent10-agent6-ready-numbers-runtime-review-docket-2026-06-04.json",
+    "node scripts\\validate_agent10_runtime_review_docket.mjs reports\\agent10-agent6-ready-ruth-runtime-review-docket-2026-06-04.json",
+    "node scripts\\validate_agent10_runtime_review_docket.mjs reports\\agent10-agent6-ready-zechariah-runtime-review-docket-2026-06-04.json",
+    "node scripts\\validate_agent10_leviticus_runtime_review_docket.mjs reports\\agent10-agent6-ready-leviticus-runtime-review-docket-2026-06-04.json"
+  ],
+  "expected_output_path_schema": "reports/agent4-runtime-review-docket-set-gate-proof-2026-06-04.md",
+  "validator_gate": "Existing Agent10 runtime review docket validators must pass on the exact six 2026-06-04 runtime review dockets.",
+  "package_owner": "Agent 10 release/package intake; Agent 4 runtime evidence lane",
+  "agent6_boundary_trigger": "Agent 6 review only as bounded runtime review docket evidence; no Agent6 verdict, QA acceptance, broad public/runtime acceptance, deploy/cache closure, source custody, Definition authority, usage-as-definition authority, publication readiness, product/data acceptance, answer acceptance, accepted gloss/text, release action, or public/runtime mutation is requested.",
+  "stop_condition": "Stop after runnable Agent 4 validator/prereq contract is generated and checked, or exact blocker if any runtime docket validator fails.",
+  "route": {
+    "target_spark": "Spark-4",
+    "target_lane": "Agent 4 direct validator/prereq lane",
+    "assistant1_spark1_route_allowed": false,
+    "route_now": true
+  },
+  "evidence_inputs": [
+    {
+      "path": "data/control/spark_standing_queue.json",
+      "exists": true,
+      "sha256": "3bd58bdd364b979aba89fac1848553404ee15f198889f01cde1e71e34c4bcf50",
+      "observed_status": "direct_agent_shape_only_agent13_constraint",
+      "observed_generated_at": "2026-06-04T16:20:00Z",
+      "relevant_finding": "No spark4-broad-validator-runtime-prereq-mechanics queue item found."
+    },
+    {
+      "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "exists": true,
+      "sha256": "1fe79b333023128f01e1d0c2e6ebd94d82c329159d31c8c4a9bd224de57eed8a",
+      "observed_generated_at": "2026-06-05T01:39:33.714Z",
+      "summary": {
+        "inputs_checked": 320,
+        "missing_required_inputs": 0,
+        "release_relevant_rows": 83,
+        "agent6_handoff_candidates": 12,
+        "public_runtime_mutation_authorized": false,
+        "answer_definition_release_authorized": false
+      },
+      "boundary": {
+        "public_runtime_mutation_authorized": false,
+        "route_shard_edit_authorized": false,
+        "answer_eligibility_authorized": false,
+        "definition_content_storage_authorized": false,
+        "accepted_text_authorized": false,
+        "publication_readiness_authorized": false
+      },
+      "relevant_finding": "Release intake has an Agent 4-adjacent row, but this gate still requires an explicit changed input artifact before routing."
+    },
+    {
+      "path": "reports/spark-prime-30min-contract-run-2026-06-04.md",
+      "exists": true,
+      "sha256": "96094f38aa88a488db1dfc24da0e6c253e8286defc501cda755233b4c931f229",
+      "relevant_finding": null
+    },
+    {
+      "path": "reports/spark4-goal-mode-validator-prereq-next-2026-06-04.md",
+      "exists": true,
+      "sha256": "4b6cf65627e035d36377aaf35359db95e2193a4d155b08b15e448ebe30121c7a",
+      "relevant_finding": "- next_Agent4_package_action: no changed_input package available for reseed; hold"
+    }
+  ],
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss",
+    "translation output",
+    "accepted text"
+  ]
+}

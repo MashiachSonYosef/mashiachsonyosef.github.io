@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "target": {
+    "work": "Orot missing lexicon linkage candidates",
+    "workset": "orot-missing-lexicon-linkage-candidates",
+    "input_rows": 100,
+    "missing_lexicon_linkage_rows": 13,
+    "missing_lexicon_linkage_occurrences": 129,
+    "mutation_rows_emitted": 0,
+    "source_rows_emitted": 0,
+    "lexicon_entry_ids_assigned": 0
+  },
+  "inputs": [
+    "reports/agent2-orot-pilot-lineage-candidates-2026-06-03.json"
+  ],
+  "command_or_script": {
+    "build": "node scripts/build_agent1_orot_missing_lexicon_linkage_candidates.mjs --json-report reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json --report reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.md",
+    "current_status": "runnable"
+  },
+  "outputs": {
+    "json": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+    "markdown": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.md"
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_orot_missing_lexicon_linkage_candidates.mjs reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+    "contract_validator": "node scripts/validate_agent1_spark1_orot_missing_lexicon_linkage_candidates_contract.mjs",
+    "current_status": "validated"
+  },
+  "expected_buckets": {
+    "no_current_stem_source_candidate_found": {
+      "rows": 3,
+      "occurrences": 71,
+      "posture": "blocked_no_current_stem_source_candidate"
+    },
+    "project_preferred_function_word_stem_candidate_exists": {
+      "rows": 3,
+      "occurrences": 23,
+      "posture": "allow_for_agent10_agent6_review_only_project_authored_cc0"
+    },
+    "single_stem_candidate_found_current_pipeline": {
+      "rows": 6,
+      "occurrences": 32,
+      "posture": "external_link_only_cc_by_sa_gfdl_excluded_from_assignment"
+    },
+    "multi_stem_no_project_preferred_candidate": {
+      "rows": 1,
+      "occurrences": 3,
+      "posture": "blocked_ambiguity"
+    }
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true,
+    "commercial_export_allowed_now": false,
+    "public_emit_now": false,
+    "answer_eligible_now": false,
+    "lexicon_entry_id_assignment_allowed_now": false
+  },
+  "package_owner": "Agent 1",
+  "agent6_boundary_need": "Agent 10/Agent 6 boundary is required before any linkage assignment, lexical payload mutation, reader-hint fill, public display, answer use, or definition text use. This contract only reproduces missing-linkage candidate buckets.",
+  "spark1_stop_condition": "output plus validator pass, or exact missing input/output/schema/validator/count blocker",
+  "what_must_not_be_accepted": [
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "QA acceptance",
+    "public/runtime mutation",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "accepted gloss/text",
+    "publication readiness",
+    "lexicon_entry_id assignment authorization"
+  ]
+}

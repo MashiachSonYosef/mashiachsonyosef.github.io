@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_source_lane_assignment_preflight_contract",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "workset": "old-dictionary-excluded-row-license-lane-reaudit",
+  "target": "executable Agent 2 preflight validator for Agent 1 source-family / license-lane assignment packets before candidate generation",
+  "script": "scripts/validate_agent2_source_lane_assignment_packet.mjs",
+  "command": "node scripts/validate_agent2_source_lane_assignment_packet.mjs <agent1-lane-assignment-packet.json>",
+  "allowed_lanes": [
+    "commercial_clean_candidate",
+    "noncommercial_educational_candidate",
+    "metadata_or_link_only",
+    "blocked_or_needs_review"
+  ],
+  "required_row_fields": [
+    "source_family",
+    "source_name",
+    "source_or_dictionary",
+    "license_label",
+    "license_lane",
+    "source_url_or_citation",
+    "attribution_required",
+    "derived_from_nc",
+    "commercial_export_allowed",
+    "agent6_boundary_required",
+    "agent1_classification_artifact"
+  ],
+  "nc_required_flags": {
+    "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+    "corpus_contamination": false,
+    "answer_eligible": false,
+    "public_emit": false
+  },
+  "current_counts": {
+    "agent1_lane_assignment_rows_available_to_agent2": 0,
+    "candidate_rows_produced_from_old_excluded_dictionaries": 0
+  },
+  "validator_checks": [
+    "workset id is old-dictionary-excluded-row-license-lane-reaudit",
+    "rows exist under rows/lane_rows/classified_rows",
+    "every row has required fields",
+    "every row uses one allowed lane",
+    "NC rows preserve NC educational flags",
+    "commercial-clean rows do not carry NC attestation",
+    "metadata/link-only rows do not allow definition text export",
+    "blocked/review rows do not allow candidate text export",
+    "lane counts reconcile when provided",
+    "forbidden authority/public/answer markers are absent"
+  ],
+  "missing_field_blocker": {
+    "id": "missing_agent1_old_dictionary_excluded_row_license_lane_assignment",
+    "required_to_unblock": [
+      "Agent 1 packet path",
+      "source/dictionary names",
+      "row/subset counts",
+      "lane counts",
+      "required row fields",
+      "evidence paths",
+      "Agent 6 boundary question"
+    ]
+  },
+  "spark1_handoff": {
+    "may_run_validator_after_agent1_packet_exists": true,
+    "must_not_generate_candidate_rows_if_preflight_fails": true
+  },
+  "stop_condition": "Stop after adding the preflight validator and recording the missing Agent 1 lane-assignment packet as the current blocker.",
+  "what_must_not_be_accepted": [
+    "Definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "source/license/legal acceptance",
+    "public output",
+    "NC commercial authorization",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "route-shard edit",
+    "public/runtime mutation"
+  ]
+}

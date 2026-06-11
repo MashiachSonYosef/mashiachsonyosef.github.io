@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent2_old_dictionary_morphology_relation_gate_proof",
+  "generated_at": "2026-06-05T13:05:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent2-old-dictionary-commercial-clean-morphology-relation",
+  "status": "validators_passed_nonpublic_morphology_planning_only",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, candidate text export, accepted gloss/text, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+      "sha256": "6cf36d152dd172f2582d83ff4764ea4db8275f70ae5df1c2a4a5355823630514",
+      "artifact_type": "agent2_old_dictionary_commercial_clean_morphology_relation_matrix",
+      "status": "nonpublic_morphology_relation_matrix_built_no_candidate_text"
+    },
+    {
+      "path": "reports/agent10-agent2-ready-old-dictionary-commercial-clean-morphology-relation-workset-2026-06-05.json",
+      "sha256": "4fe7932dadcd481ae993592dd9f55350b85a4e225af6703d9d9860bbec48e0c8",
+      "artifact_type": "agent10_agent2_ready_old_dictionary_commercial_clean_morphology_relation_workset",
+      "status": "agent2_ready_nonpublic_morphology_relation_workset_no_candidate_text"
+    },
+    {
+      "path": "reports/agent2-commercial-clean-boundary-held-packet-consumption-receipt-2026-06-05.json",
+      "sha256": "eef17139e77d8a3821b97cb3eedfe5cb09b00bd536609820344a2050c1e4b370",
+      "artifact_type": "agent2_commercial_clean_boundary_held_packet_consumption_receipt",
+      "status": "held_agent10_agent6_boundary_packet_consumed_as_nonpublic_readiness_evidence_only"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_commercial_clean_morphology_relation_matrix.mjs reports\\agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Rows: 297; planning-approved: 78; transform rows: 0."
+    },
+    {
+      "command": "node scripts\\validate_agent10_agent2_old_dictionary_morphology_relation_workset.mjs reports\\agent10-agent2-ready-old-dictionary-commercial-clean-morphology-relation-workset-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Rows: 297; occurrences: 5747."
+    },
+    {
+      "command": "node scripts\\validate_agent2_commercial_clean_boundary_held_packet_consumption_receipt.mjs reports\\agent2-commercial-clean-boundary-held-packet-consumption-receipt-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Transform rows: 0; commercial-clean subsets held: 3; NC separated."
+    }
+  ],
+  "counts": {
+    "unique_preview_rows": 297,
+    "unique_preview_occurrences": 5747,
+    "commercial_clean_source_families": 3,
+    "commercial_clean_source_family_hit_rows": 500,
+    "commercial_clean_source_family_hit_occurrences": 10940,
+    "agent2_morphology_planning_approved_rows": 78,
+    "agent2_morphology_blocked_rows": 219,
+    "prefix_or_clitic_possible_rows": 129,
+    "prefix_or_clitic_possible_occurrences": 3035,
+    "exact_after_mark_strip_rows": 78,
+    "exact_after_mark_strip_occurrences": 1461,
+    "needs_morphology_disambiguation_rows": 90,
+    "needs_morphology_disambiguation_occurrences": 1251,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0
+  },
+  "zero_counters": {
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "accepted_gloss_text_rows": 0,
+    "accepted_text_rows": 0,
+    "release_rows": 0,
+    "release_action_rows": 0,
+    "nc_commercial_authorization_rows": 0
+  },
+  "blockers": [
+    "missing_exact_row_subset_candidate_use_package",
+    "missing_exact_agent6_row_subset_boundary_for_any_candidate_text_package_or_display_behavior",
+    "approved morphology planning rows are nonpublic planning evidence only and do not authorize transform rows now"
+  ],
+  "result": "target | agent2-old-dictionary-commercial-clean-morphology-relation | files in packet | commands passed: Agent2 morphology relation matrix validator, Agent10 morphology relation workset validator, Agent2 commercial-clean boundary-held receipt validator | counts: 297 unique preview rows, 5747 occurrences, 3 commercial-clean source families, 500 source-family hit rows, 10940 source-family hit occurrences, 78 morphology-planning approved rows, 219 morphology-blocked rows, 0 transform/candidate/definition/lemma/reader-hint/answer/public/route/runtime/accepted-text/release rows | result: validators passed as nonpublic morphology planning evidence only | blocker if any: future candidate-use package and Agent6 row/subset boundary still required before transform/display/export/answer/Definition/public/runtime/release use | next handoff: Agent2/Agent10 may consume as planning matrix only | stop condition: do not rerun unless morphology matrix, workset, boundary-held receipt, or validators change",
+  "handoff_owner": "Agent 2 morphology/transform lane; Agent 10 release/package intake; Agent 6 only if a future candidate-use boundary packet is prepared.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not emit candidate text, write routes, mark answers, mutate runtime, publish, export, or claim acceptance from this packet."
+}

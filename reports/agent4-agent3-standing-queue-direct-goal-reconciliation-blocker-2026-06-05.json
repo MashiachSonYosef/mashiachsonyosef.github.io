@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_blocker",
+  "generated_at": "2026-06-05",
+  "status": "changed_input_blocker_validator_failed",
+  "target": "agent3-standing-queue-direct-goal-reconciliation",
+  "changed_package_input_path": "reports/agent3-standing-queue-direct-goal-reconciliation-2026-06-05.json",
+  "changed_package_hash": "sha256:952e32b24d1591b846f0a451425892e2331f634ec4f35458b7478eceaeb2843e",
+  "files": [
+    "reports/agent3-standing-queue-direct-goal-reconciliation-2026-06-05.json",
+    "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "scripts/validate_agent3_standing_queue_direct_goal_reconciliation.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent3_standing_queue_direct_goal_reconciliation.mjs reports\\agent3-standing-queue-direct-goal-reconciliation-2026-06-05.json",
+      "result": "failed",
+      "error": "Spark10 input count mismatch"
+    }
+  ],
+  "counts": {
+    "artifact_spark10_matrix_inputs_checked": 322,
+    "current_spark10_inputs_checked": 334,
+    "artifact_spark10_matrix_release_relevant_rows": 83,
+    "current_spark10_release_relevant_rows": 71,
+    "artifact_spark10_matrix_agent6_handoff_candidates": 12,
+    "current_spark10_agent6_handoff_candidates": 0,
+    "validators_passed": 0,
+    "validators_failed": 1
+  },
+  "result": "changed_input_blocker_validator_failed",
+  "blocker_if_any": "Spark10 input count mismatch",
+  "next_handoff": "Agent3/Agent10 refresh reconciliation against current Spark10 intake matrix or provide a new exact workset",
+  "stop_condition": "do not rerun until reconciliation artifact or Spark10 intake changes",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action",
+    "public/runtime mutation"
+  ]
+}

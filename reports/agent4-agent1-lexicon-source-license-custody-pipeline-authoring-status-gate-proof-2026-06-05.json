@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T00:00:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane_owner": "Agent 4",
+  "target": "agent1-lexicon-source-license-custody-pipeline-authoring-status",
+  "input_artifact": {
+    "path": "reports/agent1-lexicon-source-license-custody-pipeline-authoring-status-2026-06-05.json",
+    "sha256": "6e6f0c3ad22c59504152585c7b157a8b2d4a74ac613fce9e447f934ec413c83d"
+  },
+  "commands": [
+    {
+      "command": "node scripts/validate_agent1_lexicon_source_license_custody_pipeline_authoring_status.mjs reports/agent1-lexicon-source-license-custody-pipeline-authoring-status-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "files": {
+    "validator": "scripts/validate_agent1_lexicon_source_license_custody_pipeline_authoring_status.mjs",
+    "proof_json": "reports/agent4-agent1-lexicon-source-license-custody-pipeline-authoring-status-gate-proof-2026-06-05.json",
+    "proof_markdown": "reports/agent4-agent1-lexicon-source-license-custody-pipeline-authoring-status-gate-proof-2026-06-05.md"
+  },
+  "counts": {
+    "targets": 4,
+    "orot_nc_klein_rows": 17,
+    "orot_nc_klein_occurrences": 259,
+    "orot_next_missed_source_family_rows": 50,
+    "orot_next_missed_source_family_occurrences": 1193,
+    "orot_third_missed_source_family_rows": 169,
+    "orot_third_missed_source_family_occurrences": 2148,
+    "old_dictionary_excluded_row_license_lane_reaudit_rows": 500,
+    "old_dictionary_excluded_row_license_lane_reaudit_occurrences": 8427,
+    "aggregate_runnable_contract_count": 22,
+    "aggregate_supporting_packet_count": 24,
+    "aggregate_exact_blocker_count": 1,
+    "aggregate_lane_return_output_count": 48
+  },
+  "blocker_targets": [
+    {
+      "target": "orot_third_missed_source_family",
+      "blocker": "exact_workset_ready_boundary_pending_only",
+      "agent6_boundary_rows": 31,
+      "agent6_boundary_occurrences": 476
+    },
+    {
+      "target": "old_dictionary_excluded_row_license_lane_reaudit",
+      "blocker": "blocked_subsets_require_boundary_or_independent_source_license_custody_basis",
+      "klein_dictionary_rows": 214,
+      "klein_dictionary_occurrences": 4444,
+      "bdb_augmented_strong_rows": 222,
+      "bdb_augmented_strong_occurrences": 4435
+    }
+  ],
+  "result": "validator_passed_with_blocker_targets_preserved",
+  "blocker_if_any": {
+    "blocker": "source_license_custody_acceptance_not_granted",
+    "details": "The pipeline authoring status validates as lane evidence only; blocked subsets and Agent6 boundary needs remain preserved."
+  },
+  "next_handoff": "Agent10 may consume this as Agent1 source/license custody pipeline status evidence; Agent6 remains the boundary authority for blocked subsets.",
+  "stop_condition": "Do not rerun unless the Agent1 pipeline authoring status artifact, validator, or referenced target packet set changes.",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action"
+  ]
+}

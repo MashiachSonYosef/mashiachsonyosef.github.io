@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_agent4_gate_proof_consumption_receipt",
+  "generated_at": "2026-06-05T13:42:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / source-lane separated lexicon expansion",
+  "target": "Agent2 morphology and candidate-use blocker Agent4 gate-proof consumption",
+  "status": "agent4_gate_proofs_consumed_as_validator_prereq_evidence_only",
+  "inputs": {
+    "morphology_gate_proof": "reports/agent4-agent2-old-dictionary-morphology-relation-gate-proof-2026-06-05.json",
+    "candidate_use_gate_proof": "reports/agent4-agent2-morphology-planning-candidate-use-blocker-gate-proof-2026-06-05.json",
+    "agent2_preflight_handoff": "reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json"
+  },
+  "consumed_gate_proofs": [
+    {
+      "path": "reports/agent4-agent2-old-dictionary-morphology-relation-gate-proof-2026-06-05.json",
+      "artifact_type": "agent4_agent2_old_dictionary_morphology_relation_gate_proof",
+      "status": "validators_passed_nonpublic_morphology_planning_only",
+      "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, candidate text export, accepted gloss/text, or release acceptance",
+      "commands_passed": 3
+    },
+    {
+      "path": "reports/agent4-agent2-morphology-planning-candidate-use-blocker-gate-proof-2026-06-05.json",
+      "artifact_type": "agent4_agent2_morphology_planning_candidate_use_blocker_gate_proof",
+      "status": "validator_passed_candidate_use_blocked",
+      "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, candidate text export, accepted gloss/text, or release acceptance",
+      "commands_passed": 1
+    }
+  ],
+  "counts": {
+    "morphology_matrix_rows": 297,
+    "morphology_planning_approved_rows": 78,
+    "morphology_blocked_rows": 219,
+    "candidate_use_blocker_planning_rows": 78,
+    "preflight_future_question_rows": 78,
+    "allowed_candidate_use_rows_now": 0,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0
+  },
+  "blockers_preserved": [
+    "missing_exact_row_subset_candidate_use_package",
+    "missing_exact_agent6_row_subset_boundary_for_any_candidate_text_package_or_display_behavior",
+    "approved morphology planning rows are nonpublic planning evidence only and do not authorize transform rows now",
+    "morphology_planning_rows_have_no_delivered_agent6_candidate_use_boundary",
+    "missing_exact_agent6_row_subset_boundary_for_candidate_use",
+    "missing_agent10_exact_agent6_packet_for_the_specific_planning_rows",
+    "definition_lane_must_still_emit_no_public_or_answer_acceptance",
+    "agent10_agent6_exact_candidate_use_packet_missing_for_78_morphology_planning_rows"
+  ],
+  "zero_output_counts": {
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_gloss_text_rows": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "release_rows": 0
+  },
+  "highest_permissible_claim": "Agent2 consumed Agent4 gate proofs as validator/prereq evidence for nonpublic morphology planning and candidate-use blockers only.",
+  "handoff_owner": "Agent 2 definer retains blocker state; Agent 10/Agent 6 still own any future exact candidate-use boundary packet.",
+  "stop_condition": "Stop at Agent4 gate-proof consumption. Do not treat gate proof as QA, source, license, Definition, answer, public/runtime, publication, product/data, accepted-text, candidate-use, export, or release acceptance.",
+  "non_acceptance_boundary": [
+    "No QA acceptance",
+    "No Definition authority",
+    "No answer acceptance",
+    "No source/license/legal acceptance",
+    "No accepted gloss/text",
+    "No public/runtime mutation",
+    "No candidate text export",
+    "No NC commercial authorization",
+    "No release action"
+  ]
+}

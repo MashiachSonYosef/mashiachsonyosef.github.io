@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_changed_package_validator_prereq_gate_proof",
+  "generated_at": "2026-06-04",
+  "status": "runnable_contract_authored_changed_input_present",
+  "target": "orot-prefix-stem-contract-packet",
+  "changed_package_input_path": "reports/agent10-agent6-ready-orot-prefix-stem-contract-packet-2026-06-04.json",
+  "changed_package_hash": "sha256:35b433b552d1cb61e8d85a191eca37fc306bdf84cd579b219e32086261a2e4ff",
+  "files": [
+    "reports/agent10-agent6-ready-orot-prefix-stem-contract-packet-2026-06-04.json",
+    "reports/agent2-orot-prefix-stem-counterpart-candidates-2026-06-03.json",
+    "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-03.json",
+    "reports/agent10-live-public-old-hud-guard-2026-06-03.json",
+    "reports/agent4-orot-prefix-stem-contract-packet-changed-input-2026-06-04.json",
+    "reports/agent4-orot-prefix-stem-contract-packet-runnable-contract-2026-06-04.json",
+    "reports/agent4-orot-prefix-stem-contract-packet-runnable-contract-2026-06-04.md"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_orot_prefix_stem_contract_packet.mjs reports\\agent10-agent6-ready-orot-prefix-stem-contract-packet-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\build_agent4_changed_package_validator_prereq_gate.mjs --date 2026-06-04 --changed-input reports\\agent4-orot-prefix-stem-contract-packet-changed-input-2026-06-04.json --out-json reports\\agent4-orot-prefix-stem-contract-packet-runnable-contract-2026-06-04.json --out-md reports\\agent4-orot-prefix-stem-contract-packet-runnable-contract-2026-06-04.md",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-orot-prefix-stem-contract-packet-runnable-contract-2026-06-04.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "candidate_rows": 12,
+    "candidate_occurrences": 178,
+    "answer_rows_emitted": 0,
+    "public_hud_rows_emitted": 0,
+    "match_percent_available_rows": 0,
+    "blocked_rows_outside_contract": 88,
+    "blocked_occurrences_outside_contract": 1782,
+    "missing_linkage_rows": 13,
+    "live_old_hud_exposure": "no",
+    "issues": 0,
+    "warnings": 1,
+    "runnable_contracts_authored": 1,
+    "runnable_contracts_checked": 1
+  },
+  "result": "runnable contract generated and checked",
+  "blocker_if_any": "no Agent4 validator blocker; Agent6 boundary remains required before any QA/source/Definition/public/runtime/answer/release use",
+  "next_handoff": "Agent10/Agent6 boundary review only",
+  "stop_condition": "do not rerun unless package/input changes",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action",
+    "public/runtime mutation"
+  ]
+}

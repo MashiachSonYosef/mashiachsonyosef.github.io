@@ -1,0 +1,91 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T12:00:30.000Z",
+  "target": "Agent 3 bridge-gap candidate prereq closure matrix gate proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-selector-a07-boundary-contract-sweep-gate-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_matrix.mjs --input=reports/agent3-old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-bridge-gap-candidate-prereq-closure-matrix-gate-proof-2026-06-06.json",
+  "paired_markdown_path": "reports/agent4-agent3-bridge-gap-candidate-prereq-closure-matrix-gate-proof-2026-06-06.md",
+  "evidence_artifacts": [
+    "reports/agent4-changed-input-selection-after-selector-a07-boundary-contract-sweep-gate-2026-06-06.json",
+    "reports/agent3-old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix-2026-06-06.json"
+  ],
+  "counts": {
+    "candidate_count": 1,
+    "input_gap_rows": 14,
+    "input_gap_occurrences": 173,
+    "input_prereq_route_rows": 30,
+    "closure_rows": 14,
+    "closure_occurrences": 173,
+    "missing_source_rid_references": 30,
+    "all_a06_evidence_boundary_prereq_rows": 9,
+    "all_a06_evidence_boundary_prereq_occurrences": 115,
+    "all_direct_source_citation_prereq_rows": 5,
+    "all_direct_source_citation_prereq_occurrences": 58,
+    "mixed_prereq_route_rows": 0,
+    "missing_prereq_route_rows": 0,
+    "source_rid_blocker_rows_present": 30,
+    "queue_source_coverage_rows_present": 0,
+    "source_rids_requiring_source_citation": 30,
+    "source_rids_transform_blocked": 30,
+    "source_rids_after_boundary_prereq": 30,
+    "rows_with_current_blockers": 14,
+    "current_blocker_total": 140,
+    "approval_route_owner_a07_rows": 14,
+    "a06_evidence_validator_production_only_rows": 14,
+    "a06_approval_requested_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_agent3_bridge_gap_candidate_prereq_closure_matrix_gate",
+  "route_boundary": {
+    "approval_sop_final_validation_release_gate": "A07",
+    "evidence_validators_repo_cleaning_production": "A06",
+    "a06_output_status": "evidence_ready_until_A07_approves",
+    "do_not_ask_a06_for_approval": true
+  },
+  "exact_blockers": [
+    {
+      "code": "closure_matrix_evidence_only",
+      "details": "The matrix closes prerequisite routing evidence for 14 bridge-gap candidate rows only; it does not create route writes, candidate text, source text, acceptance, or release authority.",
+      "next_safe_action": "Use rows as prerequisite closure evidence only; any approval route remains A07."
+    },
+    {
+      "code": "all_rows_still_source_citation_and_transform_blocked",
+      "details": "Validator-confirmed counts: source_rids_requiring_source_citation=30 and source_rids_transform_blocked=30.",
+      "next_safe_action": "Keep rows blocked until source citation and transform prerequisites are separately satisfied."
+    }
+  ],
+  "handoff_owner": "Agent 10 for release/package intake; Agent 3 for closure matrix contents; A06 for evidence/validator production only; A07 for approval/SOP/final validation/release gate.",
+  "stop_condition": "Stop after validating the selected closure matrix, writing this Agent 4 proof packet, validating this proof packet, and running the changed packet sweep gate.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, repo cleanup action, destructive command, or release action."
+  ]
+}

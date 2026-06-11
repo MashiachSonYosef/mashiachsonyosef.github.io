@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent3_agent1_route_recheck_crossmatch_gate_proof",
+  "generated_at": "2026-06-06T01:35:00.000Z",
+  "agent": "Agent 4",
+  "target": "Agent3 old-dictionary candidate-use Agent1 route recheck crossmatch",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-agent1-route-recheck-crossmatch-2026-06-06.json",
+  "validator": {
+    "script": "scripts/validate_agent3_old_dictionary_candidate_use_agent1_route_recheck_crossmatch.mjs",
+    "commands": [
+      {
+        "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_agent1_route_recheck_crossmatch.mjs",
+        "timeout_ms": 30000,
+        "result": "passed"
+      },
+      {
+        "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_agent1_route_recheck_crossmatch.mjs --input=reports/agent3-old-dictionary-candidate-use-agent1-route-recheck-crossmatch-2026-06-06.json",
+        "timeout_ms": 30000,
+        "result": "passed",
+        "output": "Agent 3 Agent1 route recheck passed: rows=1 recheck=1 missing_citation=78"
+      }
+    ]
+  },
+  "counts": {
+    "route_recheck_rows": 1,
+    "attempted_target_matches_registry_rows": 1,
+    "registry_postdates_route_blocker_rows": 1,
+    "route_recheck_required_rows": 1,
+    "route_blocker_preserved_rows": 0,
+    "row_dependency_rows": 78,
+    "row_dependency_occurrences": 1461,
+    "source_citation_missing_rows": 78,
+    "transform_rule_missing_rows": 78,
+    "agent10_workset_rows": 78,
+    "agent10_workset_occurrences": 1461,
+    "source_rid_references": 393,
+    "unique_source_rids": 344,
+    "exact_blocker_rows": 5,
+    "source_citation_supplied_rows": 0,
+    "transform_ready_rows": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0,
+    "public_runtime_mutation": 0,
+    "release_actions": 0
+  },
+  "result": "validated_route_recheck_crossmatch_only",
+  "exact_blockers_preserved": [
+    {
+      "code": "route_recheck_required_before_reusing_stale_agent1_route_blocker",
+      "rows": 1
+    },
+    {
+      "code": "source_citation_or_url_missing",
+      "rows": 78
+    },
+    {
+      "code": "transform_rule_missing",
+      "rows": 78
+    }
+  ],
+  "handoff_owner": {
+    "package_owner": "Agent 10",
+    "coordination_owner_for_recheck": "Agent 5 / coordination",
+    "source_citation_owner": "Agent 1",
+    "transform_owner_after_exact_dependency": "Agent 2",
+    "qa_boundary_owner_if_needed": "Agent 6"
+  },
+  "stop_condition": "Use this route-recheck crossmatch only to show that current registry evidence should be checked before reusing the older Agent 10 live-route blocker. It does not deliver the workset, supply source citations, supply transform rules, create candidate text, create definition or lemma content, authorize answer eligibility, write routes, accept source/license/legal status, claim QA acceptance, mutate public/runtime, accept or emit accepted text, export, claim publication readiness, or release.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

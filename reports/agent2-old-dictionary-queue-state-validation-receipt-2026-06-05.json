@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_old_dictionary_queue_state_validation_receipt",
+  "generated_at": "2026-06-05T11:51:07.038Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / source-lane separated lexicon expansion",
+  "target": "Agent 2 old-dictionary excluded-row queue state",
+  "status": "queue_points_to_current_validated_readiness_and_exact_blockers",
+  "validated_artifacts": {
+    "queue": "data/control/spark_standing_queue.json",
+    "consumption_prep": "reports/agent2-old-dictionary-excluded-row-reaudit-consumption-prep-2026-06-05.json",
+    "readiness_matrix": "reports/agent2-old-dictionary-excluded-row-transform-readiness-matrix-2026-06-05.json",
+    "agent10_consumption": "reports/agent10-agent2-old-dictionary-excluded-row-readiness-consumption-2026-06-05.json"
+  },
+  "validator_commands": [
+    "node scripts/validate_agent2_old_dictionary_excluded_row_reaudit_consumption_prep.mjs reports/agent2-old-dictionary-excluded-row-reaudit-consumption-prep-2026-06-05.json",
+    "node scripts/validate_agent2_old_dictionary_excluded_row_transform_readiness_matrix.mjs reports/agent2-old-dictionary-excluded-row-transform-readiness-matrix-2026-06-05.json",
+    "node scripts/validate_agent10_agent2_old_dictionary_excluded_row_readiness_consumption.mjs reports/agent10-agent2-old-dictionary-excluded-row-readiness-consumption-2026-06-05.json",
+    "node scripts/validate_agent2_old_dictionary_queue_state_validation_receipt.mjs reports/agent2-old-dictionary-queue-state-validation-receipt-2026-06-05.json"
+  ],
+  "queue_assertions": {
+    "agent2_queue_points_to_consumption_prep": true,
+    "agent2_queue_points_to_readiness_matrix": true,
+    "agent2_queue_points_to_agent10_consumption": true,
+    "agent1_to_agent2_gate_classification_present": true,
+    "gate_missing_field_names_current_blockers": true
+  },
+  "counts": {
+    "source_family_rows": 5,
+    "commercial_clean_candidate_source_families": 3,
+    "noncommercial_educational_candidate_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0
+  },
+  "current_exact_blockers": [
+    "old-dictionary-excluded-row-license-lane-reaudit::jastrow-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation",
+    "old-dictionary-excluded-row-license-lane-reaudit::bdb-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation",
+    "old-dictionary-excluded-row-license-lane-reaudit::bdb-aramaic-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation",
+    "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary::missing_exact_agent6_nc_boundary_no_commercial_export_authorization",
+    "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong::missing_independent_source_license_custody_basis"
+  ],
+  "lane_preservation": {
+    "current_agent1_thread_id": "019e975d-dc9f-7020-a7c8-885d083a837e",
+    "commercial_clean_and_nc_separated": true,
+    "nc_row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+    "nc_derived_from_nc": true,
+    "nc_commercial_export_allowed": false,
+    "nc_attribution_required": true,
+    "blocked_row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+    "unclassified_rows_consumed_as_candidate_text": 0
+  },
+  "zero_output_counts": {
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_gloss_text_rows": 0,
+    "definition_content_rows": 0,
+    "nc_commercial_authorization_rows": 0
+  },
+  "handoff_owner": "Agent 2 queue-state receipt; Agent 10 has consumed readiness evidence; Agent 6 only receives a future exact row/subset candidate-use package.",
+  "stop_condition": "Stop at queue-state receipt and exact blockers. No Definition, lemma, reader-hint, candidate text, answer, public/runtime, accepted text, or release rows may be emitted from current queue state.",
+  "non_acceptance_boundary": [
+    "No Definition authority",
+    "No answer acceptance",
+    "No source/license/legal acceptance",
+    "No accepted gloss/text",
+    "No public/runtime mutation",
+    "No NC commercial authorization",
+    "No release action"
+  ]
+}

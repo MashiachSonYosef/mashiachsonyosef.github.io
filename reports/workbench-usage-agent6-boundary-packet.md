@@ -1,6 +1,6 @@
 # Workbench Usage Agent 6 Boundary Packet
 
-Generated: 2026-06-01T10:23:51.875Z
+Generated: 2026-06-04T02:20:25.755Z
 
 ## Summary
 
@@ -18,7 +18,7 @@ Generated: 2026-06-01T10:23:51.875Z
 - Route payload field hits: 0
 - Forbidden field hits: 0
 - Audit-only rows: ambiguous 2064, blocked 0, reader-facing no
-- Smoke validation: steps 110, failed 0
+- Smoke validation: steps 132, failed 0
 
 ## Policy
 
@@ -42,7 +42,7 @@ This packet verifies selected usage rows are source links, work anchors, marked 
 | work_hub_handoff_complete | passed | work hub present; rows 49; payload hits 0 |
 | frame_neighbor_matrix_complete | passed | frame-neighbor present; cells 223; shared/specific 14/195; payload hits 0 |
 | source_work_hubs_not_reader_facing | passed | source/work reader-facing rows 0/0 |
-| smoke_passed | passed | smoke steps 110; failed 0 |
+| smoke_passed | passed | smoke steps 132; failed 0 |
 | no_forbidden_fields | passed | forbidden field hits 0 |
 
 ## Route Boundary

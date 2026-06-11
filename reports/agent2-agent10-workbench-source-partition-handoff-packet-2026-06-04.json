@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_agent10_workbench_source_partition_handoff_packet",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "status": "agent2_workbench_source_partition_handoff_ready_for_agent10_intake_only",
+  "target": "Workbench source-license and source-name partition planning handoff for Agent 10 release relevance review",
+  "files": {
+    "runnable_addendum": "reports/agent2-spark1-runnable-command-manifest-addendum-workbench-source-name-partition-2026-06-04.json",
+    "source_name_partition_matrix": "reports/agent2-workbench-source-name-partition-transform-planning-matrix-2026-06-04.json",
+    "source_license_lane_matrix": "reports/agent2-workbench-source-license-lane-transform-planning-matrix-2026-06-04.json",
+    "builder": "scripts/build_agent2_agent10_workbench_source_partition_handoff_packet.mjs",
+    "validator": "scripts/validate_agent2_agent10_workbench_source_partition_handoff_packet.mjs",
+    "output_json": "reports/agent2-agent10-workbench-source-partition-handoff-packet-2026-06-04.json",
+    "output_md": "reports/agent2-agent10-workbench-source-partition-handoff-packet-2026-06-04.md"
+  },
+  "exact_command_or_script": {
+    "build": "node scripts/build_agent2_agent10_workbench_source_partition_handoff_packet.mjs",
+    "validate": "node scripts/validate_agent2_agent10_workbench_source_partition_handoff_packet.mjs reports/agent2-agent10-workbench-source-partition-handoff-packet-2026-06-04.json",
+    "runnable_addendum_build": "node scripts/build_agent2_workbench_source_name_partition_transform_planning_matrix.mjs",
+    "runnable_addendum_validate": "node scripts/validate_agent2_workbench_source_name_partition_transform_planning_matrix.mjs reports/agent2-workbench-source-name-partition-transform-planning-matrix-2026-06-04.json"
+  },
+  "schema_counts": {
+    "runnable_addendum_count": 1,
+    "source_license_lane_planning_rows": 4,
+    "source_name_partition_planning_rows": 351,
+    "source_rows": 105747,
+    "public_domain_partitions": 307,
+    "cc_by_sa_partitions": 37,
+    "cc_by_partitions": 5,
+    "cc0_partitions": 2,
+    "attribution_required_partitions": 42,
+    "share_alike_required_partitions": 37,
+    "token_inventory_top_rows": 5000,
+    "distinct_normalized_tokens": 698873,
+    "token_rows_with_source_name_partition_join": 0,
+    "token_rows_with_source_license_join": 0
+  },
+  "transform_candidate_counts": {
+    "definition_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0
+  },
+  "blocker": {
+    "id": "workbench_token_inventory_missing_source_partition_join",
+    "source_license_blocker": "workbench_token_inventory_missing_per_token_source_license_join_before_definition_lemma_reader_hint_candidates",
+    "source_name_blocker": "workbench_token_inventory_missing_per_token_source_name_license_partition_join_before_definition_lemma_reader_hint_candidates",
+    "main_manifest_registration_blocker": "main_manifest_registration_requires_refreshing_manifest_output_receipts_inventory_handoff_and_count_assertions_from_7_to_8_runnable_pipelines",
+    "required_next_artifact": "per-token source_name/source_family/license_label/license_lane/source_url_or_citation/source_name_partition_id/agent6_boundary_required join over the 5000-token inventory or selected subset"
+  },
+  "agent6_boundary_question": "If a future row/subset package is proposed, may these exact source-name-partition-joined token rows be used/stored/displayed within their preserved license lanes under zero-answer/public flags?",
+  "zero_emission_counters": {
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0
+  },
+  "handoff_owner": "Agent 10 first; Agent 6 only by exact boundary packet prepared through release owner",
+  "stop_condition": "Stop after Agent 10 intake of this handoff packet or exact selection of a source-partition-joined token subset; do not emit candidate text or public/answer rows from this packet.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate-text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

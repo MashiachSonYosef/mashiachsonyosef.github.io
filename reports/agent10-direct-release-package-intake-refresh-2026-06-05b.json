@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_direct_release_package_intake_refresh",
+  "generated_at": "2026-06-05T16:45:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "release_owner": "Agent 10",
+  "posture": "direct_release_package_decision_mode",
+  "new_inputs_consumed": [
+    {
+      "package_workset": "old_dictionary_morphology_candidate_use_package",
+      "inputs_consumed": [
+        "reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.md",
+        "reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json",
+        "reports/agent10-agent2-old-dictionary-morphology-candidate-use-package-consumption-2026-06-05.md",
+        "reports/agent10-agent2-old-dictionary-morphology-candidate-use-package-consumption-2026-06-05.json"
+      ],
+      "row_occurrence_counts": {
+        "rows": 78,
+        "occurrences": 1461,
+        "commercial_clean_candidate_rows": 78,
+        "noncommercial_educational_candidate_rows": 0,
+        "candidate_text_rows": 0
+      },
+      "release_relevance": "prior_agent2_wait_resolved_nonpublic_planning_evidence_only",
+      "agent6_boundary_need": "later_exact_agent6_packet_required_before_text_storage_transform_output_export_answer_route_public_runtime_accepted_text_commercial_export_or_release",
+      "exact_blocker": "candidate_text_rows_0_actual_text_storage_transform_output_export_answer_or_runtime_mutation_requires_new_agent6_verdict",
+      "next_handoff": "no_agent2_wait_remains_for_this_package",
+      "stop_condition": "Stop at non-public candidate-use planning package."
+    },
+    {
+      "package_workset": "agent6_current_release_package_boundary_packets_verdict",
+      "inputs_consumed": [
+        "reports/agent6-current-release-package-boundary-packets-verdict-2026-06-05.md",
+        "reports/agent10-agent6-current-release-package-boundary-packets-verdict-consumption-2026-06-05.md",
+        "reports/agent10-agent6-current-release-package-boundary-packets-verdict-consumption-2026-06-05.json"
+      ],
+      "row_occurrence_counts": {
+        "workbench_source_rows": 105747,
+        "workbench_full_partitions": 351,
+        "old_dictionary_source_family_planning_rows": 5,
+        "old_dictionary_commercial_clean_hit_rows": 500,
+        "old_dictionary_commercial_clean_hit_occurrences": 10940,
+        "old_dictionary_nc_hit_rows": 214,
+        "old_dictionary_nc_hit_occurrences": 4444,
+        "old_dictionary_blocked_review_hit_rows": 222,
+        "old_dictionary_blocked_review_hit_occurrences": 4435
+      },
+      "release_relevance": "agent6_warn_accepted_nonpublic_planning_evidence_only",
+      "agent6_boundary_need": "no_current_route_verdict_consumed_for_these_packets",
+      "exact_blocker": "later_exact_row_subset_boundary_required_before_package_use_beyond_planning_evidence",
+      "next_handoff": "Agent 10 state only",
+      "stop_condition": "Stop before candidate text/export/display/answer/Definition/source-license acceptance/public-runtime/release use."
+    },
+    {
+      "package_workset": "agent6_repo_pipeline_implementation_and_queue_drift_receipt",
+      "inputs_consumed": [
+        "reports/agent6-repo-pipeline-implementation-and-queue-drift-receipt-2026-06-05.md",
+        "reports/agent6-repo-pipeline-implementation-and-queue-drift-receipt-2026-06-05.json",
+        "reports/agent6-repo-dirt-classification-support-pipeline-run-2026-06-05.md",
+        "reports/agent6-repo-dirt-classification-support-pipeline-run-2026-06-05.json",
+        "reports/agent6-queue-next-item-selection-2026-06-05.json"
+      ],
+      "row_occurrence_counts": {
+        "dirty_records": 17456,
+        "tracked_deletions": 12231,
+        "tracked_modified": 1490,
+        "tracked_added": 22,
+        "untracked": 3713,
+        "data_public_hud_dirty_records": 11937,
+        "reports_dirty_records": 2934,
+        "site_page_dirty_records": 1541,
+        "scripts_dirty_records": 502,
+        "data_control_dirty_records": 16,
+        "definition_workbench_200_rows_rechecked": 200
+      },
+      "release_relevance": "repo_hygiene_and_queue_drift_evidence_only",
+      "agent6_boundary_need": "no_agent6_route_created",
+      "exact_blocker": "queue_state_drift_for_agent6_broad_definition_workbench_sample_boundary_review_and_public_hud_package_truth_blocked_by_11937_dirty_deleted_records",
+      "next_handoff": "Agent 5 / Agent 7 for queue/control correction if pending item should be closed",
+      "stop_condition": "Stop before cleanup, staging, deletion, reset, restore, queue mutation, public/runtime mutation, or release."
+    }
+  ],
+  "validator_results": [
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_morphology_candidate_use_package.mjs reports\\agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent6_old_dictionary_morphology_candidate_use_boundary_verdict.mjs reports\\agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent6_repo_dirt_classification.mjs reports\\agent6-repo-dirt-classification-support-pipeline-run-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent6_queue_item_evidence.mjs --request-id agent6-broad-definition-workbench-sample-boundary-review",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_sample.mjs data\\definitions\\definition-workbench-sample.json",
+      "result": "passed_rows_200"
+    }
+  ],
+  "current_release_state": {
+    "new_agent6_handoff_candidates_from_latest_intake_matrix": 0,
+    "old_dictionary_agent2_wait_resolved": true,
+    "queue_state_drift": {
+      "request_id": "agent6-broad-definition-workbench-sample-boundary-review",
+      "queue_status": "delivered_after_resume_pending_agent6_verdict",
+      "existing_agent6_verdict": "reports/agent6-broad-definition-workbench-sample-boundary-verdict-2026-06-04.md",
+      "classification": "queue_state_drift_not_content_blocker",
+      "handoff_owner": "Agent 5 / Agent 7"
+    },
+    "public_hud_package_truth_blocker": "blocked_by_11937_dirty_deleted_data_public_hud_records"
+  },
+  "zero_counters": {
+    "cleanup_actions": 0,
+    "staging_actions": 0,
+    "deletion_actions": 0,
+    "reset_restore_actions": 0,
+    "queue_control_mutations": 0,
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "route_jsonl_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0,
+    "release_actions": 0
+  },
+  "highest_permissible_claim": "Agent 10 consumed new release/package planning evidence, resolved the prior Agent 2 wait, and recorded Agent 6 repo/queue drift evidence without mutation.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "cleanup",
+    "staging",
+    "deletion",
+    "reset",
+    "restore",
+    "queue/control mutation",
+    "release action"
+  ]
+}

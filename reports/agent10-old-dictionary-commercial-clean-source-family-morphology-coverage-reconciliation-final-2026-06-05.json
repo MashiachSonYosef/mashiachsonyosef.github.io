@@ -1,0 +1,143 @@
+{
+  "artifact_type": "agent10_old_dictionary_commercial_clean_source_family_morphology_coverage_reconciliation_final",
+  "generated_at": "2026-06-06T00:08:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "Agent 10",
+  "status": "prior_agent6_planning_coverage_exactly_verified_transform_and_candidate_use_still_blocked",
+  "target_package": "old_dictionary_commercial_clean_source_family_morphology_boundary_preflight",
+  "files_used": [
+    "reports/agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.json",
+    "reports/agent6-old-dictionary-source-family-overlap-matrix-boundary-verdict-2026-06-05.json",
+    "reports/agent6-old-dictionary-exact-row-subset-manifest-boundary-verdict-2026-06-05.json",
+    "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+    "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+    "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-reconciliation-2026-06-05.json"
+  ],
+  "agent6_prior_coverage_verified": {
+    "morphology_planning": {
+      "disposition": "warn_accepted_nonpublic_morphology_planning_evidence_only",
+      "scope": "nonpublic_old_dictionary_morphology_relation_planning_only",
+      "accepted_rows": 78,
+      "accepted_occurrences": 1461,
+      "selector": {
+        "preview_relation_class": "exact_after_mark_strip",
+        "agent2_morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning"
+      },
+      "blocked_rows_preserved_outside_subset": 219,
+      "blockers_preserved": [
+        "missing_exact_agent6_row_subset_boundary_for_candidate_use",
+        "missing_agent10_exact_agent6_candidate_use_packet_for_the_specific_planning_rows",
+        "definition_lane_must_still_emit_no_public_or_answer_acceptance",
+        "prefix_or_clitic_possible_requires_morphology_disambiguation",
+        "needs_morphology_disambiguation"
+      ]
+    },
+    "source_family_overlap": {
+      "disposition": "warn_accepted_nonpublic_source_family_overlap_planning_evidence_only",
+      "scope": "old_dictionary_source_family_overlap_matrix_planning_boundary_only",
+      "source_families": 5,
+      "pairwise_intersections": 10,
+      "exact_source_family_combinations": 13,
+      "total_exact_combination_rows": 500,
+      "total_exact_combination_occurrences": 8427,
+      "exact_blockers": 23,
+      "commercial_clean_source_families": 3,
+      "noncommercial_educational_source_families": 1,
+      "blocked_or_needs_review_source_families": 1
+    },
+    "exact_row_subset_manifest": {
+      "disposition": "warn_accepted_nonpublic_source_lane_row_subset_planning_evidence_only",
+      "scope": "old_dictionary_exact_row_subset_manifest_planning_boundary_only",
+      "subset_manifests": 8,
+      "rows": 500,
+      "occurrences": 8427,
+      "total_token_ids": 500,
+      "unique_token_ids": 500,
+      "total_queue_ids": 500,
+      "unique_queue_ids": 500,
+      "duplicate_token_ids": 0,
+      "duplicate_queue_ids": 0,
+      "nonzero_zero_counters": 0
+    }
+  },
+  "release_package_decision": {
+    "may_carry_forward_as_nonpublic_planning_evidence": true,
+    "agent6_packet_ready_now": false,
+    "reason_no_packet_now": "Prior Agent 6 dockets already cover planning evidence and explicitly require a later exact Agent 6 packet for candidate use or transform. A new packet would need exact candidate-use/transform intent and row-level fields, not just combined planning evidence.",
+    "next_boundary_type": "exact_candidate_use_or_transform_boundary_for_specific_78_rows_or_other_selected_subset"
+  },
+  "agent6_boundary_questions": [
+    {
+      "status": "not_ready",
+      "question": "Pass/warn/block exact candidate use or transform for a specific selected row/subset.",
+      "missing_before_routing": [
+        "specific selected row/subset queue_ids and token_ids",
+        "intended use: candidate_use, transform_output, source_row_emission, or other",
+        "candidate text/output fields if any, or explicit zero text/output",
+        "source-family selection/exclusion rule for overlap buckets",
+        "morphology relation basis and Agent 2 status",
+        "zero route/public/runtime/export/answer/release counters"
+      ]
+    }
+  ],
+  "exact_blockers": [
+    "candidate_use_or_transform_intent_not_supplied_for_specific_subset",
+    "missing_exact_agent6_row_subset_boundary_for_candidate_use",
+    "missing_agent10_exact_agent6_candidate_use_packet_for_the_specific_planning_rows",
+    "overlap_buckets_require_later_exact_agent6_source_family_selection_boundary_before_use",
+    "no_transform_authorization_now",
+    "candidate_text_export_blocked",
+    "definition_lemma_reader_hint_content_storage_blocked",
+    "answer_eligibility_blocked",
+    "public_runtime_mutation_blocked",
+    "route_writes_blocked",
+    "accepted_text_blocked",
+    "release_action_blocked"
+  ],
+  "process_timeout_reports": [],
+  "validation_commands": [
+    {
+      "command": "node -e compact extraction of prior Agent 6 morphology/source-family/exact-subset verdict fields",
+      "timeout": "20000ms",
+      "result": "passed",
+      "partial_output_or_artifact": "exact JSON fields extracted for three prior Agent 6 verdicts",
+      "next_safe_action": "use this reconciliation as current release-owner coverage state"
+    }
+  ],
+  "next_owner": "Agent 10 after concrete candidate-use or transform intent exists; Agent 6 only for that exact later packet.",
+  "stop_condition": "Stop at exact coverage reconciliation. Do not route Agent 6, transform, store text, emit source rows, write routes, mutate public/runtime, export, or release until a concrete candidate-use/transform packet exists.",
+  "global_zero_counters": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "route_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

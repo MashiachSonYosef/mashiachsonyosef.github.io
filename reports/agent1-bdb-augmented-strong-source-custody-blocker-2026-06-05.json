@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_bdb_augmented_strong_source_custody_blocker",
+  "generated_at": "2026-06-05T11:26:32.580Z",
+  "generator": "scripts/build_agent1_bdb_augmented_strong_source_custody_blocker.mjs",
+  "target": "BDB Augmented Strong independent source/license/custody basis",
+  "workset": "old-dictionary-excluded-row-license-lane-reaudit",
+  "status": "exact_blocker_preserved_no_independent_source_license_custody_basis",
+  "inputs": {
+    "oldDictionaryReaudit": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+    "agent1FamilyCustody": "reports/agent1-orot-sefaria-nc-aware-family-custody-boundary-2026-06-03.json",
+    "agent6FamilyVerdict": "reports/agent6-orot-sefaria-nc-aware-family-boundary-final-verdict-2026-06-03.json",
+    "agent10BoundaryPacket": "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.json",
+    "outputJson": "reports/agent1-bdb-augmented-strong-source-custody-blocker-2026-06-05.json",
+    "outputMd": "reports/agent1-bdb-augmented-strong-source-custody-blocker-2026-06-05.md"
+  },
+  "source_family": {
+    "source_family": "BDB Augmented Strong",
+    "source_name": "BDB Augmented Strong",
+    "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+    "license_label": "unresolved-independent-custody",
+    "license_lane": "blocked_or_needs_review",
+    "rows": 222,
+    "occurrences": 4435,
+    "token_ids_sample": [
+      "tok-20d2e105fd77",
+      "tok-2a86b3eaee9b",
+      "tok-6f3c380a7be9",
+      "tok-1b76a9f88fc7",
+      "tok-cf9427570b0a",
+      "tok-dfcf4cc0af67",
+      "tok-42a5e912cd97",
+      "tok-e858e9fa8bb8",
+      "tok-1bfe6fea9d85",
+      "tok-180d57091846"
+    ],
+    "derived_from_nc": false,
+    "commercial_export_allowed": false,
+    "attribution_required": false,
+    "corpus_contamination": false,
+    "nc_flags": null
+  },
+  "scout_evidence": {
+    "agent1_status": "blocked",
+    "metadata_only_allowed": true,
+    "external_link_only_allowed": true,
+    "transformed_reader_hint_allowed": false,
+    "observed_license_source_basis": {
+      "observed_license": null,
+      "version_endpoint_title": "BDB Augmented Strong",
+      "version_endpoint_url": "https://www.sefaria.org/api/texts/versions/BDB%20Augmented%20Strong",
+      "http_status": 200,
+      "response_sha256": "8932c7a2f127ae398070610dad327349b74d45850947e4d60af1fc91274fd1d8",
+      "observed_version_title": null,
+      "observed_version_source": null,
+      "observed_status": null,
+      "raw_version_body_stored": false,
+      "basis_note": "The scout did not observe an independent usable license/source object for this family."
+    },
+    "exact_blocker_if_blocked": "Blocked: no independent license/version source basis observed for BDB Augmented Strong in the bounded scout evidence."
+  },
+  "agent6_verdict": {
+    "agent1_status": "blocked",
+    "agent6_final_status_for_non_public_planning": "blocked",
+    "observed_license_group": "UNRESOLVED",
+    "planning_use_allowed": false,
+    "public_or_runtime_use_authorized": false,
+    "exact_blocker": "Blocked: no independent license/version source basis observed for BDB Augmented Strong."
+  },
+  "release_boundary_packet_row": {
+    "license_label": "unresolved_needs_independent_source_license_custody_evidence",
+    "license_lane": "blocked_or_needs_review",
+    "rows": 222,
+    "occurrences": 4435,
+    "missing_evidence": [
+      "independent source/license/custody basis",
+      "source URL or version source",
+      "license label and allowed fields",
+      "Agent 6 boundary if evidence appears"
+    ]
+  },
+  "source_repository_probe": {
+    "search_scope": "filename-only probe over data/sources/*.json",
+    "search_terms": [
+      "bdb",
+      "strong",
+      "brown",
+      "driver",
+      "briggs",
+      "augmented"
+    ],
+    "candidate_source_files": [],
+    "candidate_source_file_count": 0
+  },
+  "exact_blocker": {
+    "id": "bdb_augmented_strong_missing_independent_source_license_custody_basis",
+    "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+    "source_family": "BDB Augmented Strong",
+    "license_lane": "blocked_or_needs_review",
+    "missing_evidence": [
+      "independent source/license/custody basis",
+      "source URL or version source",
+      "license label and allowed fields",
+      "Agent 6 boundary if evidence appears"
+    ],
+    "observed_endpoint": "https://www.sefaria.org/api/texts/versions/BDB%20Augmented%20Strong",
+    "observed_endpoint_http_status": 200,
+    "observed_response_sha256": "8932c7a2f127ae398070610dad327349b74d45850947e4d60af1fc91274fd1d8",
+    "observed_license": null,
+    "observed_version_source": null,
+    "observed_status": null,
+    "repository_candidate_source_file_count": 0,
+    "handoff_owner": "Agent 1 if independent evidence appears; otherwise blocked/review",
+    "stop_condition": "Remain out of Agent 2 candidate text transform until independent source/license/custody evidence and Agent 6 boundary are supplied."
+  },
+  "zero_output_counts": {
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "non_acceptance_boundary": {
+    "no_qa_acceptance": true,
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true,
+    "no_queue_mutation": true,
+    "no_staging": true
+  },
+  "next_safe_agent1_work": [
+    "If a candidate source/version file appears, rerun this blocker builder and then produce source/license/custody evidence before changing the lane.",
+    "Keep BDB Augmented Strong in blocked_or_needs_review until independent evidence and Agent 6 boundary exist.",
+    "Keep Klein Dictionary separate as noncommercial_educational_candidate; this BDB Augmented Strong blocker does not alter NC rows."
+  ]
+}

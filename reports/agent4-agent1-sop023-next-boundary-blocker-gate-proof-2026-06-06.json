@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent1_sop023_next_boundary_blocker_gate_proof",
+  "generated_at": "2026-06-06T00:15:00.000Z",
+  "agent": "Agent 4",
+  "target": "Agent 1 SOP023 next boundary packet blocker",
+  "changed_input_artifact": "reports/agent1-old-dictionary-sop023-next-boundary-packet-blocker-2026-06-06.json",
+  "validator": {
+    "script": "scripts/validate_agent1_old_dictionary_sop023_next_boundary_packet_blocker.mjs",
+    "commands": [
+      {
+        "command": "node --check scripts\\validate_agent1_old_dictionary_sop023_next_boundary_packet_blocker.mjs",
+        "timeout_ms": 30000,
+        "result": "passed"
+      },
+      {
+        "command": "node scripts\\validate_agent1_old_dictionary_sop023_next_boundary_packet_blocker.mjs reports\\agent1-old-dictionary-sop023-next-boundary-packet-blocker-2026-06-06.json",
+        "timeout_ms": 30000,
+        "result": "passed"
+      }
+    ]
+  },
+  "counts": {
+    "subsets": 5,
+    "rows": 314,
+    "occurrences": 6006,
+    "required_fields": 11,
+    "missing_fields": 4,
+    "downstream_impacts": 3
+  },
+  "result": "validated_blocker_packet_shape_only",
+  "exact_blockers": [
+    {
+      "code": "missing_classification_inputs_for_row_subset_schema",
+      "missing_fields": [
+        "source_name",
+        "source_url_or_citation",
+        "license_label",
+        "corpus_contamination for NC rows"
+      ],
+      "blocked_output": "reports/agent1-old-dictionary-sop023-continuation-boundary-split-update-2026-06-06.json"
+    }
+  ],
+  "next_handoff": {
+    "Agent 6": "Provide exact source-name and source-url/citation-boundary evidence for bucket rows, including Klein and BDB Augmented Strong intersections, plus lane-preserving attribution/custody tags.",
+    "Agent 1": "Resume once source-boundary source_name/source_url_or_citation fields are emitted in the next input artifact; then emit the required 25-100 row/subset packet and hand off to Agent 2 only."
+  },
+  "stop_condition": "Stop until required input fields arrive: source_name and source_url_or_citation for each next 25-100 row subset, plus verified license_label and corpus_contamination fields.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

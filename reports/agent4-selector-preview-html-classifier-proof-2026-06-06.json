@@ -1,0 +1,62 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T09:28:46.567Z",
+  "target": "Agent 4 changed-input selector preview HTML classifier",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/orot-prehud-row-preview.html",
+  "authored_script": "scripts/select_agent4_changed_input_candidate.mjs",
+  "selector_output": "reports/agent4-changed-input-selection-after-current-anchor-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\select_agent4_changed_input_candidate.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\select_agent4_changed_input_candidate.mjs --after=reports\\agent4-validator-prereq-packet-sweep-after-selector-validator-latest-proof-2026-06-06.json --out=reports\\agent4-changed-input-selection-after-current-anchor-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "observed_output": "candidate_count=0; reports/orot-prehud-row-preview.html classified as preview_html_not_package_input"
+    },
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-current-anchor-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports\\agent4-changed-input-selection-after-current-anchor-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "preview_html_rows_classified": 1,
+    "candidate_count": 0,
+    "newer_file_count": 3,
+    "selector_blockers": 1,
+    "validator_reruns_started": 0,
+    "public_runtime_mutation": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "result": "preview_html_classifier_added_and_validated",
+  "exact_blockers": [
+    {
+      "code": "changed_package_input_missing",
+      "details": "The only non-Agent4 newer non-status surface was reports/orot-prehud-row-preview.html, classified as preview_html_not_package_input rather than a changed package candidate."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-selector-preview-html-classifier-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-selector-preview-html-classifier-proof-2026-06-06.md",
+  "handoff_owner": "Agent 4 for selector harness maintenance; Agent 10 or upstream package owner for the next changed package/input.",
+  "next_safe_action": "Use the selector before package validation; preview HTML requires a separate explicit runtime/preview validator request, not the changed-package artifact gate.",
+  "stop_condition": "Stop after classifying preview HTML as non-package input and validating the selector blocker.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

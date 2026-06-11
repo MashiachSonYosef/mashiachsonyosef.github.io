@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_next_workset_needed_after_deuteronomy_return",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "status": "no_new_agent2_exact_workset_after_deuteronomy_return",
+  "latest_agent10_agent2_executable_route_found": [
+    "reports/agent10-agent2-orot-missed-dictionary-zero-candidate-consumption-2026-06-04.md",
+    "reports/agent10-agent2-orot-missed-dictionary-zero-candidate-consumption-2026-06-04.json",
+    "reports/agent10-agent2-deuteronomy-phase2-transform-readiness-delivery-proof-2026-06-04.md",
+    "reports/agent10-agent2-deuteronomy-phase2-transform-readiness-route-2026-06-04.md",
+    "reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.json",
+    "reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.md"
+  ],
+  "agent2_returned_outputs": [
+    "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.md",
+    "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.json",
+    "reports/agent2-deuteronomy-phase2-transform-readiness-return-2026-06-04.md",
+    "reports/agent2-deuteronomy-phase2-transform-readiness-return-2026-06-04.json",
+    "reports/agent2-deuteronomy-phase2-partition-export-plan-2026-06-04.md",
+    "reports/agent2-deuteronomy-phase2-partition-export-plan-2026-06-04.json"
+  ],
+  "validated_inventory": {
+    "inventory": "reports/agent2-weekly-lexicon-pipeline-inventory-2026-06-04.json",
+    "validator": "scripts/validate_agent2_weekly_lexicon_pipeline_inventory.mjs",
+    "result": "passed",
+    "stdout": "Agent 2 weekly lexicon pipeline inventory validation passed. Checked: Deuteronomy 1334/2964 readiness and partition plan, Orot zero-candidate closure, Orot TBD 13-row inventory consumption, Workbench 1000 sample, joined planning, source-lane fixture, Spark-1 output-state gate, blockers, zero boundary."
+  },
+  "current_handoff_bundle": {
+    "bundle": "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json",
+    "validator": "scripts/validate_agent2_weekly_lexicon_current_handoff_bundle.mjs",
+    "result": "passed",
+    "stdout": "Agent 2 weekly lexicon current handoff bundle validation passed. Runnable pipelines: 7; blockers: 6."
+  },
+  "spark1_manifest_output_state_gate": {
+    "manifest": "reports/agent2-spark1-runnable-command-manifest-2026-06-04.json",
+    "validator": "scripts/validate_agent2_spark1_manifest_outputs.mjs",
+    "receipt": "reports/agent2-spark1-manifest-output-state-validation-receipt-2026-06-04.json",
+    "result": "passed",
+    "stdout": "Agent 2 Spark-1 manifest output-state validation passed. Runnable outputs checked: 7; validator-only states checked: 23."
+  },
+  "current_route_scan_receipt": {
+    "receipt": "reports/agent2-current-route-scan-receipt-2026-06-04.json",
+    "validator": "scripts/validate_agent2_current_route_scan_receipt.mjs",
+    "result": "passed",
+    "stdout": "Agent 2 current route scan receipt validation passed. No newer exact Agent2 workset recorded."
+  },
+  "latest_agent10_agent2_zero_candidate_consumption": {
+    "artifact": "reports/agent10-agent2-orot-missed-dictionary-zero-candidate-consumption-2026-06-04.json",
+    "status": "consumed_zero_candidate_return_no_agent6_route",
+    "candidate_rows": 0,
+    "candidate_occurrences": 0,
+    "unmatched_rows": 168,
+    "release_owner_next_action": "Keep waiting for Agent 6 old-dictionary primary/supplemental verdict; for the 168 unmatched rows, require changed source-family/linkage/dictionary evidence before another Agent 2 candidate packet.",
+    "agent6_route_needed_now": false
+  },
+  "exact_blocker": "no_new_agent2_exact_workset_after_deuteronomy_return",
+  "restored_required_output_shape": {
+    "workset": "no_new_agent2_exact_workset_after_deuteronomy_return",
+    "input_rows": {
+      "deuteronomy_phase2_rows": 1334,
+      "old_dictionary_lane_planning_rows": 500,
+      "orot_missed_dictionary_unmatched_rows": 168
+    },
+    "lane_split": {
+      "deuteronomy_commercial_clean_candidate_rows": 1334,
+      "deuteronomy_noncommercial_educational_candidate_rows": 0,
+      "old_dictionary_lane_planning_only": true,
+      "unclassified_rows_consumed_as_candidate_text": 0
+    },
+    "transform_candidate_counts": {
+      "deuteronomy_readiness_rows": 1334,
+      "deuteronomy_partition_plan_rows": 1334,
+      "orot_missed_dictionary_candidate_rows": 0,
+      "orot_missed_dictionary_candidate_occurrences": 0
+    },
+    "zero_emission_counters": {
+      "answer_rows": 0,
+      "answer_eligible_rows": 0,
+      "public_reader_output_rows": 0,
+      "route_jsonl_rows": 0,
+      "route_shard_writes": 0,
+      "definition_content_rows": 0,
+      "candidate_text_export_rows": 0,
+      "accepted_text_rows": 0
+    },
+    "blocker_rows": {
+      "no_new_exact_workset": true,
+      "orot_unmatched_rows_requiring_changed_source_family_linkage_dictionary_evidence": 168,
+      "old_dictionary_requires_agent6_boundary_before_candidate_text_consumption_export_storage": true
+    },
+    "validator": "scripts/validate_agent2_next_workset_needed_after_deuteronomy_return.mjs",
+    "handoff_owner": "Agent 10 first; Agent 6 only by exact boundary packet prepared through release owner",
+    "stop_condition": "Return this exact blocker until a new target/workset/input/schema/validator with lane-classified source rows is supplied."
+  },
+  "required_next_workset_shape": [
+    "target work/book/subset",
+    "exact input artifact paths",
+    "command or expected script",
+    "output path",
+    "output schema",
+    "validator/gate",
+    "row and occurrence counts",
+    "source-family lane fields where dictionary/source rows are involved",
+    "Agent 6 boundary question if future public/authority/display/source/license use is proposed",
+    "stop condition preserving zero authority/public/answer emissions"
+  ],
+  "standing_exact_blockers": [
+    "old_dictionary_candidate_text_consumption_export_storage_requires_new_exact_agent6_boundary",
+    "missing_larger_token_inventory_workset",
+    "missing_joined_definition_workbench_sample_artifact_contract",
+    "orot_counterpart_preview_not_promotable_without_agent1_source_lane_and_agent6_boundary",
+    "no_new_agent2_exact_workset_after_deuteronomy_return"
+  ],
+  "spark1_handoff": {
+    "do_not_rerun_unchanged_pipelines": true,
+    "allowed_only_for": [
+      "named exact command against changed input/workset",
+      "validator requested for current proof preservation"
+    ]
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "NC commercial authorization"
+  ]
+}

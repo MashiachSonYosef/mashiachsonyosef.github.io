@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_no_new_changed_input_after_identity_gate_blocker",
+  "generated_at": "2026-06-06T00:36:00.000Z",
+  "agent": "Agent 4",
+  "target": "Agent 4 broad validator/prereq/runtime lane changed-input wake check",
+  "latest_agent4_proof": "reports/agent4-agent-identity-control-prereq-gate-proof-2026-06-06.json",
+  "queue_artifact_checked": "data/control/spark_standing_queue.json",
+  "queue_agent4_current_artifact_or_exact_blocker": "reports/agent4-changed-input-only-wake-condition-2026-06-04.md; no exact changed package/input exists",
+  "changed_input_scan": {
+    "reports_json_after_latest_proof": 0,
+    "control_json_after_latest_proof": 0,
+    "new_exact_package_input": false,
+    "new_exact_runtime_prereq_input": false,
+    "new_exact_validator_harness_gap_input": false
+  },
+  "commands": [
+    {
+      "command": "$cutoff = (Get-Item reports\\agent4-agent-identity-control-prereq-gate-proof-2026-06-06.json).LastWriteTime; Get-ChildItem reports -File -Filter '*2026-06-06*.json' | Where-Object { $_.LastWriteTime -gt $cutoff } | Sort-Object LastWriteTime -Descending | Select-Object -First 60 Name,LastWriteTime,Length | ConvertTo-Json -Depth 3",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "count": 0
+    },
+    {
+      "command": "$cutoff = (Get-Item reports\\agent4-agent-identity-control-prereq-gate-proof-2026-06-06.json).LastWriteTime; Get-ChildItem data\\control -File | Where-Object { $_.LastWriteTime -gt $cutoff } | Sort-Object LastWriteTime -Descending | Select-Object Name,LastWriteTime,Length | ConvertTo-Json -Depth 3",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "count": 0
+    },
+    {
+      "command": "PowerShell here-string JSON scan of data/control/spark_standing_queue.json for Agent4 validator/prereq changed-input lane rows",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "agent4_queue_state": "validator/prereq only on changed package/input"
+    }
+  ],
+  "result": "changed_input_blocker",
+  "exact_blocker": {
+    "code": "no_new_changed_package_or_runtime_prereq_input_after_identity_gate",
+    "changed_package_path": null,
+    "command_list_needed": "Exact validator/prereq/runtime command supplied by package owner with changed artifact path.",
+    "expected_output_schema": "Agent4 proof packet containing target, changed input/artifact, validator/proof command with timeout, output artifact path, exact blockers, handoff owner, stop condition.",
+    "validator_gate": "Run only after exact changed package/input or deterministic harness gap appears.",
+    "package_owner": "Agent 10 for release/package intake, or originating Agents 1/2/3 for lane-owned changed artifacts.",
+    "agent6_boundary_trigger": "Required when a package attempts candidate-use/source-family/license/answer/runtime boundary movement.",
+    "stop_condition": "Stop until new changed package/input, changed runtime/prereq target, or exact harness gap exists."
+  },
+  "next_handoff": "Agent 10 or originating lane owner must provide a changed package/input path plus exact validator/proof command before Agent4 runs another proof.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

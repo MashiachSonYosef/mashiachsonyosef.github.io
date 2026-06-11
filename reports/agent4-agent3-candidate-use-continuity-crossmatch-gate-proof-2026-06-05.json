@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:18:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent3-old-dictionary-candidate-use-continuity-crossmatch",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-continuity-crossmatch-2026-06-05.json",
+  "validator_proof_commands": [
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_continuity_crossmatch.mjs reports\\agent3-old-dictionary-candidate-use-continuity-crossmatch-2026-06-05.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "Agent 3 old-dictionary candidate-use continuity crossmatch passed: rows=78 occurrences=1461 sample_linked=19 sample_unlinked=59 blocker_rows=78"
+    },
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_continuity_crossmatch.mjs",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "syntax check passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-candidate-use-continuity-crossmatch-gate-proof-2026-06-05.md",
+  "files": [
+    "reports/agent3-old-dictionary-candidate-use-continuity-crossmatch-2026-06-05.json",
+    "reports/agent3-state.json",
+    "scripts/validate_agent3_old_dictionary_candidate_use_continuity_crossmatch.mjs"
+  ],
+  "counts": {
+    "candidate_use_rows": 78,
+    "candidate_use_occurrences": 1461,
+    "agent2_package_rows": 78,
+    "agent2_package_occurrences": 1461,
+    "agent6_verdict_package_rows": 78,
+    "agent6_verdict_package_occurrences": 1461,
+    "unique_queue_ids": 78,
+    "duplicate_queue_ids": 0,
+    "unique_token_ids": 78,
+    "duplicate_token_ids": 0,
+    "source_family_values_observed": 3,
+    "source_family_blocker_families": 3,
+    "rows_with_source_family_blocker_links": 78,
+    "source_family_blocker_links": 159,
+    "row_overlap_sample_index_tokens": 115,
+    "row_overlap_sample_linked_rows": 19,
+    "row_overlap_sample_unlinked_rows": 59,
+    "row_overlap_sample_linked_occurrences": 802,
+    "row_overlap_sample_unlinked_occurrences": 659,
+    "transform_blocker_rows": 5,
+    "commercial_clean_candidate_rows": 78,
+    "noncommercial_educational_candidate_rows": 0,
+    "exact_after_mark_strip_rows": 78,
+    "agent2_morphology_relation_approved_rows": 78,
+    "morphology_blocked_rows_excluded": 219,
+    "agent10_current_exact_blockers": 1,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "release_actions": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "exact_blockers": [
+    "candidate-use continuity is navigation/linkage evidence only",
+    "rows remain blocked_pending_exact_agent1_agent6_boundary_fields_no_text_or_route_output",
+    "new exact Agent6 packet required before text storage, transform output, source-row emission, candidate text export, answer eligibility, route write, public/runtime mutation, accepted text, commercial export, or release",
+    "Agent10 current blocker remains missing_exact_agent1_agent6_boundary_fields_for_old_dictionary_transform_reaudit_row_subsets"
+  ],
+  "handoff_owner": {
+    "package_owner": "Agent 10",
+    "transform_owner_after_exact_boundary": "Agent 2",
+    "source_lane_owner_for_missing_boundary_fields": "Agent 1",
+    "qa_boundary_owner_if_needed": "Agent 6"
+  },
+  "hashes": {
+    "agent3_candidate_use_continuity_crossmatch_sha256": "9a5b1960e650f3d474f713f0e5a477a5544f02d97454f48c92271a756a2ba4ff",
+    "agent3_state_sha256": "22963603f1cd0f7ae25594b54ffc6bfbabcb150f14b7ebf6267de1a96eedb4b4",
+    "validator_sha256": "04c2473e5138743e6b34692d9028f34218b43eb5a391ad563b4718e980a519e0"
+  },
+  "result": "target | agent3-old-dictionary-candidate-use-continuity-crossmatch | changed input/artifact | reports/agent3-old-dictionary-candidate-use-continuity-crossmatch-2026-06-05.json | validator/proof command with timeout | node scripts\\validate_agent3_old_dictionary_candidate_use_continuity_crossmatch.mjs reports\\agent3-old-dictionary-candidate-use-continuity-crossmatch-2026-06-05.json, timeout 30000 ms, passed | output artifact path | reports/agent4-agent3-candidate-use-continuity-crossmatch-gate-proof-2026-06-05.md/json | exact blockers | navigation/linkage only; all 78 rows remain tied to source-family blockers and no text/route/output authorization | handoff owner | Agent10 package owner, Agent2 transform after exact boundary, Agent1 missing source-lane fields, Agent6 QA boundary | stop condition | use as nonpublic linkage/navigation evidence only; no candidate text, definition/lemma/reader-hint content, answer rows, route writes, public/runtime mutations, accepted text, commercial export, or release action from this crossmatch",
+  "stop_condition": "Use this as nonpublic linkage/navigation evidence only. Do not emit candidate text, definition/lemma/reader-hint content, answer rows, route writes, public/runtime mutations, accepted text, commercial export, or release action from this crossmatch.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

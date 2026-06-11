@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_third_missed_source_family_status",
+  "generated_at": "2026-06-05T08:49:42.000Z",
+  "target": "third_missed_source_family",
+  "files": [
+    "reports/agent1-third-missed-source-family-input-rows-2026-06-05.json",
+    "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-05.json",
+    "scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+    "scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+    "scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs",
+    "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+    "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+    "data/search/lemma-form-index.jsonl"
+  ],
+  "commands": [
+    "node scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+    "node scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+    "node scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs"
+  ],
+  "artifacts": {
+    "contract_json": "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+    "contract_md": "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.md",
+    "map_json": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+    "map_md": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.md",
+    "map_validation": "reports/agent1-orot-third-missed-source-family-pipeline-validation-result-2026-06-05.json",
+    "contract_validation": "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-validation-result-2026-06-05.json"
+  },
+  "counts": {
+    "candidate_rows": 169,
+    "candidate_occurrences": 2148,
+    "commercial_clean_candidate_rows": 138,
+    "commercial_clean_candidate_occurrences": 1672,
+    "noncommercial_educational_candidate_rows": 0,
+    "noncommercial_educational_candidate_occurrences": 0,
+    "metadata_or_link_only_rows": 0,
+    "metadata_or_link_only_occurrences": 0,
+    "blocked_or_needs_review_rows": 31,
+    "blocked_or_needs_review_occurrences": 476
+  },
+  "schema": {
+    "map_schema": "agent1_orot_third_missed_source_family_map",
+    "contract_schema": "agent1_spark1_pipeline_contract"
+  },
+  "validator": {
+    "map_ok": true,
+    "contract_ok": true,
+    "map_validation_result_path": "reports/agent1-orot-third-missed-source-family-pipeline-validation-result-2026-06-05.json",
+    "contract_validation_result_path": "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-validation-result-2026-06-05.json"
+  },
+  "missing_field_blocker": {
+    "status": "none_for_contract3_data",
+    "remaining_blocker": "agent6_boundary_required remains true for all candidate rows until boundary packet is approved"
+  },
+  "handoff": {
+    "agent10": "consume rows via source/lane contract outputs when ready; no acceptance decisions included",
+    "agent6": "boundary question exists: whether commercial-clean/metadata/link-only/blocked rows can proceed"
+  },
+  "spark1_stop_condition": "rerun on input changes; otherwise contract/output remain runnable",
+  "non_acceptance_boundary": [
+    "source/license acceptance",
+    "legal acceptance",
+    "qa acceptance",
+    "Definition authority",
+    "answer acceptance",
+    "accepted gloss/text",
+    "publication readiness",
+    "NC commercial authorization",
+    "public/runtime mutation"
+  ]
+}

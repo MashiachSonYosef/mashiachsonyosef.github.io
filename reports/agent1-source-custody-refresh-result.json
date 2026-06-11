@@ -1,0 +1,2478 @@
+{
+  "ok": true,
+  "started_at": "2026-06-04T00:11:13.633Z",
+  "completed_at": "2026-06-04T00:16:00.104Z",
+  "commands_run": [
+    "git ls-files --others --exclude-standard -- data/sources/*.json",
+    "node scripts/audit_untracked_source_scope.mjs --untracked-list reports/untracked-source-files-direct.txt --json reports/untracked-source-scope-audit.json --report reports/untracked-source-scope-audit.md",
+    "node scripts/build_agent1_source_custody_packet.mjs",
+    "node scripts/build_agent1_source_custody_reference_diagnostics.mjs",
+    "node scripts/build_agent1_source_custody_closure_options.mjs",
+    "node scripts/build_agent1_source_custody_reconciliation_preflight.mjs",
+    "node scripts/build_agent1_agent6_source_custody_decision_packet.mjs",
+    "node scripts/build_agent1_source_custody_queue_refresh_notice.mjs",
+    "node scripts/build_agent1_source_custody_control_sync_packet.mjs",
+    "node scripts/build_agent1_source_custody_queue_intake_candidate.mjs",
+    "node scripts/validate_agent1_source_custody_packet.mjs",
+    "node scripts/build_agent1_source_custody_manifest_remediation_packet.mjs",
+    "node scripts/validate_agent1_source_custody_manifest_remediation_packet.mjs",
+    "node scripts/build_agent1_source_custody_manifest_remediation_queue_candidate.mjs",
+    "node scripts/validate_agent1_source_custody_manifest_remediation_queue_candidate.mjs",
+    "node scripts/build_agent1_source_custody_tracking_action_packet.mjs",
+    "node scripts/validate_agent1_source_custody_tracking_action_packet.mjs",
+    "node scripts/build_agent1_source_custody_tracking_action_queue_candidate.mjs",
+    "node scripts/validate_agent1_source_custody_tracking_action_queue_candidate.mjs",
+    "node scripts/build_agent1_source_custody_license_normalization_action_packet.mjs",
+    "node scripts/validate_agent1_source_custody_license_normalization_action_packet.mjs",
+    "node scripts/build_agent1_source_custody_license_normalization_queue_candidate.mjs",
+    "node scripts/validate_agent1_source_custody_license_normalization_queue_candidate.mjs",
+    "node scripts/build_agent1_source_file_reconciliation_action_plan.mjs",
+    "node scripts/validate_agent1_source_file_reconciliation_action_plan.mjs",
+    "node scripts/build_agent1_wartime_public_hud_source_row_evidence.mjs",
+    "node scripts/validate_agent1_wartime_public_hud_source_row_evidence.mjs",
+    "node scripts/build_agent1_orot_fill_source_row_evidence.mjs",
+    "node scripts/validate_agent1_orot_fill_source_row_evidence.mjs",
+    "node scripts/build_agent1_orot_stage_c_source_unblock_plan.mjs",
+    "node scripts/validate_agent1_orot_stage_c_source_unblock_plan.mjs",
+    "node scripts/build_agent1_orot_fill_source_row_queue_candidate.mjs",
+    "node scripts/validate_agent1_orot_fill_source_row_queue_candidate.mjs",
+    "node scripts/build_agent1_wartime_public_hud_source_row_queue_candidate.mjs",
+    "node scripts/validate_agent1_wartime_public_hud_source_row_queue_candidate.mjs",
+    "node scripts/build_agent1_source_provenance_agent6_ready_docket.mjs",
+    "node scripts/validate_agent1_source_provenance_agent6_ready_docket.mjs",
+    "node scripts/build_agent1_agent5_agent6_docket_relay_packet.mjs",
+    "node scripts/validate_agent1_agent5_agent6_docket_relay_packet.mjs",
+    "node scripts/validate_agent1_agent6_queue_intake_contract_for_relay_packet.mjs",
+    "node scripts/build_agent1_agent6_queue_dry_run_with_relay_items.mjs",
+    "node scripts/validate_agent1_agent6_queue_dry_run_with_relay_items.mjs",
+    "node scripts/build_agent1_agent5_agent8_relay_readiness_checkpoint.mjs",
+    "node scripts/validate_agent1_agent5_agent8_relay_readiness_checkpoint.mjs",
+    "node scripts/build_agent1_agent5_agent6_control_surface_delta_packet.mjs",
+    "node scripts/validate_agent1_agent5_agent6_control_surface_delta_packet.mjs",
+    "node scripts/build_agent1_agent5_agent6_queue_insertion_patch_packet.mjs",
+    "node scripts/validate_agent1_agent5_agent6_queue_insertion_patch_packet.mjs",
+    "node scripts/build_agent1_agent6_disposition_watch.mjs",
+    "node scripts/validate_agent1_agent6_disposition_watch.mjs",
+    "node scripts/build_agent1_agent5_agent8_direct_relay_prompt.mjs",
+    "node scripts/validate_agent1_agent5_agent8_direct_relay_prompt.mjs",
+    "node scripts/build_agent1_source_custody_completion_audit.mjs",
+    "node scripts/validate_agent1_source_custody_completion_audit.mjs",
+    "node scripts/build_agent1_source_custody_current_blocker_packet.mjs",
+    "node scripts/validate_agent1_source_custody_current_blocker_packet.mjs",
+    "node scripts/build_agent1_source_file_reconciliation_owner_checklist.mjs",
+    "node scripts/validate_agent1_source_file_reconciliation_owner_checklist.mjs",
+    "node scripts/build_agent1_source_custody_agent6_decision_matrix.mjs",
+    "node scripts/validate_agent1_source_custody_agent6_decision_matrix.mjs",
+    "node scripts/validate_agent1_source_custody_refresh_result.mjs"
+  ],
+  "artifacts_refreshed": [
+    "reports/untracked-source-files-direct.txt",
+    "reports/untracked-source-scope-audit.json",
+    "reports/untracked-source-scope-audit.md",
+    "reports/agent1-source-provenance-custody-packet.json",
+    "reports/agent1-source-provenance-custody-packet.md",
+    "reports/agent1-downstream-quarantine-manifest.json",
+    "reports/agent1-downstream-quarantine-manifest.md",
+    "reports/agent1-custody-blocklist.json",
+    "reports/agent1-custody-blocklist.md",
+    "reports/agent1-agent6-custody-intake-docket.json",
+    "reports/agent1-agent6-custody-intake-docket.md",
+    "reports/agent1-source-custody-reference-diagnostics.json",
+    "reports/agent1-source-custody-reference-diagnostics.md",
+    "reports/agent1-source-custody-closure-options.json",
+    "reports/agent1-source-custody-closure-options.md",
+    "reports/agent1-source-custody-reconciliation-preflight.json",
+    "reports/agent1-source-custody-reconciliation-preflight.md",
+    "reports/agent1-agent6-source-custody-decision-packet.json",
+    "reports/agent1-agent6-source-custody-decision-packet.md",
+    "reports/agent1-source-custody-queue-refresh-notice.json",
+    "reports/agent1-source-custody-queue-refresh-notice.md",
+    "reports/agent1-source-custody-control-sync-packet.json",
+    "reports/agent1-source-custody-control-sync-packet.md",
+    "reports/agent1-source-custody-queue-intake-candidate.json",
+    "reports/agent1-source-custody-queue-intake-candidate.md",
+    "reports/agent1-source-custody-manifest-remediation-packet.json",
+    "reports/agent1-source-custody-manifest-remediation-packet.md",
+    "reports/agent1-source-custody-manifest-remediation-validator-result.json",
+    "reports/agent1-source-custody-manifest-remediation-queue-candidate.json",
+    "reports/agent1-source-custody-manifest-remediation-queue-candidate.md",
+    "reports/agent1-source-custody-manifest-remediation-queue-validator-result.json",
+    "reports/agent1-source-custody-tracking-action-packet.json",
+    "reports/agent1-source-custody-tracking-action-packet.md",
+    "reports/agent1-source-custody-tracking-action-validator-result.json",
+    "reports/agent1-source-custody-tracking-action-queue-candidate.json",
+    "reports/agent1-source-custody-tracking-action-queue-candidate.md",
+    "reports/agent1-source-custody-tracking-action-queue-validator-result.json",
+    "reports/agent1-source-custody-license-normalization-action-packet.json",
+    "reports/agent1-source-custody-license-normalization-action-packet.md",
+    "reports/agent1-source-custody-license-normalization-action-validator-result.json",
+    "reports/agent1-source-custody-license-normalization-queue-candidate.json",
+    "reports/agent1-source-custody-license-normalization-queue-candidate.md",
+    "reports/agent1-source-custody-license-normalization-queue-validator-result.json",
+    "reports/agent1-source-file-reconciliation-action-plan-2026-06-03.json",
+    "reports/agent1-source-file-reconciliation-action-plan-2026-06-03.md",
+    "reports/agent1-source-file-reconciliation-action-plan-validator-result-2026-06-03.json",
+    "reports/agent1-source-file-reconciliation-action-plan-validator-result-2026-06-03.md",
+    "reports/agent1-source-file-reconciliation-owner-checklist-2026-06-03.json",
+    "reports/agent1-source-file-reconciliation-owner-checklist-2026-06-03.md",
+    "reports/agent1-source-file-reconciliation-owner-checklist-validator-result-2026-06-03.json",
+    "reports/agent1-source-file-reconciliation-owner-checklist-validator-result-2026-06-03.md",
+    "reports/agent1-source-custody-agent6-decision-matrix-2026-06-03.json",
+    "reports/agent1-source-custody-agent6-decision-matrix-2026-06-03.md",
+    "reports/agent1-source-custody-agent6-decision-matrix-validator-result-2026-06-03.json",
+    "reports/agent1-source-custody-agent6-decision-matrix-validator-result-2026-06-03.md",
+    "reports/agent1-wartime-public-hud-source-row-evidence-2026-06-03.json",
+    "reports/agent1-wartime-public-hud-source-row-evidence-2026-06-03.md",
+    "reports/agent1-wartime-public-hud-source-row-evidence-validator-result-2026-06-03.json",
+    "reports/agent1-orot-fill-source-row-evidence-2026-06-03.json",
+    "reports/agent1-orot-fill-source-row-evidence-2026-06-03.md",
+    "reports/agent1-orot-fill-source-row-evidence-validator-result-2026-06-03.json",
+    "reports/agent1-orot-stage-c-source-unblock-plan-2026-06-03.json",
+    "reports/agent1-orot-stage-c-source-unblock-plan-2026-06-03.md",
+    "reports/agent1-orot-stage-c-source-unblock-plan-validator-result-2026-06-03.json",
+    "reports/agent1-orot-stage-c-source-unblock-plan-validator-result-2026-06-03.md",
+    "reports/agent1-orot-fill-source-row-queue-candidate-2026-06-03.json",
+    "reports/agent1-orot-fill-source-row-queue-candidate-2026-06-03.md",
+    "reports/agent1-orot-fill-source-row-queue-validator-result-2026-06-03.json",
+    "reports/agent1-wartime-public-hud-source-row-queue-candidate-2026-06-03.json",
+    "reports/agent1-wartime-public-hud-source-row-queue-candidate-2026-06-03.md",
+    "reports/agent1-wartime-public-hud-source-row-queue-validator-result-2026-06-03.json",
+    "reports/agent1-source-provenance-agent6-ready-docket-2026-06-03.json",
+    "reports/agent1-source-provenance-agent6-ready-docket-2026-06-03.md",
+    "reports/agent1-source-provenance-agent6-ready-docket-validator-result-2026-06-03.json",
+    "reports/agent1-agent5-agent6-docket-relay-packet-2026-06-03.json",
+    "reports/agent1-agent5-agent6-docket-relay-packet-2026-06-03.md",
+    "reports/agent1-agent5-agent6-docket-relay-validator-result-2026-06-03.json",
+    "reports/agent1-agent6-queue-intake-contract-validator-result-2026-06-03.json",
+    "reports/agent1-agent6-queue-intake-contract-validator-result-2026-06-03.md",
+    "reports/agent1-agent5-agent8-relay-readiness-checkpoint-2026-06-03.json",
+    "reports/agent1-agent5-agent8-relay-readiness-checkpoint-2026-06-03.md",
+    "reports/agent1-agent5-agent8-relay-readiness-checkpoint-validator-result-2026-06-03.json",
+    "reports/agent1-agent5-agent6-control-surface-delta-packet-2026-06-03.json",
+    "reports/agent1-agent5-agent6-control-surface-delta-packet-2026-06-03.md",
+    "reports/agent1-agent5-agent6-control-surface-delta-validator-result-2026-06-03.json",
+    "reports/agent1-agent5-agent6-queue-insertion-patch-packet-2026-06-03.json",
+    "reports/agent1-agent5-agent6-queue-insertion-patch-packet-2026-06-03.md",
+    "reports/agent1-agent5-agent6-queue-insertion-patch-validator-result-2026-06-03.json",
+    "reports/agent1-agent5-agent6-queue-insertion-patch-validator-result-2026-06-03.md",
+    "reports/agent1-agent6-disposition-watch-2026-06-03.json",
+    "reports/agent1-agent6-disposition-watch-2026-06-03.md",
+    "reports/agent1-agent6-disposition-watch-validator-result-2026-06-03.json",
+    "reports/agent1-source-custody-current-blocker-packet-2026-06-03.json",
+    "reports/agent1-source-custody-current-blocker-packet-2026-06-03.md",
+    "reports/agent1-source-custody-current-blocker-packet-validator-result-2026-06-03.json",
+    "reports/agent1-source-custody-current-blocker-packet-validator-result-2026-06-03.md",
+    "reports/agent1-agent5-agent8-direct-relay-prompt-2026-06-03.json",
+    "reports/agent1-agent5-agent8-direct-relay-prompt-2026-06-03.md",
+    "reports/agent1-agent5-agent8-direct-relay-prompt-validator-result-2026-06-03.json",
+    "reports/agent1-agent5-agent8-direct-relay-prompt-validator-result-2026-06-03.md",
+    "reports/agent1-agent6-validation-queue-dry-run-with-relay-items-2026-06-03.json",
+    "reports/agent1-agent6-validation-queue-dry-run-with-relay-items-2026-06-03.md",
+    "reports/agent1-agent6-validation-queue-dry-run-health-2026-06-03.md",
+    "reports/agent1-agent6-validation-queue-dry-run-validator-result-2026-06-03.json",
+    "reports/agent1-agent6-validation-queue-dry-run-validator-result-2026-06-03.md",
+    "reports/agent1-source-custody-objective-completion-audit-2026-06-03.json",
+    "reports/agent1-source-custody-objective-completion-audit-2026-06-03.md",
+    "reports/agent1-source-custody-objective-completion-audit-validator-result-2026-06-03.json",
+    "reports/agent1-source-custody-objective-completion-audit-validator-result-2026-06-03.md",
+    "reports/agent1-source-custody-refresh-result-validator-result-2026-06-03.json",
+    "reports/agent1-source-custody-refresh-result-validator-result-2026-06-03.md",
+    "reports/agent1-source-provenance-custody-validator-result.json",
+    "reports/agent1-source-custody-refresh-result.json",
+    "reports/agent1-source-custody-refresh-result.md"
+  ],
+  "direct_untracked_sources": 23,
+  "audit_untracked_sources": 23,
+  "license_counts": {
+    "CC-BY": 74683,
+    "Public Domain": 10727
+  },
+  "build_summary": {
+    "ok": true,
+    "packet_json": "reports/agent1-source-provenance-custody-packet.json",
+    "packet_md": "reports/agent1-source-provenance-custody-packet.md",
+    "quarantine_manifest_json": "reports/agent1-downstream-quarantine-manifest.json",
+    "quarantine_manifest_md": "reports/agent1-downstream-quarantine-manifest.md",
+    "custody_blocklist_json": "reports/agent1-custody-blocklist.json",
+    "custody_blocklist_md": "reports/agent1-custody-blocklist.md",
+    "intake_docket_json": "reports/agent1-agent6-custody-intake-docket.json",
+    "intake_docket_md": "reports/agent1-agent6-custody-intake-docket.md",
+    "summary": {
+      "source_rows": 29,
+      "source_fingerprinted_rows": 29,
+      "source_fingerprint_algorithm": "sha256",
+      "untracked_count": 23,
+      "untracked_with_public_pages": 23,
+      "untracked_with_overlay_json": 23,
+      "untracked_with_lexical_manifest": 23,
+      "untracked_with_route_or_workbench_hits": 23,
+      "untracked_missing_visible_source_license_rows": 0,
+      "untracked_missing_lexical_manifest": 0,
+      "modified_tracked_count": 6,
+      "modified_tracked_all_license_label_only": true,
+      "modified_tracked_with_public_pages": 6,
+      "modified_tracked_with_route_or_workbench_hits": 6,
+      "modified_tracked_missing_visible_source_license_rows": 0,
+      "modified_tracked_missing_lexical_manifest": 0
+    },
+    "quarantine_summary": {
+      "source_rows": 29,
+      "untracked_source_rows": 23,
+      "modified_tracked_source_rows": 6,
+      "direct_artifact_rows": 248,
+      "missing_lexical_manifest_rows": 0,
+      "content_reference_rows": 183,
+      "content_reference_rows_by_kind": {
+        "route_cards_or_hud_surfaces": 42,
+        "reader_workbench_artifacts": 112,
+        "public_lexical_exports": 29
+      }
+    },
+    "blocklist_summary": {
+      "blocked_source_rows": 29,
+      "blocked_direct_artifact_paths": 248,
+      "blocked_content_reference_paths": 183,
+      "missing_required_artifacts": 0
+    },
+    "intake_summary": {
+      "requested_review": "source/provenance custody evidence intake only",
+      "live_scope": {
+        "untracked_source_files": 23,
+        "modified_tracked_source_files": 6,
+        "untracked_license_unit_counts": {
+          "Public Domain": 10727,
+          "CC-BY": 74683
+        },
+        "direct_audit_requirement": "reports/untracked-source-files-direct.txt and reports/untracked-source-scope-audit.json must agree 23-for-23"
+      },
+      "packet_claims": {
+        "source_rows": 29,
+        "source_fingerprinted_rows": 29,
+        "source_fingerprint_algorithm": "sha256",
+        "untracked_quarantined_sources": 23,
+        "modified_tracked_sources_blocked_for_review": 6,
+        "modified_tracked_all_license_label_only": true,
+        "visible_source_license_row_gaps": 0,
+        "missing_lexical_manifest_gaps": 0,
+        "untracked_with_downstream_reliance": 23,
+        "modified_tracked_with_downstream_reliance": 6
+      }
+    },
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "reference_diagnostics_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-reference-diagnostics.json",
+    "output_md": "reports/agent1-source-custody-reference-diagnostics.md",
+    "summary": {
+      "source_rows": 29,
+      "blocking_content_reference_rows": 183,
+      "report_or_audit_reference_rows": 0
+    },
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "closure_options_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-closure-options.json",
+    "output_md": "reports/agent1-source-custody-closure-options.md",
+    "summary": {
+      "untracked_source_rows": 23,
+      "untracked_track_candidates_with_lexical_manifest": 23,
+      "untracked_requires_missing_lexical_manifest_remediation": 0,
+      "modified_tracked_source_rows": 6,
+      "modified_tracked_license_label_only_rows": 6
+    },
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "reconciliation_preflight_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-reconciliation-preflight.json",
+    "output_md": "reports/agent1-source-custody-reconciliation-preflight.md",
+    "summary": {
+      "track_candidate_source_files": 23,
+      "track_candidate_downstream_direct_paths": 189,
+      "missing_manifest_source_files": 0,
+      "missing_manifest_expected_paths": 0,
+      "missing_manifest_downstream_direct_paths": 0,
+      "modified_tracked_source_files": 6,
+      "modified_tracked_downstream_direct_paths": 59
+    },
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "agent6_decision_packet_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-agent6-source-custody-decision-packet.json",
+    "output_md": "reports/agent1-agent6-source-custody-decision-packet.md",
+    "summary": {
+      "custody_source_rows": 29,
+      "track_candidate_source_files": 23,
+      "missing_manifest_source_files": 0,
+      "modified_tracked_source_files": 6,
+      "blocked_downstream_direct_paths": 248,
+      "blocked_downstream_content_reference_paths": 183
+    },
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "queue_refresh_notice_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-queue-refresh-notice.json",
+    "output_md": "reports/agent1-source-custody-queue-refresh-notice.md",
+    "current": {
+      "packet_generated_at": "2026-06-04T00:11:30.765Z",
+      "decision_generated_at": "2026-06-04T00:13:43.656Z",
+      "validator_ok": true,
+      "untracked_quarantined_sources": 23,
+      "modified_tracked_sources": 6,
+      "source_rows": 29,
+      "source_fingerprinted_rows": 29,
+      "missing_lexical_manifests": 0,
+      "blocked_downstream_direct_paths": 248,
+      "blocked_content_reference_rows": 183,
+      "report_or_audit_reference_rows": 0
+    },
+    "stale_surface_count": 4,
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "control_sync_packet_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-control-sync-packet.json",
+    "output_md": "reports/agent1-source-custody-control-sync-packet.md",
+    "current": {
+      "packet_generated_at": "2026-06-04T00:11:30.765Z",
+      "decision_generated_at": "2026-06-04T00:13:43.656Z",
+      "validator_ok": true,
+      "untracked_quarantined_sources": 23,
+      "modified_tracked_sources": 6,
+      "source_rows": 29,
+      "source_fingerprinted_rows": 29,
+      "missing_lexical_manifests": 0,
+      "blocked_downstream_direct_paths": 248,
+      "blocked_content_reference_rows": 183,
+      "route_or_hud_content_reference_rows": 42,
+      "reader_workbench_content_reference_rows": 112,
+      "translation_memory_content_reference_rows": 0,
+      "public_lexical_content_reference_rows": 29,
+      "report_or_audit_reference_rows": 0
+    },
+    "stale_control_surface_count": 4,
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "queue_intake_candidate_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-queue-intake-candidate.json",
+    "output_md": "reports/agent1-source-custody-queue-intake-candidate.md",
+    "current": {
+      "packet_generated_at": "2026-06-04T00:11:30.765Z",
+      "decision_generated_at": "2026-06-04T00:13:43.656Z",
+      "custody_source_rows": 29,
+      "track_candidate_source_files": 23,
+      "missing_manifest_source_files": 0,
+      "modified_tracked_source_files": 6,
+      "blocked_downstream_direct_paths": 248,
+      "blocked_content_reference_rows": 183,
+      "route_or_hud_content_reference_rows": 42,
+      "reader_workbench_content_reference_rows": 112,
+      "translation_memory_content_reference_rows": 0,
+      "public_lexical_content_reference_rows": 29,
+      "report_or_audit_reference_rows": 0
+    },
+    "existing_queue_stale_markers": [
+      "missing_current_183_content_reference_rows",
+      "missing_current_decision_packet_timestamp",
+      "missing_current_packet_timestamp"
+    ],
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "manifest_remediation_packet_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-manifest-remediation-packet.json",
+    "output_md": "reports/agent1-source-custody-manifest-remediation-packet.md",
+    "summary": {
+      "remediated_source_files": 6,
+      "generated_manifest_files": 6,
+      "current_missing_manifest_source_files": 0,
+      "current_track_candidate_source_files": 23,
+      "current_blocked_downstream_direct_paths": 248,
+      "current_blocked_content_reference_source_rows": 183,
+      "remediated_sources_blocked_downstream_direct_paths": 36,
+      "remediated_sources_content_reference_source_rows": 6,
+      "remediated_sources_unique_content_reference_paths": 1,
+      "live_untracked_sources": 23
+    },
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "manifest_remediation_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:13:54.209Z",
+    "completed_at": "2026-06-04T00:13:54.507Z",
+    "validated_packet": "reports/agent1-source-custody-manifest-remediation-packet.json",
+    "summary": {
+      "remediated_source_files": 6,
+      "generated_manifest_files": 6,
+      "current_missing_manifest_source_files": 0,
+      "current_track_candidate_source_files": 23,
+      "current_blocked_downstream_direct_paths": 248,
+      "current_blocked_content_reference_source_rows": 183,
+      "remediated_sources_blocked_downstream_direct_paths": 36,
+      "remediated_sources_content_reference_source_rows": 6,
+      "remediated_sources_unique_content_reference_paths": 1,
+      "live_untracked_sources": 23
+    },
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "manifest_remediation_queue_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-manifest-remediation-queue-candidate.json",
+    "output_md": "reports/agent1-source-custody-manifest-remediation-queue-candidate.md",
+    "summary": {
+      "remediated_source_files": 6,
+      "generated_manifest_files": 6,
+      "current_missing_manifest_source_files": 0,
+      "current_track_candidate_source_files": 23,
+      "current_blocked_downstream_direct_paths": 248,
+      "current_blocked_content_reference_source_rows": 183,
+      "remediated_sources_blocked_downstream_direct_paths": 36,
+      "remediated_sources_content_reference_source_rows": 6,
+      "remediated_sources_unique_content_reference_paths": 1,
+      "live_untracked_sources": 23
+    },
+    "requested_queue_item": "agent6-agent1-source-custody-manifest-remediation-review"
+  },
+  "manifest_remediation_queue_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:13:54.897Z",
+    "completed_at": "2026-06-04T00:13:55.099Z",
+    "validated_candidate": "reports/agent1-source-custody-manifest-remediation-queue-candidate.json",
+    "request_id": "agent6-agent1-source-custody-manifest-remediation-review",
+    "live_untracked_sources": 23,
+    "summary": {
+      "remediated_source_files": 6,
+      "generated_manifest_files": 6,
+      "current_missing_manifest_source_files": 0,
+      "current_track_candidate_source_files": 23,
+      "current_blocked_downstream_direct_paths": 248,
+      "current_blocked_content_reference_source_rows": 183,
+      "remediated_sources_blocked_downstream_direct_paths": 36,
+      "remediated_sources_content_reference_source_rows": 6,
+      "remediated_sources_unique_content_reference_paths": 1,
+      "live_untracked_sources": 23
+    },
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "tracking_action_packet_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-tracking-action-packet.json",
+    "output_md": "reports/agent1-source-custody-tracking-action-packet.md",
+    "summary": {
+      "track_candidate_source_files": 23,
+      "total_units": 85410,
+      "public_domain_units": 10727,
+      "cc_by_units": 74683,
+      "missing_manifest_source_files": 0,
+      "direct_downstream_artifact_paths": 189,
+      "content_reference_source_rows": 120,
+      "unique_content_reference_paths": 68,
+      "visible_source_license_row_gaps": 0,
+      "lexical_manifest_gaps": 0
+    }
+  },
+  "tracking_action_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:13:55.772Z",
+    "completed_at": "2026-06-04T00:13:55.951Z",
+    "validated_packet": "reports/agent1-source-custody-tracking-action-packet.json",
+    "live_untracked_sources": 23,
+    "summary": {
+      "track_candidate_source_files": 23,
+      "total_units": 85410,
+      "public_domain_units": 10727,
+      "cc_by_units": 74683,
+      "missing_manifest_source_files": 0,
+      "direct_downstream_artifact_paths": 189,
+      "content_reference_source_rows": 120,
+      "unique_content_reference_paths": 68,
+      "visible_source_license_row_gaps": 0,
+      "lexical_manifest_gaps": 0
+    },
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "tracking_action_queue_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-tracking-action-queue-candidate.json",
+    "output_md": "reports/agent1-source-custody-tracking-action-queue-candidate.md",
+    "requested_queue_item": "agent6-agent1-source-custody-tracking-action-review",
+    "summary": {
+      "track_candidate_source_files": 23,
+      "total_units": 85410,
+      "public_domain_units": 10727,
+      "cc_by_units": 74683,
+      "missing_manifest_source_files": 0,
+      "direct_downstream_artifact_paths": 189,
+      "content_reference_source_rows": 120,
+      "unique_content_reference_paths": 68,
+      "visible_source_license_row_gaps": 0,
+      "lexical_manifest_gaps": 0
+    }
+  },
+  "tracking_action_queue_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:13:57.612Z",
+    "completed_at": "2026-06-04T00:13:57.854Z",
+    "validated_candidate": "reports/agent1-source-custody-tracking-action-queue-candidate.json",
+    "request_id": "agent6-agent1-source-custody-tracking-action-review",
+    "live_untracked_sources": 23,
+    "summary": {
+      "track_candidate_source_files": 23,
+      "total_units": 85410,
+      "public_domain_units": 10727,
+      "cc_by_units": 74683,
+      "missing_manifest_source_files": 0,
+      "direct_downstream_artifact_paths": 189,
+      "content_reference_source_rows": 120,
+      "unique_content_reference_paths": 68,
+      "visible_source_license_row_gaps": 0,
+      "lexical_manifest_gaps": 0
+    },
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "license_normalization_packet_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-license-normalization-action-packet.json",
+    "output_md": "reports/agent1-source-custody-license-normalization-action-packet.md",
+    "summary": {
+      "modified_tracked_source_files": 6,
+      "total_scalar_diff_count": 1406,
+      "total_non_license_diff_count": 0,
+      "total_non_pd_to_public_domain_diff_count": 0,
+      "all_diffs_are_license_fields": true,
+      "all_diffs_are_pd_to_public_domain": true,
+      "direct_downstream_artifact_paths": 59,
+      "content_reference_source_rows": 63,
+      "unique_content_reference_paths": 42,
+      "visible_source_license_row_gaps": 0,
+      "decision_packet_modified_tracked_source_files": 6
+    }
+  },
+  "license_normalization_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:13:59.056Z",
+    "completed_at": "2026-06-04T00:14:00.539Z",
+    "validated_packet": "reports/agent1-source-custody-license-normalization-action-packet.json",
+    "live_modified_tracked_sources": 6,
+    "summary": {
+      "modified_tracked_source_files": 6,
+      "total_scalar_diff_count": 1406,
+      "total_non_license_diff_count": 0,
+      "total_non_pd_to_public_domain_diff_count": 0,
+      "all_diffs_are_license_fields": true,
+      "all_diffs_are_pd_to_public_domain": true,
+      "direct_downstream_artifact_paths": 59,
+      "content_reference_source_rows": 63,
+      "unique_content_reference_paths": 42,
+      "visible_source_license_row_gaps": 0,
+      "decision_packet_modified_tracked_source_files": 6
+    },
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "license_normalization_queue_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-license-normalization-queue-candidate.json",
+    "output_md": "reports/agent1-source-custody-license-normalization-queue-candidate.md",
+    "requested_queue_item": "agent6-agent1-source-custody-license-normalization-review",
+    "summary": {
+      "modified_tracked_source_files": 6,
+      "total_scalar_diff_count": 1406,
+      "total_non_license_diff_count": 0,
+      "total_non_pd_to_public_domain_diff_count": 0,
+      "all_diffs_are_license_fields": true,
+      "all_diffs_are_pd_to_public_domain": true,
+      "direct_downstream_artifact_paths": 59,
+      "content_reference_source_rows": 63,
+      "unique_content_reference_paths": 42,
+      "visible_source_license_row_gaps": 0,
+      "decision_packet_modified_tracked_source_files": 6
+    }
+  },
+  "license_normalization_queue_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:14:00.966Z",
+    "completed_at": "2026-06-04T00:14:01.486Z",
+    "validated_candidate": "reports/agent1-source-custody-license-normalization-queue-candidate.json",
+    "request_id": "agent6-agent1-source-custody-license-normalization-review",
+    "live_modified_tracked_sources": 6,
+    "summary": {
+      "modified_tracked_source_files": 6,
+      "total_scalar_diff_count": 1406,
+      "total_non_license_diff_count": 0,
+      "total_non_pd_to_public_domain_diff_count": 0,
+      "all_diffs_are_license_fields": true,
+      "all_diffs_are_pd_to_public_domain": true,
+      "direct_downstream_artifact_paths": 59,
+      "content_reference_source_rows": 63,
+      "unique_content_reference_paths": 42,
+      "visible_source_license_row_gaps": 0,
+      "decision_packet_modified_tracked_source_files": 6
+    },
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "source_file_reconciliation_action_plan_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-file-reconciliation-action-plan-2026-06-03.json",
+    "output_md": "reports/agent1-source-file-reconciliation-action-plan-2026-06-03.md",
+    "track_candidate_source_files": 23,
+    "modified_tracked_source_files": 6,
+    "action_performed": false,
+    "publication_state": "blocked_no_render"
+  },
+  "source_file_reconciliation_action_plan_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:14:03.325Z",
+    "completed_at": "2026-06-04T00:14:03.918Z",
+    "validated_plan": "reports/agent1-source-file-reconciliation-action-plan-2026-06-03.json",
+    "validated_plan_md": "reports/agent1-source-file-reconciliation-action-plan-2026-06-03.md",
+    "track_candidate_source_files": 23,
+    "modified_tracked_source_files": 6,
+    "missing_manifest_source_files": 0,
+    "blocked_downstream_direct_paths": 248,
+    "blocked_downstream_content_reference_paths": 183,
+    "action_performed": false,
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "action_plan_only": true,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false,
+      "completion_claimed": false
+    }
+  },
+  "public_hud_source_row_evidence_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-wartime-public-hud-source-row-evidence-2026-06-03.json",
+    "output_md": "reports/agent1-wartime-public-hud-source-row-evidence-2026-06-03.md",
+    "summary": {
+      "surfaces_checked": 5,
+      "endpoint_count": 20,
+      "endpoint_ok_count": 20,
+      "route_card_count_extracted": 57,
+      "source_row_count_extracted": 80,
+      "missing_source_row_field_count": 0,
+      "unique_sources": [
+        "Abudarham. Lisbon, 1489.",
+        "Ahavat Chesed -- Torat Emet",
+        "Akeidat Yitzchak, Pressburg 1849",
+        "Hebrew Wiktionary data via Kaikki/Wiktextract",
+        "Krakow, 1903",
+        "OpenScriptures morphHB"
+      ],
+      "unique_source_ids": [
+        "H430",
+        "kaikki-07cda45e0ce27966",
+        "kaikki-07d18aee469f7acf",
+        "kaikki-30abdb40163fa2c0",
+        "kaikki-31724142651a5b69",
+        "kaikki-3531f3b3cacdf618",
+        "kaikki-35421e8cba70ec71",
+        "kaikki-3a77de715322ebe0",
+        "kaikki-4f851ea054e6acaa",
+        "kaikki-53dc19eb20d42c02",
+        "kaikki-57e57c9ab8e8dc8c",
+        "kaikki-5dae8c6a37b3383f",
+        "kaikki-60c3088f41493aaf",
+        "kaikki-668ec3ca6cf08787",
+        "kaikki-7279418ddd544428",
+        "kaikki-72f2389feef8e57b",
+        "kaikki-9125f0f3a5b757c6",
+        "kaikki-9a8f74330bd7ee1e",
+        "kaikki-ab52306714b7a944",
+        "kaikki-b2d6e8a23425b59d",
+        "kaikki-bb184145e97f219e",
+        "kaikki-bb6f19fb3e92899d",
+        "kaikki-ca0bc4002406cb3b",
+        "kaikki-ca720b26a5716a2d",
+        "kaikki-cac9403a1c547fed",
+        "kaikki-ce4708c1c8a8878b",
+        "kaikki-cf2a00992763304e",
+        "kaikki-d7db08ce73a3d693",
+        "kaikki-eb80d299fef29a31",
+        "source-version-03b64afe2cc6056e",
+        "source-version-14bd52324e606c08",
+        "source-version-5661e3983b8739d2",
+        "source-version-7fec48d7e28378bb"
+      ],
+      "unique_licenses": [
+        "CC BY 4.0",
+        "CC BY-SA 4.0 / GFDL",
+        "Public Domain"
+      ]
+    }
+  },
+  "public_hud_source_row_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:14:07.639Z",
+    "completed_at": "2026-06-04T00:14:07.643Z",
+    "validated_artifact": "reports/agent1-wartime-public-hud-source-row-evidence-2026-06-03.json",
+    "summary": {
+      "surfaces_checked": 5,
+      "endpoint_count": 20,
+      "endpoint_ok_count": 20,
+      "route_card_count_extracted": 57,
+      "source_row_count_extracted": 80,
+      "missing_source_row_field_count": 0,
+      "unique_sources": [
+        "Abudarham. Lisbon, 1489.",
+        "Ahavat Chesed -- Torat Emet",
+        "Akeidat Yitzchak, Pressburg 1849",
+        "Hebrew Wiktionary data via Kaikki/Wiktextract",
+        "Krakow, 1903",
+        "OpenScriptures morphHB"
+      ],
+      "unique_source_ids": [
+        "H430",
+        "kaikki-07cda45e0ce27966",
+        "kaikki-07d18aee469f7acf",
+        "kaikki-30abdb40163fa2c0",
+        "kaikki-31724142651a5b69",
+        "kaikki-3531f3b3cacdf618",
+        "kaikki-35421e8cba70ec71",
+        "kaikki-3a77de715322ebe0",
+        "kaikki-4f851ea054e6acaa",
+        "kaikki-53dc19eb20d42c02",
+        "kaikki-57e57c9ab8e8dc8c",
+        "kaikki-5dae8c6a37b3383f",
+        "kaikki-60c3088f41493aaf",
+        "kaikki-668ec3ca6cf08787",
+        "kaikki-7279418ddd544428",
+        "kaikki-72f2389feef8e57b",
+        "kaikki-9125f0f3a5b757c6",
+        "kaikki-9a8f74330bd7ee1e",
+        "kaikki-ab52306714b7a944",
+        "kaikki-b2d6e8a23425b59d",
+        "kaikki-bb184145e97f219e",
+        "kaikki-bb6f19fb3e92899d",
+        "kaikki-ca0bc4002406cb3b",
+        "kaikki-ca720b26a5716a2d",
+        "kaikki-cac9403a1c547fed",
+        "kaikki-ce4708c1c8a8878b",
+        "kaikki-cf2a00992763304e",
+        "kaikki-d7db08ce73a3d693",
+        "kaikki-eb80d299fef29a31",
+        "source-version-03b64afe2cc6056e",
+        "source-version-14bd52324e606c08",
+        "source-version-5661e3983b8739d2",
+        "source-version-7fec48d7e28378bb"
+      ],
+      "unique_licenses": [
+        "CC BY 4.0",
+        "CC BY-SA 4.0 / GFDL",
+        "Public Domain"
+      ]
+    },
+    "boundary": {
+      "agent1_status": "source/provenance blocker evidence prepared / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "orot_fill_source_row_evidence_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-orot-fill-source-row-evidence-2026-06-03.json",
+    "output_md": "reports/agent1-orot-fill-source-row-evidence-2026-06-03.md",
+    "status": "pipeline_source_rows_clear",
+    "summary": {
+      "target_count": 4,
+      "chunk_entry_count": 17,
+      "token_occurrence_count": 19,
+      "incomplete_curated_rows_attached": 0,
+      "targets_with_expected_clean_source_layer_row": 4,
+      "targets_missing_clean_chunk_attachment": 0,
+      "route_lookup_shard_hit_count": 0
+    },
+    "source_row_disposition": {
+      "status": "pipeline_source_rows_clear",
+      "cleared_entry_count": 4,
+      "remaining_blocking_rows": [],
+      "reason": "The regenerated Orot chunks no longer attach incomplete curated source rows for the four target entries, and complete source rows are attached in the chunks."
+    },
+    "blocker": null
+  },
+  "orot_fill_source_row_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:15:52.458Z",
+    "completed_at": "2026-06-04T00:15:52.476Z",
+    "validated_artifact": "reports/agent1-orot-fill-source-row-evidence-2026-06-03.json",
+    "status": "pipeline_source_rows_clear",
+    "summary": {
+      "target_count": 4,
+      "chunk_entry_count": 17,
+      "token_occurrence_count": 19,
+      "incomplete_curated_rows_attached": 0,
+      "targets_with_expected_clean_source_layer_row": 4,
+      "targets_missing_clean_chunk_attachment": 0,
+      "route_lookup_shard_hit_count": 0
+    },
+    "source_row_disposition": {
+      "status": "pipeline_source_rows_clear",
+      "cleared_entry_count": 4,
+      "remaining_blocking_rows": [],
+      "reason": "The regenerated Orot chunks no longer attach incomplete curated source rows for the four target entries, and complete source rows are attached in the chunks."
+    },
+    "blocker": null,
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "orot_stage_c_source_unblock_plan_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-orot-stage-c-source-unblock-plan-2026-06-03.json",
+    "output_md": "reports/agent1-orot-stage-c-source-unblock-plan-2026-06-03.md",
+    "status": "source_rows_clear_awaiting_agent6_disposition",
+    "target_count": 4,
+    "incomplete_curated_rows_attached": 0,
+    "immediate_quarantine_route_status": "not_required_for_current_clear_chunks_but_available_as_release_safety",
+    "clearance_route_status": "current_chunks_clear_requires_agent6_disposition_before_release"
+  },
+  "orot_stage_c_source_unblock_plan_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:15:52.738Z",
+    "completed_at": "2026-06-04T00:15:52.742Z",
+    "validated_plan": "reports/agent1-orot-stage-c-source-unblock-plan-2026-06-03.json",
+    "validated_plan_md": "reports/agent1-orot-stage-c-source-unblock-plan-2026-06-03.md",
+    "status": "source_rows_clear_awaiting_agent6_disposition",
+    "current_facts": {
+      "existing_orot_evidence_validator_ok": true,
+      "existing_orot_evidence_status": "pipeline_source_rows_clear",
+      "target_count": 4,
+      "chunk_entry_count": 17,
+      "token_occurrence_count": 19,
+      "incomplete_curated_rows_attached": 0,
+      "targets_with_expected_clean_source_layer_row": 4,
+      "targets_missing_clean_chunk_attachment": 0,
+      "route_lookup_shard_hit_count": 0
+    },
+    "immediate_quarantine_route_status": "not_required_for_current_clear_chunks_but_available_as_release_safety",
+    "clearance_route_status": "current_chunks_clear_requires_agent6_disposition_before_release",
+    "remaining_blocker_count": 0,
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "orot_fill_source_row_queue_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-orot-fill-source-row-queue-candidate-2026-06-03.json",
+    "output_md": "reports/agent1-orot-fill-source-row-queue-candidate-2026-06-03.md",
+    "requested_queue_item": "agent6-agent1-orot-fill-source-row-review",
+    "summary": {
+      "target_count": 4,
+      "chunk_entry_count": 17,
+      "token_occurrence_count": 19,
+      "incomplete_curated_rows_attached": 0,
+      "targets_with_expected_clean_source_layer_row": 4,
+      "targets_missing_clean_chunk_attachment": 0,
+      "route_lookup_shard_hit_count": 0
+    }
+  },
+  "orot_fill_source_row_queue_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:15:52.919Z",
+    "completed_at": "2026-06-04T00:15:52.922Z",
+    "validated_candidate": "reports/agent1-orot-fill-source-row-queue-candidate-2026-06-03.json",
+    "request_id": "agent6-agent1-orot-fill-source-row-review",
+    "summary": {
+      "target_count": 4,
+      "chunk_entry_count": 17,
+      "token_occurrence_count": 19,
+      "incomplete_curated_rows_attached": 0,
+      "targets_with_expected_clean_source_layer_row": 4,
+      "targets_missing_clean_chunk_attachment": 0,
+      "route_lookup_shard_hit_count": 0
+    },
+    "blocker": null,
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "public_hud_source_row_queue_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-wartime-public-hud-source-row-queue-candidate-2026-06-03.json",
+    "output_md": "reports/agent1-wartime-public-hud-source-row-queue-candidate-2026-06-03.md",
+    "requested_queue_item": "agent6-agent1-public-hud-source-row-review",
+    "summary": {
+      "surfaces_checked": 5,
+      "endpoint_count": 20,
+      "endpoint_ok_count": 20,
+      "route_card_count_extracted": 57,
+      "source_row_count_extracted": 80,
+      "missing_source_row_field_count": 0,
+      "unique_sources": [
+        "Abudarham. Lisbon, 1489.",
+        "Ahavat Chesed -- Torat Emet",
+        "Akeidat Yitzchak, Pressburg 1849",
+        "Hebrew Wiktionary data via Kaikki/Wiktextract",
+        "Krakow, 1903",
+        "OpenScriptures morphHB"
+      ],
+      "unique_source_ids": [
+        "H430",
+        "kaikki-07cda45e0ce27966",
+        "kaikki-07d18aee469f7acf",
+        "kaikki-30abdb40163fa2c0",
+        "kaikki-31724142651a5b69",
+        "kaikki-3531f3b3cacdf618",
+        "kaikki-35421e8cba70ec71",
+        "kaikki-3a77de715322ebe0",
+        "kaikki-4f851ea054e6acaa",
+        "kaikki-53dc19eb20d42c02",
+        "kaikki-57e57c9ab8e8dc8c",
+        "kaikki-5dae8c6a37b3383f",
+        "kaikki-60c3088f41493aaf",
+        "kaikki-668ec3ca6cf08787",
+        "kaikki-7279418ddd544428",
+        "kaikki-72f2389feef8e57b",
+        "kaikki-9125f0f3a5b757c6",
+        "kaikki-9a8f74330bd7ee1e",
+        "kaikki-ab52306714b7a944",
+        "kaikki-b2d6e8a23425b59d",
+        "kaikki-bb184145e97f219e",
+        "kaikki-bb6f19fb3e92899d",
+        "kaikki-ca0bc4002406cb3b",
+        "kaikki-ca720b26a5716a2d",
+        "kaikki-cac9403a1c547fed",
+        "kaikki-ce4708c1c8a8878b",
+        "kaikki-cf2a00992763304e",
+        "kaikki-d7db08ce73a3d693",
+        "kaikki-eb80d299fef29a31",
+        "source-version-03b64afe2cc6056e",
+        "source-version-14bd52324e606c08",
+        "source-version-5661e3983b8739d2",
+        "source-version-7fec48d7e28378bb"
+      ],
+      "unique_licenses": [
+        "CC BY 4.0",
+        "CC BY-SA 4.0 / GFDL",
+        "Public Domain"
+      ]
+    }
+  },
+  "public_hud_source_row_queue_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:15:53.164Z",
+    "completed_at": "2026-06-04T00:15:53.168Z",
+    "validated_candidate": "reports/agent1-wartime-public-hud-source-row-queue-candidate-2026-06-03.json",
+    "request_id": "agent6-agent1-public-hud-source-row-review",
+    "summary": {
+      "surfaces_checked": 5,
+      "endpoint_count": 20,
+      "endpoint_ok_count": 20,
+      "route_card_count_extracted": 57,
+      "source_row_count_extracted": 80,
+      "missing_source_row_field_count": 0,
+      "unique_sources": [
+        "Abudarham. Lisbon, 1489.",
+        "Ahavat Chesed -- Torat Emet",
+        "Akeidat Yitzchak, Pressburg 1849",
+        "Hebrew Wiktionary data via Kaikki/Wiktextract",
+        "Krakow, 1903",
+        "OpenScriptures morphHB"
+      ],
+      "unique_source_ids": [
+        "H430",
+        "kaikki-07cda45e0ce27966",
+        "kaikki-07d18aee469f7acf",
+        "kaikki-30abdb40163fa2c0",
+        "kaikki-31724142651a5b69",
+        "kaikki-3531f3b3cacdf618",
+        "kaikki-35421e8cba70ec71",
+        "kaikki-3a77de715322ebe0",
+        "kaikki-4f851ea054e6acaa",
+        "kaikki-53dc19eb20d42c02",
+        "kaikki-57e57c9ab8e8dc8c",
+        "kaikki-5dae8c6a37b3383f",
+        "kaikki-60c3088f41493aaf",
+        "kaikki-668ec3ca6cf08787",
+        "kaikki-7279418ddd544428",
+        "kaikki-72f2389feef8e57b",
+        "kaikki-9125f0f3a5b757c6",
+        "kaikki-9a8f74330bd7ee1e",
+        "kaikki-ab52306714b7a944",
+        "kaikki-b2d6e8a23425b59d",
+        "kaikki-bb184145e97f219e",
+        "kaikki-bb6f19fb3e92899d",
+        "kaikki-ca0bc4002406cb3b",
+        "kaikki-ca720b26a5716a2d",
+        "kaikki-cac9403a1c547fed",
+        "kaikki-ce4708c1c8a8878b",
+        "kaikki-cf2a00992763304e",
+        "kaikki-d7db08ce73a3d693",
+        "kaikki-eb80d299fef29a31",
+        "source-version-03b64afe2cc6056e",
+        "source-version-14bd52324e606c08",
+        "source-version-5661e3983b8739d2",
+        "source-version-7fec48d7e28378bb"
+      ],
+      "unique_licenses": [
+        "CC BY 4.0",
+        "CC BY-SA 4.0 / GFDL",
+        "Public Domain"
+      ]
+    },
+    "boundary": {
+      "agent1_status": "source/provenance blocker evidence prepared / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "agent6_ready_docket_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-provenance-agent6-ready-docket-2026-06-03.json",
+    "output_md": "reports/agent1-source-provenance-agent6-ready-docket-2026-06-03.md",
+    "review_items": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "current_source_scope": {
+      "validator": "reports/agent1-source-provenance-custody-validator-result.json",
+      "live_untracked_sources": 23,
+      "live_modified_tracked_sources": 6,
+      "source_rows": 29,
+      "source_fingerprinted_rows": 29,
+      "missing_lexical_manifest_gaps": 0,
+      "blocked_downstream_direct_paths": 248,
+      "blocked_downstream_content_reference_paths": 183,
+      "route_or_hud_content_reference_rows": 42,
+      "reader_workbench_content_reference_rows": 112,
+      "public_lexical_content_reference_rows": 29
+    }
+  },
+  "agent6_ready_docket_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:15:53.349Z",
+    "completed_at": "2026-06-04T00:15:53.354Z",
+    "validated_docket": "reports/agent1-source-provenance-agent6-ready-docket-2026-06-03.json",
+    "review_items": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "current_source_scope": {
+      "validator": "reports/agent1-source-provenance-custody-validator-result.json",
+      "live_untracked_sources": 23,
+      "live_modified_tracked_sources": 6,
+      "source_rows": 29,
+      "source_fingerprinted_rows": 29,
+      "missing_lexical_manifest_gaps": 0,
+      "blocked_downstream_direct_paths": 248,
+      "blocked_downstream_content_reference_paths": 183,
+      "route_or_hud_content_reference_rows": 42,
+      "reader_workbench_content_reference_rows": 112,
+      "public_lexical_content_reference_rows": 29
+    },
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "agent5_agent6_relay_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-agent5-agent6-docket-relay-packet-2026-06-03.json",
+    "output_md": "reports/agent1-agent5-agent6-docket-relay-packet-2026-06-03.md",
+    "status": "relay_needed_control_surfaces_missing_request_ids",
+    "request_ids_missing_everywhere": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "control_surfaces": [
+      {
+        "path": "data/control/agent6_validation_queue.json",
+        "missing_request_ids": 5,
+        "present_request_ids": 0
+      },
+      {
+        "path": "data/control/agent_goal_board.json",
+        "missing_request_ids": 5,
+        "present_request_ids": 0
+      },
+      {
+        "path": "reports/agent5-agent6-handoff-index.json",
+        "missing_request_ids": 5,
+        "present_request_ids": 0
+      },
+      {
+        "path": "reports/agent5-agent6-handoff-index.md",
+        "missing_request_ids": 5,
+        "present_request_ids": 0
+      }
+    ]
+  },
+  "agent5_agent6_relay_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:15:53.623Z",
+    "completed_at": "2026-06-04T00:15:53.633Z",
+    "validated_packet": "reports/agent1-agent5-agent6-docket-relay-packet-2026-06-03.json",
+    "status": "relay_needed_control_surfaces_missing_request_ids",
+    "request_ids": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "request_ids_missing_everywhere": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "request_ids_present_somewhere": [],
+    "control_surfaces": [
+      {
+        "path": "data/control/agent6_validation_queue.json",
+        "missing_request_ids": 5,
+        "present_request_ids": 0
+      },
+      {
+        "path": "data/control/agent_goal_board.json",
+        "missing_request_ids": 5,
+        "present_request_ids": 0
+      },
+      {
+        "path": "reports/agent5-agent6-handoff-index.json",
+        "missing_request_ids": 5,
+        "present_request_ids": 0
+      },
+      {
+        "path": "reports/agent5-agent6-handoff-index.md",
+        "missing_request_ids": 5,
+        "present_request_ids": 0
+      }
+    ],
+    "boundary": {
+      "agent1_status": "relay-ready evidence / awaiting-Agent-5-or-Agent-8 relay and Agent-6 disposition",
+      "publication_state": "blocked_no_render",
+      "queue_mutation_performed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "agent6_intake_contract_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:15:53.735Z",
+    "completed_at": "2026-06-04T00:15:53.744Z",
+    "validator": "scripts/validate_agent1_agent6_queue_intake_contract_for_relay_packet.mjs",
+    "intake_contract_source": "data/control/agent6_validation_queue.json",
+    "relay_packet": "reports/agent1-agent5-agent6-docket-relay-packet-2026-06-03.json",
+    "docket": "reports/agent1-source-provenance-agent6-ready-docket-2026-06-03.json",
+    "required_request_fields": [
+      "request_id",
+      "submitted_by",
+      "gate",
+      "scope",
+      "evidence_artifacts",
+      "requested_verdict",
+      "claimed_boundary",
+      "known_risks",
+      "what_changed_since_last_agent6_ruling",
+      "what_must_not_be_accepted"
+    ],
+    "allowed_submitters": [
+      "Agent 5",
+      "Agent 7",
+      "user"
+    ],
+    "request_ids": [
+      "agent6-agent1-orot-fill-source-row-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review"
+    ],
+    "queue_items_checked": 5,
+    "publication_state": "blocked_no_render",
+    "queue_mutation_performed": false,
+    "blocking_findings": 0,
+    "findings": [],
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "agent5_agent8_relay_readiness_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-agent5-agent8-relay-readiness-checkpoint-2026-06-03.json",
+    "output_md": "reports/agent1-agent5-agent8-relay-readiness-checkpoint-2026-06-03.md",
+    "status": "relay_ready_evidence_control_surface_relay_still_needed",
+    "request_ids": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "blocker": "agent1_request_ids_absent_from_agent6_agent5_control_surfaces",
+    "control_surfaces_checked": 4
+  },
+  "agent5_agent8_relay_readiness_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:16:00.268Z",
+    "completed_at": "2026-06-04T00:16:00.285Z",
+    "validated_checkpoint": "reports/agent1-agent5-agent8-relay-readiness-checkpoint-2026-06-03.json",
+    "status": "relay_ready_evidence_control_surface_relay_still_needed",
+    "request_ids": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "blocker": "agent1_request_ids_absent_from_agent6_agent5_control_surfaces",
+    "control_surfaces_checked": 4,
+    "dry_run_queue_compatibility": {
+      "dry_run_queue": "reports/agent1-agent6-validation-queue-dry-run-with-relay-items-2026-06-03.json",
+      "dry_run_health": "reports/agent1-agent6-validation-queue-dry-run-health-2026-06-03.md",
+      "dry_run_validator": "reports/agent1-agent6-validation-queue-dry-run-validator-result-2026-06-03.json",
+      "existing_queue_validator_exit_code": 0,
+      "live_queue_item_count": 36,
+      "dry_run_queue_item_count": 41,
+      "inserted_request_ids": [
+        "agent6-agent1-source-custody-manifest-remediation-review",
+        "agent6-agent1-source-custody-tracking-action-review",
+        "agent6-agent1-source-custody-license-normalization-review",
+        "agent6-agent1-public-hud-source-row-review",
+        "agent6-agent1-orot-fill-source-row-review"
+      ],
+      "live_queue_request_id_hits_now": {
+        "agent6-agent1-source-custody-manifest-remediation-review": 0,
+        "agent6-agent1-source-custody-tracking-action-review": 0,
+        "agent6-agent1-source-custody-license-normalization-review": 0,
+        "agent6-agent1-public-hud-source-row-review": 0,
+        "agent6-agent1-orot-fill-source-row-review": 0
+      },
+      "dry_run_request_id_hits": {
+        "agent6-agent1-source-custody-manifest-remediation-review": 1,
+        "agent6-agent1-source-custody-tracking-action-review": 1,
+        "agent6-agent1-source-custody-license-normalization-review": 1,
+        "agent6-agent1-public-hud-source-row-review": 1,
+        "agent6-agent1-orot-fill-source-row-review": 1
+      },
+      "live_queue_sha256_now": "e64a3e7647c8809045b0eacdff6f772d072df51fd9207a581eefb22edc2a4a2d",
+      "live_queue_sha256_recorded_by_dry_run": "e64a3e7647c8809045b0eacdff6f772d072df51fd9207a581eefb22edc2a4a2d",
+      "live_queue_mutation_performed": false
+    },
+    "intake_blocking_findings": 0,
+    "boundary": {
+      "agent1_status": "relay-ready evidence / awaiting-Agent-5-or-Agent-8 relay and Agent-6 disposition",
+      "publication_state": "blocked_no_render",
+      "queue_mutation_performed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "agent5_agent6_control_surface_delta_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-agent5-agent6-control-surface-delta-packet-2026-06-03.json",
+    "output_md": "reports/agent1-agent5-agent6-control-surface-delta-packet-2026-06-03.md",
+    "status": "current_agent1_request_ids_absent_historical_agent1_queue_items_present",
+    "current_request_ids_missing_everywhere": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "historical_queue_items_present": 4
+  },
+  "agent5_agent6_control_surface_delta_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:15:54.489Z",
+    "completed_at": "2026-06-04T00:15:54.515Z",
+    "validated_packet": "reports/agent1-agent5-agent6-control-surface-delta-packet-2026-06-03.json",
+    "status": "current_agent1_request_ids_absent_historical_agent1_queue_items_present",
+    "current_request_ids": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "current_request_ids_missing_everywhere": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "historical_queue_items_present": 4,
+    "control_surfaces_checked": 4,
+    "boundary": {
+      "agent1_status": "control-surface delta evidence only / awaiting-Agent-5-or-Agent-8 relay and Agent-6 disposition",
+      "publication_state": "blocked_no_render",
+      "queue_mutation_performed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "agent5_agent6_queue_insertion_patch_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-agent5-agent6-queue-insertion-patch-packet-2026-06-03.json",
+    "output_md": "reports/agent1-agent5-agent6-queue-insertion-patch-packet-2026-06-03.md",
+    "status": "patch_prepared_no_live_queue_mutation",
+    "operation_count": 5,
+    "expected_before": {
+      "live_queue_sha256": "e64a3e7647c8809045b0eacdff6f772d072df51fd9207a581eefb22edc2a4a2d",
+      "live_queue_item_count": 36,
+      "live_queue_request_id_hits": {
+        "agent6-agent1-source-custody-manifest-remediation-review": 0,
+        "agent6-agent1-source-custody-tracking-action-review": 0,
+        "agent6-agent1-source-custody-license-normalization-review": 0,
+        "agent6-agent1-public-hud-source-row-review": 0,
+        "agent6-agent1-orot-fill-source-row-review": 0
+      },
+      "publication_global_status": "blocked_no_render"
+    },
+    "expected_after": {
+      "queue_item_count": 41,
+      "inserted_request_ids": [
+        "agent6-agent1-source-custody-manifest-remediation-review",
+        "agent6-agent1-source-custody-tracking-action-review",
+        "agent6-agent1-source-custody-license-normalization-review",
+        "agent6-agent1-public-hud-source-row-review",
+        "agent6-agent1-orot-fill-source-row-review"
+      ],
+      "queue_array_sha256": "8a8addcdfb907ac3d1a109de26999ed7a139d313e88be9a3654e733fcbadc659",
+      "patched_document_sha256": "0014065ad9936d86b0a11a239d40f21367dc533cb289f683b9e3d1a6baa8e822",
+      "request_id_hits": {
+        "agent6-agent1-source-custody-manifest-remediation-review": 1,
+        "agent6-agent1-source-custody-tracking-action-review": 1,
+        "agent6-agent1-source-custody-license-normalization-review": 1,
+        "agent6-agent1-public-hud-source-row-review": 1,
+        "agent6-agent1-orot-fill-source-row-review": 1
+      }
+    },
+    "boundary": {
+      "agent1_status": "queue-insertion patch evidence only / awaiting-Agent-5-or-Agent-8 relay and Agent-6 disposition",
+      "publication_state": "blocked_no_render",
+      "queue_mutation_performed": false,
+      "live_queue_mutation_performed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "agent5_agent6_queue_insertion_patch_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:15:54.744Z",
+    "completed_at": "2026-06-04T00:15:54.790Z",
+    "validated_packet": "reports/agent1-agent5-agent6-queue-insertion-patch-packet-2026-06-03.json",
+    "operation_count": 5,
+    "request_ids": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "live_queue_item_count": 36,
+    "patched_queue_item_count": 41,
+    "dry_run_queue_item_count": 41,
+    "live_queue_request_id_hits_now": {
+      "agent6-agent1-source-custody-manifest-remediation-review": 0,
+      "agent6-agent1-source-custody-tracking-action-review": 0,
+      "agent6-agent1-source-custody-license-normalization-review": 0,
+      "agent6-agent1-public-hud-source-row-review": 0,
+      "agent6-agent1-orot-fill-source-row-review": 0
+    },
+    "patched_queue_request_id_hits": {
+      "agent6-agent1-source-custody-manifest-remediation-review": 1,
+      "agent6-agent1-source-custody-tracking-action-review": 1,
+      "agent6-agent1-source-custody-license-normalization-review": 1,
+      "agent6-agent1-public-hud-source-row-review": 1,
+      "agent6-agent1-orot-fill-source-row-review": 1
+    },
+    "live_queue_sha256_now": "e64a3e7647c8809045b0eacdff6f772d072df51fd9207a581eefb22edc2a4a2d",
+    "packet_expected_live_queue_sha256": "e64a3e7647c8809045b0eacdff6f772d072df51fd9207a581eefb22edc2a4a2d",
+    "patched_queue_array_sha256": "8a8addcdfb907ac3d1a109de26999ed7a139d313e88be9a3654e733fcbadc659",
+    "dry_run_queue_array_sha256": "8a8addcdfb907ac3d1a109de26999ed7a139d313e88be9a3654e733fcbadc659",
+    "patched_document_sha256": "0014065ad9936d86b0a11a239d40f21367dc533cb289f683b9e3d1a6baa8e822",
+    "boundary": {
+      "agent1_status": "queue-insertion patch evidence only / awaiting-Agent-5-or-Agent-8 relay and Agent-6 disposition",
+      "publication_state": "blocked_no_render",
+      "queue_mutation_performed": false,
+      "live_queue_mutation_performed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "agent6_disposition_watch_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-agent6-disposition-watch-2026-06-03.json",
+    "output_md": "reports/agent1-agent6-disposition-watch-2026-06-03.md",
+    "status": "awaiting_relay_no_agent6_disposition_detected",
+    "request_ids": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "agent6_disposition_hits": 0,
+    "relay_signal_hits": 0
+  },
+  "agent6_disposition_watch_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:16:00.855Z",
+    "completed_at": "2026-06-04T00:16:00.882Z",
+    "validated_watch": "reports/agent1-agent6-disposition-watch-2026-06-03.json",
+    "status": "awaiting_relay_no_agent6_disposition_detected",
+    "request_ids": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "agent6_disposition_hits": 0,
+    "relay_signal_hits": 0,
+    "control_surfaces_checked": 4,
+    "boundary": {
+      "agent1_status": "disposition watch evidence only",
+      "publication_state": "blocked_no_render",
+      "queue_mutation_performed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "agent6_queue_dry_run_summary": {
+    "generated_at": "2026-06-04T00:15:53.825Z",
+    "artifact_type": "agent1_agent6_queue_dry_run_with_relay_items_summary",
+    "status": "dry_run_queue_copy_written_no_live_queue_mutation",
+    "live_queue": "data/control/agent6_validation_queue.json",
+    "dry_run_queue": "reports/agent1-agent6-validation-queue-dry-run-with-relay-items-2026-06-03.json",
+    "relay_packet": "reports/agent1-agent5-agent6-docket-relay-packet-2026-06-03.json",
+    "intake_validator": "reports/agent1-agent6-queue-intake-contract-validator-result-2026-06-03.json",
+    "live_queue_item_count": 36,
+    "dry_run_queue_item_count": 41,
+    "inserted_request_ids": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "live_queue_request_id_hits_before": {
+      "agent6-agent1-source-custody-manifest-remediation-review": 0,
+      "agent6-agent1-source-custody-tracking-action-review": 0,
+      "agent6-agent1-source-custody-license-normalization-review": 0,
+      "agent6-agent1-public-hud-source-row-review": 0,
+      "agent6-agent1-orot-fill-source-row-review": 0
+    },
+    "dry_run_request_id_hits": {
+      "agent6-agent1-source-custody-manifest-remediation-review": 1,
+      "agent6-agent1-source-custody-tracking-action-review": 1,
+      "agent6-agent1-source-custody-license-normalization-review": 1,
+      "agent6-agent1-public-hud-source-row-review": 1,
+      "agent6-agent1-orot-fill-source-row-review": 1
+    },
+    "live_queue_sha256_before": "e64a3e7647c8809045b0eacdff6f772d072df51fd9207a581eefb22edc2a4a2d",
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "live_queue_mutation_performed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "agent6_queue_dry_run_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:15:53.941Z",
+    "completed_at": "2026-06-04T00:15:54.082Z",
+    "validator": "scripts/validate_agent1_agent6_queue_dry_run_with_relay_items.mjs",
+    "dry_run_queue": "reports/agent1-agent6-validation-queue-dry-run-with-relay-items-2026-06-03.json",
+    "dry_run_health": "reports/agent1-agent6-validation-queue-dry-run-health-2026-06-03.md",
+    "existing_queue_validator_exit_code": 0,
+    "existing_queue_validator_stdout": "Agent 6 validation queue passed with 0 warning(s). Report: reports/agent1-agent6-validation-queue-dry-run-health-2026-06-03.md\n",
+    "existing_queue_validator_stderr": "",
+    "live_queue_item_count": 36,
+    "dry_run_queue_item_count": 41,
+    "inserted_request_ids": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "live_queue_request_id_hits_now": {
+      "agent6-agent1-source-custody-manifest-remediation-review": 0,
+      "agent6-agent1-source-custody-tracking-action-review": 0,
+      "agent6-agent1-source-custody-license-normalization-review": 0,
+      "agent6-agent1-public-hud-source-row-review": 0,
+      "agent6-agent1-orot-fill-source-row-review": 0
+    },
+    "dry_run_request_id_hits": {
+      "agent6-agent1-source-custody-manifest-remediation-review": 1,
+      "agent6-agent1-source-custody-tracking-action-review": 1,
+      "agent6-agent1-source-custody-license-normalization-review": 1,
+      "agent6-agent1-public-hud-source-row-review": 1,
+      "agent6-agent1-orot-fill-source-row-review": 1
+    },
+    "live_queue_sha256_now": "e64a3e7647c8809045b0eacdff6f772d072df51fd9207a581eefb22edc2a4a2d",
+    "live_queue_sha256_recorded_by_dry_run": "e64a3e7647c8809045b0eacdff6f772d072df51fd9207a581eefb22edc2a4a2d",
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "live_queue_mutation_performed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "validator_summary": {
+    "ok": true,
+    "packet": "reports/agent1-source-provenance-custody-packet.json",
+    "generated_at": "2026-06-04T00:11:30.765Z",
+    "live_untracked_sources": 23,
+    "packet_untracked_sources": 23,
+    "live_modified_tracked_sources": 6,
+    "packet_modified_tracked_sources": 6,
+    "untracked_license_unit_counts": {
+      "Public Domain": 10727,
+      "CC-BY": 74683
+    },
+    "source_fingerprints": {
+      "fingerprinted_source_rows": 29,
+      "source_rows": 29,
+      "algorithm": "sha256"
+    },
+    "exception_summary": {
+      "untracked_missing_visible_source_license_rows": {
+        "count": 0,
+        "files": []
+      },
+      "modified_tracked_missing_visible_source_license_rows": {
+        "count": 0,
+        "files": []
+      },
+      "untracked_missing_lexical_manifest": {
+        "count": 0,
+        "files": []
+      },
+      "modified_tracked_missing_lexical_manifest": {
+        "count": 0,
+        "files": []
+      },
+      "untracked_route_workbench_or_translation_memory_hits": {
+        "count": 23,
+        "files": [
+          "data/sources/beer-hagolah.json",
+          "data/sources/brief-commentary-on-peah.json",
+          "data/sources/brief-commentary-on-rosh-hashanah.json",
+          "data/sources/brief-commentary-on-shabbat.json",
+          "data/sources/brief-commentary-on-shekalim.json",
+          "data/sources/brief-commentary-on-sheviit.json",
+          "data/sources/brief-commentary-on-sotah.json",
+          "data/sources/brief-commentary-on-taanit.json",
+          "data/sources/brief-commentary-on-terumot.json",
+          "data/sources/brief-commentary-on-yevamot.json",
+          "data/sources/brief-commentary-on-yoma.json",
+          "data/sources/derashat-shabbat-hagadol.json",
+          "data/sources/derush-al-hatorah.json",
+          "data/sources/gevurot-hashem.json",
+          "data/sources/machzor-rosh-hashanah-ashkenaz-linear.json",
+          "data/sources/machzor-rosh-hashanah-ashkenaz.json",
+          "data/sources/machzor-yom-kippur-ashkenaz-linear.json",
+          "data/sources/ner-mitzvah.json",
+          "data/sources/netivot-olam.json",
+          "data/sources/netzach-yisrael.json",
+          "data/sources/selichot-nusach-lita-linear.json",
+          "data/sources/shabbat-siddur-sefard-linear.json",
+          "data/sources/siddur-sefard.json"
+        ]
+      },
+      "modified_tracked_route_workbench_or_translation_memory_hits": {
+        "count": 6,
+        "files": [
+          "data/sources/abarbanel-on-guide-for-the-perplexed.json",
+          "data/sources/crescas-on-guide-for-the-perplexed.json",
+          "data/sources/efodi-on-guide-for-the-perplexed.json",
+          "data/sources/narboni-on-guide-for-the-perplexed.json",
+          "data/sources/shem-tov-on-guide-for-the-perplexed.json",
+          "data/sources/yahel-ohr-on-zohar.json"
+        ]
+      }
+    },
+    "downstream_quarantine_manifest": {
+      "path": "reports/agent1-downstream-quarantine-manifest.json",
+      "summary": {
+        "source_rows": 29,
+        "untracked_source_rows": 23,
+        "modified_tracked_source_rows": 6,
+        "direct_artifact_rows": 248,
+        "missing_lexical_manifest_rows": 0,
+        "content_reference_rows": 183,
+        "content_reference_rows_by_kind": {
+          "route_cards_or_hud_surfaces": 42,
+          "reader_workbench_artifacts": 112,
+          "public_lexical_exports": 29
+        }
+      }
+    },
+    "custody_blocklist": {
+      "path": "reports/agent1-custody-blocklist.json",
+      "summary": {
+        "blocked_source_rows": 29,
+        "blocked_direct_artifact_paths": 248,
+        "blocked_content_reference_paths": 183,
+        "missing_required_artifacts": 0
+      }
+    },
+    "custody_reference_diagnostics": {
+      "path": "reports/agent1-source-custody-reference-diagnostics.json",
+      "summary": {
+        "source_rows": 29,
+        "blocking_content_reference_rows": 183,
+        "report_or_audit_reference_rows": 0
+      }
+    },
+    "agent6_intake_docket": {
+      "path": "reports/agent1-agent6-custody-intake-docket.json",
+      "requested_review": "source/provenance custody evidence intake only",
+      "packet_claims": {
+        "source_rows": 29,
+        "source_fingerprinted_rows": 29,
+        "source_fingerprint_algorithm": "sha256",
+        "untracked_quarantined_sources": 23,
+        "modified_tracked_sources_blocked_for_review": 6,
+        "modified_tracked_all_license_label_only": true,
+        "visible_source_license_row_gaps": 0,
+        "missing_lexical_manifest_gaps": 0,
+        "untracked_with_downstream_reliance": 23,
+        "modified_tracked_with_downstream_reliance": 6
+      }
+    },
+    "custody_closure_options": {
+      "path": "reports/agent1-source-custody-closure-options.json",
+      "summary": {
+        "untracked_source_rows": 23,
+        "untracked_track_candidates_with_lexical_manifest": 23,
+        "untracked_requires_missing_lexical_manifest_remediation": 0,
+        "modified_tracked_source_rows": 6,
+        "modified_tracked_license_label_only_rows": 6
+      }
+    },
+    "custody_reconciliation_preflight": {
+      "path": "reports/agent1-source-custody-reconciliation-preflight.json",
+      "summary": {
+        "track_candidate_source_files": 23,
+        "track_candidate_downstream_direct_paths": 189,
+        "missing_manifest_source_files": 0,
+        "missing_manifest_expected_paths": 0,
+        "missing_manifest_downstream_direct_paths": 0,
+        "modified_tracked_source_files": 6,
+        "modified_tracked_downstream_direct_paths": 59
+      }
+    },
+    "agent6_source_custody_decision_packet": {
+      "path": "reports/agent1-agent6-source-custody-decision-packet.json",
+      "summary": {
+        "custody_source_rows": 29,
+        "track_candidate_source_files": 23,
+        "missing_manifest_source_files": 0,
+        "modified_tracked_source_files": 6,
+        "blocked_downstream_direct_paths": 248,
+        "blocked_downstream_content_reference_paths": 183
+      }
+    },
+    "custody_queue_refresh_notice": {
+      "path": "reports/agent1-source-custody-queue-refresh-notice.json",
+      "current": {
+        "packet_generated_at": "2026-06-04T00:11:30.765Z",
+        "decision_generated_at": "2026-06-04T00:13:43.656Z",
+        "validator_ok": true,
+        "untracked_quarantined_sources": 23,
+        "modified_tracked_sources": 6,
+        "source_rows": 29,
+        "source_fingerprinted_rows": 29,
+        "missing_lexical_manifests": 0,
+        "blocked_downstream_direct_paths": 248,
+        "blocked_content_reference_rows": 183,
+        "report_or_audit_reference_rows": 0
+      },
+      "stale_surface_count": 4
+    },
+    "custody_control_sync_packet": {
+      "path": "reports/agent1-source-custody-control-sync-packet.json",
+      "current": {
+        "packet_generated_at": "2026-06-04T00:11:30.765Z",
+        "decision_generated_at": "2026-06-04T00:13:43.656Z",
+        "validator_ok": true,
+        "untracked_quarantined_sources": 23,
+        "modified_tracked_sources": 6,
+        "source_rows": 29,
+        "source_fingerprinted_rows": 29,
+        "missing_lexical_manifests": 0,
+        "blocked_downstream_direct_paths": 248,
+        "blocked_content_reference_rows": 183,
+        "route_or_hud_content_reference_rows": 42,
+        "reader_workbench_content_reference_rows": 112,
+        "translation_memory_content_reference_rows": 0,
+        "public_lexical_content_reference_rows": 29,
+        "report_or_audit_reference_rows": 0
+      },
+      "stale_surface_count": 4,
+      "requested_agent5_action": {
+        "action": "sync_queue_goal_board_and_handoff_surfaces_to_current_agent1_custody_packet_or_mark_prior_metadata_as_historical",
+        "target_packet_generated_at": "2026-06-04T00:11:30.765Z",
+        "target_decision_packet_generated_at": "2026-06-04T00:13:43.656Z",
+        "target_blocked_content_reference_rows": 183,
+        "stale_control_surface_paths": [
+          "data/control/agent6_validation_queue.json",
+          "data/control/agent_goal_board.json",
+          "reports/agent5-agent6-handoff-index.json",
+          "reports/agent5-agent6-handoff-index.md"
+        ],
+        "boundary": "Agent 1 is requesting control-surface sync only; Agent 6 remains the custody acceptance authority."
+      }
+    },
+    "custody_queue_intake_candidate": {
+      "path": "reports/agent1-source-custody-queue-intake-candidate.json",
+      "current": {
+        "packet_generated_at": "2026-06-04T00:11:30.765Z",
+        "decision_generated_at": "2026-06-04T00:13:43.656Z",
+        "custody_source_rows": 29,
+        "track_candidate_source_files": 23,
+        "missing_manifest_source_files": 0,
+        "modified_tracked_source_files": 6,
+        "blocked_downstream_direct_paths": 248,
+        "blocked_content_reference_rows": 183,
+        "route_or_hud_content_reference_rows": 42,
+        "reader_workbench_content_reference_rows": 112,
+        "translation_memory_content_reference_rows": 0,
+        "public_lexical_content_reference_rows": 29,
+        "report_or_audit_reference_rows": 0
+      },
+      "existing_queue_stale_markers": [
+        "missing_current_183_content_reference_rows",
+        "missing_current_decision_packet_timestamp",
+        "missing_current_packet_timestamp"
+      ],
+      "queue_item_request_id": "agent6-agent1-source-custody-closure-decision-packet"
+    },
+    "boundary": {
+      "agent1_status": "evidence-ready / awaiting-Agent-6",
+      "publication_state": "blocked_no_render",
+      "source_provenance_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "page_render_acceptance_claimed": false
+    }
+  },
+  "blocklist_summary": {
+    "blocked_source_rows": 29,
+    "blocked_direct_artifact_paths": 248,
+    "blocked_content_reference_paths": 183,
+    "missing_required_artifacts": 0
+  },
+  "boundary": {
+    "agent1_status": "evidence-ready / awaiting-Agent-6",
+    "publication_state": "blocked_no_render",
+    "source_provenance_acceptance_claimed": false,
+    "public_runtime_acceptance_claimed": false,
+    "route_publication_support_claimed": false,
+    "definition_authority_claimed": false,
+    "page_render_acceptance_claimed": false
+  },
+  "agent5_agent8_direct_relay_prompt_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-agent5-agent8-direct-relay-prompt-2026-06-03.json",
+    "output_md": "reports/agent1-agent5-agent8-direct-relay-prompt-2026-06-03.md",
+    "status": "direct_relay_prompt_ready_no_agent1_mutation",
+    "request_ids": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "queue_insertion_patch_operations": 5,
+    "queue_mutation_performed": false
+  },
+  "agent5_agent8_direct_relay_prompt_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:16:01.446Z",
+    "completed_at": "2026-06-04T00:16:01.466Z",
+    "validated_prompt": "reports/agent1-agent5-agent8-direct-relay-prompt-2026-06-03.json",
+    "validated_prompt_md": "reports/agent1-agent5-agent8-direct-relay-prompt-2026-06-03.md",
+    "status": "direct_relay_prompt_ready_no_agent1_mutation",
+    "refresh_completed_at": "2026-06-04T00:16:00.104Z",
+    "request_id_count": 5,
+    "queue_insertion_patch_operations": 5,
+    "agent6_disposition_hits": 0,
+    "relay_signal_hits": 0,
+    "boundary": {
+      "agent1_status": "direct relay prompt evidence only / awaiting-Agent-5-or-Agent-8 relay and Agent-6 disposition",
+      "publication_state": "blocked_no_render",
+      "queue_mutation_performed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false,
+      "completion_claimed": false
+    }
+  },
+  "completion_audit_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-objective-completion-audit-2026-06-03.json",
+    "output_md": "reports/agent1-source-custody-objective-completion-audit-2026-06-03.md",
+    "overall_status": "not_complete_evidence_current_awaiting_agent5_or_agent8_relay_and_agent6_disposition",
+    "requirement_states": [
+      {
+        "id": "R1",
+        "state": "evidence_prepared_current_refresh_ok"
+      },
+      {
+        "id": "R2",
+        "state": "incomplete_pending_agent6_tracking_or_exclusion_disposition"
+      },
+      {
+        "id": "R3",
+        "state": "incomplete_pending_agent6_license_normalization_disposition"
+      },
+      {
+        "id": "R4",
+        "state": "evidence_prepared_current_refresh_ok"
+      },
+      {
+        "id": "R5",
+        "state": "evidence_prepared_awaiting_relay_and_agent6_disposition"
+      },
+      {
+        "id": "R6",
+        "state": "verified_current_boundary_false_flags"
+      }
+    ],
+    "current_blocking_conditions": [
+      "source/provenance custody remains unaccepted",
+      "23 untracked source files remain untracked/quarantined pending Agent 6 tracking or exclusion disposition",
+      "6 modified tracked source files remain unaccepted pending Agent 6 license-normalization disposition",
+      "five current Agent 1 request IDs are absent from Agent 6/Agent 5 control surfaces",
+      "Agent 6 disposition watch reports zero Agent 6 disposition hits and zero relay-signal hits",
+      "publication remains blocked_no_render"
+    ]
+  },
+  "completion_audit_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:16:02.022Z",
+    "completed_at": "2026-06-04T00:16:02.030Z",
+    "validated_audit": "reports/agent1-source-custody-objective-completion-audit-2026-06-03.json",
+    "validated_audit_md": "reports/agent1-source-custody-objective-completion-audit-2026-06-03.md",
+    "overall_status": "not_complete_evidence_current_awaiting_agent5_or_agent8_relay_and_agent6_disposition",
+    "requirement_count": 6,
+    "requirement_states": [
+      {
+        "id": "R1",
+        "state": "evidence_prepared_current_refresh_ok"
+      },
+      {
+        "id": "R2",
+        "state": "incomplete_pending_agent6_tracking_or_exclusion_disposition"
+      },
+      {
+        "id": "R3",
+        "state": "incomplete_pending_agent6_license_normalization_disposition"
+      },
+      {
+        "id": "R4",
+        "state": "evidence_prepared_current_refresh_ok"
+      },
+      {
+        "id": "R5",
+        "state": "evidence_prepared_awaiting_relay_and_agent6_disposition"
+      },
+      {
+        "id": "R6",
+        "state": "verified_current_boundary_false_flags"
+      }
+    ],
+    "current_blocking_conditions": [
+      "source/provenance custody remains unaccepted",
+      "23 untracked source files remain untracked/quarantined pending Agent 6 tracking or exclusion disposition",
+      "6 modified tracked source files remain unaccepted pending Agent 6 license-normalization disposition",
+      "five current Agent 1 request IDs are absent from Agent 6/Agent 5 control surfaces",
+      "Agent 6 disposition watch reports zero Agent 6 disposition hits and zero relay-signal hits",
+      "publication remains blocked_no_render"
+    ],
+    "direct_relay_prompt_status": "direct_relay_prompt_ready_no_agent1_mutation",
+    "direct_relay_prompt_request_ids": 5,
+    "direct_relay_prompt_patch_operations": 5,
+    "direct_relay_prompt_queue_mutation_performed": false,
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "completion_claimed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  },
+  "current_blocker_packet_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-custody-current-blocker-packet-2026-06-03.json",
+    "output_md": "reports/agent1-source-custody-current-blocker-packet-2026-06-03.md",
+    "status": "evidence_current_relay_and_disposition_blockers_open",
+    "exact_blockers": [
+      "source_provenance_custody_unaccepted",
+      "untracked_source_tracking_or_exclusion_pending",
+      "modified_tracked_license_normalization_pending",
+      "agent1_request_ids_absent_from_agent6_agent5_control_surfaces",
+      "agent6_disposition_absent_for_current_request_ids",
+      "publication_blocked_no_render"
+    ]
+  },
+  "current_blocker_packet_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:16:02.500Z",
+    "completed_at": "2026-06-04T00:16:02.504Z",
+    "validated_packet": "reports/agent1-source-custody-current-blocker-packet-2026-06-03.json",
+    "validated_packet_md": "reports/agent1-source-custody-current-blocker-packet-2026-06-03.md",
+    "refresh_completed_at": "2026-06-04T00:16:00.104Z",
+    "exact_blocker_count": 6,
+    "request_id_count": 5,
+    "untracked_source_files": 23,
+    "modified_tracked_source_files": 6,
+    "blocked_direct_artifact_paths": 248,
+    "blocked_content_reference_paths": 183,
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "queue_mutation_performed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false,
+      "completion_claimed": false
+    }
+  },
+  "source_file_reconciliation_owner_checklist_summary": {
+    "ok": true,
+    "output_json": "reports/agent1-source-file-reconciliation-owner-checklist-2026-06-03.json",
+    "output_md": "reports/agent1-source-file-reconciliation-owner-checklist-2026-06-03.md",
+    "refresh_completed_at": "2026-06-04T00:16:00.104Z",
+    "track_candidate_source_files": 23,
+    "modified_tracked_source_files": 6,
+    "request_id_count": 5,
+    "action_performed": false,
+    "queue_mutation_performed": false
+  },
+  "source_file_reconciliation_owner_checklist_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:16:02.809Z",
+    "completed_at": "2026-06-04T00:16:02.815Z",
+    "validated_checklist": "reports/agent1-source-file-reconciliation-owner-checklist-2026-06-03.json",
+    "validated_checklist_md": "reports/agent1-source-file-reconciliation-owner-checklist-2026-06-03.md",
+    "refresh_completed_at": "2026-06-04T00:16:00.104Z",
+    "track_candidate_source_files": 23,
+    "modified_tracked_source_files": 6,
+    "request_id_count": 5,
+    "exact_blocker_count": 6,
+    "blocked_direct_artifact_paths": 248,
+    "blocked_content_reference_paths": 183,
+    "action_performed": false,
+    "queue_mutation_performed": false,
+    "boundary": {
+      "agent1_status": "owner checklist evidence only / awaiting-Agent-5-or-Agent-8 relay and Agent-6 disposition",
+      "publication_state": "blocked_no_render",
+      "checklist_only": true,
+      "action_performed": false,
+      "queue_mutation_performed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false,
+      "completion_claimed": false
+    }
+  },
+  "source_custody_agent6_decision_matrix_summary": {
+    "ok": true,
+    "artifact": "reports/agent1-source-custody-agent6-decision-matrix-2026-06-03.json",
+    "markdown": "reports/agent1-source-custody-agent6-decision-matrix-2026-06-03.md",
+    "refresh_completed_at": "2026-06-04T00:16:00.104Z",
+    "request_id_count": 5,
+    "tracking_rows": 23,
+    "license_rows": 6,
+    "blocked_direct_artifact_paths": 248,
+    "blocked_content_reference_paths": 183,
+    "action_performed": false,
+    "queue_mutation_performed": false
+  },
+  "source_custody_agent6_decision_matrix_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:16:03.091Z",
+    "completed_at": "2026-06-04T00:16:03.112Z",
+    "validated_matrix": "reports/agent1-source-custody-agent6-decision-matrix-2026-06-03.json",
+    "validated_matrix_md": "reports/agent1-source-custody-agent6-decision-matrix-2026-06-03.md",
+    "refresh_completed_at": "2026-06-04T00:16:00.104Z",
+    "request_id_count": 5,
+    "tracking_rows": 23,
+    "license_rows": 6,
+    "exact_blockers": 6,
+    "blocked_direct_artifact_paths": 248,
+    "blocked_content_reference_paths": 183,
+    "route_hud_content_reference_rows": 42,
+    "reader_workbench_content_reference_rows": 112,
+    "public_lexical_content_reference_rows": 29,
+    "action_performed": false,
+    "queue_mutation_performed": false,
+    "boundary": {
+      "agent1_status": "Agent 6 decision matrix evidence only / awaiting-Agent-5-or-Agent-8 relay and Agent-6 disposition",
+      "publication_state": "blocked_no_render",
+      "decision_matrix_only": true,
+      "action_performed": false,
+      "queue_mutation_performed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false,
+      "completion_claimed": false
+    }
+  },
+  "refresh_result_validator_summary": {
+    "ok": true,
+    "started_at": "2026-06-04T00:16:03.215Z",
+    "completed_at": "2026-06-04T00:16:03.237Z",
+    "validated_refresh_result": "reports/agent1-source-custody-refresh-result.json",
+    "validated_refresh_result_md": "reports/agent1-source-custody-refresh-result.md",
+    "refresh_completed_at": "2026-06-04T00:16:00.104Z",
+    "direct_untracked_sources": 23,
+    "audit_untracked_sources": 23,
+    "modified_tracked_source_files": 6,
+    "source_rows": 29,
+    "fingerprinted_source_rows": 29,
+    "blocked_direct_artifact_paths": 248,
+    "blocked_content_reference_paths": 183,
+    "agent6_ready_review_items": [
+      "agent6-agent1-source-custody-manifest-remediation-review",
+      "agent6-agent1-source-custody-tracking-action-review",
+      "agent6-agent1-source-custody-license-normalization-review",
+      "agent6-agent1-public-hud-source-row-review",
+      "agent6-agent1-orot-fill-source-row-review"
+    ],
+    "relay_status": "relay_needed_control_surfaces_missing_request_ids",
+    "disposition_watch_status": "awaiting_relay_no_agent6_disposition_detected",
+    "agent6_disposition_hits": 0,
+    "relay_signal_hits": 0,
+    "current_blocker_packet_status": "evidence_current_relay_and_disposition_blockers_open",
+    "current_blocker_exact_blocker_count": 6,
+    "direct_relay_prompt_status": "direct_relay_prompt_ready_no_agent1_mutation",
+    "direct_relay_prompt_request_id_count": 5,
+    "direct_relay_prompt_patch_operations": 5,
+    "source_file_reconciliation_owner_checklist_ok": true,
+    "source_file_reconciliation_owner_checklist_action_performed": false,
+    "source_file_reconciliation_owner_checklist_queue_mutation_performed": false,
+    "source_custody_agent6_decision_matrix_ok": true,
+    "source_custody_agent6_decision_matrix_request_ids": 5,
+    "source_custody_agent6_decision_matrix_tracking_rows": 23,
+    "source_custody_agent6_decision_matrix_license_rows": 6,
+    "source_custody_agent6_decision_matrix_action_performed": false,
+    "source_custody_agent6_decision_matrix_queue_mutation_performed": false,
+    "completion_audit_status": "not_complete_evidence_current_awaiting_agent5_or_agent8_relay_and_agent6_disposition",
+    "current_blocking_conditions": [
+      "source/provenance custody remains unaccepted",
+      "23 untracked source files remain untracked/quarantined pending Agent 6 tracking or exclusion disposition",
+      "6 modified tracked source files remain unaccepted pending Agent 6 license-normalization disposition",
+      "five current Agent 1 request IDs are absent from Agent 6/Agent 5 control surfaces",
+      "Agent 6 disposition watch reports zero Agent 6 disposition hits and zero relay-signal hits",
+      "publication remains blocked_no_render"
+    ],
+    "boundary": {
+      "publication_state": "blocked_no_render",
+      "completion_claimed": false,
+      "source_provenance_custody_claimed": false,
+      "source_provenance_acceptance_claimed": false,
+      "source_publication_claimed": false,
+      "source_file_tracking_approval_claimed": false,
+      "source_file_staging_claimed": false,
+      "downstream_direct_artifact_acceptance_claimed": false,
+      "downstream_content_reference_acceptance_claimed": false,
+      "qa_acceptance_claimed": false,
+      "public_runtime_acceptance_claimed": false,
+      "route_publication_support_claimed": false,
+      "definition_authority_claimed": false,
+      "product_data_acceptance_claimed": false,
+      "usage_as_definition_authority_claimed": false,
+      "translation_output_claimed": false,
+      "accepted_translation_text_claimed": false
+    }
+  }
+}

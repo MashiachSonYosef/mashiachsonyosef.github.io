@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05",
+  "status": "validator_passed_with_exact_blocker",
+  "target": "agent3-crossmatch-inventory-packet",
+  "changed_package_input_path": "reports/agent3-crossmatch-inventory-packet-2026-06-05.json",
+  "changed_package_hash": "sha256:868e990799d6565d750533beeef58c904f214cbaf39b6cf45db543408fd8e04d",
+  "files": [
+    "reports/agent3-crossmatch-inventory-packet-2026-06-05.json",
+    "scripts/validate_agent3_crossmatch_inventory_packet.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent3_crossmatch_inventory_packet.mjs reports\\agent3-crossmatch-inventory-packet-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "files_in_inventory": 227,
+    "data_artifacts": 51,
+    "report_artifacts": 57,
+    "pipeline_scripts": 119,
+    "agent3_owned_files": 110,
+    "shared_definition_workbench_usage_files": 108,
+    "committed_clean_files": 21,
+    "dirty_or_uncommitted_files": 206,
+    "staged_added_files": 182,
+    "staged_modified_files": 16,
+    "worktree_modified_files": 6,
+    "untracked_files": 2,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "forbidden_truthy_authority_claims": 0,
+    "validators_passed": 1,
+    "validators_failed": 0
+  },
+  "result": "validator passed with exact blocker crossmatch_inventory_contains_dirty_or_uncommitted_artifacts",
+  "blocker_if_any": "206 dirty/uncommitted inventory artifacts remain",
+  "next_handoff": "Agent3/package owner resolves dirty/uncommitted inventory state before any acceptance or promotion",
+  "stop_condition": "do not rerun unless inventory packet or package state changes",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "semantic arbitration",
+    "route ranking",
+    "visible answer selection",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action",
+    "public/runtime mutation"
+  ]
+}

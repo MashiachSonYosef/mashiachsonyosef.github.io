@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_lowmode_validator_prereq_cap_status",
+  "generated_at": "2026-06-04",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "agent": "Agent 4",
+  "lane": "validator/prereq/runtime",
+  "status": "lowmode_cap_recorded_changed_input_only",
+  "low_mode_task": "record changed-input-only validator/prereq wake condition and do not rerun unchanged validators",
+  "exact_inputs": [
+    {
+      "path": "reports/agent4-changed-input-only-wake-condition-2026-06-04.md",
+      "role": "current changed-input-only wake condition",
+      "status": "present"
+    },
+    {
+      "path": "reports/agent4-changed-input-only-wake-condition-2026-06-04.json",
+      "role": "machine-readable changed-input-only wake condition",
+      "status": "present"
+    },
+    {
+      "path": "reports/agent4-spark4-returned-validator-consumption-2026-06-04.md",
+      "role": "returned Spark-4 validator consumption and churn cap evidence",
+      "status": "present"
+    }
+  ],
+  "supporting_mechanic": {
+    "path": "scripts/build_agent4_changed_package_validator_prereq_gate.mjs",
+    "role": "reusable gate builder for changed-input-only blocker or runnable contract",
+    "syntax_check": "node --check scripts/build_agent4_changed_package_validator_prereq_gate.mjs",
+    "syntax_check_result": "pass"
+  },
+  "artifact_self_check": {
+    "path": "scripts/check_agent4_changed_package_validator_prereq_gate.mjs",
+    "role": "narrow JSON artifact check for wake, runnable contract, and low-mode cap outputs",
+    "does_not_run_package_validators": true,
+    "expected_command": "node scripts/check_agent4_changed_package_validator_prereq_gate.mjs reports/agent4-changed-input-only-wake-condition-2026-06-04.json reports/agent4-lowmode-validator-prereq-cap-status-2026-06-04.json",
+    "last_result": "pass"
+  },
+  "gate_smoke_test": {
+    "path": "scripts/test_agent4_changed_package_validator_prereq_gate.mjs",
+    "role": "fixture-based smoke test for no-input wake, missing-field blocker, and runnable-contract path",
+    "output_scope": ".local-cache/agent4-gate-smoke",
+    "does_not_run_package_validators": true,
+    "expected_command": "node scripts/test_agent4_changed_package_validator_prereq_gate.mjs",
+    "last_result": "pass",
+    "cases_passed": 8,
+    "cases": [
+      "no-input wake",
+      "missing-field blocker",
+      "runnable contract",
+      "missing-command blocker",
+      "missing-package-path blocker",
+      "unsafe-command blocker",
+      "unsafe-output-schema blocker",
+      "missing-fingerprint blocker"
+    ]
+  },
+  "validator": {
+    "validators_run_for_lowmode_status": 0,
+    "policy": "No validator run unless changed package/input exists; if changed input appears, validator command must be exact.",
+    "unchanged_validator_churn_capped": true
+  },
+  "blocker": {
+    "class": "changed_input_only_blocker",
+    "missing_fields": [
+      "changed package/input",
+      "exact validator command list",
+      "expected output schema",
+      "validator/gate",
+      "stop condition"
+    ],
+    "exact_blocker": "No exact changed package/input exists for Agent 4 validator/prereq/runtime."
+  },
+  "handoff": {
+    "without_changed_input": "Agent 7/5 preserve wake condition.",
+    "with_changed_input": "Author runnable Agent 4 changed-package validator/prereq contract and hand off to Spark-1 only after changed-input contract exists.",
+    "spark1_thread_id": "019e92c1-89b1-7821-898b-2106638345cb"
+  },
+  "counts": {
+    "lowmode_input_artifacts_present": 3,
+    "validators_run": 0,
+    "runnable_contracts_authored": 0,
+    "runnable_contracts_routed": 0,
+    "gate_smoke_cases_passed": 8
+  },
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss",
+    "translation output",
+    "accepted text"
+  ]
+}

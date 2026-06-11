@@ -1,8 +1,24 @@
 {
-  "generated_at": "2026-06-01T14:08:31.149Z",
+  "generated_at": "2026-06-01T19:17:04.348Z",
   "artifact_type": "route_boundary_report_summary_validation",
   "input": "reports/route-publication-boundary-audit.json",
   "release_scope": "frozen_public_lookup_passes_current_route_inputs_unreconciled",
+  "publication_boundary": {
+    "publication_status": "blocked_no_render",
+    "validates": [
+      "route_publication_boundary_audit_summary",
+      "route_card_publication_boundary"
+    ],
+    "does_not_clear": [
+      "translation_output",
+      "source_publication",
+      "public_lexical_export_reuse",
+      "accepted_definition_authority"
+    ],
+    "answer_eligible_scope": "hud_answer_slot_only_not_translation_or_publication_readiness",
+    "warning_status_blocks_publication_claim": true,
+    "current_route_inputs_reconciled": false
+  },
   "input_freeze_drift": {
     "path": "reports/hud-route-input-freeze-drift.md",
     "status": "drift",
@@ -10,7 +26,28 @@
     "drift": [
       "source-phrase-evidence.jsonl: current source differs from frozen release input",
       "source-citable-paraphrase-evidence.jsonl: current source differs from frozen release input"
-    ]
+    ],
+    "publication_boundary": {
+      "publication_status": "blocked_no_render",
+      "validates": [
+        "hud_route_input_freeze_drift",
+        "frozen_route_input_cache_comparison"
+      ],
+      "does_not_clear": [
+        "translation_output",
+        "source_publication",
+        "public_lexical_export_reuse",
+        "accepted_definition_authority",
+        "public_lookup_publication",
+        "route_publication_readiness"
+      ],
+      "route_input_scope": "freeze_drift_check_only_not_publication_readiness",
+      "warning_status_blocks_publication_claim": true,
+      "current_route_inputs_reconciled": false,
+      "route_data_regenerated": false,
+      "source_imports_changed": false,
+      "public_lookup_artifacts_changed": false
+    }
   },
   "verdict": "pass_with_warnings",
   "counts": {

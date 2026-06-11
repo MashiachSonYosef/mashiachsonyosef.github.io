@@ -1,0 +1,60 @@
+{
+  "artifact_type": "agent4_changed_input_blocker",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T09:06:01.181Z",
+  "target": "Agent 4 changed/candidate artifact validation checkpoint after Agent10 heartbeat",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent10-it-loop-heartbeat.md",
+  "validator_commands": [
+    {
+      "command": "$cutoff=(Get-Item reports\\agent4-validator-prereq-packet-sweep-after-agent6-source-family-boundary-prereq-proof-2026-06-06.json).LastWriteTime; Get-ChildItem reports,data\\control -File | Where-Object { $_.LastWriteTime -gt $cutoff } | Sort-Object LastWriteTime -Descending | Select-Object -First 50 FullName,LastWriteTime,Length | ConvertTo-Json -Depth 2",
+      "timeout_ms": 30000,
+      "result": "completed",
+      "observed_newer_files": [
+        "reports/agent10-it-loop-heartbeat.md"
+      ]
+    },
+    {
+      "command": "Get-Content reports\\agent10-it-loop-heartbeat.md -TotalCount 160",
+      "timeout_ms": 30000,
+      "result": "completed",
+      "observed_summary": "Agent10 loop heartbeat only; status running pulse; boundary says it must not edit Agent6 dockets, Agent6 queue/status files, public/generated pages, source/lexical/route/control data, or Agent6/7 validator scripts."
+    }
+  ],
+  "counts": {
+    "newer_files_after_last_agent4_packet": 1,
+    "changed_package_inputs_found": 0,
+    "candidate_artifacts_found": 0,
+    "heartbeat_status_files_found": 1,
+    "validator_reruns_started": 0,
+    "public_runtime_mutation": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "result": "changed_input_blocker",
+  "exact_blockers": [
+    {
+      "code": "changed_package_input_missing",
+      "changed_package_path_missing": true,
+      "command_list_needed": "Exact validator/prereq command for the next changed package or candidate artifact.",
+      "expected_output_schema": "Agent4 proof packet with changed_input_artifact, validator_commands including timeout_ms/result, counts, exact blockers, handoff_owner, stop_condition, and non_acceptance_boundary.",
+      "validator_gate": "Run only an existing named validator for the changed package/input, then validate the Agent4 packet with scripts\\validate_agent4_validator_prereq_packet.mjs.",
+      "package_owner": "Agent 10 release/package intake or the upstream package-producing agent for the next changed artifact.",
+      "agent6_boundary_trigger": "Only after a concrete boundary-ready packet exists and Agent 6 review is explicitly needed.",
+      "next_harness_gap": "A deterministic changed-package intake selector could distinguish heartbeat/status files from changed package artifacts and emit the next exact validator command without manual inspection.",
+      "stop_condition": "Stop after recording that the only newer file is an Agent10 heartbeat/status note, not a changed package input."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-no-new-changed-package-after-agent10-heartbeat-blocker-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-no-new-changed-package-after-agent10-heartbeat-blocker-2026-06-06.md",
+  "handoff_owner": "Agent 4 for changed-input-only validation discipline; Agent 10 or upstream package owner must provide the next changed package/input.",
+  "next_safe_action": "Wake on exact changed package/input path, command list, expected output/schema, validator/gate, package owner, Agent 6 boundary trigger, and stop condition.",
+  "stop_condition": "Return one exact changed-input blocker and do not rerun unchanged validators.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

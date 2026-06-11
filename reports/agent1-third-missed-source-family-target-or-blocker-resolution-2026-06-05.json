@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_third_missed_source_family_target_or_blocker_resolution",
+  "generated_at": "2026-06-05T19:15:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "status": "runnable_workset_ready_boundary_pending_only",
+  "target": "third_missed_source_family",
+  "files": {
+    "input_rows": "reports/agent1-third-missed-source-family-input-rows-2026-06-05.json",
+    "input_contract": "reports/agent1-third-missed-source-family-input-contract-2026-06-05.json",
+    "legacy_target_or_blocker": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-05.md",
+    "legacy_target_or_blocker_json": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-05.json",
+    "map_output": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+    "map_output_md": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.md",
+    "contract": "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json"
+  },
+  "commands": {
+    "build": "node scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+    "validate_output": "node scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+    "validate_contract": "node scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs"
+  },
+  "counts": {
+    "candidate_rows": 169,
+    "candidate_occurrences": 2148,
+    "license_lanes": {
+      "commercial_clean_candidate": {
+        "rows": 138,
+        "occurrences": 1672
+      },
+      "noncommercial_educational_candidate": {
+        "rows": 0,
+        "occurrences": 0
+      },
+      "metadata_or_link_only": {
+        "rows": 0,
+        "occurrences": 0
+      },
+      "blocked_or_needs_review": {
+        "rows": 31,
+        "occurrences": 476
+      }
+    },
+    "required_fields_missing": {
+      "source_family": 0,
+      "source_name": 0,
+      "license_label": 0,
+      "license_lane": 0,
+      "attribution_required": 0,
+      "derived_from_nc": 0,
+      "commercial_export_allowed": 0,
+      "source_url_or_citation": 0,
+      "agent6_boundary_required": 0
+    },
+    "blocked_by_reason": {
+      "missing_lexicon_entry_id_in_input_row": 17,
+      "source_license_boundary_review_needed": 14
+    }
+  },
+  "validator": {
+    "map_validation": {
+      "artifact": "reports/agent1-orot-third-missed-source-family-pipeline-validation-result-2026-06-05.json",
+      "ok": true
+    },
+    "contract_validation": {
+      "artifact": "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-validation-result-2026-06-05.json",
+      "ok": true,
+      "spark1_routable": true
+    },
+    "legacy_target_or_blocker_validator": {
+      "status": "stale_schema_mismatch",
+      "validated_artifact": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-05.json",
+      "ok": false,
+      "note": "legacy artifact uses schema_counts instead of counts_found required by validator and is not runnable for this schema version"
+    }
+  },
+  "handoff": {
+    "agent10": "runnable package: map + contract outputs with Agent 6 boundary required for blocked/review rows",
+    "agent6": "boundary packet: 31 rows / 476 occurrences (`agent6_boundary_required=true`)",
+    "spark1": "runnable on current map/contract without missing input/schema block"
+  },
+  "missing_blockers": [
+    {
+      "type": "agent6_boundary",
+      "status": "active",
+      "rows": 31,
+      "occurrences": 476,
+      "note": "noncommercial/export-clean separation and blocked row usage requires Agent 6 boundary confirmation"
+    }
+  ],
+  "stop_condition": "rerun this packet on input row/count change or Agent 6 boundary output update",
+  "non_acceptance": {
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "legal_source_provenance_acceptance": false,
+    "definition_authority": false,
+    "runtime_public_mutation": false,
+    "publication_readiness": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "accepted_gloss_text": false,
+    "nc_commercial_authorization": false
+  }
+}

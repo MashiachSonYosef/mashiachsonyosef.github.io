@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T17:30:30.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent6-overlap-exclusion-row-overlap-verdict-and-agent3-linkage",
+  "status": "validated_nonpublic_overlap_exclusion_row_overlap_linkage_planning_evidence_only_no_acceptance",
+  "files": {
+    "agent6_combined_verdict": {
+      "path": "reports/agent6-old-dictionary-overlap-exclusion-and-row-overlap-supplement-verdict-2026-06-05.json",
+      "sha256": "3dc57cdeb8d90e36c2409bd286085d2bf2df7389f08adfcc52338a93c87aac27"
+    },
+    "agent3_linkage_matrix": {
+      "path": "reports/agent3-old-dictionary-row-overlap-linkage-matrix-2026-06-05.json",
+      "sha256": "f7589c7bcedc628e843839e5f69c4877709a03a3d2724b0a2ee80531ad27203d"
+    },
+    "agent1_row_overlap_boundary_supplement": {
+      "path": "reports/agent1-old-dictionary-row-overlap-agent6-boundary-supplement-2026-06-05.json",
+      "sha256": "b945213893e5cf6093598de1500596f9fdea682035b860fd1c7c80b901676e7d"
+    },
+    "agent6_combined_verdict_validator": {
+      "path": "scripts/validate_agent6_old_dictionary_overlap_exclusion_and_row_overlap_supplement_verdict.mjs",
+      "sha256": "d4461d7881ae1587aadbfec3e5036c1c47c9610d65d12f69bbb561d2963028d6"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent6_old_dictionary_overlap_exclusion_and_row_overlap_supplement_verdict.mjs reports\\agent6-old-dictionary-overlap-exclusion-and-row-overlap-supplement-verdict-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_row_overlap_linkage_matrix.mjs reports\\agent3-old-dictionary-row-overlap-linkage-matrix-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_row_overlap_agent6_boundary_supplement.mjs reports\\agent1-old-dictionary-row-overlap-agent6-boundary-supplement-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "represented_rows": 500,
+    "represented_occurrences": 8427,
+    "bucket_rows": 8,
+    "nonzero_bucket_rows": 6,
+    "zero_bucket_rows": 2,
+    "commercial_nc_overlap_rows": 197,
+    "commercial_nc_overlap_occurrences": 4185,
+    "commercial_nc_without_bdb_augmented_strong_rows": 57,
+    "commercial_nc_with_bdb_augmented_strong_rows": 140,
+    "klein_only_excluded_rows": 17,
+    "sample_token_ids": 115,
+    "unique_sample_token_ids": 115,
+    "duplicate_sample_token_ids": 0,
+    "source_family_pointer_rows": 17,
+    "exact_blocker_rows": 6,
+    "agent10_boundary_missing": 1
+  },
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "answer_rows_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_actions": 0,
+    "source_text_read": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "acceptance_claims": 0,
+    "public_runtime_mutations": 0
+  },
+  "result": "Agent6 combined overlap verdict, Agent3 row-overlap linkage matrix, and Agent1 row-overlap boundary supplement validate as nonpublic planning/navigation evidence only.",
+  "blocker_if_any": "agent3_linkage_matrix_reports_agent10_boundary_missing_1_and_agent6_verdict_requires_exact_row_subset_package_source_family_selection_or_exclusion_rule_morphology_status_nc_separation_and_bdb_augmented_strong_resolution_before_use",
+  "next_handoff": "Agent10 owns missing boundary packet/selection inputs; Agent3 linkage remains navigation only; Agent2 has no transform authority.",
+  "stop_condition": "Do not rerun unless Agent6 verdict, Agent3 linkage matrix, Agent1 supplement, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no source-family selection acceptance",
+    "no commercial clean selection",
+    "no NC educational selection",
+    "no BDB Augmented Strong exclusion acceptance",
+    "no candidate use",
+    "no transform",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

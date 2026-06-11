@@ -1,0 +1,62 @@
+{
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T22:02:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent10-old-dictionary-78-row-agent2-transform-output-blocker-consumption",
+  "changed_input_artifact": "reports/agent10-old-dictionary-78-row-agent2-transform-output-blocker-consumption-2026-06-06.json",
+  "validator": {
+    "script": "scripts/validate_agent10_old_dictionary_78_row_agent2_transform_output_blocker_consumption.mjs",
+    "syntax_check": {
+      "command": "node --check scripts\\validate_agent10_old_dictionary_78_row_agent2_transform_output_blocker_consumption.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    "contract_check": {
+      "command": "node scripts\\validate_agent10_old_dictionary_78_row_agent2_transform_output_blocker_consumption.mjs reports\\agent10-old-dictionary-78-row-agent2-transform-output-blocker-consumption-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 Agent2 transform-output blocker consumption validation passed. Rows: 78; occurrences: 1461; blocker: missing_source_citation_or_url_and_exact_transform_output_rule_for_78_row_packet."
+    }
+  },
+  "counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "exact_current_blocker": "missing_source_citation_or_url_and_exact_transform_output_rule_for_78_row_packet",
+  "next_owner_options": [
+    "Agent 1/Agent 2 source-citation enrichment for exact 78 rows including source_citation_or_url",
+    "Agent 2 authored exact transform-output proposal rule",
+    "Agent 10 narrowed Agent 6 question that does not request transform output or proposed text fields"
+  ],
+  "result": "validator_prereq_gate_passed_for_agent10_blocker_consumption_only",
+  "handoff_owner": "Agent 10 release/package owner; Agent 1/2 only if source-citation enrichment or exact transform rule is requested.",
+  "stop_condition": "Stop at Agent10 blocker-consumption proof. Do not rerun unless consumption artifact, Agent2 blocker, workset, zero-text package, delivery proof, or validator changes.",
+  "non_acceptance_boundary": [
+    "no QA acceptance beyond exact validator evidence",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

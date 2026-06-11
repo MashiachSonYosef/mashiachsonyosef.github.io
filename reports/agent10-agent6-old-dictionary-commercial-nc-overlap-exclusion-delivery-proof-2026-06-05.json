@@ -1,0 +1,100 @@
+{
+  "artifact_type": "agent10_agent6_old_dictionary_commercial_nc_overlap_exclusion_delivery_proof",
+  "generated_at": "2026-06-05T19:32:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "delivery_target": {
+    "agent": "Agent 6",
+    "thread_id": "019e7f09-a04b-7f30-b36c-87aa8ecaae5d",
+    "submission_id": "019e982a-d137-7cd1-b5d8-900d10e97f60",
+    "delivery_state": "queued_for_agent6_boundary_review"
+  },
+  "routed_packet": {
+    "md": "reports/agent10-agent6-ready-old-dictionary-commercial-nc-overlap-exclusion-boundary-packet-2026-06-05.md",
+    "json": "reports/agent10-agent6-ready-old-dictionary-commercial-nc-overlap-exclusion-boundary-packet-2026-06-05.json",
+    "validator": "node scripts\\validate_agent10_old_dictionary_commercial_nc_overlap_exclusion_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-commercial-nc-overlap-exclusion-boundary-packet-2026-06-05.json",
+    "validator_result": "passed"
+  },
+  "source_artifacts": {
+    "agent1_manifest_md": "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-2026-06-05.md",
+    "agent1_manifest_json": "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-2026-06-05.json",
+    "agent1_validation_json": "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-validation-result-2026-06-05.json",
+    "agent6_boundary_question_verdict": "reports/agent6-old-dictionary-boundary-question-packet-verdict-2026-06-05.md",
+    "agent2_klein_nc_lane_receipt": "reports/agent2-klein-nc-lane-preservation-receipt-2026-06-05.json"
+  },
+  "review_scope": "nonpublic_commercial_nc_overlap_exclusion_planning_evidence_only",
+  "counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_nc_overlap_rows": 197,
+    "commercial_nc_overlap_occurrences": 4185,
+    "commercial_nc_without_bdb_augmented_strong_rows": 57,
+    "commercial_nc_without_bdb_augmented_strong_occurrences": 818,
+    "commercial_nc_with_bdb_augmented_strong_rows": 140,
+    "commercial_nc_with_bdb_augmented_strong_occurrences": 3367,
+    "klein_only_excluded_rows": 17,
+    "klein_only_excluded_occurrences": 259,
+    "pairwise_klein_intersection_count": 4,
+    "exact_klein_combination_count": 7
+  },
+  "lane_presence": {
+    "commercial_clean_candidate": {
+      "rows": 197,
+      "occurrences": 4185
+    },
+    "noncommercial_educational_candidate": {
+      "rows": 197,
+      "occurrences": 4185
+    },
+    "metadata_or_link_only": {
+      "rows": 0,
+      "occurrences": 0
+    },
+    "blocked_or_needs_review": {
+      "rows": 140,
+      "occurrences": 3367
+    }
+  },
+  "agent6_review_question": "Pass/warn/block whether the exact Agent 1 commercial+NC overlap exclusion manifest may be carried as non-public overlap/exclusion planning evidence only for 197 overlap rows / 4185 occurrences, preserving NC separation and BDB Augmented Strong review blockers.",
+  "zero_output_counts": {
+    "agent6_delivery_rows_now_in_source_artifact": 0,
+    "agent2_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "emitted_answer_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "answer_eligible_rows_now": 0,
+    "queue_mutations": 0,
+    "staging_mutations": 0,
+    "render_mutations": 0,
+    "release_actions": 0
+  },
+  "highest_permissible_claim": "Agent 10 routed the old-dictionary commercial+NC overlap exclusion boundary packet to Agent 6 for non-public planning-only boundary review.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "source-family selection acceptance",
+    "commercial clean selection",
+    "NC educational selection",
+    "BDB Augmented Strong exclusion acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export permission",
+    "NC commercial authorization",
+    "release action"
+  ],
+  "stop_condition": "Wait for Agent 6 exact verdict artifact path or exact blocker before carrying this overlap manifest into source-family selection, exclusion, candidate use, transform, source-row emission, candidate text, output, public/runtime, answer, definition, export, or release package steps."
+}

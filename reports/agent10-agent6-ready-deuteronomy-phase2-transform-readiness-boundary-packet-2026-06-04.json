@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_ready_deuteronomy_phase2_transform_readiness_boundary_packet",
+  "generated_at": "2026-06-04T00:00:00.000Z",
+  "status": "agent6_ready_nonpublic_transform_readiness_boundary_packet",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target_work": {
+    "work_id": "deuteronomy",
+    "work_path": "tanakh/deuteronomy",
+    "surface_route": "tanakh/deuteronomy/"
+  },
+  "review_scope": {
+    "scope_type": "nonpublic_transform_readiness_matrix_only",
+    "rows": 1334,
+    "occurrences": 2964,
+    "commercial_clean_candidate_rows": 1334,
+    "commercial_clean_candidate_occurrences": 2964,
+    "noncommercial_educational_candidate_rows": 0,
+    "noncommercial_educational_candidate_occurrences": 0,
+    "metadata_or_link_only_rows": 0,
+    "blocked_or_needs_review_rows": 0
+  },
+  "reviewed_inputs": [
+    "reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.md",
+    "reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.json",
+    "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.md",
+    "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.json",
+    "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.md",
+    "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+    "reports/spark1-deuteronomy-phase2-linkage-dedupe-source-route-run-2026-06-04.md"
+  ],
+  "validation_commands": [
+    "node scripts/validate_agent10_deuteronomy_phase2_downstream_transform_workset.mjs reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.json",
+    "node scripts/validate_agent2_deuteronomy_phase2_transform_readiness_matrix.mjs reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.json",
+    "node scripts/validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+    "node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json"
+  ],
+  "source_lane_gate": {
+    "policy_artifacts": [
+      "reports/oracle9-nc-educational-lane-owner-policy-2026-06-04.md",
+      "reports/oracle9-new-dictionary-source-lane-policy-2026-06-04.md",
+      "reports/oracle9-dictionary-lane-classification-correction-2026-06-04.md",
+      "reports/agent12-agent8-nc-csv-separation-cap-rule-2026-06-04.md",
+      "reports/agent12-agent8-nc-educational-lane-cap-delta-2026-06-04.md"
+    ],
+    "new_or_missed_dictionary_not_presumed_nc": true,
+    "old_excluded_dictionary_not_presumed_blocked": true,
+    "commercial_clean_and_nc_partitions_separate": true,
+    "metadata_link_only_no_definition_text": true,
+    "blocked_review_excluded_from_candidate_text_exports": true
+  },
+  "zero_emission_counters": {
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "definition_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "nc_definition_content_rows": 0
+  },
+  "agent6_review_question": "Pass/warn/block whether the exact Agent 2 Deuteronomy phase-2 transform/readiness matrix may be carried as non-public transform-readiness planning evidence only for the 1334 commercial-clean candidate rows / 2964 occurrences, preserving source lanes and all zero-emission counters. This does not request answer eligibility, definition text storage, accepted text, public reader output, route-shard writes, public/runtime mutation, source/license acceptance, Definition authority, route publication support, publication readiness, or product/data acceptance.",
+  "requested_disposition_shape": "Pass/warn/block by whole packet or row/subset. If warning/blocking, name exact row/subset, blocker class, missing evidence, and smallest unblock route.",
+  "stop_condition": "Stop after Agent 6 returns exact verdict, or exact delivery blocker naming missing Agent 6 route/channel.",
+  "what_must_not_be_accepted": [
+    "QA acceptance beyond exact docket",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "NC commercial authorization"
+  ]
+}

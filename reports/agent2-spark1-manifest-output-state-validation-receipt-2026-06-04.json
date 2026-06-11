@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_spark1_manifest_output_state_validation_receipt",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 2 definition/lemma/reader-hint pipeline builder",
+  "manifest": "reports/agent2-spark1-runnable-command-manifest-2026-06-04.json",
+  "validator": "scripts/validate_agent2_spark1_manifest_outputs.mjs",
+  "validation_command": "node scripts/validate_agent2_spark1_manifest_outputs.mjs reports/agent2-spark1-runnable-command-manifest-2026-06-04.json",
+  "validation_result": {
+    "status": "passed",
+    "stdout": "Agent 2 Spark-1 manifest output-state validation passed. Runnable outputs checked: 7; validator-only states checked: 23."
+  },
+  "runnable_outputs_checked": 7,
+  "validator_only_states_checked": 23,
+  "self_check_registered_but_not_recursed": true,
+  "non_mutating_gate": true,
+  "child_process_spawn_blocker_observed": {
+    "status": "observed_and_avoided",
+    "details": "Direct child-process validator execution from Node returned EPERM in this sandbox, so the gate validates current output state by reading artifacts instead of spawning validators."
+  },
+  "zero_boundary": {
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligible": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "publication_readiness": false,
+    "source_license_acceptance": false,
+    "qa_acceptance": false
+  },
+  "next_consumer": "Agent 10 first; Spark-1 may use this as a non-mutating manifest output-state gate."
+}

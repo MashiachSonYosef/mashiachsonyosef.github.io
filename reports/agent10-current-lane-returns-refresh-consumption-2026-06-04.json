@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_current_lane_returns_refresh_consumption",
+  "generated_at": "2026-06-04T16:16:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "status": "release_intake_consumed_refreshed_agent2_counts_and_agent1_export_partitions",
+  "supersedes_blocker": "agent2_handoff_bundle_count_mismatch_refresh_needed",
+  "consumed_returns": {
+    "agent2_current_handoff_bundle": {
+      "path": "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json",
+      "validator": "node scripts/validate_agent2_weekly_lexicon_current_handoff_bundle.mjs",
+      "validation_result": "passed",
+      "runnable_pipelines": 5,
+      "validator_only_checks": 15,
+      "runnable_outputs_checked": 5,
+      "validator_only_states_checked": 14,
+      "release_read": "Agent 2 refreshed the prior count mismatch; bundle is valid non-public planning handoff evidence only"
+    },
+    "agent2_pipeline_inventory": {
+      "path": "reports/agent2-weekly-lexicon-pipeline-inventory-2026-06-04.json",
+      "validator": "node scripts/validate_agent2_weekly_lexicon_pipeline_inventory.mjs",
+      "validation_result": "passed",
+      "release_read": "inventory validates; no release/public/answer/definition action authorized"
+    },
+    "agent2_current_handoff_aggregate_validation_receipt": {
+      "path": "reports/agent2-current-handoff-aggregate-validation-receipt-2026-06-04.json",
+      "validator": "node scripts/validate_agent2_current_handoff_aggregate_validation_receipt.mjs",
+      "validation_result": "passed",
+      "validator_commands": 11,
+      "manifest_runnable_pipelines": 5,
+      "manifest_validator_only_checks": 15,
+      "manifest_output_state_validator_only_states_checked": 14,
+      "current_exact_blockers": [
+        "missing_agent1_old_dictionary_excluded_row_license_lane_assignment",
+        "missing_larger_token_inventory_workset",
+        "missing_joined_definition_workbench_sample_artifact_contract",
+        "orot_counterpart_preview_not_promotable_without_agent1_source_lane_and_agent6_boundary",
+        "no_new_agent2_exact_workset_after_deuteronomy_return"
+      ]
+    },
+    "agent1_old_dictionary_export_partitions": {
+      "path": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+      "validator": "node scripts/validate_agent1_old_dictionary_license_lane_export_partitions.mjs",
+      "validation_result": "passed",
+      "status": "agent1_old_dictionary_license_lane_export_partitions_prepared_for_agent6_boundary_only",
+      "partition_counts": {
+        "commercial_clean_candidate": {
+          "source_family_count": 3,
+          "row_count": 500,
+          "occurrence_count": 10940
+        },
+        "noncommercial_educational_candidate": {
+          "source_family_count": 1,
+          "row_count": 214,
+          "occurrence_count": 4444
+        },
+        "metadata_or_link_only": {
+          "source_family_count": 0,
+          "row_count": 0,
+          "occurrence_count": 0
+        },
+        "blocked_or_needs_review": {
+          "source_family_count": 1,
+          "row_count": 222,
+          "occurrence_count": 4435
+        }
+      },
+      "release_read": "supplemental partition evidence only; requires Agent 6 boundary before any candidate text/package/display/public/answer/export use"
+    }
+  },
+  "active_agent6_wait": {
+    "primary_route_packet": "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.json",
+    "supplemental_partition_packet": "reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.json",
+    "prior_agent8_submission_id": "019e9360-1529-7d53-b55f-177a4cfaeb2f",
+    "stop_condition": "wait_for_agent6_verdict_artifact_path_or_exact_delivery_review_blocker"
+  },
+  "zero_boundary": {
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligible": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "publication_readiness": false,
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_content_storage": false,
+    "candidate_text_export": false,
+    "commercial_export_permission": false,
+    "nc_commercial_authorization": false
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate-text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

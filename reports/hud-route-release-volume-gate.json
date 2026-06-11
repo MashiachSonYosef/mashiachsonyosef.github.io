@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "artifact_type": "hud_route_release_volume_gate",
+  "generated_at": "2026-06-02T01:32:33.811Z",
+  "generator": "scripts/validate_hud_route_release_volume.mjs",
+  "status": "blocked",
+  "policy": "Preflight gate for HUD route release candidates. It validates route volume from the frozen route-claim audit before store, lookup, public-copy, stamp, or render steps. It does not publish lookup artifacts, alter route ranking, select visible answers, or clear publication readiness.",
+  "inputs": {
+    "route_audit": ".local-cache/definition-route-freeze/current/definition-route-claim-audit.json"
+  },
+  "thresholds": {
+    "max_lookup_cards": 1000000,
+    "max_phrase_evidence_cards": 1000000
+  },
+  "counts": {
+    "route_rows": 13530537,
+    "answer_eligible_rows": 18683,
+    "non_answer_rows": 13511854,
+    "phrase_evidence_rows": 13190876,
+    "route_audit_issue_count": 0,
+    "route_files": 4,
+    "source_rows": 13880445
+  },
+  "route_families": {
+    "wiktionary_definition": 135184,
+    "project_lexical": 175,
+    "wikidata_definition": 771,
+    "openscriptures_definition": 3531,
+    "source_phrase_evidence": 13190876,
+    "citable_paraphrase_evidence": 200000
+  },
+  "route_types": {
+    "lemma": 21485,
+    "form": 118176,
+    "phrase_evidence": 13169455,
+    "subphrase_evidence": 21421,
+    "citable_paraphrase_evidence": 200000
+  },
+  "answer_roles": {
+    "answer": 18683,
+    "form_reference": 118176,
+    "evidence": 13393678
+  },
+  "publication_boundary": {
+    "boundary_status": "blocked_no_render",
+    "reader_facing": false,
+    "ui_assignment": false,
+    "publication_claim": false,
+    "clears_publication_readiness": false,
+    "reviewed_lexical_authority": false,
+    "accepted_translation_output": false,
+    "source_publication": false,
+    "public_lookup_artifact": false,
+    "store_generated": false,
+    "lookup_generated": false,
+    "public_lookup_published": false,
+    "release_stamp_written": false,
+    "does_not_clear": [
+      "ui_assignment",
+      "reviewed_lexical_authority",
+      "accepted_translation",
+      "source_publication",
+      "public_lookup_publication",
+      "publication_readiness"
+    ]
+  },
+  "blocked_reasons": [
+    "route rows 13530537 exceed max lookup cards 1000000",
+    "phrase evidence rows 13190876 exceed max phrase evidence cards 1000000"
+  ],
+  "issues": []
+}

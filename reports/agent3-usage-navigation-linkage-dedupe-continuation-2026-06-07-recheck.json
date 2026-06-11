@@ -1,0 +1,150 @@
+{
+  "artifact_type": "agent3_usage_navigation_linkage_dedupe_navigation_continuation_recheck_packet",
+  "generated_at": "2026-06-07T11:55:00Z",
+  "lane": "agent3",
+  "goal_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "status": "evidence_ready_no_exact_agent3_executable_workset",
+  "boundary": {
+    "usage_navigation_only": true,
+    "definition_authority": false,
+    "source_license_acceptance": false,
+    "runtime_acceptance": false,
+    "publication_path_acceptance": false,
+    "accepted_text": false
+  },
+  "commands": {
+    "validate_agent3_current_control_drift_refresh": {
+      "command": "node scripts/validate_agent3_current_control_drift_refresh.mjs",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "result_payload": {
+        "inputs_observed": 7,
+        "returned_worksets": 2,
+        "stale_fields": 4,
+        "new_executable_worksets": 0
+      }
+    },
+    "validate_agent3_post_refresh_no_new_workset_audit": {
+      "command": "node scripts/validate_agent3_post_refresh_no_new_workset_audit.mjs",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "result_payload": {
+        "live_refresh_counts": [263, 116, 45],
+        "current_matrix_counts": [405, 73, 0],
+        "deltas": [142, -43, -45],
+        "runnable_queue_items": 0,
+        "direct_queue_runnable_items": 0,
+        "changed_artifacts_found": 0,
+        "exact_new_worksets_found": 0
+      }
+    },
+    "validate_agent3_orot_route_card_candidate_card_dedupe_review": {
+      "command": "node scripts/validate_agent3_orot_route_card_candidate_card_dedupe_review.mjs",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "result_payload": {
+        "rows": 169,
+        "blocker_rows": 168,
+        "duplicate_keys": 169
+      }
+    },
+    "validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix": {
+      "command": "node scripts/validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "result_payload": {
+        "rows": 8113,
+        "blocker_rows": 6779,
+        "downstream_boundary_rows": 1334
+      }
+    },
+    "build_agent3_spark3_oracle9_missed_dictionary_evidence_diff_blocker": {
+      "command": "node scripts/build_agent3_spark3_oracle9_missed_dictionary_evidence_diff_blocker.mjs",
+      "timeout_ms": 120000,
+      "result": "failed",
+      "result_payload": {
+        "error": "Missing queue item: spark-oracle9-missed-dictionary-evidence-diff"
+      }
+    },
+    "validate_agent3_spark3_oracle9_missed_dictionary_evidence_diff_blocker": {
+      "command": "node scripts/validate_agent3_spark3_oracle9_missed_dictionary_evidence_diff_blocker.mjs",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "result_payload": {
+        "status": "missing_pipeline_blocker",
+        "queue_item": "spark-oracle9-missed-dictionary-evidence-diff",
+        "missing_contract_fields": [
+          "pipeline_commands",
+          "output_path_schema",
+          "validator_gate",
+          "command_script_invocation"
+        ],
+        "candidate_rows": 0,
+        "unmatched_rows": 168,
+        "warnings": [
+          "reviewed input drifted after package build: data/control/spark_standing_queue.json"
+        ]
+      }
+    }
+  },
+  "worksets": {
+    "orot_169_row_route_card_candidate_card_dedupe_review": {
+      "rows": 169,
+      "occurrences": 2148,
+      "exact_blocker_rows": 168,
+      "exact_blocker_occurrences": 2117,
+      "duplicate_keys": 169,
+      "validator_pass": true
+    },
+    "deuteronomy_phase2_linkage_dedupe_source_route_matrix": {
+      "rows": 8113,
+      "occurrences": 12595,
+      "downstream_boundary_rows": 1334,
+      "downstream_boundary_occurrences": 2964,
+      "exact_blocker_rows": 6779,
+      "exact_blocker_occurrences": 9631,
+      "validator_pass": true
+    }
+  },
+  "exact_blockers": [
+    {
+      "id": "spark3_oracle9_missed_dictionary_evidence_diff",
+      "owner": "Spark queue / Agent 7 + Agent 5 routing",
+      "status": "missing_pipeline_blocker",
+      "missing_fields": [
+        "pipeline_commands",
+        "output_path_schema",
+        "validator_gate",
+        "command_script_invocation"
+      ],
+      "next_safe_action": "supply exact queue item contract or new changed input packet to rerun"
+    },
+    {
+      "id": "no_new_agent3_exact_workset",
+      "owner": "Agent 3 control plane",
+      "status": "no_changed_inputs_found",
+      "changed_artifacts_found": 0,
+      "exact_new_worksets_found": 0,
+      "runnable_queue_items": 0
+    }
+  ],
+  "handoff": {
+    "agent2": {
+      "consume": "1334 downstream-boundary rows / 2964 occurrences",
+      "condition": "mechanical intake only; no semantic/answer authority"
+    },
+    "agent10": {
+      "consume": "continuity/blocker counts and no new-workset stop condition",
+      "condition": "planning/release visibility only"
+    },
+    "agent5_7": {
+      "consume": "spark3 queue contract gap and queue-state wake condition",
+      "condition": "route corrected queue item before rerun"
+    },
+    "agent6": {
+      "consume": "final authoritative decisions only",
+      "condition": "no implied acceptance in packet"
+    }
+  },
+  "stop_condition": "Resume only on changed/changed-input exact workset plus named command/input/output schema/validator gate, or continue if none."
+}

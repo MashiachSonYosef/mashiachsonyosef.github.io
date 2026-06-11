@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_packet_sweep_gate_proof",
+  "generated_at": "2026-06-06T01:28:00.000Z",
+  "agent": "Agent 4",
+  "target": "Combined Agent4 packet sweep and sweep-result validation gate",
+  "changed_input_artifact": "none; deterministic harness gap only",
+  "script_authored": "scripts/validate_agent4_validator_prereq_packet_sweep_gate.mjs",
+  "output_artifact": "reports/agent4-validator-prereq-packet-sweep-result-2026-06-06.json",
+  "commands": [
+    {
+      "command": "node --check scripts\\validate_agent4_validator_prereq_packet_sweep_gate.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_gate.mjs --pattern='^agent4-.*2026-06-06\\.json$' --timeoutMs=30000 --out=reports/agent4-validator-prereq-packet-sweep-result-2026-06-06.json",
+      "timeout_ms": 150000,
+      "result": "passed",
+      "count": 24,
+      "passed": 24,
+      "failed": 0
+    }
+  ],
+  "counts": {
+    "agent4_packets_swept": 24,
+    "passed": 24,
+    "failed": 0,
+    "proof_packets": 18,
+    "proof_with_blocker_packets": 4,
+    "blocker_packets": 2,
+    "command_count_total": 50,
+    "blocker_count_total": 26
+  },
+  "result": "agent4_packet_sweep_gate_passed",
+  "exact_blockers": [
+    {
+      "code": "no_new_changed_package_input",
+      "detail": "No changed package/control input existed after the previous Agent4 sweep-result validator proof. Work was limited to combining the packet sweep and sweep-result validation into one reusable gate command."
+    }
+  ],
+  "handoff_owner": "Agent 4 for future packet sweep gates; Agent 10 or originating lane owners for future changed package inputs.",
+  "stop_condition": "Use this gate when future Agent4 packet-shape evidence needs a one-command sweep plus result validation. Do not treat packet-shape validation as QA/public/runtime/source/license/answer acceptance.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent2_token_source_aggregate_consumption_receipt_gate_proof",
+  "generated_at": "2026-06-05T14:35:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent2-token-source-aggregate-consumption-receipt",
+  "status": "validator_passed_nonpublic_metadata_only",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, candidate-use authorization, candidate text export, route write, accepted gloss/text, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent2-token-source-aggregate-consumption-receipt-2026-06-05.json",
+      "sha256": "38a3c2cd685b3693a3bc00faa52f042f4cb33f193392e26a4095170e2c1b78c6",
+      "artifact_type": "agent2_token_source_aggregate_consumption_receipt",
+      "status": "token_source_aggregate_consumed_as_nonpublic_metadata_evidence_only"
+    },
+    {
+      "path": "scripts/validate_agent2_token_source_aggregate_consumption_receipt.mjs",
+      "sha256": "d8874697aacab42b110adb7d6234098389d8aeb5f7dbcefef52b1a0b03cd98c7",
+      "artifact_type": "validator_script",
+      "status": "existing_exact_validator_for_agent2_token_source_aggregate_consumption_receipt"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent2_token_source_aggregate_consumption_receipt.mjs reports\\agent2-token-source-aggregate-consumption-receipt-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Aggregate rows: 1951013; candidate rows: 0."
+    }
+  ],
+  "counts": {
+    "source_files_selected": 1337,
+    "source_files_read": 1337,
+    "units_read": 717459,
+    "units_with_partition": 637508,
+    "unjoined_units": 79951,
+    "total_token_occurrences_scanned": 66320359,
+    "matched_token_occurrences": 49791095,
+    "chunk_count": 54,
+    "chunks_merged": 54,
+    "aggregate_edge_rows": 1951013,
+    "aggregate_shard_count": 256
+  },
+  "zero_counters": {
+    "candidate_rows": 0,
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_gloss_text_rows": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0,
+    "release_rows": 0
+  },
+  "blockers": [
+    "no_candidate_rows_or_candidate_use_packet_from_aggregate",
+    "aggregate_is_nonpublic_token_source_partition_metadata_only",
+    "separate_exact_boundary_required_for_any_candidate_use_answer_public_runtime_or_release_use"
+  ],
+  "result": "target | agent2-token-source-aggregate-consumption-receipt | files in packet | commands passed: Agent2 token-source aggregate consumption receipt validator | counts: 1337 source files read, 717459 units read, 637508 units with partition, 66320359 token occurrences scanned, 49791095 matched occurrences, 54 chunks merged, 1951013 aggregate edge rows, 256 aggregate shards, 0 candidate/definition/lemma/reader-hint/answer/public/route/runtime/accepted-text/release rows | result: validator passed and aggregate remains nonpublic metadata evidence only | blocker if any: no candidate rows or candidate-use packet from aggregate metadata alone | next handoff: Agent2 may derive a bounded candidate-use workset only if a source-lane-preserving transform target exists; Agent10/Agent6 require a separate exact candidate-use packet before downstream use | stop condition: do not rerun unless aggregate receipt, aggregate summary/report, Agent4 aggregate gate proof, Agent10 consumption, or validator changes",
+  "handoff_owner": "Agent 2 definer retains metadata-only aggregate evidence; Agent 10/Agent 6 require a separate exact candidate-use packet before any downstream use.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not derive candidate text, definition content, answer rows, public output, route writes, accepted text, export rows, or release artifacts from aggregate metadata alone."
+}

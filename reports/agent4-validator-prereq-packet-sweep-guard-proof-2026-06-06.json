@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_packet_sweep_guard_proof",
+  "generated_at": "2026-06-06T01:12:00.000Z",
+  "agent": "Agent 4",
+  "target": "Agent4 packet sweep zero-match and result-file guard",
+  "changed_input_artifact": "scripts/validate_agent4_validator_prereq_packet_sweep.mjs",
+  "commands": [
+    {
+      "command": "node --check scripts\\validate_agent4_validator_prereq_packet_sweep.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep.mjs --pattern='^no-agent4-files-match-this$' --timeoutMs=30000",
+      "timeout_ms": 30000,
+      "result": "failed_expected_negative_control",
+      "output": "Validation failed: pattern matched zero files: ^no-agent4-files-match-this$; pass --allowEmpty only for an intentional empty-control run"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep.mjs --pattern='^agent4-.*2026-06-06\\.json$' --timeoutMs=30000 --out=reports/agent4-validator-prereq-packet-sweep-result-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "count": 23,
+      "passed": 23,
+      "failed": 0
+    }
+  ],
+  "counts": {
+    "agent4_packets_swept": 23,
+    "passed": 23,
+    "failed": 0,
+    "proof_packets": 17,
+    "proof_with_blocker_packets": 4,
+    "blocker_packets": 2,
+    "command_count_total": 47,
+    "blocker_count_total": 25,
+    "excluded_result_artifacts": 1,
+    "zero_match_negative_controls": 1
+  },
+  "result": "agent4_packet_sweep_guard_passed",
+  "exact_blockers": [
+    {
+      "code": "no_new_changed_package_input",
+      "detail": "No changed package/control input existed after the previous Agent4 sweep-output proof. Work was limited to hardening the reusable sweep against zero-match false positives and self-inclusion of sweep result artifacts."
+    }
+  ],
+  "handoff_owner": "Agent 4 for future packet sweep validation; Agent 10 or originating lane owners for future changed package inputs.",
+  "stop_condition": "Use this sweep with default result-file exclusion and zero-match failure. Do not treat packet-shape validation as QA/public/runtime/source/license/answer acceptance.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

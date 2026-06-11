@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:30.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption",
+  "changed_package_input": "reports/agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption-2026-06-05.json",
+  "files": [
+    "reports/agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption-2026-06-05.json",
+    "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json",
+    "scripts/validate_agent10_agent6_old_dictionary_morphology_candidate_use_verdict_consumption.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_agent6_old_dictionary_morphology_candidate_use_verdict_consumption.mjs reports\\agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Agent10 Agent6 candidate-use verdict consumption validation passed. Rows: 78; occurrences: 1461; next owner: Agent 2."
+    }
+  ],
+  "counts": {
+    "candidate_use_planning_rows": 78,
+    "candidate_use_planning_occurrences": 1461,
+    "noncommercial_educational_candidate_rows": 0,
+    "required_later_package_fields": 17,
+    "return_to_agent6_before_gates": 9,
+    "blockers_preserved": 9,
+    "candidate_text_export": 0,
+    "definition_lemma_reader_hint_content_storage": 0,
+    "answer_eligibility": 0,
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "accepted_text": 0,
+    "release_actions": 0,
+    "source_license_legal_acceptance": 0,
+    "commercial_export_authorization": 0
+  },
+  "hashes": {
+    "changed_package_input_sha256": "990205537d06fdf19dbb54041b26c82a8a04a1737ed49d11518f9a63bc49c244",
+    "validator_sha256": "ee8b149179aa882884be7ed3a9cb85654b2ce942e94f7275118523fa3e92ce21",
+    "agent6_verdict_sha256": "5bda8c502023c7e3eeaba26d7c9672e0332227fb00eb94ffbe80add5bea226f3"
+  },
+  "result": "target | agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption | files above | commands passed: Agent10 Agent6 candidate-use verdict consumption validator | counts: 78 rows, 1461 occurrences, 17 required later-package fields, 9 return-to-Agent6 gates, 9 blockers preserved, zero candidate text/export/definition/lemma/reader-hint/answer/public/runtime/route/accepted-text/release/source-license-legal/commercial-export rows | result: Agent10 consumption artifact is valid handoff evidence to Agent2 only | blocker if any: next Agent6 boundary required after Agent2 authors exact nonpublic candidate-use package and before any text storage, transform execution, export, answer eligibility, route write, public/runtime mutation, accepted text, commercial export, or release action | next handoff: Agent2 owns nonpublic package authoring over exact 78 IDs; Agent10 owns next boundary intake | stop condition: do not rerun unless consumption artifact, Agent6 verdict, or validator changes",
+  "blocker_if_any": "next_agent6_boundary_required_after_agent2_authors_exact_nonpublic_candidate_use_package_before_any_downstream_use",
+  "next_handoff": "Agent 2 owns nonpublic package authoring over the exact 78 queue IDs; Agent 10 owns next boundary intake before downstream use.",
+  "stop_condition": "Do not rerun unless reports/agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption-2026-06-05.json, reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json, or scripts/validate_agent10_agent6_old_dictionary_morphology_candidate_use_verdict_consumption.mjs changes.",
+  "non_acceptance_boundary": [
+    "no QA acceptance beyond this docket",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no public/runtime acceptance",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no translation output",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no candidate text export",
+    "no definition-content storage",
+    "no commercial export authorization",
+    "no release action"
+  ]
+}

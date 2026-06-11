@@ -1,0 +1,64 @@
+{
+  "artifact_type": "agent10_heartbeat_release_intake",
+  "generated_at": "2026-06-06T07:26:31Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "automation_id": "agent-10-weekly-release-work",
+  "target_package": "old-dictionary-commercial-clean-78-row-release-director-state",
+  "files_used": [
+    "reports/agent10-release-director-state-old-dictionary-boundaries-2026-06-06.json",
+    "reports/agent10-agent5-handoff-old-dictionary-78-row-agent1-route-blocker-2026-06-06.json",
+    "reports/agent4-agent10-agent6-ready-78-row-zero-text-boundary-packet-gate-proof-2026-06-06.json",
+    "reports/agent4-agent6-78-row-candidate-use-preboundary-verdict-chain-gate-proof-2026-06-06.json"
+  ],
+  "agent_1_4_inputs_consumed": [
+    {
+      "lane": "Agent 4 validation echo",
+      "artifact": "reports/agent4-agent10-agent6-ready-78-row-zero-text-boundary-packet-gate-proof-2026-06-06.json",
+      "release_relevance": "confirms already-routed zero-text boundary packet validation only",
+      "new_agent6_boundary_question": "none",
+      "exact_blocker": "already past this gate; downstream still blocked on source_citation_or_url and exact transform rule"
+    },
+    {
+      "lane": "Agent 4 validation echo",
+      "artifact": "reports/agent4-agent6-78-row-candidate-use-preboundary-verdict-chain-gate-proof-2026-06-06.json",
+      "release_relevance": "confirms already-consumed preboundary verdict chain only",
+      "new_agent6_boundary_question": "none",
+      "exact_blocker": "next_candidate_use_or_transform_output_boundary_not_supplied"
+    }
+  ],
+  "current_exact_blocker": "stale_agent1_registry_target_current_agent1_thread_required",
+  "agent5_preservation_handoff": "reports/agent10-agent5-handoff-old-dictionary-78-row-agent1-route-blocker-2026-06-06.json",
+  "process_timeouts": [
+    {
+      "process_timeout": true,
+      "command": "Get-ChildItem -Path reports -Filter '*agent1*78-row*2026-06-06*' | Sort-Object LastWriteTime -Descending | Select-Object -First 20 Name,LastWriteTime,Length",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "Partial output showed Agent 4 gate-proof echoes, the existing Agent 5 handoff, the Agent 1 route blocker, and the Agent 1 source-citation workset; no new Agent 1 return was proven by the timed-out command.",
+      "next_safe_action": "Use exact known file reads or narrower literal paths; do not treat the timed-out scan as evidence of absence."
+    },
+    {
+      "process_timeout": true,
+      "command": "Get-ChildItem -Path reports -Filter '*agent6*78-row*2026-06-06*' | Sort-Object LastWriteTime -Descending | Select-Object -First 20 Name,LastWriteTime,Length",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "Partial output showed Agent 4 gate-proof echoes for prior Agent 6 78-row chain; no new Agent 6 route need was proven by the timed-out command.",
+      "next_safe_action": "Use exact known Agent 6 docket reads or narrower literal paths; do not treat the timed-out scan as evidence of absence."
+    }
+  ],
+  "agent6_boundary_questions": [
+    {
+      "question": "No new Agent 6 question is ready from this heartbeat intake.",
+      "reason": "The visible Agent 4 artifacts only validate already-consumed 78-row zero-text/preboundary chain evidence; the current live blocker remains missing Agent 1 route/source-citation enrichment plus exact transform rule."
+    }
+  ],
+  "zero_counters_preserved": {
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "candidate_text_export": 0,
+    "definition_lemma_reader_hint_content_storage": 0,
+    "answer_eligibility": 0,
+    "accepted_text": 0,
+    "release_actions": 0
+  },
+  "next_owner": "Agent 5 / coordination for current Agent 1 route proof or Agent 1 delivery; Agent 10 only for release/package judgment after a changed return.",
+  "stop_condition": "Stop at heartbeat intake record. Do not run broad scans as proof; do not mutate public/runtime/output/answer/Definition/accepted-text surfaces."
+}

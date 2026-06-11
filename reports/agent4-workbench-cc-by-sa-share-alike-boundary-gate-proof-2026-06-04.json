@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "status": "runnable_contract_authored_changed_input_present",
+  "target": "workbench-cc-by-sa-share-alike-boundary-map",
+  "changed_package_input_path": "reports/agent10-agent6-ready-workbench-cc-by-sa-share-alike-boundary-packet-2026-06-04.json",
+  "changed_package_input_sha256": "aea005cafb53ed54be8250ddfd26905ab16b7de4f51219aa17b0ad94121dcce7",
+  "files": [
+    "reports/agent10-agent6-ready-workbench-cc-by-sa-share-alike-boundary-packet-2026-06-04.json",
+    "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+    "reports/agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+    "reports/agent4-workbench-cc-by-sa-share-alike-boundary-changed-input-2026-06-04.json",
+    "reports/agent4-workbench-cc-by-sa-share-alike-boundary-runnable-contract-2026-06-04.json",
+    "reports/agent4-workbench-cc-by-sa-share-alike-boundary-runnable-contract-2026-06-04.md"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_workbench_cc_by_sa_share_alike_boundary_map.mjs reports\\agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent1_spark1_workbench_cc_by_sa_share_alike_boundary_contract.mjs reports\\agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\build_agent4_changed_package_validator_prereq_gate.mjs --date 2026-06-04 --changed-input reports\\agent4-workbench-cc-by-sa-share-alike-boundary-changed-input-2026-06-04.json --out-json reports\\agent4-workbench-cc-by-sa-share-alike-boundary-runnable-contract-2026-06-04.json --out-md reports\\agent4-workbench-cc-by-sa-share-alike-boundary-runnable-contract-2026-06-04.md",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-workbench-cc-by-sa-share-alike-boundary-runnable-contract-2026-06-04.json",
+      "result": "pass"
+    }
+  ],
+  "counts": {
+    "declared_cc_by_sa_partition_count": 37,
+    "declared_cc_by_sa_source_row_count": 5581,
+    "sampled_cc_by_sa_partition_count": 5,
+    "sampled_cc_by_sa_source_row_count": 4436,
+    "sampled_unique_source_id_count": 40,
+    "sampled_unique_work_count": 40,
+    "validator_commands_passed": 2,
+    "runnable_contracts_authored": 1,
+    "runnable_contracts_checked": 1,
+    "answer_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0,
+    "acceptance_claims": 0
+  },
+  "result": "Runnable Agent4 changed-package validator/prereq contract generated and checked for exact CC-BY-SA/share-alike changed input.",
+  "blocker_if_any": {
+    "agent4_validator_gate": "none",
+    "remaining_boundary": "CC-BY-SA partitions require Agent6/legal share-alike boundary treatment before source/license custody acceptance, commercial export, public display, answer use, definition text use, package use, or publication."
+  },
+  "next_handoff": "Agent10 owns release/package intake; Agent6 boundary review only.",
+  "stop_condition": "Stop after exact changed-input gate proof and runnable contract check; do not rerun this validator chain unless the package/input changes.",
+  "non_acceptance_boundary": {
+    "qa_acceptance": false,
+    "public_runtime_acceptance": false,
+    "source_provenance_acceptance": false,
+    "license_legal_acceptance": false,
+    "definition_authority": false,
+    "publication_readiness": false,
+    "route_publication_support": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "accepted_gloss_text": false,
+    "release_action": false,
+    "public_runtime_mutation": false
+  }
+}

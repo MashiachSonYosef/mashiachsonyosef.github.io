@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent2_spark2_pipeline_contract_orot_missed_dictionary_reader_hints",
+  "generated_at": "2026-06-04T09:00:11-04:00",
+  "status": "pipeline_runnable_with_zero_candidate_closure_on_current_inputs",
+  "active_mode": "BROAD_CORPUS_EXPANSION",
+  "hybrid_lane": "OROT_PROTOTYPE_HARDENING",
+  "purpose": "Reusable Agent 2 contract for Spark-2 to generate Orot missed-dictionary reader-hint candidate rows without inventing semantics.",
+  "exact_blocker": {
+    "id": null,
+    "missing_files": []
+  },
+  "reference_implementation": {
+    "builder": "scripts/build_agent10_orot_next_missed_dictionary_placeholder_candidates.mjs",
+    "validator": "scripts/validate_agent10_orot_next_missed_dictionary_placeholder_candidates.mjs",
+    "owner": "Agent 10 reference only, not Agent 2-owned reusable contract implementation"
+  },
+  "exact_inputs": [
+    "reports/agent2-orot-sefaria-lexicon-hit-audit-2026-06-03.json",
+    "data/public-hud/orot/reader-hints.json",
+    "data/build/orot/reader-hint-placeholder-candidates.json",
+    "reports/agent10-orot-license-safe-coverage-repair-add-candidates-2026-06-03.json",
+    "reports/oracle9-owner-pulse-2026-06-03-0410Z.md",
+    "reports/oracle9-owner-pulse-2026-06-03-1039Z.md"
+  ],
+  "reference_prior_evidence": [
+    "reports/agent10-orot-next-missed-dictionary-placeholder-candidates-2026-06-03.json",
+    "reports/agent10-orot-next-missed-dictionary-cleared-append-2026-06-03.json",
+    "reports/agent6-orot-next-missed-dictionary-placeholder-candidates-verdict-2026-06-03.md"
+  ],
+  "source_license_flags": {
+    "allowed_lanes": {
+      "commercial_clean_candidate": [
+        "BDB Dictionary",
+        "BDB Aramaic Dictionary",
+        "Jastrow Dictionary",
+        "PUBLIC_DOMAIN_OBSERVED"
+      ],
+      "noncommercial_educational_candidate": [
+        "Klein Dictionary",
+        "CC_BY_NC",
+        "commercial_export_allowed=false",
+        "derived_from_nc=true",
+        "attribution_required=true"
+      ]
+    },
+    "excluded_or_non_candidate_lanes": [
+      "metadata-link-only",
+      "blocked",
+      "unmatched"
+    ],
+    "required_zero_flags": {
+      "answer_eligible": false,
+      "public_emit_ready": false,
+      "add_now_before_agent6": false,
+      "definition_text_stored_now": false,
+      "nc_definition_content_stored_now": false,
+      "source_rows_emitted": 0,
+      "public_hud_rows": 0,
+      "route_jsonl_rows": 0,
+      "route_shard_writes": 0,
+      "runtime_files_changed": 0
+    }
+  },
+  "candidate_selection_rule": [
+    "Load the Agent 2 Sefaria lexicon hit audit.",
+    "Build a used-token set from current public Orot reader hints, current non-public placeholder package rows, and prior candidate packets.",
+    "Preserve only rows not already public or packaged.",
+    "Prefer commercial-clean dictionary families over NC rows.",
+    "Use NC rows only as noncommercial_educational_candidate with commercial export prohibited and no public/runtime authorization.",
+    "Record blocked source families as present-but-unused, especially BDB Augmented Strong.",
+    "Emit counterpart_text=TBD placeholder candidates only; do not emit definition text or accepted gloss.",
+    "Count all rows by commercial_clean_candidate, noncommercial_educational_candidate, metadata-link-only, blocked, and unmatched."
+  ],
+  "command_contract": {
+    "future_builder": "node scripts/build_agent2_orot_missed_dictionary_reader_hint_candidates.mjs --limit=50 --output=reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json --report=reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.md",
+    "future_validator": "node scripts/validate_agent2_orot_missed_dictionary_reader_hint_candidates.mjs reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+    "current_result": "pipeline runnable; current 2026-06-04 run produced zero new rows because deterministic candidates are already public, packaged, or prior-candidate-consumed"
+  },
+  "output_schema": {
+    "artifact_type": "agent2_orot_missed_dictionary_reader_hint_candidates",
+    "top_level_fields": [
+      "schema_version",
+      "artifact_type",
+      "generated_at",
+      "generator",
+      "boundary",
+      "inputs",
+      "selection",
+      "summary",
+      "source_license_counts",
+      "rows",
+      "outputs_now",
+      "what_must_not_be_accepted"
+    ],
+    "summary_fields": [
+      "candidate_rows",
+      "candidate_occurrences",
+      "commercial_clean_candidate_rows",
+      "commercial_clean_candidate_occurrences",
+      "noncommercial_educational_candidate_rows",
+      "noncommercial_educational_candidate_occurrences",
+      "metadata_link_only_rows",
+      "blocked_rows",
+      "unmatched_rows",
+      "rows_cleared_by_agent6_now",
+      "rows_added_now",
+      "rows_blocked_pending_agent6"
+    ],
+    "required_row_fields": [
+      "target_token_id",
+      "surface",
+      "normalized",
+      "occurrences",
+      "source_audit_priority",
+      "category",
+      "lane",
+      "family_status",
+      "source_families",
+      "blocked_source_families_present_but_unused",
+      "headwords",
+      "refs_count",
+      "entry_ids",
+      "response_sha256s",
+      "provisional_label",
+      "placeholder_status",
+      "counterpart_text",
+      "placeholder_text_stored_now",
+      "definition_text_stored_now",
+      "source_license_group",
+      "derived_from_nc",
+      "commercial_export_allowed",
+      "noncommercial_display_planning_allowed",
+      "noncommercial_display_public_or_runtime_authorized",
+      "attribution_required",
+      "corpus_contamination",
+      "cleared_by_agent6_now",
+      "add_now_before_agent6",
+      "answer_eligible",
+      "public_emit_ready"
+    ]
+  },
+  "validator_requirements": [
+    "Artifact type is agent2_orot_missed_dictionary_reader_hint_candidates.",
+    "All row token IDs are unique.",
+    "No row already exists in current public hints or current non-public placeholder package unless explicitly marked already-packaged evidence.",
+    "Allowed labels only: counterpart candidate, project-preferred counterpart candidate.",
+    "No definition, answer, translation, accepted gloss, verified, or top match label.",
+    "counterpart_text=TBD for placeholder rows.",
+    "definition_text_stored_now=false.",
+    "answer_eligible=false.",
+    "public_emit_ready=false.",
+    "add_now_before_agent6=false.",
+    "cleared_by_agent6_now=false unless a dated Agent 6 row/subset verdict is referenced.",
+    "No BDB Augmented Strong selected source family unless separately cleared by source/license custody.",
+    "NC rows carry derived_from_nc=true, commercial_export_allowed=false, attribution required, and no public/runtime authorization.",
+    "outputs_now public/route/source/answer/definition/runtime counts are zero."
+  ],
+  "current_reference_counts": {
+    "reference_candidate_rows": 50,
+    "reference_candidate_occurrences": 1193,
+    "reference_commercial_clean_rows": 50,
+    "reference_commercial_clean_occurrences": 1193,
+    "reference_nc_rows": 0,
+    "reference_nc_occurrences": 0,
+    "reference_metadata_link_only_rows": 0,
+    "reference_blocked_rows_in_emitted_packet": 0,
+    "reference_unmatched_rows_in_emitted_packet": 0,
+    "current_package_placeholder_rows": 332,
+    "current_package_placeholder_occurrences": 6156,
+    "current_package_commercial_clean_rows": 302,
+    "current_package_commercial_clean_occurrences": 5768,
+    "current_package_nc_rows": 17,
+    "current_package_nc_occurrences": 259,
+    "current_package_display_integrity_rows": 13,
+    "current_package_display_integrity_occurrences": 129,
+    "current_package_answer_rows": 0,
+    "current_package_public_hud_rows": 0,
+    "current_package_route_jsonl_rows": 0
+  },
+  "current_validator_note": {
+    "agent10_candidate_validator": "fails now because the 50 rows are already public-or-packaged in the current non-public package",
+    "non_public_package_validator": "passes for data/build/orot/reader-hint-placeholder-candidates.json"
+  },
+  "agent6_boundary_need": "Any new candidate rows produced by the Agent 2 contract require Agent 6 row/subset boundary review before append or display.",
+  "stop_condition": "Spark-2 may run this contract only after the Agent 2-owned builder and validator exist. Until then return missing_pipeline_blocker: missing_agent2_owned_builder_and_validator.",
+  "boundary": {
+    "definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligibility": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "route_publication_support": false,
+    "public_runtime_mutation": false,
+    "source_provenance_license_acceptance": false,
+    "product_data_acceptance": false,
+    "publication_readiness": false
+  }
+}

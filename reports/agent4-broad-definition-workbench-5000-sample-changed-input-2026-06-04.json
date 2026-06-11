@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_changed_package_input_descriptor",
+  "changed_package_input_path": "reports/agent10-agent6-ready-broad-definition-workbench-5000-sample-boundary-packet-2026-06-04.json",
+  "package_hash_or_commit_or_mtime": "sha256:2f87f18468d28033222b13a3ed2608650b8af91650a125dc07ff08da909f13c4",
+  "exact_command_list": [
+    "node scripts\\validate_agent2_future_workset_intake_packet.mjs reports\\agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.json",
+    "node scripts\\validate_workbench_token_inventory.mjs .local-cache\\workbench-evidence\\token-inventory-5000.json",
+    "node scripts\\validate_definition_workbench_sample.mjs data\\definitions\\definition-workbench-sample-5000.json",
+    "git diff --check -- reports\\agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.md reports\\agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.json data\\definitions\\definition-workbench-sample-5000.json reports\\definition-workbench-sample-5000-report.md reports\\workbench-token-inventory-5000.md"
+  ],
+  "expected_output_path_schema": "reports/agent4-broad-definition-workbench-5000-sample-gate-proof-2026-06-04.md",
+  "validator_gate": "Agent 2 future workset intake packet, Workbench token inventory, Definition Workbench 5000 sample, and targeted git diff --check commands must pass on explicit 2026-06-04 inputs.",
+  "package_owner": "Agent 10 release/package intake; Agent 2 definition/reader-planning workset owner",
+  "agent6_boundary_trigger": "Agent 6 review only as non-public route-shape and reader-planning evidence; no candidate text export, Definition authority, answer eligibility, route publication support, source/license acceptance, publication readiness, public reader output, accepted text, or release action is requested.",
+  "stop_condition": "Stop after runnable Agent 4 validator/prereq contract is generated and checked, or exact blocker if any listed validator fails."
+}

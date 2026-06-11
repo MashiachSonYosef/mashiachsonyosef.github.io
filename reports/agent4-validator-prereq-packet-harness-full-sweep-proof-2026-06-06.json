@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_packet_harness_full_sweep_proof",
+  "generated_at": "2026-06-06T00:50:00.000Z",
+  "agent": "Agent 4",
+  "target": "Agent4 proof/blocker packet validator full same-day sweep",
+  "changed_input_artifact": "scripts/validate_agent4_validator_prereq_packet.mjs",
+  "harness_gap": "Initial harness covered only newer Agent4 packet schema. Legacy Agent4 packets used artifact_type-only agent identity, validator_proof_command(s), what_must_not_be_accepted, changed_input_blocker, and string blocker rows.",
+  "commands": [
+    {
+      "command": "node --check scripts\\validate_agent4_validator_prereq_packet.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports/agent4-no-new-changed-input-blocker-2026-06-06.json; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports/agent4-no-new-overlap-successor-blocker-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "validated_prior_failures": 2
+    },
+    {
+      "command": "PowerShell here-string Node sweep over reports/agent4-*2026-06-06.json using scripts/validate_agent4_validator_prereq_packet.mjs",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "packet_count": 20,
+      "passed": 20,
+      "failed": 0
+    }
+  ],
+  "counts": {
+    "agent4_packets_swept": 20,
+    "passed": 20,
+    "failed": 0,
+    "proof_packets": 14,
+    "proof_with_blocker_packets": 4,
+    "blocker_packets": 2,
+    "legacy_failure_count_before_patch": 15,
+    "legacy_failure_count_after_first_patch": 2,
+    "legacy_failure_count_after_final_patch": 0
+  },
+  "result": "agent4_packet_harness_full_sweep_passed",
+  "exact_blockers": [
+    {
+      "code": "no_new_changed_package_input",
+      "detail": "No changed package/control input existed after the previous Agent4 harness proof. Work was limited to deterministic harness hardening and full-sweep validation over existing Agent4 packets."
+    }
+  ],
+  "handoff_owner": "Agent 4 for future packet-shape validation; Agent 10 or originating lane owners for future changed package inputs.",
+  "stop_condition": "Use the harness for future Agent4 proof/blocker packet checks. Do not rerun unchanged package validators or claim acceptance from packet-shape validation.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

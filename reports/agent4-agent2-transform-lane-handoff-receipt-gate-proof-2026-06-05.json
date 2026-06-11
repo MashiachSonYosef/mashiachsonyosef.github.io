@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T16:29:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent2-transform-lane-handoff-receipt",
+  "status": "validated_nonpublic_transform_lane_planning_evidence_waiting_exact_boundary_no_acceptance",
+  "files": {
+    "agent1_transform_lane_handoff": {
+      "path": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+      "sha256": "7fd70f64ccefd56a6f4cbb4b991a5cb538b62e4bd9782cfe3df0eded37d8f98b"
+    },
+    "agent1_transform_lane_handoff_validation": {
+      "path": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-validation-result-2026-06-04.json",
+      "sha256": "54591a3bd564502494546db474f6fb9b416c49bb9f1151bbc3e2014452d91136"
+    },
+    "agent2_transform_lane_handoff_receipt": {
+      "path": "reports/agent2-agent1-transform-lane-handoff-receipt-2026-06-05.json",
+      "sha256": "a425ad403089c7d593495eb28b5c9a9d785d497ed28aeda03efccc36def26741"
+    },
+    "agent10_commercial_nc_overlap_boundary_packet": {
+      "path": "reports/agent10-agent6-ready-old-dictionary-commercial-nc-overlap-exclusion-boundary-packet-2026-06-05.json",
+      "sha256": "9edc9c5f3a1ad74d9183805212da202a49462016998c35134deb3cf485f88370"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_agent2_transform_lane_handoff.mjs reports\\agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_agent1_transform_lane_handoff_receipt.mjs reports\\agent2-agent1-transform-lane-handoff-receipt-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_commercial_nc_overlap_exclusion_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-commercial-nc-overlap-exclusion-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "source_family_count": 5,
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_clean_source_families": 3,
+    "noncommercial_educational_source_families": 1,
+    "blocked_or_needs_review_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "agent2_transform_allowed_now_rows": 0,
+    "agent2_transform_candidate_after_agent6_boundary_rows_nonexclusive": 500,
+    "agent2_transform_candidate_after_agent6_boundary_occurrences_nonexclusive": 10940,
+    "agent2_nc_educational_hold_separate_rows": 214,
+    "agent2_blocked_or_review_hold_rows": 222
+  },
+  "result": "Agent2 transform-lane handoff receipt validates; all transform lanes remain nonpublic planning evidence and agent2_transform_allowed_now_rows remains 0.",
+  "blocker_if_any": "exact_agent6_boundary_and_approved_morphology_relation_required_before_agent2_transform_candidate_text_definition_reader_hint_answer_route_runtime_export_or_release",
+  "next_handoff": "Agent10/Agent6 own exact boundary decisions; Agent2 may preserve lanes but cannot transform rows now.",
+  "stop_condition": "Do not rerun unless Agent1 handoff, Agent2 receipt, commercial/NC overlap boundary packet, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no source-family selection acceptance",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

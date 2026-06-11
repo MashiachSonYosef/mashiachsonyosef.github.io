@@ -1,0 +1,142 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "Agent 3 old-dictionary candidate-use source-RID blocker matrix",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-source-rid-blocker-matrix-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_source_rid_blocker_matrix.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_source_rid_blocker_matrix.mjs --input=reports/agent3-old-dictionary-candidate-use-source-rid-blocker-matrix-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent 3 source RID blocker matrix passed: rows=344 refs=393 multi=43"
+    }
+  ],
+  "counts": {
+    "source_rid_rows": 344,
+    "source_rid_references": 393,
+    "unique_source_rids": 344,
+    "source_rid_prefix_rows": 21,
+    "unique_queue_ids": 78,
+    "unique_token_ids": 78,
+    "source_rids_multi_queue": 43,
+    "max_queue_references_for_source_rid": 4,
+    "blocker_links": 3457,
+    "max_blockers_for_source_rid": 11,
+    "rows_missing_source_citation": 344,
+    "rows_missing_transform_rule": 344,
+    "rows_agent6_boundary_required": 344,
+    "rows_route_recheck_required": 344,
+    "rows_gate_proof_boundary_chain_missing": 344,
+    "rows_gate_proof_source_citation_dependency_missing": 344,
+    "row_blocker_matrix_rows": 78,
+    "row_blocker_matrix_occurrences": 1461,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "source_acceptance_claims": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_source_rid_blocker_matrix_only",
+  "exact_blockers": [
+    {
+      "code": "missing_source_field::source_citation_or_url",
+      "class": "source_citation_dependency",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 1 / Agent 2 source-citation enrichment before Agent 10 can assemble transform-output packet"
+    },
+    {
+      "code": "missing_transform_output_proposal_matrix_or_exact_transform_rule",
+      "class": "transform_rule_dependency",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 2 transform-output proposal lane"
+    },
+    {
+      "code": "missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text",
+      "class": "proposed_text_rule_dependency",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 2 transform-output proposal lane"
+    },
+    {
+      "code": "next_transform_output_or_candidate_text_boundary_not_supplied",
+      "class": "agent6_boundary_dependency",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 10 prepares new Agent 6 boundary only after prerequisites exist"
+    },
+    {
+      "code": "candidate_text_blocked",
+      "class": "zero_text_boundary_preserved",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 10 / Agent 6"
+    },
+    {
+      "code": "missing_agent4_gate_proof_for_boundary_chain_crossmatch",
+      "class": "gate_proof_navigation_dependency",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 4 or release owner if queue-visible"
+    },
+    {
+      "code": "missing_agent4_gate_proof_for_source_citation_dependency_crossmatch",
+      "class": "gate_proof_navigation_dependency",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 4 or release owner if queue-visible"
+    },
+    {
+      "code": "recheck_required_current_registry_contradicts_older_route_blocker",
+      "class": "agent1_route_recheck_navigation",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 10 / Agent 5 routing coordination; Agent 1 source-citation lane"
+    },
+    {
+      "code": "stale_agent1_registry_target_current_agent1_thread_required",
+      "class": "agent1_route_recheck_navigation",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 10 / Agent 5 routing coordination; Agent 1 source-citation lane"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-source-rid-blocker-matrix-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-source-rid-blocker-matrix-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 10 release/package intake; Agent 6 only through exact boundary packet; Agent 1/Agent 2 for source-citation and transform prerequisites",
+  "next_safe_action": "Use the source-RID matrix as blocker-navigation evidence only; resolve source_citation_or_url, transform-output rules, Agent 6 boundary, and Agent 1 route recheck before candidate-use output.",
+  "stop_condition": "Stop after validating and packaging the source-RID blocker matrix; do not rerun unchanged validators or claim acceptance.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

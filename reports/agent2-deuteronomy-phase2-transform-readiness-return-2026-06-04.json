@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_deuteronomy_phase2_transform_readiness_return",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "route_consumed": {
+    "agent10_delivery_proof": "reports/agent10-agent2-deuteronomy-phase2-transform-readiness-delivery-proof-2026-06-04.md",
+    "agent10_route_packet": "reports/agent10-agent2-deuteronomy-phase2-transform-readiness-route-2026-06-04.md",
+    "primary_workset_json": "reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.json",
+    "primary_workset_md": "reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.md"
+  },
+  "agent2_output": {
+    "matrix_json": "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.json",
+    "matrix_report": "reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.md",
+    "builder": "scripts/build_agent2_deuteronomy_phase2_transform_readiness_matrix.mjs",
+    "validator": "scripts/validate_agent2_deuteronomy_phase2_transform_readiness_matrix.mjs"
+  },
+  "counts": {
+    "rows": 1334,
+    "occurrences": 2964,
+    "commercial_clean_candidate_rows": 1334,
+    "commercial_clean_candidate_occurrences": 2964,
+    "noncommercial_educational_candidate_rows": 0,
+    "noncommercial_educational_candidate_occurrences": 0,
+    "metadata_or_link_only_rows": 0,
+    "blocked_or_needs_review_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "definition_text_emitted_rows": 0,
+    "accepted_text_emitted_rows": 0,
+    "route_shard_write_rows": 0
+  },
+  "validators": [
+    {
+      "command": "node scripts/validate_agent10_deuteronomy_phase2_downstream_transform_workset.mjs reports/agent10-agent2-ready-deuteronomy-phase2-downstream-transform-workset-2026-06-04.json",
+      "result": "passed",
+      "stdout": "Agent 10 Deuteronomy downstream transform workset validation passed: rows 1334; occurrences 2964"
+    },
+    {
+      "command": "node scripts/validate_agent2_deuteronomy_phase2_transform_readiness_matrix.mjs reports/agent2-deuteronomy-phase2-transform-readiness-matrix-2026-06-04.json",
+      "result": "passed",
+      "stdout": "Agent 2 Deuteronomy readiness matrix validation passed. Rows: 1334; occurrences: 2964."
+    }
+  ],
+  "source_lane_gate": {
+    "new_or_missed_dictionaries_not_presumed_nc": true,
+    "old_excluded_dictionaries_not_presumed_blocked": true,
+    "source_family_lanes_preserved": true,
+    "current_workset_all_commercial_clean": true,
+    "commercial_clean_and_nc_future_export_partitions_separate": true,
+    "metadata_link_only_no_definition_text": true,
+    "blocked_review_no_candidate_text_export": true,
+    "spark_output_is_evidence_not_permission": true
+  },
+  "agent6_boundary": {
+    "opened_now": false,
+    "future_required_before": [
+      "transform/display/source/license use",
+      "Definition use",
+      "public/runtime use",
+      "answer use"
+    ],
+    "suggested_future_question": "May the exact 1334-row / 2964-occurrence Deuteronomy Phase-2 non-public readiness matrix be used as row/subset evidence for a future transform/display/source/license packet while preserving zero answer eligibility, zero public emit, zero definition text storage, zero accepted text, zero route-shard writes, and source-lane separation?"
+  },
+  "handoff": "return_to_agent10_for_release_relevance_and_exact_agent6_boundary_packaging_decision",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "NC commercial authorization"
+  ]
+}

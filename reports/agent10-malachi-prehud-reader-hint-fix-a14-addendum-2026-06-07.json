@@ -1,14 +1,19 @@
 {
   "artifact_type": "agent10_malachi_prehud_reader_hint_fix_a14_addendum",
-  "status": "FIXED_LOCAL_PREVIEW_READY_FOR_A14_REVIEW_SUPERSEDES_PRIOR_PACKET",
+  "status": "FIXED_LOCAL_PREVIEW_READY_FOR_A14_REVIEW_SUPERSEDES_PRIOR_PACKETS",
   "supersedes": {
-    "a14_submission_id": "019ea20b-4dca-7b40-96fd-085e81a636b9",
-    "reason": "Prior packet fixed reader_hint_url wiring but did not yet exclude usage-only evidence from pre-HUD."
+    "a14_submission_ids": [
+      "019ea20b-4dca-7b40-96fd-085e81a636b9",
+      "019ea221-d10c-75e0-ad06-4d1892b8df0e"
+    ],
+    "reason": "Prior packets fixed reader_hint_url wiring but did not yet exclude usage-only/form-reference evidence from pre-HUD."
   },
   "issues_handled": [
     "malachi_reader_hint_url_missing",
     "usage_only_evidence_repeated_in_prehud",
-    "section_top_return_link_needed_on_prehud_rows"
+    "section_top_return_link_needed_on_prehud_rows",
+    "prehud_meta_row_should_share_section_top_and_match_percent",
+    "form_reference_evidence_should_remain_hud_only_tbd"
   ],
   "files_changed": [
     "assets/css/reader-workbench.css",
@@ -32,32 +37,40 @@
   "counts": {
     "esther": {
       "token_occurrences": 2654,
-      "unique_hint_rows": 1744,
+      "unique_hint_rows": 946,
       "usage_only_prehud_rows": 0
     },
     "ezra": {
       "token_occurrences": 3538,
-      "unique_hint_rows": 2009,
+      "unique_hint_rows": 1089,
       "usage_only_prehud_rows": 0
     },
     "nehemiah": {
       "token_occurrences": 4822,
-      "unique_hint_rows": 3187,
+      "unique_hint_rows": 1802,
       "usage_only_prehud_rows": 0
     },
     "obadiah": {
       "token_occurrences": 249,
-      "unique_hint_rows": 199,
+      "unique_hint_rows": 111,
       "usage_only_prehud_rows": 0
     },
     "malachi": {
       "token_occurrences": 789,
-      "unique_hint_rows": 614,
-      "browser_hydrated_occurrence_rows": 713,
-      "browser_tbd_rows": 76,
-      "browser_usage_only_prehud_gloss_rows": 0,
-      "browser_section_top_return_links": 789
+      "unique_hint_rows": 344,
+      "browser_hydrated_occurrence_rows": 396,
+      "browser_tbd_rows": 393,
+      "browser_usage_only_or_form_reference_prehud_gloss_rows": 0,
+      "browser_section_top_return_links": 789,
+      "browser_meta_cells": 789
     }
+  },
+  "malachi_dvar_yhwh_fix": {
+    "token_id": "tok-664f2667f10e",
+    "surface": "דְבַר־יְהֹוָ֖ה",
+    "previous_bad_prehud": "form of היווה",
+    "current_prehud": "TBD",
+    "rule": "form-reference and ambiguous close competing route choices remain HUD-only/TBD unless selected through the HUD"
   },
   "orot_issue_3_judgment": {
     "token_surface": "הֶחָמְרִי",
@@ -91,14 +104,16 @@
     }
   ],
   "browser_proof": {
-    "url": "http://127.0.0.1:8801/tanakh/malachi/?prehud-clean=4",
-    "dom_artifact": "%TEMP%/codex-malachi-dom-proof.html",
+    "url": "http://127.0.0.1:8801/tanakh/malachi/?prehud-clean=5",
+    "dom_artifact": "%TEMP%/codex-malachi-dom-proof-v2.html",
     "rows": 789,
-    "populated_rows": 713,
-    "tbd_rows": 76,
-    "usage_only_prehud_gloss_rows": 0,
+    "populated_rows": 396,
+    "tbd_rows": 393,
+    "usage_only_or_form_reference_prehud_gloss_rows": 0,
+    "meta_cells": 789,
     "section_top_return_links": 789,
-    "first_section_top_href": "#malachi-1-1"
+    "first_section_top_href": "#malachi-1-1",
+    "dvar_yhwh_prehud": "TBD"
   },
   "timeout_report": [
     {
@@ -112,6 +127,8 @@
   "boundary": [
     "reader convenience candidate hints only",
     "usage-only evidence remains HUD-only/TBD in pre-HUD",
+    "form-reference evidence remains HUD-only/TBD in pre-HUD",
+    "ambiguous close competing route choices remain TBD unless selected through the HUD",
     "not translation output",
     "not accepted gloss/text",
     "not Definition authority",

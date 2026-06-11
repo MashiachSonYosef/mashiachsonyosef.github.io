@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:55.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent3-agent10-crossmatch-direct-state-reconciliation",
+  "changed_package_input": "reports/agent3-agent10-crossmatch-direct-state-reconciliation-2026-06-05.json",
+  "files": [
+    "reports/agent3-agent10-crossmatch-direct-state-reconciliation-2026-06-05.json",
+    "reports/agent3-crossmatch-inventory-packet-2026-06-05.json",
+    "reports/agent10-agent3-agent4-fresh-output-consumption-2026-06-05.json",
+    "scripts/validate_agent3_agent10_crossmatch_direct_state_reconciliation.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent3_agent10_crossmatch_direct_state_reconciliation.mjs reports\\agent3-agent10-crossmatch-direct-state-reconciliation-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Agent 3 / Agent10 crossmatch reconciliation validation passed; direct dirty 192; fresh dirty 0; current dirty 0; stale delta 192."
+    },
+    {
+      "command": "node scripts\\validate_agent3_crossmatch_inventory_packet.mjs reports\\agent3-crossmatch-inventory-packet-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Agent 3 crossmatch inventory validation passed; files 225; dirty 0; blocker none."
+    },
+    {
+      "command": "node scripts\\validate_agent3_usage_state.mjs",
+      "result": "passed",
+      "stdout_summary": "Agent 3 usage state validation passed. Evidence artifacts: 99/99; validators: 51/51; smoke failed: 0."
+    }
+  ],
+  "counts": {
+    "direct_state_agent3_files_in_inventory": 225,
+    "direct_state_agent3_dirty_or_uncommitted_files": 192,
+    "fresh_consumption_agent3_files_in_inventory": 225,
+    "fresh_consumption_agent3_dirty_or_uncommitted_files": 0,
+    "current_inventory_files_in_inventory": 225,
+    "current_inventory_dirty_or_uncommitted_files": 0,
+    "current_inventory_untracked_files": 0,
+    "current_inventory_reader_facing_rows": 0,
+    "current_inventory_route_payload_field_hits": 0,
+    "current_inventory_forbidden_authority_field_hits": 0,
+    "current_inventory_truthy_authority_claims": 0,
+    "stale_dirty_count_delta": 192,
+    "current_inventory_blocker_count": 0,
+    "agent6_boundary_packets_opened": 0,
+    "route_publication_support_rows": 0,
+    "definition_authority_rows": 0,
+    "usage_as_definition_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0
+  },
+  "hashes": {
+    "changed_package_input_sha256": "a46c419ae71cc61b9f7a08d3e666cc479ee7a97ca4c8c80375e6f6b6ac006fae",
+    "validator_sha256": "f251c95a28689fb393fb9abedae45d06bd1848d58dc25bd5a4095da9df9ca83a",
+    "agent3_crossmatch_inventory_sha256": "07485aeb05a8f8d40b8e737e73bea153aed7abfebb3d6bb182586b7ac1217ca1",
+    "agent10_fresh_consumption_sha256": "6fdecde09046af7e180e74c81b2280654a397e0c50ab15f655ae07bd9f60f6ad"
+  },
+  "result": "target | agent3-agent10-crossmatch-direct-state-reconciliation | files above | commands passed: Agent3/Agent10 reconciliation validator, Agent3 crossmatch inventory validator, Agent3 usage state validator | counts: direct-state dirty/uncommitted 192, fresh-consumption dirty/uncommitted 0, current inventory dirty/uncommitted 0, stale dirty-count delta 192, inventory files 225, current inventory blocker count 0, zero reader-facing/route-payload/forbidden-authority/truthy-authority/public-runtime/answer/accepted-text rows | result: current Agent3 crossmatch inventory baseline validates clean, but Agent10 top-level direct-state row is stale | blocker if any: top_level_agent10_direct_state_crossmatch_row_stale_until_agent10_refreshes_summary | next handoff: Agent10 may refresh top-level summary; Agent3 remains evidence-only until exact changed workset | stop condition: do not rerun unless reconciliation artifact, Agent3 inventory, Agent10 fresh consumption, or validator changes",
+  "blocker_if_any": "top_level_agent10_direct_state_crossmatch_row_stale_until_agent10_refreshes_summary",
+  "next_handoff": "Agent 10 may refresh its top-level direct-goal summary row if desired; Agent 3 remains evidence-only and held until exact changed workset.",
+  "stop_condition": "Do not rerun unless reports/agent3-agent10-crossmatch-direct-state-reconciliation-2026-06-05.json, reports/agent3-crossmatch-inventory-packet-2026-06-05.json, reports/agent10-agent3-agent4-fresh-output-consumption-2026-06-05.json, or scripts/validate_agent3_agent10_crossmatch_direct_state_reconciliation.mjs changes.",
+  "non_acceptance_boundary": [
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no QA acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no route ranking",
+    "no answer selection",
+    "no route publication support",
+    "no public/runtime mutation",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no translation output",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no control-state mutation"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "artifact_type": "agent2_a07_approval_route_correction",
+  "generated_at": "2026-06-06T11:30:00Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Agent2 route correction for approval, SOP, final validation, and release-gate ownership",
+  "route_correction": {
+    "status": "A07_APPROVED_WITH_WARNINGS",
+    "effective_scope": "routing_law_only",
+    "approval_sop_final_validation_release_gate_owner": "A07",
+    "evidence_validators_repo_cleaning_production_owner": "A06",
+    "a06_output_status": "evidence-ready until A07 approval where approval is required",
+    "do_not_ask_a06_for_approval": true,
+    "existing_validated_words_preserved": true,
+    "redo_scope": "changed_or_flagged_rows_only"
+  },
+  "agent2_boundary": {
+    "transforms_only_after_source_lane_evidence_exists": true,
+    "agent2_transform_output_authoritative": false,
+    "a07_approval_required_where_required": true,
+    "publication_or_release_allowed": false,
+    "source_license_legal_definition_product_answer_accepted_text_acceptance_allowed": false,
+    "repo_cleanup_action_allowed": false,
+    "destructive_command_allowed": false
+  },
+  "future_packet_requirement": {
+    "preserve_route_correction": true,
+    "redirect_approval_requests_to": "A07",
+    "do_not_route_approval_requests_to": "A06",
+    "a06_may_produce": [
+      "evidence",
+      "validators",
+      "repo-cleaning production evidence"
+    ],
+    "a06_must_not_be_treated_as": [
+      "approval owner",
+      "SOP approval owner",
+      "final validation approval owner",
+      "release gate owner",
+      "accepted-text authority"
+    ]
+  },
+  "exact_blockers_if_misrouted": [
+    "approval_request_misrouted_to_A06",
+    "missing_A07_approval_route_for_approval_sop_final_validation_or_release_gate",
+    "A06_output_is_evidence_ready_only_until_A07_approval"
+  ],
+  "handoff_owner": {
+    "A07": "Approval, SOP, final validation, and release gate routing owner.",
+    "A06": "Evidence, validators, and repo-cleaning production evidence owner only.",
+    "A02": "Transform lane only after source-lane evidence exists; output remains non-authoritative until A07 approval where required."
+  },
+  "stop_condition": "Preserve this route correction in future packets and redirect approval requests to A07. No publication/release, no source/license/legal/Definition/product/answer/accepted-text acceptance, no repo cleanup action, and no destructive command."
+}

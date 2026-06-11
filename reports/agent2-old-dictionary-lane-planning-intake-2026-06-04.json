@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_old_dictionary_lane_planning_intake",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "status": "old_dictionary_lane_planning_evidence_intaked_nonpublic_only",
+  "inputs": {
+    "agent1_reaudit": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+    "agent1_export_partitions": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+    "agent6_verdict": "reports/agent6-old-dictionary-license-lane-planning-verdict-2026-06-04.md",
+    "agent10_consumption": "reports/agent10-agent6-old-dictionary-license-lane-verdict-consumption-2026-06-04.json",
+    "current_handoff_bundle": "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json"
+  },
+  "disposition": "WARN-ACCEPTED",
+  "accepted_scope": "nonpublic_old_dictionary_source_family_license_lane_and_lane_partition_planning_evidence_only",
+  "planning_counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "blocked_only_non_public_domain_or_unresolved_rows": 17,
+    "blocked_only_non_public_domain_or_unresolved_occurrences": 259,
+    "no_sefaria_hit_rows": 186,
+    "no_sefaria_hit_occurrences": 2421,
+    "next_missed_rows": 50,
+    "next_missed_occurrences": 1193
+  },
+  "source_family_lane_planning_evidence": {
+    "Jastrow Dictionary": {
+      "license_lane": "commercial_clean_candidate",
+      "rows": 210,
+      "occurrences": 4474
+    },
+    "BDB Dictionary": {
+      "license_lane": "commercial_clean_candidate",
+      "rows": 221,
+      "occurrences": 4418
+    },
+    "BDB Aramaic Dictionary": {
+      "license_lane": "commercial_clean_candidate",
+      "rows": 69,
+      "occurrences": 2048
+    },
+    "Klein Dictionary": {
+      "license_lane": "noncommercial_educational_candidate",
+      "rows": 214,
+      "occurrences": 4444,
+      "derived_from_nc": true,
+      "commercial_export_allowed": false,
+      "attribution_required": true,
+      "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+      "corpus_contamination": false
+    },
+    "BDB Augmented Strong": {
+      "license_lane": "blocked_or_needs_review",
+      "rows": 222,
+      "occurrences": 4435,
+      "missing_evidence": [
+        "independent source/license/custody basis",
+        "source URL or version source",
+        "license label and allowed fields",
+        "later Agent 6 boundary if evidence appears"
+      ]
+    }
+  },
+  "supplemental_partition_planning_counts": {
+    "commercial_clean_candidate": {
+      "source_family_count": 3,
+      "rows": 500,
+      "occurrences": 10940
+    },
+    "noncommercial_educational_candidate": {
+      "source_family_count": 1,
+      "rows": 214,
+      "occurrences": 4444
+    },
+    "metadata_or_link_only": {
+      "source_family_count": 0,
+      "rows": 0,
+      "occurrences": 0
+    },
+    "blocked_or_needs_review": {
+      "source_family_count": 1,
+      "rows": 222,
+      "occurrences": 4435
+    }
+  },
+  "agent1_evidence_status": {
+    "reaudit_artifact_type": "agent1_old_dictionary_excluded_row_license_lane_reaudit",
+    "reaudit_status": "agent1_old_dictionary_excluded_row_license_lane_reaudit_prepared_for_agent6_boundary_only",
+    "reaudit_workset": "old-dictionary-excluded-row-license-lane-reaudit",
+    "export_partition_artifact_type": "agent1_old_dictionary_license_lane_export_partitions",
+    "export_partition_status": "agent1_old_dictionary_license_lane_export_partitions_prepared_for_agent6_boundary_only",
+    "export_partition_workset": "old-dictionary-excluded-row-license-lane-reaudit"
+  },
+  "blocker_update": {
+    "prior_blocker_replaced": "source_lane_assignment_missing_before_agent1_reaudit",
+    "replacement_status": "resolved_for_nonpublic_source_family_license_lane_planning_evidence_intake_only",
+    "remaining_exact_blocker": "old_dictionary_candidate_text_consumption_export_storage_requires_new_exact_agent6_boundary",
+    "candidate_text_consumption_allowed_now": false,
+    "candidate_text_export_allowed_now": false,
+    "definition_content_storage_allowed_now": false,
+    "answer_eligible_now": false,
+    "public_emit_allowed_now": false,
+    "commercial_export_allowed_now": false,
+    "nc_public_display_allowed_now": false,
+    "nc_commercial_authorization_now": false
+  },
+  "next_agent2_pipeline_effect": {
+    "may_use_as_nonpublic_planning_context": true,
+    "may_generate_candidate_text_rows": false,
+    "may_generate_lane_partition_planning_rows": true,
+    "may_rerun_orot_missed_dictionary_candidate_pipeline_without_changed_linkage": false,
+    "required_next_input_for_candidate_generation": [
+      "changed source-family/linkage/dictionary evidence for the 168 Orot unmatched rows",
+      "row/subset package proposing candidate text consumption or export",
+      "exact Agent 6 boundary for that row/subset package before any text/storage/public/answer use"
+    ]
+  },
+  "current_handoff_context": {
+    "bundle": "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json",
+    "runnable_pipelines": 7,
+    "validator_only_checks": 24,
+    "orot_missed_dictionary_unmatched": 168
+  },
+  "zero_output_counts": {
+    "candidate_rows_emitted": 0,
+    "candidate_occurrences_emitted": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "source_rows_emitted": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_edits": 0,
+    "source_edits": 0,
+    "token_index_edits": 0,
+    "lexical_payload_edits": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate text consumption/export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "target": {
+    "work": "broad workbench evidence",
+    "workset": "workbench-cc0-public-domain-zero-boundary-map",
+    "input": "reports/agent1-workbench-source-name-custody-partitions-2026-06-04.json",
+    "declared_cc0_partition_count": 2,
+    "declared_cc0_source_row_count": 496,
+    "sampled_cc0_partition_count": 1,
+    "sampled_cc0_source_row_count": 267
+  },
+  "inputs": [
+    "reports/agent1-workbench-source-name-custody-partitions-2026-06-04.json"
+  ],
+  "command_or_script": {
+    "build": "node scripts/build_agent1_workbench_cc0_public_domain_zero_boundary_map.mjs",
+    "current_status": "runnable"
+  },
+  "outputs": {
+    "json": "reports/agent1-workbench-cc0-public-domain-zero-boundary-map-2026-06-04.json",
+    "markdown": "reports/agent1-workbench-cc0-public-domain-zero-boundary-map-2026-06-04.md"
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_workbench_cc0_public_domain_zero_boundary_map.mjs",
+    "contract_validator": "node scripts/validate_agent1_spark1_workbench_cc0_public_domain_zero_boundary_contract.mjs",
+    "current_status": "validated"
+  },
+  "required_source_fields": [
+    "source_name",
+    "source_family",
+    "license_label",
+    "license_url",
+    "version_source",
+    "source_row_count",
+    "unique_source_id_count",
+    "unique_work_count",
+    "license_lane",
+    "attribution_required",
+    "derived_from_nc",
+    "commercial_export_allowed",
+    "share_alike_required",
+    "corpus_contamination",
+    "agent6_boundary_required",
+    "answer_eligible",
+    "public_emit",
+    "boundary_status",
+    "blocker_reason",
+    "sample_source_urls"
+  ],
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "cc0_public_domain_zero_candidate": true,
+    "cc0_export_authorized_now": false,
+    "public_emit_now": false,
+    "answer_eligible_now": false,
+    "definition_content_storage_now": false
+  },
+  "package_owner": "Agent 1",
+  "agent6_boundary_need": "Agent 6/release boundary is required before CC0 source/license custody acceptance, public display, answer use, definition text use, or package/export behavior.",
+  "spark1_stop_condition": "output plus validator pass, or exact missing input/output/schema/validator/count blocker",
+  "what_must_not_be_accepted": [
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "QA acceptance",
+    "public/runtime mutation",
+    "Definition authority",
+    "answer acceptance",
+    "accepted gloss/text",
+    "publication readiness",
+    "NC commercial authorization",
+    "CC0 export authorization"
+  ]
+}

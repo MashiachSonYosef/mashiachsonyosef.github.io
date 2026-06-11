@@ -1,0 +1,69 @@
+{
+  "artifact": "reports/agent10-orot-spark-325-package-reconciliation-2026-06-04.json",
+  "status": "reconciled_325_claim_invalid_current_basis",
+  "package_path": "data/build/orot/reader-hint-placeholder-candidates.json",
+  "restored_basis": "HEAD exact package and candidate artifacts aligned to Agent 6 next-missed-dictionary verdict",
+  "current_package": {
+    "rows": 113,
+    "occurrences": 4239,
+    "next_missed_dictionary_rows": 50,
+    "next_missed_dictionary_occurrences": 1193,
+    "candidate_row_ids_match_agent6_verdict": true,
+    "package_appended_row_ids_match_agent6_verdict": true
+  },
+  "invalidated_states": [
+    {
+      "claim": "Spark continuation claimed 325 rows / 6110 occurrences",
+      "claim_path": "reports/spark5-plus-orot-continuation-2026-06-04f.md",
+      "reason": "No distinct validated 325-row package is present in the current support artifact or package path."
+    },
+    {
+      "claim": "Dirty regenerated package had 113 rows / 4247 occurrences",
+      "reason": "It replaced two Agent 6-cleared token ids with two uncleared token ids, so it is structurally valid but not exact to the Agent 6-cleared row boundary."
+    }
+  ],
+  "zero_counts": {
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "validation": [
+    "node scripts/validate_agent10_orot_non_public_reader_hint_placeholder_package.mjs"
+  ],
+  "spark2_independent_verification": {
+    "agent_id": "019e923d-9634-7041-b451-1e94b639f736",
+    "status": "completed_no_distinct_validated_325_package_found",
+    "current_package_rows": 113,
+    "current_package_occurrences": 4239,
+    "validator_result": "passed",
+    "files_checked": [
+      "reports/spark5-plus-orot-continuation-2026-06-04f.md",
+      "reports/agent10-orot-spark-325-package-reconciliation-2026-06-04.json",
+      "data/build/orot/reader-hint-placeholder-candidates.json",
+      "reports/agent10-orot-next-missed-dictionary-cleared-append-2026-06-03.json"
+    ]
+  },
+  "next_release_owner_action": "Route existing 2026-06-04 Orot Agent 6/Agent 1-ready dockets for authority review; keep Spark-2 325 check as independent verification only.",
+  "no_acceptance_claims": [
+    "QA",
+    "source/provenance",
+    "license",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "public/runtime",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text"
+  ]
+}

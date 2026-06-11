@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_definition_workbench_usage_join_smoke_package",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "package existing Definition Workbench usage join-smoke as Agent 2 reader-planning evidence for unmatched/no-hint lane",
+  "files": {
+    "inputs": [
+      "data/definitions/definition-workbench-usage-join-smoke.json",
+      "reports/definition-workbench-usage-join-smoke.md",
+      "data/definitions/definition-workbench-sample.json",
+      "data/definitions/definition-workbench-usage-seed-queue.json"
+    ],
+    "pipeline": [
+      "scripts/build_definition_workbench_usage_join_smoke.mjs",
+      "scripts/validate_definition_workbench_usage_join_smoke.mjs"
+    ],
+    "outputs": [
+      "reports/agent2-definition-workbench-usage-join-smoke-package-2026-06-04.md",
+      "reports/agent2-definition-workbench-usage-join-smoke-package-2026-06-04.json"
+    ]
+  },
+  "command_run": {
+    "validate": "node scripts/validate_definition_workbench_usage_join_smoke.mjs data/definitions/definition-workbench-usage-join-smoke.json",
+    "stdout": "Definition Workbench usage join smoke validation passed.\nJoin rows: 1; absent seeds: 1; occurrence links: 12."
+  },
+  "output_artifact": "reports/agent2-definition-workbench-usage-join-smoke-package-2026-06-04.json",
+  "counts": {
+    "current_sample_rows_checked": 200,
+    "join_rows": 1,
+    "seed_rows_absent_from_sample": 1,
+    "seed_rows_already_in_sample": 0,
+    "projected_rows_after_bounded_seed_append": 201,
+    "projected_usage_link_rows": 2390,
+    "selected_usage_occurrence_links": 12,
+    "route_ids": 1,
+    "audit_only_ambiguous_rows": 2064,
+    "reader_facing_rows": 0,
+    "forbidden_authority_field_hits": 0,
+    "forbidden_verified_label_rows": 0
+  },
+  "validator": {
+    "command": "node scripts/validate_definition_workbench_usage_join_smoke.mjs data/definitions/definition-workbench-usage-join-smoke.json",
+    "result": "passed",
+    "warning_count": 0
+  },
+  "missing_field_blocker": {
+    "id": "missing_joined_definition_workbench_sample_artifact_contract",
+    "required_to_unblock": [
+      "exact builder command for a joined sample artifact",
+      "output path for the joined sample",
+      "validator for the joined sample",
+      "rule for preserving original sample while adding seed row or creating separate non-public joined artifact",
+      "Agent 6 boundary question",
+      "stop condition preserving zero answer/public/authority emissions"
+    ]
+  },
+  "spark1_handoff": {
+    "may_rerun_existing_join_smoke": true,
+    "commands": [
+      "node scripts/build_definition_workbench_usage_join_smoke.mjs",
+      "node scripts/validate_definition_workbench_usage_join_smoke.mjs data/definitions/definition-workbench-usage-join-smoke.json"
+    ],
+    "new_joined_sample_status": "blocked_until_missing_joined_sample_artifact_contract_is_supplied"
+  },
+  "agent6_boundary": {
+    "requested_now": false,
+    "future_question": "Can the exact joined Definition Workbench usage sample be treated as non-authoritative reader-planning evidence only, with route-ID-only usage links, no Definition authority, no answer eligibility, no accepted gloss/text, no public reader output, no route-shard edit, and no public/runtime mutation?"
+  },
+  "stop_condition": "Stop after packaging the validated join-smoke and recording the exact missing joined-sample artifact contract.",
+  "what_must_not_be_accepted": [
+    "Definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation"
+  ]
+}

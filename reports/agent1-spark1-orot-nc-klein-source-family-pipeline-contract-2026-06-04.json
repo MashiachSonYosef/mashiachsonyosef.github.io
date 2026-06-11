@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "weekly_order_source": "reports/oracle9-weekly-goal-mode-lexicon-expansion-order-2026-06-04.md",
+  "canonical_sibling_contract": "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-2026-06-04.json",
+  "target": {
+    "work": "Orot",
+    "source_family": "Klein Dictionary",
+    "classification": "noncommercial_educational_candidate",
+    "rows": 17,
+    "occurrences": 259
+  },
+  "inputs": [
+    "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+    "reports/agent1-orot-sefaria-nc-aware-family-custody-display-review-2026-06-03.json",
+    "reports/agent10-agent1-agent6-orot-nc-aware-boundary-request-2026-06-03.json",
+    "data/build/orot/reader-hint-placeholder-candidates.json",
+    "reports/agent6-orot-nc-klein-source-family-map-boundary-verdict-2026-06-04.md"
+  ],
+  "command_or_script": {
+    "build": "node scripts/build_agent1_orot_nc_klein_source_family_pipeline.mjs",
+    "current_status": "runnable"
+  },
+  "outputs": {
+    "json": "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+    "markdown": "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.md"
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_orot_nc_klein_source_family_pipeline.mjs",
+    "contract_validator": "node scripts/validate_agent1_spark1_orot_nc_klein_source_family_contract.mjs",
+    "current_status": "validated"
+  },
+  "license_flags": {
+    "license_lane": "noncommercial_educational_candidate",
+    "derived_from_nc": true,
+    "commercial_export_allowed": false,
+    "attribution_required": true,
+    "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+    "corpus_contamination": false,
+    "answer_eligible": false,
+    "public_emit": false
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true,
+    "commercial_export_allowed_now": false
+  },
+  "package_owner": "Agent 1",
+  "agent6_boundary_need": "WARN-ACCEPTED planning evidence only; no NC storage/display/public/answer/export authorization.",
+  "agent6_boundary_question": "Can the 17 Klein / CC-BY-NC Orot rows remain as non-public noncommercial_educational_candidate planning rows with metadata-only / external-link-only posture, while preserving derived_from_nc=true, commercial_export_allowed=false, attribution required, corpus_contamination=false, no NC definition-content storage, no public/runtime output, no answer eligibility, and no commercial export?",
+  "agent6_current_state": "WARN-ACCEPTED planning evidence only; no NC storage/display/public/answer/export authorization.",
+  "spark1_stop_condition": "output plus validator pass, or exact missing input/output/schema/validator/count blocker",
+  "what_must_not_be_accepted": [
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "QA acceptance",
+    "Definition authority",
+    "runtime/public acceptance",
+    "publication readiness",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "NC commercial authorization",
+    "public/runtime mutation"
+  ]
+}

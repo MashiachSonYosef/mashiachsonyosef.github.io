@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_old_dictionary_78_row_source_citation_dependency_check",
+  "generated_at": "2026-06-06T06:28:01.309Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Agent 2 transform-output proposal dependency check after Agent10 source-citation enrichment workset",
+  "files_used": {
+    "agent2_transform_output_blocker": "reports/agent2-old-dictionary-78-row-transform-output-proposal-missing-pipeline-blocker-2026-06-06.json",
+    "agent2_transform_output_blocker_validation": "reports/agent2-old-dictionary-78-row-transform-output-proposal-missing-pipeline-blocker-validation-result-2026-06-06.json",
+    "agent10_agent1_source_citation_workset": "reports/agent10-agent1-ready-old-dictionary-78-row-source-citation-enrichment-workset-2026-06-06.json",
+    "agent10_agent1_source_citation_route_blocker": "reports/agent10-agent1-old-dictionary-78-row-source-citation-enrichment-live-route-blocker-2026-06-06.json",
+    "preboundary_matrix": "reports/agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json",
+    "zero_text_package_anchor": "reports/agent10-old-dictionary-78-row-zero-text-candidate-use-package-planning-2026-06-06.json"
+  },
+  "lane_counts_rows_consumed": {
+    "rows": 78,
+    "occurrences": 1461,
+    "source_license_lane": "commercial_clean_candidate",
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "dependency_status": {
+    "source_citation_or_url_dependency_is_now_agent10_agent1_workset": true,
+    "agent10_agent1_workset_status": "ready_for_agent1_source_citation_enrichment_or_exact_blocker",
+    "agent10_agent1_route_blocker": "stale_agent1_registry_target_current_agent1_thread_required",
+    "agent2_transform_matrix_still_blocked": true,
+    "remaining_agent2_blocker": "missing_transform_output_proposal_matrix_or_exact_transform_rule",
+    "source_citation_or_url_supplied_now": false,
+    "transform_rule_supplied_now": false
+  },
+  "output_artifact_path": "reports/agent2-old-dictionary-78-row-source-citation-dependency-check-2026-06-06.md",
+  "exact_blockers": [
+    "missing_source_field::source_citation_or_url",
+    "missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text",
+    "stale_agent1_registry_target_current_agent1_thread_required",
+    "missing_source_citation_or_url_for_78_row_subset",
+    "new_exact_agent6_packet_required_before_transform_output_candidate_text_definition_lemma_reader_hint_content_storage_answer_eligibility_route_write_public_runtime_mutation_export_accepted_text_publication_readiness_or_release"
+  ],
+  "handoff_owner": {
+    "agent1": "Supply source_citation_or_url for the exact 78 rows or exact missing-source blocker; current route target is stale.",
+    "agent5_or_coordination": "Provide/reroute through current Agent 1 thread for the source-citation enrichment workset.",
+    "agent10": "Consume Agent1 source-citation enrichment or exact blocker, then return to Agent2 only if source_citation_or_url and transform rule inputs are supplied.",
+    "agent2": "Remain blocked from transform-output proposal matrix; preserve zero-output readiness only."
+  },
+  "command_timeout_records": [
+    {
+      "command": "Get-ChildItem -Path reports | Where-Object { $_.Name -like '*78-row-transform-output*2026-06-06*' -or $_.Name -like '*78-row-candidate-use*2026-06-06*' -or $_.Name -like '*source-citation*2026-06-06*' } | Sort-Object LastWriteTime -Descending | Select-Object -First 80 -ExpandProperty Name",
+      "timeout_ms": 120000,
+      "timed_out": false,
+      "partial_output_or_artifact": "observed Agent10 Agent1 source-citation enrichment workset and live-route blocker",
+      "next_safe_action": "Read source-citation workset and record Agent2 dependency check."
+    },
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_78_row_transform_output_proposal_missing_pipeline_blocker.mjs reports\\agent2-old-dictionary-78-row-transform-output-proposal-missing-pipeline-blocker-2026-06-06.json",
+      "timeout_ms": 120000,
+      "timed_out": false,
+      "partial_output_or_artifact": "Agent2 transform-output proposal missing-pipeline blocker validation passed. Rows: 78; occurrences: 1461; blocker: missing_transform_output_proposal_matrix_or_exact_transform_rule.",
+      "next_safe_action": "Preserve exact blocker while consuming new source-citation dependency state."
+    },
+    {
+      "command": "Get-Content -Path 'reports/agent10-agent1-ready-old-dictionary-78-row-source-citation-enrichment-workset-2026-06-06.json' -TotalCount 240",
+      "timeout_ms": 120000,
+      "timed_out": false,
+      "partial_output_or_artifact": "reports/agent10-agent1-ready-old-dictionary-78-row-source-citation-enrichment-workset-2026-06-06.json",
+      "next_safe_action": "Record source_citation_or_url as upstream Agent1 dependency."
+    },
+    {
+      "command": "Get-Content -Path 'reports/agent10-agent1-old-dictionary-78-row-source-citation-enrichment-live-route-blocker-2026-06-06.json' -TotalCount 180",
+      "timeout_ms": 120000,
+      "timed_out": false,
+      "partial_output_or_artifact": "reports/agent10-agent1-old-dictionary-78-row-source-citation-enrichment-live-route-blocker-2026-06-06.json",
+      "next_safe_action": "Name stale Agent1 route as the current handoff blocker."
+    }
+  ],
+  "stop_condition": "Stop at dependency check. Do not emit transform output, candidate text, definition/lemma/reader-hint content, answer rows, public/runtime mutation, route writes, accepted text, source-license/legal acceptance, export, publication readiness, or release action.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

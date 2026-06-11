@@ -1,0 +1,48 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T09:13:08.580Z",
+  "target": "Agent 4 validator/prereq packet sweep after changed-input selector harness",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent4-changed-input-selector-harness-proof-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep.mjs --out=reports\\agent4-validator-prereq-packet-sweep-result-after-selector-harness-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_result.mjs --input=reports\\agent4-validator-prereq-packet-sweep-result-after-selector-harness-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "agent4_packet_count": 51,
+    "passed": 51,
+    "failed": 0,
+    "shape_proof": 42,
+    "shape_proof_with_blocker": 5,
+    "shape_blocker": 4,
+    "command_count_total": 126,
+    "blocker_count_total": 96
+  },
+  "result": "validated_agent4_packet_corpus_after_selector_harness",
+  "exact_blockers": [
+    {
+      "code": "changed_input_required_for_next_sweep",
+      "details": "Do not repeat the same Agent4 packet sweep unless a new changed/candidate input, selector output, or proof packet appears."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-validator-prereq-packet-sweep-after-selector-harness-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-validator-prereq-packet-sweep-after-selector-harness-proof-2026-06-06.md",
+  "machine_sweep_result": "reports/agent4-validator-prereq-packet-sweep-result-after-selector-harness-2026-06-06.json",
+  "handoff_owner": "Agent 4 for changed-input-only validation discipline; Agent 10 only when a release/package intake packet is boundary-ready.",
+  "next_safe_action": "Use scripts/select_agent4_changed_input_candidate.mjs before the next validation pulse and run only an exact validator for a selected changed/candidate input.",
+  "stop_condition": "Stop after validating the Agent4 packet corpus after the selector harness addition.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

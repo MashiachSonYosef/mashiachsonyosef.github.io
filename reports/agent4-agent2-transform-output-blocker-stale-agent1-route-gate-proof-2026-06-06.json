@@ -1,0 +1,67 @@
+{
+  "artifact_type": "agent4_agent2_transform_output_blocker_stale_agent1_route_gate_proof",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Agent2 old-dictionary 78-row transform-output stale-Agent1-route blocker",
+  "changed_input_artifact": "reports/agent2-old-dictionary-78-row-transform-output-proposal-blocker-stale-agent1-route-2026-06-06.json",
+  "validator_proof_commands": [
+    {
+      "command": "node --check scripts\\validate_agent2_transform_output_blocker_stale_agent1_route.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_transform_output_blocker_stale_agent1_route.mjs reports\\agent2-old-dictionary-78-row-transform-output-proposal-blocker-stale-agent1-route-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent2 transform-output stale-Agent1-route blocker validation passed. Rows: 78; occurrences: 1461; blockers: 4."
+    }
+  ],
+  "files": {
+    "validator": "scripts/validate_agent2_transform_output_blocker_stale_agent1_route.mjs",
+    "blocker": "reports/agent2-old-dictionary-78-row-transform-output-proposal-blocker-stale-agent1-route-2026-06-06.json"
+  },
+  "counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "source_license_lane": "commercial_clean_candidate",
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "result": "stale_agent1_route_blocker_validated_agent2_must_not_emit_matrix",
+  "exact_blockers": [
+    "missing_source_field::source_citation_or_url",
+    "missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text",
+    "next_transform_output_or_candidate_text_boundary_not_supplied",
+    "stale_agent1_registry_target_current_agent1_thread_required"
+  ],
+  "next_handoff_owner": "Agent5/coordination for current Agent1 route; Agent1 for source_citation_or_url or exact blocker; Agent2 remains waiting and must not emit matrix until both source citation and transform rule blockers clear",
+  "stop_condition": "Stop at stale-Agent1-route blocker proof. Do not rerun without a changed Agent2 blocker, Agent1 return, Agent10 consumption packet, current Agent1 route proof, or validator. Do not perform definition/lemma/reader-hint content storage, answer acceptance, public emit, route shard write, public/runtime mutation, source/license/legal/product/data acceptance, export, publication readiness, or release action.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

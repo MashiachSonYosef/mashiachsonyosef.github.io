@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_lowmode_definition_workbench_500_package_and_next_target",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "route": "Agent 8 Route - Agent 13 Low-Mode Definition Task Shape",
+  "low_mode_task": "package 500-row Definition Workbench sample and define next deterministic definition workset or zero-candidate blocker; do not decide Definition authority",
+  "exact_inputs": [
+    "reports/spark2-broad-definition-workbench-500-sample-refresh-2026-06-04.md",
+    "data/definitions/definition-workbench-sample-500.json",
+    "reports/definition-workbench-sample-500-report.md",
+    "reports/agent6-broad-definition-workbench-500-sample-boundary-verdict-2026-06-04.md"
+  ],
+  "expected_artifacts": [
+    "reports/agent2-lowmode-definition-workbench-500-package-and-next-target-2026-06-04.md",
+    "reports/agent2-lowmode-definition-workbench-500-package-and-next-target-2026-06-04.json"
+  ],
+  "baseline_500_counts": {
+    "rows": 500,
+    "rows_with_route_cards": 498,
+    "rows_without_route_cards_repair_targets": 2,
+    "rows_with_complete_source_license": 498,
+    "multi_answer_rows": 183,
+    "status_counts": {
+      "conflicting": 183,
+      "missing": 2,
+      "proposed_only": 148,
+      "single_answer_source_complete": 167
+    },
+    "review_status_counts": {
+      "unreviewed_machine_sample": 500
+    },
+    "publication_boundary": "blocked_no_render",
+    "answer_eligibility_emitted": 0,
+    "public_reader_output_emitted": 0,
+    "route_shard_edits": 0,
+    "public_runtime_mutations": 0
+  },
+  "validator": {
+    "command": "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample-500.json",
+    "result": "passed",
+    "stdout": "Definition Workbench sample validation passed. Rows: 500.",
+    "spark2_report": {
+      "build_exit_code": 0,
+      "validate_exit_code": 0,
+      "diff_check_exit_code": 0,
+      "missing_pipeline_blocker": "none"
+    }
+  },
+  "agent6_boundary": {
+    "verdict_artifact": "reports/agent6-broad-definition-workbench-500-sample-boundary-verdict-2026-06-04.md",
+    "disposition": "WARN-ACCEPTED for non-authoritative route-shape / reader-planning evidence only",
+    "preserved_warning_controls": [
+      "single_answer_source_complete is machine route-shape status, not reviewed lexical authority",
+      "answer card fields are evidence/card identifiers and counts only",
+      "source_license_complete=true is a completeness indicator only",
+      "multi-answer conflicting rows remain warnings and cannot be collapsed into hidden winners",
+      "proposed_only rows remain proposed-only",
+      "missing rows remain repair targets only"
+    ]
+  },
+  "next_deterministic_workset": {
+    "workset": "1000-row Definition Workbench sample expansion",
+    "relationship_to_baseline": "useful continuation, not replacement for the 500-row Agent 6 baseline",
+    "build_command": "node scripts/build_definition_workbench_sample.mjs --limit=1000 --output=data/definitions/definition-workbench-sample-1000.json --report=reports/definition-workbench-sample-1000-report.md",
+    "validator_command": "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample-1000.json",
+    "output": "data/definitions/definition-workbench-sample-1000.json",
+    "report": "reports/definition-workbench-sample-1000-report.md",
+    "package": "reports/agent2-definition-workbench-1000-sample-pipeline-package-2026-06-04.md",
+    "counts": {
+      "rows": 1000,
+      "rows_with_route_cards": 996,
+      "rows_without_route_cards_no_hint_repair_targets": 4,
+      "rows_with_complete_source_license": 996,
+      "multi_answer_rows": 293,
+      "status_counts": {
+        "conflicting": 293,
+        "missing": 4,
+        "proposed_only": 361,
+        "single_answer_source_complete": 342
+      },
+      "review_status_counts": {
+        "unreviewed_machine_sample": 1000
+      }
+    }
+  },
+  "blocker": {
+    "baseline_500_package_blocker": null,
+    "next_1000_mechanical_workset_blocker": null,
+    "remaining_boundary_blocker": "agent6_boundary_needed_for_1000_row_sample_before_public_or_authority_use",
+    "missing_for_stronger_use": [
+      "row-level reviewed Definition authority",
+      "answer eligibility review",
+      "conflict disposition for multi-answer rows",
+      "public/runtime proof",
+      "source/provenance and license acceptance",
+      "Agent 6 packet for public or authority use"
+    ]
+  },
+  "handoff": {
+    "agent10": "500-row sample is the required low-mode baseline; 1000-row sample is deterministic next workset prepared for possible routing",
+    "spark1": "mechanical rerun only with exact supplied commands; no authority or acceptance inference"
+  },
+  "stop_condition": "Stop after packaging the 500-row baseline, naming the 1000-row deterministic next workset, preserving the Agent 6 boundary, and recording validators.",
+  "what_must_not_be_accepted": [
+    "Definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation"
+  ]
+}

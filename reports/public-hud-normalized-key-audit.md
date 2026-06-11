@@ -1,8 +1,9 @@
 # Public HUD Normalized Key Audit
 
-Generated: 2026-05-31T17:06:57.494Z
+Generated: 2026-06-01T17:12:13.679Z
 Status: pass
 Manifest: `data/definitions/hud-route-lookup/manifest.json`
+Publication status: blocked_no_render
 
 ## Policy
 
@@ -47,4 +48,9 @@ Public HUD lookup keys must not contain English grammar annotations, digits, plu
 
 ## Boundary
 
-This audit checks lookup-key hygiene only. It does not import definitions, rewrite source texts, or infer meanings.
+- Validates: public_hud_route_lookup_manifest, public_hud_route_lookup_shards
+- Does not clear: translation_output, source_publication, public_lexical_export_reuse, accepted_definition_authority
+- Answer eligibility scope: hud_answer_slot_only_not_translation_or_publication_readiness
+- Route lookup scope: definition_route_lookup_data_not_publication_readiness
+- Current route inputs reconciled: not_checked_by_public_lookup_manifest_validate_release_stamp_and_drift
+- This audit checks lookup-key hygiene only. It does not import definitions, rewrite source texts, infer meanings, create accepted translation output, or establish publication readiness.

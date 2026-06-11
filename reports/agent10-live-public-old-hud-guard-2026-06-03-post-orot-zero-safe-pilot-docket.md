@@ -1,6 +1,6 @@
 # Agent 10 Live Public Old-HUD Guard
 
-Generated: 2026-06-03T10:27:46.079Z
+Generated: 2026-06-04T00:58:42.286Z
 
 ## Boundary
 
@@ -14,7 +14,7 @@ Generated: 2026-06-03T10:27:46.079Z
 2. Old HUD exposure: NO
 3. Pages left public: `/`, `/orot/`, `/tanakh/deuteronomy/`, `/tanakh/genesis/`
 4. Pages quarantined/checked: `/hud-preview/`, `/hud-preview/routes/`, `/reader-workbench/`, `/sample/`, `/old-hud/`
-5. Commit/deploy id: `50b1eab6ab34f5a8d971981aa3b12221dc6cb743`
+5. Commit/deploy id: `bae62829558ce2754a409e96a848cca710d92442`
 6. Remaining blocker: None for this bounded static live guard. Browser-click/runtime acceptance remains outside this packet.
 
 ## Summary
@@ -44,14 +44,14 @@ Generated: 2026-06-03T10:27:46.079Z
 
 ## Runtime Assets
 
-- /assets/js/reader-workbench.js: HTTP 200; bytes=64464; hard old markers=none; watch=sourceSummary, data-selected-gloss; current=data-route-hud-panel, data-lexical-token, data-lexical-config, hud_route_lookup_manifest_url, reader_hint_url, source-footnotes, answer_eligible, answer_role; sha256=`c20bc6c94a591f7c7459164a82ae1fc0bc859e7f31fa67a0d7ff4f87f4c58d48`
+- /assets/js/reader-workbench.js: HTTP 200; bytes=68033; hard old markers=none; watch=sourceSummary, data-selected-gloss; current=data-route-hud-panel, data-lexical-token, data-lexical-config, hud_route_lookup_manifest_url, reader_hint_url, source-footnotes, answer_eligible, answer_role; sha256=`19d9616050e3e9ea5690378821d80988b58b77574fae98bd505228433a39ae44`
 - /assets/css/reader-workbench.css: HTTP 200; bytes=3538; hard old markers=none; watch=none; current=none; sha256=`de69adb8b0325fa804c1a6bae5e8838ac95336e760e2fdcf2ffa841867166e66`
 
 ## Public-HUD Data
 
 - orot/manifest.json: HTTP 200; bytes=898; hard old markers=none; watch=none; current=none; sha256=`473fec8819011b972f4daadef339aa3ed7e2a3af7991daa6c9270d86ce173650`
 - orot/occurrences.json: HTTP 200; bytes=1261481; hard old markers=none; watch=none; current=none; sha256=`fde072caaf14165a207ae3f75886f23c72b68a94591acf92f249d818fc96a631`
-- orot/reader-hints.json: HTTP 200; bytes=6057159; hard old markers=none; watch=none; current=none; sha256=`92f286adaa16549c81abef013647e641bea672ab8a949065131c8d714db39a29` counts={"occurrence_token_count":59806,"unique_token_id_count":17307,"existing_hint_count":8722,"added_hint_count":7,"final_hint_count":8729,"existing_hint_occurrences":39998,"added_hint_occurrences":75,"final_hint_occurrences":40073}
+- orot/reader-hints.json: HTTP 200; bytes=7372374; hard old markers=none; watch=none; current=answer_eligible; sha256=`33bff1ff9b78fe8c6059b9905b54900bcf62c8228b922b01ba58322d6dcd023a` counts={"occurrence_token_count":59806,"unique_token_id_count":17307,"existing_hint_count":8722,"added_hint_count":7,"final_hint_count":8759,"existing_hint_occurrences":39998,"added_hint_occurrences":75,"final_hint_occurrences":40461,"pending_review_placeholder_rows":30,"pending_review_placeholder_occurrences":388,"nc_pending_review_placeholder_rows":17,"nc_pending_review_placeholder_occurrences":259}
 - orot/route-lookup/manifest.json: HTTP 200; bytes=3213694; hard old markers=none; watch=none; current=data/public-hud; sha256=`3b271cb83e3515c348d32448f6cd625e264c2b66f4b3cb32595fc902b6080cab` counts={"selected_token_count":8729,"selected_lookup_candidate_count":16355,"preserved_existing_route_key_count":0,"preserved_existing_card_count":0,"selected_existing_route_key_count":0,"distinct_normalized_tokens":9494,"public_route_key_count":9494,"shard_count":3184,"card_count":23506,"total_shard_bytes":49259581,"max_shard_bytes":150072,"truncated_key_count":12976}
 - orot/route-lookup/shards/05d0.json: HTTP 200; bytes=6499; hard old markers=none; watch=none; current=answer_eligible, answer_role; sha256=`b6b3b9f7d83edc39a0ee940aec28cd824ab853a7afb71816dcb15322b53688ad`
 - orot/route-lookup/shards/05db-05dc-05be.json: HTTP 200; bytes=1175; hard old markers=none; watch=none; current=answer_eligible, answer_role; sha256=`af2942716d0dad8ebe1cc0f5672c0cf72470fc646365889e1a007ce9c00e129c`

@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:59.999Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent10-boundary-question-and-commercial-nc-exclusion",
+  "status": "validated_nonpublic_boundary_question_and_nc_overlap_exclusion_planning_evidence_only_no_acceptance",
+  "files": {
+    "agent1_commercial_nc_overlap_exclusion_manifest": {
+      "path": "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-2026-06-05.json",
+      "sha256": "db45ac918da2ce76a031db342c945f2a8680732c78bc671188c77d824e494a41"
+    },
+    "agent1_commercial_nc_overlap_exclusion_validation": {
+      "path": "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-validation-result-2026-06-05.json",
+      "sha256": "36be1bba8b168c1ca85ca69359b9a5b0c71e59be7ee7e8de24c3aa0c11e0bd84"
+    },
+    "agent1_boundary_question_packet": {
+      "path": "reports/agent1-old-dictionary-agent6-boundary-question-packet-2026-06-05.json",
+      "sha256": "cf0649b5f381f1723d3f670225ffc324502f2262d3c43d8395f6384cc491ce8a"
+    },
+    "agent1_boundary_question_packet_validation": {
+      "path": "reports/agent1-old-dictionary-agent6-boundary-question-packet-validation-result-2026-06-05.json",
+      "sha256": "2e9e7cf4ead5bd4c1577b8c6ab16e66e1a6b166a5ed6f906d2d9dd6271dfbb98"
+    },
+    "agent2_boundary_question_receipt": {
+      "path": "reports/agent2-agent1-boundary-question-packet-receipt-2026-06-05.json",
+      "sha256": "8644c8a7cf2e34aa8e2b8cc2a25a6a27f01c151016feacaee4a5b3db4566f21e"
+    },
+    "agent10_boundary_question_delivery_proof": {
+      "path": "reports/agent10-agent6-agent1-old-dictionary-boundary-question-packet-delivery-proof-2026-06-05.json",
+      "sha256": "4a1d313bc6cda5e809a06d02d7035390087cdd934a51a4869dcd3ef88ff212eb"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_commercial_nc_overlap_exclusion_manifest.mjs reports\\agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_agent6_boundary_question_packet.mjs reports\\agent1-old-dictionary-agent6-boundary-question-packet-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_agent1_boundary_question_packet_receipt.mjs reports\\agent2-agent1-boundary-question-packet-receipt-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "overlap_counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_nc_overlap_rows": 197,
+    "commercial_nc_overlap_occurrences": 4185,
+    "commercial_nc_without_bdb_augmented_strong_rows": 57,
+    "commercial_nc_without_bdb_augmented_strong_occurrences": 818,
+    "commercial_nc_with_bdb_augmented_strong_rows": 140,
+    "commercial_nc_with_bdb_augmented_strong_occurrences": 3367,
+    "klein_only_excluded_rows": 17,
+    "klein_only_excluded_occurrences": 259,
+    "pairwise_klein_intersection_count": 4,
+    "exact_klein_combination_count": 7
+  },
+  "boundary_question_counts": {
+    "total_boundary_question_rows": 6,
+    "commercial_clean_candidate_questions": 3,
+    "noncommercial_educational_candidate_questions": 1,
+    "metadata_or_link_only_question_records": 1,
+    "blocked_or_needs_review_questions": 1,
+    "source_family_rows": 5,
+    "commercial_clean_candidate_source_families": 3,
+    "noncommercial_educational_candidate_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1
+  },
+  "zero_output_counts": {
+    "agent6_delivery_rows_now_in_source_artifact": 0,
+    "future_candidate_use_questions_opened_now_in_source_artifact": 0,
+    "agent2_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "emitted_answer_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_gloss_text_rows": 0,
+    "definition_content_rows": 0,
+    "nc_commercial_authorization_rows": 0,
+    "commercial_export_authorization": 0,
+    "queue_mutations": 0,
+    "staging_mutations": 0,
+    "render_mutations": 0,
+    "release_actions": 0
+  },
+  "result": "Commercial+NC overlap exclusion manifest and Agent1 boundary-question packet/Agent2 receipt validate as nonpublic planning evidence only; Agent10 delivery proof records queueing to Agent6.",
+  "blocker_if_any": "wait_for_agent6_exact_boundary_question_verdict_before_candidate_use_transform_source_row_emission_candidate_text_output_runtime_answer_definition_export_or_release",
+  "next_handoff": "Agent 10 owns Agent6 boundary-question delivery; Agent4 preserves validator evidence and NC/commercial exclusion guardrail.",
+  "stop_condition": "Do not rerun unless exclusion manifest, boundary-question packet, receipt, delivery proof, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no source-family selection acceptance",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

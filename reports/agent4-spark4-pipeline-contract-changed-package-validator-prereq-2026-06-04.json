@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_spark4_pipeline_contract_changed_package_validator_prereq",
+  "generated_at": "2026-06-04",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / HYBRID",
+  "status": "contract_authored_changed_input_only_wake",
+  "lane": "Agent 4 runtime/QC/validator/prereq",
+  "source_inputs": [
+    "reports/agent7-agent5-production-shaped-goal-map-2026-06-04.md",
+    "data/control/spark_standing_queue.json"
+  ],
+  "changed_package_input_definition": {
+    "required": true,
+    "description": "A changed package/input is a package, page set, runtime artifact, public-HUD bundle, reader-hint package, route package, or per-book baseline target whose path/hash/commit/target differs from the last Agent 4 packaged validator result.",
+    "required_fields": [
+      "package_owner",
+      "package_path_or_url",
+      "package_hash_or_commit_or_mtime",
+      "target_pages_or_work_ids",
+      "change_summary",
+      "expected_output_path",
+      "stop_condition",
+      "non_acceptance_boundary"
+    ],
+    "unchanged_result": "If these fields are absent or match the last packaged input, Spark-4 must not rerun validators and must return changed_input_only_blocker."
+  },
+  "exact_command_list_definition": {
+    "required": true,
+    "rules": [
+      "Commands must be complete executable command lines from repository root.",
+      "Commands must refer to existing scripts or existing shell checks.",
+      "No command may be inferred from package type.",
+      "No browser/public proof command may run without a changed package plus Agent 6 route."
+    ],
+    "currently_authorized_examples_from_agent7": [
+      "node scripts/validate_agent10_orot_non_public_reader_hint_placeholder_package.mjs",
+      "node scripts/validate_agent10_orot_reader_hint_candidate_patch_agent6_docket.mjs reports/agent10-agent6-ready-orot-reader-hint-candidate-patch-docket-2026-06-04.json",
+      "node scripts/validate_route_hud_page.mjs --page orot/index.html --page tanakh/deuteronomy/index.html --page tanakh/genesis/index.html",
+      "node scripts/validate_agent4_live_browser_runtime_evidence.mjs",
+      "node scripts/audit_live_public_old_hud_guard.mjs",
+      "node scripts/audit_live_deuteronomy_runtime.mjs"
+    ],
+    "missing_result": "missing_pipeline_blocker"
+  },
+  "expected_output_path_schema": {
+    "required": true,
+    "md_path_pattern": "reports/agent4-<scope>-validator-prereq-runtime-<YYYY-MM-DD>.md",
+    "json_path_pattern": "reports/agent4-<scope>-validator-prereq-runtime-<YYYY-MM-DD>.json",
+    "required_report_fields": [
+      "lane",
+      "changed_package_input",
+      "commands_run",
+      "validator_results",
+      "marker_checks",
+      "file_hash_or_package_diff_evidence",
+      "runtime_prerequisites_checked",
+      "issues",
+      "warnings",
+      "exact_blockers",
+      "wake_condition",
+      "stop_condition",
+      "not_accepted"
+    ]
+  },
+  "validator_gate": {
+    "hard_old_hud_marker_target": 0,
+    "watch_marker_policy": "warn_and_route_to_Agent10_Agent6_unless the command explicitly defines watch markers as fatal",
+    "runtime_public_proof_policy": "blocked unless changed package plus Agent 6 route exists",
+    "rerun_policy": "unchanged validator item is capped"
+  },
+  "per_book_baseline_harness": {
+    "purpose": "Baseline validator/prereq evidence for one named book target without candidate-data publication.",
+    "target_definition_required": [
+      "work_id",
+      "canonical_page",
+      "expected_artifact",
+      "exact_command",
+      "stop_condition"
+    ],
+    "deuteronomy_exact_command": "node scripts/audit_live_deuteronomy_runtime.mjs",
+    "deuteronomy_cap": "Do not rerun unless a changed target/request names Deuteronomy baseline again."
+  },
+  "package_owner": {
+    "release_package_owner": "Agent 10",
+    "queue_route_owner": "Agent 7 / Agent 5",
+    "validator_lane_owner": "Agent 4",
+    "mechanical_runner": "Spark-4",
+    "qa_boundary_owner": "Agent 6"
+  },
+  "agent6_boundary_trigger": {
+    "required_for": [
+      "public runtime proof",
+      "public HUD mutation validation",
+      "route publication support",
+      "any package claiming reader-facing answer/gloss/public output",
+      "any acceptance-sensitive source/license/Definition/product state"
+    ],
+    "not_required_for": [
+      "non-public package validator prerequisites",
+      "static missing-input blocker packaging",
+      "changed-input-only wake condition packaging"
+    ]
+  },
+  "stop_condition": {
+    "success": "Return one Agent 4 validator/prereq/runtime packet for the exact changed input.",
+    "missing_input": "Return missing_pipeline_blocker naming missing command/input/output/package owner.",
+    "unchanged_input": "Return changed_input_only_blocker and do not rerun validators.",
+    "baseline": "Return one per-book baseline artifact or exact command/input blocker."
+  },
+  "wake_condition": {
+    "changed_package_or_input": true,
+    "exact_command_list": true,
+    "expected_output_path": true,
+    "stop_condition": true,
+    "agent6_route_if_public_runtime_proof": true
+  },
+  "token_limit_minimum_handoff": {
+    "target": "Reusable changed-package validator/prereq/runtime pipeline contract and per-book baseline harness. Deuteronomy baseline command remains exact but capped unless a changed target/request names it.",
+    "files": [
+      "reports/agent4-spark4-pipeline-contract-changed-package-validator-prereq-2026-06-04.md",
+      "reports/agent4-spark4-pipeline-contract-changed-package-validator-prereq-2026-06-04.json",
+      "reports/agent4-weekly-validator-prereq-pipeline-authoring-status-2026-06-04.md"
+    ],
+    "counts_rows_found": {
+      "validators_run_in_authoring_step": 0,
+      "new_contract_artifacts_authored": 3,
+      "prior_orot_non_public_package_rows": 332,
+      "prior_orot_non_public_occurrences": 6156,
+      "prior_deuteronomy_baseline_issues": 0,
+      "prior_deuteronomy_baseline_warnings": 1,
+      "prior_hard_old_hud_marker_exposure": 0
+    },
+    "next_command_exact_baseline_when_requested": "node scripts/audit_live_deuteronomy_runtime.mjs",
+    "next_changed_input_only_wake_result": "Return changed_input_only_blocker unless package owner supplies changed package/input plus exact command list, expected output path/schema, validator/gate, Agent 6 trigger when public/runtime proof is requested, and stop condition.",
+    "missing_fields": [
+      "changed package/input",
+      "expected output path/schema",
+      "validator/gate command",
+      "Agent 6 trigger when public/runtime proof is requested",
+      "stop condition"
+    ],
+    "handoff_owner": "Agent 4 owns validator/prereq pipeline authoring and packets. Spark-4 runs only mechanical validators on changed input."
+  },
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "runtime acceptance",
+    "publication readiness",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss",
+    "translation output",
+    "accepted text"
+  ]
+}

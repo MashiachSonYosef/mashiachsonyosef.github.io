@@ -1,0 +1,67 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T23:46:00.000Z",
+  "target": "Agent 4 changed-input selector lookback validator hardening",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "scripts/validate_agent4_changed_input_candidate_selection.mjs",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent4_changed_input_candidate_selection.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-cross-batch-queue-guard-blocker-continuation-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-selector-lookback-patch-no-lookback-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-lookback-after-queue-batch-crossmatch-sweep-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports\\agent4-changed-input-selection-after-cross-batch-queue-guard-blocker-continuation-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports\\agent4-changed-input-selection-after-selector-lookback-patch-no-lookback-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "selector_outputs_checked": 3,
+    "lookback_outputs_checked": 2,
+    "no_lookback_outputs_checked": 1,
+    "candidate_selection_outputs_checked": 2,
+    "blocker_outputs_checked": 1,
+    "already_packaged_upstream_rows_in_latest_blocker": 2,
+    "latest_blocker_rows": 28,
+    "latest_blocker_candidates": 0
+  },
+  "result": "validated_selector_result_validator_enforces_lookback_and_consumed_upstream_input_contract",
+  "exact_blockers": [
+    {
+      "code": "changed_input_required_for_next_upstream_gate",
+      "details": "The latest lookback selector output has candidate_count=0. Do not run another upstream validator or packet sweep until a new changed/candidate input appears."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-selector-lookback-validator-hardening-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-selector-lookback-validator-hardening-proof-2026-06-06.md",
+  "handoff_owner": "Agent 4 for selector/validator harness maintenance; Agent 10 or upstream package owner for next changed package/input.",
+  "next_safe_action": "Run a triggered Agent4 packet sweep because this proof packet was added, then use the lookback selector from that sweep anchor.",
+  "stop_condition": "Stop after validating the selector-result validator hardening against lookback and no-lookback selector outputs.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

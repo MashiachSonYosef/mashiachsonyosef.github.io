@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_old_dictionary_excluded_row_license_lane_reaudit_continuation",
+  "generated_at": "2026-06-05T07:16:35.3843749-04:00",
+  "agent": "Agent 1",
+  "lane": "source_license_custody_and_hebrew_import_source_lane_classification",
+  "target": "old-dictionary-excluded-row-license-lane-reaudit",
+  "status": "bounded_reaudit_packet_refreshed_validated_exact_blockers_preserved",
+  "commands_run": [
+    "node scripts/build_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+    "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+    "node scripts/validate_agent1_spark1_old_dictionary_reaudit_pipeline_contract.mjs",
+    "node scripts/validate_agent1_current_source_license_custody_lane_return.mjs",
+    "node scripts/validate_agent1_source_license_custody_pipeline_set.mjs"
+  ],
+  "artifacts": {
+    "reaudit_packet_json": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+    "reaudit_packet_markdown": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.md",
+    "reaudit_validator": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-validation-result-2026-06-04.json",
+    "spark1_contract": "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+    "spark1_contract_validator": "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-validation-result-2026-06-04.json",
+    "current_source_lane_return_validator": "reports/agent1-current-source-license-custody-lane-return-validation-result-2026-06-04.json",
+    "pipeline_set_validator": "reports/agent1-source-license-custody-pipeline-set-validation-result-2026-06-04.json"
+  },
+  "evidence_counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "blocked_only_non_public_domain_or_unresolved_rows": 17,
+    "blocked_only_non_public_domain_or_unresolved_occurrences": 259,
+    "no_sefaria_hit_rows": 186,
+    "no_sefaria_hit_occurrences": 2421,
+    "next_missed_rows": 50,
+    "next_missed_occurrences": 1193
+  },
+  "lane_source_family_counts": {
+    "commercial_clean_candidate": 3,
+    "noncommercial_educational_candidate": 1,
+    "metadata_or_link_only": 0,
+    "blocked_or_needs_review": 1
+  },
+  "source_family_count": 5,
+  "exact_missing_field_blockers": [
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+      "source_family": "Klein Dictionary",
+      "license_lane": "noncommercial_educational_candidate",
+      "missing_evidence": [
+        "Agent 6/public boundary before any display/storage/public/answer/export behavior"
+      ],
+      "handoff_owner": "Agent 1 for NC lane packet; Agent 6 for exact NC row/subset boundary",
+      "stop_condition": "Remain out of Agent 2 candidate text transform until missing source/license/custody evidence and Agent 6 boundary are supplied."
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+      "source_family": "BDB Augmented Strong",
+      "license_lane": "blocked_or_needs_review",
+      "missing_evidence": [
+        "independent source/license/custody basis",
+        "source URL or version source",
+        "license label and allowed fields",
+        "Agent 6 boundary if evidence appears"
+      ],
+      "handoff_owner": "Agent 1 if evidence appears; otherwise blocked/review",
+      "stop_condition": "Remain out of Agent 2 candidate text transform until missing source/license/custody evidence and Agent 6 boundary are supplied."
+    }
+  ],
+  "validator_results": {
+    "reaudit_packet_ok": true,
+    "reaudit_packet_completed_at": "2026-06-05T11:19:40.438Z",
+    "spark1_contract_ok": true,
+    "spark1_contract_completed_at": "2026-06-05T11:19:40.421Z",
+    "current_source_lane_return_ok": true,
+    "current_source_lane_return_completed_at": "2026-06-05T11:16:15.108Z",
+    "pipeline_set_ok": true,
+    "pipeline_set_completed_at": "2026-06-05T11:16:15.996Z",
+    "pipeline_set_runnable_contract_count": 22,
+    "pipeline_set_supporting_packet_count": 24,
+    "pipeline_set_exact_blocker_count": 1,
+    "pipeline_set_no_acceptance_claims": true
+  },
+  "zero_output_counts": {
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "non_acceptance_boundary": {
+    "no_qa_acceptance": true,
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true
+  },
+  "next_safe_agent1_work": [
+    "Continue searching for independent source/license/custody basis for BDB Augmented Strong.",
+    "Keep Klein Dictionary in noncommercial_educational_candidate lane unless Agent 6 supplies a narrower public/noncommercial boundary.",
+    "Do not emit candidate text, source rows, public HUD rows, route JSONL rows, definitions, answers, or accepted text from this workset."
+  ],
+  "stop_condition": "This continuation stops after refreshed packet plus passing validators plus exact blockers; broader use remains awaiting Agent 6 row/subset boundary."
+}

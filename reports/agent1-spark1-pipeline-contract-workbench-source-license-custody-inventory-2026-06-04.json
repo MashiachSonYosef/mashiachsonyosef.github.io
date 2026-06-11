@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "target": {
+    "work": "broad workbench evidence",
+    "workset": "workbench-source-license-custody-inventory",
+    "input_file_count": 10,
+    "source_row_count": 105747,
+    "unique_work_count": 1112,
+    "unique_source_id_count": 1144,
+    "license_count": 4,
+    "commercial_clean_candidate_source_rows": 105747,
+    "noncommercial_educational_candidate_source_rows": 0,
+    "metadata_or_link_only_source_rows": 0,
+    "blocked_or_needs_review_source_rows": 0
+  },
+  "inputs": [
+    "data/workbench-evidence/003e376e4afb3bbb/candidate-evidence.jsonl",
+    "data/workbench-evidence/389b77a1dfe744be/candidate-evidence.jsonl",
+    "data/workbench-evidence/39048793fdbb3d13/candidate-evidence.jsonl",
+    "data/workbench-evidence/43f68615baae6677/candidate-evidence.jsonl",
+    "data/workbench-evidence/a5b899bb9aa2ae24/candidate-evidence.jsonl",
+    "data/workbench-evidence/b237aef569c408ba/candidate-evidence.jsonl",
+    "data/workbench-evidence/b9e16c5bad5db2d7/candidate-evidence.jsonl",
+    "data/workbench-evidence/e7e1f491088f984c/candidate-evidence.jsonl",
+    "data/workbench-evidence/f96f23955d2ad136/candidate-evidence.jsonl",
+    "data/workbench-evidence/reshit/candidate-evidence.jsonl"
+  ],
+  "command_or_script": {
+    "build": "node scripts/build_agent1_workbench_source_license_custody_inventory.mjs",
+    "current_status": "runnable"
+  },
+  "outputs": {
+    "json": "reports/agent1-workbench-source-license-custody-inventory-2026-06-04.json",
+    "markdown": "reports/agent1-workbench-source-license-custody-inventory-2026-06-04.md"
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_workbench_source_license_custody_inventory.mjs",
+    "contract_validator": "node scripts/validate_agent1_spark1_workbench_source_license_custody_contract.mjs",
+    "current_status": "validated"
+  },
+  "required_classifications": [
+    "commercial_clean_candidate",
+    "noncommercial_educational_candidate",
+    "metadata_or_link_only",
+    "blocked_or_needs_review"
+  ],
+  "expected_classification_from_current_evidence": {
+    "commercial_clean_candidate": {
+      "source_rows": 105747,
+      "license_labels": [
+        "Public Domain",
+        "CC-BY-SA",
+        "CC-BY",
+        "CC0"
+      ],
+      "share_alike_boundary_source_rows": 5581,
+      "attribution_required_source_rows": 6206,
+      "agent6_boundary_required": true
+    },
+    "noncommercial_educational_candidate": {
+      "source_rows": 0,
+      "preserve_if_future_rows_exist": true
+    },
+    "metadata_or_link_only": {
+      "source_rows": 0
+    },
+    "blocked_or_needs_review": {
+      "source_rows": 0
+    }
+  },
+  "required_source_fields": [
+    "source_family",
+    "source_name",
+    "source_id",
+    "source_url",
+    "version_title",
+    "version_source",
+    "license",
+    "license_url",
+    "fields_used",
+    "source_url_or_citation",
+    "agent6_boundary_required"
+  ],
+  "nc_policy": {
+    "preserve_if_future_rows_exist": true,
+    "license_lane": "noncommercial_educational_candidate",
+    "derived_from_nc": true,
+    "commercial_export_allowed": false,
+    "attribution_required": true,
+    "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+    "corpus_contamination": false,
+    "answer_eligible": false,
+    "public_emit": false
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true,
+    "cc_by_sa_requires_share_alike_boundary": true,
+    "commercial_export_allowed_now": false,
+    "public_emit_now": false,
+    "answer_eligible_now": false
+  },
+  "package_owner": "Agent 1",
+  "agent6_boundary_need": "Agent 6/legal boundary is required before source/license custody acceptance, commercial export, public display, answer use, or definition text use. CC-BY-SA rows require explicit share-alike boundary treatment.",
+  "spark1_stop_condition": "output plus validator pass, or exact missing input/output/schema/validator/count blocker",
+  "what_must_not_be_accepted": [
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "QA acceptance",
+    "public/runtime mutation",
+    "Definition authority",
+    "answer acceptance",
+    "accepted gloss/text",
+    "publication readiness",
+    "NC commercial authorization",
+    "CC-BY-SA commercial export authorization"
+  ]
+}

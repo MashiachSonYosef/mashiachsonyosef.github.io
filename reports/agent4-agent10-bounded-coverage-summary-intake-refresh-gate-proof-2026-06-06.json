@@ -1,0 +1,77 @@
+{
+  "artifact_type": "agent4_agent10_bounded_coverage_summary_intake_refresh_gate_proof",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Agent10 bounded old-dictionary coverage-summary intake refresh",
+  "changed_input_artifact": "reports/agent10-direct-release-package-intake-refresh-2026-06-06a.json",
+  "validator_proof_commands": [
+    {
+      "command": "node --check scripts\\validate_agent10_direct_release_package_intake_refresh.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent10_direct_release_package_intake_refresh.mjs reports\\agent10-direct-release-package-intake-refresh-2026-06-06a.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 bounded old-dictionary coverage-summary intake validation passed. Commercial-clean subsets: 3; blocker: candidate_use_or_transform_intent_not_supplied_for_specific_subset."
+    }
+  ],
+  "files": {
+    "validator": "scripts/validate_agent10_direct_release_package_intake_refresh.mjs",
+    "refresh": "reports/agent10-direct-release-package-intake-refresh-2026-06-06a.json",
+    "coverage_summary_json": "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current.json",
+    "coverage_summary_md": "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current.md"
+  },
+  "counts": {
+    "commercial_clean_source_families": 3,
+    "jastrow_rows": 210,
+    "jastrow_occurrences": 4474,
+    "bdb_rows": 221,
+    "bdb_occurrences": 4418,
+    "bdb_aramaic_rows": 69,
+    "bdb_aramaic_occurrences": 2048,
+    "prior_morphology_planning_rows": 78,
+    "prior_morphology_planning_occurrences": 1461,
+    "prior_source_family_overlap_rows": 500,
+    "prior_source_family_overlap_occurrences": 8427,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "route_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "result": "bounded_coverage_summary_refresh_validated_no_concrete_candidate_use_or_transform_packet",
+  "exact_blockers": [
+    "candidate_use_or_transform_intent_not_supplied_for_specific_subset"
+  ],
+  "next_handoff_owner": "Agent 10 after concrete candidate-use or transform intent exists; Agent 6 only for that exact later packet.",
+  "stop_condition": "Stop at bounded coverage-summary intake proof. Do not rerun without a changed Agent10 refresh, concrete candidate-use/transform packet, Agent6 boundary route, or validator. Do not route Agent6, transform, store text, emit source rows, write routes, mutate public/runtime, export, or release until a concrete candidate-use/transform packet exists.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

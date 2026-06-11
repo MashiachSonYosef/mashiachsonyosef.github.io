@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T00:00:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane_owner": "Agent 4",
+  "target": "agent3-spark10-matrix-delta-audit",
+  "input_artifact": {
+    "path": "reports/agent3-spark10-matrix-delta-audit-2026-06-05.json",
+    "sha256": "eb5650a67806c7284db9891e441e717473cdade70a9ae1dd8903439009c0609a"
+  },
+  "commands": [
+    {
+      "command": "node scripts/validate_agent3_spark10_matrix_delta_audit.mjs reports/agent3-spark10-matrix-delta-audit-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "previous_inputs_checked": 263,
+    "previous_release_relevant_rows": 116,
+    "previous_agent6_handoff_candidates": 45,
+    "current_inputs_checked": 275,
+    "current_release_relevant_rows": 118,
+    "current_agent6_handoff_candidates": 47,
+    "input_delta": 12,
+    "release_relevant_delta": 2,
+    "agent6_handoff_delta": 2,
+    "agent3_row_delta": 0,
+    "spark3_row_delta": 0,
+    "runnable_queue_items": 0,
+    "direct_queue_runnable_items": 0,
+    "changed_artifacts_found": 0,
+    "exact_new_worksets_found": 0,
+    "zero_authority_outputs": true
+  },
+  "warnings": [
+    "reviewed input changed after package build: reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "reviewed input changed after package build: reports/spark10-release-package-intake-matrix-current-2026-06-04.md",
+    "reviewed input changed after package build: data/control/spark_standing_queue.json",
+    "reviewed input changed after package build: data/control/agent_goal_board.json",
+    "reviewed input changed after package build: reports/agent3-state.json",
+    "current Spark-10 matrix changed after package build; validated package-time snapshot only"
+  ],
+  "result": "validator_passed_package_time_snapshot_only",
+  "blocker_if_any": {
+    "blocker": "missing_changed_artifact_or_exact_workset",
+    "details": "Spark10 matrix deltas were observed, but the audited Agent3 lane still has 0 runnable queue items, 0 direct queue runnable items, 0 changed artifacts, and 0 exact new worksets.",
+    "wake_condition": "Provide a changed Agent3 artifact path or exact workset with named inputs, row/occurrence bounds, output schema/path, validator/gate, handoff owner, and stop condition."
+  },
+  "next_handoff": "Agent10/Agent3 must provide a changed exact Agent3 workset before another deterministic Agent4 validator pass.",
+  "stop_condition": "Do not rerun this validator unless the Agent3 matrix delta audit, Spark10 matrix, queue, or Agent3 state changes.",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action"
+  ]
+}

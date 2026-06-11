@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T21:36:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent10-direct-release-package-intake-refresh-o",
+  "changed_package_input": "reports/agent10-direct-release-package-intake-refresh-2026-06-05o.json",
+  "files": [
+    "reports/agent10-direct-release-package-intake-refresh-2026-06-05o.json",
+    "reports/agent4-agent10-release-intake-refresh-n-gate-proof-2026-06-05.json",
+    "reports/agent10-direct-release-package-intake-refresh-2026-06-05n.json",
+    "scripts/validate_agent10_direct_release_package_intake_refresh.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_direct_release_package_intake_refresh.mjs reports\\agent10-direct-release-package-intake-refresh-2026-06-05o.json",
+      "result": "passed",
+      "stdout_summary": "Agent10 direct release/package intake refresh validation passed. Consumed proof: refresh n; unique blockers: 54; next-use package: none."
+    },
+    {
+      "command": "node --check scripts\\validate_agent10_direct_release_package_intake_refresh.mjs",
+      "result": "passed",
+      "stdout_summary": "syntax check passed"
+    }
+  ],
+  "counts": {
+    "consumed_gate_proof": "reports/agent4-agent10-release-intake-refresh-n-gate-proof-2026-06-05.json",
+    "rollup_artifacts_checked": 19,
+    "unique_blockers": 54,
+    "duplicate_blockers": 0,
+    "morphology_planning_rows": 78,
+    "morphology_candidate_use_package_rows": 78,
+    "morphology_candidate_use_package_occurrences": 1461,
+    "exact_row_subset_manifest_rows": 500,
+    "row_overlap_audited_rows": 500,
+    "klein_nc_lane_preservation_rows": 214,
+    "orot_205_rows": 205,
+    "token_source_aggregate_edge_rows": 1951013,
+    "global_zero_counter_nonzero_fields": 0,
+    "transform_rows": 0,
+    "candidate_use_authorized_rows": 0,
+    "candidate_text_rows": 0,
+    "transform_output_rows": 0,
+    "definition_candidate_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "release_actions": 0,
+    "repo_cleanup_actions": 0
+  },
+  "hashes": {
+    "agent10_refresh_o_sha256": "82c4c60fafe220e764469da76d7b29466333277801c4a8c02e0c1d12438eb220",
+    "agent4_refresh_n_gate_proof_sha256": "ea573f453c7c91bd5b404fe6431e17fc34bc4207e5fe87354f66f4998306d55c",
+    "agent10_refresh_n_sha256": "2c32f2be824b30ac65f85825f5e67cc82c6082b734675f6214c5c018293a74dc",
+    "validator_sha256": "32296747efc77981de29acfa4dc5b5ad223eebdc4d3b4be7c2b2c364f5455f6b"
+  },
+  "result": "target | agent10-direct-release-package-intake-refresh-o | files above | commands passed: Agent10 direct release/package intake refresh validator and validator syntax check | counts: consumed refresh n gate proof, 19 rollup artifacts, 54 unique blockers, 0 duplicate blockers, 78 morphology planning rows, 78 candidate-use package rows, 1461 candidate-use occurrences, 500 exact row-subset rows, 214 Klein NC rows, 205 Orot rows, 1951013 token-source aggregate edges, zero transform/candidate/answer/public/route/runtime/release/repo-cleanup rows | result: Agent10 refresh o validates as consumed Agent4 refresh-n proof with no concrete next-use package | blocker if any: no concrete next-use package; no Agent6 boundary need until concrete changed release-relevant output exists | next handoff: Agent10 waits for concrete changed release-relevant output with exact rows, intended use, source lanes, validators, and zero counters | stop condition: do not rerun unless refresh o, refresh n gate proof, refresh n, or validator changes",
+  "blocker_if_any": "no_concrete_next_use_package_exact_agent6_boundary_required_before_candidate_use_transform_output_answer_route_runtime_export_accepted_text_or_release",
+  "next_handoff": "Agent 10 waits for concrete changed release-relevant output with exact rows, intended use, source lanes, validators, and zero counters.",
+  "stop_condition": "Do not rerun unless reports/agent10-direct-release-package-intake-refresh-2026-06-05o.json, reports/agent4-agent10-release-intake-refresh-n-gate-proof-2026-06-05.json, reports/agent10-direct-release-package-intake-refresh-2026-06-05n.json, or scripts/validate_agent10_direct_release_package_intake_refresh.mjs changes.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate-use authorization",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action",
+    "no destructive repo cleanup"
+  ]
+}

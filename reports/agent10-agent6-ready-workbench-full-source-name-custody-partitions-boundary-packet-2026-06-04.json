@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_ready_boundary_packet",
+  "generated_at": "2026-06-04T20:13:00.0000000-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "review_scope": "workbench_full_source_name_custody_partitions_nonpublic_source_license_custody_planning_evidence_only",
+  "workset": "workbench-full-source-name-custody-partitions",
+  "release_owner": "Agent 10",
+  "inputs": [
+    "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.md",
+    "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.json",
+    "reports/agent1-spark1-pipeline-contract-workbench-full-source-name-custody-partitions-2026-06-04.md",
+    "reports/agent1-spark1-pipeline-contract-workbench-full-source-name-custody-partitions-2026-06-04.json",
+    "reports/agent1-workbench-full-source-name-custody-partitions-validation-result-2026-06-04.json",
+    "reports/agent1-spark1-pipeline-contract-workbench-full-source-name-custody-partitions-validation-result-2026-06-04.json",
+    "reports/agent1-current-source-license-custody-lane-return-2026-06-04.md",
+    "reports/agent1-current-source-license-custody-lane-return-2026-06-04.json"
+  ],
+  "spark_route_note": "Input filenames that include spark1 are historical contract artifacts only; assistant-1/Spark-1 remains paused unless owner explicitly re-enables, and this packet does not route new work to Spark-1.",
+  "counts": {
+    "input_files": 10,
+    "source_rows": 105747,
+    "unique_source_ids": 1144,
+    "unique_works": 1112,
+    "source_name_partitions": 351,
+    "full_partitions": 351,
+    "public_domain_partitions": 307,
+    "public_domain_source_rows": 99045,
+    "cc_by_sa_partitions": 37,
+    "cc_by_sa_source_rows": 5581,
+    "cc_by_partitions": 5,
+    "cc_by_source_rows": 625,
+    "cc0_partitions": 2,
+    "cc0_source_rows": 496
+  },
+  "lane_split": {
+    "public_domain": "source/license custody partition evidence only; not source/legal acceptance or export clearance",
+    "cc0": "source/license custody partition evidence only; not source/legal acceptance or export clearance",
+    "cc_by": "attribution-required partition evidence only; cc_by_export_authorized_now=false until exact attribution boundary",
+    "cc_by_sa": "share-alike partition evidence only; commercial export, package use, public display, answer use, and definition text use remain blocked",
+    "noncommercial_educational_candidate_rows": 0,
+    "metadata_or_link_only_rows": 0,
+    "blocked_or_needs_review_rows": 0,
+    "candidate_text_rows_now": 0
+  },
+  "validator_results": [
+    {
+      "command": "node scripts\\validate_agent1_workbench_full_source_name_custody_partitions.mjs",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_spark1_workbench_full_source_name_custody_partitions_contract.mjs",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_current_source_license_custody_lane_return.mjs reports\\agent1-current-source-license-custody-lane-return-2026-06-04.json",
+      "result": "passed"
+    }
+  ],
+  "agent6_boundary_question": "Pass/warn/block whether the exact Agent 1 Workbench full source-name custody partition map may be carried as non-public source/license custody planning evidence only, preserving license-label partitions, attribution/share-alike separation, zero candidate-text rows, and zero output/mutation counters.",
+  "not_requested": [
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "commercial export authorization",
+    "public/runtime/display authorization",
+    "answer eligibility",
+    "definition-content storage",
+    "accepted text",
+    "publication readiness"
+  ],
+  "exact_blockers": [
+    "full_source_name_custody_partitions_require_agent6_boundary_before_any_source_license_acceptance_or_export_use",
+    "cc_by_attribution_partition_use_requires_exact_attribution_boundary",
+    "cc_by_sa_share_alike_partition_use_requires_exact_share_alike_boundary",
+    "candidate_text_export_storage_display_or_answer_use_requires_a_later_exact_row_subset_packet"
+  ],
+  "next_handoff": {
+    "agent6": "Review this exact packet as non-public source/license custody planning evidence only.",
+    "agent10": "Consume verdict as planning evidence or record exact delivery/verdict blocker.",
+    "spark10": "Track this packet as an Agent6-ready release/package boundary candidate only."
+  },
+  "stop_condition": "Stop after Agent 6 verdict path or exact delivery blocker; otherwise keep all partitions as non-public source/license custody planning evidence only.",
+  "zero_counters": {
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0
+  },
+  "highest_permissible_claim": "Agent 10 assembled an Agent6-ready boundary packet for the Agent 1 Workbench full source-name custody partition map as non-public source/license custody planning evidence only.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

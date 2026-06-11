@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_third_missed_source_family_missing_input_contract",
+  "generated_at": "2026-06-05T08:49:22.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "third_missed_source_family",
+  "generated_at": "2026-06-05T08:49:22.000Z",
+  "status": "pipeline_input_pack_delivered_contract_runnable_validated",
+  "current_evidence": {
+    "target_or_blocker": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+    "rows_checked": 169,
+    "occurrences_checked": 2148,
+    "exact_linkage_blocker_rows": 168,
+    "exact_linkage_blocker_occurrences": 2117,
+    "rows_already_in_placeholder_package": 1,
+    "blocked_condition": "local route-card matrix has no row-level source-family/license fields"
+  },
+  "required_input_artifact": {
+    "path": "reports/agent1-third-missed-source-family-input-rows-2026-06-05.json",
+    "status": "available",
+    "row_count": 169,
+    "occurrence_count": 2148,
+    "required_columns": [
+      "row_subset_id",
+      "token_id_or_row_id",
+      "source_family",
+      "source_name",
+      "license_label",
+      "license_lane",
+      "attribution_required",
+      "derived_from_nc",
+      "commercial_export_allowed",
+      "source_url_or_citation",
+      "agent6_boundary_required",
+      "rows",
+      "occurrences",
+      "blocker_reason"
+    ],
+    "required_license_lanes": [
+      "commercial_clean_candidate",
+      "noncommercial_educational_candidate",
+      "metadata_or_link_only",
+      "blocked_or_needs_review"
+    ],
+    "required_nc_fields_when_applicable": [
+      "owner_use_attestation",
+      "answer_eligible",
+      "public_emit",
+      "corpus_contamination"
+    ]
+  },
+  "expected_contract_after_input": {
+    "build_script": "scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+    "validate_script": "scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+    "contract_file": "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+    "contract_validator": "scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs",
+    "output_json": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+    "output_md": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.md",
+    "agent10_intake_status": "changed_spark1_source_lane_contract"
+  },
+  "exact_missing_blockers": [
+    "missing exact source/license boundary release clearance remains for all Candidate classes pending Agent 6 review"
+  ],
+  "handoff": {
+    "agent10_owner": "agent10 release-package intake and exact blocker-remedy request",
+    "agent6_owner": "agent6 boundary packet only once row-level third-missed input exists",
+    "agent1_action": "build+validate complete; route Contract-3 map and contract validator outputs to Spark-1/Agent 10/Agent 6 boundary owners"
+  },
+  "export_rules": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true
+  },
+  "stop_condition": "Contract 3 remains stable at 169 rows / 2148 occurrences unless target_or_blocker input changes; rerun build+validators on input change",
+  "what_must_not_be_accepted": [
+    "source/license acceptance",
+    "legal acceptance",
+    "qa acceptance",
+    "definition authority",
+    "public/runtime mutation",
+    "publication readiness",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "nc commercial authorization"
+  ]
+}

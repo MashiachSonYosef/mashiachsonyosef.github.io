@@ -1,0 +1,94 @@
+{
+  "artifact_type": "agent10_direct_release_package_intake_refresh",
+  "generated_at": "2026-06-05T22:38:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "status": "agent4_candidate_use_package_gate_proof_consumed_no_next_use_package",
+  "consumed_state": {
+    "previous_agent10_refresh": "reports/agent10-direct-release-package-intake-refresh-2026-06-05l.json",
+    "agent4_gate_proof": "reports/agent4-agent6-candidate-use-package-verdict-consumption-gate-proof-2026-06-05.json",
+    "agent6_candidate_use_package_verdict": "reports/agent6-old-dictionary-candidate-use-package-boundary-verdict-2026-06-05.json",
+    "agent10_candidate_use_package_packet": "reports/agent10-agent6-ready-old-dictionary-candidate-use-package-boundary-packet-2026-06-05.json",
+    "agent2_candidate_use_package": "reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json"
+  },
+  "gate_proof_consumed": {
+    "target": "agent6-old-dictionary-candidate-use-package-boundary-verdict-consumption",
+    "changed_package_input": "reports/agent6-old-dictionary-candidate-use-package-boundary-verdict-2026-06-05.json",
+    "commands_passed": [
+      "node scripts\\validate_agent2_old_dictionary_morphology_candidate_use_package.mjs reports\\agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json",
+      "node scripts\\validate_agent10_old_dictionary_candidate_use_package_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-candidate-use-package-boundary-packet-2026-06-05.json",
+      "node scripts\\validate_agent6_old_dictionary_candidate_use_package_boundary_verdict.mjs reports\\agent6-old-dictionary-candidate-use-package-boundary-verdict-2026-06-05.json"
+    ],
+    "counts": {
+      "package_rows": 78,
+      "package_occurrences": 1461,
+      "unique_queue_ids": 78,
+      "commercial_clean_candidate_rows": 78,
+      "noncommercial_educational_candidate_rows": 0,
+      "morphology_blocked_rows_excluded": 219,
+      "exact_after_mark_strip_rows": 78,
+      "agent10_packet_zero_counter_fields": 21,
+      "nonzero_zero_counter_recounts": 0
+    },
+    "result": "Agent 6 WARN-ACCEPTED docket may be carried only as nonpublic candidate-use planning package evidence."
+  },
+  "current_exact_blocker": {
+    "blocker": "new_exact_agent6_packet_required_before_text_storage_transform_output_source_row_emission_candidate_text_export_answer_eligibility_route_write_public_runtime_mutation_accepted_text_commercial_export_or_release",
+    "next_handoff": "Agent 10 release/package intake only when a concrete next-use package exists.",
+    "agent6_boundary_need_now": "none_until_concrete_next_use_package"
+  },
+  "global_zero_counters": {
+    "candidate_text_rows": 0,
+    "candidate_text_export_rows": 0,
+    "transform_output_rows": 0,
+    "source_row_emission_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_rows": 0,
+    "public_hud_mutation_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed_by_agent10": 0,
+    "source_files_changed_by_agent10": 0,
+    "token_index_files_changed_by_agent10": 0,
+    "lexical_payload_files_changed_by_agent10": 0,
+    "commercial_export_authorization_rows": 0,
+    "nc_commercial_authorization_rows": 0,
+    "release_actions": 0,
+    "repo_cleanup_actions": 0,
+    "staging_actions": 0
+  },
+  "public_hud_repo_cleaning_blocker": {
+    "source": "reports/agent6-tracked-deletion-baseline-public-hud-support-2026-06-05.md",
+    "blocker": "public_hud_tracked_deletion_baseline_owner_decision_required",
+    "agent10_action_now": "no_restore_no_stage_no_reset_no_delete"
+  },
+  "next_release_owner_action": "No new Agent 6 route from this gate proof. Wait for a concrete next-use package or changed Agent 1-4 release-relevant output with exact rows, intended use, source lanes, validators, and zero counters.",
+  "what_must_not_be_accepted": [
+    "QA acceptance beyond the Agent 6 docket",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action",
+    "destructive repo cleanup"
+  ]
+}

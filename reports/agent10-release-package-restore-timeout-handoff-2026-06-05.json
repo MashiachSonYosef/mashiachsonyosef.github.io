@@ -1,0 +1,178 @@
+{
+  "artifact_type": "agent10_release_package_restore_timeout_handoff",
+  "generated_at": "2026-06-05T22:45:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "Agent 10",
+  "status": "restored_primary_release_package_lane_with_process_timeouts_recorded",
+  "target_package": "old_dictionary_transform_reaudit_boundary_blocker_and_release_package_intake",
+  "files_used": [
+    "reports/agent10-direct-release-package-intake-refresh-2026-06-05q.json",
+    "reports/agent2-old-dictionary-transform-reaudit-boundary-blocker-2026-06-05.json",
+    "reports/agent4-agent2-transform-reaudit-boundary-blocker-gate-proof-2026-06-05.json",
+    "reports/agent6-tracked-deletion-baseline-public-hud-support-2026-06-05.md"
+  ],
+  "agent_1_4_inputs_consumed": [
+    {
+      "agent": "Agent 2",
+      "artifact": "reports/agent2-old-dictionary-transform-reaudit-boundary-blocker-2026-06-05.json",
+      "consumed_as": "exact transform re-audit blocker evidence",
+      "row_subset_blockers": 5,
+      "required_agent1_input_fields": 16,
+      "required_agent6_boundary_fields": 6
+    },
+    {
+      "agent": "Agent 4",
+      "artifact": "reports/agent4-agent2-transform-reaudit-boundary-blocker-gate-proof-2026-06-05.json",
+      "consumed_as": "validator/prereq gate proof over Agent 2 blocker",
+      "validator_result": "passed_in_agent4_artifact"
+    }
+  ],
+  "agent6_boundary_questions": [
+    {
+      "status": "not_ready",
+      "reason": "missing exact Agent 1 row-subset fields and Agent 6 morphology/boundary fields",
+      "required_before_routing": [
+        "exact row_subset_id",
+        "source_family",
+        "license_lane",
+        "transform_lane",
+        "evidence_path",
+        "occurrences",
+        "derived_from_nc",
+        "commercial_export_allowed",
+        "attribution_required",
+        "corpus_contamination",
+        "agent6_boundary_required",
+        "agent2_transform_allowed_now",
+        "answer_eligible",
+        "public_emit",
+        "missing_evidence",
+        "handoff_owner",
+        "agent6_boundary_verdict",
+        "agent6_morphology_relation_status",
+        "morphology_relation_basis",
+        "candidate_use_scope",
+        "exact_agent6_manifest_or_packet_path"
+      ]
+    }
+  ],
+  "exact_blockers": [
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-dictionary",
+      "lane": "commercial_clean_candidate",
+      "blocker": "missing_exact_agent6_boundary_and_approved_morphology_relation",
+      "next_owner": "Agent 10 package assembly plus Agent 6 exact row/subset boundary after exact fields exist"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-aramaic-dictionary",
+      "lane": "commercial_clean_candidate",
+      "blocker": "missing_exact_agent6_boundary_and_approved_morphology_relation",
+      "next_owner": "Agent 10 package assembly plus Agent 6 exact row/subset boundary after exact fields exist"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::jastrow-dictionary",
+      "lane": "commercial_clean_candidate",
+      "blocker": "missing_exact_agent6_boundary_and_approved_morphology_relation",
+      "next_owner": "Agent 10 package assembly plus Agent 6 exact row/subset boundary after exact fields exist"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+      "lane": "noncommercial_educational_candidate",
+      "blocker": "missing_exact_agent6_nc_boundary_no_commercial_export_authorization_and_public_boundary_before_display_storage_public_answer_export_behavior",
+      "next_owner": "Agent 1 for NC lane packet plus Agent 6 exact NC row/subset boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+      "lane": "blocked_or_needs_review",
+      "blocker": "missing_independent_source_license_custody_basis",
+      "next_owner": "Agent 1 if evidence appears; otherwise blocked/review"
+    },
+    {
+      "target": "public_hud_repo_cleaning",
+      "blocker": "public_hud_tracked_deletion_baseline_owner_decision_required",
+      "next_owner": "Owner or Agent10/Agent7 decision; no restore/stage/reset/delete now"
+    }
+  ],
+  "process_timeout_reports": [
+    {
+      "process_timeout": true,
+      "command": "Get-ChildItem reports -Filter 'agent6-*repo*2026-06-05*.json' | Sort-Object LastWriteTime -Descending | Select-Object LastWriteTime,Name",
+      "timeout": "30000ms",
+      "partial_output_or_artifact": "command timed out; only table header observed",
+      "next_safe_action": "avoid recursive report scan; use exact known paths or a narrower manifest-backed command with shorter output"
+    },
+    {
+      "process_timeout": true,
+      "command": "Get-ChildItem reports -Filter 'agent4-agent6-repo*2026-06-05*.json' | Sort-Object LastWriteTime -Descending | Select-Object LastWriteTime,Name",
+      "timeout": "30000ms",
+      "partial_output_or_artifact": "command timed out; only empty/header output observed",
+      "next_safe_action": "avoid recursive report scan; use exact known paths or a narrower manifest-backed command with shorter output"
+    },
+    {
+      "process_timeout": true,
+      "command": "rg --files reports | rg 'agent6-.*repo.*2026-06-05.*\\\\.json$'",
+      "timeout": "10000ms",
+      "partial_output_or_artifact": "command timed out before useful output",
+      "next_safe_action": "do not retry same broad reports scan; use exact-path checks only"
+    },
+    {
+      "process_timeout": true,
+      "command": "node -e exact fs.existsSync checks for repo-cleaning and release artifacts",
+      "timeout": "8000ms",
+      "partial_output_or_artifact": "command timed out before useful output",
+      "next_safe_action": "defer local validation until process startup is responsive; keep existing artifact-backed blocker state"
+    },
+    {
+      "process_timeout": true,
+      "command": "Get-Content reports\\agent10-release-package-restore-timeout-handoff-2026-06-05.json -TotalCount 3",
+      "timeout": "10000ms",
+      "partial_output_or_artifact": "command timed out before useful output",
+      "next_safe_action": "do not retry read validation without changing process scope; rely on just-written apply_patch artifact and validate later with bounded command when process startup recovers"
+    },
+    {
+      "process_timeout": true,
+      "command": "git diff --check -- reports\\agent10-release-package-restore-timeout-handoff-2026-06-05.md reports\\agent10-release-package-restore-timeout-handoff-2026-06-05.json",
+      "timeout": "15000ms",
+      "partial_output_or_artifact": "command timed out before useful output",
+      "next_safe_action": "do not retry broad git validation immediately; later use a bounded scoped diff check when shell responsiveness recovers"
+    }
+  ],
+  "global_zero_counters": {
+    "public_runtime_mutation": 0,
+    "public_reader_output": 0,
+    "route_shard_writes": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "candidate_text_export_rows": 0,
+    "release_actions": 0,
+    "repo_cleanup_actions": 0,
+    "staging_actions": 0
+  },
+  "next_owner": "Agent 10 package assembly after exact fields exist; Agent 1 for NC/custody blockers; Agent 6 for exact row/subset boundary only when packet is complete",
+  "stop_condition": "Stop at exact blocker and timeout handoff. Do not rerun timed-out broad scans without changing timeout/scope/stop condition. Do not route Agent 6 until exact missing fields are supplied.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action",
+    "destructive repo cleanup"
+  ]
+}

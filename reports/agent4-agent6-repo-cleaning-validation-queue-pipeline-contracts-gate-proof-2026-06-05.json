@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent6_repo_cleaning_validation_queue_pipeline_contracts_gate_proof",
+  "generated_at": "2026-06-05T12:45:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent6-repo-cleaning-validation-queue-pipeline-contracts",
+  "status": "validator_authored_and_passed_contract_only",
+  "boundary": "validator/prereq evidence only; no implementation, cleanup, staging, deletion, queue-state update, QA acceptance, public/runtime acceptance, source/license/legal acceptance, Definition authority, answer eligibility, publication readiness, accepted text, or release action",
+  "files": [
+    {
+      "path": "scripts/validate_agent6_repo_cleaning_validation_queue_pipeline_contracts.mjs",
+      "sha256": "390b55c3ea922932462d6ba61f0b8fd3d6fc81c5571077bb2fca512da82b9e7f",
+      "role": "new narrow validator for Agent 6 repo-cleaning/validation/queue pipeline contracts"
+    },
+    {
+      "path": "reports/agent6-repo-cleaning-validation-queue-pipeline-contracts-2026-06-05.json",
+      "sha256": "f41879f23191bef7155362a729194aa56178330ee6b26c0b8e4aa0f5b955daf1",
+      "role": "Agent 6 contract artifact"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent6_repo_cleaning_validation_queue_pipeline_contracts.mjs reports\\agent6-repo-cleaning-validation-queue-pipeline-contracts-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Contracts: 3; backlog: 5; blockers: 5; queue items: 37."
+    }
+  ],
+  "counts": {
+    "contracts": 3,
+    "implementation_backlog_items": 5,
+    "exact_blockers": 5,
+    "repo_dirty_records": 17239,
+    "repo_tracked_deletions": 12231,
+    "repo_untracked": 3496,
+    "repo_data_public_hud_dirty_records": 11937,
+    "agent6_queue_items_observed": 37,
+    "agent6_queue_pending_or_queued_like_items_observed": 6
+  },
+  "contracts": [
+    "repo-cleaning classification pipeline",
+    "repo-validation pipeline",
+    "queued-item validation pipeline"
+  ],
+  "implementation_backlog": [
+    "scripts/classify_agent6_repo_dirt.mjs",
+    "scripts/validate_agent6_repo_dirt_classification.mjs",
+    "scripts/validate_agent6_repo_dirt_batch.mjs",
+    "scripts/select_agent6_queue_item.mjs",
+    "scripts/validate_agent6_queue_item_evidence.mjs"
+  ],
+  "blockers": [
+    "durable_churn_blocked_until_proposed_scripts_or_equivalent_exact_commands_exist_and_are_validated",
+    "repo_cleanup_blocked_from_destructive_execution_until_file_families_are_classified_and_owner_release_lane_approval_exists",
+    "public_runtime_cleanup_blocked_by_11937_data_public_hud_dirty_deleted_records_until_agent10_changed_input_proof_exists",
+    "control_state_cleanup_blocked_by_16_untracked_data_control_files_until_agent5_agent7_publish_reject_or_mark_local_only",
+    "queue_item_acceptance_blocked_per_item_until_dated_agent6_verdict_exists"
+  ],
+  "result": "target | agent6-repo-cleaning-validation-queue-pipeline-contracts | files in packet | commands passed: new Agent6 repo-cleaning/validation/queue pipeline-contract validator | counts: 3 contracts, 5 implementation backlog items, 5 blockers, 17239 dirty records, 12231 tracked deletions, 3496 untracked records, 11937 data/public-hud dirty records, 37 Agent6 queue items, 6 pending/queued-like items | result: validator authored and passed as contract-only evidence | blocker if any: durable churn and cleanup remain blocked until implementation scripts or exact commands exist and owner/release-lane approval exists | next handoff: Agent6/Agent10/Agent5/Agent7 implement or route backlog items; Agent4 can validate next changed implementation artifact | stop condition: do not rerun unless contract artifact, validator, repo-dirt snapshot, queue snapshot, or implementation backlog changes",
+  "handoff_owner": "Agent 6 for pipeline implementation/contracts; Agent 10 for public runtime cleanup gate; Agent 5/7 for control-state publication; Agent 4 for future validators against changed implementation artifacts.",
+  "stop_condition": "Stop at contract-only validator/prereq evidence. Do not implement cleanup, mutate queue state, stage, delete, publish, or claim acceptance from this packet."
+}

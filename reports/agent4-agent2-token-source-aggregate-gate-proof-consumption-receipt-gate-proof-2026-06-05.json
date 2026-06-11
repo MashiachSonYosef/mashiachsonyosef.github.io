@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent2_token_source_aggregate_gate_proof_consumption_receipt_gate_proof",
+  "generated_at": "2026-06-05T15:35:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent2-token-source-aggregate-gate-proof-consumption-receipt",
+  "status": "validator_passed_agent4_gate_proof_consumed_nonpublic_metadata_only",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, candidate-use authorization, candidate text export, route write, accepted gloss/text, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent2-token-source-aggregate-gate-proof-consumption-receipt-2026-06-05.json",
+      "sha256": "fafe71cae07231a93b3a68b94324e45dd2bffd6873e60d94a114c442dc26fc08",
+      "artifact_type": "agent2_token_source_aggregate_gate_proof_consumption_receipt",
+      "status": "agent4_gate_proof_consumed_nonpublic_metadata_only"
+    },
+    {
+      "path": "scripts/validate_agent2_token_source_aggregate_gate_proof_consumption_receipt.mjs",
+      "sha256": "b553379334304337cf92d8d1fece946e5ca049130e12a1523f18aefc83045166",
+      "artifact_type": "validator_script",
+      "status": "existing_exact_validator_for_agent2_token_source_aggregate_gate_proof_consumption_receipt"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent2_token_source_aggregate_gate_proof_consumption_receipt.mjs reports\\agent2-token-source-aggregate-gate-proof-consumption-receipt-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Aggregate rows: 1951013; candidate rows: 0."
+    }
+  ],
+  "counts": {
+    "source_files_read": 1337,
+    "units_read": 717459,
+    "units_with_partition": 637508,
+    "total_token_occurrences_scanned": 66320359,
+    "matched_token_occurrences": 49791095,
+    "chunks_merged": 54,
+    "aggregate_edge_rows": 1951013,
+    "aggregate_shard_count": 256,
+    "consumed_gate_proof_commands_passed": 1
+  },
+  "zero_counters": {
+    "candidate_rows": 0,
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_gloss_text_rows": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "release_rows": 0
+  },
+  "blockers": [
+    "no_candidate_rows_or_candidate_use_packet_from_aggregate",
+    "aggregate_is_nonpublic_token_source_partition_metadata_only",
+    "separate_exact_boundary_required_for_any_candidate_use_answer_public_runtime_or_release_use"
+  ],
+  "result": "target | agent2-token-source-aggregate-gate-proof-consumption-receipt | files in packet | commands passed: Agent2 token-source aggregate gate-proof consumption receipt validator | counts: 1337 source files read, 717459 units read, 637508 units with partition, 66320359 token occurrences scanned, 49791095 matched occurrences, 54 chunks merged, 1951013 aggregate edge rows, 256 aggregate shards, 1 consumed Agent4 gate-proof command, 0 candidate/definition/lemma/reader-hint/answer/public/route/runtime/accepted-text/release rows | result: validator passed and Agent4 gate proof was consumed as nonpublic metadata/prereq evidence only | blocker if any: no candidate rows or candidate-use packet from aggregate metadata or this gate proof | next handoff: Agent2 retains metadata-only aggregate evidence; Agent10/Agent6 require a separate exact candidate-use packet before downstream use | stop condition: do not rerun unless gate-proof consumption receipt, aggregate receipt, Agent4 aggregate gate proof, or validator changes",
+  "handoff_owner": "Agent 2 definer retains metadata-only aggregate evidence; Agent10/Agent6 require a separate exact candidate-use packet before downstream use.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not derive candidate text, definition content, answer rows, public output, route writes, accepted text, export rows, or release artifacts from aggregate metadata or this gate proof."
+}

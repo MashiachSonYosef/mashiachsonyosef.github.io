@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_spark1_pipeline_contract_changed_package_validator_prereq",
+  "generated_at": "2026-06-04",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "status": "runnable_contract_authored_changed_input_present",
+  "changed_package_input_path": "reports/agent10-agent6-ready-agent2-weekly-lexicon-handoff-refresh-boundary-packet-2026-06-04.json",
+  "package_hash_or_commit_or_mtime": "sha256:037d36a728836997321b3b1d3943c9ef7c9674534f54755454e8866cfbb0e9c3",
+  "exact_command_list": [
+    "node scripts\\validate_agent2_weekly_lexicon_current_handoff_bundle.mjs",
+    "node scripts\\validate_agent2_weekly_lexicon_pipeline_inventory.mjs",
+    "node scripts\\validate_agent2_current_handoff_aggregate_validation_receipt.mjs",
+    "node scripts\\validate_definition_workbench_sample.mjs data\\definitions\\definition-workbench-sample-1000.json",
+    "node scripts\\validate_agent2_deuteronomy_phase2_partition_export_plan.mjs reports\\agent2-deuteronomy-phase2-partition-export-plan-2026-06-04.json",
+    "node scripts\\validate_agent2_orot_missed_dictionary_reader_hint_candidates.mjs reports\\agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+    "node scripts\\validate_agent2_orot_counterpart_hint_patch_preview.mjs reports\\agent2-orot-counterpart-hint-patch-preview-2026-06-04.json",
+    "node scripts\\validate_agent2_orot_reader_hint_candidate_patch.mjs reports\\agent2-orot-reader-hint-candidate-patch-2026-06-04.json",
+    "node scripts\\validate_agent2_orot_pilot_answer_claims.mjs",
+    "node scripts\\validate_agent2_orot_tbd_placeholder_inventory_consumption.mjs reports\\agent2-orot-tbd-13-placeholder-inventory-consumption-2026-06-04.json"
+  ],
+  "expected_output_path_schema": "reports/agent4-agent2-weekly-lexicon-handoff-refresh-gate-proof-2026-06-04.md",
+  "validator_gate": "Agent 2 weekly lexicon current handoff bundle, pipeline inventory, aggregate receipt, Workbench 1000 sample, Deuteronomy partition plan, Orot missed-dictionary, Orot counterpart preview, Orot reader-hint patch, Orot pilot answer claims, and Orot TBD inventory validators must pass on explicit 2026-06-04 inputs.",
+  "package_owner": "Agent 10 release/package intake; Agent 2 definition/lemma/reader-hint pipeline owner",
+  "agent6_boundary_trigger": "Agent 6 review only as non-public definition/lemma/reader-hint pipeline planning evidence; no candidate text export, Definition authority, answer eligibility, public/runtime mutation, route-shard writes, source/license acceptance, publication readiness, accepted text, or release action is requested.",
+  "stop_condition": "Stop after runnable Agent 4 validator/prereq contract is generated and checked, or exact blocker if any listed validator fails.",
+  "route": {
+    "target_spark": "Spark-1",
+    "target_thread_id": "019e92c1-89b1-7821-898b-2106638345cb",
+    "route_now": true
+  },
+  "evidence_inputs": [
+    {
+      "path": "data/control/spark_standing_queue.json",
+      "exists": true,
+      "sha256": "f96750a52082fcbd43103155549845dfa4ac10a184f1753537c525bab354e06a",
+      "observed_status": "direct_agent_run_mode_all_spark_assistant_capacity_glitched",
+      "observed_generated_at": "2026-06-04T16:20:00Z",
+      "relevant_finding": "No spark4-broad-validator-runtime-prereq-mechanics queue item found."
+    },
+    {
+      "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "exists": true,
+      "sha256": "0c988bf40b79c413dee3fbbde69e4d77e3626c4191d3e247f6ed310a6b3e729d",
+      "observed_generated_at": "2026-06-05T01:06:40.901Z",
+      "summary": {
+        "inputs_checked": 280,
+        "missing_required_inputs": 0,
+        "release_relevant_rows": 116,
+        "agent6_handoff_candidates": 45,
+        "public_runtime_mutation_authorized": false,
+        "answer_definition_release_authorized": false
+      },
+      "boundary": {
+        "public_runtime_mutation_authorized": false,
+        "route_shard_edit_authorized": false,
+        "answer_eligibility_authorized": false,
+        "definition_content_storage_authorized": false,
+        "accepted_text_authorized": false,
+        "publication_readiness_authorized": false
+      },
+      "relevant_finding": "Release intake has an Agent 4-adjacent row, but this gate still requires an explicit changed input artifact before routing."
+    },
+    {
+      "path": "reports/spark-prime-30min-contract-run-2026-06-04.md",
+      "exists": true,
+      "sha256": "96094f38aa88a488db1dfc24da0e6c253e8286defc501cda755233b4c931f229",
+      "relevant_finding": null
+    },
+    {
+      "path": "reports/spark4-goal-mode-validator-prereq-next-2026-06-04.md",
+      "exists": true,
+      "sha256": "4b6cf65627e035d36377aaf35359db95e2193a4d155b08b15e448ebe30121c7a",
+      "relevant_finding": "- next_Agent4_package_action: no changed_input package available for reseed; hold"
+    }
+  ],
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss",
+    "translation output",
+    "accepted text"
+  ]
+}

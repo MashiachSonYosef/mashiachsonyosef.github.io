@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_workbench_token_source_partition_edges_pilot_return",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "status": "nonpublic_token_source_partition_edges_pilot_built_full_build_runtime_blocked",
+  "target": "bounded pilot for token-source-partition edge generation over the 5000-token inventory",
+  "files": {
+    "builder": "scripts/build_agent2_workbench_token_source_partition_edges.mjs",
+    "validator": "scripts/validate_agent2_workbench_token_source_partition_edges.mjs",
+    "pilot_edges_jsonl": ".local-cache/workbench-evidence/token-source-partition-edges-5000-pilot25.jsonl",
+    "pilot_summary": "reports/workbench-token-source-partition-edges-5000-pilot25-summary.json",
+    "pilot_report": "reports/workbench-token-source-partition-edges-5000-pilot25.md",
+    "output_json": "reports/agent2-workbench-token-source-partition-edges-pilot-return-2026-06-04.json",
+    "output_md": "reports/agent2-workbench-token-source-partition-edges-pilot-return-2026-06-04.md"
+  },
+  "exact_command_or_script": {
+    "pilot_build": "node scripts/build_agent2_workbench_token_source_partition_edges.mjs --source-file-limit=25 --output=.local-cache/workbench-evidence/token-source-partition-edges-5000-pilot25.jsonl --summary=reports/workbench-token-source-partition-edges-5000-pilot25-summary.json --report=reports/workbench-token-source-partition-edges-5000-pilot25.md",
+    "pilot_validate": "node scripts/validate_agent2_workbench_token_source_partition_edges.mjs reports/workbench-token-source-partition-edges-5000-pilot25-summary.json",
+    "full_build": "node scripts/build_agent2_workbench_token_source_partition_edges.mjs",
+    "full_validate": "node scripts/validate_agent2_workbench_token_source_partition_edges.mjs reports/workbench-token-source-partition-edges-5000-summary.json"
+  },
+  "schema_counts": {
+    "source_file_limit": 25,
+    "source_files_read": 25,
+    "units_read": 14591,
+    "units_with_partition": 9469,
+    "unjoined_units": 5122,
+    "token_occurrences_scanned": 1621120,
+    "matched_token_occurrences": 1102267,
+    "edge_rows": 21728
+  },
+  "full_build_blocker": {
+    "id": "full_5000_token_source_partition_edge_build_exceeded_300_second_local_run_limit",
+    "observed_command": "node scripts/build_agent2_workbench_token_source_partition_edges.mjs",
+    "observed_result": "timed_out_after_300_seconds_before_validated_full_summary",
+    "next_action": "Run full_build in Spark-1 or a long-running worker, then validate full summary."
+  },
+  "transform_candidate_counts": {
+    "definition_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0
+  },
+  "zero_emission_counters": {
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0
+  },
+  "handoff_owner": "Agent 10 first; Spark-1 for full edge build if selected; Agent 6 only by exact boundary packet prepared through release owner",
+  "stop_condition": "Stop after pilot edge build/validation; do not infer full edge coverage or candidate rows until the full build summary validates."
+}

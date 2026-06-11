@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_orot_counterpart_preview_source_lane_constraint",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "preview_artifact": {
+    "json": "reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.json",
+    "report": "reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.md",
+    "builder": "scripts/build_agent2_orot_counterpart_hint_patch_preview.mjs",
+    "validator": "scripts/validate_agent2_orot_counterpart_hint_patch_preview.mjs"
+  },
+  "counts": {
+    "candidate_preview_rows": 31,
+    "candidate_preview_occurrences": 1202,
+    "prefix_contract_rows": 12,
+    "prefix_contract_occurrences": 178,
+    "project_preferred_rows": 19,
+    "project_preferred_occurrences": 1024,
+    "missing_linkage_rows_outside_preview": 13,
+    "missing_linkage_occurrences_outside_preview": 129,
+    "approved_patch_rows": 0,
+    "answer_rows_emitted": 0,
+    "public_hud_rows_emitted": 0,
+    "route_jsonl_rows_emitted": 0,
+    "match_percent_available_rows": 0
+  },
+  "validator": {
+    "command": "node scripts/validate_agent2_orot_counterpart_hint_patch_preview.mjs reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.json",
+    "result": "passed",
+    "stdout": "Agent 2 Orot counterpart hint patch preview validation passed for reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.json."
+  },
+  "exact_blocker": {
+    "id": "orot_counterpart_preview_not_promotable_without_agent1_source_lane_and_agent6_boundary",
+    "missing_before_approved_patch_or_public_export": [
+      "Agent 1 source-family / license-lane classification for each row/subset",
+      "separate lane partitioning for commercial-clean and NC educational rows",
+      "metadata/link-only and blocked/review exclusion rules",
+      "Agent 6 row/subset boundary",
+      "transform run that writes an approved non-public patch artifact",
+      "public/runtime review if any public artifact is proposed later"
+    ]
+  },
+  "source_lane_constraint": {
+    "new_or_missed_dictionaries_not_presumed_nc": true,
+    "old_excluded_dictionaries_not_presumed_blocked": true,
+    "actual_source_lanes_preserved": true,
+    "commercial_clean_and_nc_separated": true,
+    "metadata_link_only_no_definition_text": true,
+    "blocked_review_no_candidate_text_export": true,
+    "preview_text_not_accepted_gloss_text": true
+  },
+  "agent6_boundary": {
+    "opened_now": false,
+    "future_question": "May these exact Agent-1-classified Orot counterpart rows be used/stored/displayed within their assigned source lane while preserving zero answer eligibility, zero accepted gloss/text, zero public emit, source-lane separation, and no route-shard/public/runtime mutation?"
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "approved reader-hint patch",
+    "NC commercial authorization"
+  ]
+}

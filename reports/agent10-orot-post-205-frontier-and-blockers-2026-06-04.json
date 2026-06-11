@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_orot_post_205_frontier_and_blockers",
+  "generated_at": "2026-06-04T11:41:10.603Z",
+  "status": "orot_top500_sefaria_pd_nc_represented_next_work_is_unblock_or_broad_discovery",
+  "package_anchor": {
+    "path": "data/build/orot/reader-hint-placeholder-candidates.json",
+    "sha256": "ce295378dae0c03d631fe9ee11775789bf2aac90d17d184eeeb8a961de3673f3",
+    "placeholder_rows": 332,
+    "placeholder_occurrences": 6156,
+    "commercial_clean_rows": 302,
+    "commercial_clean_occurrences": 5768,
+    "noncommercial_educational_rows": 17,
+    "noncommercial_educational_occurrences": 259,
+    "display_integrity_tbd_rows": 13,
+    "display_integrity_tbd_occurrences": 129,
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "consumed_evidence": {
+    "post_205_append_proof": {
+      "path": "reports/agent10-orot-205-row-commercial-clean-post-append-proof-2026-06-04.json",
+      "sha256": "603f63809dd30b3cf0189226cf68e7cd22517e193261f3867eba7d81de4233cf"
+    },
+    "spark10_health": {
+      "path": "reports/spark10-orot-post-205-package-health-2026-06-04.md",
+      "sha256": "545a45b3e685d5517d8ce2b4da05838f58dd7c7c3d5db49c27648bbd8fca87e2"
+    },
+    "public_domain_preview": {
+      "path": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+      "sha256": "3027e6ecdc72bc2307ad5b5b3ec2aef6c1bea72352e13677f04440c78d0ade58"
+    },
+    "nc_aware_measurement": {
+      "path": "reports/agent2-orot-sefaria-nc-aware-coverage-measurement-2026-06-03.json",
+      "sha256": "a3347219c3d0976bc7aed25adcaa2a59846acf34f36da3cb9f47e99efdca0316"
+    },
+    "missing_linkage_candidates": {
+      "path": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "sha256": "2b8e2f197a53547dec6c1fdf74331d998239a45c3b3329f9291c6da214d354b3"
+    },
+    "zero_safe_pilot": {
+      "path": "reports/agent2-orot-pilot-answer-claims-2026-06-03.json",
+      "sha256": "32c40259406fec029f50af045e4b946ba97e77e9c365058c4214b9fe3feac290"
+    }
+  },
+  "represented_from_top500_preview": {
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "public_domain_observed_missing_rows": 0,
+    "public_domain_observed_missing_occurrences": 0,
+    "nc_or_unresolved_rows": 17,
+    "nc_or_unresolved_occurrences": 259,
+    "nc_or_unresolved_missing_rows": 0,
+    "nc_or_unresolved_missing_occurrences": 0,
+    "no_sefaria_hit_rows": 186,
+    "no_sefaria_hit_occurrences": 2421,
+    "no_sefaria_hit_missing_rows": 183,
+    "no_sefaria_hit_missing_occurrences": 2308
+  },
+  "completed_movement_this_frontier": [
+    "Spark 325 route reconciled stale/mismatched earlier.",
+    "Agent 6 cleared and Agent 10 appended 14 non-public planning rows earlier.",
+    "Agent 6 cleared and Agent 10 appended 205 non-public commercial-clean planning rows.",
+    "Spark-10 verified post-205 package/UFM validator health.",
+    "UFM regenerated on 332-row package anchor."
+  ],
+  "remaining_blockers": [
+    {
+      "lane": "Agent 1 / source-linkage",
+      "blocker": "missing_lexicon_linkage_rows_need_source_owner_disposition",
+      "rows": 13,
+      "occurrences": 129,
+      "owner": "Agent 1 prepares allow/exclude/block linkage disposition; Agent 6 reviews any later source/linkage mutation boundary.",
+      "evidence": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "next_exact_route": "Agent 10 may route a current-anchor Agent1 missing-linkage docket only if linkage mutation or transform unblock is next."
+    },
+    {
+      "lane": "Agent 2 / transform",
+      "blocker": "fill_producing_answer_pipeline_zero_safe_blocker",
+      "rows": 100,
+      "occurrences": 1960,
+      "owner": "Agent 2 transform implementation; Agent 10 consumes only validator-backed output.",
+      "evidence": "reports/agent2-orot-pilot-answer-claims-2026-06-03.json",
+      "next_exact_route": "Spark-2/Agent-2 can rerun exact existing transform commands on a designated row set; no answer/public output without Agent 6."
+    },
+    {
+      "lane": "Objective 4 / broad Orot discovery",
+      "blocker": "top500_sefaria_no_hit_rows_need_next_discovery_or_non_sefaria_source_route",
+      "rows": 186,
+      "occurrences": 2421,
+      "owner": "Agent 10 selects next bounded source-discovery packet; Spark/Agent3 can mechanically diff existing evidence only.",
+      "evidence": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+      "next_exact_route": "Prepare bounded no-hit inventory/dedupe packet before any broad lookup/import."
+    }
+  ],
+  "next_recommended_executable_routes": [
+    {
+      "priority": 1,
+      "target": "Spark-10",
+      "objective": "Mechanically build/verify current Orot frontier inventory from existing files only.",
+      "output": "reports/spark10-orot-post-205-frontier-check-2026-06-04.md",
+      "reason": "Keeps Agent 10 supervisory while Spark handles mechanical count/diff verification."
+    },
+    {
+      "priority": 2,
+      "target": "Agent 1 or Spark-1 replacement",
+      "objective": "Prepare row-level source/linkage allow-exclude-block map for the 13 missing-linkage rows if Agent 10 chooses linkage unblock next.",
+      "output": "Agent1/Spark source-linkage matrix; no mutation.",
+      "reason": "Only unresolved non-discovery row-level blocker with concrete 13-row scope."
+    },
+    {
+      "priority": 3,
+      "target": "Agent 3/Spark-3",
+      "objective": "Prepare bounded no-hit inventory/dedupe over the 186 no-Sefaria-hit rows using existing artifacts only.",
+      "output": "no-hit inventory and candidate source-route blocker matrix.",
+      "reason": "This is the next Orot Objective 4 route after top-500 PD/NC rows are represented."
+    }
+  ],
+  "agent4_status": "held_no_changed_public_runtime_package",
+  "frozen_work": [
+    "public/runtime mutation",
+    "route-shard edits",
+    "answer eligibility",
+    "definition-content storage",
+    "accepted text",
+    "Zechariah",
+    "same 20-row proof repetition"
+  ],
+  "zero_counts": {
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "highest_permissible_claim": "Agent 10 consumed Spark-10 health and recorded current Orot post-205 frontier/blockers for next exact pipeline work.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss",
+    "accepted text",
+    "public reader output"
+  ]
+}

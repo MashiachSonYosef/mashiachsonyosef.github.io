@@ -1,0 +1,69 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T11:51:00.000Z",
+  "target": "A06 repo-cleaning production pipeline adoption receipt gate proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/a06-repo-cleaning-production-pipeline-adoption-receipt-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-agent2-a07-route-correction-sweep-gate-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_a06_repo_cleaning_production_pipeline_adoption_receipt.mjs --input=reports/a06-repo-cleaning-production-pipeline-adoption-receipt-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-a06-repo-cleaning-production-pipeline-adoption-gate-proof-2026-06-06.json",
+  "paired_markdown_path": "reports/agent4-a06-repo-cleaning-production-pipeline-adoption-gate-proof-2026-06-06.md",
+  "evidence_artifacts": [
+    "reports/agent4-changed-input-selection-after-agent2-a07-route-correction-sweep-gate-2026-06-06.json",
+    "reports/a06-repo-cleaning-production-pipeline-adoption-receipt-2026-06-06.json"
+  ],
+  "files_added": [
+    "scripts/validate_a06_repo_cleaning_production_pipeline_adoption_receipt.mjs"
+  ],
+  "counts": {
+    "candidate_count": 1,
+    "reviewed_artifacts": 3,
+    "a06_adoption_items": 5,
+    "a06_does_not_own_items": 12,
+    "required_packet_fields": 6,
+    "forbidden_items": 7,
+    "validated_words_policy_triggers": 5,
+    "approval_owner_A07": 1,
+    "evidence_owner_A06": 1,
+    "destructive_action_allowed": 0,
+    "acceptance_claims_allowed": 0
+  },
+  "result": "validated_A06_repo_cleaning_production_pipeline_adoption_receipt_gate",
+  "route_boundary": {
+    "approval_sop_final_validation_release_gate": "A07",
+    "evidence_validators_repo_cleaning_production": "A06",
+    "a06_output_status": "evidence_ready_until_A07_approves",
+    "do_not_ask_a06_for_approval": true,
+    "redo_scope": "changed_or_flagged_rows_only"
+  },
+  "exact_blockers": [
+    {
+      "code": "A06_evidence_only_no_approval",
+      "details": "A06 adopts SOP-026 for repo-cleaning evidence production only and does not own approval, SOP ratification, final validation, release gate approval, cleanup batch approval, publication, staging, deletion, or revert.",
+      "next_safe_action": "Route approval or cleanup-batch approval to A07."
+    },
+    {
+      "code": "repo_cleaning_classification_only_until_packet_ready_or_exact_blocker",
+      "details": "First cleanup mode is classification_only with scoped dirt snapshot, classification table, proposed action per file, bounded validators, rollback paths, and stop condition required.",
+      "next_safe_action": "Do not stage/delete/revert; produce a repo-cleaning evidence packet or exact blocker only."
+    }
+  ],
+  "handoff_owner": "A06 for evidence/validators/repo-cleaning production packet generation only; A07 for approval/SOP/final validation/release gate/cleanup-batch approval.",
+  "stop_condition": "Stop after validating the selected A06 adoption receipt, writing this Agent 4 proof packet, validating this proof packet, and running the changed packet sweep gate.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, repo cleanup action, destructive command, or release action."
+  ]
+}

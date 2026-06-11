@@ -1,0 +1,75 @@
+{
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T19:43:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent10-agent2-ready-old-dictionary-78-row-candidate-use-workset",
+  "changed_input_artifact": "reports/agent10-agent2-ready-old-dictionary-78-row-candidate-use-workset-2026-06-06.json",
+  "validator": {
+    "script": "scripts/validate_agent10_agent2_ready_old_dictionary_78_row_candidate_use_workset.mjs",
+    "command": "node scripts\\validate_agent10_agent2_ready_old_dictionary_78_row_candidate_use_workset.mjs reports\\agent10-agent2-ready-old-dictionary-78-row-candidate-use-workset-2026-06-06.json",
+    "timeout_ms": 30000,
+    "result": "passed",
+    "stdout": "Agent10 Agent2 78-row candidate-use workset validation passed. Rows: 78; occurrences: 1461; zero counters: 8.",
+    "syntax_check": {
+      "command": "node --check scripts\\validate_agent10_agent2_ready_old_dictionary_78_row_candidate_use_workset.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  },
+  "inputs_cross_checked": [
+    "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+    "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+    "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current.json",
+    "reports/agent10-direct-release-package-intake-refresh-2026-06-06a.json"
+  ],
+  "counts": {
+    "selected_rows": 78,
+    "selected_occurrences": 1461,
+    "required_zero_counter_fields": 8,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "release_actions": 0
+  },
+  "selector_verified": {
+    "preview_relation_class": "exact_after_mark_strip",
+    "agent2_morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "license_lane": "commercial_clean_candidate"
+  },
+  "result": "validator_prereq_gate_passed_for_changed_workset_only",
+  "exact_blockers": [
+    "Agent 2 still must produce the compact preboundary candidate-use matrix or exact missing_pipeline_blocker.",
+    "Agent 10 must consume the Agent 2 matrix and assemble a later exact Agent 6 packet before any candidate-use escalation.",
+    "This proof validates the workset contract only; it does not authorize candidate text, definition content, lemma content, reader-hint content, answer eligibility, public emit, route writes, public/runtime mutation, accepted text, export, publication readiness, or release action."
+  ],
+  "handoff_owner": "Agent 2 produces the preboundary matrix or exact blocker; Agent 10 consumes it for any later Agent 6 packet.",
+  "stop_condition": "Stop after validating this changed workset. Do not rerun unchanged validators. Next Agent 4 work requires a changed Agent 2 preboundary matrix, exact blocker, Agent 10 packet, or another concrete changed/candidate input.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

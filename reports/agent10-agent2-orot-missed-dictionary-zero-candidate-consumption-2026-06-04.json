@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent2_orot_missed_dictionary_zero_candidate_consumption",
+  "generated_at": "2026-06-04T16:55:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "status": "consumed_zero_candidate_return_no_agent6_route",
+  "consumed_artifacts": {
+    "agent2_packet": "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+    "agent2_packet_md": "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.md",
+    "spark10_matrix": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "spark_prime_checkpoint": "reports/spark-prime-30min-contract-run-2026-06-04.md"
+  },
+  "agent2_summary": {
+    "candidate_rows": 0,
+    "candidate_occurrences": 0,
+    "commercial_clean_candidate_rows": 0,
+    "commercial_clean_candidate_occurrences": 0,
+    "noncommercial_educational_candidate_rows": 0,
+    "noncommercial_educational_candidate_occurrences": 0,
+    "metadata_link_only_rows": 0,
+    "blocked_rows": 0,
+    "unmatched_rows": 168,
+    "rows_cleared_by_agent6_now": 0,
+    "rows_added_now": 0,
+    "rows_blocked_pending_agent6": 0,
+    "public_runtime_proof_needed_now": false
+  },
+  "selection_read": {
+    "audit_rows": 500,
+    "excluded_existing_public_or_packaged_token_ids": 332,
+    "remaining_allowed_dictionary_rows": 0,
+    "selected_next_rows": 0,
+    "limit": 50,
+    "blocked_family_not_used": "BDB Augmented Strong"
+  },
+  "release_owner_decision": {
+    "agent6_route_needed_now": false,
+    "reason": "The returned packet has zero candidate rows and zero candidate occurrences; routing an empty row/subset packet would not advance a boundary.",
+    "next_action": "Keep waiting for Agent 6 old-dictionary primary/supplemental verdict; for the 168 unmatched rows, require changed source-family/linkage/dictionary evidence before another Agent 2 candidate packet."
+  },
+  "validation": {
+    "agent2_validator": "node scripts/validate_agent2_orot_missed_dictionary_reader_hint_candidates.mjs reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+    "agent2_validator_result": "passed",
+    "spark10_rebuild": "node scripts/build_spark10_release_package_intake.mjs --contract=reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+    "spark10_validator": "node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "spark10_validator_result": "passed"
+  },
+  "zero_output_counts": {
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "public_mutation_files": 0,
+    "runtime_files_touched": 0,
+    "source_payload_mutation_files": 0,
+    "lexical_payload_mutation_files": 0,
+    "token_index_mutation_files": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "NC commercial authorization"
+  ]
+}

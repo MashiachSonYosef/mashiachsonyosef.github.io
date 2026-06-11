@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_source_license_lane_continuation_status",
+  "generated_at": "2026-06-05T09:00:00Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "lane_owner": "Agent 1",
+  "packets": [
+    {
+      "target": "orot_nc_klein",
+      "license_lanes": {
+        "noncommercial_educational_candidate": {
+          "rows": 17,
+          "occurrences": 259
+        }
+      },
+      "commands": [
+        "node scripts/build_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_nc_klein_source_family_contract.mjs"
+      ],
+      "artifacts": [
+        "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+        "reports/agent1-orot-nc-klein-source-family-pipeline-validation-result-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-validation-result-2026-06-04.json"
+      ],
+      "validator": {
+        "ok": true,
+        "spark1_routable": true,
+        "boundary_only": true
+      },
+      "missing_blockers": [],
+      "handoff": {
+        "agent10": "release_package_intake_after_packet",
+        "agent6": "agent6_boundary_required_review",
+        "spark1": "runnable_contract"
+      }
+    },
+    {
+      "target": "orot_next_missed_source_family",
+      "license_lanes": {
+        "commercial_clean_candidate": {
+          "rows": 50,
+          "occurrences": 1193
+        }
+      },
+      "commands": [
+        "node scripts/build_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_next_missed_source_family_contract.mjs"
+      ],
+      "artifacts": [
+        "reports/agent1-orot-next-missed-source-family-map-2026-06-04.json",
+        "reports/agent1-orot-next-missed-source-family-pipeline-validation-result-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-orot-next-missed-source-family-validation-result-2026-06-04.json"
+      ],
+      "validator": {
+        "ok": true,
+        "spark1_routable": true,
+        "boundary_only": true
+      },
+      "missing_blockers": [],
+      "handoff": {
+        "agent10": "release_package_intake_after_packet",
+        "agent6": "agent6_boundary_required_review",
+        "spark1": "runnable_contract"
+      }
+    },
+    {
+      "target": "old_dictionary_excluded_row_reaudit",
+      "license_lanes": {
+        "commercial_clean_candidate": {
+          "rows": 3,
+          "source_families": 3
+        },
+        "noncommercial_educational_candidate": {
+          "rows": 1,
+          "source_families": 1
+        },
+        "blocked_or_needs_review": {
+          "rows": 1,
+          "source_families": 1
+        },
+        "metadata_or_link_only": {
+          "rows": 0
+        }
+      },
+      "commands": [
+        "node scripts/build_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+        "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+        "node scripts/validate_agent1_spark1_old_dictionary_reaudit_pipeline_contract.mjs"
+      ],
+      "artifacts": [
+        "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+        "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-validation-result-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-validation-result-2026-06-04.json"
+      ],
+      "validator": {
+        "ok": true,
+        "source_family_count": 5,
+        "spark1_routable": true,
+        "boundary_only": true
+      },
+      "missing_blockers": [],
+      "handoff": {
+        "agent10": "release_package_intake_after_packet",
+        "agent6": "agent6_boundary_required_review",
+        "agent2": "transform_only_with_evidence"
+      }
+    },
+    {
+      "target": "orot_third_missed_source_family",
+      "license_lanes": {
+        "commercial_clean_candidate": {
+          "rows": 138,
+          "occurrences": 1672
+        },
+        "blocked_or_needs_review": {
+          "rows": 31,
+          "occurrences": 476
+        },
+        "noncommercial_educational_candidate": {
+          "rows": 0
+        },
+        "metadata_or_link_only": {
+          "rows": 0
+        }
+      },
+      "commands": [
+        "node scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs"
+      ],
+      "artifacts": [
+        "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+        "reports/agent1-orot-third-missed-source-family-map-2026-06-05.md",
+        "reports/agent1-orot-third-missed-source-family-input-contract-2026-06-05.json",
+        "reports/agent1-orot-third-missed-source-family-pipeline-validation-result-2026-06-05.json",
+        "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-validation-result-2026-06-05.json"
+      ],
+      "validator": {
+        "ok": true,
+        "spark1_routable": true,
+        "input_rows": 169,
+        "input_occurrences": 2148
+      },
+      "missing_blockers": [
+        {
+          "type": "exact_workset_blocker",
+          "status": "active",
+          "files": [
+            "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-05.json",
+            "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-05.md",
+            "reports/agent1-third-missed-source-family-missing-workset-blocker-handoff-2026-06-04.json",
+            "reports/agent1-third-missed-source-family-target-or-blocker-validation-result-2026-06-04.json",
+            "reports/agent1-third-missed-source-family-missing-workset-blocker-handoff-validation-result-2026-06-04.json"
+          ],
+          "blocking_rows": 168,
+          "blocking_occurrences": 2117,
+          "blocking_note": "row-level source-family/license fields remain to be finalized for exact third-missed assignment plane"
+        }
+      ],
+      "handoff": {
+        "agent1": "owns_contract_and_blocker_packet",
+        "agent10": "intake_after_exact_input_update",
+        "agent6": "boundary_only_for_agent6_boundary_required_rows",
+        "spark1": "runnable_on_current_packet"
+      }
+    }
+  ],
+  "global_stop_condition": "refresh when inputs or lane counts change; maintain this status until exact third-missed assignment packet resolves",
+  "non_acceptance": {
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_authority": false,
+    "public_runtime_mutation": false,
+    "publication_readiness": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "accepted_gloss_text": false,
+    "nc_commercial_authorization": false
+  }
+}

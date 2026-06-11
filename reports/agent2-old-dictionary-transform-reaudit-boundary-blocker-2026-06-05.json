@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_old_dictionary_transform_reaudit_boundary_blocker",
+  "generated_at": "2026-06-05T22:40:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / source-lane separated lexicon expansion",
+  "target": "Agent 2 definition/lemma/reader-hint transform after Agent 1 classified lanes (old-dictionary reaudit)",
+  "status": "blocked_for_missing_exact_agent1_agent6_boundary_fields",
+  "required_agent1_input_fields": [
+    "row_subset_id",
+    "source_family",
+    "license_lane",
+    "transform_lane",
+    "evidence_path",
+    "occurrences",
+    "derived_from_nc",
+    "commercial_export_allowed",
+    "attribution_required",
+    "corpus_contamination",
+    "agent6_boundary_required",
+    "agent2_transform_allowed_now",
+    "answer_eligible",
+    "public_emit",
+    "missing_evidence",
+    "handoff_owner"
+  ],
+  "required_agent6_boundary_fields": [
+    "exact_row_or_row_subset_id",
+    "agent6_boundary_verdict",
+    "agent6_morphology_relation_status",
+    "morphology_relation_basis",
+    "candidate_use_scope",
+    "exact_agent6_manifest_or_packet_path"
+  ],
+  "exact_blockers_by_row_subset": [
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-dictionary",
+      "source_family": "BDB Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "missing_before_transform": [
+        "old-dictionary-excluded-row-license-lane-reaudit::bdb-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation"
+      ],
+      "handoff_owner": "Agent 10 for package assembly; Agent 6 for exact row/subset boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-aramaic-dictionary",
+      "source_family": "BDB Aramaic Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "missing_before_transform": [
+        "old-dictionary-excluded-row-license-lane-reaudit::bdb-aramaic-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation"
+      ],
+      "handoff_owner": "Agent 10 for package assembly; Agent 6 for exact row/subset boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::jastrow-dictionary",
+      "source_family": "Jastrow Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "missing_before_transform": [
+        "old-dictionary-excluded-row-license-lane-reaudit::jastrow-dictionary::missing_exact_agent6_boundary_and_approved_morphology_relation"
+      ],
+      "handoff_owner": "Agent 10 for package assembly; Agent 6 for exact row/subset boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+      "source_family": "Klein Dictionary",
+      "license_lane": "noncommercial_educational_candidate",
+      "missing_before_transform": [
+        "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary::missing_exact_agent6_nc_boundary_no_commercial_export_authorization",
+        "Agent 6/public boundary before any display/storage/public/answer/export behavior"
+      ],
+      "handoff_owner": "Agent 1 for NC lane packet; Agent 6 for exact NC row/subset boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+      "source_family": "BDB Augmented Strong",
+      "license_lane": "blocked_or_needs_review",
+      "missing_before_transform": [
+        "missing_independent_source_license_custody_basis"
+      ],
+      "handoff_owner": "Agent 1 if evidence appears; otherwise blocked/review"
+    }
+  ],
+  "transform_action_if_classified": "consume exact row/subset evidence + approved morphology relation and emit Agent2 nonpublic definition/lemma/reader-hint input rows only.",
+  "next_safe_handoff_owner": "Agent 10 (package assembly) and Agent 6 (exact boundary/morphology relation)",
+  "stop_condition": "Do not emit definition/lemma/reader-hint content, candidate text, answer rows, public/runtime mutations, route writes, accepted text, commercial export, or release action until missing fields are supplied.",
+  "inputs": {
+    "agent1_transform_lane_handoff": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+    "transform_readiness_matrix": "reports/agent2-old-dictionary-excluded-row-transform-readiness-matrix-2026-06-05.json",
+    "agent1_boundary_question_packet": "reports/agent1-old-dictionary-agent6-boundary-question-packet-2026-06-05.json"
+  },
+  "validator_result": "n/a_blocked_due_to_missing_boundary"
+}

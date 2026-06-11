@@ -1,0 +1,148 @@
+{
+  "artifact": "reports/agent6-old-dictionary-public-domain-citation-metadata-custody-boundary-verdict-2026-06-05.md",
+  "date": "2026-06-05",
+  "agent": "Agent 6",
+  "disposition": "warn_accepted_nonpublic_citation_source_custody_planning_evidence_only",
+  "scope": "old_dictionary_public_domain_citation_metadata_custody_planning_boundary_only",
+  "accepted_boundary": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "public_domain_citation_metadata_present_rows": 297,
+    "rows_without_public_domain_citation_metadata": 203,
+    "source_artifact": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.json",
+    "exact_row_payload": "public_domain_metadata_rows[]",
+    "permitted_next_step": "Agent_10_may_carry_artifact_as_nonpublic_citation_source_custody_planning_evidence_only"
+  },
+  "evidence_reviewed": [
+    "reports/agent10-agent6-ready-old-dictionary-public-domain-citation-metadata-custody-boundary-packet-2026-06-05.md",
+    "reports/agent10-agent6-ready-old-dictionary-public-domain-citation-metadata-custody-boundary-packet-2026-06-05.json",
+    "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.md",
+    "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.json",
+    "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-validation-result-2026-06-05.json",
+    "reports/agent6-old-dictionary-exact-row-subset-manifest-boundary-verdict-2026-06-05.md",
+    "reports/agent1-old-dictionary-source-family-overlap-matrix-2026-06-05.json"
+  ],
+  "validators_run": [
+    {
+      "command": "node scripts/validate_agent10_old_dictionary_public_domain_citation_metadata_custody_boundary_packet.mjs reports/agent10-agent6-ready-old-dictionary-public-domain-citation-metadata-custody-boundary-packet-2026-06-05.json",
+      "result": "passed",
+      "rows": 500,
+      "public_domain_citation_metadata_rows": 297
+    }
+  ],
+  "independent_recount": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "public_domain_metadata_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "public_domain_rid_rows": 297,
+    "public_domain_rid_total": 1276,
+    "public_domain_headword_rows": 297,
+    "public_domain_headword_total": 1120,
+    "public_domain_refs_rows": 204,
+    "public_domain_refs_total": 4478,
+    "public_domain_rows_without_refs_sample": 93,
+    "rows_without_public_domain_citation_metadata": 203,
+    "nonzero_zero_counters": 0,
+    "exact_text_payload_fields_observed": 0,
+    "lane_split": {
+      "commercial_clean_candidate": {
+        "rows": 297,
+        "occurrences": 5747,
+        "citation_metadata_status": "present"
+      },
+      "noncommercial_educational_candidate": {
+        "rows": 17,
+        "occurrences": 259,
+        "citation_metadata_status": "no_public_domain_citation_metadata_no_commercial_authorization"
+      },
+      "metadata_or_link_only": {
+        "rows": 0,
+        "occurrences": 0,
+        "citation_metadata_status": "empty"
+      },
+      "blocked_or_needs_review": {
+        "rows": 186,
+        "occurrences": 2421,
+        "citation_metadata_status": "source_license_custody_evidence_missing"
+      }
+    }
+  },
+  "exact_blockers_preserved": [
+    {
+      "blocker": "public_domain_metadata_is_citation_metadata_only_not_definition_text",
+      "rows": 297,
+      "occurrences": 5747
+    },
+    {
+      "blocker": "public_domain_rows_without_ref_samples_need_source_family_boundary_if_refs_required",
+      "rows": 93,
+      "occurrences": 1362
+    },
+    {
+      "blocker": "nc_only_rows_have_no_public_domain_citation_metadata_and_no_commercial_authorization",
+      "rows": 17,
+      "occurrences": 259
+    },
+    {
+      "blocker": "no_source_hit_rows_have_no_public_domain_citation_metadata_or_source_lane_evidence",
+      "rows": 186,
+      "occurrences": 2421
+    }
+  ],
+  "warnings": [
+    "public_domain_citation_metadata_is_not_definition_candidate_answer_or_accepted_text",
+    "93_public_domain_metadata_rows_lack_ref_samples_and_need_later_boundary_if_refs_are_required",
+    "commercial_clean_candidate_lane_is_planning_metadata_only_no_source_license_legal_or_export_acceptance",
+    "noncommercial_educational_candidate_lane_remains_separate_no_nc_commercial_authorization",
+    "blocked_or_needs_review_no_source_hit_rows_remain_blocked_for_source_license_custody_use",
+    "future_candidate_use_transform_source_row_emission_text_export_definition_storage_answer_route_public_runtime_export_or_release_requires_later_exact_agent6_packet"
+  ],
+  "affected_agents": {
+    "Agent 10": "may_carry_artifact_as_nonpublic_citation_source_custody_planning_evidence_only",
+    "Agent 1": "citation_metadata_custody_evidence_accepted_as_planning_evidence_only_no_source_license_legal_acceptance",
+    "Agent 2": "no_transform_candidate_use_source_row_emission_answer_or_export_authority_created",
+    "Agent 4": "no_runtime_public_proof_route_opened",
+    "Agent 7": "required_for_control_publication_release_path_activation_or_durable_state_publication_if_applicable"
+  },
+  "affected_gates": {
+    "citation_metadata_custody_planning_gate": "warn_accepted_exact_artifact_only",
+    "source_provenance_license_legal_gate": "not_accepted",
+    "source_family_selection_gate": "blocked",
+    "candidate_use_gate": "blocked",
+    "transform_gate": "blocked",
+    "source_row_emission_gate": "blocked",
+    "definition_authority_gate": "blocked",
+    "answer_eligibility_gate": "blocked",
+    "public_runtime_gate": "not_accepted",
+    "publication_release_gate": "not_accepted",
+    "commercial_export_gate": "blocked",
+    "nc_commercial_authorization_gate": "blocked"
+  },
+  "must_not_be_accepted": [
+    "qa_acceptance_beyond_this_docket",
+    "source_provenance_acceptance",
+    "license_legal_acceptance",
+    "definition_authority",
+    "usage_as_definition_authority",
+    "answer_acceptance",
+    "answer_eligibility",
+    "public_runtime_acceptance",
+    "publication_readiness",
+    "route_publication_support",
+    "product_data_acceptance",
+    "translation_output",
+    "accepted_gloss_text",
+    "public_reader_output",
+    "route_shard_edit",
+    "public_runtime_mutation",
+    "candidate_text_export",
+    "definition_content_storage",
+    "commercial_export_permission",
+    "nc_commercial_authorization",
+    "release_action"
+  ],
+  "stop_condition": "dated_agent6_verdict_exists_for_exact_old_dictionary_public_domain_citation_metadata_custody_planning_boundary_only_no_mutation_or_release_performed"
+}

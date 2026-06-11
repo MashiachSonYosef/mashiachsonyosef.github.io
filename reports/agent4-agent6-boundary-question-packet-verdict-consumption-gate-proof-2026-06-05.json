@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:59.999Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent6-boundary-question-packet-verdict-consumption",
+  "status": "agent6_verdict_consumed_as_warn_accepted_nonpublic_boundary_question_planning_evidence_only",
+  "files": {
+    "agent6_verdict": {
+      "path": "reports/agent6-old-dictionary-boundary-question-packet-verdict-2026-06-05.json",
+      "sha256": "0e12285ace890097e819105df8efe5d0d4c6b7c83a9d84a9be68d54d9a89d204"
+    },
+    "agent1_boundary_question_packet": {
+      "path": "reports/agent1-old-dictionary-agent6-boundary-question-packet-2026-06-05.json",
+      "sha256": "cf0649b5f381f1723d3f670225ffc324502f2262d3c43d8395f6384cc491ce8a"
+    },
+    "agent2_boundary_question_receipt": {
+      "path": "reports/agent2-agent1-boundary-question-packet-receipt-2026-06-05.json",
+      "sha256": "8644c8a7cf2e34aa8e2b8cc2a25a6a27f01c151016feacaee4a5b3db4566f21e"
+    },
+    "agent6_verdict_validator": {
+      "path": "scripts/validate_agent6_old_dictionary_boundary_question_packet_verdict.mjs",
+      "sha256": "70876b51535257bbd96fdb5714d4c37ff8e275beac5637a123c531a6cea691ad"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent6_old_dictionary_boundary_question_packet_verdict.mjs reports\\agent6-old-dictionary-boundary-question-packet-verdict-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_agent6_boundary_question_packet.mjs reports\\agent1-old-dictionary-agent6-boundary-question-packet-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_agent1_boundary_question_packet_receipt.mjs reports\\agent2-agent1-boundary-question-packet-receipt-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "boundary_question_rows": 6,
+    "commercial_clean_candidate_questions": 3,
+    "noncommercial_educational_candidate_questions": 1,
+    "metadata_or_link_only_question_records": 1,
+    "blocked_or_needs_review_questions": 1,
+    "source_family_rows": 5,
+    "delivered_to_agent6_now_in_source_artifact": 0,
+    "future_candidate_use_questions_opened_now_in_source_artifact": 0,
+    "agent1_packet_nonzero_zero_counters": 0,
+    "agent2_receipt_nonzero_zero_counters": 0
+  },
+  "question_rows": [
+    {
+      "row_subset": "old-dictionary-excluded-row-license-lane-reaudit::jastrow-dictionary",
+      "lane": "commercial_clean_candidate",
+      "rows": 210,
+      "occurrences": 4474
+    },
+    {
+      "row_subset": "old-dictionary-excluded-row-license-lane-reaudit::bdb-dictionary",
+      "lane": "commercial_clean_candidate",
+      "rows": 221,
+      "occurrences": 4418
+    },
+    {
+      "row_subset": "old-dictionary-excluded-row-license-lane-reaudit::bdb-aramaic-dictionary",
+      "lane": "commercial_clean_candidate",
+      "rows": 69,
+      "occurrences": 2048
+    },
+    {
+      "row_subset": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+      "lane": "noncommercial_educational_candidate",
+      "rows": 214,
+      "occurrences": 4444
+    },
+    {
+      "row_subset": "old-dictionary-excluded-row-license-lane-reaudit::metadata-or-link-only",
+      "lane": "metadata_or_link_only",
+      "rows": 0,
+      "occurrences": 0
+    },
+    {
+      "row_subset": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+      "lane": "blocked_or_needs_review",
+      "rows": 222,
+      "occurrences": 4435
+    }
+  ],
+  "agent6_disposition": "warn_accepted_nonpublic_boundary_question_planning_evidence_only",
+  "permitted_next_step": "Agent_10_and_Agent_2_may_carry_six_questions_as_nonpublic_planning_docket_only",
+  "blocked_gates": [
+    "source_family_selection_gate",
+    "source_provenance_license_legal_gate",
+    "candidate_use_gate",
+    "transform_gate",
+    "definition_lemma_reader_hint_content_gate",
+    "definition_authority_gate",
+    "answer_eligibility_gate",
+    "public_runtime_gate",
+    "publication_release_gate",
+    "commercial_export_gate",
+    "nc_commercial_authorization_gate"
+  ],
+  "result": "Agent 6 verdict validates and is consumed as WARN-ACCEPTED nonpublic boundary-question planning evidence only for the exact six-question old-dictionary docket.",
+  "blocker_if_any": "questions_are_not_cleared_boundaries_candidate_use_transform_output_runtime_answer_definition_export_or_release_remain_blocked",
+  "next_handoff": "Agent10 and Agent2 may carry the six questions as a planning docket only; future substantive boundary answers require exact Agent6 packets.",
+  "stop_condition": "Do not rerun unless Agent6 verdict, Agent1 boundary-question packet, Agent2 receipt, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance beyond this docket",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no source-family selection acceptance",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

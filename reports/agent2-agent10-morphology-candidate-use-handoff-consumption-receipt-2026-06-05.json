@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_agent10_morphology_candidate_use_handoff_consumption_receipt",
+  "generated_at": "2026-06-05T23:59:55.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / source-lane separated lexicon expansion",
+  "target": "Agent10 old-dictionary morphology candidate-use handoff consumption by Agent2",
+  "status": "handoff_consumed_package_already_authored_and_gate_proved_no_text_output",
+  "inputs": {
+    "agent10_handoff": "reports/agent10-agent2-old-dictionary-morphology-candidate-use-handoff-2026-06-05.json",
+    "agent2_package": "reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json",
+    "agent4_gate_proof": "reports/agent4-agent2-old-dictionary-morphology-candidate-use-package-gate-proof-2026-06-05.json"
+  },
+  "consumed_request": {
+    "request": "author_nonpublic_old_dictionary_morphology_candidate_use_package_over_exact_78_queue_ids_only",
+    "row_source_path": "reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json",
+    "row_source_pointer": "exact_subset_for_future_question.queue_ids",
+    "rows": 78,
+    "occurrences": 1461,
+    "license_lane": "commercial_clean_candidate",
+    "preview_relation_class": "exact_after_mark_strip",
+    "agent2_morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "noncommercial_educational_candidate_rows": 0,
+    "excluded_morphology_blocked_rows": 219
+  },
+  "delivered_agent2_artifacts": {
+    "package_json": "reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json",
+    "package_markdown": "reports/agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.md",
+    "package_validator": "scripts/validate_agent2_old_dictionary_morphology_candidate_use_package.mjs",
+    "package_gate_proof": "reports/agent4-agent2-old-dictionary-morphology-candidate-use-package-gate-proof-2026-06-05.json"
+  },
+  "counts": {
+    "package_rows": 78,
+    "package_occurrences": 1461,
+    "unique_queue_ids": 78,
+    "commercial_clean_candidate_rows": 78,
+    "noncommercial_educational_candidate_rows": 0,
+    "morphology_blocked_rows_excluded": 219,
+    "exact_after_mark_strip_rows": 78,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0
+  },
+  "validator_result": {
+    "command": "node scripts\\validate_agent2_old_dictionary_morphology_candidate_use_package.mjs reports\\agent2-old-dictionary-morphology-candidate-use-package-2026-06-05.json",
+    "result": "passed",
+    "stdout_summary": "Agent 2 old-dictionary morphology candidate-use package validation passed. Rows: 78; occurrences: 1461; text/output rows: 0."
+  },
+  "exact_blocker": "new_agent6_verdict_required_before_text_storage_transform_output_export_answer_route_runtime_accepted_text_commercial_export_or_release",
+  "next_handoff_owner": "Agent 10 for Agent 6 boundary review before any actual text/storage/export/answer/public/runtime/release step.",
+  "stop_condition": "Stop at handoff consumption receipt. Do not store candidate text, definition/lemma/reader-hint content, mark answers, write routes/shards, mutate runtime/public/source/token-index/lexical files, export candidate text, claim accepted text, commercial export, publication readiness, or release action.",
+  "non_acceptance_boundary": [
+    "No Definition authority",
+    "No answer acceptance",
+    "No answer eligibility",
+    "No source/license/legal acceptance",
+    "No accepted gloss/text",
+    "No public/runtime mutation",
+    "No route-shard edit",
+    "No candidate text export",
+    "No definition/lemma/reader-hint content storage",
+    "No commercial export authorization",
+    "No NC commercial authorization",
+    "No release action"
+  ]
+}

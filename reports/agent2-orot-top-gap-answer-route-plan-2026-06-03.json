@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent2_orot_top_gap_answer_route_plan",
+  "generated_at": "2026-06-03T00:00:00-04:00",
+  "work_id": "orot",
+  "input_audit": ".codex-tmp/hud-deploy-live/reports/agent10-orot-top-gap-route-audit-2026-06-03.json",
+  "input_answer_contract_failure_audit": ".codex-tmp/hud-deploy-live/reports/agent10-orot-answer-contract-failure-audit-2026-06-03.json",
+  "claim_boundary": {
+    "highest_claim": "Agent 2 route-data plan for Orot top reader-hint gaps using existing pipeline tools and current route-card audit evidence",
+    "not_accepted": [
+      "qa_acceptance",
+      "validated_public_runtime_acceptance",
+      "source_provenance_acceptance",
+      "publication_readiness",
+      "definition_authority",
+      "usage_as_definition_authority",
+      "accepted_translation_text",
+      "translation_output"
+    ]
+  },
+  "audit_summary_used": {
+    "audited_token_count": 25,
+    "no_route_cards": 1,
+    "route_cards_exist_but_none_answer_eligible": 18,
+    "ambiguous_answer_candidates": 6,
+    "missing_token_rows": 0,
+    "route_loader_missing_shards": 0
+  },
+  "answer_contract_failure_summary_used": {
+    "token_count": 18,
+    "route_card_count": 443,
+    "failure_reasons": {
+      "explicit_answer_eligible_false": 338,
+      "section_not_answer_production": 105
+    },
+    "sections": {
+      "citable_paraphrase_evidence": 320,
+      "phrase_evidence": 105,
+      "strict_hebrew": 12,
+      "lemma": 6
+    },
+    "answer_roles": {
+      "evidence": 431,
+      "form_reference": 12
+    },
+    "meaning_quality": {
+      "paraphrase_evidence": 320,
+      "missing": 105,
+      "form_reference": 18
+    }
+  },
+  "existing_pipeline_paths": {
+    "route_lookup_input": "data/definitions/hud-route-lookup/manifest.json",
+    "route_lookup_shards": "data/definitions/hud-route-lookup/shards/*.json",
+    "route_store_builder": "scripts/build_hud_route_store.mjs",
+    "route_lookup_builder": "scripts/build_hud_route_lookup.mjs",
+    "definition_claim_builder": "scripts/build_definition_routes.mjs",
+    "citable_paraphrase_builder": "scripts/build_citable_paraphrase_evidence.mjs",
+    "gap_queue_builder": "scripts/build_definition_gap_queue.mjs",
+    "reader_hint_consumer": ".codex-tmp/hud-deploy-live/scripts/build_public_hud_reader_hints.mjs",
+    "route_package_consumer": ".codex-tmp/hud-deploy-live/scripts/build_public_hud_route_package.mjs"
+  },
+  "answer_contract_repair_target": {
+    "source_file_to_generate_or_update": ".local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl",
+    "producer": "scripts/build_citable_paraphrase_evidence.mjs",
+    "consumer": "scripts/build_hud_route_store.mjs",
+    "required_row_fields_for_answer_slot_candidate": [
+      "focus_surface",
+      "focus_normalized",
+      "route_type=citable_paraphrase_evidence or biblical_paraphrase_evidence",
+      "candidate_status=accepted only after pipeline evidence review; proposed rows are disambiguation evidence and do not fill the answer slot",
+      "answer_eligible=true only for boundary-safe answer-slot candidates",
+      "answer_role=answer or reader_answer",
+      "boundary_safe=true",
+      "definition or route_definition or paraphrase populated from pipeline source evidence, not hand-authored text",
+      "raw_score and adjusted_score or score_handicap",
+      "source_rows with source_id, source_url, license, license_url"
+    ],
+    "non_answer_route_card_reason": "scripts/build_hud_route_store.mjs hard-codes phrase_evidence cards as answer_eligible=false and answer_role=evidence; the reader-hint consumer also excludes phrase_evidence from answer-slot selection.",
+    "do_not_do": [
+      "Do not flip answer_eligible on existing phrase_evidence rows.",
+      "Do not flip answer_eligible on form_reference rows.",
+      "Do not relabel answer_role=evidence rows into answer rows unless the producing pipeline can create a boundary-safe answer-candidate row with public source/license/citation and renderable answer text.",
+      "Do not patch data/definitions/hud-route-lookup shards directly as the source of truth."
+    ],
+    "repair_classes": [
+      {
+        "class": "phrase_evidence_only",
+        "route_cards": 105,
+        "repair": "Generate separate citable_paraphrase_evidence or definition claim rows if pipeline evidence can support a reader-answer candidate; leave phrase_evidence as evidence."
+      },
+      {
+        "class": "citable_paraphrase_evidence_explicit_false",
+        "route_cards": 320,
+        "repair": "Regenerate or adjust upstream citable paraphrase rows only when candidate_status, boundary_safe, answer_role, answer_eligible, source rows, and renderable answer fields satisfy the answer contract."
+      },
+      {
+        "class": "form_reference",
+        "route_cards": 18,
+        "repair": "Keep form_reference rows non-answer; create a separate lemma, morphology, or citable answer candidate if the pipeline can substantiate it."
+      }
+    ]
+  },
+  "disambiguation_target": {
+    "current_dedicated_disambiguation_writer_found": false,
+    "existing_data_path": ".local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl or .local-cache/definition-routes/kaikki-definition-claims.jsonl / source-layer-definition-claims.jsonl",
+    "consumer_logic": ".codex-tmp/hud-deploy-live/scripts/build_public_hud_reader_hints.mjs selectRouteAnswer/answerAmbiguity",
+    "repair_rule": "Disambiguation must change route-card evidence or scores so one candidate is no longer tied within the same lookup relation and score window, or mark non-selected candidates answer_eligible=false/answer_role=evidence through pipeline evidence. Do not hand-pick highest score as truth."
+  },
+  "token_groups": {
+    "contract_repair_existing_cards": [
+      "tok-20d2e105fd77",
+      "tok-2a86b3eaee9b",
+      "tok-97b99c6afe4b",
+      "tok-1b76a9f88fc7",
+      "tok-cf9427570b0a",
+      "tok-42a5e912cd97",
+      "tok-6cb138a16634",
+      "tok-e858e9fa8bb8",
+      "tok-bf10df974281",
+      "tok-1bfe6fea9d85",
+      "tok-180d57091846",
+      "tok-3fc615d98aec",
+      "tok-b9470f18041a",
+      "tok-16b3c5cb6ffe",
+      "tok-7094ebe18b8f",
+      "tok-c3803c6fde17",
+      "tok-1282c4d855bc",
+      "tok-e2d80b36f5bc"
+    ],
+    "ambiguous_candidates_need_disambiguation": [
+      "tok-f7199bc62ed1",
+      "tok-6f3c380a7be9",
+      "tok-bff9af2524d1",
+      "tok-dfcf4cc0af67",
+      "tok-35bce35c1de4",
+      "tok-12372a227ead"
+    ],
+    "no_route_cards_need_new_route_rows": [
+      "tok-35f6d9093072"
+    ]
+  },
+  "recommended_execution_sequence": [
+    {
+      "step": 1,
+      "lane": "Agent 2",
+      "action": "Create or refresh a bounded top-gap evidence queue from the Agent 10 audit token IDs, preserving token_id, focus_normalized, route_card_count, answer_eligible_count, ambiguity_count, and blocker.",
+      "write_scope": "reports/agent2-* or .local-cache/definition-routes/* only; do not write public deploy files."
+    },
+    {
+      "step": 2,
+      "lane": "Agent 2",
+      "action": "For the 18 contract-repair tokens, add or regenerate source-citable paraphrase candidate rows only when existing pipeline source evidence can populate source/license rows and a renderable candidate answer field.",
+      "write_scope": ".local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl or sharded equivalent"
+    },
+    {
+      "step": 3,
+      "lane": "Agent 2",
+      "action": "For the 6 ambiguous tokens, emit a non-authority disambiguation evidence packet first. Only after evidence separates candidates should route-card fields or scores change.",
+      "write_scope": "reports/agent2-orot-top-gap-disambiguation-evidence-2026-06-03.json"
+    },
+    {
+      "step": 4,
+      "lane": "Agent 2",
+      "action": "For tok-35f6d9093072, generate new pipeline route rows keyed to the lookup candidates; do not invent a definition if no source-backed row can be created.",
+      "write_scope": ".local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl or source definition claim inputs"
+    },
+    {
+      "step": 5,
+      "lane": "Agent 2",
+      "action": "After route input changes only, rebuild local route store and lookup, then validate route data before any Agent 10 public dry-run.",
+      "commands": [
+        "node scripts/build_hud_route_store.mjs",
+        "node scripts/build_hud_route_lookup.mjs",
+        "node scripts/validate_hud_route_store.mjs",
+        "node scripts/validate_hud_route_lookup.mjs",
+        "node scripts/validate_route_answer_safety.mjs"
+      ]
+    },
+    {
+      "step": 6,
+      "lane": "Agent 10 after Agent 2 data exists",
+      "action": "Run public-reader dry-runs only after Agent 2 local route data changes and validators pass.",
+      "commands": [
+        "node .codex-tmp/hud-deploy-live/scripts/build_public_hud_route_package.mjs --work-id orot --source-root C:\\Users\\owner\\Documents\\translations --public-root C:\\Users\\owner\\Documents\\translations\\.codex-tmp\\hud-deploy-live --top-n 10000 --source-clearance-report C:\\Users\\owner\\Documents\\translations\\reports\\agent1-orot-fill-source-row-evidence-2026-06-03.json --replace-existing --dry-run --report reports\\agent10-orot-after-agent2-route-package-dry-run-2026-06-03.json",
+        "node .codex-tmp/hud-deploy-live/scripts/build_public_hud_reader_hints.mjs --work-id orot --source-root C:\\Users\\owner\\Documents\\translations --public-root C:\\Users\\owner\\Documents\\translations\\.codex-tmp\\hud-deploy-live --source-clearance-report C:\\Users\\owner\\Documents\\translations\\reports\\agent1-orot-fill-source-row-evidence-2026-06-03.json --dry-run --report reports\\agent10-orot-after-agent2-reader-hints-dry-run-2026-06-03.json"
+      ]
+    }
+  ],
+  "blockers": [
+    "No dedicated existing disambiguation writer was identified; ambiguity repair currently has to be expressed as route-card data or score changes consumed by build_public_hud_reader_hints.mjs.",
+    "Rows with route_type=phrase_evidence are intentionally non-answer evidence under build_hud_route_store.mjs and should not be relabeled into answers without new source-backed citable/definition route rows.",
+    "The second Agent 10 audit shows 338 cards are explicitly answer_eligible=false and 431 cards carry answer_role=evidence; safe repair requires upstream answer-candidate rows or contract-safe route-data adjustments, not direct flag flips.",
+    "Any row that would require human semantic choice rather than pipeline evidence should remain proposed/disambiguation evidence and not become answer_eligible."
+  ]
+}

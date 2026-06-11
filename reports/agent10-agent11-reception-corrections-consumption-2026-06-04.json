@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_release_owner_consumption",
+  "generated_at": "2026-06-04T21:05:00.0000000-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "package_workset": "agent11_reception_corrections_for_release_owner_wording",
+  "release_owner": "Agent 10",
+  "inputs_consumed": [
+    "reports/agent11-weekly-lexicon-reception-corrections-2026-06-04.md"
+  ],
+  "row_occurrence_counts": {
+    "correction_rows_consumed": 38,
+    "prior_snapshot_rows": 23,
+    "public_runtime_mutation_rows": 0,
+    "answer_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "lane_split": {
+    "correction_type": "owner_facing_wording_and_release_intake_cap",
+    "planning_evidence_only": true,
+    "source_lanes_preserved": true,
+    "commercial_clean_exports_exclude_nc_rows": true,
+    "nc_educational_rows_remain_separated": true,
+    "spark_output_is_permission": false,
+    "current_snapshot_refreshed": true,
+    "all_target_files_rewritten_claimed": false
+  },
+  "validator_results": [
+    {
+      "command": "node -e \"JSON.parse(require('fs').readFileSync('reports/agent10-agent11-reception-corrections-consumption-2026-06-04.json','utf8'))\"",
+      "result": "passed"
+    }
+  ],
+  "agent6_boundary_question": null,
+  "agent6_boundary_reason": "Agent 11 reception corrections are owner-facing wording/cap evidence only. They do not create a row/subset package or Agent 6 route.",
+  "applied_corrections": [
+    {
+      "target": "reports/agent10-agent2-weekly-pipeline-and-5000-token-intake-consumption-2026-06-04.md/json",
+      "correction": "5000-token inventory is source-license inventory only; rows are not definition/lemma/reader-hint candidates until lane fields and source citations exist per token."
+    },
+    {
+      "target": "reports/agent10-agent6-ready-workbench-cc-by-sa-share-alike-boundary-packet-2026-06-04.md/json",
+      "correction": "CC-BY-SA candidate lane remains under share-alike boundary review; commercial export, package use, public display, answer use, and definition text use remain blocked."
+    },
+    {
+      "target": "reports/agent10-agent6-ready-workbench-cc-by-attribution-boundary-packet-2026-06-04.md/json",
+      "correction": "License lane may be commercially compatible in theory, but cc_by_export_authorized_now=false until attribution boundary is decided."
+    },
+    {
+      "target": "reports/agent10-agent3-post-custody-wake-and-control-cap-consumption-2026-06-04.md/json",
+      "correction": "Observed queue context only; Agent 3 runnable queue items 0, changed artifacts 0, exact new worksets 0; broad unchanged reruns capped, exact-contract work remains allowed."
+    },
+    {
+      "target": "reports/agent10-weekly-lexicon-release-next-boundary-or-blocker-2026-06-04.md + reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.md",
+      "correction": "Treat as live boundary/intake mechanics only; not a release plan or public-use clearance. Consumed dockets are warn-only non-public planning evidence and zero public/output/answer/definition/accepted-text emissions remain."
+    },
+    {
+      "target": "reports/agent10-current-changed-lane-outputs-consumption-2026-06-04.md + reports/agent10-agent6-current-release-package-boundary-packets-verdict-consumption-2026-06-05.md",
+      "correction": "Agent 6 closed the two current package questions only as warn-only non-public planning evidence. Candidate text, export, source display, attribution/share-alike handling, answer use, public/runtime behavior, and release action still need new exact boundaries."
+    },
+    {
+      "target": "reports/agent10-agent11-reception-corrections-consumption-2026-06-04.md/json",
+      "correction": "Refresh the consumption snapshot from 23 rows to the current 38-row Agent 11 packet before claiming current Agent 11 wording has been carried into Agent 10 release wording."
+    },
+    {
+      "target": "reports/spark10-release-package-intake-matrix-current-2026-06-04.md/json",
+      "correction": "Spark-10 matrix is mechanical intake context only; current summary is 280 inputs, 116 release-relevant rows, 45 handoff candidates, and no public/runtime or answer/definition/release authorization."
+    }
+  ],
+  "exact_blockers": [
+    "Agent11 corrections do not authorize release/package/public/runtime/answer/definition action.",
+    "Future owner-facing summaries must avoid using WARN-ACCEPTED or commercial-clean-compatible language as clearance.",
+    "The current 38-row correction packet is consumed as wording/cap evidence, not as proof that every target artifact has been rewritten.",
+    "Agent 6 routing still requires exact changed package path, row/occurrence boundary, lane split, zero counters, and review question."
+  ],
+  "next_handoff": {
+    "agent10": "Use these corrections in release/package ledger wording and exact boundary packet summaries.",
+    "spark10": "Track this correction artifact as release-intake wording/cap evidence only.",
+    "agent6": "Held until a concrete exact row/subset package exists."
+  },
+  "stop_condition": "Stop at wording/cap preservation; do not infer acceptance or mutation clearance from these corrections.",
+  "zero_counters": {
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0
+  },
+  "highest_permissible_claim": "Agent 10 refreshed consumption of the current 38-row Agent 11 reception corrections as owner-facing wording and release-intake cap evidence only.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

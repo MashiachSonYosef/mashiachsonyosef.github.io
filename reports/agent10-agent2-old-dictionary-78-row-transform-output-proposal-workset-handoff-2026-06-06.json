@@ -1,0 +1,63 @@
+{
+  "artifact_type": "agent10_agent2_old_dictionary_78_row_transform_output_proposal_workset_handoff",
+  "generated_at": "2026-06-06T02:32:00Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target_package": "old-dictionary-commercial-clean-78-row-transform-output-proposal-preboundary",
+  "workset_artifacts": [
+    "reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.md",
+    "reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.json"
+  ],
+  "files_used": {
+    "zero_text_package_planning_anchor": "reports/agent10-old-dictionary-78-row-zero-text-candidate-use-package-planning-2026-06-06.json",
+    "agent10_zero_text_consumption": "reports/agent10-old-dictionary-78-row-zero-text-package-planning-consumption-2026-06-06.json",
+    "agent6_zero_text_verdict": "reports/agent6-old-dictionary-78-row-zero-text-candidate-use-package-verdict-2026-06-06.json"
+  },
+  "current_boundary": {
+    "rows": 78,
+    "occurrences": 1461,
+    "allowed_status": "nonpublic_zero_text_candidate_use_package_planning_only",
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "current_blocker": "next_transform_output_or_candidate_text_boundary_not_supplied",
+  "handoff_need": {
+    "owner": "Agent 2",
+    "allowed_returns": [
+      "compact_nonpublic_transform_output_proposal_matrix_for_exact_78_queue_ids",
+      "missing_pipeline_blocker"
+    ],
+    "exact_blocker_if_no_live_route": "missing_current_agent2_thread_route_for_live_delivery"
+  },
+  "delivery_state": {
+    "live_delivered_from_this_session": false,
+    "reason": "No current Agent 2 thread id is available in this Agent 10 session environment.",
+    "route_blocker": "missing_current_agent2_thread_route_for_live_delivery"
+  },
+  "next_owner": "Coordination lane / Agent 8 / Agent 5 routes the workset to current Agent 2. Agent 10 consumes returned matrix or exact blocker and assembles Agent 6 packet only if validation passes.",
+  "stop_condition": "Stop at file-backed handoff until Agent 2 returns a matrix or exact blocker. Do not mutate public/runtime files, route shards, source files, token indexes, lexical payloads, accepted text, export files, publication state, or release state.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

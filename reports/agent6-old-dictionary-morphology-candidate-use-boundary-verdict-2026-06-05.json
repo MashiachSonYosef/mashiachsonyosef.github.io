@@ -1,0 +1,133 @@
+{
+  "artifact": "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.md",
+  "date": "2026-06-05",
+  "agent": "Agent 6",
+  "disposition": "warn_accepted_nonpublic_candidate_use_planning_input_only",
+  "scope": "exact_78_old_dictionary_commercial_clean_morphology_planning_rows_candidate_use_planning_input_only",
+  "accepted_boundary": {
+    "rows": 78,
+    "occurrences": 1461,
+    "row_source_path": "reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json",
+    "row_source_pointer": "exact_subset_for_future_question.queue_ids",
+    "preview_relation_class": "exact_after_mark_strip",
+    "agent2_morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "license_lane": "commercial_clean_candidate",
+    "noncommercial_educational_candidate_rows": 0,
+    "permitted_next_step": "Agent_2_may_author_later_nonpublic_candidate_use_package_over_exact_78_queue_ids_only"
+  },
+  "evidence_reviewed": [
+    "reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.md",
+    "reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json",
+    "reports/agent2-agent10-candidate-use-preflight-handoff-2026-06-05.json",
+    "reports/agent2-morphology-planning-candidate-use-blocker-2026-06-05.json",
+    "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+    "reports/agent10-agent6-ready-old-dictionary-morphology-planning-boundary-packet-2026-06-05.json",
+    "reports/agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.json"
+  ],
+  "validators_run": [
+    {
+      "command": "node scripts/validate_agent10_old_dictionary_morphology_candidate_use_boundary_packet.mjs reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json",
+      "result": "passed",
+      "rows": 78,
+      "occurrences": 1461
+    }
+  ],
+  "independent_recount": {
+    "handoff_queue_ids": 78,
+    "unique_handoff_queue_ids": 78,
+    "selected_rows_by_prior_selector": 78,
+    "selected_occurrences_by_prior_selector": 1461,
+    "handoff_rows_found_in_matrix": 78,
+    "handoff_occurrences": 1461,
+    "missing_selected_ids_from_handoff": 0,
+    "extra_handoff_ids_outside_selected_subset": 0,
+    "forbidden_row_flags_observed": 0,
+    "nonzero_packet_zero_counters": 0,
+    "blocked_rows_outside_subset": 219
+  },
+  "required_fields_for_later_agent2_package": [
+    "queue_id",
+    "token_id",
+    "lexicon_entry_id",
+    "occurrences",
+    "source_family",
+    "license_lane",
+    "source_rids",
+    "morphology_relation_basis",
+    "agent2_morphology_relation_status",
+    "candidate_use_scope",
+    "derived_from_nc",
+    "commercial_export_allowed",
+    "attribution_required",
+    "corpus_contamination",
+    "answer_eligible",
+    "public_emit",
+    "agent6_boundary_required"
+  ],
+  "zero_counters_preserved": {
+    "candidate_text_export": 0,
+    "definition_lemma_reader_hint_content_storage": 0,
+    "answer_eligibility": 0,
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "accepted_text": 0,
+    "release_actions": 0
+  },
+  "warnings": [
+    "candidate_use_planning_input_only_no_candidate_text_use_or_transform_execution",
+    "commercial_clean_candidate_lane_metadata_only_no_source_license_legal_or_export_acceptance",
+    "219_morphology_blocked_rows_remain_excluded",
+    "actual_candidate_use_package_requires_new_agent6_verdict_before_text_storage_transform_output_export_answer_or_runtime_mutation"
+  ],
+  "blockers_preserved": [
+    "candidate_text_export_blocked",
+    "definition_lemma_reader_hint_content_storage_blocked",
+    "answer_eligibility_blocked",
+    "public_runtime_mutation_blocked",
+    "route_writes_blocked",
+    "accepted_text_blocked",
+    "release_action_blocked",
+    "219_morphology_blocked_rows_excluded"
+  ],
+  "affected_agents": {
+    "Agent 10": "may_hand_exact_78_queue_ids_to_agent2_as_nonpublic_candidate_use_planning_input_only",
+    "Agent 2": "may_author_later_nonpublic_candidate_use_package_over_exact_78_ids_preserving_required_fields_and_zero_output_controls",
+    "Agent 1": "no_source_provenance_license_legal_acceptance_created",
+    "Agent 4": "no_runtime_public_proof_route_opened",
+    "Agent 7": "required_for_control_publication_release_path_activation_or_durable_queue_state_publication_if_applicable"
+  },
+  "affected_gates": {
+    "old_dictionary_morphology_candidate_use_planning_gate": "warn_accepted_exact_78_row_planning_input_only",
+    "candidate_text_export_gate": "blocked",
+    "definition_content_storage_gate": "blocked",
+    "answer_eligibility_gate": "blocked",
+    "public_runtime_gate": "not_accepted",
+    "route_write_gate": "blocked",
+    "publication_release_gate": "not_accepted",
+    "source_provenance_license_legal_gate": "not_accepted"
+  },
+  "must_not_be_accepted": [
+    "qa_acceptance_beyond_this_docket",
+    "source_provenance_acceptance",
+    "license_legal_acceptance",
+    "definition_authority",
+    "usage_as_definition_authority",
+    "answer_acceptance",
+    "answer_eligibility",
+    "public_runtime_acceptance",
+    "publication_readiness",
+    "route_publication_support",
+    "product_data_acceptance",
+    "translation_output",
+    "accepted_gloss_text",
+    "public_reader_output",
+    "route_shard_edit",
+    "public_runtime_mutation",
+    "candidate_text_export",
+    "definition_content_storage",
+    "commercial_export_authorization",
+    "nc_commercial_authorization",
+    "release_action"
+  ],
+  "stop_condition": "dated_agent6_verdict_exists_for_exact_78_row_1461_occurrence_nonpublic_candidate_use_planning_input_boundary_only_no_mutation_or_release_performed"
+}

@@ -1,0 +1,54 @@
+# Agent 2 Agent3 Source-Citation Crossmatch Consumption Validation Result (2026-06-06)
+
+## target
+`old-dictionary-commercial-clean-78-row-transform-output-proposal-preboundary`
+
+## files used
+- `reports/agent2-old-dictionary-78-row-agent3-source-citation-crossmatch-consumption-2026-06-06.json`
+- `scripts/validate_agent2_old_dictionary_78_row_agent3_source_citation_crossmatch_consumption.mjs`
+
+## validator result
+- initial command: `node scripts\validate_agent2_old_dictionary_78_row_agent3_source_citation_crossmatch_consumption.mjs reports\agent2-old-dictionary-78-row-agent3-source-citation-crossmatch-consumption-2026-06-06.json`
+- initial timeout: `120000ms`
+- initial process_timeout: `false`
+- initial result: false-positive failure on negative stop-condition text, `forbidden acceptance phrase present: publication readiness`
+- next safe action taken: tightened validator to rely on zero counters and exact blockers
+- final command: `node scripts\validate_agent2_old_dictionary_78_row_agent3_source_citation_crossmatch_consumption.mjs reports\agent2-old-dictionary-78-row-agent3-source-citation-crossmatch-consumption-2026-06-06.json`
+- final timeout: `120000ms`
+- final process_timeout: `false`
+- final result: `passed`
+- final stdout: `Agent2 Agent3 source-citation crossmatch consumption validation passed. Rows: 78; occurrences: 1461; source citation missing rows: 78; transform ready rows: 0.`
+
+## lane counts/rows consumed
+- rows: 78
+- occurrences: 1461
+- source_license_lane: `commercial_clean_candidate`
+- relation_class: `exact_after_mark_strip`
+- morphology_relation_status: `agent2_morphology_relation_approved_for_nonpublic_planning`
+- source_citation_missing_rows: 78
+- transform_rule_missing_rows: 78
+- transform_ready_rows: 0
+- candidate_text_rows: 0
+- definition_content_rows: 0
+- lemma_content_rows: 0
+- reader_hint_content_rows: 0
+- answer_eligible_rows: 0
+- route_shard_writes: 0
+- source_text_rows: 0
+- accepted_text_rows: 0
+- public_runtime_mutation: 0
+- export_rows: 0
+- release_actions: 0
+
+## exact blockers
+- `missing_source_citation_or_url_for_78_row_subset`
+- `missing_source_field::source_citation_or_url`
+- `missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text`
+- `new_exact_agent6_packet_required_before_transform_output_candidate_text_definition_lemma_reader_hint_content_storage_answer_eligibility_route_write_public_runtime_mutation_export_accepted_text_publication_readiness_or_release`
+- `stale_agent1_registry_target_current_agent1_thread_required`
+
+## handoff owner
+Agent5 coordination routes Agent10 source-citation workset to current Agent1. Agent1 supplies `source_citation_or_url` or exact blocker. Agent10 returns to Agent2 only after citation and exact transform rule are present.
+
+## stop condition
+Stop at validated crossmatch consumption. No definition/lemma/reader-hint content storage, answer/public eligibility, route write, source/license/legal acceptance, accepted text, export, publication readiness, or release action.

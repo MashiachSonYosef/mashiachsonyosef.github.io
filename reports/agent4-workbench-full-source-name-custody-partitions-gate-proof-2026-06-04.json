@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "status": "runnable_contract_authored_changed_input_present",
+  "target": "workbench-full-source-name-custody-partitions",
+  "changed_package_input_path": "reports/agent10-agent6-ready-workbench-full-source-name-custody-partitions-boundary-packet-2026-06-04.json",
+  "changed_package_input_sha256": "ae533f91ca2ea5bdad0efd48e7abbb06d5cd01793e46cad2a86d593f736d1404",
+  "files": [
+    "reports/agent10-agent6-ready-workbench-full-source-name-custody-partitions-boundary-packet-2026-06-04.json",
+    "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.json",
+    "reports/agent1-spark1-pipeline-contract-workbench-full-source-name-custody-partitions-2026-06-04.json",
+    "reports/agent1-current-source-license-custody-lane-return-2026-06-04.json",
+    "reports/agent4-workbench-full-source-name-custody-partitions-changed-input-2026-06-04.json",
+    "reports/agent4-workbench-full-source-name-custody-partitions-runnable-contract-2026-06-04.json",
+    "reports/agent4-workbench-full-source-name-custody-partitions-runnable-contract-2026-06-04.md"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_workbench_full_source_name_custody_partitions.mjs",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent1_spark1_workbench_full_source_name_custody_partitions_contract.mjs",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent1_current_source_license_custody_lane_return.mjs reports\\agent1-current-source-license-custody-lane-return-2026-06-04.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\build_agent4_changed_package_validator_prereq_gate.mjs --date 2026-06-04 --changed-input reports\\agent4-workbench-full-source-name-custody-partitions-changed-input-2026-06-04.json --out-json reports\\agent4-workbench-full-source-name-custody-partitions-runnable-contract-2026-06-04.json --out-md reports\\agent4-workbench-full-source-name-custody-partitions-runnable-contract-2026-06-04.md",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-workbench-full-source-name-custody-partitions-runnable-contract-2026-06-04.json",
+      "result": "pass"
+    }
+  ],
+  "counts": {
+    "source_rows": 105747,
+    "source_name_partitions": 351,
+    "public_domain_partitions": 307,
+    "public_domain_source_rows": 99045,
+    "cc_by_sa_partitions": 37,
+    "cc_by_sa_source_rows": 5581,
+    "cc_by_partitions": 5,
+    "cc_by_source_rows": 625,
+    "cc0_partitions": 2,
+    "cc0_source_rows": 496,
+    "current_lane_return_output_count": 36,
+    "deuteronomy_lane_return_rows": 1334,
+    "deuteronomy_lane_return_occurrences": 2964,
+    "validator_commands_passed": 3,
+    "runnable_contracts_authored": 1,
+    "runnable_contracts_checked": 1,
+    "answer_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0,
+    "acceptance_claims": 0
+  },
+  "result": "Runnable Agent4 changed-package validator/prereq contract generated and checked for exact full source-name custody partitions changed input.",
+  "blocker_if_any": {
+    "agent4_validator_gate": "none",
+    "remaining_boundary": [
+      "Full source-name custody partitions require Agent6 boundary before any source/license acceptance or export use.",
+      "CC-BY attribution partition use requires exact attribution boundary.",
+      "CC-BY-SA share-alike partition use requires exact share-alike boundary.",
+      "Candidate text export/storage/display/answer use requires a later exact row-subset packet."
+    ]
+  },
+  "next_handoff": "Agent10 owns release/package intake; Agent6 boundary review only.",
+  "stop_condition": "Stop after exact changed-input gate proof and runnable contract check; do not rerun this validator chain unless the package/input changes.",
+  "non_acceptance_boundary": {
+    "qa_acceptance": false,
+    "public_runtime_acceptance": false,
+    "source_provenance_acceptance": false,
+    "license_legal_acceptance": false,
+    "definition_authority": false,
+    "publication_readiness": false,
+    "route_publication_support": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "accepted_gloss_text": false,
+    "release_action": false,
+    "public_runtime_mutation": false
+  }
+}

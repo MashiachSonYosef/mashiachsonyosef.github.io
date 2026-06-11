@@ -1,0 +1,157 @@
+{
+  "artifact_type": "agent10_agent6_ready_old_dictionary_commercial_nc_overlap_exclusion_boundary_packet",
+  "generated_at": "2026-06-05T19:26:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "review_scope": "nonpublic_commercial_nc_overlap_exclusion_planning_evidence_only",
+  "inputs": {
+    "agent1_manifest_md": "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-2026-06-05.md",
+    "agent1_manifest_json": "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-2026-06-05.json",
+    "agent1_validation_json": "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-validation-result-2026-06-05.json",
+    "agent6_boundary_question_verdict": "reports/agent6-old-dictionary-boundary-question-packet-verdict-2026-06-05.md",
+    "agent2_klein_nc_lane_receipt": "reports/agent2-klein-nc-lane-preservation-receipt-2026-06-05.json"
+  },
+  "exact_manifest_source": {
+    "path": "reports/agent1-old-dictionary-commercial-nc-overlap-exclusion-manifest-2026-06-05.json",
+    "overlap_rows_pointer": "commercial_nc_overlap_metadata_rows[]",
+    "commercial_nc_without_blocked_pointer": "commercial_nc_without_bdb_augmented_strong_rows[]",
+    "commercial_nc_with_blocked_pointer": "commercial_nc_with_bdb_augmented_strong_rows[]",
+    "klein_only_excluded_pointer": "klein_only_excluded_rows[]",
+    "exact_blockers_pointer": "exact_blockers[]",
+    "row_duplication_in_this_packet": false
+  },
+  "overlap_counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_nc_overlap_rows": 197,
+    "commercial_nc_overlap_occurrences": 4185,
+    "commercial_nc_without_bdb_augmented_strong_rows": 57,
+    "commercial_nc_without_bdb_augmented_strong_occurrences": 818,
+    "commercial_nc_with_bdb_augmented_strong_rows": 140,
+    "commercial_nc_with_bdb_augmented_strong_occurrences": 3367,
+    "klein_only_excluded_rows": 17,
+    "klein_only_excluded_occurrences": 259,
+    "pairwise_klein_intersection_count": 4,
+    "exact_klein_combination_count": 7
+  },
+  "classification_lanes": [
+    {
+      "license_lane": "commercial_clean_candidate",
+      "row_count": 197,
+      "occurrence_count": 4185,
+      "scope": "public-domain source evidence exists on these rows, but candidate use is blocked pending Agent 6 source-family selection/exclusion boundary.",
+      "agent2_transform_allowed_now": false,
+      "agent6_boundary_required": true
+    },
+    {
+      "license_lane": "noncommercial_educational_candidate",
+      "row_count": 197,
+      "occurrence_count": 4185,
+      "source_family": "Klein Dictionary",
+      "commercial_authorization_now": false,
+      "note": "Klein-bearing rows stay NC-preserved and are not commercially authorized by this artifact."
+    },
+    {
+      "license_lane": "metadata_or_link_only",
+      "row_count": 0,
+      "occurrence_count": 0
+    },
+    {
+      "license_lane": "blocked_or_needs_review",
+      "row_count": 140,
+      "occurrence_count": 3367,
+      "source_family": "BDB Augmented Strong",
+      "note": "Triple-overlap rows also carry BDB Augmented Strong review evidence."
+    }
+  ],
+  "exact_blockers": [
+    {
+      "blocker": "commercial_nc_overlap_requires_agent6_source_family_selection_boundary",
+      "owner": "Agent 6",
+      "rows": 197,
+      "occurrences": 4185
+    },
+    {
+      "blocker": "klein_nc_content_not_commercially_authorized",
+      "owner": "Agent 6",
+      "rows": 197,
+      "occurrences": 4185
+    },
+    {
+      "blocker": "triple_overlap_also_requires_bdb_augmented_strong_source_custody_resolution_or_exclusion",
+      "owner": "Agent 6",
+      "rows": 140,
+      "occurrences": 3367
+    },
+    {
+      "blocker": "metadata_only_no_definition_or_candidate_text",
+      "owner": "Agent 1",
+      "rows": 197,
+      "occurrences": 4185
+    }
+  ],
+  "requested_carry_forward": {
+    "carry_as_nonpublic_planning_evidence_only": true,
+    "commercial_clean_selection_allowed_now": false,
+    "nc_educational_selection_allowed_now": false,
+    "blocked_review_exclusion_allowed_now": false,
+    "candidate_use_allowed_now": false,
+    "transform_allowed_now": false,
+    "source_row_emit_allowed_now": false,
+    "candidate_text_export_allowed_now": false,
+    "definition_text_storage_allowed_now": false,
+    "answer_eligibility_allowed_now": false,
+    "public_runtime_mutation_allowed_now": false,
+    "route_shard_write_allowed_now": false,
+    "source_license_legal_acceptance_allowed_now": false,
+    "commercial_export_allowed_now": false,
+    "nc_commercial_authorization_allowed_now": false,
+    "release_action_allowed_now": false
+  },
+  "zero_output_counts": {
+    "agent6_delivery_rows_now": 0,
+    "agent2_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "emitted_answer_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "answer_eligible_rows_now": 0,
+    "queue_mutations": 0,
+    "staging_mutations": 0,
+    "render_mutations": 0,
+    "release_actions": 0
+  },
+  "agent6_review_question": "Pass/warn/block whether the exact Agent 1 commercial+NC overlap exclusion manifest may be carried as non-public overlap/exclusion planning evidence only for 197 overlap rows / 4185 occurrences, preserving NC separation and BDB Augmented Strong review blockers.",
+  "delivery_state": {
+    "status": "agent6_ready_not_delivered_by_agent10_in_this_artifact",
+    "exact_blocker_if_not_routed": "await_agent6_commercial_nc_overlap_exclusion_boundary_for_old_dictionary_197_row_overlap"
+  },
+  "highest_permissible_claim": "Agent 10 prepared an Agent6-ready old-dictionary commercial+NC overlap exclusion boundary packet for non-public planning evidence only.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "source-family selection acceptance",
+    "commercial clean selection",
+    "NC educational selection",
+    "BDB Augmented Strong exclusion acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export permission",
+    "NC commercial authorization",
+    "release action"
+  ],
+  "stop_condition": "Stop at Agent6-ready packet unless and until Agent 6 returns an exact verdict; no source-family selection, exclusion, candidate use, transform, source-row emission, candidate text, output, public/runtime, answer, definition, export, or release step is authorized by this packet."
+}

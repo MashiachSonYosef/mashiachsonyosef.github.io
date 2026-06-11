@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "artifact_type": "agent10_agent6_ready_leviticus_runtime_review_docket",
-  "generated_at": "2026-06-03T10:33:32.546Z",
+  "generated_at": "2026-06-04T02:44:52.340Z",
   "generator": "scripts/build_agent10_leviticus_runtime_review_docket.mjs",
   "commit_basis": {
-    "local_head": "7a6ea5eddfc03a83dc0450e282b297fddf77ad32",
-    "origin_main": "50b1eab6ab34f5a8d971981aa3b12221dc6cb743",
-    "live_guard_commit_or_deploy_id": "50b1eab6ab34f5a8d971981aa3b12221dc6cb743",
+    "local_head": "2b5c911d2d009422fb9a55ef631380e5aa875eb6",
+    "origin_main": "bae62829558ce2754a409e96a848cca710d92442",
+    "live_guard_commit_or_deploy_id": "5384567ceb62eca0587fd71df094dccde7678425",
     "agent4_observable_origin_main": "62c64fb303e13ef84e22d6cbf56e2a2c85c04499"
   },
   "boundary": {
-    "status": "agent6_ready_leviticus_runtime_review_docket_not_accepted",
+    "status": "blocked_leviticus_runtime_review_docket",
     "evidence_only": true,
     "pipeline_only": true,
     "review_docket_only": true,
@@ -34,7 +34,7 @@
   },
   "inputs": {
     "release_train": "reports/agent10-multi-lane-reader-surface-release-train-2026-06-03.json",
-    "release_train_sha256": "f2c37eb9bb87895a4ab56aec9dbd94f4c94f013e95a3a2fcddc707edf19a65c6",
+    "release_train_sha256": "f4b909a00c9904769ee53849510be1afd0ccaea2cd0269299b23c44ec7888ccd",
     "candidate_prep": "reports/agent10-candidate-page-4-shipment-prep-2026-06-02.md",
     "candidate_prep_sha256": "69d66b1c4a8c0e427f206c24d73a0f0a6957f52ea424338fe7a296df4c547f6b",
     "agent4_proof": "reports/agent4-leviticus-live-browser-click-proof-2026-06-02.json",
@@ -43,8 +43,8 @@
     "agent4_proof_report_sha256": "2ece894f82b3fc229269cba04074542311e3daa234065e7355f56ebef0564d7d",
     "agent4_screenshot": "reports/agent4-leviticus-live-browser-click-proof-2026-06-02.png",
     "agent4_screenshot_sha256": "d28e6c870b1e1f05790b55873afffda9aaaf4ad1541676e6190c9121359ad0a6",
-    "live_old_hud_guard": "reports/agent10-live-public-old-hud-guard-2026-06-03-post-orot-zero-safe-pilot-docket.json",
-    "live_old_hud_guard_sha256": "eb547e65bd1c9f62d8c33433814ed875ee73b228d4290fc882797f31650e9496"
+    "live_old_hud_guard": "reports/agent10-live-public-old-hud-guard-2026-06-04-post-orot-zero-safe-pilot-docket.json",
+    "live_old_hud_guard_sha256": "d5523c45c8c5bc070927088b894c33bbd8d963df7668732f5fbea23a287eda40"
   },
   "outputs": {
     "json_report": "reports/agent10-agent6-ready-leviticus-runtime-review-docket-2026-06-03.json",
@@ -77,7 +77,7 @@
     ]
   },
   "summary": {
-    "status": "warn_agent6_ready_leviticus_runtime_review_docket_not_accepted",
+    "status": "blocked_leviticus_runtime_review_docket",
     "page": "tanakh/leviticus/",
     "work_id": "leviticus",
     "live_page_status": 200,
@@ -102,18 +102,18 @@
     "agent4_old_marker_hits": 0,
     "fresh_live_old_hud_exposure": "no",
     "fresh_hard_old_marker_hit_checks": 0,
-    "validation_commands_passed": 2,
+    "validation_commands_passed": 1,
     "validation_commands_total": 2,
-    "issues": 0,
+    "issues": 1,
     "warnings": 2
   },
   "validation_evidence": {
     "commands": [
       {
         "command": "node scripts/validate_agent10_multi_lane_reader_surface_release_train.mjs reports/agent10-multi-lane-reader-surface-release-train-2026-06-03.json",
-        "exit_code": 0,
-        "stdout_tail": "Agent 10 multi-lane reader surface release train validation passed for reports/agent10-multi-lane-reader-surface-release-train-2026-06-03.json.",
-        "stderr_tail": ""
+        "exit_code": 1,
+        "stdout_tail": "",
+        "stderr_tail": "Agent 10 multi-lane reader surface release train validation failed with 5 issue(s):\n- Agent 1 docket sha256 mismatch\n- Agent 6 docket sha256 mismatch\n- Ruth browser proof sha256 mismatch\n- Jonah browser proof sha256 mismatch\n- Amos browser proof sha256 mismatch"
       },
       {
         "command": "node scripts/validate_route_hud_page.mjs --page tanakh/leviticus/index.html --page tanakh/numbers/index.html --page tanakh/ruth/index.html",
@@ -223,8 +223,8 @@
       "issues": []
     },
     "fresh_live_old_hud_guard": {
-      "artifact": "reports/agent10-live-public-old-hud-guard-2026-06-03-post-orot-zero-safe-pilot-docket.json",
-      "commit_or_deploy_id": "50b1eab6ab34f5a8d971981aa3b12221dc6cb743",
+      "artifact": "reports/agent10-live-public-old-hud-guard-2026-06-04-post-orot-zero-safe-pilot-docket.json",
+      "commit_or_deploy_id": "5384567ceb62eca0587fd71df094dccde7678425",
       "status": "warn_live_public_old_hud_guard",
       "old_hud_exposure": "no",
       "hard_old_marker_hit_checks": 0,
@@ -248,7 +248,9 @@
     "Do not mutate public HUD data, route JSONL/shards, Leviticus HTML, runtime JS/CSS, source files, or lexical payloads from this docket.",
     "Do not claim source custody, Definition authority, accepted gloss, accepted translation text, publication readiness, deploy/cache closure, broad runtime acceptance, or QA acceptance."
   ],
-  "issues": [],
+  "issues": [
+    "Validation command failed: node scripts/validate_agent10_multi_lane_reader_surface_release_train.mjs reports/agent10-multi-lane-reader-surface-release-train-2026-06-03.json"
+  ],
   "warnings": [
     "Agent 4 proof is WARN because runtime script URL is not visibly versioned/cache-busted.",
     "Fresh live guard is WARN, not PASS; known watch-marker warning remains outside hard old-HUD exposure."

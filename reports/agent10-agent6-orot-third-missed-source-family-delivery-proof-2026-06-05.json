@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_orot_third_missed_source_family_delivery_proof",
+  "generated_at": "2026-06-05T10:23:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / direct Agent run mode",
+  "release_owner": "Agent 10",
+  "reviewer": "Agent 6",
+  "delivery_target": "019e7f09-a04b-7f30-b36c-87aa8ecaae5d",
+  "delivery_submission_id": "019e974f-9818-73d0-b3e5-bc39ebdf726c",
+  "delivered_packets": [
+    "reports/agent10-agent6-ready-orot-third-missed-source-family-boundary-packet-2026-06-05.md",
+    "reports/agent10-agent6-ready-orot-third-missed-source-family-boundary-packet-2026-06-05.json"
+  ],
+  "source_artifacts": [
+    "reports/agent1-orot-third-missed-source-family-map-2026-06-05.md",
+    "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+    "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+    "reports/agent1-third-missed-source-family-target-or-blocker-resolution-2026-06-05.json"
+  ],
+  "scope": {
+    "rows": 169,
+    "occurrences": 2148,
+    "commercial_clean_candidate_rows": 138,
+    "commercial_clean_candidate_occurrences": 1672,
+    "blocked_or_needs_review_rows": 31,
+    "blocked_or_needs_review_occurrences": 476,
+    "noncommercial_educational_candidate_rows": 0,
+    "noncommercial_educational_candidate_occurrences": 0,
+    "metadata_or_link_only_rows": 0,
+    "metadata_or_link_only_occurrences": 0
+  },
+  "validator_results": [
+    {
+      "command": "node scripts\\validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_spark1_orot_third_missed_source_family_contract.mjs",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent10_orot_third_missed_source_family_boundary_packet.mjs reports\\agent10-agent6-ready-orot-third-missed-source-family-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "stop_condition": "Await Agent 6 verdict artifact path or exact blocker for this Orot third-missed source-family boundary packet; do not route duplicate packet unless changed artifacts appear.",
+  "zero_mutation_counters": {
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "route_jsonl_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_hud_rows": 0
+  },
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export authorization",
+    "release action"
+  ]
+}

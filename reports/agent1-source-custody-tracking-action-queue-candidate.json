@@ -1,0 +1,115 @@
+{
+  "generated_at": "2026-06-04T00:13:56.687Z",
+  "artifact_type": "agent1_source_custody_tracking_action_queue_candidate",
+  "requested_queue_item": {
+    "request_id": "agent6-agent1-source-custody-tracking-action-review",
+    "submitted_by": "Agent 5",
+    "agent1_evidence_origin": "Agent 1 evidence packet for Agent 5 relay / Agent 6 review",
+    "gate": "source_provenance_custody_gate",
+    "scope": "23 untracked source-file tracking-review action packet after Packet B manifest remediation",
+    "status": "candidate_for_agent5_queue_relay_awaiting_agent6_review",
+    "priority": 0,
+    "evidence_artifacts": [
+      "reports/agent6-agent1-source-custody-closure-decision-verdict-2026-06-02.md",
+      "reports/agent6-agent1-source-custody-followup-packets-verdict-2026-06-02.md",
+      "reports/agent1-source-custody-tracking-action-packet.md",
+      "reports/agent1-source-custody-tracking-action-packet.json",
+      "reports/agent1-source-custody-tracking-action-validator-result.json",
+      "reports/agent1-source-provenance-custody-validator-result.json",
+      "reports/agent1-state.md",
+      "scripts/build_agent1_source_custody_tracking_action_packet.mjs",
+      "scripts/validate_agent1_source_custody_tracking_action_packet.mjs",
+      "scripts/build_agent1_source_custody_tracking_action_queue_candidate.mjs"
+    ],
+    "requested_verdict": "pass_warn_block_23_source_tracking_review_action_packet_only",
+    "claimed_boundary": "Agent 1 produced a source-file tracking-review action packet for the exact 23 untracked sources. This is not source/provenance acceptance, source-file tracking approval, staging, commit, render, publication, downstream artifact acceptance, public/runtime acceptance, route publication support, Definition authority, product/data acceptance, publication readiness, future publication support, translation output, or accepted translation text. Publication remains blocked_no_render.",
+    "known_risks": [
+      "The packet can be misread as permission to stage or track the 23 sources; it is review evidence only.",
+      "Downstream direct artifacts and content-reference rows remain blocked even if Agent 6 accepts the source-file candidate list.",
+      "Six modified tracked source files remain a separate license-label normalization lane.",
+      "Agent 1 worker evidence and this queue candidate are not Agent 6 acceptance."
+    ],
+    "what_changed_since_last_agent6_ruling": "After Agent 6 WARN-accepted Packet A as a candidate list and preserved Packet B as a missing-manifest blocker, Agent 1 remediated the manifest blocker and produced a current tracking-review action packet covering all 23 live untracked sources. The validator reports 85410 total units, 10727 Public Domain units, 74683 CC-BY units, 0 missing manifest source files, 189 blocked direct downstream paths, and 120 blocked content-reference source rows.",
+    "what_must_not_be_accepted": [
+      "source/provenance custody",
+      "source/provenance acceptance",
+      "source publication",
+      "source-file tracking approval",
+      "source-file staging, commit, or merge",
+      "downstream direct artifact acceptance",
+      "downstream content-reference acceptance",
+      "QA acceptance",
+      "public/runtime acceptance",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "product/data acceptance",
+      "product/data gate acceptance",
+      "publication readiness",
+      "future publication support",
+      "translation output",
+      "accepted translation text"
+    ],
+    "next_agent6_action": "Issue a dated pass/warn/block verdict on the 23-source tracking-review action packet only, preserving downstream blocking unless explicitly narrowed by Agent 6."
+  },
+  "current_packet_summary": {
+    "tracking": {
+      "track_candidate_source_files": 23,
+      "total_units": 85410,
+      "public_domain_units": 10727,
+      "cc_by_units": 74683,
+      "missing_manifest_source_files": 0,
+      "direct_downstream_artifact_paths": 189,
+      "content_reference_source_rows": 120,
+      "unique_content_reference_paths": 68,
+      "visible_source_license_row_gaps": 0,
+      "lexical_manifest_gaps": 0
+    },
+    "custody_validator": {
+      "ok": true,
+      "live_untracked_sources": 23,
+      "live_modified_tracked_sources": 6,
+      "untracked_license_unit_counts": {
+        "Public Domain": 10727,
+        "CC-BY": 74683
+      },
+      "missing_lexical_manifest_gaps": 0
+    }
+  },
+  "track_candidate_source_paths": [
+    "data/sources/beer-hagolah.json",
+    "data/sources/brief-commentary-on-peah.json",
+    "data/sources/brief-commentary-on-rosh-hashanah.json",
+    "data/sources/brief-commentary-on-shabbat.json",
+    "data/sources/brief-commentary-on-shekalim.json",
+    "data/sources/brief-commentary-on-sheviit.json",
+    "data/sources/brief-commentary-on-sotah.json",
+    "data/sources/brief-commentary-on-taanit.json",
+    "data/sources/brief-commentary-on-terumot.json",
+    "data/sources/brief-commentary-on-yevamot.json",
+    "data/sources/brief-commentary-on-yoma.json",
+    "data/sources/derashat-shabbat-hagadol.json",
+    "data/sources/derush-al-hatorah.json",
+    "data/sources/gevurot-hashem.json",
+    "data/sources/machzor-rosh-hashanah-ashkenaz-linear.json",
+    "data/sources/machzor-rosh-hashanah-ashkenaz.json",
+    "data/sources/machzor-yom-kippur-ashkenaz-linear.json",
+    "data/sources/ner-mitzvah.json",
+    "data/sources/netivot-olam.json",
+    "data/sources/netzach-yisrael.json",
+    "data/sources/selichot-nusach-lita-linear.json",
+    "data/sources/shabbat-siddur-sefard-linear.json",
+    "data/sources/siddur-sefard.json"
+  ],
+  "boundary": {
+    "agent1_status": "evidence-ready / awaiting-Agent-6",
+    "publication_state": "blocked_no_render",
+    "source_provenance_acceptance_claimed": false,
+    "source_file_tracking_approval_claimed": false,
+    "source_file_staging_claimed": false,
+    "public_runtime_acceptance_claimed": false,
+    "route_publication_support_claimed": false,
+    "definition_authority_claimed": false,
+    "page_render_acceptance_claimed": false
+  }
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "hud_route_release_gate_validation",
-  "generated_at": "2026-06-01T14:58:20.008Z",
+  "generated_at": "2026-06-01T17:46:48.864Z",
   "verdict": "pass_with_warnings",
   "inputs": {
     "gate_json": "reports/hud-route-release-gate.json",
@@ -13,6 +13,7 @@
   "publication_boundary": {
     "publication_status": "blocked_no_render",
     "validates": [
+      "hud_route_release_stamp",
       "hud_route_lookup_integrity",
       "route_card_publication_boundary"
     ],
@@ -25,6 +26,27 @@
     "answer_eligible_scope": "hud_answer_slot_only_not_translation_or_publication_readiness",
     "warning_status_blocks_publication_claim": true,
     "current_route_sources_reconciled": false
+  },
+  "input_freeze_publication_boundary": {
+    "publication_status": "blocked_no_render",
+    "validates": [
+      "hud_route_input_freeze_drift",
+      "frozen_route_input_cache_comparison"
+    ],
+    "does_not_clear": [
+      "translation_output",
+      "source_publication",
+      "public_lexical_export_reuse",
+      "accepted_definition_authority",
+      "public_lookup_publication",
+      "route_publication_readiness"
+    ],
+    "route_input_scope": "freeze_drift_check_only_not_publication_readiness",
+    "warning_status_blocks_publication_claim": true,
+    "current_route_inputs_reconciled": false,
+    "route_data_regenerated": false,
+    "source_imports_changed": false,
+    "public_lookup_artifacts_changed": false
   },
   "counts": {
     "public_cards_written": 539661,

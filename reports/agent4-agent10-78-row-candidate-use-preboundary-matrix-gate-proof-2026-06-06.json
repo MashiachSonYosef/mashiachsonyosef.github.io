@@ -1,0 +1,65 @@
+{
+  "artifact_type": "agent4_agent10_78_row_candidate_use_preboundary_matrix_gate_proof",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Agent10 old-dictionary 78-row candidate-use preboundary matrix",
+  "changed_input_artifact": "reports/agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json",
+  "validator_proof_commands": [
+    {
+      "command": "node --check scripts\\validate_agent10_old_dictionary_78_row_candidate_use_preboundary_matrix.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_78_row_candidate_use_preboundary_matrix.mjs reports\\agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 78-row candidate-use preboundary matrix validation passed. Rows: 78; occurrences: 1461."
+    }
+  ],
+  "files": {
+    "validator": "scripts/validate_agent10_old_dictionary_78_row_candidate_use_preboundary_matrix.mjs",
+    "matrix": "reports/agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json"
+  },
+  "counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "source_license_lane": "commercial_clean_candidate",
+    "preview_relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "result": "candidate_use_preboundary_matrix_validated_no_text_emission",
+  "intended_candidate_use": "candidate_use_preboundary_review_only_no_text_emission",
+  "next_handoff_owner": "Agent 10 for Agent6 packet assembly; Agent6 only for exact preboundary review; Agent2 only after boundary/transform inputs exist",
+  "stop_condition": "Stop at preboundary matrix proof. Do not rerun without a changed matrix, boundary packet/verdict, Agent10 consumption, Agent2 successor, or validator. Do not emit transform output, candidate text, definition/lemma/reader-hint content, answer rows, public/runtime mutation, route writes, accepted text, source-license/legal acceptance, export, publication readiness, or release action.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

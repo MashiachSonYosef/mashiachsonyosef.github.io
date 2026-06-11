@@ -1,6 +1,6 @@
 # Untracked Source Scope Audit
 
-Generated: 2026-06-01T15:10:28.693Z
+Generated: 2026-06-05T10:58:58.798Z
 
 ## Verdict
 
@@ -8,7 +8,7 @@ Generated: 2026-06-01T15:10:28.693Z
 - Current public/workbench state: warning_unless_rendered_public_page_lacks_visible_source_license_attribution_rows
 - Untracked source files: 23
 - Source discovery method: provided-untracked-list
-- Source discovery warning: git child-process discovery bypassed with provided live list: reports\untracked-source-files-direct.txt
+- Source discovery warning: git child-process discovery bypassed with provided live list: reports/untracked-source-files-direct.txt
 
 ## License Counts
 
@@ -27,9 +27,9 @@ Generated: 2026-06-01T15:10:28.693Z
 | data/sources/brief-commentary-on-sheviit.json | 337 | CC-BY: 337 | data/overlays/brief-commentary-on-sheviit.json | tosefta/brief-commentary-on-sheviit/index.html | yes | quarantined_until_source_file_is_tracked_and_source_audit_passes |
 | data/sources/brief-commentary-on-sotah.json | 158 | CC-BY: 158 | data/overlays/brief-commentary-on-sotah.json | tosefta/brief-commentary-on-sotah/index.html | yes | quarantined_until_source_file_is_tracked_and_source_audit_passes |
 | data/sources/brief-commentary-on-taanit.json | 66 | CC-BY: 66 | data/overlays/brief-commentary-on-taanit.json | tosefta/brief-commentary-on-taanit/index.html | yes | quarantined_until_source_file_is_tracked_and_source_audit_passes |
-| data/sources/brief-commentary-on-terumot.json | 486 | CC-BY: 486 | data/overlays/brief-commentary-on-terumot.json | (missing) | no | quarantined_until_source_file_is_tracked_and_source_audit_passes |
-| data/sources/brief-commentary-on-yevamot.json | 228 | CC-BY: 228 | data/overlays/brief-commentary-on-yevamot.json | (missing) | no | quarantined_until_source_file_is_tracked_and_source_audit_passes |
-| data/sources/brief-commentary-on-yoma.json | 139 | CC-BY: 139 | data/overlays/brief-commentary-on-yoma.json | (missing) | no | quarantined_until_source_file_is_tracked_and_source_audit_passes |
+| data/sources/brief-commentary-on-terumot.json | 486 | CC-BY: 486 | data/overlays/brief-commentary-on-terumot.json | tosefta/brief-commentary-on-terumot/index.html | yes | quarantined_until_source_file_is_tracked_and_source_audit_passes |
+| data/sources/brief-commentary-on-yevamot.json | 228 | CC-BY: 228 | data/overlays/brief-commentary-on-yevamot.json | tosefta/brief-commentary-on-yevamot/index.html | yes | quarantined_until_source_file_is_tracked_and_source_audit_passes |
+| data/sources/brief-commentary-on-yoma.json | 139 | CC-BY: 139 | data/overlays/brief-commentary-on-yoma.json | tosefta/brief-commentary-on-yoma/index.html | yes | quarantined_until_source_file_is_tracked_and_source_audit_passes |
 | data/sources/derashat-shabbat-hagadol.json | 271 | Public Domain: 271 | data/overlays/derashat-shabbat-hagadol.json | other/derashat-shabbat-hagadol/index.html | yes | quarantined_until_source_file_is_tracked_and_source_audit_passes |
 | data/sources/derush-al-hatorah.json | 257 | Public Domain: 257 | data/overlays/derush-al-hatorah.json | other/derush-al-hatorah/index.html | yes | quarantined_until_source_file_is_tracked_and_source_audit_passes |
 | data/sources/gevurot-hashem.json | 1863 | Public Domain: 1863 | data/overlays/gevurot-hashem.json | other/gevurot-hashem/index.html | yes | quarantined_until_source_file_is_tracked_and_source_audit_passes |

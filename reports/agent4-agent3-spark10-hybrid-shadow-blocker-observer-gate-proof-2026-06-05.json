@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent3_spark10_hybrid_shadow_blocker_observer_gate_proof",
+  "generated_at": "2026-06-05T14:15:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent3-spark10-hybrid-shadow-blocker-observer-package",
+  "status": "validator_passed_missing_queue_row_blocker_preserved",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, executable workset, route publication support, accepted gloss/text, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent3-spark10-hybrid-shadow-blocker-observer-package-2026-06-04.json",
+      "sha256": "1bf0e52ecd04ae4b46533fb938a372dbe4e88b2ff75a9ab2232066e28cd2f9d5",
+      "artifact_type": "agent3_spark10_hybrid_shadow_blocker_observer_package",
+      "status": "spark10_hybrid_shadow_queue_row_missing_observed"
+    },
+    {
+      "path": "scripts/validate_agent3_spark10_hybrid_shadow_blocker_observer_package.mjs",
+      "sha256": "4e258fcd536557a779818579da18c0f5db0a266f121e8f84474aa3ead44d174a",
+      "artifact_type": "validator_script",
+      "status": "existing_exact_validator_for_agent3_spark10_hybrid_shadow_blocker_observer_package"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent3_spark10_hybrid_shadow_blocker_observer_package.mjs reports\\agent3-spark10-hybrid-shadow-blocker-observer-package-2026-06-04.json",
+      "result": "passed",
+      "stdout_summary": "queue inputs present 0; queue inputs missing 0; missing_contract_fields missing_queue_row; Agent3 Orot rows 169; exact blocker rows 168; publication_state blocked_no_render."
+    }
+  ],
+  "counts": {
+    "queue_inputs_expected": 0,
+    "queue_inputs_present": 0,
+    "queue_inputs_missing": 0,
+    "missing_contract_fields": 1,
+    "stale_shadow_now_present_missing_claim_paths": 5,
+    "agent3_orot_rows": 169,
+    "agent3_orot_occurrences": 2148,
+    "agent3_orot_exact_blocker_rows": 168,
+    "agent3_orot_exact_blocker_occurrences": 2117,
+    "source_files_committed_by_this_package": 0
+  },
+  "zero_counters": {
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "blockers": [
+    "missing_queue_row",
+    "Spark10 hybrid shadow queue item is absent from the current standing queue.",
+    "Existing Spark10 hybrid shadow report is stale relative to current queue inputs and remains evidence only.",
+    "No Agent3 executable linkage/dedupe/navigation workset is created here.",
+    "Agent3 Orot source matrix remains working-tree generated_at drift and is not committed here.",
+    "No publication, Definition authority, answer eligibility, source/license acceptance, runtime mutation, route publication support, or accepted text is authorized."
+  ],
+  "result": "target | agent3-spark10-hybrid-shadow-blocker-observer-package | files in packet | commands passed: Agent3 Spark10 hybrid shadow blocker observer validator | counts: queue inputs expected/present/missing 0/0/0, 1 missing contract field missing_queue_row, 5 stale-shadow paths now present, 169 Agent3 Orot rows, 2148 occurrences, 168 exact-blocker rows, 2117 exact-blocker occurrences, 0 source files committed, 0 route/runtime/source/token/lexical/Definition/answer/public/accepted-text rows | result: validator passed and missing_queue_row blocker preserved | blocker if any: Spark10 hybrid shadow queue row absent; no executable Agent3 linkage/dedupe/navigation workset exists | next handoff: Agent3/Agent10 provide restored exact queue item or changed Agent3-owned workset before rerun | stop condition: do not rerun unless standing queue, observer package, Agent3 Orot dedupe package, stale shadow report, or validator changes",
+  "handoff_owner": "Agent 3 linkage/dedupe/navigation lane and Agent 10 release/package intake if a restored exact queue item or changed workset appears.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not invent Spark10 commands, create executable worksets, route, publish, mutate runtime, or claim acceptance from this packet."
+}

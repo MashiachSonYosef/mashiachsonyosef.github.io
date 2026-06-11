@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_weekly_lexicon_next_boundary_state",
+  "generated_at": "2026-06-05T23:40:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "release_owner": "Agent 10",
+  "posture": "direct_release_package_decision_mode",
+  "rows": [
+    {
+      "release_question": "Can the 78 old-dictionary morphology-planning rows become non-public candidate-use planning input for Agent 2 package authoring?",
+      "current_package_boundary_state": "Agent 6 WARN-ACCEPTED the same 78 rows / 1461 occurrences as non-public morphology-planning evidence only. Agent 2 then returned a candidate-use preflight handoff that keeps candidate use blocked until Agent 10 assembles an exact Agent 6 row/subset packet.",
+      "agent6_route_needed": "verdict_returned_consumed_no_current_agent6_route",
+      "agent6_ready_packet": "reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.md",
+      "agent6_ready_packet_json": "reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json",
+      "delivery_proof": "reports/agent10-agent6-old-dictionary-morphology-candidate-use-delivery-proof-2026-06-05.md",
+      "delivery_proof_json": "reports/agent10-agent6-old-dictionary-morphology-candidate-use-delivery-proof-2026-06-05.json",
+      "delivery_submission_id": "019e97dd-fdef-7280-8530-4e81a70c02ed",
+      "agent6_verdict": "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.md",
+      "agent6_verdict_json": "reports/agent6-old-dictionary-morphology-candidate-use-boundary-verdict-2026-06-05.json",
+      "agent10_consumption": "reports/agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption-2026-06-05.md",
+      "agent10_consumption_json": "reports/agent10-agent6-old-dictionary-morphology-candidate-use-verdict-consumption-2026-06-05.json",
+      "agent2_handoff": "reports/agent10-agent2-old-dictionary-morphology-candidate-use-handoff-2026-06-05.md",
+      "agent2_handoff_json": "reports/agent10-agent2-old-dictionary-morphology-candidate-use-handoff-2026-06-05.json",
+      "agent2_submission_id": "019e97e5-31dc-7ae3-a63d-0836d3284d65",
+      "row_occurrence_counts": {
+        "rows": 78,
+        "occurrences": 1461,
+        "excluded_morphology_blocked_rows": 219,
+        "prefix_or_clitic_possible_rows": 129,
+        "needs_morphology_disambiguation_rows": 90
+      },
+      "lane_split": {
+        "included": {
+          "commercial_clean_candidate": 78
+        },
+        "excluded": {
+          "noncommercial_educational_candidate": 0,
+          "blocked_or_needs_review": 219
+        }
+      },
+      "validator_results": [
+        {
+          "command": "node scripts/validate_agent10_old_dictionary_morphology_candidate_use_boundary_packet.mjs reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json",
+          "result": "passed"
+        },
+        {
+          "command": "git diff --check -- reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.json reports/agent10-agent6-ready-old-dictionary-morphology-candidate-use-boundary-packet-2026-06-05.md scripts/validate_agent10_old_dictionary_morphology_candidate_use_boundary_packet.mjs",
+          "result": "passed"
+        }
+      ],
+      "agent6_boundary_question": "Pass/warn/block whether the exact 78 row / 1461 occurrence old-dictionary commercial-clean morphology-planning subset may be carried one step further as non-public candidate-use planning input for Agent 2 package authoring, while preserving zero candidate text export, zero definition/lemma/reader-hint content storage, zero answer eligibility, zero public/runtime mutation, zero route writes, zero accepted text, and no source/license/legal acceptance.",
+      "exact_blocker": "await_agent2_exact_nonpublic_candidate_use_package_or_exact_blocker_for_78_old_dictionary_rows",
+      "next_handoff": "Agent 2 request delivered under submission 019e97e5-31dc-7ae3-a63d-0836d3284d65; await package artifact paths plus validator result, or exact blocker naming missing command/input/schema/field.",
+      "stop_condition": "Stop at Agent 2 candidate-use package or exact blocker; any text storage, transform output, export, answer eligibility, route write, public/runtime mutation, accepted text, commercial export, or release action requires a later exact Agent 6 verdict."
+    },
+    {
+      "release_question": "Can the Workbench source-family/license-lane release-intake packet be carried as non-public planning evidence?",
+      "current_package_boundary_state": "Agent 10 already delivered the exact 4-row packet to Agent 6 under submission 019e9560-f8ef-7763-8a2e-cdb0a1b89466.",
+      "agent6_route_needed": "already_delivered_await_verdict_or_exact_blocker",
+      "agent6_ready_packet": "reports/agent10-agent6-ready-workbench-source-family-license-lane-release-intake-boundary-packet-2026-06-05.md",
+      "agent6_ready_packet_json": "reports/agent10-agent6-ready-workbench-source-family-license-lane-release-intake-boundary-packet-2026-06-05.json",
+      "row_occurrence_counts": {
+        "release_intake_rows": 4,
+        "source_name_partition_count": 351,
+        "source_row_count": 105747
+      },
+      "lane_split": {
+        "source_family_license_lane_partition_count": 4
+      },
+      "validator_results": [
+        {
+          "command": "node scripts/validate_agent10_workbench_source_family_license_lane_release_intake_boundary_packet.mjs reports/agent10-agent6-ready-workbench-source-family-license-lane-release-intake-boundary-packet-2026-06-05.json",
+          "result": "passed_in_delivery_proof"
+        }
+      ],
+      "agent6_boundary_question": "Already delivered. Do not duplicate route unless changed artifacts appear.",
+      "exact_blocker": "await_agent6_verdict_for_workbench_source_family_license_lane_release_intake",
+      "next_handoff": "Watch for Agent 6 verdict artifact or exact delivery/verdict blocker.",
+      "stop_condition": "No storage/display/export/answer/definition-content/route-shard/public-runtime/accepted-text/release mutation."
+    },
+    {
+      "release_question": "Can Definition Workbench usage/navigation and CC-BY/CC-BY-SA custody packets be carried as non-public planning evidence?",
+      "current_package_boundary_state": "Agent 10 already delivered three packets to Agent 6 under submission 019e95f3-b68c-7f11-8328-dca18b105b1d.",
+      "agent6_route_needed": "already_delivered_await_verdict_or_exact_blocker",
+      "agent6_ready_packet": "reports/agent10-agent6-current-direct-boundary-packets-delivery-proof-2026-06-05.md",
+      "agent6_ready_packet_json": "reports/agent10-agent6-current-direct-boundary-packets-delivery-proof-2026-06-05.json",
+      "row_occurrence_counts": {
+        "usage_concordance_rows": 2390,
+        "occurrence_link_rows": 49,
+        "cc_by_sa_source_rows": 5581,
+        "cc_by_source_rows": 625
+      },
+      "lane_split": {
+        "usage_navigation": "nonpublic_planning_only",
+        "cc_by_sa": "source_license_custody_planning_only",
+        "cc_by": "source_license_custody_planning_only"
+      },
+      "validator_results": [
+        {
+          "command": "validators listed in reports/agent10-agent6-current-direct-boundary-packets-delivery-proof-2026-06-05.json",
+          "result": "passed_in_delivery_proof"
+        }
+      ],
+      "agent6_boundary_question": "Already delivered. Do not duplicate route unless changed artifacts appear.",
+      "exact_blocker": "await_agent6_verdict_for_definition_workbench_usage_navigation_cc_by_sa_cc_by_packets",
+      "next_handoff": "Watch for Agent 6 verdict artifact or exact delivery/verdict blocker.",
+      "stop_condition": "No candidate text/export/display/answer/Definition/public-runtime/release use."
+    }
+  ],
+  "zero_counters": {
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "route_jsonl_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0,
+    "release_actions": 0
+  },
+  "highest_permissible_claim": "Agent 10 assembled one new Agent6-ready candidate-use boundary packet and preserved current release/package blockers.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent2_current_validation_receipts_consumption",
+  "generated_at": "2026-06-04T23:15:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "status": "agent10_consumed_agent2_current_validation_receipts",
+  "consumed_artifacts": [
+    "reports/agent2-weekly-zero-boundary-audit-receipt-2026-06-04.md",
+    "reports/agent2-weekly-zero-boundary-audit-receipt-2026-06-04.json",
+    "reports/agent2-current-handoff-aggregate-validation-receipt-2026-06-04.md",
+    "reports/agent2-current-handoff-aggregate-validation-receipt-2026-06-04.json",
+    "reports/agent2-current-stale-reference-scan-receipt-2026-06-04.md",
+    "reports/agent2-current-stale-reference-scan-receipt-2026-06-04.json"
+  ],
+  "package_workset_state": [
+    {
+      "package_workset": "agent2_current_handoff_validation_chain",
+      "inputs_consumed": [
+        "reports/agent2-current-handoff-aggregate-validation-receipt-2026-06-04.json",
+        "reports/agent2-weekly-zero-boundary-audit-receipt-2026-06-04.json",
+        "reports/agent2-current-stale-reference-scan-receipt-2026-06-04.json"
+      ],
+      "row_occurrence_counts": {
+        "deuteronomy_phase2_rows": 1334,
+        "deuteronomy_phase2_occurrences": 2964,
+        "orot_missed_dictionary_candidate_rows": 0,
+        "orot_missed_dictionary_unmatched": 168,
+        "orot_tbd_display_integrity_rows": 13,
+        "orot_tbd_display_integrity_occurrences": 129,
+        "definition_workbench_sample_rows": 1000,
+        "zero_boundary_artifacts_checked": 17
+      },
+      "lane_split": {
+        "agent2_pipeline_lane": "definition_lemma_reader_hint_pipeline_planning",
+        "deuteronomy_phase2": "commercial_clean_candidate_planning_evidence_only",
+        "orot_missed_dictionary": "zero_candidate_closure_with_168_unmatched",
+        "orot_tbd": "display_integrity_separator_only",
+        "definition_workbench_sample": "non_authoritative_route_shape_reader_planning_evidence_only"
+      },
+      "validator_results": [
+        "node scripts/validate_agent2_current_handoff_aggregate_validation_receipt.mjs reports/agent2-current-handoff-aggregate-validation-receipt-2026-06-04.json",
+        "node scripts/validate_agent2_weekly_zero_boundary_audit.mjs reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json",
+        "node scripts/validate_agent2_current_stale_reference_scan_receipt.mjs reports/agent2-current-stale-reference-scan-receipt-2026-06-04.json"
+      ],
+      "agent6_boundary_question": "none_now_existing_boundaries_remain_planning_only",
+      "exact_blocker": [
+        "old_dictionary_candidate_text_consumption_export_storage_requires_new_exact_agent6_boundary",
+        "missing_larger_token_inventory_workset",
+        "missing_joined_definition_workbench_sample_artifact_contract",
+        "orot_counterpart_preview_not_promotable_without_agent1_source_lane_and_agent6_boundary",
+        "no_new_agent2_exact_workset_after_deuteronomy_return",
+        "missing_changed_artifact_blocker_for_orot_missed_dictionary_candidate_package_md_json",
+        "missing_changed_artifact_blocker_for_deuteronomy_reader_hint_candidate_plan_md_json"
+      ],
+      "next_handoff": "Agent 2 or Spark mechanics must provide an exact changed package/workset before Agent 10 prepares another Agent 6 packet.",
+      "stop_condition": "Stop at planning-evidence consumption until an exact changed package, Agent6-ready row/subset packet, or exact blocker appears."
+    }
+  ],
+  "stale_reference_scan_counts": {
+    "current_surfaces_checked": 16,
+    "stale_references_checked": 24,
+    "stale_reference_hits": 0,
+    "missing_surfaces": 0,
+    "script_syntax_scripts_checked": 44
+  },
+  "zero_emission_state": {
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligible": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "publication_readiness": false,
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_content_storage": false,
+    "nc_commercial_authorization": false
+  },
+  "release_owner_decision": "carry_as_nonpublic_validation_hardening_and_blocker_evidence_only",
+  "agent6_handoff_needed_now": false,
+  "spark10_matrix_after_consumption": {
+    "matrix_json": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "matrix_md": "reports/spark10-release-package-intake-matrix-current-2026-06-04.md",
+    "inputs_checked": 173,
+    "missing_required_inputs": 0,
+    "release_relevant_rows": 71,
+    "agent6_handoff_candidates": 0,
+    "public_runtime_mutation_authorized": false,
+    "answer_definition_release_authorized": false
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate-text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

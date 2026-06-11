@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_source_license_custody_boundary_handoff",
+  "generated_at": "2026-06-05T23:00:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "targets": [
+    {
+      "target": "orot_third_missed_source_family",
+      "map_json": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+      "contract_json": "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+      "build_command": "node scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+      "validate_commands": [
+        "node scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs"
+      ],
+      "counts": {
+        "candidate_rows": 169,
+        "candidate_occurrences": 2148,
+        "commercial_clean_candidate_rows": 138,
+        "commercial_clean_candidate_occurrences": 1672,
+        "noncommercial_educational_candidate_rows": 0,
+        "noncommercial_educational_candidate_occurrences": 0,
+        "metadata_or_link_only_rows": 0,
+        "metadata_or_link_only_occurrences": 0,
+        "blocked_or_needs_review_rows": 31,
+        "blocked_or_needs_review_occurrences": 476
+      },
+      "blocker_breakdown": [
+        {
+          "reason": "missing_lexicon_entry_id_in_input_row",
+          "rows": 17,
+          "occurrences": 331,
+          "row_subset_ids": [
+            "tok-97b99c6afe4b",
+            "tok-4104e97f06f2",
+            "tok-3fcb5c8ebdd4",
+            "tok-2bb8d6f9c552",
+            "tok-62f0377497c9",
+            "tok-c68b190a1664",
+            "tok-0e09284cf9c6",
+            "tok-1eb755250719",
+            "tok-6adb62010da1",
+            "tok-8d841a3c9463",
+            "tok-16b6401a178f",
+            "tok-300d81e9b191",
+            "tok-4a107607d8ce",
+            "tok-819be7cee8fd",
+            "tok-123564ebcbac",
+            "tok-295b95c9aa61",
+            "tok-2a2bbb94e5ae"
+          ]
+        },
+        {
+          "reason": "source_license_boundary_review_needed",
+          "rows": 14,
+          "occurrences": 145,
+          "row_subset_ids": [
+            "tok-c3c61224118a",
+            "tok-6d3fee4cb833",
+            "tok-f3992c8b05fb",
+            "tok-f2725c8c9b37",
+            "tok-733d891c0a09",
+            "tok-151dd50ecca2",
+            "tok-56b00c8b7c40",
+            "tok-240da02ae730",
+            "tok-365a6de19dd7",
+            "tok-4b51da86c663",
+            "tok-af2678904a95",
+            "tok-be3a08118b74",
+            "tok-1b854daf0021",
+            "tok-37c4d88e63fc"
+          ]
+        }
+      ],
+      "validator": {
+        "map_ok": true,
+        "contract_ok": true,
+        "spark1_routable": true
+      },
+      "handoff_owner": {
+        "agent10": "consume runnable map + contract",
+        "agent6": "resolve agent6_boundary_required for blocked_or_needs_review rows (31/476)"
+      },
+      "next_command": "rebuild/revalidate only on input row or boundary decision change",
+      "stop_condition": "hold until boundary/evidence changes"
+    },
+    {
+      "target": "old_dictionary_excluded_row_license_lane_reaudit",
+      "map_json": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+      "contract_json": "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+      "build_command": "node scripts/build_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+      "validate_commands": [
+        "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+        "node scripts/validate_agent1_spark1_old_dictionary_reaudit_pipeline_contract.mjs"
+      ],
+      "counts": {
+        "audited_rows": 500,
+        "audited_occurrences": 8427,
+        "source_families": 5,
+        "lane_family_counts": {
+          "commercial_clean_candidate": 3,
+          "noncommercial_educational_candidate": 1,
+          "metadata_or_link_only": 0,
+          "blocked_or_needs_review": 1
+        }
+      },
+      "families": [
+        {
+          "source_family": "Jastrow Dictionary",
+          "license_lane": "commercial_clean_candidate",
+          "license_label": "public-domain-observed",
+          "derived_from_nc": false,
+          "commercial_export_allowed": true,
+          "attribution_required": false,
+          "corpus_contamination": false,
+          "evidence_path": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+          "agent6_boundary_required": true
+        },
+        {
+          "source_family": "BDB Dictionary",
+          "license_lane": "commercial_clean_candidate",
+          "license_label": "public-domain-observed",
+          "derived_from_nc": false,
+          "commercial_export_allowed": true,
+          "attribution_required": false,
+          "corpus_contamination": false,
+          "evidence_path": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+          "agent6_boundary_required": true
+        },
+        {
+          "source_family": "BDB Aramaic Dictionary",
+          "license_lane": "commercial_clean_candidate",
+          "license_label": "public-domain-observed",
+          "derived_from_nc": false,
+          "commercial_export_allowed": true,
+          "attribution_required": false,
+          "corpus_contamination": false,
+          "evidence_path": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+          "agent6_boundary_required": true
+        },
+        {
+          "source_family": "Klein Dictionary",
+          "license_lane": "noncommercial_educational_candidate",
+          "license_label": "CC-BY-NC",
+          "derived_from_nc": true,
+          "commercial_export_allowed": false,
+          "attribution_required": true,
+          "corpus_contamination": false,
+          "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+          "evidence_path": "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+          "agent6_boundary_required": true,
+          "missing_evidence": [
+            "Agent 6/public boundary before any display/storage/public/answer/export behavior"
+          ]
+        },
+        {
+          "source_family": "BDB Augmented Strong",
+          "license_lane": "blocked_or_needs_review",
+          "license_label": "unresolved-independent-custody",
+          "derived_from_nc": false,
+          "commercial_export_allowed": false,
+          "attribution_required": false,
+          "corpus_contamination": false,
+          "evidence_path": "reports/agent6-orot-sefaria-nc-aware-family-boundary-final-verdict-2026-06-03.json",
+          "agent6_boundary_required": true,
+          "missing_evidence": [
+            "independent source/license/custody basis",
+            "source URL or version source",
+            "license label and allowed fields",
+            "Agent 6 boundary if evidence appears"
+          ]
+        }
+      ],
+      "validator": {
+        "map_ok": true,
+        "contract_ok": true,
+        "spark1_routable": true
+      },
+      "handoff_owner": {
+        "agent10": "consume lane-cleared family packet for candidate transform intake",
+        "agent6": "resolve two blocked/NC boundary cases"
+      },
+      "next_command": "node scripts/build_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+      "stop_condition": "rerun only when missing source evidence or boundary decisions update"
+    }
+  ],
+  "exact_missing_fields": [
+    {
+      "target": "orot_third_missed_source_family",
+      "scope": "blocked rows",
+      "rows": 31,
+      "missing_fields": [
+        "input rows containing lexicon_entry_id",
+        "source/license boundary release packet for CC_BY families (OpenScriptures HebrewLexicon/Wiktionary via Kaikki/Project-authored abbreviation table)"
+      ]
+    },
+    {
+      "target": "old_dictionary_excluded_row_license_lane_reaudit",
+      "scope": "BDB Augmented Strong / Klein Dictionary",
+      "rows": 1,
+      "missing_fields": [
+        "independent source/license/custody basis",
+        "source URL/version",
+        "license label and allowed field set",
+        "Agent 6 boundary decisions for candidate text/storage/display/public/export behavior"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "artifact_type": "agent10_agent6_ready_old_dictionary_public_domain_ref_sample_gap_boundary_packet",
+  "generated_at": "2026-06-05T18:42:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "review_scope": "nonpublic_public_domain_ref_sample_gap_planning_evidence_only",
+  "inputs": {
+    "agent1_gap_md": "reports/agent1-old-dictionary-public-domain-ref-sample-gap-manifest-2026-06-05.md",
+    "agent1_gap_json": "reports/agent1-old-dictionary-public-domain-ref-sample-gap-manifest-2026-06-05.json",
+    "agent1_gap_validation_json": "reports/agent1-old-dictionary-public-domain-ref-sample-gap-manifest-validation-result-2026-06-05.json",
+    "agent6_citation_metadata_custody_verdict": "reports/agent6-old-dictionary-public-domain-citation-metadata-custody-boundary-verdict-2026-06-05.md",
+    "agent1_citation_metadata_custody_json": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.json"
+  },
+  "exact_gap_source": {
+    "path": "reports/agent1-old-dictionary-public-domain-ref-sample-gap-manifest-2026-06-05.json",
+    "gap_rows_pointer": "public_domain_ref_gap_rows[]",
+    "family_gap_partitions_pointer": "family_gap_partitions[]",
+    "exact_blockers_pointer": "exact_blockers[]",
+    "row_duplication_in_this_packet": false
+  },
+  "gap_counts": {
+    "public_domain_rows": 297,
+    "public_domain_occurrences": 5747,
+    "rows_with_ref_samples_or_ref_count": 204,
+    "occurrences_with_ref_samples_or_ref_count": 4385,
+    "rows_without_ref_samples_or_ref_count": 93,
+    "occurrences_without_ref_samples_or_ref_count": 1362,
+    "gap_rows_with_rids": 93,
+    "gap_rid_total": 270,
+    "gap_rows_with_headwords": 93,
+    "gap_headword_total": 251
+  },
+  "classification_lanes": [
+    {
+      "license_lane": "commercial_clean_candidate",
+      "row_count": 93,
+      "occurrence_count": 1362,
+      "metadata_only": true,
+      "candidate_text_rows_now": 0,
+      "agent6_boundary_required": true
+    },
+    {
+      "license_lane": "noncommercial_educational_candidate",
+      "row_count": 0,
+      "occurrence_count": 0,
+      "note": "This packet is public-domain ref-sample gap only; NC rows remain preserved in prior NC artifacts."
+    },
+    {
+      "license_lane": "metadata_or_link_only",
+      "row_count": 0,
+      "occurrence_count": 0
+    },
+    {
+      "license_lane": "blocked_or_needs_review",
+      "row_count": 0,
+      "occurrence_count": 0,
+      "note": "No blocked/review row is reclassified by this public-domain-only metadata packet."
+    }
+  ],
+  "family_gap_partitions": [
+    {
+      "source_family": "Jastrow Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "row_count": 6,
+      "occurrence_count": 89,
+      "exact_blocker": "jastrow_dictionary_public_domain_ref_sample_gap_needs_source_family_boundary_if_refs_required"
+    },
+    {
+      "source_family": "BDB Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "row_count": 91,
+      "occurrence_count": 1339,
+      "exact_blocker": "bdb_dictionary_public_domain_ref_sample_gap_needs_source_family_boundary_if_refs_required"
+    },
+    {
+      "source_family": "BDB Aramaic Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "row_count": 22,
+      "occurrence_count": 434,
+      "exact_blocker": "bdb_aramaic_dictionary_public_domain_ref_sample_gap_needs_source_family_boundary_if_refs_required"
+    }
+  ],
+  "exact_blockers": [
+    {
+      "blocker": "public_domain_ref_sample_gap_rows_are_metadata_only_not_candidate_text",
+      "rows": 93,
+      "occurrences": 1362,
+      "handoff_owner": "Agent 6 for future boundary if refs are required; Agent 2 blocked now"
+    },
+    {
+      "blocker": "public_domain_ref_sample_gap_needs_source_family_boundary_if_ref_samples_required",
+      "rows": 93,
+      "occurrences": 1362,
+      "handoff_owner": "Agent 1 records exact gap; Agent 6 decides future source-family boundary requirements"
+    }
+  ],
+  "requested_carry_forward": {
+    "carry_as_nonpublic_planning_evidence_only": true,
+    "treat_gap_rows_as_candidate_text": false,
+    "candidate_use_allowed_now": false,
+    "transform_allowed_now": false,
+    "source_row_emit_allowed_now": false,
+    "definition_text_storage_allowed_now": false,
+    "answer_eligibility_allowed_now": false,
+    "public_runtime_mutation_allowed_now": false,
+    "route_shard_write_allowed_now": false,
+    "source_license_legal_acceptance_allowed_now": false,
+    "commercial_export_allowed_now": false,
+    "release_action_allowed_now": false
+  },
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "agent6_review_question": "Pass/warn/block whether the exact Agent 1 public-domain ref-sample gap manifest may be carried as non-public metadata-gap planning evidence only for the 93 commercial-clean rows / 1362 occurrences lacking public-domain ref samples or ref counts.",
+  "delivery_state": {
+    "status": "agent6_ready_not_delivered_by_agent10_in_this_artifact",
+    "exact_blocker_if_not_routed": "await_agent6_public_domain_ref_sample_gap_boundary_for_old_dictionary_93_row_gap"
+  },
+  "highest_permissible_claim": "Agent 10 prepared an Agent6-ready old-dictionary public-domain ref-sample gap boundary packet for non-public planning evidence only.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export permission",
+    "release action"
+  ],
+  "stop_condition": "Stop at Agent6-ready packet unless and until Agent 6 returns an exact verdict; no candidate use, transform, source-row emission, candidate text, output, public/runtime, answer, definition, export, or release step is authorized by this packet."
+}

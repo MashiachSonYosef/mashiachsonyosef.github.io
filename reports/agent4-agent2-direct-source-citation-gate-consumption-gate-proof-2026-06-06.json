@@ -1,0 +1,76 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T10:37:00.000Z",
+  "target": "Agent 2 old-dictionary 78-row direct source citation Agent4 gate consumption",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent2-old-dictionary-78-row-direct-source-citation-agent4-gate-consumption-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-partition-overlap-diagnostic-index-sweep-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_78_row_direct_source_citation_agent4_gate_consumption.mjs --input=reports\\agent2-old-dictionary-78-row-direct-source-citation-agent4-gate-consumption-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "failed_cli_argument_shape_only",
+      "exact_blocker": "validator_uses_positional_input"
+    },
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_78_row_direct_source_citation_agent4_gate_consumption.mjs reports\\agent2-old-dictionary-78-row-direct-source-citation-agent4-gate-consumption-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "parent_rows": 78,
+    "parent_occurrences": 1461,
+    "direct_rows": 5,
+    "direct_occurrences": 58,
+    "source_citation_required_rows": 5,
+    "source_citation_or_url_present_rows": 0,
+    "source_citation_or_url_missing_rows": 5,
+    "transform_rule_still_blocked_rows": 5,
+    "source_family_selection_boundary_blocker_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_agent2_direct_source_citation_agent4_gate_consumption_blocker_packet",
+  "exact_blockers": [
+    {
+      "code": "missing_source_field_source_citation_or_url",
+      "blocked_rows": 5,
+      "details": "All 5 direct identifier rows still require row-level source_citation_or_url or exact missing-source blocker."
+    },
+    {
+      "code": "missing_transform_output_proposal_matrix_or_exact_transform_rule",
+      "blocked_rows": 5,
+      "details": "Agent2 cannot emit transform-output proposal matrix from current state."
+    },
+    {
+      "code": "changed_package_input_missing_after_gate",
+      "details": "The consumed Agent4 gate reported changed_input_after_gate=false."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent2-direct-source-citation-gate-consumption-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent2-direct-source-citation-gate-consumption-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 1 for row-level source_citation_or_url or missing-source blocker; Agent 10 for transform rule after Agent1 return; Agent 2 waits for changed Agent1/Agent10 input.",
+  "next_safe_action": "Run a triggered Agent4 packet sweep because this proof packet was added, then select from that sweep anchor with lookback scanning.",
+  "stop_condition": "Stop after validating and packaging the Agent2 Agent4 gate consumption packet.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

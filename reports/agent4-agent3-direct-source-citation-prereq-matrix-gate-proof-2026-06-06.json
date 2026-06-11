@@ -1,0 +1,106 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T09:15:05.402Z",
+  "target": "Agent 3 direct source-citation prereq matrix",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-direct-source-citation-prereq-matrix-2026-06-06.json",
+  "paired_input_markdown": "reports/agent3-old-dictionary-candidate-use-direct-source-citation-prereq-matrix-2026-06-06.md",
+  "selector_artifact": "reports/agent4-changed-input-selection-after-selector-sweep-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_direct_source_citation_prereq_matrix.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_direct_source_citation_prereq_matrix.mjs --input=reports\\agent3-old-dictionary-candidate-use-direct-source-citation-prereq-matrix-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "observed_output": "Agent 3 direct source-citation prereq matrix passed: rows=5 excluded=25 occurrences=58"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports\\agent4-changed-input-selection-after-selector-sweep-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "direct_rows": 5,
+    "excluded_agent6_source_family_boundary_rows": 25,
+    "excluded_source_family_selection_boundary_rows": 339,
+    "worklist_rows": 344,
+    "source_rid_references": 5,
+    "occurrence_total": 58,
+    "unique_source_rids": 5,
+    "unique_source_rid_prefixes": 5,
+    "unique_queue_ids": 5,
+    "unique_token_ids": 5,
+    "unique_lexicon_entry_ids": 5,
+    "prefix_rows": 5,
+    "source_family_rows": 1,
+    "source_family_memberships": 5,
+    "source_family_counts": {
+      "Jastrow Dictionary": 5
+    },
+    "triage_group_counts": {
+      "commercial_clean_only": 5
+    },
+    "mechanical_impact_bucket_counts": {
+      "single_queue_standard": 5
+    },
+    "source_citation_required_rows": 5,
+    "source_citation_or_url_present_rows": 0,
+    "transform_rule_still_blocked_rows": 5,
+    "agent6_boundary_after_prereq_rows": 5,
+    "source_family_selection_boundary_blocker_rows": 0,
+    "direct_source_citation_prereq_rows": 5,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "source_acceptance_claims": 0,
+    "source_family_selection_claims": 0,
+    "source_citation_supplied_by_agent3_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_direct_source_citation_prereq_matrix_only",
+  "exact_blockers": [
+    {
+      "code": "source_citation_prereq_missing",
+      "rows": 5,
+      "details": "All direct rows still require source citation or URL before any downstream boundary packet."
+    },
+    {
+      "code": "transform_rule_prereq_missing",
+      "rows": 5,
+      "details": "All direct rows remain transform-rule blocked; no transform-ready row exists."
+    },
+    {
+      "code": "agent6_boundary_after_prereq_only",
+      "rows": 5,
+      "details": "Rows are after-prereq only; this packet does not make them Agent6-ready."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-direct-source-citation-prereq-matrix-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-direct-source-citation-prereq-matrix-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 10 release/package intake after Agent 1/Agent 2 provide source-citation and transform prerequisites; Agent 6 only after a concrete boundary-ready packet exists.",
+  "next_safe_action": "Wait for changed source-citation and transform prerequisite input, then validate that changed package with exact commands.",
+  "stop_condition": "Stop after validating and packaging the changed Agent3 direct source-citation prereq matrix; do not run unchanged validator churn or claim acceptance.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, source text, route payload, public runtime mutation, export row, or release action."
+  ]
+}

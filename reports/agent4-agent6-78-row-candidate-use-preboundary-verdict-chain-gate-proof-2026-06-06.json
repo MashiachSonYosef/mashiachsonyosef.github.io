@@ -1,0 +1,80 @@
+{
+  "artifact_type": "agent4_agent6_78_row_candidate_use_preboundary_verdict_chain_gate_proof",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Agent6 78-row candidate-use preboundary verdict and Agent10 consumption chain",
+  "changed_input_artifacts": [
+    "reports/agent6-old-dictionary-78-row-candidate-use-preboundary-verdict-2026-06-06.json",
+    "reports/agent10-old-dictionary-78-row-agent6-verdict-consumption-2026-06-06.json"
+  ],
+  "validator_proof_commands": [
+    {
+      "command": "node --check scripts\\validate_agent6_old_dictionary_candidate_use_package_boundary_verdict.mjs; node --check scripts\\validate_agent10_old_dictionary_78_row_agent6_verdict_consumption.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent6_old_dictionary_candidate_use_package_boundary_verdict.mjs reports\\agent6-old-dictionary-78-row-candidate-use-preboundary-verdict-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent6 old-dictionary candidate-use preboundary verdict validation passed. Rows: 78; occurrences: 1461; disposition: warn_accepted_nonpublic_candidate_use_preboundary_review_matrix_only."
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_78_row_agent6_verdict_consumption.mjs reports\\agent10-old-dictionary-78-row-agent6-verdict-consumption-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 78-row Agent6 verdict consumption validation passed. Rows: 78; occurrences: 1461; blocker: next_candidate_use_or_transform_output_boundary_not_supplied."
+    }
+  ],
+  "files": {
+    "agent6_verdict_validator": "scripts/validate_agent6_old_dictionary_candidate_use_package_boundary_verdict.mjs",
+    "agent10_consumption_validator": "scripts/validate_agent10_old_dictionary_78_row_agent6_verdict_consumption.mjs",
+    "agent6_verdict": "reports/agent6-old-dictionary-78-row-candidate-use-preboundary-verdict-2026-06-06.json",
+    "agent10_consumption": "reports/agent10-old-dictionary-78-row-agent6-verdict-consumption-2026-06-06.json",
+    "preboundary_packet": "reports/agent10-agent6-ready-old-dictionary-78-row-candidate-use-preboundary-packet-2026-06-06.json",
+    "preboundary_matrix": "reports/agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json"
+  },
+  "counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "unique_queue_ids": 78,
+    "source_license_lane": "commercial_clean_candidate",
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_candidate_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0
+  },
+  "result": "preboundary_verdict_and_consumption_validated_no_transform_or_output_authorized",
+  "disposition": "warn_accepted_nonpublic_candidate_use_preboundary_review_matrix_only",
+  "exact_blockers": [
+    "next_candidate_use_or_transform_output_boundary_not_supplied"
+  ],
+  "next_handoff_owner": "Agent 10 for the next exact candidate-use or transform-output boundary packet; Agent6 only for a new exact packet before text/output/answer/route/runtime/export/accepted-text/release behavior",
+  "stop_condition": "Stop at preboundary verdict chain proof. Do not rerun without a changed verdict, consumption packet, matrix, boundary packet, or validator. Do not emit transform output, candidate text, definition/lemma/reader-hint content, answer rows, public/runtime mutation, route writes, accepted text, source-license/legal acceptance, export, publication readiness, or release action.",
+  "what_must_not_be_accepted": [
+    "QA acceptance beyond this exact docket",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

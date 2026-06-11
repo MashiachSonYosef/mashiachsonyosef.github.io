@@ -1,0 +1,11 @@
+# Agent 1 perpetual pipeline trace (2026-06-04 2026-06-04 06:21:32-04:00)
+- scan_time: 2026-06-04 06:21:32-04:00
+- patch_file: reports/agent1-agent5-agent6-queue-insertion-patch-packet-2026-06-03.json
+- all_in_patch: True
+- all_live_absent: True
+- ids:
+  - agent6-agent1-source-custody-manifest-remediation-review
+  - agent6-agent1-source-custody-tracking-action-review
+  - agent6-agent1-source-custody-license-normalization-review
+  - agent6-agent1-public-hud-source-row-review
+  - agent6-agent1-orot-fill-source-row-review

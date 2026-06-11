@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent10_agent6_old_dictionary_morphology_planning_verdict_consumption_gate_proof",
+  "generated_at": "2026-06-05T15:15:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent10-agent6-old-dictionary-morphology-planning-verdict-consumption",
+  "status": "validator_authored_and_passed_planning_only_verdict_consumption",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, candidate-use authorization, transform authorization, candidate text export, route write, accepted gloss/text, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent10-agent6-old-dictionary-morphology-planning-verdict-consumption-2026-06-05.json",
+      "sha256": "c137aeb65874f092401dae427dc864b59acda6ea5a2070a8edd8d56381fe0c13",
+      "artifact_type": "agent10_agent6_old_dictionary_morphology_planning_verdict_consumption",
+      "status": "warn_accepted_nonpublic_morphology_planning_evidence_only"
+    },
+    {
+      "path": "scripts/validate_agent10_agent6_old_dictionary_morphology_planning_verdict_consumption.mjs",
+      "sha256": "daae68b0264ea4c7593c3b127a7b67d6aa9f898611fe4b569e2b904ea5b23f0f",
+      "artifact_type": "validator_script",
+      "status": "new_exact_validator_for_agent10_agent6_old_dictionary_morphology_planning_verdict_consumption"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_agent6_old_dictionary_morphology_planning_verdict_consumption.mjs reports\\agent10-agent6-old-dictionary-morphology-planning-verdict-consumption-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Rows: 78; occurrences: 1461; candidate-use rows: 0."
+    }
+  ],
+  "counts": {
+    "accepted_planning_rows": 78,
+    "accepted_planning_occurrences": 1461,
+    "blocked_rows_preserved_outside_subset": 219,
+    "prefix_or_clitic_possible_rows_blocked": 129,
+    "needs_morphology_disambiguation_rows_blocked": 90,
+    "forbidden_flag_rows_observed": 0,
+    "validators_reported_passed": 4,
+    "bdb_aramaic_rows": 21,
+    "bdb_aramaic_occurrences": 616,
+    "bdb_dictionary_rows": 63,
+    "bdb_dictionary_occurrences": 1271,
+    "jastrow_dictionary_rows": 75,
+    "jastrow_dictionary_occurrences": 1417
+  },
+  "zero_counters": {
+    "candidate_use_rows": 0,
+    "transform_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_gloss_text_rows": 0,
+    "accepted_text_rows": 0,
+    "release_rows": 0
+  },
+  "blockers": [
+    "missing_exact_agent6_row_subset_boundary_for_candidate_use",
+    "missing_agent10_exact_agent6_candidate_use_packet_for_the_specific_planning_rows",
+    "definition_lane_must_still_emit_no_public_or_answer_acceptance",
+    "prefix_or_clitic_possible_requires_morphology_disambiguation",
+    "needs_morphology_disambiguation"
+  ],
+  "result": "target | agent10-agent6-old-dictionary-morphology-planning-verdict-consumption | files in packet | commands passed: new Agent10 Agent6 old-dictionary morphology planning verdict consumption validator | counts: 78 accepted planning rows, 1461 occurrences, 219 blocked rows outside subset, 129 prefix/clitic rows blocked, 90 needs-disambiguation rows blocked, 0 forbidden flag rows, 4 validators reported passed, 0 candidate-use/transform/candidate/definition/lemma/reader-hint/answer/public/route/runtime/accepted-text/release rows | result: validator authored and passed; Agent10 consumed Agent6 verdict as nonpublic planning evidence only | blocker if any: any later candidate-use or transform request must return as a new exact Agent6 packet | next handoff: Agent2 may carry exact subset as planning evidence only; Agent10 owns later candidate-use packet if needed | stop condition: do not rerun unless verdict-consumption packet, Agent6 verdict, delivery proof, boundary packet, or validator changes",
+  "handoff_owner": "Agent 10 release/package intake and Agent 2 planning lane; Agent 6 required for any later candidate-use or transform packet.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not treat this consumption as candidate-use, transform, Definition, answer, public/runtime, publication, product/data, export, accepted-text, or release authority."
+}

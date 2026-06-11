@@ -1,0 +1,65 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T09:09:07.448Z",
+  "target": "Agent 4 deterministic changed-input selector harness",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent4-no-new-changed-package-after-agent10-heartbeat-blocker-2026-06-06.json",
+  "authored_script": "scripts/select_agent4_changed_input_candidate.mjs",
+  "selector_output": "reports/agent4-changed-input-selection-after-heartbeat-blocker-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\select_agent4_changed_input_candidate.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\select_agent4_changed_input_candidate.mjs --after=reports\\agent4-no-new-changed-package-after-agent10-heartbeat-blocker-2026-06-06.json --out=reports\\agent4-changed-input-selection-after-heartbeat-blocker-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "observed_output": "newer_file_count=4 candidate_count=0 selected_candidate=null; newer rows were Agent4-owned output or markdown companion files"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports\\agent4-changed-input-selection-after-heartbeat-blocker-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports\\agent4-changed-input-selection-after-selector-proof-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "authored_scripts": 1,
+    "selector_runs": 2,
+    "newer_file_count_after_heartbeat_blocker": 4,
+    "newer_file_count_after_selector_proof": 2,
+    "candidate_count": 0,
+    "selected_candidate_count": 0,
+    "changed_input_blockers": 1,
+    "validator_reruns_started": 0,
+    "public_runtime_mutation": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "result": "deterministic_changed_input_selector_harness_authored",
+  "exact_blockers": [
+    {
+      "code": "changed_package_input_missing",
+      "details": "Selector found no file newer than the anchor packet; no changed package/input exists for validation in this checkpoint."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-changed-input-selector-harness-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-changed-input-selector-harness-proof-2026-06-06.md",
+  "handoff_owner": "Agent 4 for changed-input-only validator/prereq discipline; Agent 10 or upstream package owner for the next real changed package/input.",
+  "next_safe_action": "Use scripts/select_agent4_changed_input_candidate.mjs with the latest Agent4 anchor before each validation pulse, then run only the selected candidate's existing validator when candidate_count is positive.",
+  "stop_condition": "Stop after authoring and proving the selector harness and recording the current no-candidate blocker.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

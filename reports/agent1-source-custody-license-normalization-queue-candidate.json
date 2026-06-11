@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-06-04T00:14:00.708Z",
+  "artifact_type": "agent1_source_custody_license_normalization_queue_candidate",
+  "requested_queue_item": {
+    "request_id": "agent6-agent1-source-custody-license-normalization-review",
+    "submitted_by": "Agent 5",
+    "agent1_evidence_origin": "Agent 1 evidence packet for Agent 5 relay / Agent 6 review",
+    "gate": "source_provenance_custody_gate",
+    "scope": "Six modified tracked source files with parsed JSON drift limited to unit license labels from PD to Public Domain",
+    "status": "candidate_for_agent5_queue_relay_awaiting_agent6_review",
+    "priority": 0,
+    "evidence_artifacts": [
+      "reports/agent6-agent1-source-custody-followup-packets-verdict-2026-06-02.md",
+      "reports/agent1-source-custody-license-normalization-action-packet.md",
+      "reports/agent1-source-custody-license-normalization-action-packet.json",
+      "reports/agent1-source-custody-license-normalization-action-validator-result.json",
+      "reports/agent1-source-provenance-custody-validator-result.json",
+      "reports/agent1-state.md",
+      "scripts/build_agent1_source_custody_license_normalization_action_packet.mjs",
+      "scripts/validate_agent1_source_custody_license_normalization_action_packet.mjs",
+      "scripts/build_agent1_source_custody_license_normalization_queue_candidate.mjs"
+    ],
+    "requested_verdict": "pass_warn_block_license_label_normalization_action_packet_only",
+    "claimed_boundary": "Agent 1 produced a bounded license-label normalization action packet for six modified tracked source files. The packet proves parsed JSON drift is limited to unit license labels changing from PD to Public Domain. This is not source/provenance acceptance, source-file tracking approval, staging, commit, render, publication, downstream artifact acceptance, public/runtime acceptance, route publication support, Definition authority, product/data acceptance, publication readiness, future publication support, translation output, or accepted translation text. Publication remains blocked_no_render.",
+    "known_risks": [
+      "The packet can be misread as permission to commit the six modified tracked files; it is review evidence only.",
+      "Downstream direct artifacts and content-reference rows remain blocked even if Agent 6 accepts the license-label normalization classification.",
+      "The 23 untracked source files remain a separate tracking-review lane.",
+      "Agent 1 worker evidence and this queue candidate are not Agent 6 acceptance."
+    ],
+    "what_changed_since_last_agent6_ruling": "Agent 6 WARN-accepted Packet C as license-label normalization evidence only and allowed only a bounded license-label normalization action packet. Agent 1 produced a current packet for 6 modified tracked sources with 1406 scalar diffs, 0 non-license diffs, 0 non-PD-to-Public-Domain diffs, 59 blocked direct downstream paths, and 63 blocked content-reference source rows.",
+    "what_must_not_be_accepted": [
+      "source/provenance custody",
+      "source/provenance acceptance",
+      "source publication",
+      "source-file tracking approval",
+      "source-file staging, commit, or merge",
+      "downstream direct artifact acceptance",
+      "downstream content-reference acceptance",
+      "QA acceptance",
+      "public/runtime acceptance",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "product/data acceptance",
+      "product/data gate acceptance",
+      "publication readiness",
+      "future publication support",
+      "translation output",
+      "accepted translation text"
+    ],
+    "next_agent6_action": "Issue a dated pass/warn/block verdict on the license-label normalization action packet only, preserving downstream blocking unless explicitly narrowed by Agent 6."
+  },
+  "current_packet_summary": {
+    "license_normalization": {
+      "modified_tracked_source_files": 6,
+      "total_scalar_diff_count": 1406,
+      "total_non_license_diff_count": 0,
+      "total_non_pd_to_public_domain_diff_count": 0,
+      "all_diffs_are_license_fields": true,
+      "all_diffs_are_pd_to_public_domain": true,
+      "direct_downstream_artifact_paths": 59,
+      "content_reference_source_rows": 63,
+      "unique_content_reference_paths": 42,
+      "visible_source_license_row_gaps": 0,
+      "decision_packet_modified_tracked_source_files": 6
+    },
+    "custody_validator": {
+      "ok": true,
+      "live_untracked_sources": 23,
+      "live_modified_tracked_sources": 6,
+      "missing_lexical_manifest_gaps": 0
+    }
+  },
+  "modified_tracked_source_paths": [
+    "data/sources/abarbanel-on-guide-for-the-perplexed.json",
+    "data/sources/crescas-on-guide-for-the-perplexed.json",
+    "data/sources/efodi-on-guide-for-the-perplexed.json",
+    "data/sources/narboni-on-guide-for-the-perplexed.json",
+    "data/sources/shem-tov-on-guide-for-the-perplexed.json",
+    "data/sources/yahel-ohr-on-zohar.json"
+  ],
+  "boundary": {
+    "agent1_status": "evidence-ready / awaiting-Agent-6",
+    "publication_state": "blocked_no_render",
+    "source_provenance_acceptance_claimed": false,
+    "source_file_tracking_approval_claimed": false,
+    "source_file_staging_claimed": false,
+    "public_runtime_acceptance_claimed": false,
+    "route_publication_support_claimed": false,
+    "definition_authority_claimed": false,
+    "page_render_acceptance_claimed": false
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T23:34:00.000Z",
+  "target": "Agent 3 old-dictionary candidate-use cross-batch queue guard gate",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-cross-batch-queue-guard-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_cross_batch_queue_guard.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_cross_batch_queue_guard.mjs --input=reports\\agent3-old-dictionary-candidate-use-cross-batch-queue-guard-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-selector-lookback-patch-no-lookback-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-lookback-after-queue-batch-crossmatch-sweep-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "input_queue_rows": 65,
+    "input_queue_source_links": 363,
+    "guard_rows": 25,
+    "queue_source_links": 163,
+    "batch_queue_links": 54,
+    "unique_source_rids": 121,
+    "unique_queue_ids": 25,
+    "unique_token_ids": 27,
+    "unique_batch_ids": 14,
+    "three_batch_queue_rows": 4,
+    "two_batch_queue_rows": 21,
+    "max_queue_batch_count": 3,
+    "max_queue_source_rid_count": 11,
+    "max_queue_occurrence_total": 1344,
+    "reference_total": 266,
+    "occurrence_total": 8811,
+    "batch_guard_rows": 14,
+    "source_family_signature_rows": 3,
+    "triage_signature_rows": 4,
+    "impact_bucket_rows": 3,
+    "source_citation_required_links": 163,
+    "source_citation_or_url_present_links": 0,
+    "transform_rule_still_blocked_links": 163,
+    "agent6_boundary_after_prereq_links": 163,
+    "source_family_boundary_packet_exists_links": 0,
+    "source_family_selection_boundary_blocker_links": 163,
+    "route_write_allowed_links": 0,
+    "candidate_text_allowed_links": 0,
+    "public_mutation_allowed_links": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_agent3_cross_batch_queue_guard_navigation_only_no_selection_or_acceptance",
+  "exact_blockers": [
+    {
+      "code": "source_family_selection_boundary_not_yet_packetized_for_agent6_prereq",
+      "blocked_links": 163,
+      "details": "The cross-batch queue guard is navigation-only. Every guarded source RID link still requires source-family selection boundary packetization before transform, route, runtime, or release work."
+    },
+    {
+      "code": "source_citation_missing_for_all_guard_links",
+      "blocked_links": 163,
+      "details": "The artifact reports source_citation_required_links=163 and source_citation_or_url_present_links=0."
+    },
+    {
+      "code": "selector_lookback_harness_gap_reduced",
+      "details": "The selector now supports optional lookback scanning and suppresses upstream inputs already consumed by Agent4 proof packets; both normal and lookback selector outputs selected this new cross-batch guard candidate."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-cross-batch-queue-guard-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-cross-batch-queue-guard-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 3 for cross-batch queue guard navigation; Agent 10 for release/package intake only after required boundary packets exist.",
+  "next_safe_action": "Run a triggered Agent4 packet sweep because this proof packet was added, then select from that sweep anchor.",
+  "stop_condition": "Stop after validating and packaging the Agent3 cross-batch queue guard as an Agent4 gate proof.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

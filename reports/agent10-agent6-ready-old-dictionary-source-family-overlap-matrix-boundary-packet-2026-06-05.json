@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_ready_old_dictionary_source_family_overlap_matrix_boundary_packet",
+  "generated_at": "2026-06-05T18:05:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "release_owner": "Agent 10",
+  "review_scope": "nonpublic_old_dictionary_source_family_overlap_matrix_planning_evidence_only",
+  "source_lane_owner": {
+    "agent": "Agent 1",
+    "agent_id": "019e975d-dc9f-7020-a7c8-885d083a837e",
+    "archived_agent1_id_do_not_use": "019dc487-5973-7693-aebf-fb0a75936f50"
+  },
+  "inputs": {
+    "matrix_json": "reports/agent1-old-dictionary-source-family-overlap-matrix-2026-06-05.json",
+    "matrix_md": "reports/agent1-old-dictionary-source-family-overlap-matrix-2026-06-05.md",
+    "matrix_validation_result": "reports/agent1-old-dictionary-source-family-overlap-matrix-validation-result-2026-06-05.json",
+    "prior_manifest_verdict": "reports/agent6-old-dictionary-exact-row-subset-manifest-boundary-verdict-2026-06-05.json",
+    "exact_row_subset_manifest": "reports/agent1-old-dictionary-exact-row-subset-manifest-2026-06-05.json"
+  },
+  "exact_matrix_source": {
+    "path": "reports/agent1-old-dictionary-source-family-overlap-matrix-2026-06-05.json",
+    "pointers": [
+      "pairwise_intersections[]",
+      "exact_family_combinations[]",
+      "exact_blockers[]"
+    ],
+    "row_duplication_in_this_packet": false
+  },
+  "matrix_counts": {
+    "source_family_count": 5,
+    "pairwise_intersection_count": 10,
+    "exact_family_combination_count": 13,
+    "total_exact_combination_rows": 500,
+    "total_exact_combination_occurrences": 8427,
+    "commercial_internal_pair_rows": 252,
+    "commercial_with_nc_pair_rows": 362,
+    "commercial_with_blocked_pair_rows": 425,
+    "nc_with_blocked_pair_rows": 140,
+    "delivered_to_agent6_now": 0,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0
+  },
+  "source_families": [
+    {
+      "name": "Jastrow Dictionary",
+      "lane": "commercial_clean_candidate"
+    },
+    {
+      "name": "BDB Dictionary",
+      "lane": "commercial_clean_candidate"
+    },
+    {
+      "name": "BDB Aramaic Dictionary",
+      "lane": "commercial_clean_candidate"
+    },
+    {
+      "name": "Klein Dictionary",
+      "lane": "noncommercial_educational_candidate"
+    },
+    {
+      "name": "BDB Augmented Strong",
+      "lane": "blocked_or_needs_review"
+    }
+  ],
+  "agent6_boundary_question": "Pass/warn/block whether the exact Agent 1 source-family overlap matrix may be carried as non-public source-family selection and package-assembly planning evidence only, preserving all source lanes and zero-output counters.",
+  "requested_carry_forward": {
+    "carry_as_nonpublic_planning_evidence_only": true,
+    "source_family_selection_allowed_now": false,
+    "agent2_transform_allowed_now": false,
+    "candidate_use_allowed_now": false,
+    "candidate_text_allowed_now": false,
+    "definition_content_storage_allowed_now": false,
+    "answer_eligibility_allowed_now": false,
+    "public_emit_allowed_now": false,
+    "route_write_allowed_now": false,
+    "source_license_legal_acceptance_allowed_now": false,
+    "commercial_export_allowed_now": false,
+    "nc_commercial_use_allowed_now": false,
+    "release_action_allowed_now": false
+  },
+  "exact_blocker_count": 23,
+  "zero_counters": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_by_agent1_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "delivery_state": {
+    "status": "agent6_ready_not_delivered_by_agent10_in_this_artifact"
+  },
+  "exact_blocker_if_not_routed": "await_agent6_source_family_overlap_matrix_boundary_for_old_dictionary_500_row_matrix",
+  "stop_condition": "Stop at Agent 6 source-family overlap matrix planning-evidence verdict or exact blocker. Any source-family selection, subset split, transform, candidate-use, candidate text, definition-content storage, answer eligibility, source row emission, route write, public/runtime mutation, commercial export, NC commercial use, publication readiness, or release action requires a later exact Agent 6 packet.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "source-family selection acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}
+

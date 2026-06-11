@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_token_source_aggregate_consumption_receipt",
+  "generated_at": "2026-06-05T13:52:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / source-lane separated lexicon expansion",
+  "target": "Agent2 token-source partition aggregate consumption",
+  "status": "token_source_aggregate_consumed_as_nonpublic_metadata_evidence_only",
+  "inputs": {
+    "agent4_gate_proof": "reports/agent4-agent2-token-source-partition-edges-aggregate-gate-proof-2026-06-05.json",
+    "agent10_consumption": "reports/agent10-agent2-agent4-fresh-output-consumption-2026-06-05.json",
+    "aggregate_summary": "reports/workbench-token-source-partition-edges-5000-summary.json",
+    "aggregate_report": "reports/workbench-token-source-partition-edges-5000.md"
+  },
+  "counts": {
+    "source_files_selected": 1337,
+    "source_files_read": 1337,
+    "units_read": 717459,
+    "units_with_partition": 637508,
+    "unjoined_units": 79951,
+    "total_token_occurrences_scanned": 66320359,
+    "matched_token_occurrences": 49791095,
+    "chunk_count": 54,
+    "chunks_merged": 54,
+    "aggregate_edge_rows": 1951013,
+    "aggregate_shard_count": 256,
+    "candidate_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0
+  },
+  "agent10_consumption_state": {
+    "validator_result": "node scripts\\validate_agent2_workbench_token_source_partition_edges_aggregate.mjs reports\\workbench-token-source-partition-edges-5000-summary.json passed",
+    "release_relevance": "Complete non-public token-source partition edge metadata aggregate. It is useful planning evidence, but it has zero candidate rows and does not itself create a candidate-use or Agent 6 boundary packet.",
+    "exact_blocker": "no_candidate_rows_or_candidate_use_packet_from_aggregate",
+    "agent6_boundary_question": null,
+    "next_handoff": "Agent 2 may derive a bounded candidate-use workset from the aggregate if a source-lane-preserving transform target exists; Agent 10 opens no Agent 6 route from aggregate metadata alone."
+  },
+  "blockers_preserved": [
+    "no_candidate_rows_or_candidate_use_packet_from_aggregate",
+    "aggregate_is_nonpublic_token_source_partition_metadata_only",
+    "separate_exact_boundary_required_for_any_candidate_use_answer_public_runtime_or_release_use"
+  ],
+  "zero_output_counts": {
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_gloss_text_rows": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "release_rows": 0
+  },
+  "highest_permissible_claim": "Agent2 may use the aggregate as nonpublic token-source partition metadata evidence only.",
+  "handoff_owner": "Agent 2 definer retains metadata-only aggregate evidence; Agent10/Agent6 require a separate exact candidate-use packet before any downstream use.",
+  "stop_condition": "Stop at aggregate consumption receipt. Do not derive candidate text, definition content, answer rows, public output, route writes, accepted text, export rows, or release artifacts from aggregate metadata alone.",
+  "non_acceptance_boundary": [
+    "No Definition authority",
+    "No answer acceptance",
+    "No source/license/legal acceptance",
+    "No accepted gloss/text",
+    "No public/runtime mutation",
+    "No route-shard edit",
+    "No candidate text export",
+    "No NC commercial authorization",
+    "No release action"
+  ]
+}

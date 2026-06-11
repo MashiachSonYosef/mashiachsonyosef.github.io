@@ -1,6 +1,6 @@
 # Workbench Source Freshness
 
-Generated: 2026-06-01T00:33:10.634Z
+Generated: 2026-06-01T20:53:27.629Z
 
 ## Summary
 
@@ -8,10 +8,10 @@ Generated: 2026-06-01T00:33:10.634Z
 - Focus: ראשית
 - Artifact generated: 2026-05-31T09:00:12.958Z
 - Artifact source files scanned: 1192
-- Current source files: 1267
-- Count delta: 75
-- Files modified after artifact: 80
-- Files created after artifact: 75
+- Current source files: 1360
+- Count delta: 168
+- Files modified after artifact: 173
+- Files created after artifact: 168
 - Existing candidate rows: 28475
 - Existing useful counts: supported 628, candidate 6257, weak 4233, ambiguous 17357
 
@@ -19,86 +19,86 @@ Generated: 2026-06-01T00:33:10.634Z
 
 | source file | modified | created | bytes |
 |---|---|---|---:|
-| data/sources/urim-vetumim-urim.json | 2026-06-01T00:04:03.949Z | 2026-06-01T00:04:03.918Z | 8142144 |
-| data/sources/pitchei-teshuva-on-shulchan-arukh-choshen-mishpat.json | 2026-05-31T23:54:02.811Z | 2026-05-31T23:54:02.764Z | 6469336 |
-| data/sources/netivot-hamishpat-hidushim-on-shulchan-arukh-choshen-mishpat.json | 2026-05-31T23:49:48.730Z | 2026-05-31T23:49:48.683Z | 9641756 |
-| data/sources/netivot-hamishpat-beurim-on-shulchan-arukh-choshen-mishpat.json | 2026-05-31T23:40:44.351Z | 2026-05-31T23:40:44.220Z | 8842809 |
-| data/sources/meirat-einayim-on-shulchan-arukh-choshen-mishpat.json | 2026-05-31T23:35:24.697Z | 2026-05-31T23:35:24.572Z | 21562051 |
-| data/sources/shem-tov-on-guide-for-the-perplexed.json | 2026-05-31T23:27:13.486Z | 2026-05-31T12:51:55.041Z | 469884 |
-| data/sources/yahel-ohr-on-zohar.json | 2026-05-31T23:27:13.486Z | 2026-04-27T18:36:41.975Z | 483019 |
-| data/sources/crescas-on-guide-for-the-perplexed.json | 2026-05-31T23:26:04.566Z | 2026-05-19T04:33:59.183Z | 165184 |
-| data/sources/efodi-on-guide-for-the-perplexed.json | 2026-05-31T23:26:04.566Z | 2026-05-19T04:34:45.500Z | 229579 |
-| data/sources/narboni-on-guide-for-the-perplexed.json | 2026-05-31T23:26:04.566Z | 2026-05-19T04:49:41.761Z | 1063124 |
-| data/sources/abarbanel-on-guide-for-the-perplexed.json | 2026-05-31T23:26:04.550Z | 2026-05-19T04:30:07.122Z | 2138866 |
-| data/sources/ketzot-hachoshen-on-shulchan-arukh-choshen-mishpat.json | 2026-05-31T23:13:31.148Z | 2026-05-31T23:13:31.101Z | 9155594 |
-| data/sources/haggahot-imrei-barukh-on-shulchan-arukh-choshen-mishpat.json | 2026-05-31T22:56:22.055Z | 2026-05-31T22:56:22.038Z | 1296668 |
-| data/sources/yad-avraham-on-shulchan-arukh-yoreh-deah.json | 2026-05-31T22:40:51.816Z | 2026-05-31T22:40:51.816Z | 16557 |
-| data/sources/turei-zahav-on-shulchan-arukh-yoreh-deah.json | 2026-05-31T22:40:48.994Z | 2026-05-31T22:40:48.942Z | 10052649 |
-| data/sources/siftei-kohen-on-shulchan-arukh-yoreh-deah.json | 2026-05-31T22:35:37.427Z | 2026-05-31T22:35:37.365Z | 15361043 |
-| data/sources/kereti-on-shulchan-arukh-yoreh-deah.json | 2026-05-31T20:40:49.891Z | 2026-05-31T20:40:49.875Z | 2991581 |
-| data/sources/rabbi-akiva-eiger-on-shulchan-arukh-orach-chayim.json | 2026-05-31T20:23:51.037Z | 2026-05-31T20:23:51.005Z | 3616678 |
-| data/sources/netiv-chayim-on-shulchan-arukh-orach-chayim.json | 2026-05-31T20:19:49.366Z | 2026-05-31T20:19:49.366Z | 9313 |
-| data/sources/machatzit-hashekel-on-orach-chayim.json | 2026-05-31T20:19:47.434Z | 2026-05-31T20:19:47.309Z | 27763792 |
-| data/sources/levushei-serad-on-shulchan-arukh-orach-chayim.json | 2026-05-31T18:41:51.812Z | 2026-05-31T18:41:51.778Z | 10080069 |
-| data/sources/eliyah-rabbah-on-shulchan-arukh-orach-chayim.json | 2026-05-31T18:13:15.043Z | 2026-05-31T18:13:14.762Z | 19420606 |
-| data/sources/turei-zahav-on-shulchan-arukh-even-haezer.json | 2026-05-31T17:19:54.032Z | 2026-05-31T17:19:54.000Z | 4549819 |
-| data/sources/rabbi-akiva-eiger-on-shulchan-arukh-even-haezer.json | 2026-05-31T17:16:20.654Z | 2026-05-31T17:16:20.638Z | 1071557 |
-| data/sources/pitchei-teshuva-on-shulchan-arukh-even-haezer.json | 2026-05-31T17:12:39.213Z | 2026-05-31T17:12:39.167Z | 7229675 |
-| data/sources/ezer-mikodesh-on-shulchan-arukh-even-haezer.json | 2026-05-31T17:09:20.775Z | 2026-05-31T17:09:20.775Z | 618449 |
-| data/sources/beit-meir-on-shulchan-arukh-even-haezer.json | 2026-05-31T17:08:44.951Z | 2026-05-31T17:08:44.917Z | 7150042 |
-| data/sources/perush-kadmon-on-sefer-chasidim.json | 2026-05-31T16:52:54.765Z | 2026-05-31T16:52:54.744Z | 4522962 |
-| data/sources/brit-olam-on-sefer-chasidim.json | 2026-05-31T16:31:36.646Z | 2026-05-31T16:31:36.629Z | 927664 |
-| data/sources/publishers-haggahot-on-sefer-haparnas.json | 2026-05-31T16:25:02.755Z | 2026-05-31T16:25:02.754Z | 70331 |
-| data/sources/haggahot-rabbeinu-peretz-on-sefer-mitzvot-katan.json | 2026-05-31T16:24:58.565Z | 2026-05-31T16:24:58.534Z | 1673924 |
-| data/sources/haggahot-of-radal-on-sefer-haparnas.json | 2026-05-31T16:22:31.645Z | 2026-05-31T16:22:31.645Z | 53428 |
-| data/sources/haggahot-chadashot-on-sefer-mitzvot-katan.json | 2026-05-31T16:22:12.852Z | 2026-05-31T16:22:12.836Z | 2814221 |
-| data/sources/toafot-reem.json | 2026-05-31T16:08:31.013Z | 2026-05-31T16:08:30.946Z | 8522623 |
-| data/sources/megillat-esther-on-sefer-hamitzvot.json | 2026-05-31T15:57:56.614Z | 2026-05-31T15:57:56.599Z | 1097771 |
-| data/sources/marganita-tava-on-sefer-hamitzvot.json | 2026-05-31T15:56:34.781Z | 2026-05-31T15:56:34.771Z | 1505162 |
-| data/sources/lev-sameach.json | 2026-05-31T15:55:22.927Z | 2026-05-31T15:55:22.911Z | 1704721 |
-| data/sources/hasagot-haramban-on-sefer-hamitzvot.json | 2026-05-31T15:53:56.390Z | 2026-05-31T15:53:56.367Z | 913049 |
-| data/sources/maamar-mezakeh-harabim.json | 2026-05-31T15:00:49.044Z | 2026-05-31T15:00:49.043Z | 147024 |
-| data/sources/kav-hayashar.json | 2026-05-31T15:00:42.118Z | 2026-05-31T15:00:42.100Z | 3219621 |
-| data/sources/yisrael-kedoshim.json | 2026-05-31T13:06:58.651Z | 2026-05-31T13:06:58.651Z | 923149 |
-| data/sources/takanat-hashavin.json | 2026-05-31T13:06:51.068Z | 2026-05-31T13:06:51.068Z | 1472495 |
-| data/sources/sichat-shedim.json | 2026-05-31T13:06:44.250Z | 2026-05-31T13:06:44.250Z | 66832 |
-| data/sources/sichat-malakhei-hasharet.json | 2026-05-31T13:06:38.850Z | 2026-05-31T13:06:38.850Z | 627188 |
-| data/sources/resisei-layla.json | 2026-05-31T13:06:34.849Z | 2026-05-31T13:06:34.849Z | 1167260 |
-| data/sources/poked-akarim.json | 2026-05-31T13:06:25.782Z | 2026-05-31T13:06:25.782Z | 381703 |
-| data/sources/machshavot-charutz.json | 2026-05-31T13:06:09.896Z | 2026-05-31T13:06:09.882Z | 1277833 |
-| data/sources/likkutei-maamarim.json | 2026-05-31T13:06:03.815Z | 2026-05-31T13:06:03.798Z | 1270792 |
-| data/sources/kometz-haminchah.json | 2026-05-31T13:05:59.515Z | 2026-05-31T13:05:59.515Z | 9441 |
-| data/sources/et-haochel.json | 2026-05-31T13:05:57.365Z | 2026-05-31T13:05:57.365Z | 74399 |
-| data/sources/dover-tzedek.json | 2026-05-31T13:05:55.198Z | 2026-05-31T13:05:55.181Z | 1723015 |
-| data/sources/divrei-soferim.json | 2026-05-31T13:05:50.048Z | 2026-05-31T13:05:50.048Z | 360942 |
-| data/sources/divrei-chalomot.json | 2026-05-31T13:05:47.247Z | 2026-05-31T13:05:47.247Z | 145984 |
-| data/sources/yesod-mora-vesod-hatorah.json | 2026-05-31T12:52:04.992Z | 2026-05-31T12:52:04.992Z | 210309 |
-| data/sources/sefer-yesodei-hatorah.json | 2026-05-31T12:51:47.424Z | 2026-05-31T12:51:47.424Z | 239862 |
-| data/sources/sefer-hahiggayon.json | 2026-05-31T12:51:39.407Z | 2026-05-31T12:51:39.407Z | 503326 |
-| data/sources/netzach-yisrael.json | 2026-05-31T12:51:34.406Z | 2026-05-31T12:51:34.389Z | 3578536 |
-| data/sources/netivot-olam.json | 2026-05-31T12:51:21.223Z | 2026-05-31T12:51:21.189Z | 5044520 |
-| data/sources/ner-mitzvah.json | 2026-05-31T12:50:59.471Z | 2026-05-31T12:50:59.471Z | 372681 |
-| data/sources/gevurot-hashem.json | 2026-05-31T12:50:57.565Z | 2026-05-31T12:50:57.503Z | 6057764 |
-| data/sources/drashot-maharal.json | 2026-05-31T12:50:04.601Z | 2026-05-31T12:50:04.585Z | 609367 |
-| data/sources/derush-chiddushei-halevanah.json | 2026-05-31T12:49:53.416Z | 2026-05-31T12:49:53.401Z | 831403 |
-| data/sources/derush-al-hatorah.json | 2026-05-31T12:49:47.382Z | 2026-05-31T12:49:47.365Z | 886484 |
-| data/sources/derashat-shabbat-hagadol.json | 2026-05-31T12:49:41.250Z | 2026-05-31T12:49:41.250Z | 1006149 |
-| data/sources/beer-hagolah.json | 2026-05-31T12:49:38.217Z | 2026-05-31T12:49:38.201Z | 2230689 |
-| data/sources/yosher-divrei-emet.json | 2026-05-31T12:25:27.150Z | 2026-05-31T12:25:27.150Z | 441487 |
-| data/sources/toldot-yaakov-yosef.json | 2026-05-31T12:25:23.431Z | 2026-05-31T12:25:23.431Z | 49782 |
-| data/sources/sippurei-maasiyot.json | 2026-05-31T12:24:39.345Z | 2026-05-31T12:24:39.330Z | 1410150 |
-| data/sources/mekor-mayim-chayim-on-baal-shem-tov.json | 2026-05-31T12:24:32.746Z | 2026-05-31T12:24:32.728Z | 4486017 |
-| data/sources/likutei-moharan.json | 2026-05-31T12:23:38.773Z | 2026-05-31T12:23:38.693Z | 15323960 |
-| data/sources/keter-shem-tov.json | 2026-05-31T12:15:38.421Z | 2026-05-31T12:15:38.421Z | 8446 |
-| data/sources/kedushat-levi.json | 2026-05-31T12:15:36.821Z | 2026-05-31T12:15:36.787Z | 4747479 |
-| data/sources/baal-shem-tov.json | 2026-05-31T12:13:53.448Z | 2026-05-31T12:13:53.432Z | 4109378 |
-| data/sources/arvei-nachal.json | 2026-05-31T12:13:03.162Z | 2026-05-31T12:13:03.130Z | 9141512 |
-| data/sources/agra-dekala.json | 2026-05-31T12:11:15.507Z | 2026-05-31T12:11:15.425Z | 11962432 |
-| data/sources/torat-habayit-hakatzar.json | 2026-05-31T11:53:00.150Z | 2026-05-31T11:53:00.150Z | 799225 |
-| data/sources/torat-habayit-haaroch.json | 2026-05-31T11:52:43.520Z | 2026-05-31T11:52:43.504Z | 2604846 |
-| data/sources/shibbolei-haleket.json | 2026-05-31T11:52:24.784Z | 2026-05-31T11:52:24.737Z | 6705622 |
-| data/sources/shev-shmateta.json | 2026-05-31T11:46:10.912Z | 2026-05-31T11:46:10.912Z | 311119 |
-| data/sources/peri-megadim-on-orach-chayim.json | 2026-05-31T11:46:02.037Z | 2026-05-31T11:46:01.904Z | 29567373 |
+| data/sources/brief-commentary-on-yoma.json | 2026-06-01T15:07:57.897Z | 2026-06-01T15:07:57.895Z | 248354 |
+| data/sources/brief-commentary-on-yevamot.json | 2026-06-01T15:06:25.762Z | 2026-06-01T15:06:25.762Z | 411904 |
+| data/sources/brief-commentary-on-terumot.json | 2026-06-01T15:02:14.586Z | 2026-06-01T15:02:14.570Z | 885859 |
+| data/sources/brief-commentary-on-taanit.json | 2026-06-01T14:57:17.909Z | 2026-06-01T14:57:17.909Z | 120555 |
+| data/sources/brief-commentary-on-sotah.json | 2026-06-01T14:56:01.903Z | 2026-06-01T14:56:01.903Z | 277875 |
+| data/sources/brief-commentary-on-sheviit.json | 2026-06-01T14:53:42.295Z | 2026-06-01T14:53:42.295Z | 618392 |
+| data/sources/brief-commentary-on-shekalim.json | 2026-06-01T14:51:54.566Z | 2026-06-01T14:51:54.565Z | 211625 |
+| data/sources/brief-commentary-on-shabbat.json | 2026-06-01T14:51:22.073Z | 2026-06-01T14:51:22.073Z | 873544 |
+| data/sources/brief-commentary-on-rosh-hashanah.json | 2026-06-01T14:48:27.839Z | 2026-06-01T14:48:27.839Z | 162661 |
+| data/sources/brief-commentary-on-peah.json | 2026-06-01T14:48:07.899Z | 2026-06-01T14:48:07.899Z | 280693 |
+| data/sources/brief-commentary-on-orlah.json | 2026-06-01T14:41:03.796Z | 2026-06-01T14:41:03.795Z | 37328 |
+| data/sources/brief-commentary-on-nedarim.json | 2026-06-01T14:40:51.262Z | 2026-06-01T14:40:51.258Z | 209132 |
+| data/sources/brief-commentary-on-nazir.json | 2026-06-01T14:39:01.640Z | 2026-06-01T14:39:01.639Z | 230792 |
+| data/sources/brief-commentary-on-moed-katan.json | 2026-06-01T14:38:04.430Z | 2026-06-01T14:38:04.428Z | 97146 |
+| data/sources/brief-commentary-on-megillah.json | 2026-06-01T14:37:34.277Z | 2026-06-01T14:37:34.276Z | 127868 |
+| data/sources/brief-commentary-on-maasrot.json | 2026-06-01T14:36:50.030Z | 2026-06-01T14:36:50.030Z | 262623 |
+| data/sources/brief-commentary-on-maaser-sheni.json | 2026-06-01T14:35:06.375Z | 2026-06-01T14:35:06.359Z | 461073 |
+| data/sources/brief-commentary-on-kilayim.json | 2026-06-01T14:33:32.269Z | 2026-06-01T14:33:32.269Z | 366335 |
+| data/sources/brief-commentary-on-ketubot.json | 2026-06-01T14:32:33.902Z | 2026-06-01T14:32:33.886Z | 436081 |
+| data/sources/brief-commentary-on-gittin.json | 2026-06-01T14:31:51.091Z | 2026-06-01T14:31:51.091Z | 242275 |
+| data/sources/brief-commentary-on-eruvin.json | 2026-06-01T14:22:39.281Z | 2026-06-01T14:22:39.265Z | 615769 |
+| data/sources/brief-commentary-on-demai.json | 2026-06-01T14:21:17.777Z | 2026-06-01T14:21:17.777Z | 747534 |
+| data/sources/brief-commentary-on-challah.json | 2026-06-01T14:19:07.779Z | 2026-06-01T14:19:07.763Z | 105282 |
+| data/sources/brief-commentary-on-chagigah.json | 2026-06-01T14:18:05.882Z | 2026-06-01T14:18:05.882Z | 187346 |
+| data/sources/brief-commentary-on-bikkurim.json | 2026-06-01T14:17:05.032Z | 2026-06-01T14:17:05.032Z | 93268 |
+| data/sources/brief-commentary-on-berakhot.json | 2026-06-01T14:16:53.789Z | 2026-06-01T14:16:53.773Z | 337892 |
+| data/sources/brief-commentary-on-beitzah.json | 2026-06-01T14:15:17.733Z | 2026-06-01T14:15:17.733Z | 298864 |
+| data/sources/brief-commentary-on-bava-metzia.json | 2026-06-01T14:14:35.163Z | 2026-06-01T14:14:35.159Z | 706062 |
+| data/sources/brief-commentary-on-bava-kamma.json | 2026-06-01T14:12:48.963Z | 2026-06-01T14:12:48.958Z | 423083 |
+| data/sources/brief-commentary-on-bava-batra.json | 2026-06-01T14:11:35.869Z | 2026-06-01T14:11:35.869Z | 402907 |
+| data/sources/boaz-on-pirkei-avot.json | 2026-06-01T09:26:39.697Z | 2026-06-01T09:26:39.697Z | 66330 |
+| data/sources/boaz-on-mishnah-zevachim.json | 2026-06-01T09:26:35.385Z | 2026-06-01T09:26:35.385Z | 41639 |
+| data/sources/boaz-on-mishnah-yoma.json | 2026-06-01T09:26:26.453Z | 2026-06-01T09:26:26.448Z | 42362 |
+| data/sources/boaz-on-mishnah-terumot.json | 2026-06-01T09:26:21.269Z | 2026-06-01T09:26:21.269Z | 67826 |
+| data/sources/boaz-on-mishnah-temurah.json | 2026-06-01T09:26:13.896Z | 2026-06-01T09:26:13.896Z | 80351 |
+| data/sources/boaz-on-mishnah-tamid.json | 2026-06-01T09:26:09.146Z | 2026-06-01T09:26:09.146Z | 57113 |
+| data/sources/boaz-on-mishnah-tahorot.json | 2026-06-01T09:26:04.109Z | 2026-06-01T09:26:04.109Z | 486278 |
+| data/sources/boaz-on-mishnah-taanit.json | 2026-06-01T09:25:57.390Z | 2026-06-01T09:25:57.390Z | 10771 |
+| data/sources/boaz-on-mishnah-sheviit.json | 2026-06-01T09:25:54.427Z | 2026-06-01T09:25:54.427Z | 59586 |
+| data/sources/boaz-on-mishnah-shabbat.json | 2026-06-01T09:25:48.462Z | 2026-06-01T09:25:48.462Z | 131349 |
+| data/sources/boaz-on-mishnah-rosh-hashanah.json | 2026-06-01T09:25:33.375Z | 2026-06-01T09:25:33.375Z | 22608 |
+| data/sources/boaz-on-mishnah-pesachim.json | 2026-06-01T09:25:30.909Z | 2026-06-01T09:25:30.909Z | 113567 |
+| data/sources/boaz-on-mishnah-peah.json | 2026-06-01T09:25:24.642Z | 2026-06-01T09:25:24.642Z | 120081 |
+| data/sources/boaz-on-mishnah-parah.json | 2026-06-01T09:25:19.311Z | 2026-06-01T09:25:19.292Z | 479651 |
+| data/sources/boaz-on-mishnah-orlah.json | 2026-06-01T09:25:10.324Z | 2026-06-01T09:25:10.324Z | 14857 |
+| data/sources/boaz-on-mishnah-oholot.json | 2026-06-01T09:25:08.261Z | 2026-06-01T09:25:08.261Z | 749180 |
+| data/sources/boaz-on-mishnah-niddah.json | 2026-06-01T09:24:57.338Z | 2026-06-01T09:24:57.338Z | 7035 |
+| data/sources/boaz-on-mishnah-negaim.json | 2026-06-01T09:24:51.304Z | 2026-06-01T09:24:51.304Z | 442366 |
+| data/sources/boaz-on-mishnah-moed-katan.json | 2026-06-01T09:24:43.190Z | 2026-06-01T09:24:43.190Z | 9228 |
+| data/sources/boaz-on-mishnah-mikvaot.json | 2026-06-01T09:24:41.206Z | 2026-06-01T09:24:41.206Z | 363642 |
+| data/sources/boaz-on-mishnah-middot.json | 2026-06-01T09:24:34.590Z | 2026-06-01T09:24:34.590Z | 95003 |
+| data/sources/boaz-on-mishnah-meilah.json | 2026-06-01T09:24:30.784Z | 2026-06-01T09:24:30.784Z | 123995 |
+| data/sources/boaz-on-mishnah-megillah.json | 2026-06-01T09:24:26.773Z | 2026-06-01T09:24:26.773Z | 27899 |
+| data/sources/boaz-on-mishnah-makkot.json | 2026-06-01T09:24:24.448Z | 2026-06-01T09:24:24.448Z | 53215 |
+| data/sources/boaz-on-mishnah-maaser-sheni.json | 2026-06-01T09:24:22.505Z | 2026-06-01T09:24:22.505Z | 31857 |
+| data/sources/boaz-on-mishnah-kinnim.json | 2026-06-01T09:24:19.389Z | 2026-06-01T09:24:19.389Z | 142712 |
+| data/sources/boaz-on-mishnah-kilayim.json | 2026-06-01T09:24:17.394Z | 2026-06-01T09:24:17.378Z | 98721 |
+| data/sources/boaz-on-mishnah-kiddushin.json | 2026-06-01T09:24:12.179Z | 2026-06-01T09:24:12.179Z | 71534 |
+| data/sources/boaz-on-mishnah-keritot.json | 2026-06-01T09:24:09.339Z | 2026-06-01T09:24:09.339Z | 85741 |
+| data/sources/boaz-on-mishnah-kelim.json | 2026-06-01T09:24:05.505Z | 2026-06-01T09:24:05.501Z | 800041 |
+| data/sources/boaz-on-mishnah-gittin.json | 2026-06-01T09:23:46.670Z | 2026-06-01T09:23:46.670Z | 48897 |
+| data/sources/boaz-on-mishnah-eruvin.json | 2026-06-01T09:23:40.700Z | 2026-06-01T09:23:40.700Z | 56020 |
+| data/sources/boaz-on-mishnah-eduyot.json | 2026-06-01T09:23:34.742Z | 2026-06-01T09:23:34.742Z | 31643 |
+| data/sources/boaz-on-mishnah-demai.json | 2026-06-01T09:23:30.298Z | 2026-06-01T09:23:30.298Z | 101944 |
+| data/sources/boaz-on-mishnah-chullin.json | 2026-06-01T09:23:25.609Z | 2026-06-01T09:23:25.609Z | 83856 |
+| data/sources/boaz-on-mishnah-bikkurim.json | 2026-06-01T09:23:17.703Z | 2026-06-01T09:23:17.703Z | 17059 |
+| data/sources/boaz-on-mishnah-berakhot.json | 2026-06-01T09:23:14.944Z | 2026-06-01T09:23:14.944Z | 166345 |
+| data/sources/boaz-on-mishnah-bekhorot.json | 2026-06-01T09:23:06.936Z | 2026-06-01T09:23:06.936Z | 86727 |
+| data/sources/boaz-on-mishnah-beitzah.json | 2026-06-01T09:23:01.207Z | 2026-06-01T09:23:01.207Z | 65600 |
+| data/sources/boaz-on-mishnah-bava-metzia.json | 2026-06-01T09:22:56.550Z | 2026-06-01T09:22:56.550Z | 52701 |
+| data/sources/boaz-on-mishnah-arakhin.json | 2026-06-01T09:22:44.553Z | 2026-06-01T09:22:44.553Z | 22256 |
+| data/sources/bartenura-on-pirkei-avot.json | 2026-06-01T09:22:36.282Z | 2026-06-01T09:22:36.282Z | 56160 |
+| data/sources/avot-derabbi-natan-recension-b.json | 2026-06-01T08:54:11.972Z | 2026-06-01T08:38:54.162Z | 1373316 |
+| data/sources/siddur-sefard.json | 2026-06-01T07:27:38.517Z | 2026-06-01T07:27:38.455Z | 14199773 |
+| data/sources/shabbat-siddur-sefard-linear.json | 2026-06-01T07:17:15.063Z | 2026-06-01T07:17:14.910Z | 27177454 |
+| data/sources/selichot-nusach-lita-linear.json | 2026-06-01T06:34:13.073Z | 2026-06-01T06:34:12.739Z | 40614688 |
+| data/sources/machzor-yom-kippur-ashkenaz-linear.json | 2026-06-01T04:43:01.849Z | 2026-06-01T04:43:01.731Z | 33258567 |
+| data/sources/machzor-rosh-hashanah-ashkenaz-linear.json | 2026-06-01T03:56:05.339Z | 2026-06-01T03:56:05.239Z | 28304361 |
+| data/sources/machzor-rosh-hashanah-ashkenaz.json | 2026-06-01T03:23:46.817Z | 2026-06-01T03:23:46.798Z | 3597627 |
+| data/sources/the-war-of-the-jews.json | 2026-06-01T03:16:51.230Z | 2026-06-01T03:16:51.214Z | 2468499 |
 
 ## Boundary
 

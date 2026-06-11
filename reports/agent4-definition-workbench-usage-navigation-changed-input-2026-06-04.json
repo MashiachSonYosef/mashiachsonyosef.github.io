@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_changed_package_input_descriptor",
+  "changed_package_input_path": "reports/agent10-agent6-ready-definition-workbench-usage-navigation-boundary-packet-2026-06-04.json",
+  "package_hash_or_commit_or_mtime": "sha256:e58eeccdbf11ab93ee5fc7718d2a29a939c1820fcd0442ed5342bbc956140bf4",
+  "exact_command_list": [
+    "node scripts\\validate_agent3_usage_state.mjs reports\\agent3-state.json",
+    "node scripts\\validate_definition_workbench_usage_queue_ready_packet.mjs data\\definitions\\definition-workbench-usage-queue-ready-packet.json",
+    "node scripts\\validate_definition_workbench_usage_agent6_packet.mjs data\\definitions\\definition-workbench-usage-agent6-packet.json",
+    "node scripts\\validate_definition_workbench_usage_occurrence_links.mjs data\\definitions\\definition-workbench-usage-occurrence-links.json",
+    "node scripts\\validate_definition_workbench_usage_route_resolution.mjs data\\definitions\\definition-workbench-usage-route-resolution.json",
+    "node scripts\\validate_definition_workbench_usage_consumer_manifest.mjs data\\definitions\\definition-workbench-usage-consumer-manifest.json"
+  ],
+  "expected_output_path_schema": "reports/agent4-definition-workbench-usage-navigation-gate-proof-2026-06-04.md",
+  "validator_gate": "Agent 3 usage state plus Definition Workbench usage queue-ready, Agent6 packet, occurrence links, route resolution, and consumer manifest validators must pass on explicit 2026-06-04 inputs.",
+  "package_owner": "Agent 10 release/package intake; Agent 3 usage/navigation lane owner",
+  "agent6_boundary_trigger": "Agent 6 review only as non-public Definition Workbench usage-navigation and occurrence-link planning evidence; no Definition authority, semantic arbitration, route ranking, UI/publication acceptance, accepted translation text, public/runtime output, or release action is requested.",
+  "stop_condition": "Stop after runnable Agent 4 validator/prereq contract is generated and checked, or exact blocker if any listed validator fails."
+}

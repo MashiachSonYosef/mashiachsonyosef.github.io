@@ -1,15 +1,17 @@
 # Agent 10 Malachi Pre-HUD Reader-Hint Fix Addendum
 
-Status: `FIXED_LOCAL_PREVIEW_READY_FOR_A14_REVIEW_SUPERSEDES_PRIOR_PACKET`
+Status: `FIXED_LOCAL_PREVIEW_READY_FOR_A14_REVIEW_SUPERSEDES_PRIOR_PACKETS`
 
 Supersedes:
 - Prior A14 submission `019ea20b-4dca-7b40-96fd-085e81a636b9`.
-- Reason: the prior packet fixed missing Malachi `reader_hint_url`, but the route-hint builder still allowed usage-only evidence into pre-HUD. This addendum preserves usage-only cards as HUD-only evidence and keeps pre-HUD fail-closed.
+- Prior A14 submission `019ea221-d10c-75e0-ad06-4d1892b8df0e`.
+- Reason: the prior packets fixed missing Malachi `reader_hint_url`, but the route-hint builder still allowed usage-only/form-reference evidence into pre-HUD. This addendum preserves usage-only and form-reference cards as HUD-only evidence and keeps pre-HUD fail-closed.
 
 Issues handled:
 - Malachi HUD populated from `data/definitions/hud-route-lookup/manifest.json`, but pre-HUD did not populate because `tanakh/malachi/index.html` had no `reader_hint_url`.
 - Malachi pre-HUD then showed repeated `observed usage only`; route usage evidence now stays HUD-only/TBD and cannot populate pre-HUD.
-- Each pre-HUD row now has a compact `Section top` link back to the current section anchor.
+- Malachi pre-HUD showed `form of היווה` for `דְבַר־יְהֹוָ֖ה`; form-reference cards now stay HUD-only/TBD unless a real selected gloss is stored through the HUD.
+- Each pre-HUD row now has a compact meta row: `Section top` left, `%match` right.
 
 Pipeline fix:
 - Added bounded route-lookup reader-hint builder:
@@ -36,21 +38,22 @@ Generated counts after usage-only exclusion:
 
 | work | token occurrences | unique hint rows | usage-only pre-HUD rows |
 | --- | ---: | ---: | ---: |
-| esther | 2654 | 1744 | 0 |
-| ezra | 3538 | 2009 | 0 |
-| nehemiah | 4822 | 3187 | 0 |
-| obadiah | 249 | 199 | 0 |
-| malachi | 789 | 614 | 0 |
+| esther | 2654 | 946 | 0 |
+| ezra | 3538 | 1089 | 0 |
+| nehemiah | 4822 | 1802 | 0 |
+| obadiah | 249 | 111 | 0 |
+| malachi | 789 | 344 | 0 |
 
 Malachi browser/render proof:
-- URL: `http://127.0.0.1:8801/tanakh/malachi/?prehud-clean=4`
-- Headless Chrome DOM artifact: `%TEMP%/codex-malachi-dom-proof.html`
+- URL: `http://127.0.0.1:8801/tanakh/malachi/?prehud-clean=5`
+- Headless Chrome DOM artifact: `%TEMP%/codex-malachi-dom-proof-v2.html`
 - Rows: `789`
-- Pre-HUD populated rows after hydration: `713`
-- Remaining TBD rows: `76`
-- Pre-HUD usage-only gloss rows: `0`
+- Pre-HUD populated rows after hydration: `396`
+- Remaining TBD rows: `393`
+- Pre-HUD usage-only/form-reference gloss rows: `0`
 - Section-top return links: `789`
 - First section-top href: `#malachi-1-1`
+- `דְבַר־יְהֹוָ֖ה` pre-HUD: `TBD`, not `form of היווה`.
 
 Orot issue-3 judgment:
 - The remembered low-score card was found: `הֶחָמְרִי` / `חמר`, `56%`, `Someone who leads a donkey or donkeys.`
@@ -70,6 +73,8 @@ Timeout report:
 Boundary:
 - Reader convenience candidate hints only.
 - Usage-only evidence remains HUD-only/TBD in pre-HUD.
+- Form-reference evidence remains HUD-only/TBD in pre-HUD.
+- Ambiguous close competing route choices remain TBD unless selected through the HUD.
 - Not translation output.
 - Not accepted gloss/text.
 - Not Definition authority.

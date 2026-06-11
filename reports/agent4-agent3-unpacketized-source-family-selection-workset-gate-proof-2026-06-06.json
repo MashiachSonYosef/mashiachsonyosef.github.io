@@ -1,0 +1,122 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T09:42:18.037Z",
+  "target": "Agent 3 unpacketized source-family-selection workset",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-unpacketized-source-family-selection-workset-2026-06-06.json",
+  "paired_input_markdown": "reports/agent3-old-dictionary-candidate-use-unpacketized-source-family-selection-workset-2026-06-06.md",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_unpacketized_source_family_selection_workset.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_unpacketized_source_family_selection_workset.mjs --input=reports\\agent3-old-dictionary-candidate-use-unpacketized-source-family-selection-workset-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "observed_output": "Agent 3 unpacketized source-family-selection workset passed: rows=314 signatures=4 occurrences=7795"
+    },
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-current-agent2-intake-sweep-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "input_exclusion_rows": 339,
+    "input_agent6_prereq_covered_rows": 25,
+    "workset_rows": 314,
+    "source_rid_references": 363,
+    "occurrence_total": 7795,
+    "unique_source_rids": 314,
+    "unique_source_rid_prefixes": 19,
+    "unique_queue_ids": 65,
+    "unique_token_ids": 65,
+    "unique_lexicon_entry_ids": 65,
+    "source_family_signature_rows": 4,
+    "triage_signature_rows": 4,
+    "impact_bucket_rows": 3,
+    "prefix_rows": 19,
+    "partition_signature_rows": 2,
+    "source_family_membership_counts": {
+      "BDB Aramaic Dictionary": 128,
+      "BDB Dictionary": 313,
+      "Jastrow Dictionary": 309
+    },
+    "source_family_signature_counts": {
+      "BDB Aramaic Dictionary + BDB Dictionary + Jastrow Dictionary": 128,
+      "BDB Dictionary": 5,
+      "BDB Dictionary + Jastrow Dictionary": 180,
+      "Jastrow Dictionary": 1
+    },
+    "triage_group_membership_counts": {
+      "commercial_clean_blocked_overlap": 47,
+      "commercial_clean_nc_blocked_overlap": 283,
+      "commercial_clean_only": 1
+    },
+    "impact_bucket_counts": {
+      "shared_source_rid_multi_queue": 43,
+      "single_queue_high_occurrence": 64,
+      "single_queue_standard": 207
+    },
+    "source_citation_required_rows": 314,
+    "source_citation_or_url_present_rows": 0,
+    "transform_rule_still_blocked_rows": 314,
+    "agent6_boundary_after_prereq_rows": 314,
+    "source_family_boundary_packet_exists_rows": 0,
+    "source_family_selection_boundary_blocker_rows": 314,
+    "source_family_selection_claims": 0,
+    "source_acceptance_claims": 0,
+    "source_citation_supplied_by_agent3_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_unpacketized_source_family_selection_workset_only",
+  "exact_blockers": [
+    {
+      "code": "source_citation_prereq_missing",
+      "rows": 314,
+      "details": "All workset rows still require source citation or URL before downstream boundary packaging."
+    },
+    {
+      "code": "transform_rule_prereq_missing",
+      "rows": 314,
+      "details": "All workset rows remain transform-rule blocked."
+    },
+    {
+      "code": "source_family_selection_boundary_not_yet_packetized_for_agent6_prereq",
+      "rows": 314,
+      "details": "No source-family boundary packet exists for these workset rows."
+    },
+    {
+      "code": "selector_anchor_gap_observed",
+      "details": "This artifact was older than the latest Agent4 sweep anchor and required backlog review rather than latest-anchor selection."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-unpacketized-source-family-selection-workset-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-unpacketized-source-family-selection-workset-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 10 package intake can use this as exact unpacketized blocker workset; Agent 6 only after exact boundary packets and prerequisites exist.",
+  "next_safe_action": "Add or use a backlog-aware selector mode before relying solely on latest-anchor mtime selection.",
+  "stop_condition": "Stop after validating and packaging the changed Agent3 unpacketized source-family-selection workset; do not claim acceptance.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No source-family selection, accepted gloss, accepted text, source text, route payload, public runtime mutation, export row, or release action."
+  ]
+}

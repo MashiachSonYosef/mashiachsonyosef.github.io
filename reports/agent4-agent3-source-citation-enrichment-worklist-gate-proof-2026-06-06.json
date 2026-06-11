@@ -1,0 +1,128 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "Agent 3 source-citation enrichment worklist and Agent 2 crossmatch consumption",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifacts": [
+    "reports/agent3-old-dictionary-candidate-use-source-citation-enrichment-worklist-2026-06-06.json",
+    "reports/agent2-old-dictionary-78-row-agent3-source-citation-crossmatch-consumption-2026-06-06.json",
+    "reports/agent2-old-dictionary-78-row-agent3-source-citation-crossmatch-consumption-validation-result-2026-06-06.json"
+  ],
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_source_citation_enrichment_worklist.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_source_citation_enrichment_worklist.mjs --input=reports/agent3-old-dictionary-candidate-use-source-citation-enrichment-worklist-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent 3 source-citation enrichment worklist passed: rows=344 refs=393 multi=43"
+    },
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_78_row_agent3_source_citation_crossmatch_consumption.mjs reports\\agent2-old-dictionary-78-row-agent3-source-citation-crossmatch-consumption-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent2 Agent3 source-citation crossmatch consumption validation passed. Rows: 78; occurrences: 1461; source citation missing rows: 78; transform ready rows: 0."
+    }
+  ],
+  "counts": {
+    "worklist_rows": 344,
+    "source_rid_references": 393,
+    "unique_source_rids": 344,
+    "source_rid_prefix_rows": 21,
+    "unique_queue_ids": 78,
+    "unique_token_ids": 78,
+    "unique_lexicon_entry_ids": 77,
+    "multi_queue_work_items": 43,
+    "cross_partition_work_items": 1,
+    "source_citation_required_rows": 344,
+    "transform_rule_still_blocked_rows": 344,
+    "agent6_boundary_after_prereq_rows": 344,
+    "blocker_links": 3457,
+    "source_rid_blocker_matrix_rows": 344,
+    "source_rid_blocker_matrix_references": 393,
+    "overlap_workset_rows": 339,
+    "pure_commercial_workset_rows": 6,
+    "commercial_clean_blocked_overlap": 47,
+    "commercial_clean_nc_blocked_overlap": 283,
+    "commercial_clean_nc_overlap": 25,
+    "commercial_clean_only": 6,
+    "bdb_aramaic_dictionary_refs": 128,
+    "bdb_dictionary_refs": 313,
+    "jastrow_dictionary_refs": 339,
+    "agent2_consumed_rows": 78,
+    "agent2_consumed_occurrences": 1461,
+    "agent2_source_citation_missing_rows": 78,
+    "agent2_transform_ready_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "source_acceptance_claims": 0,
+    "source_citation_supplied_by_agent3_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_source_citation_worklist_and_consumption_only",
+  "exact_blockers": [
+    {
+      "code": "source_citation_required_not_supplied_by_agent3",
+      "class": "source_citation_dependency",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 1 / Agent 2 source-citation enrichment before Agent 10 package intake"
+    },
+    {
+      "code": "missing_source_citation_or_url_for_78_row_packet",
+      "class": "agent2_consumption_blocker",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 1 / Agent 2 source-citation lane"
+    },
+    {
+      "code": "transform_rule_still_blocked",
+      "class": "transform_output_prereq_blocker",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 2 transform-output proposal lane after source-citation prerequisite"
+    },
+    {
+      "code": "agent6_boundary_after_prereq_required",
+      "class": "agent6_boundary_dependency",
+      "affected_source_rid_rows": 344,
+      "affected_references": 393,
+      "handoff_owner": "Agent 10 prepares exact Agent 6 boundary only after source-citation and transform-rule prerequisites exist"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-source-citation-enrichment-worklist-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-source-citation-enrichment-worklist-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 10 package intake may consume as source-citation worklist validation evidence; Agent 1/Agent 2 own source-citation and transform prerequisites",
+  "next_safe_action": "Use this worklist as source-citation enrichment navigation only; no candidate text or transform output until source_citation_or_url and exact transform rules exist.",
+  "stop_condition": "Stop after validating and packaging the source-citation worklist and Agent 2 consumption; do not claim acceptance.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

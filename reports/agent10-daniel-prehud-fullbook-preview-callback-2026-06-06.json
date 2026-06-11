@@ -1,0 +1,90 @@
+{
+  "artifact_type": "agent10_daniel_prehud_fullbook_preview_callback",
+  "generated_at": "2026-06-06T11:24:00Z",
+  "status": "daniel_checkable_preview_created",
+  "verdict": "PASS_WITH_BLOCKER",
+  "artifact_page_path": "reports/daniel-prehud-fullbook-preview.html",
+  "report_path": "reports/daniel-prehud-fullbook-preview-report.json",
+  "touched_files": [
+    "scripts/build_daniel_prehud_fullbook_preview.mjs",
+    "scripts/validate_daniel_prehud_fullbook_preview.mjs",
+    "reports/daniel-prehud-fullbook-preview.html",
+    "reports/daniel-prehud-fullbook-preview-report.json",
+    "reports/agent10-daniel-prehud-fullbook-preview-callback-2026-06-06.json",
+    "reports/agent10-daniel-prehud-fullbook-preview-callback-2026-06-06.md"
+  ],
+  "source_inputs": [
+    "reports/orot-war-1-1-preview.html",
+    "reports/orot-prehud-row-preview.html",
+    "data/sources/daniel.json",
+    "data/public-lexical/by-work/daniel-token-claims-min60.csv"
+  ],
+  "counts": {
+    "source_units": 357,
+    "token_rows": 5799,
+    "prehud_tbd_rows": 5799,
+    "selectable_rows": 0,
+    "hud_evidence_rows": 5060,
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "definition_acceptance": 0,
+    "answer_eligibility": 0,
+    "accepted_text": 0,
+    "publish_release_actions": 0
+  },
+  "validation": [
+    {
+      "command": "node scripts/build_daniel_prehud_fullbook_preview.mjs",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "summary": "Rows: 5799; source units: 357; selectable rows: 0"
+    },
+    {
+      "command": "node --check scripts/build_daniel_prehud_fullbook_preview.mjs; node --check scripts/validate_daniel_prehud_fullbook_preview.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_daniel_prehud_fullbook_preview.mjs reports/daniel-prehud-fullbook-preview.html",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "summary": "Daniel pre-HUD preview validation passed. Rows: 5799; source units: 357; selectable rows: 0."
+    },
+    {
+      "command": "git diff --check -- scripts/build_daniel_prehud_fullbook_preview.mjs scripts/validate_daniel_prehud_fullbook_preview.mjs reports/daniel-prehud-fullbook-preview.html reports/daniel-prehud-fullbook-preview-report.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node DOM-marker smoke check over reports/daniel-prehud-fullbook-preview.html",
+      "timeout_ms": 15000,
+      "result": "passed",
+      "summary": "first token link has HUD target; click binding/renderHud/hud.hidden=false present; evidence-only selector disabled"
+    }
+  ],
+  "exact_blockers": [
+    {
+      "blocker": "no_current_selectable_route_default_selection_layer_for_daniel",
+      "effect": "pre-HUD gloss and match percent remain TBD for every Daniel token; HUD evidence is inspectable but lemma/claim rows do not auto-fill pre-HUD"
+    },
+    {
+      "blocker": "browser_visual_preview_not_run",
+      "effect": "static and DOM-marker validation passed; no in-app browser screenshot/click proof was produced in this pass"
+    }
+  ],
+  "next_action": "A14/owner should open reports/daniel-prehud-fullbook-preview.html, check Daniel visually, and either approve the Daniel preview shape for the next batch or provide the current selectable/default route layer if pre-HUD gloss filling is desired.",
+  "boundary": [
+    "owner_review_preview_only",
+    "no_dirty_repo_cleanup",
+    "no_unrelated_orot_mutation",
+    "no_repo_control_mutation",
+    "no_QA_acceptance",
+    "no_source_license_acceptance",
+    "no_Definition_authority",
+    "no_runtime_publication_acceptance",
+    "no_product_acceptance",
+    "no_answer_acceptance",
+    "no_accepted_gloss_text",
+    "no_publish_release_action"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "artifact_type": "agent10_direct_release_package_intake_refresh",
+  "generated_at": "2026-06-05T21:43:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "status": "commercial_nc_overlap_wait_plus_row_overlap_supplement_wait",
+  "pending_agent6_boundaries": [
+    {
+      "package_workset": "old-dictionary commercial+NC overlap exclusion manifest",
+      "submission_id": "019e982a-d137-7cd1-b5d8-900d10e97f60",
+      "packet": "reports/agent10-agent6-ready-old-dictionary-commercial-nc-overlap-exclusion-boundary-packet-2026-06-05.json",
+      "delivery_proof": "reports/agent10-agent6-old-dictionary-commercial-nc-overlap-exclusion-delivery-proof-2026-06-05.json",
+      "current_verdict_file_found": false,
+      "exact_blocker": "await_agent6_commercial_nc_overlap_exclusion_boundary_verdict"
+    },
+    {
+      "package_workset": "old-dictionary row-overlap boundary supplement",
+      "submission_id": "019e98a1-bdb3-7fa1-8b96-524c22a4f6a1",
+      "packet": "reports/agent1-old-dictionary-row-overlap-agent6-boundary-supplement-2026-06-05.json",
+      "delivery_proof": "reports/agent10-agent6-old-dictionary-row-overlap-boundary-supplement-delivery-proof-2026-06-05.json",
+      "current_verdict_file_found": false,
+      "exact_blocker": "await_agent6_row_overlap_boundary_supplement_verdict"
+    }
+  ],
+  "latest_agent2_transform_lane_blocker": {
+    "source": "reports/agent2-agent1-transform-lane-handoff-receipt-2026-06-05.json",
+    "status": "agent1_transform_lane_handoff_consumed_as_nonpublic_planning_evidence_waiting_exact_boundary",
+    "blocker": "exact_agent6_boundary_and_approved_morphology_relation_required_before_agent2_transform_candidate_text_definition_reader_hint_answer_route_runtime_export_or_release",
+    "zero_output_counts_preserved": true
+  },
+  "latest_agent4_gate_proof": {
+    "source": "reports/agent4-agent2-transform-lane-handoff-receipt-gate-proof-2026-06-05.json",
+    "status": "validated_nonpublic_transform_lane_planning_evidence_waiting_exact_boundary_no_acceptance",
+    "agent2_transform_allowed_now_rows": 0,
+    "candidate_after_boundary_rows_nonexclusive": 500,
+    "candidate_after_boundary_occurrences_nonexclusive": 10940,
+    "nc_educational_hold_separate_rows": 214,
+    "blocked_or_review_hold_rows": 222
+  },
+  "route_selection_crossmatch_status": {
+    "source": "reports/agent3-orot-route-selection-crossmatch-matrix-2026-06-05.json",
+    "status": "evidence-ready",
+    "release_owner_decision": "deferred_not_current_boundary_lane",
+    "reason": "Current old-dictionary source-lane boundaries are active; route-selection crossmatch is navigation evidence only and does not authorize answer/public/runtime/release action."
+  },
+  "public_hud_repo_cleaning_blocker": {
+    "source": "reports/agent6-tracked-deletion-baseline-public-hud-support-2026-06-05.md",
+    "blocker": "public_hud_tracked_deletion_baseline_owner_decision_required",
+    "required_decision": "restore accidental baseline, preserve intentional deletion batch, or keep blocker",
+    "agent10_action_now": "no_restore_no_stage_no_reset_no_delete"
+  },
+  "global_zero_counters": {
+    "candidate_use_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_rows": 0,
+    "public_hud_mutation_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed_by_agent10": 0,
+    "source_files_changed_by_agent10": 0,
+    "token_index_files_changed_by_agent10": 0,
+    "lexical_payload_files_changed_by_agent10": 0,
+    "commercial_export_authorization_rows": 0,
+    "nc_commercial_authorization_rows": 0,
+    "release_actions": 0,
+    "repo_cleanup_actions": 0,
+    "staging_actions": 0
+  },
+  "next_release_owner_action": "Wait for exact Agent 6 verdict artifacts for the commercial+NC overlap exclusion packet and row-overlap supplement, or act on an explicit owner/Agent10/7 decision for the public-HUD tracked deletion baseline.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "source-family selection acceptance",
+    "commercial clean selection",
+    "NC educational selection",
+    "BDB Augmented Strong exclusion acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export permission",
+    "NC commercial authorization",
+    "release action",
+    "destructive repo cleanup"
+  ]
+}

@@ -1,6 +1,6 @@
 # Route Boundary Report Summary Validation
 
-Generated: 2026-06-01T14:08:31.149Z
+Generated: 2026-06-01T19:17:04.348Z
 
 Verdict: pass_with_warnings
 
@@ -35,6 +35,18 @@ Input: reports/route-publication-boundary-audit.json
 - Drift items: 2
 - source-phrase-evidence.jsonl: current source differs from frozen release input
 - source-citable-paraphrase-evidence.jsonl: current source differs from frozen release input
+- Input-freeze publication status: blocked_no_render
+- Input-freeze current route inputs reconciled: false
+- Input-freeze public lookup artifacts changed: false
+
+## Publication Boundary
+
+- Publication status: blocked_no_render
+- Validates: route_publication_boundary_audit_summary, route_card_publication_boundary
+- Does not clear: translation_output, source_publication, public_lexical_export_reuse, accepted_definition_authority
+- Answer eligibility scope: hud_answer_slot_only_not_translation_or_publication_readiness
+- Warning status blocks publication claim: true
+- Current route inputs reconciled: false
 
 ## Boundary
 

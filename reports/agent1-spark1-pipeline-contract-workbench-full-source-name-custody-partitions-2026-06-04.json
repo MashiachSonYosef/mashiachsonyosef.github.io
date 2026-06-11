@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "target": {
+    "work": "broad workbench evidence",
+    "workset": "workbench-full-source-name-custody-partitions",
+    "input_root": "data/workbench-evidence",
+    "input_file_count": 10,
+    "source_row_count": 105747,
+    "source_name_partition_count": 351,
+    "full_partition_count": 351,
+    "license_partition_counts": {
+      "Public Domain": {
+        "partition_count": 307,
+        "source_row_count": 99045
+      },
+      "CC-BY-SA": {
+        "partition_count": 37,
+        "source_row_count": 5581
+      },
+      "CC0": {
+        "partition_count": 2,
+        "source_row_count": 496
+      },
+      "CC-BY": {
+        "partition_count": 5,
+        "source_row_count": 625
+      }
+    }
+  },
+  "inputs": [
+    "data/workbench-evidence/003e376e4afb3bbb/candidate-evidence.jsonl",
+    "data/workbench-evidence/389b77a1dfe744be/candidate-evidence.jsonl",
+    "data/workbench-evidence/39048793fdbb3d13/candidate-evidence.jsonl",
+    "data/workbench-evidence/43f68615baae6677/candidate-evidence.jsonl",
+    "data/workbench-evidence/a5b899bb9aa2ae24/candidate-evidence.jsonl",
+    "data/workbench-evidence/b237aef569c408ba/candidate-evidence.jsonl",
+    "data/workbench-evidence/b9e16c5bad5db2d7/candidate-evidence.jsonl",
+    "data/workbench-evidence/e7e1f491088f984c/candidate-evidence.jsonl",
+    "data/workbench-evidence/f96f23955d2ad136/candidate-evidence.jsonl",
+    "data/workbench-evidence/reshit/candidate-evidence.jsonl"
+  ],
+  "command_or_script": {
+    "build": "node scripts/build_agent1_workbench_full_source_name_custody_partitions.mjs",
+    "current_status": "runnable"
+  },
+  "outputs": {
+    "json": "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.json",
+    "markdown": "reports/agent1-workbench-full-source-name-custody-partitions-2026-06-04.md"
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_workbench_full_source_name_custody_partitions.mjs",
+    "contract_validator": "node scripts/validate_agent1_spark1_workbench_full_source_name_custody_partitions_contract.mjs",
+    "current_status": "validated"
+  },
+  "package_owner": "Agent 1",
+  "agent6_boundary_need": "Agent 6/release boundary is required before source/license custody acceptance, public display, answer use, definition text use, or export behavior.",
+  "spark1_stop_condition": "output plus validator pass, or exact missing input/output/schema/validator/count blocker",
+  "what_must_not_be_accepted": [
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "QA acceptance",
+    "public/runtime mutation",
+    "Definition authority",
+    "answer acceptance",
+    "accepted gloss/text",
+    "publication readiness",
+    "NC commercial authorization",
+    "export authorization"
+  ]
+}

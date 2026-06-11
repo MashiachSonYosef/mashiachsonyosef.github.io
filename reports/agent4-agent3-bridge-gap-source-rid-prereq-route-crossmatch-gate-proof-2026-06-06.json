@@ -1,0 +1,97 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T11:45:30.000Z",
+  "target": "Agent 3 bridge-gap source-RID prereq-route crossmatch gate proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-bridge-gap-source-rid-prereq-route-crossmatch-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-daniel-actual-page-prehud-blocker-sweep-gate-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch.mjs --input=reports/agent3-old-dictionary-candidate-use-bridge-gap-source-rid-prereq-route-crossmatch-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-bridge-gap-source-rid-prereq-route-crossmatch-gate-proof-2026-06-06.json",
+  "paired_markdown_path": "reports/agent4-agent3-bridge-gap-source-rid-prereq-route-crossmatch-gate-proof-2026-06-06.md",
+  "evidence_artifacts": [
+    "reports/agent4-changed-input-selection-after-daniel-actual-page-prehud-blocker-sweep-gate-2026-06-06.json",
+    "reports/agent3-old-dictionary-candidate-use-bridge-gap-source-rid-prereq-route-crossmatch-2026-06-06.json"
+  ],
+  "counts": {
+    "candidate_count": 4,
+    "input_source_rid_crossmatch_rows": 30,
+    "input_gap_source_rid_references": 30,
+    "input_agent6_boundary_prereq_rows": 25,
+    "input_direct_source_citation_prereq_rows": 5,
+    "prereq_route_rows": 30,
+    "source_rid_reference_rows": 30,
+    "source_rid_reference_occurrence_membership_total": 389,
+    "agent6_boundary_prereq_rows": 25,
+    "agent6_boundary_prereq_occurrences": 331,
+    "direct_source_citation_prereq_rows": 5,
+    "direct_source_citation_prereq_occurrences": 58,
+    "rows_in_both_prereq_paths": 0,
+    "rows_missing_prereq_path": 0,
+    "source_rid_blocker_rows_present": 30,
+    "queue_source_coverage_rows_present": 0,
+    "exact_blocker_rows": 2,
+    "rows_missing_source_citation": 30,
+    "rows_missing_transform_rule": 30,
+    "rows_agent6_boundary_after_prereq": 30,
+    "route_write_allowed_rows": 0,
+    "candidate_text_allowed_rows": 0,
+    "public_mutation_allowed_rows": 0,
+    "source_citation_supplied_by_agent3_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_agent3_bridge_gap_source_rid_prereq_route_crossmatch_gate",
+  "route_boundary": {
+    "approval_sop_final_validation_release_gate": "A07",
+    "evidence_validators_repo_cleaning_production": "A06",
+    "a06_output_status": "evidence_ready_until_A07_approves",
+    "do_not_ask_a06_for_approval": true
+  },
+  "exact_blockers": [
+    {
+      "code": "prereq_route_crossmatch_navigation_only",
+      "details": "The crossmatch routes 30 source-RID rows to prerequisite lanes only; it does not permit route writes, candidate text, source text, public mutation, or acceptance.",
+      "next_safe_action": "Use the 25 A06 boundary prereq rows and 5 direct source-citation prereq rows as evidence routing, not approval."
+    },
+    {
+      "code": "all_rows_still_missing_source_citation_and_transform_rule",
+      "details": "Validator-confirmed counts: rows_missing_source_citation=30 and rows_missing_transform_rule=30.",
+      "next_safe_action": "Keep rows blocked until source citation and transform rule prerequisites are separately satisfied."
+    },
+    {
+      "code": "approval_route_A07_only",
+      "details": "A06 evidence is not approval under the current route correction.",
+      "next_safe_action": "Route any approval, SOP, final validation, or release gate to A07."
+    }
+  ],
+  "handoff_owner": "Agent 10 for release/package intake; Agent 3 for crossmatch contents; A06 for evidence/validator production only; A07 for approval/SOP/final validation/release gate.",
+  "stop_condition": "Stop after validating the selected prereq-route crossmatch, writing this Agent 4 proof packet, validating this proof packet, and running the changed packet sweep gate.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, repo cleanup action, destructive command, or release action."
+  ]
+}

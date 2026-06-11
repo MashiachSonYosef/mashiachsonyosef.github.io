@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "generated_at": "2026-06-05T01:36:00.000Z",
+  "package_owner": "Agent 1",
+  "target": {
+    "workset": "old-dictionary-agent2-transform-lane-handoff",
+    "source_family_count": 5,
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "agent2_transform_allowed_now_rows": 0
+  },
+  "inputs": [
+    "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json"
+  ],
+  "command_or_script": {
+    "build": "node scripts/build_agent1_old_dictionary_agent2_transform_lane_handoff.mjs"
+  },
+  "outputs": {
+    "json": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+    "markdown": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.md"
+  },
+  "output_schema": {
+    "required_top_level_fields": [
+      "schema_version",
+      "artifact_type",
+      "status",
+      "counts",
+      "transform_counts",
+      "transform_rows",
+      "exact_missing_field_blockers",
+      "handoff",
+      "non_acceptance_boundary"
+    ],
+    "required_row_fields": [
+      "row_subset_id",
+      "source_family",
+      "license_lane",
+      "transform_lane",
+      "evidence_path",
+      "derived_from_nc",
+      "commercial_export_allowed",
+      "attribution_required",
+      "corpus_contamination",
+      "agent2_transform_allowed_now"
+    ]
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_old_dictionary_agent2_transform_lane_handoff.mjs",
+    "contract_validator": "node scripts/validate_agent1_spark1_old_dictionary_agent2_transform_lane_handoff_contract.mjs"
+  },
+  "spark1_stop_condition": "Return validated Agent 2 transform-lane handoff and contract result, or exact missing input/schema/validator blocker.",
+  "non_acceptance_boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true
+  }
+}

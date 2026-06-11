@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_release_intake_orot_linkage_agent2_manifest_consumption",
+  "generated_at": "2026-06-04T15:35:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "status": "release_intake_consumed_no_agent6_route_ready",
+  "lanes": [
+    {
+      "lane": "Agent 1 / Orot missing lexicon linkage",
+      "latest_return": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.md",
+      "latest_return_json": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "release_relevance": "exact blocker evidence for expansion beyond the current Orot 31-row reader-hint candidate patch",
+      "counts": {
+        "input_rows": 100,
+        "missing_lexicon_linkage_rows": 13,
+        "missing_lexicon_linkage_occurrences": 129,
+        "no_current_stem_source_candidate_found_rows": 3,
+        "project_preferred_function_word_stem_candidate_exists_rows": 3,
+        "single_stem_candidate_found_current_pipeline_rows": 6,
+        "multi_stem_no_project_preferred_candidate_rows": 1,
+        "mutation_rows_emitted": 0,
+        "source_rows_emitted": 0,
+        "lexicon_entry_ids_assigned": 0
+      },
+      "exact_blocker": "No approved source/linkage rule exists for assigning missing lexicon_entry_id values to the 13 rows / 129 occurrences.",
+      "next_package_action": "Hold expansion beyond the current 31-row Orot patch until an exact upstream token-index/linkage assignment rule is approved and rerun through the Orot pipeline.",
+      "agent6_boundary_need": "none_now; Agent 6 is needed only after a refreshed exact linkage/mutation or row/subset package exists"
+    },
+    {
+      "lane": "Agent 10 / duplicate Orot 31-row Agent1 request guard",
+      "latest_return": "reports/agent10-agent1-ready-orot-dry-run-source-license-display-review-request-2026-06-03.md",
+      "latest_return_json": "reports/agent10-agent1-ready-orot-dry-run-source-license-display-review-request-2026-06-03.json",
+      "release_relevance": "route guard only; the regenerated request is superseded by existing Agent 1 and Agent 6 dispositions",
+      "counts": {
+        "candidate_rows": 31,
+        "candidate_occurrences": 1202,
+        "unique_source_rows_for_review": 49,
+        "selected_source_row_appearances": 31,
+        "competing_source_row_appearances": 46,
+        "answer_rows_emitted": 0,
+        "public_hud_rows_emitted": 0,
+        "route_jsonl_rows_emitted": 0
+      },
+      "exact_blocker": "Do not reroute this request as new work; Agent 1 review and Agent 6 dry-run boundary verdict already exist, and Agent 6 current Orot candidate-patch verdict is consumed.",
+      "next_package_action": "Preserve as historical/request evidence only.",
+      "agent6_boundary_need": "none"
+    },
+    {
+      "lane": "Agent 2 / Spark-1 runnable command manifest",
+      "latest_return": "reports/agent2-spark1-command-manifest-validation-receipt-2026-06-04.md",
+      "latest_return_json": "reports/agent2-spark1-command-manifest-validation-receipt-2026-06-04.json",
+      "release_relevance": "command-surface evidence for future exact worksets; no current release/package action",
+      "counts": {
+        "runnable_pipelines": 5,
+        "validator_only_checks": 9,
+        "deuteronomy_phase2_readiness_rows": 1334,
+        "deuteronomy_phase2_readiness_occurrences": 2964,
+        "orot_missed_dictionary_candidate_rows": 0,
+        "orot_missed_dictionary_candidate_occurrences": 0,
+        "orot_missed_dictionary_unmatched_rows": 168,
+        "definition_workbench_sample_rows": 1000,
+        "definition_workbench_rows_with_route_cards": 996,
+        "definition_workbench_no_hint_repair_targets": 4,
+        "joined_sample_projected_planning_rows": 1,
+        "joined_sample_projected_usage_link_rows": 2390,
+        "joined_sample_selected_occurrence_links": 12
+      },
+      "exact_blocker": "No newer exact Agent10-Agent2 route exists beyond the already-returned Deuteronomy Phase-2 packet; standing blocker is no_new_agent2_exact_workset_after_deuteronomy_return.",
+      "next_package_action": "Spark-1 may run manifest commands only when Agent 10 or Agent 7 supplies a changed exact workset or selects an existing runnable command.",
+      "agent6_boundary_need": "none opened by this receipt"
+    }
+  ],
+  "spark10_intake_update": {
+    "contract": "reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+    "matrix": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "added_inputs": [
+      "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.md",
+      "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "reports/agent10-agent1-ready-orot-dry-run-source-license-display-review-request-2026-06-03.md",
+      "reports/agent10-agent1-ready-orot-dry-run-source-license-display-review-request-2026-06-03.json",
+      "reports/agent1-orot-dry-run-source-license-display-review-2026-06-03.json",
+      "reports/agent6-orot-dry-run-source-license-display-boundary-verdict-2026-06-03.json",
+      "reports/agent2-spark1-runnable-command-manifest-2026-06-04.md",
+      "reports/agent2-spark1-runnable-command-manifest-2026-06-04.json",
+      "reports/agent2-spark1-command-manifest-validation-receipt-2026-06-04.md",
+      "reports/agent2-spark1-command-manifest-validation-receipt-2026-06-04.json"
+    ]
+  },
+  "next_executable_route": "No Agent 6 packet is ready from these returns. Hold for a changed exact linkage workset, changed Agent 2 workset, or exact Agent6-ready boundary packet.",
+  "boundary": {
+    "public_runtime_mutation_authorized": false,
+    "route_shard_edit_authorized": false,
+    "answer_eligibility_authorized": false,
+    "definition_content_storage_authorized": false,
+    "accepted_text_authorized": false,
+    "publication_readiness_authorized": false,
+    "source_license_acceptance_authorized": false,
+    "qa_acceptance_authorized": false
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "answer eligibility",
+    "definition-content storage",
+    "lexicon_entry_id mutation"
+  ]
+}

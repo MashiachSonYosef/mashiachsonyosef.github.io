@@ -1,0 +1,127 @@
+{
+  "artifact_type": "agent6_current_deuteronomy_fullscreen_runtime_verdict",
+  "generated_at": "2026-06-02T13:53:46.191Z",
+  "authority": "Agent 6 independent QA/compliance",
+  "gate": "validated_only_public_runtime_gate / public_runtime_surface_gate / hud_runtime_license_risk_gate",
+  "verdict": "WARN_ACCEPTED_EXACT_LIVE_DEUTERONOMY_FULLSCREEN_CURRENT_HUD_RUNTIME_ONLY",
+  "publication_global_status": "blocked_no_render",
+  "supersedes_for_exact_scope": [
+    "reports/agent6-validated-only-public-runtime-live-drift-recheck-2026-06-02.md"
+  ],
+  "does_not_supersede": [
+    "publication blocked_no_render",
+    "source/provenance custody blocked",
+    "Genesis non-public/quarantine posture",
+    "/hud-preview non-public/quarantine posture",
+    "broad public/runtime rollout",
+    "clean CDN stale-bundle PASS"
+  ],
+  "evidence_artifacts": [
+    "reports/agent10-fullscreen-hud-old-hud-quarantine-evidence-2026-06-02.md",
+    "reports/agent6-live-deuteronomy-current-hash-browser-proof-2026-06-02.md",
+    "reports/agent6-live-deuteronomy-current-hash-browser-proof-2026-06-02.json",
+    "reports/agent6-live-deuteronomy-current-hash-browser-proof-2026-06-02.png",
+    "reports/agent6-validated-only-public-runtime-live-drift-recheck-2026-06-02.md",
+    "reports/agent6-validated-only-public-runtime-live-drift-recheck-2026-06-02.json"
+  ],
+  "deployment_source_of_truth": {
+    "commit": "765a98a8920d6dcdd897f71abe3cf218f8abc19a",
+    "commit_message": "Make public HUD fullscreen and quarantine old HUDs",
+    "workflow": "Deploy Lightweight Pages",
+    "run_id": "26823729263",
+    "build_job": "79085152793",
+    "deploy_job": "79085189424",
+    "deployment_id": "4905082307",
+    "environment_url": "https://mashiachsonyosef.github.io/",
+    "artifact_boundary": [
+      ".nojekyll",
+      "404.html",
+      "index.html",
+      "tanakh/deuteronomy/index.html",
+      "assets/css/reader-workbench.css",
+      "assets/js/reader-workbench.js",
+      "data/public-hud/deuteronomy/**"
+    ],
+    "old_hud_marker_build_guard": [
+      "Clicked Hebrew form",
+      "Best actual hit",
+      "data-hud-renderings",
+      "data-hud-breakdown",
+      "Potential options",
+      "No lexical entry yet.",
+      "lexical-fields"
+    ]
+  },
+  "current_hash_chain": {
+    "tanakh/deuteronomy/index.html": {
+      "bytes": 1313952,
+      "sha256": "652ff9db31fa497844e64693cbb33fd5b3791e1bef8f2d7717f8e33fc1275cba",
+      "last_modified": "Tue, 02 Jun 2026 13:42:54 GMT"
+    },
+    "assets/js/reader-workbench.js": {
+      "bytes": 62336,
+      "sha256": "c9a78f760af2036d608c8a2e8aa97c153a9bfa23d7364277640d2ae673060337",
+      "last_modified": "Tue, 02 Jun 2026 13:42:54 GMT"
+    },
+    "assets/css/reader-workbench.css": {
+      "bytes": 3526,
+      "sha256": "b2829739552dc4790be65a05af6b67b37900ac03d189066fe4818ecfe4cd8e64",
+      "last_modified": "Tue, 02 Jun 2026 13:42:54 GMT"
+    },
+    "data/public-hud/deuteronomy/route-lookup/shards/05d0-05dc-05d4.json": {
+      "bytes": 179423,
+      "sha256": "46fec0bed4662adcbae74e00b9b4d2eb57865cf7eaf6bce318130e3e6501562a",
+      "last_modified": "Tue, 02 Jun 2026 13:42:54 GMT"
+    }
+  },
+  "browser_runtime_evidence": {
+    "generated_at": "2026-06-02T13:53:46.191Z",
+    "status": "warn_live_deuteronomy_runtime_evidence",
+    "issues": 0,
+    "warnings": 1,
+    "static_http_current_no_old": true,
+    "click_to_hud_opened": true,
+    "source_license_visible_after_click": true,
+    "source_footnote_rows_visible": 6,
+    "route_shard_loaded_after_click": true,
+    "hard_refresh_current_no_old": true,
+    "query_negative_no_old": true,
+    "storage_negative_no_old": true,
+    "hud_aria_modal": "true",
+    "old_marker_hits_after_click": [],
+    "warning": "Runtime script URL is not visibly versioned/cache-busted in page markup; hard refresh/cache-busted navigation was tested, but CDN stale-bundle closure is not accepted."
+  },
+  "broader_public_runtime": {
+    "genesis": "404 marker-clean non-public/quarantine evidence only; not current-HUD acceptance",
+    "hud_preview": "404 marker-clean non-public/quarantine evidence only; not public preview acceptance",
+    "root": "Agent 10 reports one non-favicon link to tanakh/deuteronomy and no old HUD markers in lightweight artifact"
+  },
+  "accepted_with_boundary": [
+    "exact live Deuteronomy current fullscreen HUD runtime surface for the 765a98a artifact set",
+    "old-HUD marker exposure not observed in exact reviewed live Deuteronomy page/runtime proof",
+    "click opens current Route HUD for sentinel token",
+    "source/license rows visible after click for sampled token",
+    "route manifest and sentinel route shard load after click",
+    "query/localStorage/IndexedDB negative controls did not reintroduce old-HUD markers in the sampled proof"
+  ],
+  "not_accepted": [
+    "clean PASS",
+    "broad public/runtime acceptance",
+    "clean CDN stale-bundle closure",
+    "Genesis current-HUD acceptance",
+    "/hud-preview public-use acceptance",
+    "old-HUD public use",
+    "source/provenance custody",
+    "source publication",
+    "publication readiness",
+    "publication-path support",
+    "route publication support",
+    "Definition authority",
+    "usage-as-definition authority",
+    "Reader Workbench broad rollout",
+    "product/data gate acceptance",
+    "translation output",
+    "accepted translation text"
+  ],
+  "required_control_state_update": "Agent 5/7 should replace the reopened changed-hash runtime blocker with WARN-ACCEPTED exact live Deuteronomy fullscreen current-HUD runtime only, preserving all not-accepted boundaries."
+}

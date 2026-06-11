@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_token_source_aggregate_gate_proof_consumption_receipt",
+  "generated_at": "2026-06-05T14:43:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / source-lane separated lexicon expansion",
+  "target": "Agent2 token-source aggregate receipt Agent4 gate-proof consumption",
+  "status": "agent4_gate_proof_consumed_nonpublic_metadata_only",
+  "inputs": {
+    "agent4_gate_proof": "reports/agent4-agent2-token-source-aggregate-consumption-receipt-gate-proof-2026-06-05.json",
+    "aggregate_receipt": "reports/agent2-token-source-aggregate-consumption-receipt-2026-06-05.json"
+  },
+  "consumed_gate_proof": {
+    "artifact_type": "agent4_agent2_token_source_aggregate_consumption_receipt_gate_proof",
+    "status": "validator_passed_nonpublic_metadata_only",
+    "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, candidate-use authorization, candidate text export, route write, accepted gloss/text, or release acceptance",
+    "commands_passed": 1,
+    "validated_file": "reports/agent2-token-source-aggregate-consumption-receipt-2026-06-05.json",
+    "validator_file": "scripts/validate_agent2_token_source_aggregate_consumption_receipt.mjs"
+  },
+  "counts": {
+    "source_files_read": 1337,
+    "units_read": 717459,
+    "units_with_partition": 637508,
+    "total_token_occurrences_scanned": 66320359,
+    "matched_token_occurrences": 49791095,
+    "chunks_merged": 54,
+    "aggregate_edge_rows": 1951013,
+    "aggregate_shard_count": 256,
+    "candidate_rows": 0,
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0
+  },
+  "blockers_preserved": [
+    "no_candidate_rows_or_candidate_use_packet_from_aggregate",
+    "aggregate_is_nonpublic_token_source_partition_metadata_only",
+    "separate_exact_boundary_required_for_any_candidate_use_answer_public_runtime_or_release_use"
+  ],
+  "zero_output_counts": {
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_gloss_text_rows": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "release_rows": 0
+  },
+  "highest_permissible_claim": "Agent2 consumed the Agent4 gate proof as validator/prereq evidence for the metadata-only aggregate receipt.",
+  "handoff_owner": "Agent 2 definer retains metadata-only aggregate evidence; Agent10/Agent6 require a separate exact candidate-use packet before downstream use.",
+  "stop_condition": "Stop at gate-proof consumption. Do not derive candidate text, definition content, answer rows, public output, route writes, accepted text, export rows, or release artifacts from aggregate metadata or this gate proof.",
+  "non_acceptance_boundary": [
+    "No QA acceptance",
+    "No Definition authority",
+    "No answer acceptance",
+    "No source/license/legal acceptance",
+    "No accepted gloss/text",
+    "No public/runtime mutation",
+    "No route-shard edit",
+    "No candidate-use authorization",
+    "No candidate text export",
+    "No NC commercial authorization",
+    "No release action"
+  ]
+}

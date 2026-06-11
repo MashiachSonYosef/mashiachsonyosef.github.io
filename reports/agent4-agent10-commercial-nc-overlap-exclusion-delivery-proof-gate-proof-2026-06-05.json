@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T16:29:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent10-commercial-nc-overlap-exclusion-delivery-proof",
+  "status": "validated_delivery_proof_matches_agent10_boundary_packet_no_acceptance",
+  "files": {
+    "agent10_boundary_packet": {
+      "path": "reports/agent10-agent6-ready-old-dictionary-commercial-nc-overlap-exclusion-boundary-packet-2026-06-05.json",
+      "sha256": "9edc9c5f3a1ad74d9183805212da202a49462016998c35134deb3cf485f88370"
+    },
+    "agent10_delivery_proof": {
+      "path": "reports/agent10-agent6-old-dictionary-commercial-nc-overlap-exclusion-delivery-proof-2026-06-05.json",
+      "sha256": "afcebed75eee7c574ab2c4929401a1f0a992df7bf6c14adaee83811a277761ae"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_commercial_nc_overlap_exclusion_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-commercial-nc-overlap-exclusion-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_nc_overlap_rows": 197,
+    "commercial_nc_overlap_occurrences": 4185,
+    "commercial_nc_without_bdb_augmented_strong_rows": 57,
+    "commercial_nc_without_bdb_augmented_strong_occurrences": 818,
+    "commercial_nc_with_bdb_augmented_strong_rows": 140,
+    "commercial_nc_with_bdb_augmented_strong_occurrences": 3367,
+    "klein_only_excluded_rows": 17,
+    "klein_only_excluded_occurrences": 259
+  },
+  "result": "Agent10 delivery proof matches the validated commercial+NC overlap exclusion boundary packet and records queueing to Agent6.",
+  "blocker_if_any": "wait_for_agent6_exact_commercial_nc_overlap_exclusion_verdict_before_selection_exclusion_candidate_use_transform_output_runtime_answer_definition_export_or_release",
+  "next_handoff": "Agent6 review only; Agent4 does not self-accept.",
+  "stop_condition": "Do not rerun unless delivery proof, boundary packet, or validator changes.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no source-family selection acceptance",
+    "no commercial clean selection",
+    "no NC educational selection",
+    "no BDB Augmented Strong exclusion acceptance",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

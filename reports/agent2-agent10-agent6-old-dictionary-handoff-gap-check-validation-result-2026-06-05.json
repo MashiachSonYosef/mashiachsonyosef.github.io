@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_agent10_agent6_old_dictionary_handoff_gap_check_validation_result",
+  "generated_at": "2026-06-05T23:55:00.000Z",
+  "target": "reports/agent2-agent10-agent6-old-dictionary-handoff-gap-check-2026-06-05.json",
+  "validator": "scripts/validate_agent2_agent10_agent6_old_dictionary_handoff_gap_check.mjs",
+  "command": "node scripts\\validate_agent2_agent10_agent6_old_dictionary_handoff_gap_check.mjs reports\\agent2-agent10-agent6-old-dictionary-handoff-gap-check-2026-06-05.json",
+  "timeout_ms": 120000,
+  "timed_out": false,
+  "result": "passed",
+  "stdout_summary": "Agent 2 Agent10/6 old-dictionary handoff gap check validation passed. Exact candidate-use subset: 78 rows; transform output rows: 0.",
+  "validated_counts": {
+    "exact_candidate_use_subset_rows": 78,
+    "exact_candidate_use_subset_occurrences": 1461,
+    "commercial_clean_readiness_rows": 500,
+    "commercial_clean_readiness_occurrences": 10940,
+    "noncommercial_educational_rows": 214,
+    "blocked_or_needs_review_rows": 222,
+    "definition_lemma_reader_hint_rows_allowed_now": 0,
+    "candidate_text_rows_consumed_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0
+  },
+  "validated_blockers": [
+    "await_agent6_candidate_use_boundary_for_78_old_dictionary_morphology_planning_rows",
+    "actual_text_storage_transform_output_export_answer_or_runtime_mutation_requires_new_agent6_verdict",
+    "missing_exact_agent6_row_subset_boundary_for_any_candidate_text_package_or_display_behavior",
+    "missing_approved_morphology_relation_for_definition_lemma_reader_hint_transform",
+    "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary::missing_exact_agent6_nc_boundary_no_commercial_export_authorization",
+    "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong::missing_independent_source_license_custody_basis"
+  ],
+  "next_safe_action": "Agent 10/6 can use the gap check to distinguish exact 78-row candidate-use planning from still-blocked definition/lemma/reader-hint transform output.",
+  "stop_condition": "No Definition authority, public/runtime mutation, answer acceptance, source-license/legal acceptance, accepted text, publication readiness, release action, candidate text, or definition/lemma/reader-hint content output."
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_workbench_token_source_partition_edges_aggregate_readiness",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "status": "aggregate_ready_to_run",
+  "target": "nonpublic token-source-partition edge aggregate over the 5000-token workbench inventory",
+  "files": {
+    "current_handoff": "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.md",
+    "spark1_manifest": "reports/agent2-spark1-runnable-command-manifest-2026-06-04.json",
+    "chunk_manifest": "reports/agent2-workbench-token-source-partition-edges-chunk-manifest-2026-06-04.json",
+    "aggregate_builder": "scripts/build_agent2_workbench_token_source_partition_edges_aggregate.mjs",
+    "aggregate_validator": "scripts/validate_agent2_workbench_token_source_partition_edges_aggregate.mjs",
+    "readiness_builder": "scripts/build_agent2_workbench_token_source_partition_edges_aggregate_readiness.mjs",
+    "readiness_validator": "scripts/validate_agent2_workbench_token_source_partition_edges_aggregate_readiness.mjs",
+    "readiness_output": "reports/agent2-workbench-token-source-partition-edges-aggregate-readiness-2026-06-04.json",
+    "readiness_report": "reports/agent2-workbench-token-source-partition-edges-aggregate-readiness-2026-06-04.md"
+  },
+  "exact_command_script_to_run": {
+    "aggregate_build": "node scripts/build_agent2_workbench_token_source_partition_edges_aggregate.mjs --manifest=reports/agent2-workbench-token-source-partition-edges-chunk-manifest-2026-06-04.json --output=.local-cache/workbench-evidence/token-source-partition-edges-5000.jsonl --summary=reports/workbench-token-source-partition-edges-5000-summary.json --report=reports/workbench-token-source-partition-edges-5000.md",
+    "aggregate_validate": "node scripts/validate_agent2_workbench_token_source_partition_edges_aggregate.mjs reports/workbench-token-source-partition-edges-5000-summary.json",
+    "readiness_validate": "node scripts/validate_agent2_workbench_token_source_partition_edges_aggregate_readiness.mjs reports/agent2-workbench-token-source-partition-edges-aggregate-readiness-2026-06-04.json"
+  },
+  "output_artifact": {
+    "aggregate_edges_jsonl": ".local-cache/workbench-evidence/token-source-partition-edges-5000.jsonl",
+    "aggregate_summary": "reports/workbench-token-source-partition-edges-5000-summary.json",
+    "aggregate_report": "reports/workbench-token-source-partition-edges-5000.md"
+  },
+  "schema_counts": {
+    "source_file_count": 1337,
+    "chunk_size": 25,
+    "expected_chunk_count": 54,
+    "present_chunk_output_sets": 54,
+    "missing_chunk_output_sets": 0,
+    "pilot_equivalent_chunk_validated": true,
+    "pilot_source_files_read": 25,
+    "pilot_edge_rows": 21728,
+    "pilot_matched_token_occurrences": 1102267,
+    "candidate_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0
+  },
+  "validator": {
+    "readiness": "node scripts/validate_agent2_workbench_token_source_partition_edges_aggregate_readiness.mjs reports/agent2-workbench-token-source-partition-edges-aggregate-readiness-2026-06-04.json",
+    "aggregate_after_chunks": "node scripts/validate_agent2_workbench_token_source_partition_edges_aggregate.mjs reports/workbench-token-source-partition-edges-5000-summary.json"
+  },
+  "missing_field_blocker": "none",
+  "missing_chunks": [],
+  "handoff_owner": "Agent 10 first for release/package intake; Spark-1 may execute the 54 chunk commands and aggregate commands if selected; Agent 6 only through exact boundary packet prepared by release owner.",
+  "stop_condition": "Return this readiness packet now; do not emit candidate text or public/answer rows. Full aggregate runs only after all 54 chunk output sets exist and validate.",
+  "zero_boundary": {
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligible": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "publication_readiness": false,
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_content_storage": false,
+    "candidate_text_export": false,
+    "nc_commercial_authorization": false
+  }
+}

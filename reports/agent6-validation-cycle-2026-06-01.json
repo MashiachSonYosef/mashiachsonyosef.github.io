@@ -1,0 +1,1212 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent6_validation_cycle",
+  "generated_at": "2026-06-01T03:45:41.300Z",
+  "agent": "Agent 6",
+  "policy": "Independent QA/compliance validation cycle. This report validates gates and evidence; it does not implement fixes, render pages, publish translation text, commit, or push.",
+  "outputs": {
+    "report": "reports/agent6-validation-cycle-2026-06-01.md",
+    "json": "reports/agent6-validation-cycle-2026-06-01.json"
+  },
+  "gate_status": {
+    "publication": {
+      "status": "blocker",
+      "reason": "No publication render artifact and zero accepted rendered rows."
+    },
+    "definition": {
+      "status": "warning",
+      "reason": "Definition data is coherent, but multi-answer authority warnings remain."
+    },
+    "public_hud": {
+      "status": "pass",
+      "reason": "Public HUD page contract coverage passed."
+    },
+    "provenance": {
+      "status": "warning",
+      "reason": "8 untracked source files remain outside tracked audit scope."
+    },
+    "usage": {
+      "status": "pass",
+      "reason": "Agent 3 usage layer remains non-authoritative."
+    },
+    "control": {
+      "status": "warning",
+      "reason": "0 Agent 5 readiness issues, 4 warnings."
+    }
+  },
+  "validators": [
+    {
+      "gate": "publication",
+      "label": "Publication render contract",
+      "command": "node scripts\\validate_publication_render_contract.mjs",
+      "started_at": "2026-06-01T03:12:11.2178832Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "{\r\n  \"status\": \"blocked_no_render\",\r\n  \"rendered_rows\": 0,\r\n  \"accepted_decision_rows\": 0,\r\n  \"unknown_license_sources\": 0,\r\n  \"sefaria_sources\": 0,\r\n  \"report\": \"reports/agent5-publication-render-contract-report.md\"\r\n}",
+      "stderr": ""
+    },
+    {
+      "gate": "definition",
+      "label": "Definition sources",
+      "command": "node scripts\\validate_definition_sources.mjs",
+      "started_at": "2026-06-01T03:12:12.6986745Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "Definition source validation passed.",
+      "stderr": ""
+    },
+    {
+      "gate": "definition",
+      "label": "Definition outputs",
+      "command": "node scripts\\validate_definition_outputs.mjs",
+      "started_at": "2026-06-01T03:12:13.8298273Z",
+      "exit_code": 1,
+      "ok": false,
+      "timed_out": false,
+      "severity": "warning",
+      "stdout": "node.exe : Definition output validation failed with 1 issue(s):\r\nAt C:\\Users\\owner\\Documents\\translations\\scripts\\run_agent6_validation_cycle.ps1:35 char:21\r\n+   $combinedOutput = & $exe @args 2>&1\r\n+                     ~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (Definition outp...ith 1 issue(s)::String) [], RemoteException\r\n    + FullyQualifiedErrorId : NativeCommandError\r\n \r\n- hud-route-contract: source/license rows must be expanded by default",
+      "stderr": ""
+    },
+    {
+      "gate": "definition",
+      "label": "HUD route release stamp",
+      "command": "node scripts\\validate_hud_route_release_stamp.mjs",
+      "started_at": "2026-06-01T03:12:15.3143686Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "HUD route release stamp validation passed: hud-route-rc-2026-05-31T16-55-29-957Z.",
+      "stderr": ""
+    },
+    {
+      "gate": "definition",
+      "label": "HUD route release gate",
+      "command": "node scripts\\validate_hud_route_release_gate.mjs",
+      "started_at": "2026-06-01T03:13:47.7896087Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "HUD route release gate passed: hud-route-rc-2026-05-31T16-55-29-957Z; public cards 539661; public shards 7990.\r\nWarnings: 2\r\n- current route source differs from frozen release input: .local-cache/definition-routes/source-phrase-evidence.jsonl\r\n- current route source differs from frozen release input: .local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl",
+      "stderr": ""
+    },
+    {
+      "gate": "definition",
+      "label": "HUD route lookup",
+      "command": "node scripts\\validate_hud_route_lookup.mjs",
+      "started_at": "2026-06-01T03:26:25.9895646Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "HUD route lookup validation passed.",
+      "stderr": ""
+    },
+    {
+      "gate": "definition",
+      "label": "Public HUD route lookup",
+      "command": "node scripts\\validate_public_hud_route_lookup.mjs --skip-release-stamp",
+      "started_at": "2026-06-01T03:26:27.2046724Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "Public HUD route lookup validation passed.",
+      "stderr": ""
+    },
+    {
+      "gate": "definition",
+      "label": "Route answer safety",
+      "command": "node scripts\\validate_route_answer_safety.mjs",
+      "started_at": "2026-06-01T03:26:28.9730138Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "Route answer safety validation passed.",
+      "stderr": ""
+    },
+    {
+      "gate": "definition",
+      "label": "Route publication boundary",
+      "command": "node scripts\\validate_route_publication_boundary.mjs",
+      "started_at": "2026-06-01T03:26:29.2537085Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "Route publication boundary validation passed. Cards: 539661. Answer-eligible: 18683. Translation-output unsafe cards flagged: 335103.\r\nFixture self-test passed. Cases: 8.\r\nWrote reports/route-publication-boundary-audit.json\r\nWrote reports/route-publication-boundary-audit.md",
+      "stderr": ""
+    },
+    {
+      "gate": "usage",
+      "label": "Agent 6 usage boundary packet",
+      "command": "node scripts\\validate_workbench_usage_agent6_boundary_packet.mjs",
+      "started_at": "2026-06-01T03:27:32.1761650Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "Validated Agent 6 usage boundary packet .local-cache/workbench-evidence/usage-agent6-boundary-packet.json: checks 11; selected rows 49",
+      "stderr": ""
+    },
+    {
+      "gate": "usage",
+      "label": "Usage concordance",
+      "command": "node scripts\\validate_workbench_usage_concordance.mjs",
+      "started_at": "2026-06-01T03:27:32.6410758Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "Workbench usage concordance validation passed. Rows: 2390. Supported: 339. Candidate: 1351. Weak: 700. Audit-only ambiguous: 2064.",
+      "stderr": ""
+    },
+    {
+      "gate": "control",
+      "label": "Agent 5 control readiness",
+      "command": "node scripts\\validate_agent5_control_readiness.mjs",
+      "started_at": "2026-06-01T03:27:33.5577788Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "Agent 5 control readiness passed with 4 warning(s). Report: reports/agent5-control-readiness.md",
+      "stderr": ""
+    },
+    {
+      "gate": "provenance",
+      "label": "Source license labels",
+      "command": "node scripts\\audit_source_license_labels.mjs reports\\source-license-label-audit.md",
+      "started_at": "2026-06-01T03:27:33.7761223Z",
+      "exit_code": 1,
+      "ok": false,
+      "timed_out": false,
+      "severity": "warning",
+      "stdout": "node.exe : node:internal/child_process:1120\r\nAt C:\\Users\\owner\\Documents\\translations\\scripts\\run_agent6_validation_cycle.ps1:35 char:21\r\n+   $combinedOutput = & $exe @args 2>&1\r\n+                     ~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (node:internal/child_process:1120:String) [], RemoteException\r\n    + FullyQualifiedErrorId : NativeCommandError\r\n \r\n    result.error = new ErrnoException(result.error, 'spawnSync ' + options.file);\r\n                   ^\r\n\r\n<ref *1> Error: spawnSync git EPERM\r\n    at Object.spawnSync (node:internal/child_process:1120:20)\r\n    at spawnSync (node:child_process:868:24)\r\n    at execFileSync (node:child_process:911:15)\r\n    at trackedSourceFiles (file:///C:/Users/owner/Documents/translations/scripts/audit_source_license_labels.mjs:34:18)\r\n    at file:///C:/Users/owner/Documents/translations/scripts/audit_source_license_labels.mjs:53:15\r\n    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)\r\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\r\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:98:5) {\r\n  errno: -4048,\r\n  code: 'EPERM',\r\n  syscall: 'spawnSyn...",
+      "stderr": "",
+      "wrapper_limitation": "PowerShell redirection can block the validator internal git spawn; latest source-license audit report exists and is parsed separately."
+    },
+    {
+      "gate": "provenance",
+      "label": "Translation memory",
+      "command": "node scripts\\validate_translation_memory.mjs",
+      "started_at": "2026-06-01T03:27:33.9577940Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "Translation memory validation passed. Rows: 40.",
+      "stderr": ""
+    },
+    {
+      "gate": "provenance",
+      "label": "Translation memory license profiles",
+      "command": "node scripts\\audit_translation_memory_license_profiles.mjs",
+      "started_at": "2026-06-01T03:27:34.1244512Z",
+      "exit_code": 0,
+      "ok": true,
+      "timed_out": false,
+      "severity": "pass",
+      "stdout": "{\r\n  \"rows\": 40,\r\n  \"publication_classes\": {\r\n    \"publication_ok_with_attribution\": 16,\r\n    \"publication_ok\": 21,\r\n    \"workbench_ok_publication_review\": 3\r\n  },\r\n  \"report\": \"reports/agent5-translation-license-profile-audit.md\"\r\n}",
+      "stderr": ""
+    }
+  ],
+  "publication": {
+    "status": "blocked_no_render",
+    "rendered_rows": 0,
+    "accepted_decision_rows": 0,
+    "unknown_license_sources": 0,
+    "sefaria_sources": 0
+  },
+  "definition_integrity": {
+    "status": "warning",
+    "counts": {
+      "shards_scanned": 7990,
+      "tokens_scanned": 175216,
+      "cards_scanned": 539661,
+      "answer_eligible_cards": 18683,
+      "non_answer_cards": 520978,
+      "source_rows": 832792,
+      "cards_with_source_rows": 539661,
+      "cards_missing_source_rows": 0,
+      "usage_evidence_cards": 400000,
+      "candidate_or_ambiguous_like_cards": 0,
+      "kaikki_answer_eligible_cards": 14206,
+      "route_cards_with_publication_fields": 0,
+      "route_cards_with_publication_language": 0,
+      "tokens_with_multiple_answer_eligible": 1901,
+      "tokens_with_multiple_distinct_answer_definitions": 1864
+    },
+    "issue_counts": {},
+    "issue_count": 0,
+    "samples": {
+      "answer_eligible": [
+        {
+          "card_id": "def-kaikki-lemma-1b9a10f074e6dc75",
+          "normalized": "א",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "Aleph or alef: the first letter of the Hebrew alphabet, coming before ב.; The numeral 1 in Hebrew numbering."
+        },
+        {
+          "card_id": "def-kaikki-lemma-67a9b4e2402ccbd5",
+          "normalized": "א.ג.נ.",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "dear sir or madam: used as a greeting in a formal letter"
+        },
+        {
+          "card_id": "def-kaikki-lemma-0fea0e2057ff7426",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "I'll (used to form first-person singular future from huf'al verbs)"
+        },
+        {
+          "card_id": "def-kaikki-lemma-308fa4482f5d625e",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "I'll (used to form first-person singular future from some pa'al verbs with weak roots having א as their first radical)"
+        },
+        {
+          "card_id": "def-kaikki-lemma-3de575cfc9968ab2",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "I'll (used to form first-person singular future from pa'al, nif'al, hitpa'el and hitpu'al verbs)"
+        },
+        {
+          "card_id": "def-kaikki-lemma-6a76f1238844221b",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "I'll (used to form first-person singular future from hif'il verbs)"
+        },
+        {
+          "card_id": "def-kaikki-lemma-741bce5d298c1307",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "a- (not, without, opposite of)"
+        },
+        {
+          "card_id": "def-kaikki-lemma-87b47a8daf63eb87",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "I'll (used to form first-person singular future from pi'el and pu'al verbs)"
+        }
+      ],
+      "multi_answer": [
+        {
+          "normalized": "א־",
+          "answer_count": 7,
+          "distinct_definition_count": 7,
+          "answers": [
+            {
+              "card_id": "def-kaikki-lemma-0fea0e2057ff7426",
+              "normalized": "א־",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "I'll (used to form first-person singular future from huf'al verbs)"
+            },
+            {
+              "card_id": "def-kaikki-lemma-308fa4482f5d625e",
+              "normalized": "א־",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "I'll (used to form first-person singular future from some pa'al verbs with weak roots having א as their first radical)"
+            },
+            {
+              "card_id": "def-kaikki-lemma-3de575cfc9968ab2",
+              "normalized": "א־",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "I'll (used to form first-person singular future from pa'al, nif'al, hitpa'el and hitpu'al verbs)"
+            },
+            {
+              "card_id": "def-kaikki-lemma-6a76f1238844221b",
+              "normalized": "א־",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "I'll (used to form first-person singular future from hif'il verbs)"
+            }
+          ]
+        },
+        {
+          "normalized": "א־פ־ה",
+          "answer_count": 2,
+          "distinct_definition_count": 2,
+          "answers": [
+            {
+              "card_id": "def-kaikki-lemma-590cddc59c15415e",
+              "normalized": "א־פ־ה",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "Related to character, nature, disposition."
+            },
+            {
+              "card_id": "def-kaikki-lemma-cbbc422213897474",
+              "normalized": "א־פ־ה",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "Related to baking."
+            }
+          ]
+        },
+        {
+          "normalized": "אב",
+          "answer_count": 3,
+          "distinct_definition_count": 3,
+          "answers": [
+            {
+              "card_id": "def-kaikki-lemma-441fe4775f827f64",
+              "normalized": "אב",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "Av (the eleventh month of the civil year and the fifth month of the ecclesiastical year in the Jewish calendar, after Tammuz and before E..."
+            },
+            {
+              "card_id": "def-kaikki-lemma-9bbfdccb25ab4a2d",
+              "normalized": "אב",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "father (a male parent, especially of a human; a male who parents a child (which he has sired, adopted, fostered, taken as his own, etc.))..."
+            },
+            {
+              "card_id": "def-kaikki-lemma-a1e8f2c56def7326",
+              "normalized": "אב",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "swelling, spreading.; the young shoots of a tree, opposed to the branches growing directly from the trunk.; state of growth, development"
+            }
+          ]
+        },
+        {
+          "normalized": "אבא",
+          "answer_count": 2,
+          "distinct_definition_count": 2,
+          "answers": [
+            {
+              "card_id": "def-layer-5612834da95b93cc",
+              "normalized": "אבא",
+              "route_family": "project_lexical",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "workspace"
+              ],
+              "licenses": [
+                "project-authored / CC0"
+              ],
+              "definition": "Abba"
+            },
+            {
+              "card_id": "def-kaikki-lemma-06d8900a761b10fc",
+              "normalized": "אבא",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "father (a male parent, especially of a human; a male who parents a child (which he has sired, adopted, fostered, taken as his own, etc.))..."
+            }
+          ]
+        },
+        {
+          "normalized": "אבד",
+          "answer_count": 2,
+          "distinct_definition_count": 2,
+          "answers": [
+            {
+              "card_id": "def-kaikki-lemma-6f34fd757b75501b",
+              "normalized": "אבד",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "perishable, irretrievable"
+            },
+            {
+              "card_id": "def-kaikki-lemma-f25340a7b0d2139d",
+              "normalized": "אבד",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "be pressed; go around in despair; be lost, perish; be beyond recognition; to be given up"
+            }
+          ]
+        },
+        {
+          "normalized": "אבות",
+          "answer_count": 2,
+          "distinct_definition_count": 2,
+          "answers": [
+            {
+              "card_id": "def-kaikki-lemma-b4530d41dab0350a",
+              "normalized": "אבות",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "Avot, Pirkei Avot (a book of the Mishnah)"
+            },
+            {
+              "card_id": "def-layer-11a61b12a53b0461",
+              "normalized": "אבות",
+              "route_family": "openscriptures_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 96,
+              "source_families": [
+                "wikidata",
+                "openscriptures"
+              ],
+              "licenses": [
+                "CC0",
+                "CC BY 4.0"
+              ],
+              "definition": "father, male parent; father; Av"
+            }
+          ]
+        },
+        {
+          "normalized": "אבוב",
+          "answer_count": 2,
+          "distinct_definition_count": 2,
+          "answers": [
+            {
+              "card_id": "def-kaikki-lemma-71db1815283fb0b4",
+              "normalized": "אבוב",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "reed, flute; pipe, tube; inner tube; a kind of buoy on which people sit, used for fun in water sports"
+            },
+            {
+              "card_id": "def-kaikki-lemma-7f5fe8174f877728",
+              "normalized": "אבוב",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "oboe"
+            }
+          ]
+        },
+        {
+          "normalized": "אבוקה",
+          "answer_count": 2,
+          "distinct_definition_count": 2,
+          "answers": [
+            {
+              "card_id": "def-kaikki-lemma-860aa94305a3dd21",
+              "normalized": "אבוקה",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 100,
+              "source_families": [
+                "kaikki"
+              ],
+              "licenses": [
+                "CC BY-SA 4.0 / GFDL"
+              ],
+              "definition": "torch (a stick of wood or plant fibres twisted together, with one end soaked in a flammable substance such as resin or tallow and set on ..."
+            },
+            {
+              "card_id": "def-layer-1d6ea6553e42b7c8",
+              "normalized": "אבוקה",
+              "route_family": "wikidata_definition",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "answer_eligible": true,
+              "answer_role": "answer",
+              "answer_score": 96,
+              "source_families": [
+                "wikidata"
+              ],
+              "licenses": [
+                "CC0"
+              ],
+              "definition": "torch, stick with a flaming end used as a source of light; torch"
+            }
+          ]
+        }
+      ],
+      "kaikki_answer_eligible": [
+        {
+          "card_id": "def-kaikki-lemma-1b9a10f074e6dc75",
+          "normalized": "א",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "Aleph or alef: the first letter of the Hebrew alphabet, coming before ב.; The numeral 1 in Hebrew numbering."
+        },
+        {
+          "card_id": "def-kaikki-lemma-67a9b4e2402ccbd5",
+          "normalized": "א.ג.נ.",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "dear sir or madam: used as a greeting in a formal letter"
+        },
+        {
+          "card_id": "def-kaikki-lemma-0fea0e2057ff7426",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "I'll (used to form first-person singular future from huf'al verbs)"
+        },
+        {
+          "card_id": "def-kaikki-lemma-308fa4482f5d625e",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "I'll (used to form first-person singular future from some pa'al verbs with weak roots having א as their first radical)"
+        },
+        {
+          "card_id": "def-kaikki-lemma-3de575cfc9968ab2",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "I'll (used to form first-person singular future from pa'al, nif'al, hitpa'el and hitpu'al verbs)"
+        },
+        {
+          "card_id": "def-kaikki-lemma-6a76f1238844221b",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "I'll (used to form first-person singular future from hif'il verbs)"
+        },
+        {
+          "card_id": "def-kaikki-lemma-741bce5d298c1307",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "a- (not, without, opposite of)"
+        },
+        {
+          "card_id": "def-kaikki-lemma-87b47a8daf63eb87",
+          "normalized": "א־",
+          "route_family": "wiktionary_definition",
+          "route_type": "lemma",
+          "display_section": "lemma",
+          "answer_eligible": true,
+          "answer_role": "answer",
+          "answer_score": 100,
+          "source_families": [
+            "kaikki"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "definition": "I'll (used to form first-person singular future from pi'el and pu'al verbs)"
+        }
+      ],
+      "usage_evidence": [
+        {
+          "card_id": "phrase-1b0a2449c9bdb0b4",
+          "normalized": "א",
+          "route_family": "source_phrase_evidence",
+          "route_type": "phrase_evidence",
+          "display_section": "phrase_evidence",
+          "answer_eligible": false,
+          "answer_role": "evidence",
+          "answer_score": null,
+          "source_families": [
+            "hebrew_source_text"
+          ],
+          "licenses": [
+            "Public Domain"
+          ],
+          "definition": "Usage context only; no meaning is forced by this phrase row."
+        },
+        {
+          "card_id": "phrase-5e4443fb4702dadd",
+          "normalized": "א",
+          "route_family": "source_phrase_evidence",
+          "route_type": "phrase_evidence",
+          "display_section": "phrase_evidence",
+          "answer_eligible": false,
+          "answer_role": "evidence",
+          "answer_score": null,
+          "source_families": [
+            "hebrew_source_text"
+          ],
+          "licenses": [
+            "Public Domain"
+          ],
+          "definition": "Usage context only; no meaning is forced by this phrase row."
+        },
+        {
+          "card_id": "phrase-965c431d8158d927",
+          "normalized": "א",
+          "route_family": "source_phrase_evidence",
+          "route_type": "phrase_evidence",
+          "display_section": "phrase_evidence",
+          "answer_eligible": false,
+          "answer_role": "evidence",
+          "answer_score": null,
+          "source_families": [
+            "hebrew_source_text"
+          ],
+          "licenses": [
+            "Public Domain"
+          ],
+          "definition": "Usage context only; no meaning is forced by this phrase row."
+        },
+        {
+          "card_id": "phrase-be0901dad2f4aceb",
+          "normalized": "א",
+          "route_family": "source_phrase_evidence",
+          "route_type": "phrase_evidence",
+          "display_section": "phrase_evidence",
+          "answer_eligible": false,
+          "answer_role": "evidence",
+          "answer_score": null,
+          "source_families": [
+            "hebrew_source_text"
+          ],
+          "licenses": [
+            "Public Domain"
+          ],
+          "definition": "Usage context only; no meaning is forced by this phrase row."
+        },
+        {
+          "card_id": "phrase-dabb5065690b658e",
+          "normalized": "א",
+          "route_family": "source_phrase_evidence",
+          "route_type": "phrase_evidence",
+          "display_section": "phrase_evidence",
+          "answer_eligible": false,
+          "answer_role": "evidence",
+          "answer_score": null,
+          "source_families": [
+            "hebrew_source_text"
+          ],
+          "licenses": [
+            "Public Domain"
+          ],
+          "definition": "Usage context only; no meaning is forced by this phrase row."
+        },
+        {
+          "card_id": "citable-para-01c411ad9faecf0c",
+          "normalized": "א",
+          "route_family": "citable_paraphrase_evidence",
+          "route_type": "citable_paraphrase_evidence",
+          "display_section": "citable_paraphrase_evidence",
+          "answer_eligible": false,
+          "answer_role": "evidence",
+          "answer_score": null,
+          "source_families": [
+            "kaikki",
+            "hebrew_source_text"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL",
+            "Public Domain"
+          ],
+          "definition": "Aleph or alef: the first letter of the Hebrew alphabet, coming before ב.; The numeral 1 in Hebrew numbering."
+        },
+        {
+          "card_id": "citable-para-06d235f377065c8c",
+          "normalized": "א",
+          "route_family": "citable_paraphrase_evidence",
+          "route_type": "citable_paraphrase_evidence",
+          "display_section": "citable_paraphrase_evidence",
+          "answer_eligible": false,
+          "answer_role": "evidence",
+          "answer_score": null,
+          "source_families": [
+            "kaikki",
+            "hebrew_source_text"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL",
+            "Public Domain"
+          ],
+          "definition": "Aleph or alef: the first letter of the Hebrew alphabet, coming before ב.; The numeral 1 in Hebrew numbering."
+        },
+        {
+          "card_id": "citable-para-2b8daf386bafb05a",
+          "normalized": "א",
+          "route_family": "citable_paraphrase_evidence",
+          "route_type": "citable_paraphrase_evidence",
+          "display_section": "citable_paraphrase_evidence",
+          "answer_eligible": false,
+          "answer_role": "evidence",
+          "answer_score": null,
+          "source_families": [
+            "kaikki",
+            "hebrew_source_text"
+          ],
+          "licenses": [
+            "CC BY-SA 4.0 / GFDL",
+            "Public Domain"
+          ],
+          "definition": "Aleph or alef: the first letter of the Hebrew alphabet, coming before ב.; The numeral 1 in Hebrew numbering."
+        }
+      ],
+      "changed_since_release": [
+        {
+          "file": "source-phrase-evidence.jsonl",
+          "role": "licensed source phrase evidence",
+          "frozen_bytes": 355922433,
+          "current_bytes": 24658367052
+        },
+        {
+          "file": "source-citable-paraphrase-evidence.jsonl",
+          "role": "citable paraphrase evidence",
+          "frozen_bytes": 493745179,
+          "current_bytes": 566201208
+        }
+      ]
+    }
+  },
+  "route_publication_boundary": {
+    "status": "warning",
+    "counts": {
+      "shards": 7990,
+      "tokens": 175216,
+      "cards": 539661,
+      "answer_eligible_cards": 18683,
+      "answer_eligible_cards_with_source_rows": 18683,
+      "source_rows": 832792,
+      "hud_safe_source_rows": 832792,
+      "hud_unsafe_source_rows": 0,
+      "translation_output_safe_source_rows": 450017,
+      "translation_output_unsafe_source_rows": 382775,
+      "answer_eligible_translation_output_unsafe_source_rows": 21087,
+      "translation_output_unsafe_cards": 335103,
+      "answer_eligible_translation_output_unsafe_cards": 17737,
+      "route_cards_with_publication_fields": 0,
+      "issue_count": 0,
+      "warning_count": 335103
+    },
+    "unsafe_translation_output_licenses": {
+      "CC BY-SA 4.0 / GFDL": 294549,
+      "CC BY 4.0": 88226
+    },
+    "answer_eligible_unsafe_translation_output_licenses": {
+      "CC BY-SA 4.0 / GFDL": 14206,
+      "CC BY 4.0": 6881
+    }
+  },
+  "public_hud": {
+    "status": "pass",
+    "current_hud_pages": 1281,
+    "rank_basis_pages": 1281,
+    "missing_rank_basis": 0,
+    "rank_details_pages": 0,
+    "clicked_hebrew_pages": 0
+  },
+  "representative_hud_pages": [
+    {
+      "page": "tanakh/genesis/index.html",
+      "ok": true,
+      "issue_count": 0,
+      "output": ""
+    },
+    {
+      "page": "tanakh/exodus/index.html",
+      "ok": true,
+      "issue_count": 0,
+      "output": ""
+    },
+    {
+      "page": "halakhah/urim-vetumim-urim/index.html",
+      "ok": true,
+      "issue_count": 0,
+      "output": ""
+    },
+    {
+      "page": "halakhah/meirat-einayim-on-shulchan-arukh-choshen-mishpat/index.html",
+      "ok": true,
+      "issue_count": 0,
+      "output": ""
+    },
+    {
+      "page": "other/beer-hagolah/index.html",
+      "ok": true,
+      "issue_count": 0,
+      "output": ""
+    },
+    {
+      "page": "jewish-thought/kuzari/index.html",
+      "ok": true,
+      "issue_count": 0,
+      "output": ""
+    },
+    {
+      "page": "midrash/yefeh-toar-on-bereshit-rabbah/index.html",
+      "ok": true,
+      "issue_count": 0,
+      "output": ""
+    },
+    {
+      "page": "targum/targum-jonathan-on-genesis/index.html",
+      "ok": true,
+      "issue_count": 0,
+      "output": ""
+    },
+    {
+      "page": "mishnah/mishnah-berakhot/index.html",
+      "ok": true,
+      "issue_count": 0,
+      "output": ""
+    },
+    {
+      "page": "chasidut/baal-shem-tov/index.html",
+      "ok": true,
+      "issue_count": 0,
+      "output": ""
+    },
+    {
+      "page": "gra/aderet-eliyahu/index.html",
+      "ok": true,
+      "issue_count": 0,
+      "output": ""
+    }
+  ],
+  "source_license_ingress": {
+    "status": "warning",
+    "note": "Tracked source list supplied by reports/agent6-validation-cycle-tracked-sources.txt.",
+    "source_files": 1282,
+    "tracked_source_files": 1274,
+    "untracked_source_files": 8,
+    "untracked_units": 6716,
+    "untracked_license_counts": {
+      "Public Domain": 5228,
+      "CC-BY": 1488
+    },
+    "untracked_names": [
+      "beer-hagolah.json",
+      "derashat-shabbat-hagadol.json",
+      "derush-al-hatorah.json",
+      "gevurot-hashem.json",
+      "machzor-rosh-hashanah-ashkenaz.json",
+      "ner-mitzvah.json",
+      "netivot-olam.json",
+      "netzach-yisrael.json"
+    ]
+  },
+  "usage_boundary": {
+    "status": "pass",
+    "selected_targets": 55,
+    "reader_facing_eligible_rows": 2390,
+    "ambiguous_rows_reader_facing": false,
+    "visible_answer_authority": false,
+    "concordance_rows": 2390
+  },
+  "control_readiness": {
+    "status": "passed",
+    "issues": 0,
+    "warnings": 4
+  },
+  "relay": {
+    "owner": "Agent 5",
+    "prompt": "Agent 5, Agent 6 validation cycle keeps publication blocked_no_render. Do not describe publication as waiting on cleanup or ready pending legal review. Acceptance condition remains: a real publication render artifact exists, every rendered row points to an accepted decision row, license_profile.direct_translation_use_ok=true, manifest source match exists, attribution bundle is present where required, and workbench_ok_publication_review rows are excluded unless an explicit output-license decision exists."
+  }
+}

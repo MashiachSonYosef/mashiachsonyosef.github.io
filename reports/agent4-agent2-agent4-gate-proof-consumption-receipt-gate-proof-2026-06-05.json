@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent2_agent4_gate_proof_consumption_receipt_gate_proof",
+  "generated_at": "2026-06-05T14:05:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent2-agent4-gate-proof-consumption-receipt",
+  "status": "validator_passed_gate_proofs_consumed_as_prereq_evidence_only",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, candidate-use authorization, candidate text export, accepted gloss/text, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent2-agent4-gate-proof-consumption-receipt-2026-06-05.json",
+      "sha256": "3a7f630cade7a4b8a5c7dedc04b6894021e5bab7efe137a26c523493406b5b2c",
+      "artifact_type": "agent2_agent4_gate_proof_consumption_receipt",
+      "status": "agent4_gate_proofs_consumed_as_validator_prereq_evidence_only"
+    },
+    {
+      "path": "scripts/validate_agent2_agent4_gate_proof_consumption_receipt.mjs",
+      "sha256": "74cd701009f31ed1bcb9642bc83b6fddc0c9affc32b9c47d2afdc046bd6251ab",
+      "artifact_type": "validator_script",
+      "status": "existing_exact_validator_for_agent2_agent4_gate_proof_consumption_receipt"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent2_agent4_gate_proof_consumption_receipt.mjs reports\\agent2-agent4-gate-proof-consumption-receipt-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Gate proofs: 2; candidate-use rows: 0."
+    }
+  ],
+  "counts": {
+    "consumed_gate_proofs": 2,
+    "gate_proof_commands_passed": 4,
+    "morphology_matrix_rows": 297,
+    "morphology_planning_approved_rows": 78,
+    "morphology_blocked_rows": 219,
+    "candidate_use_blocker_planning_rows": 78,
+    "preflight_future_question_rows": 78,
+    "blockers_preserved": 8
+  },
+  "zero_counters": {
+    "allowed_candidate_use_rows_now": 0,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "answer_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_gloss_text_rows": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "release_rows": 0
+  },
+  "blockers": [
+    "missing_exact_row_subset_candidate_use_package",
+    "missing_exact_agent6_row_subset_boundary_for_any_candidate_text_package_or_display_behavior",
+    "approved morphology planning rows are nonpublic planning evidence only and do not authorize transform rows now",
+    "morphology_planning_rows_have_no_delivered_agent6_candidate_use_boundary",
+    "missing_exact_agent6_row_subset_boundary_for_candidate_use",
+    "missing_agent10_exact_agent6_packet_for_the_specific_planning_rows",
+    "definition_lane_must_still_emit_no_public_or_answer_acceptance",
+    "agent10_agent6_exact_candidate_use_packet_missing_for_78_morphology_planning_rows"
+  ],
+  "result": "target | agent2-agent4-gate-proof-consumption-receipt | files in packet | commands passed: Agent2 Agent4 gate-proof consumption receipt validator | counts: 2 consumed Agent4 gate proofs, 4 underlying gate-proof commands passed, 297 morphology matrix rows, 78 morphology-planning rows, 219 blocked rows, 78 candidate-use blocker planning rows, 78 preflight future-question rows, 8 blockers preserved, 0 allowed candidate-use/transform/candidate/definition/lemma/reader-hint/answer/public/route/runtime/accepted-text/release rows | result: validator passed and Agent4 gate proofs remain prereq evidence only | blocker if any: exact Agent10/Agent6 candidate-use boundary remains missing for 78 morphology-planning rows | next handoff: Agent2 retains blocker state; Agent10/Agent6 must produce exact candidate-use boundary before downstream use | stop condition: do not rerun unless receipt, consumed gate proofs, preflight handoff, or validator changes",
+  "handoff_owner": "Agent 2 definer retains blocker state; Agent 10/Agent 6 own future exact candidate-use boundary packet.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not treat consumed Agent4 gate proofs as candidate-use, Definition, answer, public/runtime, publication, product/data, accepted-text, export, or release acceptance."
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_old_dictionary_transform_readiness_gate_proof",
+  "generated_at": "2026-06-05T12:00:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "old-dictionary-transform-readiness-validator-prereq-gate",
+  "status": "validator_passed_with_transform_blockers_preserved",
+  "boundary": "validator/prereq evidence only; no QA, public/runtime, source/provenance, license/legal, Definition, answer, publication, product/data, accepted gloss/text, or release acceptance",
+  "inputs": [
+    {
+      "path": "reports/agent2-old-dictionary-excluded-row-transform-readiness-matrix-2026-06-05.json",
+      "sha256": "9485836149161033f8d09e865db8b140bd948b55a92ebb17927776504b2f09c1",
+      "artifact_type": "agent2_old_dictionary_excluded_row_transform_readiness_matrix",
+      "status": "nonpublic_transform_readiness_matrix_built_no_transform_emitted"
+    },
+    {
+      "path": "reports/agent10-agent2-old-dictionary-excluded-row-readiness-consumption-2026-06-05.json",
+      "sha256": "14717b179aca7a8b134a80b969708a9eacabfa7e2b527d4691edfa1be2eff014",
+      "artifact_type": "agent10_agent2_old_dictionary_excluded_row_readiness_consumption",
+      "status": "release_owner_consumed_nonpublic_readiness_no_agent6_route_ready"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-commercial-clean-transform-enablement-boundary-packet-2026-06-05.json",
+      "sha256": "ed0022e7f90ad4e26b106f39e1d165e69e6429e5d618c0285e014c195d207e4a",
+      "artifact_type": "agent10_agent6_ready_old_dictionary_commercial_clean_transform_enablement_boundary_packet"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent2_old_dictionary_excluded_row_transform_readiness_matrix.mjs reports\\agent2-old-dictionary-excluded-row-transform-readiness-matrix-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Source-family rows: 5; allowed transform rows now: 0; NC lane preserved."
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_commercial_clean_transform_enablement_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-commercial-clean-transform-enablement-boundary-packet-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Commercial-clean subsets: 3; rows: 500; occurrences: 10940."
+    },
+    {
+      "command": "node scripts\\validate_agent10_agent2_old_dictionary_excluded_row_readiness_consumption.mjs reports\\agent10-agent2-old-dictionary-excluded-row-readiness-consumption-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Release route opened: 0; candidate rows: 0; NC lane preserved."
+    }
+  ],
+  "counts": {
+    "source_family_rows": 5,
+    "commercial_clean_candidate_source_families": 3,
+    "commercial_clean_source_family_hit_rows": 500,
+    "commercial_clean_source_family_hit_occurrences": 10940,
+    "noncommercial_educational_candidate_source_families": 1,
+    "noncommercial_educational_rows": 214,
+    "noncommercial_educational_occurrences": 4444,
+    "blocked_or_needs_review_source_families": 1,
+    "blocked_or_needs_review_rows": 222,
+    "blocked_or_needs_review_occurrences": 4435,
+    "allowed_transform_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0
+  },
+  "zero_counters": {
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "accepted_gloss_text_rows": 0,
+    "accepted_text_rows": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "nc_commercial_authorization_rows": 0,
+    "release_action_rows": 0
+  },
+  "preserved_lanes": {
+    "commercial_clean_candidate": [
+      {
+        "source_family": "Jastrow Dictionary",
+        "rows": 210,
+        "occurrences": 4474,
+        "answer_eligible": false,
+        "public_emit": false,
+        "agent2_transform_allowed_now": false
+      },
+      {
+        "source_family": "BDB Dictionary",
+        "rows": 221,
+        "occurrences": 4418,
+        "answer_eligible": false,
+        "public_emit": false,
+        "agent2_transform_allowed_now": false
+      },
+      {
+        "source_family": "BDB Aramaic Dictionary",
+        "rows": 69,
+        "occurrences": 2048,
+        "answer_eligible": false,
+        "public_emit": false,
+        "agent2_transform_allowed_now": false
+      }
+    ],
+    "noncommercial_educational_candidate": [
+      {
+        "source_family": "Klein Dictionary",
+        "rows": 214,
+        "occurrences": 4444,
+        "commercial_export_allowed": false,
+        "derived_from_nc": true,
+        "attribution_required": true
+      }
+    ],
+    "blocked_or_needs_review": [
+      {
+        "source_family": "BDB Augmented Strong",
+        "rows": 222,
+        "occurrences": 4435,
+        "blocker": "missing_independent_source_license_custody_basis"
+      }
+    ]
+  },
+  "blockers": [
+    "missing_exact_agent6_row_subset_boundary_for_any_candidate_text_package_or_display_behavior",
+    "missing_approved_morphology_relation_for_definition_lemma_reader_hint_transform",
+    "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary::missing_exact_agent6_nc_boundary_no_commercial_export_authorization",
+    "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong::missing_independent_source_license_custody_basis"
+  ],
+  "result": "target | old-dictionary-transform-readiness-validator-prereq-gate | files in packet | commands passed: Agent2 readiness matrix validator, Agent10 boundary packet validator, Agent10 readiness consumption validator | counts: 5 source-family rows, 3 commercial-clean source families, 500 commercial-clean source-family hit rows, 10940 commercial-clean occurrences, 1 NC educational family, 214 NC rows, 1 blocked family, 222 blocked rows, 0 transform/candidate/answer/public/runtime/accepted-text rows | result: validators passed with transform blockers and lane separation preserved | blocker if any: exact Agent6 row/subset boundary and approved morphology relation still missing; NC and blocked lanes remain non-commercial/non-transform | next handoff: Agent10/Agent2 may consume as nonpublic readiness evidence only | stop condition: do not rerun unless readiness matrix, consumption packet, boundary packet, validator, or delivery route changes",
+  "handoff_owner": "Agent 10 release/package intake with Agent 2 upstream transform-readiness ownership; Agent 6 remains boundary authority for any future row/subset candidate-use package.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not transform, export, publish, route, store Definition content, mark answer eligibility, mutate runtime, or claim acceptance from this packet."
+}

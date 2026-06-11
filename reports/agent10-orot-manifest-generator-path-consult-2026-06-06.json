@@ -1,0 +1,45 @@
+{
+  "artifact_type": "agent10_orot_manifest_generator_path_consult",
+  "generated_at": "2026-06-06T12:35:26Z",
+  "consult_scope": "data/lexical/orot.manifest.json generator/provenance path only",
+  "generator_path": "scripts/write_lexical_payloads.mjs",
+  "generator_write_site": "writeJson(path.join(lexicalRoot, `${workId}.manifest.json`), { schema_version: 1, work_id: workId, generated_at: tokenIndex.generated_at || null, chunks, token_chunks })",
+  "resolved_orot_output": "data/lexical/orot.manifest.json",
+  "observed_diff_summary": {
+    "changed_field": "generated_at",
+    "chunk_counts_changed": false,
+    "token_chunks_changed": false,
+    "release_package_content_evidence": false
+  },
+  "cleanup_disposition": {
+    "default": "defer",
+    "staging": "do_not_stage_as_meaningful_package_work",
+    "revert": "only_if_A07_repo_cleaning_or_final_validation_route_explicitly_authorizes_cleanup_action",
+    "reason": "generated_at-only churn is not release/package content evidence"
+  },
+  "required_validator": [
+    "JSON parse data/lexical/orot.manifest.json",
+    "structural compare against HEAD ignoring generated_at",
+    "confirm chunks, token_chunks, chunk counts, token counts, and entry counts are unchanged"
+  ],
+  "broader_validator_reference": "node scripts/validate_sources.mjs",
+  "route_law": {
+    "A06": "evidence/validator/repo-cleaning production only",
+    "A07": "approval/final validation/release gate",
+    "A10": "release/package consult only"
+  },
+  "boundary": [
+    "consult_only",
+    "no_render",
+    "no_regeneration",
+    "no_staging",
+    "no_revert",
+    "no_cleanup_action",
+    "no_publication_release",
+    "no_source_license_legal_acceptance",
+    "no_Definition_acceptance",
+    "no_product_acceptance",
+    "no_answer_acceptance",
+    "no_accepted_text"
+  ]
+}

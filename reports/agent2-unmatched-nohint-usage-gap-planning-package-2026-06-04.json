@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_unmatched_nohint_usage_gap_planning_package",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "unmatched / no-hint coverage planning for Definition Workbench usage gaps by existing route-ID-only occurrence evidence",
+  "files": {
+    "inputs": [
+      "data/definitions/definition-workbench-usage-sample-gap-audit.json",
+      "reports/definition-workbench-usage-sample-gap-audit.md",
+      "data/definitions/definition-workbench-usage-link-packet.json",
+      "data/definitions/definition-workbench-usage-seed-queue.json"
+    ],
+    "pipeline": [
+      "scripts/build_definition_workbench_usage_sample_gap_audit.mjs",
+      "scripts/validate_definition_workbench_usage_sample_gap_audit.mjs"
+    ],
+    "outputs": [
+      "reports/agent2-unmatched-nohint-usage-gap-planning-package-2026-06-04.md",
+      "reports/agent2-unmatched-nohint-usage-gap-planning-package-2026-06-04.json"
+    ]
+  },
+  "command_run": {
+    "validate": "node scripts/validate_definition_workbench_usage_sample_gap_audit.mjs data/definitions/definition-workbench-usage-sample-gap-audit.json",
+    "stdout": "Definition Workbench usage sample-gap audit validation passed.\nGap rows: 1; sample usage links: 0/200; route IDs: 1."
+  },
+  "output_artifact": "reports/agent2-unmatched-nohint-usage-gap-planning-package-2026-06-04.json",
+  "counts": {
+    "gap_rows": 1,
+    "gap_rows_absent_from_current_sample": 1,
+    "current_sample_rows": 200,
+    "current_sample_rows_with_usage_links": 0,
+    "usage_token_rows": 1,
+    "usage_tokens_in_current_sample": 0,
+    "usage_tokens_not_in_current_sample": 1,
+    "usage_occurrence_rows": 2390,
+    "selected_usage_occurrence_rows": 49,
+    "selected_occurrence_links": 12,
+    "route_ids": 1,
+    "unresolved_route_ids": 0,
+    "audit_only_ambiguous_rows": 2064,
+    "reader_facing_rows": 0,
+    "forbidden_authority_field_hits": 0
+  },
+  "gap_rows": [
+    {
+      "token_key": "he:×¨××©×™×ª",
+      "current_sample_link_status": "absent_from_current_definition_workbench_sample",
+      "recommended_next_action": "include_token_in_next_definition_workbench_sample_join_smoke"
+    }
+  ],
+  "validator": {
+    "command": "node scripts/validate_definition_workbench_usage_sample_gap_audit.mjs data/definitions/definition-workbench-usage-sample-gap-audit.json",
+    "result": "passed",
+    "warning_interpretation": "current sample has zero selected usage overlap; this is the planning signal, not an authority claim"
+  },
+  "missing_field_blocker": {
+    "id": "missing_definition_workbench_sample_join_smoke_target",
+    "required_to_unblock": [
+      "exact sample/join-smoke input path that includes the gap token",
+      "output path for a joined sample or no-hint workset",
+      "validator command for the joined workset",
+      "Agent 6 boundary question for any use beyond planning evidence",
+      "stop condition preserving zero authority/public/answer emissions"
+    ]
+  },
+  "spark1_handoff": {
+    "may_rerun_existing_gap_audit": true,
+    "commands": [
+      "node scripts/build_definition_workbench_usage_sample_gap_audit.mjs",
+      "node scripts/validate_definition_workbench_usage_sample_gap_audit.mjs data/definitions/definition-workbench-usage-sample-gap-audit.json"
+    ],
+    "new_join_smoke_status": "blocked_until_missing_target_fields_are_supplied"
+  },
+  "agent6_boundary": {
+    "requested_now": false,
+    "future_question": "Can the exact joined no-hint / usage-gap workset be treated as non-authoritative reader-planning evidence only, preserving route-ID-only occurrence links, no Definition authority, no answer eligibility, no accepted gloss/text, no public reader output, no route-shard edit, and no public/runtime mutation?"
+  },
+  "stop_condition": "Stop after packaging the validated usage-gap evidence and recording the exact missing join-smoke target fields.",
+  "what_must_not_be_accepted": [
+    "Definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation"
+  ]
+}

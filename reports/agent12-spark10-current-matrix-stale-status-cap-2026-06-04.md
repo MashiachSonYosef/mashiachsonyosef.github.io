@@ -1,0 +1,11 @@
+# Agent 12 Spark-10 Current Matrix Stale-Status Cap - 2026-06-04
+
+| lane | cap/allow | reason | exact next useful work | stop condition |
+| --- | --- | --- | --- | --- |
+| Spark-10 current matrix | allow | `reports/spark10-release-package-intake-matrix-current-2026-06-04.json` validates and reports `239` inputs checked, `0` missing required inputs, `102` release-relevant rows, and `31` Agent 6 handoff candidate files. | Use the current matrix as the release/package intake surface. | Matrix validator passes or changed input invalidates it. |
+| Spark-10 standing status | cap as stale for routing | `reports/spark10-standing-goal-mode-status-2026-06-04.md` is older and still reports `173` inputs / `0` candidates, so using it as current routing state would hide three ready boundary questions. | Treat the standing status as historical unless refreshed from the current matrix. | Refreshed status or current matrix supersedes it. |
+| Agent 10 current summary | allow/fix | The top current-summary block in `reports/agent10-weekly-lexicon-release-next-boundary-or-blocker-2026-06-04.md` still showed `149` inputs / `0` candidates while later sections and the matrix showed `239` / `31`. | Updated that top summary to `239` inputs, `102` release-relevant rows, `31` candidate files, across Agent 3 usage/navigation, Agent 1 CC-BY-SA/share-alike, and Agent 1 CC-BY attribution planning boundaries. | Summary matches validated matrix. |
+| Agent 10 Spark phrasing | cap/fix | The same report still described the mode as `two primary Sparks`, which conflicts with the current cap posture: assistant-1/Spark-1 paused, Spark-2/3/4 secondary exact-contract capacity, and Spark-10 release/package mechanics. | Replaced the header phrase with `controlled Spark support`. | No stale two-primary wording in the current Agent 10 header. |
+| Agent 6 boundary routing | allow with boundary | The `31` files represent three planning-evidence boundary questions, not release/public/Definition acceptance. | Route only exact Agent 6 packets if Agent 5/7/10 prioritize them; otherwise preserve as current candidates. | Agent 6 verdict path or exact delivery blocker. |
+
+Boundary: Agent 12 waste-cap/unblock note only. No QA/source/license/Definition/runtime/publication/product/answer acceptance, no accepted gloss/text, no public reader output, and no publication readiness.

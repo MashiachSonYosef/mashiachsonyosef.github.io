@@ -1,6 +1,6 @@
 # Agent 10 Agent-1-Ready Orot Missing-Linkage Review Docket
 
-Generated: 2026-06-03T10:05:54.039Z
+Generated: 2026-06-04T00:13:28.786Z
 
 ## Boundary
 
@@ -44,11 +44,11 @@ Specific questions:
 ## Inputs
 
 - missing_linkage: reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-03.json
-- missing_linkage_sha256: 4107c16ce7d2ae157d5e76196ba6947fefecdfb34abe548e2212997f1786091d
+- missing_linkage_sha256: 73d38e2f0800ee669f7ebdeb6d250239e5c6cc6a57b29f6390614cf52cd3ed81
 - candidate_patch_docket: reports/agent10-agent6-ready-orot-reader-hint-candidate-patch-docket-2026-06-03.json
-- candidate_patch_docket_sha256: b573bdcff7e8c7ee9b7f5b492300b0799dcb56a0c237a4dd0c615a38b59f9521
-- live_old_hud_guard: reports/agent10-live-public-old-hud-guard-2026-06-03-post-orot-missing-linkage-agent1-docket.json
-- live_old_hud_guard_sha256: ba5035d3b5feecfe39d467a89478e8eed0de1d84348c8d557c29d3f38954f471
+- candidate_patch_docket_sha256: 687209b40d6c55b4112380755a8ae5b60b129f07c1808bf43da80fcf2462bc9b
+- live_old_hud_guard: reports/agent10-live-public-old-hud-guard-2026-06-03-post-orot-reader-hint-candidate-patch.json
+- live_old_hud_guard_sha256: d5523c45c8c5bc070927088b894c33bbd8d963df7668732f5fbea23a287eda40
 
 ## Validation Evidence
 

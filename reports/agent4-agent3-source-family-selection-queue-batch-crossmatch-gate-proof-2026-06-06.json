@@ -1,0 +1,84 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T23:21:00.000Z",
+  "target": "Agent 3 old-dictionary candidate-use source-family selection queue/batch crossmatch gate",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-source-family-selection-queue-batch-crossmatch-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_source_family_selection_queue_batch_crossmatch.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_source_family_selection_queue_batch_crossmatch.mjs --input=reports\\agent3-old-dictionary-candidate-use-source-family-selection-queue-batch-crossmatch-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "process_timeouts": [
+    {
+      "command": "Select-String -Path scripts\\*.mjs -Pattern 'queue-batch-crossmatch|queue_batch_crossmatch|source-family-selection-queue' -CaseSensitive:$false | Select-Object -First 20 Path,LineNumber,Line | ConvertTo-Json -Depth 2",
+      "timeout_ms": 30000,
+      "partial_output_or_artifact": "The prior exact file listing found scripts/build_agent3_old_dictionary_candidate_use_source_family_selection_queue_batch_crossmatch.mjs and scripts/validate_agent3_old_dictionary_candidate_use_source_family_selection_queue_batch_crossmatch.mjs; the broad reference scan timed out and was not retried.",
+      "next_safe_action": "Use the exact located validator path rather than repeating the broad reference scan."
+    }
+  ],
+  "counts": {
+    "input_batch_rows": 16,
+    "input_workset_rows": 314,
+    "queue_rows": 65,
+    "queue_source_rid_links": 363,
+    "batch_queue_links": 94,
+    "source_batch_pairs": 314,
+    "unique_source_rids": 314,
+    "unique_queue_ids": 65,
+    "unique_token_ids": 65,
+    "cross_batch_queue_rows": 25,
+    "single_batch_queue_rows": 40,
+    "multi_source_queue_rows": 61,
+    "single_source_queue_rows": 4,
+    "multi_queue_source_rids": 43,
+    "max_queue_batch_count": 3,
+    "max_queue_source_rid_count": 12,
+    "max_queue_occurrence_total": 1344,
+    "queue_reference_memberships": 475,
+    "queue_occurrence_memberships": 12111,
+    "source_citation_required_links": 363,
+    "source_citation_or_url_present_links": 0,
+    "transform_rule_still_blocked_links": 363,
+    "agent6_boundary_after_prereq_links": 363,
+    "source_family_boundary_packet_exists_links": 0,
+    "source_family_selection_boundary_blocker_links": 363,
+    "route_write_allowed_links": 0,
+    "candidate_text_allowed_links": 0,
+    "public_mutation_allowed_links": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_agent3_source_family_selection_queue_batch_crossmatch_navigation_only_no_selection_or_acceptance",
+  "exact_blockers": [
+    {
+      "code": "source_family_selection_boundary_not_yet_packetized_for_agent6_prereq",
+      "blocked_links": 363,
+      "details": "The queue/batch crossmatch is navigation-only. Every source RID link still requires source-family selection boundary packetization before transform, route, runtime, or release work."
+    },
+    {
+      "code": "source_citation_missing_for_all_links",
+      "blocked_links": 363,
+      "details": "The artifact reports source_citation_required_links=363 and source_citation_or_url_present_links=0."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-source-family-selection-queue-batch-crossmatch-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-source-family-selection-queue-batch-crossmatch-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 3 for queue/batch crossmatch navigation; Agent 10 for release/package intake only after required boundary packets exist.",
+  "next_safe_action": "Run a triggered Agent4 packet sweep because this proof packet was added, then select from that sweep anchor.",
+  "stop_condition": "Stop after validating and packaging the Agent3 source-family selection queue/batch crossmatch as an Agent4 gate proof.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

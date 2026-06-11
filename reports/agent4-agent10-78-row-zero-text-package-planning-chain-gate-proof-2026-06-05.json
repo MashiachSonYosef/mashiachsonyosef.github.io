@@ -1,0 +1,87 @@
+{
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T20:37:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent10-78-row-zero-text-candidate-use-package-planning-chain",
+  "changed_input_artifacts": [
+    "reports/agent10-old-dictionary-78-row-zero-text-candidate-use-package-planning-2026-06-06.json",
+    "reports/agent10-agent6-ready-old-dictionary-78-row-zero-text-candidate-use-package-boundary-packet-2026-06-06.json",
+    "reports/agent10-old-dictionary-78-row-zero-text-package-planning-consumption-2026-06-06.json"
+  ],
+  "validators": [
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_78_row_zero_text_candidate_use_package.mjs reports\\agent10-old-dictionary-78-row-zero-text-candidate-use-package-planning-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 zero-text candidate-use package validation passed. Rows: 78; occurrences: 1461."
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_78_row_zero_text_candidate_use_package_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-78-row-zero-text-candidate-use-package-boundary-packet-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 zero-text candidate-use package boundary packet validation passed. Rows: 78; occurrences: 1461; zero counters: 11."
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_78_row_zero_text_package_planning_consumption.mjs reports\\agent10-old-dictionary-78-row-zero-text-package-planning-consumption-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 zero-text package planning consumption validation passed. Rows: 78; occurrences: 1461; blocker: next_transform_output_or_candidate_text_boundary_not_supplied."
+    }
+  ],
+  "syntax_checks": [
+    {
+      "command": "node --check scripts\\validate_agent10_old_dictionary_78_row_zero_text_candidate_use_package_boundary_packet.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node --check scripts\\validate_agent10_old_dictionary_78_row_zero_text_package_planning_consumption.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "unique_queue_ids": 78,
+    "unique_token_ids": 78,
+    "zero_counter_fields_in_boundary_packet": 11,
+    "candidate_text_rows": 0,
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "result": "validator_prereq_gate_passed_for_zero_text_package_planning_chain_only",
+  "exact_blocker": "next_transform_output_or_candidate_text_boundary_not_supplied",
+  "handoff_owner": "Agent 10 remains release/package owner. Any next move needs a changed transform-output, candidate-text, exact blocker, or Agent6 boundary packet input.",
+  "stop_condition": "Stop after validating the zero-text package planning chain. Do not rerun unless package, boundary packet, verdict, consumption artifact, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance beyond exact validator evidence",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

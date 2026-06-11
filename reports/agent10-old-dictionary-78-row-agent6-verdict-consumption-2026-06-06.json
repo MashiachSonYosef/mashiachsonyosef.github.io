@@ -1,0 +1,121 @@
+{
+  "artifact_type": "agent10_old_dictionary_78_row_agent6_verdict_consumption",
+  "generated_at": "2026-06-06T01:28:00Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target_package": "old-dictionary-commercial-clean-78-row-candidate-use-preboundary-review",
+  "status": "agent6_warn_accepted_preboundary_matrix_consumed_no_transform_or_output_authorized",
+  "files_used": {
+    "agent6_verdict": "reports/agent6-old-dictionary-78-row-candidate-use-preboundary-verdict-2026-06-06.md",
+    "agent10_packet": "reports/agent10-agent6-ready-old-dictionary-78-row-candidate-use-preboundary-packet-2026-06-06.json",
+    "preboundary_matrix": "reports/agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json",
+    "matrix_validator": "scripts/validate_agent10_old_dictionary_78_row_candidate_use_preboundary_matrix.mjs"
+  },
+  "agent1_4_inputs_consumed": [
+    {
+      "lane": "Agent 1",
+      "input": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+      "release_package_impact": "source lane preserved as commercial_clean_candidate"
+    },
+    {
+      "lane": "Agent 2",
+      "input": "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+      "release_package_impact": "78 exact-after-mark-strip rows selected"
+    },
+    {
+      "lane": "Agent 3",
+      "input": null,
+      "release_package_impact": "not required for this exact old-dictionary preboundary matrix"
+    },
+    {
+      "lane": "Agent 4",
+      "input": null,
+      "release_package_impact": "no changed public/runtime package"
+    },
+    {
+      "lane": "Agent 6",
+      "input": "reports/agent6-old-dictionary-78-row-candidate-use-preboundary-verdict-2026-06-06.md",
+      "release_package_impact": "WARN-ACCEPTED for non-public preboundary review matrix only"
+    }
+  ],
+  "agent6_verdict_consumed": {
+    "disposition": "WARN-ACCEPTED",
+    "scope": "non-public candidate-use preboundary review matrix only",
+    "rows": 78,
+    "occurrences": 1461,
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_candidate_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0
+  },
+  "release_package_decision": {
+    "may_carry_forward_as_nonpublic_preboundary_review_evidence": true,
+    "candidate_use_package_authorized": false,
+    "candidate_text_authorized": false,
+    "transform_output_authorized": false,
+    "content_storage_authorized": false,
+    "answer_eligibility_authorized": false,
+    "route_write_authorized": false,
+    "public_runtime_mutation_authorized": false,
+    "export_authorized": false,
+    "accepted_text_authorized": false,
+    "publication_readiness_authorized": false,
+    "release_action_authorized": false
+  },
+  "next_agent6_boundary_need": [
+    "candidate-use package rows",
+    "candidate text",
+    "definition/lemma/reader-hint content storage",
+    "answer eligibility",
+    "route writes",
+    "public/runtime mutation",
+    "export behavior",
+    "accepted text",
+    "publication readiness",
+    "release action"
+  ],
+  "exact_blocker": "next_candidate_use_or_transform_output_boundary_not_supplied",
+  "process_timeout_reports": [
+    {
+      "process_timeout": true,
+      "command": "bounded recent report scan after 2026-06-06T01:00:00",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "timed out before usable output",
+      "next_safe_action": "do not rely on scan; use exact known verdict path and bounded file extraction"
+    },
+    {
+      "process_timeout": true,
+      "command": "exact expected verdict file read through PowerShell Get-Content -TotalCount 80",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "partial verdict header and disposition emitted before timeout",
+      "next_safe_action": "reread with compact Node extractor, which passed"
+    }
+  ],
+  "next_owner": "Agent 10 remains release/package owner. Next action is either consume a future Agent 1-4 output that supplies the next candidate-use/transform-output boundary, or assemble a new exact Agent 6 packet if such an output appears.",
+  "stop_condition": "Stop at Agent 6 verdict consumption. Do not mutate public/runtime files, route shards, source files, token indexes, lexical payloads, candidate text, definition content, accepted text, export files, publication state, or release state.",
+  "what_must_not_be_accepted": [
+    "QA acceptance beyond the exact docket",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

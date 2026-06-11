@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent1_source_license_custody_addenda_gate_proof",
+  "generated_at": "2026-06-05T12:55:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent1-source-license-custody-command-and-registry-addenda",
+  "status": "validators_passed_overlay_discovery_only",
+  "boundary": "validator/prereq evidence only; no QA, source/license/legal acceptance, Definition authority, answer acceptance, public/runtime acceptance, publication readiness, candidate text export, accepted text, queue mutation, staging, or release action",
+  "files": [
+    {
+      "path": "reports/agent1-source-license-custody-command-manifest-addendum-2026-06-05.json",
+      "sha256": "b799abc888e3d22e60aa0b68131d22fd3b4e079fcbff488f4c54556c7c1f81e9",
+      "artifact_type": "agent1_source_license_custody_command_manifest_addendum",
+      "status": "agent1_source_license_custody_command_manifest_addendum_validated_for_discovery_only"
+    },
+    {
+      "path": "reports/agent1-source-license-custody-pipeline-registry-addendum-2026-06-05.json",
+      "sha256": "7c6a0fcc7622a95b858fc906dc7769fa2f7f035f0733eb2dbf2721e1f3499570",
+      "artifact_type": "agent1_source_license_custody_pipeline_registry_addendum",
+      "status": "agent1_source_license_custody_registry_addendum_validated_overlay_only"
+    },
+    {
+      "path": "reports/agent1-old-dictionary-downstream-consumption-alignment-audit-2026-06-05.json",
+      "sha256": "3323cef80fda9c28433cce2e60681e6326e82be62d5203ede453bc4fd8846b09",
+      "artifact_type": "agent1_old_dictionary_downstream_consumption_alignment_audit",
+      "status": "agent1_downstream_consumption_aligned_zero_output_no_acceptance"
+    },
+    {
+      "path": "reports/agent1-old-dictionary-agent6-boundary-question-packet-2026-06-05.json",
+      "sha256": "cf0649b5f381f1723d3f670225ffc324502f2262d3c43d8395f6384cc491ce8a",
+      "artifact_type": "agent1_old_dictionary_agent6_boundary_question_packet",
+      "status": "agent1_agent6_boundary_questions_recorded_not_delivered_zero_candidate_use"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_source_license_custody_command_manifest_addendum.mjs reports\\agent1-source-license-custody-command-manifest-addendum-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "addendum runnable command sets 3; validator-only gates 3; allowed transform rows 0; candidate text rows 0"
+    },
+    {
+      "command": "node scripts\\validate_agent1_source_license_custody_pipeline_registry_addendum.mjs reports\\agent1-source-license-custody-pipeline-registry-addendum-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "recallable artifacts 6; validator results 6; classification lanes 5; exact blockers 2"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_downstream_consumption_alignment_audit.mjs reports\\agent1-old-dictionary-downstream-consumption-alignment-audit-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "source-family rows 5; allowed transform rows 0; candidate text rows 0; exact blockers 5"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_agent6_boundary_question_packet.mjs reports\\agent1-old-dictionary-agent6-boundary-question-packet-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "boundary question rows 6; delivered to Agent6 false; allowed transform rows 0; candidate text rows 0"
+    }
+  ],
+  "counts": {
+    "base_runnable_command_set_count_preserved": 22,
+    "addendum_runnable_command_set_count": 3,
+    "addendum_validator_only_gate_count": 3,
+    "recallable_artifact_count": 6,
+    "validator_result_count": 6,
+    "classification_lane_count": 5,
+    "commercial_clean_candidate_source_families": 3,
+    "noncommercial_educational_candidate_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "downstream_alignment_exact_blocker_count": 5,
+    "boundary_question_rows": 6,
+    "boundary_question_exact_blocker_count": 6,
+    "delivered_to_agent6_now": false,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "release_route_opened_now": 0,
+    "command_manifest_mutation_count": 0,
+    "base_registry_mutation_count": 0,
+    "lane_return_mutation_count": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staged_file_count": 0
+  },
+  "zero_output_counts": {
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutation": 0,
+    "definition_content_rows": 0,
+    "candidate_text_rows": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "blocker_if_any": "Downstream use remains blocked on exact Agent6 row/subset boundary for Klein Dictionary and independent source/license/custody evidence for BDB Augmented Strong; boundary questions are recorded but not delivered.",
+  "result": "target | agent1-source-license-custody-command-and-registry-addenda | files in packet | commands passed: command manifest addendum validator, registry addendum validator, downstream consumption alignment validator, Agent6 boundary question packet validator | counts: 3 addendum runnable command sets, 3 validator-only gates, 6 recallable artifacts, 5 classification lanes, 3 commercial-clean families, 1 NC educational family, 1 blocked family, 6 boundary questions not delivered, 0 allowed transform/candidate/answer/public/release rows, 0 queue/render/staging mutations | result: validators passed as overlay/discovery evidence only | blocker if any: downstream use still requires Agent6 row/subset boundary and independent custody evidence for blocked rows | next handoff: Agent1/Agent2/Agent10 may consume as recallable source-lane evidence only | stop condition: do not rerun unless addenda, referenced artifacts, or validators change",
+  "handoff_owner": "Agent 1 for source/license/custody evidence; Agent 2 for zero-output transform-readiness consumption; Agent 10 for release/package intake; Agent 6 for future exact boundary questions if delivered.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not mutate base manifests, queue, render, stage, publish, route, transform, export candidate text, or claim acceptance from this packet."
+}

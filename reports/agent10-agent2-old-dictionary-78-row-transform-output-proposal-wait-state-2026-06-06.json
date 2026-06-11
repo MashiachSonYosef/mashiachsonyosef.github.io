@@ -1,0 +1,53 @@
+{
+  "artifact_type": "agent10_agent2_old_dictionary_78_row_transform_output_proposal_wait_state",
+  "generated_at": "2026-06-06T04:18:00Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target_package": "old-dictionary-commercial-clean-78-row-transform-output-proposal-preboundary",
+  "current_state": {
+    "workset": [
+      "reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.md",
+      "reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.json"
+    ],
+    "delivery_proof": "reports/agent10-agent2-old-dictionary-78-row-transform-output-proposal-delivery-proof-2026-06-06.json",
+    "current_agent2_target": "019e027b-7533-7272-9474-7abaf8712b29",
+    "submission_id": "019e9a31-cff3-7762-89f4-0759d32128d4"
+  },
+  "bounded_checks": [
+    {
+      "process_timeout": false,
+      "command": "compact report filename scan for Agent 2 old-dictionary 78-row transform/proposal returns",
+      "timeout": "20000ms",
+      "partial_output_or_artifact": "no Agent 2 return artifact found",
+      "next_safe_action": "wait for Agent 2 matrix/blocker"
+    },
+    {
+      "process_timeout": true,
+      "command": "wait_agent on current Agent 2 target 019e027b-7533-7272-9474-7abaf8712b29",
+      "timeout": "10000ms",
+      "partial_output_or_artifact": "no completed status returned",
+      "next_safe_action": "do not treat as evidence; preserve wait state"
+    }
+  ],
+  "exact_blocker": "awaiting_agent2_transform_output_proposal_matrix_or_exact_blocker",
+  "next_owner": "Agent 2 should return compact non-public transform-output proposal matrix for exact 78 queue IDs / 1461 occurrences, or exact missing_pipeline_blocker. Agent 5 / coordination should preserve delivery proof and watch for return. Agent 10 consumes only when result appears.",
+  "stop_condition": "Stop at wait state. Do not mutate public/runtime files, route shards, source files, token indexes, lexical payloads, accepted text, export files, publication state, or release state.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

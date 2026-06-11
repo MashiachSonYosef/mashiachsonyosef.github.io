@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:59.950Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent10-public-domain-citation-metadata-custody-boundary",
+  "status": "validated_nonpublic_citation_metadata_planning_evidence_only_no_acceptance",
+  "files": {
+    "agent1_citation_metadata_custody": {
+      "path": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.json",
+      "sha256": "80ff844eafe7288137de2010e4fe751baad44dfc7e563176086d74429cec4096"
+    },
+    "agent1_citation_metadata_validation": {
+      "path": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-validation-result-2026-06-05.json",
+      "sha256": "fad391e8e1e9756aee1199ce684dbb253ebee6e93baf7e5fabecb11707e93d8d"
+    },
+    "agent10_boundary_packet": {
+      "path": "reports/agent10-agent6-ready-old-dictionary-public-domain-citation-metadata-custody-boundary-packet-2026-06-05.json",
+      "sha256": "0b3494da3145a4c40569d53fcd8a8e6984cef060d59d88a60cf3aa7d736b1f1c"
+    },
+    "agent10_delivery_proof": {
+      "path": "reports/agent10-agent6-old-dictionary-public-domain-citation-metadata-custody-delivery-proof-2026-06-05.json",
+      "sha256": "2dc347191318103b844f4988dc5355fe4fb22a896660542e384530ac8ceb00e2"
+    },
+    "agent1_ref_sample_gap_manifest": {
+      "path": "reports/agent1-old-dictionary-public-domain-ref-sample-gap-manifest-2026-06-05.json",
+      "sha256": "e500df0a913814319d5e7d6f0446da2faa1f8e455d7622b408a00bc49410084e"
+    },
+    "agent1_ref_sample_gap_validation": {
+      "path": "reports/agent1-old-dictionary-public-domain-ref-sample-gap-manifest-validation-result-2026-06-05.json",
+      "sha256": "f3e8bb5c5e85da477d81c8be663986f65f7c06b540671cf4c7d3aadf21afd85b"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_public_domain_citation_metadata_custody.mjs reports\\agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_public_domain_citation_metadata_custody_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-public-domain-citation-metadata-custody-boundary-packet-2026-06-05.json",
+      "result": "passed_after_reread"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_public_domain_ref_sample_gap_manifest.mjs reports\\agent1-old-dictionary-public-domain-ref-sample-gap-manifest-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "public_domain_citation_metadata_present_rows": 297,
+    "public_domain_rid_rows": 297,
+    "public_domain_rid_total": 1276,
+    "public_domain_headword_rows": 297,
+    "public_domain_headword_total": 1120,
+    "public_domain_refs_rows": 204,
+    "public_domain_refs_count_total": 4478,
+    "public_domain_rows_without_refs_sample": 93,
+    "rows_without_public_domain_citation_metadata": 203,
+    "nc_only_rows_without_public_domain_citation_metadata": 17,
+    "no_source_hit_rows_without_public_domain_citation_metadata": 186,
+    "gap_rows_with_rids": 93,
+    "gap_rid_total": 270,
+    "gap_rows_with_headwords": 93,
+    "gap_headword_total": 251
+  },
+  "lane_split": {
+    "commercial_clean_candidate": {
+      "rows": 297,
+      "occurrences": 5747
+    },
+    "noncommercial_educational_candidate": {
+      "rows": 17,
+      "occurrences": 259
+    },
+    "metadata_or_link_only": {
+      "rows": 0,
+      "occurrences": 0
+    },
+    "blocked_or_needs_review": {
+      "rows": 186,
+      "occurrences": 2421
+    }
+  },
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "result": "Agent 1 public-domain citation metadata custody, Agent 10 boundary packet, and Agent 1 ref-sample gap manifest validate as nonpublic citation/source-custody planning evidence only.",
+  "blocker_if_any": "agent6_public_domain_citation_metadata_custody_boundary_required_before_candidate_use_source_row_emit_candidate_text_export_definition_storage_answer_route_runtime_commercial_export_or_release",
+  "noted_transient": "The first Agent10 boundary validator run reported a validation artifact path mismatch; reread confirmed stored paths match and the rerun passed. No artifact was patched for this.",
+  "next_handoff": "Agent 10 delivery proof says the boundary packet is queued for Agent 6 review; Agent 4 does not self-accept.",
+  "stop_condition": "Do not rerun unless custody artifact, gap manifest, Agent10 boundary packet, delivery proof, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent2_broad_definition_reader_hint_wake_verify",
+  "generated_at": "2026-06-04T08:01:11-04:00",
+  "status": "replacement_required_exact_blocker",
+  "active_mode_checked": "BROAD_CORPUS_EXPANSION",
+  "current_output": {
+    "status": "replacement_required",
+    "current_orot_package_artifacts": [
+      "reports/agent2-orot-reader-hint-candidate-patch-2026-06-04.json",
+      "reports/agent2-orot-reader-hint-candidate-patch-2026-06-04.md"
+    ],
+    "spark2_evidence_artifact": "reports/spark2-broad-definition-pipeline-mechanics-2026-06-04-run2.md"
+  },
+  "inputs_used": [
+    "reports/agent7-broad-agent-spark-goals-2026-06-04.md",
+    "data/control/spark_standing_queue.json",
+    "reports/spark-2-state.md",
+    "data/control/agent_goal_board.json",
+    "reports/spark2-broad-definition-pipeline-mechanics-2026-06-04.md",
+    "reports/spark2-broad-definition-pipeline-mechanics-2026-06-04-run2.md",
+    "reports/agent2-orot-reader-hint-candidate-patch-2026-06-04.json",
+    "reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.json",
+    "reports/agent2-orot-pilot-answer-claims-2026-06-03.json",
+    "reports/agent2-orot-allowed-row-reader-hint-package-dry-run-2026-06-03.json"
+  ],
+  "queue_state": {
+    "active_queue_item": "spark2-broad-definition-pipeline-mechanics",
+    "active_queue_item_is_broad_named": true,
+    "supplied_commands_are_orot_only": true,
+    "spark2_state_says_orot_only": true,
+    "spark2_state_says_do_not_do_global_definition_work": true
+  },
+  "supplied_pipeline_commands": [
+    "node scripts/build_agent2_orot_reader_hint_candidate_patch.mjs",
+    "node scripts/validate_agent2_orot_reader_hint_candidate_patch.mjs reports/agent2-orot-reader-hint-candidate-patch-2026-06-04.json",
+    "node scripts/build_agent2_orot_counterpart_hint_patch_preview.mjs",
+    "node scripts/validate_agent2_orot_counterpart_hint_patch_preview.mjs reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.json",
+    "node scripts/build_orot_agent2_pilot_answer_claims.mjs",
+    "node scripts/validate_agent2_orot_pilot_answer_claims.mjs",
+    "node scripts/validate_agent2_orot_allowed_row_reader_hint_package_dry_run.mjs"
+  ],
+  "counts": {
+    "reader_hint_patch_rows": 31,
+    "reader_hint_patch_occurrences": 1202,
+    "counterpart_preview_rows": 31,
+    "counterpart_preview_occurrences": 1202,
+    "pilot_target_rows": 100,
+    "pilot_target_occurrences": 1960,
+    "pilot_route_cards": 1897,
+    "pilot_emitted_answer_rows": 0,
+    "pilot_blocked_rows": 100,
+    "allowed_row_dry_run_included_rows": 20,
+    "allowed_row_dry_run_included_occurrences": 1033,
+    "allowed_row_dry_run_excluded_rows": 11,
+    "allowed_row_dry_run_excluded_occurrences": 169,
+    "excluded_external_link_only_rows": 10,
+    "excluded_external_link_only_occurrences": 145,
+    "excluded_metadata_only_rows": 1,
+    "excluded_metadata_only_occurrences": 24,
+    "answer_rows_emitted": 0,
+    "public_hud_rows_emitted": 0,
+    "route_jsonl_rows_emitted": 0,
+    "definition_authority_rows_accepted": 0,
+    "accepted_gloss_text_rows": 0
+  },
+  "validators_and_gates": [
+    {
+      "command": "node scripts/validate_agent2_orot_reader_hint_candidate_patch.mjs reports/agent2-orot-reader-hint-candidate-patch-2026-06-04.json",
+      "result": "passed_in_spark2_run"
+    },
+    {
+      "command": "node scripts/validate_agent2_orot_counterpart_hint_patch_preview.mjs reports/agent2-orot-counterpart-hint-patch-preview-2026-06-04.json",
+      "result": "passed_in_spark2_run"
+    },
+    {
+      "command": "node scripts/validate_agent2_orot_pilot_answer_claims.mjs",
+      "result": "passed_in_spark2_run"
+    },
+    {
+      "command": "node scripts/validate_agent2_orot_allowed_row_reader_hint_package_dry_run.mjs",
+      "result": "passed_in_spark2_run"
+    }
+  ],
+  "exact_blocker": {
+    "id": "missing_broad_definition_reader_hint_workset_and_commands",
+    "reason": "The active broad Spark 2 queue item supplies only Orot commands, while reports/spark-2-state.md still restricts Spark 2 to Orot-only and forbids global definition work. No exact non-Orot target workset, input list, builder command, validator command, output path, schema definition, or count definition is supplied for broad corpus expansion.",
+    "minimum_replacement_required": [
+      "Repaired Spark 2 state or queue item explicitly authorizing broad corpus definition/lemma/reader-hint work.",
+      "Exact target workset path for the broad package.",
+      "Exact existing command list for deterministic extraction, dedupe, reader-hint inventory, counterpart-display inventory, schema fill, or transform blocker production.",
+      "Exact output artifact path and schema/count definition.",
+      "Validator or gate command for the produced package."
+    ]
+  },
+  "stop_condition": "Stop after this Agent 2 wake/verify packet because proceeding would require inventing a broad target workset or pipeline.",
+  "what_remains_blocked": [
+    "Broad 2000-work definition/lemma/reader-hint expansion package.",
+    "Non-Orot broad reader-hint or definition-route transform package.",
+    "Broad answer/gloss rows.",
+    "Any public/runtime route mutation.",
+    "Any source/license/QA/Definition/product/publication acceptance."
+  ],
+  "boundary": {
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "qa_acceptance": false,
+    "source_provenance_acceptance": false,
+    "license_acceptance": false,
+    "public_runtime_acceptance": false,
+    "public_runtime_mutation": false,
+    "publication_readiness": false,
+    "route_publication_support": false,
+    "product_data_acceptance": false,
+    "translation_output": false,
+    "accepted_gloss": false,
+    "accepted_text": false,
+    "publication_status": "blocked_no_render"
+  }
+}

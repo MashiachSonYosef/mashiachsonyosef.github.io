@@ -1,0 +1,1142 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_old_dictionary_row_overlap_lane_boundary",
+  "generated_at": "2026-06-05T13:21:45.398Z",
+  "generator": "scripts/build_agent1_old_dictionary_row_overlap_lane_boundary.mjs",
+  "status": "row_overlap_boundary_recorded_zero_output_no_acceptance",
+  "agent": "Agent 1",
+  "current_agent1_thread_id": "019e975d-dc9f-7020-a7c8-885d083a837e",
+  "old_agent1_thread_id": "019dc487-5973-7693-aebf-fb0a75936f50",
+  "old_agent1_policy": "archived_do_not_use",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / direct Agent run mode",
+  "production_lane": "Hebrew import/source/license/custody/source-lane evidence",
+  "target": "old-dictionary-excluded-row-license-lane-reaudit",
+  "purpose": "Record row-level overlap between public-domain dictionary evidence, Klein NC evidence, and BDB Augmented Strong blocked/review evidence so source-family hit totals are not reused as exclusive row/export counts.",
+  "inputs": {
+    "preview": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+    "reaudit": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+    "exportPartitions": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+    "kleinPreservation": "reports/agent1-old-dictionary-klein-nc-lane-preservation-2026-06-05.json",
+    "bdbRowLinkage": "reports/agent1-bdb-augmented-strong-row-linkage-probe-2026-06-05.json",
+    "outputJson": "reports/agent1-old-dictionary-row-overlap-lane-boundary-2026-06-05.json",
+    "outputMd": "reports/agent1-old-dictionary-row-overlap-lane-boundary-2026-06-05.md",
+    "validator": "scripts/validate_agent1_old_dictionary_row_overlap_lane_boundary.mjs",
+    "validatorResult": "reports/agent1-old-dictionary-row-overlap-lane-boundary-validation-result-2026-06-05.json"
+  },
+  "required_lane_output_shape": "target | files used | lane counts/rows | classification lanes | exact blockers | handoff owner | stop condition",
+  "row_overlap_totals": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_clean_evidence_rows": 297,
+    "commercial_clean_evidence_occurrences": 5747,
+    "noncommercial_educational_evidence_rows": 214,
+    "noncommercial_educational_evidence_occurrences": 4444,
+    "blocked_review_evidence_rows": 222,
+    "blocked_review_evidence_occurrences": 4435,
+    "metadata_or_link_only_rows": 0,
+    "metadata_or_link_only_occurrences": 0,
+    "no_sefaria_source_hit_rows": 186,
+    "no_sefaria_source_hit_occurrences": 2421,
+    "public_domain_only_unique_rows": 18,
+    "klein_only_unique_rows": 17,
+    "bdb_augmented_strong_only_unique_rows": 0,
+    "multi_lane_overlap_rows": 279,
+    "multi_lane_overlap_occurrences": 5253
+  },
+  "classification_lanes": [
+    {
+      "license_lane": "commercial_clean_candidate",
+      "source_families": [
+        "Jastrow Dictionary",
+        "BDB Dictionary",
+        "BDB Aramaic Dictionary"
+      ],
+      "source_family_hit_rows_from_export_partitions": 500,
+      "unique_public_domain_observed_rows": 297,
+      "public_domain_only_unique_rows": 18,
+      "overlap_rows_requiring_boundary": 279,
+      "commercial_export_allowed_now": false,
+      "candidate_text_rows_now": 0,
+      "agent6_boundary_required": true
+    },
+    {
+      "license_lane": "noncommercial_educational_candidate",
+      "source_families": [
+        "Klein Dictionary"
+      ],
+      "source_family_hit_rows": 214,
+      "noncommercial_educational_only_rows": 17,
+      "overlapping_public_domain_rows": 197,
+      "derived_from_nc": true,
+      "commercial_export_allowed_now": false,
+      "attribution_required": true,
+      "corpus_contamination": false,
+      "candidate_text_rows_now": 0,
+      "agent6_boundary_required": true
+    },
+    {
+      "license_lane": "metadata_or_link_only",
+      "row_count": 0,
+      "occurrence_count": 0,
+      "candidate_text_rows_now": 0
+    },
+    {
+      "license_lane": "blocked_or_needs_review",
+      "source_families": [
+        "BDB Augmented Strong"
+      ],
+      "source_family_hit_rows": 222,
+      "blocked_review_only_rows": 0,
+      "overlapping_public_domain_rows": 222,
+      "commercial_export_allowed_now": false,
+      "candidate_text_rows_now": 0,
+      "exact_custody_linkage_proven": false,
+      "agent6_boundary_required_if_evidence_appears": true
+    }
+  ],
+  "row_overlap_buckets": {
+    "commercial_clean_only": {
+      "row_count": 18,
+      "occurrence_count": 494,
+      "token_ids_sample": [
+        "tok-f7199bc62ed1",
+        "tok-35bce35c1de4",
+        "tok-5b3a248a97f5",
+        "tok-d29b2c27700e",
+        "tok-126d54d64a8c",
+        "tok-586f2b4c02d5",
+        "tok-e50370ece8ba",
+        "tok-730582e0eb7b",
+        "tok-d6cbb8ff849c",
+        "tok-55455879ba39",
+        "tok-bf576be10b83",
+        "tok-f14e3500010d",
+        "tok-fdba8e7fb08e",
+        "tok-139a2c161eac",
+        "tok-7e4936f25f7a",
+        "tok-b304d31948e1",
+        "tok-cdbb87e15c95",
+        "tok-16b78608abb4"
+      ],
+      "rows_sample": [
+        {
+          "token_id": "tok-f7199bc62ed1",
+          "lexicon_entry_id": "lex-dd24035fe08a",
+          "occurrences": 245,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-35bce35c1de4",
+          "lexicon_entry_id": "lex-8a41ee6a7200",
+          "occurrences": 89,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-5b3a248a97f5",
+          "lexicon_entry_id": "lex-d36e380dfb24",
+          "occurrences": 29,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-d29b2c27700e",
+          "lexicon_entry_id": "lex-b17d59a7de67",
+          "occurrences": 18,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "strict_public_domain_metadata_hit_pending_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview"
+          ]
+        },
+        {
+          "token_id": "tok-126d54d64a8c",
+          "lexicon_entry_id": "lex-bfe47d1ee541",
+          "occurrences": 13,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "strict_public_domain_metadata_hit_pending_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview"
+          ]
+        },
+        {
+          "token_id": "tok-586f2b4c02d5",
+          "lexicon_entry_id": "lex-yhwh-h3068",
+          "occurrences": 12,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "public_domain_metadata_hit_pending_disambiguation_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-e50370ece8ba",
+          "lexicon_entry_id": "lex-937a1b7512c1",
+          "occurrences": 11,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "strict_public_domain_metadata_hit_pending_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview"
+          ]
+        },
+        {
+          "token_id": "tok-730582e0eb7b",
+          "lexicon_entry_id": null,
+          "occurrences": 9,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        }
+      ]
+    },
+    "commercial_clean_plus_noncommercial_educational": {
+      "row_count": 57,
+      "occurrence_count": 818,
+      "token_ids_sample": [
+        "tok-bff9af2524d1",
+        "tok-eb666901ae2d",
+        "tok-158f1752a1df",
+        "tok-e9c4106d3e47",
+        "tok-e545a8f682f9",
+        "tok-b095689b9dce",
+        "tok-28a4bc3f2af1",
+        "tok-d5436d2a930c",
+        "tok-62c6f038fbe2",
+        "tok-272afe49a9a2",
+        "tok-e902aa210c21",
+        "tok-17ba65351831",
+        "tok-089335b6a91a",
+        "tok-6fa78c459d13",
+        "tok-7ea9c55cbbfc",
+        "tok-dc636efddc27",
+        "tok-6252835fcc3c",
+        "tok-890139544e59",
+        "tok-b443f02c38b9",
+        "tok-516be28ac246"
+      ],
+      "rows_sample": [
+        {
+          "token_id": "tok-bff9af2524d1",
+          "lexicon_entry_id": "lex-8f688a2fd7d2",
+          "occurrences": 115,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-eb666901ae2d",
+          "lexicon_entry_id": "lex-968a455cb08e",
+          "occurrences": 45,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-158f1752a1df",
+          "lexicon_entry_id": "lex-kaikki-6a23b187538e",
+          "occurrences": 39,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "strict_public_domain_metadata_hit_pending_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview"
+          ]
+        },
+        {
+          "token_id": "tok-e9c4106d3e47",
+          "lexicon_entry_id": "lex-1cfa92e6a7b3",
+          "occurrences": 32,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-e545a8f682f9",
+          "lexicon_entry_id": "lex-56563b466b15",
+          "occurrences": 29,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-b095689b9dce",
+          "lexicon_entry_id": "lex-ea1ccd050ad3",
+          "occurrences": 25,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-28a4bc3f2af1",
+          "lexicon_entry_id": "lex-expr-2b6526dbcaa3",
+          "occurrences": 24,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-d5436d2a930c",
+          "lexicon_entry_id": "lex-742703651511",
+          "occurrences": 24,
+          "public_domain_lexicons": [
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        }
+      ]
+    },
+    "commercial_clean_plus_blocked_review": {
+      "row_count": 82,
+      "occurrence_count": 1068,
+      "token_ids_sample": [
+        "tok-c3803c6fde17",
+        "tok-3e2962a4fa72",
+        "tok-887435dda3ab",
+        "tok-f1522f221367",
+        "tok-1a35c95f43fd",
+        "tok-c32f24bde0ad",
+        "tok-f8ca3797cfab",
+        "tok-8297a8398f2e",
+        "tok-572884844c53",
+        "tok-5e82f9a34c69",
+        "tok-f050b33c5712",
+        "tok-017227aa7bde",
+        "tok-e03e75f5314d",
+        "tok-37d036789ba0",
+        "tok-fd836c957a56",
+        "tok-9de8348ccaf9",
+        "tok-fc9f22480795",
+        "tok-8075878d8f86",
+        "tok-82af1da143fa",
+        "tok-8de6860ae6cf"
+      ],
+      "rows_sample": [
+        {
+          "token_id": "tok-c3803c6fde17",
+          "lexicon_entry_id": "lex-bf856be9d8d4",
+          "occurrences": 57,
+          "public_domain_lexicons": [
+            "BDB Aramaic Dictionary",
+            "BDB Dictionary",
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong"
+          ],
+          "preview_status": "strict_public_domain_metadata_hit_pending_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview"
+          ]
+        },
+        {
+          "token_id": "tok-3e2962a4fa72",
+          "lexicon_entry_id": "lex-cb41984fd4c8",
+          "occurrences": 44,
+          "public_domain_lexicons": [
+            "BDB Aramaic Dictionary",
+            "BDB Dictionary",
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong"
+          ],
+          "preview_status": "strict_public_domain_metadata_hit_pending_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview"
+          ]
+        },
+        {
+          "token_id": "tok-887435dda3ab",
+          "lexicon_entry_id": "lex-a3cd1c487c91",
+          "occurrences": 38,
+          "public_domain_lexicons": [
+            "BDB Aramaic Dictionary",
+            "BDB Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_disambiguation_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-f1522f221367",
+          "lexicon_entry_id": "lex-c69411b0d1a6",
+          "occurrences": 36,
+          "public_domain_lexicons": [
+            "BDB Aramaic Dictionary",
+            "BDB Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_disambiguation_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-1a35c95f43fd",
+          "lexicon_entry_id": "lex-320fe2a991a7",
+          "occurrences": 34,
+          "public_domain_lexicons": [
+            "BDB Dictionary",
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-c32f24bde0ad",
+          "lexicon_entry_id": "lex-f73a4edc5ce2",
+          "occurrences": 32,
+          "public_domain_lexicons": [
+            "BDB Aramaic Dictionary",
+            "BDB Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_disambiguation_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-f8ca3797cfab",
+          "lexicon_entry_id": "lex-7073b1f24090",
+          "occurrences": 32,
+          "public_domain_lexicons": [
+            "BDB Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_disambiguation_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-8297a8398f2e",
+          "lexicon_entry_id": "lex-d5b7fab357f6",
+          "occurrences": 26,
+          "public_domain_lexicons": [
+            "BDB Aramaic Dictionary",
+            "BDB Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_disambiguation_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        }
+      ]
+    },
+    "commercial_clean_plus_noncommercial_educational_plus_blocked_review": {
+      "row_count": 140,
+      "occurrence_count": 3367,
+      "token_ids_sample": [
+        "tok-20d2e105fd77",
+        "tok-2a86b3eaee9b",
+        "tok-6f3c380a7be9",
+        "tok-1b76a9f88fc7",
+        "tok-cf9427570b0a",
+        "tok-dfcf4cc0af67",
+        "tok-42a5e912cd97",
+        "tok-e858e9fa8bb8",
+        "tok-1bfe6fea9d85",
+        "tok-180d57091846",
+        "tok-3fc615d98aec",
+        "tok-b9470f18041a",
+        "tok-16b3c5cb6ffe",
+        "tok-1282c4d855bc",
+        "tok-e2d80b36f5bc",
+        "tok-12372a227ead",
+        "tok-7431485e6a2d",
+        "tok-89757cf23d0a",
+        "tok-589103867952",
+        "tok-cbcaf5b860b3"
+      ],
+      "rows_sample": [
+        {
+          "token_id": "tok-20d2e105fd77",
+          "lexicon_entry_id": "lex-6076abad07e6",
+          "occurrences": 338,
+          "public_domain_lexicons": [
+            "BDB Aramaic Dictionary",
+            "BDB Dictionary",
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong",
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-2a86b3eaee9b",
+          "lexicon_entry_id": "lex-a5b2db1cd218",
+          "occurrences": 204,
+          "public_domain_lexicons": [
+            "BDB Aramaic Dictionary",
+            "BDB Dictionary",
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong",
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-6f3c380a7be9",
+          "lexicon_entry_id": "lex-39e106c1a464",
+          "occurrences": 132,
+          "public_domain_lexicons": [
+            "BDB Dictionary",
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong",
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-1b76a9f88fc7",
+          "lexicon_entry_id": "lex-c45beedcfc7c",
+          "occurrences": 102,
+          "public_domain_lexicons": [
+            "BDB Aramaic Dictionary",
+            "BDB Dictionary",
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong",
+            "Klein Dictionary"
+          ],
+          "preview_status": "strict_public_domain_metadata_hit_pending_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview"
+          ]
+        },
+        {
+          "token_id": "tok-cf9427570b0a",
+          "lexicon_entry_id": "lex-5f8fb8a58b7e",
+          "occurrences": 97,
+          "public_domain_lexicons": [
+            "BDB Aramaic Dictionary",
+            "BDB Dictionary",
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong",
+            "Klein Dictionary"
+          ],
+          "preview_status": "strict_public_domain_metadata_hit_pending_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview"
+          ]
+        },
+        {
+          "token_id": "tok-dfcf4cc0af67",
+          "lexicon_entry_id": "lex-d4720c310535",
+          "occurrences": 95,
+          "public_domain_lexicons": [
+            "BDB Dictionary",
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong",
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-42a5e912cd97",
+          "lexicon_entry_id": "lex-26bf33fe3383",
+          "occurrences": 87,
+          "public_domain_lexicons": [
+            "BDB Dictionary",
+            "Jastrow Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong",
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_morphology_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        },
+        {
+          "token_id": "tok-e858e9fa8bb8",
+          "lexicon_entry_id": "lex-30a953890b8e",
+          "occurrences": 82,
+          "public_domain_lexicons": [
+            "BDB Dictionary"
+          ],
+          "blocked_or_unresolved_lexicons": [
+            "BDB Augmented Strong",
+            "Klein Dictionary"
+          ],
+          "preview_status": "public_domain_metadata_hit_pending_disambiguation_and_agent1_6_custody",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "missing_approved_morphology_relation"
+          ]
+        }
+      ]
+    },
+    "noncommercial_educational_only": {
+      "row_count": 17,
+      "occurrence_count": 259,
+      "token_ids_sample": [
+        "tok-e1419d66ddac",
+        "tok-09a1636a29b2",
+        "tok-3b3b23913614",
+        "tok-1a6106348f82",
+        "tok-e3f57c129127",
+        "tok-24d0fe4dc457",
+        "tok-da3c733e62e9",
+        "tok-6166f1a4fa92",
+        "tok-dd1eea95c2a3",
+        "tok-292c48eab8fb",
+        "tok-fb9a2ed877ae",
+        "tok-1fb8cc9987d7",
+        "tok-663d95d67734",
+        "tok-8dc563525306",
+        "tok-f6281bedc002",
+        "tok-83eb6d219c1c",
+        "tok-9cf963c5483d"
+      ],
+      "rows_sample": [
+        {
+          "token_id": "tok-e1419d66ddac",
+          "lexicon_entry_id": "lex-4a2c724b90ca",
+          "occurrences": 33,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "blocked_only_non_public_domain_or_unresolved_hits",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-09a1636a29b2",
+          "lexicon_entry_id": "lex-91c086ab61ee",
+          "occurrences": 32,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "blocked_only_non_public_domain_or_unresolved_hits",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-3b3b23913614",
+          "lexicon_entry_id": "lex-6cb04fb7d691",
+          "occurrences": 30,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "blocked_only_non_public_domain_or_unresolved_hits",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-1a6106348f82",
+          "lexicon_entry_id": "lex-47d8582dc37b",
+          "occurrences": 29,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "blocked_only_non_public_domain_or_unresolved_hits",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-e3f57c129127",
+          "lexicon_entry_id": "lex-f2de9bc54047",
+          "occurrences": 20,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "blocked_only_non_public_domain_or_unresolved_hits",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-24d0fe4dc457",
+          "lexicon_entry_id": "lex-52adf4f68d03",
+          "occurrences": 17,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "blocked_only_non_public_domain_or_unresolved_hits",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-da3c733e62e9",
+          "lexicon_entry_id": "lex-311234e61b15",
+          "occurrences": 14,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "blocked_only_non_public_domain_or_unresolved_hits",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-6166f1a4fa92",
+          "lexicon_entry_id": "lex-5c3e93b9b9c3",
+          "occurrences": 13,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [
+            "Klein Dictionary"
+          ],
+          "preview_status": "blocked_only_non_public_domain_or_unresolved_hits",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        }
+      ]
+    },
+    "blocked_review_only": {
+      "row_count": 0,
+      "occurrence_count": 0,
+      "token_ids_sample": [],
+      "rows_sample": []
+    },
+    "metadata_or_link_only": {
+      "row_count": 0,
+      "occurrence_count": 0,
+      "token_ids_sample": [],
+      "rows_sample": []
+    },
+    "no_sefaria_source_hit": {
+      "row_count": 186,
+      "occurrence_count": 2421,
+      "token_ids_sample": [
+        "tok-97b99c6afe4b",
+        "tok-6cb138a16634",
+        "tok-bf10df974281",
+        "tok-35f6d9093072",
+        "tok-7094ebe18b8f",
+        "tok-c429d5466b33",
+        "tok-a58c4718ef01",
+        "tok-469ec3fd3748",
+        "tok-ba8f98accc4d",
+        "tok-4104e97f06f2",
+        "tok-ade044bb11dd",
+        "tok-c3c61224118a",
+        "tok-b5bfa74f9ae0",
+        "tok-a757536962cb",
+        "tok-13a88d350761",
+        "tok-2b274e25034e",
+        "tok-e6e234b79f63",
+        "tok-1382eae3fd63",
+        "tok-d600a6acb06d",
+        "tok-20aecb706274"
+      ],
+      "rows_sample": [
+        {
+          "token_id": "tok-97b99c6afe4b",
+          "lexicon_entry_id": null,
+          "occurrences": 171,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "no_sefaria_hit",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-6cb138a16634",
+          "lexicon_entry_id": "lex-e07abfd63204",
+          "occurrences": 83,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "no_sefaria_hit",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-bf10df974281",
+          "lexicon_entry_id": null,
+          "occurrences": 67,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "no_sefaria_hit",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-35f6d9093072",
+          "lexicon_entry_id": null,
+          "occurrences": 65,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "no_sefaria_hit",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-7094ebe18b8f",
+          "lexicon_entry_id": "lex-7d14bf904898",
+          "occurrences": 60,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "no_sefaria_hit",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-c429d5466b33",
+          "lexicon_entry_id": "lex-5426e44976d0",
+          "occurrences": 47,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "no_sefaria_hit",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-a58c4718ef01",
+          "lexicon_entry_id": "lex-8d01c76dbf24",
+          "occurrences": 37,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "no_sefaria_hit",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        },
+        {
+          "token_id": "tok-469ec3fd3748",
+          "lexicon_entry_id": "lex-a690cd533d9a",
+          "occurrences": 33,
+          "public_domain_lexicons": [],
+          "blocked_or_unresolved_lexicons": [],
+          "preview_status": "no_sefaria_hit",
+          "transform_blockers": [
+            "missing_agent1_6_custody_disposition",
+            "answer_text_not_stored_by_preview",
+            "no_public_domain_observed_entry",
+            "missing_approved_morphology_relation",
+            "missing_public_domain_citation_metadata"
+          ]
+        }
+      ]
+    }
+  },
+  "exact_blockers": [
+    {
+      "blocker": "source_family_hit_counts_are_not_exclusive_row_export_counts",
+      "applies_to": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+      "evidence": "commercial_clean_candidate source-family hit total is 500 rows, while unique public-domain observed rows are 297 and public-domain-only unique rows are 18",
+      "handoff_owner": "Agent 1 preserves row-overlap boundary; Agent 2 must not treat source-family hit totals as exclusive export rows"
+    },
+    {
+      "blocker": "multi_lane_overlap_requires_agent6_row_subset_boundary",
+      "applies_to": "commercial_clean_plus_noncommercial_or_blocked_overlap",
+      "evidence": "279 rows / 5253 occurrences have commercial-clean evidence plus Klein and/or BDB Augmented Strong overlap",
+      "handoff_owner": "Agent 6 exact row/subset boundary before any downstream candidate-text or display behavior"
+    },
+    {
+      "blocker": "noncommercial_educational_only_rows_remain_separate_from_commercial_clean",
+      "applies_to": "noncommercial_educational_only",
+      "evidence": "17 rows / 259 occurrences are Klein-only NC educational evidence",
+      "handoff_owner": "Agent 1 preserves NC lane; Agent 6 required for any NC row/subset boundary"
+    },
+    {
+      "blocker": "no_sefaria_source_hit_rows_have_no_source_lane_evidence_now",
+      "applies_to": "no_sefaria_source_hit",
+      "evidence": "186 rows / 2421 occurrences have no Sefaria source hit in the preview",
+      "handoff_owner": "Agent 1 if new source evidence appears; otherwise no Agent 2 transform lane evidence"
+    }
+  ],
+  "handoff_owner": {
+    "agent2": "May consume only row/subsets with Agent 1 lane evidence and Agent 6 boundary; this packet does not authorize candidate text.",
+    "agent6": "Receives exact row/subset boundary questions for multi-lane overlap, NC-only rows, and future candidate use.",
+    "agent10": "May consume classified package candidates for release/boundary assembly only, with zero output acceptance."
+  },
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0
+  },
+  "non_acceptance_boundary": {
+    "no_qa_acceptance": true,
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_candidate_text_export_authorization": true,
+    "no_release_action": true,
+    "no_public_runtime_mutation": true,
+    "no_queue_mutation": true,
+    "no_staging": true,
+    "no_destructive_repo_action": true
+  },
+  "stop_condition": "Stop before QA/source-license/legal/Definition/runtime/publication/product/answer acceptance; stop before candidate text, public display, runtime, queue, staging, or release mutation."
+}

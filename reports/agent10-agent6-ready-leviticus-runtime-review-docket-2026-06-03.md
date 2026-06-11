@@ -1,10 +1,10 @@
 # Agent 10 Agent 6-Ready Leviticus Runtime Review Docket
 
-Generated: 2026-06-03T10:33:32.546Z
+Generated: 2026-06-04T02:44:52.340Z
 
 ## Boundary
 
-Status: `warn_agent6_ready_leviticus_runtime_review_docket_not_accepted`
+Status: `blocked_leviticus_runtime_review_docket`
 
 This is an evidence-only release-owner docket for the exact Leviticus public reader surface. It does not claim QA acceptance, validated public/runtime acceptance, source/provenance acceptance, source custody, publication readiness, deployment/cache closure, Definition authority, usage-as-definition authority, accepted text, translation output, or broad rollout approval.
 
@@ -30,13 +30,13 @@ This is an evidence-only release-owner docket for the exact Leviticus public rea
 
 ## Fresh Old-HUD Guard
 
-- Guard artifact: `reports/agent10-live-public-old-hud-guard-2026-06-03-post-orot-zero-safe-pilot-docket.json`
+- Guard artifact: `reports/agent10-live-public-old-hud-guard-2026-06-04-post-orot-zero-safe-pilot-docket.json`
 - Old HUD exposure: no
 - Hard marker hit checks: 0
 
 ## Validation Evidence
 
-- `node scripts/validate_agent10_multi_lane_reader_surface_release_train.mjs reports/agent10-multi-lane-reader-surface-release-train-2026-06-03.json`: exit=0
+- `node scripts/validate_agent10_multi_lane_reader_surface_release_train.mjs reports/agent10-multi-lane-reader-surface-release-train-2026-06-03.json`: exit=1
 - `node scripts/validate_route_hud_page.mjs --page tanakh/leviticus/index.html --page tanakh/numbers/index.html --page tanakh/ruth/index.html`: exit=0
 
 ## Stale Context Preserved
@@ -59,7 +59,7 @@ This is an evidence-only release-owner docket for the exact Leviticus public rea
 
 ## Issues
 
-- None
+- Validation command failed: node scripts/validate_agent10_multi_lane_reader_surface_release_train.mjs reports/agent10-multi-lane-reader-surface-release-train-2026-06-03.json
 
 ## Warnings
 

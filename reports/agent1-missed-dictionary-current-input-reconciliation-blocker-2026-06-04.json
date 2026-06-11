@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_missed_dictionary_current_input_reconciliation_blocker",
+  "generated_at": "2026-06-04T23:20:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "status": "exact_current_input_reconciliation_blocker_returned",
+  "target": "old_new_dictionary_row_subset_source_lane_classification",
+  "task_shape": {
+    "target": "missed_dictionary_current_input_reconciliation",
+    "files": [
+      "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+      "reports/agent1-third-missed-source-family-missing-workset-blocker-handoff-2026-06-04.json",
+      "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+      "reports/agent10-agent2-orot-missed-dictionary-zero-candidate-consumption-2026-06-04.json",
+      "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json"
+    ],
+    "exact_command_or_script_to_run": "node scripts/validate_agent1_missed_dictionary_current_input_reconciliation_blocker.mjs",
+    "output_artifact": "reports/agent1-missed-dictionary-current-input-reconciliation-blocker-2026-06-04.json",
+    "schema_counts": {
+      "agent1_contract3_rows_checked": 169,
+      "agent1_contract3_occurrences_checked": 2148,
+      "agent1_exact_linkage_blocker_rows": 168,
+      "agent1_exact_linkage_blocker_occurrences": 2117,
+      "agent2_candidate_rows": 0,
+      "agent2_candidate_occurrences": 0,
+      "agent2_unmatched_rows": 168,
+      "agent10_rows_added_now": 0,
+      "agent10_rows_cleared_by_agent6_now": 0,
+      "agent3_missing_contract_fields": 4,
+      "spark1_routable": false
+    },
+    "validator": "node scripts/validate_agent1_missed_dictionary_current_input_reconciliation_blocker.mjs",
+    "missing_field_blocker": {
+      "status": "missing_workset_blocker",
+      "missing_fields": [
+        "exact third missed source-family target",
+        "row-level source-family/license split for the 168 unmatched rows",
+        "source/dictionary identity for the 168 unmatched rows",
+        "input artifact mapping each unmatched row to commercial_clean_candidate, noncommercial_educational_candidate, metadata_or_link_only, or blocked_or_needs_review",
+        "Agent-1-owned runnable builder command for this exact current reconciliation workset",
+        "Agent-1-owned output schema for row-level source-lane classification of the unmatched rows",
+        "Agent 6 boundary question tied to an exact row/subset packet"
+      ]
+    },
+    "handoff_owner": "Agent 10 for release/package intake; Agent 6 only by exact boundary packet prepared through release owner",
+    "stop_condition": "Stop this current-input reconciliation until an exact source-family/license workset exists for the 168 unmatched rows or a named Agent-1 source-lane classification pipeline is supplied."
+  },
+  "evidence_reconciliation": {
+    "agent1_contract3_blocker": {
+      "artifact": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+      "status": "missing_workset_blocker",
+      "rows_checked": 169,
+      "occurrences_checked": 2148,
+      "exact_linkage_blocker_rows": 168,
+      "exact_linkage_blocker_occurrences": 2117,
+      "spark1_routable": false
+    },
+    "agent1_blocker_handoff": {
+      "artifact": "reports/agent1-third-missed-source-family-missing-workset-blocker-handoff-2026-06-04.json",
+      "status": "exact_missing_workset_blocker_returned",
+      "can_author_runnable_contract_now": false
+    },
+    "agent2_zero_candidate_packet": {
+      "artifact": "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+      "candidate_rows": 0,
+      "candidate_occurrences": 0,
+      "unmatched_rows": 168,
+      "source_license_counts": {
+        "commercial_clean_candidate": 0,
+        "noncommercial_educational_candidate": 0,
+        "metadata_link_only": 0,
+        "blocked": 0,
+        "unmatched": 168
+      }
+    },
+    "agent10_consumption": {
+      "artifact": "reports/agent10-agent2-orot-missed-dictionary-zero-candidate-consumption-2026-06-04.json",
+      "status": "consumed_zero_candidate_return_no_agent6_route",
+      "agent6_route_needed_now": false,
+      "next_action": "changed source-family/linkage/dictionary evidence required before another Agent 2 candidate packet"
+    },
+    "agent3_diff_blocker": {
+      "artifact": "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json",
+      "status": "missing_pipeline_blocker",
+      "missing_contract_fields": [
+        "pipeline_commands",
+        "output_path_schema",
+        "validator_gate",
+        "command_script_invocation"
+      ],
+      "candidate_rows": 0,
+      "unmatched_rows": 168
+    }
+  },
+  "required_lane_separation": {
+    "commercial_clean_candidate": "not assignable for the 168 unmatched rows from current evidence",
+    "noncommercial_educational_candidate": "not assignable for the 168 unmatched rows from current evidence; do not flatten NC into commercial-clean or generic blocked",
+    "metadata_or_link_only": "not assignable for the 168 unmatched rows from current evidence",
+    "blocked_or_needs_review": "only current safe posture for the unmatched rows pending row-level source-family/license evidence"
+  },
+  "can_author_runnable_contract_now": false,
+  "why_not_runnable": "Current authoritative packets show zero candidate rows and 168 unmatched rows, but do not supply row-level source-family/license lanes or an Agent-1-owned classification pipeline for those rows.",
+  "next_unblock_input_required": {
+    "owner": "Agent 10 or upstream source/linkage packet owner",
+    "required_artifact_shape": "row list for the 168 unmatched rows with token_id or row_id, source_family, source_name, license_label, license_lane, attribution_required, derived_from_nc, commercial_export_allowed, source_url_or_citation, agent6_boundary_required, and blocker_reason",
+    "required_counts": "row count, occurrence count, lane counts, source-family counts, and unmatched-to-classified reconciliation count",
+    "required_validator": "validator proving every row has one of commercial_clean_candidate, noncommercial_educational_candidate, metadata_or_link_only, or blocked_or_needs_review and preserving separate NC partition rules"
+  },
+  "handoff": {
+    "agent10": "Consume as current Agent 1 source/license/custody blocker evidence for release/package intake.",
+    "spark1": "Do not run a current-input classification pipeline from this packet; no runnable source-lane classification command exists for the 168 unmatched rows.",
+    "agent6": "Do not route directly from this blocker. Agent 6 requires an Agent 10 release-owner packet with an exact row/subset boundary question."
+  },
+  "boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true
+  }
+}

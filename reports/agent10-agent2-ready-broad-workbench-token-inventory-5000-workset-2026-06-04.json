@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_future_workset_intake_packet",
+  "workset_id": "broad-workbench-token-inventory-5000",
+  "target_work_or_subset": "broad Definition Workbench token inventory expansion from tracked data/sources for the top 5000 normalized Hebrew/Aramaic tokens",
+  "input_artifacts": [
+    ".local-cache/workbench-evidence/token-inventory.json",
+    "data/definitions/hud-route-lookup/manifest.json",
+    "reports/agent2-future-workset-intake-contract-2026-06-04.json",
+    "reports/agent2-broad-definition-reader-hint-wake-verify-2026-06-04.md",
+    "scripts/build_workbench_token_inventory.mjs",
+    "scripts/validate_workbench_token_inventory.mjs"
+  ],
+  "command_or_expected_script": "node scripts/build_workbench_token_inventory.mjs --summary-limit=5000 --output=.local-cache/workbench-evidence/token-inventory-5000.json --tokens-jsonl=.local-cache/workbench-evidence/token-inventory-5000.tokens.jsonl --blocked-jsonl=.local-cache/workbench-evidence/token-inventory-5000.blocked.jsonl --report=reports/workbench-token-inventory-5000.md",
+  "output_path": ".local-cache/workbench-evidence/token-inventory-5000.json",
+  "output_schema": "workbench_token_inventory",
+  "validator_or_gate": "node scripts/validate_workbench_token_inventory.mjs .local-cache/workbench-evidence/token-inventory-5000.json",
+  "counts": {
+    "rows": 5000,
+    "occurrences": 75290880
+  },
+  "source_lane_fields": [
+    "source_family",
+    "source_name",
+    "license_label",
+    "license_lane",
+    "source_url_or_citation",
+    "agent6_boundary_required"
+  ],
+  "allowed_license_lanes": [
+    "commercial_clean_candidate",
+    "noncommercial_educational_candidate",
+    "metadata_or_link_only",
+    "blocked_or_needs_review"
+  ],
+  "nc_partition_allowed": true,
+  "required_nc_flags": {
+    "derived_from_nc": true,
+    "commercial_export_allowed": false,
+    "attribution_required": true,
+    "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+    "corpus_contamination": false
+  },
+  "agent6_boundary_question": "If the generated 5000-token inventory or derivative reader-hint/sample rows are later proposed for package use, may that exact row/subset proceed only as non-public planning evidence with source lanes preserved and zero authority/public/answer posture?",
+  "stop_condition": "Stop after the 5000-token inventory output plus validator pass, or exact missing input/output/schema/validator/count blocker, while preserving zero authority/public/answer emissions.",
+  "zero_boundary": {
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligible": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "publication_readiness": false,
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_content_storage": false,
+    "nc_commercial_authorization": false
+  }
+}

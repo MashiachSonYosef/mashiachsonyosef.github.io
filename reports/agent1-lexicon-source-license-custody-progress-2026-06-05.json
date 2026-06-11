@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_lexicon_source_license_custody_progress",
+  "generated_at": "2026-06-05T20:00:00.000Z",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "objective": "source/license/custody classification packets and runnable contracts for lexicon expansion",
+  "validation_set": {
+    "validator": "scripts/validate_agent1_source_license_custody_pipeline_set.mjs",
+    "artifact": "reports/agent1-source-license-custody-pipeline-registry-2026-06-04.json",
+    "ok": true,
+    "status": "agent1_source_license_custody_pipeline_set_validated_for_discovery_only",
+    "runnable_contract_count": 22,
+    "supporting_packet_count": 24,
+    "exact_blocker_count": 1,
+    "lane_return_output_count": 48
+  },
+  "runnable_targets": [
+    {
+      "target": "orot_nc_klein",
+      "workset": "17 / 259",
+      "commands": [
+        "node scripts/build_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_nc_klein_source_family_contract.mjs"
+      ],
+      "files": [
+        "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-2026-06-04.json"
+      ],
+      "counts": {
+        "rows": 17,
+        "occurrences": 259
+      },
+      "lane_counts": {
+        "commercial_clean_candidate": "0 / 0",
+        "noncommercial_educational_candidate": "17 / 259",
+        "metadata_or_link_only": "0 / 0",
+        "blocked_or_needs_review": "0 / 0"
+      },
+      "policy_flags": {
+        "derived_from_nc": true,
+        "commercial_export_allowed": false,
+        "attribution_required": true,
+        "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+        "corpus_contamination": false,
+        "agent6_boundary_required": true,
+        "answer_eligible": false,
+        "public_emit": false
+      },
+      "validation": "runnable_validated",
+      "spark1_routable": true,
+      "handoff": {
+        "agent10": "packet intake",
+        "agent6": "boundary-only questions"
+      },
+      "stop_condition": "rerun if input map changes"
+    },
+    {
+      "target": "orot_next_missed_source_family",
+      "workset": "50 / 1193",
+      "commands": [
+        "node scripts/build_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_next_missed_source_family_contract.mjs"
+      ],
+      "files": [
+        "reports/agent1-orot-next-missed-source-family-map-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-orot-next-missed-source-family-2026-06-04.json"
+      ],
+      "counts": {
+        "rows": 50,
+        "occurrences": 1193
+      },
+      "lane_counts": {
+        "commercial_clean_candidate": "50 / 1193",
+        "noncommercial_educational_candidate": "0 / 0",
+        "metadata_or_link_only": "0 / 0",
+        "blocked_or_needs_review": "0 / 0"
+      },
+      "validation": "runnable_validated",
+      "spark1_routable": true,
+      "handoff": {
+        "agent10": "packet intake",
+        "agent6": "boundary-only questions"
+      },
+      "stop_condition": "rerun if next-missed workset changes"
+    },
+    {
+      "target": "orot_third_missed_source_family",
+      "workset": "169 / 2148",
+      "commands": [
+        "node scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+        "node scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs"
+      ],
+      "files": [
+        "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+        "reports/agent1-spark1-pipeline-contract-orot-third-missed-source-family-2026-06-05.json",
+        "reports/agent1-third-missed-source-family-target-or-blocker-resolution-2026-06-05.json"
+      ],
+      "counts": {
+        "rows": 169,
+        "occurrences": 2148
+      },
+      "lane_counts": {
+        "commercial_clean_candidate": "138 / 1672",
+        "noncommercial_educational_candidate": "0 / 0",
+        "metadata_or_link_only": "0 / 0",
+        "blocked_or_needs_review": "31 / 476"
+      },
+      "validation": "runnable_validated",
+      "spark1_routable": true,
+      "exact_blocker_count": 1,
+      "exact_blockers": [
+        {
+          "row_subset_id": "orot_third_missed_source_family::blocked_rows",
+          "type": "agent6_boundary_required",
+          "rows": 31,
+          "occurrences": 476,
+          "notes": "legacy 06-04 target blocker schema is stale; boundary-only gate remains"
+        }
+      ],
+      "handoff": {
+        "agent10": "packet intake",
+        "agent6": "exact boundary packet for blocked rows"
+      },
+      "stop_condition": "rerun on blocked-row boundary update"
+    },
+    {
+      "target": "old_dictionary_excluded_row_license_lane_reaudit",
+      "workset": "500 / 8427",
+      "source_families": 5,
+      "commands": [
+        "node scripts/build_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+        "node scripts/validate_agent1_old_dictionary_excluded_row_license_lane_reaudit.mjs",
+        "node scripts/validate_agent1_spark1_old_dictionary_reaudit_pipeline_contract.mjs"
+      ],
+      "files": [
+        "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+        "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json"
+      ],
+      "counts": {
+        "rows": 500,
+        "occurrences": 8427
+      },
+      "lane_counts": {
+        "commercial_clean_candidate": 3,
+        "noncommercial_educational_candidate": 1,
+        "metadata_or_link_only": 0,
+        "blocked_or_needs_review": 1
+      },
+      "exact_blockers": [
+        {
+          "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+          "type": "missing_evidence",
+          "rows": 222,
+          "occurrences": 4435,
+          "missing_fields": [
+            "independent source/license/custody basis",
+            "source_url_or_citation",
+            "license_label",
+            "allow fields"
+          ],
+          "handoff_owner": "agent1_then_agent6"
+        },
+        {
+          "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+          "type": "agent6_boundary_required",
+          "rows": 214,
+          "occurrences": 4444,
+          "license_lane": "noncommercial_educational_candidate",
+          "policy_flags": {
+            "derived_from_nc": true,
+            "commercial_export_allowed": false,
+            "attribution_required": true,
+            "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+            "corpus_contamination": false,
+            "agent6_boundary_required": true
+          },
+          "handoff_owner": "agent6"
+        }
+      ],
+      "validation": "runnable_validated",
+      "spark1_routable": true,
+      "handoff": {
+        "agent2": "consume only with boundary packet",
+        "agent6": "exact boundary questions for blocked and NC rows",
+        "agent10": "packet intake"
+      },
+      "stop_condition": "rerun on evidence or boundary updates"
+    }
+  ],
+  "compliance": {
+    "no_source_license_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_runtime_public_mutation": true
+  }
+}

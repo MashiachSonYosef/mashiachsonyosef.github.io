@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_broad_source_mechanics_queue_package",
+  "generated_at": "2026-06-04T14:32:00.000Z",
+  "status": "agent1_broad_source_mechanics_queue_package_validated_inputs_ready_for_boundary_only",
+  "queue_item": "spark1-broad-source-mechanics",
+  "lane": "Agent 1 / Spark-1 source/license/custody",
+  "commands_run": [
+    {
+      "command": "node scripts/build_agent1_orot_fill_source_row_evidence.mjs",
+      "result": "printed ok=true and wrote output; shell timed out after output, validator confirmed artifact"
+    },
+    {
+      "command": "node scripts/validate_agent1_orot_fill_source_row_evidence.mjs",
+      "result": "ok=true"
+    },
+    {
+      "command": "node scripts/build_agent1_orot_missing_lexicon_linkage_candidates.mjs",
+      "result": "ok: 13 rows / 129 occurrences"
+    },
+    {
+      "command": "node scripts/validate_agent1_orot_missing_lexicon_linkage_candidates.mjs reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+      "result": "validation passed"
+    }
+  ],
+  "input_artifacts": [
+    "reports/agent1-orot-fill-source-row-evidence-2026-06-03.json",
+    "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+    "reports/oracle9-dictionary-lane-classification-correction-2026-06-04.md",
+    "reports/oracle9-nc-educational-lane-owner-policy-2026-06-04.md",
+    "reports/oracle9-new-dictionary-source-lane-policy-2026-06-04.md"
+  ],
+  "source_row_evidence": {
+    "artifact": "reports/agent1-orot-fill-source-row-evidence-2026-06-03.json",
+    "status": "pipeline_source_rows_clear",
+    "target_rows": 4,
+    "chunk_entries": 17,
+    "token_occurrences": 19,
+    "incomplete_curated_rows_attached": 0,
+    "targets_with_expected_clean_source_layer_row": 4,
+    "route_lookup_shard_hit_count": 0,
+    "license_lanes": [
+      {
+        "source_family": "OpenScriptures",
+        "license_label": "CC BY 4.0",
+        "license_lane": "commercial_clean_candidate",
+        "agent6_boundary_required": true,
+        "commercial_export_allowed": false,
+        "reason": "source-row evidence only; no package/export behavior authorized here"
+      },
+      {
+        "source_family": "Wikidata Lexeme",
+        "license_label": "CC0",
+        "license_lane": "commercial_clean_candidate",
+        "agent6_boundary_required": true,
+        "commercial_export_allowed": false,
+        "reason": "source-row evidence only; no package/export behavior authorized here"
+      }
+    ]
+  },
+  "missing_linkage_evidence": {
+    "artifact": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-04.json",
+    "status": "evidence_only_candidate_buckets_no_source_mutation",
+    "missing_lexicon_linkage_rows": 13,
+    "missing_lexicon_linkage_occurrences": 129,
+    "bucket_counts": {
+      "no_current_stem_source_candidate_found": 3,
+      "single_stem_candidate_found_current_pipeline": 6,
+      "project_preferred_function_word_stem_candidate_exists": 3,
+      "multi_stem_no_project_preferred_candidate": 1
+    },
+    "license_lane": "metadata_or_link_only",
+    "agent6_boundary_required": true,
+    "exact_non_pipeline_blocker": "No approved source/linkage rule exists here for assigning missing lexicon_entry_id values."
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true
+  },
+  "zero_output_counts": {
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "lexicon_entry_id_assignments": 0
+  },
+  "spark1_handoff": "Source mechanics queue item has validated evidence outputs; no new Spark-1 run is needed until a changed source/license/custody command-backed workset exists.",
+  "agent6_boundary": "Agent 6 is required before any package/export/display/public/answer behavior; this packet is evidence only.",
+  "stop_condition": "Stop after package artifact plus validator pass, or exact missing command/input/schema blocker.",
+  "non_acceptance_boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true
+  }
+}

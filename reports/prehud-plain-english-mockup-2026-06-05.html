@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pre-HUD Plain-English Mockup</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #202124;
+      --muted: #5f6368;
+      --line: #d7d2c8;
+      --paper: #fbfaf7;
+      --panel: #ffffff;
+      --accent: #315f72;
+      --soft: #eef3f4;
+      --warn: #7a4a12;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.55 Georgia, "Times New Roman", serif;
+    }
+
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 40px 20px 56px;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 19px;
+      margin-top: 28px;
+    }
+
+    h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .lede {
+      margin-top: 10px;
+      max-width: 680px;
+      color: var(--muted);
+    }
+
+    .mock {
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .reader-line {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hebrew {
+      direction: rtl;
+      font-size: 25px;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .token {
+      display: inline-block;
+      padding: 0 3px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .token.selected {
+      border-color: var(--accent);
+      background: var(--soft);
+    }
+
+    .prehud {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--line);
+      background: #fcfcfb;
+    }
+
+    .plain-title {
+      color: var(--accent);
+      font: 700 13px/1.2 Arial, sans-serif;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .plain-copy {
+      font-size: 18px;
+      max-width: 700px;
+    }
+
+    .plain-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 700px;
+    }
+
+    .hud-preview {
+      padding: 20px 24px 24px;
+    }
+
+    .hud-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 12px;
+    }
+
+    .cell {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 12px;
+      min-height: 94px;
+      background: var(--panel);
+    }
+
+    .label {
+      display: block;
+      color: var(--muted);
+      font: 700 12px/1.2 Arial, sans-serif;
+      letter-spacing: 0;
+      margin-bottom: 8px;
+    }
+
+    .value {
+      font-size: 15px;
+    }
+
+    .hold {
+      color: var(--warn);
+    }
+
+    .variants {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .variant {
+      border-left: 3px solid var(--accent);
+      background: var(--panel);
+      padding: 12px 14px;
+    }
+
+    .boundary {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding: 28px 14px 40px;
+      }
+
+      .hud-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .reader-line,
+      .prehud,
+      .hud-preview {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Pre-HUD Plain-English Mockup</h1>
+    <p class="lede">A reader sees one plain-English explanation before the technical route details. This mockup is not wired into the site and does not change HUD behavior.</p>
+
+    <section class="mock" aria-label="Pre-HUD mockup">
+      <div class="reader-line">
+        <p class="hebrew" lang="he">
+          <span class="token">אורות</span>
+          <span class="token selected">הקודש</span>
+          <span class="token">מתגלים</span>
+          <span class="token">בתוך</span>
+          <span class="token">החיים</span>
+        </p>
+        <p class="plain-note">Selected word: <strong>הקודש</strong></p>
+      </div>
+
+      <div class="prehud">
+        <p class="plain-title">Before the evidence panel</p>
+        <p class="plain-copy">This word is being treated as a likely familiar phrase in this passage, but the system has not accepted a final reader definition yet.</p>
+        <p class="plain-note">The next panel shows why the word is being held, what evidence exists, and what still needs review.</p>
+      </div>
+
+      <div class="hud-preview">
+        <h2>Evidence panel preview</h2>
+        <div class="hud-grid">
+          <div class="cell">
+            <span class="label">Reader state</span>
+            <p class="value hold">Held for review</p>
+          </div>
+          <div class="cell">
+            <span class="label">Source lane</span>
+            <p class="value">Evidence exists, but it is not final text.</p>
+          </div>
+          <div class="cell">
+            <span class="label">Public answer</span>
+            <p class="value hold">Not ready to show as an answer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <h2>Copy Variants</h2>
+    <div class="variants">
+      <div class="variant">
+        <h3>Careful</h3>
+        <p>This word has useful evidence behind it, but the final reader wording is still under review.</p>
+      </div>
+      <div class="variant">
+        <h3>Direct</h3>
+        <p>We have evidence for this word, but it is not approved as a public definition yet.</p>
+      </div>
+      <div class="variant">
+        <h3>Friendly</h3>
+        <p>This looks like a word we can help with, but the plain-English explanation is not final yet.</p>
+      </div>
+    </div>
+
+    <p class="boundary">Boundary: product/reception mockup only. No HUD behavior change, Definition authority, accepted gloss/text, source/license/legal/public/runtime/product/answer acceptance, or public reader output.</p>
+  </main>
+</body>
+</html>

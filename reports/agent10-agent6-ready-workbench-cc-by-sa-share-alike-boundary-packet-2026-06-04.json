@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_ready_boundary_packet",
+  "generated_at": "2026-06-04T19:30:52.0433649-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "review_scope": "workbench_cc_by_sa_share_alike_boundary_map_nonpublic_source_license_custody_planning_evidence_only",
+  "workset": "workbench-cc-by-sa-share-alike-boundary-map",
+  "inputs": [
+    "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.md",
+    "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+    "reports/agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.md",
+    "reports/agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+    "reports/agent1-workbench-cc-by-sa-share-alike-boundary-map-validation-result-2026-06-04.json",
+    "reports/agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-validation-result-2026-06-04.json",
+    "reports/agent10-agent1-workbench-cc-by-sa-boundary-map-consumption-2026-06-04.md",
+    "reports/agent10-agent1-workbench-cc-by-sa-boundary-map-consumption-2026-06-04.json"
+  ],
+  "spark_route_note": "Input filenames that include spark1 are historical contract artifacts only; assistant-1/Spark-1 remains paused unless owner explicitly re-enables, and this packet does not route new work to Spark-1.",
+  "counts": {
+    "declared_cc_by_sa_partition_count": 37,
+    "declared_cc_by_sa_source_row_count": 5581,
+    "sampled_cc_by_sa_partition_count": 5,
+    "sampled_cc_by_sa_source_row_count": 4436,
+    "sampled_unique_source_id_count": 40,
+    "sampled_unique_work_count": 40
+  },
+  "lane_flags": {
+    "owner_facing_lane_summary": "CC-BY-SA candidate lane under share-alike boundary review; commercial export, package use, public display, answer use, and definition text use remain blocked.",
+    "license_lane": "commercial_clean_candidate",
+    "boundary_status": "blocked_or_needs_review_for_export_until_agent6_share_alike_boundary",
+    "attribution_required": true,
+    "derived_from_nc": false,
+    "commercial_export_allowed": false,
+    "share_alike_required": true,
+    "corpus_contamination": false,
+    "answer_eligible": false,
+    "public_emit": false,
+    "agent6_boundary_required": true
+  },
+  "zero_counters": {
+    "answer_rows": 0,
+    "source_mutation_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0
+  },
+  "validator_results": [
+    {
+      "command": "node scripts\\validate_agent1_workbench_cc_by_sa_share_alike_boundary_map.mjs reports\\agent1-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_spark1_workbench_cc_by_sa_share_alike_boundary_contract.mjs reports\\agent1-spark1-pipeline-contract-workbench-cc-by-sa-share-alike-boundary-map-2026-06-04.json",
+      "result": "passed"
+    }
+  ],
+  "agent6_boundary_question": "Pass/warn/block whether the exact Agent 1 Workbench CC-BY-SA/share-alike boundary map may be carried as non-public source/license custody planning evidence only, preserving attribution-required and share-alike-required flags, commercial_export_allowed=false, answer_eligible=false, public_emit=false, and zero output/mutation counters.",
+  "not_requested": [
+    "source/license/legal acceptance",
+    "commercial export authorization",
+    "public/runtime/display authorization",
+    "answer eligibility",
+    "definition-content storage",
+    "accepted text",
+    "publication readiness"
+  ],
+  "exact_blocker": {
+    "id": "cc_by_sa_share_alike_boundary_required",
+    "blocker_reason": "CC-BY-SA source-name partitions require Agent 6/legal share-alike boundary treatment before source/license custody acceptance, commercial export, public display, answer use, definition text use, or package use.",
+    "missing_fields": [
+      "Agent 6 row/subset boundary verdict for CC-BY-SA partition use",
+      "share-alike handling rule for package/export behavior",
+      "attribution display/export rule for exact rows/subset",
+      "commercial export authorization if any",
+      "public/runtime/display authorization if any"
+    ]
+  },
+  "stop_condition": "Stop after Agent 6 returns a verdict path or exact delivery blocker. Otherwise keep all CC-BY-SA rows blocked from export/display/answer/definition/package use.",
+  "highest_permissible_claim": "Agent 10 assembled an Agent6-ready boundary packet for the Agent 1 Workbench CC-BY-SA/share-alike map as non-public source/license custody planning evidence only.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "commercial export permission",
+    "CC-BY-SA commercial export authorization",
+    "broad corpus completion"
+  ]
+}

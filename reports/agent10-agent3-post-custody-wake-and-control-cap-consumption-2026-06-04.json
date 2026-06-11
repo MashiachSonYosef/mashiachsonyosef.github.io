@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_release_owner_consumption",
+  "generated_at": "2026-06-04T19:48:30.9800119-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "package_workset": "agent3_post_custody_wake_condition_audit",
+  "release_owner": "Agent 10",
+  "inputs_consumed": [
+    "reports/agent3-post-custody-wake-condition-audit-2026-06-04.md",
+    "reports/agent3-post-custody-wake-condition-audit-2026-06-04.json",
+    "reports/agent3-state.md",
+    "reports/agent3-state.json",
+    "data/control/spark_standing_queue.json",
+    "reports/agent12-waste-cap-unblock-sweep-2026-06-04.md"
+  ],
+  "counts": {
+    "returned_artifacts_indexed": 4,
+    "returned_artifacts_consumed": 4,
+    "active_worksets_indexed": 2,
+    "total_rows": 8282,
+    "total_occurrences": 14743,
+    "blocker_rows": 6947,
+    "blocker_occurrences": 11748,
+    "queue_items_checked": 4,
+    "agent3_runnable_queue_items": 0,
+    "agent10_handoff_items_observed": 1,
+    "candidate_files_scanned": 37,
+    "candidate_files_modified_after_custody_index": 0,
+    "changed_artifacts_found": 0,
+    "exact_new_worksets_found": 0,
+    "new_matrix_rows": 0,
+    "new_matrix_occurrences": 0
+  },
+  "lane_split": {
+    "owner_facing_summary": "Observed queue context only; Agent 3 runnable queue items 0, changed artifacts 0, exact new worksets 0. Broad unchanged reruns are capped, exact-contract work remains allowed.",
+    "agent3_linkage_dedupe_navigation_planning_only": true,
+    "spark3_sleep_until_exact_workset": true,
+    "spark10_release_package_intake_shadow": true,
+    "agent12_caps_broad_sweeps": true,
+    "agent12_allows_exact_contract_productive_work": true
+  },
+  "validator_results": [
+    {
+      "command": "node scripts\\validate_agent3_post_custody_wake_condition_audit.mjs reports\\agent3-post-custody-wake-condition-audit-2026-06-04.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent3_usage_state.mjs reports\\agent3-state.json",
+      "result": "passed"
+    },
+    {
+      "command": "node -e \"JSON.parse(require('fs').readFileSync('data/control/spark_standing_queue.json','utf8'))\"",
+      "result": "passed"
+    }
+  ],
+  "agent6_boundary_question": null,
+  "agent6_boundary_reason": "No new Agent 3 Agent6-ready packet is created by the custody wake audit. Existing Agent6-ready packets remain Agent 3 usage/navigation, Agent 1 CC-BY-SA/share-alike planning, and Agent 1 CC-BY attribution planning.",
+  "exact_blocker": {
+    "id": "missing_changed_artifact_or_exact_workset",
+    "wake_condition": "Wake Agent 3 only when Agent 10, Agent 7, or the queue supplies a changed artifact or exact workset with named inputs, rows/occurrences, output path/schema, validator/gate, handoff owner, and stop condition.",
+    "missing_fields": [
+      "changed_artifact_path_or_exact_workset_id",
+      "target_rows_and_occurrences_for_new_matrix",
+      "route_card_or_source_route_input_set",
+      "output_path_and_schema_for_new_matrix",
+      "validator_or_gate_for_new_matrix",
+      "handoff_trigger_for_agent10_release_package_intake",
+      "stop_condition_for_new_matrix_run"
+    ]
+  },
+  "next_handoff": {
+    "agent3": "Held until exact changed workset.",
+    "agent7_agent10": "May wake Agent 3 only with an exact workset.",
+    "spark10": "Rerun only when changed artifacts are added to the release intake contract."
+  },
+  "stop_condition": "Stop at this no-new-workset blocker until changed artifact or exact Agent 3 workset appears.",
+  "zero_counters": {
+    "route_publication_support_rows": 0,
+    "definition_authority_rows": 0,
+    "usage_as_definition_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0
+  },
+  "highest_permissible_claim": "Agent 10 consumed the Agent 3 post-custody wake audit and current queue/cap posture as non-public release/package planning evidence and preserved the exact Agent 3 missing-workset blocker.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "package/export authorization",
+    "broad corpus completion"
+  ]
+}

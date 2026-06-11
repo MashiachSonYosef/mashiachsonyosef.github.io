@@ -1,0 +1,74 @@
+{
+  "artifact_type": "agent4_active_validator_prereq_goal_proof",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "old-dictionary-commercial-clean-78-row-transform-output-proposal-preboundary",
+  "changed_input_artifact": "reports/agent10-old-dictionary-78-row-agent2-transform-output-blocker-consumption-2026-06-06.json",
+  "validator_proof_command": {
+    "command": "node scripts\\validate_agent10_old_dictionary_78_row_agent2_transform_output_blocker_consumption.mjs reports\\agent10-old-dictionary-78-row-agent2-transform-output-blocker-consumption-2026-06-06.json",
+    "timeout_ms": 30000,
+    "result": "passed_before_this_cap_artifact",
+    "rerun_policy": "do_not_rerun_without_changed_consumption_artifact_agent2_return_workset_or_validator"
+  },
+  "output_artifacts": [
+    "reports/agent4-agent10-transform-output-blocker-consumption-gate-proof-2026-06-05.md",
+    "reports/agent4-agent10-transform-output-blocker-consumption-gate-proof-2026-06-05.json"
+  ],
+  "counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "result": "validated_changed_input_consumed_as_blocker_not_release_packet",
+  "bounded_followup_checks": [
+    {
+      "process_timeout": true,
+      "command": "Get-ChildItem reports -File | Where-Object { $_.LastWriteTime -gt (Get-Date '2026-06-06T00:00:00') -and $_.Name -match '^(agent[1-6]|agent10).*\\\\.(json|md)$' } | Sort-Object LastWriteTime -Descending | Select-Object -First 30 Name,LastWriteTime,Length | Format-Table -AutoSize",
+      "timeout_ms": 30000,
+      "partial_output_or_artifact": "returned only agent4-active-validator-prereq-goal-proof-2026-06-06.md before timeout",
+      "next_safe_action": "avoid broad report LastWriteTime scan; use exact changed artifact path or targeted filename pattern when supplied"
+    }
+  ],
+  "exact_blockers": [
+    "missing_source_citation_or_url_and_exact_transform_output_rule_for_78_row_packet"
+  ],
+  "changed_input_only_wake_condition": {
+    "changed_package_path": "reports/agent10-old-dictionary-78-row-agent2-transform-output-blocker-consumption-2026-06-06.json or a successor Agent2 transform-output matrix/blocker/workset artifact",
+    "command_list": [
+      "node scripts\\validate_agent10_old_dictionary_78_row_agent2_transform_output_blocker_consumption.mjs <changed-consumption-artifact>"
+    ],
+    "expected_output_schema": "Agent 4 proof JSON/MD with target, changed input, command, timeout, counts, pass/fail, blockers, handoff owner, and stop condition",
+    "validator_gate": "changed-input-only blocker consumption gate",
+    "package_owner": "Agent 10 release/package intake",
+    "agent6_boundary_trigger": "Only if a future packet requests transform output, proposed text, answer eligibility, route writes, export, publication readiness, or release action",
+    "stop_condition": "Stop after one changed-input validation proof or exact blocker; do not rerun unchanged validator chains"
+  },
+  "handoff_owner": "Agent 10 release/package intake; Agent 1/Agent 2 only if source-citation enrichment or an exact transform-output proposal rule is requested",
+  "stop_condition": "Stop at blocker-consumption proof and changed-input-only wake condition. Do not mutate public/runtime files, route shards, source files, token indexes, lexical payloads, candidate text, definition content, accepted text, export files, publication state, or release state.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

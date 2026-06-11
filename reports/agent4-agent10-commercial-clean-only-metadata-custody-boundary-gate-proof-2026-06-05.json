@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:59.997Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent10-commercial-clean-only-metadata-custody-boundary",
+  "status": "validated_nonpublic_commercial_clean_only_metadata_custody_planning_evidence_only_no_acceptance",
+  "files": {
+    "agent1_custody": {
+      "path": "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-2026-06-05.json",
+      "sha256": "41a9c026fd5a03b957d3020ad3242afe3186d9417535bf34ba347890b6833202"
+    },
+    "agent1_validation": {
+      "path": "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-validation-result-2026-06-05.json",
+      "sha256": "198aa44da210d996da5c4a7cd44a26be1d935d2020c3ffd6391974b66fa07552"
+    },
+    "agent10_boundary_packet": {
+      "path": "reports/agent10-agent6-ready-old-dictionary-commercial-clean-only-metadata-custody-boundary-packet-2026-06-05.json",
+      "sha256": "39840161240bd0d0e3647b1ec3cb05458903a84216fd135fec6adbf308ddbfda"
+    },
+    "agent10_delivery_proof": {
+      "path": "reports/agent10-agent6-old-dictionary-commercial-clean-only-metadata-custody-delivery-proof-2026-06-05.json",
+      "sha256": "4a5662617250b414d31c0763767d68521ada18fc54eacca4b8926b08cb3b3aa0"
+    },
+    "prior_agent6_ref_gap_verdict": {
+      "path": "reports/agent6-old-dictionary-public-domain-ref-sample-gap-boundary-verdict-2026-06-05.json",
+      "sha256": "89e181ef76f1b1d583827e6516401ef0b783456faab71946f136847c63760628"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_commercial_clean_only_metadata_custody_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-commercial-clean-only-metadata-custody-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_commercial_clean_only_metadata_custody.mjs reports\\agent1-old-dictionary-commercial-clean-only-metadata-custody-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent6_old_dictionary_public_domain_ref_sample_gap_boundary_verdict.mjs reports\\agent6-old-dictionary-public-domain-ref-sample-gap-boundary-verdict-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "commercial_clean_only_rows": 18,
+    "commercial_clean_only_occurrences": 494,
+    "source_family": "Jastrow Dictionary",
+    "jastrow_only_rows": 18,
+    "rows_with_nc_overlap": 0,
+    "rows_with_blocked_overlap": 0,
+    "rows_with_refs": 17,
+    "occurrences_with_refs": 476,
+    "rows_without_refs": 1,
+    "occurrences_without_refs": 18,
+    "rid_total": 22,
+    "headword_total": 22
+  },
+  "exact_blockers": [
+    "commercial_clean_only_rows_still_need_agent6_candidate_use_boundary_and_morphology_relation",
+    "commercial_clean_only_metadata_is_not_definition_or_candidate_text",
+    "commercial_clean_only_ref_gap_row_needs_ref_boundary_if_refs_required"
+  ],
+  "zero_output_counts": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "result": "Agent10 commercial-clean-only metadata custody boundary packet validates over Agent1's exact 18-row Jastrow-only subset and prior Agent6 ref-sample gap verdict.",
+  "blocker_if_any": "await_agent6_commercial_clean_only_metadata_custody_boundary_for_old_dictionary_18_row_subset",
+  "next_handoff": "Agent10 delivery proof says the commercial-clean-only metadata custody boundary packet is queued for Agent6 review; Agent4 does not self-accept.",
+  "stop_condition": "Do not rerun unless custody artifact, Agent10 boundary packet, delivery proof, prior Agent6 verdict, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no source-family selection acceptance",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

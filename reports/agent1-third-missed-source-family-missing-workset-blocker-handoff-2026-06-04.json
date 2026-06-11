@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_third_missed_source_family_missing_workset_blocker_handoff",
+  "generated_at": "2026-06-04T23:05:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "status": "exact_missing_workset_blocker_returned",
+  "target": "third_missed_source_family",
+  "source_artifacts": {
+    "current_lane_return": "reports/agent1-current-source-license-custody-lane-return-2026-06-04.md",
+    "command_manifest": "reports/agent1-source-license-custody-command-manifest-2026-06-04.json",
+    "third_missed_blocker": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+    "third_missed_validator": "node scripts/validate_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+    "registry": "reports/agent1-source-license-custody-pipeline-registry-2026-06-04.json"
+  },
+  "task_shape": {
+    "target": "third_missed_source_family",
+    "files": [
+      "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+      "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.md",
+      "scripts/build_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+      "scripts/validate_agent1_orot_third_missed_source_family_target_or_blocker.mjs"
+    ],
+    "exact_command_or_script_to_run": "node scripts/validate_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+    "output_artifact": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+    "schema_counts": {
+      "rows_checked": 169,
+      "occurrences_checked": 2148,
+      "rows_already_in_placeholder_package": 1,
+      "occurrences_already_in_placeholder_package": 31,
+      "exact_linkage_blocker_rows": 168,
+      "exact_linkage_blocker_occurrences": 2117,
+      "spark1_routable": false
+    },
+    "validator": "node scripts/validate_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+    "missing_field_blocker": {
+      "status": "missing_workset_blocker",
+      "missing_fields": [
+        "exact target source family",
+        "row-level source-family/license split",
+        "source/dictionary identity for the 168 blocked rows",
+        "input artifact that maps each row to one of commercial_clean_candidate, noncommercial_educational_candidate, metadata_or_link_only, blocked_or_needs_review",
+        "Agent 6 boundary question tied to the exact row subset"
+      ],
+      "non_missing_fields_observed": [
+        "local route-card/linkage matrix rows",
+        "occurrence counts",
+        "dedupe/navigation evidence",
+        "one row already in placeholder package"
+      ]
+    },
+    "handoff_owner": "Agent 10 for release/package intake; Agent 6 only by exact boundary packet prepared through release owner",
+    "stop_condition": "Stop until an exact third missed source-family workset exists with row-level source-family/license split, exact input artifact path, output schema, validator/gate, and Agent 6 boundary question."
+  },
+  "required_lane_separation": {
+    "commercial_clean_candidate": "not assignable for Contract 3 from current evidence",
+    "noncommercial_educational_candidate": "not assignable for Contract 3 from current evidence; do not flatten NC into commercial-clean or generic blocked",
+    "metadata_or_link_only": "not assignable for Contract 3 from current evidence",
+    "blocked_or_needs_review": "only exact current posture for the 168 rows lacking row-level source-family/license split"
+  },
+  "can_author_runnable_contract_now": false,
+  "why_not_runnable": "The available 169-row matrix is linkage/dedupe/navigation evidence and does not name the exact third source family or row-level source/license lanes required for a Spark-1 runnable source-family contract.",
+  "next_unblock_input_required": {
+    "owner": "Agent 10 or upstream source-lane packet owner",
+    "required_artifact_shape": "row list with token/row id, source_family, source_name, license_label, license_lane, attribution_required, derived_from_nc, commercial_export_allowed, source_url_or_citation, agent6_boundary_required, and blocker_reason",
+    "required_counts": "row count, occurrence count, lane counts, and source-family counts for the exact third missed source-family subset",
+    "required_validator": "validator that proves each row has one of the four required source lanes and preserves NC separation"
+  },
+  "boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true
+  }
+}

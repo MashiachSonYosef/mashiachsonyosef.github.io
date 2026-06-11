@@ -1,0 +1,68 @@
+{
+  "artifact_type": "agent4_agent10_agent2_transform_output_workset_handoff_gate_proof",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Agent10 Agent2 old-dictionary 78-row transform-output proposal workset handoff",
+  "changed_input_artifact": "reports/agent10-agent2-old-dictionary-78-row-transform-output-proposal-workset-handoff-2026-06-06.json",
+  "validator_proof_commands": [
+    {
+      "command": "node --check scripts\\validate_agent10_agent2_transform_output_workset_handoff.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent10_agent2_transform_output_workset_handoff.mjs reports\\agent10-agent2-old-dictionary-78-row-transform-output-proposal-workset-handoff-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 Agent2 transform-output workset handoff validation passed. Rows: 78; occurrences: 1461; blocker: next_transform_output_or_candidate_text_boundary_not_supplied."
+    }
+  ],
+  "files": {
+    "validator": "scripts/validate_agent10_agent2_transform_output_workset_handoff.mjs",
+    "handoff": "reports/agent10-agent2-old-dictionary-78-row-transform-output-proposal-workset-handoff-2026-06-06.json",
+    "workset": "reports/agent10-agent2-ready-old-dictionary-78-row-transform-output-proposal-workset-2026-06-06.json",
+    "zero_text_package": "reports/agent10-old-dictionary-78-row-zero-text-candidate-use-package-planning-2026-06-06.json",
+    "zero_text_consumption": "reports/agent10-old-dictionary-78-row-zero-text-package-planning-consumption-2026-06-06.json",
+    "agent6_zero_text_verdict": "reports/agent6-old-dictionary-78-row-zero-text-candidate-use-package-verdict-2026-06-06.json"
+  },
+  "counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "candidate_text_rows": 0,
+    "definition_lemma_reader_hint_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "result": "transform_output_workset_handoff_validated_file_backed_not_live_delivered",
+  "current_blocker": "next_transform_output_or_candidate_text_boundary_not_supplied",
+  "route_blocker": "missing_current_agent2_thread_route_for_live_delivery",
+  "allowed_agent2_returns": [
+    "compact_nonpublic_transform_output_proposal_matrix_for_exact_78_queue_ids",
+    "missing_pipeline_blocker"
+  ],
+  "next_handoff_owner": "Coordination lane / Agent 8 / Agent 5 routes the workset to current Agent 2. Agent 10 consumes returned matrix or exact blocker and assembles Agent 6 packet only if validation passes.",
+  "stop_condition": "Stop at file-backed handoff proof until Agent2 returns a matrix or exact blocker, or a current Agent2 route proof appears. Do not mutate public/runtime files, route shards, source files, token indexes, lexical payloads, accepted text, export files, publication state, or release state.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

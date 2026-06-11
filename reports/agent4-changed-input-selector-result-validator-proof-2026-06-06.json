@@ -1,0 +1,58 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T09:22:54.486Z",
+  "target": "Agent 4 changed-input selector result validator",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "scripts/select_agent4_changed_input_candidate.mjs",
+  "authored_script": "scripts/validate_agent4_changed_input_candidate_selection.mjs",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent4_changed_input_candidate_selection.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-latest-selector-blocker-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "observed_output": "candidate_count=0 selected_candidate=null newer_file_count=0 blocker_count=1"
+    },
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-after-selector-proof-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "observed_output": "candidate_count=1 selected_candidate=reports/agent3-old-dictionary-candidate-use-direct-source-citation-prereq-matrix-2026-06-06.json newer_file_count=13 blocker_count=0"
+    }
+  ],
+  "counts": {
+    "authored_scripts": 1,
+    "selector_result_cases_validated": 2,
+    "blocker_case_candidate_count": 0,
+    "candidate_case_candidate_count": 1,
+    "candidate_case_selected_candidate_count": 1,
+    "validator_reruns_started": 0,
+    "public_runtime_mutation": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "result": "selector_result_validator_authored_and_validated",
+  "exact_blockers": [
+    {
+      "code": "changed_input_required_for_next_candidate_validation",
+      "details": "Current latest selector blocker still reports no changed package/input after the latest anchor."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-changed-input-selector-result-validator-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-changed-input-selector-result-validator-proof-2026-06-06.md",
+  "handoff_owner": "Agent 4 for selector and validator harness maintenance; Agent 10 or upstream package owner for the next changed package/input.",
+  "next_safe_action": "Use scripts/select_agent4_changed_input_candidate.mjs and scripts/validate_agent4_changed_input_candidate_selection.mjs before running any changed-package validator.",
+  "stop_condition": "Stop after proving the selector-result validator over both no-candidate and selected-candidate cases.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "target": {
+    "work": "Orot",
+    "workset": "third missed dictionary/source-family after next-missed",
+    "candidate_rows": 169,
+    "candidate_occurrences": 2148,
+    "commercial_clean_candidate_rows": 138,
+    "commercial_clean_candidate_occurrences": 1672,
+    "noncommercial_educational_candidate_rows": 0,
+    "noncommercial_educational_candidate_occurrences": 0,
+    "metadata_or_link_only_rows": 0,
+    "metadata_or_link_only_occurrences": 0,
+    "blocked_or_needs_review_rows": 31,
+    "blocked_or_needs_review_occurrences": 476
+  },
+  "inputs": [
+    "reports/agent1-third-missed-source-family-input-rows-2026-06-05.json",
+    "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-05.json",
+    "data/search/lemma-form-index.jsonl"
+  ],
+  "optional_missing_input": {
+    "path": null,
+    "status": "not_applicable",
+    "blocker_if_required": null
+  },
+  "command_or_script": {
+    "build": "node scripts/build_agent1_orot_third_missed_source_family_pipeline.mjs",
+    "current_status": "runnable"
+  },
+  "outputs": {
+    "json": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.json",
+    "markdown": "reports/agent1-orot-third-missed-source-family-map-2026-06-05.md"
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_orot_third_missed_source_family_pipeline.mjs",
+    "contract_validator": "node scripts/validate_agent1_spark1_orot_third_missed_source_family_contract.mjs",
+    "current_status": "required"
+  },
+  "required_classifications": [
+    "commercial_clean_candidate",
+    "noncommercial_educational_candidate",
+    "metadata_or_link_only",
+    "blocked_or_needs_review"
+  ],
+  "license_flags": {
+    "commercial_export_allowed_default": false,
+    "answer_eligible_default": false,
+    "public_emit_default": false,
+    "attribution_required_default": true,
+    "nc_candidate_requires_separate_export": true,
+    "nc_derived_from_nc_value": true,
+    "nc_owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+    "nc_corpus_contamination": false,
+    "metadata_rows_emits_citation_link_only": true
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true,
+    "commercial_export_allowed_now": false
+  },
+  "package_owner": "Agent 1",
+  "agent6_boundary_need": "Agent 6 must resolve exact row/subset boundary decisions for commercial-clean, metadata/link-only, and blocked rows before any candidate text/export behavior is authorized.",
+  "spark1_stop_condition": "output plus validator pass, or exact missing script/input/output/schema/validator/count blocker",
+  "what_must_not_be_accepted": [
+    "source/license/legal acceptance",
+    "QA acceptance",
+    "public/runtime mutation",
+    "Definition authority",
+    "answer acceptance",
+    "accepted gloss/text",
+    "publication readiness",
+    "NC commercial authorization"
+  ]
+}

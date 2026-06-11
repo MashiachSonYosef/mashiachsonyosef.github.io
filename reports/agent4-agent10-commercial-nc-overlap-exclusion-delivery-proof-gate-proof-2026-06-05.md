@@ -1,0 +1,5 @@
+# Agent 4 Commercial/NC Overlap Exclusion Delivery Proof Gate
+
+`target | files | commands | counts | result | blocker if any | next handoff | stop condition`
+
+`agent10-commercial-nc-overlap-exclusion-delivery-proof | files: Agent10 commercial/NC overlap boundary packet, Agent10 delivery proof | commands passed: Agent10 commercial/NC overlap exclusion boundary packet validator | counts: 500 audited rows, 8427 audited occurrences, 197 commercial+NC overlap rows / 4185 occurrences, 57 commercial+NC without BDB Augmented Strong rows / 818 occurrences, 140 commercial+NC plus BDB Augmented Strong rows / 3367 occurrences, 17 Klein-only excluded rows / 259 occurrences | result: Agent10 delivery proof matches the validated commercial+NC overlap exclusion boundary packet and records queueing to Agent6 | blocker if any: wait_for_agent6_exact_commercial_nc_overlap_exclusion_verdict_before_selection_exclusion_candidate_use_transform_output_runtime_answer_definition_export_or_release | next handoff: Agent6 review only; Agent4 does not self-accept | stop condition: do not rerun unless delivery proof, boundary packet, or validator changes`

@@ -1,0 +1,68 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T11:56:00.000Z",
+  "target": "Agent 4 selector A07 boundary contract harness proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent4-changed-input-selection-continuation-4-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\select_agent4_changed_input_candidate.mjs --after=reports\\agent4-changed-input-selection-continuation-3-2026-06-06.json --lookbackMs=900000 --out=reports\\agent4-changed-input-selection-continuation-4-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_changed_input_candidate_selection.mjs --input=reports\\agent4-changed-input-selection-continuation-4-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports\\agent4-changed-input-selection-continuation-4-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "files_changed": [
+    "scripts/select_agent4_changed_input_candidate.mjs",
+    "scripts/validate_agent4_changed_input_candidate_selection.mjs"
+  ],
+  "output_artifact_path": "reports/agent4-selector-a07-boundary-contract-harness-proof-2026-06-06.json",
+  "paired_markdown_path": "reports/agent4-selector-a07-boundary-contract-harness-proof-2026-06-06.md",
+  "evidence_artifacts": [
+    "reports/agent4-changed-input-selection-continuation-4-2026-06-06.json"
+  ],
+  "counts": {
+    "candidate_count": 0,
+    "newer_file_count": 30,
+    "row_count": 30,
+    "blocker_count": 1,
+    "approval_boundary_trigger_A07": 1,
+    "agent6_approval_trigger_remaining_in_current_selector_output": 0
+  },
+  "result": "validated_selector_A07_boundary_contract_harness_fix",
+  "exact_blockers": [
+    {
+      "code": "changed_package_input_missing",
+      "details": "No fresh changed/candidate package input was selected after the latest anchor.",
+      "next_safe_action": "Wait for Agent 10 or upstream package-producing agents to provide the next changed/candidate artifact with exact validator command."
+    },
+    {
+      "code": "selector_contract_was_stale_for_approval_boundary",
+      "details": "The selector no-candidate blocker previously named Agent 6 as the boundary trigger; it now emits A07 approval/SOP/final-validation/release-gate trigger language.",
+      "next_safe_action": "Keep future Agent 4 blockers aligned to A07 approval routing and A06 evidence-only production."
+    }
+  ],
+  "route_boundary": {
+    "approval_sop_final_validation_release_gate": "A07",
+    "evidence_validators_repo_cleaning_production": "A06",
+    "a06_output_status": "evidence_ready_until_A07_approves",
+    "do_not_ask_a06_for_approval": true
+  },
+  "handoff_owner": "Agent 10 or upstream package owner for next changed input; A07 for approval/SOP/final validation/release gate; Agent 4 for evidence/validator packets only.",
+  "stop_condition": "Stop after regenerating the selector blocker with A07 boundary language, validating it with selector and generic Agent 4 packet validators, and recording this harness proof.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, repo cleanup action, destructive command, or release action."
+  ]
+}

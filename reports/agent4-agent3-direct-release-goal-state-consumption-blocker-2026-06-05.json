@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_blocker",
+  "generated_at": "2026-06-05",
+  "status": "changed_input_blocker_validator_failed",
+  "target": "agent3-agent10-direct-release-goal-state-consumption",
+  "changed_package_input_path": "reports/agent3-agent10-direct-release-goal-state-consumption-2026-06-05.json",
+  "changed_package_hash": "sha256:840af84aca8eb36c7715b7551ff724758247da2bb86b2c838bf0055b66901a99",
+  "files": [
+    "reports/agent3-agent10-direct-release-goal-state-consumption-2026-06-05.json",
+    "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "scripts/validate_agent3_agent10_direct_release_goal_state_consumption.mjs"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent3_agent10_direct_release_goal_state_consumption.mjs reports\\agent3-agent10-direct-release-goal-state-consumption-2026-06-05.json",
+      "result": "failed",
+      "errors": [
+        "direct matrix inputs mismatch",
+        "direct matrix release-relevant rows mismatch",
+        "direct matrix Agent 6 handoff mismatch",
+        "Spark10/local inputs must match artifact snapshot",
+        "Spark10/local release-relevant rows must match artifact snapshot",
+        "Spark10/local handoff candidates must match artifact snapshot",
+        "Spark10/local row count must match artifact snapshot",
+        "Spark10/local Agent 6 handoff rows must be 12"
+      ]
+    }
+  ],
+  "counts": {
+    "artifact_spark10_inputs_checked": 322,
+    "current_spark10_inputs_checked": 337,
+    "artifact_spark10_rows": 322,
+    "current_spark10_rows": 337,
+    "artifact_spark10_release_relevant_rows": 83,
+    "current_spark10_release_relevant_rows": 71,
+    "artifact_spark10_agent6_handoff_candidates": 12,
+    "current_spark10_agent6_handoff_candidates": 0,
+    "artifact_spark10_agent6_handoff_rows": 12,
+    "current_spark10_agent6_handoff_rows": 0,
+    "validators_passed": 0,
+    "validators_failed": 1
+  },
+  "result": "changed_input_blocker_validator_failed",
+  "blocker_if_any": "direct/Spark10 matrix snapshot drift; validator reports 8 mismatches",
+  "next_handoff": "Agent3/Agent10 refresh direct-release consumption against current Spark10 intake or provide a new exact workset",
+  "stop_condition": "do not rerun until direct-release consumption artifact or Spark10 intake changes",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action",
+    "public/runtime mutation"
+  ]
+}

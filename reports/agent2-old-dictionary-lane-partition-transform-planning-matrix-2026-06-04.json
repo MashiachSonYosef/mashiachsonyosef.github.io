@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_old_dictionary_lane_partition_transform_planning_matrix",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / Option C HYBRID",
+  "status": "nonpublic_lane_partition_transform_planning_matrix_pre_agent6_boundary",
+  "target": "old-dictionary-excluded-row-license-lane-reaudit lane partition planning",
+  "inputs": {
+    "agent1_export_partitions": "reports/agent1-old-dictionary-license-lane-export-partitions-2026-06-04.json",
+    "agent2_old_dictionary_lane_intake": "reports/agent2-old-dictionary-lane-planning-intake-2026-06-04.json"
+  },
+  "count_semantics": {
+    "partition_counts_are_source_family_hit_totals": true,
+    "row_count_is_not_exclusive_export_row_count": true,
+    "reason": "The same token row may have hits in multiple source families, so lane row_count and occurrence_count sum source-family evidence hits rather than mutually exclusive export rows.",
+    "exclusive_export_row_counts_authorized_now": false
+  },
+  "lane_counts": {
+    "commercial_clean_candidate": {
+      "source_family_count": 3,
+      "row_count": 500,
+      "occurrence_count": 10940
+    },
+    "noncommercial_educational_candidate": {
+      "source_family_count": 1,
+      "row_count": 214,
+      "occurrence_count": 4444
+    },
+    "metadata_or_link_only": {
+      "source_family_count": 0,
+      "row_count": 0,
+      "occurrence_count": 0
+    },
+    "blocked_or_needs_review": {
+      "source_family_count": 1,
+      "row_count": 222,
+      "occurrence_count": 4435
+    }
+  },
+  "row_count_note": "Lane row_count values are source-family hit totals, not mutually exclusive candidate/export row counts.",
+  "matrix_rows": [
+    {
+      "source_family": "Jastrow Dictionary",
+      "source_name": "Jastrow Dictionary",
+      "license_label": "public-domain-observed",
+      "license_lane": "commercial_clean_candidate",
+      "row_count": 210,
+      "occurrence_count": 4474,
+      "attribution_required": false,
+      "derived_from_nc": false,
+      "commercial_export_allowed": true,
+      "owner_use_attestation": null,
+      "corpus_contamination": null,
+      "source_url_or_citation": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+      "agent6_boundary_required": true,
+      "export_behavior": "commercial_clean_partition_only_no_public_emit",
+      "missing_evidence": [],
+      "candidate_text_rows_now": 0,
+      "definition_content_rows_now": 0,
+      "answer_eligible_rows_now": 0,
+      "public_emit_rows_now": 0,
+      "blocker_to_candidate_generation": "requires_exact_agent6_boundary_before_candidate_text_storage_display_or_export"
+    },
+    {
+      "source_family": "BDB Dictionary",
+      "source_name": "BDB Dictionary",
+      "license_label": "public-domain-observed",
+      "license_lane": "commercial_clean_candidate",
+      "row_count": 221,
+      "occurrence_count": 4418,
+      "attribution_required": false,
+      "derived_from_nc": false,
+      "commercial_export_allowed": true,
+      "owner_use_attestation": null,
+      "corpus_contamination": null,
+      "source_url_or_citation": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+      "agent6_boundary_required": true,
+      "export_behavior": "commercial_clean_partition_only_no_public_emit",
+      "missing_evidence": [],
+      "candidate_text_rows_now": 0,
+      "definition_content_rows_now": 0,
+      "answer_eligible_rows_now": 0,
+      "public_emit_rows_now": 0,
+      "blocker_to_candidate_generation": "requires_exact_agent6_boundary_before_candidate_text_storage_display_or_export"
+    },
+    {
+      "source_family": "BDB Aramaic Dictionary",
+      "source_name": "BDB Aramaic Dictionary",
+      "license_label": "public-domain-observed",
+      "license_lane": "commercial_clean_candidate",
+      "row_count": 69,
+      "occurrence_count": 2048,
+      "attribution_required": false,
+      "derived_from_nc": false,
+      "commercial_export_allowed": true,
+      "owner_use_attestation": null,
+      "corpus_contamination": null,
+      "source_url_or_citation": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+      "agent6_boundary_required": true,
+      "export_behavior": "commercial_clean_partition_only_no_public_emit",
+      "missing_evidence": [],
+      "candidate_text_rows_now": 0,
+      "definition_content_rows_now": 0,
+      "answer_eligible_rows_now": 0,
+      "public_emit_rows_now": 0,
+      "blocker_to_candidate_generation": "requires_exact_agent6_boundary_before_candidate_text_storage_display_or_export"
+    },
+    {
+      "source_family": "Klein Dictionary",
+      "source_name": "Klein Dictionary",
+      "license_label": "CC-BY-NC",
+      "license_lane": "noncommercial_educational_candidate",
+      "row_count": 214,
+      "occurrence_count": 4444,
+      "attribution_required": true,
+      "derived_from_nc": true,
+      "commercial_export_allowed": false,
+      "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+      "corpus_contamination": false,
+      "source_url_or_citation": "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+      "agent6_boundary_required": true,
+      "export_behavior": "separate_nc_educational_partition_only_no_commercial_export",
+      "missing_evidence": [
+        "Agent 6/public boundary before any display/storage/public/answer/export behavior"
+      ],
+      "candidate_text_rows_now": 0,
+      "definition_content_rows_now": 0,
+      "answer_eligible_rows_now": 0,
+      "public_emit_rows_now": 0,
+      "blocker_to_candidate_generation": "requires_exact_nc_educational_agent6_boundary_before_candidate_text_storage_display_or_export"
+    },
+    {
+      "source_family": "BDB Augmented Strong",
+      "source_name": "BDB Augmented Strong",
+      "license_label": "unresolved-independent-custody",
+      "license_lane": "blocked_or_needs_review",
+      "row_count": 222,
+      "occurrence_count": 4435,
+      "attribution_required": false,
+      "derived_from_nc": false,
+      "commercial_export_allowed": false,
+      "owner_use_attestation": null,
+      "corpus_contamination": null,
+      "source_url_or_citation": "reports/agent6-orot-sefaria-nc-aware-family-boundary-final-verdict-2026-06-03.json",
+      "agent6_boundary_required": true,
+      "export_behavior": "excluded_from_candidate_text_export",
+      "missing_evidence": [
+        "independent source/license/custody basis",
+        "source URL or version source",
+        "license label and allowed fields",
+        "Agent 6 boundary if evidence appears"
+      ],
+      "candidate_text_rows_now": 0,
+      "definition_content_rows_now": 0,
+      "answer_eligible_rows_now": 0,
+      "public_emit_rows_now": 0,
+      "blocker_to_candidate_generation": "blocked_or_needs_review_source_family_missing_independent_custody"
+    }
+  ],
+  "matrix_counts": {
+    "source_family_rows": 5,
+    "commercial_clean_candidate_source_families": 3,
+    "noncommercial_educational_candidate_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "candidate_text_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0
+  },
+  "allowed_pipeline_effect_now": {
+    "may_generate_lane_partition_planning_rows": true,
+    "may_generate_candidate_text_rows": false,
+    "may_export_candidate_text": false,
+    "may_store_definition_content": false,
+    "may_mark_answer_eligible": false,
+    "may_public_emit": false
+  },
+  "exact_blocker": "old_dictionary_candidate_text_consumption_export_storage_requires_new_exact_agent6_boundary",
+  "required_next_input_for_candidate_generation": [
+    "changed source-family/linkage/dictionary evidence for the 168 Orot unmatched rows",
+    "row/subset package proposing candidate text consumption or export",
+    "exact Agent 6 boundary for that row/subset package before any text/storage/public/answer use"
+  ],
+  "zero_emission_counters": {
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0
+  },
+  "validator": "node scripts/validate_agent2_old_dictionary_lane_partition_transform_planning_matrix.mjs reports/agent2-old-dictionary-lane-partition-transform-planning-matrix-2026-06-04.json",
+  "handoff_owner": "Agent 10 first; Agent 6 only by exact boundary packet prepared through release owner",
+  "stop_condition": "Stop at lane-partition planning rows until an exact Agent 6 boundary permits candidate text/package/display/public/answer use.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "definition-content storage",
+    "candidate-text export",
+    "commercial export permission",
+    "NC commercial authorization"
+  ]
+}

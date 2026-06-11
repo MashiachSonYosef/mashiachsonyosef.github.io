@@ -1,0 +1,48 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T23:16:00.000Z",
+  "target": "Agent 4 validator/prereq packet sweep after Agent3 source-family selection batch plan proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent4-agent3-source-family-selection-batch-plan-gate-proof-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep.mjs --out=reports\\agent4-validator-prereq-packet-sweep-result-after-source-family-selection-batch-plan-2026-06-06.json",
+      "timeout_ms": 120000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_result.mjs --input=reports\\agent4-validator-prereq-packet-sweep-result-after-source-family-selection-batch-plan-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "agent4_packet_count": 84,
+    "passed": 84,
+    "failed": 0,
+    "shape_proof": 57,
+    "shape_proof_with_blocker": 24,
+    "shape_blocker": 3,
+    "command_count_total": 180,
+    "blocker_count_total": 141
+  },
+  "result": "validated_agent4_packet_corpus_after_agent3_source_family_selection_batch_plan_proof",
+  "exact_blockers": [
+    {
+      "code": "changed_input_required_for_next_sweep",
+      "details": "Do not repeat this sweep unless a new changed/candidate input, selector output, or proof packet appears."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-validator-prereq-packet-sweep-after-source-family-selection-batch-plan-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-validator-prereq-packet-sweep-after-source-family-selection-batch-plan-proof-2026-06-06.md",
+  "machine_sweep_result": "reports/agent4-validator-prereq-packet-sweep-result-after-source-family-selection-batch-plan-2026-06-06.json",
+  "handoff_owner": "Agent 4 for changed-input-only validation discipline; Agent 10 or upstream package owner for the next changed package/input.",
+  "next_safe_action": "Run the changed-input selector from this wrapper anchor, then perform backlog-aware review before relying only on latest-anchor mtime selection.",
+  "stop_condition": "Stop after validating the Agent4 packet corpus after the Agent3 source-family selection batch plan proof.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

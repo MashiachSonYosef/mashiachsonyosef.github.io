@@ -1,6 +1,6 @@
 # HUD Route Release Gate Validation
 
-Generated: 2026-06-01T14:58:20.008Z
+Generated: 2026-06-01T17:46:48.864Z
 Verdict: pass_with_warnings
 Gate status: pass_with_warnings
 Release scope: public_lookup_integrity_passed_current_route_source_reconciliation_unproven
@@ -9,11 +9,14 @@ Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 ## Publication Boundary
 
 - Publication status: blocked_no_render
-- Validates: hud_route_lookup_integrity, route_card_publication_boundary
+- Validates: hud_route_release_stamp, hud_route_lookup_integrity, route_card_publication_boundary
 - Does not clear: translation_output, source_publication, public_lexical_export_reuse, accepted_definition_authority
 - Answer eligibility scope: hud_answer_slot_only_not_translation_or_publication_readiness
 - Warning status blocks publication claim: true
 - Current route sources reconciled: false
+- Input-freeze publication status: blocked_no_render
+- Input-freeze current route inputs reconciled: false
+- Input-freeze public lookup artifacts changed: false
 
 ## Counts
 

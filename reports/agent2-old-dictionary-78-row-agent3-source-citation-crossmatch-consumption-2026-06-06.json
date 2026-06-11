@@ -1,0 +1,95 @@
+{
+  "artifact_type": "agent2_old_dictionary_78_row_agent3_source_citation_crossmatch_consumption",
+  "generated_at": "2026-06-06T08:29:30Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "old-dictionary-commercial-clean-78-row-transform-output-proposal-preboundary",
+  "files_used": {
+    "agent3_crossmatch": "reports/agent3-old-dictionary-candidate-use-source-citation-dependency-crossmatch-2026-06-06.json",
+    "agent10_agent5_route_blocker_handoff": "reports/agent10-agent5-handoff-old-dictionary-78-row-agent1-route-blocker-2026-06-06.json",
+    "agent2_stale_route_blocker_validation": "reports/agent2-old-dictionary-78-row-transform-output-proposal-blocker-stale-agent1-route-validation-result-2026-06-06.json",
+    "agent10_source_citation_workset": "reports/agent10-agent1-ready-old-dictionary-78-row-source-citation-enrichment-workset-2026-06-06.json",
+    "agent10_source_citation_route_blocker": "reports/agent10-agent1-old-dictionary-78-row-source-citation-enrichment-live-route-blocker-2026-06-06.json"
+  },
+  "lane_counts_rows_consumed": {
+    "rows": 78,
+    "occurrences": 1461,
+    "source_license_lane": "commercial_clean_candidate",
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "boundary_chain_rows_linked": 78,
+    "boundary_chain_rows_missing": 0,
+    "row_count_mismatch": 0,
+    "occurrence_count_mismatch": 0,
+    "source_citation_supplied_rows": 0,
+    "source_citation_missing_rows": 78,
+    "transform_rule_supplied_rows": 0,
+    "transform_rule_missing_rows": 78,
+    "transform_ready_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "source_acceptance_claims": 0,
+    "acceptance_claims": 0
+  },
+  "agent3_lineage_evidence_consumed": {
+    "status": "evidence-ready",
+    "authority_role": "source_citation_dependency_navigation_only_no_source_or_transform_authority",
+    "source_family_rows": 3,
+    "source_family_memberships": 159,
+    "source_rid_references": 393,
+    "unique_source_rids": 344,
+    "source_rid_prefix_rows": 21,
+    "exact_blocker_rows": 5,
+    "stale_agent1_route_blocker_rows": 1,
+    "source_families": [
+      {
+        "source_family": "BDB Aramaic Dictionary",
+        "candidate_rows": 21,
+        "candidate_occurrences": 616,
+        "source_rid_references": 30,
+        "unique_source_rids": 19
+      },
+      {
+        "source_family": "BDB Dictionary",
+        "candidate_rows": 63,
+        "candidate_occurrences": 1271,
+        "source_rid_references": 179,
+        "unique_source_rids": 149
+      },
+      {
+        "source_family": "Jastrow Dictionary",
+        "candidate_rows": 75,
+        "candidate_occurrences": 1417,
+        "source_rid_references": 184,
+        "unique_source_rids": 176
+      }
+    ]
+  },
+  "transform_action_once_unblocked": "After current Agent 1 supplies row-level source_citation_or_url for exact 78 rows and Agent10 supplies an exact Agent2 transform rule for proposed_candidate_text/proposed_definition_text/proposed_lemma_text/proposed_reader_hint_text, Agent2 may produce a compact non-public proposal matrix for Agent6 review only.",
+  "exact_blockers": [
+    "missing_source_citation_or_url_for_78_row_subset",
+    "missing_source_field::source_citation_or_url",
+    "missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text",
+    "new_exact_agent6_packet_required_before_transform_output_candidate_text_definition_lemma_reader_hint_content_storage_answer_eligibility_route_write_public_runtime_mutation_export_accepted_text_publication_readiness_or_release",
+    "stale_agent1_registry_target_current_agent1_thread_required"
+  ],
+  "handoff_owner": {
+    "agent5_coordination": "Preserve Agent10 Agent5 route-blocker handoff and provide current live Agent 1 thread for source-citation enrichment.",
+    "agent1": "Return source_citation_or_url for exact 78 rows or exact missing-source blocker.",
+    "agent10": "Consume Agent1 return and provide exact transform rule before returning work to Agent2.",
+    "agent2": "No transform matrix until source_citation_or_url and exact transform rule are both present.",
+    "agent6": "No transform-output review packet until Agent2 matrix exists, or a narrower no-text question is selected."
+  },
+  "output_artifact_path": "reports/agent2-old-dictionary-78-row-agent3-source-citation-crossmatch-consumption-2026-06-06.json",
+  "stop_condition": "Stop at crossmatch consumption. This artifact does not supply source citations, transform rules, candidate text, definition/lemma/reader-hint content, answer eligibility, route writes, source/license/legal acceptance, QA acceptance, public/runtime mutation, accepted text, export, publication readiness, or release action."
+}

@@ -1,0 +1,30 @@
+# Agent 14 Override-Watch Guardrail Packet - 2026-06-05
+
+Mode: `WEEKLY_LEXICON_EXPANSION_GOAL_MODE` / direct Agent run mode.
+
+## Quarantine / Consumption Boundary
+
+Status: `rejected_scope_do_not_route`.
+
+Owner correction: Agent 14's only intended goal was to make a mockup. The override-watch/guardrail scope in this packet was not requested by the owner and must not be used.
+
+Allowed use: none as operating guidance. The only Agent 14 material that may be studied is the separate pre-HUD/mockup idea where it provides simple plain-English reader wording.
+
+Forbidden use: any downstream work order, route, checklist, intake packet, blocker closure, authority claim, or instruction to Agents 1-7/10/12 based on this packet.
+
+If a real contradiction exists, Agent 13, Agent 7, Agent 8, or Oracle 9 must restate it independently from current evidence and route it through the normal owner/pipeline boundary. Do not cite this packet as authority. Do not ask Agent 14 for governance/override/watch work again unless the owner explicitly changes Agent 14's role.
+
+Purpose: hold drift boundaries for the weekly lexicon expansion operating system. Agent 14 is override-watch / drift-shield only, not bypass authority, not mockup lane, and not acceptance authority.
+
+Boundary: no QA/source/license/legal/Definition/runtime/publication/product/answer acceptance, no accepted gloss/text, no NC commercial authorization, no release action.
+
+| risk | current evidence to inspect | protected pipeline boundary | correction owner | stop condition |
+|---|---|---|---|---|
+| Owner intent or Agent 14 posture is treated as active law/state instead of a correction signal. | Owner-force phrasing in current thread packets; Agent 14 override language; any control/report file claiming Agent 14 can set active state; route notes that convert a warning into policy. | Owner intent can guide correction, but active law/state must come from the proper operating artifact and acceptance lane. Agent 14 may flag contradiction only; it cannot declare state, posture, accepted text, or runtime authority. | Agent 14 flags the contradiction; relevant lane owner removes state-setting language; owner decides if an actual policy artifact is needed. | Stop when packet/report language says "guardrail", "correction", or "blocker" only, and contains no state-setting or acceptance claim. |
+| NC/source-lane policy bypasses the Agent 1 -> Agent 6 -> Agent 10 -> Agent 7 pipeline. | Source custody packets; NC/noncommercial rows; Agent 6 review queue; Agent 10 work queue; Agent 7 publication/release notes; any artifact that moves NC/source rows directly to answer/public/runtime. | Source/license handling stays lane-pure: Agent 1 gathers/custodies, Agent 6 reviews, Agent 10 executes cleared work, Agent 7 handles publication/release boundary. No NC commercial authorization or public answer eligibility can be inferred from a guardrail. | Agent 14 flags bypass; Agent 1/6/10/7 lane owners correct their own handoff text. | Stop when NC/source rows are explicitly held in their lane and no artifact claims commercial authorization, answer eligibility, publication readiness, or release. |
+| Old Agent 1 fallback is used instead of new Agent 1 `019e975d-dc9f-7020-a7c8-885d083a837e`. | Route/callback packets naming Agent 1; agent registry entries; handoff notes; thread IDs in current source-lane tasks; any fallback route created before the new Agent 1 id. | Current Agent 1 routing must use `019e975d-dc9f-7020-a7c8-885d083a837e` unless superseded by a newer owner-provided route artifact. Agent 14 cannot invent or promote another route. | Routing owner / sender corrects stale Agent 1 target; Agent 14 reports the stale-route contradiction only. | Stop when the active packet names new Agent 1 id or states the exact blocker preventing direct delivery. |
+| Assistant/Spark capacity language resurrects despite current phaseout. | Packets that say Sparks/assistant lanes are active capacity; spawn/pulse notes; background coordination reports; old spark registry language reused as current operating capacity. | Current phaseout stands unless owner explicitly re-enables a repaired lane. Agent 14 must not route work to glitched assistant/Spark lanes or describe them as current capacity. | Agent 14 flags resurrection; the emitting agent removes capacity claims or marks the lane unavailable. | Stop when artifact says assistant/Spark lanes are phased out/glitched for current capacity, or owner provides an explicit repaired-lane re-enable. |
+| Wartime/Orot-only relapse overrides weekly normal mode. | Goal packets and status notes that narrow all work to Orot/war language; Orot-only emergency framing; Agent 14 reports treating wartime/Orot as universal priority under weekly mode. | Weekly lexicon expansion mode remains normal operating mode. Orot can be a bounded work item, not the entire operating frame, unless owner issues a new explicit mode change. | Agent 14 flags mode drift; active lane owner rewrites task scope to weekly mode with Orot as bounded item if needed. | Stop when the artifact preserves weekly normal mode and does not elevate Orot/war wording into global priority. |
+| Repo-dirt cleanup uses `git add -A`, reset, blind deletion, or unclassified staging. | Git cleanup instructions; staging/commit notes; dirty-worktree reports; commands proposing `git add -A`, `git reset`, broad deletion, or cleanup without classifying changed paths. | Dirty repo handling must be path-classified and owner-safe. No blind staging, no destructive reset, no broad deletion, no cleanup of unrelated/user changes. | Acting engineer / lane owner must classify paths and scope any staging to explicit files; Agent 14 flags unsafe cleanup pattern only. | Stop when cleanup plan names exact files, excludes unrelated changes, avoids destructive commands, and stages only classified intended paths. |
+
+Use: contradiction/correction guardrail only. This packet does not accept, approve, authorize, publish, release, define, or change runtime behavior.

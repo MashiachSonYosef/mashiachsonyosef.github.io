@@ -1,0 +1,53 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T10:42:00.000Z",
+  "target": "Agent 4 validator/prereq packet sweep after Agent2 gate consumption proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent4-agent2-direct-source-citation-gate-consumption-gate-proof-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports\\agent4-agent2-direct-source-citation-gate-consumption-gate-proof-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep.mjs --out=reports\\agent4-validator-prereq-packet-sweep-result-after-agent2-gate-consumption-2026-06-06.json",
+      "timeout_ms": 300000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_result.mjs --input=reports\\agent4-validator-prereq-packet-sweep-result-after-agent2-gate-consumption-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "sweep_count": 114,
+    "sweep_passed": 114,
+    "sweep_failed": 0,
+    "proof_shape_count": 77,
+    "proof_with_blocker_shape_count": 34,
+    "blocker_shape_count": 3,
+    "command_count_total": 236,
+    "blocker_count_total": 175
+  },
+  "result": "validated_agent4_packet_sweep_after_agent2_gate_consumption_proof",
+  "exact_blockers": [
+    {
+      "code": "no_acceptance_from_packet_sweep",
+      "details": "The sweep validates Agent4 packet shape and command/blocker accounting only. It does not accept QA, source custody, publication, public runtime, or answer authority."
+    }
+  ],
+  "output_artifact_path": "reports/agent4-validator-prereq-packet-sweep-after-agent2-gate-consumption-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-validator-prereq-packet-sweep-after-agent2-gate-consumption-proof-2026-06-06.md",
+  "sweep_result_artifact": "reports/agent4-validator-prereq-packet-sweep-result-after-agent2-gate-consumption-2026-06-06.json",
+  "handoff_owner": "Agent 4 for validator/prereq packet hygiene; upstream package owners remain responsible for package contents.",
+  "next_safe_action": "Run changed-input selection from this sweep wrapper with lookback scanning and validate only a selected changed/candidate input if one appears.",
+  "stop_condition": "Stop after validating the Agent2 gate consumption proof and triggered Agent4 packet sweep.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ]
+}

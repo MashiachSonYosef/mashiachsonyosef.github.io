@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent1_bdb_augmented_strong_live_source_custody_reprobe_gate_proof",
+  "generated_at": "2026-06-05T15:05:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent1-bdb-augmented-strong-live-source-custody-reprobe",
+  "status": "validator_passed_external_candidate_observed_exact_custody_linkage_still_blocked",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, transform authorization, candidate text export, Agent6 delivery, accepted gloss/text, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent1-bdb-augmented-strong-live-source-custody-reprobe-2026-06-05.json",
+      "sha256": "0c626c0a9a2aa60006d7ecea960c80afa9ed134daebb57b7669fe3111a8e079e",
+      "artifact_type": "agent1_bdb_augmented_strong_live_source_custody_reprobe",
+      "status": "external_candidate_observed_exact_custody_linkage_still_blocked"
+    },
+    {
+      "path": "scripts/validate_agent1_bdb_augmented_strong_live_source_custody_reprobe.mjs",
+      "sha256": "102505e58f3718997eb1741d464af54a46446bc8f934ac2192692ec1ddd6b94d",
+      "artifact_type": "validator_script",
+      "status": "existing_exact_validator_for_agent1_bdb_augmented_strong_live_source_custody_reprobe"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_bdb_augmented_strong_live_source_custody_reprobe.mjs reports\\agent1-bdb-augmented-strong-live-source-custody-reprobe-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Rows: 222; occurrences: 4435; license lane blocked_or_needs_review; candidate source/license basis observed true; exact linkage proven false; candidate text rows 0; Agent6 delivery 0."
+    }
+  ],
+  "counts": {
+    "rows": 222,
+    "occurrences": 4435,
+    "repo_candidate_source_file_count": 0,
+    "sefaria_exact_title_probe_count": 3,
+    "live_probe_result_count": 5,
+    "candidate_source_license_basis_observed": 1,
+    "exact_linkage_to_current_imported_row_subset_proven": 0,
+    "exact_blocker_count": 4,
+    "openscriptures_readme_status": 200,
+    "openscriptures_augindex_status": 200
+  },
+  "zero_counters": {
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0,
+    "agent6_deliveries": 0,
+    "public_runtime_mutation": 0,
+    "queue_mutation": 0,
+    "staging": 0
+  },
+  "blockers": [
+    "bdb_augmented_strong_exact_custody_linkage_to_external_candidate_not_proven",
+    "bdb_augmented_strong_sefaria_exact_title_source_license_fields_missing",
+    "bdb_augmented_strong_import_row_subset_source_mapping_missing",
+    "bdb_augmented_strong_agent6_boundary_required_if_evidence_becomes_linked"
+  ],
+  "result": "target | agent1-bdb-augmented-strong-live-source-custody-reprobe | files in packet | commands passed: Agent1 BDB Augmented Strong live source custody reprobe validator | counts: 222 rows, 4435 occurrences, 5 live probes, 3 Sefaria exact-title probes, OpenScriptures candidate source/license basis observed, 0 repo candidate source files, exact linkage to imported row subset not proven, 4 exact blockers, 0 transform/candidate/source/answer/public/route/Definition/accepted-text/Agent6-delivery/release rows | result: validator passed and blocked_or_needs_review lane remains | blocker if any: external candidate evidence is plausible but exact custody linkage to current imported BDB Augmented Strong row subset is not proven | next handoff: Agent1 must prove or reject OpenScriptures linkage; Agent2 may consume only blocked/review evidence; Agent6 route only after exact linkage exists | stop condition: do not rerun unless reprobe artifact, base blocker, old-dictionary reaudit, validator, or source/custody linkage evidence changes",
+  "handoff_owner": "Agent 1 source/license/custody lane; Agent 2 transform lane remains blocked; Agent 6 only after exact source/custody linkage is assembled; Agent 10 no release assembly for this subset.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not reclassify, transform, publish, deliver to Agent6, stage, create Definition/answer content, claim acceptance, or authorize downstream use from this packet."
+}

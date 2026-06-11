@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_spark1_pipeline_contract",
+  "status": "pipeline_contract_runnable_validated",
+  "target": {
+    "work": "Orot",
+    "workset": "next missed dictionary/source-family after NC/Klein",
+    "candidate_rows": 50,
+    "candidate_occurrences": 1193,
+    "commercial_clean_candidate_rows": 50,
+    "commercial_clean_candidate_occurrences": 1193,
+    "nc_candidate_rows": 0,
+    "nc_candidate_occurrences": 0
+  },
+  "inputs": [
+    "reports/agent10-orot-next-missed-dictionary-placeholder-candidates-2026-06-03.json",
+    "reports/agent10-orot-next-missed-dictionary-cleared-append-2026-06-03.json",
+    "reports/agent1-orot-sefaria-nc-aware-family-custody-display-review-2026-06-03.json",
+    "reports/agent1-orot-dry-run-source-license-display-review-2026-06-03.json",
+    "data/build/orot/reader-hint-placeholder-candidates.json"
+  ],
+  "optional_missing_input": {
+    "path": "reports/agent2-orot-missed-dictionary-reader-hint-candidate-package-2026-06-04.json",
+    "status": "absent",
+    "blocker_if_required": "missing_input_blocker"
+  },
+  "command_or_script": {
+    "build": "node scripts/build_agent1_orot_next_missed_source_family_pipeline.mjs",
+    "current_status": "runnable"
+  },
+  "outputs": {
+    "json": "reports/agent1-orot-next-missed-source-family-map-2026-06-04.json",
+    "markdown": "reports/agent1-orot-next-missed-source-family-map-2026-06-04.md"
+  },
+  "validator": {
+    "command": "node scripts/validate_agent1_orot_next_missed_source_family_pipeline.mjs",
+    "contract_validator": "node scripts/validate_agent1_spark1_orot_next_missed_source_family_contract.mjs",
+    "current_status": "validated"
+  },
+  "required_classifications": [
+    "commercial_clean_candidate",
+    "noncommercial_educational_candidate",
+    "metadata_or_link_only",
+    "blocked_or_needs_review"
+  ],
+  "expected_classification_from_current_evidence": {
+    "commercial_clean_candidate": {
+      "rows": 50,
+      "occurrences": 1193
+    },
+    "noncommercial_educational_candidate": {
+      "rows": 0,
+      "occurrences": 0
+    },
+    "metadata_or_link_only": "BDB Augmented Strong if present only as blocked/present-but-unused metadata",
+    "blocked_or_needs_review": "families lacking independent source/license/custody basis"
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true,
+    "commercial_export_allowed_now": false
+  },
+  "package_owner": "Agent 1",
+  "agent6_boundary_need": "Agent 6 must decide any exact row/subset behavior if package use is requested.",
+  "spark1_stop_condition": "output plus validator pass, or exact missing script/input/output/schema/validator/count blocker",
+  "what_must_not_be_accepted": [
+    "source/license/legal acceptance",
+    "QA acceptance",
+    "public/runtime mutation",
+    "Definition authority",
+    "answer acceptance",
+    "accepted gloss/text",
+    "publication readiness",
+    "NC commercial authorization"
+  ]
+}

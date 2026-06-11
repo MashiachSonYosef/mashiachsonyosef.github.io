@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent2_broad_definition_workbench_sample_package",
+  "generated_at": "2026-06-04T08:37:17-04:00",
+  "status": "packaged_non_authoritative_route_shape_reader_planning_evidence",
+  "active_mode": "BROAD_CORPUS_EXPANSION",
+  "compact_route_shape": {
+    "lane": "Agent 2 broad lexical / definition / lemma / reader-hint",
+    "returned_artifact_consumed": "reports/spark2-broad-definition-workbench-sample-refresh-2026-06-04.md",
+    "package_artifact": "reports/agent2-broad-definition-workbench-sample-package-2026-06-04.md",
+    "current_output_artifact": "data/definitions/definition-workbench-sample.json",
+    "next_definition_lemma_reader_hint_workset": "no_queued_item",
+    "wake_condition": "New exact broad definition/lemma/reader-hint queue item exists with target workset, inputs, commands, output path/schema, and validator."
+  },
+  "boundary_proof": {
+    "agent7_delivery_proof": "reports/agent7-agent6-broad-definition-workbench-sample-delivery-proof-2026-06-04.md",
+    "agent6_verdict": "reports/agent6-broad-definition-workbench-sample-boundary-verdict-2026-06-04.md",
+    "agent6_disposition_observed_locally": "WARN-ACCEPTED for exact 200-row Definition Workbench sample as non-authoritative route-shape / reader-planning evidence only",
+    "pending_verdict_wording_status": "stale_if_present_elsewhere"
+  },
+  "inputs_consumed": [
+    ".local-cache/workbench-evidence/token-inventory.json",
+    "data/definitions/hud-route-lookup/manifest.json",
+    "data/definitions/definition-workbench-sample.json",
+    "reports/definition-workbench-sample-report.md",
+    "reports/spark2-broad-definition-workbench-sample-refresh-2026-06-04.md",
+    "reports/agent7-agent6-broad-definition-workbench-sample-delivery-proof-2026-06-04.md",
+    "reports/agent6-broad-definition-workbench-sample-boundary-verdict-2026-06-04.md"
+  ],
+  "counts": {
+    "sample_rows": 200,
+    "rows_with_route_cards": 200,
+    "rows_without_route_cards": 0,
+    "rows_with_complete_source_license": 200,
+    "multi_answer_rows": 96,
+    "status_counts": {
+      "conflicting": 96,
+      "proposed_only": 49,
+      "single_answer_source_complete": 55
+    },
+    "review_status_counts": {
+      "unreviewed_machine_sample": 200,
+      "verified": 0
+    },
+    "route_lookup_distinct_normalized_tokens": 175216,
+    "route_lookup_cards": 539661,
+    "usage_link_count_null_rows": 200,
+    "public_reader_rows": 0,
+    "route_shard_edits": 0,
+    "public_runtime_mutations": 0,
+    "answer_rows_accepted": 0,
+    "accepted_gloss_text_rows": 0
+  },
+  "validator_gate": {
+    "command": "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample.json",
+    "result": "pass",
+    "stdout": "Definition Workbench sample validation passed. Rows: 200."
+  },
+  "missing_pipeline_blocker": "none_for_returned_sample_refresh",
+  "semantics_preserved": [
+    "status is machine route-shape status, not reviewed lexical authority",
+    "single_answer_source_complete is not a verified definition, answer, accepted gloss, or publication claim",
+    "review_status=verified is not emitted",
+    "answer card identifiers and counts are evidence only",
+    "source_license_complete=true is a completeness indicator only, not source/provenance or license acceptance",
+    "conflicting multi-answer rows remain warnings and cannot be collapsed into hidden winners",
+    "proposed_only rows remain proposed-only"
+  ],
+  "stop_condition": "Stop after this compact Agent 2 package because the returned 200-row sample has been consumed, packaged, and validator-confirmed.",
+  "what_remains_blocked": [
+    "Full Definition Workbench index",
+    "Reviewed lexical authority",
+    "Answer eligibility or answer acceptance",
+    "Accepted gloss/text",
+    "Public reader output",
+    "Public/runtime mutation",
+    "Route-shard edit",
+    "Route publication support",
+    "Source/provenance/license acceptance",
+    "QA acceptance beyond the Agent 6 non-authoritative evidence docket",
+    "Publication readiness"
+  ],
+  "boundary": {
+    "non_authoritative_route_shape_reader_planning_evidence_only": true,
+    "qa_acceptance": false,
+    "source_provenance_acceptance": false,
+    "license_acceptance": false,
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "runtime_public_acceptance": false,
+    "publication_readiness": false,
+    "route_publication_support": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "accepted_gloss": false,
+    "accepted_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "publication_status": "blocked_no_render"
+  }
+}

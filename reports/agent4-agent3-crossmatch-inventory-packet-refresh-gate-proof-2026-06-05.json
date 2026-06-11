@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T00:00:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane_owner": "Agent 4",
+  "target": "agent3-crossmatch-inventory-packet-refresh",
+  "reason": "Agent10 fresh output consumption identified the prior Agent4 crossmatch gate proof as stale against current Agent3 inventory counts.",
+  "input_artifact": {
+    "path": "reports/agent3-crossmatch-inventory-packet-2026-06-05.json",
+    "sha256": "66ae1d98ae48583f25b0c8370f4de005adcd8eb646535daadb8c7a79fd461bb3"
+  },
+  "commands": [
+    {
+      "command": "node scripts/validate_agent3_crossmatch_inventory_packet.mjs reports/agent3-crossmatch-inventory-packet-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "files_in_inventory": 225,
+    "data_artifacts": 51,
+    "report_artifacts": 57,
+    "pipeline_scripts": 117,
+    "agent3_owned_files": 108,
+    "shared_definition_workbench_usage_files": 108,
+    "committed_clean_files": 33,
+    "dirty_or_uncommitted_files": 192,
+    "staged_added_files": 176,
+    "staged_modified_files": 16,
+    "worktree_modified_files": 0,
+    "untracked_files": 0,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "forbidden_truthy_authority_claims": 0
+  },
+  "result": "validator_passed_with_exact_blocker",
+  "blocker_if_any": {
+    "blocker": "crossmatch_inventory_contains_dirty_or_uncommitted_artifacts",
+    "blocked_file_count": 192,
+    "details": "Crossmatch/usage files are staged or modified; treat them as inventory only until a bounded subset is validated and committed."
+  },
+  "next_handoff": "Agent3/package owner selects one bounded dirty/uncommitted subset, runs its named builder and validator, then provides a committed/validated subset before Agent10 treats it as package evidence.",
+  "stop_condition": "Do not rerun unless the Agent3 crossmatch inventory packet or the underlying inventory state changes.",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action"
+  ]
+}

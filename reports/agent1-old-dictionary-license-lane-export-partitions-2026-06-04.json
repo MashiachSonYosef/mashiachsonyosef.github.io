@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_old_dictionary_license_lane_export_partitions",
+  "generated_at": "2026-06-05T09:48:57.018Z",
+  "generator": "scripts/build_agent1_old_dictionary_license_lane_export_partitions.mjs",
+  "status": "agent1_old_dictionary_license_lane_export_partitions_prepared_for_agent6_boundary_only",
+  "source_artifact": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+  "workset": "old-dictionary-excluded-row-license-lane-reaudit",
+  "partition_counts": {
+    "commercial_clean_candidate": {
+      "source_family_count": 3,
+      "row_count": 500,
+      "occurrence_count": 10940
+    },
+    "noncommercial_educational_candidate": {
+      "source_family_count": 1,
+      "row_count": 214,
+      "occurrence_count": 4444
+    },
+    "metadata_or_link_only": {
+      "source_family_count": 0,
+      "row_count": 0,
+      "occurrence_count": 0
+    },
+    "blocked_or_needs_review": {
+      "source_family_count": 1,
+      "row_count": 222,
+      "occurrence_count": 4435
+    }
+  },
+  "count_semantics": {
+    "partition_counts_are_source_family_hit_totals": true,
+    "row_count_is_not_exclusive_export_row_count": true,
+    "reason": "The same token row may have hits in multiple source families, so lane row_count and occurrence_count sum source-family evidence hits rather than mutually exclusive export rows.",
+    "exclusive_export_row_counts_authorized_now": false
+  },
+  "partitions": {
+    "commercial_clean_candidate": [
+      {
+        "source_family": "Jastrow Dictionary",
+        "source_name": "Jastrow Dictionary",
+        "license_label": "public-domain-observed",
+        "license_lane": "commercial_clean_candidate",
+        "row_count": 210,
+        "occurrence_count": 4474,
+        "attribution_required": false,
+        "derived_from_nc": false,
+        "commercial_export_allowed": true,
+        "owner_use_attestation": null,
+        "corpus_contamination": null,
+        "answer_eligible": false,
+        "public_emit": false,
+        "source_url_or_citation": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+        "agent6_boundary_required": true,
+        "missing_evidence": [],
+        "export_behavior": "commercial_clean_partition_only_no_public_emit"
+      },
+      {
+        "source_family": "BDB Dictionary",
+        "source_name": "BDB Dictionary",
+        "license_label": "public-domain-observed",
+        "license_lane": "commercial_clean_candidate",
+        "row_count": 221,
+        "occurrence_count": 4418,
+        "attribution_required": false,
+        "derived_from_nc": false,
+        "commercial_export_allowed": true,
+        "owner_use_attestation": null,
+        "corpus_contamination": null,
+        "answer_eligible": false,
+        "public_emit": false,
+        "source_url_or_citation": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+        "agent6_boundary_required": true,
+        "missing_evidence": [],
+        "export_behavior": "commercial_clean_partition_only_no_public_emit"
+      },
+      {
+        "source_family": "BDB Aramaic Dictionary",
+        "source_name": "BDB Aramaic Dictionary",
+        "license_label": "public-domain-observed",
+        "license_lane": "commercial_clean_candidate",
+        "row_count": 69,
+        "occurrence_count": 2048,
+        "attribution_required": false,
+        "derived_from_nc": false,
+        "commercial_export_allowed": true,
+        "owner_use_attestation": null,
+        "corpus_contamination": null,
+        "answer_eligible": false,
+        "public_emit": false,
+        "source_url_or_citation": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+        "agent6_boundary_required": true,
+        "missing_evidence": [],
+        "export_behavior": "commercial_clean_partition_only_no_public_emit"
+      }
+    ],
+    "noncommercial_educational_candidate": [
+      {
+        "source_family": "Klein Dictionary",
+        "source_name": "Klein Dictionary",
+        "license_label": "CC-BY-NC",
+        "license_lane": "noncommercial_educational_candidate",
+        "row_count": 214,
+        "occurrence_count": 4444,
+        "attribution_required": true,
+        "derived_from_nc": true,
+        "commercial_export_allowed": false,
+        "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+        "corpus_contamination": false,
+        "answer_eligible": false,
+        "public_emit": false,
+        "source_url_or_citation": "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+        "agent6_boundary_required": true,
+        "missing_evidence": [
+          "Agent 6/public boundary before any display/storage/public/answer/export behavior"
+        ],
+        "export_behavior": "separate_nc_educational_partition_only_no_commercial_export"
+      }
+    ],
+    "metadata_or_link_only": [],
+    "blocked_or_needs_review": [
+      {
+        "source_family": "BDB Augmented Strong",
+        "source_name": "BDB Augmented Strong",
+        "license_label": "unresolved-independent-custody",
+        "license_lane": "blocked_or_needs_review",
+        "row_count": 222,
+        "occurrence_count": 4435,
+        "attribution_required": false,
+        "derived_from_nc": false,
+        "commercial_export_allowed": false,
+        "owner_use_attestation": null,
+        "corpus_contamination": null,
+        "answer_eligible": false,
+        "public_emit": false,
+        "source_url_or_citation": "reports/agent6-orot-sefaria-nc-aware-family-boundary-final-verdict-2026-06-03.json",
+        "agent6_boundary_required": true,
+        "missing_evidence": [
+          "independent source/license/custody basis",
+          "source URL or version source",
+          "license label and allowed fields",
+          "Agent 6 boundary if evidence appears"
+        ],
+        "export_behavior": "excluded_from_candidate_text_export"
+      }
+    ]
+  },
+  "export_rule": {
+    "commercial_clean_export_excludes_nc": true,
+    "nc_educational_export_separate": true,
+    "metadata_or_link_only_emits_citation_link_only": true,
+    "blocked_or_needs_review_emits_no_candidate_text": true,
+    "commercial_export_allowed_now": false,
+    "public_emit_now": false,
+    "answer_eligible_now": false
+  },
+  "zero_output_counts": {
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "agent6_boundary": "Agent 6 boundary is required before any candidate text/package/display/public/answer use.",
+  "non_acceptance_boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true
+  },
+  "stop_condition": "Stop after separated lane partition packet plus validator pass, or exact missing evidence/schema blocker."
+}

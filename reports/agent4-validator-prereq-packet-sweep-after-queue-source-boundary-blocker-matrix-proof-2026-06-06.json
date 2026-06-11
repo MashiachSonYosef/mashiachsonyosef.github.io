@@ -1,0 +1,55 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T11:18:00.000Z",
+  "target": "Agent 4 validator/prereq packet sweep after queue/source boundary blocker matrix proof",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent4-agent3-queue-source-boundary-blocker-matrix-gate-proof-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet.mjs --input=reports\\agent4-agent3-queue-source-boundary-blocker-matrix-gate-proof-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep.mjs --out=reports\\agent4-validator-prereq-packet-sweep-result-after-queue-source-boundary-blocker-matrix-2026-06-06.json",
+      "timeout_ms": 300000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep_result.mjs --input=reports\\agent4-validator-prereq-packet-sweep-result-after-queue-source-boundary-blocker-matrix-2026-06-06.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-validator-prereq-packet-sweep-after-queue-source-boundary-blocker-matrix-proof-2026-06-06.json",
+  "paired_markdown_path": "reports/agent4-validator-prereq-packet-sweep-after-queue-source-boundary-blocker-matrix-proof-2026-06-06.md",
+  "evidence_artifacts": [
+    "reports/agent4-agent3-queue-source-boundary-blocker-matrix-gate-proof-2026-06-06.json",
+    "reports/agent4-validator-prereq-packet-sweep-result-after-queue-source-boundary-blocker-matrix-2026-06-06.json"
+  ],
+  "counts": {
+    "sweep_count": 128,
+    "sweep_passed": 128,
+    "sweep_failed": 0,
+    "proof_shape_count": 89,
+    "proof_with_blocker_shape_count": 36,
+    "blocker_shape_count": 3,
+    "command_count_total": 262,
+    "blocker_count_total": 193
+  },
+  "result": "validated_agent4_packet_sweep_after_queue_source_boundary_blocker_matrix_proof",
+  "exact_blockers": [
+    {
+      "blocker": "no_acceptance_from_packet_sweep",
+      "next_safe_action": "Use this sweep only as Agent 4 validator/prereq mechanics evidence; route acceptance-sensitive decisions to Agent 6 or the owning release lane."
+    }
+  ],
+  "handoff_owner": "Agent 10 for release/package intake; Agent 6 for acceptance-sensitive review only",
+  "stop_condition": "Stop after wrapper validation, then run changed-input selector from this wrapper anchor.",
+  "non_acceptance_boundary": [
+    "No QA acceptance, public/runtime acceptance, source/provenance/license/legal acceptance, Definition authority, publication readiness, product/data acceptance, answer acceptance, accepted gloss/text, or release action is claimed.",
+    "This artifact only records bounded Agent 4 validator/prereq packet sweep evidence.",
+    "Publication remains blocked outside separate Agent 6 or release-owner authority."
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "artifact_type": "agent2_full_corpus_batch01_flagship_render_staging_consumption",
+  "generated_at": "2026-06-07T13:35:36Z",
+  "target": "consume Agent10 full-corpus Batch01 flagship render staging packet as Agent2 page-output readiness input",
+  "status": "render_staging_consumed_20_ready_no_public_runtime_or_definition_acceptance",
+  "files_used": {
+    "agent10_render_staging_packet": "reports/agent10-full-corpus-batch01-flagship-render-staging-packet-2026-06-07.json",
+    "agent10_render_staging_packet_md": "reports/agent10-full-corpus-batch01-flagship-render-staging-packet-2026-06-07.md",
+    "agent2_a14_pipeline_redesign_input": "reports/agent2-a14-pipeline-redesign-input-2026-06-07.json",
+    "agent2_a14_pipeline_redesign_input_validation": "reports/agent2-a14-pipeline-redesign-input-validation-result-2026-06-07.json"
+  },
+  "bounded_checks": [
+    {
+      "process_timeout": false,
+      "command": "Get-ChildItem -Path reports -Filter '*.json' | Where-Object { $_.Name -match '2026-06-07' -and $_.Name -match '(source-citation|owner-action|agent1.*source)' } | Sort-Object LastWriteTime | Select-Object -Last 12 -ExpandProperty Name",
+      "timeout_ms": 120000,
+      "partial_output_or_artifact": "no new source-citation or owner-action return found for definition text transform",
+      "next_safe_action": "consume render staging only, not definition transform"
+    },
+    {
+      "process_timeout": false,
+      "command": "Get-ChildItem -Path reports -Filter '*.json' | Where-Object { $_.Name -match '2026-06-07' -and $_.Name -match '(transform-rule|row-level|current-release-blocker-state)' } | Sort-Object LastWriteTime | Select-Object -Last 18 -ExpandProperty Name",
+      "timeout_ms": 120000,
+      "partial_output_or_artifact": "definition bridge-gap transform state remains no-text/current-blocker; no new text transform authorization found",
+      "next_safe_action": "preserve no Definition/answer acceptance"
+    },
+    {
+      "process_timeout": false,
+      "command": "Get-ChildItem -Path reports -Filter '*.json' | Where-Object { $_.Name -match '2026-06-07' -and $_.Name -match '(gate-proof|changed-input|page-ready|render|payload)' } | Sort-Object LastWriteTime | Select-Object -Last 16 -ExpandProperty Name",
+      "timeout_ms": 120000,
+      "partial_output_or_artifact": "new render staging packet found and refreshed to BATCH01_20_READY_DIRECT_RENDER_CONTRACT: reports/agent10-full-corpus-batch01-flagship-render-staging-packet-2026-06-07.json",
+      "next_safe_action": "produce page-output readiness consumption"
+    },
+    {
+      "process_timeout": false,
+      "command": "Get-Content -Path reports\\agent10-full-corpus-batch01-flagship-render-staging-packet-2026-06-07.json -Raw",
+      "timeout_ms": 120000,
+      "partial_output_or_artifact": "packet status BATCH01_20_READY_DIRECT_RENDER_CONTRACT consumed after Daniel repair refresh",
+      "next_safe_action": "preserve 20 render-stage candidates and no public/runtime acceptance"
+    },
+    {
+      "process_timeout": false,
+      "command": "Get-ChildItem -Path reports -Filter 'agent10-full-corpus-batch01-flagship-render-staging-packet-2026-06-07.*' | Select-Object -ExpandProperty Name",
+      "timeout_ms": 120000,
+      "partial_output_or_artifact": "Agent10 JSON and MD staging packet files present",
+      "next_safe_action": "validate Agent2 consumption"
+    }
+  ],
+  "page_output_readiness_counts": {
+    "batch_rows": 20,
+    "render_ready_stage_candidate_pages": 20,
+    "blocked_validator_pages": 0,
+    "token_rows_total": 184647,
+    "configured_hint_rows_total": 26148,
+    "expected_tbd_rows_total": 158776,
+    "browser_proof_pages": 3,
+    "bad_prehud_glosses": 0,
+    "public_runtime_acceptance_claims": 0,
+    "definition_acceptance_claims": 0,
+    "answer_acceptance_claims": 0,
+    "release_actions": 0,
+    "route_shard_writes": 0
+  },
+  "page_readiness_matrix": [
+    {"index": 1, "work": "Genesis", "page": "tanakh/genesis/index.html", "token_rows": 17808, "configured_hint_rows": 3858, "expected_tbd_rows": 13950, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 2, "work": "Exodus", "page": "tanakh/exodus/index.html", "token_rows": 14481, "configured_hint_rows": 5831, "expected_tbd_rows": 8650, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 3, "work": "Leviticus", "page": "tanakh/leviticus/index.html", "token_rows": 10205, "configured_hint_rows": 3869, "expected_tbd_rows": 6336, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 4, "work": "Numbers", "page": "tanakh/numbers/index.html", "token_rows": 14323, "configured_hint_rows": 5204, "expected_tbd_rows": 9119, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 5, "work": "Deuteronomy", "page": "tanakh/deuteronomy/index.html", "token_rows": 12595, "configured_hint_rows": 2800, "expected_tbd_rows": 9795, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 6, "work": "Ruth", "page": "tanakh/ruth/index.html", "token_rows": 1132, "configured_hint_rows": 676, "expected_tbd_rows": 753, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 7, "work": "Esther", "page": "tanakh/esther/index.html", "token_rows": 2654, "configured_hint_rows": 975, "expected_tbd_rows": 1679, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 8, "work": "Ezra", "page": "tanakh/ezra/index.html", "token_rows": 3538, "configured_hint_rows": 1107, "expected_tbd_rows": 2431, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 9, "work": "Nehemiah", "page": "tanakh/nehemiah/index.html", "token_rows": 4822, "configured_hint_rows": 1848, "expected_tbd_rows": 2974, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 10, "work": "Daniel", "page": "tanakh/daniel/index.html", "token_rows": 5456, "configured_hint_rows": 0, "expected_tbd_rows": 5456, "agent2_render_stage_status": "render_stage_candidate_tbd_only_not_public_acceptance", "exact_blockers": [], "repair": {"validator_result": "passed", "prehud_rows": 5456, "tbd_rows": 5456, "bad_prehud_glosses": 0, "route_hud_click_proof": true}},
+    {"index": 11, "work": "Joshua", "page": "tanakh/joshua/index.html", "token_rows": 8581, "configured_hint_rows": 0, "expected_tbd_rows": 8581, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 12, "work": "Judges", "page": "tanakh/judges/index.html", "token_rows": 8546, "configured_hint_rows": 0, "expected_tbd_rows": 8546, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 13, "work": "I Samuel", "page": "tanakh/i-samuel/index.html", "token_rows": 11619, "configured_hint_rows": 0, "expected_tbd_rows": 11619, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 14, "work": "II Samuel", "page": "tanakh/ii-samuel/index.html", "token_rows": 9603, "configured_hint_rows": 0, "expected_tbd_rows": 9603, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 15, "work": "I Kings", "page": "tanakh/i-kings/index.html", "token_rows": 11402, "configured_hint_rows": 0, "expected_tbd_rows": 11402, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 16, "work": "II Kings", "page": "tanakh/ii-kings/index.html", "token_rows": 10530, "configured_hint_rows": 0, "expected_tbd_rows": 10530, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 17, "work": "Isaiah", "page": "tanakh/isaiah/index.html", "token_rows": 15450, "configured_hint_rows": 0, "expected_tbd_rows": 15450, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 18, "work": "Jeremiah", "page": "tanakh/jeremiah/index.html", "token_rows": 18904, "configured_hint_rows": 0, "expected_tbd_rows": 18904, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 19, "work": "Hosea", "page": "tanakh/hosea/index.html", "token_rows": 2132, "configured_hint_rows": 0, "expected_tbd_rows": 2132, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []},
+    {"index": 20, "work": "Joel", "page": "tanakh/joel/index.html", "token_rows": 866, "configured_hint_rows": 0, "expected_tbd_rows": 866, "agent2_render_stage_status": "render_stage_candidate_not_public_acceptance", "exact_blockers": []}
+  ],
+  "runtime_gate_consumed": {
+    "file": "assets/js/reader-workbench.js",
+    "policy": "Suppress unsafe pre-HUD display text at hydration time even when existing hint files still contain it.",
+    "unsafe_display_classes": [
+      "usage_only_display_text",
+      "form_of",
+      "colon_form_of",
+      "singular_plural_dual_form_reference",
+      "construct_or_absolute_state_reference",
+      "infinitive_or_bare_infinitive_reference",
+      "participle_reference",
+      "person_reference",
+      "vav_consecutive_reference"
+    ],
+    "hud_evidence_preserved": true,
+    "prehud_failure_mode": "TBD display-integrity only, not definition or answer text"
+  },
+  "browser_proof_consumed": {
+    "ruth_existing_hint_gate": {
+      "rows": 1132,
+      "meta_cells": 1132,
+      "section_links": 1132,
+      "populated": 379,
+      "tbd": 753,
+      "bad_prehud_glosses": 0
+    },
+    "joel_zero_hint": {
+      "rows": 866,
+      "meta_cells": 866,
+      "section_links": 866,
+      "populated": 0,
+      "tbd": 866,
+      "bad_prehud_glosses": 0
+    },
+    "daniel_repair": {
+      "rows": 5456,
+      "prehud_rows": 5456,
+      "lexical_words": 5456,
+      "tbd": 5456,
+      "populated": 0,
+      "bad_prehud_glosses": 0,
+      "hud_opened_on_first_token_click": true,
+      "raw_big_visible": false
+    }
+  },
+  "historical_daniel_blocker_resolved": [
+    "missing required marker: hero-summary",
+    "missing required marker: hero-notes",
+    "contains stale old-HUD marker: <big"
+  ],
+  "agent2_interpretation": {
+    "render_ready_meaning": "render-stage candidate only; not public runtime acceptance",
+    "definition_lane_meaning": "no definition/lemma/reader-hint transform authority is created by this render staging packet",
+    "tbd_meaning": "TBD is display-integrity only",
+    "daniel_status": "render_stage_candidate_tbd_only_not_public_acceptance",
+    "next_owner": "A14/A10 may stage Batch 01 as 20 render-stage candidates; A07/A06 boundaries remain unchanged"
+  },
+  "boundary": [
+    "render_pre_hud_gating_only",
+    "no_QA_source_license_legal_Definition_product_answer_accepted_text_acceptance",
+    "no_public_runtime_acceptance",
+    "no_publication_or_release_claim"
+  ],
+  "stop_condition": "Stop at Agent2 render staging consumption. No source/license/legal/Definition/product/answer/accepted-text acceptance, no public/runtime acceptance, no route shard write, no repo cleanup action, no publication readiness claim, no release action."
+}

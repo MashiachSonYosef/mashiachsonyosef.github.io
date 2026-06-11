@@ -1,0 +1,51 @@
+{
+  "artifact_type": "agent2_old_dictionary_78_row_direct_source_citation_agent4_gate_consumption_validation_result",
+  "generated_at": "2026-06-06T10:29:58Z",
+  "target": "old-dictionary-commercial-clean-78-row-direct-source-citation-prereq-intake-gate-consumption",
+  "validated_artifact": "reports/agent2-old-dictionary-78-row-direct-source-citation-agent4-gate-consumption-2026-06-06.json",
+  "validator": "scripts/validate_agent2_old_dictionary_78_row_direct_source_citation_agent4_gate_consumption.mjs",
+  "command": "node scripts\\validate_agent2_old_dictionary_78_row_direct_source_citation_agent4_gate_consumption.mjs reports\\agent2-old-dictionary-78-row-direct-source-citation-agent4-gate-consumption-2026-06-06.json",
+  "timeout_ms": 120000,
+  "process_timeout": false,
+  "result": "passed",
+  "stdout": "Agent2 Agent4 gate consumption validation passed. Direct rows: 5; citation missing rows: 5; changed input after gate: false.",
+  "lane_counts_rows_consumed": {
+    "parent_rows": 78,
+    "parent_occurrences": 1461,
+    "direct_rows": 5,
+    "direct_occurrences": 58,
+    "source_license_lane": "commercial_clean_candidate",
+    "triage_group": "commercial_clean_only",
+    "source_family": "Jastrow Dictionary",
+    "source_citation_or_url_missing_rows": 5,
+    "transform_rule_still_blocked_rows": 5,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "agent4_gate_consumed": {
+    "gate_result": "validated_agent2_direct_source_citation_prereq_intake_contract_only",
+    "changed_input_after_gate": false,
+    "changed_input_blocker": "changed_package_input_missing",
+    "packet_sweep_passed": 75,
+    "packet_sweep_failed": 0
+  },
+  "exact_blockers": [
+    "missing_source_field::source_citation_or_url",
+    "missing_transform_output_proposal_matrix_or_exact_transform_rule",
+    "missing_transform_rule::proposed_candidate_text_proposed_definition_text_proposed_lemma_text_proposed_reader_hint_text",
+    "next_transform_output_or_candidate_text_boundary_not_supplied",
+    "stale_agent1_registry_target_current_agent1_thread_required",
+    "changed_package_input_missing"
+  ],
+  "handoff_owner": "Agent1 returns source_citation_or_url for 5 direct rows or exact blocker; Agent10 supplies exact transform rule; Agent2 waits for changed input before transform output; Agent4 waits for changed package/input before next sweep.",
+  "stop_condition": "Stop at validated Agent4 gate consumption. No source text, candidate text, definition/lemma/reader-hint content, answer eligibility, route writes, source/license/legal acceptance, accepted text, public/runtime mutation, export, publication readiness, or release action."
+}

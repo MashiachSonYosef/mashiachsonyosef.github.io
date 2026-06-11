@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-06-02T13:27:34.479Z",
+  "artifact_type": "agent1_source_custody_followup_packets_index",
+  "source_verdict": "reports/agent6-agent1-source-custody-closure-decision-verdict-2026-06-02.md",
+  "source_artifacts": {
+    "custody_packet": "reports/agent1-source-provenance-custody-packet.json",
+    "closure_options": "reports/agent1-source-custody-closure-options.json",
+    "reconciliation_preflight": "reports/agent1-source-custody-reconciliation-preflight.json",
+    "decision_packet": "reports/agent1-agent6-source-custody-decision-packet.json"
+  },
+  "packets": {
+    "packet_a_tracking_review_candidates": {
+      "json": "reports/agent1-source-custody-packet-a-tracking-review.json",
+      "md": "reports/agent1-source-custody-packet-a-tracking-review.md",
+      "summary": {
+        "track_candidate_source_files": 17,
+        "total_units": 7492,
+        "blocked_downstream_direct_paths": 153,
+        "blocked_downstream_content_reference_paths": 13
+      }
+    },
+    "packet_b_missing_manifest_remediation_or_exclusion": {
+      "json": "reports/agent1-source-custody-packet-b-missing-manifest.json",
+      "md": "reports/agent1-source-custody-packet-b-missing-manifest.md",
+      "summary": {
+        "missing_manifest_source_files": 6,
+        "expected_lexical_manifest_paths": 6,
+        "total_units": 77918,
+        "blocked_downstream_direct_paths": 30,
+        "blocked_downstream_content_reference_paths": 1
+      }
+    },
+    "packet_c_license_label_normalization": {
+      "json": "reports/agent1-source-custody-packet-c-license-label-normalization.json",
+      "md": "reports/agent1-source-custody-packet-c-license-label-normalization.md",
+      "summary": {
+        "modified_tracked_source_files": 6,
+        "total_scalar_diff_count": 1406,
+        "total_non_license_diff_count": 0,
+        "total_non_pd_to_public_domain_diff_count": 0,
+        "all_diffs_are_license_fields": true,
+        "all_diffs_are_pd_to_public_domain": true,
+        "blocked_downstream_direct_paths": 59,
+        "blocked_downstream_content_reference_paths": 10
+      }
+    }
+  },
+  "boundary": {
+    "agent1_status": "evidence-ready / awaiting-Agent-6",
+    "publication_state": "blocked_no_render",
+    "source_provenance_acceptance_claimed": false,
+    "source_file_tracking_approval_claimed": false,
+    "source_file_staging_claimed": false,
+    "public_runtime_acceptance_claimed": false,
+    "route_publication_support_claimed": false,
+    "definition_authority_claimed": false,
+    "page_render_acceptance_claimed": false
+  },
+  "must_not_be_accepted": [
+    "source/provenance acceptance",
+    "source publication",
+    "source-file tracking approval",
+    "source-file staging, commit, or merge",
+    "downstream direct artifact acceptance",
+    "downstream content-reference acceptance",
+    "public/runtime acceptance",
+    "route publication support",
+    "Definition authority",
+    "usage-as-definition authority",
+    "product/data gate acceptance",
+    "publication readiness",
+    "future publication support",
+    "translation output",
+    "accepted translation text"
+  ]
+}

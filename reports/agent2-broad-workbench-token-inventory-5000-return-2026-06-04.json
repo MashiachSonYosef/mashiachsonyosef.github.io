@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_broad_workbench_token_inventory_5000_return",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "broad Definition Workbench token inventory expansion, non-public inventory mechanics only",
+  "workset": "broad-workbench-token-inventory-5000",
+  "files": {
+    "workset": "reports/agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.json",
+    "workset_report": "reports/agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.md",
+    "inventory": ".local-cache/workbench-evidence/token-inventory-5000.json",
+    "tokens_jsonl": ".local-cache/workbench-evidence/token-inventory-5000.tokens.jsonl",
+    "blocked_jsonl": ".local-cache/workbench-evidence/token-inventory-5000.blocked.jsonl",
+    "inventory_report": "reports/workbench-token-inventory-5000.md",
+    "intake_validator": "scripts/validate_agent2_future_workset_intake_packet.mjs",
+    "inventory_validator": "scripts/validate_workbench_token_inventory.mjs"
+  },
+  "exact_command_or_script": {
+    "build": "node scripts/build_workbench_token_inventory.mjs --summary-limit=5000 --output=.local-cache/workbench-evidence/token-inventory-5000.json --tokens-jsonl=.local-cache/workbench-evidence/token-inventory-5000.tokens.jsonl --blocked-jsonl=.local-cache/workbench-evidence/token-inventory-5000.blocked.jsonl --report=reports/workbench-token-inventory-5000.md",
+    "validate_inventory": "node scripts/validate_workbench_token_inventory.mjs .local-cache/workbench-evidence/token-inventory-5000.json",
+    "validate_intake": "node scripts/validate_agent2_future_workset_intake_packet.mjs reports/agent10-agent2-ready-broad-workbench-token-inventory-5000-workset-2026-06-04.json",
+    "validate_return": "node scripts/validate_agent2_broad_workbench_token_inventory_5000_return.mjs reports/agent2-broad-workbench-token-inventory-5000-return-2026-06-04.json"
+  },
+  "output_artifact": "reports/agent2-broad-workbench-token-inventory-5000-return-2026-06-04.json",
+  "schema_counts": {
+    "workset_expected_top_token_rows": 5000,
+    "inventory_top_tokens": 5000,
+    "inventory_distinct_normalized_tokens": 698873,
+    "inventory_total_tokens": 75290880,
+    "source_files_read": 1360,
+    "allowed_units": 802869,
+    "blocked_units": 0,
+    "blocked_jsonl_rows": 0,
+    "tokens_jsonl_rows": 698873
+  },
+  "lane_split": {
+    "source_license_inventory_only": true,
+    "source_family_lane_rows_present": false,
+    "commercial_clean_candidate_rows": 0,
+    "noncommercial_educational_candidate_rows": 0,
+    "metadata_or_link_only_rows": 0,
+    "blocked_or_needs_review_rows": 0,
+    "unclassified_rows_consumed_as_candidate_text": 0,
+    "downstream_candidate_generation_blocker": "token_inventory_rows_do_not_carry_source_family_lane_fields"
+  },
+  "transform_candidate_counts": {
+    "token_inventory_top_rows": 5000,
+    "definition_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "candidate_text_rows": 0
+  },
+  "zero_emission_counters": {
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_reader_output_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "definition_content_rows": 0,
+    "candidate_text_export_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "blocker_rows": {
+    "downstream_transform_candidate_rows_blocked_until_source_family_lane_join": 5000,
+    "missing_field_blocker": "source_family/source_name/license_lane/source_url_or_citation per token row before definition/lemma/reader-hint candidate generation"
+  },
+  "validator": "scripts/validate_agent2_broad_workbench_token_inventory_5000_return.mjs",
+  "handoff_owner": "Agent 10 first; Agent 6 only by exact boundary packet if future row/subset transform/display/source/license/Definition/public/runtime/answer use is proposed",
+  "stop_condition": "Stop after the 5000-token inventory output plus validator pass, or exact missing input/output/schema/validator/count blocker, while preserving zero authority/public/answer emissions.",
+  "zero_boundary": {
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligible": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "publication_readiness": false,
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_content_storage": false,
+    "nc_commercial_authorization": false
+  }
+}

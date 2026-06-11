@@ -1,6 +1,6 @@
 # Definition Workbench Sample Report
 
-Generated: 2026-06-01T13:20:07.716Z
+Generated: 2026-06-04T18:07:42.436Z
 
 ## Scope
 
@@ -32,6 +32,20 @@ Generated: 2026-06-01T13:20:07.716Z
 - `review_status=verified` is reserved for future reviewed lexical authority and is not emitted by this sample builder.
 - Answer cards require `answer_eligible=true` and `answer_role=answer`; other route cards remain evidence-only counts.
 - `multi_answer=true` rows remain `conflicting` warnings and are not collapsed into a hidden winner.
+
+## Publication Boundary
+
+- Boundary status: blocked_no_render
+- Sample only: true
+- Reader-facing: false
+- UI assignment: false
+- Publication claim: false
+- Clears publication readiness: false
+- Reviewed lexical authority: false
+- Accepted translation output: false
+- Source publication: false
+- Public lookup artifact: false
+- Does not clear: ui_assignment, reviewed_lexical_authority, accepted_translation, source_publication, public_lookup_publication, publication_readiness
 
 ## Top Sample Rows
 

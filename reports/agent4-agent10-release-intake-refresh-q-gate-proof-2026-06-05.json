@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T22:56:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent10-direct-release-package-intake-refresh-q",
+  "changed_input_artifact": "reports/agent10-direct-release-package-intake-refresh-2026-06-05q.json",
+  "validator_proof_commands": [
+    {
+      "command": "node scripts\\validate_agent10_direct_release_package_intake_refresh.mjs reports\\agent10-direct-release-package-intake-refresh-2026-06-05q.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "Agent10 direct release/package intake refresh validation passed. Consumed blocker row-subsets: 5; Agent6-ready packet: no."
+    },
+    {
+      "command": "node --check scripts\\validate_agent10_direct_release_package_intake_refresh.mjs",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "syntax check passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent10-release-intake-refresh-q-gate-proof-2026-06-05.md",
+  "files": [
+    "reports/agent10-direct-release-package-intake-refresh-2026-06-05q.json",
+    "reports/agent2-old-dictionary-transform-reaudit-boundary-blocker-2026-06-05.json",
+    "reports/agent4-agent2-transform-reaudit-boundary-blocker-gate-proof-2026-06-05.json",
+    "scripts/validate_agent10_direct_release_package_intake_refresh.mjs"
+  ],
+  "counts": {
+    "row_subset_blockers": 5,
+    "required_agent1_input_fields": 16,
+    "required_agent6_boundary_fields": 6,
+    "commercial_clean_candidate_row_subsets": 3,
+    "noncommercial_educational_candidate_row_subsets": 1,
+    "blocked_or_needs_review_row_subsets": 1,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "candidate_text_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "commercial_export_authorization_rows": 0,
+    "nc_commercial_authorization_rows": 0,
+    "release_actions": 0
+  },
+  "exact_blockers": [
+    "missing_exact_agent1_agent6_boundary_fields_for_old_dictionary_transform_reaudit_row_subsets",
+    "BDB Dictionary missing exact Agent6 boundary and approved morphology relation",
+    "BDB Aramaic Dictionary missing exact Agent6 boundary and approved morphology relation",
+    "Jastrow Dictionary missing exact Agent6 boundary and approved morphology relation",
+    "Klein Dictionary missing exact Agent6 NC boundary, no commercial export authorization, and public boundary before display/storage/public/answer/export behavior",
+    "BDB Augmented Strong missing independent source/license/custody basis"
+  ],
+  "handoff_owner": {
+    "commercial_clean": "Agent 10 for package assembly; Agent 6 for exact row/subset boundary",
+    "noncommercial_educational": "Agent 1 for NC lane packet; Agent 6 for exact NC row/subset boundary",
+    "blocked_or_needs_review": "Agent 1 if evidence appears; otherwise blocked/review"
+  },
+  "hashes": {
+    "agent10_refresh_q_sha256": "605ce7b7c8ca752c3397a29bc1a19e267a12ea788f6f74f1382ca7d973835ccf",
+    "agent2_transform_reaudit_boundary_blocker_sha256": "b530a4efe86d16071b7c858414d49c93a9bcbfe65a67222e173c9d43d2a30879",
+    "agent4_transform_reaudit_boundary_blocker_gate_proof_sha256": "d5932de692f2fc2056bf2fb40a93bea71db59ffc0275d3980ceea2d751e918b9",
+    "validator_sha256": "2a8ae2d0e8e74331089535ff4bb295523d1726af57866e391a2cea2b45d85626"
+  },
+  "result": "target | agent10-direct-release-package-intake-refresh-q | changed input/artifact | reports/agent10-direct-release-package-intake-refresh-2026-06-05q.json | validator/proof command with timeout | node scripts\\validate_agent10_direct_release_package_intake_refresh.mjs reports\\agent10-direct-release-package-intake-refresh-2026-06-05q.json, timeout 30000 ms, passed | output artifact path | reports/agent4-agent10-release-intake-refresh-q-gate-proof-2026-06-05.md/json | exact blockers | missing exact Agent1/Agent6 boundary fields for 5 transform-reaudit row-subsets; Agent6-ready packet: no | handoff owner | Agent10/Agent6 for commercial-clean, Agent1/Agent6 for NC and blocked/review | stop condition | do not assemble or route an Agent6 transform boundary packet until missing exact Agent1 row-subset fields and Agent6 morphology/boundary fields are supplied",
+  "stop_condition": "Do not assemble or route an Agent 6 transform boundary packet until the missing exact Agent 1 row-subset fields and Agent 6 morphology/boundary fields are supplied.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

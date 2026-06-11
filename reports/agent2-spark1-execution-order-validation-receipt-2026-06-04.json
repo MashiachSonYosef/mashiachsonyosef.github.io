@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_spark1_execution_order_validation_receipt",
+  "date": "2026-06-04",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 2 definition/lemma/reader-hint pipeline builder",
+  "contract": "reports/agent2-spark1-execution-order-contract-2026-06-04.json",
+  "validator": "scripts/validate_agent2_spark1_execution_order_contract.mjs",
+  "validation_command": "node scripts/validate_agent2_spark1_execution_order_contract.mjs reports/agent2-spark1-execution-order-contract-2026-06-04.json",
+  "validation_result": {
+    "status": "passed",
+    "stdout": "Agent 2 Spark-1 execution-order contract validation passed. Validation commands: 8; builders gated."
+  },
+  "validation_commands": 8,
+  "builder_phase_gated": true,
+  "manifest_runnable_pipelines": 7,
+  "manifest_validator_only_checks": 24,
+  "zero_boundary": {
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligible": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "publication_readiness": false,
+    "source_license_acceptance": false,
+    "qa_acceptance": false
+  }
+}

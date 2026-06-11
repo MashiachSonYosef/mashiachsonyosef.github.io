@@ -1,0 +1,77 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "Agent identity monitor prerequisite gate after A09/A13 reinstatement",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifacts": [
+    "reports/agent14-mutiny-recovery-communication-paths-2026-06-06.md",
+    "data/control/agent_identity_registry.json",
+    "data/control/agent_identity_ack_ledger.json"
+  ],
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_agent_identity_registry.mjs data\\control\\agent_identity_registry.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent identity registry validation passed. Version: agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor; agents: 14; hash: sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd."
+    },
+    {
+      "command": "node scripts\\validate_agent_identity_ack_ledger.mjs --registry data\\control\\agent_identity_registry.json --ledger data\\control\\agent_identity_ack_ledger.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent identity ack ledger validation passed. State: IDENTITY_MONITOR_ACTIVE_A09_A13_REINSTATED_FULL_ROSTER_ACK_PENDING; ACKED: 0/14."
+    },
+    {
+      "command": "node -e \"const fs=require('fs'); const reg=JSON.parse(fs.readFileSync('data/control/agent_identity_registry.json','utf8')); const ledger=JSON.parse(fs.readFileSync('data/control/agent_identity_ack_ledger.json','utf8')); const agents=Object.fromEntries(reg.agents.filter(a=>['A09','A13'].includes(a.agent_id)).map(a=>[a.agent_id,{status:a.status,endpoint_status:a.endpoint_status,current_endpoint_id:a.current_endpoint_id,role:a.role}])); console.log(JSON.stringify({registry_version:reg.registry_version, registry_hash:reg.registry_hash, publication_global_status:reg.publication_global_status, agents, ledger_state:ledger.control_state, ledger_resume_authorized:ledger.resume_authorized, acked:ledger.acks.filter(a=>a.ack_status==='ACKED').length,total:ledger.acks.length},null,2));\"",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "registry_version=agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor; ledger_state=IDENTITY_MONITOR_ACTIVE_A09_A13_REINSTATED_FULL_ROSTER_ACK_PENDING; ACKED=0/14"
+    }
+  ],
+  "counts": {
+    "registry_agents": 14,
+    "ack_ledger_rows": 14,
+    "acked_rows": 0,
+    "unacked_rows": 14,
+    "reinstated_monitor_agents": 2,
+    "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd"
+  },
+  "result": "validated_identity_monitor_prereq_state_only",
+  "exact_blockers": [
+    {
+      "code": "identity_monitor_active_full_roster_ack_pending",
+      "class": "identity_prereq_blocker",
+      "blocked_state": "IDENTITY_MONITOR_ACTIVE_A09_A13_REINSTATED_FULL_ROSTER_ACK_PENDING",
+      "blocked_rows": 14,
+      "handoff_owner": "A07 roster broadcast; A05 ack ledger owner; Agent 10 consumes only after explicit route/prereq clearance"
+    },
+    {
+      "code": "ack_ledger_zero_of_fourteen_acked",
+      "class": "identity_ack_blocker",
+      "blocked_rows": 14,
+      "handoff_owner": "A05 ack ledger owner after A07 roster broadcast"
+    }
+  ],
+  "supersedes_prior_packet": "reports/agent4-sop024-identity-prereq-gate-proof-2026-06-06.json",
+  "supersession_note": "Prior packet captured freeze/requalification pending. Current control state validates A09/A13 reinstated under identity monitor, with full roster ACK still pending.",
+  "output_artifact_path": "reports/agent4-identity-monitor-prereq-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-identity-monitor-prereq-gate-proof-2026-06-06.md",
+  "handoff_owner": "A07/A05 for roster broadcast and ack completion; Agent 10 may consume as prerequisite state only",
+  "next_safe_action": "Complete A07 roster broadcast and A05 all-agent ACK ledger, or preserve identity monitor full-roster ACK pending as the current prerequisite blocker.",
+  "stop_condition": "Stop after validating current registry and ack-ledger identity monitor state; do not route, broadcast, mutate runtime/publication, or claim acceptance.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action",
+    "no identity resume acceptance"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_source_license_custody_aggregate_handoff",
+  "generated_at": "2026-06-04T15:42:00.000Z",
+  "status": "agent1_source_license_custody_aggregate_handoff_ready_for_discovery_only",
+  "lane": "Agent 1 / Spark-1 source/license/custody",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "primary_registry": "reports/agent1-source-license-custody-pipeline-registry-2026-06-04.json",
+  "primary_registry_validator": "node scripts/validate_agent1_source_license_custody_pipeline_registry.mjs",
+  "aggregate_validator": "node scripts/validate_agent1_source_license_custody_pipeline_set.mjs",
+  "aggregate_validation_result": "reports/agent1-source-license-custody-pipeline-set-validation-result-2026-06-04.json",
+  "command_manifest": "reports/agent1-source-license-custody-command-manifest-2026-06-04.json",
+  "command_manifest_validator": "node scripts/validate_agent1_source_license_custody_command_manifest.mjs",
+  "lane_return": "reports/agent1-current-source-license-custody-lane-return-2026-06-04.json",
+  "lane_return_validator": "node scripts/validate_agent1_current_source_license_custody_lane_return.mjs",
+  "weekly_status": "reports/agent1-weekly-source-license-custody-pipeline-authoring-status-2026-06-04.md",
+  "weekly_status_validator": "node scripts/validate_agent1_weekly_source_license_custody_pipeline_authoring_status.mjs",
+  "counts": {
+    "runnable_contract_count": 22,
+    "supporting_packet_count": 24,
+    "exact_blocker_count": 1,
+    "lane_return_output_count": 48,
+    "runnable_command_set_count": 22
+  },
+  "runnable_contract_targets": [
+    "orot-nc-klein-source-family-contract",
+    "orot-next-missed-source-family-contract",
+    "deuteronomy-source-license-custody-contract",
+    "old-dictionary-excluded-row-license-lane-reaudit-contract",
+    "old-dictionary-license-lane-export-partitions-contract",
+    "old-dictionary-agent2-transform-lane-handoff-contract",
+    "old-dictionary-planning-boundary-state-contract",
+    "broad-source-mechanics-contract",
+    "broad-workbench-token-inventory-5000-source-lane-blocker-contract",
+    "orot-missing-lexicon-linkage-candidates-contract",
+    "workbench-source-license-custody-contract",
+    "workbench-source-name-custody-partitions-contract",
+    "workbench-full-source-name-custody-partitions-contract",
+    "workbench-license-bucket-boundary-matrix-contract",
+    "workbench-source-family-boundary-matrix-contract",
+    "workbench-source-family-license-lane-partitions-contract",
+    "workbench-source-family-license-lane-agent6-boundary-packet-contract",
+    "workbench-source-family-license-lane-release-intake-packet-contract",
+    "workbench-cc-by-sa-share-alike-boundary-contract",
+    "workbench-cc-by-attribution-boundary-contract",
+    "workbench-cc0-public-domain-zero-boundary-contract",
+    "workbench-public-domain-boundary-contract"
+  ],
+  "exact_blockers": [
+    {
+      "target": "third-missed-source-family-target-or-blocker",
+      "status": "missing_workset_blocker",
+      "rows_checked": 169,
+      "occurrences_checked": 2148,
+      "spark1_routable": false,
+      "missing_field": "row-level source-family/license split"
+    }
+  ],
+  "handoff": {
+    "spark1": "Run only registry-listed Agent-1-authored contracts and validators; do not invent source/license/custody work.",
+    "agent10": "Use this handoff as the compact Agent 1 source/license/custody discovery packet for release-package intake.",
+    "agent6": "Do not route directly from this handoff; Agent 6 requires an Agent 10 release-owner packet with exact review question."
+  },
+  "stop_condition": "Stop after aggregate validator pass, or exact registry/lane-return/contract/supporting-packet/blocker mismatch.",
+  "non_acceptance_boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true
+  }
+}

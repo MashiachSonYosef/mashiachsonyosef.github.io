@@ -1,0 +1,59 @@
+{
+  "artifact_type": "agent4_no_new_overlap_successor_blocker",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Agent3 old-dictionary overlap candidate-use boundary workset successor watch",
+  "latest_agent4_proof_anchor": "reports/agent4-agent3-overlap-candidate-use-boundary-workset-gate-proof-2026-06-06.json",
+  "bounded_checks": [
+    {
+      "command": "$cutoff = (Get-Item reports\\agent4-agent3-overlap-candidate-use-boundary-workset-gate-proof-2026-06-06.json).LastWriteTime; Get-ChildItem reports -File -Filter '*2026-06-06*.json' | Where-Object { $_.LastWriteTime -gt $cutoff -and $_.Name -match '^(agent[1-6]|agent10).*(overlap|candidate-use|boundary|verdict|consumption|package|release|handoff|workset|blocker|return).*\\\\.json$' } | Sort-Object LastWriteTime -Descending | Select-Object -First 60 Name,LastWriteTime,Length | ConvertTo-Json -Depth 3",
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "result": "no changed overlap/candidate-use/release successor artifacts newer than latest Agent4 overlap proof"
+    },
+    {
+      "command": "Get-ChildItem reports -File -Filter '*overlap*2026-06-06*.json' | Sort-Object LastWriteTime -Descending | Select-Object -First 50 Name,LastWriteTime,Length | ConvertTo-Json -Depth 3",
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "result": "newest overlap artifact remains already-packaged Agent4 proof and its Agent3 input"
+    },
+    {
+      "command": "Get-ChildItem reports -File -Filter '*candidate-use*2026-06-06*.json' | Sort-Object LastWriteTime -Descending | Select-Object -First 50 Name,LastWriteTime,Length | ConvertTo-Json -Depth 3",
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "result": "no newer candidate-use successor after latest overlap proof"
+    }
+  ],
+  "changed_input_blocker": {
+    "changed_package_path_missing": "No Agent10 consumption packet, Agent6 overlap boundary packet/verdict, Agent3 overlap workset successor, or release/package successor was found after reports/agent4-agent3-overlap-candidate-use-boundary-workset-gate-proof-2026-06-06.json.",
+    "command_list_needed": [
+      "node scripts\\validate_agent3_old_dictionary_overlap_candidate_use_boundary_workset.mjs <changed-agent3-overlap-workset>",
+      "node <exact-validator-for-agent10-or-agent6-overlap-successor>.mjs <changed-successor-artifact>"
+    ],
+    "expected_output_schema": "Agent4 proof JSON/MD with target, changed input, validator command, timeout, counts, result, blockers, handoff owner, stop condition, and non-acceptance boundary",
+    "validator_gate": "changed-input-only overlap/candidate-use successor gate",
+    "package_owner": "Agent 10 for package intake; Agent 6 for source-family boundary review; Agent3 for overlap workset successor",
+    "agent6_boundary_trigger": "Only if a future packet routes the three preserved overlap blockers for source-family selection boundary review or requests transform/publication/answer authority",
+    "next_harness_gap": "If Agent10 consumes the Agent3 overlap workset, add or run a validator that checks the same 73-row/1403-occurrence counts, all three blocker groups, zero output/runtime counters, Agent6 boundary-required status, and no acceptance claims.",
+    "stop_condition": "Stop at no-new-overlap-successor blocker. Do not rerun unchanged overlap validator chains."
+  },
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

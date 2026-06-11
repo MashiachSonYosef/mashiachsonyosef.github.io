@@ -1,0 +1,78 @@
+{
+  "artifact_type": "agent4_agent10_agent6_ready_78_row_candidate_use_preboundary_packet_gate_proof",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "Agent10 Agent6-ready 78-row candidate-use preboundary packet",
+  "changed_input_artifact": "reports/agent10-agent6-ready-old-dictionary-78-row-candidate-use-preboundary-packet-2026-06-06.json",
+  "validator_proof_commands": [
+    {
+      "command": "node --check scripts\\validate_agent10_old_dictionary_78_row_candidate_use_preboundary_packet.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_78_row_candidate_use_preboundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-78-row-candidate-use-preboundary-packet-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout": "Agent10 78-row candidate-use preboundary packet validation passed. Rows: 78; occurrences: 1461; zero counters: 10."
+    }
+  ],
+  "files": {
+    "validator": "scripts/validate_agent10_old_dictionary_78_row_candidate_use_preboundary_packet.mjs",
+    "packet": "reports/agent10-agent6-ready-old-dictionary-78-row-candidate-use-preboundary-packet-2026-06-06.json",
+    "matrix": "reports/agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json",
+    "agent10_workset": "reports/agent10-agent2-ready-old-dictionary-78-row-candidate-use-workset-2026-06-06.json"
+  },
+  "counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "source_license_lane": "commercial_clean_candidate",
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "candidate_text_rows": 0,
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "release_actions": 0
+  },
+  "result": "agent6_ready_preboundary_packet_validated_no_public_or_text_output",
+  "exact_blockers_preserved": [
+    "candidate_text_export_blocked",
+    "definition_lemma_reader_hint_content_storage_blocked",
+    "answer_eligibility_blocked",
+    "public_runtime_mutation_blocked",
+    "route_writes_blocked",
+    "accepted_text_blocked",
+    "commercial_export_authorization_blocked",
+    "publication_readiness_blocked",
+    "release_action_blocked"
+  ],
+  "next_handoff_owner": "Agent 6 for exact preboundary review; Agent 10 consumes verdict; Agent 2 only after an exact later boundary authorizes transform/output behavior",
+  "stop_condition": "Stop at Agent6-ready preboundary packet proof. Do not rerun without a changed packet, matrix, verdict, consumption packet, or validator. Do not emit transform output, candidate text, definition/lemma/reader-hint content, answer rows, public/runtime mutation, route writes, accepted text, source-license/legal acceptance, export, publication readiness, or release action.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

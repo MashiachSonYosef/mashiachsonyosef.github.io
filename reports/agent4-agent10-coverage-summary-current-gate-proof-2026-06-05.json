@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:34:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Agent 4 validator/prereq/runtime",
+  "target": "agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current",
+  "changed_input_artifact": "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current.json",
+  "validator_proof_commands": [
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_coverage_summary.mjs reports\\agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current.json",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "Agent10 old-dictionary coverage summary validation passed. Commercial-clean families: 3; morphology rows: 78; subset rows: 500."
+    },
+    {
+      "command": "node --check scripts\\validate_agent10_old_dictionary_coverage_summary.mjs",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "stdout_summary": "syntax check passed"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent10-coverage-summary-current-gate-proof-2026-06-05.md",
+  "files": [
+    "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current.json",
+    "reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-reconciliation-final-2026-06-05.json",
+    "reports/agent10-direct-release-package-intake-refresh-2026-06-06a.json",
+    "scripts/validate_agent10_old_dictionary_coverage_summary.mjs"
+  ],
+  "counts": {
+    "commercial_clean_source_families": 3,
+    "commercial_clean_subset_rows": 500,
+    "commercial_clean_subset_occurrences": 10940,
+    "jastrow_rows": 210,
+    "jastrow_occurrences": 4474,
+    "bdb_dictionary_rows": 221,
+    "bdb_dictionary_occurrences": 4418,
+    "bdb_aramaic_rows": 69,
+    "bdb_aramaic_occurrences": 2048,
+    "morphology_planning_rows": 78,
+    "morphology_planning_occurrences": 1461,
+    "blocked_rows_preserved_outside_subset": 219,
+    "source_family_overlap_rows": 500,
+    "source_family_overlap_occurrences": 8427,
+    "source_family_overlap_exact_blockers": 23,
+    "exact_row_subset_manifest_rows": 500,
+    "exact_row_subset_manifest_occurrences": 8427,
+    "unique_token_ids": 500,
+    "unique_queue_ids": 500,
+    "agent6_packet_ready_now": 0,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_candidate_rows_now": 0,
+    "lemma_candidate_rows_now": 0,
+    "reader_hint_candidate_rows_now": 0,
+    "answer_eligible_rows_now": 0,
+    "public_emit_rows_now": 0,
+    "route_writes": 0,
+    "public_runtime_mutation": 0,
+    "accepted_text_rows": 0,
+    "release_actions": 0
+  },
+  "exact_blockers": [
+    "candidate_use_or_transform_intent_not_supplied_for_specific_subset",
+    "missing_exact_agent6_row_subset_boundary_for_candidate_use",
+    "missing_agent10_exact_agent6_candidate_use_packet_for_the_specific_planning_rows",
+    "overlap_buckets_require_later_exact_agent6_source_family_selection_boundary_before_use",
+    "no_transform_authorization_now",
+    "candidate_text_export_blocked",
+    "definition_lemma_reader_hint_content_storage_blocked",
+    "answer_eligibility_blocked",
+    "public_runtime_mutation_blocked",
+    "route_writes_blocked",
+    "accepted_text_blocked",
+    "release_action_blocked"
+  ],
+  "handoff_owner": {
+    "next_owner": "Agent 10 after concrete candidate-use or transform intent exists",
+    "agent6_owner": "Agent 6 only for that exact later packet"
+  },
+  "hashes": {
+    "coverage_summary_sha256": "5080a71d57adde2d8014355863166993fc806da6522a77a89190e7cdc5c7fbb8",
+    "final_reconciliation_sha256": "c2049ca76ff4ee98953ae407fa877413ebbe069b1504a3c5f5223da0ff33d89d",
+    "agent10_refresh_2026_06_06a_sha256": "62c9650e1a851a66b0bfd858ab8d179e92a6cf3e47c2e21ff03ae1947865a21d",
+    "validator_sha256": "eee150c390edbfc826faa2259c5743f7cf073980b1c3d549c764903aeecc7990"
+  },
+  "result": "target | agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current | changed input/artifact | reports/agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current.json | validator/proof command with timeout | node scripts\\validate_agent10_old_dictionary_coverage_summary.mjs reports\\agent10-old-dictionary-commercial-clean-source-family-morphology-coverage-summary-current.json, timeout 30000 ms, passed | output artifact path | reports/agent4-agent10-coverage-summary-current-gate-proof-2026-06-05.md/json | exact blockers | no concrete candidate-use/transform intent for a specific subset; Agent6 packet not ready; all transform/text/answer/public/route/release counters zero | handoff owner | Agent10 after concrete intent, Agent6 only for exact later packet | stop condition | stop at bounded release-owner coverage state; do not route Agent6, transform, store text, emit source rows, write routes, mutate public/runtime, export, or release until a concrete candidate-use/transform packet exists",
+  "stop_condition": "Stop at bounded release-owner coverage state. Do not route Agent 6, transform, store text, emit source rows, write routes, mutate public/runtime, export, or release until a concrete candidate-use/transform packet exists.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no usage-as-definition authority",
+    "no answer acceptance",
+    "no answer eligibility",
+    "no accepted gloss/text",
+    "no public reader output",
+    "no route-shard edit",
+    "no public/runtime mutation",
+    "no route publication support",
+    "no publication readiness",
+    "no product/data acceptance",
+    "no candidate text export",
+    "no definition/lemma/reader-hint content storage",
+    "no commercial export authorization",
+    "no NC commercial authorization",
+    "no release action"
+  ]
+}

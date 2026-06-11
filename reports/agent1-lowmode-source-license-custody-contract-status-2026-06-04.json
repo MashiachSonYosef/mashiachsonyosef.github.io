@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_lowmode_source_license_custody_contract_status",
+  "created_at": "2026-06-04T13:46:26.249Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / two-primary Spark model",
+  "status": "contracts_1_2_runnable_validated__contract_3_target_blocker_validated",
+  "agent": "Agent 1",
+  "low_mode_task": "write/verify source-license-custody pipeline contract for Orot NC/Klein and next missed source-family; do not decide license acceptance",
+  "inputs": [
+    "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.md",
+    "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+    "reports/agent1-weekly-source-license-custody-pipeline-authoring-status-2026-06-04.md",
+    "scripts/build_agent1_orot_nc_klein_source_family_pipeline.mjs",
+    "scripts/validate_agent1_orot_nc_klein_source_family_pipeline.mjs",
+    "scripts/build_agent1_orot_next_missed_source_family_pipeline.mjs",
+    "scripts/validate_agent1_orot_next_missed_source_family_pipeline.mjs"
+  ],
+  "contracts": [
+    {
+      "target": "Orot NC/Klein source-family pipeline",
+      "files": {
+        "contract_md": "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-2026-06-04.md",
+        "contract_json": "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-2026-06-04.json",
+        "build_script": "scripts/build_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "validator": "scripts/validate_agent1_orot_nc_klein_source_family_pipeline.mjs",
+        "contract_validator": "scripts/validate_agent1_spark1_orot_nc_klein_source_family_contract.mjs",
+        "output_md": "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.md",
+        "output_json": "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+        "validation_result": "reports/agent1-orot-nc-klein-source-family-pipeline-validation-result-2026-06-04.json",
+        "contract_validation_result": "reports/agent1-spark1-pipeline-contract-orot-nc-klein-source-family-validation-result-2026-06-04.json"
+      },
+      "command": "node scripts/build_agent1_orot_nc_klein_source_family_pipeline.mjs",
+      "validator": "node scripts/validate_agent1_orot_nc_klein_source_family_pipeline.mjs",
+      "contract_validator": "node scripts/validate_agent1_spark1_orot_nc_klein_source_family_contract.mjs",
+      "source_license_counts": {
+        "rows": 17,
+        "occurrences": 259,
+        "classification": "noncommercial_educational_candidate",
+        "derived_from_nc": true,
+        "commercial_export_allowed": false,
+        "noncommercial_display_allowed": false,
+        "attribution_required": true,
+        "corpus_contamination": false
+      },
+      "validator_result": "ok=true",
+      "contract_validator_result": "ok=true; spark1_routable=true",
+      "missing_field_blocker": null,
+      "spark1_handoff": "runnable mechanics may be handed to Spark-1; Agent 1 remains package owner",
+      "agent6_boundary": "Agent 6 only for exact boundary packet; no NC storage/display/public/answer/export authorization",
+      "stop_condition": "output map plus validator pass, or exact row/count/license flag blocker"
+    },
+    {
+      "target": "Orot next missed source-family pipeline",
+      "files": {
+        "contract_md": "reports/agent1-spark1-pipeline-contract-orot-next-missed-source-family-2026-06-04.md",
+        "contract_json": "reports/agent1-spark1-pipeline-contract-orot-next-missed-source-family-2026-06-04.json",
+        "build_script": "scripts/build_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "validator": "scripts/validate_agent1_orot_next_missed_source_family_pipeline.mjs",
+        "contract_validator": "scripts/validate_agent1_spark1_orot_next_missed_source_family_contract.mjs",
+        "output_md": "reports/agent1-orot-next-missed-source-family-map-2026-06-04.md",
+        "output_json": "reports/agent1-orot-next-missed-source-family-map-2026-06-04.json",
+        "validation_result": "reports/agent1-orot-next-missed-source-family-pipeline-validation-result-2026-06-04.json",
+        "contract_validation_result": "reports/agent1-spark1-pipeline-contract-orot-next-missed-source-family-validation-result-2026-06-04.json"
+      },
+      "command": "node scripts/build_agent1_orot_next_missed_source_family_pipeline.mjs",
+      "validator": "node scripts/validate_agent1_orot_next_missed_source_family_pipeline.mjs",
+      "contract_validator": "node scripts/validate_agent1_spark1_orot_next_missed_source_family_contract.mjs",
+      "source_license_counts": {
+        "rows": 50,
+        "occurrences": 1193,
+        "commercial_clean_candidate_rows": 50,
+        "commercial_clean_candidate_occurrences": 1193,
+        "noncommercial_educational_candidate_rows": 0,
+        "noncommercial_educational_candidate_occurrences": 0,
+        "blocked_present_but_unused_family": "BDB Augmented Strong"
+      },
+      "validator_result": "ok=true",
+      "contract_validator_result": "ok=true; spark1_routable=true",
+      "missing_field_blocker": null,
+      "spark1_handoff": "runnable mechanics may be handed to Spark-1; Agent 1 remains package owner",
+      "agent6_boundary": "Agent 6 only for exact boundary packet if package use is requested",
+      "stop_condition": "output map plus validator pass, or exact row/count/source-family blocker"
+    },
+    {
+      "target": "third missed source-family target discovery/blocker",
+      "files": {
+        "build_script": "scripts/build_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+        "validator": "scripts/validate_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+        "output_md": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.md",
+        "output_json": "reports/agent1-third-missed-source-family-target-or-blocker-2026-06-04.json",
+        "validation_result": "reports/agent1-third-missed-source-family-target-or-blocker-validation-result-2026-06-04.json"
+      },
+      "command": "node scripts/build_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+      "validator": "node scripts/validate_agent1_orot_third_missed_source_family_target_or_blocker.mjs",
+      "source_license_counts": {
+        "source_no_hit_inventory_rows": 186,
+        "source_no_hit_inventory_occurrences": 2421,
+        "local_route_card_matrix_rows": 169,
+        "local_route_card_matrix_occurrences": 2148,
+        "rows_already_in_placeholder_package": 1,
+        "occurrences_already_in_placeholder_package": 31,
+        "exact_linkage_blocker_rows": 168,
+        "exact_linkage_blocker_occurrences": 2117,
+        "row_level_source_family_or_license_fields_observed": false
+      },
+      "validator_result": "ok=true",
+      "missing_field_blocker": "169-row matrix is linkage/dedupe/navigation evidence and lacks row-level source-family/license split required for Agent 1 source/license/custody Contract 3",
+      "spark1_handoff": "not routable now; spark1_route_allowed_now=false",
+      "agent6_boundary": "no Agent 6 source/license/custody boundary question can be asked yet because exact source-family/license split is missing",
+      "stop_condition": "stop until exact third missed source-family workset, contract-ready Agent 1 input artifact, or explicit owner route to convert the 169-row matrix is supplied"
+    }
+  ],
+  "boundary": {
+    "no_source_provenance_acceptance": true,
+    "no_license_acceptance": true,
+    "no_nc_flattening": true,
+    "no_qa_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_public_runtime_mutation": true
+  },
+  "handoff": "Contracts 1/2 are runnable for Spark-1 mechanics and Agent 6 only for exact boundary packet; Contract 3 is not routable until exact source-family workset exists.",
+  "current_lane_return": {
+    "artifact": "reports/agent1-current-source-license-custody-lane-return-2026-06-04.json",
+    "validator": "node scripts/validate_agent1_current_source_license_custody_lane_return.mjs",
+    "output_count": 48,
+    "includes_contract_3_exact_blocker": true
+  },
+  "aggregate_pipeline_set": {
+    "registry": "reports/agent1-source-license-custody-pipeline-registry-2026-06-04.json",
+    "validator": "node scripts/validate_agent1_source_license_custody_pipeline_set.mjs",
+    "validation_result": "reports/agent1-source-license-custody-pipeline-set-validation-result-2026-06-04.json",
+    "runnable_contract_count": 22,
+    "supporting_packet_count": 24,
+    "exact_blocker_count": 1,
+    "lane_return_output_count": 48,
+    "status": "agent1_source_license_custody_pipeline_set_validated_for_discovery_only"
+  }
+}

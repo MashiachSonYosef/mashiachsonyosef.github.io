@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_agent13_direct_brief_response",
+  "generated_at": "2026-06-05T11:28:30.000Z",
+  "source_thread_id": "019e88b7-de88-7fc2-9d95-e1ee0b0b61bc",
+  "agent": "Agent 1",
+  "thread_title": "Agent 1 - importer",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane": "Hebrew import, source/license/custody, and source-lane classification for definitions",
+  "target": "old-dictionary-excluded-row-license-lane-reaudit",
+  "required_output_shape": "target | files used | lane counts/rows | classification lanes | exact blockers | handoff owner | stop condition",
+  "status": "first_target_packet_refreshed_validated_and_blockers_made_recallable",
+  "files_used": [
+    "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+    "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.md",
+    "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-validation-result-2026-06-04.json",
+    "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+    "reports/agent1-spark1-pipeline-contract-old-dictionary-excluded-row-license-lane-reaudit-validation-result-2026-06-04.json",
+    "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-continuation-2026-06-05.json",
+    "reports/agent1-bdb-augmented-strong-source-custody-blocker-2026-06-05.json",
+    "reports/agent1-bdb-augmented-strong-source-custody-blocker-validation-result-2026-06-05.json",
+    "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+    "reports/agent1-orot-sefaria-nc-aware-family-custody-boundary-2026-06-03.json",
+    "reports/agent6-orot-sefaria-nc-aware-family-boundary-final-verdict-2026-06-03.json",
+    "reports/oracle9-dictionary-lane-classification-correction-2026-06-04.md"
+  ],
+  "scoped_preview_counts": {
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "public_domain_observed_rows": 297,
+    "public_domain_observed_occurrences": 5747,
+    "blocked_only_non_public_domain_or_unresolved_rows": 17,
+    "blocked_only_non_public_domain_or_unresolved_occurrences": 259,
+    "no_sefaria_hit_rows": 186,
+    "no_sefaria_hit_occurrences": 2421
+  },
+  "lane_counts": {
+    "source_family_counts": {
+      "commercial_clean_candidate": 3,
+      "noncommercial_educational_candidate": 1,
+      "metadata_or_link_only": 0,
+      "blocked_or_needs_review": 1
+    },
+    "note": "Per-family row counts below are lexicon-family hit counts and can overlap across source families within the 500-row scoped preview."
+  },
+  "classification_lanes": [
+    {
+      "source_family": "Jastrow Dictionary",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::jastrow-dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "rows": 210,
+      "occurrences": 4474,
+      "exact_blockers": []
+    },
+    {
+      "source_family": "BDB Dictionary",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "rows": 221,
+      "occurrences": 4418,
+      "exact_blockers": []
+    },
+    {
+      "source_family": "BDB Aramaic Dictionary",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-aramaic-dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "rows": 69,
+      "occurrences": 2048,
+      "exact_blockers": []
+    },
+    {
+      "source_family": "Klein Dictionary",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+      "license_lane": "noncommercial_educational_candidate",
+      "rows": 214,
+      "occurrences": 4444,
+      "derived_from_nc": true,
+      "commercial_export_allowed": false,
+      "attribution_required": true,
+      "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+      "corpus_contamination": false,
+      "exact_blockers": [
+        "Agent 6/public boundary before any display/storage/public/answer/export behavior"
+      ]
+    },
+    {
+      "source_family": "BDB Augmented Strong",
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+      "license_lane": "blocked_or_needs_review",
+      "rows": 222,
+      "occurrences": 4435,
+      "derived_from_nc": false,
+      "commercial_export_allowed": false,
+      "corpus_contamination": false,
+      "exact_blockers": [
+        "independent source/license/custody basis",
+        "source URL or version source",
+        "license label and allowed fields",
+        "Agent 6 boundary if evidence appears"
+      ]
+    }
+  ],
+  "exact_blockers": [
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+      "license_lane": "noncommercial_educational_candidate",
+      "blocker": "Agent 6/public boundary before any display/storage/public/answer/export behavior",
+      "handoff_owner": "Agent 1 for NC lane packet; Agent 6 for exact NC row/subset boundary",
+      "stop_condition": "Remain out of Agent 2 candidate text transform until missing source/license/custody evidence and Agent 6 boundary are supplied."
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+      "license_lane": "blocked_or_needs_review",
+      "blocker": "bdb_augmented_strong_missing_independent_source_license_custody_basis",
+      "missing_evidence": [
+        "independent source/license/custody basis",
+        "source URL or version source",
+        "license label and allowed fields",
+        "Agent 6 boundary if evidence appears"
+      ],
+      "handoff_owner": "Agent 1 if independent evidence appears; otherwise blocked/review",
+      "stop_condition": "Remain out of Agent 2 candidate text transform until independent source/license/custody evidence and Agent 6 boundary are supplied."
+    }
+  ],
+  "handoff_owner": {
+    "agent2": "Agent 2 may transform only row/subsets with Agent 1 lane evidence and must preserve lane flags without recasting.",
+    "agent6": "Agent 6 receives exact row/subset boundary questions for Klein Dictionary and BDB Augmented Strong before display/storage/public/answer/export behavior.",
+    "agent10": "Agent 10 consumes classified package candidates for release/boundary assembly only, with no acceptance claims."
+  },
+  "stop_condition": "Stop after target packet, required output-shape response, validators, and exact blockers are recorded; downstream use remains awaiting Agent 6 row/subset boundary.",
+  "validation": {
+    "reaudit_packet_ok": true,
+    "reaudit_packet_completed_at": "2026-06-05T11:19:40.438Z",
+    "spark1_contract_ok": true,
+    "spark1_contract_completed_at": "2026-06-05T11:19:40.421Z",
+    "bdb_augmented_strong_blocker_ok": true,
+    "bdb_augmented_strong_blocker_completed_at": "2026-06-05T11:33:45.476Z"
+  },
+  "zero_output_counts": {
+    "answer_rows": 0,
+    "source_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "non_acceptance_boundary": {
+    "no_qa_acceptance": true,
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true,
+    "no_queue_mutation": true,
+    "no_staging": true
+  }
+}

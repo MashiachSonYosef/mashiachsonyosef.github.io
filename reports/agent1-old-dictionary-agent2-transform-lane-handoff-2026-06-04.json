@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_old_dictionary_agent2_transform_lane_handoff",
+  "generated_at": "2026-06-05T01:36:00.000Z",
+  "generator": "scripts/build_agent1_old_dictionary_agent2_transform_lane_handoff.mjs",
+  "status": "agent1_old_dictionary_agent2_transform_lane_handoff_ready_for_agent10_agent2_planning_only",
+  "input": "reports/agent1-old-dictionary-excluded-row-license-lane-reaudit-2026-06-04.json",
+  "target": "old-dictionary-agent2-transform-lane-handoff",
+  "counts": {
+    "source_family_count": 5,
+    "audited_rows": 500,
+    "audited_occurrences": 8427,
+    "commercial_clean_source_families": 3,
+    "noncommercial_educational_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1,
+    "agent2_transform_allowed_now_rows": 0
+  },
+  "transform_counts": {
+    "agent2_transform_candidate_after_agent6_boundary": {
+      "source_family_count": 3,
+      "rows": 500,
+      "occurrences": 10940
+    },
+    "agent2_nc_educational_hold_separate": {
+      "source_family_count": 1,
+      "rows": 214,
+      "occurrences": 4444
+    },
+    "agent2_blocked_or_review_hold": {
+      "source_family_count": 1,
+      "rows": 222,
+      "occurrences": 4435
+    }
+  },
+  "transform_rows": [
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::jastrow-dictionary",
+      "source_family": "Jastrow Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "transform_lane": "agent2_transform_candidate_after_agent6_boundary",
+      "evidence_path": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+      "rows": 210,
+      "occurrences": 4474,
+      "derived_from_nc": false,
+      "commercial_export_allowed": true,
+      "attribution_required": false,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true,
+      "agent2_transform_allowed_now": false,
+      "answer_eligible": false,
+      "public_emit": false,
+      "missing_evidence": [],
+      "handoff_owner": "Agent 10 release owner then Agent 6 boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-dictionary",
+      "source_family": "BDB Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "transform_lane": "agent2_transform_candidate_after_agent6_boundary",
+      "evidence_path": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+      "rows": 221,
+      "occurrences": 4418,
+      "derived_from_nc": false,
+      "commercial_export_allowed": true,
+      "attribution_required": false,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true,
+      "agent2_transform_allowed_now": false,
+      "answer_eligible": false,
+      "public_emit": false,
+      "missing_evidence": [],
+      "handoff_owner": "Agent 10 release owner then Agent 6 boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-aramaic-dictionary",
+      "source_family": "BDB Aramaic Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "transform_lane": "agent2_transform_candidate_after_agent6_boundary",
+      "evidence_path": "reports/agent2-orot-sefaria-public-domain-candidate-preview-2026-06-04.json",
+      "rows": 69,
+      "occurrences": 2048,
+      "derived_from_nc": false,
+      "commercial_export_allowed": true,
+      "attribution_required": false,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true,
+      "agent2_transform_allowed_now": false,
+      "answer_eligible": false,
+      "public_emit": false,
+      "missing_evidence": [],
+      "handoff_owner": "Agent 10 release owner then Agent 6 boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+      "source_family": "Klein Dictionary",
+      "license_lane": "noncommercial_educational_candidate",
+      "transform_lane": "agent2_nc_educational_hold_separate",
+      "evidence_path": "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
+      "rows": 214,
+      "occurrences": 4444,
+      "derived_from_nc": true,
+      "commercial_export_allowed": false,
+      "attribution_required": true,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true,
+      "agent2_transform_allowed_now": false,
+      "answer_eligible": false,
+      "public_emit": false,
+      "missing_evidence": [
+        "Agent 6/public boundary before any display/storage/public/answer/export behavior"
+      ],
+      "handoff_owner": "Agent 1 for NC lane packet; Agent 6 for exact NC row/subset boundary"
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+      "source_family": "BDB Augmented Strong",
+      "license_lane": "blocked_or_needs_review",
+      "transform_lane": "agent2_blocked_or_review_hold",
+      "evidence_path": "reports/agent6-orot-sefaria-nc-aware-family-boundary-final-verdict-2026-06-03.json",
+      "rows": 222,
+      "occurrences": 4435,
+      "derived_from_nc": false,
+      "commercial_export_allowed": false,
+      "attribution_required": false,
+      "corpus_contamination": false,
+      "agent6_boundary_required": true,
+      "agent2_transform_allowed_now": false,
+      "answer_eligible": false,
+      "public_emit": false,
+      "missing_evidence": [
+        "independent source/license/custody basis",
+        "source URL or version source",
+        "license label and allowed fields",
+        "Agent 6 boundary if evidence appears"
+      ],
+      "handoff_owner": "Agent 1 if evidence appears; otherwise blocked/review"
+    }
+  ],
+  "exact_missing_field_blockers": [
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::klein-dictionary",
+      "source_family": "Klein Dictionary",
+      "license_lane": "noncommercial_educational_candidate",
+      "missing_evidence": [
+        "Agent 6/public boundary before any display/storage/public/answer/export behavior"
+      ],
+      "handoff_owner": "Agent 1 for NC lane packet; Agent 6 for exact NC row/subset boundary",
+      "stop_condition": "Remain out of Agent 2 candidate text transform until missing source/license/custody evidence and Agent 6 boundary are supplied."
+    },
+    {
+      "row_subset_id": "old-dictionary-excluded-row-license-lane-reaudit::bdb-augmented-strong",
+      "source_family": "BDB Augmented Strong",
+      "license_lane": "blocked_or_needs_review",
+      "missing_evidence": [
+        "independent source/license/custody basis",
+        "source URL or version source",
+        "license label and allowed fields",
+        "Agent 6 boundary if evidence appears"
+      ],
+      "handoff_owner": "Agent 1 if evidence appears; otherwise blocked/review",
+      "stop_condition": "Remain out of Agent 2 candidate text transform until missing source/license/custody evidence and Agent 6 boundary are supplied."
+    }
+  ],
+  "handoff": {
+    "agent2_rule": "Agent 2 may transform only row/subsets with Agent 1 lane evidence and applicable Agent 6/release boundary; no row is transform-authorized by this packet alone.",
+    "commercial_clean_rule": "Commercial-clean rows remain separate from NC educational rows.",
+    "nc_rule": "NC educational rows remain separate, noncommercial, answer-ineligible, public_emit=false, and commercial_export_allowed=false.",
+    "blocked_rule": "Blocked/review rows emit no candidate text.",
+    "handoff_owner": "Agent 10 release/package intake before any Agent 2 transform use"
+  },
+  "non_acceptance_boundary": {
+    "no_source_license_acceptance": true,
+    "no_legal_acceptance": true,
+    "no_definition_authority": true,
+    "no_runtime_public_acceptance": true,
+    "no_publication_readiness": true,
+    "no_product_data_acceptance": true,
+    "no_answer_acceptance": true,
+    "no_accepted_gloss_text": true,
+    "no_nc_commercial_authorization": true,
+    "no_public_runtime_mutation": true
+  }
+}

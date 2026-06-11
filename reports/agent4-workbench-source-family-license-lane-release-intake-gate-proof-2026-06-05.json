@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_changed_package_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05",
+  "status": "runnable_contract_authored_changed_input_present",
+  "target": "workbench-source-family-license-lane-release-intake",
+  "changed_package_input_path": "reports/agent10-agent6-ready-workbench-source-family-license-lane-release-intake-boundary-packet-2026-06-05.json",
+  "changed_package_hash": "sha256:a205786809379fba72cd2240ee5e0e17bea04532cd6d6e894c0b5ee3791547ae",
+  "files": [
+    "reports/agent10-agent6-ready-workbench-source-family-license-lane-release-intake-boundary-packet-2026-06-05.json",
+    "reports/agent4-workbench-source-family-license-lane-release-intake-changed-input-2026-06-05.json",
+    "reports/agent4-workbench-source-family-license-lane-release-intake-runnable-contract-2026-06-05.json",
+    "reports/agent4-workbench-source-family-license-lane-release-intake-runnable-contract-2026-06-05.md"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_workbench_source_family_license_lane_release_intake_boundary_packet.mjs reports\\agent10-agent6-ready-workbench-source-family-license-lane-release-intake-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\build_agent4_changed_package_validator_prereq_gate.mjs --date 2026-06-05 --changed-input reports\\agent4-workbench-source-family-license-lane-release-intake-changed-input-2026-06-05.json --out-json reports\\agent4-workbench-source-family-license-lane-release-intake-runnable-contract-2026-06-05.json --out-md reports\\agent4-workbench-source-family-license-lane-release-intake-runnable-contract-2026-06-05.md",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-workbench-source-family-license-lane-release-intake-runnable-contract-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "release_intake_rows": 4,
+    "boundary_question_count": 4,
+    "source_family_license_lane_partition_count": 4,
+    "source_family_count": 1,
+    "source_name_partition_count": 351,
+    "source_row_count": 105747,
+    "runnable_contracts_authored": 1,
+    "runnable_contracts_checked": 1
+  },
+  "result": "runnable contract generated and checked",
+  "blocker_if_any": "no Agent4 validator blocker; Agent6 boundary remains required before source/license custody acceptance, public display, answer use, definition text use, package/export behavior, or publication",
+  "next_handoff": "Agent10/Agent6 boundary review only",
+  "stop_condition": "do not rerun unless package/input changes",
+  "not_accepted": [
+    "QA acceptance",
+    "public/runtime acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss/text",
+    "release action",
+    "public/runtime mutation"
+  ]
+}

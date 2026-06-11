@@ -1,0 +1,49 @@
+{
+  "artifact_type": "agent4_changed_input_blocker",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T09:21:00.457Z",
+  "target": "Agent 4 changed-input candidate selection",
+  "changed_input_artifact": "reports/agent4-changed-input-selection-after-latest-anchor-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node scripts\\select_agent4_changed_input_candidate.mjs --after=reports\\agent4-changed-input-selection-after-latest-anchor-2026-06-06.json --out=reports\\agent4-changed-input-selection-after-latest-selector-blocker-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed"
+    }
+  ],
+  "anchor": "reports/agent4-changed-input-selection-after-latest-anchor-2026-06-06.json",
+  "anchor_mtime_ms": 1780737613904.2737,
+  "scanned_roots": [
+    "reports",
+    "data/control"
+  ],
+  "limit": 50,
+  "newer_file_count": 0,
+  "candidate_count": 0,
+  "selected_candidate": null,
+  "changed_input_blocker": {
+    "code": "changed_package_input_missing",
+    "changed_package_path_missing": true,
+    "command_list_needed": "Exact validator/prereq command for the next changed package or candidate artifact.",
+    "expected_output_schema": "Agent4 proof packet with changed_input_artifact, validator_commands including timeout_ms/result, counts, exact blockers, handoff_owner, stop_condition, and non_acceptance_boundary.",
+    "validator_gate": "Run only an existing named validator for the selected changed package/input, then validate the Agent4 packet with scripts/validate_agent4_validator_prereq_packet.mjs.",
+    "package_owner": "Agent 10 release/package intake or the upstream package-producing agent for the next changed artifact.",
+    "agent6_boundary_trigger": "Only after a concrete boundary-ready packet exists and Agent 6 review is explicitly needed.",
+    "stop_condition": "Stop after selecting one changed package/input or returning this exact blocker."
+  },
+  "exact_blockers": [
+    {
+      "code": "changed_package_input_missing",
+      "changed_package_path_missing": true,
+      "details": "No changed package/input candidate was selected after the provided anchor."
+    }
+  ],
+  "handoff_owner": "Agent 4 for changed-input-only validation discipline; Agent 10 or upstream package owner must provide the next changed package/input.",
+  "stop_condition": "Stop after returning an exact changed-input blocker.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, or release action."
+  ],
+  "rows": []
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "generated_at": "2026-06-05T23:59:59.900Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "agent": "Agent 4",
+  "target": "agent10-old-dictionary-source-family-overlap-matrix-boundary",
+  "status": "validated_nonpublic_planning_evidence_only_no_acceptance",
+  "files": {
+    "membership_manifest": {
+      "path": "reports/agent1-old-dictionary-source-family-membership-manifest-2026-06-05.json",
+      "sha256": "651b67236a69b8ae5721d2dad74faac1325ec381e5d770f43589cbc8027f7ac7"
+    },
+    "overlap_matrix": {
+      "path": "reports/agent1-old-dictionary-source-family-overlap-matrix-2026-06-05.json",
+      "sha256": "51e4ddbec7cf897c14e380afb600b60878c7879861d16b197480bb4b8b40a8ed"
+    },
+    "agent10_boundary_packet": {
+      "path": "reports/agent10-agent6-ready-old-dictionary-source-family-overlap-matrix-boundary-packet-2026-06-05.json",
+      "sha256": "ba6f17f4baa7bdd4b26ab2d7141ba88d04cd36f54b24b9da946873342be97a8f"
+    },
+    "agent2_overlap_receipt": {
+      "path": "reports/agent2-source-family-membership-overlap-receipt-2026-06-05.json",
+      "sha256": "1de214582f59d6498a6f6e51ca0cd411d1fc77b5c33bbd72e8e04da4e4198750"
+    }
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_source_family_membership_manifest.mjs reports\\agent1-old-dictionary-source-family-membership-manifest-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent1_old_dictionary_source_family_overlap_matrix.mjs reports\\agent1-old-dictionary-source-family-overlap-matrix-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent10_old_dictionary_source_family_overlap_matrix_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-source-family-overlap-matrix-boundary-packet-2026-06-05.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent2_source_family_membership_overlap_receipt.mjs reports\\agent2-source-family-membership-overlap-receipt-2026-06-05.json",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "source_family_count": 5,
+    "source_family_membership_rows_nonexclusive": 936,
+    "source_family_membership_occurrences_nonexclusive": 19819,
+    "unique_preview_rows": 500,
+    "unique_preview_occurrences": 8427,
+    "jastrow_rows": 210,
+    "bdb_dictionary_rows": 221,
+    "bdb_aramaic_dictionary_rows": 69,
+    "klein_rows": 214,
+    "bdb_augmented_strong_rows": 222,
+    "pairwise_intersection_count": 10,
+    "exact_family_combination_count": 13,
+    "total_exact_combination_rows": 500,
+    "total_exact_combination_occurrences": 8427,
+    "commercial_internal_pair_rows": 252,
+    "commercial_with_nc_pair_rows": 362,
+    "commercial_with_blocked_pair_rows": 425,
+    "nc_with_blocked_pair_rows": 140
+  },
+  "lane_counts": {
+    "commercial_clean_candidate_source_families": 3,
+    "noncommercial_educational_candidate_source_families": 1,
+    "metadata_or_link_only_source_families": 0,
+    "blocked_or_needs_review_source_families": 1
+  },
+  "zero_output_counts": {
+    "delivered_to_agent6_now": 0,
+    "allowed_transform_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "accepted_gloss_rows_now": 0,
+    "answer_rows_now": 0,
+    "definition_content_rows_now": 0,
+    "source_rows_emitted_now": 0,
+    "public_hud_rows_now": 0,
+    "route_jsonl_rows_now": 0,
+    "agent6_delivery_now": 0,
+    "queue_mutation_count": 0,
+    "render_mutation_count": 0,
+    "staging_count": 0,
+    "release_route_opened_now": 0
+  },
+  "result": "Agent 1 source-family membership and overlap matrix, Agent 10 Agent6-ready boundary packet, and Agent 2 overlap receipt validate as nonpublic planning evidence only.",
+  "blocker_if_any": "future_agent6_source_family_overlap_matrix_boundary_required_before_source_family_selection_candidate_use_transform_definition_answer_route_runtime_export_or_release",
+  "next_handoff": "Agent 10 may route the exact source-family overlap matrix boundary packet to Agent 6; Agent 4 does not self-accept or deliver.",
+  "stop_condition": "Do not rerun unless membership manifest, overlap matrix, Agent10 boundary packet, Agent2 receipt, or validators change.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance/license/legal acceptance",
+    "no Definition authority",
+    "no answer eligibility",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no accepted gloss or accepted translation text",
+    "no release action"
+  ]
+}

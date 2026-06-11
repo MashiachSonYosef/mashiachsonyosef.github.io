@@ -1,0 +1,57 @@
+{
+  "artifact_type": "agent10_daniel_actual_page_gate_split",
+  "generated_at": "2026-06-06T17:36:50Z",
+  "target": "tanakh/daniel/index.html",
+  "source_page_visibility_verdict": "ALLOW_AS_ORDINARY_CORPUS_SOURCE_PAGE_WITH_TBD_BOUNDARY",
+  "prehud_definition_layer_verdict": "BLOCKED_NOT_WIRED_ON_CURRENT_ACTUAL_PAGE",
+  "featured_verdict": "NOT_FEATURED_READY_PENDING_PREHUD_LAYER_AND_A07_FINAL_VALIDATION",
+  "actual_page_evidence": {
+    "title": "Daniel | Hebrew Workbench",
+    "runtime_occurrence_count": 5456,
+    "lexical_units": 357,
+    "lexical_slots": 357,
+    "hebrew_inline_blocks": 357,
+    "prehud_rows": 0,
+    "prehud_tbd_rows": 0,
+    "match_tbd_rows": 0,
+    "selectable_rows": 0,
+    "aria_controls_route_hud_rows": 0,
+    "route_hud_shell": "data-lexical-hud dialog shell present",
+    "data_lexical_hud_dialogs": 1,
+    "reader_gloss_card_markers": 0,
+    "reader_gloss_choice_markers": 0,
+    "old_under_row_markers": 0
+  },
+  "validation_note": "Initial heartbeat observation saw a transient 5456-row full-TBD pre-HUD page, but bounded consistency validation immediately found the current actual page had returned to 0 pre-HUD rows. This artifact records the validated current state, not the transient observation.",
+  "exact_blockers": [
+    {
+      "blocker": "actual_daniel_page_lacks_prehud_token_row_layer",
+      "detail": "Current actual Daniel page has 357 lexical units/slots and a data-lexical-hud shell, but 0 pre-HUD rows, 0 TBD gloss rows, and 0 match rows."
+    },
+    {
+      "blocker": "a10_orot_reader_gloss_selector_pattern_not_proven_on_daniel",
+      "detail": "Current actual Daniel page has no reader-gloss-card / reader-gloss-choice markers; featured/Orot-style render proof remains absent."
+    },
+    {
+      "blocker": "a07_final_validation_required_before_featured_status",
+      "detail": "Daniel may be ordinary corpus-visible with TBD/unaccepted definitions, but featured/proved Orot-style render status requires A07 final validation."
+    }
+  ],
+  "a07_approval_needed": {
+    "ordinary_source_page_visibility": false,
+    "featured_pipeline_status": true,
+    "final_validation": true
+  },
+  "next_action": "Apply/prove the pre-HUD row layer on the actual tanakh/daniel/index.html page using the runtime occurrence roster and keep pre-HUD TBD until selectable/default route data exists. If changed and validated, route final validation/feature gate to A07, not A06.",
+  "boundary": [
+    "release_owner_gate_evidence_only",
+    "TBD_is_display_integrity_only",
+    "no_file_mutation_to_actual_daniel_page_in_this_artifact",
+    "no_publication_release",
+    "no_source_license_legal_acceptance",
+    "no_Definition_authority",
+    "no_answer_acceptance",
+    "no_accepted_gloss_text",
+    "no_product_acceptance"
+  ]
+}

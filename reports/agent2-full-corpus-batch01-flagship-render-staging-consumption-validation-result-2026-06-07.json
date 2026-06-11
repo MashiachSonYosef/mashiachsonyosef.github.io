@@ -1,0 +1,38 @@
+{
+  "artifact_type": "agent2_full_corpus_batch01_flagship_render_staging_consumption_validation_result",
+  "generated_at": "2026-06-07T13:35:36Z",
+  "validated_artifact": "reports/agent2-full-corpus-batch01-flagship-render-staging-consumption-2026-06-07.json",
+  "validator": "scripts/validate_agent2_full_corpus_batch01_flagship_render_staging_consumption.mjs",
+  "command": "node scripts\\validate_agent2_full_corpus_batch01_flagship_render_staging_consumption.mjs reports\\agent2-full-corpus-batch01-flagship-render-staging-consumption-2026-06-07.json",
+  "timeout_ms": 120000,
+  "process_timeout": false,
+  "passed": true,
+  "validator_output": "Agent2 full-corpus batch01 render staging consumption validation passed. Ready pages: 20; blocked pages: 0; bad pre-HUD glosses: 0.",
+  "validated_counts": {
+    "batch_rows": 20,
+    "render_ready_stage_candidate_pages": 20,
+    "blocked_validator_pages": 0,
+    "token_rows_total": 184647,
+    "configured_hint_rows_total": 26148,
+    "expected_tbd_rows_total": 158776,
+    "browser_proof_pages": 3,
+    "bad_prehud_glosses": 0,
+    "public_runtime_acceptance_claims": 0,
+    "definition_acceptance_claims": 0,
+    "answer_acceptance_claims": 0,
+    "release_actions": 0,
+    "route_shard_writes": 0
+  },
+  "stale_source_change_caught": {
+    "initial_seen_status": "BATCH01_19_READY_1_BLOCKED_DIRECT_RENDER_CONTRACT",
+    "validated_current_status": "BATCH01_20_READY_DIRECT_RENDER_CONTRACT",
+    "correction": "Agent2 consumption was patched to current 20-ready source state before validation."
+  },
+  "boundary": [
+    "render_pre_hud_gating_only",
+    "no_QA_source_license_legal_Definition_product_answer_accepted_text_acceptance",
+    "no_public_runtime_acceptance",
+    "no_publication_or_release_claim"
+  ],
+  "stop_condition": "Validation receipt only. No source/license/legal/Definition/product/answer/accepted-text acceptance, no public/runtime acceptance, no route shard write, no repo cleanup action, no publication readiness claim, no release action."
+}

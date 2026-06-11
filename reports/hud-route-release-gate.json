@@ -1,13 +1,14 @@
 {
   "schema_version": 1,
   "artifact_type": "hud_route_release_gate_report",
-  "generated_at": "2026-06-01T14:58:10.973Z",
+  "generated_at": "2026-06-01T17:46:41.411Z",
   "status": "pass_with_warnings",
   "release_scope": "public_lookup_integrity_passed_current_route_source_reconciliation_unproven",
   "release_id": "hud-route-rc-2026-05-31T16-55-29-957Z",
   "publication_boundary": {
     "publication_status": "blocked_no_render",
     "validates": [
+      "hud_route_release_stamp",
       "hud_route_lookup_integrity",
       "route_card_publication_boundary"
     ],
@@ -34,8 +35,8 @@
   "route_publication_boundary": {
     "report": "reports/route-publication-boundary-audit.json",
     "generator": "scripts/validate_route_publication_boundary.mjs",
-    "generator_sha256": "c6c60f42c27b57098e1340e077ec80db1a4c933e674213464eb382a53af55781",
-    "manifest_sha256": "558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1",
+    "generator_sha256": "1ea55f44cb841a01ef6e470fabf364801ce25cb4af76d94caad596f269d223a7",
+    "manifest_sha256": "3d0c5cb147e3b87e63a032a69802174f86b4eb3aff41ed6037ae758a14dded7a",
     "contract": "data/definitions/hud-route-contract.json",
     "allowed_display_sections": [
       "answer",
@@ -113,7 +114,28 @@
     "drift": [
       "source-phrase-evidence.jsonl: current source differs from frozen release input",
       "source-citable-paraphrase-evidence.jsonl: current source differs from frozen release input"
-    ]
+    ],
+    "publication_boundary": {
+      "publication_status": "blocked_no_render",
+      "validates": [
+        "hud_route_input_freeze_drift",
+        "frozen_route_input_cache_comparison"
+      ],
+      "does_not_clear": [
+        "translation_output",
+        "source_publication",
+        "public_lexical_export_reuse",
+        "accepted_definition_authority",
+        "public_lookup_publication",
+        "route_publication_readiness"
+      ],
+      "route_input_scope": "freeze_drift_check_only_not_publication_readiness",
+      "warning_status_blocks_publication_claim": true,
+      "current_route_inputs_reconciled": false,
+      "route_data_regenerated": false,
+      "source_imports_changed": false,
+      "public_lookup_artifacts_changed": false
+    }
   },
   "checked_sample_tokens": 6,
   "issues": [],

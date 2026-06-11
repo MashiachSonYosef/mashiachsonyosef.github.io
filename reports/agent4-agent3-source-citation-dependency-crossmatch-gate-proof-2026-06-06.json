@@ -1,0 +1,111 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "Agent 3 source-citation dependency crossmatch",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifact": "reports/agent3-old-dictionary-candidate-use-source-citation-dependency-crossmatch-2026-06-06.json",
+  "validator_commands": [
+    {
+      "command": "node --check scripts\\validate_agent3_old_dictionary_candidate_use_source_citation_dependency_crossmatch.mjs",
+      "timeout_ms": 30000,
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_agent3_old_dictionary_candidate_use_source_citation_dependency_crossmatch.mjs --input=reports/agent3-old-dictionary-candidate-use-source-citation-dependency-crossmatch-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent 3 source citation dependency passed: rows=78 missing_citation=78 blockers=5"
+    }
+  ],
+  "counts": {
+    "row_dependency_rows": 78,
+    "row_dependency_occurrences": 1461,
+    "boundary_chain_rows_linked": 78,
+    "boundary_chain_rows_missing": 0,
+    "agent10_workset_rows": 78,
+    "agent10_workset_occurrences": 1461,
+    "agent2_dependency_rows": 78,
+    "agent2_dependency_occurrences": 1461,
+    "agent2_validation_rows": 78,
+    "agent2_validation_occurrences": 1461,
+    "row_count_mismatch": 0,
+    "occurrence_count_mismatch": 0,
+    "source_citation_supplied_rows": 0,
+    "source_citation_missing_rows": 78,
+    "transform_rule_supplied_rows": 0,
+    "transform_rule_missing_rows": 78,
+    "source_family_rows": 3,
+    "source_family_memberships": 159,
+    "source_rid_references": 393,
+    "unique_source_rids": 344,
+    "source_rid_prefix_rows": 21,
+    "exact_blocker_rows": 5,
+    "stale_agent1_route_blocker_rows": 1,
+    "transform_ready_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "source_acceptance_claims": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "result": "validated_source_citation_dependency_crossmatch_only",
+  "exact_blockers": [
+    {
+      "code": "source_citation_missing_rows",
+      "class": "source_citation_dependency",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 1 / Agent 2 source-citation enrichment before Agent 10 package intake"
+    },
+    {
+      "code": "transform_rule_missing_rows",
+      "class": "transform_output_prereq_blocker",
+      "affected_rows": 78,
+      "affected_occurrences": 1461,
+      "handoff_owner": "Agent 2 transform-output proposal lane after source-citation prerequisite"
+    },
+    {
+      "code": "stale_agent1_route_blocker_rows",
+      "class": "agent1_route_blocker",
+      "affected_rows": 1,
+      "handoff_owner": "Agent 10 / Agent 5 routing coordination; Agent 1 source-citation lane"
+    },
+    {
+      "code": "no_transform_ready_rows",
+      "class": "transform_readiness_blocker",
+      "affected_rows": 78,
+      "handoff_owner": "Agent 10 / Agent 2"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-agent3-source-citation-dependency-crossmatch-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-agent3-source-citation-dependency-crossmatch-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 10 package intake may consume as dependency validation evidence; Agent 1/Agent 2 own source-citation and transform prerequisites",
+  "next_safe_action": "Use this crossmatch as dependency/navigation evidence only; resolve source_citation_or_url, exact transform rules, and current Agent 1 route before candidate-use output.",
+  "stop_condition": "Stop after validating and packaging the source-citation dependency crossmatch; do not claim acceptance.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no source/license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

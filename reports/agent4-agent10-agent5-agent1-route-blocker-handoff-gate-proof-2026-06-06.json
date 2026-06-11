@@ -1,0 +1,59 @@
+{
+  "artifact_type": "agent4_agent10_agent5_agent1_route_blocker_handoff_gate_proof",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "old-dictionary-commercial-clean-78-row-source-citation-enrichment",
+  "changed_input_artifact": "reports/agent10-agent5-handoff-old-dictionary-78-row-agent1-route-blocker-2026-06-06.json",
+  "validator_proof_command": {
+    "command": "node scripts\\validate_agent10_agent5_old_dictionary_78_row_agent1_route_blocker_handoff.mjs reports\\agent10-agent5-handoff-old-dictionary-78-row-agent1-route-blocker-2026-06-06.json",
+    "timeout_ms": 30000,
+    "result": "passed",
+    "stdout": "Agent10 Agent5 Agent1-route blocker handoff validation passed. Rows: 78; occurrences: 1461; blocker: stale_agent1_registry_target_current_agent1_thread_required."
+  },
+  "files": {
+    "validator": "scripts/validate_agent10_agent5_old_dictionary_78_row_agent1_route_blocker_handoff.mjs",
+    "handoff": "reports/agent10-agent5-handoff-old-dictionary-78-row-agent1-route-blocker-2026-06-06.json",
+    "workset": "reports/agent10-agent1-ready-old-dictionary-78-row-source-citation-enrichment-workset-2026-06-06.json",
+    "route_blocker": "reports/agent10-agent1-old-dictionary-78-row-source-citation-enrichment-live-route-blocker-2026-06-06.json",
+    "director_state": "reports/agent10-release-director-state-old-dictionary-boundaries-2026-06-06.json"
+  },
+  "counts": {
+    "rows": 78,
+    "occurrences": 1461,
+    "license_lane": "commercial_clean_candidate",
+    "public_runtime_mutation": 0,
+    "route_writes": 0,
+    "candidate_text_export": 0,
+    "definition_lemma_reader_hint_content_storage": 0,
+    "answer_eligibility": 0,
+    "accepted_text": 0,
+    "release_actions": 0
+  },
+  "result": "changed_handoff_blocker_validated_no_release_packet_ready",
+  "exact_blockers": [
+    "stale_agent1_registry_target_current_agent1_thread_required"
+  ],
+  "next_handoff_owner": "Agent 5 / coordination for current Agent 1 route proof or Agent 1 source-citation enrichment return/exact blocker; Agent 10 only for release/package judgment after a changed return exists",
+  "stop_condition": "Stop at Agent5 preservation handoff proof. Do not rerun without a changed Agent1 route proof, Agent1 source-citation enrichment return, Agent1 exact blocker, handoff artifact, workset, or validator. Do not mutate public/runtime files, route shards, source files, token indexes, lexical payloads, candidate text, definition content, accepted text, export files, publication state, or release state.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition lemma reader hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}

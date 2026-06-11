@@ -1,8 +1,9 @@
 # Public HUD Route Card Scan
 
-Generated: 2026-05-31T17:11:20.856Z
+Generated: 2026-06-01T16:33:55.472Z
 Status: pass
 Manifest: `data/definitions/hud-route-lookup/manifest.json`
+Publication status: blocked_no_render
 
 ## Counts
 
@@ -48,4 +49,9 @@ Manifest: `data/definitions/hud-route-lookup/manifest.json`
 
 ## Boundary
 
-This scan validates already-published HUD route lookup cards. It does not regenerate definitions, alter source imports, or create route families.
+- Validates: public_hud_route_lookup_manifest, public_hud_route_lookup_shards
+- Does not clear: translation_output, source_publication, public_lexical_export_reuse, accepted_definition_authority
+- Answer eligibility scope: hud_answer_slot_only_not_translation_or_publication_readiness
+- Route lookup scope: definition_route_lookup_data_not_publication_readiness
+- Current route inputs reconciled: not_checked_by_public_lookup_manifest_validate_release_stamp_and_drift
+- This scan validates already-published HUD route lookup cards. It does not regenerate definitions, alter source imports, create route families, create accepted translation output, or establish publication readiness.

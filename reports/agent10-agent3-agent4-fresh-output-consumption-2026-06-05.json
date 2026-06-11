@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent3_agent4_fresh_output_consumption",
+  "generated_at": "2026-06-05T10:36:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / direct Agent run mode",
+  "release_owner": "Agent 10",
+  "consumed_outputs": [
+    {
+      "package_workset": "agent3_crossmatch_inventory_packet",
+      "inputs_consumed": [
+        "reports/agent3-crossmatch-inventory-packet-2026-06-05.md",
+        "reports/agent3-crossmatch-inventory-packet-2026-06-05.json"
+      ],
+      "counts": {
+        "files_in_inventory": 225,
+        "data_artifacts": 51,
+        "report_artifacts": 57,
+        "pipeline_scripts": 117,
+        "dirty_or_uncommitted_files": 0,
+        "committed_clean_files": 225,
+        "untracked_files": 0,
+        "reader_facing_rows": 0,
+        "route_payload_field_hits": 0,
+        "forbidden_authority_field_hits": 0,
+        "forbidden_truthy_authority_claims": 0
+      },
+      "validator_result": "node scripts\\validate_agent3_crossmatch_inventory_packet.mjs reports\\agent3-crossmatch-inventory-packet-2026-06-05.json passed",
+      "release_relevance": "Inventory evidence only. It records current crossmatch/usage navigation file state and preserves zero reader-facing/route-payload/authority hits.",
+      "exact_blocker": "none_for_clean_inventory_baseline",
+      "agent6_boundary_question": null,
+      "next_handoff": "Preserve as clean navigation baseline only. Agent 3 must provide a bounded package-use packet or exact changed workset before Agent 10 treats it as release/package evidence."
+    },
+    {
+      "package_workset": "agent3_post_continuity_release_intake_registration_audit",
+      "inputs_consumed": [
+        "reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.md",
+        "reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.json",
+        "reports/agent4-agent3-post-continuity-release-intake-registration-audit-gate-proof-2026-06-05.md",
+        "reports/agent4-agent3-post-continuity-release-intake-registration-audit-gate-proof-2026-06-05.json"
+      ],
+      "counts": {
+        "previous_inputs_checked": 275,
+        "current_inputs_checked": 280,
+        "input_delta_since_previous_audit": 5,
+        "current_release_relevant_rows": 116,
+        "current_agent6_handoff_candidates": 45,
+        "current_agent3_rows": 24,
+        "direct_queue_agent3_runnable_items": 0,
+        "route_publication_support_rows": 0,
+        "definition_authority_rows": 0,
+        "answer_rows": 0,
+        "accepted_text_rows": 0,
+        "public_runtime_mutations": 0
+      },
+      "validator_result": "node scripts\\validate_agent3_post_continuity_release_intake_registration_audit.mjs reports\\agent3-post-continuity-release-intake-registration-audit-2026-06-05.json passed",
+      "release_relevance": "Registration audit evidence only. The package-time Spark10 registration blocker is superseded for Agent 10 by direct local intake registration, but Agent 3 still has no runnable queue item from this audit.",
+      "exact_blocker": "direct_queue_agent3_runnable_items=0",
+      "agent6_boundary_question": null,
+      "next_handoff": "No new Agent 6 route. Agent 3 must provide a changed exact workset or bounded validated subset before Agent 10 can assemble a new boundary packet."
+    },
+    {
+      "package_workset": "agent4_agent3_crossmatch_inventory_gate_proof",
+      "inputs_consumed": [
+        "reports/agent4-agent3-crossmatch-inventory-packet-gate-proof-2026-06-05.md",
+        "reports/agent4-agent3-crossmatch-inventory-packet-gate-proof-2026-06-05.json"
+      ],
+      "counts": {
+        "gate_proof_files_in_inventory": 227,
+        "gate_proof_dirty_or_uncommitted_files": 206,
+        "current_agent3_files_in_inventory": 225,
+        "current_agent3_dirty_or_uncommitted_files": 0,
+        "gate_proof_stale_against_current_agent3_inventory": 1,
+        "reader_facing_rows": 0,
+        "route_payload_field_hits": 0,
+        "forbidden_authority_field_hits": 0
+      },
+      "validator_result": "gate proof is stale against current Agent 3 inventory counts; current Agent 3 validator passed separately",
+      "release_relevance": "Stale validator/prereq support only. Current Agent 3 inventory is clean and authoritative for release intake baseline.",
+      "exact_blocker": "agent4_crossmatch_gate_proof_stale_against_current_agent3_inventory",
+      "agent6_boundary_question": null,
+      "next_handoff": "Agent 4 may refresh the gate proof after the Agent 3 inventory stabilizes; Agent 10 does not open a new Agent 6 route from the stale proof."
+    },
+    {
+      "package_workset": "agent4_orot_third_missed_source_family_pipeline_gate_proof",
+      "inputs_consumed": [
+        "reports/agent4-orot-third-missed-source-family-pipeline-gate-proof-2026-06-05.md",
+        "reports/agent4-orot-third-missed-source-family-pipeline-gate-proof-2026-06-05.json",
+        "reports/agent4-orot-third-missed-source-family-pipeline-runnable-contract-2026-06-05.md",
+        "reports/agent4-orot-third-missed-source-family-pipeline-runnable-contract-2026-06-05.json"
+      ],
+      "counts": {
+        "rows": 169,
+        "occurrences": 2148,
+        "commercial_clean_candidate_rows": 138,
+        "noncommercial_educational_candidate_rows": 0,
+        "metadata_or_link_only_rows": 0,
+        "blocked_or_needs_review_rows": 31,
+        "validators_passed": 2,
+        "runnable_contracts_authored": 1,
+        "runnable_contracts_checked": 1
+      },
+      "validator_result": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-orot-third-missed-source-family-pipeline-runnable-contract-2026-06-05.json passed",
+      "release_relevance": "Validator/prereq gate proof for the Orot third-missed source-family packet already routed to Agent 6 and consumed after Agent 6 verdict.",
+      "exact_blocker": "none_for_agent4_validator_prereq_gate; Agent 6 verdict remains planning-only and downstream use still needs later exact boundary",
+      "agent6_boundary_question": null,
+      "next_handoff": "No new Agent 6 route from Agent 4 proof alone."
+    }
+  ],
+  "zero_mutation_counters": {
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "route_jsonl_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "nc_definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_hud_rows": 0
+  },
+  "stop_condition": "Stop at Agent 3 exact blocker, volatile inventory-count blocker, and Agent 4 validator/prereq evidence; no new Agent 6 boundary packet is opened from these outputs.",
+  "forbidden_claims": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export authorization",
+    "release action"
+  ]
+}

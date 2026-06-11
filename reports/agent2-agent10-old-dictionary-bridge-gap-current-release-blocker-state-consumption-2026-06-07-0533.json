@@ -1,0 +1,120 @@
+{
+  "artifact_type": "agent2_agent10_old_dictionary_bridge_gap_current_release_blocker_state_consumption",
+  "generated_at": "2026-06-07T05:33:11Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "consume Agent10 current release/package blocker state for old-dictionary bridge-gap rows",
+  "status": "agent10_current_release_blocker_state_consumed_no_agent6_packet_no_release_action",
+  "files_used": {
+    "agent10_current_release_blocker_state": "reports/agent10-old-dictionary-bridge-gap-current-release-blocker-state-2026-06-07-0440.json",
+    "agent2_no_text_transform_rule_consumption": "reports/agent2-agent10-old-dictionary-bridge-gap-no-text-transform-rule-consumption-2026-06-07-0433.json",
+    "agent2_no_text_transform_rule_consumption_validation": "reports/agent2-agent10-old-dictionary-bridge-gap-no-text-transform-rule-consumption-validation-result-2026-06-07-0433.json",
+    "agent10_no_text_transform_rule_and_boundary_blocker": "reports/agent10-old-dictionary-bridge-gap-no-text-transform-rule-and-boundary-blocker-2026-06-07-0340.json",
+    "agent10_row_level_nonconsumption_blocker": "reports/agent10-old-dictionary-bridge-gap-row-level-nonconsumption-blocker-2026-06-07-0239.json"
+  },
+  "bounded_checks": [
+    {
+      "process_timeout": false,
+      "command": "Get-ChildItem -Path reports -Filter '*row-level*.json' | Where-Object { $_.Name -match '2026-06-0[67]' } | Sort-Object LastWriteTime | Select-Object -Last 84 -ExpandProperty Name",
+      "timeout_ms": 120000,
+      "partial_output_or_artifact": "row-level state remains Agent10 nonconsumption plus Agent2 consumption; no text row-level return found",
+      "next_safe_action": "consume current release blocker state without release action"
+    },
+    {
+      "process_timeout": false,
+      "command": "Get-ChildItem -Path reports -Filter '*.json' | Where-Object { $_.Name -match '2026-06-0[67]' -and $_.Name -match '(source-citation|owner-action|agent1.*source)' } | Sort-Object LastWriteTime | Select-Object -Last 40 -ExpandProperty Name",
+      "timeout_ms": 120000,
+      "partial_output_or_artifact": "no new source-citation or owner-action return clearing P00280, M00032, or E00687 was found",
+      "next_safe_action": "preserve source/owner-action blockers"
+    },
+    {
+      "process_timeout": false,
+      "command": "Get-ChildItem -Path reports -Filter '*transform-rule*.json' | Where-Object { $_.Name -match '2026-06-0[67]' } | Sort-Object LastWriteTime | Select-Object -Last 32 -ExpandProperty Name",
+      "timeout_ms": 120000,
+      "partial_output_or_artifact": "Agent10 no-text transform rule and Agent2 no-text consumption remain latest transform-rule artifacts",
+      "next_safe_action": "keep text transform unauthorized"
+    },
+    {
+      "process_timeout": false,
+      "command": "Get-ChildItem -Path reports -Filter '*current-release-blocker-state*.json' | Where-Object { $_.Name -match '2026-06-0[67]' } | Sort-Object LastWriteTime | Select-Object -Last 12 -ExpandProperty Name",
+      "timeout_ms": 120000,
+      "partial_output_or_artifact": "Agent10 current release blocker state found and consumed: reports/agent10-old-dictionary-bridge-gap-current-release-blocker-state-2026-06-07-0440.json",
+      "next_safe_action": "preserve no Agent6 packet and no release action"
+    },
+    {
+      "process_timeout": false,
+      "command": "Get-ChildItem -Path reports -Filter '*agent4*row-level*.json' | Where-Object { $_.Name -match '2026-06-0[67]' } | Sort-Object LastWriteTime | Select-Object -Last 24 -ExpandProperty Name",
+      "timeout_ms": 120000,
+      "partial_output_or_artifact": "no Agent4 changed three-row row-level gate proof found",
+      "next_safe_action": "preserve Agent4 changed-input gate blocker"
+    }
+  ],
+  "route_correction_preserved": {
+    "approval_sop_final_validation_release_gate_owner": "A07",
+    "evidence_validators_repo_cleaning_production_owner": "A06",
+    "a06_outputs_evidence_ready_until_a07_approves": true,
+    "do_not_ask_a06_for_approval": true,
+    "existing_validated_words_preserved": true,
+    "redo_only_changed_or_flagged_rows": true
+  },
+  "package_state": {
+    "rows": 3,
+    "occurrences": 42,
+    "source_license_lane": "commercial_clean_candidate",
+    "row_status": "blocked_or_needs_review",
+    "agent10_no_text_transform_rule_consumed_rows": 3,
+    "text_transform_authorized_rows": 0,
+    "source_citation_or_url_present_rows": 0,
+    "owner_action_resolution_present_rows": 0,
+    "agent6_boundary_packet_ready_rows": 0
+  },
+  "zero_mutation_counters": {
+    "proposed_candidate_text_rows": 0,
+    "proposed_definition_text_rows": 0,
+    "proposed_lemma_text_rows": 0,
+    "proposed_reader_hint_text_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "definition_content_rows": 0,
+    "accepted_text_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "release_actions": 0,
+    "acceptance_claims": 0
+  },
+  "agent6_boundary_questions": [],
+  "agent6_boundary_need": "none_now",
+  "agent6_boundary_reason": "Agent2 consumed and validated Agent10's no-text rule; all proposed text fields remain null and source/owner-action prerequisites are unresolved.",
+  "consumed_agent10_exact_blockers": [
+    "missing_agent1_agent2_source_citation_or_owner_action_return_after_contract",
+    "missing_source_field::source_citation_or_url",
+    "missing_queue_scope_dedupe_resolution_for_duplicate_source_rid_locator",
+    "missing_source_citation_resolution_for_zero_ref_gap_source_rid",
+    "missing_exact_rid_scope_for_multi_rid_custody_row",
+    "stale_agent1_registry_target_current_agent1_thread_required",
+    "agent3_git_index_write_capability_blocker",
+    "agent4_gate_proof_not_observed_for_changed_three_row_input"
+  ],
+  "exact_blockers": [
+    "agent10_current_release_blocker_state_consumed_no_release_action",
+    "agent10_no_text_transform_rule_consumed_blocks_text_until_prereqs_clear",
+    "missing_agent1_agent2_source_citation_or_owner_action_return_after_contract",
+    "missing_source_field::source_citation_or_url",
+    "missing_queue_scope_dedupe_resolution_for_duplicate_source_rid_locator",
+    "missing_source_citation_resolution_for_zero_ref_gap_source_rid",
+    "missing_exact_rid_scope_for_multi_rid_custody_row",
+    "stale_agent1_registry_target_current_agent1_thread_required",
+    "agent3_git_index_write_capability_blocker",
+    "agent4_gate_proof_not_observed_for_changed_three_row_input"
+  ],
+  "handoff_owner": {
+    "Agent1_Agent2": "Return source_citation_or_url or exact missing-source blocker plus owner-action resolution/blocker for P00280, M00032, and E00687.",
+    "Agent5_coordination": "Provide or route through the current Agent1 thread for the existing 78-row source-citation enrichment workset.",
+    "Agent3": "After .git index write permission is restored, commit the already validated seven-file row-level return contract package or return an updated exact blocker.",
+    "Agent4": "Run gate only after a changed package/input exists.",
+    "A07": "Approval, SOP, final validation, and release gate where required.",
+    "A06": "Evidence/validator production only; not approval."
+  },
+  "output_artifact_path": "reports/agent2-agent10-old-dictionary-bridge-gap-current-release-blocker-state-consumption-2026-06-07-0533.json",
+  "stop_condition": "Stop at Agent2 consumption of Agent10 current release/package blocker state. No Agent6 packet, source text, candidate text, definition/lemma/reader-hint content, answer eligibility, route writes, A06 approval request, source/license/legal/Definition/product/answer/accepted-text acceptance, repo cleanup action, public/runtime mutation, export, publication readiness, or release action."
+}

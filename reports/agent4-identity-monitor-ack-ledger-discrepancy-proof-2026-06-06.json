@@ -1,0 +1,73 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "Identity monitor ACK-ledger discrepancy after Agent 14 report update",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifacts": [
+    "reports/agent14-mutiny-recovery-communication-paths-2026-06-06.md",
+    "data/control/agent_identity_registry.json",
+    "data/control/agent_identity_ack_ledger.json"
+  ],
+  "validator_commands": [
+    {
+      "command": "Select-String -Path reports\\agent14-mutiny-recovery-communication-paths-2026-06-06.md -Pattern 'Status:','Verdict','ACKED','IDENTITY_','Next Action','Boundary' -Context 0,2",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent14 report states IDENTITY_MONITOR_ACTIVE_A09_A13_REINSTATED_FULL_ROSTER_ACK_PENDING and later says full roster closure has 11 agents still PENDING_A07_BROADCAST_ACK."
+    },
+    {
+      "command": "node -e \"const fs=require('fs'); const reg=JSON.parse(fs.readFileSync('data/control/agent_identity_registry.json','utf8')); const ledger=JSON.parse(fs.readFileSync('data/control/agent_identity_ack_ledger.json','utf8')); console.log(JSON.stringify({registry_version:reg.registry_version,registry_hash:reg.registry_hash,ledger_state:ledger.control_state,resume_authorized:ledger.resume_authorized,acked:ledger.acks.filter(a=>a.ack_status==='ACKED').length,total:ledger.acks.length},null,2));\"",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "registry_version=agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor; ledger_state=IDENTITY_MONITOR_ACTIVE_A09_A13_REINSTATED_FULL_ROSTER_ACK_PENDING; resume_authorized=false; ACKED=0/14."
+    },
+    {
+      "command": "node scripts\\validate_agent_identity_ack_ledger.mjs --registry data\\control\\agent_identity_registry.json --ledger data\\control\\agent_identity_ack_ledger.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent identity ack ledger validation passed. State: IDENTITY_MONITOR_ACTIVE_A09_A13_REINSTATED_FULL_ROSTER_ACK_PENDING; ACKED: 0/14."
+    }
+  ],
+  "counts": {
+    "agent14_report_pending_ack_rows_claimed": 11,
+    "ack_ledger_acked_rows": 0,
+    "ack_ledger_total_rows": 14,
+    "resume_authorized": 0
+  },
+  "result": "validated_ack_ledger_state_and_recorded_agent14_report_discrepancy",
+  "exact_blockers": [
+    {
+      "code": "agent14_report_ack_count_disagrees_with_ack_ledger",
+      "class": "identity_prereq_discrepancy",
+      "report_claim": "11 agents still PENDING_A07_BROADCAST_ACK",
+      "ledger_evidence": "ACKED: 0/14",
+      "handoff_owner": "A05 ack ledger owner / A14 report owner"
+    },
+    {
+      "code": "identity_monitor_active_full_roster_ack_pending",
+      "class": "identity_prereq_blocker",
+      "blocked_state": "IDENTITY_MONITOR_ACTIVE_A09_A13_REINSTATED_FULL_ROSTER_ACK_PENDING",
+      "handoff_owner": "A07 roster broadcast; A05 ack ledger owner"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-identity-monitor-ack-ledger-discrepancy-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-identity-monitor-ack-ledger-discrepancy-proof-2026-06-06.md",
+  "handoff_owner": "A05/A14 for ACK ledger/report reconciliation; Agent 10 may consume as prerequisite discrepancy evidence only",
+  "next_safe_action": "Reconcile Agent14 narrative ACK count with data/control/agent_identity_ack_ledger.json before treating roster closure progress as authoritative.",
+  "stop_condition": "Stop after validating ledger state and preserving the discrepancy; do not mutate registry, ack ledger, routes, runtime, or publication.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action",
+    "no identity resume acceptance"
+  ]
+}

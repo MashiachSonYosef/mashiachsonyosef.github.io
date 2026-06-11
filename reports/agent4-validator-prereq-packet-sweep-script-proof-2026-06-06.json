@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_packet_sweep_script_proof",
+  "generated_at": "2026-06-06T00:58:00.000Z",
+  "agent": "Agent 4",
+  "target": "Reusable Agent4 validator/prereq packet sweep command",
+  "changed_input_artifact": "none; deterministic harness gap only",
+  "script_authored": "scripts/validate_agent4_validator_prereq_packet_sweep.mjs",
+  "commands": [
+    {
+      "command": "node --check scripts\\validate_agent4_validator_prereq_packet_sweep.mjs",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep.mjs --pattern=\"^agent4-.*2026-06-06\\\\.json$\" --timeoutMs=30000",
+      "timeout_ms": 120000,
+      "result": "passed_zero_match_corrected",
+      "count": 0,
+      "correction": "PowerShell double escaping passed a literal double-backslash regex; reran with single-quoted pattern."
+    },
+    {
+      "command": "node scripts\\validate_agent4_validator_prereq_packet_sweep.mjs --pattern='^agent4-.*2026-06-06\\.json$' --timeoutMs=30000",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "count": 21,
+      "passed": 21,
+      "failed": 0
+    }
+  ],
+  "counts": {
+    "agent4_packets_swept": 21,
+    "passed": 21,
+    "failed": 0,
+    "proof_packets": 15,
+    "proof_with_blocker_packets": 4,
+    "blocker_packets": 2,
+    "command_count_total": 42,
+    "blocker_count_total": 23
+  },
+  "result": "reusable_agent4_packet_sweep_harness_passed",
+  "exact_blockers": [
+    {
+      "code": "no_new_changed_package_input",
+      "detail": "No changed package/control input existed after the previous Agent4 full-sweep proof. Work was limited to converting the inline packet sweep into a reusable deterministic validator command."
+    }
+  ],
+  "handoff_owner": "Agent 4 for future packet sweep validation; Agent 10 or originating lane owners for future changed package inputs.",
+  "stop_condition": "Use this sweep script for future Agent4 packet-shape sweeps. Do not treat packet-shape validation as QA/public/runtime/source/license/answer acceptance.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action"
+  ]
+}

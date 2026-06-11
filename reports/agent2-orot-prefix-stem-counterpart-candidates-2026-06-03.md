@@ -1,6 +1,6 @@
 # Agent 2 Orot Prefix/Stem Counterpart Candidates
 
-Generated: 2026-06-03T09:09:28.978Z
+Generated: 2026-06-04T00:10:22.935Z
 
 ## Boundary
 
@@ -46,7 +46,7 @@ Generated: 2026-06-03T09:09:28.978Z
 ## Next Pipeline Route
 
 - Smallest safe unblock: Define and review a prefix-stem counterpart-display lineage contract before any public reader-hint mutation.
-- Suggested follow-up artifact: `reports/agent6-orot-prefix-stem-counterpart-contract-review-2026-06-03.md`
+- Suggested follow-up artifact: `reports/agent6-orot-prefix-stem-counterpart-contract-review-2026-06-04.md`
 - Target if contract approved: 12 rows / 178 occurrences
 - Still blocked after contract: project-preferred, ambiguous, no-upstream-claim, and source-blocked rows remain outside this pass.
 

@@ -1,0 +1,105 @@
+{
+  "artifact_type": "agent10_agent6_old_dictionary_source_family_overlap_matrix_delivery_proof",
+  "generated_at": "2026-06-05T18:12:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "owner": "agent10_release_package_intake",
+  "delivery_target": {
+    "agent": "Agent 6",
+    "thread_id": "019e7f09-a04b-7f30-b36c-87aa8ecaae5d",
+    "submission_id": "019e980d-4d2a-7be0-8437-22d987c0db60",
+    "delivery_state": "queued_for_agent6_boundary_review"
+  },
+  "routed_packet": {
+    "md": "reports/agent10-agent6-ready-old-dictionary-source-family-overlap-matrix-boundary-packet-2026-06-05.md",
+    "json": "reports/agent10-agent6-ready-old-dictionary-source-family-overlap-matrix-boundary-packet-2026-06-05.json",
+    "validator": "node scripts\\validate_agent10_old_dictionary_source_family_overlap_matrix_boundary_packet.mjs reports\\agent10-agent6-ready-old-dictionary-source-family-overlap-matrix-boundary-packet-2026-06-05.json",
+    "validator_result": "passed"
+  },
+  "source_artifacts": {
+    "agent1_matrix_md": "reports/agent1-old-dictionary-source-family-overlap-matrix-2026-06-05.md",
+    "agent1_matrix_json": "reports/agent1-old-dictionary-source-family-overlap-matrix-2026-06-05.json",
+    "agent1_validation_json": "reports/agent1-old-dictionary-source-family-overlap-matrix-validation-result-2026-06-05.json",
+    "prior_agent6_manifest_verdict": "reports/agent6-old-dictionary-exact-row-subset-manifest-boundary-verdict-2026-06-05.md"
+  },
+  "review_scope": "nonpublic_old_dictionary_source_family_overlap_matrix_planning_evidence_only",
+  "counts": {
+    "source_family_count": 5,
+    "pairwise_intersection_count": 10,
+    "exact_family_combination_count": 13,
+    "total_rows": 500,
+    "total_occurrences": 8427,
+    "commercial_internal_pair_rows": 252,
+    "commercial_with_nc_pair_rows": 362,
+    "commercial_with_blocked_pair_rows": 425,
+    "nc_with_blocked_pair_rows": 140,
+    "exact_blocker_count": 23
+  },
+  "source_family_lanes": [
+    {
+      "source_family": "Jastrow Dictionary",
+      "license_lane": "commercial_clean_candidate"
+    },
+    {
+      "source_family": "BDB Dictionary",
+      "license_lane": "commercial_clean_candidate"
+    },
+    {
+      "source_family": "BDB Aramaic Dictionary",
+      "license_lane": "commercial_clean_candidate"
+    },
+    {
+      "source_family": "Klein Dictionary",
+      "license_lane": "noncommercial_educational_candidate"
+    },
+    {
+      "source_family": "BDB Augmented Strong",
+      "license_lane": "blocked_or_needs_review"
+    }
+  ],
+  "agent6_review_question": "Pass/warn/block whether the exact Agent 1 source-family overlap matrix may be carried as non-public source-family selection and package-assembly planning evidence only, preserving source-family lanes, overlap/blocker structure, and all zero-emission counters.",
+  "zero_counters": {
+    "source_family_selection_allowed_now": 0,
+    "allowed_transform_rows_now": 0,
+    "candidate_use_rows_now": 0,
+    "candidate_text_rows_now": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_rows": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "commercial_export_rows": 0,
+    "nc_commercial_authorization_rows": 0,
+    "release_action_rows": 0
+  },
+  "highest_permissible_claim": "Agent 10 routed the old-dictionary source-family overlap matrix boundary packet to Agent 6 for non-public planning-only boundary review.",
+  "what_must_not_be_accepted": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "candidate text export",
+    "definition-content storage",
+    "commercial export permission",
+    "NC commercial authorization",
+    "release action"
+  ],
+  "stop_condition": "Wait for Agent 6 exact verdict artifact path or exact blocker before carrying this matrix into any source-family selection, transform, candidate-use, candidate text, output, public/runtime, answer, definition, export, or release package step."
+}

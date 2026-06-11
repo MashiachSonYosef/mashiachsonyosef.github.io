@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent10_agent6_repo_pipeline_contracts_release_consumption_gate_proof",
+  "generated_at": "2026-06-05T13:35:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent10-agent6-repo-pipeline-contracts-release-consumption",
+  "status": "validator_authored_and_passed_blocker_evidence_only",
+  "boundary": "validator/prereq evidence only; no QA, source/provenance, license/legal, Definition, answer, public/runtime, publication, product/data, cleanup, staging, deletion, queue-item acceptance, accepted gloss/text, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent10-agent6-repo-pipeline-contracts-release-consumption-2026-06-05.json",
+      "sha256": "ac16c65eb9efc6726f69583c486fbc7d8f0705531e7f80185a74329b222760bc",
+      "artifact_type": "agent10_agent6_repo_pipeline_contracts_release_consumption",
+      "status": "release_package_blocker_evidence_only"
+    },
+    {
+      "path": "scripts/validate_agent10_agent6_repo_pipeline_contracts_release_consumption.mjs",
+      "sha256": "6c4adc81db76122dedf0701843cb6172a5bca2d6a38550860c33402fa9772263",
+      "artifact_type": "validator_script",
+      "status": "new_exact_validator_for_agent10_agent6_repo_pipeline_contracts_release_consumption"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent10_agent6_repo_pipeline_contracts_release_consumption.mjs reports\\agent10-agent6-repo-pipeline-contracts-release-consumption-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Dirty records: 17239; contracts: 3; backlog: 5; zero counters checked: 13."
+    }
+  ],
+  "counts": {
+    "dirty_records_total": 17239,
+    "tracked_deletions": 12231,
+    "tracked_modified": 1490,
+    "tracked_added": 22,
+    "untracked": 3496,
+    "data_public_hud_records": 11937,
+    "reports_records": 2777,
+    "scripts_records": 442,
+    "contracts_authored": 3,
+    "implementation_backlog_items": 5,
+    "exact_blockers": 5,
+    "queue_items_observed": 37,
+    "pending_or_queued_like_items_observed": 6,
+    "release_consumption_rows": 2
+  },
+  "zero_counters": {
+    "public_runtime_mutation": 0,
+    "route_shard_writes": 0,
+    "route_jsonl_rows": 0,
+    "candidate_text_export_rows": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0,
+    "repo_cleanup_actions": 0,
+    "staging_actions": 0,
+    "deletion_actions": 0,
+    "queue_state_updates": 0
+  },
+  "blockers": [
+    "public_hud_package_truth_blocked",
+    "provenance_and_validator_recountability_blocked",
+    "control_truth_blocked_if_untracked_files_are_relied_on",
+    "runtime_public_claims_blocked",
+    "source_provenance_claims_blocked",
+    "destructive_cleanup_not_authorized",
+    "durable_churn_blocked_until_proposed_scripts_or_equivalent_exact_commands_exist_and_are_validated",
+    "queue_item_acceptance_blocked_per_item_until_dated_agent6_verdict_exists"
+  ],
+  "result": "target | agent10-agent6-repo-pipeline-contracts-release-consumption | files in packet | commands passed: new Agent10 Agent6 repo-pipeline contracts release-consumption validator | counts: 17239 dirty records, 12231 tracked deletions, 3496 untracked records, 11937 data/public-hud records, 3 Agent6 contracts, 5 implementation backlog items, 5 exact blockers, 37 queue items observed, 6 pending/queued-like items, 2 release-consumption rows, 0 cleanup/staging/deletion/queue-state/route/runtime/answer/accepted-text/release actions | result: validator authored and passed as release-owner blocker evidence only | blocker if any: public HUD package truth, provenance/recountability, control truth, runtime public claims, source provenance claims, destructive cleanup, durable churn, and queue-item acceptance remain blocked | next handoff: Agent10/Agent6/Agent5/Agent7 may use as blocker evidence only; implement separate exact scripts before any churn | stop condition: do not rerun unless release-consumption packet, Agent6 repo contracts, repo-dirt support, or validator changes",
+  "handoff_owner": "Agent 10 release/package intake; Agent 6 repo-dirt and queue validation lane; Agent 5/Agent 7 only for durable control-state publication where required.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not clean, stage, delete, mutate runtime, accept queue items, publish, or claim release acceptance from this packet."
+}

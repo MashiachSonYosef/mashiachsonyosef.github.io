@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent2_broad_definition_workbench_sample_return",
+  "generated_at": "2026-06-04T08:27:42-04:00",
+  "status": "evidence_ready_non_authoritative_reader_planning_package",
+  "active_mode": "BROAD_CORPUS_EXPANSION",
+  "queue_item_consumed": "spark2-broad-definition-workbench-sample-refresh",
+  "delivery_proof": {
+    "source_thread_id": "019e83a3-314c-7c43-9ec9-d56315813437",
+    "spark2_thread": "019e900e-93b5-7f60-a153-20086e14fa20",
+    "spark2_submission_turn": "019e9297-3a48-71d2-a531-0a4ad1eb0901"
+  },
+  "current_artifact": "data/definitions/definition-workbench-sample.json",
+  "supporting_reports": [
+    "reports/spark2-broad-definition-workbench-sample-refresh-2026-06-04.md",
+    "reports/definition-workbench-sample-report.md"
+  ],
+  "inputs_used": [
+    ".local-cache/workbench-evidence/token-inventory.json",
+    "data/definitions/hud-route-lookup/manifest.json",
+    "data/definitions/definition-workbench-sample.json",
+    "scripts/validate_definition_workbench_sample.mjs",
+    "reports/spark2-broad-definition-workbench-sample-refresh-2026-06-04.md",
+    "reports/definition-workbench-sample-report.md"
+  ],
+  "counts": {
+    "rows": 200,
+    "rows_with_route_cards": 200,
+    "rows_without_route_cards": 0,
+    "rows_with_complete_source_license": 200,
+    "multi_answer_rows": 96,
+    "route_card_count_sum": 8355,
+    "status_counts": {
+      "conflicting": 96,
+      "proposed_only": 49,
+      "single_answer_source_complete": 55
+    },
+    "review_status_counts": {
+      "unreviewed_machine_sample": 200,
+      "verified": 0
+    },
+    "public_reader_rows_emitted": 0,
+    "route_shard_edits": 0,
+    "public_runtime_mutations": 0,
+    "definition_authority_rows_accepted": 0,
+    "answer_rows_accepted": 0,
+    "accepted_gloss_text_rows": 0
+  },
+  "validators": [
+    {
+      "command": "node scripts/validate_definition_workbench_sample.mjs data/definitions/definition-workbench-sample.json",
+      "result": "pass",
+      "stdout": "Definition Workbench sample validation passed. Rows: 200."
+    }
+  ],
+  "missing_pipeline_blocker": "none",
+  "contract_semantics": {
+    "status_axis": "machine_route_shape_status_not_review_authority",
+    "review_status_axis": "lexical_authority_review_status",
+    "single_answer_source_complete_meaning": "one answer definition hash and complete source/license rows in this sample; machine shape only, not reviewed lexical authority",
+    "verified_emitted": false,
+    "verified_reserved_for_reviewed_lexical_authority": true,
+    "all_rows_review_status": "unreviewed_machine_sample",
+    "multi_answer_policy": "multi_answer rows remain conflicting warnings and are not collapsed into a hidden winner",
+    "source_license_visibility": "source_license_complete flags, source-family aggregates, route-family aggregates, and card IDs only; no source excerpts or definition text",
+    "usage_link_count_status": "not_joined_in_sample"
+  },
+  "stop_condition": "Stop after this Agent 2 packet because one validator-backed broad definition workbench sample artifact has been consumed and packaged for reader-planning evidence.",
+  "what_remains_blocked": [
+    "Full Definition Workbench index.",
+    "Reviewed lexical authority.",
+    "Accepted answer/gloss/text rows.",
+    "Public reader output.",
+    "Route-shard edits.",
+    "Public/runtime mutation.",
+    "Source/provenance/license acceptance.",
+    "QA acceptance.",
+    "Publication readiness or route publication support."
+  ],
+  "boundary": {
+    "non_authoritative_route_shape_reader_planning_evidence_only": true,
+    "qa_acceptance": false,
+    "source_provenance_acceptance": false,
+    "license_acceptance": false,
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "runtime_public_acceptance": false,
+    "publication_readiness": false,
+    "route_publication_support": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "translation_output": false,
+    "accepted_gloss": false,
+    "accepted_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "publication_status": "blocked_no_render"
+  },
+  "agent8_callback": {
+    "status": "evidence_ready_non_authoritative_reader_planning_package",
+    "artifact": "reports/agent2-broad-definition-workbench-sample-return-2026-06-04.md",
+    "blockers": [
+      "full Definition Workbench index",
+      "reviewed lexical authority",
+      "accepted answer/gloss/text",
+      "public reader output",
+      "route-shard edits",
+      "public/runtime mutation",
+      "QA/source/license/publication acceptance"
+    ],
+    "next_action_needed": "Agent 10 / Agent 7 may choose the next broad target workset or route this sample to Agent 6 only if a boundary/QA review docket is needed.",
+    "continue_condition": "Agent 2 can continue broad packaging only when the next exact existing command/input/output/schema is supplied."
+  }
+}

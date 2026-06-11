@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_validator_prereq_gate_proof",
+  "status": "runnable_contract_authored_changed_input_present",
+  "target": "agent3_definition_workbench_usage_navigation",
+  "changed_package_input_path": "reports/agent10-agent6-ready-definition-workbench-usage-navigation-boundary-packet-2026-06-04.json",
+  "changed_package_input_sha256": "e58eeccdbf11ab93ee5fc7718d2a29a939c1820fcd0442ed5342bbc956140bf4",
+  "files": [
+    "reports/agent10-agent6-ready-definition-workbench-usage-navigation-boundary-packet-2026-06-04.json",
+    "reports/agent3-state.json",
+    "data/definitions/definition-workbench-usage-queue-ready-packet.json",
+    "data/definitions/definition-workbench-usage-agent6-packet.json",
+    "data/definitions/definition-workbench-usage-occurrence-links.json",
+    "data/definitions/definition-workbench-usage-route-resolution.json",
+    "data/definitions/definition-workbench-usage-consumer-manifest.json",
+    "reports/agent4-definition-workbench-usage-navigation-changed-input-2026-06-04.json",
+    "reports/agent4-definition-workbench-usage-navigation-runnable-contract-2026-06-04.json",
+    "reports/agent4-definition-workbench-usage-navigation-runnable-contract-2026-06-04.md"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent3_usage_state.mjs reports\\agent3-state.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_usage_queue_ready_packet.mjs data\\definitions\\definition-workbench-usage-queue-ready-packet.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_usage_agent6_packet.mjs data\\definitions\\definition-workbench-usage-agent6-packet.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_usage_occurrence_links.mjs data\\definitions\\definition-workbench-usage-occurrence-links.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_usage_route_resolution.mjs data\\definitions\\definition-workbench-usage-route-resolution.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\validate_definition_workbench_usage_consumer_manifest.mjs data\\definitions\\definition-workbench-usage-consumer-manifest.json",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\build_agent4_changed_package_validator_prereq_gate.mjs --date 2026-06-04 --changed-input reports\\agent4-definition-workbench-usage-navigation-changed-input-2026-06-04.json --out-json reports\\agent4-definition-workbench-usage-navigation-runnable-contract-2026-06-04.json --out-md reports\\agent4-definition-workbench-usage-navigation-runnable-contract-2026-06-04.md",
+      "result": "pass"
+    },
+    {
+      "command": "node scripts\\check_agent4_changed_package_validator_prereq_gate.mjs reports\\agent4-definition-workbench-usage-navigation-runnable-contract-2026-06-04.json",
+      "result": "pass"
+    }
+  ],
+  "counts": {
+    "usage_concordance_rows": 2390,
+    "usage_supported_rows": 339,
+    "usage_candidate_rows": 1351,
+    "usage_weak_rows": 700,
+    "audit_only_ambiguous_rows": 2064,
+    "occurrence_link_rows": 49,
+    "occurrence_link_rows_with_complete_metadata": 49,
+    "route_ids": 1,
+    "unresolved_route_ids": 0,
+    "proof_occurrence_rows": 12,
+    "freshness_impact_pending_refresh_files": 173,
+    "agent3_evidence_artifacts": "85/85",
+    "agent3_validators": "44/44",
+    "queue_ready_required_fields": "10/10",
+    "queue_ready_evidence_artifacts": "53/53",
+    "queue_submitted": 0,
+    "consumer_manifest_entries": 16,
+    "consumer_manifest_data_artifacts": "16/16",
+    "consumer_manifest_validators": "16/16",
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "public_runtime_output_answer_definition_accepted_text_emissions": 0,
+    "route_shard_writes": 0,
+    "public_runtime_mutations": 0,
+    "validator_commands_passed": 6,
+    "runnable_contracts_authored": 1,
+    "runnable_contracts_checked": 1,
+    "acceptance_claims": 0
+  },
+  "result": "Runnable Agent4 changed-package validator/prereq contract generated and checked for exact Definition Workbench usage/navigation changed input.",
+  "blocker_if_any": {
+    "agent4_validator_gate": "none",
+    "remaining_boundary": [
+      "Queue is ready but not submitted: control_queue_mutated=false, submitted_to_agent6=false, intended submitter Agent5.",
+      "Source freshness is stale with 173 pending files.",
+      "Selected usage evidence is concentrated on one route ID.",
+      "Current 200-row sample has 0 usage links for this selected scope and 1 usage token absent from sample.",
+      "No Agent6 verdict exists for this packet."
+    ]
+  },
+  "next_handoff": "Agent10 owns release/package intake; Agent5/Agent7 own queue delivery if prioritized; Agent6 boundary review only.",
+  "stop_condition": "Stop after exact changed-input gate proof and runnable contract check; do not rerun this validator chain unless the package/input changes.",
+  "non_acceptance_boundary": {
+    "qa_acceptance": false,
+    "public_runtime_acceptance": false,
+    "source_provenance_acceptance": false,
+    "license_legal_acceptance": false,
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "semantic_arbitration": false,
+    "route_ranking": false,
+    "hud_ui_acceptance": false,
+    "publication_readiness": false,
+    "route_publication_support": false,
+    "product_data_acceptance": false,
+    "answer_acceptance": false,
+    "accepted_gloss_text": false,
+    "release_action": false,
+    "public_runtime_mutation": false
+  }
+}

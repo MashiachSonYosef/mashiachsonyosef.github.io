@@ -1,0 +1,76 @@
+{
+  "artifact_type": "agent4_validator_prereq_runtime_gate_proof",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T00:00:00-04:00",
+  "target": "SOP-024 identity integrity and roster-sync prerequisite gate",
+  "mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "changed_input_artifacts": [
+    "reports/sop-024-agent-identity-integrity-and-roster-sync.md",
+    "reports/agent14-mutiny-recovery-communication-paths-2026-06-06.md",
+    "data/control/agent_identity_registry.json",
+    "data/control/agent_identity_ack_ledger.json"
+  ],
+  "validator_commands": [
+    {
+      "command": "node scripts\\validate_sop024_agent_identity_integrity.mjs reports\\sop-024-agent-identity-integrity-and-roster-sync.md",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "SOP-024 validation passed. Executable rows: 13."
+    },
+    {
+      "command": "node scripts\\validate_agent_identity_registry.mjs data\\control\\agent_identity_registry.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent identity registry validation passed. Version: agent_identity_registry_v2_2026_06_06_mutiny_firebreak; agents: 14; hash: sha256:d8d9d2d6cd275a2b74e4cbc021b16c866f387642149eb91a2b1c162fc8b6c629."
+    },
+    {
+      "command": "node scripts\\validate_agent_identity_ack_ledger.mjs --registry data\\control\\agent_identity_registry.json --ledger data\\control\\agent_identity_ack_ledger.json",
+      "timeout_ms": 30000,
+      "result": "pass",
+      "observed_output": "Agent identity ack ledger validation passed. State: IDENTITY_FREEZE_MUTINY_RECOVERY_PENDING_REQUALIFICATION; ACKED: 0/14."
+    }
+  ],
+  "counts": {
+    "sop024_executable_rows": 13,
+    "registry_agents": 14,
+    "ack_ledger_rows": 14,
+    "acked_rows": 0,
+    "unacked_rows": 14,
+    "registry_hash": "sha256:d8d9d2d6cd275a2b74e4cbc021b16c866f387642149eb91a2b1c162fc8b6c629"
+  },
+  "result": "validated_identity_prereq_freeze_state_only",
+  "exact_blockers": [
+    {
+      "code": "identity_freeze_mutiny_recovery_pending_requalification",
+      "class": "identity_prereq_blocker",
+      "blocked_state": "IDENTITY_FREEZE_MUTINY_RECOVERY_PENDING_REQUALIFICATION",
+      "blocked_rows": 14,
+      "handoff_owner": "Owner + A14 firebreak; A12 limiter/requalification reviewer; A07 broadcast; A05 ack ledger"
+    },
+    {
+      "code": "ack_ledger_zero_of_fourteen_acked",
+      "class": "identity_ack_blocker",
+      "blocked_rows": 14,
+      "handoff_owner": "A05 ack ledger owner after A07 roster broadcast and requalification path"
+    }
+  ],
+  "output_artifact_path": "reports/agent4-sop024-identity-prereq-gate-proof-2026-06-06.json",
+  "paired_markdown_artifact": "reports/agent4-sop024-identity-prereq-gate-proof-2026-06-06.md",
+  "handoff_owner": "Agent 10 release/package intake only after identity freeze is cleared or degraded mode is explicitly authorized; A05/A07/A12/A14 own identity recovery prerequisites",
+  "next_safe_action": "Complete A09/A13 requalification, A07 roster broadcast, and A05 all-agent ACK ledger before treating identity routing as resumed.",
+  "stop_condition": "Stop after validating SOP-024, registry, and ack ledger prerequisites; do not route, broadcast, mutate runtime/publication, or claim acceptance.",
+  "non_acceptance_boundary": [
+    "no QA acceptance",
+    "no public/runtime acceptance",
+    "no source/provenance acceptance",
+    "no license/legal acceptance",
+    "no Definition authority",
+    "no publication readiness",
+    "no route publication support",
+    "no product/data acceptance",
+    "no answer acceptance",
+    "no accepted gloss/text",
+    "no release action",
+    "no identity resume acceptance"
+  ]
+}

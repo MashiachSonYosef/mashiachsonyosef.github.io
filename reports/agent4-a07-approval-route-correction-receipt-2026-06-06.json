@@ -1,0 +1,61 @@
+{
+  "artifact_type": "agent4_route_correction_receipt",
+  "agent": "Agent 4",
+  "generated_at": "2026-06-06T11:42:00.000Z",
+  "target": "A07 approval route correction for Agent 4 validator/prereq packets",
+  "changed_input_artifact": "user_supplied_A07_APPROVED_WITH_WARNINGS_route_correction",
+  "validator_commands": [
+    {
+      "command": "Get-Process node -ErrorAction SilentlyContinue | Select-Object Id,ProcessName,CPU,StartTime,Path",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "Test-Path reports\\agent4-validator-prereq-packet-sweep-gate-after-daniel-actual-page-prehud-blocker-2026-06-06.json; Test-Path reports\\agent4-validator-prereq-packet-sweep-result-after-daniel-actual-page-prehud-blocker-2026-06-06.json",
+      "timeout_ms": 30000,
+      "result": "passed_no_artifact_found"
+    }
+  ],
+  "process_timeouts": [
+    {
+      "command": "Get-CimInstance Win32_Process -Filter \"Name = 'node.exe'\" | Select-Object ProcessId,CommandLine | Format-List",
+      "timeout_ms": 30000,
+      "partial_output_or_artifact": "Partial process command-line output returned before timeout; no Daniel sweep gate/result artifact existed after interruption.",
+      "next_safe_action": "Do not infer completed sweep from interrupted command; rerun only when needed from the latest validated anchor."
+    }
+  ],
+  "route_correction": {
+    "approval_sop_final_validation_release_gate": "A07",
+    "evidence_validators_repo_cleaning_production": "A06",
+    "a06_output_status": "evidence_ready_until_A07_approves",
+    "do_not_ask_a06_for_approval": true,
+    "preserve_existing_validated_words": true,
+    "redo_only_changed_or_flagged_rows": true
+  },
+  "interrupted_work_state": {
+    "daniel_actual_page_prehud_blocker_packet_validated": true,
+    "daniel_sweep_gate_artifact_present": false,
+    "daniel_sweep_result_artifact_present": false,
+    "next_safe_action": "If continuing from Daniel proof, rerun the packet sweep gate with explicit timeout and route any approval/final gate to A07 only."
+  },
+  "result": "recorded_A07_route_correction_for_future_agent4_packets",
+  "exact_blockers": [
+    {
+      "code": "interrupted_sweep_gate_no_artifact",
+      "details": "The user interrupted the Daniel packet sweep gate before a sweep gate/result artifact was present.",
+      "next_safe_action": "Rerun the bounded sweep gate only if the lane continues from the Daniel proof packet."
+    },
+    {
+      "code": "approval_route_changed_to_A07",
+      "details": "A06 outputs are evidence-ready only and must not be treated as approval.",
+      "next_safe_action": "Route approval, SOP, final validation, and release gate requests to A07 in future packets."
+    }
+  ],
+  "handoff_owner": "A07 for approval/SOP/final validation/release gate; A06 for evidence/validators/repo-cleaning production; Agent 4 for validator/prereq evidence packets only.",
+  "stop_condition": "Preserve this route correction in future packets and redirect approval requests to A07.",
+  "non_acceptance_boundary": [
+    "No QA acceptance.",
+    "No source, provenance, license, legal, Definition, answer, product, publication, public/runtime, route publication, or release acceptance.",
+    "No accepted gloss, accepted text, public reader output, public runtime mutation, repo cleanup action, destructive command, or release action."
+  ]
+}

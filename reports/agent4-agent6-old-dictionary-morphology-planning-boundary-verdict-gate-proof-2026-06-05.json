@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent4_agent6_old_dictionary_morphology_planning_boundary_verdict_gate_proof",
+  "generated_at": "2026-06-05T14:45:00.000Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target": "agent6-old-dictionary-morphology-planning-boundary-verdict",
+  "status": "validator_authored_and_passed_warn_accepted_nonpublic_planning_only",
+  "boundary": "validator/prereq evidence only; Agent6 verdict is WARN-accepted for exact nonpublic morphology-planning evidence only; no source/provenance, license/legal, Definition, answer, candidate-use, transform, public/runtime, publication, product/data, candidate text export, commercial export permission, NC commercial authorization, accepted gloss/text, or release acceptance",
+  "files": [
+    {
+      "path": "reports/agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.json",
+      "sha256": "6fcf9e5bd66d22c83bf2ff6493355e2eda93622690fac5ee5611ef0c62ec5820",
+      "artifact_type": "agent6_verdict_json",
+      "status": "warn_accepted_nonpublic_morphology_planning_evidence_only"
+    },
+    {
+      "path": "scripts/validate_agent6_old_dictionary_morphology_planning_boundary_verdict.mjs",
+      "sha256": "ad9799176f899b869495306fb0cd292aca7f3f49235946b133ad1f7db9d212fe",
+      "artifact_type": "validator_script",
+      "status": "new_exact_validator_for_agent6_old_dictionary_morphology_planning_boundary_verdict"
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_agent6_old_dictionary_morphology_planning_boundary_verdict.mjs reports\\agent6-old-dictionary-morphology-planning-boundary-verdict-2026-06-05.json",
+      "result": "passed",
+      "stdout_summary": "Rows: 78; occurrences: 1461; candidate gate: blocked."
+    }
+  ],
+  "counts": {
+    "accepted_boundary_rows": 78,
+    "accepted_boundary_occurrences": 1461,
+    "matrix_rows": 297,
+    "selected_planning_rows": 78,
+    "selected_planning_occurrences": 1461,
+    "blocked_rows_preserved_outside_subset": 219,
+    "forbidden_flag_rows_observed": 0,
+    "relation_class_exact_after_mark_strip": 78,
+    "relation_class_prefix_or_clitic_possible": 129,
+    "relation_class_needs_morphology_disambiguation": 90,
+    "validators_run_passed": 4,
+    "source_family_groups": 3,
+    "bdb_aramaic_rows": 21,
+    "bdb_aramaic_occurrences": 616,
+    "bdb_dictionary_rows": 63,
+    "bdb_dictionary_occurrences": 1271,
+    "jastrow_dictionary_rows": 75,
+    "jastrow_dictionary_occurrences": 1417
+  },
+  "gates": {
+    "old_dictionary_morphology_planning_gate": "warn_accepted_exact_subset_only",
+    "candidate_use_gate": "blocked",
+    "transform_gate": "blocked",
+    "definition_authority_gate": "blocked",
+    "public_runtime_gate": "not_accepted",
+    "publication_release_gate": "not_accepted",
+    "source_provenance_license_legal_gate": "not_accepted"
+  },
+  "blockers": [
+    "missing_exact_agent6_row_subset_boundary_for_candidate_use",
+    "missing_agent10_exact_agent6_candidate_use_packet_for_the_specific_planning_rows",
+    "definition_lane_must_still_emit_no_public_or_answer_acceptance",
+    "prefix_or_clitic_possible_requires_morphology_disambiguation",
+    "needs_morphology_disambiguation"
+  ],
+  "must_not_be_accepted": [
+    "source_provenance_acceptance",
+    "license_legal_acceptance",
+    "definition_authority",
+    "usage_as_definition_authority",
+    "answer_acceptance",
+    "answer_eligibility",
+    "public_runtime_acceptance",
+    "publication_readiness",
+    "route_publication_support",
+    "product_data_acceptance",
+    "translation_output",
+    "accepted_gloss_text",
+    "public_reader_output",
+    "route_shard_edit",
+    "public_runtime_mutation",
+    "definition_content_storage",
+    "candidate_text_export",
+    "commercial_export_permission",
+    "nc_commercial_authorization",
+    "release_action"
+  ],
+  "result": "target | agent6-old-dictionary-morphology-planning-boundary-verdict | files in packet | commands passed: new Agent6 old-dictionary morphology planning boundary verdict validator | counts: 78 accepted-boundary rows, 1461 occurrences, 297 matrix rows, 219 blocked rows outside subset, 0 forbidden flag rows, 4 validators passed, 3 source-family groups, candidate-use gate blocked, transform gate blocked, public-runtime gate not accepted, source/provenance/license/legal gate not accepted | result: validator authored and passed; Agent6 WARN-accepted only the exact 78-row nonpublic morphology-planning subset | blocker if any: candidate-use/transform/Definition/answer/public/runtime/publication/release remain blocked and require later exact Agent6 packet | next handoff: Agent2 may reference subset as morphology-planning evidence only; Agent10 must produce a separate candidate-use packet for any downstream use | stop condition: do not rerun unless Agent6 verdict, boundary packet, morphology matrix, Agent2 blocker, or validator changes",
+  "handoff_owner": "Agent 2 may reference the subset as nonpublic planning evidence only; Agent 10 owns any later candidate-use packet; Agent 6 remains authority for any future boundary.",
+  "stop_condition": "Stop at validator/prereq evidence. Do not use this verdict as candidate-use, transform, Definition, answer, public/runtime, publication, product/data, export, commercial permission, accepted text, or release authority."
+}

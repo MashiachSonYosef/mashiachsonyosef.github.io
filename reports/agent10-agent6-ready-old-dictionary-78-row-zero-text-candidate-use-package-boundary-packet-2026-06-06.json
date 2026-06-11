@@ -1,0 +1,99 @@
+{
+  "artifact_type": "agent10_agent6_ready_old_dictionary_78_row_zero_text_candidate_use_package_boundary_packet",
+  "generated_at": "2026-06-06T01:49:00Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "target_package": "old-dictionary-commercial-clean-78-row-zero-text-candidate-use-package-planning",
+  "status": "agent6_ready_exact_zero_text_candidate_use_package_boundary_packet",
+  "files_used": {
+    "agent10_verdict_consumption": "reports/agent10-old-dictionary-78-row-agent6-verdict-consumption-2026-06-06.json",
+    "agent6_preboundary_verdict": "reports/agent6-old-dictionary-78-row-candidate-use-preboundary-verdict-2026-06-06.md",
+    "preboundary_matrix": "reports/agent10-old-dictionary-78-row-candidate-use-preboundary-matrix-2026-06-06.json",
+    "prior_agent10_preboundary_packet": "reports/agent10-agent6-ready-old-dictionary-78-row-candidate-use-preboundary-packet-2026-06-06.json",
+    "agent1_source_lane_handoff": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+    "agent2_morphology_matrix": "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json"
+  },
+  "agent1_4_inputs_consumed": [
+    {
+      "lane": "Agent 1",
+      "input": "reports/agent1-old-dictionary-agent2-transform-lane-handoff-2026-06-04.json",
+      "release_package_impact": "source lane preserved as commercial_clean_candidate"
+    },
+    {
+      "lane": "Agent 2",
+      "input": "reports/agent2-old-dictionary-commercial-clean-morphology-relation-matrix-2026-06-05.json",
+      "release_package_impact": "78 exact-after-mark-strip rows with approved non-public morphology planning relation"
+    },
+    {
+      "lane": "Agent 3",
+      "input": null,
+      "release_package_impact": "not required for this exact old-dictionary package boundary"
+    },
+    {
+      "lane": "Agent 4",
+      "input": null,
+      "release_package_impact": "no changed public/runtime package"
+    }
+  ],
+  "prior_agent6_boundary": {
+    "verdict": "WARN-ACCEPTED",
+    "scope": "non-public candidate-use preboundary review matrix only",
+    "rows": 78,
+    "occurrences": 1461,
+    "next_boundary_required_for_candidate_use_package": true
+  },
+  "boundary_requested": {
+    "scope": "non-public zero-text candidate-use package planning artifact only",
+    "rows": 78,
+    "occurrences": 1461,
+    "source_license_lane": "commercial_clean_candidate",
+    "relation_class": "exact_after_mark_strip",
+    "morphology_relation_status": "agent2_morphology_relation_approved_for_nonpublic_planning",
+    "candidate_text_rows": 0,
+    "definition_candidate_rows": 0,
+    "lemma_candidate_rows": 0,
+    "reader_hint_candidate_rows": 0,
+    "answer_eligible_rows": 0,
+    "public_emit_rows": 0,
+    "route_writes": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0
+  },
+  "agent6_boundary_question": "Pass/warn/block whether the exact 78 row / 1461 occurrence commercial-clean subset may move from preboundary review matrix status into a non-public zero-text candidate-use package planning artifact only, preserving all zero output/mutation counters and without authorizing transform output, candidate text, definition/lemma/reader-hint content storage, answer eligibility, route writes, public/runtime mutation, export, accepted text, publication readiness, or release.",
+  "exact_blockers_preserved": [
+    "candidate_text_blocked",
+    "transform_output_blocked",
+    "definition_lemma_reader_hint_content_storage_blocked",
+    "answer_eligibility_blocked",
+    "route_writes_blocked",
+    "public_runtime_mutation_blocked",
+    "export_blocked",
+    "accepted_text_blocked",
+    "publication_readiness_blocked",
+    "release_action_blocked"
+  ],
+  "next_owner": "Agent 6 returns pass/warn/block for this exact zero-text candidate-use package planning boundary only. Agent 10 consumes that verdict before any further package movement.",
+  "stop_condition": "Stop after Agent 6 disposition or exact route blocker. Do not mutate public/runtime files, route shards, source files, token indexes, lexical payloads, candidate text, definition content, accepted text, export files, publication state, or release state.",
+  "what_must_not_be_accepted": [
+    "QA acceptance beyond the exact docket",
+    "source/provenance acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "answer eligibility",
+    "accepted gloss/text",
+    "public reader output",
+    "route-shard edit",
+    "public/runtime mutation",
+    "route publication support",
+    "publication readiness",
+    "product/data acceptance",
+    "candidate text export",
+    "definition/lemma/reader-hint content storage",
+    "commercial export authorization",
+    "NC commercial authorization",
+    "release action"
+  ]
+}
