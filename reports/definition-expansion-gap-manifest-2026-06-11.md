@@ -1,6 +1,6 @@
 # Definition Expansion Gap Manifest
 
-Generated: 2026-06-11T12:28:18.808Z
+Generated: 2026-06-11T13:11:29.366Z
 
 ## Boundary
 
@@ -21,7 +21,7 @@ Generated: 2026-06-11T12:28:18.808Z
 
 ## Top Families By Unresolved Occurrences
 
-- halakhah: 4892771 occurrences / 11035 forms
+- halakhah: 4884100 occurrences / 11036 forms
 - chasidut: 691247 occurrences / 1011 forms
 - kabbalah: 446043 occurrences / 1046 forms
 - midrash: 219965 occurrences / 1997 forms
@@ -29,7 +29,7 @@ Generated: 2026-06-11T12:28:18.808Z
 - targum_aramaic: 66356 occurrences / 1272 forms
 - musar: 58798 occurrences / 627 forms
 - liturgy: 33776 occurrences / 469 forms
-- mishnah: 24520 occurrences / 1900 forms
+- mishnah: 24418 occurrences / 1899 forms
 - tanakh: 20790 occurrences / 1746 forms
 - tosefta: 17001 occurrences / 1568 forms
 
@@ -84,9 +84,9 @@ Generated: 2026-06-11T12:28:18.808Z
 - דכיונ | 20329 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - כתיב | 19547 occ | chasidut+kabbalah+musar | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - רבי | 19488 occ | halakhah+kabbalah+musar | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
+- דכל | 19463 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - פטור | 19436 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - ז׳ | 19180 occ | chasidut+halakhah+kabbalah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
-- דכל | 19115 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - הטור | 19057 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - יתברכ | 18933 occ | chasidut | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - ע״ז | 18819 occ | chasidut+halakhah | no_route | project_authored_rabbinic_abbreviation_table | abbreviation_expansion_needed_with_source_license_row
@@ -99,10 +99,10 @@ Generated: 2026-06-11T12:28:18.808Z
 - ית׳ | 16440 occ | chasidut+unknown | no_route | project_authored_rabbinic_abbreviation_table | abbreviation_expansion_needed_with_source_license_row
 - קאמר | 16425 occ | halakhah+kabbalah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - שפיר | 16115 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
+- פסק | 15846 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - כשר | 15698 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - הכא | 15665 occ | halakhah+kabbalah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - בפ׳ | 15658 occ | halakhah+kabbalah | no_route | project_authored_kabbalah_abbreviation_table | abbreviation_expansion_needed_with_source_license_row
-- פסק | 15437 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - דיש | 15298 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - מיירי | 15204 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - הרא״ש | 14966 occ | halakhah | no_route | project_authored_rabbinic_abbreviation_table | abbreviation_expansion_needed_with_source_license_row
