@@ -1,6 +1,6 @@
 # Agent 7 Governance Control Health
 
-Generated: 2026-06-11T01:07:54.724Z
+Generated: 2026-06-11T01:36:59.429Z
 
 ## Summary
 

@@ -1,0 +1,109 @@
+{
+  "status": "stable_residuals_classified",
+  "artifact": "reports/dirty-repo-current-residual-classification-2026-06-10.json",
+  "baseline_head": "f5d4fc327",
+  "stabilization": {
+    "agent10_loop_pid": 23212,
+    "agent10_loop_confirmed_command": "scripts/start_agent10_it_pulse_loop.ps1 -IntervalMinutes 60 -RunImmediately",
+    "stop_marker_written": true,
+    "loop_process_stopped": true,
+    "gitignore_added": "reports/*.stop"
+  },
+  "stage_candidates": [
+    ".gitignore",
+    "scripts/run_agent10_it_pulse_scheduled.cmd",
+    "scripts/validate_agent7_governance_control.mjs",
+    "reports/agent10-it-change-ledger-2026-06-10.md",
+    "reports/agent10-it-loop-heartbeat.md",
+    "reports/agent10-scheduled-task-last.md",
+    "reports/agent10-it-pulse-2026-06-10-2123.md",
+    "reports/agent10-agent7-it-actionable-findings-2026-06-10-2123.md",
+    "reports/agent6-validation-queue-health.md",
+    "reports/agent7-governance-control-health.md",
+    "reports/a09-new-library-nc-import-goal-state-2026-06-10.md"
+  ],
+  "residual_blockers_left_unstaged": [
+    {
+      "paths": [
+        "data/lexical/crossmatches/daniel.json"
+      ],
+      "bucket": "crossmatch_data",
+      "blocker": "generated_at-only diff; no preHUD/ranker eligibility change; defer timestamp-only churn"
+    },
+    {
+      "paths": [
+        "data/sources/a-new-israeli-commentary-on-pirkei-avot.json",
+        "data/sources/amudei-yerushalayim-on-jerusalem-talmud-nedarim.json",
+        "data/sources/bepardes-hachasidut-vehakabbalah.json",
+        "data/sources/ohr-penimi-on-talmud-eser-hasefirot.json",
+        "data/sources/shuvi-shuvi-hashulamit.json",
+        "data/overlays/a-new-israeli-commentary-on-pirkei-avot.json",
+        "data/overlays/amudei-yerushalayim-on-jerusalem-talmud-nedarim.json",
+        "data/overlays/bepardes-hachasidut-vehakabbalah.json",
+        "data/overlays/ohr-penimi-on-talmud-eser-hasefirot.json",
+        "data/overlays/shuvi-shuvi-hashulamit.json"
+      ],
+      "bucket": "source_import_data",
+      "blocker": "data-only guard passed, but no rendered page, lexical occurrence file, lexical manifest, or full source/export validator pass"
+    },
+    {
+      "paths": [
+        "reports/agent10-a14-cleanup-residual-dirt-packet-2026-06-10.md",
+        "reports/agent10-a14-cleanup-residual-dirt-packet-2026-06-10.json"
+      ],
+      "bucket": "sidecar_cleanup_evidence",
+      "blocker": "superseded by current residual classification after two more source pairs appeared; left unstaged as historical sidecar evidence"
+    },
+    {
+      "paths": [
+        "reports/agent10-live-public-old-hud-guard-2026-06-04-post-orot-reader-hint-candidate-patch.json",
+        "reports/agent11-reader-workbench-reception-proof-2026-06-03.json"
+      ],
+      "bucket": "mislabeled_report_json",
+      "blocker": "files contain Markdown beginning with #; JSON parse fails"
+    },
+    {
+      "paths": [
+        "tanakh/daniel/poc-1-1.html"
+      ],
+      "bucket": "support_poc",
+      "blocker": "Route HUD page validator fails canonical-page markers; do not stage as canonical Daniel page"
+    }
+  ],
+  "validators": [
+    {
+      "command": "git check-ignore -v reports/agent10-it-loop.stop reports/agent10-it-loop.pid",
+      "timeout_ms": 30000,
+      "result": "passed"
+    },
+    {
+      "command": "node --check scripts/validate_agent7_governance_control.mjs",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_agent7_governance_control.mjs",
+      "timeout_ms": 60000,
+      "result": "failed",
+      "issues": 7,
+      "warnings": 1
+    },
+    {
+      "command": "source import data-only guard over five new source/overlay pairs",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_sources.mjs",
+      "timeout_ms": 120000,
+      "result": "process_timeout",
+      "next_safe_action": "require source/import owner to run scoped import/render/export package or full validator with enough time before staging source pairs"
+    },
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page tanakh/daniel/index.html --page tanakh/daniel/poc-1-1.html",
+      "timeout_ms": 120000,
+      "result": "failed_only_on_daniel_poc"
+    }
+  ],
+  "boundary": "cleanup classification and monitoring evidence only; no deletion, no broad revert, no QA/source/license/legal/Definition/product/answer/accepted-text/public-runtime/release acceptance"
+}
