@@ -16,6 +16,7 @@ const options = {
   report: `reports/agent4-live-deuteronomy-browser-runtime-evidence-${dateSlug}.md`,
   json: `reports/agent4-live-deuteronomy-browser-runtime-evidence-${dateSlug}.json`,
   screenshot: `reports/agent4-live-deuteronomy-hud-click-${dateSlug}.png`,
+  tokenId: '',
   ...parseArgs(process.argv.slice(2)),
 };
 
@@ -128,6 +129,7 @@ function parseArgs(argv) {
     else if (arg === '--report') parsed.report = cleanRelativePath(argv[++index]);
     else if (arg === '--json') parsed.json = cleanRelativePath(argv[++index]);
     else if (arg === '--screenshot') parsed.screenshot = cleanRelativePath(argv[++index]);
+    else if (arg === '--token-id') parsed.tokenId = argv[++index];
     else if (arg === '--help' || arg === '-h') {
       console.log('Usage: node scripts/audit_live_deuteronomy_runtime.mjs [--chrome path] [--work-id id] [--work-title title] [--surface-label label] [--url url] [--report path] [--json path]');
       process.exit(0);
@@ -277,10 +279,10 @@ async function waitForReady(client) {
 }
 
 async function clickUntilHudHasSourceFootnotes(client, label) {
-  return evaluate(client, `(${clickUntilHudHasSourceFootnotesBrowser.toString()})(${JSON.stringify(oldHudMarkers)}, ${JSON.stringify(label)})`);
+  return evaluate(client, `(${clickUntilHudHasSourceFootnotesBrowser.toString()})(${JSON.stringify(oldHudMarkers)}, ${JSON.stringify(label)}, ${JSON.stringify(options.tokenId)})`);
 }
 
-function clickUntilHudHasSourceFootnotesBrowser(oldMarkers, label) {
+function clickUntilHudHasSourceFootnotesBrowser(oldMarkers, label, targetTokenId = '') {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const waitForTokens = async () => {
     const start = Date.now();
@@ -342,19 +344,26 @@ function clickUntilHudHasSourceFootnotesBrowser(oldMarkers, label) {
   };
   return (async () => {
     const tokens = await waitForTokens();
-    for (let index = 0; index < Math.min(tokens.length, 40); index += 1) {
-      const token = tokens[index];
+    const targeted = targetTokenId
+      ? tokens.find((node) => node.dataset?.lexicalIndex === targetTokenId)
+      : null;
+    const orderedTokens = targeted
+      ? [targeted, ...tokens.filter((node) => node !== targeted).slice(0, 39)]
+      : tokens.slice(0, 40);
+    for (let attempt = 0; attempt < orderedTokens.length; attempt += 1) {
+      const token = orderedTokens[attempt];
+      const index = tokens.indexOf(token);
       token.scrollIntoView({ block: 'center', inline: 'center' });
       token.click();
       await waitForHud();
       const row = summarize(token, index);
       if (row.hud_open && row.sources_and_licenses_visible && row.source_footnote_rows > 0 && row.old_marker_hits.length === 0) {
-        return { ...row, tried_tokens: index + 1 };
+        return { ...row, target_token_id: targetTokenId || '', target_token_found: Boolean(targeted), tried_tokens: attempt + 1 };
       }
       await sleep(150);
     }
     const token = tokens[0] || null;
-    return { ...summarize(token, 0), tried_tokens: Math.min(tokens.length, 40), failed_to_find_source_footnotes: true };
+    return { ...summarize(token, 0), target_token_id: targetTokenId || '', target_token_found: Boolean(targeted), tried_tokens: orderedTokens.length, failed_to_find_source_footnotes: true };
   })();
 }
 
@@ -621,6 +630,8 @@ function writeReport(relativePath, data) {
     '',
     `- Clicked token: ${data.click_to_hud.token_text || 'unknown'}`,
     `- Token dataset lexical index: ${data.click_to_hud.token_dataset?.lexicalIndex || 'unknown'}`,
+    `- Target token id: ${data.click_to_hud.target_token_id || 'not requested'}`,
+    `- Target token found: ${data.click_to_hud.target_token_found ?? 'not requested'}`,
     `- Tried tokens before source/license HUD: ${data.click_to_hud.tried_tokens}`,
     `- HUD open: ${data.click_to_hud.hud_open}`,
     `- HUD title: ${data.click_to_hud.hud_title || 'not found'}`,
@@ -669,6 +680,16 @@ function writeReport(relativePath, data) {
     '## What Must Not Be Accepted',
     '',
     ...data.what_must_not_be_accepted.map((item) => `- ${item}`),
+    '',
+    '## Agent 8 Callback',
+    '',
+    `- status: ${data.summary.issues ? 'exact blocker recorded' : 'proof packet produced for Agent 6 review'}`,
+    `- completed proof packet: \`${relativePath}\``,
+    `- json: \`${options.json}\``,
+    `- screenshot: \`${screenshotPath}\``,
+    `- blockers: ${data.issues.length ? data.issues.join('; ') : 'none'}`,
+    '- next action needed: Agent 6 review; Agent 4 does not self-accept.',
+    '- continue condition: continue only for explicitly routed bounded candidate-surface runtime proof.',
     '',
   ];
   writeText(relativePath, `${lines.join('\n')}\n`);

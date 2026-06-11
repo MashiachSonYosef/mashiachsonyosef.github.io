@@ -79,12 +79,15 @@ requireMatch("Daniel must declare lexical occurrences", html.includes("data-lexi
 requireMatch("Daniel must not point to reader hints before validation", !html.includes("reader-hints"));
 requireMatch("Daniel must declare route HUD panel", html.includes("data-route-hud-panel"));
 requireMatch("Daniel must render lexical units", html.includes("data-lexical-unit"));
-requireMatch("Daniel must keep Orot-style popout HUD shell", /\.lexical-hud \{[\s\S]*?position: fixed;[\s\S]*?width: calc\(100vw - 24px\);/.test(html) && !/\.lexical-hud \{[\s\S]*?inset: 0;/.test(html));
+const readerCss = read("assets/css/reader-workbench.css");
+requireMatch("Shared CSS must keep Orot-style popout HUD shell", /\.lexical-hud \{[\s\S]*?position: fixed;[\s\S]*?width: calc\(100vw - 24px\);/.test(readerCss) && !/\.lexical-hud \{[\s\S]*?inset: 0;/.test(readerCss));
+requireMatch("Daniel must not fork shared HUD styling inline", !/\.lexical-hud \{/.test(html));
 requireMatch("Daniel must keep Hebrew forms visibly clickable", /\.lexical-word \{[\s\S]*?cursor: pointer;[\s\S]*?text-decoration: underline;/.test(html));
 requireMatch("Reader runtime must render Hebrew tokens as HUD hyperlinks", read("assets/js/reader-workbench.js").includes("createElement('a', 'lexical-word')") && read("assets/js/reader-workbench.js").includes("span.href = '#route-hud-panel'") && read("assets/js/reader-workbench.js").includes("event.preventDefault();"));
 requireMatch("Daniel must use one-token-per-row pre-HUD mode", html.includes('"reader_layout_mode":"prehud_rows"'));
 requireMatch("Daniel must keep compact Hebrew source above pre-HUD rows", html.includes('class="hebrew hebrew-source lexical-inline"'));
 requireMatch("Reader runtime must render pre-HUD rows from token occurrences", read("assets/js/reader-workbench.js").includes("function makePrehudRow") && read("assets/css/reader-workbench.css").includes(".reader-token-wrap.prehud-row"));
+requireMatch("Reader pre-HUD rows must expose quiet source links into the HUD", read("assets/js/reader-workbench.js").includes("prehud-source-link") && read("assets/css/reader-workbench.css").includes(".prehud-source-link") && read("assets/css/reader-workbench.css").includes(".prehud-gloss .reader-gloss-line[data-gloss-placeholder=\"true\"]"));
 requireMatch("Daniel must not use standalone Hebrew token buttons", !html.includes('class="hebrew-token"'));
 requireMatch("Daniel must not inline standalone HUD route payload", !html.includes("data-hud-routes"));
 requireMatch("Daniel report must use shared runtime", report.render_runtime === "shared_reader_workbench");

@@ -21,6 +21,26 @@ const defaults = {
   sampleTokens: ['\u05d3\u05b0\u05bc\u05d1\u05b8\u05e8\u05b4\u05d9\u05dd', '\u05d5\u05bc\u05d1\u05b4\u05d3\u05b0\u05d1\u05b8\u05e8\u05b6\u05d9\u05da\u05b8', '\u05d3\u05dc\u05d0', '\u05d1\u05e8\u05d0\u05e9\u05d9\u05ea', '\u05e8\u05d0\u05e9\u05d9\u05ea', '\u05d1\u05df\u05be\u05d3\u05d5\u05d3'],
 };
 
+function samplePublicationBoundary(sampleType) {
+  return {
+    publication_status: 'blocked_no_render',
+    validates: [
+      `${sampleType}_sample`,
+      'route_card_sample_source_license_rows',
+    ],
+    does_not_clear: [
+      'translation_output',
+      'source_publication',
+      'public_lexical_export_reuse',
+      'accepted_definition_authority',
+    ],
+    answer_eligible_scope: 'hud_answer_slot_only_not_translation_or_publication_readiness',
+    sample_scope: 'diagnostic_route_sample_not_publication_readiness',
+    warning_status_blocks_publication_claim: true,
+    current_route_inputs_reconciled: 'not_checked_by_route_sample_validate_release_stamp_and_drift',
+  };
+}
+
 function parseArgs(argv) {
   const args = { ...defaults, sampleTokens: [...defaults.sampleTokens] };
   for (let i = 0; i < argv.length; i += 1) {
@@ -435,6 +455,7 @@ async function main() {
     generated_at: generatedAt,
     source_manifest: `${args.outDir.replace(/\\/g, '/')}/manifest.json`,
     route_store_policy: 'Large HUD route store stays local until the live renderer is ready for chunked on-demand loading.',
+    publication_boundary: samplePublicationBoundary('hud_route_store'),
     sample_tokens: args.sampleTokens.map((token) => {
       const normalized = normalizeHebrewKey(token);
       const cards = sampleCards.get(normalized) || [];

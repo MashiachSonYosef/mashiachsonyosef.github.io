@@ -871,6 +871,21 @@ const definitionWorkbenchUsageSeedQueueJson = 'data/definitions/definition-workb
 const definitionWorkbenchUsageJoinSmokeJson = 'data/definitions/definition-workbench-usage-join-smoke.json';
 const definitionWorkbenchUsageAgent6PacketJson = 'data/definitions/definition-workbench-usage-agent6-packet.json';
 const definitionWorkbenchUsageOccurrenceLinksJson = 'data/definitions/definition-workbench-usage-occurrence-links.json';
+const definitionWorkbenchUsageRouteResolutionJson = 'data/definitions/definition-workbench-usage-route-resolution.json';
+const definitionWorkbenchUsageCrossmatchNeighborsJson = 'data/definitions/definition-workbench-usage-crossmatch-neighbors.json';
+const definitionWorkbenchUsageSourceRefBucketsJson = 'data/definitions/definition-workbench-usage-source-ref-buckets.json';
+const definitionWorkbenchUsageWorkBucketsJson = 'data/definitions/definition-workbench-usage-work-buckets.json';
+const definitionWorkbenchUsageProvenanceBucketsJson = 'data/definitions/definition-workbench-usage-provenance-buckets.json';
+const definitionWorkbenchUsageOccurrenceDetailIndexJson = 'data/definitions/definition-workbench-usage-occurrence-detail-index.json';
+const definitionWorkbenchUsageFacetIndexJson = 'data/definitions/definition-workbench-usage-facet-index.json';
+const definitionWorkbenchUsageRouteDiversityProbeJson = 'data/definitions/definition-workbench-usage-route-diversity-probe.json';
+const definitionWorkbenchUsageSampleGapAuditJson = 'data/definitions/definition-workbench-usage-sample-gap-audit.json';
+const definitionWorkbenchUsageConsumerManifestJson = 'data/definitions/definition-workbench-usage-consumer-manifest.json';
+const definitionWorkbenchUsagePlanningPacketJson = 'data/definitions/definition-workbench-usage-planning-packet.json';
+const definitionWorkbenchUsageAnchorAuditJson = 'data/definitions/definition-workbench-usage-anchor-audit.json';
+const definitionWorkbenchUsageOccurrenceSupportPacketJson = 'data/definitions/definition-workbench-usage-occurrence-support-packet.json';
+const definitionWorkbenchUsageConcordanceNavigationPacketJson = 'data/definitions/definition-workbench-usage-concordance-navigation-packet.json';
+const definitionWorkbenchUsageFreshnessImpactPacketJson = 'data/definitions/definition-workbench-usage-freshness-impact-packet.json';
 const definitionWorkbenchUsageQueueReadyPacketJson = 'data/definitions/definition-workbench-usage-queue-ready-packet.json';
 const agent3UsageStateJson = 'reports/agent3-state.json';
 
@@ -897,6 +912,81 @@ await runStep('validate_definition_workbench_usage_agent6_packet', [
 await runStep('validate_definition_workbench_usage_occurrence_links', [
   'scripts/validate_definition_workbench_usage_occurrence_links.mjs',
   definitionWorkbenchUsageOccurrenceLinksJson,
+]);
+
+await runStep('validate_definition_workbench_usage_route_resolution', [
+  'scripts/validate_definition_workbench_usage_route_resolution.mjs',
+  definitionWorkbenchUsageRouteResolutionJson,
+]);
+
+await runStep('validate_definition_workbench_usage_crossmatch_neighbors', [
+  'scripts/validate_definition_workbench_usage_crossmatch_neighbors.mjs',
+  definitionWorkbenchUsageCrossmatchNeighborsJson,
+]);
+
+await runStep('validate_definition_workbench_usage_source_ref_buckets', [
+  'scripts/validate_definition_workbench_usage_source_ref_buckets.mjs',
+  definitionWorkbenchUsageSourceRefBucketsJson,
+]);
+
+await runStep('validate_definition_workbench_usage_work_buckets', [
+  'scripts/validate_definition_workbench_usage_work_buckets.mjs',
+  definitionWorkbenchUsageWorkBucketsJson,
+]);
+
+await runStep('validate_definition_workbench_usage_provenance_buckets', [
+  'scripts/validate_definition_workbench_usage_provenance_buckets.mjs',
+  definitionWorkbenchUsageProvenanceBucketsJson,
+]);
+
+await runStep('validate_definition_workbench_usage_occurrence_detail_index', [
+  'scripts/validate_definition_workbench_usage_occurrence_detail_index.mjs',
+  definitionWorkbenchUsageOccurrenceDetailIndexJson,
+]);
+
+await runStep('validate_definition_workbench_usage_facet_index', [
+  'scripts/validate_definition_workbench_usage_facet_index.mjs',
+  definitionWorkbenchUsageFacetIndexJson,
+]);
+
+await runStep('validate_definition_workbench_usage_route_diversity_probe', [
+  'scripts/validate_definition_workbench_usage_route_diversity_probe.mjs',
+  definitionWorkbenchUsageRouteDiversityProbeJson,
+]);
+
+await runStep('validate_definition_workbench_usage_sample_gap_audit', [
+  'scripts/validate_definition_workbench_usage_sample_gap_audit.mjs',
+  definitionWorkbenchUsageSampleGapAuditJson,
+]);
+
+await runStep('validate_definition_workbench_usage_consumer_manifest', [
+  'scripts/validate_definition_workbench_usage_consumer_manifest.mjs',
+  definitionWorkbenchUsageConsumerManifestJson,
+]);
+
+await runStep('validate_definition_workbench_usage_planning_packet', [
+  'scripts/validate_definition_workbench_usage_planning_packet.mjs',
+  definitionWorkbenchUsagePlanningPacketJson,
+]);
+
+await runStep('validate_definition_workbench_usage_anchor_audit', [
+  'scripts/validate_definition_workbench_usage_anchor_audit.mjs',
+  definitionWorkbenchUsageAnchorAuditJson,
+]);
+
+await runStep('validate_definition_workbench_usage_occurrence_support_packet', [
+  'scripts/validate_definition_workbench_usage_occurrence_support_packet.mjs',
+  definitionWorkbenchUsageOccurrenceSupportPacketJson,
+]);
+
+await runStep('validate_definition_workbench_usage_concordance_navigation_packet', [
+  'scripts/validate_definition_workbench_usage_concordance_navigation_packet.mjs',
+  definitionWorkbenchUsageConcordanceNavigationPacketJson,
+]);
+
+await runStep('validate_definition_workbench_usage_freshness_impact_packet', [
+  'scripts/validate_definition_workbench_usage_freshness_impact_packet.mjs',
+  definitionWorkbenchUsageFreshnessImpactPacketJson,
 ]);
 
 await runStep('validate_definition_workbench_usage_queue_ready_packet', [
@@ -970,6 +1060,21 @@ const definitionWorkbenchUsageSeedQueue = readJsonIfExists(definitionWorkbenchUs
 const definitionWorkbenchUsageJoinSmoke = readJsonIfExists(definitionWorkbenchUsageJoinSmokeJson);
 const definitionWorkbenchUsageAgent6Packet = readJsonIfExists(definitionWorkbenchUsageAgent6PacketJson);
 const definitionWorkbenchUsageOccurrenceLinks = readJsonIfExists(definitionWorkbenchUsageOccurrenceLinksJson);
+const definitionWorkbenchUsageRouteResolution = readJsonIfExists(definitionWorkbenchUsageRouteResolutionJson);
+const definitionWorkbenchUsageCrossmatchNeighbors = readJsonIfExists(definitionWorkbenchUsageCrossmatchNeighborsJson);
+const definitionWorkbenchUsageSourceRefBuckets = readJsonIfExists(definitionWorkbenchUsageSourceRefBucketsJson);
+const definitionWorkbenchUsageWorkBuckets = readJsonIfExists(definitionWorkbenchUsageWorkBucketsJson);
+const definitionWorkbenchUsageProvenanceBuckets = readJsonIfExists(definitionWorkbenchUsageProvenanceBucketsJson);
+const definitionWorkbenchUsageOccurrenceDetailIndex = readJsonIfExists(definitionWorkbenchUsageOccurrenceDetailIndexJson);
+const definitionWorkbenchUsageFacetIndex = readJsonIfExists(definitionWorkbenchUsageFacetIndexJson);
+const definitionWorkbenchUsageRouteDiversityProbe = readJsonIfExists(definitionWorkbenchUsageRouteDiversityProbeJson);
+const definitionWorkbenchUsageSampleGapAudit = readJsonIfExists(definitionWorkbenchUsageSampleGapAuditJson);
+const definitionWorkbenchUsageConsumerManifest = readJsonIfExists(definitionWorkbenchUsageConsumerManifestJson);
+const definitionWorkbenchUsagePlanningPacket = readJsonIfExists(definitionWorkbenchUsagePlanningPacketJson);
+const definitionWorkbenchUsageAnchorAudit = readJsonIfExists(definitionWorkbenchUsageAnchorAuditJson);
+const definitionWorkbenchUsageOccurrenceSupportPacket = readJsonIfExists(definitionWorkbenchUsageOccurrenceSupportPacketJson);
+const definitionWorkbenchUsageConcordanceNavigationPacket = readJsonIfExists(definitionWorkbenchUsageConcordanceNavigationPacketJson);
+const definitionWorkbenchUsageFreshnessImpactPacket = readJsonIfExists(definitionWorkbenchUsageFreshnessImpactPacketJson);
 const definitionWorkbenchUsageQueueReadyPacket = readJsonIfExists(definitionWorkbenchUsageQueueReadyPacketJson);
 const agent3UsageState = readJsonIfExists(agent3UsageStateJson);
 const failedSteps = steps.filter((step) => step.status !== 'passed');
@@ -992,6 +1097,21 @@ const artifact = {
     definition_workbench_usage_join_smoke: definitionWorkbenchUsageJoinSmokeJson,
     definition_workbench_usage_agent6_packet: definitionWorkbenchUsageAgent6PacketJson,
     definition_workbench_usage_occurrence_links: definitionWorkbenchUsageOccurrenceLinksJson,
+    definition_workbench_usage_route_resolution: definitionWorkbenchUsageRouteResolutionJson,
+    definition_workbench_usage_crossmatch_neighbors: definitionWorkbenchUsageCrossmatchNeighborsJson,
+    definition_workbench_usage_source_ref_buckets: definitionWorkbenchUsageSourceRefBucketsJson,
+    definition_workbench_usage_work_buckets: definitionWorkbenchUsageWorkBucketsJson,
+    definition_workbench_usage_provenance_buckets: definitionWorkbenchUsageProvenanceBucketsJson,
+    definition_workbench_usage_occurrence_detail_index: definitionWorkbenchUsageOccurrenceDetailIndexJson,
+    definition_workbench_usage_facet_index: definitionWorkbenchUsageFacetIndexJson,
+    definition_workbench_usage_route_diversity_probe: definitionWorkbenchUsageRouteDiversityProbeJson,
+    definition_workbench_usage_sample_gap_audit: definitionWorkbenchUsageSampleGapAuditJson,
+    definition_workbench_usage_consumer_manifest: definitionWorkbenchUsageConsumerManifestJson,
+    definition_workbench_usage_planning_packet: definitionWorkbenchUsagePlanningPacketJson,
+    definition_workbench_usage_anchor_audit: definitionWorkbenchUsageAnchorAuditJson,
+    definition_workbench_usage_occurrence_support_packet: definitionWorkbenchUsageOccurrenceSupportPacketJson,
+    definition_workbench_usage_concordance_navigation_packet: definitionWorkbenchUsageConcordanceNavigationPacketJson,
+    definition_workbench_usage_freshness_impact_packet: definitionWorkbenchUsageFreshnessImpactPacketJson,
     definition_workbench_usage_queue_ready_packet: definitionWorkbenchUsageQueueReadyPacketJson,
     agent3_usage_state: agent3UsageStateJson,
   },
@@ -1509,6 +1629,205 @@ const artifact = {
     definition_workbench_usage_occurrence_link_forbidden_authority_field_hits: definitionWorkbenchUsageOccurrenceLinks?.counts?.forbidden_authority_field_hits ?? null,
     definition_workbench_usage_occurrence_link_audit_only_ambiguous_available: definitionWorkbenchUsageOccurrenceLinks?.counts?.audit_only_ambiguous_rows_available ?? null,
     definition_workbench_usage_occurrence_link_audit_only_ambiguous_emitted: definitionWorkbenchUsageOccurrenceLinks?.counts?.audit_only_ambiguous_rows_emitted ?? null,
+    definition_workbench_usage_route_resolution_status: definitionWorkbenchUsageRouteResolution?.quality?.status ?? null,
+    definition_workbench_usage_route_resolution_occurrence_route_rows: definitionWorkbenchUsageRouteResolution?.counts?.occurrence_route_rows ?? null,
+    definition_workbench_usage_route_resolution_route_ids: definitionWorkbenchUsageRouteResolution?.counts?.route_ids ?? null,
+    definition_workbench_usage_route_resolution_resolved_route_ids: definitionWorkbenchUsageRouteResolution?.counts?.resolved_route_ids ?? null,
+    definition_workbench_usage_route_resolution_unresolved_route_ids: definitionWorkbenchUsageRouteResolution?.counts?.unresolved_route_ids ?? null,
+    definition_workbench_usage_route_resolution_reader_facing_rows: definitionWorkbenchUsageRouteResolution?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_route_resolution_route_payload_field_hits: definitionWorkbenchUsageRouteResolution?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_route_resolution_forbidden_authority_field_hits: definitionWorkbenchUsageRouteResolution?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_crossmatch_neighbors_status: definitionWorkbenchUsageCrossmatchNeighbors?.quality?.status ?? null,
+    definition_workbench_usage_crossmatch_neighbor_source_occurrence_rows: definitionWorkbenchUsageCrossmatchNeighbors?.counts?.source_occurrence_rows ?? null,
+    definition_workbench_usage_crossmatch_neighbor_link_rows: definitionWorkbenchUsageCrossmatchNeighbors?.counts?.neighbor_link_rows ?? null,
+    definition_workbench_usage_crossmatch_neighbor_same_frame_links: definitionWorkbenchUsageCrossmatchNeighbors?.counts?.same_frame_neighbor_links ?? null,
+    definition_workbench_usage_crossmatch_neighbor_bridge_frame_links: definitionWorkbenchUsageCrossmatchNeighbors?.counts?.bridge_frame_neighbor_links ?? null,
+    definition_workbench_usage_crossmatch_neighbor_route_ids: definitionWorkbenchUsageCrossmatchNeighbors?.counts?.route_ids ?? null,
+    definition_workbench_usage_crossmatch_neighbor_unresolved_route_ids: definitionWorkbenchUsageCrossmatchNeighbors?.counts?.unresolved_route_ids ?? null,
+    definition_workbench_usage_crossmatch_neighbor_reader_facing_rows: definitionWorkbenchUsageCrossmatchNeighbors?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_crossmatch_neighbor_route_payload_field_hits: definitionWorkbenchUsageCrossmatchNeighbors?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_crossmatch_neighbor_forbidden_authority_field_hits: definitionWorkbenchUsageCrossmatchNeighbors?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_source_ref_buckets_status: definitionWorkbenchUsageSourceRefBuckets?.quality?.status ?? null,
+    definition_workbench_usage_source_ref_bucket_count: definitionWorkbenchUsageSourceRefBuckets?.counts?.source_ref_buckets ?? null,
+    definition_workbench_usage_source_ref_bucket_source_cluster_buckets: definitionWorkbenchUsageSourceRefBuckets?.counts?.source_cluster_buckets ?? null,
+    definition_workbench_usage_source_ref_bucket_occurrence_rows: definitionWorkbenchUsageSourceRefBuckets?.counts?.occurrence_rows ?? null,
+    definition_workbench_usage_source_ref_bucket_duplicate_source_ref_buckets: definitionWorkbenchUsageSourceRefBuckets?.counts?.duplicate_source_ref_buckets ?? null,
+    definition_workbench_usage_source_ref_bucket_duplicate_source_ref_rows: definitionWorkbenchUsageSourceRefBuckets?.counts?.duplicate_source_ref_rows ?? null,
+    definition_workbench_usage_source_ref_bucket_cross_cluster_source_ref_buckets: definitionWorkbenchUsageSourceRefBuckets?.counts?.cross_cluster_source_ref_buckets ?? null,
+    definition_workbench_usage_source_ref_bucket_cross_cluster_source_ref_rows: definitionWorkbenchUsageSourceRefBuckets?.counts?.cross_cluster_source_ref_rows ?? null,
+    definition_workbench_usage_source_ref_bucket_route_ids: definitionWorkbenchUsageSourceRefBuckets?.counts?.route_ids ?? null,
+    definition_workbench_usage_source_ref_bucket_unresolved_route_ids: definitionWorkbenchUsageSourceRefBuckets?.counts?.unresolved_route_ids ?? null,
+    definition_workbench_usage_source_ref_bucket_reader_facing_rows: definitionWorkbenchUsageSourceRefBuckets?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_source_ref_bucket_route_payload_field_hits: definitionWorkbenchUsageSourceRefBuckets?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_source_ref_bucket_forbidden_authority_field_hits: definitionWorkbenchUsageSourceRefBuckets?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_work_buckets_status: definitionWorkbenchUsageWorkBuckets?.quality?.status ?? null,
+    definition_workbench_usage_work_bucket_count: definitionWorkbenchUsageWorkBuckets?.counts?.work_buckets ?? null,
+    definition_workbench_usage_work_bucket_work_frame_buckets: definitionWorkbenchUsageWorkBuckets?.counts?.work_frame_buckets ?? null,
+    definition_workbench_usage_work_bucket_occurrence_rows: definitionWorkbenchUsageWorkBuckets?.counts?.occurrence_rows ?? null,
+    definition_workbench_usage_work_bucket_source_refs: definitionWorkbenchUsageWorkBuckets?.counts?.source_ref_count ?? null,
+    definition_workbench_usage_work_bucket_multi_source_work_buckets: definitionWorkbenchUsageWorkBuckets?.counts?.multi_source_ref_work_buckets ?? null,
+    definition_workbench_usage_work_bucket_multi_source_work_rows: definitionWorkbenchUsageWorkBuckets?.counts?.multi_source_ref_work_rows ?? null,
+    definition_workbench_usage_work_bucket_multi_frame_work_buckets: definitionWorkbenchUsageWorkBuckets?.counts?.multi_frame_work_buckets ?? null,
+    definition_workbench_usage_work_bucket_multi_frame_work_rows: definitionWorkbenchUsageWorkBuckets?.counts?.multi_frame_work_rows ?? null,
+    definition_workbench_usage_work_bucket_route_ids: definitionWorkbenchUsageWorkBuckets?.counts?.route_ids ?? null,
+    definition_workbench_usage_work_bucket_unresolved_route_ids: definitionWorkbenchUsageWorkBuckets?.counts?.unresolved_route_ids ?? null,
+    definition_workbench_usage_work_bucket_reader_facing_rows: definitionWorkbenchUsageWorkBuckets?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_work_bucket_route_payload_field_hits: definitionWorkbenchUsageWorkBuckets?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_work_bucket_forbidden_authority_field_hits: definitionWorkbenchUsageWorkBuckets?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_provenance_buckets_status: definitionWorkbenchUsageProvenanceBuckets?.quality?.status ?? null,
+    definition_workbench_usage_provenance_bucket_count: definitionWorkbenchUsageProvenanceBuckets?.counts?.provenance_buckets ?? null,
+    definition_workbench_usage_provenance_bucket_provenance_frame_buckets: definitionWorkbenchUsageProvenanceBuckets?.counts?.provenance_frame_buckets ?? null,
+    definition_workbench_usage_provenance_bucket_occurrence_rows: definitionWorkbenchUsageProvenanceBuckets?.counts?.occurrence_rows ?? null,
+    definition_workbench_usage_provenance_bucket_work_count: definitionWorkbenchUsageProvenanceBuckets?.counts?.work_count ?? null,
+    definition_workbench_usage_provenance_bucket_source_refs: definitionWorkbenchUsageProvenanceBuckets?.counts?.source_ref_count ?? null,
+    definition_workbench_usage_provenance_bucket_license_count: definitionWorkbenchUsageProvenanceBuckets?.counts?.license_count ?? null,
+    definition_workbench_usage_provenance_bucket_version_source_count: definitionWorkbenchUsageProvenanceBuckets?.counts?.version_source_count ?? null,
+    definition_workbench_usage_provenance_bucket_multi_work_buckets: definitionWorkbenchUsageProvenanceBuckets?.counts?.multi_work_provenance_buckets ?? null,
+    definition_workbench_usage_provenance_bucket_multi_work_rows: definitionWorkbenchUsageProvenanceBuckets?.counts?.multi_work_provenance_rows ?? null,
+    definition_workbench_usage_provenance_bucket_multi_frame_buckets: definitionWorkbenchUsageProvenanceBuckets?.counts?.multi_frame_provenance_buckets ?? null,
+    definition_workbench_usage_provenance_bucket_multi_frame_rows: definitionWorkbenchUsageProvenanceBuckets?.counts?.multi_frame_provenance_rows ?? null,
+    definition_workbench_usage_provenance_bucket_route_ids: definitionWorkbenchUsageProvenanceBuckets?.counts?.route_ids ?? null,
+    definition_workbench_usage_provenance_bucket_unresolved_route_ids: definitionWorkbenchUsageProvenanceBuckets?.counts?.unresolved_route_ids ?? null,
+    definition_workbench_usage_provenance_bucket_reader_facing_rows: definitionWorkbenchUsageProvenanceBuckets?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_provenance_bucket_route_payload_field_hits: definitionWorkbenchUsageProvenanceBuckets?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_provenance_bucket_forbidden_authority_field_hits: definitionWorkbenchUsageProvenanceBuckets?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_occurrence_detail_index_status: definitionWorkbenchUsageOccurrenceDetailIndex?.quality?.status ?? null,
+    definition_workbench_usage_occurrence_detail_rows: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.occurrence_detail_rows ?? null,
+    definition_workbench_usage_occurrence_detail_source_refs: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.source_ref_count ?? null,
+    definition_workbench_usage_occurrence_detail_works: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.work_count ?? null,
+    definition_workbench_usage_occurrence_detail_license_count: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.license_count ?? null,
+    definition_workbench_usage_occurrence_detail_version_source_count: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.version_source_count ?? null,
+    definition_workbench_usage_occurrence_detail_route_ids: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.route_ids ?? null,
+    definition_workbench_usage_occurrence_detail_unresolved_route_ids: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.unresolved_route_ids ?? null,
+    definition_workbench_usage_occurrence_detail_rows_with_all_bucket_links: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.rows_with_all_bucket_links ?? null,
+    definition_workbench_usage_occurrence_detail_neighbor_links: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.neighbor_links ?? null,
+    definition_workbench_usage_occurrence_detail_same_frame_neighbor_links: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.same_frame_neighbor_links ?? null,
+    definition_workbench_usage_occurrence_detail_bridge_frame_neighbor_links: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.bridge_frame_neighbor_links ?? null,
+    definition_workbench_usage_occurrence_detail_observed_usage_only_rows: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.observed_usage_only_rows ?? null,
+    definition_workbench_usage_occurrence_detail_reader_facing_rows: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_occurrence_detail_route_payload_field_hits: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_occurrence_detail_forbidden_authority_field_hits: definitionWorkbenchUsageOccurrenceDetailIndex?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_facet_index_status: definitionWorkbenchUsageFacetIndex?.quality?.status ?? null,
+    definition_workbench_usage_facet_index_occurrence_rows: definitionWorkbenchUsageFacetIndex?.counts?.occurrence_rows ?? null,
+    definition_workbench_usage_facet_index_facet_groups: definitionWorkbenchUsageFacetIndex?.counts?.facet_groups ?? null,
+    definition_workbench_usage_facet_index_facets_total: definitionWorkbenchUsageFacetIndex?.counts?.facets_total ?? null,
+    definition_workbench_usage_facet_index_route_ids: definitionWorkbenchUsageFacetIndex?.counts?.route_ids ?? null,
+    definition_workbench_usage_facet_index_max_route_share_basis_points: definitionWorkbenchUsageFacetIndex?.counts?.max_route_share_basis_points ?? null,
+    definition_workbench_usage_facet_index_route_concentration_warning: definitionWorkbenchUsageFacetIndex?.counts?.route_concentration_warning ?? null,
+    definition_workbench_usage_facet_index_reader_facing_rows: definitionWorkbenchUsageFacetIndex?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_facet_index_route_payload_field_hits: definitionWorkbenchUsageFacetIndex?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_facet_index_forbidden_authority_field_hits: definitionWorkbenchUsageFacetIndex?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_route_diversity_probe_status: definitionWorkbenchUsageRouteDiversityProbe?.quality?.status ?? null,
+    definition_workbench_usage_route_diversity_probe_occurrence_rows: definitionWorkbenchUsageRouteDiversityProbe?.counts?.occurrence_rows ?? null,
+    definition_workbench_usage_route_diversity_probe_route_ids: definitionWorkbenchUsageRouteDiversityProbe?.counts?.route_ids ?? null,
+    definition_workbench_usage_route_diversity_probe_route_probe_rows: definitionWorkbenchUsageRouteDiversityProbe?.counts?.route_probe_rows ?? null,
+    definition_workbench_usage_route_diversity_probe_max_route_share_basis_points: definitionWorkbenchUsageRouteDiversityProbe?.counts?.max_route_share_basis_points ?? null,
+    definition_workbench_usage_route_diversity_probe_concentration_warning: definitionWorkbenchUsageRouteDiversityProbe?.counts?.route_concentration_warning ?? null,
+    definition_workbench_usage_route_diversity_probe_all_selected_rows_same_route: definitionWorkbenchUsageRouteDiversityProbe?.counts?.all_selected_rows_same_route ?? null,
+    definition_workbench_usage_route_diversity_probe_semantic_independence_claim_allowed: definitionWorkbenchUsageRouteDiversityProbe?.counts?.semantic_independence_claim_allowed ?? null,
+    definition_workbench_usage_route_diversity_probe_reader_facing_rows: definitionWorkbenchUsageRouteDiversityProbe?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_route_diversity_probe_route_payload_field_hits: definitionWorkbenchUsageRouteDiversityProbe?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_route_diversity_probe_forbidden_authority_field_hits: definitionWorkbenchUsageRouteDiversityProbe?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_sample_gap_audit_status: definitionWorkbenchUsageSampleGapAudit?.quality?.status ?? null,
+    definition_workbench_usage_sample_gap_audit_gap_rows: definitionWorkbenchUsageSampleGapAudit?.counts?.gap_rows ?? null,
+    definition_workbench_usage_sample_gap_audit_sample_rows: definitionWorkbenchUsageSampleGapAudit?.counts?.sample_rows ?? null,
+    definition_workbench_usage_sample_gap_audit_sample_rows_with_usage_links: definitionWorkbenchUsageSampleGapAudit?.counts?.sample_rows_with_usage_links ?? null,
+    definition_workbench_usage_sample_gap_audit_usage_tokens_not_in_sample: definitionWorkbenchUsageSampleGapAudit?.counts?.usage_tokens_not_in_sample ?? null,
+    definition_workbench_usage_sample_gap_audit_selected_occurrence_links: definitionWorkbenchUsageSampleGapAudit?.counts?.selected_occurrence_links ?? null,
+    definition_workbench_usage_sample_gap_audit_route_ids: definitionWorkbenchUsageSampleGapAudit?.counts?.route_ids ?? null,
+    definition_workbench_usage_sample_gap_audit_sample_overlap_gap_visible: definitionWorkbenchUsageSampleGapAudit?.counts?.sample_overlap_gap_visible ?? null,
+    definition_workbench_usage_sample_gap_audit_reader_facing_rows: definitionWorkbenchUsageSampleGapAudit?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_sample_gap_audit_route_payload_field_hits: definitionWorkbenchUsageSampleGapAudit?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_sample_gap_audit_forbidden_authority_field_hits: definitionWorkbenchUsageSampleGapAudit?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_consumer_manifest_status: definitionWorkbenchUsageConsumerManifest?.quality?.status ?? null,
+    definition_workbench_usage_consumer_manifest_entries: definitionWorkbenchUsageConsumerManifest?.counts?.manifest_entries ?? null,
+    definition_workbench_usage_consumer_manifest_passed_entries: definitionWorkbenchUsageConsumerManifest?.counts?.passed_entries ?? null,
+    definition_workbench_usage_consumer_manifest_data_artifacts_exist: definitionWorkbenchUsageConsumerManifest?.counts?.data_artifacts_exist ?? null,
+    definition_workbench_usage_consumer_manifest_data_artifacts: definitionWorkbenchUsageConsumerManifest?.counts?.data_artifacts ?? null,
+    definition_workbench_usage_consumer_manifest_report_artifacts_exist: definitionWorkbenchUsageConsumerManifest?.counts?.report_artifacts_exist ?? null,
+    definition_workbench_usage_consumer_manifest_report_artifacts: definitionWorkbenchUsageConsumerManifest?.counts?.report_artifacts ?? null,
+    definition_workbench_usage_consumer_manifest_validator_scripts_exist: definitionWorkbenchUsageConsumerManifest?.counts?.validator_scripts_exist ?? null,
+    definition_workbench_usage_consumer_manifest_validator_scripts: definitionWorkbenchUsageConsumerManifest?.counts?.validator_scripts ?? null,
+    definition_workbench_usage_consumer_manifest_occurrence_detail_rows: definitionWorkbenchUsageConsumerManifest?.counts?.occurrence_detail_rows ?? null,
+    definition_workbench_usage_consumer_manifest_occurrence_link_rows: definitionWorkbenchUsageConsumerManifest?.counts?.occurrence_link_rows ?? null,
+    definition_workbench_usage_consumer_manifest_route_ids: definitionWorkbenchUsageConsumerManifest?.counts?.route_ids ?? null,
+    definition_workbench_usage_consumer_manifest_unresolved_route_ids: definitionWorkbenchUsageConsumerManifest?.counts?.unresolved_route_ids ?? null,
+    definition_workbench_usage_consumer_manifest_reader_facing_rows: definitionWorkbenchUsageConsumerManifest?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_consumer_manifest_route_payload_field_hits: definitionWorkbenchUsageConsumerManifest?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_consumer_manifest_forbidden_authority_field_hits: definitionWorkbenchUsageConsumerManifest?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_planning_packet_status: definitionWorkbenchUsagePlanningPacket?.quality?.status ?? null,
+    definition_workbench_usage_planning_packet_planning_rows: definitionWorkbenchUsagePlanningPacket?.counts?.planning_rows ?? null,
+    definition_workbench_usage_planning_packet_occurrence_link_rows: definitionWorkbenchUsagePlanningPacket?.counts?.occurrence_link_rows ?? null,
+    definition_workbench_usage_planning_packet_current_sample_rows_with_usage_links: definitionWorkbenchUsagePlanningPacket?.counts?.current_sample_rows_with_usage_links ?? null,
+    definition_workbench_usage_planning_packet_current_sample_usage_tokens_not_in_sample: definitionWorkbenchUsagePlanningPacket?.counts?.current_sample_usage_tokens_not_in_sample ?? null,
+    definition_workbench_usage_planning_packet_route_ids: definitionWorkbenchUsagePlanningPacket?.counts?.route_ids ?? null,
+    definition_workbench_usage_planning_packet_reader_facing_rows: definitionWorkbenchUsagePlanningPacket?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_planning_packet_route_payload_field_hits: definitionWorkbenchUsagePlanningPacket?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_planning_packet_forbidden_authority_field_hits: definitionWorkbenchUsagePlanningPacket?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_anchor_audit_status: definitionWorkbenchUsageAnchorAudit?.quality?.status ?? null,
+    definition_workbench_usage_anchor_audit_rows: definitionWorkbenchUsageAnchorAudit?.counts?.audit_rows ?? null,
+    definition_workbench_usage_anchor_audit_existing_work_pages: definitionWorkbenchUsageAnchorAudit?.counts?.rows_with_existing_work_page ?? null,
+    definition_workbench_usage_anchor_audit_existing_anchors: definitionWorkbenchUsageAnchorAudit?.counts?.rows_with_existing_anchor ?? null,
+    definition_workbench_usage_anchor_audit_matching_source_refs: definitionWorkbenchUsageAnchorAudit?.counts?.rows_with_matching_source_ref ?? null,
+    definition_workbench_usage_anchor_audit_token_surfaces_in_page: definitionWorkbenchUsageAnchorAudit?.counts?.rows_with_token_surface_in_page ?? null,
+    definition_workbench_usage_anchor_audit_focus_surfaces_in_page: definitionWorkbenchUsageAnchorAudit?.counts?.rows_with_focus_surface_in_page ?? null,
+    definition_workbench_usage_anchor_audit_rows_with_context: definitionWorkbenchUsageAnchorAudit?.counts?.rows_with_context ?? null,
+    definition_workbench_usage_anchor_audit_rows_with_license: definitionWorkbenchUsageAnchorAudit?.counts?.rows_with_license ?? null,
+    definition_workbench_usage_anchor_audit_rows_with_version: definitionWorkbenchUsageAnchorAudit?.counts?.rows_with_version ?? null,
+    definition_workbench_usage_anchor_audit_reader_facing_rows: definitionWorkbenchUsageAnchorAudit?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_anchor_audit_route_payload_field_hits: definitionWorkbenchUsageAnchorAudit?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_anchor_audit_forbidden_authority_field_hits: definitionWorkbenchUsageAnchorAudit?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_occurrence_support_status: definitionWorkbenchUsageOccurrenceSupportPacket?.quality?.status ?? null,
+    definition_workbench_usage_occurrence_support_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.support_rows ?? null,
+    definition_workbench_usage_occurrence_support_supported_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.supported_rows ?? null,
+    definition_workbench_usage_occurrence_support_candidate_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.candidate_rows ?? null,
+    definition_workbench_usage_occurrence_support_weak_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.weak_rows ?? null,
+    definition_workbench_usage_occurrence_support_source_url_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.rows_with_source_url ?? null,
+    definition_workbench_usage_occurrence_support_local_anchor_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.rows_with_local_work_anchor ?? null,
+    definition_workbench_usage_occurrence_support_context_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.rows_with_context_snippet ?? null,
+    definition_workbench_usage_occurrence_support_focus_marker_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.rows_with_focus_marker ?? null,
+    definition_workbench_usage_occurrence_support_route_id_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.rows_with_route_ids ?? null,
+    definition_workbench_usage_occurrence_support_license_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.rows_with_license_metadata ?? null,
+    definition_workbench_usage_occurrence_support_version_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.rows_with_version_metadata ?? null,
+    definition_workbench_usage_occurrence_support_audit_only_ambiguous_available: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.audit_only_ambiguous_rows_available ?? null,
+    definition_workbench_usage_occurrence_support_audit_only_ambiguous_emitted: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.audit_only_ambiguous_rows_emitted ?? null,
+    definition_workbench_usage_occurrence_support_reader_facing_rows: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_occurrence_support_route_payload_field_hits: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_occurrence_support_forbidden_authority_field_hits: definitionWorkbenchUsageOccurrenceSupportPacket?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_concordance_navigation_status: definitionWorkbenchUsageConcordanceNavigationPacket?.quality?.status ?? null,
+    definition_workbench_usage_concordance_navigation_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.navigation_rows ?? null,
+    definition_workbench_usage_concordance_navigation_supported_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.supported_rows ?? null,
+    definition_workbench_usage_concordance_navigation_candidate_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.candidate_rows ?? null,
+    definition_workbench_usage_concordance_navigation_weak_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.weak_rows ?? null,
+    definition_workbench_usage_concordance_navigation_selected_support_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.selected_support_rows ?? null,
+    definition_workbench_usage_concordance_navigation_source_refs: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.source_refs ?? null,
+    definition_workbench_usage_concordance_navigation_works: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.works ?? null,
+    definition_workbench_usage_concordance_navigation_categories: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.categories ?? null,
+    definition_workbench_usage_concordance_navigation_route_ids: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.route_ids ?? null,
+    definition_workbench_usage_concordance_navigation_source_url_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.rows_with_source_url ?? null,
+    definition_workbench_usage_concordance_navigation_local_anchor_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.rows_with_local_work_anchor ?? null,
+    definition_workbench_usage_concordance_navigation_context_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.rows_with_context_snippet ?? null,
+    definition_workbench_usage_concordance_navigation_focus_marker_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.rows_with_focus_marker ?? null,
+    definition_workbench_usage_concordance_navigation_route_id_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.rows_with_route_ids ?? null,
+    definition_workbench_usage_concordance_navigation_license_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.rows_with_license_metadata ?? null,
+    definition_workbench_usage_concordance_navigation_version_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.rows_with_version_metadata ?? null,
+    definition_workbench_usage_concordance_navigation_audit_only_ambiguous_available: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.audit_only_ambiguous_rows_available ?? null,
+    definition_workbench_usage_concordance_navigation_audit_only_ambiguous_emitted: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.audit_only_ambiguous_rows_emitted ?? null,
+    definition_workbench_usage_concordance_navigation_reader_facing_rows: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_concordance_navigation_route_payload_field_hits: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_concordance_navigation_forbidden_authority_field_hits: definitionWorkbenchUsageConcordanceNavigationPacket?.counts?.forbidden_authority_field_hits ?? null,
+    definition_workbench_usage_freshness_impact_status: definitionWorkbenchUsageFreshnessImpactPacket?.quality?.status ?? null,
+    definition_workbench_usage_freshness_impact_pending_refresh_files: definitionWorkbenchUsageFreshnessImpactPacket?.counts?.pending_refresh_files ?? null,
+    definition_workbench_usage_freshness_impact_pending_with_current_usage_overlap: definitionWorkbenchUsageFreshnessImpactPacket?.counts?.pending_with_current_usage_overlap ?? null,
+    definition_workbench_usage_freshness_impact_pending_without_current_usage_overlap: definitionWorkbenchUsageFreshnessImpactPacket?.counts?.pending_without_current_usage_overlap ?? null,
+    definition_workbench_usage_freshness_impact_impacted_navigation_rows: definitionWorkbenchUsageFreshnessImpactPacket?.counts?.impacted_navigation_rows ?? null,
+    definition_workbench_usage_freshness_impact_impacted_selected_support_rows: definitionWorkbenchUsageFreshnessImpactPacket?.counts?.impacted_selected_support_rows ?? null,
+    definition_workbench_usage_freshness_impact_promoted_run_targets: definitionWorkbenchUsageFreshnessImpactPacket?.counts?.promoted_run_targets ?? null,
+    definition_workbench_usage_freshness_impact_source_text_read: definitionWorkbenchUsageFreshnessImpactPacket?.counts?.source_text_read ?? null,
+    definition_workbench_usage_freshness_impact_broad_target_expansion: definitionWorkbenchUsageFreshnessImpactPacket?.counts?.broad_target_expansion ?? null,
+    definition_workbench_usage_freshness_impact_reader_facing_rows: definitionWorkbenchUsageFreshnessImpactPacket?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_freshness_impact_route_payload_field_hits: definitionWorkbenchUsageFreshnessImpactPacket?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_freshness_impact_forbidden_authority_field_hits: definitionWorkbenchUsageFreshnessImpactPacket?.counts?.forbidden_authority_field_hits ?? null,
     definition_workbench_usage_queue_ready_status: definitionWorkbenchUsageQueueReadyPacket?.quality?.status ?? null,
     definition_workbench_usage_queue_required_fields_present: definitionWorkbenchUsageQueueReadyPacket?.counts?.required_queue_fields_present ?? null,
     definition_workbench_usage_queue_required_fields: definitionWorkbenchUsageQueueReadyPacket?.counts?.required_queue_fields ?? null,
@@ -1624,7 +1943,11 @@ class ProcessExit extends Error {
 function readJsonIfExists(relativePath) {
   const fullPath = path.join(root, relativePath);
   if (!fs.existsSync(fullPath)) return null;
-  return JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+  return JSON.parse(stripJsonBom(fs.readFileSync(fullPath, 'utf8')));
+}
+
+function stripJsonBom(text) {
+  return text.replace(/^\uFEFF/, '');
 }
 
 function writeJson(relativePath, data) {
@@ -1718,6 +2041,21 @@ function writeReport(relativePath, artifact) {
     `- Definition Workbench usage Agent 6 packet: ${artifact.counts.definition_workbench_usage_agent6_packet_status}, proof rows ${artifact.counts.definition_workbench_usage_agent6_proof_rows}, supported ${artifact.counts.definition_workbench_usage_agent6_supported_rows}, candidate ${artifact.counts.definition_workbench_usage_agent6_candidate_rows}, weak ${artifact.counts.definition_workbench_usage_agent6_weak_rows}, route IDs ${artifact.counts.definition_workbench_usage_agent6_route_ids}, frames ${artifact.counts.definition_workbench_usage_agent6_usage_frames}, reader-facing ${artifact.counts.definition_workbench_usage_agent6_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_agent6_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_agent6_forbidden_authority_field_hits}`,
     `- Definition Workbench usage Hebrew/context guard: Hebrew token rows ${artifact.counts.definition_workbench_usage_agent6_hebrew_token_rows}, Hebrew context rows ${artifact.counts.definition_workbench_usage_agent6_hebrew_context_rows}, focus marker rows ${artifact.counts.definition_workbench_usage_agent6_focus_marker_rows}, mojibake rows ${artifact.counts.definition_workbench_usage_agent6_mojibake_rows}`,
     `- Definition Workbench usage occurrence links: ${artifact.counts.definition_workbench_usage_occurrence_links_status}, rows ${artifact.counts.definition_workbench_usage_occurrence_link_rows}, source refs ${artifact.counts.definition_workbench_usage_occurrence_link_source_refs}, works ${artifact.counts.definition_workbench_usage_occurrence_link_works}, Hebrew context ${artifact.counts.definition_workbench_usage_occurrence_link_hebrew_context_rows}, focus markers ${artifact.counts.definition_workbench_usage_occurrence_link_focus_marker_rows}, mojibake ${artifact.counts.definition_workbench_usage_occurrence_link_mojibake_rows}, reader-facing ${artifact.counts.definition_workbench_usage_occurrence_link_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_occurrence_link_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_occurrence_link_forbidden_authority_field_hits}, audit-only ambiguous ${artifact.counts.definition_workbench_usage_occurrence_link_audit_only_ambiguous_available}/${artifact.counts.definition_workbench_usage_occurrence_link_audit_only_ambiguous_emitted}`,
+    `- Definition Workbench usage route resolution: ${artifact.counts.definition_workbench_usage_route_resolution_status}, occurrence route rows ${artifact.counts.definition_workbench_usage_route_resolution_occurrence_route_rows}, route IDs ${artifact.counts.definition_workbench_usage_route_resolution_route_ids}, resolved/unresolved ${artifact.counts.definition_workbench_usage_route_resolution_resolved_route_ids}/${artifact.counts.definition_workbench_usage_route_resolution_unresolved_route_ids}, reader-facing ${artifact.counts.definition_workbench_usage_route_resolution_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_route_resolution_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_route_resolution_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage crossmatch neighbors: ${artifact.counts.definition_workbench_usage_crossmatch_neighbors_status}, source rows ${artifact.counts.definition_workbench_usage_crossmatch_neighbor_source_occurrence_rows}, links ${artifact.counts.definition_workbench_usage_crossmatch_neighbor_link_rows}, same/bridge ${artifact.counts.definition_workbench_usage_crossmatch_neighbor_same_frame_links}/${artifact.counts.definition_workbench_usage_crossmatch_neighbor_bridge_frame_links}, route IDs ${artifact.counts.definition_workbench_usage_crossmatch_neighbor_route_ids}, unresolved routes ${artifact.counts.definition_workbench_usage_crossmatch_neighbor_unresolved_route_ids}, reader-facing ${artifact.counts.definition_workbench_usage_crossmatch_neighbor_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_crossmatch_neighbor_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_crossmatch_neighbor_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage source-ref buckets: ${artifact.counts.definition_workbench_usage_source_ref_buckets_status}, source refs ${artifact.counts.definition_workbench_usage_source_ref_bucket_count}, source-cluster buckets ${artifact.counts.definition_workbench_usage_source_ref_bucket_source_cluster_buckets}, rows ${artifact.counts.definition_workbench_usage_source_ref_bucket_occurrence_rows}, duplicate source refs ${artifact.counts.definition_workbench_usage_source_ref_bucket_duplicate_source_ref_buckets}/${artifact.counts.definition_workbench_usage_source_ref_bucket_duplicate_source_ref_rows}, cross-cluster source refs ${artifact.counts.definition_workbench_usage_source_ref_bucket_cross_cluster_source_ref_buckets}/${artifact.counts.definition_workbench_usage_source_ref_bucket_cross_cluster_source_ref_rows}, route IDs ${artifact.counts.definition_workbench_usage_source_ref_bucket_route_ids}, unresolved routes ${artifact.counts.definition_workbench_usage_source_ref_bucket_unresolved_route_ids}, reader-facing ${artifact.counts.definition_workbench_usage_source_ref_bucket_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_source_ref_bucket_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_source_ref_bucket_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage work buckets: ${artifact.counts.definition_workbench_usage_work_buckets_status}, works ${artifact.counts.definition_workbench_usage_work_bucket_count}, work-frame buckets ${artifact.counts.definition_workbench_usage_work_bucket_work_frame_buckets}, rows ${artifact.counts.definition_workbench_usage_work_bucket_occurrence_rows}, source refs ${artifact.counts.definition_workbench_usage_work_bucket_source_refs}, multi-source works ${artifact.counts.definition_workbench_usage_work_bucket_multi_source_work_buckets}/${artifact.counts.definition_workbench_usage_work_bucket_multi_source_work_rows}, multi-frame works ${artifact.counts.definition_workbench_usage_work_bucket_multi_frame_work_buckets}/${artifact.counts.definition_workbench_usage_work_bucket_multi_frame_work_rows}, route IDs ${artifact.counts.definition_workbench_usage_work_bucket_route_ids}, unresolved routes ${artifact.counts.definition_workbench_usage_work_bucket_unresolved_route_ids}, reader-facing ${artifact.counts.definition_workbench_usage_work_bucket_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_work_bucket_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_work_bucket_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage provenance buckets: ${artifact.counts.definition_workbench_usage_provenance_buckets_status}, provenance buckets ${artifact.counts.definition_workbench_usage_provenance_bucket_count}, provenance-frame buckets ${artifact.counts.definition_workbench_usage_provenance_bucket_provenance_frame_buckets}, rows ${artifact.counts.definition_workbench_usage_provenance_bucket_occurrence_rows}, source refs ${artifact.counts.definition_workbench_usage_provenance_bucket_source_refs}, licenses ${artifact.counts.definition_workbench_usage_provenance_bucket_license_count}, version sources ${artifact.counts.definition_workbench_usage_provenance_bucket_version_source_count}, multi-work ${artifact.counts.definition_workbench_usage_provenance_bucket_multi_work_buckets}/${artifact.counts.definition_workbench_usage_provenance_bucket_multi_work_rows}, multi-frame ${artifact.counts.definition_workbench_usage_provenance_bucket_multi_frame_buckets}/${artifact.counts.definition_workbench_usage_provenance_bucket_multi_frame_rows}, route IDs ${artifact.counts.definition_workbench_usage_provenance_bucket_route_ids}, unresolved routes ${artifact.counts.definition_workbench_usage_provenance_bucket_unresolved_route_ids}, reader-facing ${artifact.counts.definition_workbench_usage_provenance_bucket_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_provenance_bucket_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_provenance_bucket_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage occurrence detail index: ${artifact.counts.definition_workbench_usage_occurrence_detail_index_status}, rows ${artifact.counts.definition_workbench_usage_occurrence_detail_rows}, source refs ${artifact.counts.definition_workbench_usage_occurrence_detail_source_refs}, works ${artifact.counts.definition_workbench_usage_occurrence_detail_works}, route IDs ${artifact.counts.definition_workbench_usage_occurrence_detail_route_ids}, unresolved routes ${artifact.counts.definition_workbench_usage_occurrence_detail_unresolved_route_ids}, bucket-linked rows ${artifact.counts.definition_workbench_usage_occurrence_detail_rows_with_all_bucket_links}, neighbor links ${artifact.counts.definition_workbench_usage_occurrence_detail_neighbor_links}, same/bridge ${artifact.counts.definition_workbench_usage_occurrence_detail_same_frame_neighbor_links}/${artifact.counts.definition_workbench_usage_occurrence_detail_bridge_frame_neighbor_links}, reader-facing ${artifact.counts.definition_workbench_usage_occurrence_detail_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_occurrence_detail_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_occurrence_detail_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage facet index: ${artifact.counts.definition_workbench_usage_facet_index_status}, occurrence rows ${artifact.counts.definition_workbench_usage_facet_index_occurrence_rows}, groups ${artifact.counts.definition_workbench_usage_facet_index_facet_groups}, facets ${artifact.counts.definition_workbench_usage_facet_index_facets_total}, route IDs ${artifact.counts.definition_workbench_usage_facet_index_route_ids}, max route share ${artifact.counts.definition_workbench_usage_facet_index_max_route_share_basis_points}/10000, concentration warning ${artifact.counts.definition_workbench_usage_facet_index_route_concentration_warning}, reader-facing ${artifact.counts.definition_workbench_usage_facet_index_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_facet_index_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_facet_index_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage route diversity probe: ${artifact.counts.definition_workbench_usage_route_diversity_probe_status}, occurrence rows ${artifact.counts.definition_workbench_usage_route_diversity_probe_occurrence_rows}, route IDs ${artifact.counts.definition_workbench_usage_route_diversity_probe_route_ids}, probes ${artifact.counts.definition_workbench_usage_route_diversity_probe_route_probe_rows}, max route share ${artifact.counts.definition_workbench_usage_route_diversity_probe_max_route_share_basis_points}/10000, concentration warning ${artifact.counts.definition_workbench_usage_route_diversity_probe_concentration_warning}, semantic independence allowed ${artifact.counts.definition_workbench_usage_route_diversity_probe_semantic_independence_claim_allowed}, reader-facing ${artifact.counts.definition_workbench_usage_route_diversity_probe_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_route_diversity_probe_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_route_diversity_probe_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage sample gap audit: ${artifact.counts.definition_workbench_usage_sample_gap_audit_status}, gap rows ${artifact.counts.definition_workbench_usage_sample_gap_audit_gap_rows}, sample usage links ${artifact.counts.definition_workbench_usage_sample_gap_audit_sample_rows_with_usage_links}/${artifact.counts.definition_workbench_usage_sample_gap_audit_sample_rows}, usage tokens not in sample ${artifact.counts.definition_workbench_usage_sample_gap_audit_usage_tokens_not_in_sample}, selected links ${artifact.counts.definition_workbench_usage_sample_gap_audit_selected_occurrence_links}, route IDs ${artifact.counts.definition_workbench_usage_sample_gap_audit_route_ids}, reader-facing ${artifact.counts.definition_workbench_usage_sample_gap_audit_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_sample_gap_audit_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_sample_gap_audit_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage consumer manifest: ${artifact.counts.definition_workbench_usage_consumer_manifest_status}, entries ${artifact.counts.definition_workbench_usage_consumer_manifest_entries}, passed ${artifact.counts.definition_workbench_usage_consumer_manifest_passed_entries}, data/report/validator ${artifact.counts.definition_workbench_usage_consumer_manifest_data_artifacts_exist}-${artifact.counts.definition_workbench_usage_consumer_manifest_data_artifacts}/${artifact.counts.definition_workbench_usage_consumer_manifest_report_artifacts_exist}-${artifact.counts.definition_workbench_usage_consumer_manifest_report_artifacts}/${artifact.counts.definition_workbench_usage_consumer_manifest_validator_scripts_exist}-${artifact.counts.definition_workbench_usage_consumer_manifest_validator_scripts}, rows ${artifact.counts.definition_workbench_usage_consumer_manifest_occurrence_detail_rows}/${artifact.counts.definition_workbench_usage_consumer_manifest_occurrence_link_rows}, route IDs ${artifact.counts.definition_workbench_usage_consumer_manifest_route_ids}, unresolved ${artifact.counts.definition_workbench_usage_consumer_manifest_unresolved_route_ids}, reader-facing ${artifact.counts.definition_workbench_usage_consumer_manifest_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_consumer_manifest_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_consumer_manifest_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage planning packet: ${artifact.counts.definition_workbench_usage_planning_packet_status}, planning rows ${artifact.counts.definition_workbench_usage_planning_packet_planning_rows}, occurrence links ${artifact.counts.definition_workbench_usage_planning_packet_occurrence_link_rows}, sample usage links ${artifact.counts.definition_workbench_usage_planning_packet_current_sample_rows_with_usage_links}, usage tokens not in sample ${artifact.counts.definition_workbench_usage_planning_packet_current_sample_usage_tokens_not_in_sample}, route IDs ${artifact.counts.definition_workbench_usage_planning_packet_route_ids}, reader-facing ${artifact.counts.definition_workbench_usage_planning_packet_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_planning_packet_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_planning_packet_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage anchor audit: ${artifact.counts.definition_workbench_usage_anchor_audit_status}, rows ${artifact.counts.definition_workbench_usage_anchor_audit_rows}, pages ${artifact.counts.definition_workbench_usage_anchor_audit_existing_work_pages}, anchors ${artifact.counts.definition_workbench_usage_anchor_audit_existing_anchors}, source refs ${artifact.counts.definition_workbench_usage_anchor_audit_matching_source_refs}, token/focus ${artifact.counts.definition_workbench_usage_anchor_audit_token_surfaces_in_page}/${artifact.counts.definition_workbench_usage_anchor_audit_focus_surfaces_in_page}, context/license/version ${artifact.counts.definition_workbench_usage_anchor_audit_rows_with_context}/${artifact.counts.definition_workbench_usage_anchor_audit_rows_with_license}/${artifact.counts.definition_workbench_usage_anchor_audit_rows_with_version}, reader-facing ${artifact.counts.definition_workbench_usage_anchor_audit_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_anchor_audit_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_anchor_audit_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage occurrence support packet: ${artifact.counts.definition_workbench_usage_occurrence_support_status}, rows ${artifact.counts.definition_workbench_usage_occurrence_support_rows}, supported/candidate/weak ${artifact.counts.definition_workbench_usage_occurrence_support_supported_rows}/${artifact.counts.definition_workbench_usage_occurrence_support_candidate_rows}/${artifact.counts.definition_workbench_usage_occurrence_support_weak_rows}, source/anchor/context/focus/route/license/version ${artifact.counts.definition_workbench_usage_occurrence_support_source_url_rows}/${artifact.counts.definition_workbench_usage_occurrence_support_local_anchor_rows}/${artifact.counts.definition_workbench_usage_occurrence_support_context_rows}/${artifact.counts.definition_workbench_usage_occurrence_support_focus_marker_rows}/${artifact.counts.definition_workbench_usage_occurrence_support_route_id_rows}/${artifact.counts.definition_workbench_usage_occurrence_support_license_rows}/${artifact.counts.definition_workbench_usage_occurrence_support_version_rows}, audit-only ambiguous ${artifact.counts.definition_workbench_usage_occurrence_support_audit_only_ambiguous_available}/${artifact.counts.definition_workbench_usage_occurrence_support_audit_only_ambiguous_emitted}, reader-facing ${artifact.counts.definition_workbench_usage_occurrence_support_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_occurrence_support_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_occurrence_support_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage concordance navigation packet: ${artifact.counts.definition_workbench_usage_concordance_navigation_status}, rows ${artifact.counts.definition_workbench_usage_concordance_navigation_rows}, supported/candidate/weak ${artifact.counts.definition_workbench_usage_concordance_navigation_supported_rows}/${artifact.counts.definition_workbench_usage_concordance_navigation_candidate_rows}/${artifact.counts.definition_workbench_usage_concordance_navigation_weak_rows}, selected ${artifact.counts.definition_workbench_usage_concordance_navigation_selected_support_rows}, source/work/category/route ${artifact.counts.definition_workbench_usage_concordance_navigation_source_refs}/${artifact.counts.definition_workbench_usage_concordance_navigation_works}/${artifact.counts.definition_workbench_usage_concordance_navigation_categories}/${artifact.counts.definition_workbench_usage_concordance_navigation_route_ids}, source/anchor/context/focus/route/license/version ${artifact.counts.definition_workbench_usage_concordance_navigation_source_url_rows}/${artifact.counts.definition_workbench_usage_concordance_navigation_local_anchor_rows}/${artifact.counts.definition_workbench_usage_concordance_navigation_context_rows}/${artifact.counts.definition_workbench_usage_concordance_navigation_focus_marker_rows}/${artifact.counts.definition_workbench_usage_concordance_navigation_route_id_rows}/${artifact.counts.definition_workbench_usage_concordance_navigation_license_rows}/${artifact.counts.definition_workbench_usage_concordance_navigation_version_rows}, audit-only ambiguous ${artifact.counts.definition_workbench_usage_concordance_navigation_audit_only_ambiguous_available}/${artifact.counts.definition_workbench_usage_concordance_navigation_audit_only_ambiguous_emitted}, reader-facing ${artifact.counts.definition_workbench_usage_concordance_navigation_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_concordance_navigation_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_concordance_navigation_forbidden_authority_field_hits}`,
+    `- Definition Workbench usage freshness impact packet: ${artifact.counts.definition_workbench_usage_freshness_impact_status}, pending ${artifact.counts.definition_workbench_usage_freshness_impact_pending_refresh_files}, overlap/no-overlap ${artifact.counts.definition_workbench_usage_freshness_impact_pending_with_current_usage_overlap}/${artifact.counts.definition_workbench_usage_freshness_impact_pending_without_current_usage_overlap}, impacted rows ${artifact.counts.definition_workbench_usage_freshness_impact_impacted_navigation_rows}, selected impact ${artifact.counts.definition_workbench_usage_freshness_impact_impacted_selected_support_rows}, promoted ${artifact.counts.definition_workbench_usage_freshness_impact_promoted_run_targets}, source-text/broad-expansion ${artifact.counts.definition_workbench_usage_freshness_impact_source_text_read}/${artifact.counts.definition_workbench_usage_freshness_impact_broad_target_expansion}, reader-facing ${artifact.counts.definition_workbench_usage_freshness_impact_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_freshness_impact_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_freshness_impact_forbidden_authority_field_hits}`,
     `- Definition Workbench usage queue-ready packet: ${artifact.counts.definition_workbench_usage_queue_ready_status}, required fields ${artifact.counts.definition_workbench_usage_queue_required_fields_present}/${artifact.counts.definition_workbench_usage_queue_required_fields}, evidence artifacts ${artifact.counts.definition_workbench_usage_queue_evidence_artifacts_exist}/${artifact.counts.definition_workbench_usage_queue_evidence_artifacts}, validators ${artifact.counts.definition_workbench_usage_queue_validator_scripts_exist}/${artifact.counts.definition_workbench_usage_queue_validator_scripts}, queue mutations ${artifact.counts.definition_workbench_usage_queue_mutations}, submitted ${artifact.counts.definition_workbench_usage_queue_submitted_to_agent6}`,
     `- Agent 3 usage state packet: ${artifact.counts.agent3_state_quality_status}, worker ${artifact.counts.agent3_state_worker_state}, QA ${artifact.counts.agent3_state_qa_acceptance_state}, evidence artifacts ${artifact.counts.agent3_state_evidence_artifacts_exist}/${artifact.counts.agent3_state_evidence_artifacts}, validators ${artifact.counts.agent3_state_validator_scripts_exist}/${artifact.counts.agent3_state_validator_scripts}, queue mutations ${artifact.counts.agent3_state_queue_mutations}, submitted ${artifact.counts.agent3_state_submitted_to_agent6}, state smoke ${artifact.counts.agent3_state_smoke_steps}/${artifact.counts.agent3_state_smoke_failed_steps}`,
     '',

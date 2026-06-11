@@ -49,7 +49,7 @@ const zeroBoundaryFields = [
 const boundaryTextChecks = [
   {
     id: 'route_gate_only',
-    text: 'This gate validates HUD route lookup integrity and the route-card/publication boundary only.',
+    text: 'This gate validates the HUD route release stamp, HUD route lookup integrity, and the route-card/publication boundary only.',
   },
   {
     id: 'not_translation_or_authority',
@@ -86,6 +86,7 @@ const result = {
   gate_status: gate.status || '',
   release_scope: gate.release_scope || '',
   publication_boundary: gate.publication_boundary || {},
+  input_freeze_publication_boundary: gate.route_input_freeze_drift?.publication_boundary || null,
   counts: {
     public_cards_written: numberAt(gate, 'public_cards_written'),
     public_distinct_normalized_tokens: numberAt(gate, 'public_distinct_normalized_tokens'),
@@ -177,8 +178,11 @@ function validatePublicationBoundary() {
   if (boundary.publication_status !== 'blocked_no_render') {
     issues.push(`publication_boundary.publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`);
   }
-  if (!Array.isArray(boundary.validates) || !boundary.validates.includes('hud_route_lookup_integrity') || !boundary.validates.includes('route_card_publication_boundary')) {
-    issues.push('publication_boundary.validates must include HUD route lookup integrity and route-card publication boundary');
+  if (!Array.isArray(boundary.validates)
+    || !boundary.validates.includes('hud_route_release_stamp')
+    || !boundary.validates.includes('hud_route_lookup_integrity')
+    || !boundary.validates.includes('route_card_publication_boundary')) {
+    issues.push('publication_boundary.validates must include HUD route release stamp, HUD route lookup integrity, and route-card publication boundary');
   }
   const doesNotClear = new Set(Array.isArray(boundary.does_not_clear) ? boundary.does_not_clear : []);
   for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
@@ -255,6 +259,48 @@ function validateFreezeDrift() {
   if ((status === 'missing' || status === 'unknown') && !String(gate.release_scope || '').includes('unproven')) {
     issues.push('missing/unknown drift report must leave release_scope unproven');
   }
+  validateInputFreezePublicationBoundary(drift, status);
+}
+
+function validateInputFreezePublicationBoundary(drift, status) {
+  if (status === 'missing') return;
+  const boundary = drift.publication_boundary;
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push('route_input_freeze_drift.publication_boundary object is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push('route_input_freeze_drift.publication_boundary.publication_status must be blocked_no_render');
+  }
+  for (const item of ['hud_route_input_freeze_drift', 'frozen_route_input_cache_comparison']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      issues.push(`route_input_freeze_drift.publication_boundary.validates missing ${item}`);
+    }
+  }
+  for (const item of [
+    'translation_output',
+    'source_publication',
+    'public_lexical_export_reuse',
+    'accepted_definition_authority',
+    'public_lookup_publication',
+    'route_publication_readiness',
+  ]) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      issues.push(`route_input_freeze_drift.publication_boundary.does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.route_input_scope || '').includes('not_publication_readiness')) {
+    issues.push('route_input_freeze_drift.publication_boundary.route_input_scope must block publication readiness');
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push('route_input_freeze_drift.publication_boundary.warning_status_blocks_publication_claim must be true');
+  }
+  if (status !== 'pass' && boundary.current_route_inputs_reconciled !== false) {
+    issues.push('route_input_freeze_drift.publication_boundary.current_route_inputs_reconciled must be false unless status is pass');
+  }
+  for (const field of ['route_data_regenerated', 'source_imports_changed', 'public_lookup_artifacts_changed']) {
+    if (boundary[field] !== false) issues.push(`route_input_freeze_drift.publication_boundary.${field} must be false`);
+  }
 }
 
 function validateMarkdownBoundary() {
@@ -303,6 +349,7 @@ function parseArgs(args) {
     process.exit(0);
   }
   for (const key of ['gateJson', 'gateReport', 'output', 'report']) parsed[key] = cleanPath(parsed[key]);
+  validatePathScopes(parsed);
   return parsed;
 }
 
@@ -336,6 +383,9 @@ function writeMarkdown(relativePath, result) {
     `- Answer eligibility scope: ${result.publication_boundary.answer_eligible_scope || 'missing'}`,
     `- Warning status blocks publication claim: ${result.publication_boundary.warning_status_blocks_publication_claim}`,
     `- Current route sources reconciled: ${result.publication_boundary.current_route_sources_reconciled}`,
+    `- Input-freeze publication status: ${result.input_freeze_publication_boundary?.publication_status || 'missing'}`,
+    `- Input-freeze current route inputs reconciled: ${result.input_freeze_publication_boundary?.current_route_inputs_reconciled}`,
+    `- Input-freeze public lookup artifacts changed: ${result.input_freeze_publication_boundary?.public_lookup_artifacts_changed}`,
     '',
     '## Counts',
     '',
@@ -385,11 +435,34 @@ function numberAt(object, field) {
 }
 
 function cleanPath(value) {
-  const normalized = String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  const normalized = String(value || '').replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/+$/, '');
   if (!normalized || path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
     throw new Error(`Path must be relative to repo root: ${value}`);
   }
   return normalized;
+}
+
+function validatePathScopes(parsed) {
+  assertExactPath('--gate-json', parsed.gateJson, 'reports/hud-route-release-gate.json');
+  assertExactPath('--gate-report', parsed.gateReport, 'reports/hud-route-release-gate.md');
+  assertExactPath('--output', parsed.output, 'reports/hud-route-release-gate-validation.json');
+  assertExactPath('--report', parsed.report, 'reports/hud-route-release-gate-validation.md');
+  assertFileExtension('--output', parsed.output, '.json');
+  assertFileExtension('--report', parsed.report, '.md');
+}
+
+function assertExactPath(label, actual, expected) {
+  if (actual !== expected) throw new Error(`${label} must be ${expected}: ${actual || 'missing'}`);
+}
+
+function assertPathUnder(label, actual, expectedPrefix) {
+  if (actual !== expectedPrefix && !actual.startsWith(`${expectedPrefix}/`)) {
+    throw new Error(`${label} must stay under ${expectedPrefix}: ${actual}`);
+  }
+}
+
+function assertFileExtension(label, actual, expectedExtension) {
+  if (!actual.endsWith(expectedExtension)) throw new Error(`${label} must end with ${expectedExtension}: ${actual}`);
 }
 
 function mdCell(value) {

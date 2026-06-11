@@ -74,6 +74,7 @@ const artifact = {
   source_license_policy: 'Source/license completeness is checked against route card source_rows. This sample emits only completeness flags, source-family aggregates, route-family aggregates, and card IDs.',
   multi_answer_policy: 'multi_answer=true when more than one distinct answer definition hash exists. These rows retain conflicting status as a warning, not a hidden winner.',
   boundary: 'Definition Workbench sample only. It publishes no source excerpts, no definition text, no translation text, and no publication readiness.',
+  publication_boundary: buildPublicationBoundary(),
   inputs: {
     token_inventory: options.inventory,
     lookup_manifest: options.lookupManifest,
@@ -210,6 +211,29 @@ function reviewStatusBasis(reviewStatus) {
   return labels[reviewStatus];
 }
 
+function buildPublicationBoundary() {
+  return {
+    boundary_status: 'blocked_no_render',
+    sample_only: true,
+    reader_facing: false,
+    ui_assignment: false,
+    publication_claim: false,
+    clears_publication_readiness: false,
+    reviewed_lexical_authority: false,
+    accepted_translation_output: false,
+    source_publication: false,
+    public_lookup_artifact: false,
+    does_not_clear: [
+      'ui_assignment',
+      'reviewed_lexical_authority',
+      'accepted_translation',
+      'source_publication',
+      'public_lookup_publication',
+      'publication_readiness',
+    ],
+  };
+}
+
 function hashText(value) {
   return crypto.createHash('sha1').update(String(value || '')).digest('hex');
 }
@@ -266,6 +290,20 @@ function writeReport(relativePath, artifact) {
     '- `review_status=verified` is reserved for future reviewed lexical authority and is not emitted by this sample builder.',
     '- Answer cards require `answer_eligible=true` and `answer_role=answer`; other route cards remain evidence-only counts.',
     '- `multi_answer=true` rows remain `conflicting` warnings and are not collapsed into a hidden winner.',
+    '',
+    '## Publication Boundary',
+    '',
+    `- Boundary status: ${artifact.publication_boundary.boundary_status}`,
+    `- Sample only: ${artifact.publication_boundary.sample_only}`,
+    `- Reader-facing: ${artifact.publication_boundary.reader_facing}`,
+    `- UI assignment: ${artifact.publication_boundary.ui_assignment}`,
+    `- Publication claim: ${artifact.publication_boundary.publication_claim}`,
+    `- Clears publication readiness: ${artifact.publication_boundary.clears_publication_readiness}`,
+    `- Reviewed lexical authority: ${artifact.publication_boundary.reviewed_lexical_authority}`,
+    `- Accepted translation output: ${artifact.publication_boundary.accepted_translation_output}`,
+    `- Source publication: ${artifact.publication_boundary.source_publication}`,
+    `- Public lookup artifact: ${artifact.publication_boundary.public_lookup_artifact}`,
+    `- Does not clear: ${artifact.publication_boundary.does_not_clear.join(', ')}`,
     '',
     '## Top Sample Rows',
     '',

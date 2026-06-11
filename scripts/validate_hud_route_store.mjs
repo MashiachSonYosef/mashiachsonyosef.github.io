@@ -46,6 +46,7 @@ function validateCard(card, context, issues) {
   for (const field of ['card_id', 'normalized', 'route_family', 'route_type', 'display_section', 'display_label']) {
     if (!card?.[field]) issues.push(`${context}: missing ${field}`);
   }
+  validateMachineAuthorityStatus(card, context, issues);
   if (typeof card.answer_eligible !== 'boolean') issues.push(`${context}: missing boolean answer_eligible`);
   if (!card.answer_role) issues.push(`${context}: missing answer_role`);
   if (card.answer_eligible === true && card.answer_role !== 'answer') {
@@ -88,6 +89,17 @@ function validateCard(card, context, issues) {
   }
 }
 
+function validateMachineAuthorityStatus(card, context, issues) {
+  for (const field of ['status', 'review_status', 'authority_status', 'lexical_authority_status']) {
+    if (String(card?.[field] || '').trim().toLowerCase() === 'verified') {
+      issues.push(`${context}: ${field}=verified is reserved for reviewed lexical authority, not machine route cards`);
+    }
+  }
+  if (card?.reviewed_lexical_authority === true) {
+    issues.push(`${context}: reviewed_lexical_authority=true is not allowed on machine route cards`);
+  }
+}
+
 function policyStringsForCard(card) {
   const values = [
     card?.route_family,
@@ -104,6 +116,38 @@ function policyStringsForCard(card) {
     values.push(row?.source_name, row?.source_family, row?.license, row?.notes);
   }
   return values.filter((value) => typeof value === 'string' && value);
+}
+
+function validateSamplePublicationBoundary(boundary, sampleType, issues) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push('sample publication_boundary object is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push(`sample publication_boundary.publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`);
+  }
+  for (const item of [`${sampleType}_sample`, 'route_card_sample_source_license_rows']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      issues.push(`sample publication_boundary.validates missing ${item}`);
+    }
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      issues.push(`sample publication_boundary.does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.answer_eligible_scope || '').includes('not_translation_or_publication_readiness')) {
+    issues.push('sample publication_boundary.answer_eligible_scope must block translation/publication readiness overclaim');
+  }
+  if (!String(boundary.sample_scope || '').includes('not_publication_readiness')) {
+    issues.push('sample publication_boundary.sample_scope must state not_publication_readiness');
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push('sample publication_boundary.warning_status_blocks_publication_claim must be true');
+  }
+  if (boundary.current_route_inputs_reconciled !== 'not_checked_by_route_sample_validate_release_stamp_and_drift') {
+    issues.push('sample publication_boundary.current_route_inputs_reconciled must defer to release stamp and drift validation');
+  }
 }
 
 async function firstCardsFromShard(shardPath, limit) {
@@ -128,6 +172,7 @@ if (!fs.existsSync(samplePath)) issues.push(`missing public HUD route store samp
 if (!issues.length) {
   const manifest = readJson(manifestPath);
   const sample = readJson(samplePath);
+  validateSamplePublicationBoundary(sample.publication_boundary, 'hud_route_store', issues);
   if (manifest.counts?.cards_written <= 0) issues.push('route store wrote no cards');
   if (manifest.counts?.distinct_normalized_tokens <= 0) issues.push('route store has no normalized-token index');
   if (!Array.isArray(manifest.shards) || !manifest.shards.length) issues.push('route store has no shards');

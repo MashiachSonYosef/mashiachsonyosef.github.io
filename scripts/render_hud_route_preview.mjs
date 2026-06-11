@@ -103,11 +103,10 @@ function renderPage({ fixtures, storeSample, lookupSample, contract }) {
     .route-kind, .section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
     .confidence { border: 1px solid var(--line-strong); border-radius: 999px; padding: 1px 8px; color: var(--accent); white-space: nowrap; }
     .route-form { color: var(--paper); font-size: clamp(1.45rem, 4vw, 2.5rem); line-height: 1.18; text-align: right; overflow-wrap: anywhere; }
-    .route-meta, .plain-note, .source-mini, .scroll-note { color: var(--muted); font-size: 0.9rem; margin-bottom: 7px; }
+    .route-meta, .plain-note, .source-mini { color: var(--muted); font-size: 0.9rem; margin-bottom: 7px; }
     .definition { color: var(--text); font-size: clamp(1.03rem, 2vw, 1.22rem); margin-bottom: 8px; }
-    .route-lane { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(260px, 40%, 390px); gap: 10px; overflow-x: auto; padding-bottom: 7px; scroll-snap-type: x proximity; overscroll-behavior-inline: contain; scrollbar-color: var(--accent) rgba(255,255,255,0.08); scrollbar-width: thin; }
-    .route-lane::after { content: ""; width: 18px; }
-    .route-lane > .route-card { scroll-snap-align: start; }
+    .route-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+    .route-lane > .route-card { min-height: 100%; }
     .phrase-line { color: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 8px 0; font-size: 1.25rem; text-align: right; }
     .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
     .phrase-context { color: var(--paper); opacity: 0.72; }
@@ -120,7 +119,7 @@ function renderPage({ fixtures, storeSample, lookupSample, contract }) {
       main { width: min(100% - 18px, 1280px); }
       .layout { grid-template-columns: 1fr; }
       .token-list { position: static; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-      .route-lane { grid-auto-columns: minmax(245px, 84%); }
+      .route-lane { grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); }
     }
   </style>
 </head>

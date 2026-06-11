@@ -42,6 +42,7 @@ if (!String(sample.source_license_policy || '').includes('source_rows')) {
 if (!String(sample.multi_answer_policy || '').includes('multi_answer=true')) {
   issues.push('multi_answer_policy must preserve multi-answer warnings');
 }
+validatePublicationBoundary(sample.publication_boundary, 'publication_boundary');
 
 for (const [index, row] of (sample.rows || []).entries()) {
   const context = `row ${index}`;
@@ -116,4 +117,36 @@ function countValues(values) {
   const counts = new Map();
   for (const value of values) counts.set(value, (counts.get(value) || 0) + 1);
   return Object.fromEntries([...counts.entries()].sort((a, b) => a[0].localeCompare(b[0])));
+}
+
+function validatePublicationBoundary(boundary, context) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push(`${context} must be an object`);
+    return;
+  }
+  if (boundary.boundary_status !== 'blocked_no_render') issues.push(`${context}.boundary_status must be blocked_no_render`);
+  if (boundary.sample_only !== true) issues.push(`${context}.sample_only must be true`);
+  for (const key of [
+    'reader_facing',
+    'ui_assignment',
+    'publication_claim',
+    'clears_publication_readiness',
+    'reviewed_lexical_authority',
+    'accepted_translation_output',
+    'source_publication',
+    'public_lookup_artifact',
+  ]) {
+    if (boundary[key] !== false) issues.push(`${context}.${key} must be false`);
+  }
+  const blockedClaims = new Set(Array.isArray(boundary.does_not_clear) ? boundary.does_not_clear : []);
+  for (const required of [
+    'ui_assignment',
+    'reviewed_lexical_authority',
+    'accepted_translation',
+    'source_publication',
+    'public_lookup_publication',
+    'publication_readiness',
+  ]) {
+    if (!blockedClaims.has(required)) issues.push(`${context}.does_not_clear must include ${required}`);
+  }
 }

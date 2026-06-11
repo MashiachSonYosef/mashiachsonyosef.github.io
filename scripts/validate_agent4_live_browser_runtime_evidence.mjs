@@ -42,6 +42,26 @@ const configs = {
     expectedAnswerCardsMin: 1,
     expectedSourceRowsMin: 1,
   },
+  zechariah: {
+    artifact_type: 'agent4_live_zechariah_browser_runtime_evidence',
+    status: 'warn_live_zechariah_runtime_evidence',
+    urlIncludes: '/tanakh/zechariah/',
+    publicHudIncludes: '/data/public-hud/zechariah/',
+    expectedTokenId: 'tok-901fa969cf28',
+    expectedRouteCardsMin: 1,
+    expectedAnswerCardsMin: 1,
+    expectedSourceRowsMin: 1,
+  },
+  zephaniah: {
+    artifact_type: 'agent4_live_zephaniah_browser_runtime_evidence',
+    status: 'warn_live_zephaniah_runtime_evidence',
+    urlIncludes: '/tanakh/zephaniah/',
+    publicHudIncludes: '/data/public-hud/zephaniah/',
+    expectedTokenId: 'tok-97813d949fba',
+    expectedRouteCardsMin: 1,
+    expectedAnswerCardsMin: 1,
+    expectedSourceRowsMin: 1,
+  },
 };
 const config = configs[workId];
 expect(Boolean(config), `unsupported live browser runtime work id: ${workId}`);

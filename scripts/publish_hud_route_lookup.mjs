@@ -10,6 +10,26 @@ const defaults = {
   maxShardBytes: 10 * 1024 * 1024,
 };
 
+function publicLookupPublicationBoundary() {
+  return {
+    publication_status: 'blocked_no_render',
+    validates: [
+      'public_hud_route_lookup_manifest',
+      'public_hud_route_lookup_shards',
+    ],
+    does_not_clear: [
+      'translation_output',
+      'source_publication',
+      'public_lexical_export_reuse',
+      'accepted_definition_authority',
+    ],
+    answer_eligible_scope: 'hud_answer_slot_only_not_translation_or_publication_readiness',
+    route_lookup_scope: 'definition_route_lookup_data_not_publication_readiness',
+    warning_status_blocks_publication_claim: true,
+    current_route_inputs_reconciled: 'not_checked_by_public_lookup_manifest_validate_release_stamp_and_drift',
+  };
+}
+
 function parseArgs(argv) {
   const args = { ...defaults };
   for (let i = 0; i < argv.length; i += 1) {
@@ -23,6 +43,10 @@ function parseArgs(argv) {
   if (!Number.isFinite(args.maxShardBytes) || args.maxShardBytes < 1) {
     throw new Error(`Invalid --max-shard-bytes: ${args.maxShardBytes}`);
   }
+  args.localDir = cleanRelativePath(args.localDir);
+  args.publicDir = cleanRelativePath(args.publicDir);
+  assertExactPath('--local-dir', args.localDir, '.local-cache/hud-route-lookup');
+  assertExactPath('--public-dir', args.publicDir, 'data/definitions/hud-route-lookup');
   return args;
 }
 
@@ -75,6 +99,13 @@ function validateSourceManifest(manifest, args) {
     if (shard.byte_length > args.maxShardBytes) {
       issues.push(`shard ${shard.shard} exceeds max size: ${shard.byte_length} bytes`);
     }
+    const cleanShardPath = cleanManifestShardPath(shard.path || '');
+    if (!cleanShardPath.startsWith('shards/')) {
+      issues.push(`shard ${shard.shard || '(unknown)'} path must stay under shards/: ${shard.path || '(missing)'}`);
+    }
+    if (!cleanShardPath.endsWith('.json')) {
+      issues.push(`shard ${shard.shard || '(unknown)'} path must end with .json: ${shard.path || '(missing)'}`);
+    }
   }
   if (issues.length) {
     throw new Error(`Cannot publish HUD route lookup:\n- ${issues.join('\n- ')}`);
@@ -103,8 +134,9 @@ function main() {
 
   const publicShards = [];
   for (const shard of localManifest.shards) {
-    const sourcePath = path.join(localDir, shard.path);
-    const targetPath = path.join(publicDir, shard.path);
+    const shardPath = cleanManifestShardPath(shard.path);
+    const sourcePath = path.join(localDir, shardPath);
+    const targetPath = path.join(publicDir, shardPath);
     if (!fs.existsSync(sourcePath)) throw new Error(`Missing local lookup shard: ${shard.path}`);
     writeCompactJson(sourcePath, targetPath);
     const actualBytes = fs.statSync(targetPath).size;
@@ -131,6 +163,7 @@ function main() {
     source_local_manifest: `${args.localDir.replace(/\\/g, '/')}/manifest.json`,
     public_lookup: args.publicDir.replace(/\\/g, '/'),
     lookup_strategy: localManifest.lookup_strategy,
+    publication_boundary: publicLookupPublicationBoundary(),
     prefix_length: localManifest.prefix_length,
     max_shard_bytes_policy: args.maxShardBytes,
     counts: publicCounts,
@@ -149,3 +182,23 @@ function main() {
 }
 
 main();
+
+function cleanRelativePath(value) {
+  const normalized = String(value || '').replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/+$/, '');
+  if (!normalized || path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Path must be a relative in-repo path: ${value}`);
+  }
+  return normalized;
+}
+
+function cleanManifestShardPath(value) {
+  const normalized = String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  if (!normalized || normalized.includes('//') || path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Manifest shard path must be relative and in-repo: ${value}`);
+  }
+  return normalized;
+}
+
+function assertExactPath(label, value, expected) {
+  if (value !== expected) throw new Error(`${label} must be ${expected}: ${value}`);
+}

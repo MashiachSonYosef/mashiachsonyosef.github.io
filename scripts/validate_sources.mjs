@@ -532,33 +532,39 @@ for (const lexicalFile of lexicalFiles) {
   const lexicalPagePath = rel(lexical.work_slug, 'index.html');
   if (exists(lexicalPagePath)) {
     const lexicalPage = readText(lexicalPagePath);
-    for (const requiredText of ['data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'Clicked Hebrew form', 'Breakdown', 'Sources / licenses', 'No lexical entry yet.']) {
+    for (const requiredText of [
+      'data-lexical-occurrences',
+      'data-lexical-config',
+      'data-lexical-slot',
+      'data-lexical-hud',
+      'data-route-hud-panel',
+      'Route HUD',
+      'Definition',
+      'Rank details',
+      'Sources and licenses',
+      'hud_route_lookup_manifest_url',
+    ]) {
       if (!lexicalPage.includes(requiredText)) {
-        errors.push(`Lexical target page missing required text '${requiredText}' for ${lexical.work_id}`);
+        errors.push(`Route HUD target page missing required text '${requiredText}' for ${lexical.work_id}`);
       }
     }
-    if (!lexicalPage.includes('Potential options') && !lexicalPage.includes('Other source matches')) {
-      errors.push(`Lexical target page missing potential/other-options label for ${lexical.work_id}`);
-    }
-    if (!lexicalPage.includes('Related options') && !lexicalPage.includes('Related source matches')) {
-      errors.push(`Lexical target page missing related-options label for ${lexical.work_id}`);
-    }
-    if (!lexicalPage.includes('Show more') && !lexicalPage.includes('Show potential options')) {
-      errors.push(`Lexical target page missing option expansion text for ${lexical.work_id}`);
-    }
-    if (!lexicalPage.includes('allowLowConfidenceFallback') && !lexicalPage.includes('Show related options')) {
-      errors.push(`Lexical target page missing secondary expansion text for ${lexical.work_id}`);
-    }
-    if (!lexicalPage.includes('Strict Hebrew') && !lexicalPage.includes('Strict renderings')) {
-      errors.push(`Lexical target page missing strict-rendering label for ${lexical.work_id}`);
+    for (const sectionLabel of ['Strict Hebrew matches', 'Strict Aramaic matches', 'Lemma matches', 'Word-part breakdown', 'Citable definition/paraphrase matches']) {
+      if (!lexicalPage.includes(sectionLabel)) {
+        errors.push(`Route HUD target page missing route section label '${sectionLabel}' for ${lexical.work_id}`);
+      }
     }
     for (const embeddedPayloadMarker of ['data-lexical-token-index>', 'data-lexical-lexicon>']) {
       if (lexicalPage.includes(embeddedPayloadMarker)) {
         errors.push(`Lexical target page still embeds full lexical payload marker '${embeddedPayloadMarker}' for ${lexical.work_id}`);
       }
     }
-    if (lexical.work_id === 'orot' && !lexicalPage.includes('<span class="hud-badge">Lexical layer active</span>')) {
+    if (lexical.work_id === 'orot' && !lexicalPage.includes('<span class="hud-badge">Route HUD active</span>')) {
       errors.push('Orot page missing visible HUD coverage indicators');
+    }
+    for (const oldHudText of ['No lexical entry yet.', 'Potential options', 'Show potential options']) {
+      if (lexicalPage.includes(oldHudText)) {
+        errors.push(`Route HUD target page contains stale old-HUD text '${oldHudText}' for ${lexical.work_id}`);
+      }
     }
     if (lexicalPage.includes('data-lexical-json')) {
       errors.push(`Lexical target page contains stale per-occurrence lexical JSON for ${lexical.work_id}`);

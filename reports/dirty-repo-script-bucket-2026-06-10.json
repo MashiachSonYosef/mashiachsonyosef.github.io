@@ -1,0 +1,55 @@
+{
+  "artifact_type": "dirty_repo_script_bucket",
+  "status": "ready_for_exact_path_staging",
+  "generated_at": "2026-06-10T20:58:01.2701970-04:00",
+  "scope": "preserve parse-clean helper and validator scripts from dirty repo without deleting or reverting anything",
+  "counts": {
+    "dirty_script_paths_before_staging": 521,
+    "eligible_script_paths": 519,
+    "modified_eligible_script_paths": 36,
+    "untracked_eligible_script_paths": 483,
+    "excluded_syntax_blockers": 1,
+    "excluded_manual_review": 1
+  },
+  "excluded_paths": [
+    {
+      "path": "scripts/validate_agent7_governance_control.mjs",
+      "reason": "node --check fails at byte-order-marker/shebang boundary",
+      "staging_eligibility": "blocked_syntax"
+    },
+    {
+      "path": "scripts/run_agent10_it_pulse_scheduled.cmd",
+      "reason": "command wrapper requires manual scheduling/side-effect review before staging",
+      "staging_eligibility": "manual_review_required"
+    }
+  ],
+  "validators": [
+    {
+      "command": "node --check over 515 dirty .mjs files",
+      "result": "514 passed; 1 failed"
+    },
+    {
+      "command": "PowerShell Parser.ParseFile over 5 dirty .ps1 files",
+      "result": "5 passed"
+    },
+    {
+      "command": "git diff --check -- scripts",
+      "result": "passed with CRLF warnings only"
+    }
+  ],
+  "staging_policy": {
+    "no_delete": true,
+    "no_git_add_a": true,
+    "stage_exact_paths_only": true,
+    "leave_blocked_paths_dirty": true
+  },
+  "boundary": [
+    "repo hygiene/provenance preservation only",
+    "no runtime product acceptance",
+    "no source/license/legal acceptance",
+    "no definition authority",
+    "no accepted text",
+    "no publication readiness",
+    "no scheduled task activation"
+  ]
+}

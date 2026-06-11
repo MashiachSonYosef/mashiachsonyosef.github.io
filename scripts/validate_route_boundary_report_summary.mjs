@@ -73,6 +73,7 @@ function parseInputFreezeDrift(relativePath) {
   const statusMatch = text.match(/^Status:\s*(.+)$/m);
   const status = statusMatch ? statusMatch[1].trim() : 'unknown';
   const drift = [];
+  const publicationBoundary = parseInputFreezePublicationBoundary(text);
   let inDriftSection = false;
 
   for (const line of text.split(/\r?\n/)) {
@@ -92,7 +93,36 @@ function parseInputFreezeDrift(relativePath) {
     status,
     drift_count: drift.length,
     drift,
+    publication_boundary: publicationBoundary,
   };
+}
+
+function parseInputFreezePublicationBoundary(text) {
+  const boundary = {};
+  let inBoundarySection = false;
+
+  for (const line of text.split(/\r?\n/)) {
+    if (line === '## Boundary') {
+      inBoundarySection = true;
+      continue;
+    }
+    if (inBoundarySection && line.startsWith('## ')) break;
+    if (!inBoundarySection || !line.startsWith('- ')) continue;
+
+    const [label, ...rest] = line.slice(2).split(':');
+    const key = label.trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+    const value = rest.join(':').trim();
+    if (!key) continue;
+    if (['validates', 'does_not_clear'].includes(key)) {
+      boundary[key] = value ? value.split(',').map((item) => item.trim()).filter(Boolean) : [];
+    } else if (['warning_status_blocks_publication_claim', 'current_route_inputs_reconciled', 'route_data_regenerated', 'source_imports_changed', 'public_lookup_artifacts_changed'].includes(key)) {
+      boundary[key] = value === 'true';
+    } else {
+      boundary[key] = value;
+    }
+  }
+
+  return Object.keys(boundary).length ? boundary : null;
 }
 
 function validate() {
@@ -111,6 +141,7 @@ function validate() {
   if (!String(audit.policy || '').includes('source/license rows')) {
     issues.push('policy text does not explicitly require source/license rows');
   }
+  validateInputPublicationBoundary(audit.publication_boundary, issues);
   for (const field of ZERO_COUNT_FIELDS) {
     if (Number(counts[field] || 0) !== 0) issues.push(`${field} is ${counts[field]}, expected 0`);
   }
@@ -156,6 +187,25 @@ function validate() {
   if (inputFreezeDrift.status === 'drift' && inputFreezeDrift.drift_count <= 0) {
     warnings.push('route input freeze drift status is drift, but no drift items were parsed');
   }
+  validateInputFreezePublicationBoundary(inputFreezeDrift, issues);
+
+  const publicationBoundary = {
+    publication_status: 'blocked_no_render',
+    validates: [
+      'route_publication_boundary_audit_summary',
+      'route_card_publication_boundary',
+    ],
+    does_not_clear: [
+      'translation_output',
+      'source_publication',
+      'public_lexical_export_reuse',
+      'accepted_definition_authority',
+    ],
+    answer_eligible_scope: 'hud_answer_slot_only_not_translation_or_publication_readiness',
+    warning_status_blocks_publication_claim: true,
+    current_route_inputs_reconciled: inputFreezeDrift.status === 'pass',
+  };
+  validatePublicationBoundary(publicationBoundary, inputFreezeDrift, counts, issues);
 
   const result = {
     generated_at: new Date().toISOString(),
@@ -164,6 +214,7 @@ function validate() {
     release_scope: inputFreezeDrift.status === 'pass'
       ? 'frozen_public_lookup_and_current_route_inputs_match'
       : 'frozen_public_lookup_passes_current_route_inputs_unreconciled',
+    publication_boundary: publicationBoundary,
     input_freeze_drift: inputFreezeDrift,
     verdict: issues.length ? 'fail' : (warnings.length ? 'pass_with_warnings' : 'pass'),
     counts: {
@@ -220,6 +271,18 @@ function validate() {
     `- Status: ${inputFreezeDrift.status}`,
     `- Drift items: ${inputFreezeDrift.drift_count}`,
     ...(inputFreezeDrift.drift.length ? inputFreezeDrift.drift.map((item) => `- ${mdCell(item)}`) : ['- none']),
+    `- Input-freeze publication status: ${inputFreezeDrift.publication_boundary?.publication_status || 'missing'}`,
+    `- Input-freeze current route inputs reconciled: ${inputFreezeDrift.publication_boundary?.current_route_inputs_reconciled}`,
+    `- Input-freeze public lookup artifacts changed: ${inputFreezeDrift.publication_boundary?.public_lookup_artifacts_changed}`,
+    '',
+    '## Publication Boundary',
+    '',
+    `- Publication status: ${publicationBoundary.publication_status}`,
+    `- Validates: ${publicationBoundary.validates.join(', ')}`,
+    `- Does not clear: ${publicationBoundary.does_not_clear.join(', ')}`,
+    `- Answer eligibility scope: ${publicationBoundary.answer_eligible_scope}`,
+    `- Warning status blocks publication claim: ${publicationBoundary.warning_status_blocks_publication_claim}`,
+    `- Current route inputs reconciled: ${publicationBoundary.current_route_inputs_reconciled}`,
     '',
     '## Boundary',
     '',
@@ -234,6 +297,97 @@ function validate() {
   writeFile(markdownPath, `${markdown.trimEnd()}\n`);
   writeFile(jsonPath, `${JSON.stringify(result, null, 2)}\n`);
   return result;
+}
+
+function validateInputFreezePublicationBoundary(inputFreezeDrift, issues) {
+  if (inputFreezeDrift.status === 'missing') return;
+  const boundary = inputFreezeDrift.publication_boundary;
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push('route input freeze drift report publication boundary is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push('route input freeze drift publication_boundary.publication_status must be blocked_no_render');
+  }
+  for (const item of ['hud_route_input_freeze_drift', 'frozen_route_input_cache_comparison']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      issues.push(`route input freeze drift publication_boundary.validates missing ${item}`);
+    }
+  }
+  for (const item of [
+    'translation_output',
+    'source_publication',
+    'public_lexical_export_reuse',
+    'accepted_definition_authority',
+    'public_lookup_publication',
+    'route_publication_readiness',
+  ]) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      issues.push(`route input freeze drift publication_boundary.does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.route_input_scope || '').includes('not_publication_readiness')) {
+    issues.push('route input freeze drift publication_boundary.route_input_scope must block publication readiness');
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push('route input freeze drift publication_boundary.warning_status_blocks_publication_claim must be true');
+  }
+  if (inputFreezeDrift.status !== 'pass' && boundary.current_route_inputs_reconciled !== false) {
+    issues.push('route input freeze drift publication_boundary.current_route_inputs_reconciled must be false unless status is pass');
+  }
+  for (const field of ['route_data_regenerated', 'source_imports_changed', 'public_lookup_artifacts_changed']) {
+    if (boundary[field] !== false) issues.push(`route input freeze drift publication_boundary.${field} must be false`);
+  }
+}
+
+function validatePublicationBoundary(boundary, inputFreezeDrift, counts, issues) {
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push('publication_boundary.publication_status must be blocked_no_render');
+  }
+  for (const item of ['route_publication_boundary_audit_summary', 'route_card_publication_boundary']) {
+    if (!boundary.validates.includes(item)) issues.push(`publication_boundary.validates missing ${item}`);
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!boundary.does_not_clear.includes(item)) issues.push(`publication_boundary.does_not_clear missing ${item}`);
+  }
+  if (!boundary.answer_eligible_scope.includes('not_translation_or_publication_readiness')) {
+    issues.push('publication_boundary.answer_eligible_scope must block translation/publication readiness overclaim');
+  }
+  if (Number(counts.warning_count || 0) > 0 && boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push('publication_boundary.warning_status_blocks_publication_claim must be true when warnings remain visible');
+  }
+  if (inputFreezeDrift.status !== 'pass' && boundary.current_route_inputs_reconciled !== false) {
+    issues.push('publication_boundary.current_route_inputs_reconciled must be false unless route input freeze drift is pass');
+  }
+}
+
+function validateInputPublicationBoundary(boundary, issues) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push('input audit publication_boundary object is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push('input audit publication_boundary.publication_status must be blocked_no_render');
+  }
+  for (const item of ['route_publication_boundary_audit', 'route_card_publication_boundary', 'public_hud_route_lookup_publication_boundary']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      issues.push(`input audit publication_boundary.validates missing ${item}`);
+    }
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      issues.push(`input audit publication_boundary.does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.answer_eligible_scope || '').includes('not_translation_or_publication_readiness')) {
+    issues.push('input audit publication_boundary.answer_eligible_scope must block translation/publication readiness overclaim');
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push('input audit publication_boundary.warning_status_blocks_publication_claim must be true');
+  }
+  if (boundary.current_route_inputs_reconciled !== 'not_checked_by_route_publication_boundary_audit') {
+    issues.push('input audit publication_boundary.current_route_inputs_reconciled must be not_checked_by_route_publication_boundary_audit');
+  }
 }
 
 const result = validate();

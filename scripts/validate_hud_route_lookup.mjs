@@ -5,6 +5,7 @@ import path from 'node:path';
 const root = process.cwd();
 const manifestPath = path.join(root, '.local-cache', 'hud-route-lookup', 'manifest.json');
 const samplePath = path.join(root, 'data', 'definitions', 'hud-route-lookup-sample.json');
+const options = parseArgs(process.argv.slice(2));
 const forbiddenTextRe = /\bPotential\b|potential option|low confidence|copyright unclear|all rights reserved|Non-?Commercial|\bNC\b/i;
 const allowedLicensePatterns = [
   /^CC0$/i,
@@ -20,6 +21,28 @@ const allowedLicensePatterns = [
   /^Public Domain Mark$/i,
   /^project-authored \/ CC0$/i,
 ];
+
+function parseArgs(args) {
+  const parsed = {
+    fixturesOnly: false,
+  };
+  for (const arg of args) {
+    if (arg === '--fixtures-only') parsed.fixturesOnly = true;
+    else if (arg === '--help' || arg === '-h') parsed.help = true;
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  if (parsed.help) {
+    console.log([
+      'Usage:',
+      '  node scripts/validate_hud_route_lookup.mjs',
+      '',
+      'Options:',
+      '  --fixtures-only  Run route-card safety fixtures without requiring local lookup artifacts.',
+    ].join('\n'));
+    process.exit(0);
+  }
+  return parsed;
+}
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -45,6 +68,7 @@ function validateCard(card, context, issues) {
   for (const field of ['card_id', 'normalized', 'route_family', 'route_type', 'display_section', 'display_label']) {
     if (!card?.[field]) issues.push(`${context}: missing ${field}`);
   }
+  validateMachineAuthorityStatus(card, context, issues);
   if (typeof card.answer_eligible !== 'boolean') issues.push(`${context}: missing boolean answer_eligible`);
   if (!card.answer_role) issues.push(`${context}: missing answer_role`);
   if (card.answer_eligible === true && card.answer_role !== 'answer') {
@@ -87,6 +111,65 @@ function validateCard(card, context, issues) {
   }
 }
 
+function validateMachineAuthorityStatus(card, context, issues) {
+  for (const field of ['status', 'review_status', 'authority_status', 'lexical_authority_status']) {
+    if (String(card?.[field] || '').trim().toLowerCase() === 'verified') {
+      issues.push(`${context}: ${field}=verified is reserved for reviewed lexical authority, not machine route cards`);
+    }
+  }
+  if (card?.reviewed_lexical_authority === true) {
+    issues.push(`${context}: reviewed_lexical_authority=true is not allowed on machine route cards`);
+  }
+}
+
+function validateFixtures(issues) {
+  const baseCard = {
+    card_id: 'fixture-local-lookup-safe-card',
+    normalized: 'דבר',
+    route_family: 'fixture',
+    route_type: 'lemma',
+    display_section: 'lemma',
+    display_label: 'Fixture lemma match',
+    answer_eligible: true,
+    answer_role: 'answer',
+    answer_score: 90,
+    definition: 'fixture definition',
+    source_rows: [{
+      source_name: 'Fixture public domain source',
+      source_family: 'fixture',
+      source_id: 'fixture-pd',
+      source_url: 'local:fixture',
+      license: 'Public Domain',
+      license_url: 'https://creativecommons.org/publicdomain/mark/1.0/',
+      fields_used: ['fixture'],
+      notes: 'Fixture source row for validator self-test.',
+    }],
+  };
+  const passingIssues = [];
+  validateCard(baseCard, 'fixture.safe_card', passingIssues);
+  if (passingIssues.length) {
+    issues.push(`safe-card fixture unexpectedly failed: ${passingIssues.join('; ')}`);
+  }
+
+  const statusIssues = [];
+  validateCard({ ...baseCard, card_id: 'fixture-status-verified', status: 'verified' }, 'fixture.status_verified', statusIssues);
+  if (!statusIssues.some((issue) => issue.includes('status=verified is reserved'))) {
+    issues.push('status=verified fixture must be rejected as reviewed-authority overclaim');
+  }
+
+  const reviewStatusIssues = [];
+  validateCard({ ...baseCard, card_id: 'fixture-review-status-verified', review_status: 'verified' }, 'fixture.review_status_verified', reviewStatusIssues);
+  if (!reviewStatusIssues.some((issue) => issue.includes('review_status=verified is reserved'))) {
+    issues.push('review_status=verified fixture must be rejected as reviewed-authority overclaim');
+  }
+
+  const reviewedAuthorityIssues = [];
+  validateCard({ ...baseCard, card_id: 'fixture-reviewed-authority', reviewed_lexical_authority: true }, 'fixture.reviewed_authority', reviewedAuthorityIssues);
+  if (!reviewedAuthorityIssues.some((issue) => issue.includes('reviewed_lexical_authority=true is not allowed'))) {
+    issues.push('reviewed_lexical_authority=true fixture must be rejected on machine route cards');
+  }
+}
+
 function policyStringsForCard(card) {
   const values = [
     card?.route_family,
@@ -105,51 +188,88 @@ function policyStringsForCard(card) {
   return values.filter((value) => typeof value === 'string' && value);
 }
 
+function validateSamplePublicationBoundary(boundary, sampleType, issues) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push('sample publication_boundary object is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push(`sample publication_boundary.publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`);
+  }
+  for (const item of [`${sampleType}_sample`, 'route_card_sample_source_license_rows']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      issues.push(`sample publication_boundary.validates missing ${item}`);
+    }
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      issues.push(`sample publication_boundary.does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.answer_eligible_scope || '').includes('not_translation_or_publication_readiness')) {
+    issues.push('sample publication_boundary.answer_eligible_scope must block translation/publication readiness overclaim');
+  }
+  if (!String(boundary.sample_scope || '').includes('not_publication_readiness')) {
+    issues.push('sample publication_boundary.sample_scope must state not_publication_readiness');
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push('sample publication_boundary.warning_status_blocks_publication_claim must be true');
+  }
+  if (boundary.current_route_inputs_reconciled !== 'not_checked_by_route_sample_validate_release_stamp_and_drift') {
+    issues.push('sample publication_boundary.current_route_inputs_reconciled must defer to release stamp and drift validation');
+  }
+}
+
 const issues = [];
-if (!fs.existsSync(manifestPath)) issues.push(`missing local HUD route lookup manifest: ${manifestPath}`);
-if (!fs.existsSync(samplePath)) issues.push(`missing public HUD route lookup sample: ${samplePath}`);
+if (options.fixturesOnly) {
+  validateFixtures(issues);
+} else {
+  if (!fs.existsSync(manifestPath)) issues.push(`missing local HUD route lookup manifest: ${manifestPath}`);
+  if (!fs.existsSync(samplePath)) issues.push(`missing public HUD route lookup sample: ${samplePath}`);
 
-if (!issues.length) {
-  const manifest = readJson(manifestPath);
-  const sample = readJson(samplePath);
-  if (manifest.prefix_length !== 3) issues.push(`unexpected prefix_length ${manifest.prefix_length}`);
-  if (manifest.counts?.cards_written <= 0) issues.push('lookup wrote no cards');
-  if (manifest.counts?.distinct_normalized_tokens <= 0) issues.push('lookup has no normalized tokens');
-  if (manifest.counts?.max_shard_bytes > 10 * 1024 * 1024) {
-    issues.push(`lookup max shard is too large for first public promotion: ${manifest.counts.max_shard_bytes} bytes`);
-  }
-  if (!Array.isArray(manifest.shards) || !manifest.shards.length) issues.push('lookup manifest has no shards');
-  walkStrings(manifest, (text) => {
-    if (forbiddenTextRe.test(text)) issues.push(`manifest forbidden text ${text.slice(0, 120)}`);
-  });
+  if (!issues.length) {
+    const manifest = readJson(manifestPath);
+    const sample = readJson(samplePath);
+    validateSamplePublicationBoundary(sample.publication_boundary, 'hud_route_lookup', issues);
+    if (manifest.prefix_length !== 3) issues.push(`unexpected prefix_length ${manifest.prefix_length}`);
+    if (manifest.counts?.cards_written <= 0) issues.push('lookup wrote no cards');
+    if (manifest.counts?.distinct_normalized_tokens <= 0) issues.push('lookup has no normalized tokens');
+    if (manifest.counts?.max_shard_bytes > 10 * 1024 * 1024) {
+      issues.push(`lookup max shard is too large for first public promotion: ${manifest.counts.max_shard_bytes} bytes`);
+    }
+    if (!Array.isArray(manifest.shards) || !manifest.shards.length) issues.push('lookup manifest has no shards');
+    walkStrings(manifest, (text) => {
+      if (forbiddenTextRe.test(text)) issues.push(`manifest forbidden text ${text.slice(0, 120)}`);
+    });
 
-  for (const [index, token] of (sample.sample_tokens || []).entries()) {
-    if (!token.normalized || !token.shard || !token.shard_path) issues.push(`sample_tokens[${index}]: missing lookup key fields`);
-    const shardPath = path.join(path.dirname(manifestPath), token.shard_path);
-    if (!fs.existsSync(shardPath)) {
-      issues.push(`sample_tokens[${index}]: missing shard ${token.shard_path}`);
-      continue;
+    for (const [index, token] of (sample.sample_tokens || []).entries()) {
+      if (!token.normalized || !token.shard || !token.shard_path) issues.push(`sample_tokens[${index}]: missing lookup key fields`);
+      const shardPath = path.join(path.dirname(manifestPath), token.shard_path);
+      if (!fs.existsSync(shardPath)) {
+        issues.push(`sample_tokens[${index}]: missing shard ${token.shard_path}`);
+        continue;
+      }
+      const shard = readJson(shardPath);
+      const cards = shard.routes_by_normalized?.[token.normalized] || [];
+      if (token.card_count && !cards.length) issues.push(`sample_tokens[${index}]: sample card count exists but lookup shard has no cards`);
+      for (const [cardIndex, card] of cards.slice(0, 5).entries()) {
+        validateCard(card, `sample_tokens[${index}].lookup_cards[${cardIndex}]`, issues);
+      }
+      for (const [cardIndex, card] of (token.cards || []).entries()) {
+        validateCard(card, `sample_tokens[${index}].sample_cards[${cardIndex}]`, issues);
+      }
     }
-    const shard = readJson(shardPath);
-    const cards = shard.routes_by_normalized?.[token.normalized] || [];
-    if (token.card_count && !cards.length) issues.push(`sample_tokens[${index}]: sample card count exists but lookup shard has no cards`);
-    for (const [cardIndex, card] of cards.slice(0, 5).entries()) {
-      validateCard(card, `sample_tokens[${index}].lookup_cards[${cardIndex}]`, issues);
-    }
-    for (const [cardIndex, card] of (token.cards || []).entries()) {
-      validateCard(card, `sample_tokens[${index}].sample_cards[${cardIndex}]`, issues);
-    }
-  }
 
-  for (const shardInfo of (manifest.shards || []).slice(0, 6)) {
-    const shardPath = path.join(path.dirname(manifestPath), shardInfo.path);
-    if (!fs.existsSync(shardPath)) {
-      issues.push(`missing lookup shard: ${shardInfo.path}`);
-      continue;
-    }
-    const shard = readJson(shardPath);
-    if (!shard.routes_by_normalized || typeof shard.routes_by_normalized !== 'object') {
-      issues.push(`lookup shard ${shardInfo.shard}: missing routes_by_normalized`);
+    for (const shardInfo of (manifest.shards || []).slice(0, 6)) {
+      const shardPath = path.join(path.dirname(manifestPath), shardInfo.path);
+      if (!fs.existsSync(shardPath)) {
+        issues.push(`missing lookup shard: ${shardInfo.path}`);
+        continue;
+      }
+      const shard = readJson(shardPath);
+      if (!shard.routes_by_normalized || typeof shard.routes_by_normalized !== 'object') {
+        issues.push(`lookup shard ${shardInfo.shard}: missing routes_by_normalized`);
+      }
     }
   }
 }
@@ -160,4 +280,4 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log('HUD route lookup validation passed.');
+console.log(options.fixturesOnly ? 'HUD route lookup fixture validation passed.' : 'HUD route lookup validation passed.');

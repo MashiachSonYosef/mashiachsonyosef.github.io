@@ -42,6 +42,7 @@ const stats = {
   boundary_blocked_cards: 0,
   cards_with_source_rows: 0,
   source_rows_checked: 0,
+  authority_status_overclaim_cards: 0,
   max_cards_for_token: 0,
   max_cards_token: '',
 };
@@ -56,6 +57,7 @@ if (manifest) {
   if (manifest.schema_version !== 1) addIssue('public lookup manifest schema_version must be 1');
   if (manifest.prefix_length !== 3) addIssue(`unexpected prefix_length ${manifest.prefix_length}`);
   if (!Array.isArray(manifest.shards) || !manifest.shards.length) addIssue('public lookup manifest has no shards');
+  validateManifestPublicationBoundary(manifest.publication_boundary);
 
   const manifestShardPaths = new Set((manifest.shards || []).map((shard) => shard.path));
   const shardDir = path.join(publicDir, 'shards');
@@ -88,6 +90,7 @@ const result = {
   generated_at: new Date().toISOString(),
   status: issueCount ? 'fail' : 'pass',
   manifest: cleanPath(options.manifest),
+  publication_boundary: manifest?.publication_boundary || null,
   counts: {
     ...stats,
     issue_count: issueCount,
@@ -121,6 +124,13 @@ function parseArgs(args) {
   if (!Number.isInteger(parsed.maxIssueSamples) || parsed.maxIssueSamples < 0) {
     throw new Error(`Invalid --max-issue-samples: ${parsed.maxIssueSamples}`);
   }
+  parsed.manifest = cleanRelativePath(parsed.manifest);
+  assertExactPath('--manifest', parsed.manifest, 'data/definitions/hud-route-lookup/manifest.json');
+  if (parsed.report) {
+    parsed.report = cleanRelativePath(parsed.report);
+    assertExactPath('--report', parsed.report, 'reports/public-hud-route-card-scan.md');
+    assertFileExtension('--report', parsed.report, '.md');
+  }
   if (parsed.help) {
     console.log([
       'Usage:',
@@ -137,7 +147,12 @@ function parseArgs(args) {
 }
 
 async function validateShard(shardInfo) {
-  const shardPath = path.join(publicDir, shardInfo.path || '');
+  const manifestShardPath = cleanManifestShardPath(shardInfo.path || '');
+  if (!manifestShardPath.startsWith('shards/') || !manifestShardPath.endsWith('.json')) {
+    addIssue(`invalid public lookup shard path: ${shardInfo.path || 'missing path'}`);
+    return;
+  }
+  const shardPath = path.join(publicDir, manifestShardPath);
   if (!fs.existsSync(shardPath)) {
     addIssue(`missing public lookup shard: ${shardInfo.path || 'missing path'}`);
     return;
@@ -204,6 +219,7 @@ function validateCard(card, context) {
   }
   bump(sectionCounts, card?.display_section || 'missing');
   bump(routeTypeCounts, card?.route_type || 'missing');
+  validateMachineAuthorityStatus(card, context);
 
   if (typeof card?.answer_eligible !== 'boolean') addIssue(`${context}: missing boolean answer_eligible`);
   if (!card?.answer_role) addIssue(`${context}: missing answer_role`);
@@ -259,6 +275,21 @@ function validateCard(card, context) {
   }
 }
 
+function validateMachineAuthorityStatus(card, context) {
+  let hasOverclaim = false;
+  for (const field of ['status', 'review_status', 'authority_status', 'lexical_authority_status']) {
+    if (String(card?.[field] || '').trim().toLowerCase() === 'verified') {
+      hasOverclaim = true;
+      addIssue(`${context}: ${field}=verified is reserved for reviewed lexical authority, not machine route cards`);
+    }
+  }
+  if (card?.reviewed_lexical_authority === true) {
+    hasOverclaim = true;
+    addIssue(`${context}: reviewed_lexical_authority=true is not allowed on machine route cards`);
+  }
+  if (hasOverclaim) stats.authority_status_overclaim_cards += 1;
+}
+
 function safeLicense(row) {
   const license = String(row?.license || '').trim();
   if (license === 'N/A - project lexical rule') {
@@ -293,6 +324,38 @@ function policyStringsForCard(card) {
   return values.filter((value) => typeof value === 'string' && value);
 }
 
+function validateManifestPublicationBoundary(boundary) {
+  if (!boundary || typeof boundary !== 'object') {
+    addIssue('public lookup manifest publication_boundary object is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    addIssue(`public lookup manifest publication_boundary.publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`);
+  }
+  for (const item of ['public_hud_route_lookup_manifest', 'public_hud_route_lookup_shards']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      addIssue(`public lookup manifest publication_boundary.validates missing ${item}`);
+    }
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      addIssue(`public lookup manifest publication_boundary.does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.answer_eligible_scope || '').includes('not_translation_or_publication_readiness')) {
+    addIssue('public lookup manifest publication_boundary.answer_eligible_scope must block translation/publication readiness overclaim');
+  }
+  if (!String(boundary.route_lookup_scope || '').includes('not_publication_readiness')) {
+    addIssue('public lookup manifest publication_boundary.route_lookup_scope must state not_publication_readiness');
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    addIssue('public lookup manifest publication_boundary.warning_status_blocks_publication_claim must be true');
+  }
+  if (boundary.current_route_inputs_reconciled !== 'not_checked_by_public_lookup_manifest_validate_release_stamp_and_drift') {
+    addIssue('public lookup manifest publication_boundary.current_route_inputs_reconciled must defer to release stamp and drift validation');
+  }
+}
+
 function addIssue(message) {
   issueCount += 1;
   if (issues.length < options.maxIssueSamples) issues.push(message);
@@ -307,7 +370,7 @@ function readJson(filePath) {
 }
 
 function writeReport(relativePath, result) {
-  const filePath = path.join(root, relativePath);
+  const filePath = path.join(root, cleanRelativePath(relativePath));
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   const lines = [
     '# Public HUD Route Card Scan',
@@ -315,6 +378,7 @@ function writeReport(relativePath, result) {
     `Generated: ${result.generated_at}`,
     `Status: ${result.status}`,
     `Manifest: \`${result.manifest}\``,
+    `Publication status: ${result.publication_boundary?.publication_status || 'missing'}`,
     '',
     '## Counts',
     '',
@@ -347,7 +411,12 @@ function writeReport(relativePath, result) {
     '',
     '## Boundary',
     '',
-    'This scan validates already-published HUD route lookup cards. It does not regenerate definitions, alter source imports, or create route families.',
+    `- Validates: ${(result.publication_boundary?.validates || []).join(', ') || 'missing'}`,
+    `- Does not clear: ${(result.publication_boundary?.does_not_clear || []).join(', ') || 'missing'}`,
+    `- Answer eligibility scope: ${result.publication_boundary?.answer_eligible_scope || 'missing'}`,
+    `- Route lookup scope: ${result.publication_boundary?.route_lookup_scope || 'missing'}`,
+    `- Current route inputs reconciled: ${result.publication_boundary?.current_route_inputs_reconciled || 'missing'}`,
+    '- This scan validates already-published HUD route lookup cards. It does not regenerate definitions, alter source imports, create route families, create accepted translation output, or establish publication readiness.',
   ];
   fs.writeFileSync(filePath, `${lines.join('\n')}\n`, 'utf8');
 }
@@ -375,4 +444,34 @@ function asciiText(value) {
 
 function cleanPath(value) {
   return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+}
+
+function cleanRelativePath(value) {
+  const normalized = cleanPath(value).replace(/\/+$/, '');
+  if (!normalized || path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Path must be a relative in-repo path: ${value}`);
+  }
+  return normalized;
+}
+
+function cleanManifestShardPath(value) {
+  const normalized = cleanPath(value);
+  if (!normalized || normalized.includes('//') || path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Manifest shard path must be relative and in-repo: ${value}`);
+  }
+  return normalized;
+}
+
+function assertExactPath(label, actual, expected) {
+  if (actual !== expected) throw new Error(`${label} must be ${expected}: ${actual}`);
+}
+
+function assertPathUnder(label, actual, expectedPrefix) {
+  if (actual !== expectedPrefix && !actual.startsWith(`${expectedPrefix}/`)) {
+    throw new Error(`${label} must stay under ${expectedPrefix}: ${actual}`);
+  }
+}
+
+function assertFileExtension(label, actual, expectedExtension) {
+  if (!actual.endsWith(expectedExtension)) throw new Error(`${label} must end with ${expectedExtension}: ${actual}`);
 }

@@ -12,7 +12,32 @@ const defaults = {
   publicSample: 'data/definitions/hud-route-lookup-sample.json',
   prefixLength: 3,
   maxSampleCards: 80,
+  maxOpenTempStreams: 96,
+  estimatedExpansionFactor: 2.75,
+  spaceSafetyGb: 1,
+  maxLookupCards: 1000000,
+  skipSpacePreflight: false,
 };
+
+function samplePublicationBoundary(sampleType) {
+  return {
+    publication_status: 'blocked_no_render',
+    validates: [
+      `${sampleType}_sample`,
+      'route_card_sample_source_license_rows',
+    ],
+    does_not_clear: [
+      'translation_output',
+      'source_publication',
+      'public_lexical_export_reuse',
+      'accepted_definition_authority',
+    ],
+    answer_eligible_scope: 'hud_answer_slot_only_not_translation_or_publication_readiness',
+    sample_scope: 'diagnostic_route_sample_not_publication_readiness',
+    warning_status_blocks_publication_claim: true,
+    current_route_inputs_reconciled: 'not_checked_by_route_sample_validate_release_stamp_and_drift',
+  };
+}
 
 function parseArgs(argv) {
   const args = { ...defaults };
@@ -23,6 +48,11 @@ function parseArgs(argv) {
     else if (arg === '--public-sample') args.publicSample = argv[++i];
     else if (arg === '--prefix-length') args.prefixLength = Number(argv[++i]);
     else if (arg === '--max-sample-cards') args.maxSampleCards = Number(argv[++i]);
+    else if (arg === '--max-open-temp-streams') args.maxOpenTempStreams = Number(argv[++i]);
+    else if (arg === '--estimated-expansion-factor') args.estimatedExpansionFactor = Number(argv[++i]);
+    else if (arg === '--space-safety-gb') args.spaceSafetyGb = Number(argv[++i]);
+    else if (arg === '--max-lookup-cards') args.maxLookupCards = Number(argv[++i]);
+    else if (arg === '--skip-space-preflight') args.skipSpacePreflight = true;
     else if (arg === '--help' || arg === '-h') args.help = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
@@ -31,6 +61,18 @@ function parseArgs(argv) {
   }
   if (!Number.isFinite(args.maxSampleCards) || args.maxSampleCards < 1) {
     throw new Error(`Invalid --max-sample-cards: ${args.maxSampleCards}`);
+  }
+  if (!Number.isInteger(args.maxOpenTempStreams) || args.maxOpenTempStreams < 8) {
+    throw new Error(`Invalid --max-open-temp-streams: ${args.maxOpenTempStreams}`);
+  }
+  if (!Number.isFinite(args.estimatedExpansionFactor) || args.estimatedExpansionFactor < 1) {
+    throw new Error(`Invalid --estimated-expansion-factor: ${args.estimatedExpansionFactor}`);
+  }
+  if (!Number.isFinite(args.spaceSafetyGb) || args.spaceSafetyGb < 0) {
+    throw new Error(`Invalid --space-safety-gb: ${args.spaceSafetyGb}`);
+  }
+  if (!Number.isFinite(args.maxLookupCards) || args.maxLookupCards < 1) {
+    throw new Error(`Invalid --max-lookup-cards: ${args.maxLookupCards}`);
   }
   return args;
 }
@@ -46,6 +88,11 @@ function usage() {
     '  --public-sample data/definitions/hud-route-lookup-sample.json',
     '  --prefix-length 3',
     '  --max-sample-cards 80',
+    '  --max-open-temp-streams 96',
+    '  --estimated-expansion-factor 2.75',
+    '  --space-safety-gb 1',
+    '  --max-lookup-cards 1000000',
+    '  --skip-space-preflight',
   ].join('\n');
 }
 
@@ -56,6 +103,66 @@ function readJson(filePath) {
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+}
+
+function bytesToGib(bytes) {
+  return Math.round((Number(bytes || 0) / 1024 / 1024 / 1024) * 100) / 100;
+}
+
+function availableBytes(dirPath) {
+  if (typeof fs.statfsSync !== 'function') return null;
+  const stats = fs.statfsSync(dirPath);
+  return Number(stats.bavail) * Number(stats.bsize);
+}
+
+function storeShardBytes(manifest, storeDir) {
+  return (manifest.shards || []).reduce((sum, shard) => {
+    const manifestBytes = Number(shard.byte_length || 0);
+    if (manifestBytes > 0) return sum + manifestBytes;
+    const shardPath = shard.path ? path.join(storeDir, shard.path) : '';
+    if (!shardPath || !fs.existsSync(shardPath)) return sum;
+    return sum + fs.statSync(shardPath).size;
+  }, 0);
+}
+
+function preflightLookupBuild({ outDir, storeDir, storeManifest, expansionFactor, safetyGb, maxLookupCards, skip }) {
+  if (skip) return null;
+  const cardCount = Number(storeManifest.counts?.cards_written || 0);
+  const phraseCount = Number(storeManifest.counts?.route_sections?.phrase_evidence || 0);
+  if (cardCount > maxLookupCards) {
+    throw new Error([
+      'HUD route lookup build preflight blocked oversized route set.',
+      `Cards requested: ${cardCount}.`,
+      `Configured max lookup cards: ${maxLookupCards}.`,
+      `Phrase evidence cards: ${phraseCount}.`,
+      'Lookup build did not start; no output directory was removed.',
+    ].join(' '));
+  }
+  const freeBytes = availableBytes(path.dirname(outDir));
+  if (!Number.isFinite(freeBytes)) return null;
+  const inputBytes = storeShardBytes(storeManifest, storeDir);
+  const safetyBytes = safetyGb * 1024 * 1024 * 1024;
+  const estimatedRequiredBytes = Math.ceil(inputBytes * expansionFactor + safetyBytes);
+  const result = {
+    input_bytes: inputBytes,
+    estimated_required_bytes: estimatedRequiredBytes,
+    available_bytes: freeBytes,
+    expansion_factor: expansionFactor,
+    safety_gb: safetyGb,
+    max_lookup_cards: maxLookupCards,
+    cards_requested: cardCount,
+    phrase_evidence_cards: phraseCount,
+  };
+  if (freeBytes < estimatedRequiredBytes) {
+    throw new Error([
+      'Insufficient disk space for HUD route lookup build preflight.',
+      `Store shard bytes: ${bytesToGib(inputBytes)} GiB.`,
+      `Estimated working space required: ${bytesToGib(estimatedRequiredBytes)} GiB.`,
+      `Available space: ${bytesToGib(freeBytes)} GiB.`,
+      'Lookup build did not start; no output directory was removed.',
+    ].join(' '));
+  }
+  return result;
 }
 
 function codepointKey(value, prefixLength) {
@@ -75,39 +182,104 @@ async function readJsonl(filePath, onRecord) {
     const trimmed = line.trim();
     if (!trimmed) continue;
     count += 1;
-    onRecord(JSON.parse(trimmed));
+    await onRecord(JSON.parse(trimmed));
   }
   return count;
 }
 
 class TempShardWriter {
-  constructor(tmpDir, prefixLength) {
+  constructor(tmpDir, prefixLength, maxOpenStreams) {
     this.tmpDir = tmpDir;
     this.prefixLength = prefixLength;
+    this.maxOpenStreams = maxOpenStreams;
     this.streams = new Map();
+    this.initializedShards = new Set();
+    this.lastUsed = new Map();
     this.cardCounts = new Map();
     this.tokenSets = new Map();
+    this.sequence = 0;
+    this.streamError = null;
   }
 
-  write(card) {
+  async write(card) {
+    if (this.streamError) throw this.streamError;
     const shard = codepointKey(card.normalized, this.prefixLength);
-    if (!this.streams.has(shard)) {
-      fs.mkdirSync(this.tmpDir, { recursive: true });
-      this.streams.set(shard, fs.createWriteStream(path.join(this.tmpDir, `${shard}.jsonl`), { encoding: 'utf8' }));
-      this.cardCounts.set(shard, 0);
-      this.tokenSets.set(shard, new Set());
-    }
-    this.streams.get(shard).write(`${JSON.stringify(card)}\n`);
+    const stream = await this.openStream(shard);
+    const ok = stream.write(`${JSON.stringify(card)}\n`);
+    if (!ok) await onceEvent(stream, 'drain');
     this.cardCounts.set(shard, this.cardCounts.get(shard) + 1);
     this.tokenSets.get(shard).add(card.normalized);
+    if (this.streamError) throw this.streamError;
   }
 
   async close() {
-    await Promise.all([...this.streams.values()].map((stream) => new Promise((resolve, reject) => {
-      stream.end(resolve);
-      stream.on('error', reject);
-    })));
+    await Promise.all([...this.streams.keys()].map((shard) => this.closeStream(shard)));
+    if (this.streamError) throw this.streamError;
   }
+
+  async openStream(shard) {
+    if (this.streams.has(shard)) {
+      this.lastUsed.set(shard, this.sequence += 1);
+      return this.streams.get(shard);
+    }
+    while (this.streams.size >= this.maxOpenStreams) {
+      await this.closeLeastRecentlyUsedStream();
+    }
+    fs.mkdirSync(this.tmpDir, { recursive: true });
+    const stream = fs.createWriteStream(path.join(this.tmpDir, `${shard}.jsonl`), {
+      encoding: 'utf8',
+      flags: this.initializedShards.has(shard) ? 'a' : 'w',
+    });
+    stream.on('error', (error) => {
+      this.streamError = error;
+    });
+    this.initializedShards.add(shard);
+    this.streams.set(shard, stream);
+    this.lastUsed.set(shard, this.sequence += 1);
+    if (!this.cardCounts.has(shard)) this.cardCounts.set(shard, 0);
+    if (!this.tokenSets.has(shard)) this.tokenSets.set(shard, new Set());
+    return stream;
+  }
+
+  async closeLeastRecentlyUsedStream() {
+    let candidate = null;
+    for (const [shard, order] of this.lastUsed.entries()) {
+      if (!this.streams.has(shard)) continue;
+      if (!candidate || order < candidate.order) candidate = { shard, order };
+    }
+    if (!candidate) return;
+    await this.closeStream(candidate.shard);
+  }
+
+  async closeStream(shard) {
+    const stream = this.streams.get(shard);
+    if (!stream) return;
+    this.streams.delete(shard);
+    this.lastUsed.delete(shard);
+    await new Promise((resolve, reject) => {
+      stream.end((error) => (error ? reject(error) : resolve()));
+      stream.on('error', reject);
+    });
+  }
+}
+
+function onceEvent(emitter, eventName) {
+  return new Promise((resolve, reject) => {
+    const cleanup = () => {
+      emitter.off(eventName, onEvent);
+      emitter.off('error', onError);
+    };
+    const onEvent = () => {
+      cleanup();
+      resolve();
+    };
+    const onError = (error) => {
+      cleanup();
+      reject(error);
+    };
+    emitter.once(eventName, onEvent);
+    emitter.once('error', onError);
+  });
 }
 
 export function rankCard(card) {
@@ -188,11 +360,20 @@ async function main() {
   const shardDir = path.join(outDir, 'shards');
   const storeManifest = readJson(path.join(storeDir, 'manifest.json'));
   const storeSample = readJson(path.join(root, 'data/definitions/hud-route-store-sample.json'));
+  const preflight = preflightLookupBuild({
+    outDir,
+    storeDir,
+    storeManifest,
+    expansionFactor: args.estimatedExpansionFactor,
+    safetyGb: args.spaceSafetyGb,
+    maxLookupCards: args.maxLookupCards,
+    skip: args.skipSpacePreflight,
+  });
 
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.mkdirSync(shardDir, { recursive: true });
 
-  const tempWriter = new TempShardWriter(tmpDir, args.prefixLength);
+  const tempWriter = new TempShardWriter(tmpDir, args.prefixLength, args.maxOpenTempStreams);
   let cardsRead = 0;
   for (const shard of storeManifest.shards || []) {
     cardsRead += await readJsonl(path.join(storeDir, shard.path), (card) => tempWriter.write(card));
@@ -226,6 +407,7 @@ async function main() {
       max_shard_bytes: maxShard ? maxShard.byte_length : 0,
       max_shard: maxShard ? maxShard.shard : '',
     },
+    preflight,
     shards: shardInfos,
   };
   writeJson(path.join(outDir, 'manifest.json'), manifest);
@@ -236,6 +418,7 @@ async function main() {
     source_store_sample: 'data/definitions/hud-route-store-sample.json',
     local_lookup_manifest: `${args.outDir.replace(/\\/g, '/')}/manifest.json`,
     lookup_strategy: manifest.lookup_strategy,
+    publication_boundary: samplePublicationBoundary('hud_route_lookup'),
     prefix_length: args.prefixLength,
     counts: manifest.counts,
     sample_tokens: (storeSample.sample_tokens || []).map((sample) => {

@@ -9,10 +9,19 @@ const defaults = {
   storeManifest: '.local-cache/hud-route-store/manifest.json',
   lookupManifest: '.local-cache/hud-route-lookup/manifest.json',
   publicManifest: 'data/definitions/hud-route-lookup/manifest.json',
-  routeAudit: '.local-cache/definition-routes/definition-route-claim-audit.json',
+  routeAudit: '.local-cache/definition-route-freeze/current/definition-route-claim-audit.json',
   output: 'data/definitions/hud-route-release-stamp.json',
   report: 'reports/hud-route-release-stamp.md',
 };
+const pathOptionKeys = [
+  'freezeManifest',
+  'storeManifest',
+  'lookupManifest',
+  'publicManifest',
+  'routeAudit',
+  'output',
+  'report',
+];
 
 const options = parseArgs(process.argv.slice(2));
 const freezeManifest = readJson(options.freezeManifest);
@@ -25,7 +34,12 @@ const issues = [];
 const releaseId = freezeManifest.release_id || `hud-route-rc-${new Date().toISOString().replace(/[:.]/g, '-')}`;
 const inputFiles = [];
 for (const input of freezeManifest.files || []) {
-  const fullPath = path.join(root, input.frozen_path || '');
+  const frozenPath = cleanRelativePath(input.frozen_path || '');
+  const expectedFrozenPath = expectedFrozenInputPath(input.file);
+  if (frozenPath !== expectedFrozenPath) {
+    issues.push(`frozen input path must be ${expectedFrozenPath}: ${input.frozen_path || '(missing)'}`);
+  }
+  const fullPath = path.join(root, frozenPath);
   const actual = fs.existsSync(fullPath)
     ? {
       byte_length: fs.statSync(fullPath).size,
@@ -43,8 +57,8 @@ for (const input of freezeManifest.files || []) {
     file: input.file,
     role: input.role,
     required: input.required,
-    frozen_path: input.frozen_path,
-    source_path: input.source_path,
+    frozen_path: frozenPath,
+    source_path: cleanRelativePath(input.source_path || ''),
     row_count: input.row_count,
     byte_length: input.byte_length,
     sha256: input.sha256,
@@ -108,6 +122,7 @@ if (reconciliation.public_manifest_token_sum !== reconciliation.public_distinct_
 if (publicManifest.source_local_manifest !== `${path.dirname(options.lookupManifest).replace(/\\/g, '/')}/manifest.json`) {
   issues.push('public manifest source_local_manifest does not point at the local lookup manifest path');
 }
+validatePublicLookupPublicationBoundary(publicManifest.publication_boundary, issues);
 
 reconciliation.counts_match = issues.length === 0;
 
@@ -117,7 +132,24 @@ const stamp = {
   release_id: releaseId,
   generated_at: new Date().toISOString(),
   generator: 'scripts/stamp_hud_route_release.mjs',
-  policy: 'Release-candidate stamp for frozen route inputs, regenerated HUD route store, local lookup, and public lookup. No new route family should be added until this stamp validates.',
+  policy: 'Release-candidate stamp for frozen route inputs, regenerated HUD route store, local lookup, and public lookup. This is route-data reconciliation only, not publication readiness. No new route family should be added until this stamp validates.',
+  publication_boundary: {
+    publication_status: 'blocked_no_render',
+    validates: [
+      'hud_route_release_stamp',
+      'public_hud_route_lookup_reconciliation',
+    ],
+    does_not_clear: [
+      'translation_output',
+      'source_publication',
+      'public_lexical_export_reuse',
+      'accepted_definition_authority',
+    ],
+    answer_eligible_scope: 'hud_answer_slot_only_not_translation_or_publication_readiness',
+    release_candidate_scope: 'route_data_release_candidate_not_publication_readiness',
+    warning_status_blocks_publication_claim: true,
+    current_route_inputs_reconciled: 'stamp_uses_frozen_inputs_validate_drift_separately',
+  },
   frozen_inputs: {
     freeze_manifest: cleanRelativePath(options.freezeManifest),
     release_id: freezeManifest.release_id || '',
@@ -143,6 +175,7 @@ const stamp = {
   public_lookup: {
     manifest_path: cleanRelativePath(options.publicManifest),
     published_at: publicManifest.published_at || '',
+    publication_boundary: publicManifest.publication_boundary || null,
     file: publicFile,
     counts: publicCounts,
     prefix_length: publicManifest.prefix_length,
@@ -204,13 +237,50 @@ function parseArgs(args) {
       '  --store-manifest .local-cache/hud-route-store/manifest.json',
       '  --lookup-manifest .local-cache/hud-route-lookup/manifest.json',
       '  --public-manifest data/definitions/hud-route-lookup/manifest.json',
-      '  --route-audit .local-cache/definition-routes/definition-route-claim-audit.json',
+      '  --route-audit .local-cache/definition-route-freeze/current/definition-route-claim-audit.json',
       '  --output data/definitions/hud-route-release-stamp.json',
       '  --report reports/hud-route-release-stamp.md',
     ].join('\n'));
     process.exit(0);
   }
+  for (const key of pathOptionKeys) parsed[key] = cleanRelativePath(parsed[key]);
+  validatePathScopes(parsed);
   return parsed;
+}
+
+function validatePathScopes(parsed) {
+  assertExactPath('--freeze-manifest', parsed.freezeManifest, '.local-cache/definition-route-freeze/current/route-input-freeze.json');
+  assertExactPath('--store-manifest', parsed.storeManifest, '.local-cache/hud-route-store/manifest.json');
+  assertExactPath('--lookup-manifest', parsed.lookupManifest, '.local-cache/hud-route-lookup/manifest.json');
+  assertExactPath('--public-manifest', parsed.publicManifest, 'data/definitions/hud-route-lookup/manifest.json');
+  assertExactPath('--route-audit', parsed.routeAudit, '.local-cache/definition-route-freeze/current/definition-route-claim-audit.json');
+  assertExactPath('--output', parsed.output, 'data/definitions/hud-route-release-stamp.json');
+  assertExactPath('--report', parsed.report, 'reports/hud-route-release-stamp.md');
+  assertFileExtension('--freeze-manifest', parsed.freezeManifest, '.json');
+  assertFileExtension('--store-manifest', parsed.storeManifest, '.json');
+  assertFileExtension('--lookup-manifest', parsed.lookupManifest, '.json');
+  assertFileExtension('--public-manifest', parsed.publicManifest, '.json');
+  assertFileExtension('--route-audit', parsed.routeAudit, '.json');
+  assertFileExtension('--output', parsed.output, '.json');
+  assertFileExtension('--report', parsed.report, '.md');
+}
+
+function assertExactPath(label, value, expected) {
+  if (value !== expected) {
+    throw new Error(`${label} must be ${expected}: ${value}`);
+  }
+}
+
+function expectedFrozenInputPath(fileName) {
+  const cleanFileName = cleanRelativePath(fileName);
+  if (cleanFileName.includes('/')) throw new Error(`frozen input file must be a basename: ${fileName}`);
+  return `.local-cache/definition-route-freeze/current/${cleanFileName}`;
+}
+
+function assertFileExtension(label, value, expectedExtension) {
+  if (!value.endsWith(expectedExtension)) {
+    throw new Error(`${label} must end with ${expectedExtension}: ${value}`);
+  }
 }
 
 function readJson(relativePath, required = true) {
@@ -246,6 +316,38 @@ function publicShardCounts(manifest, manifestPath) {
   };
 }
 
+function validatePublicLookupPublicationBoundary(boundary, issues) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push('public manifest publication_boundary object is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push(`public manifest publication_boundary.publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`);
+  }
+  for (const item of ['public_hud_route_lookup_manifest', 'public_hud_route_lookup_shards']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      issues.push(`public manifest publication_boundary.validates missing ${item}`);
+    }
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      issues.push(`public manifest publication_boundary.does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.answer_eligible_scope || '').includes('not_translation_or_publication_readiness')) {
+    issues.push('public manifest publication_boundary.answer_eligible_scope must block translation/publication readiness overclaim');
+  }
+  if (!String(boundary.route_lookup_scope || '').includes('not_publication_readiness')) {
+    issues.push('public manifest publication_boundary.route_lookup_scope must state not_publication_readiness');
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push('public manifest publication_boundary.warning_status_blocks_publication_claim must be true');
+  }
+  if (boundary.current_route_inputs_reconciled !== 'not_checked_by_public_lookup_manifest_validate_release_stamp_and_drift') {
+    issues.push('public manifest publication_boundary.current_route_inputs_reconciled must defer to release stamp and drift validation');
+  }
+}
+
 async function sha256File(filePath) {
   const hash = crypto.createHash('sha256');
   const stream = fs.createReadStream(filePath);
@@ -270,6 +372,16 @@ function writeReport(filePath, stamp) {
     `Generated: ${stamp.generated_at}`,
     `Status: ${stamp.status}`,
     '',
+    '## Publication Boundary',
+    '',
+    `- Publication status: ${stamp.publication_boundary.publication_status}`,
+    `- Validates: ${stamp.publication_boundary.validates.join(', ')}`,
+    `- Does not clear: ${stamp.publication_boundary.does_not_clear.join(', ')}`,
+    `- Answer eligibility scope: ${stamp.publication_boundary.answer_eligible_scope}`,
+    `- Release-candidate scope: ${stamp.publication_boundary.release_candidate_scope}`,
+    `- Warning status blocks publication claim: ${stamp.publication_boundary.warning_status_blocks_publication_claim}`,
+    `- Current route inputs reconciled: ${stamp.publication_boundary.current_route_inputs_reconciled}`,
+    '',
     '## Frozen Inputs',
     '',
     `- Freeze manifest: \`${stamp.frozen_inputs.freeze_manifest}\``,
@@ -285,6 +397,7 @@ function writeReport(filePath, stamp) {
     '',
     `- Manifest: \`${stamp.public_lookup.manifest_path}\``,
     `- Published at: ${stamp.public_lookup.published_at}`,
+    `- Publication status: ${stamp.public_lookup.publication_boundary?.publication_status || 'missing'}`,
     `- Cards: ${stamp.reconciliation.public_cards_written}`,
     `- Distinct normalized tokens: ${stamp.reconciliation.public_distinct_normalized_tokens}`,
     `- Shards in manifest: ${stamp.reconciliation.public_shard_count}`,
@@ -305,7 +418,7 @@ function writeReport(filePath, stamp) {
     '',
     '## Boundary',
     '',
-    'This stamp records a release-candidate route-data generation. It does not introduce route families, source imports, or English source-text translations.',
+    'This stamp records a release-candidate route-data generation. It does not introduce route families, source imports, English source-text translations, accepted translation output, or publication readiness.',
   ];
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${lines.join('\n')}\n`, 'utf8');
@@ -316,5 +429,9 @@ function mdCell(value) {
 }
 
 function cleanRelativePath(value) {
-  return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  const normalized = String(value || '').replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/+$/, '');
+  if (!normalized || path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Path must be a relative in-repo path: ${value}`);
+  }
+  return normalized;
 }

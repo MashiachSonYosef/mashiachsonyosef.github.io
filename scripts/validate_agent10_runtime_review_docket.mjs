@@ -21,6 +21,7 @@ const configs = {
     source_rows_clicked: 3,
     proof_artifact_type: 'agent4_numbers_live_browser_click_proof',
     required_checks_total: 10,
+    expected_warnings: 2,
   },
   ruth: {
     page: 'tanakh/ruth/',
@@ -34,6 +35,7 @@ const configs = {
     source_rows_clicked: 3,
     proof_artifact_type: 'agent4_live_ruth_browser_runtime_evidence',
     required_checks_total: 7,
+    expected_warnings: 2,
   },
   jonah: {
     page: 'tanakh/jonah/',
@@ -47,6 +49,7 @@ const configs = {
     source_rows_clicked: 3,
     proof_artifact_type: 'agent4_live_jonah_browser_runtime_evidence',
     required_checks_total: 7,
+    expected_warnings: 2,
   },
   amos: {
     page: 'tanakh/amos/',
@@ -60,6 +63,21 @@ const configs = {
     source_rows_clicked: 5,
     proof_artifact_type: 'agent4_live_amos_browser_runtime_evidence',
     required_checks_total: 7,
+    expected_warnings: 2,
+  },
+  zechariah: {
+    page: 'tanakh/zechariah/',
+    max_shard_bytes: 59804,
+    hint_count: 1475,
+    route_key_count: 1269,
+    shard_count: 801,
+    card_count: 3566,
+    route_cards_clicked: 4,
+    answer_cards_clicked: 2,
+    source_rows_clicked: 2,
+    proof_artifact_type: 'agent4_live_zechariah_browser_runtime_evidence',
+    required_checks_total: 7,
+    expected_warnings: 3,
   },
 };
 
@@ -149,7 +167,7 @@ expect(data.summary?.fresh_hard_old_marker_hit_checks === 0, 'fresh hard old mar
 expect(data.summary?.validation_commands_passed === 2, 'expected 2 validation commands passed');
 expect(data.summary?.validation_commands_total === 2, 'expected 2 validation commands total');
 expect(data.summary?.issues === 0, 'docket issues must be 0');
-expect(data.summary?.warnings === 2, 'docket warnings must be 2');
+expect(data.summary?.warnings === (config.expected_warnings ?? 2), `docket warnings must be ${config.expected_warnings ?? 2}`);
 
 expect(liveLane.page_status === data.summary?.live_page_status, 'release train live page status mismatch');
 expect(liveLane.hint_count === data.summary?.hint_count, 'release train hint count mismatch');

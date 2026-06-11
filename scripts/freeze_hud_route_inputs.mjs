@@ -9,6 +9,8 @@ const defaults = {
   sourceDir: '.local-cache/definition-routes',
   freezeDir: '.local-cache/definition-route-freeze/current',
   releaseId: `hud-route-rc-${new Date().toISOString().replace(/[:.]/g, '-')}`,
+  spaceSafetyGb: 1,
+  dryRun: false,
 };
 
 const routeInputs = [
@@ -22,9 +24,12 @@ const routeInputs = [
 ];
 
 const options = parseArgs(process.argv.slice(2));
-const sourceDir = path.join(root, options.sourceDir);
-const freezeDir = path.join(root, options.freezeDir);
+const sourceDir = resolveWorkspaceRelativePath(options.sourceDir, 'source-dir');
+const freezeDir = resolveWorkspaceRelativePath(options.freezeDir, 'freeze-dir');
+assertSafeFreezeTarget(sourceDir, freezeDir);
 const generatedAt = new Date().toISOString();
+const sourceInputs = collectSourceInputs();
+const preflight = buildPreflight(sourceInputs);
 const manifest = {
   schema_version: 1,
   artifact_type: 'hud_route_input_freeze',
@@ -34,20 +39,31 @@ const manifest = {
   policy: 'Freeze existing route input files for release-candidate HUD route store and public lookup generation. This script copies inputs only; it does not create route families or route claims.',
   source_dir: cleanRelativePath(options.sourceDir),
   freeze_dir: cleanRelativePath(options.freezeDir),
+  dry_run: options.dryRun,
+  preflight,
   files: [],
-  missing_optional_files: [],
+  missing_optional_files: sourceInputs.missingOptionalFiles,
 };
+
+if (options.dryRun) {
+  console.log(JSON.stringify({
+    release_id: manifest.release_id,
+    dry_run: true,
+    source_dir: manifest.source_dir,
+    freeze_dir: manifest.freeze_dir,
+    copy_bytes: preflight.copy_bytes,
+    effective_available_bytes: preflight.effective_available_bytes,
+    frozen_files: sourceInputs.presentInputs.length,
+    missing_optional_files: sourceInputs.missingOptionalFiles.length,
+  }, null, 2));
+  process.exit(0);
+}
 
 fs.rmSync(freezeDir, { recursive: true, force: true });
 fs.mkdirSync(freezeDir, { recursive: true });
 
-for (const input of routeInputs) {
-  const sourcePath = path.join(sourceDir, input.file);
-  if (!fs.existsSync(sourcePath)) {
-    if (input.required) throw new Error(`Missing required route input: ${cleanRelativePath(path.relative(root, sourcePath))}`);
-    manifest.missing_optional_files.push({ file: input.file, role: input.role });
-    continue;
-  }
+for (const input of sourceInputs.presentInputs) {
+  const sourcePath = input.sourcePath;
   const targetPath = path.join(freezeDir, input.file);
   fs.copyFileSync(sourcePath, targetPath);
   const sourceStats = await fileStats(sourcePath, input.file.endsWith('.jsonl'));
@@ -84,6 +100,8 @@ function parseArgs(args) {
     if (arg === '--source-dir') parsed.sourceDir = args[++index];
     else if (arg === '--freeze-dir') parsed.freezeDir = args[++index];
     else if (arg === '--release-id') parsed.releaseId = args[++index];
+    else if (arg === '--space-safety-gb') parsed.spaceSafetyGb = Number(args[++index]);
+    else if (arg === '--dry-run') parsed.dryRun = true;
     else if (arg === '--help' || arg === '-h') parsed.help = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
@@ -96,10 +114,86 @@ function parseArgs(args) {
       '  --source-dir .local-cache/definition-routes',
       '  --freeze-dir .local-cache/definition-route-freeze/current',
       '  --release-id hud-route-rc-...',
+      '  --space-safety-gb 1',
+      '  --dry-run',
     ].join('\n'));
     process.exit(0);
   }
+  if (!Number.isFinite(parsed.spaceSafetyGb) || parsed.spaceSafetyGb < 0) {
+    throw new Error(`Invalid --space-safety-gb: ${parsed.spaceSafetyGb}`);
+  }
   return parsed;
+}
+
+function collectSourceInputs() {
+  if (!fs.existsSync(sourceDir)) throw new Error(`Missing route source directory: ${cleanRelativePath(options.sourceDir)}`);
+  const presentInputs = [];
+  const missingOptionalFiles = [];
+  for (const input of routeInputs) {
+    const sourcePath = path.join(sourceDir, input.file);
+    if (!fs.existsSync(sourcePath)) {
+      if (input.required) throw new Error(`Missing required route input: ${cleanRelativePath(path.relative(root, sourcePath))}`);
+      missingOptionalFiles.push({ file: input.file, role: input.role });
+      continue;
+    }
+    presentInputs.push({
+      ...input,
+      sourcePath,
+      byte_length: fs.statSync(sourcePath).size,
+    });
+  }
+  return { presentInputs, missingOptionalFiles };
+}
+
+function buildPreflight(inputs) {
+  const copyBytes = inputs.presentInputs.reduce((sum, input) => sum + input.byte_length, 0);
+  const existingFreezeBytes = directoryBytes(freezeDir);
+  const available = availableBytes(path.dirname(freezeDir));
+  const safetyBytes = options.spaceSafetyGb * 1024 * 1024 * 1024;
+  const effectiveAvailable = Number.isFinite(available) ? available + existingFreezeBytes : null;
+  const requiredBytes = copyBytes + safetyBytes;
+  const result = {
+    required_inputs_checked: true,
+    disk_space_checked: Number.isFinite(effectiveAvailable),
+    copy_bytes: copyBytes,
+    existing_freeze_bytes: existingFreezeBytes,
+    available_bytes: Number.isFinite(available) ? available : null,
+    effective_available_bytes: Number.isFinite(effectiveAvailable) ? effectiveAvailable : null,
+    required_bytes: requiredBytes,
+    safety_gb: options.spaceSafetyGb,
+  };
+  if (Number.isFinite(effectiveAvailable) && effectiveAvailable < requiredBytes) {
+    throw new Error([
+      'Insufficient disk space to freeze HUD route inputs.',
+      `Route input bytes: ${copyBytes}.`,
+      `Safety bytes: ${safetyBytes}.`,
+      `Effective available bytes after replacing existing freeze: ${effectiveAvailable}.`,
+      'Freeze directory was not removed.',
+    ].join(' '));
+  }
+  return result;
+}
+
+function resolveWorkspaceRelativePath(value, label) {
+  const clean = cleanRelativePath(value);
+  const resolved = path.resolve(root, clean);
+  if (!isSameOrWithin(root, resolved)) {
+    throw new Error(`${label} must stay inside repo root: ${value}`);
+  }
+  return resolved;
+}
+
+function assertSafeFreezeTarget(sourcePath, freezePath) {
+  const freezeRoot = path.resolve(root, '.local-cache/definition-route-freeze');
+  if (!isSameOrWithin(freezeRoot, freezePath)) {
+    throw new Error('freeze-dir must stay under .local-cache/definition-route-freeze before it can be replaced');
+  }
+  if (path.resolve(root) === path.resolve(freezePath)) {
+    throw new Error('freeze-dir must not be the repo root');
+  }
+  if (isSameOrWithin(sourcePath, freezePath) || isSameOrWithin(freezePath, sourcePath)) {
+    throw new Error('source-dir and freeze-dir must be disjoint before freeze-dir can be replaced');
+  }
 }
 
 async function fileStats(filePath, countRows) {
@@ -140,6 +234,34 @@ function writeJson(filePath, value) {
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
+function availableBytes(dirPath) {
+  if (typeof fs.statfsSync !== 'function') return null;
+  const stats = fs.statfsSync(dirPath);
+  return Number(stats.bavail) * Number(stats.bsize);
+}
+
+function directoryBytes(dirPath) {
+  if (!fs.existsSync(dirPath)) return 0;
+  const stat = fs.statSync(dirPath);
+  if (!stat.isDirectory()) return stat.size;
+  let total = 0;
+  for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
+    const entryPath = path.join(dirPath, entry.name);
+    total += entry.isDirectory() ? directoryBytes(entryPath) : fs.statSync(entryPath).size;
+  }
+  return total;
+}
+
 function cleanRelativePath(value) {
-  return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  const normalized = String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  if (!normalized || path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Path must be relative to repo root: ${value}`);
+  }
+  return normalized;
+}
+
+function isSameOrWithin(parentPath, childPath) {
+  const parent = path.resolve(parentPath);
+  const child = path.resolve(childPath);
+  return child === parent || child.startsWith(`${parent}${path.sep}`);
 }

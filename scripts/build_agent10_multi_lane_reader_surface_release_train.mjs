@@ -6,18 +6,34 @@ import { spawnSync } from 'node:child_process';
 
 const root = process.cwd();
 const dateSlug = new Date().toISOString().slice(0, 10);
+const latestReport = (prefix, fallback) => {
+  const reportsDir = path.join(root, 'reports');
+  const candidateFiles = fs
+    .readdirSync(reportsDir)
+    .filter((name) => name.startsWith(prefix) && name.endsWith('.json') && !name.includes('.json.'))
+    .map((name) => name.replace(/\.json$/, ''))
+    .sort((a, b) => a.localeCompare(b));
+
+  const latest = candidateFiles.length ? `${candidateFiles[candidateFiles.length - 1]}.json` : null;
+  const resolved = latest ? path.join('reports', latest) : fallback;
+  if (!resolved) {
+    throw new Error(`No report found for prefix ${prefix} and no fallback provided.`);
+  }
+  return resolved;
+};
+
 const options = {
   baseUrl: 'https://mashiachsonyosef.github.io',
-  agent1Docket: 'reports/agent10-agent1-ready-orot-missing-linkage-review-docket-2026-06-03.json',
-  agent6Docket: 'reports/agent10-agent6-ready-orot-reader-hint-candidate-patch-docket-2026-06-03.json',
-  liveGuard: 'reports/agent10-live-public-old-hud-guard-2026-06-03-post-ruth-browser-proof.json',
-  ruthProof: 'reports/agent4-ruth-live-browser-click-proof-2026-06-03.json',
-  ruthDocket: 'reports/agent10-agent6-ready-ruth-runtime-review-docket-2026-06-03.json',
-  jonahProof: 'reports/agent4-jonah-live-browser-click-proof-2026-06-03.json',
-  jonahDocket: 'reports/agent10-agent6-ready-jonah-runtime-review-docket-2026-06-03.json',
+  agent1Docket: latestReport('agent10-agent1-ready-orot-missing-linkage-review-docket', 'reports/agent10-agent1-ready-orot-missing-linkage-review-docket-2026-06-03.json'),
+  agent6Docket: latestReport('agent10-agent6-ready-orot-reader-hint-candidate-patch-docket', 'reports/agent10-agent6-ready-orot-reader-hint-candidate-patch-docket-2026-06-03.json'),
+  liveGuard: latestReport('agent10-live-public-old-hud-guard', 'reports/agent10-live-public-old-hud-guard-2026-06-03-post-ruth-browser-proof.json'),
+  ruthProof: latestReport('agent4-ruth-live-browser-click-proof', 'reports/agent4-ruth-live-browser-click-proof-2026-06-03.json'),
+  ruthDocket: latestReport('agent10-agent6-ready-ruth-runtime-review-docket', 'reports/agent10-agent6-ready-ruth-runtime-review-docket-2026-06-03.json'),
+  jonahProof: latestReport('agent4-jonah-live-browser-click-proof', 'reports/agent4-jonah-live-browser-click-proof-2026-06-03.json'),
+  jonahDocket: latestReport('agent10-agent6-ready-jonah-runtime-review-docket', 'reports/agent10-agent6-ready-jonah-runtime-review-docket-2026-06-03.json'),
   jonahPrep: 'reports/agent10-candidate-page-7-shipment-prep-2026-06-02.md',
-  amosProof: 'reports/agent4-amos-live-browser-click-proof-2026-06-03.json',
-  amosDocket: 'reports/agent10-agent6-ready-amos-runtime-review-docket-2026-06-03.json',
+  amosProof: latestReport('agent4-amos-live-browser-click-proof', 'reports/agent4-amos-live-browser-click-proof-2026-06-03.json'),
+  amosDocket: latestReport('agent10-agent6-ready-amos-runtime-review-docket', 'reports/agent10-agent6-ready-amos-runtime-review-docket-2026-06-03.json'),
   amosPrep: 'reports/agent10-candidate-page-8-shipment-prep-2026-06-02.md',
   zechariahPrep: 'reports/agent10-candidate-page-9-shipment-prep-2026-06-02.md',
   jsonReport: `reports/agent10-multi-lane-reader-surface-release-train-${dateSlug}.json`,

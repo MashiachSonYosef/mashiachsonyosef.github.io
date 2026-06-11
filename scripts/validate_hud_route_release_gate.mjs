@@ -49,6 +49,8 @@ const allowedSections = new Set((contract.route_sections || []).map((section) =>
 if (stamp.schema_version !== 1) issues.push('release stamp schema_version must be 1');
 if (stamp.artifact_type !== 'hud_route_release_stamp') issues.push('release stamp artifact_type must be hud_route_release_stamp');
 if (stamp.status !== 'release_candidate') issues.push(`release stamp status must be release_candidate, got ${stamp.status || 'missing'}`);
+validateStampPublicationBoundary(stamp.publication_boundary);
+validatePublicLookupPublicationBoundary(stamp.public_lookup?.publication_boundary);
 if ((stamp.issues || []).length) issues.push(`release stamp carries ${stamp.issues.length} issue(s)`);
 if (stamp.reconciliation?.counts_match !== true) issues.push('release stamp reconciliation.counts_match must be true');
 if (cleanPath(stamp.public_lookup?.manifest_path) !== cleanPath(options.publicManifest)) {
@@ -127,6 +129,7 @@ if (inputFreezeDrift.status === 'missing') {
 } else if (inputFreezeDrift.status !== 'pass') {
   issues.push(`route input freeze drift status is ${inputFreezeDrift.status}, expected pass or drift`);
 }
+validateInputFreezePublicationBoundary(inputFreezeDrift);
 
 const gateStatus = issues.length ? 'fail' : (warnings.length ? 'pass_with_warnings' : 'pass');
 const releaseScope = warnings.length
@@ -135,6 +138,7 @@ const releaseScope = warnings.length
 const publicationBoundary = {
   publication_status: 'blocked_no_render',
   validates: [
+    'hud_route_release_stamp',
     'hud_route_lookup_integrity',
     'route_card_publication_boundary',
   ],
@@ -286,17 +290,26 @@ function parseArgs(args) {
     ].join('\n'));
     process.exit(0);
   }
+  parsed.stamp = cleanPath(parsed.stamp);
+  parsed.publicManifest = cleanPath(parsed.publicManifest);
+  parsed.contract = cleanPath(parsed.contract);
+  parsed.sample = cleanPath(parsed.sample);
+  parsed.boundaryReport = cleanPath(parsed.boundaryReport);
+  parsed.driftReport = cleanPath(parsed.driftReport);
+  parsed.report = cleanPath(parsed.report);
+  parsed.json = cleanPath(parsed.json);
+  validatePathScopes(parsed);
   return parsed;
 }
 
 function readJson(relativePath, label) {
-  const filePath = path.join(root, relativePath || '');
+  const filePath = path.join(root, cleanPath(relativePath));
   if (!fs.existsSync(filePath)) throw new Error(`Missing ${label}: ${relativePath}`);
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
 async function fileSummary(relativePath) {
-  const filePath = path.join(root, relativePath);
+  const filePath = path.join(root, cleanPath(relativePath));
   return {
     path: cleanPath(relativePath),
     byte_length: fs.statSync(filePath).size,
@@ -331,6 +344,7 @@ function parseInputFreezeDrift(relativePath) {
   const statusMatch = text.match(/^Status:\s*(.+)$/m);
   const status = statusMatch ? statusMatch[1].trim() : 'unknown';
   const drift = [];
+  const publicationBoundary = parseInputFreezePublicationBoundary(text);
   let inDriftSection = false;
   for (const line of text.split(/\r?\n/)) {
     if (line === '## Drift') {
@@ -349,7 +363,77 @@ function parseInputFreezeDrift(relativePath) {
     status,
     drift_count: drift.length,
     drift,
+    publication_boundary: publicationBoundary,
   };
+}
+
+function parseInputFreezePublicationBoundary(text) {
+  const boundary = {};
+  let inBoundarySection = false;
+
+  for (const line of text.split(/\r?\n/)) {
+    if (line === '## Boundary') {
+      inBoundarySection = true;
+      continue;
+    }
+    if (inBoundarySection && line.startsWith('## ')) break;
+    if (!inBoundarySection || !line.startsWith('- ')) continue;
+
+    const [label, ...rest] = line.slice(2).split(':');
+    const key = label.trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+    const value = rest.join(':').trim();
+    if (!key) continue;
+    if (['validates', 'does_not_clear'].includes(key)) {
+      boundary[key] = value ? value.split(',').map((item) => item.trim()).filter(Boolean) : [];
+    } else if (['warning_status_blocks_publication_claim', 'current_route_inputs_reconciled', 'route_data_regenerated', 'source_imports_changed', 'public_lookup_artifacts_changed'].includes(key)) {
+      boundary[key] = value === 'true';
+    } else {
+      boundary[key] = value;
+    }
+  }
+
+  return Object.keys(boundary).length ? boundary : null;
+}
+
+function validateInputFreezePublicationBoundary(inputFreezeDrift) {
+  if (inputFreezeDrift.status === 'missing') return;
+  const boundary = inputFreezeDrift.publication_boundary;
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push('route input freeze drift report publication_boundary object is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push('route input freeze drift publication_boundary.publication_status must be blocked_no_render');
+  }
+  for (const item of ['hud_route_input_freeze_drift', 'frozen_route_input_cache_comparison']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      issues.push(`route input freeze drift publication_boundary.validates missing ${item}`);
+    }
+  }
+  for (const item of [
+    'translation_output',
+    'source_publication',
+    'public_lexical_export_reuse',
+    'accepted_definition_authority',
+    'public_lookup_publication',
+    'route_publication_readiness',
+  ]) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      issues.push(`route input freeze drift publication_boundary.does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.route_input_scope || '').includes('not_publication_readiness')) {
+    issues.push('route input freeze drift publication_boundary.route_input_scope must block publication readiness');
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push('route input freeze drift publication_boundary.warning_status_blocks_publication_claim must be true');
+  }
+  if (inputFreezeDrift.status !== 'pass' && boundary.current_route_inputs_reconciled !== false) {
+    issues.push('route input freeze drift publication_boundary.current_route_inputs_reconciled must be false unless status is pass');
+  }
+  for (const field of ['route_data_regenerated', 'source_imports_changed', 'public_lookup_artifacts_changed']) {
+    if (boundary[field] !== false) issues.push(`route input freeze drift publication_boundary.${field} must be false`);
+  }
 }
 
 function summarizePublicShards(manifest, manifestPath) {
@@ -838,10 +922,11 @@ function validateUnsafeAnswerSamples(report) {
 
 async function compareFrozenInputsToCurrentSources(releaseStamp) {
   for (const input of releaseStamp.frozen_inputs?.files || []) {
-    if (!input.source_path || !fs.existsSync(path.join(root, input.source_path))) continue;
-    const current = await fileSummary(input.source_path);
+    const sourcePath = cleanPath(input.source_path || '');
+    if (!sourcePath || !fs.existsSync(path.join(root, sourcePath))) continue;
+    const current = await fileSummary(sourcePath);
     if (current.sha256 !== input.sha256 || current.byte_length !== input.byte_length) {
-      warnings.push(`current route source differs from frozen release input: ${input.source_path}`);
+      warnings.push(`current route source differs from frozen release input: ${sourcePath}`);
     }
   }
 }
@@ -858,7 +943,7 @@ async function sha256File(filePath) {
 }
 
 function writeReport(relativePath, result) {
-  const filePath = path.join(root, relativePath);
+  const filePath = path.join(root, cleanPath(relativePath));
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   const lines = [
     '# HUD Route Release Gate',
@@ -952,6 +1037,9 @@ function writeReport(relativePath, result) {
     ...(result.route_input_freeze_drift.drift.length
       ? result.route_input_freeze_drift.drift.map((item) => `- ${item}`)
       : ['- None']),
+    `- Input-freeze publication status: ${result.route_input_freeze_drift.publication_boundary?.publication_status || 'missing'}`,
+    `- Input-freeze current route inputs reconciled: ${result.route_input_freeze_drift.publication_boundary?.current_route_inputs_reconciled}`,
+    `- Input-freeze public lookup artifacts changed: ${result.route_input_freeze_drift.publication_boundary?.public_lookup_artifacts_changed}`,
     '',
     '## Boundary',
     '',
@@ -961,7 +1049,7 @@ function writeReport(relativePath, result) {
     `- Answer eligibility scope: ${result.publication_boundary.answer_eligible_scope}`,
     `- Warning status blocks publication claim: ${result.publication_boundary.warning_status_blocks_publication_claim}`,
     `- Current route sources reconciled: ${result.publication_boundary.current_route_sources_reconciled}`,
-    '- This gate validates HUD route lookup integrity and the route-card/publication boundary only.',
+    '- This gate validates the HUD route release stamp, HUD route lookup integrity, and the route-card/publication boundary only.',
     '- It does not clear translation output, source publication, public lexical export reuse, or accepted definition authority.',
     '- A warning status means current route-source reconciliation is not proven for the frozen public lookup release.',
     '- Publication remains blocked_no_render.',
@@ -983,8 +1071,108 @@ function writeJson(relativePath, result) {
   fs.writeFileSync(filePath, `${JSON.stringify(result, null, 2)}\n`, 'utf8');
 }
 
+function validateStampPublicationBoundary(boundary) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push('release stamp publication_boundary object is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push(`release stamp publication_boundary.publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`);
+  }
+  for (const item of ['hud_route_release_stamp', 'public_hud_route_lookup_reconciliation']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      issues.push(`release stamp publication_boundary.validates missing ${item}`);
+    }
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      issues.push(`release stamp publication_boundary.does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.answer_eligible_scope || '').includes('not_translation_or_publication_readiness')) {
+    issues.push('release stamp publication_boundary.answer_eligible_scope must block translation/publication readiness overclaim');
+  }
+  if (!String(boundary.release_candidate_scope || '').includes('not_publication_readiness')) {
+    issues.push('release stamp publication_boundary.release_candidate_scope must state not_publication_readiness');
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push('release stamp publication_boundary.warning_status_blocks_publication_claim must be true');
+  }
+  if (boundary.current_route_inputs_reconciled !== 'stamp_uses_frozen_inputs_validate_drift_separately') {
+    issues.push('release stamp publication_boundary.current_route_inputs_reconciled must be stamp_uses_frozen_inputs_validate_drift_separately');
+  }
+}
+
+function validatePublicLookupPublicationBoundary(boundary) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push('release stamp public_lookup.publication_boundary object is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push(`release stamp public_lookup.publication_boundary.publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`);
+  }
+  for (const item of ['public_hud_route_lookup_manifest', 'public_hud_route_lookup_shards']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      issues.push(`release stamp public_lookup.publication_boundary.validates missing ${item}`);
+    }
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      issues.push(`release stamp public_lookup.publication_boundary.does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.answer_eligible_scope || '').includes('not_translation_or_publication_readiness')) {
+    issues.push('release stamp public_lookup.publication_boundary.answer_eligible_scope must block translation/publication readiness overclaim');
+  }
+  if (!String(boundary.route_lookup_scope || '').includes('not_publication_readiness')) {
+    issues.push('release stamp public_lookup.publication_boundary.route_lookup_scope must state not_publication_readiness');
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push('release stamp public_lookup.publication_boundary.warning_status_blocks_publication_claim must be true');
+  }
+  if (boundary.current_route_inputs_reconciled !== 'not_checked_by_public_lookup_manifest_validate_release_stamp_and_drift') {
+    issues.push('release stamp public_lookup.publication_boundary.current_route_inputs_reconciled must defer to release stamp and drift validation');
+  }
+}
+
 function cleanPath(value) {
-  return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  const normalized = String(value || '').replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/+$/, '');
+  if (!normalized) return '';
+  if (path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Path must be relative to repo root: ${value}`);
+  }
+  return normalized;
+}
+
+function validatePathScopes(parsed) {
+  assertExactPath('--stamp', parsed.stamp, 'data/definitions/hud-route-release-stamp.json');
+  assertExactPath('--public-manifest', parsed.publicManifest, 'data/definitions/hud-route-lookup/manifest.json');
+  assertExactPath('--contract', parsed.contract, 'data/definitions/hud-route-contract.json');
+  assertExactPath('--sample', parsed.sample, 'data/definitions/hud-route-lookup-sample.json');
+  assertExactPath('--boundary-report', parsed.boundaryReport, 'reports/route-publication-boundary-audit.json');
+  assertExactPath('--drift-report', parsed.driftReport, 'reports/hud-route-input-freeze-drift.md');
+  if (parsed.report) {
+    assertExactPath('--report', parsed.report, 'reports/hud-route-release-gate.md');
+    assertFileExtension('--report', parsed.report, '.md');
+  }
+  if (parsed.json) {
+    assertExactPath('--json', parsed.json, 'reports/hud-route-release-gate.json');
+    assertFileExtension('--json', parsed.json, '.json');
+  }
+}
+
+function assertExactPath(label, actual, expected) {
+  if (actual !== expected) throw new Error(`${label} must be ${expected}: ${actual || 'missing'}`);
+}
+
+function assertPathUnder(label, actual, expectedPrefix) {
+  if (actual !== expectedPrefix && !actual.startsWith(`${expectedPrefix}/`)) {
+    throw new Error(`${label} must stay under ${expectedPrefix}: ${actual}`);
+  }
+}
+
+function assertFileExtension(label, actual, expectedExtension) {
+  if (!actual.endsWith(expectedExtension)) throw new Error(`${label} must end with ${expectedExtension}: ${actual}`);
 }
 
 function sumMap(object) {

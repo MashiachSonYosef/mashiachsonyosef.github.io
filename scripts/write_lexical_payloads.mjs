@@ -79,6 +79,22 @@ function sourceRowKey(row) {
   return `${row.source_family || ''}|${row.source_id || ''}`;
 }
 
+function sourceRowComplete(row) {
+  if (!row || typeof row !== 'object') return false;
+  if (!row.source_name || !row.source_family || !row.source_id || !row.source_url || !row.license || !row.license_url) {
+    return false;
+  }
+  const sourceId = String(row.source_id || '');
+  const license = String(row.license || '');
+  return !sourceId.includes('source metadata incomplete') && !license.includes('source metadata incomplete');
+}
+
+function sourceRowIncomplete(row) {
+  if (!row || typeof row !== 'object') return false;
+  return String(row.source_id || '').includes('source metadata incomplete')
+    || String(row.license || '').includes('source metadata incomplete');
+}
+
 function entrySourceKeys(entry) {
   const keys = [];
   for (const key of entry?.source_row_keys || []) {
@@ -175,11 +191,13 @@ function fallbackSourceRow(entry) {
 function addFallbackSourceRows(sourceRows, entries) {
   const rows = [...(sourceRows || [])];
   const known = new Set(rows.map(sourceRowKey).filter(Boolean));
+  const hasCompleteRows = rows.some(sourceRowComplete);
   for (const entry of entries || []) {
     const key = sourceRowKey(entry);
     if (!key || known.has(key)) continue;
     const fallback = fallbackSourceRow(entry);
     if (!fallback) continue;
+    if (sourceRowIncomplete(fallback) && hasCompleteRows) continue;
     rows.push(fallback);
     known.add(key);
   }
@@ -218,6 +236,10 @@ function compactEntry(entry) {
     selectionSourceRows,
     secondaryEntries.flatMap((candidate) => entrySourceKeys(candidate)),
   );
+
+  if (!primarySourceRows.length && primaryEntries.some((candidate) => candidate.context_role === 'likely_contextual')) {
+    primarySourceRows = selectionSourceRows.filter(sourceRowComplete);
+  }
 
   if (!primarySourceRows.length && (entry.strict_renderings || []).length) {
     primarySourceRows = selectionSourceRows.filter((row) => (

@@ -75,6 +75,7 @@ function validateCard(card, context, issues) {
   for (const field of ['card_id', 'normalized', 'route_family', 'route_type', 'display_section', 'display_label']) {
     if (!card?.[field]) issues.push(`${context}: missing ${field}`);
   }
+  validateMachineAuthorityStatus(card, context, issues);
   if (typeof card.answer_eligible !== 'boolean') issues.push(`${context}: missing boolean answer_eligible`);
   if (!card.answer_role) issues.push(`${context}: missing answer_role`);
   if (card.answer_eligible === true && card.answer_role !== 'answer') {
@@ -114,6 +115,17 @@ function validateCard(card, context, issues) {
   }
   for (const text of policyStringsForCard(card)) {
     if (forbiddenTextRe.test(text)) issues.push(`${context}: forbidden text ${text.slice(0, 120)}`);
+  }
+}
+
+function validateMachineAuthorityStatus(card, context, issues) {
+  for (const field of ['status', 'review_status', 'authority_status', 'lexical_authority_status']) {
+    if (String(card?.[field] || '').trim().toLowerCase() === 'verified') {
+      issues.push(`${context}: ${field}=verified is reserved for reviewed lexical authority, not machine route cards`);
+    }
+  }
+  if (card?.reviewed_lexical_authority === true) {
+    issues.push(`${context}: reviewed_lexical_authority=true is not allowed on machine route cards`);
   }
 }
 
@@ -172,6 +184,70 @@ function validateReleaseStamp(manifest, issues) {
   }
 }
 
+function validatePublicationBoundary(boundary, context, requiredValidates, issues) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push(`${context}: publication_boundary object is required`);
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push(`${context}: publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`);
+  }
+  for (const item of requiredValidates) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      issues.push(`${context}: validates missing ${item}`);
+    }
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      issues.push(`${context}: does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.answer_eligible_scope || '').includes('not_translation_or_publication_readiness')) {
+    issues.push(`${context}: answer_eligible_scope must block translation/publication readiness overclaim`);
+  }
+  if (!String(boundary.route_lookup_scope || '').includes('not_publication_readiness')) {
+    issues.push(`${context}: route_lookup_scope must state not_publication_readiness`);
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push(`${context}: warning_status_blocks_publication_claim must be true`);
+  }
+  if (boundary.current_route_inputs_reconciled !== 'not_checked_by_public_lookup_manifest_validate_release_stamp_and_drift') {
+    issues.push(`${context}: current_route_inputs_reconciled must defer to release stamp and drift validation`);
+  }
+}
+
+function validateSamplePublicationBoundary(boundary, context, sampleType, issues) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push(`${context}: publication_boundary object is required`);
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push(`${context}: publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`);
+  }
+  for (const item of [`${sampleType}_sample`, 'route_card_sample_source_license_rows']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      issues.push(`${context}: validates missing ${item}`);
+    }
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      issues.push(`${context}: does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.answer_eligible_scope || '').includes('not_translation_or_publication_readiness')) {
+    issues.push(`${context}: answer_eligible_scope must block translation/publication readiness overclaim`);
+  }
+  if (!String(boundary.sample_scope || '').includes('not_publication_readiness')) {
+    issues.push(`${context}: sample_scope must state not_publication_readiness`);
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push(`${context}: warning_status_blocks_publication_claim must be true`);
+  }
+  if (boundary.current_route_inputs_reconciled !== 'not_checked_by_route_sample_validate_release_stamp_and_drift') {
+    issues.push(`${context}: current_route_inputs_reconciled must defer to release stamp and drift validation`);
+  }
+}
+
 const issues = [];
 if (!fs.existsSync(manifestPath)) issues.push(`missing public HUD route lookup manifest: ${manifestPath}`);
 if (!fs.existsSync(samplePath)) issues.push(`missing HUD route lookup sample: ${samplePath}`);
@@ -181,6 +257,11 @@ if (!issues.length) {
   const sample = readJson(samplePath);
   if (manifest.schema_version !== 1) issues.push('public lookup manifest schema_version must be 1');
   if (manifest.prefix_length !== 3) issues.push(`unexpected prefix_length ${manifest.prefix_length}`);
+  validatePublicationBoundary(manifest.publication_boundary, 'public lookup manifest', [
+    'public_hud_route_lookup_manifest',
+    'public_hud_route_lookup_shards',
+  ], issues);
+  validateSamplePublicationBoundary(sample.publication_boundary, 'public lookup sample', 'hud_route_lookup', issues);
   if (manifest.counts?.cards_written <= 0) issues.push('public lookup wrote no cards');
   if (manifest.counts?.distinct_normalized_tokens <= 0) issues.push('public lookup has no normalized tokens');
   if (manifest.counts?.max_shard_bytes > 10 * 1024 * 1024) {

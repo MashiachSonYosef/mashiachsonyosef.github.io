@@ -23,13 +23,14 @@ if (stamp.status !== 'release_candidate') issues.push(`release stamp status must
 if ((stamp.issues || []).length) issues.push(`release stamp carries ${stamp.issues.length} issue(s)`);
 
 const sourceDir = cleanPath(options.sourceDir || stamp.frozen_inputs?.source_dir || '');
+validateResolvedSourceDir(sourceDir);
 if (!sourceDir) issues.push('missing source route directory; pass --source-dir or stamp frozen_inputs.source_dir');
 
 for (const [index, input] of (stamp.frozen_inputs?.files || []).entries()) {
   const context = `frozen_inputs.files[${index}] ${input.file || ''}`.trim();
   const frozen = await summarizeStampedFile(input.frozen_path, input, context);
   const source = sourceDir && input.file
-    ? await summarizeOptionalFile(path.join(sourceDir, input.file))
+    ? await summarizeOptionalFile(path.join(sourceDir, cleanPath(input.file)))
     : null;
 
   let current_status = 'missing';
@@ -50,7 +51,7 @@ for (const [index, input] of (stamp.frozen_inputs?.files || []).entries()) {
     role: input.role || '',
     required: input.required === true,
     frozen_path: input.frozen_path || '',
-    source_path: sourceDir && input.file ? cleanPath(path.join(sourceDir, input.file)) : '',
+    source_path: sourceDir && input.file ? cleanPath(path.join(sourceDir, cleanPath(input.file))) : '',
     frozen_status: frozen ? 'matches stamp' : 'missing or invalid',
     current_status,
     row_count: input.row_count ?? '',
@@ -61,7 +62,7 @@ for (const [index, input] of (stamp.frozen_inputs?.files || []).entries()) {
 
 for (const optional of (stamp.frozen_inputs?.missing_optional_files || [])) {
   if (!sourceDir || !optional.file) continue;
-  const current = await summarizeOptionalFile(path.join(sourceDir, optional.file));
+  const current = await summarizeOptionalFile(path.join(sourceDir, cleanPath(optional.file)));
   const current_status = current ? 'present after release freeze' : 'absent at release freeze and absent now';
   if (current) drift.push(`${optional.file}: optional route input exists now but was absent from release freeze`);
   rows.push({
@@ -69,7 +70,7 @@ for (const optional of (stamp.frozen_inputs?.missing_optional_files || [])) {
     role: optional.role || '',
     required: false,
     frozen_path: '',
-    source_path: cleanPath(path.join(sourceDir, optional.file)),
+    source_path: cleanPath(path.join(sourceDir, cleanPath(optional.file))),
     frozen_status: 'not frozen optional',
     current_status,
     row_count: '',
@@ -85,6 +86,7 @@ const result = {
   release_id: stamp.release_id || '',
   status: issues.length ? 'fail' : drift.length ? 'drift' : 'pass',
   fail_on_drift: options.failOnDrift,
+  publication_boundary: buildPublicationBoundary(issues, drift),
   stamp: cleanPath(options.stamp),
   source_dir: sourceDir,
   frozen_file_count: (stamp.frozen_inputs?.files || []).length,
@@ -123,6 +125,10 @@ function parseArgs(args) {
     else if (arg === '--help' || arg === '-h') parsed.help = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
+  parsed.stamp = cleanPath(parsed.stamp);
+  parsed.sourceDir = cleanPath(parsed.sourceDir);
+  parsed.report = cleanPath(parsed.report);
+  validatePathScopes(parsed);
   if (parsed.help) {
     console.log([
       'Usage:',
@@ -143,7 +149,7 @@ function parseArgs(args) {
 }
 
 function readJson(relativePath, label) {
-  const fullPath = path.join(root, relativePath || '');
+  const fullPath = path.join(root, cleanPath(relativePath));
   if (!fs.existsSync(fullPath)) throw new Error(`Missing ${label}: ${relativePath}`);
   return JSON.parse(fs.readFileSync(fullPath, 'utf8'));
 }
@@ -166,7 +172,7 @@ async function summarizeStampedFile(relativePath, expected, context) {
 }
 
 async function summarizeOptionalFile(relativePath) {
-  const fullPath = path.join(root, relativePath || '');
+  const fullPath = path.join(root, cleanPath(relativePath));
   if (!relativePath || !fs.existsSync(fullPath)) return null;
   const stat = fs.statSync(fullPath);
   return {
@@ -188,8 +194,32 @@ async function sha256File(filePath) {
   return hash.digest('hex');
 }
 
+function buildPublicationBoundary(currentIssues, currentDrift) {
+  return {
+    publication_status: 'blocked_no_render',
+    validates: [
+      'hud_route_input_freeze_drift',
+      'frozen_route_input_cache_comparison',
+    ],
+    does_not_clear: [
+      'translation_output',
+      'source_publication',
+      'public_lexical_export_reuse',
+      'accepted_definition_authority',
+      'public_lookup_publication',
+      'route_publication_readiness',
+    ],
+    route_input_scope: 'freeze_drift_check_only_not_publication_readiness',
+    warning_status_blocks_publication_claim: true,
+    current_route_inputs_reconciled: currentIssues.length === 0 && currentDrift.length === 0,
+    route_data_regenerated: false,
+    source_imports_changed: false,
+    public_lookup_artifacts_changed: false,
+  };
+}
+
 function writeReport(relativePath, result) {
-  const filePath = path.join(root, relativePath);
+  const filePath = path.join(root, cleanPath(relativePath));
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   const lines = [
     '# HUD Route Input Freeze Drift',
@@ -222,6 +252,16 @@ function writeReport(relativePath, result) {
     '',
     '## Boundary',
     '',
+    `- Publication status: ${result.publication_boundary.publication_status}`,
+    `- Validates: ${result.publication_boundary.validates.join(', ')}`,
+    `- Does not clear: ${result.publication_boundary.does_not_clear.join(', ')}`,
+    `- Route input scope: ${result.publication_boundary.route_input_scope}`,
+    `- Warning status blocks publication claim: ${result.publication_boundary.warning_status_blocks_publication_claim}`,
+    `- Current route inputs reconciled: ${result.publication_boundary.current_route_inputs_reconciled}`,
+    `- Route data regenerated: ${result.publication_boundary.route_data_regenerated}`,
+    `- Source imports changed: ${result.publication_boundary.source_imports_changed}`,
+    `- Public lookup artifacts changed: ${result.publication_boundary.public_lookup_artifacts_changed}`,
+    '',
     'This report compares the stamped release freeze to the current route input cache. It does not regenerate HUD route data, import sources, or change public lookup artifacts.',
   ];
   fs.writeFileSync(filePath, `${lines.join('\n')}\n`, 'utf8');
@@ -232,5 +272,40 @@ function mdCell(value) {
 }
 
 function cleanPath(value) {
-  return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  const normalized = String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  if (!normalized) return '';
+  if (path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Path must be relative to repo root: ${value}`);
+  }
+  return normalized;
+}
+
+function validatePathScopes(parsed) {
+  assertExactPath('--stamp', parsed.stamp, 'data/definitions/hud-route-release-stamp.json');
+  if (parsed.sourceDir) assertExactPath('--source-dir', parsed.sourceDir, '.local-cache/definition-routes');
+  if (parsed.report) {
+    assertExactPath('--report', parsed.report, 'reports/hud-route-input-freeze-drift.md');
+    assertFileExtension('--report', parsed.report, '.md');
+  }
+}
+
+function validateResolvedSourceDir(sourceDir) {
+  if (!sourceDir) return;
+  assertExactPath('--source-dir', sourceDir, '.local-cache/definition-routes');
+}
+
+function assertExactPath(label, actual, expected) {
+  if (actual !== expected) throw new Error(`${label} must be ${expected}, got ${actual || '(empty)'}`);
+}
+
+function assertPathUnder(label, actual, expectedPrefix) {
+  if (actual !== expectedPrefix && !actual.startsWith(`${expectedPrefix}/`)) {
+    throw new Error(`${label} must stay under ${expectedPrefix}, got ${actual || '(empty)'}`);
+  }
+}
+
+function assertFileExtension(label, actual, expectedExtension) {
+  if (!actual.endsWith(expectedExtension)) {
+    throw new Error(`${label} must end with ${expectedExtension}, got ${actual || '(empty)'}`);
+  }
 }

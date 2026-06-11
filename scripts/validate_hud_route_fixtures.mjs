@@ -22,6 +22,8 @@ const allowedLicensePatterns = [
   /^project-authored \/ CC0$/i,
 ];
 
+const allowedAnswerRoles = new Set(['answer', 'evidence', 'form_reference', 'audit']);
+
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
@@ -45,6 +47,31 @@ function containsForbiddenText(value) {
   return /\bPotential\b|potential option|low confidence/i.test(String(value || ''));
 }
 
+function validateAnswerBoundary(card, token, label) {
+  if (typeof card.answer_eligible !== 'boolean') {
+    issues.push(`${token}: ${label} missing boolean answer_eligible`);
+  }
+  if (!allowedAnswerRoles.has(card.answer_role)) {
+    issues.push(`${token}: ${label} has invalid answer_role ${card.answer_role || '(missing)'}`);
+  }
+  if (card.answer_eligible === true && card.answer_role !== 'answer') {
+    issues.push(`${token}: ${label} answer_eligible=true must use answer_role=answer`);
+  }
+  if (card.answer_role === 'answer' && card.answer_eligible !== true) {
+    issues.push(`${token}: ${label} answer_role=answer must be answer_eligible=true`);
+  }
+  if (card.route_type === 'phrase_evidence') {
+    if (card.answer_eligible !== false) issues.push(`${token}: ${label} phrase evidence must be answer_eligible=false`);
+    if (card.answer_role !== 'evidence') issues.push(`${token}: ${label} phrase evidence must use answer_role=evidence`);
+  }
+  if (card.meaning_quality === 'form_reference') {
+    if (card.answer_eligible !== false) issues.push(`${token}: ${label} form-reference card must be answer_eligible=false`);
+    if (!['form_reference', 'evidence'].includes(card.answer_role)) {
+      issues.push(`${token}: ${label} form-reference card must not use answer_role=${card.answer_role || '(missing)'}`);
+    }
+  }
+}
+
 function walkStrings(value, visit) {
   if (typeof value === 'string') {
     visit(value);
@@ -59,14 +86,14 @@ const issues = [];
 const contract = readJson(contractPath);
 const fixture = readJson(fixturePath);
 
-if (!contract.rendering_rules?.source_license_expanded_by_default) {
-  issues.push('contract must require source/license rows expanded by default');
-}
 if (!contract.rendering_rules?.supports_unbounded_cards) {
   issues.push('contract must support unbounded cards for long-form HUD sections');
 }
-if (!contract.rendering_rules?.supports_horizontal_card_lanes) {
-  issues.push('contract must support horizontal card lanes');
+if (!contract.rendering_rules?.supports_compact_card_grids) {
+  issues.push('contract must support compact card grids');
+}
+if (contract.rendering_rules?.supports_horizontal_card_lanes) {
+  issues.push('contract should not require horizontal card lanes');
 }
 
 const sectionIds = new Set((contract.route_sections || []).map((section) => section.section_id));
@@ -103,6 +130,8 @@ for (const sample of fixture.samples || []) {
   }
   if (sample.answer_card) {
     if (sample.answer_card.display_role !== 'answer') issues.push(`${token}: answer card must have display_role answer`);
+    if (sample.answer_card.answer_eligible !== true) issues.push(`${token}: answer card must be answer_eligible=true`);
+    if (sample.answer_card.answer_role !== 'answer') issues.push(`${token}: answer card must use answer_role answer`);
     if (!sample.answer_card.definition) issues.push(`${token}: answer card must carry a plain definition/gloss`);
     if (!Array.isArray(sample.answer_card.source_rows) || !sample.answer_card.source_rows.length) {
       issues.push(`${token}: answer card missing source_rows`);
@@ -115,29 +144,31 @@ for (const sample of fixture.samples || []) {
     ...(sample.audit_traces || []),
   ].filter(Boolean);
   for (const card of cards) {
+    const label = card.card_id || card.display_label || card.route_type || 'card';
+    validateAnswerBoundary(card, token, label);
     if (card.route_type !== 'phrase_evidence' && card.display_role !== 'audit' && card.route_type !== 'shape') {
-      if (!card.definition) issues.push(`${token}: ${card.card_id || card.display_label} missing definition text`);
+      if (!card.definition) issues.push(`${token}: ${label} missing definition text`);
     }
     if (card.route_type === 'phrase_evidence' && card.meaning_claim !== undefined && card.meaning_claim !== null) {
       issues.push(`${token}: phrase evidence card must not force a meaning_claim`);
     }
     if (['biblical_paraphrase_evidence', 'citable_paraphrase_evidence'].includes(card.route_type)) {
-      if (card.score_handicap !== 20) issues.push(`${token}: ${card.card_id || card.display_label} paraphrase score_handicap must be 20`);
+      if (card.score_handicap !== 20) issues.push(`${token}: ${label} paraphrase score_handicap must be 20`);
       if (!Number.isFinite(card.raw_score) || card.raw_score < 0 || card.raw_score > 100) {
-        issues.push(`${token}: ${card.card_id || card.display_label} paraphrase raw_score must be 0..100`);
+        issues.push(`${token}: ${label} paraphrase raw_score must be 0..100`);
       }
       if (Number.isFinite(card.raw_score) && card.adjusted_score !== card.raw_score - 20) {
-        issues.push(`${token}: ${card.card_id || card.display_label} paraphrase adjusted_score must equal raw_score - 20`);
+        issues.push(`${token}: ${label} paraphrase adjusted_score must equal raw_score - 20`);
       }
     }
     if (card.display_role !== 'audit' && card.route_type !== 'shape') {
       if (!Array.isArray(card.source_rows) || !card.source_rows.length) {
-        issues.push(`${token}: ${card.card_id || card.display_label} missing source rows`);
+        issues.push(`${token}: ${label} missing source rows`);
       }
     }
     for (const row of card.source_rows || []) {
       if (!safeLicense(row)) {
-        issues.push(`${token}: unsafe or unclear license in card ${card.card_id || card.display_label}: ${row.license || 'missing'}`);
+        issues.push(`${token}: unsafe or unclear license in card ${label}: ${row.license || 'missing'}`);
       }
     }
   }

@@ -122,9 +122,7 @@ function noteForClaim(claim) {
   if (claim?.route_type === 'shape') {
     return 'Shape check only; this does not define the whole token.';
   }
-  if (claim?.route_type === 'phrase_evidence') {
-    return 'Licensed Hebrew phrase evidence only; this row does not force a meaning.';
-  }
+  if (claim?.route_type === 'phrase_evidence') return '';
   if (claim?.route_type === 'biblical_paraphrase_evidence') {
     return 'Source-backed biblical paraphrase route; displayed percent is the route match percent.';
   }
@@ -163,10 +161,20 @@ function scoreFieldsForCard(card) {
   };
 }
 
+function answerRoleForClaim(claim, role) {
+  if (claim?.answer_role) return claim.answer_role;
+  if (role === 'answer') return 'answer';
+  if (role === 'audit') return 'audit';
+  if (claim?.meaning_quality === 'form_reference') return 'form_reference';
+  return 'evidence';
+}
+
 function claimToCard(claim, role = 'evidence') {
   const card = {
     card_id: claim?.claim_id || '',
     display_role: role,
+    answer_eligible: typeof claim?.answer_eligible === 'boolean' ? claim.answer_eligible : role === 'answer',
+    answer_role: answerRoleForClaim(claim, role),
     route_family: claim?.route_family || '',
     route_type: claim?.route_type || '',
     language: claim?.language || '',
@@ -200,11 +208,13 @@ function phraseToCard(row) {
     match_type: row?.match_type || 'licensed phrase occurrence',
     confidence_percent: Number.isFinite(row?.evidence_strength) ? row.evidence_strength : null,
     answer_score: null,
+    answer_eligible: false,
+    answer_role: 'evidence',
     display_label: 'Licensed phrase use',
     hebrew: row?.focus_surface || '',
     normalized: row?.focus_normalized || '',
     definition: 'Usage context only; no meaning is forced by this phrase row.',
-    plain_note: 'The focus token is marked so the surrounding words do not become the definition.',
+    plain_note: '',
     phrase_hebrew: row?.phrase_hebrew || '',
     phrase_tokens: Array.isArray(row?.phrase_tokens) ? row.phrase_tokens : [],
     source_ref: row?.source_ref || row?.sefaria_ref || '',

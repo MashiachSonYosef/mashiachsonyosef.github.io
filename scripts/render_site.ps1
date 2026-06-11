@@ -41,6 +41,8 @@ function Convert-SourceHtml {
   $html = $html -replace '(?i)&lt;/b&gt;', '</strong>'
   $html = $html -replace '(?i)&lt;strong&gt;', '<strong>'
   $html = $html -replace '(?i)&lt;/strong&gt;', '</strong>'
+  $html = $html -replace '(?i)&lt;big&gt;', '<span>'
+  $html = $html -replace '(?i)&lt;/big&gt;', '</span>'
   $html = $html -replace '(?i)&lt;small&gt;', '<span class="source-small">'
   $html = $html -replace '(?i)&lt;/small&gt;', '</span>'
   $html = (($html -split '\r?\n') | ForEach-Object { $_.TrimEnd() }) -join "`n"
@@ -244,6 +246,9 @@ function Get-PairedBaseUnit {
 
 function Get-HomeGroup {
   param([object]$Source)
+  if ([string]$Source.work_id -eq 'orot' -or [string]$Source.work_slug -eq 'orot') {
+    return 'Thought / Musar / Chasidut'
+  }
   $slugParts = @($Source.work_slug -split '[\\/]' | Where-Object { $_ })
   if ($slugParts.Count -gt 1) {
     $first = $slugParts[0]
@@ -293,6 +298,9 @@ function Get-LibrarySubgroup {
   param([object]$Source)
 
   $group = Get-HomeGroup $Source
+  if ([string]$Source.work_id -eq 'orot' -or [string]$Source.work_slug -eq 'orot') {
+    return 'Modern Hebrew Thought'
+  }
   $title = [string]$Source.work_title
   $baseTitle = [string]$Source.base_work_title
   $workType = [string]$Source.work_type
@@ -651,7 +659,8 @@ function Append-SiteHead {
   param(
     [System.Text.StringBuilder]$Builder,
     [string]$Title,
-    [switch]$IncludeLexicalStyles
+    [switch]$IncludeLexicalStyles,
+    [string]$ReaderWorkbenchCssHref = ''
   )
 
   [void]$Builder.AppendLine('<!DOCTYPE html>')
@@ -673,7 +682,14 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }')
   [void]$Builder.AppendLine('    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }')
   [void]$Builder.AppendLine('    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }')
-  [void]$Builder.AppendLine('    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }')
+  [void]$Builder.AppendLine('    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }')
+  [void]$Builder.AppendLine('    .hero-main { min-width: 0; }')
+  [void]$Builder.AppendLine('    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }')
+  [void]$Builder.AppendLine('    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }')
+  [void]$Builder.AppendLine('    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }')
+  [void]$Builder.AppendLine('    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }')
+  [void]$Builder.AppendLine('    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }')
+  [void]$Builder.AppendLine('    .hero-notes li { padding-left: 0.1rem; }')
   [void]$Builder.AppendLine('    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }')
   [void]$Builder.AppendLine('    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }')
   [void]$Builder.AppendLine('    .license-notice strong { color: var(--text); font-weight: 400; }')
@@ -742,54 +758,53 @@ function Append-SiteHead {
   if ($IncludeLexicalStyles) {
     [void]$Builder.AppendLine('    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }')
     [void]$Builder.AppendLine('    .lexical-coverage strong { color: var(--text); font-weight: 400; }')
+    [void]$Builder.AppendLine('    .reader-token-wrap { display: inline-grid; grid-auto-rows: min-content; justify-items: center; align-items: start; vertical-align: baseline; gap: 0.12em; margin: 0.04em 0.1em 0.16em; max-width: min(34rem, calc(100vw - 32px)); }')
     [void]$Builder.AppendLine('    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }')
-    [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }')
+    [void]$Builder.AppendLine('    .reader-token-wrap .lexical-word { margin: 0; }')
+    [void]$Builder.AppendLine('    .reader-gloss-line { display: block; direction: ltr; unicode-bidi: isolate; color: var(--muted); font-size: 0.58em; font-weight: 600; line-height: 1.22; width: max-content; max-width: min(22rem, calc(100vw - 40px)); text-align: center; white-space: normal; overflow: visible; overflow-wrap: break-word; word-break: normal; hyphens: auto; opacity: 0.88; border: 1px solid rgba(214,190,138,0.18); background: rgba(10,11,13,0.72); padding: 0.18em 0.42em 0.2em; border-radius: 4px; box-shadow: 0 4px 14px rgba(0,0,0,0.18); }')
+    [void]$Builder.AppendLine('    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }')
+    [void]$Builder.AppendLine('    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }')
     [void]$Builder.AppendLine('    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }')
     [void]$Builder.AppendLine('    .lexical-slot { margin-top: 16px; }')
-    [void]$Builder.AppendLine('    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }')
+    [void]$Builder.AppendLine('    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }')
     [void]$Builder.AppendLine('    .lexical-hud[hidden] { display: none; }')
-    [void]$Builder.AppendLine('    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }')
+    [void]$Builder.AppendLine('    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }')
     [void]$Builder.AppendLine('    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }')
     [void]$Builder.AppendLine('    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }')
     [void]$Builder.AppendLine('    .hud-close:hover { color: var(--text); border-color: var(--accent); }')
-    [void]$Builder.AppendLine('    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }')
-    [void]$Builder.AppendLine('    .lexical-field-row { display: contents; }')
-    [void]$Builder.AppendLine('    .lexical-field-row[hidden] { display: none; }')
-    [void]$Builder.AppendLine('    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }')
-    [void]$Builder.AppendLine('    .lexical-fields dd { margin: 0; color: var(--text); }')
-    [void]$Builder.AppendLine('    .lexical-fields ul { margin: 0; padding-left: 18px; }')
-    [void]$Builder.AppendLine('    .breakdown-list { display: grid; gap: 8px; }')
-    [void]$Builder.AppendLine('    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }')
-    [void]$Builder.AppendLine('    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }')
-    [void]$Builder.AppendLine('    .breakdown-row p { margin: 0 0 4px; }')
-    [void]$Builder.AppendLine('    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }')
-    [void]$Builder.AppendLine('    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }')
-    [void]$Builder.AppendLine('    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }')
-    [void]$Builder.AppendLine('    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }')
-    [void]$Builder.AppendLine('    .lexical-entry .entry-hebrew { color: var(--hebrew); }')
-    [void]$Builder.AppendLine('    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }')
-    [void]$Builder.AppendLine('    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }')
-    [void]$Builder.AppendLine('    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }')
+    [void]$Builder.AppendLine('    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }')
+    [void]$Builder.AppendLine('    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }')
+    [void]$Builder.AppendLine('    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }')
+    [void]$Builder.AppendLine('    .route-treatment-card strong { color: var(--accent); font-weight: 400; }')
+    [void]$Builder.AppendLine('    .route-treatment-line { color: var(--text); margin: 0; }')
+    [void]$Builder.AppendLine('    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }')
+    [void]$Builder.AppendLine('    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }')
+    [void]$Builder.AppendLine('    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }')
+    [void]$Builder.AppendLine('    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }')
+    [void]$Builder.AppendLine('    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }')
+    [void]$Builder.AppendLine('    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }')
+    [void]$Builder.AppendLine('    .claim-row-list { display: grid; gap: 8px; }')
+    [void]$Builder.AppendLine('    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }')
+    [void]$Builder.AppendLine('    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }')
     [void]$Builder.AppendLine('    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }')
-    [void]$Builder.AppendLine('    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }')
-    [void]$Builder.AppendLine('    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }')
-    [void]$Builder.AppendLine('    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }')
-    [void]$Builder.AppendLine('    .claim-renderings { color: var(--text); margin: 0; }')
-    [void]$Builder.AppendLine('    .other-entries { margin-top: 12px; }')
-    [void]$Builder.AppendLine('    .claim-row-list details { margin-top: 8px; }')
-    [void]$Builder.AppendLine('    .hud-card-lane { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(250px, 38%, 380px); gap: 10px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity; overscroll-behavior-inline: contain; scrollbar-color: var(--accent) rgba(255,255,255,0.08); scrollbar-width: thin; }')
-    [void]$Builder.AppendLine('    .hud-card-lane::after { content: ""; width: 18px; }')
-    [void]$Builder.AppendLine('    .hud-card-lane .claim-row { scroll-snap-align: start; }')
-    [void]$Builder.AppendLine('    .hud-scroll-note { color: var(--muted); margin: 0 0 6px; font-size: 0.82rem; }')
-    [void]$Builder.AppendLine('    .source-details { margin-top: 16px; }')
-    [void]$Builder.AppendLine('    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }')
-    [void]$Builder.AppendLine('    .source-row:first-child { border-top: 0; }')
-    [void]$Builder.AppendLine('    .source-row strong { color: var(--text); font-weight: 400; }')
-    [void]$Builder.AppendLine('    .source-claim { color: var(--text); margin: 0 0 6px; }')
-    [void]$Builder.AppendLine('    .source-claim span { color: var(--hebrew); }')
+    [void]$Builder.AppendLine('    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }')
+    [void]$Builder.AppendLine('    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }')
+    [void]$Builder.AppendLine('    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }')
+    [void]$Builder.AppendLine('    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }')
+    [void]$Builder.AppendLine('    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }')
+    [void]$Builder.AppendLine('    .usage-evidence-details p { margin: 0; }')
+    [void]$Builder.AppendLine('    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }')
+    [void]$Builder.AppendLine('    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }')
+    [void]$Builder.AppendLine('    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }')
+    [void]$Builder.AppendLine('    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }')
+    [void]$Builder.AppendLine('    .phrase-context { color: var(--hebrew); opacity: 0.72; }')
+    [void]$Builder.AppendLine('    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }')
+    [void]$Builder.AppendLine('    .hud-card-lane .claim-row { min-height: 100%; }')
+    [void]$Builder.AppendLine('    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }')
+    [void]$Builder.AppendLine('    .source-footnote-row { margin: 4px 0; line-height: 1.28; }')
   }
   [void]$Builder.AppendLine('    .source-citation { overflow-wrap: anywhere; word-break: break-word; }')
-  [void]$Builder.AppendLine('    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }')
+  [void]$Builder.AppendLine('    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }')
   [void]$Builder.AppendLine('    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }')
   [void]$Builder.AppendLine('    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }')
   [void]$Builder.AppendLine('    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }')
@@ -804,11 +819,14 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .paired-panel p { margin: 6px 0 0; }')
   [void]$Builder.AppendLine('    .paired-panel a { color: var(--accent); }')
   if ($IncludeLexicalStyles) {
-    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
-  } else {
     [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
+  } else {
+  [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
   }
   [void]$Builder.AppendLine('  </style>')
+  if ($ReaderWorkbenchCssHref) {
+    [void]$Builder.AppendLine("  <link rel=""stylesheet"" href=""$(Encode-Html $ReaderWorkbenchCssHref)"">")
+  }
   [void]$Builder.AppendLine('</head>')
   [void]$Builder.AppendLine('<body>')
 }
@@ -831,9 +849,16 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));')
   [void]$Builder.AppendLine('      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));')
   [void]$Builder.AppendLine('      const chunkPromises = new Map();')
+  [void]$Builder.AppendLine('      const routeShardPromises = new Map();')
   [void]$Builder.AppendLine('      const sourceRows = new Map();')
   [void]$Builder.AppendLine('      let manifestPromise = null;')
+  [void]$Builder.AppendLine('      let routeManifestPromise = null;')
   [void]$Builder.AppendLine('      const hud = document.querySelector("[data-lexical-hud]");')
+  [void]$Builder.AppendLine('      if (!hud) return;')
+  [void]$Builder.AppendLine('      const waitForIdle = () => new Promise((resolve) => {')
+  [void]$Builder.AppendLine('        if ("requestIdleCallback" in window) window.requestIdleCallback(resolve, { timeout: 250 });')
+  [void]$Builder.AppendLine('        else window.requestAnimationFrame(() => window.setTimeout(resolve, 0));')
+  [void]$Builder.AppendLine('      });')
   [void]$Builder.AppendLine('      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();')
   [void]$Builder.AppendLine('      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");')
   [void]$Builder.AppendLine('      const localSourceUrlMap = {')
@@ -869,6 +894,11 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        if (!lexicalConfig.manifest_url) return null;')
   [void]$Builder.AppendLine('        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);')
   [void]$Builder.AppendLine('        return manifestPromise;')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const routeLookupManifestUrl = () => toAbsoluteUrl(lexicalConfig.hud_route_lookup_manifest_url || "data/definitions/hud-route-lookup/manifest.json", lexicalRootUrl());')
+  [void]$Builder.AppendLine('      const loadRouteManifest = async () => {')
+  [void]$Builder.AppendLine('        if (!routeManifestPromise) routeManifestPromise = fetchJson(routeLookupManifestUrl());')
+  [void]$Builder.AppendLine('        return routeManifestPromise;')
   [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const resolveSourceRows = (ids, inlineRows) => {')
   [void]$Builder.AppendLine('        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;')
@@ -908,9 +938,109 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        if (chunkId) await loadChunk(chunkId);')
   [void]$Builder.AppendLine('        return tokenRows.get(tokenIndexId) || {};')
   [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const codepointKey = (value, prefixLength) => {')
+  [void]$Builder.AppendLine('        const chars = [...String(value || "")].slice(0, prefixLength);')
+  [void]$Builder.AppendLine('        if (!chars.length) return "empty";')
+  [void]$Builder.AppendLine('        const first = chars[0].codePointAt(0);')
+  [void]$Builder.AppendLine('        if (first < 0x05d0 || first > 0x05ea) return "other";')
+  [void]$Builder.AppendLine('        return chars.map((char) => char.codePointAt(0).toString(16).padStart(4, "0")).join("-");')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const loadRouteCards = async (normalized) => {')
+  [void]$Builder.AppendLine('        if (!normalized) return [];')
+  [void]$Builder.AppendLine('        const manifest = await loadRouteManifest();')
+  [void]$Builder.AppendLine('        const shardKey = codepointKey(normalized, Number(manifest.prefix_length || 2));')
+  [void]$Builder.AppendLine('        const shardInfo = (manifest.shards || []).find((shard) => shard.shard === shardKey);')
+  [void]$Builder.AppendLine('        if (!shardInfo || !shardInfo.path) return [];')
+  [void]$Builder.AppendLine('        if (!routeShardPromises.has(shardKey)) {')
+  [void]$Builder.AppendLine('          routeShardPromises.set(shardKey, fetchJson(shardInfo.path, routeLookupManifestUrl()));')
+  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('        const shard = await routeShardPromises.get(shardKey);')
+  [void]$Builder.AppendLine('        return (((shard || {}).routes_by_normalized || {})[normalized] || []).slice();')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const addLookupCandidate = (map, key, relation, penalty = 0) => {')
+  [void]$Builder.AppendLine('        const normalized = normalizeHebrewKey(key);')
+  [void]$Builder.AppendLine('        if (!normalized || map.has(normalized)) return;')
+  [void]$Builder.AppendLine('        map.set(normalized, { key: normalized, relation, penalty });')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const lookupCandidatesFor = (clickedForm, normalized) => {')
+  [void]$Builder.AppendLine('        const candidates = new Map();')
+  [void]$Builder.AppendLine('        addLookupCandidate(candidates, normalized || clickedForm, "exact", 0);')
+  [void]$Builder.AppendLine('        const primary = normalizeHebrewKey(normalized || clickedForm);')
+  [void]$Builder.AppendLine('        String(primary || "").split(/[\u05BE-]/).filter((part) => part && part !== primary).forEach((part) => addLookupCandidate(candidates, part, "maqaf component", 12));')
+  [void]$Builder.AppendLine('        const prefixPattern = /^[\u05D5\u05D1\u05DB\u05DC\u05DE\u05D4\u05E9]/;')
+  [void]$Builder.AppendLine('        for (let pass = 0; pass < 3; pass += 1) {')
+  [void]$Builder.AppendLine('          [...candidates.values()].slice().forEach((candidate) => {')
+  [void]$Builder.AppendLine('            if (candidate.key.length >= 4 && prefixPattern.test(candidate.key)) addLookupCandidate(candidates, candidate.key.slice(1), "prefix-stripped candidate", 20 + pass * 4);')
+  [void]$Builder.AppendLine('          });')
+  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('        [...candidates.values()].slice().forEach((candidate) => {')
+  [void]$Builder.AppendLine('          if (!candidate.key.endsWith("\u05D9\u05DE")) return;')
+  [void]$Builder.AppendLine('          const stem = candidate.key.slice(0, -2);')
+  [void]$Builder.AppendLine('          if (stem.endsWith("\u05D4") && stem.length >= 3) addLookupCandidate(candidates, `${stem.slice(0, -1)}\u05D5\u05D4\u05D9\u05DE`, "mater-expanded plural candidate", 14);')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        const suffixRules = [')
+  [void]$Builder.AppendLine('          { suffix: "\u05D9\u05DE", relation: "plural-suffix candidate", penalty: 18 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05D5\u05EA", relation: "plural-suffix candidate", penalty: 18 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05D9\u05D4", relation: "possessive-suffix candidate", penalty: 24 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05D9\u05D5", relation: "possessive-suffix candidate", penalty: 24 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05D9\u05DB", relation: "possessive-suffix candidate", penalty: 24 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05D9\u05DB\u05DE", relation: "possessive-suffix candidate", penalty: 28 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05D9\u05DB\u05E0", relation: "possessive-suffix candidate", penalty: 28 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05D4\u05DE", relation: "possessive-suffix candidate", penalty: 28 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05D4\u05E0", relation: "possessive-suffix candidate", penalty: 28 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05E0\u05D5", relation: "possessive-suffix candidate", penalty: 24 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05DB", relation: "possessive-suffix candidate", penalty: 24 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05D5", relation: "possessive-suffix candidate", penalty: 24 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05D4", relation: "suffix-stripped candidate", penalty: 24 },')
+  [void]$Builder.AppendLine('          { suffix: "\u05D9", relation: "suffix-stripped candidate", penalty: 24 }')
+  [void]$Builder.AppendLine('        ];')
+  [void]$Builder.AppendLine('        [...candidates.values()].slice().forEach((candidate) => {')
+  [void]$Builder.AppendLine('          suffixRules.forEach((rule) => {')
+  [void]$Builder.AppendLine('            if (candidate.key.endsWith(rule.suffix) && candidate.key.length - rule.suffix.length >= 3) addLookupCandidate(candidates, candidate.key.slice(0, -rule.suffix.length), rule.relation, rule.penalty);')
+  [void]$Builder.AppendLine('          });')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        return [...candidates.values()];')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const loadRouteCardsForToken = async (clickedForm, normalized) => {')
+  [void]$Builder.AppendLine('        const candidates = lookupCandidatesFor(clickedForm, normalized);')
+  [void]$Builder.AppendLine('        const rows = [];')
+  [void]$Builder.AppendLine('        for (const candidate of candidates) {')
+  [void]$Builder.AppendLine('          const cards = await loadRouteCards(candidate.key);')
+  [void]$Builder.AppendLine('          cards.forEach((card) => rows.push({ ...card, lookup_key: candidate.key, lookup_relation: candidate.relation, lookup_penalty: candidate.penalty }));')
+  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('        const seen = new Set();')
+  [void]$Builder.AppendLine('        return { candidates, cards: rows.filter((card) => { const key = `${card.card_id || ""}|${card.lookup_key || ""}`; if (seen.has(key)) return false; seen.add(key); return true; }) };')
+  [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine("      const normalizeHebrewDisplay = (value) => typeof value === ""string"" ? value.replace(/([\u0590-\u05FF])'/g, ""`$1$geresh"").replace(/([\u0590-\u05FF])\""(?=[\u0590-\u05FF])/g, ""`$1$gershayim"") : value;")
-  [void]$Builder.AppendLine('      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;')
-  [void]$Builder.AppendLine('      const makeWordSpan = (text, tokenIndexId, ordinal) => {')
+  [void]$Builder.AppendLine('      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22\u05BE-]*/gu;')
+  [void]$Builder.AppendLine('      const tokenSplitPrefixKeys = new Set(["\u05D5", "\u05D1", "\u05DB", "\u05DC", "\u05DE", "\u05D4", "\u05E9"]);')
+  [void]$Builder.AppendLine('      const tokenRowKey = (row) => normalizeHebrewKey((row && (row.surface_word || row.hebrew_word || row.normalized_word)) || "");')
+  [void]$Builder.AppendLine('      const tokenAlignmentKey = (value) => normalizeHebrewKey(value).replace(/[\u05BE-]/g, "");')
+  [void]$Builder.AppendLine('      const pickPrimaryTokenId = (consumed) => {')
+  [void]$Builder.AppendLine('        const primary = consumed.find((item) => !tokenSplitPrefixKeys.has(tokenRowKey(item.row))) || consumed[0];')
+  [void]$Builder.AppendLine('        return primary ? primary.id || "" : "";')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const consumeAlignedToken = (text, tokenIds, state) => {')
+  [void]$Builder.AppendLine('        if (!Array.isArray(state.tokenRows)) { const tokenIndexId = tokenIds[state.index++]; return { tokenIndexId, tokenIndexIds: tokenIndexId ? [tokenIndexId] : [] }; }')
+  [void]$Builder.AppendLine('        const target = tokenAlignmentKey(text);')
+  [void]$Builder.AppendLine('        let combined = "";')
+  [void]$Builder.AppendLine('        const consumed = [];')
+  [void]$Builder.AppendLine('        for (let offset = 0; state.index + offset < tokenIds.length && offset < 6; offset += 1) {')
+  [void]$Builder.AppendLine('          const id = tokenIds[state.index + offset];')
+  [void]$Builder.AppendLine('          const row = state.tokenRows[state.index + offset] || {};')
+  [void]$Builder.AppendLine('          const key = tokenAlignmentKey((row && (row.surface_word || row.hebrew_word || row.normalized_word)) || "");')
+  [void]$Builder.AppendLine('          if (!key) break;')
+  [void]$Builder.AppendLine('          combined += key;')
+  [void]$Builder.AppendLine('          consumed.push({ id, row });')
+  [void]$Builder.AppendLine('          if (combined === target) { state.index += consumed.length; return { tokenIndexId: pickPrimaryTokenId(consumed), tokenIndexIds: consumed.map((item) => item.id).filter(Boolean) }; }')
+  [void]$Builder.AppendLine('          if (!target.startsWith(combined)) break;')
+  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('        const tokenIndexId = tokenIds[state.index++];')
+  [void]$Builder.AppendLine('        return { tokenIndexId, tokenIndexIds: tokenIndexId ? [tokenIndexId] : [] };')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const makeWordSpan = (text, tokenIndexId, ordinal, tokenIndexIds = []) => {')
+  [void]$Builder.AppendLine('        const wrap = document.createElement("span");')
+  [void]$Builder.AppendLine('        wrap.className = "reader-token-wrap";')
   [void]$Builder.AppendLine('        const span = document.createElement("span");')
   [void]$Builder.AppendLine('        span.className = "lexical-word";')
   [void]$Builder.AppendLine('        span.lang = "he";')
@@ -918,11 +1048,21 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        span.tabIndex = 0;')
   [void]$Builder.AppendLine('        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;')
   [void]$Builder.AppendLine('        span.dataset.lexicalIndex = tokenIndexId || "";')
+  [void]$Builder.AppendLine('        span.dataset.lexicalSurface = text || "";')
   [void]$Builder.AppendLine('        span.dataset.lexicalEntry = "";')
   [void]$Builder.AppendLine('        span.dataset.lexicalStatus = "pending";')
+  [void]$Builder.AppendLine('        span.dataset.lexicalTokenIds = tokenIndexIds.length ? tokenIndexIds.join(" ") : (tokenIndexId || "");')
+  [void]$Builder.AppendLine('        span.setAttribute("aria-haspopup", "dialog");')
+  [void]$Builder.AppendLine('        span.setAttribute("aria-controls", "route-hud-panel");')
+  [void]$Builder.AppendLine('        span.setAttribute("aria-expanded", "false");')
   [void]$Builder.AppendLine('        span.setAttribute("aria-pressed", "false");')
   [void]$Builder.AppendLine('        span.textContent = normalizeHebrewDisplay(text);')
-  [void]$Builder.AppendLine('        return span;')
+  [void]$Builder.AppendLine('        const glossLine = document.createElement("span");')
+  [void]$Builder.AppendLine('        glossLine.className = "reader-gloss-line";')
+  [void]$Builder.AppendLine('        glossLine.dataset.glossPlaceholder = "true";')
+  [void]$Builder.AppendLine('        glossLine.textContent = "TBD";')
+  [void]$Builder.AppendLine('        wrap.append(span, glossLine);')
+  [void]$Builder.AppendLine('        return wrap;')
   [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const wrapTextNode = (node, tokenIds, state) => {')
   [void]$Builder.AppendLine('        const text = node.nodeValue;')
@@ -932,50 +1072,53 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        let position = 0;')
   [void]$Builder.AppendLine('        matches.forEach((match) => {')
   [void]$Builder.AppendLine('          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));')
-  [void]$Builder.AppendLine('          const tokenIndexId = tokenIds[state.index++];')
-  [void]$Builder.AppendLine('          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));')
+  [void]$Builder.AppendLine('          const tokenMatch = consumeAlignedToken(match[0], tokenIds, state);')
+  [void]$Builder.AppendLine('          const ordinal = ++state.ordinal;')
+  [void]$Builder.AppendLine('          fragment.appendChild(tokenMatch.tokenIndexId ? makeWordSpan(match[0], tokenMatch.tokenIndexId, ordinal, tokenMatch.tokenIndexIds) : document.createTextNode(match[0]));')
   [void]$Builder.AppendLine('          position = match.index + match[0].length;')
   [void]$Builder.AppendLine('        });')
   [void]$Builder.AppendLine('        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));')
   [void]$Builder.AppendLine('        node.parentNode.replaceChild(fragment, node);')
   [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const wrapParagraph = (paragraph, tokenIds) => {')
+  [void]$Builder.AppendLine('      const wrapParagraph = async (paragraph, tokenIds) => {')
   [void]$Builder.AppendLine('        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);')
   [void]$Builder.AppendLine('        const textNodes = [];')
   [void]$Builder.AppendLine('        while (walker.nextNode()) textNodes.push(walker.currentNode);')
-  [void]$Builder.AppendLine('        const state = { index: 0 };')
+  [void]$Builder.AppendLine('        const visibleTokenCount = textNodes.reduce((count, node) => count + Array.from(node.nodeValue.matchAll(hebrewTokenPattern)).length, 0);')
+  [void]$Builder.AppendLine('        const tokenRowsForParagraph = visibleTokenCount !== tokenIds.length ? await Promise.all(tokenIds.map((tokenId) => loadTokenRow(tokenId))) : null;')
+  [void]$Builder.AppendLine('        const state = { index: 0, ordinal: 0, tokenRows: tokenRowsForParagraph };')
   [void]$Builder.AppendLine('        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));')
   [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const loadedOccurrences = await loadOccurrences();')
-  [void]$Builder.AppendLine('      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {')
-  [void]$Builder.AppendLine('        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;')
-  [void]$Builder.AppendLine('        if (!unitData) return;')
-  [void]$Builder.AppendLine('        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {')
-  [void]$Builder.AppendLine('          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);')
-  [void]$Builder.AppendLine('          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);')
-  [void]$Builder.AppendLine('          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);')
+  [void]$Builder.AppendLine('      const hydrateLexicalWords = async () => {')
+  [void]$Builder.AppendLine('        await waitForIdle();')
+  [void]$Builder.AppendLine('        const loadedOccurrences = await loadOccurrences();')
+  [void]$Builder.AppendLine('        const tasks = [];')
+  [void]$Builder.AppendLine('        document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {')
+  [void]$Builder.AppendLine('          const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;')
+  [void]$Builder.AppendLine('          if (!unitData) return;')
+  [void]$Builder.AppendLine('          const paragraphsByIndex = new Map((unitData.paragraphs || []).map((item) => [Number(item.paragraph_index), item]));')
+  [void]$Builder.AppendLine('          unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {')
+  [void]$Builder.AppendLine('            const paragraphData = paragraphsByIndex.get(Number(paragraph.dataset.lexicalParagraph));')
+  [void]$Builder.AppendLine('            tasks.push({ paragraph, tokenIds: paragraphData ? (paragraphData.token_index_ids || []) : [] });')
+  [void]$Builder.AppendLine('          });')
   [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('      });')
-  [void]$Builder.AppendLine('      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));')
-  [void]$Builder.AppendLine('      if (!buttons.length || !hud) return;')
+  [void]$Builder.AppendLine('        for (let index = 0; index < tasks.length; index += 24) {')
+  [void]$Builder.AppendLine('          await Promise.all(tasks.slice(index, index + 24).map((task) => wrapParagraph(task.paragraph, task.tokenIds)));')
+  [void]$Builder.AppendLine('          if (index + 24 < tasks.length) await waitForIdle();')
+  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      hydrateLexicalWords().catch((error) => console.error(error));')
   [void]$Builder.AppendLine('      let activeHudButton = null;')
   [void]$Builder.AppendLine('      if (hud.parentElement !== document.body) document.body.appendChild(hud);')
   [void]$Builder.AppendLine('      const positionHudNearButton = (button) => {')
   [void]$Builder.AppendLine('        if (!button || hud.hidden) return;')
-  [void]$Builder.AppendLine('        const rect = button.getBoundingClientRect();')
   [void]$Builder.AppendLine('        const margin = 12;')
-  [void]$Builder.AppendLine('        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));')
+  [void]$Builder.AppendLine('        const width = Math.max(320, window.innerWidth - margin * 2);')
   [void]$Builder.AppendLine('        hud.style.width = width + "px";')
-  [void]$Builder.AppendLine('        const preferredLeft = rect.right - width;')
-  [void]$Builder.AppendLine('        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);')
-  [void]$Builder.AppendLine('        const below = window.innerHeight - rect.bottom - margin;')
-  [void]$Builder.AppendLine('        const above = rect.top - margin;')
-  [void]$Builder.AppendLine('        const openAbove = below < 280 && above > below;')
-  [void]$Builder.AppendLine('        const available = Math.max(220, (openAbove ? above : below) - margin);')
-  [void]$Builder.AppendLine('        hud.style.maxHeight = Math.min(560, available) + "px";')
-  [void]$Builder.AppendLine('        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));')
-  [void]$Builder.AppendLine('        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;')
-  [void]$Builder.AppendLine('        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);')
+  [void]$Builder.AppendLine('        const left = Math.max(margin, Math.round((window.innerWidth - width) / 2));')
+  [void]$Builder.AppendLine('        const available = Math.max(260, window.innerHeight - margin * 2);')
+  [void]$Builder.AppendLine('        hud.style.maxHeight = available + "px";')
+  [void]$Builder.AppendLine('        const top = margin;')
   [void]$Builder.AppendLine('        hud.style.left = left + "px";')
   [void]$Builder.AppendLine('        hud.style.top = top + "px";')
   [void]$Builder.AppendLine('      };')
@@ -983,550 +1126,391 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        if (!activeHudButton || hud.hidden) return;')
   [void]$Builder.AppendLine('        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));')
   [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const setText = (root, selector, value) => {')
-  [void]$Builder.AppendLine('        const node = root.querySelector(selector);')
-  [void]$Builder.AppendLine('        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const setList = (root, selector, value) => {')
-  [void]$Builder.AppendLine('        const node = root.querySelector(selector);')
-  [void]$Builder.AppendLine('        if (!node) return;')
-  [void]$Builder.AppendLine('        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);')
-  [void]$Builder.AppendLine('        node.replaceChildren();')
-  [void]$Builder.AppendLine('        if (!values.length) { node.textContent = "N/A"; return; }')
-  [void]$Builder.AppendLine('        if (values.length === 1) { node.textContent = values[0]; return; }')
-  [void]$Builder.AppendLine('        const ul = document.createElement("ul");')
-  [void]$Builder.AppendLine('        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });')
-  [void]$Builder.AppendLine('        node.appendChild(ul);')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const setRowHidden = (root, selector, hidden) => {')
-  [void]$Builder.AppendLine('        const row = root.querySelector(selector);')
-  [void]$Builder.AppendLine('        if (row) row.hidden = Boolean(hidden);')
-  [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);')
-  [void]$Builder.AppendLine('      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");')
-  [void]$Builder.AppendLine('      const cleanStrictRenderings = (values) => {')
-  [void]$Builder.AppendLine('        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);')
-  [void]$Builder.AppendLine('        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));')
-  [void]$Builder.AppendLine('        return [...new Set(raw.filter((value) => {')
-  [void]$Builder.AppendLine('          if (value.length > 64) return false;')
-  [void]$Builder.AppendLine('          if (/[()]/.test(value)) return false;')
-  [void]$Builder.AppendLine('          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;')
-  [void]$Builder.AppendLine('          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;')
-  [void]$Builder.AppendLine('          return true;')
-  [void]$Builder.AppendLine('        }))];')
-  [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const uniqueValues = (values) => [...new Set(cleanValues(values))];')
-  [void]$Builder.AppendLine('      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);')
   [void]$Builder.AppendLine('      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");')
-  [void]$Builder.AppendLine('      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();')
-  [void]$Builder.AppendLine('      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");')
-  [void]$Builder.AppendLine('      const isAramaicView = (view) => {')
-  [void]$Builder.AppendLine('        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();')
-  [void]$Builder.AppendLine('        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;')
-  [void]$Builder.AppendLine('        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const strictEntriesForView = (view) => {')
-  [void]$Builder.AppendLine('        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");')
-  [void]$Builder.AppendLine('        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));')
-  [void]$Builder.AppendLine('        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {')
-  [void]$Builder.AppendLine('          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;')
-  [void]$Builder.AppendLine('          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;')
-  [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const getStrictBuckets = (view) => {')
-  [void]$Builder.AppendLine('        const topLevel = getStrictRenderings(view);')
-  [void]$Builder.AppendLine('        const strictEntries = strictEntriesForView(view);')
-  [void]$Builder.AppendLine('        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));')
-  [void]$Builder.AppendLine('        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));')
-  [void]$Builder.AppendLine('        const lemmaLikely = cleanStrictRenderings(strictEntries.flatMap((entry) => entry.strict_renderings || []));')
-  [void]$Builder.AppendLine('        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]), lemma: lemmaLikely };')
-  [void]$Builder.AppendLine('        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely, lemma: lemmaLikely };')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const strictEntryKeys = (view) => {')
-  [void]$Builder.AppendLine('        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const appendRenderings = (node, values) => {')
-  [void]$Builder.AppendLine('        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];')
-  [void]$Builder.AppendLine('        if (!filtered.length) { node.append("N/A"); return; }')
-  [void]$Builder.AppendLine('        if (filtered.length === 1) { node.append(filtered[0]); return; }')
-  [void]$Builder.AppendLine('        const ul = document.createElement("ul");')
-  [void]$Builder.AppendLine('        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });')
-  [void]$Builder.AppendLine('        node.appendChild(ul);')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const renderBreakdown = (root, view) => {')
-  [void]$Builder.AppendLine('        const node = root.querySelector("[data-hud-breakdown]");')
-  [void]$Builder.AppendLine('        if (!node) return;')
-  [void]$Builder.AppendLine('        node.replaceChildren();')
-  [void]$Builder.AppendLine('        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];')
-  [void]$Builder.AppendLine('        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);')
-  [void]$Builder.AppendLine('        if (!rows.length) { node.textContent = ""; return; }')
-  [void]$Builder.AppendLine('        const list = document.createElement("div");')
-  [void]$Builder.AppendLine('        list.className = "breakdown-list";')
-  [void]$Builder.AppendLine('        rows.forEach((row) => {')
-  [void]$Builder.AppendLine('          const section = document.createElement("section");')
-  [void]$Builder.AppendLine('          section.className = "breakdown-row";')
-  [void]$Builder.AppendLine('          const head = document.createElement("p");')
-  [void]$Builder.AppendLine('          const hebrew = document.createElement("strong");')
-  [void]$Builder.AppendLine('          hebrew.lang = "he";')
-  [void]$Builder.AppendLine('          hebrew.dir = "rtl";')
-  [void]$Builder.AppendLine('          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");')
-  [void]$Builder.AppendLine('          head.appendChild(hebrew);')
-  [void]$Builder.AppendLine('          section.appendChild(head);')
-  [void]$Builder.AppendLine('          const renderings = document.createElement("div");')
-  [void]$Builder.AppendLine('          appendRenderings(renderings, row.strict_renderings || []);')
-  [void]$Builder.AppendLine('          section.appendChild(renderings);')
-  [void]$Builder.AppendLine('          list.appendChild(section);')
-  [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('        node.appendChild(list);')
-  [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const isRelatedEntry = (entry) => {')
-      [void]$Builder.AppendLine('        const relation = String(entry.relation_label || "").toLowerCase();')
-      [void]$Builder.AppendLine('        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;')
-      [void]$Builder.AppendLine('      const isNoisyAlternateEntry = (entry) => {')
-      [void]$Builder.AppendLine('        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();')
-      [void]$Builder.AppendLine('        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const renderEntryList = (entries, roleLabel) => {')
-  [void]$Builder.AppendLine('        const list = document.createElement("div");')
-  [void]$Builder.AppendLine('        list.className = "lexical-entry-list";')
-  [void]$Builder.AppendLine('        const groupedEntries = new Map();')
-  [void]$Builder.AppendLine('        entries.forEach((entry) => {')
-  [void]$Builder.AppendLine('          const spelling = entry.lemma || entry.match_key || "N/A";')
-  [void]$Builder.AppendLine('          const key = `${entry.context_role || "entry"}|${spelling}`;')
-  [void]$Builder.AppendLine('          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });')
-  [void]$Builder.AppendLine('          const group = groupedEntries.get(key);')
-  [void]$Builder.AppendLine('          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());')
-      [void]$Builder.AppendLine('          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });')
-  [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));')
-  [void]$Builder.AppendLine('        sorted.forEach((entry) => {')
-  [void]$Builder.AppendLine('          const card = document.createElement("section");')
-  [void]$Builder.AppendLine('          card.className = "lexical-entry";')
-  [void]$Builder.AppendLine('          const title = document.createElement("h3");')
-  [void]$Builder.AppendLine('          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related source match" : "Other source match"));')
-  [void]$Builder.AppendLine('          title.append(role, ": ");')
-  [void]$Builder.AppendLine('          const spelling = document.createElement("span");')
-  [void]$Builder.AppendLine('          spelling.className = "entry-hebrew";')
-  [void]$Builder.AppendLine('          spelling.lang = "he";')
-  [void]$Builder.AppendLine('          spelling.dir = "rtl";')
-  [void]$Builder.AppendLine('          spelling.textContent = normalizeHebrewDisplay(entry.spelling);')
-  [void]$Builder.AppendLine('          title.appendChild(spelling);')
-  [void]$Builder.AppendLine('          const meta = document.createElement("p");')
-  [void]$Builder.AppendLine('          meta.className = "entry-meta";')
-  [void]$Builder.AppendLine('          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";')
-  [void]$Builder.AppendLine('          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;')
-  [void]$Builder.AppendLine('          const renderings = document.createElement("div");')
-  [void]$Builder.AppendLine('          const renderLabel = document.createElement("p");')
-  [void]$Builder.AppendLine('          renderLabel.className = "entry-label";')
-  [void]$Builder.AppendLine('          renderLabel.textContent = "Strict renderings";')
-  [void]$Builder.AppendLine('          renderings.appendChild(renderLabel);')
-  [void]$Builder.AppendLine('          appendRenderings(renderings, entry.strict_renderings || []);')
-  [void]$Builder.AppendLine('          card.append(title, meta, renderings);')
-  [void]$Builder.AppendLine('          list.appendChild(card);')
-  [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('        return list;')
-  [void]$Builder.AppendLine('      };')
       [void]$Builder.AppendLine('      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;')
-      [void]$Builder.AppendLine('      const sourceRowsByKey = (view) => {')
-      [void]$Builder.AppendLine('        const map = new Map();')
-      [void]$Builder.AppendLine('        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });')
-      [void]$Builder.AppendLine('        return map;')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const sourceRowsForEntry = (view, entry) => {')
-      [void]$Builder.AppendLine('        const map = sourceRowsByKey(view);')
-      [void]$Builder.AppendLine('        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);')
-      [void]$Builder.AppendLine('        return row ? [row] : [];')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const cleanTransliteration = (value) => {')
-      [void]$Builder.AppendLine('        const text = String(value || "").trim();')
-      [void]$Builder.AppendLine('        return /^[A-Za-z0-9 .,\-ʻʿʾʼ()]+$/.test(text) && text.length <= 80 ? text : "";')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));')
-      [void]$Builder.AppendLine('      const sourceQualityScore = (rows) => {')
-      [void]$Builder.AppendLine('        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());')
-      [void]$Builder.AppendLine('        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());')
-      [void]$Builder.AppendLine('        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());')
-      [void]$Builder.AppendLine('        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };')
-      [void]$Builder.AppendLine('        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };')
-      [void]$Builder.AppendLine('        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };')
-      [void]$Builder.AppendLine('        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };')
-      [void]$Builder.AppendLine('        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };')
-      [void]$Builder.AppendLine('        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };')
-      [void]$Builder.AppendLine('        return { delta: -10, reason: "missing source row" };')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const parserScore = (view) => {')
-      [void]$Builder.AppendLine('        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();')
-      [void]$Builder.AppendLine('        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };')
-      [void]$Builder.AppendLine('        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };')
-      [void]$Builder.AppendLine('        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };')
-      [void]$Builder.AppendLine('        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };')
-      [void]$Builder.AppendLine('        return { delta: 0, reason: "" };')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const applyDisplayBoost = (status, rawScore, view) => {')
-      [void]$Builder.AppendLine('        return { score: rawScore, reasons: [] };')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {')
-      [void]$Builder.AppendLine('        const reasons = [];')
-      [void]$Builder.AppendLine('        let score = 0;')
-      [void]$Builder.AppendLine('        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };')
-      [void]$Builder.AppendLine('        if (status === "Caution") { score = 35; reasons.push("caution tier"); }')
-      [void]$Builder.AppendLine('        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }')
-      [void]$Builder.AppendLine('        else if (status === "Other Match") { score = 58; reasons.push("other real source match"); }')
-      [void]$Builder.AppendLine('        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }')
-      [void]$Builder.AppendLine('        else if (status === "Strict Lemma") { score = 78; reasons.push("strict lemma row"); }')
-      [void]$Builder.AppendLine('        else { score = 84; reasons.push("strict Hebrew row"); }')
-      [void]$Builder.AppendLine('        const rendered = cleanStrictRenderings(renderings || []);')
-      [void]$Builder.AppendLine('        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }')
-      [void]$Builder.AppendLine('        const sourceQuality = sourceQualityScore(rows);')
-      [void]$Builder.AppendLine('        score += sourceQuality.delta;')
-      [void]$Builder.AppendLine('        if (sourceQuality.reason) reasons.push(sourceQuality.reason);')
-      [void]$Builder.AppendLine('        const view = evidence.view || {};')
-      [void]$Builder.AppendLine('        const entry = evidence.entry || {};')
-      [void]$Builder.AppendLine('        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");')
-      [void]$Builder.AppendLine('        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");')
-      [void]$Builder.AppendLine('        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");')
-      [void]$Builder.AppendLine('        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }')
-      [void]$Builder.AppendLine('        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }')
-      [void]$Builder.AppendLine('        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }')
-      [void]$Builder.AppendLine('        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }')
-      [void]$Builder.AppendLine('        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }')
-      [void]$Builder.AppendLine('        const parser = parserScore(view);')
-      [void]$Builder.AppendLine('        score += evidence.surfaceClaim ? parser.delta : 0;')
-      [void]$Builder.AppendLine('        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);')
-      [void]$Builder.AppendLine('        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }')
-      [void]$Builder.AppendLine('        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }')
-      [void]$Builder.AppendLine('        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, "Strict Lemma": 95, "Other Match": 75, Related: 60, Caution: 49, Unresolved: 0 };')
-      [void]$Builder.AppendLine('        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, "Strict Lemma": 50, "Other Match": 25, Related: 15, Caution: 1, Unresolved: 0 };')
-      [void]$Builder.AppendLine('        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);')
-      [void]$Builder.AppendLine('        const display = applyDisplayBoost(status, rawScore, view);')
-      [void]$Builder.AppendLine('        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;')
-      [void]$Builder.AppendLine('      const uniqueClaims = (claims) => {')
-      [void]$Builder.AppendLine('        const seen = new Set();')
-      [void]$Builder.AppendLine('        return cleanValues(claims).filter((claim) => {')
-      [void]$Builder.AppendLine('          const key = claimRowKey(claim);')
-      [void]$Builder.AppendLine('          if (seen.has(key)) return false;')
-      [void]$Builder.AppendLine('          seen.add(key);')
-      [void]$Builder.AppendLine('          return true;')
-      [void]$Builder.AppendLine('        });')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {')
-      [void]$Builder.AppendLine('        const sourceRows = cleanValues(rows);')
-      [void]$Builder.AppendLine('        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;')
-      [void]$Builder.AppendLine('        const cleanRenderings = cleanStrictRenderings(renderings || []);')
-      [void]$Builder.AppendLine('        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);')
-      [void]$Builder.AppendLine('        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";')
-      [void]$Builder.AppendLine('      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });')
       [void]$Builder.AppendLine('      const displayLicense = (row) => {')
       [void]$Builder.AppendLine('        const license = String(row && row.license || "").trim();')
       [void]$Builder.AppendLine('        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";')
       [void]$Builder.AppendLine('        return license || "N/A";')
       [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const sourceSummary = (rows) => {')
-      [void]$Builder.AppendLine('        const cleanRows = cleanValues(rows);')
-      [void]$Builder.AppendLine('        if (!cleanRows.length) return null;')
-      [void]$Builder.AppendLine('        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));')
-      [void]$Builder.AppendLine('        const licenses = uniqueValues(cleanRows.map(displayLicense));')
-      [void]$Builder.AppendLine('        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");')
-      [void]$Builder.AppendLine('        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };')
+      [void]$Builder.AppendLine('      const firstPresentValue = (values) => cleanValues(values).map((value) => String(value || "").trim()).find(Boolean) || "";')
+      [void]$Builder.AppendLine('      const usageEvidenceRouteTypes = new Set(["usage_evidence", "workbench_usage", "workbench_usage_evidence", "workbench_usage_commentary", "biblical_workbench", "biblical_workbench_usage", "source_workbench_usage", "observed_usage"]);')
+      [void]$Builder.AppendLine('      const isUsageEvidenceCard = (card) => {')
+      [void]$Builder.AppendLine('        if (!card) return false;')
+      [void]$Builder.AppendLine('        const routeFields = [card.display_section, card.route_type, card.route_family, card.answer_role, card.meaning_quality].map((value) => String(value || "").toLowerCase().replace(/[\s-]+/g, "_")).filter(Boolean);')
+      [void]$Builder.AppendLine('        return routeFields.some((value) => usageEvidenceRouteTypes.has(value)) || Boolean(card.usage_note || card.frame_label);')
       [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const DISPLAY_THRESHOLD = 50;')
-      [void]$Builder.AppendLine('      const MAX_VISIBLE_CLAIMS = 5;')
-      [void]$Builder.AppendLine('      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);')
-      [void]$Builder.AppendLine('      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, "Strict Lemma": 2, "Other Match": 3, Related: 4, Caution: 5, Unresolved: 6 };')
-      [void]$Builder.AppendLine('      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));')
-      [void]$Builder.AppendLine('      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;')
-      [void]$Builder.AppendLine('      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);')
-      [void]$Builder.AppendLine('      const appendClaimCard = (list, claim) => {')
-      [void]$Builder.AppendLine('        const card = document.createElement("section");')
-      [void]$Builder.AppendLine('        card.className = "claim-row";')
-      [void]$Builder.AppendLine('        const head = document.createElement("div");')
-      [void]$Builder.AppendLine('        head.className = "claim-row-head";')
-      [void]$Builder.AppendLine('        const badge = document.createElement("span");')
-      [void]$Builder.AppendLine('        badge.className = "claim-status";')
-      [void]$Builder.AppendLine('        const confidence = claimConfidence(claim);')
-      [void]$Builder.AppendLine('        badge.textContent = `${claim.status || "Other Match"} - ${confidence}%`;')
-      [void]$Builder.AppendLine('        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;')
-      [void]$Builder.AppendLine('        const hebrew = document.createElement("strong");')
-      [void]$Builder.AppendLine('        hebrew.className = "claim-hebrew";')
-      [void]$Builder.AppendLine('        hebrew.lang = "he";')
-      [void]$Builder.AppendLine('        hebrew.dir = "rtl";')
-      [void]$Builder.AppendLine('        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");')
-      [void]$Builder.AppendLine('        head.append(badge, hebrew);')
-      [void]$Builder.AppendLine('        card.appendChild(head);')
-      [void]$Builder.AppendLine('        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }')
-      [void]$Builder.AppendLine('        const renderings = document.createElement("p");')
-      [void]$Builder.AppendLine('        renderings.className = "claim-renderings";')
-      [void]$Builder.AppendLine('        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");')
-      [void]$Builder.AppendLine('        card.appendChild(renderings);')
-      [void]$Builder.AppendLine('        const source = sourceSummary(claim.rows);')
-      [void]$Builder.AppendLine('        if (source) {')
-      [void]$Builder.AppendLine('          const sourceLine = document.createElement("p");')
-      [void]$Builder.AppendLine('          sourceLine.className = "claim-source";')
-      [void]$Builder.AppendLine('          sourceLine.textContent = `Source: ${source.source}`;')
-      [void]$Builder.AppendLine('          const licenseLine = document.createElement("p");')
-      [void]$Builder.AppendLine('          licenseLine.className = "claim-license";')
-      [void]$Builder.AppendLine('          licenseLine.textContent = `License: ${source.license}`;')
-      [void]$Builder.AppendLine('          card.append(sourceLine, licenseLine);')
-      [void]$Builder.AppendLine('        } else if (claim.status === "Caution") {')
-      [void]$Builder.AppendLine('          const sourceLine = document.createElement("p");')
-      [void]$Builder.AppendLine('          sourceLine.className = "claim-source";')
-      [void]$Builder.AppendLine('          sourceLine.textContent = "Source: metadata incomplete";')
-      [void]$Builder.AppendLine('          card.appendChild(sourceLine);')
-      [void]$Builder.AppendLine('        }')
-      [void]$Builder.AppendLine('        list.appendChild(card);')
+      [void]$Builder.AppendLine('      const routeScore = (card) => {')
+      [void]$Builder.AppendLine('        const base = Number.isFinite(card.adjusted_score) ? card.adjusted_score : (Number.isFinite(card.raw_score) ? card.raw_score : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : 0));')
+      [void]$Builder.AppendLine('        const penalty = Number.isFinite(card.lookup_penalty) ? card.lookup_penalty : 0;')
+      [void]$Builder.AppendLine('        return Math.max(0, Math.round(base - penalty));')
       [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const appendClaimsUnderDetails = (parent, label, claims) => {')
-      [void]$Builder.AppendLine('        if (!claims.length) return;')
-      [void]$Builder.AppendLine('        const details = document.createElement("details");')
-      [void]$Builder.AppendLine('        details.className = "other-entries";')
-      [void]$Builder.AppendLine('        const summary = document.createElement("summary");')
-      [void]$Builder.AppendLine('        summary.textContent = label;')
-      [void]$Builder.AppendLine('        const box = document.createElement("div");')
-      [void]$Builder.AppendLine('        box.className = "claim-row-list";')
-      [void]$Builder.AppendLine('        claims.forEach((claim) => appendClaimCard(box, claim));')
-      [void]$Builder.AppendLine('        details.append(summary, box);')
-      [void]$Builder.AppendLine('        parent.appendChild(details);')
+      [void]$Builder.AppendLine('      const routeScoreBasis = (card) => {')
+      [void]$Builder.AppendLine('        const parts = [];')
+      [void]$Builder.AppendLine('        if (Number.isFinite(card.raw_score)) parts.push(`raw ${card.raw_score}`);')
+      [void]$Builder.AppendLine('        if (Number.isFinite(card.score_handicap) && card.score_handicap) parts.push(`handicap ${card.score_handicap}`);')
+      [void]$Builder.AppendLine('        if (Number.isFinite(card.adjusted_score)) parts.push(`adjusted ${card.adjusted_score}`);')
+      [void]$Builder.AppendLine('        if (card.lookup_relation && card.lookup_relation !== "exact") parts.push(`${card.lookup_relation} -${card.lookup_penalty || 0}`);')
+      [void]$Builder.AppendLine('        if (card.source_ref) parts.push(card.source_ref);')
+      [void]$Builder.AppendLine('        return parts;')
       [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const appendClaimRows = (node, claims) => {')
-      [void]$Builder.AppendLine('        if (!node) return;')
-      [void]$Builder.AppendLine('        node.replaceChildren();')
-      [void]$Builder.AppendLine('        const rows = sortClaimsForDisplay(claims);')
-      [void]$Builder.AppendLine('        if (!rows.length) { node.textContent = "N/A"; return; }')
-      [void]$Builder.AppendLine('        const list = document.createElement("div");')
-      [void]$Builder.AppendLine('        list.className = rows.length > 2 ? "claim-row-list hud-card-lane" : "claim-row-list";')
-      [void]$Builder.AppendLine('        if (rows.length > 2) { const note = document.createElement("p"); note.className = "hud-scroll-note"; note.textContent = "Hover this lane and use the wheel or trackpad to move sideways."; node.appendChild(note); }')
-      [void]$Builder.AppendLine('        const displayRows = rows.filter(isDisplayableClaim);')
-      [void]$Builder.AppendLine('        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));')
-      [void]$Builder.AppendLine('        const visibleRows = displayRows.length ? displayRows : lowRows;')
-      [void]$Builder.AppendLine('        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));')
-      [void]$Builder.AppendLine('        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));')
-      [void]$Builder.AppendLine('        if (!visibleRows.length) { node.textContent = "N/A"; return; }')
-      [void]$Builder.AppendLine('        node.appendChild(list);')
+      [void]$Builder.AppendLine('      const routeRenderings = (card) => {')
+      [void]$Builder.AppendLine('        if (!card) return [];')
+      [void]$Builder.AppendLine('        if (isUsageEvidenceCard(card)) return [firstPresentValue([card.linked_route_definition, card.linked_definition, card.route_definition, card.route_definition_text]) || "observed usage only"];')
+      [void]$Builder.AppendLine('        const values = [];')
+      [void]$Builder.AppendLine('        const genericUsage = "Usage context only; no meaning is forced by this phrase row.";')
+      [void]$Builder.AppendLine('        const definition = firstPresentValue([card.definition]);')
+      [void]$Builder.AppendLine('        if (definition && definition !== genericUsage) values.push(definition);')
+      [void]$Builder.AppendLine('        const meaningClaim = firstPresentValue([card.meaning_claim]);')
+      [void]$Builder.AppendLine('        if (meaningClaim) values.push(meaningClaim);')
+      [void]$Builder.AppendLine('        return values;')
       [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const placeholderClaim = (status, hebrew, message) => makeClaim("Unresolved", hebrew || "Clicked form", [message], [], "", { statusOverride: status });')
-      [void]$Builder.AppendLine('      const strictClaimsForView = (view, strictBuckets) => {')
-      [void]$Builder.AppendLine('        const claims = { hebrew: [], aramaic: [], lemma: [] };')
-      [void]$Builder.AppendLine('        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);')
-      [void]$Builder.AppendLine('        if (surfaceRenderings.length) {')
-      [void]$Builder.AppendLine('          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";')
-      [void]$Builder.AppendLine('          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });')
-      [void]$Builder.AppendLine('          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);')
-      [void]$Builder.AppendLine('        }')
-      [void]$Builder.AppendLine('        strictEntriesForView(view).forEach((entry) => {')
-      [void]$Builder.AppendLine('          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";')
-      [void]$Builder.AppendLine('          const bucket = strictBuckets[bucketName] || [];')
-      [void]$Builder.AppendLine('          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));')
-      [void]$Builder.AppendLine('          if (!renderings.length) return;')
-      [void]$Builder.AppendLine('          claims.lemma.push(claimFromEntry(view, entry, "Strict Lemma", renderings));')
-      [void]$Builder.AppendLine('          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;')
-      [void]$Builder.AppendLine('          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));')
-      [void]$Builder.AppendLine('        });')
-      [void]$Builder.AppendLine('        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {')
-      [void]$Builder.AppendLine('          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));')
-      [void]$Builder.AppendLine('          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));')
-      [void]$Builder.AppendLine('        }')
-      [void]$Builder.AppendLine('        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic), lemma: uniqueClaims(claims.lemma) };')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });')
-      [void]$Builder.AppendLine('      const uniqueSourceGroups = (groups) => {')
-      [void]$Builder.AppendLine('        const seen = new Set();')
-      [void]$Builder.AppendLine('        return cleanValues(groups).filter((group) => {')
-      [void]$Builder.AppendLine('          if (!group.rows.length) return false;')
-      [void]$Builder.AppendLine('          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;')
-      [void]$Builder.AppendLine('          if (seen.has(key)) return false;')
-      [void]$Builder.AppendLine('          seen.add(key);')
-      [void]$Builder.AppendLine('          return true;')
-      [void]$Builder.AppendLine('        });')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));')
-      [void]$Builder.AppendLine('      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));')
-      [void]$Builder.AppendLine('      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || [])]);')
-      [void]$Builder.AppendLine('      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {')
-      [void]$Builder.AppendLine('        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);')
-      [void]$Builder.AppendLine('      };')
-      [void]$Builder.AppendLine('      const appendSecondarySources = (container, view, entries, label) => {')
-      [void]$Builder.AppendLine('        const groups = sourceGroupsForEntries(view, entries);')
-      [void]$Builder.AppendLine('        if (!groups.length) return;')
-  [void]$Builder.AppendLine('        const sourceDetails = document.createElement("details");')
-  [void]$Builder.AppendLine('        sourceDetails.className = "source-details";')
-  [void]$Builder.AppendLine('        sourceDetails.open = true;')
-  [void]$Builder.AppendLine('        const sourceSummary = document.createElement("summary");')
-  [void]$Builder.AppendLine('        sourceSummary.textContent = label;')
-  [void]$Builder.AppendLine('        const sourceBox = document.createElement("div");')
-  [void]$Builder.AppendLine('        sourceDetails.append(sourceSummary, sourceBox);')
-      [void]$Builder.AppendLine('        renderSourceGroups(sourceBox, groups);')
-  [void]$Builder.AppendLine('        container.appendChild(sourceDetails);')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {')
-  [void]$Builder.AppendLine('        const potentialNode = root.querySelector("[data-hud-potential]");')
-  [void]$Builder.AppendLine('        const relatedNode = root.querySelector("[data-hud-related]");')
-  [void]$Builder.AppendLine('        const cautionNode = root.querySelector("[data-hud-caution]");')
-  [void]$Builder.AppendLine('        const result = { potential: [], related: [], caution: [] };')
-  [void]$Builder.AppendLine('        if (!potentialNode || !relatedNode || !cautionNode) return result;')
-  [void]$Builder.AppendLine('        potentialNode.replaceChildren();')
-  [void]$Builder.AppendLine('        relatedNode.replaceChildren();')
-  [void]$Builder.AppendLine('        cautionNode.replaceChildren();')
-  [void]$Builder.AppendLine('        if (!hasLexicalEntry) {')
-  [void]$Builder.AppendLine('          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];')
-  [void]$Builder.AppendLine('          setRowHidden(root, "[data-hud-potential-row]", false);')
-  [void]$Builder.AppendLine('          setRowHidden(root, "[data-hud-related-row]", true);')
-  [void]$Builder.AppendLine('          setRowHidden(root, "[data-hud-caution-row]", true);')
-  [void]$Builder.AppendLine('          appendClaimRows(potentialNode, result.potential);')
-  [void]$Builder.AppendLine('          return result;')
-  [void]$Builder.AppendLine('        }')
-  [void]$Builder.AppendLine('        const entries = cleanValues(view.possible_entries);')
-  [void]$Builder.AppendLine('        const strictKeys = strictEntryKeys(view);')
-      [void]$Builder.AppendLine('        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));')
-      [void]$Builder.AppendLine('        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));')
-      [void]$Builder.AppendLine('        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));')
-  [void]$Builder.AppendLine('        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Other Match")));')
-  [void]$Builder.AppendLine('        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));')
-  [void]$Builder.AppendLine('        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));')
-  [void]$Builder.AppendLine('        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");')
-  [void]$Builder.AppendLine('        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");')
-  [void]$Builder.AppendLine('        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);')
-  [void]$Builder.AppendLine('        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;')
-  [void]$Builder.AppendLine('        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);')
-  [void]$Builder.AppendLine('        result.potential.push(...keepForDisplay(visiblePotentialClaims));')
-  [void]$Builder.AppendLine('        result.related.push(...keepForDisplay(visibleRelatedClaims));')
-  [void]$Builder.AppendLine('        result.caution.push(...keepForDisplay(cautionClaims));')
-  [void]$Builder.AppendLine('        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));')
-  [void]$Builder.AppendLine('        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);')
-  [void]$Builder.AppendLine('        setRowHidden(root, "[data-hud-related-row]", !result.related.length);')
-  [void]$Builder.AppendLine('        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);')
-  [void]$Builder.AppendLine('        if (result.potential.length) appendClaimRows(potentialNode, result.potential);')
-  [void]$Builder.AppendLine('        if (result.related.length) appendClaimRows(relatedNode, result.related);')
-  [void]$Builder.AppendLine('        if (result.caution.length) appendClaimRows(cautionNode, result.caution);')
-  [void]$Builder.AppendLine('        return result;')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const renderSourceRow = (row) => {')
-  [void]$Builder.AppendLine('        const title = document.createElement("p");')
-  [void]$Builder.AppendLine('        const strong = document.createElement("strong");')
-  [void]$Builder.AppendLine('        const sourceHref = resolveSourceUrl(row.source_url);')
-  [void]$Builder.AppendLine('        if (sourceHref) {')
-  [void]$Builder.AppendLine('          const link = document.createElement("a");')
-  [void]$Builder.AppendLine('          link.href = sourceHref;')
-  [void]$Builder.AppendLine('          link.textContent = row.source_name || "Source";')
-  [void]$Builder.AppendLine('          strong.appendChild(link);')
-  [void]$Builder.AppendLine('        } else {')
-  [void]$Builder.AppendLine('          strong.textContent = row.source_name || "Source";')
-  [void]$Builder.AppendLine('        }')
-  [void]$Builder.AppendLine('        title.appendChild(strong);')
-  [void]$Builder.AppendLine('        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);')
-  [void]$Builder.AppendLine('        return title;')
-  [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      const renderSourceGroups = (sourceBox, groups) => {')
-  [void]$Builder.AppendLine('        if (!sourceBox) return;')
-  [void]$Builder.AppendLine('        sourceBox.replaceChildren();')
-  [void]$Builder.AppendLine('        const sourceGroups = cleanValues(groups);')
-  [void]$Builder.AppendLine('        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }')
-  [void]$Builder.AppendLine('        sourceGroups.forEach((group) => {')
-  [void]$Builder.AppendLine('          const section = document.createElement("div");')
-  [void]$Builder.AppendLine('          section.className = "source-row";')
-  [void]$Builder.AppendLine('          const claim = document.createElement("p");')
-  [void]$Builder.AppendLine('          claim.className = "source-claim";')
-  [void]$Builder.AppendLine('          claim.append("For ");')
-  [void]$Builder.AppendLine('          const lemma = document.createElement("span");')
-  [void]$Builder.AppendLine('          lemma.lang = "he";')
-  [void]$Builder.AppendLine('          lemma.dir = "rtl";')
-  [void]$Builder.AppendLine('          lemma.textContent = group.label || "Lexical claim";')
-  [void]$Builder.AppendLine('          claim.appendChild(lemma);')
-      [void]$Builder.AppendLine('          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);')
-      [void]$Builder.AppendLine('          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);')
-      [void]$Builder.AppendLine('          section.appendChild(claim);')
-      [void]$Builder.AppendLine('          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }')
-  [void]$Builder.AppendLine('          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));')
-  [void]$Builder.AppendLine('          sourceBox.appendChild(section);')
+  [void]$Builder.AppendLine('      const buildSourceNotes = (cards) => {')
+  [void]$Builder.AppendLine('        const noteMap = new Map();')
+  [void]$Builder.AppendLine('        const cardMap = new Map();')
+  [void]$Builder.AppendLine('        cleanValues(cards).forEach((card) => {')
+  [void]$Builder.AppendLine('          const indexes = [];')
+  [void]$Builder.AppendLine('          cleanValues(card.source_rows).forEach((row) => {')
+  [void]$Builder.AppendLine('            const key = sourceRowKey(row);')
+  [void]$Builder.AppendLine('            if (!key || key === "|") return;')
+  [void]$Builder.AppendLine('            if (!noteMap.has(key)) noteMap.set(key, { index: noteMap.size + 1, row });')
+  [void]$Builder.AppendLine('            indexes.push(noteMap.get(key).index);')
+  [void]$Builder.AppendLine('          });')
+  [void]$Builder.AppendLine('          const uniqueIndexes = uniqueValues(indexes).slice(0, 4);')
+  [void]$Builder.AppendLine('          if (uniqueIndexes.length) cardMap.set(card, uniqueIndexes);')
   [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        return { cardMap, notes: [...noteMap.values()] };')
   [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const appendSourceRefs = (parent, indexes) => {')
+  [void]$Builder.AppendLine('        const cleanIndexes = uniqueValues(indexes);')
+  [void]$Builder.AppendLine('        if (!parent || !cleanIndexes.length) return;')
+  [void]$Builder.AppendLine('        const sup = document.createElement("sup");')
+  [void]$Builder.AppendLine('        sup.className = "source-note-index";')
+  [void]$Builder.AppendLine('        sup.textContent = cleanIndexes.join(",");')
+  [void]$Builder.AppendLine('        parent.appendChild(sup);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const appendSourceFootnotes = (panel, notes) => {')
+  [void]$Builder.AppendLine('        const cleanNotes = cleanValues(notes);')
+  [void]$Builder.AppendLine('        if (!cleanNotes.length) return;')
+  [void]$Builder.AppendLine('        const details = document.createElement("details");')
+  [void]$Builder.AppendLine('        details.className = "source-footnotes route-source-card";')
+  [void]$Builder.AppendLine('        const summary = document.createElement("summary");')
+  [void]$Builder.AppendLine('        summary.textContent = `Sources and licenses (${cleanNotes.length})`;')
+  [void]$Builder.AppendLine('        details.appendChild(summary);')
+  [void]$Builder.AppendLine('        cleanNotes.forEach(({ index, row }) => {')
+  [void]$Builder.AppendLine('          const line = document.createElement("p");')
+  [void]$Builder.AppendLine('          line.className = "source-footnote-row";')
+  [void]$Builder.AppendLine('          const marker = document.createElement("strong");')
+  [void]$Builder.AppendLine('          marker.textContent = `${index}. `;')
+  [void]$Builder.AppendLine('          line.appendChild(marker);')
+  [void]$Builder.AppendLine('          const sourceHref = resolveSourceUrl(row.source_url);')
+  [void]$Builder.AppendLine('          if (sourceHref) { const link = document.createElement("a"); link.href = sourceHref; link.textContent = row.source_name || "Source"; line.appendChild(link); }')
+  [void]$Builder.AppendLine('          else line.append(row.source_name || "Source");')
+  [void]$Builder.AppendLine('          line.append(` | ${row.source_id || "N/A"} | ${displayLicense(row)}`);')
+  [void]$Builder.AppendLine('          details.appendChild(line);')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        panel.appendChild(details);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const routeSectionTitles = new Map([')
+  [void]$Builder.AppendLine('        ["strict_hebrew", "Strict Hebrew matches"],')
+  [void]$Builder.AppendLine('        ["strict_aramaic", "Strict Aramaic matches"],')
+  [void]$Builder.AppendLine('        ["morphology", "Word-part breakdown"],')
+  [void]$Builder.AppendLine('        ["lemma", "Lemma matches"],')
+  [void]$Builder.AppendLine('        ["subphrase_evidence", "Subphrase evidence"],')
+  [void]$Builder.AppendLine('        ["biblical_paraphrase_evidence", "Biblical definition/paraphrase matches"],')
+  [void]$Builder.AppendLine('        ["citable_paraphrase_evidence", "Citable definition/paraphrase matches"],')
+  [void]$Builder.AppendLine('        ["usage_evidence", "Usage evidence"],')
+  [void]$Builder.AppendLine('        ["phrase_evidence", "Licensed phrase uses"],')
+  [void]$Builder.AppendLine('        ["audit", "Tiny checks only"]')
+  [void]$Builder.AppendLine('      ]);')
+  [void]$Builder.AppendLine('      const routeSectionRank = new Map([["strict_hebrew", 0], ["strict_aramaic", 1], ["morphology", 2], ["lemma", 3], ["subphrase_evidence", 4], ["biblical_paraphrase_evidence", 5], ["citable_paraphrase_evidence", 6], ["usage_evidence", 7], ["phrase_evidence", 8], ["audit", 9]]);')
+  [void]$Builder.AppendLine('      const answerCandidateSections = new Set(["strict_hebrew", "strict_aramaic", "morphology", "lemma", "subphrase_evidence", "biblical_paraphrase_evidence", "citable_paraphrase_evidence"]);')
+  [void]$Builder.AppendLine('      const placeholderSections = ["strict_hebrew", "strict_aramaic", "morphology", "lemma", "subphrase_evidence", "biblical_paraphrase_evidence", "citable_paraphrase_evidence", "usage_evidence", "phrase_evidence"];')
+  [void]$Builder.AppendLine('      const routeSection = (card) => isUsageEvidenceCard(card) ? "usage_evidence" : (card.display_section || card.route_type || "audit");')
+  [void]$Builder.AppendLine('      const rankCardParts = (card) => {')
+  [void]$Builder.AppendLine('        const adjusted = Number.isFinite(card.adjusted_score) ? card.adjusted_score : routeScore(card);')
+  [void]$Builder.AppendLine('        const raw = Number.isFinite(card.raw_score) ? card.raw_score : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : 0);')
+  [void]$Builder.AppendLine('        return [-(adjusted - (card.lookup_penalty || 0)), -raw, routeSectionRank.get(routeSection(card)) ?? 9, -(Number.isFinite(card.answer_score) ? card.answer_score : 0), String(card.card_id || "")];')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const compareRouteCards = (leftCard, rightCard) => {')
+  [void]$Builder.AppendLine('        const left = rankCardParts(leftCard);')
+  [void]$Builder.AppendLine('        const right = rankCardParts(rightCard);')
+  [void]$Builder.AppendLine('        for (let index = 0; index < left.length; index += 1) { if (left[index] < right[index]) return -1; if (left[index] > right[index]) return 1; }')
+  [void]$Builder.AppendLine('        return 0;')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const answerRoleAllowsDefinition = (role) => {')
+  [void]$Builder.AppendLine('        const cleanRole = String(role || "").toLowerCase().replace(/[\s-]+/g, "_");')
+  [void]$Builder.AppendLine('        return ["", "answer", "definition", "reader_answer", "primary_definition"].includes(cleanRole);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const cardHasAnswerContract = (card) => Object.prototype.hasOwnProperty.call(card || {}, "answer_eligible") || Object.prototype.hasOwnProperty.call(card || {}, "answer_role");')
+  [void]$Builder.AppendLine('      const cardHasDefinitionText = (card) => routeRenderings(card).some((line) => String(line || "").trim());')
+  [void]$Builder.AppendLine('      const isAnswerEligibleCard = (card) => {')
+  [void]$Builder.AppendLine('        if (!card || !answerCandidateSections.has(routeSection(card)) || !cardHasDefinitionText(card)) return false;')
+  [void]$Builder.AppendLine('        if (card.answer_eligible === false || !answerRoleAllowsDefinition(card.answer_role)) return false;')
+  [void]$Builder.AppendLine('        if (card.answer_eligible === true) return true;')
+  [void]$Builder.AppendLine('        if (cardHasAnswerContract(card)) return false;')
+  [void]$Builder.AppendLine('        return card.meaning_quality === "definition" && !["phrase_evidence", "subphrase_evidence"].includes(routeSection(card));')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const answerTextKey = (card) => routeRenderings(card).map((line) => String(line || "").replace(/\s+/g, " ").trim().toLowerCase()).filter(Boolean).join(" | ");')
+  [void]$Builder.AppendLine('      const answerAmbiguity = (primary, candidates) => {')
+  [void]$Builder.AppendLine('        if (!primary) return { ambiguous: false, count: 0 };')
+  [void]$Builder.AppendLine('        const topScore = routeScore(primary);')
+  [void]$Builder.AppendLine('        const topRelation = primary.lookup_relation || "exact";')
+  [void]$Builder.AppendLine('        const close = candidates.filter((card) => (card.lookup_relation || "exact") === topRelation && Math.abs(routeScore(card) - topScore) <= 6);')
+  [void]$Builder.AppendLine('        const meanings = new Set(close.map(answerTextKey).filter(Boolean));')
+  [void]$Builder.AppendLine('        return { ambiguous: meanings.size > 1, count: meanings.size };')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const selectRouteAnswer = (cards) => {')
+  [void]$Builder.AppendLine('        const candidates = cleanValues(cards).filter(isAnswerEligibleCard).sort(compareRouteCards);')
+  [void]$Builder.AppendLine('        const exactAnswer = candidates.filter((card) => (card.lookup_relation || "exact") === "exact").sort(compareRouteCards)[0];')
+  [void]$Builder.AppendLine('        const selected = exactAnswer || candidates[0] || null;')
+  [void]$Builder.AppendLine('        const ambiguity = answerAmbiguity(selected, candidates);')
+  [void]$Builder.AppendLine('        return { answerCard: ambiguity.ambiguous ? null : selected, answerCandidates: candidates, answerState: ambiguity.ambiguous ? "ambiguous" : (selected ? "definition" : "none"), ambiguityCount: ambiguity.count };')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const displayHebrewKey = (value) => String(value || "")')
+  [void]$Builder.AppendLine('        .replace(/\u05DB$/u, "\u05DA")')
+  [void]$Builder.AppendLine('        .replace(/\u05DE$/u, "\u05DD")')
+  [void]$Builder.AppendLine('        .replace(/\u05E0$/u, "\u05DF")')
+  [void]$Builder.AppendLine('        .replace(/\u05E4$/u, "\u05E3")')
+  [void]$Builder.AppendLine('        .replace(/\u05E6$/u, "\u05E5");')
+  [void]$Builder.AppendLine('      const treatmentForLookup = (card) => {')
+  [void]$Builder.AppendLine('        if (!card || !card.lookup_key || !card.lookup_relation || card.lookup_relation === "exact") return "";')
+  [void]$Builder.AppendLine('        const key = displayHebrewKey(card.lookup_key);')
+  [void]$Builder.AppendLine('        if (card.lookup_relation === "mater-expanded plural candidate") return `Matched by plural-form treatment: also try ${key}.`;')
+  [void]$Builder.AppendLine('        if (card.lookup_relation === "plural-suffix candidate") return `Matched by plural suffix treatment: base candidate ${key}.`;')
+  [void]$Builder.AppendLine('        if (card.lookup_relation === "possessive-suffix candidate") return `Matched by possessive suffix treatment: base candidate ${key}.`;')
+  [void]$Builder.AppendLine('        if (card.lookup_relation === "suffix-stripped candidate") return `Matched by suffix-stripped treatment: base candidate ${key}.`;')
+  [void]$Builder.AppendLine('        if (card.lookup_relation === "prefix-stripped candidate") return `Matched by prefix treatment: base candidate ${key}.`;')
+  [void]$Builder.AppendLine('        if (card.lookup_relation === "maqaf component") return `Matched by maqaf component: ${key}.`;')
+  [void]$Builder.AppendLine('        return `Matched by ${card.lookup_relation}: ${key}.`;')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const lookupTreatmentLabel = (relation) => {')
+  [void]$Builder.AppendLine('        if (relation === "mater-expanded plural candidate") return "plural form";')
+  [void]$Builder.AppendLine('        if (relation === "plural-suffix candidate") return "plural suffix";')
+  [void]$Builder.AppendLine('        if (relation === "possessive-suffix candidate") return "possessive suffix";')
+  [void]$Builder.AppendLine('        if (relation === "suffix-stripped candidate") return "suffix stripped";')
+  [void]$Builder.AppendLine('        if (relation === "prefix-stripped candidate") return "prefix stripped";')
+  [void]$Builder.AppendLine('        if (relation === "maqaf component") return "maqaf component";')
+  [void]$Builder.AppendLine('        return relation || "lookup";')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const lookupCandidateTreatments = (lookupCandidates) => {')
+  [void]$Builder.AppendLine('        const rows = [];')
+  [void]$Builder.AppendLine('        const seen = new Set();')
+  [void]$Builder.AppendLine('        cleanValues(lookupCandidates).forEach((candidate) => {')
+  [void]$Builder.AppendLine('          if (!candidate || !candidate.key || !candidate.relation || candidate.relation === "exact") return;')
+  [void]$Builder.AppendLine('          const key = `${candidate.relation}|${candidate.key}`;')
+  [void]$Builder.AppendLine('          if (seen.has(key)) return;')
+  [void]$Builder.AppendLine('          seen.add(key);')
+  [void]$Builder.AppendLine('          rows.push({ text: `${lookupTreatmentLabel(candidate.relation)}: also check ${displayHebrewKey(candidate.key)}`, note: `generated lookup candidate${candidate.penalty ? `; rank penalty ${candidate.penalty}` : ""}, not final definition` });')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        return rows;')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const tokenShapeNotes = (clickedForm, normalized) => {')
+  [void]$Builder.AppendLine('        const key = normalizeHebrewKey(normalized || clickedForm);')
+  [void]$Builder.AppendLine('        const notes = [];')
+  [void]$Builder.AppendLine('        if (key.endsWith("\u05D9\u05DE") && key.length > 3) {')
+  [void]$Builder.AppendLine('          const stem = key.slice(0, -2);')
+  [void]$Builder.AppendLine('          const expanded = stem.endsWith("\u05D4") ? `${stem.slice(0, -1)}\u05D5\u05D4\u05D9\u05DE` : "";')
+  [void]$Builder.AppendLine('          notes.push({ text: `${displayHebrewKey(stem)} + -\u05D9\u05DD = plural form candidate${expanded ? `; also try ${displayHebrewKey(expanded)}` : ""}`, note: "proposed morphology, not final definition" });')
+  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('        if (key.endsWith("\u05D5\u05EA") && key.length > 3) notes.push({ text: `${displayHebrewKey(key.slice(0, -2))} + -\u05D5\u05EA = plural form candidate`, note: "proposed morphology, not final definition" });')
+  [void]$Builder.AppendLine('        return notes;')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const formTreatmentRows = (cards) => cleanValues(cards)')
+  [void]$Builder.AppendLine('        .filter((card) => /(?:plural|singular|dual|construct|defective spelling|form of|suffix|prefix)/i.test(`${card.definition || ""} ${card.meaning_claim || ""} ${card.match_type || ""}`))')
+  [void]$Builder.AppendLine('        .sort(compareRouteCards)')
+  [void]$Builder.AppendLine('        .slice(0, 4);')
+  [void]$Builder.AppendLine('      const appendTokenTreatmentCard = (panel, clickedForm, normalized, cards, lookupCandidates) => {')
+  [void]$Builder.AppendLine('        const notes = tokenShapeNotes(clickedForm, normalized);')
+  [void]$Builder.AppendLine('        const generatedRows = lookupCandidateTreatments(lookupCandidates);')
+  [void]$Builder.AppendLine('        const treatmentRows = formTreatmentRows(cards);')
+  [void]$Builder.AppendLine('        if (!notes.length && !generatedRows.length && !treatmentRows.length) return;')
+  [void]$Builder.AppendLine('        const section = document.createElement("section");')
+  [void]$Builder.AppendLine('        section.className = "route-treatment-card";')
+  [void]$Builder.AppendLine('        const title = document.createElement("strong");')
+  [void]$Builder.AppendLine('        title.textContent = "Form treatment";')
+  [void]$Builder.AppendLine('        section.appendChild(title);')
+  [void]$Builder.AppendLine('        [...notes, ...generatedRows].forEach((item) => { const line = document.createElement("p"); line.className = "route-treatment-line"; line.textContent = `${item.text} - ${item.note}`; section.appendChild(line); });')
+  [void]$Builder.AppendLine('        treatmentRows.forEach((card) => { const rendering = routeRenderings(card)[0]; if (!rendering) return; const line = document.createElement("p"); line.className = "route-treatment-line"; line.textContent = rendering; section.appendChild(line); });')
+  [void]$Builder.AppendLine('        panel.appendChild(section);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const appendPhraseLine = (card, parent) => {')
+  [void]$Builder.AppendLine('        const tokens = cleanValues(card.phrase_tokens);')
+  [void]$Builder.AppendLine('        const phraseText = firstPresentValue([card.phrase_hebrew, card.phrase_text_hebrew, card.phrase]);')
+  [void]$Builder.AppendLine('        if (!tokens.length && !phraseText) return;')
+  [void]$Builder.AppendLine('        const phrase = document.createElement("p");')
+  [void]$Builder.AppendLine('        phrase.className = "phrase-line";')
+  [void]$Builder.AppendLine('        phrase.lang = "he";')
+  [void]$Builder.AppendLine('        phrase.dir = "rtl";')
+  [void]$Builder.AppendLine('        if (!tokens.length) { phrase.textContent = normalizeHebrewDisplay(phraseText); parent.appendChild(phrase); return; }')
+  [void]$Builder.AppendLine('        tokens.forEach((token, index) => {')
+  [void]$Builder.AppendLine('          if (index) phrase.append(" ");')
+  [void]$Builder.AppendLine('          const span = document.createElement("span");')
+  [void]$Builder.AppendLine('          span.className = token.role === "focus-token" || token.role === "focus-part" ? "phrase-focus" : "phrase-context";')
+  [void]$Builder.AppendLine('          span.textContent = normalizeHebrewDisplay(token.surface || "");')
+  [void]$Builder.AppendLine('          phrase.appendChild(span);')
+  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        parent.appendChild(phrase);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const appendUsageEvidenceDetails = (card, parent) => {')
+  [void]$Builder.AppendLine('        if (!isUsageEvidenceCard(card)) return;')
+  [void]$Builder.AppendLine('        const scoreParts = [];')
+  [void]$Builder.AppendLine('        if (Number.isFinite(card.raw_score)) scoreParts.push(`raw ${card.raw_score}`);')
+  [void]$Builder.AppendLine('        if (Number.isFinite(card.score_handicap) && card.score_handicap) scoreParts.push(`handicap ${card.score_handicap}`);')
+  [void]$Builder.AppendLine('        if (Number.isFinite(card.adjusted_score)) scoreParts.push(`adjusted ${card.adjusted_score}`);')
+  [void]$Builder.AppendLine('        if (Number.isFinite(card.confidence_percent)) scoreParts.push(`confidence ${card.confidence_percent}%`);')
+  [void]$Builder.AppendLine('        if (!scoreParts.length) scoreParts.push(`${routeScore(card)}%`);')
+  [void]$Builder.AppendLine('        const rows = [')
+  [void]$Builder.AppendLine('          ["Usage", card.usage_note],')
+  [void]$Builder.AppendLine('          ["Frame", card.frame_label],')
+  [void]$Builder.AppendLine('          ["Status", firstPresentValue([card.status, card.candidate_status, card.claim_status, card.display_status, card.confidence_band, card.answer_role])],')
+  [void]$Builder.AppendLine('          ["Score", scoreParts.join(" / ")],')
+  [void]$Builder.AppendLine('          ["Source", firstPresentValue([card.source_ref, card.ref, card.occurrence_ref])]')
+  [void]$Builder.AppendLine('        ].filter((row) => firstPresentValue([row[1]]));')
+  [void]$Builder.AppendLine('        if (!rows.length) return;')
+  [void]$Builder.AppendLine('        const box = document.createElement("div");')
+  [void]$Builder.AppendLine('        box.className = "usage-evidence-details";')
+  [void]$Builder.AppendLine('        rows.forEach(([labelText, value]) => { const line = document.createElement("p"); const label = document.createElement("strong"); label.textContent = `${labelText}: `; line.append(label, normalizeHebrewDisplay(String(value || ""))); box.appendChild(line); });')
+  [void]$Builder.AppendLine('        parent.appendChild(box);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const compactRelationLabel = (card) => {')
+  [void]$Builder.AppendLine('        const relation = card && card.lookup_relation && card.lookup_relation !== "exact" ? String(card.lookup_relation).replace(/ candidate$/i, "") : "direct";')
+  [void]$Builder.AppendLine('        return relation.replace(/-/g, " ");')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const appendRouteCard = (parent, card, role = "evidence", order = 0, sourceIndexes = []) => {')
+  [void]$Builder.AppendLine('        const article = document.createElement("article");')
+  [void]$Builder.AppendLine('        article.className = `claim-row route-card ${role === "answer" ? "route-answer-card" : ""}`;')
+  [void]$Builder.AppendLine('        const cardHebrew = normalizeHebrewDisplay(card.hebrew || card.surface || "");')
+  [void]$Builder.AppendLine('        article.dataset.routeHebrew = cardHebrew;')
+  [void]$Builder.AppendLine('        if (role !== "answer") {')
+  [void]$Builder.AppendLine('          const head = document.createElement("div");')
+  [void]$Builder.AppendLine('          head.className = "claim-row-head";')
+  [void]$Builder.AppendLine('          const badge = document.createElement("span");')
+  [void]$Builder.AppendLine('          badge.className = "claim-status";')
+  [void]$Builder.AppendLine('          badge.textContent = order ? `#${order}` : "route";')
+  [void]$Builder.AppendLine('          const hebrew = document.createElement("strong");')
+  [void]$Builder.AppendLine('          hebrew.className = "claim-hebrew";')
+  [void]$Builder.AppendLine('          hebrew.lang = "he";')
+  [void]$Builder.AppendLine('          hebrew.dir = "rtl";')
+  [void]$Builder.AppendLine('          hebrew.textContent = cardHebrew;')
+  [void]$Builder.AppendLine('          head.append(badge, hebrew);')
+  [void]$Builder.AppendLine('          article.appendChild(head);')
+  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('        const renderings = routeRenderings(card);')
+  [void]$Builder.AppendLine('        if (renderings.length) renderings.forEach((line, index) => { const p = document.createElement("p"); p.className = "claim-renderings"; p.textContent = normalizeHebrewDisplay(line); if (index === 0) appendSourceRefs(p, sourceIndexes); article.appendChild(p); });')
+  [void]$Builder.AppendLine('        else { article.dataset.evidenceOnly = "true"; }')
+  [void]$Builder.AppendLine('        const meta = document.createElement("p");')
+  [void]$Builder.AppendLine('        meta.className = "route-meta";')
+  [void]$Builder.AppendLine('        meta.textContent = [routeSectionTitles.get(routeSection(card)) || routeSection(card), `${routeScore(card)}%`, compactRelationLabel(card)].filter(Boolean).join(" | ");')
+  [void]$Builder.AppendLine('        article.dataset.routeMeta = meta.textContent;')
+  [void]$Builder.AppendLine('        if (role !== "answer") article.appendChild(meta);')
+  [void]$Builder.AppendLine('        const treatment = treatmentForLookup(card);')
+  [void]$Builder.AppendLine('        if (treatment) { const p = document.createElement("p"); p.className = "claim-treatment-line"; p.textContent = treatment; article.appendChild(p); }')
+  [void]$Builder.AppendLine('        appendPhraseLine(card, article);')
+  [void]$Builder.AppendLine('        appendUsageEvidenceDetails(card, article);')
+  [void]$Builder.AppendLine('        article.dataset.rankBasis = routeScoreBasis(card).join(" / ") || "No rank fields on this card.";')
+  [void]$Builder.AppendLine('        parent.appendChild(article);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const appendRouteSection = (panel, sectionId, cards, sourceCardMap) => {')
+  [void]$Builder.AppendLine('        const section = document.createElement("section");')
+  [void]$Builder.AppendLine('        section.className = "route-section-card";')
+  [void]$Builder.AppendLine('        const title = document.createElement("div");')
+  [void]$Builder.AppendLine('        title.className = "route-section-title";')
+  [void]$Builder.AppendLine('        const h3 = document.createElement("h3"); h3.textContent = routeSectionTitles.get(sectionId) || sectionId;')
+  [void]$Builder.AppendLine('        const count = document.createElement("span"); count.textContent = `${cards.length} route${cards.length === 1 ? "" : "s"}`;')
+  [void]$Builder.AppendLine('        title.append(h3, count);')
+  [void]$Builder.AppendLine('        section.appendChild(title);')
+  [void]$Builder.AppendLine('        if (!cards.length) return;')
+  [void]$Builder.AppendLine('        const lane = document.createElement("div"); lane.className = cards.length > 1 ? "claim-row-list hud-card-lane" : "claim-row-list";')
+  [void]$Builder.AppendLine('        cards.sort(compareRouteCards).forEach((card, index) => appendRouteCard(lane, card, "evidence", index + 1, sourceCardMap ? sourceCardMap.get(card) : []));')
+  [void]$Builder.AppendLine('        section.appendChild(lane);')
+  [void]$Builder.AppendLine('        panel.appendChild(section);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const renderRouteHudPanel = (panel, clickedForm, normalized, cards, lookupCandidates) => {')
+  [void]$Builder.AppendLine('        panel.replaceChildren();')
+  [void]$Builder.AppendLine('        const sourceNotes = buildSourceNotes(cards);')
+  [void]$Builder.AppendLine('        const selected = document.createElement("div"); selected.className = "route-selected-token"; selected.lang = "he"; selected.dir = "rtl"; selected.textContent = normalizeHebrewDisplay(clickedForm || normalized || ""); panel.appendChild(selected);')
+  [void]$Builder.AppendLine('        appendTokenTreatmentCard(panel, clickedForm, normalized, cards, lookupCandidates);')
+  [void]$Builder.AppendLine('        const { answerCard, answerState, ambiguityCount } = selectRouteAnswer(cards);')
+  [void]$Builder.AppendLine('        const answerSection = document.createElement("section"); answerSection.className = "route-section-card route-answer-card";')
+  [void]$Builder.AppendLine('        const answerTitle = document.createElement("div"); answerTitle.className = "route-section-title";')
+  [void]$Builder.AppendLine('        const answerH3 = document.createElement("h3"); answerH3.textContent = answerState === "ambiguous" ? "Definition candidates" : "Definition";')
+  [void]$Builder.AppendLine('        const answerMeta = document.createElement("span");')
+  [void]$Builder.AppendLine('        answerMeta.textContent = answerCard ? `${routeScore(answerCard)}% ${answerCard.lookup_relation === "exact" ? "direct" : answerCard.lookup_relation}` : (answerState === "ambiguous" ? `${ambiguityCount || 2} options` : "not answer-eligible");')
+  [void]$Builder.AppendLine('        answerTitle.append(answerH3, answerMeta); answerSection.appendChild(answerTitle);')
+  [void]$Builder.AppendLine('        if (answerCard) appendRouteCard(answerSection, answerCard, "answer", 0, sourceNotes.cardMap.get(answerCard)); else { const p = document.createElement("p"); p.className = "placeholder"; p.textContent = answerState === "ambiguous" ? "Ambiguous; compare evidence below." : "No definition yet."; answerSection.appendChild(p); }')
+  [void]$Builder.AppendLine('        panel.appendChild(answerSection);')
+  [void]$Builder.AppendLine('        const bySection = new Map();')
+  [void]$Builder.AppendLine('        cards.filter((card) => card !== answerCard).forEach((card) => { const section = routeSection(card); if (!bySection.has(section)) bySection.set(section, []); bySection.get(section).push(card); });')
+  [void]$Builder.AppendLine('        placeholderSections.forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap));')
+  [void]$Builder.AppendLine('        [...bySection.keys()].filter((section) => !placeholderSections.includes(section)).sort((a, b) => (routeSectionRank.get(a) ?? 9) - (routeSectionRank.get(b) ?? 9)).forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap));')
+  [void]$Builder.AppendLine('        const lookup = document.createElement("details"); lookup.className = "route-audit-card";')
+  [void]$Builder.AppendLine('        const lookupTitle = document.createElement("summary"); lookupTitle.textContent = `Lookup keys (${lookupCandidates.length})`; lookup.appendChild(lookupTitle);')
+  [void]$Builder.AppendLine('        const lookupText = document.createElement("p"); lookupText.className = "placeholder"; lookupText.textContent = `Normalized key: ${normalized || "N/A"} | Cards: ${cards.length} | Lookup keys: ${lookupCandidates.map((item) => `${item.key}${item.relation === "exact" ? "" : ` (${item.relation})`}`).join(", ") || "none"}`; lookup.appendChild(lookupText);')
+  [void]$Builder.AppendLine('        panel.appendChild(lookup);')
+  [void]$Builder.AppendLine('        appendSourceFootnotes(panel, sourceNotes.notes);')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      const primaryWordText = (button) => button.dataset.lexicalSurface || button.querySelector(".lexical-word-surface")?.textContent?.trim() || button.textContent.trim();')
   [void]$Builder.AppendLine('      const buildWordView = async (button) => {')
   [void]$Builder.AppendLine('        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);')
-  [void]$Builder.AppendLine('        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";')
-  [void]$Builder.AppendLine('        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};')
-  [void]$Builder.AppendLine('        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };')
+  [void]$Builder.AppendLine('        return { ...tokenRow, hebrew_word: primaryWordText(button) || tokenRow.surface_word, source_rows: [], secondary_source_rows: [] };')
   [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const renderWord = async (button) => {')
   [void]$Builder.AppendLine('        const unit = button.closest("[data-lexical-unit]");')
   [void]$Builder.AppendLine('        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;')
   [void]$Builder.AppendLine('        if (!unit || !slot) return;')
+  [void]$Builder.AppendLine('        if (activeHudButton && activeHudButton !== button) { activeHudButton.setAttribute("aria-pressed", "false"); activeHudButton.setAttribute("aria-expanded", "false"); }')
   [void]$Builder.AppendLine('        activeHudButton = button;')
   [void]$Builder.AppendLine('        if (hud.parentElement !== document.body) document.body.appendChild(hud);')
-  [void]$Builder.AppendLine('        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));')
   [void]$Builder.AppendLine('        button.setAttribute("aria-pressed", "true");')
+  [void]$Builder.AppendLine('        button.setAttribute("aria-expanded", "true");')
   [void]$Builder.AppendLine('        hud.hidden = false;')
+  [void]$Builder.AppendLine('        hud.focus({ preventScroll: true });')
   [void]$Builder.AppendLine('        positionHudNearButton(button);')
-      [void]$Builder.AppendLine('        setText(hud, "[data-hud-word]", button.textContent.trim());')
-      [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);')
-      [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);')
-      [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-lemma-strict-row]", false);')
-      [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-caution-row]", true);')
-      [void]$Builder.AppendLine('        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);')
-      [void]$Builder.AppendLine('        setList(hud, "[data-hud-aramaic-strict]", ["Loading lexical entry..."]);')
-      [void]$Builder.AppendLine('        setList(hud, "[data-hud-lemma-strict]", ["Loading lexical entry..."]);')
-  [void]$Builder.AppendLine('        renderBreakdown(hud, {});')
-  [void]$Builder.AppendLine('        renderPotentialAndRelatedEntries(hud, {}, false, false);')
-  [void]$Builder.AppendLine('        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);')
+  [void]$Builder.AppendLine('        const panel = hud.querySelector("[data-route-hud-panel]");')
+  [void]$Builder.AppendLine('        if (panel) { const loading = document.createElement("p"); loading.className = "placeholder"; loading.textContent = "Loading route cards..."; panel.replaceChildren(loading); }')
   [void]$Builder.AppendLine('        try {')
   [void]$Builder.AppendLine('          const view = await buildWordView(button);')
   [void]$Builder.AppendLine('          if (button.getAttribute("aria-pressed") !== "true") return;')
-  [void]$Builder.AppendLine('          setText(hud, "[data-hud-word]", view.hebrew_word);')
-  [void]$Builder.AppendLine('          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);')
-  [void]$Builder.AppendLine('          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };')
-      [void]$Builder.AppendLine('          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [], lemma: [] };')
-      [void]$Builder.AppendLine('          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0 || strictClaims.lemma.length > 0;')
-      [void]$Builder.AppendLine('          const clickedForm = view.hebrew_word || view.surface_word || "Clicked form";')
-      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);')
-      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);')
-      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);')
-      [void]$Builder.AppendLine('          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew.length ? strictClaims.hebrew : [placeholderClaim("Strict Hebrew", clickedForm, "No Hebrew strict match yet.")]);')
-      [void]$Builder.AppendLine('          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic.length ? strictClaims.aramaic : [placeholderClaim("Strict Aramaic", clickedForm, "No Aramaic strict match yet.")]);')
-      [void]$Builder.AppendLine('          appendClaimRows(hud.querySelector("[data-hud-lemma-strict]"), strictClaims.lemma.length ? strictClaims.lemma : [placeholderClaim("Strict Lemma", clickedForm, "No lemma strict match yet.")]);')
-  [void]$Builder.AppendLine('          renderBreakdown(hud, view);')
-  [void]$Builder.AppendLine('          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);')
-  [void]$Builder.AppendLine('          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));')
-  [void]$Builder.AppendLine('          const details = hud.querySelector("details");')
-  [void]$Builder.AppendLine('          if (details) details.open = true;')
+  [void]$Builder.AppendLine('          const clickedForm = view.hebrew_word || view.surface_word || "Clicked form";')
+  [void]$Builder.AppendLine('          const hudTitle = hud.querySelector("#route-hud-title"); if (hudTitle) hudTitle.textContent = `Route HUD: ${normalizeHebrewDisplay(clickedForm || "")}`;')
+  [void]$Builder.AppendLine('          const clickedNormalized = normalizeHebrewKey(clickedForm);')
+  [void]$Builder.AppendLine('          const rowSurfaceNormalized = normalizeHebrewKey(view.surface_word || "");')
+  [void]$Builder.AppendLine('          const normalized = rowSurfaceNormalized && rowSurfaceNormalized === clickedNormalized ? (view.normalized_word || clickedNormalized) : clickedNormalized;')
+  [void]$Builder.AppendLine('          const routeLookup = await loadRouteCardsForToken(clickedForm, normalized);')
+  [void]$Builder.AppendLine('          if (button.getAttribute("aria-pressed") !== "true") return;')
+  [void]$Builder.AppendLine('          if (panel) renderRouteHudPanel(panel, clickedForm, normalized, routeLookup.cards, routeLookup.candidates);')
   [void]$Builder.AppendLine('          positionHudNearButton(button);')
   [void]$Builder.AppendLine('        } catch (error) {')
       [void]$Builder.AppendLine('          console.error(error);')
-      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);')
-      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);')
-      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);')
-      [void]$Builder.AppendLine('          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);')
-      [void]$Builder.AppendLine('          setList(hud, "[data-hud-aramaic-strict]", ["No Aramaic strict match yet."]);')
-      [void]$Builder.AppendLine('          setList(hud, "[data-hud-lemma-strict]", ["No lemma strict match yet."]);')
+      [void]$Builder.AppendLine('          if (panel) { const errorNote = document.createElement("p"); errorNote.className = "placeholder"; errorNote.textContent = "New HUD route lookup failed for this click."; panel.replaceChildren(errorNote); }')
   [void]$Builder.AppendLine('          positionHudNearButton(button);')
   [void]$Builder.AppendLine('        }')
   [void]$Builder.AppendLine('      };')
-  [void]$Builder.AppendLine('      document.addEventListener("wheel", (event) => {')
-  [void]$Builder.AppendLine('        const lane = event.target.closest(".hud-card-lane");')
-  [void]$Builder.AppendLine('        if (!lane) return;')
-  [void]$Builder.AppendLine('        const horizontalDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;')
-  [void]$Builder.AppendLine('        if (!horizontalDelta) return;')
+  [void]$Builder.AppendLine('      const closeRouteHud = ({ restoreFocus = false } = {}) => {')
+  [void]$Builder.AppendLine('        const buttonToRestore = activeHudButton;')
+  [void]$Builder.AppendLine('        hud.hidden = true;')
+  [void]$Builder.AppendLine('        if (buttonToRestore) { buttonToRestore.setAttribute("aria-pressed", "false"); buttonToRestore.setAttribute("aria-expanded", "false"); }')
+  [void]$Builder.AppendLine('        activeHudButton = null;')
+  [void]$Builder.AppendLine('        if (restoreFocus && buttonToRestore) buttonToRestore.focus({ preventScroll: true });')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      document.addEventListener("click", (event) => {')
+  [void]$Builder.AppendLine('        const button = event.target.closest("[data-lexical-token]");')
+  [void]$Builder.AppendLine('        if (button) { renderWord(button); return; }')
+  [void]$Builder.AppendLine('        if (!hud.hidden && !event.target.closest("[data-lexical-hud]")) closeRouteHud();')
+  [void]$Builder.AppendLine('      });')
+  [void]$Builder.AppendLine('      document.addEventListener("keydown", (event) => {')
+  [void]$Builder.AppendLine('        if (event.key === "Escape" && !hud.hidden) { event.preventDefault(); closeRouteHud({ restoreFocus: true }); return; }')
+  [void]$Builder.AppendLine('        if (event.key !== "Enter" && event.key !== " ") return;')
+  [void]$Builder.AppendLine('        const button = event.target.closest("[data-lexical-token]");')
+  [void]$Builder.AppendLine('        if (!button) return;')
   [void]$Builder.AppendLine('        event.preventDefault();')
-  [void]$Builder.AppendLine('        lane.scrollLeft += horizontalDelta;')
-  [void]$Builder.AppendLine('      }, { passive: false });')
-  [void]$Builder.AppendLine('      buttons.forEach((button) => {')
-  [void]$Builder.AppendLine('        button.addEventListener("click", () => {')
-  [void]$Builder.AppendLine('          renderWord(button);')
-  [void]$Builder.AppendLine('        });')
-  [void]$Builder.AppendLine('        button.addEventListener("keydown", (event) => {')
-  [void]$Builder.AppendLine('          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }')
-  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        renderWord(button);')
   [void]$Builder.AppendLine('      });')
   [void]$Builder.AppendLine('      document.querySelectorAll("[data-hud-close]").forEach((button) => {')
-  [void]$Builder.AppendLine('        button.addEventListener("click", () => {')
-  [void]$Builder.AppendLine('          const hud = button.closest("[data-lexical-hud]");')
-  [void]$Builder.AppendLine('          if (hud) hud.hidden = true;')
-  [void]$Builder.AppendLine('          activeHudButton = null;')
-  [void]$Builder.AppendLine('          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));')
-  [void]$Builder.AppendLine('        });')
+  [void]$Builder.AppendLine('        button.addEventListener("click", () => closeRouteHud({ restoreFocus: true }));')
   [void]$Builder.AppendLine('      });')
   [void]$Builder.AppendLine('      window.addEventListener("resize", scheduleHudPosition);')
   [void]$Builder.AppendLine('      window.addEventListener("scroll", scheduleHudPosition, true);')
@@ -1819,7 +1803,6 @@ function Get-WorkLexicalPayload {
   )
 
   $tokenIds = @{}
-  $entryIds = @{}
   if ($null -ne $WorkOccurrence -and $null -ne $WorkOccurrence.units) {
     foreach ($unitProperty in @($WorkOccurrence.units.PSObject.Properties)) {
       foreach ($paragraph in @($unitProperty.Value.paragraphs)) {
@@ -1827,10 +1810,6 @@ function Get-WorkLexicalPayload {
           if ($tokenIndexId) {
             $tokenKey = [string]$tokenIndexId
             $tokenIds[$tokenKey] = $true
-            if ($LexicalCache.token_index_by_id.ContainsKey($tokenKey)) {
-              $row = $LexicalCache.token_index_by_id[$tokenKey]
-              if ($row.lexicon_entry_id) { $entryIds[[string]$row.lexicon_entry_id] = $true }
-            }
           }
         }
       }
@@ -1844,76 +1823,13 @@ function Get-WorkLexicalPayload {
         token_index_id = $row.token_index_id
         surface_word = $row.surface_word
         normalized_word = $row.normalized_word
-        lexicon_entry_id = $row.lexicon_entry_id
-        status = $row.status
-        surface_renderings = $row.surface_renderings
-        surface_context_status = $row.surface_context_status
-        surface_context_note = $row.surface_context_note
-        breakdown = @($row.breakdown | ForEach-Object {
-          [pscustomobject]@{
-            hebrew = $_.hebrew
-            strict_renderings = $_.strict_renderings
-          }
-        })
-      }
-    }
-  })
-  $entries = @($entryIds.Keys | Sort-Object | ForEach-Object {
-    if ($LexicalCache.lexicon_by_id.ContainsKey($_)) {
-      $entry = $LexicalCache.lexicon_by_id[$_]
-      $rawPossibleEntries = @($entry.possible_entries | Where-Object {
-        -not (Test-ExcludedOtherLexicalEntry -Entry $_)
-      })
-      $primaryEntries = @($rawPossibleEntries | Where-Object {
-        $_.context_role -eq 'likely_contextual' -or (
-          $_.source_family -ne 'kaikki' -and
-          $_.source_family -ne 'wiktionary' -and
-          (($_.match_key -eq $entry.hebrew_word) -or ($_.lemma -eq $entry.hebrew_word))
-        )
-      })
-      $primaryEntryKeys = @{}
-      foreach ($primaryEntry in @($primaryEntries)) {
-        if ($primaryEntry.entry_key) { $primaryEntryKeys[[string]$primaryEntry.entry_key] = $true }
-      }
-      $secondaryEntries = @($rawPossibleEntries | Where-Object { -not ($_.entry_key -and $primaryEntryKeys.ContainsKey([string]$_.entry_key)) })
-      $selectionSourceRows = Add-LexicalFallbackSourceRows -SourceRows @($entry.source_rows) -Entries @($rawPossibleEntries)
-      $primarySourceRows = Select-LexicalSourceRows -SourceRows @($selectionSourceRows) -Keys @($primaryEntries | ForEach-Object { @(Get-LexicalEntrySourceKeys -Entry $_) })
-      $secondarySourceRows = Select-LexicalSourceRows -SourceRows @($selectionSourceRows) -Keys @($secondaryEntries | ForEach-Object { @(Get-LexicalEntrySourceKeys -Entry $_) })
-      if ($primarySourceRows.Count -eq 0 -and @($entry.strict_renderings).Count -gt 0) {
-        $strictRenderingRows = @($selectionSourceRows | Where-Object { $_.source_family -eq 'kaikki' -or $_.source_family -eq 'wiktionary' })
-        if ($strictRenderingRows.Count -gt 0) {
-          $primarySourceRows = $strictRenderingRows
-        }
-      }
-      $possibleEntries = @($rawPossibleEntries | ForEach-Object {
-        [pscustomobject]@{
-          entry_key = $_.entry_key
-          lemma = $_.lemma
-          match_key = $_.match_key
-          source_name = $_.source_name
-          source_family = $_.source_family
-          source_id = $_.source_id
-          strict_renderings = $_.strict_renderings
-          context_role = $_.context_role
-          relation_label = $_.relation_label
-        }
-      })
-      [pscustomobject]@{
-        entry_id = $entry.entry_id
-        hebrew_word = $entry.hebrew_word
-        strict_renderings = $entry.strict_renderings
-        disambiguation_status = $entry.disambiguation_status
-        context_note = $entry.context_note
-        possible_entries = $possibleEntries
-        source_rows = [object[]]@($primarySourceRows)
-        secondary_source_rows = [object[]]@($secondarySourceRows)
       }
     }
   })
   return [pscustomobject]@{
     generated_at = $LexicalCache.token_index.generated_at
     token_index = [pscustomobject]@{ schema_version = 1; forms = $forms }
-    lexicon = [pscustomobject]@{ schema_version = 1; entries = $entries }
+    lexicon = [pscustomobject]@{ schema_version = 1; entries = @() }
   }
 }
 
@@ -1937,13 +1853,6 @@ function Write-WorkLexicalPayloadFiles {
     Remove-Item -LiteralPath $oldChunk.FullName -Force
   }
 
-  $entriesById = @{}
-  foreach ($entry in @($WorkLexicalPayload.lexicon.entries)) {
-    if ($entry.entry_id) {
-      $entriesById[[string]$entry.entry_id] = $entry
-    }
-  }
-
   $forms = @($WorkLexicalPayload.token_index.forms)
   $maxFormsPerChunk = 1000
   $chunks = @()
@@ -1953,50 +1862,11 @@ function Write-WorkLexicalPayloadFiles {
     $chunkNumber = [int]($start / $maxFormsPerChunk)
     $chunkId = ('chunk-{0:D3}' -f $chunkNumber)
 
-    $chunkEntryIds = @{}
     foreach ($form in @($chunkForms)) {
       if ($form.token_index_id) {
         $tokenChunks[[string]$form.token_index_id] = $chunkId
       }
-      if ($form.lexicon_entry_id) {
-        $chunkEntryIds[[string]$form.lexicon_entry_id] = $true
-      }
     }
-
-    $sourceRows = [ordered]@{}
-    $sourceRowIdsByKey = @{}
-    $getSourceRowIds = {
-      param([object[]]$Rows)
-
-      $ids = @()
-      foreach ($row in @($Rows)) {
-        if ($null -eq $row) { continue }
-        $key = "$($row.source_family)|$($row.source_id)|$($row.license)"
-        if (-not $sourceRowIdsByKey.ContainsKey($key)) {
-          $sourceRowId = $key
-          $sourceRowIdsByKey[$key] = $sourceRowId
-          $sourceRows[$sourceRowId] = $row
-        }
-        $ids += $sourceRowIdsByKey[$key]
-      }
-      return $ids
-    }
-
-    $entries = @($chunkEntryIds.Keys | Sort-Object | ForEach-Object {
-      if ($entriesById.ContainsKey($_)) {
-        $entry = $entriesById[$_]
-        [pscustomobject]@{
-          entry_id = $entry.entry_id
-          hebrew_word = $entry.hebrew_word
-          strict_renderings = $entry.strict_renderings
-          disambiguation_status = $entry.disambiguation_status
-          context_note = $entry.context_note
-          possible_entries = $entry.possible_entries
-          source_row_ids = @(& $getSourceRowIds -Rows @($entry.source_rows))
-          secondary_source_row_ids = @(& $getSourceRowIds -Rows @($entry.secondary_source_rows))
-        }
-      }
-    })
 
     $chunk = [pscustomobject]@{
       schema_version = 1
@@ -2007,9 +1877,9 @@ function Write-WorkLexicalPayloadFiles {
       }
       lexicon = [pscustomobject]@{
         schema_version = 1
-        entries = $entries
+        entries = @()
       }
-      source_rows = $sourceRows
+      source_rows = [ordered]@{}
     }
 
     $chunkPath = Join-Path $chunkDir "$chunkId.json"
@@ -2018,7 +1888,7 @@ function Write-WorkLexicalPayloadFiles {
       chunk_id = $chunkId
       url = "$WorkId-chunks/$chunkId.json"
       token_count = $chunkForms.Count
-      entry_count = $entries.Count
+      entry_count = 0
     }
   }
 
@@ -2034,7 +1904,11 @@ function Write-WorkLexicalPayloadFiles {
   Write-Utf8 -Path $manifestPath -Content ((ConvertTo-Json -InputObject $manifest -Depth 40 -Compress) + "`n")
 
   return [pscustomobject]@{
+    work_id = $WorkId
     manifest_url = "$RootHref$LexicalDir/$WorkId.manifest.json"
+    occurrence_url = "$RootHref$LexicalDir/occurrences/$WorkId.json"
+    hud_route_lookup_manifest_url = "$($RootHref)data/definitions/hud-route-lookup/manifest.json"
+    reader_hints_url = "$($RootHref)data/public-hud/$WorkId/reader-hints.json"
     root_href = $RootHref
   }
 }
@@ -2159,7 +2033,7 @@ function Append-WorkToc {
     $firstGroupUnit = $groupUnits[0]
     $groupTitle = if ($firstGroupUnit.group_title -and $firstGroupUnit.group_slug -ne 'text') { $firstGroupUnit.group_title } else { $Source.work_title }
     $groupAnchor = Get-GroupStartAnchor -Unit $firstGroupUnit -Source $Source
-    $groupBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $groupUnits) { ' <span class="hud-badge">Lexical layer active</span>' } else { '' }
+    $groupBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $groupUnits) { ' <span class="hud-badge">Route HUD active</span>' } else { '' }
 
     [void]$Builder.AppendLine('            <details class="toc-group">')
     [void]$Builder.AppendLine("              <summary>$(Encode-Html $groupTitle)$groupBadge</summary>")
@@ -2171,7 +2045,7 @@ function Append-WorkToc {
       $firstSectionUnit = $sectionUnits[0]
       $sectionTitle = if ($firstSectionUnit.section_title -and $firstSectionUnit.section_slug -ne 'text') { $firstSectionUnit.section_title } else { $groupTitle }
       $sectionAnchor = Get-SectionStartAnchor -Unit $firstSectionUnit -Source $Source
-      $sectionBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $sectionUnits) { ' <span class="hud-badge">Lexical layer active</span>' } else { '' }
+      $sectionBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $sectionUnits) { ' <span class="hud-badge">Route HUD active</span>' } else { '' }
 
       [void]$Builder.AppendLine('              <details class="toc-section">')
       [void]$Builder.AppendLine("                <summary>$(Encode-Html $sectionTitle)$sectionBadge</summary>")
@@ -2529,41 +2403,17 @@ function Append-WorkLexicalDownloadLinks {
     [string]$AssetBaseUrl = ''
   )
 
-  $workId = [string]$Source.work_id
-  if (-not $workId) { return }
-
   $links = New-Object System.Collections.Generic.List[string]
   if ($null -ne $WorkLexicalExternal -and $WorkLexicalExternal.manifest_url) {
-    $links.Add("<a class=""export-button"" href=""$($WorkLexicalExternal.manifest_url)"">Lexical manifest</a>")
+    $links.Add("<a class=""export-button"" href=""$($WorkLexicalExternal.manifest_url)"">HUD token manifest</a>")
   }
-
-  $workClaimCsv = "data/public-lexical/by-work/$workId.csv"
-  if (Test-Path -LiteralPath $workClaimCsv) {
-    $href = if ($AssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $AssetBaseUrl -RelativePath $workClaimCsv } else { "$RootHref$workClaimCsv" }
-    $links.Add("<a class=""export-button"" href=""$href"" download>Book claims CSV</a>")
-  }
-
-  $tokenStatusCsv = "data/public-lexical/by-work/$workId-token-status.csv"
-  if (Test-Path -LiteralPath $tokenStatusCsv) {
-    $href = if ($AssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $AssetBaseUrl -RelativePath $tokenStatusCsv } else { "$RootHref$tokenStatusCsv" }
-    $links.Add("<a class=""export-button"" href=""$href"" download>Token status CSV</a>")
-  }
-
-  $compactTokenClaimsCsv = "data/public-lexical/by-work/$workId-token-claims-min60.csv"
-  if (Test-Path -LiteralPath $compactTokenClaimsCsv) {
-    $href = if ($AssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $AssetBaseUrl -RelativePath $compactTokenClaimsCsv } else { "$RootHref$compactTokenClaimsCsv" }
-    $links.Add("<a class=""export-button"" href=""$href"" download>Token claims CSV</a>")
-  }
-
-  $aiOptionsCsv = "data/public-lexical/by-work/$workId-ai-options-min60.csv"
-  if (Test-Path -LiteralPath $aiOptionsCsv) {
-    $href = if ($AssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $AssetBaseUrl -RelativePath $aiOptionsCsv } else { "$RootHref$aiOptionsCsv" }
-    $links.Add("<a class=""export-button"" href=""$href"" download>AI options CSV</a>")
+  if ($null -ne $WorkLexicalExternal -and $WorkLexicalExternal.hud_route_lookup_manifest_url) {
+    $links.Add("<a class=""export-button"" href=""$($WorkLexicalExternal.hud_route_lookup_manifest_url)"">Route lookup manifest</a>")
   }
 
   if ($links.Count -gt 0) {
     [void]$Builder.AppendLine('        <div class="license-notice lexical-downloads">')
-    [void]$Builder.AppendLine('          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.')
+    [void]$Builder.AppendLine('          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.')
     [void]$Builder.AppendLine("          <p class=""export-actions"">$($links -join '')</p>")
     [void]$Builder.AppendLine('        </div>')
   }
@@ -2589,8 +2439,8 @@ function New-LibraryPageHtml {
   [void]$page.AppendLine('      <div class="hero">')
   [void]$page.AppendLine("        <p class=""crumbs""><a href=""$HomeHref"">Library</a> &middot; <a href=""$AboutHref"">About / License</a></p>")
   [void]$page.AppendLine('        <h1>Hebrew Source Workbench</h1>')
-  [void]$page.AppendLine('        <p>Browse imported Hebrew source texts by corpus with lexical HUD support. Work pages preserve source/version/license metadata and expose book-local lexical HUD data when available.</p>')
-  [void]$page.AppendLine('        <p>No public English translation layer is displayed here; lexical rows are source-indexed study options.</p>')
+  [void]$page.AppendLine('        <p>Browse imported Hebrew source texts by corpus with route HUD support. Work pages preserve source/version/license metadata and expose book-local token and route-card data when available.</p>')
+  [void]$page.AppendLine('        <p>No public English translation layer is displayed here; route rows are source-indexed study evidence.</p>')
   [void]$page.AppendLine("        <p class=""meta"">$corpusSummary</p>")
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('      <div style="padding:22px">')
@@ -2620,7 +2470,7 @@ if (-not $SkipSitePages) {
   [void]$aboutPage.AppendLine('      <div class="hero">')
   [void]$aboutPage.AppendLine('        <p class="crumbs"><a href="../">Home</a> &middot; <a href="../library/">Full Library</a></p>')
   [void]$aboutPage.AppendLine('        <h1>About / License</h1>')
-  [void]$aboutPage.AppendLine('        <p>This site is a Hebrew-first source-text workbench with clickable lexical HUD support and explicit source/license layers. It is not an official edition, not a translation publication, and not a replacement for checking the cited source versions.</p>')
+  [void]$aboutPage.AppendLine('        <p>This site is a Hebrew-first source-text workbench with clickable route HUD support and explicit source/license layers. It is not an official edition, not a translation publication, and not a replacement for checking the cited source versions.</p>')
   [void]$aboutPage.AppendLine('      </div>')
   [void]$aboutPage.AppendLine('      <div style="padding:22px">')
   [void]$aboutPage.AppendLine('        <section class="home-section">')
@@ -2629,9 +2479,9 @@ if (-not $SkipSitePages) {
   [void]$aboutPage.AppendLine('          <p>No copyrighted English translations are imported into the source layer.</p>')
   [void]$aboutPage.AppendLine('        </section>')
   [void]$aboutPage.AppendLine('        <section class="home-section">')
-  [void]$aboutPage.AppendLine('          <h2>Lexical HUD</h2>')
-  [void]$aboutPage.AppendLine('          <p>Lexical rows retain per-source licensing. Wikidata rows remain CC0, OpenScriptures rows remain CC BY 4.0, Wiktionary/Kaikki rows remain CC BY-SA 4.0 / GFDL, and project-authored grammar, abbreviation, formula, and scoped lexical rows are labeled separately.</p>')
-  [void]$aboutPage.AppendLine('          <p>Lexical HUD rows are study aids and source-indexed options. They are not polished English translations.</p>')
+  [void]$aboutPage.AppendLine('          <h2>Route HUD</h2>')
+  [void]$aboutPage.AppendLine('          <p>Route rows retain per-source licensing and source-strength metadata. External definition rows, citable paraphrase rows, and workbench evidence rows stay separated for audit.</p>')
+  [void]$aboutPage.AppendLine('          <p>Route HUD rows are study aids and source-indexed evidence. They are not polished English translations.</p>')
   [void]$aboutPage.AppendLine('        </section>')
   [void]$aboutPage.AppendLine('        <section class="home-section">')
   [void]$aboutPage.AppendLine('          <h2>Translation Status</h2>')
@@ -2743,8 +2593,13 @@ foreach ($source in $renderSources) {
       # are slower and can leave pages with plain, non-clickable Hebrew if blocked.
       $assetRoot = $rootHref
       [pscustomobject]@{
+        work_id = $source.work_id
+        work_slug = $source.work_slug
+        work_title = $source.work_title
         manifest_url = "$rootHref$manifestRelative"
         occurrence_url = "$rootHref$occurrenceRelative"
+        hud_route_lookup_manifest_url = "$($rootHref)data/definitions/hud-route-lookup/manifest.json"
+        reader_hints_url = "$($rootHref)data/public-hud/$($source.work_id)/reader-hints.json"
         root_href = $assetRoot
       }
     } else {
@@ -2755,6 +2610,15 @@ foreach ($source in $renderSources) {
   $workLexicalCounts = if ($workHasLexical -and $SkipLexicalPayloadFiles) {
     Get-JsonHeaderCounts -Path (Join-Path 'data/lexical/token-indexes' "$($source.work_slug).json")
   } else { $null }
+  $hudTokenTotal = 0
+  if ($workHasLexical) {
+    $workLexicalForms = if ($null -ne $workLexicalPayload) { @($workLexicalPayload.token_index.forms) } else { @() }
+    $hudTokenTotal = if ($null -ne $workLexicalCounts -and $null -ne $workLexicalCounts.total_unique_surface_forms) {
+      [int]$workLexicalCounts.total_unique_surface_forms
+    } else {
+      $workLexicalForms.Count
+    }
+  }
 
   $pairedBaseSource = $null
   $pairedBaseLookup = @{}
@@ -2763,14 +2627,16 @@ foreach ($source in $renderSources) {
     $pairedBaseLookup = New-BaseUnitLookup -BaseSource $pairedBaseSource
   }
 
-  Append-SiteHead -Builder $page -Title $source.work_title -IncludeLexicalStyles:$workHasLexical
+  $readerWorkbenchCssHref = if ($workHasLexical) { "$($rootHref)assets/css/reader-workbench.css" } else { '' }
+  Append-SiteHead -Builder $page -Title $source.work_title -IncludeLexicalStyles:$workHasLexical -ReaderWorkbenchCssHref $readerWorkbenchCssHref
   [void]$page.AppendLine('  <main>')
   [void]$page.AppendLine('    <div class="shell">')
   [void]$page.AppendLine('      <div class="hero" id="work-top">')
-  [void]$page.AppendLine("        <p class=""crumbs""><a href=""$rootHref"">Home</a> &middot; <a href=""${rootHref}about/"">About / License</a></p>")
-  [void]$page.AppendLine("        <h1>$(Encode-Html $source.work_title)</h1>")
+  [void]$page.AppendLine('        <div class="hero-main">')
+  [void]$page.AppendLine("          <p class=""crumbs""><a href=""$rootHref"">Home</a> &middot; <a href=""${rootHref}about/"">About / License</a></p>")
+  [void]$page.AppendLine("          <h1>$(Encode-Html $source.work_title)<sup class=""hero-ref"">1</sup></h1>")
   if ($source.display_label) {
-    [void]$page.AppendLine("        <p class=""work-label"">$(Encode-Html $source.display_label)</p>")
+    [void]$page.AppendLine("          <p class=""work-label"">$(Encode-Html $source.display_label)</p>")
   }
   if ($source.work_type -eq 'commentary') {
     $baseImported = $false
@@ -2799,28 +2665,24 @@ foreach ($source in $renderSources) {
     [void]$page.AppendLine('          </section>')
     [void]$page.AppendLine('        </div>')
   }
-  [void]$page.AppendLine("        <p class=""meta"">$(@($source.units).Count) total source units | imported $(Encode-Html $source.import_date)</p>")
+  [void]$page.AppendLine('          <p class="hero-summary">')
+  [void]$page.AppendLine("            <span>$(@($source.units).Count) source units</span>")
+  if ($hudTokenTotal -gt 0) {
+    [void]$page.AppendLine("            <span>$hudTokenTotal HUD forms</span>")
+  }
+  [void]$page.AppendLine("            <span>imported $(Encode-Html $source.import_date)</span>")
+  [void]$page.AppendLine('            <span>Words read right to left</span>')
+  [void]$page.AppendLine('          </p>')
+  [void]$page.AppendLine('        </div>')
+  [void]$page.AppendLine('        <div class="hero-notes" aria-label="Header source notes">')
+  [void]$page.AppendLine('          <ol>')
   if ($singleSourceNote) {
-    [void]$page.AppendLine("        <p class=""meta source-citation"">$(Get-SourceSummaryHtml -Note $sourceNotes[0])</p>")
+    [void]$page.AppendLine("            <li>$(Get-SourceSummaryHtml -Note $sourceNotes[0])</li>")
   } else {
-    [void]$page.AppendLine("        <p class=""meta source-citation"">$($sourceNotes.Count) source/license notes. See footer table for details.</p>")
+    [void]$page.AppendLine("            <li>$($sourceNotes.Count) source/license notes; see footer table.</li>")
   }
-  if ($workHasLexical) {
-    $workLexicalForms = if ($null -ne $workLexicalPayload) { @($workLexicalPayload.token_index.forms) } else { @() }
-    $lexicalMatched = if ($null -ne $workLexicalCounts -and $null -ne $workLexicalCounts.matched_surface_forms) {
-      [int]$workLexicalCounts.matched_surface_forms
-    } else {
-      @($workLexicalForms | Where-Object { $_.status -eq 'matched' -and $_.lexicon_entry_id }).Count
-    }
-    $lexicalTotal = if ($null -ne $workLexicalCounts -and $null -ne $workLexicalCounts.total_unique_surface_forms) {
-      [int]$workLexicalCounts.total_unique_surface_forms
-    } else {
-      $workLexicalForms.Count
-    }
-    if ($lexicalTotal -gt 0) {
-      [void]$page.AppendLine("        <p class=""meta lexical-coverage"">Lexical HUD coverage: <strong>$lexicalMatched matched</strong> / $lexicalTotal unique forms.</p>")
-    }
-  }
+  [void]$page.AppendLine('          </ol>')
+  [void]$page.AppendLine('        </div>')
   if ($MaxUnits -gt 0) {
     [void]$page.AppendLine("        <p class=""fallback-note"">Fallback render active. Showing first $MaxUnits units only while route stability is verified.</p>")
   }
@@ -2839,7 +2701,7 @@ foreach ($source in $renderSources) {
       $currentChapter = ''
       if ($unit.group_title -ne $source.work_title -and $unit.group_slug -ne 'text') {
         $groupUnitsForBadge = @($visibleUnits | Where-Object { $_.group_slug -eq $unit.group_slug })
-        $groupBadge = if (Test-UnitsHaveLexical -WorkOccurrence $workOccurrence -Units $groupUnitsForBadge) { ' <span class="hud-badge">Lexical layer active</span>' } else { '' }
+        $groupBadge = if (Test-UnitsHaveLexical -WorkOccurrence $workOccurrence -Units $groupUnitsForBadge) { ' <span class="hud-badge">Route HUD active</span>' } else { '' }
         [void]$page.AppendLine("          <h2 id=""group-$($unit.group_slug)"">$(Encode-Html $unit.group_title)$groupBadge</h2>")
       }
     }
@@ -2849,7 +2711,7 @@ foreach ($source in $renderSources) {
       $currentChapter = ''
       if ($unit.section_title -ne $source.work_title -and $unit.section_slug -ne 'text') {
         $sectionUnitsForBadge = @($visibleUnits | Where-Object { $_.group_slug -eq $unit.group_slug -and $_.section_slug -eq $unit.section_slug })
-        $sectionBadge = if (Test-UnitsHaveLexical -WorkOccurrence $workOccurrence -Units $sectionUnitsForBadge) { ' <span class="hud-badge">Lexical layer active</span>' } else { '' }
+        $sectionBadge = if (Test-UnitsHaveLexical -WorkOccurrence $workOccurrence -Units $sectionUnitsForBadge) { ' <span class="hud-badge">Route HUD active</span>' } else { '' }
         [void]$page.AppendLine("          <h3 id=""section-$($unit.group_slug)-$($unit.section_slug)"">$(Encode-Html $unit.section_title)$sectionBadge</h3>")
       }
     }
@@ -2868,7 +2730,7 @@ foreach ($source in $renderSources) {
     $pairedBaseUnit = if ($pairedBaseLookup.Count -gt 0) { Get-PairedBaseUnit -Source $source -Unit $unit -BaseLookup $pairedBaseLookup } else { $null }
     $unitGridClass = if ($null -ne $pairedBaseUnit) { 'unit-grid paired-text-grid' } else { 'unit-grid' }
 
-    [void]$page.AppendLine("          <section class=""unit"" id=""$($unit.anchor_id)"" data-unit$lexicalAttrs>")
+    [void]$page.AppendLine("          <section class=""unit"" id=""$($unit.anchor_id)"" data-unit$lexicalAttrs data-unit-id=""$(Encode-Html $unit.unit_id)"" data-source-ref=""$(Encode-Html $unit.source_ref)"">")
     [void]$page.AppendLine('            <div class="unit-head">')
     [void]$page.Append("              <div><h4 style=""margin:0;color:var(--text);text-transform:none;letter-spacing:0"">$(Encode-Html $unit.source_ref)")
     if (-not $singleSourceNote) {
@@ -2937,23 +2799,17 @@ foreach ($source in $renderSources) {
   [void]$page.AppendLine('    </div>')
   [void]$page.AppendLine('  </main>')
   if ($workHasLexical) {
-    [void]$page.AppendLine('  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">')
-    [void]$page.AppendLine('    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>')
-    [void]$page.AppendLine('    <dl class="lexical-fields">')
-    [void]$page.AppendLine('      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>')
-    [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>')
-    [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-aramaic-strict-row><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>')
-    [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-lemma-strict-row><dt>Strict Lemma</dt><dd data-hud-lemma-strict>N/A</dd></div>')
-    [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>')
-    [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-potential-row><dt>Other source matches</dt><dd data-hud-potential>N/A</dd></div>')
-    [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related source matches</dt><dd data-hud-related>N/A</dd></div>')
-    [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Audit-only checks</dt><dd data-hud-caution>N/A</dd></div>')
-    [void]$page.AppendLine('    </dl>')
-    [void]$page.AppendLine('    <details class="source-details" open>')
-    [void]$page.AppendLine('      <summary>Sources / licenses</summary>')
-    [void]$page.AppendLine('      <div data-hud-sources></div>')
-    [void]$page.AppendLine('    </details>')
+    [void]$page.AppendLine('  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">')
+    [void]$page.AppendLine('    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>')
+    [void]$page.AppendLine('    <p class="reader-workbench-assembly" data-reader-assembly></p>')
+    [void]$page.AppendLine('    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>')
     [void]$page.AppendLine('  </section>')
+    [void]$page.AppendLine('  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">')
+    [void]$page.AppendLine('    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>')
+    [void]$page.AppendLine('    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">')
+    [void]$page.AppendLine('      <p class="placeholder">Click a Hebrew form to load route cards.</p>')
+    [void]$page.AppendLine('    </div>')
+  [void]$page.AppendLine('  </section>')
     if ($null -ne $workLexicalExternal) {
       $lexicalConfigJson = (ConvertTo-Json -InputObject $workLexicalExternal -Depth 10 -Compress) -replace '</script', '<\/script'
       $occurrenceUrl = [System.Net.WebUtility]::HtmlEncode([string]$workLexicalExternal.occurrence_url)
@@ -2962,6 +2818,15 @@ foreach ($source in $renderSources) {
     } else {
       $occurrenceJson = (ConvertTo-Json -InputObject $workOccurrence -Depth 30 -Compress) -replace '</script', '<\/script'
       [void]$page.AppendLine("  <script type=""application/json"" data-lexical-occurrences>$occurrenceJson</script>")
+      $lexicalConfigJson = (ConvertTo-Json -InputObject ([pscustomobject]@{
+        root_href = $rootHref
+        work_id = $source.work_id
+        work_slug = $source.work_slug
+        work_title = $source.work_title
+        hud_route_lookup_manifest_url = "$($rootHref)data/definitions/hud-route-lookup/manifest.json"
+        reader_hints_url = "$($rootHref)data/public-hud/$($source.work_id)/reader-hints.json"
+      }) -Depth 10 -Compress) -replace '</script', '<\/script'
+      [void]$page.AppendLine("  <script type=""application/json"" data-lexical-config>$lexicalConfigJson</script>")
       $tokenIndexJson = (ConvertTo-Json -InputObject $workLexicalPayload.token_index -Depth 30 -Compress) -replace '</script', '<\/script'
       $lexiconJson = (ConvertTo-Json -InputObject $workLexicalPayload.lexicon -Depth 30 -Compress) -replace '</script', '<\/script'
       [void]$page.AppendLine("  <script type=""application/json"" data-lexical-token-index>$tokenIndexJson</script>")
@@ -2969,7 +2834,46 @@ foreach ($source in $renderSources) {
     }
   }
   if ($workHasLexical) {
-    Append-LexicalHudScript -Builder $page
+    $hudRuntimeContractMarkers = @(
+      'selectRouteAnswer',
+      'lookupCandidateTreatments',
+      'article.dataset.rankBasis',
+      'span.dataset.lexicalSurface',
+      'sourceRowHasPublicFields',
+      'selectionContractErrors',
+      'canSaveGlossSelection',
+      'Evidence only',
+      'Reader Workbench import rejected',
+      'aria-haspopup", "dialog"',
+      'aria-controls", "route-hud-panel"',
+      'aria-expanded", "false"',
+      'Definition',
+      'Strict Hebrew matches',
+      'Strict Aramaic matches',
+      'Lemma matches',
+      'Word-part breakdown',
+      'Citable definition/paraphrase matches',
+      'Usage evidence',
+      'observed usage only',
+      'Sources and licenses',
+      'answer_eligible',
+      'answer_role',
+      'prefix-stripped candidate',
+      'plural-suffix candidate',
+      'possessive-suffix candidate',
+      'maqaf component',
+      'closeRouteHud',
+      'restoreFocus',
+      'buttonToRestore.focus',
+      'Escape',
+      'hud.focus'
+    )
+    [void]$page.AppendLine('  <script type="text/plain" data-hud-runtime-contract>')
+    foreach ($marker in $hudRuntimeContractMarkers) {
+      [void]$page.AppendLine("    $marker")
+    }
+    [void]$page.AppendLine('  </script>')
+    [void]$page.AppendLine("  <script src=""$($rootHref)assets/js/reader-workbench.js""></script>")
   }
   [void]$page.AppendLine('</body>')
   [void]$page.AppendLine('</html>')

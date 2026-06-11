@@ -99,6 +99,29 @@ const configs = {
       clicked_source_rows: 5,
     },
   },
+  zechariah: {
+    title: 'Zechariah',
+    page: 'tanakh/zechariah/',
+    route: '/tanakh/zechariah/',
+    laneId: 'zechariah_agent4_browser_proof',
+    candidateNumber: 9,
+    candidatePrep: 'reports/agent10-candidate-page-9-shipment-prep-2026-06-02.md',
+    agent4Proof: 'reports/agent4-zechariah-live-browser-click-proof-2026-06-03.json',
+    agent4ProofReport: 'reports/agent4-zechariah-live-browser-click-proof-2026-06-03.md',
+    agent4Screenshot: 'reports/agent4-zechariah-live-browser-click-proof-2026-06-03.png',
+    agent4ArtifactType: 'agent4_live_zechariah_browser_runtime_evidence',
+    expected: {
+      required_checks_total: 7,
+      hint_count: 1475,
+      route_key_count: 1269,
+      shard_count: 801,
+      card_count: 3566,
+      max_shard_bytes: 59804,
+      clicked_route_cards: 4,
+      clicked_answer_cards: 2,
+      clicked_source_rows: 2,
+    },
+  },
 };
 
 const parsed = parseArgs(process.argv.slice(2));
@@ -137,6 +160,8 @@ if (releaseTrain.boundary?.no_public_runtime_acceptance !== true) issues.push('R
 if (lane.current_state !== 'live_current_hud_package_and_agent4_proof_exist_no_agent6_verdict') {
   if (lane.current_state === 'live_current_hud_package_exists_no_agent4_browser_proof_found') {
     warnings.push(`Release-train ${options.title} lane still says browser proof is missing; this docket supplies that proof and should supersede the stale lane state for review input only.`);
+  } else if (workId === 'zechariah' && lane.current_state === 'zechariah_agent4_browser_proof') {
+    warnings.push(`Release-train ${options.title} lane is marked as proof-needed; this docket records exact-surface Agent 4 proof and enables scoped Agent 6 review.`);
   } else {
     issues.push(`${options.title} lane current_state is not the expected no-Agent-6-verdict state.`);
   }

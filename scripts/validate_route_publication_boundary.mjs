@@ -28,6 +28,12 @@ const publicationReadinessFields = [
   'translation_ready',
   'translation_status',
 ];
+const machineAuthorityStatusFields = [
+  'status',
+  'review_status',
+  'authority_status',
+  'lexical_authority_status',
+];
 
 const hudAllowedLicensePatterns = [
   /^project-authored \/ CC0$/i,
@@ -69,6 +75,8 @@ if (options.fixturesOnly) {
 }
 const manifest = readJson(options.manifest);
 const audit = createAudit(manifest, contract);
+validateManifestPublicationBoundary(manifest.publication_boundary, audit);
+validatePublicLookupPath(manifest, audit);
 
 for (const [index, shard] of (manifest.shards || []).entries()) auditShard(shard, index);
 
@@ -100,6 +108,23 @@ function createAudit(manifestData = {}, contractData = contract) {
       'It is not publication readiness for accepted translation output.',
       'Route cards must keep source/license rows; translation-output safety is flagged separately from HUD route safety.',
     ].join(' '),
+    publication_boundary: {
+      publication_status: 'blocked_no_render',
+      validates: [
+        'route_publication_boundary_audit',
+        'route_card_publication_boundary',
+        'public_hud_route_lookup_publication_boundary',
+      ],
+      does_not_clear: [
+        'translation_output',
+        'source_publication',
+        'public_lexical_export_reuse',
+        'accepted_definition_authority',
+      ],
+      answer_eligible_scope: 'hud_answer_slot_only_not_translation_or_publication_readiness',
+      warning_status_blocks_publication_claim: true,
+      current_route_inputs_reconciled: 'not_checked_by_route_publication_boundary_audit',
+    },
     inputs: {
       manifest: options.manifest,
       manifest_file: includeInputFileSummaries ? fileSummary(options.manifest) : null,
@@ -177,6 +202,7 @@ function createAudit(manifestData = {}, contractData = contract) {
       translation_output_unsafe_cards: 0,
       answer_eligible_translation_output_unsafe_cards: 0,
       route_cards_with_publication_fields: 0,
+      route_cards_with_authority_status_overclaims: 0,
       issue_count: 0,
       warning_count: 0,
     },
@@ -291,7 +317,7 @@ function assertFixtureSubstrings(issues, testCase, fieldName, rows, index) {
 }
 
 function auditShard(shardEntry, manifestIndex) {
-  const lookupRoot = cleanRelativePath(manifest.public_lookup || 'data/definitions/hud-route-lookup');
+  const lookupRoot = 'data/definitions/hud-route-lookup';
   const validation = validateManifestShardEntry(shardEntry, `${options.manifest}:shards[${manifestIndex}]`, audit);
   if (!validation.safeToRead) {
     audit.counts.shards += 1;
@@ -333,7 +359,15 @@ function validateManifestShardEntry(shardEntry, context, target = audit) {
   target.counts.manifest_shard_path_checks += 1;
   const state = runtimeState(target);
   const shardId = typeof shardEntry?.shard === 'string' ? shardEntry.shard.trim() : '';
-  const shardPath = typeof shardEntry?.path === 'string' ? cleanRelativePath(shardEntry.path.trim()) : '';
+  let shardPath = '';
+  let shardPathError = '';
+  if (typeof shardEntry?.path === 'string') {
+    try {
+      shardPath = cleanRelativePath(shardEntry.path.trim());
+    } catch (error) {
+      shardPathError = error.message;
+    }
+  }
   let valid = true;
   if (!shardId || !/^[A-Za-z0-9_-]+(?:-[A-Za-z0-9_-]+)*$/.test(shardId)) {
     valid = false;
@@ -341,10 +375,11 @@ function validateManifestShardEntry(shardEntry, context, target = audit) {
     addIssue(context, `invalid public shard id: ${shardEntry?.shard || 'missing'}`, target);
   }
   const expectedPath = shardId ? `shards/${shardId}.json` : '';
-  if (!shardPath || shardPath !== expectedPath || shardPath.includes('..') || shardPath.includes('//') || path.isAbsolute(shardPath)) {
+  if (shardPathError || !shardPath || shardPath !== expectedPath || shardPath.includes('..') || shardPath.includes('//') || path.isAbsolute(shardPath)) {
     valid = false;
     target.counts.invalid_manifest_shard_paths += 1;
-    addIssue(context, `invalid public shard path: ${shardEntry?.path || 'missing'}; expected ${expectedPath || 'shards/<shard>.json'}`, target);
+    const detail = shardPathError ? `${shardPathError}; ` : '';
+    addIssue(context, `${detail}invalid public shard path: ${shardEntry?.path || 'missing'}; expected ${expectedPath || 'shards/<shard>.json'}`, target);
   }
   if (shardPath) {
     if (state.seenShardPaths.has(shardPath)) {
@@ -437,6 +472,11 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
   if (publicationFields.length) {
     target.counts.route_cards_with_publication_fields += 1;
     addIssue(context, `route card carries publication-readiness field(s): ${publicationFields.slice(0, 10).join(', ')}`, target);
+  }
+  const authorityStatusOverclaims = findMachineAuthorityStatusOverclaims(card);
+  if (authorityStatusOverclaims.length) {
+    target.counts.route_cards_with_authority_status_overclaims += 1;
+    addIssue(context, `route card carries reviewed-lexical-authority status claim(s): ${authorityStatusOverclaims.slice(0, 10).join(', ')}`, target);
   }
 
   const hasSourceRows = Array.isArray(card?.source_rows) && card.source_rows.length > 0;
@@ -585,6 +625,19 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
     }
     addWarning(context, 'card is HUD-route usable but not automatically safe as accepted translation-output support without downstream license handling', target);
   }
+}
+
+function findMachineAuthorityStatusOverclaims(card) {
+  const paths = [];
+  for (const field of machineAuthorityStatusFields) {
+    if (String(card?.[field] || '').trim().toLowerCase() === 'verified') {
+      paths.push(`${field}=verified`);
+    }
+  }
+  if (card?.reviewed_lexical_authority === true) {
+    paths.push('reviewed_lexical_authority=true');
+  }
+  return paths;
 }
 
 function runtimeState(target) {
@@ -762,6 +815,60 @@ function addIssue(context, detail, target = audit) {
   target.issues.push({ context, detail: String(detail).slice(0, 300) });
 }
 
+function validateManifestPublicationBoundary(boundary, target = audit) {
+  if (!boundary || typeof boundary !== 'object') {
+    addIssue('public lookup manifest publication_boundary', 'publication_boundary object is required', target);
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    addIssue('public lookup manifest publication_boundary', `publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`, target);
+  }
+  for (const item of ['public_hud_route_lookup_manifest', 'public_hud_route_lookup_shards']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      addIssue('public lookup manifest publication_boundary', `validates missing ${item}`, target);
+    }
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      addIssue('public lookup manifest publication_boundary', `does_not_clear missing ${item}`, target);
+    }
+  }
+  if (!String(boundary.answer_eligible_scope || '').includes('not_translation_or_publication_readiness')) {
+    addIssue('public lookup manifest publication_boundary', 'answer_eligible_scope must block translation/publication readiness overclaim', target);
+  }
+  if (!String(boundary.route_lookup_scope || '').includes('not_publication_readiness')) {
+    addIssue('public lookup manifest publication_boundary', 'route_lookup_scope must state not_publication_readiness', target);
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    addIssue('public lookup manifest publication_boundary', 'warning_status_blocks_publication_claim must be true', target);
+  }
+  if (boundary.current_route_inputs_reconciled !== 'not_checked_by_public_lookup_manifest_validate_release_stamp_and_drift') {
+    addIssue('public lookup manifest publication_boundary', 'current_route_inputs_reconciled must defer to release stamp and drift validation', target);
+  }
+}
+
+function validatePublicLookupPath(manifestData, target = audit) {
+  const context = 'public lookup manifest public_lookup';
+  if (!manifestData || typeof manifestData !== 'object') {
+    addIssue(context, 'manifest object is required', target);
+    return;
+  }
+  if (!manifestData.public_lookup) {
+    addIssue(context, 'public_lookup is required', target);
+    return;
+  }
+  let publicLookup = '';
+  try {
+    publicLookup = cleanRelativePath(manifestData.public_lookup);
+  } catch (error) {
+    addIssue(context, error.message, target);
+    return;
+  }
+  if (publicLookup !== 'data/definitions/hud-route-lookup') {
+    addIssue(context, `public_lookup must be data/definitions/hud-route-lookup: ${publicLookup}`, target);
+  }
+}
+
 function addWarning(context, detail, target = audit) {
   target.counts.warning_count += 1;
   if (target.warnings.length >= options.maxWarnings) return;
@@ -783,6 +890,15 @@ function writeReport(relativePath, data) {
     '- `answer_eligible` means the route card can be considered for the HUD answer slot.',
     '- `answer_eligible` is not accepted translation-output readiness.',
     '- Publication readiness must come from a later renderer/translation gate, not from this route lookup.',
+    '',
+    '## Publication Boundary',
+    '',
+    `- Publication status: ${data.publication_boundary.publication_status}`,
+    `- Validates: ${data.publication_boundary.validates.join(', ')}`,
+    `- Does not clear: ${data.publication_boundary.does_not_clear.join(', ')}`,
+    `- Answer eligibility scope: ${data.publication_boundary.answer_eligible_scope}`,
+    `- Warning status blocks publication claim: ${data.publication_boundary.warning_status_blocks_publication_claim}`,
+    `- Current route inputs reconciled: ${data.publication_boundary.current_route_inputs_reconciled}`,
     '',
     '## Counts',
     '',
@@ -844,6 +960,7 @@ function writeReport(relativePath, data) {
     `- Answer-eligible translation-output unsafe source rows flagged: ${data.counts.answer_eligible_translation_output_unsafe_source_rows}`,
     `- Answer-eligible translation-output unsafe cards flagged: ${data.counts.answer_eligible_translation_output_unsafe_cards}`,
     `- Cards with publication-readiness fields: ${data.counts.route_cards_with_publication_fields}`,
+    `- Cards with reviewed-authority status overclaims: ${data.counts.route_cards_with_authority_status_overclaims}`,
     `- Issues: ${data.counts.issue_count}`,
     `- Warnings: ${data.counts.warning_count}`,
     `- Manifest SHA-256: \`${data.inputs.manifest_file?.sha256 || 'missing'}\``,
@@ -922,14 +1039,22 @@ function topCounts(object, limit) {
 
 function parseArgs(args) {
   const parsed = { ...defaults };
-  for (const arg of args) {
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
     if (arg.startsWith('--manifest=')) parsed.manifest = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg === '--manifest') parsed.manifest = cleanRelativePath(args[++index]);
     else if (arg.startsWith('--contract=')) parsed.contract = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg === '--contract') parsed.contract = cleanRelativePath(args[++index]);
     else if (arg.startsWith('--fixture=')) parsed.fixture = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg === '--fixture') parsed.fixture = cleanRelativePath(args[++index]);
     else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg === '--output') parsed.output = cleanRelativePath(args[++index]);
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg === '--report') parsed.report = cleanRelativePath(args[++index]);
     else if (arg.startsWith('--max-issues=')) parsed.maxIssues = Number(valueAfterEquals(arg));
+    else if (arg === '--max-issues') parsed.maxIssues = Number(args[++index]);
     else if (arg.startsWith('--max-warnings=')) parsed.maxWarnings = Number(valueAfterEquals(arg));
+    else if (arg === '--max-warnings') parsed.maxWarnings = Number(args[++index]);
     else if (arg === '--fixtures-only') parsed.fixturesOnly = true;
     else if (arg === '--help' || arg === '-h') parsed.help = true;
     else throw new Error(`Unknown argument: ${arg}`);
@@ -955,6 +1080,18 @@ function parseArgs(args) {
   for (const key of ['maxIssues', 'maxWarnings']) {
     if (!Number.isInteger(parsed[key]) || parsed[key] < 0) throw new Error(`--${key} must be a non-negative integer`);
   }
+  parsed.manifest = cleanRelativePath(parsed.manifest);
+  parsed.contract = cleanRelativePath(parsed.contract);
+  parsed.fixture = cleanRelativePath(parsed.fixture);
+  parsed.output = cleanRelativePath(parsed.output);
+  parsed.report = cleanRelativePath(parsed.report);
+  assertExactPath('--manifest', parsed.manifest, 'data/definitions/hud-route-lookup/manifest.json');
+  assertExactPath('--contract', parsed.contract, 'data/definitions/hud-route-contract.json');
+  assertExactPath('--fixture', parsed.fixture, 'data/definitions/route-publication-boundary-fixtures.json');
+  assertExactPath('--output', parsed.output, 'reports/route-publication-boundary-audit.json');
+  assertExactPath('--report', parsed.report, 'reports/route-publication-boundary-audit.md');
+  assertFileExtension('--output', parsed.output, '.json');
+  assertFileExtension('--report', parsed.report, '.md');
   return parsed;
 }
 
@@ -963,7 +1100,25 @@ function valueAfterEquals(arg) {
 }
 
 function cleanRelativePath(value) {
-  return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  const normalized = String(value || '').replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/+$/, '');
+  if (!normalized || path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Path must be a relative in-repo path: ${value}`);
+  }
+  return normalized;
+}
+
+function assertExactPath(label, actual, expected) {
+  if (actual !== expected) throw new Error(`${label} must be ${expected}: ${actual}`);
+}
+
+function assertPathUnder(label, actual, expectedPrefix) {
+  if (actual !== expectedPrefix && !actual.startsWith(`${expectedPrefix}/`)) {
+    throw new Error(`${label} must stay under ${expectedPrefix}: ${actual}`);
+  }
+}
+
+function assertFileExtension(label, actual, expectedExtension) {
+  if (!actual.endsWith(expectedExtension)) throw new Error(`${label} must end with ${expectedExtension}: ${actual}`);
 }
 
 function readJson(relativePath) {

@@ -42,6 +42,8 @@ const stats = {
   non_hebrew_tokens: 0,
 };
 
+let manifest = null;
+
 if (!fs.existsSync(manifestPath)) {
   addIssue({
     shard: '',
@@ -52,7 +54,8 @@ if (!fs.existsSync(manifestPath)) {
     answer_roles: [],
   });
 } else {
-  const manifest = readJson(manifestPath);
+  manifest = readJson(manifestPath);
+  validateManifestPublicationBoundary(manifest.publication_boundary);
   for (const shardInfo of manifest.shards || []) {
     validateShard(shardInfo);
   }
@@ -84,6 +87,7 @@ const result = {
   generated_at: new Date().toISOString(),
   status: issueCount ? (options.failOnIssues ? 'fail' : 'warn') : 'pass',
   manifest: cleanPath(options.manifest),
+  publication_boundary: manifest?.publication_boundary || null,
   policy: 'Public HUD lookup keys must not contain English grammar annotations, digits, plus signs, slashes, or annotation punctuation. Hebrew punctuation, spaces, maqaf, geresh/gershayim, commas, periods, and parentheses are audit-visible but not failures by themselves.',
   counts: {
     ...stats,
@@ -123,6 +127,18 @@ function parseArgs(args) {
   if (!Number.isInteger(parsed.maxSamples) || parsed.maxSamples < 0) {
     throw new Error(`Invalid --max-samples: ${parsed.maxSamples}`);
   }
+  parsed.manifest = cleanRelativePath(parsed.manifest);
+  assertExactPath('--manifest', parsed.manifest, 'data/definitions/hud-route-lookup/manifest.json');
+  if (parsed.report) {
+    parsed.report = cleanRelativePath(parsed.report);
+    assertExactPath('--report', parsed.report, 'reports/public-hud-normalized-key-audit.md');
+    assertFileExtension('--report', parsed.report, '.md');
+  }
+  if (parsed.json) {
+    parsed.json = cleanRelativePath(parsed.json);
+    assertExactPath('--json', parsed.json, 'reports/public-hud-normalized-key-audit.json');
+    assertFileExtension('--json', parsed.json, '.json');
+  }
   if (parsed.help) {
     console.log([
       'Usage:',
@@ -141,7 +157,19 @@ function parseArgs(args) {
 }
 
 function validateShard(shardInfo) {
-  const shardPath = path.join(publicDir, shardInfo.path || '');
+  const manifestShardPath = cleanManifestShardPath(shardInfo.path || '');
+  if (!manifestShardPath.startsWith('shards/') || !manifestShardPath.endsWith('.json')) {
+    addIssue({
+      shard: shardInfo.path || '',
+      normalized: '',
+      card_count: 0,
+      reasons: ['invalid shard path'],
+      route_types: [],
+      answer_roles: [],
+    });
+    return;
+  }
+  const shardPath = path.join(publicDir, manifestShardPath);
   if (!fs.existsSync(shardPath)) {
     addIssue({
       shard: shardInfo.path || '',
@@ -211,6 +239,49 @@ function keyShape(normalized) {
   return parts.length ? parts.join('+') : 'hebrew_word';
 }
 
+function validateManifestPublicationBoundary(boundary) {
+  if (!boundary || typeof boundary !== 'object') {
+    addManifestIssue('public lookup manifest publication_boundary object is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    addManifestIssue(`public lookup manifest publication_boundary.publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`);
+  }
+  for (const item of ['public_hud_route_lookup_manifest', 'public_hud_route_lookup_shards']) {
+    if (!Array.isArray(boundary.validates) || !boundary.validates.includes(item)) {
+      addManifestIssue(`public lookup manifest publication_boundary.validates missing ${item}`);
+    }
+  }
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!Array.isArray(boundary.does_not_clear) || !boundary.does_not_clear.includes(item)) {
+      addManifestIssue(`public lookup manifest publication_boundary.does_not_clear missing ${item}`);
+    }
+  }
+  if (!String(boundary.answer_eligible_scope || '').includes('not_translation_or_publication_readiness')) {
+    addManifestIssue('public lookup manifest publication_boundary.answer_eligible_scope must block translation/publication readiness overclaim');
+  }
+  if (!String(boundary.route_lookup_scope || '').includes('not_publication_readiness')) {
+    addManifestIssue('public lookup manifest publication_boundary.route_lookup_scope must state not_publication_readiness');
+  }
+  if (boundary.warning_status_blocks_publication_claim !== true) {
+    addManifestIssue('public lookup manifest publication_boundary.warning_status_blocks_publication_claim must be true');
+  }
+  if (boundary.current_route_inputs_reconciled !== 'not_checked_by_public_lookup_manifest_validate_release_stamp_and_drift') {
+    addManifestIssue('public lookup manifest publication_boundary.current_route_inputs_reconciled must defer to release stamp and drift validation');
+  }
+}
+
+function addManifestIssue(message) {
+  addIssue({
+    shard: '',
+    normalized: '',
+    card_count: 0,
+    reasons: [message],
+    route_types: [],
+    answer_roles: [],
+  });
+}
+
 function addIssue(sample) {
   issueCount += 1;
   if (issueSamples.length < options.maxSamples) {
@@ -230,13 +301,13 @@ function readJson(filePath) {
 }
 
 function writeJson(relativePath, value) {
-  const filePath = path.join(root, relativePath);
+  const filePath = path.join(root, cleanRelativePath(relativePath));
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
 function writeReport(relativePath, result) {
-  const filePath = path.join(root, relativePath);
+  const filePath = path.join(root, cleanRelativePath(relativePath));
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   const lines = [
     '# Public HUD Normalized Key Audit',
@@ -244,6 +315,7 @@ function writeReport(relativePath, result) {
     `Generated: ${result.generated_at}`,
     `Status: ${result.status}`,
     `Manifest: \`${result.manifest}\``,
+    `Publication status: ${result.publication_boundary?.publication_status || 'missing'}`,
     '',
     '## Policy',
     '',
@@ -287,7 +359,12 @@ function writeReport(relativePath, result) {
     '',
     '## Boundary',
     '',
-    'This audit checks lookup-key hygiene only. It does not import definitions, rewrite source texts, or infer meanings.',
+    `- Validates: ${(result.publication_boundary?.validates || []).join(', ') || 'missing'}`,
+    `- Does not clear: ${(result.publication_boundary?.does_not_clear || []).join(', ') || 'missing'}`,
+    `- Answer eligibility scope: ${result.publication_boundary?.answer_eligible_scope || 'missing'}`,
+    `- Route lookup scope: ${result.publication_boundary?.route_lookup_scope || 'missing'}`,
+    `- Current route inputs reconciled: ${result.publication_boundary?.current_route_inputs_reconciled || 'missing'}`,
+    '- This audit checks lookup-key hygiene only. It does not import definitions, rewrite source texts, infer meanings, create accepted translation output, or establish publication readiness.',
   ];
   fs.writeFileSync(filePath, `${lines.join('\n')}\n`, 'utf8');
 }
@@ -315,4 +392,34 @@ function asciiText(value) {
 
 function cleanPath(value) {
   return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+}
+
+function cleanRelativePath(value) {
+  const normalized = cleanPath(value).replace(/\/+$/, '');
+  if (!normalized || path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Path must be a relative in-repo path: ${value}`);
+  }
+  return normalized;
+}
+
+function cleanManifestShardPath(value) {
+  const normalized = cleanPath(value);
+  if (!normalized || normalized.includes('//') || path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Manifest shard path must be relative and in-repo: ${value}`);
+  }
+  return normalized;
+}
+
+function assertExactPath(label, actual, expected) {
+  if (actual !== expected) throw new Error(`${label} must be ${expected}: ${actual}`);
+}
+
+function assertPathUnder(label, actual, expectedPrefix) {
+  if (actual !== expectedPrefix && !actual.startsWith(`${expectedPrefix}/`)) {
+    throw new Error(`${label} must stay under ${expectedPrefix}: ${actual}`);
+  }
+}
+
+function assertFileExtension(label, actual, expectedExtension) {
+  if (!actual.endsWith(expectedExtension)) throw new Error(`${label} must end with ${expectedExtension}: ${actual}`);
 }

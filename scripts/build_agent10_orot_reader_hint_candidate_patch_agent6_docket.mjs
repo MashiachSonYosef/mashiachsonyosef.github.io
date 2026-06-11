@@ -327,10 +327,12 @@ function writeReport(relativePath, data) {
 }
 
 function runCommand([command, args]) {
-  const result = spawnSync(command, args, { cwd: root, encoding: 'utf8' });
+  const executable = command === 'node' ? process.execPath : command;
+  const result = spawnSync(executable, args, { cwd: root, encoding: 'utf8' });
   return {
     command: [command, ...args].join(' '),
     exit_code: result.status,
+    error: result.error ? result.error.message : null,
     stdout_tail: tail(result.stdout || ''),
     stderr_tail: tail(result.stderr || ''),
   };
