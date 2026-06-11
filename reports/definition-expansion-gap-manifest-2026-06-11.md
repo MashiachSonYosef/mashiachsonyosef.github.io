@@ -1,6 +1,6 @@
 # Definition Expansion Gap Manifest
 
-Generated: 2026-06-11T13:11:29.366Z
+Generated: 2026-06-11T13:39:42.518Z
 
 ## Boundary
 
@@ -21,7 +21,7 @@ Generated: 2026-06-11T13:11:29.366Z
 
 ## Top Families By Unresolved Occurrences
 
-- halakhah: 4884100 occurrences / 11036 forms
+- halakhah: 4849935 occurrences / 11036 forms
 - chasidut: 691247 occurrences / 1011 forms
 - kabbalah: 446043 occurrences / 1046 forms
 - midrash: 219965 occurrences / 1997 forms
@@ -49,7 +49,6 @@ Generated: 2026-06-11T13:11:29.366Z
 - א׳ | 85691 occ | chasidut+halakhah+kabbalah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - אסור | 76836 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - ב׳ | 73813 occ | halakhah+kabbalah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
-- עכ״ל | 59375 occ | halakhah | answer_route_candidate_needs_gate | review_existing_hud_route_before_dictionary_import | canonical_display_gate_required_before_prehud
 - משמע | 54894 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - חייב | 53764 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - ג׳ | 53179 occ | halakhah+kabbalah+musar | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
@@ -60,21 +59,21 @@ Generated: 2026-06-11T13:11:29.366Z
 - הי׳ | 41555 occ | chasidut+halakhah | no_route | project_authored_rabbinic_abbreviation_table | abbreviation_expansion_needed_with_source_license_row
 - עיינ | 41097 occ | chasidut+halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - וכתב | 40714 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
+- עכ״ל | 39737 occ | halakhah+kabbalah | answer_route_candidate_needs_gate | review_existing_hud_route_before_dictionary_import | canonical_display_gate_required_before_prehud
 - ע״ב | 38493 occ | chasidut+halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - לעיל | 37791 occ | halakhah+kabbalah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - דאמ | 35122 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
-- מ״ש | 34956 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - וזהו | 33325 occ | chasidut+kabbalah+musar | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - איסור | 29077 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - הכי | 28733 occ | halakhah+kabbalah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - כגונ | 28542 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
+- מ״ש | 28383 occ | chasidut+halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - מהני | 28165 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - ע״א | 27665 occ | chasidut+halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - כ׳ | 27630 occ | chasidut+halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - ואמר | 27174 occ | chasidut+kabbalah+midrash+unknown | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - אמריננ | 26188 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - פ׳ | 26058 occ | chasidut+halakhah+kabbalah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
-- ומ״ש | 25521 occ | halakhah+kabbalah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - מבואר | 25382 occ | chasidut+halakhah+unknown | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - דאמר | 25075 occ | halakhah+midrash | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - דהוי | 23755 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
@@ -82,10 +81,10 @@ Generated: 2026-06-11T13:11:29.366Z
 - דכתיב | 20674 occ | chasidut+halakhah+kabbalah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - ולככ | 20406 occ | halakhah+kabbalah+musar | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - דכיונ | 20329 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
+- פטור | 19825 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - כתיב | 19547 occ | chasidut+kabbalah+musar | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - רבי | 19488 occ | halakhah+kabbalah+musar | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - דכל | 19463 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
-- פטור | 19436 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - ז׳ | 19180 occ | chasidut+halakhah+kabbalah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - הטור | 19057 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - יתברכ | 18933 occ | chasidut | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
@@ -118,7 +117,8 @@ Generated: 2026-06-11T13:11:29.366Z
 - יוחננ | 12785 occ | halakhah+midrash | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - הביא | 12697 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - כתבו | 12563 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
+- לקמנ | 12559 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - המלכ | 12404 occ | chasidut+midrash+musar+unknown | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - יצחק | 12292 occ | chasidut+kabbalah+musar | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
 - דהוא | 12291 occ | chasidut+halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
-- לקמנ | 12161 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
+- קאי | 11931 occ | halakhah | hud_evidence_only_or_source_review | review_existing_hud_route_before_dictionary_import | hud_evidence_or_source_review_only
