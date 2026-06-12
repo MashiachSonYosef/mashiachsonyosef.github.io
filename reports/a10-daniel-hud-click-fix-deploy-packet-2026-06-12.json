@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "packet_id": "a10-daniel-hud-click-fix-deploy-packet-2026-06-12",
+  "status": "deploy_packet_ready_local_only",
+  "purpose": "Narrow pathspec handoff for the local Daniel HUD click-open fix and structure-evidence HUD section.",
+  "stage_only_paths": [
+    "assets/js/reader-workbench.js",
+    "assets/css/reader-workbench.css",
+    "tanakh/daniel/index.html",
+    "data/definitions/hud-route-lookup-daniel/manifest.json",
+    "data/definitions/hud-route-lookup-daniel/shards/05dc-05de-05dc.json",
+    "scripts/validate_reader_page_contract.mjs",
+    "reports/a10-daniel-structure-evidence-pipeline-edit-2026-06-11.md",
+    "reports/a10-daniel-hud-click-fix-deploy-packet-2026-06-12.md",
+    "reports/a10-daniel-hud-click-fix-deploy-packet-2026-06-12.json"
+  ],
+  "exclude_paths_or_scopes": [
+    "unrelated A1/A3/A13/A14 report dirt",
+    "unrelated token-index, lexical, definition, stats, search, and source-layer churn",
+    "data/lexical/source-layers/project-abbreviations.json deletion unless owner separately approves the no-private-table package",
+    "broad git add -A",
+    "deploy workflow mutation not listed in stage_only_paths"
+  ],
+  "changes": [
+    "Top passage Hebrew links in preHUD row mode open the matching Route HUD.",
+    "Passage click handler stops propagation so the outside-click handler does not close the HUD immediately.",
+    "Blank/TBD HUD frame includes Definition, Strict Hebrew, Strict Aramaic, and Word-part breakdown.",
+    "Structure-only evidence renders in Word-part breakdown.",
+    "Structure-only evidence is excluded from Choose a study gloss.",
+    "Daniel-specific crossmatch wording remains removed."
+  ],
+  "validators": [
+    {
+      "command": "node --check assets/js/reader-workbench.js",
+      "result": "passed"
+    },
+    {
+      "command": "node --check scripts/validate_reader_page_contract.mjs",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_reader_page_contract.mjs --page orot/index.html --page tanakh/daniel/index.html --structure-shard data/definitions/hud-route-lookup-daniel/shards/05dc-05de-05dc.json",
+      "result": "passed",
+      "issue_count": 0
+    },
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page tanakh/daniel/index.html orot/index.html",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- assets/js/reader-workbench.js assets/css/reader-workbench.css scripts/validate_reader_page_contract.mjs reports/a10-daniel-structure-evidence-pipeline-edit-2026-06-11.md",
+      "result": "passed_with_crlf_warnings_only"
+    }
+  ],
+  "browser_proof": [
+    {
+      "target": "local Daniel 1:1 top-passage first word",
+      "result": "passed",
+      "hud_hidden": false,
+      "required_sections_present": [
+        "Definition",
+        "Strict Hebrew",
+        "Strict Aramaic",
+        "Word-part breakdown"
+      ],
+      "daniel_specific_hud_wording": false
+    },
+    {
+      "target": "local Daniel token tok-503d8e7c74c6",
+      "result": "passed",
+      "hud_hidden": false,
+      "hud_title": "Route HUD: לְמַלְכ֖וּת",
+      "structure_evidence_present": true,
+      "choose_gloss_for_structure_evidence": false,
+      "daniel_specific_hud_wording": false
+    },
+    {
+      "target": "comprehensive local Daniel HUD/TBD interaction proof",
+      "result": "passed",
+      "prehud_rows": 5456,
+      "passage_links": 5456,
+      "daniel_1_1_rows": 12,
+      "pure_tbd_click_surfaces": [
+        "top passage word",
+        "prehud row",
+        "prehud gloss cell",
+        "prehud match cell"
+      ],
+      "pure_tbd_hud_hidden": false,
+      "pure_tbd_required_sections": [
+        "Definition",
+        "No validated definition",
+        "Strict Hebrew",
+        "Strict Aramaic",
+        "Word-part breakdown"
+      ],
+      "pure_tbd_choose_gloss": false,
+      "structure_token_id": "tok-503d8e7c74c6",
+      "structure_evidence_present": true,
+      "structure_choose_gloss": false,
+      "daniel_specific_hud_wording": false
+    }
+  ],
+  "live_delta_before_packet": {
+    "live_url": "https://mashiachsonyosef.github.io/tanakh/daniel/",
+    "status": 200,
+    "live_page_has_prehud_rows": true,
+    "live_page_has_mock_marker": false,
+    "live_runtime_has_click_fix": false,
+    "live_runtime_has_structure_details": false,
+    "live_runtime_has_daniel_specific_hud_wording": true
+  },
+  "boundary": "No source/license/legal/Definition/product/answer/accepted-text/publication/release acceptance. Local deploy handoff only; staging, commit, push, and live publication require separate owner/A14 action."
+}

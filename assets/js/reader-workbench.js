@@ -584,6 +584,22 @@
     return card.meaning_quality === 'definition' && !['phrase_evidence', 'subphrase_evidence'].includes(routeSection(card));
   }
 
+  function isValidatedStructureEvidence(card) {
+    if (!card || card.answer_eligible !== false) return false;
+    const labels = [routeSection(card), card.route_type, card.route_family, card.meaning_quality, card.answer_role]
+      .map(normalizeRouteLabel)
+      .filter(Boolean);
+    const isStructureEvidence = labels.includes('token_structure')
+      || labels.includes('structure_evidence')
+      || labels.includes('token_structure_rule');
+    if (!isStructureEvidence || !labels.includes('evidence')) return false;
+    const sourceRows = cleanValues(card.source_rows);
+    return sourceRows.length > 0 && sourceRows.every((row) => (
+      normalizeRouteLabel(row?.source_family) === 'token_structure_rule'
+      && normalizeRouteLabel(row?.license) === 'not_a_definition_source'
+    ));
+  }
+
   function isPrehudDisplayEligibleCard(card) {
     if (!isAnswerEligible(card)) return false;
     const routeLabels = [routeSection(card), card.route_type, card.route_family, card.match_family, card.route_match_family]
@@ -1085,6 +1101,37 @@
     parent.appendChild(box);
   }
 
+  function appendStructureEvidenceDetails(card, parent) {
+    const morphology = card?.morphology;
+    if (!morphology || typeof morphology !== 'object') return;
+    const rows = [
+      ['Surface', morphology.surface_form || card.surface || card.hebrew],
+      ['Type', morphology.structure_type],
+      ['Prefix', morphology.prefix],
+      ['Suffix', morphology.suffix],
+      ['Maqaf parts', Array.isArray(morphology.maqaf_parts) ? morphology.maqaf_parts.join(' | ') : morphology.maqaf_parts],
+      ['Base / expansion', morphology.base_or_expansion],
+      ['Route key', morphology.route_key],
+      ['Relation', morphology.evidence_relation],
+      ['Note', morphology.occurrence_note],
+    ].filter((row) => firstPresentValue([row[1]]));
+    if (!rows.length) return;
+    const box = createElement('div', 'structure-evidence-details');
+    rows.forEach(([labelText, value]) => {
+      const line = createElement('p');
+      line.appendChild(createElement('strong', '', `${labelText}: `));
+      const text = createElement('span', '', normalizeHebrewDisplay(String(value || '')));
+      if (/[\u0590-\u05FF]/.test(String(value || ''))) {
+        text.lang = 'he';
+        text.dir = 'rtl';
+      }
+      line.appendChild(text);
+      box.appendChild(line);
+    });
+    box.appendChild(createElement('small', 'hud-study-note', 'structure evidence only; not a definition or preHUD gloss'));
+    parent.appendChild(box);
+  }
+
   function appendRouteCard(parent, card, role = 'evidence', order = 0, sourceIndexes = []) {
     const article = createElement('article', `claim-row route-card ${role === 'answer' ? 'route-answer-card' : ''}`);
     const cardHebrew = normalizeHebrewDisplay(card.hebrew || card.surface || '');
@@ -1116,6 +1163,7 @@
     article.dataset.routeMeta = meta.textContent;
     if (role !== 'answer') article.appendChild(meta);
     appendPhraseLine(card, article);
+    appendStructureEvidenceDetails(card, article);
     appendUsageEvidenceDetails(card, article);
     parent.appendChild(article);
   }
@@ -1143,8 +1191,11 @@
     const rows = cleanValues(cards);
     if (!config?.hud_validated_only) return rows;
     return rows.filter((card) => (
-      isAnswerEligible(card)
-      && (config.hud_allow_lemma_only === true || routeSection(card) !== 'lemma')
+      (
+        isAnswerEligible(card)
+        && (config.hud_allow_lemma_only === true || routeSection(card) !== 'lemma')
+      )
+      || isValidatedStructureEvidence(card)
     ));
   }
 
@@ -1221,7 +1272,7 @@
     const refs = cleanValues(crossmatch?.refs);
     const total = Number(crossmatch?.occurrence_count || refs.length || 0);
     const title = createElement('div', 'route-section-title');
-    title.appendChild(createElement('h3', '', 'Same Hebrew form in Daniel'));
+    title.appendChild(createElement('h3', '', 'Same Hebrew form'));
     title.appendChild(createElement('span', '', total ? `${total} occurrence${total === 1 ? '' : 's'}` : 'none'));
     section.appendChild(title);
 
@@ -1239,7 +1290,7 @@
       if (refs.length > 16) section.appendChild(createElement('small', 'hud-study-note', `+${refs.length - 16} more references`));
       section.appendChild(createElement('small', 'hud-study-note', 'same Hebrew form only; not a definition'));
     } else {
-      section.appendChild(createElement('p', 'placeholder', 'No other Daniel passage uses this normalized Hebrew form.'));
+      section.appendChild(createElement('p', 'placeholder', 'No matching passage uses this normalized Hebrew form.'));
       section.appendChild(createElement('small', 'hud-crossmatch-empty', 'hebrew matches not found'));
     }
 
@@ -1252,6 +1303,7 @@
     appendPlaceholderHudSection(panel);
     appendRouteSection(panel, 'strict_hebrew', [], null, { appendEmpty: true, emptyText: 'Strict Hebrew matches not found for this token.' });
     appendRouteSection(panel, 'strict_aramaic', [], null, { appendEmpty: true, emptyText: 'Strict Aramaic matches not found for this token.' });
+    appendRouteSection(panel, 'morphology', [], null, { appendEmpty: true, emptyText: 'Word-part breakdown not found for this token.' });
     appendLemmaHudSection(panel, tokenRow);
     appendCrossmatchHudSection(panel, crossmatch);
     appendSourceFootnotes(panel, [], config);
@@ -1264,7 +1316,9 @@
     appendSelectedHudToken(panel, clickedForm || normalized || '', normalized);
 
     const answerCandidates = visibleCards.filter(isPrehudDisplayEligibleCard).sort(compareRouteCards);
-    const displayChoices = answerCandidates.length ? answerCandidates.slice(0, 8) : visibleCards.filter((card) => routeRenderings(card).length).sort(compareRouteCards).slice(0, 8);
+    const displayChoices = answerCandidates.length
+      ? answerCandidates.slice(0, 8)
+      : visibleCards.filter((card) => !isValidatedStructureEvidence(card) && routeRenderings(card).length).sort(compareRouteCards).slice(0, 8);
     if (displayChoices.length) {
       const picker = createElement('section', 'route-section-card reader-picker-intro');
       picker.appendChild(createElement('strong', '', 'Choose a study gloss'));
@@ -1305,7 +1359,7 @@
     });
     ['strict_hebrew', 'strict_aramaic', 'morphology', 'lemma', 'subphrase_evidence', 'biblical_paraphrase_evidence', 'citable_paraphrase_evidence', 'usage_evidence', 'phrase_evidence']
       .forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap, {
-        appendEmpty: section === 'strict_hebrew' || section === 'strict_aramaic',
+        appendEmpty: section === 'strict_hebrew' || section === 'strict_aramaic' || section === 'morphology',
         emptyText: `${routeSectionTitles.get(section) || section} not found for this token.`,
       }));
     [...bySection.keys()]
@@ -1476,6 +1530,14 @@
     window.setTimeout(() => target.classList.remove('prehud-row-targeted'), 1600);
   }
 
+  function openPrehudRowHud(rowId) {
+    const target = document.getElementById(rowId);
+    const word = target ? target.querySelector('[data-lexical-token]') : null;
+    if (!word) return false;
+    void renderWord(word);
+    return true;
+  }
+
   function makePrehudPassageLink(text, rowId) {
     const link = createElement('a', 'prehud-passage-token', normalizeHebrewDisplay(text));
     link.href = `#${rowId}`;
@@ -1485,7 +1547,9 @@
     link.setAttribute('aria-label', `Show gloss row for ${normalizeHebrewDisplay(text)}`);
     link.addEventListener('click', (event) => {
       event.preventDefault();
+      event.stopPropagation();
       focusPrehudRow(rowId);
+      openPrehudRowHud(rowId);
     });
     return link;
   }
@@ -1683,11 +1747,14 @@
     hud.focus({ preventScroll: true });
     positionHudNearButton(button);
     const panel = hud.querySelector('[data-route-hud-panel]');
-    if (panel) panel.replaceChildren(createElement('p', 'placeholder', 'Loading route cards...'));
+    const fallbackForm = button.dataset.lexicalSurface || button.textContent.trim();
+    const fallbackNormalized = normalizeHebrewKey(fallbackForm);
+    const title = hud.querySelector('#route-hud-title');
+    if (title) title.textContent = `Route HUD: ${normalizeHebrewDisplay(fallbackForm || '')}`;
+    if (panel) renderStudyHudFrame(panel, fallbackForm, fallbackNormalized, {}, null, siteApi.config);
     try {
       const tokenRow = await siteApi.loadTokenRow(button.dataset.lexicalIndex);
-      const clickedForm = button.dataset.lexicalSurface || tokenRow.hebrew_word || tokenRow.surface_word || button.textContent.trim();
-      const title = hud.querySelector('#route-hud-title');
+      const clickedForm = fallbackForm || tokenRow.hebrew_word || tokenRow.surface_word || button.textContent.trim();
       if (title) title.textContent = `Route HUD: ${normalizeHebrewDisplay(clickedForm || '')}`;
       const clickedNormalized = normalizeHebrewKey(clickedForm);
       const rowSurfaceNormalized = normalizeHebrewKey(tokenRow.surface_word || '');
@@ -1703,7 +1770,7 @@
       positionHudNearButton(button);
     } catch (error) {
       console.error(error);
-      if (panel) panel.replaceChildren(createElement('p', 'placeholder', 'Reader Workbench route lookup failed for this click.'));
+      if (panel) renderStudyHudFrame(panel, fallbackForm, fallbackNormalized, {}, null, siteApi.config);
       positionHudNearButton(button);
     }
   }
