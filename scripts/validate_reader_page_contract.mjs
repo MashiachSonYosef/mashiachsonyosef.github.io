@@ -220,6 +220,10 @@ function validatePage(pagePath) {
   }
   requireMatch(`${pagePath} must use preHUD row mode`, config.reader_layout_mode === "prehud_rows");
   requireMatch(`${pagePath} must avoid private definition markers in config`, !hasPrivateDefinitionMarker(config));
+  if (pagePath.replace(/\\/g, "/") === "tanakh/daniel/index.html") {
+    requireMatch(`${pagePath} Daniel preview must keep lemma evidence out of Definition answers`, config.hud_allow_lemma_only === false);
+    requireMatch(`${pagePath} Daniel preview must collapse empty strict HUD sections`, config.hud_collapse_empty_strict_sections === true);
+  }
 
   for (const key of ["manifest_url", "occurrence_url", "hud_route_lookup_manifest_url"]) {
     const relative = relPathFromUrl(pagePath, config[key]);
@@ -287,6 +291,8 @@ requireMatch(
   runtime.includes("function renderRouteHudPanel")
     && runtime.includes("renderStudyHudFrame(panel, fallbackForm, fallbackNormalized")
     && runtime.includes("appendPlaceholderHudSection(panel)")
+    && runtime.includes("function shouldAppendEmptyRouteSection")
+    && runtime.includes("hud_collapse_empty_strict_sections")
     && runtime.includes("Strict Hebrew matches not found for this token.")
     && runtime.includes("Strict Aramaic matches not found for this token.")
 );

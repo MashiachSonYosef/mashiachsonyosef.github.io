@@ -1217,6 +1217,13 @@
     panel.appendChild(section);
   }
 
+  function shouldAppendEmptyRouteSection(sectionId, config) {
+    if ((sectionId === 'strict_hebrew' || sectionId === 'strict_aramaic') && config?.hud_collapse_empty_strict_sections === true) {
+      return false;
+    }
+    return sectionId === 'strict_hebrew' || sectionId === 'strict_aramaic' || sectionId === 'morphology';
+  }
+
   function lemmaRowsFromToken(tokenRow) {
     const rows = [];
     const entry = tokenRow?.lexicon_entry || {};
@@ -1301,8 +1308,8 @@
     panel.replaceChildren();
     appendSelectedHudToken(panel, clickedForm, normalized);
     appendPlaceholderHudSection(panel);
-    appendRouteSection(panel, 'strict_hebrew', [], null, { appendEmpty: true, emptyText: 'Strict Hebrew matches not found for this token.' });
-    appendRouteSection(panel, 'strict_aramaic', [], null, { appendEmpty: true, emptyText: 'Strict Aramaic matches not found for this token.' });
+    appendRouteSection(panel, 'strict_hebrew', [], null, { appendEmpty: shouldAppendEmptyRouteSection('strict_hebrew', config), emptyText: 'Strict Hebrew matches not found for this token.' });
+    appendRouteSection(panel, 'strict_aramaic', [], null, { appendEmpty: shouldAppendEmptyRouteSection('strict_aramaic', config), emptyText: 'Strict Aramaic matches not found for this token.' });
     appendRouteSection(panel, 'morphology', [], null, { appendEmpty: true, emptyText: 'Word-part breakdown not found for this token.' });
     appendLemmaHudSection(panel, tokenRow);
     appendCrossmatchHudSection(panel, crossmatch);
@@ -1359,7 +1366,7 @@
     });
     ['strict_hebrew', 'strict_aramaic', 'morphology', 'lemma', 'subphrase_evidence', 'biblical_paraphrase_evidence', 'citable_paraphrase_evidence', 'usage_evidence', 'phrase_evidence']
       .forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap, {
-        appendEmpty: section === 'strict_hebrew' || section === 'strict_aramaic' || section === 'morphology',
+        appendEmpty: shouldAppendEmptyRouteSection(section, config),
         emptyText: `${routeSectionTitles.get(section) || section} not found for this token.`,
       }));
     [...bySection.keys()]
