@@ -1,0 +1,88 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "status": "passed",
+  "approval_packet": "reports/a13-visible-slot-approval-concrete-bank-mined-v1-2026-06-19.json",
+  "package_check": "reports/a13-visible-slot-package-check-concrete-bank-mined-v1-2026-06-19.json",
+  "validated_manifests": [
+    {
+      "path": "data/public-hud/arukh-hashulchan/visible-display-slots.json",
+      "slot_count": 2,
+      "approved_gloss_count": 2,
+      "approved_slots": [
+        "H7272:tok-d188cf2ac26e:foot",
+        "H1818:tok-1bc41caced30:blood"
+      ]
+    },
+    {
+      "path": "data/public-hud/a-new-israeli-commentary-on-pirkei-avot/visible-display-slots.json",
+      "slot_count": 1,
+      "approved_gloss_count": 1,
+      "approved_slots": [
+        "H8451:tok-bdf3198892c7:Torah"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\arukh-hashulchan\\visible-display-slots.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\a-new-israeli-commentary-on-pirkei-avot\\visible-display-slots.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds arukh-hashulchan -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "timeout_ms": 600000,
+      "result": "passed"
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds a-new-israeli-commentary-on-pirkei-avot -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "timeout_ms": 600000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page halakhah\\arukh-hashulchan\\index.html",
+      "timeout_ms": 180000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page mishnah\\a-new-israeli-commentary-on-pirkei-avot\\index.html",
+      "timeout_ms": 180000,
+      "result": "passed"
+    },
+    {
+      "command": "custom rendered config URL check",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "rendered_pages": [
+    "halakhah/arukh-hashulchan/index.html",
+    "mishnah/a-new-israeli-commentary-on-pirkei-avot/index.html"
+  ],
+  "rendered_config": {
+    "arukh_hashulchan_visible_display_slot_manifest_url": "../../data/public-hud/arukh-hashulchan/visible-display-slots.json",
+    "pirkei_avot_visible_display_slot_manifest_url": "../../data/public-hud/a-new-israeli-commentary-on-pirkei-avot/visible-display-slots.json"
+  },
+  "held_rows": {
+    "H7272": [
+      "tok-1e896aa2f318",
+      "tok-3908065b4749"
+    ],
+    "reason": "Idiomatic or quotation-like contexts remain N/A."
+  },
+  "boundary": {
+    "validation_only": true,
+    "a10_hud_internals": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "stop_condition": "Concrete-bank-mined visible slots are valid when manifests and target pages validate and the only display change is through visible_display_slot_manifest_url."
+}

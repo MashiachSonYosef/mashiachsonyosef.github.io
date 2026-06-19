@@ -1,0 +1,37 @@
+{
+  "schema": "a13_visible_slot_package_check_v1",
+  "date": "2026-06-19",
+  "status": "passed",
+  "approval_packet": "reports/a13-visible-slot-approval-concrete-bank-mined-v1-2026-06-19.json",
+  "changed_surfaces": [
+    "data/public-hud/arukh-hashulchan/visible-display-slots.json",
+    "data/public-hud/a-new-israeli-commentary-on-pirkei-avot/visible-display-slots.json"
+  ],
+  "expected_render_targets": [
+    "halakhah/arukh-hashulchan/index.html",
+    "mishnah/a-new-israeli-commentary-on-pirkei-avot/index.html"
+  ],
+  "validator_commands": [
+    "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\arukh-hashulchan\\visible-display-slots.json",
+    "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\a-new-israeli-commentary-on-pirkei-avot\\visible-display-slots.json",
+    "& .\\scripts\\render_site.ps1 -WorkIds arukh-hashulchan -SkipLexicalPayloadFiles -SkipOverlayExports",
+    "& .\\scripts\\render_site.ps1 -WorkIds a-new-israeli-commentary-on-pirkei-avot -SkipLexicalPayloadFiles -SkipOverlayExports",
+    "node scripts\\validate_route_hud_page.mjs --page halakhah\\arukh-hashulchan\\index.html",
+    "node scripts\\validate_route_hud_page.mjs --page mishnah\\a-new-israeli-commentary-on-pirkei-avot\\index.html"
+  ],
+  "validator_results": {
+    "arukh_manifest": "passed slot_count=2 approved_gloss_count=2",
+    "pirkei_avot_manifest": "passed slot_count=1 approved_gloss_count=1",
+    "arukh_render": "passed with exact single-work render invocation",
+    "pirkei_avot_render": "passed with exact single-work render invocation",
+    "arukh_route_hud_page": "passed",
+    "pirkei_avot_route_hud_page": "passed",
+    "visible_config_urls": "passed"
+  },
+  "dirty_bucket": "visible_display_slot_manifest_plus_target_page_render",
+  "rollback_path": "remove the two visible-display-slot manifests and rerender the two target work pages",
+  "frame_contract_affected": false,
+  "canonical_exception_flag": false,
+  "boundary": "Package check only. No A10 HUD internals, no publication/release acceptance, no source/license/legal/Definition/product/answer/accepted-text acceptance.",
+  "stop_condition": "Package is coherent when manifests validate, target pages render, Route HUD validators pass, and no unrelated paths are staged."
+}

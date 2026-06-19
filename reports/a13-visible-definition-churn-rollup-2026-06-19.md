@@ -6,11 +6,12 @@ Boundary: rollup only. No routing, display flip, implementation, render/runtime 
 
 ## Visible State
 
-- Approved visible candidates: 3
-- Approved visible rows: 10
+- Approved visible candidates: 6
+- Approved visible rows: 13
 - h5869_eye_ruth_v1: 4 rows, visible=eye, work=ruth
 - h8328_root_akeidat_yitzchak_v1: 5 rows, visible=root, work=akeidat-yitzchak
 - h1870_road_ruth_v1: 1 row, visible=road, work=ruth
+- concrete_bank_mined_v1: 3 rows, visible=foot/blood/Torah, works=arukh-hashulchan and a-new-israeli-commentary-on-pirkei-avot
 
 ## Banked Context State
 
@@ -29,15 +30,16 @@ Boundary: rollup only. No routing, display flip, implementation, render/runtime 
 
 ## Full Occurrence Context State
 
-- Full occurrence batches: 2
-- Full occurrence selectors: 6
-- Full occurrence target token rows: 50
-- Full occurrence rows: 3597
-- Single-occurrence candidates: 1
-- Full occurrence visible rows: 0
+- Full occurrence batches: 3
+- Full occurrence selectors: 9
+- Full occurrence target token rows: 118
+- Full occurrence rows: 5105
+- Single-occurrence candidates: 6
+- Full occurrence visible rows: 3
 
 - priority1_full_occurrence_maps: selectors=3, occurrence rows=2501, visible=0, status=validated_full_occurrence_maps_keep_NA
 - context_rule_hold_full_occurrence_maps: selectors=3, occurrence rows=1096, visible=0, status=validated_full_occurrence_maps_keep_NA
+- bank_mined_visible_slot_full_occurrence_maps: selectors=3, occurrence rows=1508, visible=3, status=validated_full_occurrence_maps_three_visible_rows
 
 ## Current Blocker
 

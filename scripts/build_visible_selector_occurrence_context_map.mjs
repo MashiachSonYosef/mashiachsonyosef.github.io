@@ -14,7 +14,7 @@ const input = args.get('input');
 const outJson = args.get('out-json');
 const outMd = args.get('out-md');
 if (!input || !outJson || !outMd) {
-  console.error('usage: node scripts/build_visible_selector_occurrence_context_map.mjs --input=<context-map.json> [--packet-id=<candidate packet_id>] --out-json=<out.json> --out-md=<out.md>');
+  console.error('usage: node scripts/build_visible_selector_occurrence_context_map.mjs --input=<context-map.json> [--packet-id=<candidate packet_id>|--source-id=<source_id>] --out-json=<out.json> --out-md=<out.md>');
   process.exit(2);
 }
 
@@ -79,20 +79,25 @@ function findSourceTokenIndex(sourceTokens, surfaceWord, ordinal, fallbackIndex)
 
 const inputMap = readJson(input);
 const packetId = clean(args.get('packet-id'));
+const sourceIdFilter = clean(args.get('source-id'));
 let sourceMap = inputMap;
-if (Array.isArray(inputMap.candidate_maps)) {
-  if (!packetId) {
-    console.error('input contains candidate_maps; pass --packet-id=<candidate packet_id>');
+const bundledMaps = inputMap.candidate_maps ?? inputMap.selector_maps;
+if (Array.isArray(bundledMaps)) {
+  if (!packetId && !sourceIdFilter) {
+    console.error('input contains bundled maps; pass --packet-id=<candidate packet_id> or --source-id=<source_id>');
     process.exit(2);
   }
-  sourceMap = inputMap.candidate_maps.find((candidate) => clean(candidate.packet_id) === packetId);
+  sourceMap = bundledMaps.find((candidate) => {
+    if (packetId) return clean(candidate.packet_id) === packetId;
+    return clean(candidate.source_id) === sourceIdFilter;
+  });
   if (!sourceMap) {
-    console.error(`candidate_maps packet_id not found: ${packetId}`);
+    console.error(`bundled map not found: ${packetId || sourceIdFilter}`);
     process.exit(2);
   }
 }
 const header = sourceMap.header ?? {};
-const workId = clean(header.target_work_id || sourceMap.target?.target_work_id || sourceMap.work_id || sourceMap.target_work);
+const workId = clean(header.target_work_id || sourceMap.target?.target_work_id || sourceMap.target_work_id || sourceMap.work_id || sourceMap.target_work);
 if (!workId) throw new Error('input map missing target work id');
 
 const sourceId = clean(header.source_id || sourceMap.target?.source_id || sourceMap.source_id);
