@@ -92,7 +92,10 @@
     .placeholder { color: #8c857c; }
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .reader-token-wrap { display: inline-grid; grid-auto-rows: min-content; justify-items: center; align-items: start; vertical-align: baseline; gap: 0.12em; margin: 0.04em 0.1em 0.16em; max-width: min(34rem, calc(100vw - 32px)); }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .reader-token-wrap .lexical-word { margin: 0; }
+    .reader-gloss-line { display: block; direction: ltr; unicode-bidi: isolate; color: var(--muted); font-size: 0.58em; font-weight: 600; line-height: 1.22; width: max-content; max-width: min(22rem, calc(100vw - 40px)); text-align: center; white-space: normal; overflow: visible; overflow-wrap: break-word; word-break: normal; hyphens: auto; opacity: 0.88; border: 1px solid rgba(214,190,138,0.18); background: rgba(10,11,13,0.72); padding: 0.18em 0.42em 0.2em; border-radius: 4px; box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
     .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
     .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
@@ -163,6 +166,7 @@
             <span>93 source units</span>
             <span>9189 HUD forms</span>
             <span>imported 2026-04-27</span>
+            <span>Words read right to left</span>
           </p>
         </div>
         <div class="hero-notes" aria-label="Header source notes">
@@ -2186,12 +2190,17 @@
     </div>
   </section>
   <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/shaar-hahakdamot.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/shaar-hahakdamot.manifest.json","occurrence_url":"../../data/lexical/occurrences/shaar-hahakdamot.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows"}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"shaar-hahakdamot","work_slug":"ari/shaar-hahakdamot","work_title":"Sha\u0027ar HaHakdamot","manifest_url":"../../data/lexical/shaar-hahakdamot.manifest.json","occurrence_url":"../../data/lexical/occurrences/shaar-hahakdamot.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","reader_hints_url":"../../data/public-hud/shaar-hahakdamot/reader-hints.json","reader_layout_mode":"prehud_rows","root_href":"../../"}</script>
   <script type="text/plain" data-hud-runtime-contract>
     selectRouteAnswer
     lookupCandidateTreatments
     article.dataset.rankBasis
     span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
     aria-haspopup", "dialog"
     aria-controls", "route-hud-panel"
     aria-expanded", "false"
