@@ -1,0 +1,81 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "batch_id": "ahavat-chesed-hand-mined-v1",
+  "status": "passed",
+  "boundary": {
+    "validation_receipt_only": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\ahavat-chesed\\visible-display-slots.json",
+      "result": "passed",
+      "slot_count": 3,
+      "approved_gloss_count": 3
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds ahavat-chesed -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page halakhah\\ahavat-chesed\\index.html",
+      "result": "passed"
+    },
+    {
+      "command": "custom page manifest URL + manifest row check",
+      "result": "passed",
+      "has_visible_slot_manifest_url": true,
+      "slot_count": 3
+    }
+  ],
+  "approved_visible_rows": 3,
+  "manifest_slot_count": 3,
+  "new_slots": [
+    {
+      "token_id": "tok-06c6ec2f6ad1",
+      "source_id": "H3027",
+      "approved_visible_text": "hands",
+      "source_ref": "Ahavat Chesed, Part III 6:1"
+    },
+    {
+      "token_id": "tok-34cc34928677",
+      "source_id": "H3027",
+      "approved_visible_text": "hand",
+      "source_ref": "Ahavat Chesed, Part II 20:3"
+    },
+    {
+      "token_id": "tok-ddce8ddcb00d",
+      "source_id": "H3027",
+      "approved_visible_text": "hand",
+      "source_ref": "Ahavat Chesed, Part II 4:3"
+    }
+  ],
+  "held_rows": [
+    {
+      "source_id": "H3027",
+      "token_id": "tok-95c9b48acd37",
+      "reason": "held as two-hands rejection idiom risk"
+    },
+    {
+      "source_id": "H3027",
+      "token_id": "tok-f3e039d0fe21",
+      "reason": "held as possession/from-their-hands idiom risk"
+    },
+    {
+      "source_id": "H1818",
+      "token_id": "tok-211ee891ac2b",
+      "reason": "held because ???? means money/price, not blood"
+    },
+    {
+      "source_id": "H1818",
+      "token_id": "tok-8d832f1c7b5c",
+      "reason": "held because ??? ??? usage is flesh-and-blood/mortal formula, not literal blood"
+    }
+  ],
+  "stop_condition": "Validation is complete for the three Ahavat Chesed hand slots; broader selector rows remain N/A."
+}

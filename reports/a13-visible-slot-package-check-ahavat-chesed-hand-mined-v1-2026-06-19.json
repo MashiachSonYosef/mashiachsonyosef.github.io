@@ -1,0 +1,37 @@
+{
+  "schema": "a13_visible_slot_package_check_v1",
+  "date": "2026-06-19",
+  "batch_id": "ahavat-chesed-hand-mined-v1",
+  "status": "package_check_ready_for_validation",
+  "boundary": {
+    "visible_slot_layer_only": true,
+    "display_flip": true,
+    "render_runtime_repo_control_source_mutation": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false,
+    "broader_selector_rows_remain_NA": true
+  },
+  "changed_surfaces": [
+    "data/public-hud/ahavat-chesed/visible-display-slots.json",
+    "halakhah/ahavat-chesed/index.html"
+  ],
+  "input_maps": [
+    "reports/a13-h3027-ahavat-chesed-selector-context-map-2026-06-19.json",
+    "reports/a13-h3027-ahavat-chesed-full-occurrence-context-map-2026-06-19.json",
+    "reports/a13-h1818-ahavat-chesed-selector-context-map-2026-06-19.json",
+    "reports/a13-h1818-ahavat-chesed-full-occurrence-context-map-2026-06-19.json"
+  ],
+  "approved_visible_rows": 3,
+  "target_work_ids": [
+    "ahavat-chesed"
+  ],
+  "required_commands": [
+    "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\ahavat-chesed\\visible-display-slots.json",
+    "& .\\scripts\\render_site.ps1 -WorkIds ahavat-chesed -SkipLexicalPayloadFiles -SkipOverlayExports",
+    "node scripts\\validate_route_hud_page.mjs --page halakhah\\ahavat-chesed\\index.html"
+  ],
+  "stop_condition": "Package is coherent only if manifest validation, target render, and route HUD page validation pass."
+}
