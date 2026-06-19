@@ -9,6 +9,8 @@ Target:
 Input artifacts:
 - `reports/a13-h4639-display-context-map-return-2026-06-19.json`
 - `reports/a13-h4639-display-context-map-validation-2026-06-19.json`
+- `reports/a13-h4639-full-occurrence-context-map-2026-06-19.json`
+- `reports/a13-h4639-full-occurrence-context-map-validation-2026-06-19.json`
 - `reports/a12-a3-priority1-context-structure-packet-template-2026-06-19.md`
 - `reports/a7-h4639-action-deed-high-yield-selector-chain-rollup-2026-06-16.json`
 - `reports/a7-a6-64work-h4639-action-deed-boundary-return-receipt-2026-06-16.json`
@@ -16,6 +18,9 @@ Input artifacts:
 Map state:
 - rows: `12`
 - rows with representative context: `12`
+- full occurrence context rows: `1596`
+- full occurrence count mismatches: `0`
+- full occurrence source-token mismatches: `0`
 - current visible rows: `0`
 - total occurrence contexts counted: `1596`
 - prefix-stripped rows: `2`
