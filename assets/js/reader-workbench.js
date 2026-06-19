@@ -1702,7 +1702,6 @@
       event.preventDefault();
       event.stopPropagation();
       focusPrehudRow(rowId);
-      openPrehudRowHud(rowId);
     });
     return link;
   }

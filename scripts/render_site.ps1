@@ -45,6 +45,8 @@ function Convert-SourceHtml {
   $html = $html -replace '(?i)&lt;/big&gt;', '</span>'
   $html = $html -replace '(?i)&lt;small&gt;', '<span class="source-small">'
   $html = $html -replace '(?i)&lt;/small&gt;', '</span>'
+  $html = $html -replace '(?i)&lt;span class=&quot;(mam-kq|mam-kq-k|mam-kq-q|mam-kq-trivial|mam-spi-pe|mam-spi-samekh)&quot;&gt;', '<span class="$1">'
+  $html = $html -replace '(?i)&lt;/span&gt;', '</span>'
   $html = (($html -split '\r?\n') | ForEach-Object { $_.TrimEnd() }) -join "`n"
   return $html.Trim()
 }
@@ -699,7 +701,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .hero-main { min-width: 0; }')
   [void]$Builder.AppendLine('    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }')
   [void]$Builder.AppendLine('    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }')
-  [void]$Builder.AppendLine('    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }')
+  [void]$Builder.AppendLine('    .hero-summary span { padding: 0; color: var(--muted); }')
   [void]$Builder.AppendLine('    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }')
   [void]$Builder.AppendLine('    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }')
   [void]$Builder.AppendLine('    .hero-notes li { padding-left: 0.1rem; }')
@@ -741,14 +743,14 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }')
   [void]$Builder.AppendLine('    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }')
   [void]$Builder.AppendLine('    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }')
-  [void]$Builder.AppendLine('    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }')
-  [void]$Builder.AppendLine('    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }')
+  [void]$Builder.AppendLine('    .reader-shell { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 16px; align-items: start; padding: 18px; min-width: 0; max-width: 100%; }')
+  [void]$Builder.AppendLine('    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 0; border-right: 1px solid var(--line); background: transparent; padding: 4px 12px 4px 0; }')
   [void]$Builder.AppendLine('    .toc ul { list-style: none; padding: 0; margin: 0; }')
   [void]$Builder.AppendLine('    .toc li { margin: 0 0 7px; }')
   [void]$Builder.AppendLine('    .toc a { text-decoration: none; font-size: 0.94rem; }')
-  [void]$Builder.AppendLine('    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }')
+  [void]$Builder.AppendLine('    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.8rem; margin: 2px 0 3px; overflow-wrap: anywhere; }')
   [void]$Builder.AppendLine('    .toc-start:hover, .toc-unit:hover { color: var(--accent); }')
-  [void]$Builder.AppendLine('    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }')
+  [void]$Builder.AppendLine('    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(44px, 1fr)); gap: 2px 5px; margin-top: 4px; }')
   [void]$Builder.AppendLine('    .section-block { margin-bottom: 10px; }')
   [void]$Builder.AppendLine('    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }')
   [void]$Builder.AppendLine('    .unit[hidden] { display: none; }')
@@ -767,6 +769,9 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }')
   [void]$Builder.AppendLine('    .hebrew strong { color: #fff5df; font-weight: 700; }')
   [void]$Builder.AppendLine('    .source-small { font-size: 0.82em; color: var(--muted); }')
+  [void]$Builder.AppendLine('    .mam-kq { white-space: nowrap; }')
+  [void]$Builder.AppendLine('    .mam-kq-k, .mam-kq-trivial, .mam-spi-pe, .mam-spi-samekh { color: var(--muted); font-size: 0.86em; }')
+  [void]$Builder.AppendLine('    .mam-kq-q { color: var(--hebrew); }')
   [void]$Builder.AppendLine('    .placeholder { color: #8c857c; }')
   if ($IncludeLexicalStyles) {
     [void]$Builder.AppendLine('    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }')
@@ -823,8 +828,8 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }')
   [void]$Builder.AppendLine('    summary { cursor: pointer; color: var(--accent); }')
   [void]$Builder.AppendLine('    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }')
-  [void]$Builder.AppendLine('    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }')
-  [void]$Builder.AppendLine('    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }')
+  [void]$Builder.AppendLine('    .toc details details { border-left: 0; padding-left: 8px; margin-left: 0; }')
+  [void]$Builder.AppendLine('    .toc summary { color: var(--accent); font-size: 0.88rem; overflow-wrap: anywhere; }')
   [void]$Builder.AppendLine('    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }')
   [void]$Builder.AppendLine('    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }')
   [void]$Builder.AppendLine('    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }')
@@ -2047,10 +2052,9 @@ function Append-WorkToc {
     $firstGroupUnit = $groupUnits[0]
     $groupTitle = if ($firstGroupUnit.group_title -and $firstGroupUnit.group_slug -ne 'text') { $firstGroupUnit.group_title } else { $Source.work_title }
     $groupAnchor = Get-GroupStartAnchor -Unit $firstGroupUnit -Source $Source
-    $groupBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $groupUnits) { ' <span class="hud-badge">Route HUD active</span>' } else { '' }
 
     [void]$Builder.AppendLine('            <details class="toc-group">')
-    [void]$Builder.AppendLine("              <summary>$(Encode-Html $groupTitle)$groupBadge</summary>")
+    [void]$Builder.AppendLine("              <summary>$(Encode-Html $groupTitle)</summary>")
     [void]$Builder.AppendLine("              <a class=""toc-start"" href=""#$groupAnchor"">Start</a>")
 
     foreach ($section in (Get-OrderedGroups -Items $groupUnits -KeyScript { param($item) $item.section_slug })) {
@@ -2059,10 +2063,9 @@ function Append-WorkToc {
       $firstSectionUnit = $sectionUnits[0]
       $sectionTitle = if ($firstSectionUnit.section_title -and $firstSectionUnit.section_slug -ne 'text') { $firstSectionUnit.section_title } else { $groupTitle }
       $sectionAnchor = Get-SectionStartAnchor -Unit $firstSectionUnit -Source $Source
-      $sectionBadge = if (Test-UnitsHaveLexical -WorkOccurrence $WorkOccurrence -Units $sectionUnits) { ' <span class="hud-badge">Route HUD active</span>' } else { '' }
 
       [void]$Builder.AppendLine('              <details class="toc-section">')
-      [void]$Builder.AppendLine("                <summary>$(Encode-Html $sectionTitle)$sectionBadge</summary>")
+      [void]$Builder.AppendLine("                <summary>$(Encode-Html $sectionTitle)</summary>")
       [void]$Builder.AppendLine("                <a class=""toc-start"" href=""#$sectionAnchor"">Start section</a>")
 
       $chapterGroups = Get-OrderedGroups -Items $sectionUnits -KeyScript { param($item) if ($null -ne $item.chapter_number -and $item.chapter_number.ToString().Trim()) { $item.chapter_number } else { 'text' } }
