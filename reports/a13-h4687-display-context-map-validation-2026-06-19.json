@@ -1,0 +1,112 @@
+{
+  "schema": "a13_h4687_display_context_map_validation_v1",
+  "date": "2026-06-19",
+  "status": "warn_keep_bank",
+  "input": "reports/a13-h4687-display-context-map-return-2026-06-19.json",
+  "checklist": "reports/a12-h4687-display-context-map-validator-checklist-2026-06-19.json",
+  "checks": [
+    {
+      "name": "packet_id_exists",
+      "ok": true
+    },
+    {
+      "name": "source_request_equals_reports/a12-h4687-display-context-completion-request-2026-06-19.md",
+      "ok": true
+    },
+    {
+      "name": "source_id_equals_H4687",
+      "ok": true
+    },
+    {
+      "name": "target_work_id_equals_agra-dekala",
+      "ok": true
+    },
+    {
+      "name": "all_12_required_token_ids_present_exactly_once",
+      "ok": true
+    },
+    {
+      "name": "no_extra_token_ids_present",
+      "ok": true
+    },
+    {
+      "name": "surface_non_null_for_every_token_row",
+      "ok": true
+    },
+    {
+      "name": "source_context_before_source_token_source_context_after_present_for_every_token_row",
+      "ok": true
+    },
+    {
+      "name": "current_bookpage_visible_text_recorded_or_explicitly_absent_for_every_token_row",
+      "ok": true
+    },
+    {
+      "name": "current_hud_route_id_if_any_preserves_request_route_ids",
+      "ok": true
+    },
+    {
+      "name": "word_break_status_recorded_for_every_token_row",
+      "ok": true
+    },
+    {
+      "name": "maqaf_status_recorded_for_every_token_row",
+      "ok": true
+    },
+    {
+      "name": "phrase_or_compound_status_recorded_for_every_token_row",
+      "ok": true
+    },
+    {
+      "name": "prefix_rows_have_explicit_relation_status",
+      "ok": true
+    },
+    {
+      "name": "commandment_command_ordinance_context_separated_or_held",
+      "ok": true
+    },
+    {
+      "name": "timeout_used_present",
+      "ok": true
+    },
+    {
+      "name": "no_candidate_label_promoted_as_accepted_visible_text",
+      "ok": true
+    },
+    {
+      "name": "no_long_OpenScriptures_definition_text_used_as_visible_text",
+      "ok": true
+    },
+    {
+      "name": "output_decision_allowed",
+      "ok": true
+    }
+  ],
+  "failed_checks": [],
+  "result": "warn_keep_bank",
+  "warning_reasons": [
+    "all_required_rows_present_but_prefix_stripped_rows_require_A3_review",
+    "commandment_command_ordinance_sense_is_context_sensitive_and_held_for_A3",
+    "representative_context_map_is_not_full_occurrence_context_map",
+    "visible_text_remains_NA"
+  ],
+  "counts": {
+    "required_token_rows": 12,
+    "rows_returned": 12,
+    "rows_with_surface": 12,
+    "rows_with_representative_context": 12,
+    "prefix_stripped_rows": 5,
+    "sense_blocked_rows": 12,
+    "total_occurrence_contexts_counted": 340,
+    "visible_text_rows": 0
+  },
+  "boundary": {
+    "validation_only": true,
+    "display_flip": false,
+    "implementation_allowed": false,
+    "accepted_text": false,
+    "source_license_legal_acceptance": false,
+    "publication_release": false
+  },
+  "stop_condition": "Bank H4687 map evidence only; no visible text or implementation route is opened."
+}
