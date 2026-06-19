@@ -1,0 +1,84 @@
+{
+  "schema": "a7_hud_selectable_gloss_layer_flip_ready_receipt_v1",
+  "date": "2026-06-19",
+  "status": "flip_ready_candidate",
+  "work_id": "ruth",
+  "source_id": "H5869",
+  "hud_selectable_gloss": "eye",
+  "a13_visible_text": "eye",
+  "rows_checked": 4,
+  "input_packets": [
+    "reports/a13-visible-slot-approval-h5869-eye-ruth-v1-2026-06-19.json",
+    "reports/a13-visible-slot-validation-h5869-eye-ruth-v1-2026-06-19.json"
+  ],
+  "artifacts_created": [
+    "data/public-hud/ruth/hud-selectable-glosses.json",
+    "scripts/validate_a7_hud_selectable_gloss_layer.mjs",
+    "reports/a7-ruth-eye-hud-selectable-gloss-layer-flip-ready-2026-06-19.json",
+    "reports/a7-ruth-eye-hud-selectable-gloss-layer-flip-ready-2026-06-19.md"
+  ],
+  "validation": {
+    "command": "node scripts/validate_a7_hud_selectable_gloss_layer.mjs data/public-hud/ruth/hud-selectable-glosses.json",
+    "timeout_ms": 120000,
+    "result": "passed",
+    "visible_manifest_state": "held_for_a7_join",
+    "fallback_display_state": "N/A",
+    "book_page_flip_performed": false,
+    "hud_frame_mutation": false,
+    "route_scoring_mutation": false
+  },
+  "rows": [
+    {
+      "token_id": "tok-93c918a312d8",
+      "source_ref": "Ruth 2:2",
+      "normalized": "בעיניו",
+      "a13_visible_text": "eye",
+      "hud_selectable_gloss": "eye",
+      "selected_gloss_card_id": "def-layer-9c078b024a3efe25",
+      "cited_hud_evidence_card_id": "citable-para-00488edf4f87ad1d",
+      "status": "flip_ready_candidate"
+    },
+    {
+      "token_id": "tok-d314fbe9c5e0",
+      "source_ref": "Ruth 2:9",
+      "normalized": "עיניכ",
+      "a13_visible_text": "eye",
+      "hud_selectable_gloss": "eye",
+      "selected_gloss_card_id": "def-layer-cef0b79257fb6d7f",
+      "cited_hud_evidence_card_id": "citable-para-035e8913f41a97dc",
+      "status": "flip_ready_candidate"
+    },
+    {
+      "token_id": "tok-f26ba64f6281",
+      "source_ref": "Ruth 2:10",
+      "normalized": "בעיניכ",
+      "a13_visible_text": "eye",
+      "hud_selectable_gloss": "eye",
+      "selected_gloss_card_id": "def-layer-9f23b2db5c415ce9",
+      "cited_hud_evidence_card_id": "citable-para-024fbe4c7d4ce473",
+      "status": "flip_ready_candidate"
+    },
+    {
+      "token_id": "tok-b83d2327f64a",
+      "source_ref": "Ruth 2:13",
+      "normalized": "בעיניכ",
+      "a13_visible_text": "eye",
+      "hud_selectable_gloss": "eye",
+      "selected_gloss_card_id": "def-layer-9f23b2db5c415ce9",
+      "cited_hud_evidence_card_id": "citable-para-024fbe4c7d4ce473",
+      "status": "flip_ready_candidate"
+    }
+  ],
+  "boundary": {
+    "a13_book_page_approval_required": true,
+    "a7_hud_selectable_gloss_required": true,
+    "a10_hud_frame_check_required_if_runtime_changes": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "answer_accepted_text_acceptance": false,
+    "publication_release_acceptance": false,
+    "live_publish": false
+  },
+  "next_safe_step": "A13 may review this receipt as evidence that A7's HUD selectable-gloss join layer is ready for Ruth H5869 eye. Actual book-page flip from N/A should be a separate exact implementation step against data/public-hud/ruth/visible-display-slots.json.",
+  "stop_condition": "Stop here unless owner/A13 asks A7 to perform the exact Ruth H5869 eye flip implementation."
+}

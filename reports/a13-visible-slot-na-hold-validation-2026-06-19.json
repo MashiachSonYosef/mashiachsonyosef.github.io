@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "artifact_type": "a13_visible_slot_na_hold_validation_v1",
+  "generated_at": "2026-06-19T21:59:24.415Z",
+  "hold_packet": "reports/a13-visible-slot-na-hold-pending-a7-join-2026-06-19.json",
+  "affected_manifest_count": 12,
+  "previous_approved_visible_slot_count": 53,
+  "active_slot_rows_after_hold": 0,
+  "approved_gloss_rows_after_hold": 0,
+  "manifest_validator": {
+    "command": "node scripts/validate_visible_display_slot_manifest.mjs --input=<each affected manifest>",
+    "result": "passed",
+    "checked_manifests": [
+      "data/public-hud/a-new-israeli-commentary-on-pirkei-avot/visible-display-slots.json",
+      "data/public-hud/abudarham/visible-display-slots.json",
+      "data/public-hud/ahavat-chesed/visible-display-slots.json",
+      "data/public-hud/akeidat-yitzchak/visible-display-slots.json",
+      "data/public-hud/arukh-hashulchan/visible-display-slots.json",
+      "data/public-hud/avodat-hakodesh/visible-display-slots.json",
+      "data/public-hud/avodat-yisrael/visible-display-slots.json",
+      "data/public-hud/baal-shem-tov/visible-display-slots.json",
+      "data/public-hud/baer-hetev-on-shulchan-arukh-even-haezer/visible-display-slots.json",
+      "data/public-hud/baer-hetev-on-shulchan-arukh-yoreh-deah/visible-display-slots.json",
+      "data/public-hud/beer-hagolah-on-shulchan-arukh-choshen-mishpat/visible-display-slots.json",
+      "data/public-hud/ruth/visible-display-slots.json"
+    ]
+  },
+  "page_validator": {
+    "command": "node scripts/validate_route_hud_page.mjs --page <12 affected pages>",
+    "result": "passed",
+    "checked_pages": [
+      "mishnah/a-new-israeli-commentary-on-pirkei-avot/index.html",
+      "halakhah/abudarham/index.html",
+      "halakhah/ahavat-chesed/index.html",
+      "jewish-thought/akeidat-yitzchak/index.html",
+      "halakhah/arukh-hashulchan/index.html",
+      "halakhah/avodat-hakodesh/index.html",
+      "chasidut/avodat-yisrael/index.html",
+      "chasidut/baal-shem-tov/index.html",
+      "halakhah/baer-hetev-on-shulchan-arukh-even-haezer/index.html",
+      "halakhah/baer-hetev-on-shulchan-arukh-yoreh-deah/index.html",
+      "halakhah/beer-hagolah-on-shulchan-arukh-choshen-mishpat/index.html",
+      "tanakh/ruth/index.html"
+    ]
+  },
+  "a7_hud_gloss_join_layer": {
+    "artifact": "data/public-hud/ruth/hud-selectable-glosses.json",
+    "validator": "node scripts/validate_a7_hud_selectable_gloss_layer.mjs data/public-hud/ruth/hud-selectable-glosses.json",
+    "result": "passed",
+    "implementation_state": "flip_ready_candidate",
+    "book_page_flip_performed": false
+  },
+  "boundary": "A13 candidate approvals remain preserved; live book-page visible slots stay N/A until A7 implements and validates a joined HUD selectable-gloss flip.",
+  "stop_condition": "Rollback package is valid when affected visible manifests have zero approved slots and affected pages pass Route HUD validation; no page-side English is reactivated by this package."
+}
