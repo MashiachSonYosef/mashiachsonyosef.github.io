@@ -47,7 +47,7 @@ if (!issues.length) {
   requireTrue(routeManifest.counts?.card_count === 0, "Daniel POC must fail closed with zero scoped route cards");
 
   requireTrue(page.includes('<link rel="stylesheet" href="../../assets/css/reader-workbench.css">'), "page must reuse shared reader-workbench CSS");
-  requireTrue(page.includes('<script src="../../assets/js/reader-workbench.js" defer></script>'), "page must reuse shared reader-workbench runtime");
+  requireTrue(page.includes('<script src="../../assets/js/reader-workbench.js?v=visible-na-3916cf24" defer></script>'), "page must reuse shared reader-workbench runtime");
   requireTrue(page.includes('data-unit-id="daniel-1-1"'), "page must target actual Daniel 1:1 unit");
   requireTrue(page.includes('data-lexical-slot'), "page must expose lexical slot for runtime-generated pre-HUD rows");
   requireTrue(page.includes('data-lexical-hud'), "page must include canonical lexical HUD shell");

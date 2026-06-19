@@ -117,7 +117,7 @@ const html = `<!DOCTYPE html>
   ${hudShell}
   <script type="application/json" data-lexical-occurrences data-src="../../${work.occurrencePath}">{}</script>
   <script type="application/json" data-lexical-config>${JSON.stringify(lexicalConfig)}</script>
-  <script src="../../assets/js/reader-workbench.js" defer></script>
+  <script src="../../assets/js/reader-workbench.js?v=visible-na-3916cf24" defer></script>
 </body>
 </html>
 `;
@@ -142,7 +142,7 @@ const report = {
   tbd_fallback_rows: tokenIds.length,
   exact_visual_changes: [
     "Daniel 1:1 pre-HUD uses shared reader_layout_mode=prehud_rows for one Hebrew token row per occurrence token.",
-    "Daniel 1:1 pre-HUD uses shared reader-workbench wrapping/no-cutoff CSS for full selected gloss text or quiet TBD.",
+    "Daniel 1:1 pre-HUD uses shared reader-workbench wrapping/no-cutoff CSS for full selected gloss text or quiet N/A.",
   ],
   reused_a10_orot_contract: {
     css: "assets/css/reader-workbench.css",

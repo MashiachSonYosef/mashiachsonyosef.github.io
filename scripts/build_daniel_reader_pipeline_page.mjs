@@ -603,7 +603,7 @@ const html = `<!DOCTYPE html>
       <div class="hero-notes" aria-label="Header source notes">
         <ol>
           <li>Hebrew source: ${escapeHtml(sourceUnit.version_title || "source package")} (${escapeHtml(sourceUnit.license || "license metadata pending")}).</li>
-          <li>Route HUD uses the shared A10 reader workbench runtime; Daniel pre-HUD rows remain fail-closed to TBD until safe route-backed hints exist.</li>
+          <li>Route HUD uses the shared A10 reader workbench runtime; Daniel pre-HUD rows remain fail-closed to N/A until safe route-backed hints exist.</li>
         </ol>
       </div>
     </header>
@@ -660,7 +660,7 @@ ${chapterHtml}
     possessive-suffix candidate
     maqaf component
   </script>
-  <script src="../../assets/js/reader-workbench.js"></script>
+  <script src="../../assets/js/reader-workbench.js?v=visible-na-3916cf24"></script>
 </body>
 </html>
 `;

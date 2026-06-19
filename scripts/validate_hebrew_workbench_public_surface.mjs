@@ -92,7 +92,7 @@ requireMatch("Daniel must not use standalone Hebrew token buttons", !html.includ
 requireMatch("Daniel must not inline standalone HUD route payload", !html.includes("data-hud-routes"));
 requireMatch("Daniel report must use shared runtime", report.render_runtime === "shared_reader_workbench");
 requireMatch("Daniel report row count must match occurrences", report.token_rows === occurrenceRows && report.occurrence_total_reported === occurrences.total_occurrences);
-requireMatch("Daniel unresolved rows must remain TBD until validated definitions exist", report.tbd_fallback_rows === report.token_rows && report.selected_prehud_rows === 0);
+requireMatch("Daniel unresolved rows must remain N/A until validated definitions exist", report.tbd_fallback_rows === report.token_rows && report.selected_prehud_rows === 0);
 requireMatch("Daniel HUD must fail closed before validated definitions", html.includes('"hud_validated_only":true') && html.includes('"hud_hide_unvalidated_routes":true') && html.includes('"hud_allow_lemma_only":false'));
 requireMatch("Daniel HUD must keep source-license placeholder while fail-closed", html.includes('"hud_show_empty_source_licenses":true') && read("assets/js/reader-workbench.js").includes("Sources and licenses (0)"));
 requireMatch("Daniel must publish Hebrew crossmatch index to the HUD", html.includes('"hebrew_crossmatch_url":"../../data/lexical/crossmatches/daniel.json"'));
