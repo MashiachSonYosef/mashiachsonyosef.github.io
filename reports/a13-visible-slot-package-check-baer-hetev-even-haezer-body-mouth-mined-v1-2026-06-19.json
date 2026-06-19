@@ -1,0 +1,39 @@
+{
+  "schema": "a13_visible_slot_package_check_v1",
+  "date": "2026-06-19",
+  "batch_id": "baer-hetev-even-haezer-body-mouth-mined-v1",
+  "status": "package_check_ready_for_validation",
+  "boundary": {
+    "visible_slot_layer_only": true,
+    "display_flip": true,
+    "render_runtime_repo_control_source_mutation": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false,
+    "broader_selector_rows_remain_NA": true
+  },
+  "changed_surfaces": [
+    "data/public-hud/baer-hetev-on-shulchan-arukh-even-haezer/visible-display-slots.json",
+    "halakhah/baer-hetev-on-shulchan-arukh-even-haezer/index.html"
+  ],
+  "input_maps": [
+    "reports/a13-h3027-baer-hetev-even-haezer-selector-context-map-2026-06-19.json",
+    "reports/a13-h3027-baer-hetev-even-haezer-full-occurrence-context-map-2026-06-19.json",
+    "reports/a13-h6310-baer-hetev-even-haezer-selector-context-map-2026-06-19.json",
+    "reports/a13-h6310-baer-hetev-even-haezer-full-occurrence-context-map-2026-06-19.json",
+    "reports/a13-h7272-baer-hetev-even-haezer-selector-context-map-2026-06-19.json",
+    "reports/a13-h1818-baer-hetev-even-haezer-selector-context-map-2026-06-19.json"
+  ],
+  "approved_visible_rows": 6,
+  "target_work_ids": [
+    "baer-hetev-on-shulchan-arukh-even-haezer"
+  ],
+  "required_commands": [
+    "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\baer-hetev-on-shulchan-arukh-even-haezer\\visible-display-slots.json",
+    "& .\\scripts\\render_site.ps1 -WorkIds baer-hetev-on-shulchan-arukh-even-haezer -SkipLexicalPayloadFiles -SkipOverlayExports",
+    "node scripts\\validate_route_hud_page.mjs --page halakhah\\baer-hetev-on-shulchan-arukh-even-haezer\\index.html"
+  ],
+  "stop_condition": "Package is coherent only if manifest validation, target render, and route HUD page validation pass."
+}

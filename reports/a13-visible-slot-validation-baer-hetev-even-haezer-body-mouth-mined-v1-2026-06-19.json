@@ -1,0 +1,78 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "batch_id": "baer-hetev-even-haezer-body-mouth-mined-v1",
+  "status": "passed",
+  "boundary": {
+    "validation_receipt_only": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\baer-hetev-on-shulchan-arukh-even-haezer\\visible-display-slots.json",
+      "result": "passed",
+      "slot_count": 6,
+      "approved_gloss_count": 6
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds baer-hetev-on-shulchan-arukh-even-haezer -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page halakhah\\baer-hetev-on-shulchan-arukh-even-haezer\\index.html",
+      "result": "passed"
+    },
+    {
+      "command": "custom page manifest URL + manifest row check",
+      "result": "passed",
+      "has_visible_slot_manifest_url": true,
+      "slot_count": 6
+    }
+  ],
+  "approved_visible_rows": 6,
+  "manifest_slot_count": 6,
+  "new_slots": [
+    {
+      "token_id": "tok-6759dbf2508f",
+      "source_id": "H3027",
+      "approved_visible_text": "hands",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Even HaEzer 17:97"
+    },
+    {
+      "token_id": "tok-164663b024d6",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Even HaEzer 17:41"
+    },
+    {
+      "token_id": "tok-1daf85c2ac02",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Even HaEzer 17:13"
+    },
+    {
+      "token_id": "tok-5c7ac5af1744",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Even HaEzer 47:8"
+    },
+    {
+      "token_id": "tok-78150433f55d",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Even HaEzer 85:15"
+    },
+    {
+      "token_id": "tok-f27b51986fb2",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Even HaEzer 27:21"
+    }
+  ],
+  "held_rows": [],
+  "stop_condition": "Validation is complete for the six Baer Hetev Even HaEzer slots; broader selector rows remain N/A."
+}
