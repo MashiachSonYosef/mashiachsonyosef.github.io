@@ -1,0 +1,90 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "batch_id": "baer-hetev-yoreh-deah-body-part-mined-v1",
+  "status": "passed",
+  "boundary": {
+    "validation_receipt_only": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\baer-hetev-on-shulchan-arukh-yoreh-deah\\visible-display-slots.json",
+      "result": "passed",
+      "slot_count": 7,
+      "approved_gloss_count": 7
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds baer-hetev-on-shulchan-arukh-yoreh-deah -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page halakhah\\baer-hetev-on-shulchan-arukh-yoreh-deah\\index.html",
+      "result": "passed"
+    },
+    {
+      "command": "custom page manifest URL + manifest row check",
+      "result": "passed",
+      "has_visible_slot_manifest_url": true,
+      "slot_count": 7
+    }
+  ],
+  "approved_visible_rows": 7,
+  "manifest_slot_count": 7,
+  "new_slots": [
+    {
+      "token_id": "tok-1b8ece939414",
+      "source_id": "H3027",
+      "approved_visible_text": "hand",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Yoreh De'ah 69:37"
+    },
+    {
+      "token_id": "tok-53bc2da7446e",
+      "source_id": "H3027",
+      "approved_visible_text": "hands",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Yoreh De'ah 1:9"
+    },
+    {
+      "token_id": "tok-38021d77b5e4",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Yoreh De'ah 314:4"
+    },
+    {
+      "token_id": "tok-d813d7fe7e6c",
+      "source_id": "H6310",
+      "approved_visible_text": "mouths",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Yoreh De'ah 246:13"
+    },
+    {
+      "token_id": "tok-008e956eb372",
+      "source_id": "H7272",
+      "approved_visible_text": "feet",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Yoreh De'ah 190:11"
+    },
+    {
+      "token_id": "tok-3512a746264e",
+      "source_id": "H7272",
+      "approved_visible_text": "feet",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Yoreh De'ah 199:11"
+    },
+    {
+      "token_id": "tok-bf3beeef9dc9",
+      "source_id": "H7272",
+      "approved_visible_text": "feet",
+      "source_ref": "Ba'er Hetev on Shulchan Arukh, Yoreh De'ah 301:12"
+    }
+  ],
+  "held_rows": [
+    {
+      "source_id": "H3027",
+      "token_id": "tok-34d4f66bf1af",
+      "reason": "held because ???? ????? is possession/in-hand idiom risk, not clean visible hand label"
+    }
+  ],
+  "stop_condition": "Validation is complete for the seven Baer Hetev Yoreh Deah body-part slots; broader selector rows remain N/A."
+}
