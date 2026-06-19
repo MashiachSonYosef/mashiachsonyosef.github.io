@@ -1,0 +1,61 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "batch_id": "avodat-hakodesh-feet-mined-v1",
+  "status": "passed",
+  "boundary": {
+    "validation_receipt_only": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\avodat-hakodesh\\visible-display-slots.json",
+      "result": "passed",
+      "slot_count": 2,
+      "approved_gloss_count": 2
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds avodat-hakodesh -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page halakhah\\avodat-hakodesh\\index.html",
+      "result": "passed"
+    },
+    {
+      "command": "custom page manifest URL + manifest row check",
+      "result": "passed",
+      "has_visible_slot_manifest_url": true,
+      "slot_count": 2
+    }
+  ],
+  "approved_visible_rows": 2,
+  "manifest_slot_count": 2,
+  "new_slots": [
+    {
+      "token_id": "tok-14678dbf893a",
+      "source_id": "H7272",
+      "approved_visible_text": "feet",
+      "source_ref": "Avodat HaKodesh, Part Two, Beit Moed, The Fifth Gate:5"
+    },
+    {
+      "token_id": "tok-524941e16a4c",
+      "source_id": "H7272",
+      "approved_visible_text": "feet",
+      "source_ref": "Avodat HaKodesh, Part Two, Beit Moed, The Third Gate:5"
+    }
+  ],
+  "held_rows": [
+    {
+      "source_id": "H7272",
+      "token_id": "tok-1c9814f2a305",
+      "work_id": "a-new-israeli-commentary-on-pirkei-avot",
+      "reason": "held because source token includes closing HTML marker and source_token_matches_index_surface=false"
+    }
+  ],
+  "stop_condition": "Validation is complete for the two Avodat HaKodesh feet slots; broader H7272 rows remain N/A."
+}
