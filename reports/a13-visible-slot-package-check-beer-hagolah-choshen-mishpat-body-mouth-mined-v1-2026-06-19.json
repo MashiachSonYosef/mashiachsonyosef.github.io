@@ -1,0 +1,38 @@
+{
+  "schema": "a13_visible_slot_package_check_v1",
+  "date": "2026-06-19",
+  "batch_id": "beer-hagolah-choshen-mishpat-body-mouth-mined-v1",
+  "status": "package_check_ready_for_validation",
+  "boundary": {
+    "visible_slot_layer_only": true,
+    "display_flip": true,
+    "render_runtime_repo_control_source_mutation": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false,
+    "broader_selector_rows_remain_NA": true
+  },
+  "changed_surfaces": [
+    "data/public-hud/beer-hagolah-on-shulchan-arukh-choshen-mishpat/visible-display-slots.json",
+    "halakhah/beer-hagolah-on-shulchan-arukh-choshen-mishpat/index.html"
+  ],
+  "input_maps": [
+    "reports/a13-h3027-beer-hagolah-choshen-mishpat-selector-context-map-2026-06-19.json",
+    "reports/a13-h3027-beer-hagolah-choshen-mishpat-full-occurrence-context-map-2026-06-19.json",
+    "reports/a13-h6310-beer-hagolah-choshen-mishpat-selector-context-map-2026-06-19.json",
+    "reports/a13-h6310-beer-hagolah-choshen-mishpat-full-occurrence-context-map-2026-06-19.json",
+    "reports/a13-h1818-beer-hagolah-choshen-mishpat-selector-context-map-2026-06-19.json"
+  ],
+  "approved_visible_rows": 4,
+  "target_work_ids": [
+    "beer-hagolah-on-shulchan-arukh-choshen-mishpat"
+  ],
+  "required_commands": [
+    "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\beer-hagolah-on-shulchan-arukh-choshen-mishpat\\visible-display-slots.json",
+    "& .\\scripts\\render_site.ps1 -WorkIds beer-hagolah-on-shulchan-arukh-choshen-mishpat -SkipLexicalPayloadFiles -SkipOverlayExports",
+    "node scripts\\validate_route_hud_page.mjs --page halakhah\\beer-hagolah-on-shulchan-arukh-choshen-mishpat\\index.html"
+  ],
+  "stop_condition": "Package is coherent only if manifest validation, target render, and route HUD page validation pass."
+}

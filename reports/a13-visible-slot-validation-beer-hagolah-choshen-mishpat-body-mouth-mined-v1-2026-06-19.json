@@ -1,0 +1,82 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "batch_id": "beer-hagolah-choshen-mishpat-body-mouth-mined-v1",
+  "status": "passed",
+  "boundary": {
+    "validation_receipt_only": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\beer-hagolah-on-shulchan-arukh-choshen-mishpat\\visible-display-slots.json",
+      "result": "passed",
+      "slot_count": 4,
+      "approved_gloss_count": 4
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds beer-hagolah-on-shulchan-arukh-choshen-mishpat -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page halakhah\\beer-hagolah-on-shulchan-arukh-choshen-mishpat\\index.html",
+      "result": "passed"
+    },
+    {
+      "command": "custom page manifest URL + manifest row check",
+      "result": "passed",
+      "has_visible_slot_manifest_url": true,
+      "slot_count": 4
+    }
+  ],
+  "approved_visible_rows": 4,
+  "manifest_slot_count": 4,
+  "new_slots": [
+    {
+      "token_id": "tok-1762f37b945a",
+      "source_id": "H3027",
+      "approved_visible_text": "hand",
+      "source_ref": "Be'er HaGolah on Shulchan Arukh, Choshen Mishpat 52:12"
+    },
+    {
+      "token_id": "tok-4ebe17ae3517",
+      "source_id": "H3027",
+      "approved_visible_text": "hands",
+      "source_ref": "Be'er HaGolah on Shulchan Arukh, Choshen Mishpat 427:20"
+    },
+    {
+      "token_id": "tok-b445315266af",
+      "source_id": "H3027",
+      "approved_visible_text": "hands",
+      "source_ref": "Be'er HaGolah on Shulchan Arukh, Choshen Mishpat 90:46"
+    },
+    {
+      "token_id": "tok-3cc6dd2f5a9e",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Be'er HaGolah on Shulchan Arukh, Choshen Mishpat 90:48"
+    }
+  ],
+  "held_rows": [
+    {
+      "source_id": "H3027",
+      "token_id": "tok-c0fe1d8d0886",
+      "reason": "held because ומיד means immediately, not hand"
+    },
+    {
+      "source_id": "H3027",
+      "token_id": "tok-dc0038aad07d",
+      "reason": "held because legal phrase יד בעל השטר is standing/advantage idiom"
+    },
+    {
+      "source_id": "H6310",
+      "token_id": "tok-d299f754f275",
+      "reason": "held because local legal/Aramaic phrasing is not clean enough for visible mouth display"
+    }
+  ],
+  "stop_condition": "Validation is complete for the four Beer HaGolah Choshen Mishpat slots; broader selector rows remain N/A."
+}
