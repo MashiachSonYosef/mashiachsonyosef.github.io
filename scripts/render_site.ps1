@@ -2600,6 +2600,7 @@ foreach ($source in $renderSources) {
         occurrence_url = "$rootHref$occurrenceRelative"
         hud_route_lookup_manifest_url = "$($rootHref)data/definitions/hud-route-lookup/manifest.json"
         reader_hints_url = "$($rootHref)data/public-hud/$($source.work_id)/reader-hints.json"
+        reader_layout_mode = "prehud_rows"
         root_href = $assetRoot
       }
     } else {
@@ -2825,6 +2826,7 @@ foreach ($source in $renderSources) {
         work_title = $source.work_title
         hud_route_lookup_manifest_url = "$($rootHref)data/definitions/hud-route-lookup/manifest.json"
         reader_hints_url = "$($rootHref)data/public-hud/$($source.work_id)/reader-hints.json"
+        reader_layout_mode = "prehud_rows"
       }) -Depth 10 -Compress) -replace '</script', '<\/script'
       [void]$page.AppendLine("  <script type=""application/json"" data-lexical-config>$lexicalConfigJson</script>")
       $tokenIndexJson = (ConvertTo-Json -InputObject $workLexicalPayload.token_index -Depth 30 -Compress) -replace '</script', '<\/script'
@@ -2873,7 +2875,7 @@ foreach ($source in $renderSources) {
       [void]$page.AppendLine("    $marker")
     }
     [void]$page.AppendLine('  </script>')
-    [void]$page.AppendLine("  <script src=""$($rootHref)assets/js/reader-workbench.js""></script>")
+    [void]$page.AppendLine("  <script src=""$($rootHref)assets/js/reader-workbench.js?v=visible-na-3916cf24""></script>")
   }
   [void]$page.AppendLine('</body>')
   [void]$page.AppendLine('</html>')

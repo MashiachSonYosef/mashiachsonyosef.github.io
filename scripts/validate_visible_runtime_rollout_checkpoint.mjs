@@ -21,6 +21,7 @@ const targetRoot = argValues('target-root')[0];
 const pages = argValues('page');
 if (!targetRoot || !pages.length) usage();
 
+const expectedRuntimeVersion = 'visible-na-3916cf24';
 const sourceRoot = process.cwd();
 const targetAbs = path.resolve(sourceRoot, targetRoot);
 
@@ -61,6 +62,12 @@ function lexicalConfig(root, page) {
   return match ? JSON.parse(match[1]) : null;
 }
 
+function readerRuntimeSrc(root, page) {
+  const html = readText(root, `${page}/index.html`);
+  const match = html.match(/<script src="([^"]*assets\/js\/reader-workbench\.js[^"]*)"><\/script>/);
+  return match ? match[1] : '';
+}
+
 function resolvePageRelative(page, value) {
   if (!value) return null;
   return path.posix.normalize(path.posix.join(path.posix.dirname(`${page}/index.html`), value.replace(/\\/g, '/')));
@@ -96,6 +103,8 @@ const runtimeChecks = {
 const pageResults = pages.map((page) => {
   const sourceConfig = lexicalConfig(sourceRoot, page);
   const targetConfig = lexicalConfig(targetAbs, page);
+  const sourceRuntimeSrc = readerRuntimeSrc(sourceRoot, page);
+  const targetRuntimeSrc = readerRuntimeSrc(targetAbs, page);
   const rels = requiredRels(page, sourceConfig);
   const files = rels.map((rel) => ({
     rel,
@@ -107,12 +116,16 @@ const pageResults = pages.map((page) => {
     page,
     source_reader_layout_mode: sourceConfig?.reader_layout_mode || null,
     target_reader_layout_mode: targetConfig?.reader_layout_mode || null,
+    source_runtime_src: sourceRuntimeSrc,
+    target_runtime_src: targetRuntimeSrc,
     required_files: files,
     ok: Boolean(
       sourceConfig
       && targetConfig
       && sourceConfig.reader_layout_mode === 'prehud_rows'
       && targetConfig.reader_layout_mode === 'prehud_rows'
+      && sourceRuntimeSrc.includes(`v=${expectedRuntimeVersion}`)
+      && targetRuntimeSrc.includes(`v=${expectedRuntimeVersion}`)
       && files.every((file) => file.source_exists && file.target_exists && file.match)
     ),
   };
@@ -130,6 +143,7 @@ const output = {
   ok: errors.length === 0,
   target_root: targetRoot,
   pages_checked: pages.length,
+  expected_runtime_version: expectedRuntimeVersion,
   runtime_checks: runtimeChecks,
   page_results: pageResults,
   hydration_wait_hint_ms: 30000,
