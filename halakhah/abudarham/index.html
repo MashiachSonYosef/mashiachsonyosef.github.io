@@ -21,7 +21,7 @@
     .hero-main { min-width: 0; }
     .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
     .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
-    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-summary span { padding: 0; color: var(--muted); }
     .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
     .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
     .hero-notes li { padding-left: 0.1rem; }
@@ -63,14 +63,14 @@
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
-    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
-    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 16px; align-items: start; padding: 18px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 0; border-right: 1px solid var(--line); background: transparent; padding: 4px 12px 4px 0; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
-    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.8rem; margin: 2px 0 3px; overflow-wrap: anywhere; }
     .toc-start:hover, .toc-unit:hover { color: var(--accent); }
-    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(44px, 1fr)); gap: 2px 5px; margin-top: 4px; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
     .unit[hidden] { display: none; }
@@ -89,13 +89,16 @@
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
+    .mam-kq { white-space: nowrap; }
+    .mam-kq-k, .mam-kq-trivial, .mam-spi-pe, .mam-spi-samekh { color: var(--muted); font-size: 0.86em; }
+    .mam-kq-q { color: var(--hebrew); }
     .placeholder { color: #8c857c; }
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
-    .reader-token-wrap { display: inline-grid; grid-auto-rows: min-content; justify-items: center; align-items: start; vertical-align: baseline; gap: 0.02em; margin: 0 0.08em; }
+    .reader-token-wrap { display: inline-grid; grid-auto-rows: min-content; justify-items: center; align-items: start; vertical-align: baseline; gap: 0.12em; margin: 0.04em 0.1em 0.16em; max-width: min(34rem, calc(100vw - 32px)); }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
     .reader-token-wrap .lexical-word { margin: 0; }
-    .reader-gloss-line { direction: ltr; unicode-bidi: isolate; color: var(--muted); font-size: 0.58em; font-weight: 600; line-height: 1.05; max-width: 12em; text-align: center; overflow-wrap: anywhere; opacity: 0.72; }
+    .reader-gloss-line { display: block; direction: ltr; unicode-bidi: isolate; color: var(--muted); font-size: 0.58em; font-weight: 600; line-height: 1.22; width: max-content; max-width: min(22rem, calc(100vw - 40px)); text-align: center; white-space: normal; overflow: visible; overflow-wrap: break-word; word-break: normal; hyphens: auto; opacity: 0.88; border: 1px solid rgba(214,190,138,0.18); background: rgba(10,11,13,0.72); padding: 0.18em 0.42em 0.2em; border-radius: 4px; box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
     .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
     .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
@@ -143,8 +146,8 @@
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
     .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
-    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
-    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .toc details details { border-left: 0; padding-left: 8px; margin-left: 0; }
+    .toc summary { color: var(--accent); font-size: 0.88rem; overflow-wrap: anywhere; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
     .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
     .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
@@ -166,6 +169,7 @@
             <span>1768 source units</span>
             <span>27125 HUD forms</span>
             <span>imported 2026-05-20</span>
+            <span>Words read right to left</span>
           </p>
         </div>
         <div class="hero-notes" aria-label="Header source notes">
@@ -179,10 +183,10 @@
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Introduction <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Introduction</summary>
               <a class="toc-start" href="#group-introduction">Start</a>
               <details class="toc-section">
-                <summary>Introduction <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Introduction</summary>
                 <a class="toc-start" href="#section-introduction-introduction">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -236,10 +240,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>First Gate; Laws of Kriat Shema <span class="hud-badge">Route HUD active</span></summary>
+              <summary>First Gate; Laws of Kriat Shema</summary>
               <a class="toc-start" href="#group-first-gate-laws-of-kriat-shema">Start</a>
               <details class="toc-section">
-                <summary>First Gate; Laws of Kriat Shema <span class="hud-badge">Route HUD active</span></summary>
+                <summary>First Gate; Laws of Kriat Shema</summary>
                 <a class="toc-start" href="#section-first-gate-laws-of-kriat-shema-first-gate-laws-of-kriat-shema">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -335,10 +339,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Second Gate; Prayer <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Second Gate; Prayer</summary>
               <a class="toc-start" href="#group-second-gate-prayer">Start</a>
               <details class="toc-section">
-                <summary>Second Gate; Prayer <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Second Gate; Prayer</summary>
                 <a class="toc-start" href="#section-second-gate-prayer-second-gate-prayer">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -490,10 +494,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Third Gate; Blessings on Commandments <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Third Gate; Blessings on Commandments</summary>
               <a class="toc-start" href="#group-third-gate-blessings-on-commandments">Start</a>
               <details class="toc-section">
-                <summary>Third Gate; Blessings on Commandments <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Third Gate; Blessings on Commandments</summary>
                 <a class="toc-start" href="#section-third-gate-blessings-on-commandments-third-gate-blessings-on-commandments">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -729,10 +733,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Weekday Prayers <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Weekday Prayers</summary>
               <a class="toc-start" href="#group-weekday-prayers">Start</a>
               <details class="toc-section">
-                <summary>Bedtime Recitation of Shema <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Bedtime Recitation of Shema</summary>
                 <a class="toc-start" href="#section-weekday-prayers-bedtime-recitation-of-shema">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -771,7 +775,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Morning Blessings <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Morning Blessings</summary>
                 <a class="toc-start" href="#section-weekday-prayers-morning-blessings">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -999,7 +1003,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Blessings on Torah <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Blessings on Torah</summary>
                 <a class="toc-start" href="#section-weekday-prayers-blessings-on-torah">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1038,7 +1042,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Tzitzit <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Tzitzit</summary>
                 <a class="toc-start" href="#section-weekday-prayers-tzitzit">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1049,7 +1053,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Tefillin <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Tefillin</summary>
                 <a class="toc-start" href="#section-weekday-prayers-tefillin">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1081,7 +1085,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Mishnah on the Location of the Sacrifices <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Mishnah on the Location of the Sacrifices</summary>
                 <a class="toc-start" href="#section-weekday-prayers-mishnah-on-the-location-of-the-sacrifices">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1155,7 +1159,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Baraita of Rabbi Ishmael <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Baraita of Rabbi Ishmael</summary>
                 <a class="toc-start" href="#section-weekday-prayers-baraita-of-rabbi-ishmael">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1264,7 +1268,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Songs of Praise <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Songs of Praise</summary>
                 <a class="toc-start" href="#section-weekday-prayers-songs-of-praise">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1338,7 +1342,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Kaddish and Barchu <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Kaddish and Barchu</summary>
                 <a class="toc-start" href="#section-weekday-prayers-kaddish-and-barchu">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1447,7 +1451,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Blessings on the Shema <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Blessings on the Shema</summary>
                 <a class="toc-start" href="#section-weekday-prayers-blessings-on-the-shema">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1787,7 +1791,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Amidah <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Amidah</summary>
                 <a class="toc-start" href="#section-weekday-prayers-amidah">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -2575,7 +2579,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Amidah Repetition <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Amidah Repetition</summary>
                 <a class="toc-start" href="#section-weekday-prayers-amidah-repetition">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -2684,7 +2688,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Laws of Prayer <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Laws of Prayer</summary>
                 <a class="toc-start" href="#section-weekday-prayers-laws-of-prayer">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -2723,7 +2727,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Post Amidah <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Post Amidah</summary>
                 <a class="toc-start" href="#section-weekday-prayers-post-amidah">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -3175,7 +3179,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Torah Reading <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Torah Reading</summary>
                 <a class="toc-start" href="#section-weekday-prayers-torah-reading">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -3361,7 +3365,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Afternoon Service <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Afternoon Service</summary>
                 <a class="toc-start" href="#section-weekday-prayers-afternoon-service">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -3393,7 +3397,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Evening Service <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Evening Service</summary>
                 <a class="toc-start" href="#section-weekday-prayers-evening-service">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -3481,7 +3485,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Compensatory Prayer (Tashlumin) <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Compensatory Prayer (Tashlumin)</summary>
                 <a class="toc-start" href="#section-weekday-prayers-compensatory-prayer-tashlumin">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -3514,10 +3518,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Shabbat Prayers <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Shabbat Prayers</summary>
               <a class="toc-start" href="#group-shabbat-prayers">Start</a>
               <details class="toc-section">
-                <summary>Shabbat eve <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Shabbat eve</summary>
                 <a class="toc-start" href="#section-shabbat-prayers-shabbat-eve">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -3556,7 +3560,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Evening Service <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Evening Service</summary>
                 <a class="toc-start" href="#section-shabbat-prayers-evening-service">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -3700,7 +3704,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Mishna of &#39;Bameh Madlikin&#39; <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Mishna of &#39;Bameh Madlikin&#39;</summary>
                 <a class="toc-start" href="#section-shabbat-prayers-mishna-of-bameh-madlikin">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -3872,7 +3876,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Kiddush <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Kiddush</summary>
                 <a class="toc-start" href="#section-shabbat-prayers-kiddush">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -4002,7 +4006,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Morning Service <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Morning Service</summary>
                 <a class="toc-start" href="#section-shabbat-prayers-morning-service">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -4146,7 +4150,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Torah Reading <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Torah Reading</summary>
                 <a class="toc-start" href="#section-shabbat-prayers-torah-reading">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -4255,7 +4259,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Musaf <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Musaf</summary>
                 <a class="toc-start" href="#section-shabbat-prayers-musaf">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -4343,7 +4347,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Day Meal <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Day Meal</summary>
                 <a class="toc-start" href="#section-shabbat-prayers-day-meal">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -4368,7 +4372,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Afternoon Service <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Afternoon Service</summary>
                 <a class="toc-start" href="#section-shabbat-prayers-afternoon-service">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -4449,7 +4453,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Three Meals of Shabbos <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Three Meals of Shabbos</summary>
                 <a class="toc-start" href="#section-shabbat-prayers-three-meals-of-shabbos">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -4523,7 +4527,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>The Conclusion of Shabbat <span class="hud-badge">Route HUD active</span></summary>
+                <summary>The Conclusion of Shabbat</summary>
                 <a class="toc-start" href="#section-shabbat-prayers-the-conclusion-of-shabbat">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -4780,10 +4784,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Rosh Chodesh <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Rosh Chodesh</summary>
               <a class="toc-start" href="#group-rosh-chodesh">Start</a>
               <details class="toc-section">
-                <summary>Rosh Chodesh <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Rosh Chodesh</summary>
                 <a class="toc-start" href="#section-rosh-chodesh-rosh-chodesh">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -4949,10 +4953,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Chanukah <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Chanukah</summary>
               <a class="toc-start" href="#group-chanukah">Start</a>
               <details class="toc-section">
-                <summary>Chanukah <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Chanukah</summary>
                 <a class="toc-start" href="#section-chanukah-chanukah">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -5111,10 +5115,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Purim <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Purim</summary>
               <a class="toc-start" href="#group-purim">Start</a>
               <details class="toc-section">
-                <summary>Purim <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Purim</summary>
                 <a class="toc-start" href="#section-purim-purim">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -5308,10 +5312,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Pesach <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Pesach</summary>
               <a class="toc-start" href="#group-pesach">Start</a>
               <details class="toc-section">
-                <summary>Month of Nissan <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Month of Nissan</summary>
                 <a class="toc-start" href="#section-pesach-month-of-nissan">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -5371,7 +5375,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Evening Service <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Evening Service</summary>
                 <a class="toc-start" href="#section-pesach-evening-service">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -5445,7 +5449,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>First Part of the Seder <span class="hud-badge">Route HUD active</span></summary>
+                <summary>First Part of the Seder</summary>
                 <a class="toc-start" href="#section-pesach-first-part-of-the-seder">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -5750,7 +5754,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>The Haggadah <span class="hud-badge">Route HUD active</span></summary>
+                <summary>The Haggadah</summary>
                 <a class="toc-start" href="#section-pesach-the-haggadah">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -6153,7 +6157,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Second Part of the Seder <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Second Part of the Seder</summary>
                 <a class="toc-start" href="#section-pesach-second-part-of-the-seder">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -6367,7 +6371,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Festival Prayers <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Festival Prayers</summary>
                 <a class="toc-start" href="#section-pesach-festival-prayers">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -6609,7 +6613,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Customs for the Days of the Counting (Sefirah) <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Customs for the Days of the Counting (Sefirah)</summary>
                 <a class="toc-start" href="#section-pesach-customs-for-the-days-of-the-counting-sefirah">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -6635,10 +6639,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Shavuot <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Shavuot</summary>
               <a class="toc-start" href="#group-shavuot">Start</a>
               <details class="toc-section">
-                <summary>Shavuot <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Shavuot</summary>
                 <a class="toc-start" href="#section-shavuot-shavuot">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -6685,10 +6689,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Fasts <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Fasts</summary>
               <a class="toc-start" href="#group-fasts">Start</a>
               <details class="toc-section">
-                <summary>Prayers <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Prayers</summary>
                 <a class="toc-start" href="#section-fasts-prayers">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -7014,7 +7018,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Tishah B&#39;Av <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Tishah B&#39;Av</summary>
                 <a class="toc-start" href="#section-fasts-tishah-bav">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -7124,10 +7128,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Rosh HaShanah <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Rosh HaShanah</summary>
               <a class="toc-start" href="#group-rosh-hashanah">Start</a>
               <details class="toc-section">
-                <summary>Prayers <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Prayers</summary>
                 <a class="toc-start" href="#section-rosh-hashanah-prayers">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -7348,7 +7352,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Blowing the Shofar <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Blowing the Shofar</summary>
                 <a class="toc-start" href="#section-rosh-hashanah-blowing-the-shofar">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -7464,7 +7468,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Musaf <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Musaf</summary>
                 <a class="toc-start" href="#section-rosh-hashanah-musaf">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -7658,10 +7662,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Yom Kippur <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Yom Kippur</summary>
               <a class="toc-start" href="#group-yom-kippur">Start</a>
               <details class="toc-section">
-                <summary>Yom Kippur Eve <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Yom Kippur Eve</summary>
                 <a class="toc-start" href="#section-yom-kippur-yom-kippur-eve">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -7707,7 +7711,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Kol Nidrei <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Kol Nidrei</summary>
                 <a class="toc-start" href="#section-yom-kippur-kol-nidrei">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -7746,7 +7750,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Confession <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Confession</summary>
                 <a class="toc-start" href="#section-yom-kippur-confession">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -7855,7 +7859,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Prayers <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Prayers</summary>
                 <a class="toc-start" href="#section-yom-kippur-prayers">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -8007,10 +8011,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Sukkot and Shemini Atzeret <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Sukkot and Shemini Atzeret</summary>
               <a class="toc-start" href="#group-sukkot-and-shemini-atzeret">Start</a>
               <details class="toc-section">
-                <summary>First Days <span class="hud-badge">Route HUD active</span></summary>
+                <summary>First Days</summary>
                 <a class="toc-start" href="#section-sukkot-and-shemini-atzeret-first-days">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -8210,7 +8214,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Hoshana Rabba <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Hoshana Rabba</summary>
                 <a class="toc-start" href="#section-sukkot-and-shemini-atzeret-hoshana-rabba">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -8249,7 +8253,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Shmini Atzeret <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Shmini Atzeret</summary>
                 <a class="toc-start" href="#section-sukkot-and-shemini-atzeret-shmini-atzeret">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -8352,10 +8356,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Hebrew Calendar <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Hebrew Calendar</summary>
               <a class="toc-start" href="#group-hebrew-calendar">Start</a>
               <details class="toc-section">
-                <summary>Introduction <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Introduction</summary>
                 <a class="toc-start" href="#section-hebrew-calendar-introduction">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -8457,7 +8461,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Gate of Moladot (Initial Appearances) <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Gate of Moladot (Initial Appearances)</summary>
                 <a class="toc-start" href="#section-hebrew-calendar-gate-of-moladot-initial-appearances">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -9091,7 +9095,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Gate of Designations and Postponements <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Gate of Designations and Postponements</summary>
                 <a class="toc-start" href="#section-hebrew-calendar-gate-of-designations-and-postponements">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -9165,7 +9169,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Gate of Designations of the Years <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Gate of Designations of the Years</summary>
                 <a class="toc-start" href="#section-hebrew-calendar-gate-of-designations-of-the-years">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -9309,7 +9313,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Order of Parashiot and Haftarot <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Order of Parashiot and Haftarot</summary>
                 <a class="toc-start" href="#section-hebrew-calendar-order-of-parashiot-and-haftarot">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -10118,7 +10122,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Calendar Patterns <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Calendar Patterns</summary>
                 <a class="toc-start" href="#section-hebrew-calendar-calendar-patterns">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -10255,7 +10259,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Gate of Seasons (Tekufot) <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Gate of Seasons (Tekufot)</summary>
                 <a class="toc-start" href="#section-hebrew-calendar-gate-of-seasons-tekufot">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -10442,10 +10446,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Laws of Blessings <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Laws of Blessings</summary>
               <a class="toc-start" href="#group-laws-of-blessings">Start</a>
               <details class="toc-section">
-                <summary>Introduction <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Introduction</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-introduction">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -10533,7 +10537,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>First Gate; Blessing on Bread <span class="hud-badge">Route HUD active</span></summary>
+                <summary>First Gate; Blessing on Bread</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-first-gate-blessing-on-bread">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -11062,7 +11066,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Second Gate; Mezonot (Grain Products) <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Second Gate; Mezonot (Grain Products)</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-second-gate-mezonot-grain-products">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -11143,7 +11147,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Third Gate; Shehakol (Everything) <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Third Gate; Shehakol (Everything)</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-third-gate-shehakol-everything">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -11238,7 +11242,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Fourth Gate; Ha&#39;adama (Fruit of the Ground) <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Fourth Gate; Ha&#39;adama (Fruit of the Ground)</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-fourth-gate-haadama-fruit-of-the-ground">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -11326,7 +11330,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Fifth Gate; Ha&#39;etz (Fruit of the Tree) <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Fifth Gate; Ha&#39;etz (Fruit of the Tree)</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-fifth-gate-haetz-fruit-of-the-tree">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -11463,7 +11467,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Sixth Gate; Food During and After the Meal <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Sixth Gate; Food During and After the Meal</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-sixth-gate-food-during-and-after-the-meal">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -11523,7 +11527,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Seventh Gate; Blessings on Scents <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Seventh Gate; Blessings on Scents</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-seventh-gate-blessings-on-scents">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -11597,7 +11601,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Eighth Gate; Blessings of Praise and Thanksgiving <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Eighth Gate; Blessings of Praise and Thanksgiving</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-eighth-gate-blessings-of-praise-and-thanksgiving">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -11916,7 +11920,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Ninth Gate; Blessings on Commandments / Circumcision <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ninth Gate; Blessings on Commandments / Circumcision</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-ninth-gate-blessings-on-commandments-circumcision">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12074,7 +12078,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Ninth Gate; Blessings on Commandments / Redeeming a Firstborn <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ninth Gate; Blessings on Commandments / Redeeming a Firstborn</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-ninth-gate-blessings-on-commandments-redeeming-a-firstborn">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12127,7 +12131,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Ninth Gate; Blessings on Commandments / Redeeming Neta Revai <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ninth Gate; Blessings on Commandments / Redeeming Neta Revai</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-ninth-gate-blessings-on-commandments-redeeming-neta-revai">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12152,7 +12156,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Ninth Gate; Blessings on Commandments / Betrothal Blessing <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ninth Gate; Blessings on Commandments / Betrothal Blessing</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-ninth-gate-blessings-on-commandments-betrothal-blessing">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12282,7 +12286,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Ninth Gate; Blessings on Commandments / Marriage Blessings <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ninth Gate; Blessings on Commandments / Marriage Blessings</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-ninth-gate-blessings-on-commandments-marriage-blessings">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12412,7 +12416,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Ninth Gate; Blessings on Commandments / Mourning <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ninth Gate; Blessings on Commandments / Mourning</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-ninth-gate-blessings-on-commandments-mourning">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12493,7 +12497,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Ninth Gate; Blessings on Commandments / Mezuzah, Parapet, Covering Blood and Separation of Challah <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ninth Gate; Blessings on Commandments / Mezuzah, Parapet, Covering Blood and Separation of Challah</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-ninth-gate-blessings-on-commandments-mezuzah-parapet-covering-blood-and-separation-of-challah">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12525,7 +12529,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Ninth Gate; Blessings on Commandments / Eruvin <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ninth Gate; Blessings on Commandments / Eruvin</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-ninth-gate-blessings-on-commandments-eruvin">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12683,7 +12687,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Ninth Gate; Blessings on Commandments / Havinenu and Short Prayer <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ninth Gate; Blessings on Commandments / Havinenu and Short Prayer</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-ninth-gate-blessings-on-commandments-havinenu-and-short-prayer">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12729,7 +12733,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Ninth Gate; Blessings on Commandments / Nail Cutting <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ninth Gate; Blessings on Commandments / Nail Cutting</summary>
                 <a class="toc-start" href="#section-laws-of-blessings-ninth-gate-blessings-on-commandments-nail-cutting">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12755,10 +12759,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Concluding Poems <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Concluding Poems</summary>
               <a class="toc-start" href="#group-concluding-poems">Start</a>
               <details class="toc-section">
-                <summary>Concluding Poems <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Concluding Poems</summary>
                 <a class="toc-start" href="#section-concluding-poems-concluding-poems">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -43147,7 +43151,7 @@
     </div>
   </section>
   <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/abudarham.json">{}</script>
-  <script type="application/json" data-lexical-config>{"work_id":"abudarham","work_slug":"halakhah/abudarham","work_title":"Abudarham","manifest_url":"../../data/lexical/abudarham.manifest.json","occurrence_url":"../../data/lexical/occurrences/abudarham.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows","reader_hint_url":"../../data/lexical/reader-hints/abudarham.json","hud_allow_lemma_only":true}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"abudarham","work_slug":"halakhah/abudarham","work_title":"Abudarham","manifest_url":"../../data/lexical/abudarham.manifest.json","occurrence_url":"../../data/lexical/occurrences/abudarham.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","reader_hints_url":"../../data/lexical/reader-hints/abudarham.json","visible_display_slot_manifest_url":"../../data/public-hud/abudarham/visible-display-slots.json","reader_layout_mode":"prehud_rows","root_href":"../../"}</script>
   <script type="text/plain" data-hud-runtime-contract>
     selectRouteAnswer
     lookupCandidateTreatments

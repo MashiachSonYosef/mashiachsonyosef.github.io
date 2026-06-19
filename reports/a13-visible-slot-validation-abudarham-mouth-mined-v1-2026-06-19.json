@@ -1,0 +1,72 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "batch_id": "abudarham-mouth-mined-v1",
+  "status": "passed",
+  "boundary": {
+    "validation_receipt_only": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\abudarham\\visible-display-slots.json",
+      "result": "passed",
+      "slot_count": 4,
+      "approved_gloss_count": 4
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds abudarham -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page halakhah\\abudarham\\index.html",
+      "result": "passed"
+    },
+    {
+      "command": "custom page manifest URL + manifest row check",
+      "result": "passed",
+      "has_visible_slot_manifest_url": true,
+      "slot_count": 4
+    }
+  ],
+  "approved_visible_rows": 4,
+  "manifest_slot_count": 4,
+  "new_slots": [
+    {
+      "token_id": "tok-015efa464486",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Abudarham, Shabbat Prayers, Morning Service:4"
+    },
+    {
+      "token_id": "tok-20739d178842",
+      "source_id": "H6310",
+      "approved_visible_text": "mouths",
+      "source_ref": "Abudarham, Weekday Prayers, Amidah:10"
+    },
+    {
+      "token_id": "tok-c12c6c02c9e8",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Abudarham, Laws of Blessings, Seventh Gate; Blessings on Scents:7"
+    },
+    {
+      "token_id": "tok-fc79daae9333",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Abudarham, Shabbat Prayers, Morning Service:10"
+    }
+  ],
+  "held_rows": [
+    {
+      "source_id": "H1818",
+      "token_id": "tok-c00dcbbb495a",
+      "reason": "held because bloodguilt formula is not a simple blood visible slot"
+    }
+  ],
+  "stop_condition": "Validation is complete for the four Abudarham mouth slots; broader selector rows remain N/A."
+}
