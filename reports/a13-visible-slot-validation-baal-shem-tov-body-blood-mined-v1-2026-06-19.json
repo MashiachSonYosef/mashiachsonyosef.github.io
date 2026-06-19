@@ -1,0 +1,84 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "batch_id": "baal-shem-tov-body-blood-mined-v1",
+  "status": "passed",
+  "boundary": {
+    "validation_receipt_only": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\baal-shem-tov\\visible-display-slots.json",
+      "result": "passed",
+      "slot_count": 6,
+      "approved_gloss_count": 6
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds baal-shem-tov -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page chasidut\\baal-shem-tov\\index.html",
+      "result": "passed"
+    },
+    {
+      "command": "custom page manifest URL + manifest row check",
+      "result": "passed",
+      "has_visible_slot_manifest_url": true,
+      "slot_count": 6
+    }
+  ],
+  "approved_visible_rows": 6,
+  "manifest_slot_count": 6,
+  "new_slots": [
+    {
+      "token_id": "tok-af5516e84885",
+      "source_id": "H3027",
+      "approved_visible_text": "hands",
+      "source_ref": "Ba'al Shem Tov, Vaetchanan 70:1"
+    },
+    {
+      "token_id": "tok-da8280ea2665",
+      "source_id": "H3027",
+      "approved_visible_text": "hand",
+      "source_ref": "Ba'al Shem Tov, Devarim 2:5"
+    },
+    {
+      "token_id": "tok-a96997ee2c90",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Ba'al Shem Tov, Nitzavim 11:1"
+    },
+    {
+      "token_id": "tok-066fc3836d8c",
+      "source_id": "H1818",
+      "approved_visible_text": "blood",
+      "source_ref": "Ba'al Shem Tov, Eikev 8:1"
+    },
+    {
+      "token_id": "tok-61bc8d298ecf",
+      "source_id": "H1818",
+      "approved_visible_text": "blood",
+      "source_ref": "Ba'al Shem Tov, Vaera 5:1"
+    },
+    {
+      "token_id": "tok-7cec155769ec",
+      "source_id": "H1818",
+      "approved_visible_text": "blood",
+      "source_ref": "Ba'al Shem Tov, Ha'Azinu 5:2"
+    }
+  ],
+  "held_rows": [
+    {
+      "source_id": "H7272",
+      "token_id": "tok-f232273adb50",
+      "reason": "held because foot-slipping verse phrase is idiomatic/metaphorical"
+    }
+  ],
+  "stop_condition": "Validation is complete for the six Baal Shem Tov slots; broader selector rows remain N/A."
+}
