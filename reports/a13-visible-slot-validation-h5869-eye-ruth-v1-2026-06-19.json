@@ -1,0 +1,62 @@
+{
+  "schema": "a13_visible_slot_validation_receipt_v1",
+  "date": "2026-06-19",
+  "candidate_id": "h5869_eye_ruth_v1",
+  "work_id": "ruth",
+  "validation_packet_id": "reports/a13-visible-slot-validation-h5869-eye-ruth-v1-2026-06-19.json",
+  "validated_artifacts": [
+    "data/public-hud/ruth/visible-display-slots.json",
+    "tanakh/ruth/index.html",
+    "scripts/render_site.ps1",
+    "reports/a13-visible-slot-approval-h5869-eye-ruth-v1-2026-06-19.json",
+    "reports/a13-visible-slot-package-check-h5869-eye-ruth-v1-2026-06-19.json"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\ruth\\visible-display-slots.json",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "slot_count": 4,
+      "approved_gloss_count": 4
+    },
+    {
+      "command": "custom Node token-scope/page-config check",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "slot_count": 4,
+      "expected_token_scope_matched": true,
+      "ruth_page_config_has_visible_slot_manifest_url": true,
+      "long_candidate_definition_absent_from_manifest_and_page": true
+    },
+    {
+      "command": "PowerShell parser check for scripts\\render_site.ps1",
+      "timeout_ms": 120000,
+      "result": "passed"
+    },
+    {
+      "command": "custom Node runtime-contract marker check",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "runtime_markers_found": [
+        "visibleDisplaySlotManifestUrl",
+        "loadVisibleDisplaySlots",
+        "normalizeVisibleDisplaySlot",
+        "applyVisibleDisplaySlotOrNA",
+        "approved_gloss"
+      ],
+      "ruth_visible_slot_url": "../../data/public-hud/ruth/visible-display-slots.json"
+    }
+  ],
+  "approved_visible_text": "eye",
+  "fallback": "N/A",
+  "boundary": {
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "answer_accepted_text_acceptance": false,
+    "raw_reader_hint_mutation": false,
+    "hud_evidence_mutation": false,
+    "route_scoring_mutation": false,
+    "publication_release_acceptance": false
+  },
+  "result": "passed"
+}

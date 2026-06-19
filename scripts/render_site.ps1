@@ -178,6 +178,19 @@ function Get-RootHref {
   return ('../' * $depth)
 }
 
+function Get-VisibleDisplaySlotManifestUrl {
+  param(
+    [string]$WorkId,
+    [string]$RootHref
+  )
+  if (-not $WorkId) { return $null }
+  $path = Join-Path 'data/public-hud' (Join-Path $WorkId 'visible-display-slots.json')
+  if (Test-Path -LiteralPath $path) {
+    return "$($RootHref)data/public-hud/$WorkId/visible-display-slots.json"
+  }
+  return $null
+}
+
 function Get-RefKey {
   param([AllowNull()][string]$Ref)
   if (-not $Ref) { return '' }
@@ -1909,6 +1922,7 @@ function Write-WorkLexicalPayloadFiles {
     occurrence_url = "$RootHref$LexicalDir/occurrences/$WorkId.json"
     hud_route_lookup_manifest_url = "$($RootHref)data/definitions/hud-route-lookup/manifest.json"
     reader_hints_url = "$($RootHref)data/public-hud/$WorkId/reader-hints.json"
+    visible_display_slot_manifest_url = Get-VisibleDisplaySlotManifestUrl -WorkId $WorkId -RootHref $RootHref
     root_href = $RootHref
   }
 }
@@ -2600,6 +2614,7 @@ foreach ($source in $renderSources) {
         occurrence_url = "$rootHref$occurrenceRelative"
         hud_route_lookup_manifest_url = "$($rootHref)data/definitions/hud-route-lookup/manifest.json"
         reader_hints_url = "$($rootHref)data/public-hud/$($source.work_id)/reader-hints.json"
+        visible_display_slot_manifest_url = Get-VisibleDisplaySlotManifestUrl -WorkId $source.work_id -RootHref $rootHref
         reader_layout_mode = "prehud_rows"
         root_href = $assetRoot
       }
@@ -2826,6 +2841,7 @@ foreach ($source in $renderSources) {
         work_title = $source.work_title
         hud_route_lookup_manifest_url = "$($rootHref)data/definitions/hud-route-lookup/manifest.json"
         reader_hints_url = "$($rootHref)data/public-hud/$($source.work_id)/reader-hints.json"
+        visible_display_slot_manifest_url = Get-VisibleDisplaySlotManifestUrl -WorkId $source.work_id -RootHref $rootHref
         reader_layout_mode = "prehud_rows"
       }) -Depth 10 -Compress) -replace '</script', '<\/script'
       [void]$page.AppendLine("  <script type=""application/json"" data-lexical-config>$lexicalConfigJson</script>")
