@@ -1,0 +1,92 @@
+{
+  "schema": "a13_a3_context_rule_holds_structure_review_intake_v1",
+  "date": "2026-06-19",
+  "status": "ready_for_future_A3_review_not_routed",
+  "purpose": "Package remaining context-rule visible-definition holds as full occurrence context inputs for future A3 structure review without promoting visible text.",
+  "boundary": {
+    "intake_only": true,
+    "routing": false,
+    "implementation_allowed": false,
+    "display_flip": false,
+    "render_runtime_repo_control_source_mutation": false,
+    "a10_or_a11_route": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "input_artifacts": {
+    "context_rule_bundle": "reports/a13-context-rule-display-context-maps-2026-06-19.json",
+    "context_rule_bundle_validation": "reports/a13-context-rule-display-context-maps-validation-2026-06-19.json",
+    "full_occurrence_validation": "reports/a13-context-rule-full-occurrence-map-validation-2026-06-19.json",
+    "h1875_full_occurrence_map": "reports/a13-h1875-full-occurrence-context-map-2026-06-19.json",
+    "h2416_full_occurrence_map": "reports/a13-h2416-full-occurrence-context-map-2026-06-19.json",
+    "h2451_full_occurrence_map": "reports/a13-h2451-full-occurrence-context-map-2026-06-19.json"
+  },
+  "targets": [
+    {
+      "source_id": "H1875",
+      "selector_label": "seek/ask",
+      "target_work_id": "akeidat-yitzchak",
+      "candidate_visible_text_status": "not_display_text",
+      "fallback": "N/A",
+      "full_occurrence_context_rows": 250,
+      "rows_requiring_A3_structure_review": 5,
+      "single_occurrence_candidates": 0,
+      "review_focus": "separate discourse, inquiry, seeking, asking, and seeker/person uses"
+    },
+    {
+      "source_id": "H2416",
+      "selector_label": "life/alive",
+      "target_work_id": "akeidat-yitzchak",
+      "candidate_visible_text_status": "not_display_text",
+      "fallback": "N/A",
+      "full_occurrence_context_rows": 552,
+      "rows_requiring_A3_structure_review": 5,
+      "single_occurrence_candidates": 0,
+      "review_focus": "separate life, alive, living, fresh, strong, raw, phrase, and metaphor uses"
+    },
+    {
+      "source_id": "H2451",
+      "selector_label": "wisdom",
+      "target_work_id": "akeidat-yitzchak",
+      "candidate_visible_text_status": "not_display_text",
+      "fallback": "N/A",
+      "full_occurrence_context_rows": 294,
+      "rows_requiring_A3_structure_review": 4,
+      "single_occurrence_candidates": 0,
+      "review_focus": "separate wisdom as practical, craft, prudential, ethical, administrative, theological, or philosophical context"
+    }
+  ],
+  "source_lane": {
+    "source_lane": "openscriptures_ccby",
+    "license_label": "CC BY 4.0",
+    "attribution_required": true,
+    "A6_boundary_tags_preserved": true,
+    "display_allowed": false,
+    "accepted_text": false,
+    "transform_ready": false,
+    "candidate_status": "candidate_not_authority",
+    "reader_hint_status": "reader_hint_not_translation"
+  },
+  "requested_A3_decision_values_if_routed_later": [
+    "ready_for_A12_context_rule_packet",
+    "bank_more_structure_needed",
+    "reject_keep_NA"
+  ],
+  "requested_A3_checks_if_routed_later": [
+    "Use full occurrence maps, not representative samples.",
+    "Return exact token ids only if the visible label is non-interpretive and context-safe.",
+    "Do not promote long OpenScriptures reader-hint strings or selector labels directly.",
+    "Keep any unresolved repeated surface forms as N/A."
+  ],
+  "not_allowed": [
+    "A13 visible approval from this intake",
+    "A10/A11/render route",
+    "book-page display mutation",
+    "OpenScriptures long definition text promotion",
+    "project-authored replacement definition"
+  ],
+  "stop_condition": "This packet is ready only as future A3 review input; no visible slot opens until A3 and A12 produce a later exact A13-ready context-rule candidate."
+}

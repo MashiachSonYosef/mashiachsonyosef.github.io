@@ -1,0 +1,94 @@
+{
+  "schema": "a13_context_rule_full_occurrence_map_validation_v1",
+  "date": "2026-06-19",
+  "status": "passed_all_context_rule_holds_remain_NA",
+  "purpose": "Validate full occurrence context maps for held context-rule candidates without promoting selector labels to visible display text.",
+  "input_bundle": "reports/a13-context-rule-display-context-maps-2026-06-19.json",
+  "builder": "scripts/build_visible_selector_occurrence_context_map.mjs",
+  "validated_maps": [
+    {
+      "source_id": "H1875",
+      "label": "seek/ask",
+      "work_id": "akeidat-yitzchak",
+      "packet_id": "a12-context-rule-candidate-h1875-seek-ask-akeidat-yitzchak-v1",
+      "map": "reports/a13-h1875-full-occurrence-context-map-2026-06-19.json",
+      "target_token_rows": 5,
+      "exact_lookup_rows": 5,
+      "non_exact_lookup_rows": 0,
+      "occurrence_rows": 250,
+      "token_count_mismatch_rows": 0,
+      "source_token_mismatch_rows": 0,
+      "source_token_match_method": {
+        "surface_ordinal_match": 250
+      },
+      "single_occurrence_candidates": 0,
+      "rows_requiring_A3_structure_review": 5,
+      "visible_slot_candidate_now": false
+    },
+    {
+      "source_id": "H2416",
+      "label": "life/alive",
+      "work_id": "akeidat-yitzchak",
+      "packet_id": "a12-context-rule-candidate-h2416-life-alive-akeidat-yitzchak-v1",
+      "map": "reports/a13-h2416-full-occurrence-context-map-2026-06-19.json",
+      "target_token_rows": 5,
+      "exact_lookup_rows": 5,
+      "non_exact_lookup_rows": 0,
+      "occurrence_rows": 552,
+      "token_count_mismatch_rows": 0,
+      "source_token_mismatch_rows": 0,
+      "source_token_match_method": {
+        "surface_ordinal_match": 552
+      },
+      "single_occurrence_candidates": 0,
+      "rows_requiring_A3_structure_review": 5,
+      "visible_slot_candidate_now": false
+    },
+    {
+      "source_id": "H2451",
+      "label": "wisdom",
+      "work_id": "akeidat-yitzchak",
+      "packet_id": "a12-context-rule-candidate-h2451-wisdom-akeidat-yitzchak-v1",
+      "map": "reports/a13-h2451-full-occurrence-context-map-2026-06-19.json",
+      "target_token_rows": 4,
+      "exact_lookup_rows": 4,
+      "non_exact_lookup_rows": 0,
+      "occurrence_rows": 294,
+      "token_count_mismatch_rows": 0,
+      "source_token_mismatch_rows": 0,
+      "source_token_match_method": {
+        "surface_ordinal_match": 294
+      },
+      "single_occurrence_candidates": 0,
+      "rows_requiring_A3_structure_review": 4,
+      "visible_slot_candidate_now": false
+    }
+  ],
+  "totals": {
+    "maps_validated": 3,
+    "target_token_rows": 14,
+    "occurrence_rows": 1096,
+    "single_occurrence_candidates": 0,
+    "source_token_mismatch_rows": 0,
+    "visible_slot_candidates_now": 0
+  },
+  "classification": {
+    "full_occurrence_context_map_missing": "cleared_for_H1875_H2416_H2451",
+    "display_state": "N/A",
+    "next_owner_if_used": "A3 context/structure review from full occurrence maps only",
+    "reason": "All remaining held context-rule rows are repeated surface forms; selector labels cannot be promoted directly."
+  },
+  "boundary": {
+    "validation_only": true,
+    "routing": false,
+    "implementation_allowed": false,
+    "display_flip": false,
+    "render_runtime_repo_control_source_mutation": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "stop_condition": "The context-rule hold set has parse-valid, count-valid, source-token-aligned full occurrence maps and remains held until A3/A12 structure proof produces a new exact visible candidate."
+}

@@ -6,10 +6,11 @@ Boundary: rollup only. No routing, display flip, implementation, render/runtime 
 
 ## Visible State
 
-- Approved visible candidates: 2
-- Approved visible rows: 9
+- Approved visible candidates: 3
+- Approved visible rows: 10
 - h5869_eye_ruth_v1: 4 rows, visible=eye, work=ruth
 - h8328_root_akeidat_yitzchak_v1: 5 rows, visible=root, work=akeidat-yitzchak
+- h1870_road_ruth_v1: 1 row, visible=road, work=ruth
 
 ## Banked Context State
 
@@ -26,11 +27,23 @@ Boundary: rollup only. No routing, display flip, implementation, render/runtime 
 - body_ritual_context_maps: rows=79, visible=0, status=pass_bank_hold_maps_keep_NA
 - large_body_metaphor_context_maps: rows=180, visible=0, status=pass_bank_hold_maps_keep_NA
 
+## Full Occurrence Context State
+
+- Full occurrence batches: 2
+- Full occurrence selectors: 6
+- Full occurrence target token rows: 50
+- Full occurrence rows: 3597
+- Single-occurrence candidates: 1
+- Full occurrence visible rows: 0
+
+- priority1_full_occurrence_maps: selectors=3, occurrence rows=2501, visible=0, status=validated_full_occurrence_maps_keep_NA
+- context_rule_hold_full_occurrence_maps: selectors=3, occurrence rows=1096, visible=0, status=validated_full_occurrence_maps_keep_NA
+
 ## Current Blocker
 
 no_A13_ready_visible_candidate_remaining_in_current_A12_board
 
-Next safe non-display owner: A3/A12 context-structure and context-rule review from banked maps.
+Next safe non-display owner: A3/A12 context-structure and context-rule review from banked maps and full occurrence maps.
 
 ## Stop Condition
 

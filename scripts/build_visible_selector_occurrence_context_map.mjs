@@ -14,7 +14,7 @@ const input = args.get('input');
 const outJson = args.get('out-json');
 const outMd = args.get('out-md');
 if (!input || !outJson || !outMd) {
-  console.error('usage: node scripts/build_visible_selector_occurrence_context_map.mjs --input=<context-map.json> --out-json=<out.json> --out-md=<out.md>');
+  console.error('usage: node scripts/build_visible_selector_occurrence_context_map.mjs --input=<context-map.json> [--packet-id=<candidate packet_id>] --out-json=<out.json> --out-md=<out.md>');
   process.exit(2);
 }
 
@@ -77,9 +77,22 @@ function findSourceTokenIndex(sourceTokens, surfaceWord, ordinal, fallbackIndex)
   };
 }
 
-const sourceMap = readJson(input);
+const inputMap = readJson(input);
+const packetId = clean(args.get('packet-id'));
+let sourceMap = inputMap;
+if (Array.isArray(inputMap.candidate_maps)) {
+  if (!packetId) {
+    console.error('input contains candidate_maps; pass --packet-id=<candidate packet_id>');
+    process.exit(2);
+  }
+  sourceMap = inputMap.candidate_maps.find((candidate) => clean(candidate.packet_id) === packetId);
+  if (!sourceMap) {
+    console.error(`candidate_maps packet_id not found: ${packetId}`);
+    process.exit(2);
+  }
+}
 const header = sourceMap.header ?? {};
-const workId = clean(header.target_work_id || sourceMap.target?.target_work_id || sourceMap.work_id);
+const workId = clean(header.target_work_id || sourceMap.target?.target_work_id || sourceMap.work_id || sourceMap.target_work);
 if (!workId) throw new Error('input map missing target work id');
 
 const sourceId = clean(header.source_id || sourceMap.target?.source_id || sourceMap.source_id);
@@ -91,7 +104,7 @@ const occurrencePath = path.join('data', 'lexical', 'occurrences', `${workId}.js
 const sourcePath = path.join('data', 'sources', `${workId}.json`);
 const occurrenceData = readJson(occurrencePath);
 const sourceData = readJson(sourcePath);
-const workSlug = clean(occurrenceData.work_slug || sourceData.work_slug || header.page_path?.replace(/\/index\.html$/, ''));
+const workSlug = clean(occurrenceData.work_slug || sourceData.work_slug || header.page_path?.replace(/\/index\.html$/, '') || sourceMap.page_path?.replace(/\/index\.html$/, ''));
 const tokenIndexPath = path.join('data', 'lexical', 'token-indexes', `${workSlug}.json`);
 const tokenIndexData = readJson(tokenIndexPath);
 
@@ -207,6 +220,7 @@ const result = {
     project_authored_definitions: false,
   },
   input_map: input,
+  input_packet_id: packetId || null,
   source_artifacts: {
     occurrence_path: occurrencePath,
     token_index_path: tokenIndexPath,
