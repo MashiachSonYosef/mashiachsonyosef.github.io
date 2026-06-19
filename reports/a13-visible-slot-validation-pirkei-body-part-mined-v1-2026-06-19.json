@@ -1,0 +1,91 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "batch_id": "pirkei-body-part-mined-v1",
+  "status": "passed",
+  "boundary": {
+    "validation_receipt_only": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\a-new-israeli-commentary-on-pirkei-avot\\visible-display-slots.json",
+      "result": "passed",
+      "slot_count": 5,
+      "approved_gloss_count": 5
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds a-new-israeli-commentary-on-pirkei-avot -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page mishnah\\a-new-israeli-commentary-on-pirkei-avot\\index.html",
+      "result": "passed"
+    },
+    {
+      "command": "custom page manifest URL + manifest row check",
+      "result": "passed",
+      "has_visible_slot_manifest_url": true,
+      "slot_count": 5
+    }
+  ],
+  "approved_visible_rows": 4,
+  "manifest_slot_count": 5,
+  "new_slots": [
+    {
+      "token_id": "tok-89bfc6b641fe",
+      "source_id": "H3027",
+      "approved_visible_text": "hand",
+      "source_ref": "A New Israeli Commentary on Pirkei Avot 3:16:4"
+    },
+    {
+      "token_id": "tok-b21dddf63b28",
+      "source_id": "H3027",
+      "approved_visible_text": "hand",
+      "source_ref": "A New Israeli Commentary on Pirkei Avot 2:1:7"
+    },
+    {
+      "token_id": "tok-70a003aa4f2f",
+      "source_id": "H6310",
+      "approved_visible_text": "mouths",
+      "source_ref": "A New Israeli Commentary on Pirkei Avot 4:14:12"
+    },
+    {
+      "token_id": "tok-761e061f0ffd",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "A New Israeli Commentary on Pirkei Avot 2:1:15"
+    }
+  ],
+  "held_rows": [
+    {
+      "source_id": "H3027",
+      "token_id": "tok-6cdfab40ac96",
+      "reason": "???? is immediate/at once usage; plain hand would be false"
+    },
+    {
+      "source_id": "H3027",
+      "token_id": "tok-997358be8310",
+      "reason": "hands and feet in thicket context is idiom/metaphor risk"
+    },
+    {
+      "source_id": "H6310",
+      "token_id": "tok-674d4845d810",
+      "reason": "from mouths of sages is source/speech formula, not clean visible mouth label"
+    },
+    {
+      "source_id": "H6310",
+      "token_id": "tok-bc053547b1e2",
+      "reason": "in her mouth a good word is idiom/speech formula risk"
+    },
+    {
+      "source_id": "H3027/H6310 akeidat-yitzchak",
+      "reason": "top-index 1 context maps have zero exact single occurrence rows; keep N/A"
+    }
+  ],
+  "stop_condition": "Validation is complete for the four added Pirkei body-part slots; broader selector rows remain N/A."
+}
