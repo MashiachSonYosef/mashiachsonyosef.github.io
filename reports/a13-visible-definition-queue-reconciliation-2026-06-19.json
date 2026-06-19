@@ -1,0 +1,117 @@
+{
+  "schema": "a13_visible_definition_queue_reconciliation_v1",
+  "date": "2026-06-19",
+  "status": "current_queue_reconciled_after_h1870_road",
+  "purpose": "Prevent the visible-definition churn lane from reprocessing stale A12 yes/no queue entries after A13 implementation commits.",
+  "boundary": {
+    "report_only": true,
+    "routing": false,
+    "implementation_allowed": false,
+    "display_flip": false,
+    "render_runtime_repo_control_source_mutation": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "current_pushed_head": "04ebeb48f",
+  "visible_slot_state": {
+    "approved_visible_candidates": 3,
+    "approved_visible_rows": 10,
+    "current_rollup": "reports/a13-visible-definition-churn-rollup-2026-06-19.json"
+  },
+  "consumed_A12_queue_entries": [
+    {
+      "candidate_id": "h5869_eye_ruth_v1",
+      "old_A12_blocker": "A13_visibility_approval_missing",
+      "current_state": "implemented_validated_pushed",
+      "pushed_commit": "4ae55ec344",
+      "approval_packet": "reports/a13-visible-slot-approval-h5869-eye-ruth-v1-2026-06-19.json",
+      "validation_packet": "reports/a13-visible-slot-validation-h5869-eye-ruth-v1-2026-06-19.json",
+      "approved_visible_rows": 4
+    },
+    {
+      "candidate_id": "h8328_root_akeidat_yitzchak_v1",
+      "old_A12_blocker": "A13_visibility_approval_missing_or_exact_occurrence_scope_missing",
+      "current_state": "implemented_validated_pushed",
+      "pushed_commit": "1a4ba41e2",
+      "approval_packet": "reports/a13-visible-slot-approval-h8328-root-akeidat-yitzchak-v1-2026-06-19.json",
+      "validation_packet": "reports/a13-visible-slot-validation-h8328-root-akeidat-yitzchak-v1-2026-06-19.json",
+      "approved_visible_rows": 5
+    },
+    {
+      "candidate_id": "h1870_road_ruth_v1",
+      "old_A12_blocker": "A13_visibility_approval_missing",
+      "current_state": "implemented_validated_pushed",
+      "pushed_commit": "04ebeb48f",
+      "approval_packet": "reports/a13-visible-slot-approval-h1870-road-ruth-v1-2026-06-19.json",
+      "validation_packet": "reports/a13-visible-slot-validation-h1870-road-ruth-v1-2026-06-19.json",
+      "approved_visible_rows": 1
+    }
+  ],
+  "remaining_context_rule_holds": [
+    {
+      "source_id": "H1875",
+      "label": "seek/ask",
+      "state": "hold_keep_NA",
+      "blocker": "repeated occurrence/context ambiguity; no safe visible label",
+      "hold_packet": "reports/a12-h1875-seek-ask-akeidat-yitzchak-finalization-hold-2026-06-19.json"
+    },
+    {
+      "source_id": "H2416",
+      "label": "life/alive",
+      "state": "hold_keep_NA",
+      "blocker": "needs structure/context proof for life/alive/living/fresh/strong distinction",
+      "hold_packet": "reports/a12-context-rule-candidate-h2416-life-alive-akeidat-yitzchak-v1-2026-06-19.md"
+    },
+    {
+      "source_id": "H2451",
+      "label": "wisdom",
+      "state": "hold_keep_NA",
+      "blocker": "many occurrence matches plus context-sensitive interpretation risk",
+      "hold_packet": "reports/a12-h2451-wisdom-akeidat-yitzchak-finalization-hold-2026-06-19.json"
+    }
+  ],
+  "priority1_bank_state": {
+    "state": "banked_no_visible_route",
+    "rollup": "reports/a13-priority1-display-context-map-completion-rollup-2026-06-19.json",
+    "selectors": [
+      {
+        "source_id": "H4639",
+        "label": "action/deed",
+        "map": "reports/a13-h4639-display-context-map-return-2026-06-19.json",
+        "validation": "reports/a13-h4639-display-context-map-validation-2026-06-19.json",
+        "decision": "map_incomplete_keep_bank"
+      },
+      {
+        "source_id": "H5656",
+        "label": "work/service",
+        "map": "reports/a13-h5656-display-context-map-return-2026-06-19.json",
+        "validation": "reports/a13-h5656-display-context-map-validation-2026-06-19.json",
+        "decision": "map_incomplete_keep_bank"
+      },
+      {
+        "source_id": "H4687",
+        "label": "commandment/command/ordinance",
+        "map": "reports/a13-h4687-display-context-map-return-2026-06-19.json",
+        "validation": "reports/a13-h4687-display-context-map-validation-2026-06-19.json",
+        "decision": "map_incomplete_keep_bank"
+      }
+    ],
+    "next_owner_if_owner_routes_later": "A3 context/structure review from representative maps only"
+  },
+  "next_visible_candidate_status": {
+    "A13_ready_visible_candidate_available": false,
+    "reason": "Every current unimplemented selector is either hold_keep_NA or map_incomplete_keep_bank.",
+    "safe_next_action": "Wait for A3/A12 context-structure proof, or build a new exact A12 finalization candidate from an already validated map without changing display data.",
+    "not_allowed": [
+      "selector-label promotion",
+      "long OpenScriptures reader-hint display as book-page text",
+      "A10 HUD internals mutation",
+      "A11 visible fill-out route",
+      "source/license/legal/Definition/answer acceptance"
+    ]
+  },
+  "stop_condition": "A13 visible-definition queue is reconciled when consumed A12 queue entries are identified and every remaining unimplemented row has a hold or next-owner blocker."
+}
