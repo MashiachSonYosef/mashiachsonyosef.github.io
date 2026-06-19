@@ -1,0 +1,61 @@
+{
+  "schema": "a13_visible_slot_validation_receipt_v1",
+  "date": "2026-06-19",
+  "candidate_id": "h8328_root_akeidat_yitzchak_v1",
+  "work_id": "akeidat-yitzchak",
+  "validation_packet_id": "reports/a13-visible-slot-validation-h8328-root-akeidat-yitzchak-v1-2026-06-19.json",
+  "validated_artifacts": [
+    "data/public-hud/akeidat-yitzchak/visible-display-slots.json",
+    "jewish-thought/akeidat-yitzchak/index.html",
+    "scripts/render_site.ps1",
+    "reports/a13-visible-slot-approval-h8328-root-akeidat-yitzchak-v1-2026-06-19.json",
+    "reports/a13-visible-slot-package-check-h8328-root-akeidat-yitzchak-v1-2026-06-19.json"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\akeidat-yitzchak\\visible-display-slots.json",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "slot_count": 5,
+      "approved_gloss_count": 5
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\render_site.ps1 -WorkIds akeidat-yitzchak -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "timeout_ms": 300000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page jewish-thought\\akeidat-yitzchak\\index.html",
+      "timeout_ms": 180000,
+      "result": "passed"
+    },
+    {
+      "command": "custom Node token-scope/page-config check",
+      "timeout_ms": 120000,
+      "result": "passed",
+      "slot_count": 5,
+      "expected_token_scope_matched": true,
+      "lower_match_rows_omitted": true,
+      "reader_hints_url": "../../data/lexical/reader-hints/akeidat-yitzchak.json",
+      "visible_slot_url": "../../data/public-hud/akeidat-yitzchak/visible-display-slots.json",
+      "long_candidate_definition_absent_from_page": true
+    },
+    {
+      "command": "PowerShell parser check for scripts\\render_site.ps1",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "approved_visible_text": "root",
+  "fallback": "N/A",
+  "boundary": {
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "answer_accepted_text_acceptance": false,
+    "raw_reader_hint_mutation": false,
+    "hud_evidence_mutation": false,
+    "route_scoring_mutation": false,
+    "publication_release_acceptance": false
+  },
+  "result": "passed"
+}

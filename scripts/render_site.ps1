@@ -193,6 +193,23 @@ function Get-VisibleDisplaySlotManifestUrl {
   return $null
 }
 
+function Get-ReaderHintsUrl {
+  param(
+    [string]$WorkId,
+    [string]$RootHref
+  )
+  if (-not $WorkId) { return $null }
+  $publicPath = Join-Path 'data/public-hud' (Join-Path $WorkId 'reader-hints.json')
+  if (Test-Path -LiteralPath $publicPath) {
+    return "$($RootHref)data/public-hud/$WorkId/reader-hints.json"
+  }
+  $lexicalPath = Join-Path 'data/lexical/reader-hints' "$WorkId.json"
+  if (Test-Path -LiteralPath $lexicalPath) {
+    return "$($RootHref)data/lexical/reader-hints/$WorkId.json"
+  }
+  return $null
+}
+
 function Get-RefKey {
   param([AllowNull()][string]$Ref)
   if (-not $Ref) { return '' }
@@ -1926,7 +1943,7 @@ function Write-WorkLexicalPayloadFiles {
     manifest_url = "$RootHref$LexicalDir/$WorkId.manifest.json"
     occurrence_url = "$RootHref$LexicalDir/occurrences/$WorkId.json"
     hud_route_lookup_manifest_url = "$($RootHref)data/definitions/hud-route-lookup/manifest.json"
-    reader_hints_url = "$($RootHref)data/public-hud/$WorkId/reader-hints.json"
+    reader_hints_url = Get-ReaderHintsUrl -WorkId $WorkId -RootHref $RootHref
     visible_display_slot_manifest_url = Get-VisibleDisplaySlotManifestUrl -WorkId $WorkId -RootHref $RootHref
     root_href = $RootHref
   }
@@ -2616,7 +2633,7 @@ foreach ($source in $renderSources) {
         manifest_url = "$rootHref$manifestRelative"
         occurrence_url = "$rootHref$occurrenceRelative"
         hud_route_lookup_manifest_url = "$($rootHref)data/definitions/hud-route-lookup/manifest.json"
-        reader_hints_url = "$($rootHref)data/public-hud/$($source.work_id)/reader-hints.json"
+        reader_hints_url = Get-ReaderHintsUrl -WorkId $source.work_id -RootHref $rootHref
         visible_display_slot_manifest_url = Get-VisibleDisplaySlotManifestUrl -WorkId $source.work_id -RootHref $rootHref
         reader_layout_mode = "prehud_rows"
         root_href = $assetRoot
@@ -2843,7 +2860,7 @@ foreach ($source in $renderSources) {
         work_slug = $source.work_slug
         work_title = $source.work_title
         hud_route_lookup_manifest_url = "$($rootHref)data/definitions/hud-route-lookup/manifest.json"
-        reader_hints_url = "$($rootHref)data/public-hud/$($source.work_id)/reader-hints.json"
+        reader_hints_url = Get-ReaderHintsUrl -WorkId $source.work_id -RootHref $rootHref
         visible_display_slot_manifest_url = Get-VisibleDisplaySlotManifestUrl -WorkId $source.work_id -RootHref $rootHref
         reader_layout_mode = "prehud_rows"
       }) -Depth 10 -Compress) -replace '</script', '<\/script'
