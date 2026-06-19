@@ -1,0 +1,42 @@
+{
+  "schema": "a13_visible_slot_package_check_v1",
+  "date": "2026-06-19",
+  "batch_id": "concrete-body-part-mined-v1",
+  "status": "package_check_ready_for_validation",
+  "boundary": {
+    "planning_report_only": false,
+    "display_flip": true,
+    "visible_slot_layer_only": true,
+    "render_runtime_repo_control_source_mutation": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false,
+    "broader_selector_rows_remain_NA": true
+  },
+  "changed_surfaces": [
+    "data/public-hud/arukh-hashulchan/visible-display-slots.json",
+    "halakhah/arukh-hashulchan/index.html"
+  ],
+  "input_maps": [
+    "reports/a13-h3027-topwork-selector-context-map-2026-06-19.json",
+    "reports/a13-h3027-full-occurrence-context-map-2026-06-19.json",
+    "reports/a13-h6310-topwork-selector-context-map-2026-06-19.json",
+    "reports/a13-h6310-full-occurrence-context-map-2026-06-19.json",
+    "reports/a13-h2896-full-occurrence-context-map-2026-06-19.json",
+    "reports/a13-h1285-full-occurrence-context-map-2026-06-19.json",
+    "reports/a13-h776-full-occurrence-context-map-2026-06-19.json",
+    "reports/a13-h8462-full-occurrence-context-map-2026-06-19.json"
+  ],
+  "approved_visible_rows": 2,
+  "target_work_ids": [
+    "arukh-hashulchan"
+  ],
+  "required_commands": [
+    "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\arukh-hashulchan\\visible-display-slots.json",
+    "& .\\scripts\\render_site.ps1 -WorkIds arukh-hashulchan -SkipLexicalPayloadFiles -SkipOverlayExports",
+    "node scripts\\validate_route_hud_page.mjs --page halakhah\\arukh-hashulchan\\index.html"
+  ],
+  "stop_condition": "Package is coherent only if manifest validation, target render, and route HUD page validation pass."
+}

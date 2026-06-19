@@ -1,69 +1,30 @@
 {
   "schema": "a13_visible_definition_churn_rollup_validation_v1",
   "date": "2026-06-19",
-  "status": "pass_current_rollup_valid",
-  "input": "reports/a13-visible-definition-churn-rollup-2026-06-19.json",
+  "status": "passed",
+  "checked_rollup": "reports/a13-visible-definition-churn-rollup-2026-06-19.json",
   "checks": [
     {
-      "name": "six_visible_candidates_recorded",
-      "ok": true
+      "name": "approved_visible_rows_total",
+      "result": "passed",
+      "value": 15
     },
     {
-      "name": "thirteen_visible_rows_recorded",
-      "ok": true
+      "name": "approved_visible_candidates_total",
+      "result": "passed",
+      "value": 8
     },
     {
-      "name": "six_context_batches_recorded",
-      "ok": true
+      "name": "full_occurrence_context_rows_total",
+      "result": "passed",
+      "value": 13766
     },
     {
-      "name": "context_rows_405_recorded",
-      "ok": true
-    },
-    {
-      "name": "three_full_occurrence_batches_recorded",
-      "ok": true
-    },
-    {
-      "name": "full_occurrence_rows_5105_recorded",
-      "ok": true
-    },
-    {
-      "name": "no_context_batch_promoted_visible_rows",
-      "ok": true
-    },
-    {
-      "name": "next_visible_blocker_recorded",
-      "ok": true
+      "name": "latest_validation_status",
+      "result": "passed",
+      "value": "passed"
     }
   ],
-  "failed_checks": [],
-  "totals": {
-    "approved_visible_candidates": 6,
-    "approved_visible_rows": 13,
-    "context_map_batches": 6,
-    "context_map_rows_returned": 405,
-    "context_map_visible_rows": 0,
-    "context_map_non_exact_relation_rows": 228,
-    "context_map_boundary_marker_rows": 2,
-    "full_occurrence_context_batches": 3,
-    "full_occurrence_context_selectors": 9,
-    "full_occurrence_context_target_token_rows": 118,
-    "full_occurrence_context_rows": 5105,
-    "full_occurrence_context_single_candidates": 6,
-    "full_occurrence_context_visible_rows": 3
-  },
-  "boundary": {
-    "rollup_only": true,
-    "routing": false,
-    "implementation_allowed": false,
-    "display_flip": false,
-    "render_runtime_repo_control_source_mutation": false,
-    "source_license_legal_acceptance": false,
-    "definition_authority": false,
-    "product_answer_accepted_text_acceptance": false,
-    "publication_release": false,
-    "project_authored_definitions": false
-  },
-  "stop_condition": "Use this as the current A13 definition churn handle; it opens no new display or implementation route."
+  "errors": [],
+  "stop_condition": "Rollup validation records the current visible-definition churn totals after the concrete body-part mined batch."
 }

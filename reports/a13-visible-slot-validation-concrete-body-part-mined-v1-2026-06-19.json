@@ -1,0 +1,84 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "batch_id": "concrete-body-part-mined-v1",
+  "status": "passed",
+  "boundary": {
+    "validation_receipt_only": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\arukh-hashulchan\\visible-display-slots.json",
+      "result": "passed",
+      "slot_count": 4,
+      "approved_gloss_count": 4
+    },
+    {
+      "command": "node --check scripts\\build_visible_selector_context_map_from_expansion.mjs",
+      "result": "passed"
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds arukh-hashulchan -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page halakhah\\arukh-hashulchan\\index.html",
+      "result": "passed"
+    },
+    {
+      "command": "custom page manifest URL + manifest row check",
+      "result": "passed",
+      "has_visible_slot_manifest_url": true,
+      "manifest_has_hands": true,
+      "manifest_has_mouth": true
+    }
+  ],
+  "validation_notes": [
+    "A static HTML text grep for hands/mouth was intentionally not used as a gate because visible slots load through the public HUD manifest URL.",
+    "The rendered page points at data/public-hud/arukh-hashulchan/visible-display-slots.json and that manifest validates with four approved slots."
+  ],
+  "approved_visible_rows": 2,
+  "manifest_slot_count": 4,
+  "new_slots": [
+    {
+      "token_id": "tok-3c8dc6677f44",
+      "source_id": "H3027",
+      "approved_visible_text": "hands",
+      "source_ref": "Arukh HaShulchan, Orach Chaim 128:36"
+    },
+    {
+      "token_id": "tok-91d5f31aad86",
+      "source_id": "H6310",
+      "approved_visible_text": "mouth",
+      "source_ref": "Arukh HaShulchan, Orach Chaim 51:2"
+    }
+  ],
+  "held_selectors": [
+    {
+      "source_id": "H2896",
+      "result": "held",
+      "reason": "single exact row overreads if rendered as plain good"
+    },
+    {
+      "source_id": "H1285",
+      "result": "held",
+      "reason": "no single occurrence candidates after full map"
+    },
+    {
+      "source_id": "H776",
+      "result": "held",
+      "reason": "no single occurrence candidates after full map"
+    },
+    {
+      "source_id": "H8462",
+      "result": "held",
+      "reason": "no single occurrence candidates after full map"
+    }
+  ],
+  "stop_condition": "Validation is complete for the two added Arukh visible slots; broader selector rows remain N/A."
+}
