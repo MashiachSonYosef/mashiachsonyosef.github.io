@@ -1,0 +1,80 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "batch_id": "avodat-yisrael-hand-mined-v1",
+  "status": "passed",
+  "boundary": {
+    "validation_receipt_only": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\avodat-yisrael\\visible-display-slots.json",
+      "result": "passed",
+      "slot_count": 2,
+      "approved_gloss_count": 2
+    },
+    {
+      "command": "& .\\scripts\\render_site.ps1 -WorkIds avodat-yisrael -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page chasidut\\avodat-yisrael\\index.html",
+      "result": "passed"
+    },
+    {
+      "command": "custom page manifest URL + manifest row check",
+      "result": "passed",
+      "has_visible_slot_manifest_url": true,
+      "slot_count": 2
+    }
+  ],
+  "approved_visible_rows": 2,
+  "manifest_slot_count": 2,
+  "new_slots": [
+    {
+      "token_id": "tok-c0961fb5bd0e",
+      "source_id": "H3027",
+      "approved_visible_text": "hand",
+      "source_ref": "Avodat Yisrael, Pirkei Avot, Chapter 3 7:1"
+    },
+    {
+      "token_id": "tok-d0184935903f",
+      "source_id": "H3027",
+      "approved_visible_text": "hand",
+      "source_ref": "Avodat Yisrael, Sefer Vayikra, Metzora:2"
+    }
+  ],
+  "held_rows": [
+    {
+      "source_id": "H3027",
+      "token_id": "tok-2dcc29219a38",
+      "reason": "held as possession/from-their-hands idiom risk"
+    },
+    {
+      "source_id": "H7272",
+      "token_id": "tok-19f1ecbdf642",
+      "reason": "held as kabbalistic anatomy/metaphor risk"
+    },
+    {
+      "source_id": "H7272",
+      "token_id": "tok-b523326f4d87",
+      "reason": "held because regel appears to mean festival/occasion, not foot"
+    },
+    {
+      "source_id": "H7272",
+      "token_id": "tok-ebe03109f2aa",
+      "reason": "held as verse wordplay/at-his-feet idiom risk"
+    },
+    {
+      "source_id": "H1818",
+      "token_id": "tok-b876ebc436f1",
+      "reason": "held because H1818 boundary packet flags blood-metaphor interpretation risk and this context is not clean enough for visible display"
+    }
+  ],
+  "stop_condition": "Validation is complete for the two Avodat Yisrael hand slots; broader selector rows remain N/A."
+}

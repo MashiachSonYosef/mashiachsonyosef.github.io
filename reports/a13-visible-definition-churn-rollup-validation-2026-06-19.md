@@ -1,22 +1,21 @@
 # A13 Visible Definition Churn Rollup Validation - 2026-06-19
 
-Status: pass_current_rollup_valid
+Status: passed
 
-Boundary: validation/rollup only. No display, implementation, accepted text, or release.
+Boundary: validation/rollup only. No source/license/legal/Definition/product/answer/accepted-text/publication/release acceptance.
 
-## Checks
-
-- PASS two_visible_candidates_recorded
-- PASS nine_visible_rows_recorded
-- PASS six_context_batches_recorded
-- PASS context_rows_405_recorded
+Checks:
+- PASS approved_visible_rows_total=33
+- PASS approved_visible_candidates_total=26
+- PASS context_map_batches=13
+- PASS context_map_rows_returned=845
+- PASS full_occurrence_context_rows_total=20007
+- PASS latest_validation_status=passed
 - PASS no_context_batch_promoted_visible_rows
 - PASS next_visible_blocker_recorded
 
-## Failed Checks
-
+Failed checks:
 - none
 
-## Stop Condition
-
-Use this as the current A13 definition churn handle; it opens no new display or implementation route.
+Stop condition:
+Rollup validation records current totals after the Avodat Yisrael hand batch.
