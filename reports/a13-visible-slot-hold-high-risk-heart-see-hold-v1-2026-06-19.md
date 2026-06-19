@@ -1,0 +1,1 @@
+"# A13 visible slot hold - high-risk-heart-see-hold-v1\n\n- status: held_no_visible_rows\n- selectors: 2\n- target rows: 108\n- occurrence rows: 5455\n- single occurrence rows reviewed: 3\n- decision: keep H7200 and H3820 as N/A for now.\n- boundary: hold report only; no display flip.\n"

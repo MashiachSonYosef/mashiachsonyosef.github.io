@@ -1,0 +1,74 @@
+{
+  "schema": "a13_visible_slot_hold_packet_v1",
+  "date": "2026-06-19",
+  "batch_id": "high-risk-heart-see-hold-v1",
+  "status": "held_no_visible_rows",
+  "boundary": {
+    "hold_report_only": true,
+    "display_flip": false,
+    "render_runtime_repo_control_source_mutation": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "input_maps": [
+    "reports/a13-h7200-topwork-selector-context-map-2026-06-19.json",
+    "reports/a13-h7200-full-occurrence-context-map-2026-06-19.json",
+    "reports/a13-h3820-topwork-selector-context-map-2026-06-19.json",
+    "reports/a13-h3820-full-occurrence-context-map-2026-06-19.json"
+  ],
+  "counts": {
+    "selector_count": 2,
+    "target_token_rows": 108,
+    "occurrence_rows": 5455,
+    "single_occurrence_candidates": 3,
+    "visible_rows": 0
+  },
+  "single_occurrence_rows_reviewed": [
+    {
+      "source_id": "H7200",
+      "selector_label": "see",
+      "token_id": "tok-d4082a79d72e",
+      "surface_word": "נתראה",
+      "source_ref": "Arukh HaShulchan, Yoreh De'ah 36:52",
+      "source_token": "נתראה",
+      "source_context_before": "בה איזה ריעותא וע\"י הנפיחה",
+      "source_context_after": "לנו גם ריעותא דאטום [ב\"י]"
+    },
+    {
+      "source_id": "H3820",
+      "selector_label": "heart/feelings/will/intellect",
+      "token_id": "tok-59aa4b5cf5bd",
+      "surface_word": "מלב",
+      "source_ref": "Arukh HaShulchan, Choshen Mishpat 284:7",
+      "source_token": "מלב",
+      "source_context_before": "י\"ב חודש כדכתיב נשכחתי כמת",
+      "source_context_after": "ובעגונה אינו מועיל כל זה"
+    },
+    {
+      "source_id": "H3820",
+      "selector_label": "heart/feelings/will/intellect",
+      "token_id": "tok-c8036a68fe10",
+      "surface_word": "לְבוֹ",
+      "source_ref": "Arukh HaShulchan, Orach Chaim 510:5",
+      "source_token": "לְבוֹ",
+      "source_context_before": "אלא לאכול מיד, ולא להניח",
+      "source_context_after": "ביום, ובכאן התרנו אפילו להניח"
+    }
+  ],
+  "hold_decisions": [
+    {
+      "source_id": "H7200",
+      "decision": "hold_NA",
+      "reason": "exact row ????? is appear/is-seen context; plain see would overread the visible label"
+    },
+    {
+      "source_id": "H3820",
+      "decision": "hold_NA",
+      "reason": "exact rows are heart idiom/inner-intention contexts; plain heart display needs A3/A12 context proof"
+    }
+  ],
+  "stop_condition": "No visible slot may be created from this batch without a changed context proof packet."
+}
