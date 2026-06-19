@@ -1,0 +1,134 @@
+{
+  "schema": "a13_priority1_display_context_map_completion_rollup_v1",
+  "date": "2026-06-19",
+  "status": "priority1_maps_built_validated_warn_keep_bank",
+  "purpose": "Reconcile A12 Priority 1 map-missing state after A13 built the H4639, H5656, and H4687 representative token-to-source-context/display-state maps.",
+  "boundary": {
+    "report_only": true,
+    "routing": false,
+    "implementation_allowed": false,
+    "display_flip": false,
+    "render_runtime_repo_control_source_mutation": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "input_basis": {
+    "a12_priority1_operator_rollup": "reports/a12-priority1-display-context-operator-rollup-2026-06-19.json",
+    "a12_downstream_triage_board": "reports/a12-priority1-downstream-triage-board-2026-06-19.json",
+    "a12_a3_intake_shape": "reports/a12-a3-priority1-context-structure-intake-2026-06-19.json",
+    "maps_and_validations": [
+      "reports/a13-h4639-display-context-map-return-2026-06-19.json",
+      "reports/a13-h4639-display-context-map-validation-2026-06-19.json",
+      "reports/a13-h5656-display-context-map-return-2026-06-19.json",
+      "reports/a13-h5656-display-context-map-validation-2026-06-19.json",
+      "reports/a13-h4687-display-context-map-return-2026-06-19.json",
+      "reports/a13-h4687-display-context-map-validation-2026-06-19.json"
+    ]
+  },
+  "blocker_reconciliation": {
+    "B005_TOKEN_CONTEXT_DISPLAY_MAP_MISSING": "cleared_for_priority1_map_existence_only",
+    "not_cleared": [
+      "A3_context_structure_packet_missing",
+      "A12_context_rule_packet_missing",
+      "A13_visible_slot_approval_missing_for_these_selectors",
+      "visible_display_allowed_false",
+      "accepted_text_false",
+      "display_remains_NA"
+    ]
+  },
+  "selector_maps": [
+    {
+      "source_id": "H4639",
+      "selector_label": "action/deed",
+      "work_id": "akeidat-yitzchak",
+      "map": "reports/a13-h4639-display-context-map-return-2026-06-19.json",
+      "validation": "reports/a13-h4639-display-context-map-validation-2026-06-19.json",
+      "a12_scope": "reports/a12-token-scope-h4639-action-deed-akeidat-yitzchak-2026-06-19.json",
+      "map_exists": true,
+      "validation_exists": true,
+      "validation_result": "warn_keep_bank",
+      "output_decision": "map_incomplete_keep_bank",
+      "required_token_rows": 12,
+      "rows_returned": 12,
+      "rows_with_surface": 12,
+      "rows_with_representative_context": 12,
+      "visible_text_rows": 0,
+      "relation_or_sense_blocker_count": 2,
+      "next_owner_if_used": "A3 context/structure review from this representative map only; no A13 visible approval route"
+    },
+    {
+      "source_id": "H5656",
+      "selector_label": "work/service",
+      "work_id": "akeidat-yitzchak",
+      "map": "reports/a13-h5656-display-context-map-return-2026-06-19.json",
+      "validation": "reports/a13-h5656-display-context-map-validation-2026-06-19.json",
+      "a12_scope": "reports/a12-token-scope-h5656-work-service-akeidat-yitzchak-2026-06-19.json",
+      "map_exists": true,
+      "validation_exists": true,
+      "validation_result": "warn_keep_bank",
+      "output_decision": "map_incomplete_keep_bank",
+      "required_token_rows": 12,
+      "rows_returned": 12,
+      "rows_with_surface": 12,
+      "rows_with_representative_context": 12,
+      "visible_text_rows": 0,
+      "relation_or_sense_blocker_count": 16,
+      "next_owner_if_used": "A3 context/structure and sense review from this representative map only; no A13 visible approval route"
+    },
+    {
+      "source_id": "H4687",
+      "selector_label": "commandment/command/ordinance",
+      "work_id": "agra-dekala",
+      "map": "reports/a13-h4687-display-context-map-return-2026-06-19.json",
+      "validation": "reports/a13-h4687-display-context-map-validation-2026-06-19.json",
+      "a12_scope": "reports/a12-token-scope-h4687-commandment-command-agra-dekala-2026-06-19.json",
+      "map_exists": true,
+      "validation_exists": true,
+      "validation_result": "warn_keep_bank",
+      "output_decision": "map_incomplete_keep_bank",
+      "required_token_rows": 12,
+      "rows_returned": 12,
+      "rows_with_surface": 12,
+      "rows_with_representative_context": 12,
+      "visible_text_rows": 0,
+      "relation_or_sense_blocker_count": 17,
+      "next_owner_if_used": "A3 context/structure and legal/theological sense review from this representative map only; no A13 visible approval route"
+    }
+  ],
+  "counts": {
+    "maps_expected": 3,
+    "maps_present": 3,
+    "validations_present": 3,
+    "warn_keep_bank_results": 3,
+    "required_token_rows_total": 36,
+    "rows_returned_total": 36,
+    "rows_with_surface_total": 36,
+    "rows_with_representative_context_total": 36,
+    "visible_text_rows_total": 0
+  },
+  "proposed_next_packet_if_owner_routes_later": {
+    "packet_type": "A3 context/structure review intake",
+    "use_template": "reports/a12-a3-priority1-context-structure-packet-template-2026-06-19.md",
+    "input_maps": [
+      "reports/a13-h4639-display-context-map-return-2026-06-19.json",
+      "reports/a13-h5656-display-context-map-return-2026-06-19.json",
+      "reports/a13-h4687-display-context-map-return-2026-06-19.json"
+    ],
+    "requested_decision_values": [
+      "ready_for_A12_context_rule_packet",
+      "bank_more_structure_needed",
+      "reject_keep_NA"
+    ],
+    "still_not_allowed": [
+      "A10/A11/render route",
+      "A13 selector-label approval",
+      "visible text emission",
+      "OpenScriptures long definition text display",
+      "source/license/legal/Definition/answer acceptance"
+    ]
+  },
+  "stop_condition": "Priority 1 map-missing blocker is reconciled as cleared only for map existence. The lane remains banked until A3 context/structure review and any later A12/A13 visible-slot packet exist."
+}

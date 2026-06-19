@@ -1,0 +1,65 @@
+{
+  "schema": "a13_priority1_display_context_map_completion_rollup_validation_v1",
+  "date": "2026-06-19",
+  "status": "pass_warn_keep_bank_rollup_valid",
+  "input": "reports/a13-priority1-display-context-map-completion-rollup-2026-06-19.json",
+  "checks": [
+    {
+      "name": "all_three_maps_present",
+      "ok": true
+    },
+    {
+      "name": "all_three_validations_present",
+      "ok": true
+    },
+    {
+      "name": "all_results_warn_keep_bank",
+      "ok": true
+    },
+    {
+      "name": "all_36_required_rows_returned",
+      "ok": true
+    },
+    {
+      "name": "all_rows_have_surface",
+      "ok": true
+    },
+    {
+      "name": "all_rows_have_representative_context",
+      "ok": true
+    },
+    {
+      "name": "no_visible_text_rows_promoted",
+      "ok": true
+    },
+    {
+      "name": "next_packet_is_A3_only",
+      "ok": true
+    }
+  ],
+  "failed_checks": [],
+  "counts": {
+    "maps_expected": 3,
+    "maps_present": 3,
+    "validations_present": 3,
+    "warn_keep_bank_results": 3,
+    "required_token_rows_total": 36,
+    "rows_returned_total": 36,
+    "rows_with_surface_total": 36,
+    "rows_with_representative_context_total": 36,
+    "visible_text_rows_total": 0
+  },
+  "boundary": {
+    "report_only": true,
+    "routing": false,
+    "implementation_allowed": false,
+    "display_flip": false,
+    "render_runtime_repo_control_source_mutation": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "stop_condition": "Rollup may be used as report-only A3 intake evidence; no display or implementation route is opened."
+}
