@@ -1,0 +1,66 @@
+{
+  "schema": "a13_visible_selector_occurrence_context_map_validation_v1",
+  "date": "2026-06-19",
+  "status": "passed_hold_for_context_rule_review",
+  "input_map": "reports/a13-h4687-full-occurrence-context-map-2026-06-19.json",
+  "builder": "scripts/build_visible_selector_occurrence_context_map.mjs",
+  "commands": [
+    {
+      "command": "node scripts\\build_visible_selector_occurrence_context_map.mjs --input=reports\\a13-h4687-display-context-map-return-2026-06-19.json --out-json=reports\\a13-h4687-full-occurrence-context-map-2026-06-19.json --out-md=reports\\a13-h4687-full-occurrence-context-map-2026-06-19.md",
+      "timeout_ms": 120000,
+      "exit_code": 0,
+      "result": "map generated"
+    },
+    {
+      "command": "custom JSON parse/count/alignment validation",
+      "timeout_ms": 60000,
+      "exit_code": 0,
+      "result": "parse, token counts, and source-token alignment passed"
+    }
+  ],
+  "validated_counts": {
+    "target_token_rows": 12,
+    "exact_lookup_rows": 7,
+    "non_exact_lookup_rows": 5,
+    "prefix_or_affix_lookup_rows": 5,
+    "occurrence_rows": 340,
+    "token_count_mismatch_rows": 0,
+    "source_token_mismatch_rows": 0,
+    "source_token_match_method": {
+      "surface_ordinal_match": 340
+    },
+    "single_occurrence_candidates": 1,
+    "rows_requiring_A3_structure_review": 11
+  },
+  "single_occurrence_candidate": {
+    "token_id": "tok-28d61c6232d6",
+    "surface_word": "מצותך",
+    "source_ref": "Agra DeKala, Toldot:1",
+    "source_context_before": "על פי מ\"ש בספר דרך",
+    "source_token": "מצותך",
+    "source_context_after": "דכאשר יוליד האדם דרך נס,",
+    "current_hud_route_id_if_any": "citable-para-0d3a316718977664",
+    "status": "candidate_for_context_rule_review_not_visible_text",
+    "blocker": "commandment_command_ordinance_context_not_separated_from_local_source_text"
+  },
+  "classification": {
+    "full_occurrence_context_map_missing": "cleared_for_H4687",
+    "visible_slot_candidate_now": false,
+    "display_state": "N/A",
+    "next_owner_if_used": "A12 context-rule review for the single exact row and A3 structure review for repeated or prefix rows",
+    "reason": "One exact single-occurrence row exists, but the local phrase may be title/formula context and the commandment/command/ordinance sense is not cleared for visible display."
+  },
+  "boundary": {
+    "validation_only": true,
+    "routing": false,
+    "implementation_allowed": false,
+    "display_flip": false,
+    "render_runtime_repo_control_source_mutation": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "stop_condition": "H4687 has a parse-valid, count-valid, source-token-aligned full occurrence context map and remains N/A until a later context-rule packet proves exact visible text."
+}
