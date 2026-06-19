@@ -185,6 +185,7 @@ const tokenSummaries = targetRows.map((row) => {
 
 const exactRows = tokenSummaries.filter((row) => row.lookup_relation === 'exact').length;
 const prefixRows = tokenSummaries.filter((row) => row.lookup_relation.includes('prefix')).length;
+const nonExactRows = tokenSummaries.filter((row) => row.lookup_relation !== 'exact').length;
 const mismatchRows = tokenSummaries.filter((row) => !row.occurrence_count_matches_token_index);
 const singleOccurrenceCandidates = tokenSummaries.filter((row) => row.structure_review_state === 'single_occurrence_candidate_for_A12_context_rule_review');
 
@@ -220,6 +221,7 @@ const result = {
   counts: {
     target_token_rows: targetRows.length,
     exact_lookup_rows: exactRows,
+    non_exact_lookup_rows: nonExactRows,
     prefix_or_affix_lookup_rows: prefixRows,
     occurrence_rows: occurrenceRows.length,
     token_count_mismatch_rows: mismatchRows.length,
@@ -233,7 +235,7 @@ const result = {
     display_state: 'N/A',
     reason: singleOccurrenceCandidates.length
       ? 'Full occurrence map exists, but any promotion still requires A3/A12 context rule review and A13 approval.'
-      : 'Every target token row has multiple occurrences or prefix/affix relation risk; selector label cannot be promoted directly.',
+      : 'Every target token row has multiple occurrences or non-exact relation risk; selector label cannot be promoted directly.',
     next_owner_if_used: 'A3 context/structure review from this full occurrence map only',
   },
   stop_condition: 'Occurrence context map is complete when observed counts match token-index counts for every target token id and no visible display claim is made.',
@@ -250,6 +252,7 @@ const mdLines = [
   `- target token rows: \`${result.counts.target_token_rows}\``,
   `- occurrence rows: \`${result.counts.occurrence_rows}\``,
   `- exact lookup rows: \`${result.counts.exact_lookup_rows}\``,
+  `- non-exact lookup rows: \`${result.counts.non_exact_lookup_rows}\``,
   `- prefix/affix lookup rows: \`${result.counts.prefix_or_affix_lookup_rows}\``,
   `- token count mismatches: \`${result.counts.token_count_mismatch_rows}\``,
   `- single occurrence candidates: \`${result.counts.single_occurrence_candidates}\``,

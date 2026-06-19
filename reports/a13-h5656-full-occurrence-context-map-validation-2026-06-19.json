@@ -1,0 +1,56 @@
+{
+  "schema": "a13_visible_selector_occurrence_context_map_validation_v1",
+  "date": "2026-06-19",
+  "status": "passed_hold_for_A3_structure_review",
+  "input_map": "reports/a13-h5656-full-occurrence-context-map-2026-06-19.json",
+  "builder": "scripts/build_visible_selector_occurrence_context_map.mjs",
+  "commands": [
+    {
+      "command": "node scripts\\build_visible_selector_occurrence_context_map.mjs --input=reports\\a13-h5656-display-context-map-return-2026-06-19.json --out-json=reports\\a13-h5656-full-occurrence-context-map-2026-06-19.json --out-md=reports\\a13-h5656-full-occurrence-context-map-2026-06-19.md",
+      "timeout_ms": 120000,
+      "exit_code": 0,
+      "result": "map generated"
+    },
+    {
+      "command": "custom JSON parse/count/alignment validation",
+      "timeout_ms": 60000,
+      "exit_code": 0,
+      "result": "parse, token counts, and source-token alignment passed"
+    }
+  ],
+  "validated_counts": {
+    "target_token_rows": 12,
+    "exact_lookup_rows": 8,
+    "non_exact_lookup_rows": 4,
+    "prefix_or_affix_lookup_rows": 1,
+    "occurrence_rows": 565,
+    "token_count_mismatch_rows": 0,
+    "source_token_mismatch_rows": 0,
+    "source_token_match_method": {
+      "surface_ordinal_match": 564,
+      "token_position_fallback": 1
+    },
+    "single_occurrence_candidates": 0,
+    "rows_requiring_A3_structure_review": 12
+  },
+  "classification": {
+    "full_occurrence_context_map_missing": "cleared_for_H5656",
+    "visible_slot_candidate_now": false,
+    "display_state": "N/A",
+    "next_owner_if_used": "A3 context/structure and sense review from full occurrence map only",
+    "reason": "All target token rows represent repeated surface forms and work/service/labor/bondage plus non-exact relation distinctions remain held for A3."
+  },
+  "boundary": {
+    "validation_only": true,
+    "routing": false,
+    "implementation_allowed": false,
+    "display_flip": false,
+    "render_runtime_repo_control_source_mutation": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "stop_condition": "H5656 has a parse-valid, count-valid, source-token-aligned full occurrence context map and remains held until A3/A12 structure proof exists."
+}
