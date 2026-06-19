@@ -1,0 +1,55 @@
+{
+  "schema": "a13_h5656_display_context_map_validation_v1",
+  "date": "2026-06-19",
+  "input_map": "reports/a13-h5656-display-context-map-return-2026-06-19.json",
+  "checklist": "reports/a12-h5656-display-context-map-validator-checklist-2026-06-19.json",
+  "result_class": "warn_keep_bank",
+  "output_decision": "map_incomplete_keep_bank",
+  "checks": {
+    "all_12_required_token_ids_present_exactly_once": true,
+    "no_extra_token_ids_present": true,
+    "surface_non_null_for_every_token_row": true,
+    "representative_source_context_present_for_every_token_row": true,
+    "current_bookpage_visible_text_recorded_for_every_token_row": true,
+    "current_hud_route_ids_preserved": true,
+    "word_break_status_recorded_for_every_token_row": true,
+    "maqaf_status_recorded_for_every_token_row": true,
+    "phrase_or_compound_status_recorded_for_every_token_row": true,
+    "prefix_suffix_possessive_rows_have_explicit_relation_status": true,
+    "work_service_labor_bondage_sense_context_separated_or_held": true,
+    "no_candidate_label_promoted_as_accepted_visible_text": true,
+    "no_long_openscriptures_definition_text_used_as_visible_text": true
+  },
+  "counts": {
+    "required_token_rows": 12,
+    "rows_returned": 12,
+    "rows_with_surface": 12,
+    "rows_with_representative_context": 12,
+    "rows_currently_visible_work_or_service": 0,
+    "total_occurrence_contexts_counted": 565,
+    "non_exact_relation_rows": 4,
+    "sense_blocked_rows": 12,
+    "output_decision": "map_incomplete_keep_bank",
+    "next_owner_if_used": "A3 context/structure and sense review from this representative map only; no A13 visible approval route"
+  },
+  "warnings": [
+    "surface-form rows have multiple occurrence contexts; representative samples only",
+    "prefix/suffix/possessive rows require A3 relation review",
+    "work/service/labor/bondage sense remains held for A3"
+  ],
+  "errors": [],
+  "boundary": {
+    "map_built": true,
+    "routing": false,
+    "implementation_allowed": false,
+    "display_flip": false,
+    "render_runtime_repo_control_source_mutation": false,
+    "a3_a10_a11_a13_work_order": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false,
+    "project_authored_definitions": false
+  },
+  "stop_condition": "Validation warns/holds the packet as banked context evidence only; no display or implementation route is opened."
+}
