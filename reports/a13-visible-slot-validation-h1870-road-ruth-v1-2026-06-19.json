@@ -1,0 +1,68 @@
+{
+  "schema": "a13_visible_slot_validation_v1",
+  "date": "2026-06-19",
+  "status": "passed",
+  "candidate_id": "h1870_road_ruth_v1",
+  "validated_artifacts": [
+    "data/public-hud/ruth/visible-display-slots.json",
+    "tanakh/ruth/index.html"
+  ],
+  "commands": [
+    {
+      "command": "node scripts\\validate_visible_display_slot_manifest.mjs --input=data\\public-hud\\ruth\\visible-display-slots.json",
+      "timeout_ms": 120000,
+      "exit_code": 0,
+      "result": {
+        "ok": true,
+        "slot_count": 5,
+        "approved_gloss_count": 5,
+        "placeholder": "N/A",
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\render_site.ps1 -WorkIds ruth -SkipLexicalPayloadFiles -SkipOverlayExports",
+      "timeout_ms": 300000,
+      "exit_code": 0,
+      "result": "targeted Ruth render completed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page tanakh\\ruth\\index.html",
+      "timeout_ms": 180000,
+      "exit_code": 0,
+      "result": "Route HUD page validation passed for 1 page(s)."
+    },
+    {
+      "command": "custom Node token/page config check",
+      "timeout_ms": 120000,
+      "exit_code": 0,
+      "result": {
+        "ok": true,
+        "target_token": "tok-8483c9261b56",
+        "visible_text": "road",
+        "h1870_visible_slot_count": 1,
+        "page_config_has_visible_slot_manifest": true,
+        "reader_hint_long_text_preserved_as_evidence_only": true,
+        "errors": []
+      }
+    }
+  ],
+  "assertions": {
+    "target_slot_present": true,
+    "approved_visible_text_equals_road": true,
+    "approved_by_A13": true,
+    "exactly_one_H1870_visible_slot": true,
+    "unapproved_H1870_rows_remain_NA": true,
+    "long_reader_hint_text_not_promoted": true,
+    "A10_HUD_internals_unchanged": true
+  },
+  "boundary": {
+    "validation_only": true,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_accepted_text_acceptance": false,
+    "publication_release": false
+  },
+  "stop_condition": "The H1870 Ruth road visible slot is validated at manifest and page-config level without broad H1870 promotion."
+}

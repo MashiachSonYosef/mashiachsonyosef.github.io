@@ -1,0 +1,47 @@
+{
+  "schema": "a13_visible_slot_package_check_v1",
+  "date": "2026-06-19",
+  "status": "passed",
+  "candidate_id": "h1870_road_ruth_v1",
+  "changed_surface": "visible_display_slot_manifest",
+  "artifact_type": "approved_visible_slot_layer",
+  "work_id": "ruth",
+  "target_page": "tanakh/ruth/index.html",
+  "pathspec": [
+    "data/public-hud/ruth/visible-display-slots.json",
+    "reports/a13-visible-slot-approval-h1870-road-ruth-v1-2026-06-19.json",
+    "reports/a13-visible-slot-approval-h1870-road-ruth-v1-2026-06-19.md",
+    "reports/a13-visible-slot-package-check-h1870-road-ruth-v1-2026-06-19.json",
+    "reports/a13-visible-slot-package-check-h1870-road-ruth-v1-2026-06-19.md",
+    "reports/a13-visible-slot-validation-h1870-road-ruth-v1-2026-06-19.json",
+    "reports/a13-visible-slot-validation-h1870-road-ruth-v1-2026-06-19.md",
+    "reports/a13-visible-definition-churn-rollup-2026-06-19.json"
+  ],
+  "dirty_bucket": "public_hud_visible_slot_data_plus_a13_receipts",
+  "render_frame_affected": false,
+  "A10_HUD_internals_touched": false,
+  "reader_hint_display_affected": false,
+  "raw_reader_hints_touched": false,
+  "rendered_html_diff_expected": false,
+  "rendered_html_diff_reason": "The Ruth page loads data/public-hud/ruth/visible-display-slots.json through the existing lexical config; targeted render completed without a tracked page diff.",
+  "canonical_exception_flag": false,
+  "protected_or_quarantined_work": false,
+  "rollback_path": [
+    "Remove token tok-8483c9261b56 from data/public-hud/ruth/visible-display-slots.json.",
+    "Remove the h1870 road A13 approval/package/validation receipts from reports/.",
+    "Restore the previous rollup totals if the slot is reverted."
+  ],
+  "source_boundary": {
+    "source_lane": "openscriptures_ccby",
+    "license_label": "CC BY 4.0",
+    "attribution_required": true,
+    "source_license_legal_acceptance": false
+  },
+  "validation_plan": [
+    "node scripts/validate_visible_display_slot_manifest.mjs --input=data/public-hud/ruth/visible-display-slots.json",
+    "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/render_site.ps1 -WorkIds ruth -SkipLexicalPayloadFiles -SkipOverlayExports",
+    "node scripts/validate_route_hud_page.mjs --page tanakh/ruth/index.html",
+    "custom token/page config check for exactly one H1870 visible slot"
+  ],
+  "stop_condition": "Package is coherent when the Ruth visible slot manifest validates, Ruth page validation passes, and only the exact approved H1870 token displays road."
+}
