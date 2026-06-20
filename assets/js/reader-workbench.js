@@ -357,9 +357,17 @@
       display_state: displayState,
       approved_visible_text: isApproved ? approvedText : '',
       approved_by: approvedBy,
+      source_ref: firstPresentValue([row.source_ref]),
+      source_id: firstPresentValue([row.source_id]),
+      source_lane: firstPresentValue([row.source_lane]),
+      license_label: firstPresentValue([row.license_label]),
+      a7_hud_gloss_packet_id: firstPresentValue([row.a7_hud_gloss_packet_id]),
+      a7_hud_selected_gloss_card_id: firstPresentValue([row.a7_hud_selected_gloss_card_id]),
+      a7_hud_cited_evidence_card_id: firstPresentValue([row.a7_hud_cited_evidence_card_id]),
       approval_packet_id: firstPresentValue([row.approval_packet_id]),
       wording_packet_id: firstPresentValue([row.wording_packet_id]),
       boundary_packet_id: firstPresentValue([row.boundary_packet_id]),
+      validation_packet_id: firstPresentValue([row.validation_packet_id]),
     };
   }
 
@@ -423,6 +431,14 @@
     if (!button) return null;
     if (slot?.display_state === 'approved_gloss' && slot.approved_visible_text) {
       const line = setTokenGlossDisplay(button, slot.approved_visible_text, null, false);
+      const wrap = tokenWrapFor(button);
+      const match = wrap ? wrap.querySelector('[data-match-text]') : null;
+      if (match) {
+        match.hidden = false;
+        match.textContent = 'approved';
+        match.dataset.matchText = match.textContent;
+        match.dataset.visibleDisplayState = 'approved_gloss';
+      }
       if (line) {
         line.dataset.visibleDisplayState = 'approved_gloss';
         line.dataset.approvalPacketId = slot.approval_packet_id || '';
@@ -433,6 +449,14 @@
     const line = setTokenGlossDisplay(button, '', null, true);
     if (line) line.dataset.visibleDisplayState = slot?.display_state || PREHUD_PLACEHOLDER_TEXT;
     button.dataset.visibleDisplayState = slot?.display_state || PREHUD_PLACEHOLDER_TEXT;
+    const wrap = tokenWrapFor(button);
+    const match = wrap ? wrap.querySelector('[data-match-text]') : null;
+    if (match) {
+      match.textContent = PREHUD_PLACEHOLDER_TEXT;
+      match.dataset.matchText = PREHUD_PLACEHOLDER_TEXT;
+      match.dataset.visibleDisplayState = slot?.display_state || PREHUD_PLACEHOLDER_TEXT;
+      match.hidden = true;
+    }
     return line;
   }
 
@@ -446,6 +470,79 @@
       const slot = tokenSlots.find((item) => item.display_state === 'approved_gloss') || tokenSlots[0] || null;
       applyVisibleDisplaySlotOrNA(button, slot);
     });
+  }
+
+  function isA13PresentationMode(config) {
+    return config?.hud_presentation_mode === 'a13_visible_poc';
+  }
+
+  function visibleSlotForButton(button) {
+    const slots = siteApi?.visibleDisplaySlots;
+    if (!(slots instanceof Map) || !button) return null;
+    const tokenIds = String(button.dataset.lexicalTokenIds || button.dataset.surfaceTokenId || button.dataset.lexicalIndex || '')
+      .split(/\s+/)
+      .filter(Boolean);
+    const tokenSlots = tokenIds.map((tokenId) => slots.get(tokenId)).filter(Boolean);
+    return tokenSlots.find((slot) => slot.display_state === 'approved_gloss' && slot.approved_visible_text) || tokenSlots[0] || null;
+  }
+
+  function routeCardById(cards, cardId) {
+    if (!cardId) return null;
+    return cleanValues(cards).find((card) => String(card.card_id || '') === String(cardId)) || null;
+  }
+
+  function appendA13GlossHudSection(panel, slot, selectedCard) {
+    const section = createElement('section', 'route-section-card route-answer-card a13-gloss-card');
+    const title = createElement('div', 'route-section-title');
+    title.appendChild(createElement('h3', '', 'Gloss selectable'));
+    title.appendChild(createElement('span', '', slot?.approved_visible_text ? 'A13 approved' : PREHUD_PLACEHOLDER_TEXT));
+    section.appendChild(title);
+
+    if (slot?.display_state === 'approved_gloss' && slot.approved_visible_text) {
+      section.appendChild(createElement('p', 'a13-gloss-word', slot.approved_visible_text));
+      const meta = [
+        slot.source_ref,
+        slot.source_id,
+        slot.license_label,
+        selectedCard ? `${routeScore(selectedCard)}% match` : '',
+      ].filter(Boolean).join(' | ');
+      if (meta) section.appendChild(createElement('p', 'reader-gloss-meta', meta));
+      section.appendChild(createElement('p', 'placeholder', 'Approved for this exact token scope. Evidence and source/license details remain below.'));
+    } else {
+      section.appendChild(createElement('p', 'placeholder', 'No A13-approved visible gloss for this token yet. The book-page display remains N/A.'));
+    }
+    panel.appendChild(section);
+  }
+
+  function appendA13ApprovedEvidenceSection(panel, slot, selectedCard, evidenceCard, sourceCardMap) {
+    if (!slot?.approved_visible_text || (!selectedCard && !evidenceCard)) return;
+    const section = createElement('section', 'route-section-card a13-approved-evidence');
+    const title = createElement('div', 'route-section-title');
+    title.appendChild(createElement('h3', '', 'A13 approved evidence'));
+    title.appendChild(createElement('span', '', slot.approved_visible_text));
+    section.appendChild(title);
+    const lead = createElement('p', 'placeholder', `Selected gloss: ${slot.approved_visible_text}`);
+    section.appendChild(lead);
+    if (evidenceCard) {
+      appendRouteCard(section, evidenceCard, 'evidence', 1, sourceCardMap ? sourceCardMap.get(evidenceCard) : []);
+    }
+    if (selectedCard && selectedCard !== evidenceCard) {
+      const details = createElement('details', 'route-audit-card a13-selected-card-detail');
+      details.appendChild(createElement('summary', '', 'Selectable gloss source card'));
+      appendRouteCard(details, selectedCard, 'evidence', 1, sourceCardMap ? sourceCardMap.get(selectedCard) : []);
+      section.appendChild(details);
+    }
+    panel.appendChild(section);
+  }
+
+  function appendCollapsedHudEvidence(panel, summaryText, build) {
+    const details = createElement('details', 'route-audit-card hud-collapsed-evidence');
+    details.appendChild(createElement('summary', '', summaryText));
+    const body = createElement('div', 'hud-collapsed-evidence-body');
+    build(body);
+    if (!body.childElementCount) return;
+    details.appendChild(body);
+    panel.appendChild(details);
   }
 
   function applyReaderHint(button, hint) {
@@ -1460,9 +1557,69 @@
     appendSourceFootnotes(panel, [], config);
   }
 
+  function renderA13PresentationHud(panel, button, clickedForm, normalized, visibleCards, lookupCandidates, config, tokenRow, crossmatch) {
+    const sourceNotes = buildSourceNotes(visibleCards);
+    const slot = visibleSlotForButton(button);
+    const selectedCard = routeCardById(visibleCards, slot?.a7_hud_selected_gloss_card_id);
+    const evidenceCard = routeCardById(visibleCards, slot?.a7_hud_cited_evidence_card_id);
+    const approvedCards = new Set([selectedCard, evidenceCard].filter(Boolean));
+
+    appendSelectedHudToken(panel, clickedForm || normalized || '', normalized);
+    appendA13GlossHudSection(panel, slot, selectedCard);
+    appendA13ApprovedEvidenceSection(panel, slot, selectedCard, evidenceCard, sourceNotes.cardMap);
+    appendSourceFootnotes(panel, buildSourceNotes([...approvedCards]).notes, config);
+
+    appendCollapsedHudEvidence(panel, 'Additional route evidence (hidden by default)', (body) => {
+      const generatedRows = config?.hud_hide_unvalidated_routes ? [] : lookupCandidateTreatments(lookupCandidates);
+      if (generatedRows.length) {
+        const treatment = createElement('section', 'route-treatment-card');
+        treatment.appendChild(createElement('strong', '', 'Form treatment'));
+        generatedRows.forEach((item) => treatment.appendChild(createElement('p', 'route-treatment-line', `${item.text} - ${item.note}`)));
+        body.appendChild(treatment);
+      }
+
+      const bySection = new Map();
+      visibleCards
+        .filter((card) => !approvedCards.has(card))
+        .forEach((card) => {
+          const section = routeSection(card);
+          if (!bySection.has(section)) bySection.set(section, []);
+          bySection.get(section).push(card);
+        });
+      const lemmaCards = bySection.get('lemma') || [];
+      bySection.delete('lemma');
+      appendLemmaHudSection(body, tokenRow, lemmaCards, sourceNotes.cardMap);
+
+      ['strict_hebrew', 'strict_aramaic', 'morphology', 'subphrase_evidence', 'biblical_paraphrase_evidence', 'citable_paraphrase_evidence', 'usage_evidence', 'phrase_evidence']
+        .forEach((section) => appendRouteSection(body, section, bySection.get(section) || [], sourceNotes.cardMap, {
+          appendEmpty: false,
+          emptyText: `${routeSectionTitles.get(section) || section} not found for this token.`,
+        }));
+      [...bySection.keys()]
+        .filter((section) => !routeSectionTitles.has(section))
+        .sort((a, b) => (routeSectionRank.get(a) ?? 9) - (routeSectionRank.get(b) ?? 9))
+        .forEach((section) => appendRouteSection(body, section, bySection.get(section) || [], sourceNotes.cardMap));
+
+      appendCrossmatchHudSection(body, crossmatch);
+
+      if (!config?.hud_hide_unvalidated_routes) {
+        const lookup = createElement('details', 'route-audit-card');
+        lookup.appendChild(createElement('summary', '', `Lookup keys (${lookupCandidates.length})`));
+        lookup.appendChild(createElement('p', 'placeholder', `Normalized key: ${normalized || 'N/A'} | Cards: ${visibleCards.length} | Lookup keys: ${lookupCandidates.map((item) => `${item.key}${item.relation === 'exact' ? '' : ` (${item.relation})`}`).join(', ') || 'none'}`));
+        body.appendChild(lookup);
+      }
+      appendSourceFootnotes(body, sourceNotes.notes, config);
+    });
+  }
+
   function renderRouteHudPanel(panel, button, clickedForm, normalized, cards, lookupCandidates, config, tokenRow, crossmatch) {
     panel.replaceChildren();
     const visibleCards = validatedHudCards(cards, config);
+    panel.dataset.hudPresentationMode = config?.hud_presentation_mode || '';
+    if (isA13PresentationMode(config)) {
+      renderA13PresentationHud(panel, button, clickedForm, normalized, visibleCards, lookupCandidates, config, tokenRow, crossmatch);
+      return;
+    }
     const sourceNotes = buildSourceNotes(visibleCards);
     appendSelectedHudToken(panel, clickedForm || normalized || '', normalized);
 
@@ -1680,6 +1837,11 @@
     target.scrollIntoView({ behavior: 'smooth', block: 'center' });
     target.focus({ preventScroll: true });
     target.classList.add('prehud-row-targeted');
+    try {
+      history.pushState(null, '', `#${rowId}`);
+    } catch (error) {
+      // The row still scrolls/focuses if the browser blocks hash history updates.
+    }
     window.setTimeout(() => target.classList.remove('prehud-row-targeted'), 1600);
   }
 
@@ -1937,6 +2099,15 @@
         renderWord(button);
         return;
       }
+      const prehudTrigger = event.target.closest('.prehud-gloss, .prehud-match');
+      const prehudButton = prehudTrigger
+        ? prehudTrigger.closest('.prehud-row')?.querySelector('[data-lexical-token]')
+        : null;
+      if (prehudButton) {
+        event.preventDefault();
+        renderWord(prehudButton);
+        return;
+      }
       if (!hud.hidden && !event.target.closest('[data-lexical-hud]')) closeRouteHud();
     });
     document.addEventListener('keydown', (event) => {
@@ -2085,6 +2256,7 @@
     await waitForIdle();
     const readerHints = await loadReaderHints(config);
     const visibleDisplaySlots = await loadVisibleDisplaySlots(config);
+    siteApi.visibleDisplaySlots = visibleDisplaySlots;
     const loadedOccurrences = await loadOccurrences();
     const tasks = [];
     document.querySelectorAll('[data-lexical-unit]').forEach((unit) => {

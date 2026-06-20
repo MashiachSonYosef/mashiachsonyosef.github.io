@@ -182,6 +182,20 @@ html.route-hud-open body {
   justify-self: end;
 }
 
+.prehud-match[data-visible-display-state="approved_gloss"] {
+  border-color: rgba(31, 111, 94, 0.36);
+  background: rgba(31, 111, 94, 0.08);
+  color: var(--accent);
+}
+
+body.a13-visible-poc .prehud-match[data-match-text="N/A"] {
+  display: none;
+}
+
+body.a13-visible-poc .prehud-match[data-visible-display-state="approved_gloss"] {
+  display: block;
+}
+
 .prehud-return-link {
   display: inline-block;
   color: var(--muted);
@@ -414,6 +428,43 @@ html.route-hud-open body {
 .route-answer-card {
   border-color: rgba(214, 190, 138, 0.34);
   background: rgba(214, 190, 138, 0.04);
+}
+
+.a13-gloss-card {
+  background:
+    linear-gradient(180deg, rgba(214, 190, 138, 0.09), rgba(214, 190, 138, 0.035)),
+    rgba(255, 255, 255, 0.018);
+}
+
+.a13-gloss-word {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.75rem, 6vw, 3.4rem);
+  line-height: 1;
+}
+
+.a13-approved-evidence {
+  display: grid;
+  gap: 10px;
+}
+
+.a13-selected-card-detail {
+  box-shadow: none;
+}
+
+.hud-collapsed-evidence {
+  background: rgba(255, 255, 255, 0.014);
+}
+
+.hud-collapsed-evidence summary {
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.hud-collapsed-evidence-body {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .route-section-title {
