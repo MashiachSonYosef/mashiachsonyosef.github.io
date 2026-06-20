@@ -18,10 +18,11 @@
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
     .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .site-hero { grid-template-columns: minmax(0, 1fr) minmax(190px, 0.28fr); }
     .hero-main { min-width: 0; }
     .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
     .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
-    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-summary span { padding: 0; color: var(--muted); }
     .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
     .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
     .hero-notes li { padding-left: 0.1rem; }
@@ -63,14 +64,14 @@
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
-    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
-    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 16px; align-items: start; padding: 18px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 0; border-right: 1px solid var(--line); background: transparent; padding: 4px 12px 4px 0; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
-    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.8rem; margin: 2px 0 3px; overflow-wrap: anywhere; }
     .toc-start:hover, .toc-unit:hover { color: var(--accent); }
-    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(44px, 1fr)); gap: 2px 5px; margin-top: 4px; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
     .unit[hidden] { display: none; }
@@ -89,10 +90,16 @@
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
+    .mam-kq { white-space: nowrap; }
+    .mam-kq-k, .mam-kq-trivial, .mam-spi-pe, .mam-spi-samekh { color: var(--muted); font-size: 0.86em; }
+    .mam-kq-q { color: var(--hebrew); }
     .placeholder { color: #8c857c; }
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .reader-token-wrap { display: inline-grid; grid-auto-rows: min-content; justify-items: center; align-items: start; vertical-align: baseline; gap: 0.12em; margin: 0.04em 0.1em 0.16em; max-width: min(34rem, calc(100vw - 32px)); }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .reader-token-wrap .lexical-word { margin: 0; }
+    .reader-gloss-line { display: block; direction: ltr; unicode-bidi: isolate; color: var(--muted); font-size: 0.58em; font-weight: 600; line-height: 1.22; width: max-content; max-width: min(22rem, calc(100vw - 40px)); text-align: center; white-space: normal; overflow: visible; overflow-wrap: break-word; word-break: normal; hyphens: auto; opacity: 0.88; border: 1px solid rgba(214,190,138,0.18); background: rgba(10,11,13,0.72); padding: 0.18em 0.42em 0.2em; border-radius: 4px; box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
     .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
     .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
@@ -140,19 +147,19 @@
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
     .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
-    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
-    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .toc details details { border-left: 0; padding-left: 8px; margin-left: 0; }
+    .toc summary { color: var(--accent); font-size: 0.88rem; overflow-wrap: anywhere; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
     .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
     .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .hero, .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .hero-notes { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; } .toc { position: static; max-height: none; } }
   </style>
   <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
 </head>
-<body>
+<body class="a13-visible-poc">
   <main>
     <div class="shell">
       <div class="hero" id="work-top">
@@ -163,6 +170,7 @@
             <span>4484 source units</span>
             <span>48126 HUD forms</span>
             <span>imported 2026-05-31</span>
+            <span>Words read right to left</span>
           </p>
         </div>
         <div class="hero-notes" aria-label="Header source notes">
@@ -176,10 +184,10 @@
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Permutations of Bereshit <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Permutations of Bereshit</summary>
               <a class="toc-start" href="#group-permutations-of-bereshit">Start</a>
               <details class="toc-section">
-                <summary>Permutations of Bereshit <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Permutations of Bereshit</summary>
                 <a class="toc-start" href="#section-permutations-of-bereshit-permutations-of-bereshit">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1542,10 +1550,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Bereshit <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Bereshit</summary>
               <a class="toc-start" href="#group-bereshit">Start</a>
               <details class="toc-section">
-                <summary>Bereshit <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Bereshit</summary>
                 <a class="toc-start" href="#section-bereshit-bereshit">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -5351,10 +5359,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Noach <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Noach</summary>
               <a class="toc-start" href="#group-noach">Start</a>
               <details class="toc-section">
-                <summary>Noach <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Noach</summary>
                 <a class="toc-start" href="#section-noach-noach">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -6976,10 +6984,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Lech Lecha <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Lech Lecha</summary>
               <a class="toc-start" href="#group-lech-lecha">Start</a>
               <details class="toc-section">
-                <summary>Lech Lecha <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Lech Lecha</summary>
                 <a class="toc-start" href="#section-lech-lecha-lech-lecha">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -8895,10 +8903,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Vayera <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Vayera</summary>
               <a class="toc-start" href="#group-vayera">Start</a>
               <details class="toc-section">
-                <summary>Vayera <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Vayera</summary>
                 <a class="toc-start" href="#section-vayera-vayera">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -9330,10 +9338,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Chayei Sara <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Chayei Sara</summary>
               <a class="toc-start" href="#group-chayei-sara">Start</a>
               <details class="toc-section">
-                <summary>Chayei Sara <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Chayei Sara</summary>
                 <a class="toc-start" href="#section-chayei-sara-chayei-sara">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -9709,10 +9717,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Toldot <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Toldot</summary>
               <a class="toc-start" href="#group-toldot">Start</a>
               <details class="toc-section">
-                <summary>Toldot <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Toldot</summary>
                 <a class="toc-start" href="#section-toldot-toldot">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -10207,10 +10215,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Vayetzei <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Vayetzei</summary>
               <a class="toc-start" href="#group-vayetzei">Start</a>
               <details class="toc-section">
-                <summary>Vayetzei <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Vayetzei</summary>
                 <a class="toc-start" href="#section-vayetzei-vayetzei">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -10852,10 +10860,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Vayishlach <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Vayishlach</summary>
               <a class="toc-start" href="#group-vayishlach">Start</a>
               <details class="toc-section">
-                <summary>Vayishlach <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Vayishlach</summary>
                 <a class="toc-start" href="#section-vayishlach-vayishlach">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -11301,10 +11309,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Vayeshev <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Vayeshev</summary>
               <a class="toc-start" href="#group-vayeshev">Start</a>
               <details class="toc-section">
-                <summary>Vayeshev <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Vayeshev</summary>
                 <a class="toc-start" href="#section-vayeshev-vayeshev">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -11841,10 +11849,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Miketz <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Miketz</summary>
               <a class="toc-start" href="#group-miketz">Start</a>
               <details class="toc-section">
-                <summary>Miketz <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Miketz</summary>
                 <a class="toc-start" href="#section-miketz-miketz">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12234,10 +12242,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Vayigash <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Vayigash</summary>
               <a class="toc-start" href="#group-vayigash">Start</a>
               <details class="toc-section">
-                <summary>Vayigash <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Vayigash</summary>
                 <a class="toc-start" href="#section-vayigash-vayigash">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12522,10 +12530,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Vayechi <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Vayechi</summary>
               <a class="toc-start" href="#group-vayechi">Start</a>
               <details class="toc-section">
-                <summary>Vayechi <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Vayechi</summary>
                 <a class="toc-start" href="#section-vayechi-vayechi">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12726,10 +12734,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Shemot <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Shemot</summary>
               <a class="toc-start" href="#group-shemot">Start</a>
               <details class="toc-section">
-                <summary>Shemot <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Shemot</summary>
                 <a class="toc-start" href="#section-shemot-shemot">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -12832,10 +12840,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Vaera <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Vaera</summary>
               <a class="toc-start" href="#group-vaera">Start</a>
               <details class="toc-section">
-                <summary>Vaera <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Vaera</summary>
                 <a class="toc-start" href="#section-vaera-vaera">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -13190,10 +13198,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Bo <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Bo</summary>
               <a class="toc-start" href="#group-bo">Start</a>
               <details class="toc-section">
-                <summary>Bo <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Bo</summary>
                 <a class="toc-start" href="#section-bo-bo">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -13597,10 +13605,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Beshalach <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Beshalach</summary>
               <a class="toc-start" href="#group-beshalach">Start</a>
               <details class="toc-section">
-                <summary>Beshalach <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Beshalach</summary>
                 <a class="toc-start" href="#section-beshalach-beshalach">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -14039,10 +14047,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Yitro <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Yitro</summary>
               <a class="toc-start" href="#group-yitro">Start</a>
               <details class="toc-section">
-                <summary>Yitro <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Yitro</summary>
                 <a class="toc-start" href="#section-yitro-yitro">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -14453,10 +14461,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Mishpatim <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Mishpatim</summary>
               <a class="toc-start" href="#group-mishpatim">Start</a>
               <details class="toc-section">
-                <summary>Mishpatim <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Mishpatim</summary>
                 <a class="toc-start" href="#section-mishpatim-mishpatim">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -14671,10 +14679,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Terumah <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Terumah</summary>
               <a class="toc-start" href="#group-terumah">Start</a>
               <details class="toc-section">
-                <summary>Terumah <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Terumah</summary>
                 <a class="toc-start" href="#section-terumah-terumah">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -14784,10 +14792,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Tetzaveh <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Tetzaveh</summary>
               <a class="toc-start" href="#group-tetzaveh">Start</a>
               <details class="toc-section">
-                <summary>Tetzaveh <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Tetzaveh</summary>
                 <a class="toc-start" href="#section-tetzaveh-tetzaveh">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -14960,10 +14968,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Ki Tisa <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Ki Tisa</summary>
               <a class="toc-start" href="#group-ki-tisa">Start</a>
               <details class="toc-section">
-                <summary>Ki Tisa <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ki Tisa</summary>
                 <a class="toc-start" href="#section-ki-tisa-ki-tisa">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -15213,10 +15221,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Vayakhel <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Vayakhel</summary>
               <a class="toc-start" href="#group-vayakhel">Start</a>
               <details class="toc-section">
-                <summary>Vayakhel <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Vayakhel</summary>
                 <a class="toc-start" href="#section-vayakhel-vayakhel">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -15410,10 +15418,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Pekudei <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Pekudei</summary>
               <a class="toc-start" href="#group-pekudei">Start</a>
               <details class="toc-section">
-                <summary>Pekudei <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Pekudei</summary>
                 <a class="toc-start" href="#section-pekudei-pekudei">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -15516,10 +15524,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Vayikra <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Vayikra</summary>
               <a class="toc-start" href="#group-vayikra">Start</a>
               <details class="toc-section">
-                <summary>Vayikra <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Vayikra</summary>
                 <a class="toc-start" href="#section-vayikra-vayikra">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -15706,10 +15714,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Tzav <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Tzav</summary>
               <a class="toc-start" href="#group-tzav">Start</a>
               <details class="toc-section">
-                <summary>Tzav <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Tzav</summary>
                 <a class="toc-start" href="#section-tzav-tzav">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -15763,10 +15771,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Shmini <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Shmini</summary>
               <a class="toc-start" href="#group-shmini">Start</a>
               <details class="toc-section">
-                <summary>Shmini <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Shmini</summary>
                 <a class="toc-start" href="#section-shmini-shmini">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -15855,10 +15863,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Tazria <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Tazria</summary>
               <a class="toc-start" href="#group-tazria">Start</a>
               <details class="toc-section">
-                <summary>Tazria <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Tazria</summary>
                 <a class="toc-start" href="#section-tazria-tazria">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -15989,10 +15997,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Metzora <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Metzora</summary>
               <a class="toc-start" href="#group-metzora">Start</a>
               <details class="toc-section">
-                <summary>Metzora <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Metzora</summary>
                 <a class="toc-start" href="#section-metzora-metzora">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -16074,10 +16082,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Achrei Mot <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Achrei Mot</summary>
               <a class="toc-start" href="#group-achrei-mot">Start</a>
               <details class="toc-section">
-                <summary>Achrei Mot <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Achrei Mot</summary>
                 <a class="toc-start" href="#section-achrei-mot-achrei-mot">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -16285,10 +16293,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Kedoshim <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Kedoshim</summary>
               <a class="toc-start" href="#group-kedoshim">Start</a>
               <details class="toc-section">
-                <summary>Kedoshim <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Kedoshim</summary>
                 <a class="toc-start" href="#section-kedoshim-kedoshim">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -16384,10 +16392,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Emor <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Emor</summary>
               <a class="toc-start" href="#group-emor">Start</a>
               <details class="toc-section">
-                <summary>Emor <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Emor</summary>
                 <a class="toc-start" href="#section-emor-emor">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -16427,10 +16435,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Behar <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Behar</summary>
               <a class="toc-start" href="#group-behar">Start</a>
               <details class="toc-section">
-                <summary>Behar <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Behar</summary>
                 <a class="toc-start" href="#section-behar-behar">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -16575,10 +16583,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Bechukotai <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Bechukotai</summary>
               <a class="toc-start" href="#group-bechukotai">Start</a>
               <details class="toc-section">
-                <summary>Bechukotai <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Bechukotai</summary>
                 <a class="toc-start" href="#section-bechukotai-bechukotai">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -16772,10 +16780,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Bamidbar <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Bamidbar</summary>
               <a class="toc-start" href="#group-bamidbar">Start</a>
               <details class="toc-section">
-                <summary>Bamidbar <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Bamidbar</summary>
                 <a class="toc-start" href="#section-bamidbar-bamidbar">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -16990,10 +16998,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Nasso <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Nasso</summary>
               <a class="toc-start" href="#group-nasso">Start</a>
               <details class="toc-section">
-                <summary>Nasso <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Nasso</summary>
                 <a class="toc-start" href="#section-nasso-nasso">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -17229,10 +17237,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Beha&#39;alotcha <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Beha&#39;alotcha</summary>
               <a class="toc-start" href="#group-behaalotcha">Start</a>
               <details class="toc-section">
-                <summary>Beha&#39;alotcha <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Beha&#39;alotcha</summary>
                 <a class="toc-start" href="#section-behaalotcha-behaalotcha">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -17552,10 +17560,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Sh&#39;lach <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Sh&#39;lach</summary>
               <a class="toc-start" href="#group-shlach">Start</a>
               <details class="toc-section">
-                <summary>Sh&#39;lach <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Sh&#39;lach</summary>
                 <a class="toc-start" href="#section-shlach-shlach">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -17847,10 +17855,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Korach <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Korach</summary>
               <a class="toc-start" href="#group-korach">Start</a>
               <details class="toc-section">
-                <summary>Korach <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Korach</summary>
                 <a class="toc-start" href="#section-korach-korach">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -18212,10 +18220,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Chukat <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Chukat</summary>
               <a class="toc-start" href="#group-chukat">Start</a>
               <details class="toc-section">
-                <summary>Chukat <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Chukat</summary>
                 <a class="toc-start" href="#section-chukat-chukat">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -18619,10 +18627,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Balak <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Balak</summary>
               <a class="toc-start" href="#group-balak">Start</a>
               <details class="toc-section">
-                <summary>Balak <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Balak</summary>
                 <a class="toc-start" href="#section-balak-balak">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -18914,10 +18922,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Pinchas <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Pinchas</summary>
               <a class="toc-start" href="#group-pinchas">Start</a>
               <details class="toc-section">
-                <summary>Pinchas <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Pinchas</summary>
                 <a class="toc-start" href="#section-pinchas-pinchas">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -19202,10 +19210,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Matot <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Matot</summary>
               <a class="toc-start" href="#group-matot">Start</a>
               <details class="toc-section">
-                <summary>Matot <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Matot</summary>
                 <a class="toc-start" href="#section-matot-matot">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -19539,10 +19547,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Masei <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Masei</summary>
               <a class="toc-start" href="#group-masei">Start</a>
               <details class="toc-section">
-                <summary>Masei <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Masei</summary>
                 <a class="toc-start" href="#section-masei-masei">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -19750,10 +19758,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Devarim <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Devarim</summary>
               <a class="toc-start" href="#group-devarim">Start</a>
               <details class="toc-section">
-                <summary>Devarim <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Devarim</summary>
                 <a class="toc-start" href="#section-devarim-devarim">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -20010,10 +20018,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Vaetchanan <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Vaetchanan</summary>
               <a class="toc-start" href="#group-vaetchanan">Start</a>
               <details class="toc-section">
-                <summary>Vaetchanan <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Vaetchanan</summary>
                 <a class="toc-start" href="#section-vaetchanan-vaetchanan">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -20382,10 +20390,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Eikev <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Eikev</summary>
               <a class="toc-start" href="#group-eikev">Start</a>
               <details class="toc-section">
-                <summary>Eikev <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Eikev</summary>
                 <a class="toc-start" href="#section-eikev-eikev">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -20719,10 +20727,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Re&#39;eh <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Re&#39;eh</summary>
               <a class="toc-start" href="#group-reeh">Start</a>
               <details class="toc-section">
-                <summary>Re&#39;eh <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Re&#39;eh</summary>
                 <a class="toc-start" href="#section-reeh-reeh">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -20979,10 +20987,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Shoftim <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Shoftim</summary>
               <a class="toc-start" href="#group-shoftim">Start</a>
               <details class="toc-section">
-                <summary>Shoftim <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Shoftim</summary>
                 <a class="toc-start" href="#section-shoftim-shoftim">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -21281,10 +21289,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Ki Teitzei <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Ki Teitzei</summary>
               <a class="toc-start" href="#group-ki-teitzei">Start</a>
               <details class="toc-section">
-                <summary>Ki Teitzei <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ki Teitzei</summary>
                 <a class="toc-start" href="#section-ki-teitzei-ki-teitzei">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -21415,10 +21423,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Ki Tavo <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Ki Tavo</summary>
               <a class="toc-start" href="#group-ki-tavo">Start</a>
               <details class="toc-section">
-                <summary>Ki Tavo <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Ki Tavo</summary>
                 <a class="toc-start" href="#section-ki-tavo-ki-tavo">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -21584,10 +21592,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Nitzavim <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Nitzavim</summary>
               <a class="toc-start" href="#group-nitzavim">Start</a>
               <details class="toc-section">
-                <summary>Nitzavim <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Nitzavim</summary>
                 <a class="toc-start" href="#section-nitzavim-nitzavim">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -21662,10 +21670,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Vayeilech <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Vayeilech</summary>
               <a class="toc-start" href="#group-vayeilech">Start</a>
               <details class="toc-section">
-                <summary>Vayeilech <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Vayeilech</summary>
                 <a class="toc-start" href="#section-vayeilech-vayeilech">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -21719,10 +21727,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Insights on Midrash, Targum and Rashi on Bereshit, Noach and Lech Lecha <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Insights on Midrash, Targum and Rashi on Bereshit, Noach and Lech Lecha</summary>
               <a class="toc-start" href="#group-insights-on-midrash-targum-and-rashi-on-bereshit-noach-and-lech-lecha">Start</a>
               <details class="toc-section">
-                <summary>Rashi <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Rashi</summary>
                 <a class="toc-start" href="#section-insights-on-midrash-targum-and-rashi-on-bereshit-noach-and-lech-lecha-rashi">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -21974,7 +21982,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Onkelos <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Onkelos</summary>
                 <a class="toc-start" href="#section-insights-on-midrash-targum-and-rashi-on-bereshit-noach-and-lech-lecha-onkelos">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -22160,7 +22168,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Targum Yonatan <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Targum Yonatan</summary>
                 <a class="toc-start" href="#section-insights-on-midrash-targum-and-rashi-on-bereshit-noach-and-lech-lecha-targum-yonatan">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -22475,7 +22483,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Targum Yerushalmi <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Targum Yerushalmi</summary>
                 <a class="toc-start" href="#section-insights-on-midrash-targum-and-rashi-on-bereshit-noach-and-lech-lecha-targum-yerushalmi">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -22517,7 +22525,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Midrash Rabbah <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Midrash Rabbah</summary>
                 <a class="toc-start" href="#section-insights-on-midrash-targum-and-rashi-on-bereshit-noach-and-lech-lecha-midrash-rabbah">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -23120,7 +23128,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Midrash Tanchuma <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Midrash Tanchuma</summary>
                 <a class="toc-start" href="#section-insights-on-midrash-targum-and-rashi-on-bereshit-noach-and-lech-lecha-midrash-tanchuma">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -23390,7 +23398,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Aggadat Bereshit <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Aggadat Bereshit</summary>
                 <a class="toc-start" href="#section-insights-on-midrash-targum-and-rashi-on-bereshit-noach-and-lech-lecha-aggadat-bereshit">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -23422,7 +23430,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Sheiltot <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Sheiltot</summary>
                 <a class="toc-start" href="#section-insights-on-midrash-targum-and-rashi-on-bereshit-noach-and-lech-lecha-sheiltot">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -23468,7 +23476,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>Megaleh Amukot <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Megaleh Amukot</summary>
                 <a class="toc-start" href="#section-insights-on-midrash-targum-and-rashi-on-bereshit-noach-and-lech-lecha-megaleh-amukot">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -103158,7 +103166,7 @@
     </div>
   </section>
   <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/agra-dekala.json">{}</script>
-  <script type="application/json" data-lexical-config>{"work_id":"agra-dekala","work_slug":"chasidut/agra-dekala","work_title":"Agra DeKala","manifest_url":"../../data/lexical/agra-dekala.manifest.json","occurrence_url":"../../data/lexical/occurrences/agra-dekala.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows","reader_hint_url":"../../data/lexical/reader-hints/agra-dekala.json","hud_allow_lemma_only":true}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"agra-dekala","work_slug":"chasidut/agra-dekala","work_title":"Agra DeKala","manifest_url":"../../data/lexical/agra-dekala.manifest.json","occurrence_url":"../../data/lexical/occurrences/agra-dekala.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","reader_hints_url":"../../data/lexical/reader-hints/agra-dekala.json","visible_display_slot_manifest_url":"../../data/public-hud/agra-dekala/visible-display-slots.json","reader_layout_mode":"prehud_rows","hud_presentation_mode":"a13_visible_poc","root_href":"../../"}</script>
   <script type="text/plain" data-hud-runtime-contract>
     selectRouteAnswer
     lookupCandidateTreatments
@@ -103193,6 +103201,6 @@
     Escape
     hud.focus
   </script>
-  <script src="../../assets/js/reader-workbench.js?v=visible-na-3916cf24"></script>
+  <script src="../../assets/js/reader-workbench.js?v=a13-visible-20260620a"></script>
 </body>
 </html>

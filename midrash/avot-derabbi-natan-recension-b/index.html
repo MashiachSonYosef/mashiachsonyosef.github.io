@@ -18,10 +18,11 @@
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
     .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .site-hero { grid-template-columns: minmax(0, 1fr) minmax(190px, 0.28fr); }
     .hero-main { min-width: 0; }
     .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
     .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
-    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-summary span { padding: 0; color: var(--muted); }
     .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
     .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
     .hero-notes li { padding-left: 0.1rem; }
@@ -63,14 +64,14 @@
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
-    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
-    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 16px; align-items: start; padding: 18px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 0; border-right: 1px solid var(--line); background: transparent; padding: 4px 12px 4px 0; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
     .toc a { text-decoration: none; font-size: 0.94rem; }
-    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.8rem; margin: 2px 0 3px; overflow-wrap: anywhere; }
     .toc-start:hover, .toc-unit:hover { color: var(--accent); }
-    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(44px, 1fr)); gap: 2px 5px; margin-top: 4px; }
     .section-block { margin-bottom: 10px; }
     .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
     .unit[hidden] { display: none; }
@@ -89,10 +90,16 @@
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
+    .mam-kq { white-space: nowrap; }
+    .mam-kq-k, .mam-kq-trivial, .mam-spi-pe, .mam-spi-samekh { color: var(--muted); font-size: 0.86em; }
+    .mam-kq-q { color: var(--hebrew); }
     .placeholder { color: #8c857c; }
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .reader-token-wrap { display: inline-grid; grid-auto-rows: min-content; justify-items: center; align-items: start; vertical-align: baseline; gap: 0.12em; margin: 0.04em 0.1em 0.16em; max-width: min(34rem, calc(100vw - 32px)); }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .reader-token-wrap .lexical-word { margin: 0; }
+    .reader-gloss-line { display: block; direction: ltr; unicode-bidi: isolate; color: var(--muted); font-size: 0.58em; font-weight: 600; line-height: 1.22; width: max-content; max-width: min(22rem, calc(100vw - 40px)); text-align: center; white-space: normal; overflow: visible; overflow-wrap: break-word; word-break: normal; hyphens: auto; opacity: 0.88; border: 1px solid rgba(214,190,138,0.18); background: rgba(10,11,13,0.72); padding: 0.18em 0.42em 0.2em; border-radius: 4px; box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
     .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
     .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
@@ -140,19 +147,19 @@
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
     summary { cursor: pointer; color: var(--accent); }
     .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
-    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
-    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .toc details details { border-left: 0; padding-left: 8px; margin-left: 0; }
+    .toc summary { color: var(--accent); font-size: 0.88rem; overflow-wrap: anywhere; }
     .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
     .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
     .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .hero, .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .hero-notes { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; } .toc { position: static; max-height: none; } }
   </style>
   <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
 </head>
-<body>
+<body class="a13-visible-poc">
   <main>
     <div class="shell">
       <div class="hero" id="work-top">
@@ -163,6 +170,7 @@
             <span>626 source units</span>
             <span>9914 HUD forms</span>
             <span>imported 2026-06-01</span>
+            <span>Words read right to left</span>
           </p>
         </div>
         <div class="hero-notes" aria-label="Header source notes">
@@ -176,10 +184,10 @@
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>default <span class="hud-badge">Route HUD active</span></summary>
+              <summary>default</summary>
               <a class="toc-start" href="#group-default">Start</a>
               <details class="toc-section">
-                <summary>default <span class="hud-badge">Route HUD active</span></summary>
+                <summary>default</summary>
                 <a class="toc-start" href="#section-default-default">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -972,10 +980,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Addition to Recension I <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Addition to Recension I</summary>
               <a class="toc-start" href="#group-addition-to-recension-i">Start</a>
               <details class="toc-section">
-                <summary>Addition to Recension I <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Addition to Recension I</summary>
                 <a class="toc-start" href="#section-addition-to-recension-i-addition-to-recension-i">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1155,10 +1163,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Addition IV <span class="hud-badge">Route HUD active</span></summary>
+              <summary>Addition IV</summary>
               <a class="toc-start" href="#group-addition-iv">Start</a>
               <details class="toc-section">
-                <summary>Addition IV <span class="hud-badge">Route HUD active</span></summary>
+                <summary>Addition IV</summary>
                 <a class="toc-start" href="#section-addition-iv-addition-iv">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -11304,7 +11312,7 @@
     </div>
   </section>
   <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/avot-derabbi-natan-recension-b.json">{}</script>
-  <script type="application/json" data-lexical-config>{"work_id":"avot-derabbi-natan-recension-b","work_slug":"midrash/avot-derabbi-natan-recension-b","work_title":"Avot DeRabbi Natan, Recension B","manifest_url":"../../data/lexical/avot-derabbi-natan-recension-b.manifest.json","occurrence_url":"../../data/lexical/occurrences/avot-derabbi-natan-recension-b.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows","reader_hint_url":"../../data/lexical/reader-hints/avot-derabbi-natan-recension-b.json","hud_allow_lemma_only":true}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"avot-derabbi-natan-recension-b","work_slug":"midrash/avot-derabbi-natan-recension-b","work_title":"Avot DeRabbi Natan, Recension B","manifest_url":"../../data/lexical/avot-derabbi-natan-recension-b.manifest.json","occurrence_url":"../../data/lexical/occurrences/avot-derabbi-natan-recension-b.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","reader_hints_url":"../../data/lexical/reader-hints/avot-derabbi-natan-recension-b.json","visible_display_slot_manifest_url":"../../data/public-hud/avot-derabbi-natan-recension-b/visible-display-slots.json","reader_layout_mode":"prehud_rows","hud_presentation_mode":"a13_visible_poc","root_href":"../../"}</script>
   <script type="text/plain" data-hud-runtime-contract>
     selectRouteAnswer
     lookupCandidateTreatments
@@ -11339,6 +11347,6 @@
     Escape
     hud.focus
   </script>
-  <script src="../../assets/js/reader-workbench.js?v=visible-na-3916cf24"></script>
+  <script src="../../assets/js/reader-workbench.js?v=a13-visible-20260620a"></script>
 </body>
 </html>
