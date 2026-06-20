@@ -436,10 +436,23 @@ body.a13-visible-poc .prehud-match[data-visible-display-state="approved_gloss"] 
     rgba(255, 255, 255, 0.018);
 }
 
+body.a13-visible-poc .hud-head h2 {
+  font-size: 0.96rem;
+}
+
+body.a13-visible-poc .route-selected-token {
+  padding: 9px 12px;
+  font-size: clamp(1.9rem, 10vw, 3.15rem);
+}
+
+body.a13-visible-poc .hud-token-key {
+  font-size: 0.72rem;
+}
+
 .a13-gloss-word {
   margin: 0;
   color: var(--text);
-  font-size: clamp(1.75rem, 6vw, 3.4rem);
+  font-size: clamp(1.65rem, 8vw, 2.65rem);
   line-height: 1;
 }
 
@@ -448,23 +461,65 @@ body.a13-visible-poc .prehud-match[data-visible-display-state="approved_gloss"] 
   gap: 10px;
 }
 
-.a13-selected-card-detail {
-  box-shadow: none;
-}
-
-.hud-collapsed-evidence {
-  background: rgba(255, 255, 255, 0.014);
-}
-
-.hud-collapsed-evidence summary {
-  color: var(--accent);
-  cursor: pointer;
-}
-
-.hud-collapsed-evidence-body {
+.a13-evidence-summary {
   display: grid;
+  gap: 5px;
+  border: 1px solid rgba(214, 190, 138, 0.18);
+  background: rgba(255, 255, 255, 0.016);
+  padding: 9px 10px;
+}
+
+.a13-evidence-hebrew {
+  color: var(--hebrew);
+  direction: rtl;
+  text-align: right;
+  font-size: 1.08rem;
+  line-height: 1.25;
+}
+
+.a13-evidence-gloss {
+  color: var(--text);
+  font-size: 1.12rem;
+  line-height: 1.25;
+}
+
+.a13-evidence-meta,
+.a13-check-status {
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.25;
+}
+
+.a13-display-checks {
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.a13-check-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.a13-check-list li {
+  display: flex;
+  justify-content: space-between;
   gap: 10px;
-  margin-top: 10px;
+  border-top: 1px solid rgba(214, 190, 138, 0.09);
+  padding-top: 4px;
+}
+
+.a13-check-label {
+  color: var(--accent);
+  font-size: 0.74rem;
+  line-height: 1.25;
+}
+
+body.a13-visible-poc .source-footnotes {
+  margin-top: 4px;
+  padding: 8px 10px;
 }
 
 .route-section-title {

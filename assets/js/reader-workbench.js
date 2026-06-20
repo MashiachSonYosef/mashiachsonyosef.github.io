@@ -494,8 +494,8 @@
   function appendA13GlossHudSection(panel, slot, selectedCard) {
     const section = createElement('section', 'route-section-card route-answer-card a13-gloss-card');
     const title = createElement('div', 'route-section-title');
-    title.appendChild(createElement('h3', '', 'Gloss selectable'));
-    title.appendChild(createElement('span', '', slot?.approved_visible_text ? 'A13 approved' : PREHUD_PLACEHOLDER_TEXT));
+    title.appendChild(createElement('h3', '', 'Gloss'));
+    title.appendChild(createElement('span', '', slot?.approved_visible_text ? 'approved' : PREHUD_PLACEHOLDER_TEXT));
     section.appendChild(title);
 
     if (slot?.display_state === 'approved_gloss' && slot.approved_visible_text) {
@@ -507,9 +507,8 @@
         selectedCard ? `${routeScore(selectedCard)}% match` : '',
       ].filter(Boolean).join(' | ');
       if (meta) section.appendChild(createElement('p', 'reader-gloss-meta', meta));
-      section.appendChild(createElement('p', 'placeholder', 'Approved for this exact token scope. Evidence and source/license details remain below.'));
     } else {
-      section.appendChild(createElement('p', 'placeholder', 'No A13-approved visible gloss for this token yet. The book-page display remains N/A.'));
+      section.appendChild(createElement('p', 'placeholder', 'No approved gloss yet. The book-page display remains N/A.'));
     }
     panel.appendChild(section);
   }
@@ -518,31 +517,46 @@
     if (!slot?.approved_visible_text || (!selectedCard && !evidenceCard)) return;
     const section = createElement('section', 'route-section-card a13-approved-evidence');
     const title = createElement('div', 'route-section-title');
-    title.appendChild(createElement('h3', '', 'A13 approved evidence'));
+    title.appendChild(createElement('h3', '', 'Approved evidence'));
     title.appendChild(createElement('span', '', slot.approved_visible_text));
     section.appendChild(title);
-    const lead = createElement('p', 'placeholder', `Selected gloss: ${slot.approved_visible_text}`);
-    section.appendChild(lead);
-    if (evidenceCard) {
-      appendRouteCard(section, evidenceCard, 'evidence', 1, sourceCardMap ? sourceCardMap.get(evidenceCard) : []);
-    }
-    if (selectedCard && selectedCard !== evidenceCard) {
-      const details = createElement('details', 'route-audit-card a13-selected-card-detail');
-      details.appendChild(createElement('summary', '', 'Selectable gloss source card'));
-      appendRouteCard(details, selectedCard, 'evidence', 1, sourceCardMap ? sourceCardMap.get(selectedCard) : []);
-      section.appendChild(details);
-    }
+    const evidence = evidenceCard || selectedCard;
+    const sourceIndexes = sourceCardMap ? sourceCardMap.get(evidence) || [] : [];
+    const row = createElement('div', 'a13-evidence-summary');
+    row.appendChild(createElement('span', 'a13-evidence-hebrew', firstPresentValue([evidence?.hebrew, evidence?.surface, evidence?.headword]) || ''));
+    row.appendChild(createElement('span', 'a13-evidence-gloss', slot.approved_visible_text));
+    const meta = [
+      evidence ? `${routeScore(evidence)}% match` : '',
+      routeSectionTitles.get(routeSection(evidence)) || routeSection(evidence),
+      sourceIndexes.length ? `sources ${sourceIndexes.join(', ')}` : '',
+    ].filter(Boolean).join(' | ');
+    if (meta) row.appendChild(createElement('span', 'a13-evidence-meta', meta));
+    section.appendChild(row);
     panel.appendChild(section);
   }
 
-  function appendCollapsedHudEvidence(panel, summaryText, build) {
-    const details = createElement('details', 'route-audit-card hud-collapsed-evidence');
-    details.appendChild(createElement('summary', '', summaryText));
-    const body = createElement('div', 'hud-collapsed-evidence-body');
-    build(body);
-    if (!body.childElementCount) return;
-    details.appendChild(body);
-    panel.appendChild(details);
+  function appendA13DisplayChecks(panel, hasApprovedGloss) {
+    const section = createElement('section', 'route-audit-card a13-display-checks');
+    const title = createElement('div', 'route-section-title');
+    title.appendChild(createElement('h3', '', 'Display checks'));
+    title.appendChild(createElement('span', '', 'checked'));
+    section.appendChild(title);
+    const list = createElement('ul', 'a13-check-list');
+    [
+      ['Gloss approval', hasApprovedGloss ? 'shown' : 'N/A'],
+      ['Strict Hebrew', 'checked; no approved display item'],
+      ['Strict Aramaic', 'checked; no approved display item'],
+      ['Word breakdown', 'checked; no approved display item'],
+      ['Lemma', 'checked; no approved display item'],
+      ['Same form elsewhere', 'checked; no approved display item'],
+    ].forEach(([label, status]) => {
+      const item = createElement('li');
+      item.appendChild(createElement('span', 'a13-check-label', label));
+      item.appendChild(createElement('span', 'a13-check-status', status));
+      list.appendChild(item);
+    });
+    section.appendChild(list);
+    panel.appendChild(section);
   }
 
   function applyReaderHint(button, hint) {
@@ -1568,48 +1582,7 @@
     appendA13GlossHudSection(panel, slot, selectedCard);
     appendA13ApprovedEvidenceSection(panel, slot, selectedCard, evidenceCard, sourceNotes.cardMap);
     appendSourceFootnotes(panel, buildSourceNotes([...approvedCards]).notes, config);
-
-    appendCollapsedHudEvidence(panel, 'Additional route evidence (hidden by default)', (body) => {
-      const generatedRows = config?.hud_hide_unvalidated_routes ? [] : lookupCandidateTreatments(lookupCandidates);
-      if (generatedRows.length) {
-        const treatment = createElement('section', 'route-treatment-card');
-        treatment.appendChild(createElement('strong', '', 'Form treatment'));
-        generatedRows.forEach((item) => treatment.appendChild(createElement('p', 'route-treatment-line', `${item.text} - ${item.note}`)));
-        body.appendChild(treatment);
-      }
-
-      const bySection = new Map();
-      visibleCards
-        .filter((card) => !approvedCards.has(card))
-        .forEach((card) => {
-          const section = routeSection(card);
-          if (!bySection.has(section)) bySection.set(section, []);
-          bySection.get(section).push(card);
-        });
-      const lemmaCards = bySection.get('lemma') || [];
-      bySection.delete('lemma');
-      appendLemmaHudSection(body, tokenRow, lemmaCards, sourceNotes.cardMap);
-
-      ['strict_hebrew', 'strict_aramaic', 'morphology', 'subphrase_evidence', 'biblical_paraphrase_evidence', 'citable_paraphrase_evidence', 'usage_evidence', 'phrase_evidence']
-        .forEach((section) => appendRouteSection(body, section, bySection.get(section) || [], sourceNotes.cardMap, {
-          appendEmpty: false,
-          emptyText: `${routeSectionTitles.get(section) || section} not found for this token.`,
-        }));
-      [...bySection.keys()]
-        .filter((section) => !routeSectionTitles.has(section))
-        .sort((a, b) => (routeSectionRank.get(a) ?? 9) - (routeSectionRank.get(b) ?? 9))
-        .forEach((section) => appendRouteSection(body, section, bySection.get(section) || [], sourceNotes.cardMap));
-
-      appendCrossmatchHudSection(body, crossmatch);
-
-      if (!config?.hud_hide_unvalidated_routes) {
-        const lookup = createElement('details', 'route-audit-card');
-        lookup.appendChild(createElement('summary', '', `Lookup keys (${lookupCandidates.length})`));
-        lookup.appendChild(createElement('p', 'placeholder', `Normalized key: ${normalized || 'N/A'} | Cards: ${visibleCards.length} | Lookup keys: ${lookupCandidates.map((item) => `${item.key}${item.relation === 'exact' ? '' : ` (${item.relation})`}`).join(', ') || 'none'}`));
-        body.appendChild(lookup);
-      }
-      appendSourceFootnotes(body, sourceNotes.notes, config);
-    });
+    appendA13DisplayChecks(panel, Boolean(slot?.approved_visible_text));
   }
 
   function renderRouteHudPanel(panel, button, clickedForm, normalized, cards, lookupCandidates, config, tokenRow, crossmatch) {
@@ -2064,12 +2037,12 @@
     const fallbackForm = button.dataset.lexicalSurface || button.textContent.trim();
     const fallbackNormalized = normalizeHebrewKey(fallbackForm);
     const title = hud.querySelector('#route-hud-title');
-    if (title) title.textContent = `Route HUD: ${normalizeHebrewDisplay(fallbackForm || '')}`;
+    if (title) title.textContent = isA13PresentationMode(siteApi.config) ? 'Study gloss' : `Route HUD: ${normalizeHebrewDisplay(fallbackForm || '')}`;
     if (panel) renderStudyHudFrame(panel, fallbackForm, fallbackNormalized, {}, null, siteApi.config);
     try {
       const tokenRow = await siteApi.loadTokenRow(button.dataset.lexicalIndex);
       const clickedForm = fallbackForm || tokenRow.hebrew_word || tokenRow.surface_word || button.textContent.trim();
-      if (title) title.textContent = `Route HUD: ${normalizeHebrewDisplay(clickedForm || '')}`;
+      if (title) title.textContent = isA13PresentationMode(siteApi.config) ? 'Study gloss' : `Route HUD: ${normalizeHebrewDisplay(clickedForm || '')}`;
       const clickedNormalized = normalizeHebrewKey(clickedForm);
       const rowSurfaceNormalized = normalizeHebrewKey(tokenRow.surface_word || '');
       const normalized = rowSurfaceNormalized && rowSurfaceNormalized === clickedNormalized ? (tokenRow.normalized_word || clickedNormalized) : clickedNormalized;
