@@ -2038,7 +2038,13 @@
     const fallbackNormalized = normalizeHebrewKey(fallbackForm);
     const title = hud.querySelector('#route-hud-title');
     if (title) title.textContent = isA13PresentationMode(siteApi.config) ? 'Study gloss' : `Route HUD: ${normalizeHebrewDisplay(fallbackForm || '')}`;
-    if (panel) renderStudyHudFrame(panel, fallbackForm, fallbackNormalized, {}, null, siteApi.config);
+    if (panel) {
+      if (isA13PresentationMode(siteApi.config)) {
+        renderA13PresentationHud(panel, button, fallbackForm, fallbackNormalized, [], [], siteApi.config, {}, null);
+      } else {
+        renderStudyHudFrame(panel, fallbackForm, fallbackNormalized, {}, null, siteApi.config);
+      }
+    }
     try {
       const tokenRow = await siteApi.loadTokenRow(button.dataset.lexicalIndex);
       const clickedForm = fallbackForm || tokenRow.hebrew_word || tokenRow.surface_word || button.textContent.trim();
@@ -2057,7 +2063,13 @@
       positionHudNearButton(button);
     } catch (error) {
       console.error(error);
-      if (panel) renderStudyHudFrame(panel, fallbackForm, fallbackNormalized, {}, null, siteApi.config);
+      if (panel) {
+        if (isA13PresentationMode(siteApi.config)) {
+          renderA13PresentationHud(panel, button, fallbackForm, fallbackNormalized, [], [], siteApi.config, {}, null);
+        } else {
+          renderStudyHudFrame(panel, fallbackForm, fallbackNormalized, {}, null, siteApi.config);
+        }
+      }
       positionHudNearButton(button);
     }
   }
