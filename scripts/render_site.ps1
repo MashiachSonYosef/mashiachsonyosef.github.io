@@ -692,7 +692,8 @@ function Append-SiteHead {
     [System.Text.StringBuilder]$Builder,
     [string]$Title,
     [switch]$IncludeLexicalStyles,
-    [string]$ReaderWorkbenchCssHref = ''
+    [string]$ReaderWorkbenchCssHref = '',
+    [string]$BodyClass = ''
   )
 
   [void]$Builder.AppendLine('<!DOCTYPE html>')
@@ -715,6 +716,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }')
   [void]$Builder.AppendLine('    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }')
   [void]$Builder.AppendLine('    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }')
+  [void]$Builder.AppendLine('    .site-hero { grid-template-columns: minmax(0, 1fr) minmax(190px, 0.28fr); }')
   [void]$Builder.AppendLine('    .hero-main { min-width: 0; }')
   [void]$Builder.AppendLine('    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }')
   [void]$Builder.AppendLine('    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }')
@@ -854,16 +856,17 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .paired-panel p { margin: 6px 0 0; }')
   [void]$Builder.AppendLine('    .paired-panel a { color: var(--accent); }')
   if ($IncludeLexicalStyles) {
-    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
+    [void]$Builder.AppendLine('    @media (max-width: 900px) { .hero, .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .hero-notes { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; } .toc { position: static; max-height: none; } }')
   } else {
-  [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
+  [void]$Builder.AppendLine('    @media (max-width: 900px) { .hero, .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .hero-notes { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; } .toc { position: static; max-height: none; } }')
   }
   [void]$Builder.AppendLine('  </style>')
   if ($ReaderWorkbenchCssHref) {
     [void]$Builder.AppendLine("  <link rel=""stylesheet"" href=""$(Encode-Html $ReaderWorkbenchCssHref)"">")
   }
   [void]$Builder.AppendLine('</head>')
-  [void]$Builder.AppendLine('<body>')
+  $bodyClassAttr = if ($BodyClass) { " class=""$(Encode-Html $BodyClass)""" } else { '' }
+  [void]$Builder.AppendLine("<body$bodyClassAttr>")
 }
 
 function Append-LexicalHudScript {
@@ -1945,6 +1948,8 @@ function Write-WorkLexicalPayloadFiles {
     hud_route_lookup_manifest_url = "$($RootHref)data/definitions/hud-route-lookup/manifest.json"
     reader_hints_url = Get-ReaderHintsUrl -WorkId $WorkId -RootHref $RootHref
     visible_display_slot_manifest_url = Get-VisibleDisplaySlotManifestUrl -WorkId $WorkId -RootHref $RootHref
+    reader_layout_mode = "prehud_rows"
+    hud_presentation_mode = "a13_visible_poc"
     root_href = $RootHref
   }
 }
@@ -2470,12 +2475,17 @@ function New-LibraryPageHtml {
   Append-SiteHead -Builder $page -Title 'Hebrew Source Workbench'
   [void]$page.AppendLine('  <main>')
   [void]$page.AppendLine('    <div class="shell">')
-  [void]$page.AppendLine('      <div class="hero">')
-  [void]$page.AppendLine("        <p class=""crumbs""><a href=""$HomeHref"">Library</a> &middot; <a href=""$AboutHref"">About / License</a></p>")
-  [void]$page.AppendLine('        <h1>Hebrew Source Workbench</h1>')
-  [void]$page.AppendLine('        <p>Browse imported Hebrew source texts by corpus with route HUD support. Work pages preserve source/version/license metadata and expose book-local token and route-card data when available.</p>')
-  [void]$page.AppendLine('        <p>No public English translation layer is displayed here; route rows are source-indexed study evidence.</p>')
-  [void]$page.AppendLine("        <p class=""meta"">$corpusSummary</p>")
+  [void]$page.AppendLine('      <div class="hero site-hero">')
+  [void]$page.AppendLine('        <div class="hero-main">')
+  [void]$page.AppendLine("          <p class=""crumbs""><a href=""$HomeHref"">Library</a> &middot; <a href=""$AboutHref"">About / License</a></p>")
+  [void]$page.AppendLine('          <h1>Hebrew Source Workbench</h1>')
+  [void]$page.AppendLine('          <p>Browse imported Hebrew source texts by corpus with route HUD support. Work pages preserve source/version/license metadata and expose book-local token and route-card data when available.</p>')
+  [void]$page.AppendLine('          <p>No public English translation layer is displayed here; route rows are source-indexed study evidence.</p>')
+  [void]$page.AppendLine('        </div>')
+  [void]$page.AppendLine('        <div class="hero-notes" aria-label="Library status">')
+  [void]$page.AppendLine("          <p class=""meta"">$corpusSummary</p>")
+  [void]$page.AppendLine('          <p>Book pages use the Ruth fallback HUD frame: approved glosses are shown; unapproved rows fail closed.</p>')
+  [void]$page.AppendLine('        </div>')
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('      <div style="padding:22px">')
   [void]$page.AppendLine('        <div class="library-tools" role="search">')
@@ -2636,6 +2646,7 @@ foreach ($source in $renderSources) {
         reader_hints_url = Get-ReaderHintsUrl -WorkId $source.work_id -RootHref $rootHref
         visible_display_slot_manifest_url = Get-VisibleDisplaySlotManifestUrl -WorkId $source.work_id -RootHref $rootHref
         reader_layout_mode = "prehud_rows"
+        hud_presentation_mode = "a13_visible_poc"
         root_href = $assetRoot
       }
     } else {
@@ -2664,7 +2675,8 @@ foreach ($source in $renderSources) {
   }
 
   $readerWorkbenchCssHref = if ($workHasLexical) { "$($rootHref)assets/css/reader-workbench.css" } else { '' }
-  Append-SiteHead -Builder $page -Title $source.work_title -IncludeLexicalStyles:$workHasLexical -ReaderWorkbenchCssHref $readerWorkbenchCssHref
+  $bodyClass = if ($workHasLexical) { 'a13-visible-poc' } else { '' }
+  Append-SiteHead -Builder $page -Title $source.work_title -IncludeLexicalStyles:$workHasLexical -ReaderWorkbenchCssHref $readerWorkbenchCssHref -BodyClass $bodyClass
   [void]$page.AppendLine('  <main>')
   [void]$page.AppendLine('    <div class="shell">')
   [void]$page.AppendLine('      <div class="hero" id="work-top">')
@@ -2863,6 +2875,7 @@ foreach ($source in $renderSources) {
         reader_hints_url = Get-ReaderHintsUrl -WorkId $source.work_id -RootHref $rootHref
         visible_display_slot_manifest_url = Get-VisibleDisplaySlotManifestUrl -WorkId $source.work_id -RootHref $rootHref
         reader_layout_mode = "prehud_rows"
+        hud_presentation_mode = "a13_visible_poc"
       }) -Depth 10 -Compress) -replace '</script', '<\/script'
       [void]$page.AppendLine("  <script type=""application/json"" data-lexical-config>$lexicalConfigJson</script>")
       $tokenIndexJson = (ConvertTo-Json -InputObject $workLexicalPayload.token_index -Depth 30 -Compress) -replace '</script', '<\/script'
@@ -2911,7 +2924,7 @@ foreach ($source in $renderSources) {
       [void]$page.AppendLine("    $marker")
     }
     [void]$page.AppendLine('  </script>')
-    [void]$page.AppendLine("  <script src=""$($rootHref)assets/js/reader-workbench.js?v=visible-na-3916cf24""></script>")
+    [void]$page.AppendLine("  <script src=""$($rootHref)assets/js/reader-workbench.js?v=a13-visible-20260620a""></script>")
   }
   [void]$page.AppendLine('</body>')
   [void]$page.AppendLine('</html>')
