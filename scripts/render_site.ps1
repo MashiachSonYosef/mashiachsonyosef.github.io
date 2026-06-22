@@ -762,8 +762,8 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }')
   [void]$Builder.AppendLine('    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }')
   [void]$Builder.AppendLine('    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }')
-  [void]$Builder.AppendLine('    .reader-shell { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 16px; align-items: start; padding: 18px; min-width: 0; max-width: 100%; }')
-  [void]$Builder.AppendLine('    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 0; border-right: 1px solid var(--line); background: transparent; padding: 4px 12px 4px 0; }')
+  [void]$Builder.AppendLine('    .reader-shell { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; padding: 18px; min-width: 0; max-width: 100%; }')
+  [void]$Builder.AppendLine('    .toc { position: relative; top: auto; max-height: min(28vh, 12rem); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 8px 10px; }')
   [void]$Builder.AppendLine('    .toc ul { list-style: none; padding: 0; margin: 0; }')
   [void]$Builder.AppendLine('    .toc li { margin: 0 0 7px; }')
   [void]$Builder.AppendLine('    .toc a { text-decoration: none; font-size: 0.94rem; }')
@@ -856,9 +856,9 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .paired-panel p { margin: 6px 0 0; }')
   [void]$Builder.AppendLine('    .paired-panel a { color: var(--accent); }')
   if ($IncludeLexicalStyles) {
-    [void]$Builder.AppendLine('    @media (max-width: 900px) { .hero, .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .hero-notes { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; } .toc { position: static; max-height: none; } }')
+    [void]$Builder.AppendLine('    @media (max-width: 900px) { .hero, .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .hero-notes { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; } .toc { position: static; max-height: min(34vh, 14rem); } }')
   } else {
-  [void]$Builder.AppendLine('    @media (max-width: 900px) { .hero, .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .hero-notes { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; } .toc { position: static; max-height: none; } }')
+  [void]$Builder.AppendLine('    @media (max-width: 900px) { .hero, .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .hero-notes { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; } .toc { position: static; max-height: min(34vh, 14rem); } }')
   }
   [void]$Builder.AppendLine('  </style>')
   if ($ReaderWorkbenchCssHref) {
