@@ -461,10 +461,9 @@ h1 {
 
 .component-lanes {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: clamp(500px, 43vw, 660px);
+  grid-template-columns: repeat(4, minmax(360px, 1fr));
   gap: 10px;
-  min-width: max-content;
+  min-width: max(100%, 1470px);
   padding-bottom: 8px;
 }
 
@@ -473,7 +472,8 @@ h1 {
   grid-template-columns: minmax(174px, 32%) minmax(0, 68%);
   grid-template-rows: 94px minmax(236px, 1fr);
   gap: 8px;
-  min-width: 500px;
+  grid-column: span var(--span-width, 1);
+  min-width: 0;
   border-radius: 14px;
   background: linear-gradient(135deg, rgba(255, 214, 90, 0.055), rgba(50, 18, 84, 0.35));
 }
