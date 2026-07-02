@@ -23,6 +23,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          sparse-checkout: |
+            .nojekyll
+            404.html
+            index.html
+            poc-enrichment-summary.json
+            assets
+            torah
+          sparse-checkout-cone-mode: false
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
