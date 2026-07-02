@@ -118,7 +118,69 @@
     selectRow(row);
   }
 
+  function updateSelectedGlossFromHud(row) {
+    const hud = row.querySelector('.comp-hud-set.is-active');
+    const selected = row.querySelector('[data-selected-comp-cells]');
+    if (!hud || !selected) return;
+    const cells = Array.from(hud.querySelectorAll('.hud-component-column'));
+    selected.replaceChildren();
+    selected.dataset.cellCount = String(Math.max(1, cells.length));
+    cells.forEach((cell, index) => {
+      const route = cell.querySelector('.route-option.is-active');
+      const fallback = cell.querySelector('[data-component-match-score]');
+      const value = route?.dataset.routeValue || fallback?.textContent || 'N/A';
+      const piece = document.createElement('span');
+      piece.className = 'selected-piece';
+      piece.dataset.selectedRouteCell = route?.dataset.routeCell || cell.dataset.componentPart || String(index + 1);
+      piece.textContent = value;
+      selected.append(piece);
+    });
+  }
+
+  function activateCompOption(button) {
+    const row = button.closest('.word-row');
+    if (!row) return;
+    const optionId = button.dataset.compOptionId || '';
+    row.querySelectorAll('.comp-option').forEach((item) => item.classList.remove('is-active'));
+    button.classList.add('is-active');
+    row.querySelectorAll('.comp-hud-set').forEach((set) => {
+      set.classList.toggle('is-active', set.dataset.compOptionId === optionId);
+    });
+    updateSelectedGlossFromHud(row);
+    selectRow(row);
+  }
+
+  function activateRoute(button) {
+    const cell = button.closest('.hud-component-column');
+    const row = button.closest('.word-row');
+    if (!cell || !row) return;
+    cell.querySelectorAll('.route-option').forEach((item) => item.classList.remove('is-active'));
+    button.classList.add('is-active');
+    const value = button.dataset.routeValue || button.textContent || 'N/A';
+    const score = cell.querySelector('[data-component-match-score]');
+    if (score) score.textContent = value;
+    const basis = cell.querySelector('[data-component-match-basis]');
+    if (basis) {
+      const subject = cell.querySelector('.match-status strong')?.textContent || 'component';
+      basis.textContent = `${subject} is selected here as ${value}.`;
+    }
+    updateSelectedGlossFromHud(row);
+    selectRow(row);
+  }
+
   document.addEventListener('click', (event) => {
+    const compOption = event.target.closest('.comp-option');
+    if (compOption) {
+      activateCompOption(compOption);
+      return;
+    }
+
+    const routeOption = event.target.closest('.route-option');
+    if (routeOption) {
+      activateRoute(routeOption);
+      return;
+    }
+
     const option = event.target.closest('.gloss-option');
     if (option) activateGloss(option);
 
