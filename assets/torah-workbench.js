@@ -76,8 +76,6 @@
 
     const componentHud = selectedPart ? scope.querySelector(`.hud-component-column[data-component-part="${selectedPart}"]`) : null;
     if (componentHud) {
-      const componentMatchScore = componentHud.querySelector('[data-component-match-score]');
-      if (componentMatchScore) componentMatchScore.textContent = button.dataset.matchScore || 'pending';
       const componentLicenseTag = componentHud.querySelector('[data-component-license-tag]');
       if (componentLicenseTag) componentLicenseTag.textContent = button.dataset.licenseDisplay || button.dataset.licenseTag || '';
       const componentMatchBasis = componentHud.querySelector('[data-component-match-basis]');
@@ -89,12 +87,6 @@
       const componentLicenseDetail = componentHud.querySelector('[data-component-license-detail]');
       if (componentLicenseDetail) componentLicenseDetail.textContent = button.dataset.licenseDetail || '';
     }
-
-    const matchStatus = scope.querySelector('[data-match-status]');
-    if (matchStatus) matchStatus.textContent = '% Match';
-
-    const matchScore = scope.querySelector('[data-match-score]');
-    if (matchScore) matchScore.textContent = button.dataset.matchScore || 'pending';
 
     const licenseTag = scope.querySelector('[data-license-tag]');
     if (licenseTag) licenseTag.textContent = button.dataset.licenseDisplay || button.dataset.licenseTag || '';
