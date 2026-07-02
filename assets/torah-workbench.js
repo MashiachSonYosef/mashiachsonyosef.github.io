@@ -121,6 +121,10 @@
   function updateSelectedGlossFromHud(row) {
     const hud = row.querySelector('.comp-hud-set.is-active');
     const selected = row.querySelector('[data-selected-comp-cells]');
+    const activeHudId = hud.dataset.compOptionId || '';
+    const activeOption = Array.from(row.querySelectorAll('.comp-option.is-active'))
+      .find((item) => (item.dataset.compOptionId || '') === activeHudId)
+      || row.querySelector('.comp-option.is-active');
     if (!hud || !selected) return;
     if (hud.dataset.compEmpty === 'true') {
       selected.replaceChildren();
@@ -136,12 +140,14 @@
     selected.replaceChildren();
     selected.dataset.cellCount = String(Math.max(1, cells.length));
     cells.forEach((cell, index) => {
-      const route = cell.querySelector('.route-option.is-active');
-      const fallback = cell.querySelector('[data-component-match-score]');
-      const value = route?.dataset.routeValue || fallback?.textContent || 'N/A';
+      const cellId = cell.dataset.componentPart || String(index + 1);
+      const routes = Array.from(activeOption?.querySelectorAll('.route-option.is-active') || [])
+        .filter((item) => (item.dataset.routeCell || '') === cellId);
+      const route = routes[routes.length - 1] || null;
+      const value = route?.dataset.routeValue || cell.dataset.selectedValue || 'N/A';
       const piece = document.createElement('span');
       piece.className = 'selected-piece';
-      piece.dataset.selectedRouteCell = route?.dataset.routeCell || cell.dataset.componentPart || String(index + 1);
+      piece.dataset.selectedRouteCell = cellId;
       piece.textContent = value;
       selected.append(piece);
     });
@@ -160,12 +166,24 @@
     selectRow(row);
   }
 
-  function syncRouteButtons(row, optionId, cellId, value) {
-    row.querySelectorAll('.route-option').forEach((item) => {
-      const holder = item.closest('[data-comp-option-id]');
-      if ((holder?.dataset.compOptionId || '') !== optionId) return;
+  function syncRouteButtons(row, optionId, cellId, value, selectedButton = null) {
+    const option = Array.from(row.querySelectorAll('.comp-option'))
+      .find((item) => (item.dataset.compOptionId || '') === optionId);
+    if (!option) return;
+    option.querySelectorAll('.route-option').forEach((item) => {
       if ((item.dataset.routeCell || '') !== cellId) return;
-      item.classList.toggle('is-active', (item.dataset.routeValue || item.textContent || '') === value);
+      const itemValue = item.dataset.routeValue || item.textContent || '';
+      item.classList.toggle('is-active', item === selectedButton || itemValue === value);
+    });
+  }
+
+  function syncRouteDisplay(row, optionId, cellId, value) {
+    row.querySelectorAll('.comp-hud-set').forEach((set) => {
+      if ((set.dataset.compOptionId || '') !== optionId) return;
+      set.querySelectorAll('.hud-component-column').forEach((card) => {
+        if ((card.dataset.componentPart || '') !== cellId) return;
+        card.dataset.selectedValue = value || 'N/A';
+      });
     });
   }
 
@@ -178,7 +196,8 @@
     if (option && !option.classList.contains('is-active')) activateCompOption(option);
     const value = button.dataset.routeValue || button.textContent || 'N/A';
     const cellId = button.dataset.routeCell || '1';
-    syncRouteButtons(row, optionId, cellId, value);
+    syncRouteButtons(row, optionId, cellId, value, button);
+    syncRouteDisplay(row, optionId, cellId, value);
     updateSelectedGlossFromHud(row);
     selectRow(row);
   }
@@ -186,12 +205,16 @@
   document.addEventListener('click', (event) => {
     const routeOption = event.target.closest('.route-option');
     if (routeOption) {
+      event.preventDefault();
+      event.stopPropagation();
       activateRoute(routeOption);
       return;
     }
 
     const compOption = event.target.closest('.comp-option');
     if (compOption) {
+      event.preventDefault();
+      event.stopPropagation();
       activateCompOption(compOption);
       return;
     }
@@ -213,5 +236,9 @@
   });
 
   window.addEventListener('hashchange', () => selectRow(rowForHash()));
-  selectRow(rowForHash());
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => selectRow(rowForHash()), { once: true });
+  } else {
+    selectRow(rowForHash());
+  }
 })();
