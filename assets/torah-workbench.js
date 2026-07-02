@@ -150,34 +150,39 @@
     selectRow(row);
   }
 
+  function syncRouteButtons(row, optionId, cellId, value) {
+    row.querySelectorAll('.route-option').forEach((item) => {
+      const holder = item.closest('[data-comp-option-id]');
+      if ((holder?.dataset.compOptionId || '') !== optionId) return;
+      if ((item.dataset.routeCell || '') !== cellId) return;
+      item.classList.toggle('is-active', (item.dataset.routeValue || item.textContent || '') === value);
+    });
+  }
+
   function activateRoute(button) {
-    const cell = button.closest('.hud-component-column');
     const row = button.closest('.word-row');
-    if (!cell || !row) return;
-    cell.querySelectorAll('.route-option').forEach((item) => item.classList.remove('is-active'));
-    button.classList.add('is-active');
+    if (!row) return;
+    const holder = button.closest('[data-comp-option-id]');
+    const optionId = holder?.dataset.compOptionId || row.querySelector('.comp-hud-set.is-active')?.dataset.compOptionId || '';
+    const option = optionId ? Array.from(row.querySelectorAll('.comp-option')).find((item) => item.dataset.compOptionId === optionId) : null;
+    if (option && !option.classList.contains('is-active')) activateCompOption(option);
     const value = button.dataset.routeValue || button.textContent || 'N/A';
-    const score = cell.querySelector('[data-component-match-score]');
-    if (score) score.textContent = value;
-    const basis = cell.querySelector('[data-component-match-basis]');
-    if (basis) {
-      const subject = cell.querySelector('.match-status strong')?.textContent || 'component';
-      basis.textContent = `${subject} is selected here as ${value}.`;
-    }
+    const cellId = button.dataset.routeCell || '1';
+    syncRouteButtons(row, optionId, cellId, value);
     updateSelectedGlossFromHud(row);
     selectRow(row);
   }
 
   document.addEventListener('click', (event) => {
-    const compOption = event.target.closest('.comp-option');
-    if (compOption) {
-      activateCompOption(compOption);
-      return;
-    }
-
     const routeOption = event.target.closest('.route-option');
     if (routeOption) {
       activateRoute(routeOption);
+      return;
+    }
+
+    const compOption = event.target.closest('.comp-option');
+    if (compOption) {
+      activateCompOption(compOption);
       return;
     }
 
