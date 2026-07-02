@@ -130,6 +130,18 @@
     return lane?.querySelector('.route-option.is-active') || null;
   }
 
+  function compOptionById(row, optionId) {
+    return optionId
+      ? Array.from(row.querySelectorAll('.comp-option')).find((item) => item.dataset.compOptionId === optionId) || null
+      : null;
+  }
+
+  function laneById(cell, laneId) {
+    return laneId
+      ? Array.from(cell?.querySelectorAll('.l-lane-option') || []).find((item) => item.dataset.laneId === laneId) || null
+      : null;
+  }
+
   function selectedValueForLane(lane) {
     const route = activeRouteForLane(lane);
     return route?.dataset.routeValue || lane?.dataset.laneSelectedValue || 'N/A';
@@ -175,6 +187,8 @@
     const optionId = button.dataset.compOptionId || '';
     row.querySelectorAll('.comp-option').forEach((item) => item.classList.remove('is-active'));
     button.classList.add('is-active');
+    const selector = row.querySelector('.comp-option-select');
+    if (selector && selector.value !== optionId) selector.value = optionId;
     row.querySelectorAll('.comp-hud-set').forEach((set) => {
       set.classList.toggle('is-active', set.dataset.compOptionId === optionId);
     });
@@ -212,10 +226,12 @@
     const holder = lane.closest('[data-comp-option-id]');
     const optionId = holder?.dataset.compOptionId || '';
     const cellId = lane.dataset.routeCell || '1';
-    const option = optionId ? Array.from(row.querySelectorAll('.comp-option')).find((item) => item.dataset.compOptionId === optionId) : null;
+    const option = compOptionById(row, optionId);
     if (option && !option.classList.contains('is-active')) activateCompOption(option);
     const cell = lane.closest('.comp-option-cell');
     cell?.querySelectorAll('.l-lane-option').forEach((item) => item.classList.toggle('is-active', item === lane));
+    const laneSelect = cell?.querySelector('.l-lane-select');
+    if (laneSelect && laneSelect.value !== (lane.dataset.laneId || '')) laneSelect.value = lane.dataset.laneId || '';
     syncLaneDisplay(row, optionId, cellId, lane);
     if (update) {
       updateSelectedGlossFromHud(row);
@@ -224,8 +240,7 @@
   }
 
   function syncRouteButtons(row, optionId, cellId, value, selectedButton = null) {
-    const option = Array.from(row.querySelectorAll('.comp-option'))
-      .find((item) => (item.dataset.compOptionId || '') === optionId);
+    const option = compOptionById(row, optionId);
     if (!option) return;
     const lane = selectedButton?.closest('.l-lane-option') || activeLaneForCell(optionCell(option, cellId));
     lane?.querySelectorAll('.route-option').forEach((item) => {
@@ -236,8 +251,7 @@
   }
 
   function syncRouteDisplay(row, optionId, cellId, value) {
-    const option = Array.from(row.querySelectorAll('.comp-option'))
-      .find((item) => (item.dataset.compOptionId || '') === optionId);
+    const option = compOptionById(row, optionId);
     const lane = activeLaneForCell(optionCell(option, cellId));
     syncLaneDisplay(row, optionId, cellId, lane, value);
   }
@@ -247,7 +261,7 @@
     if (!row) return;
     const holder = button.closest('[data-comp-option-id]');
     const optionId = holder?.dataset.compOptionId || row.querySelector('.comp-hud-set.is-active')?.dataset.compOptionId || '';
-    const option = optionId ? Array.from(row.querySelectorAll('.comp-option')).find((item) => item.dataset.compOptionId === optionId) : null;
+    const option = compOptionById(row, optionId);
     if (option && !option.classList.contains('is-active')) activateCompOption(option);
     const lane = button.closest('.l-lane-option');
     if (lane) activateLane(lane, false);
@@ -297,6 +311,23 @@
     if (tocLink) {
       event.preventDefault();
       smoothHashTarget(tocLink);
+    }
+  });
+
+  document.addEventListener('change', (event) => {
+    const compSelect = event.target.closest('.comp-option-select');
+    if (compSelect) {
+      const row = compSelect.closest('.word-row');
+      const option = row ? compOptionById(row, compSelect.value) : null;
+      if (option) activateCompOption(option);
+      return;
+    }
+
+    const laneSelect = event.target.closest('.l-lane-select');
+    if (laneSelect) {
+      const cell = laneSelect.closest('.comp-option-cell');
+      const lane = laneById(cell, laneSelect.value);
+      if (lane) activateLane(lane);
     }
   });
 

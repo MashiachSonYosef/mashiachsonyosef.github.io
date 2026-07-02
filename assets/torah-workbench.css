@@ -794,7 +794,72 @@ h1 {
 }
 
 .comp-choice-stack {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 10px;
   height: 100%;
+  min-height: 0;
+}
+
+.selectable-stack.comp-choice-stack {
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-auto-rows: unset;
+  align-content: stretch;
+  max-height: none;
+  overflow: hidden;
+}
+
+.comp-choice-stack[data-option-count="1"] {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.selectable-stack.comp-choice-stack[data-option-count="1"] {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.comp-shape-selector,
+.l-lane-selector {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.comp-shape-selector span,
+.l-lane-selector span {
+  color: var(--gold);
+  font-size: 0.74rem;
+  font-weight: 850;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.comp-option-select,
+.l-lane-select {
+  min-width: 0;
+  width: 100%;
+  border: 1px solid rgba(255, 214, 90, 0.54);
+  border-radius: 9px;
+  background: rgba(10, 0, 26, 0.82);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 800;
+  line-height: 1.15;
+  padding: 7px 9px;
+  outline: none;
+  box-shadow: inset 0 0 16px rgba(255, 214, 90, 0.08);
+}
+
+.comp-option-select:focus,
+.l-lane-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(255, 214, 90, 0.18), inset 0 0 16px rgba(255, 214, 90, 0.08);
+}
+
+.comp-option-panels {
+  display: grid;
   min-height: 0;
 }
 
@@ -814,6 +879,10 @@ h1 {
   cursor: pointer;
   overflow: hidden;
   box-shadow: inset 0 0 20px rgba(255, 214, 90, 0.07), 0 0 10px rgba(95, 48, 154, 0.16);
+}
+
+.comp-option:not(.is-active) {
+  display: none;
 }
 
 .comp-choice-stack[data-option-count="1"] .comp-option {
@@ -856,15 +925,17 @@ h1 {
   padding: 8px 9px;
 }
 
+.comp-option-cell.has-lane-selector {
+  grid-template-rows: auto auto minmax(0, 1fr);
+}
+
 .comp-lane-options {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(132px, 1fr);
+  grid-template-columns: 1fr;
   gap: 7px;
   min-width: 0;
   min-height: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: hidden;
   scrollbar-color: rgba(255, 214, 90, 0.62) rgba(28, 10, 48, 0.8);
   scrollbar-width: thin;
 }
@@ -888,6 +959,10 @@ h1 {
   padding: 8px 9px;
   cursor: pointer;
   box-shadow: inset 0 0 14px rgba(255, 214, 90, 0.045);
+}
+
+.l-lane-option:not(.is-active) {
+  display: none;
 }
 
 .l-lane-option:hover,
