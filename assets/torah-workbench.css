@@ -953,10 +953,109 @@ h1 {
   min-height: 0;
 }
 
+.hud-component-column.l-card {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: 8px;
+  border: 1px solid rgba(255, 214, 90, 0.62);
+  border-radius: 16px;
+  padding: 10px;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 214, 90, 0.16), transparent 34%),
+    linear-gradient(135deg, rgba(88, 49, 112, 0.78), rgba(25, 7, 46, 0.94));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.l-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  font-size: 0.78rem;
+}
+
+.l-card-head strong {
+  color: var(--paper);
+  font-size: 1.2rem;
+  text-transform: none;
+}
+
+.hud-component-column.l-card .match-basis,
+.hud-component-column.l-card .match-license,
+.hud-component-column.l-card .match-occurrence {
+  grid-column: 1;
+}
+
+.hud-component-column.l-card .match-cell {
+  min-height: 0;
+  border-radius: 12px;
+  padding: 12px 13px;
+  background: rgba(11, 0, 29, 0.42);
+}
+
+.l-card-route p,
+.l-card-definition p,
+.l-card-license p {
+  margin: 0;
+}
+
+.l-card-route span[data-component-match-score],
+.l-card-definition p {
+  color: var(--paper);
+  font-weight: 800;
+  font-size: clamp(1rem, 1.35vw, 1.42rem);
+  line-height: 1.15;
+}
+
+.l-card-definition small,
+.l-card-license small {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  line-height: 1.25;
+  white-space: normal;
+  overflow: auto;
+}
+
+.l-card-definition small {
+  max-height: 5.7em;
+}
+
+.l-card-license small {
+  max-height: 4.8em;
+}
+
+.l-empty-card {
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+  border: 1px solid rgba(255, 214, 90, 0.62);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 214, 90, 0.12), transparent 38%),
+    linear-gradient(135deg, rgba(88, 49, 112, 0.74), rgba(18, 4, 39, 0.96));
+}
+
+.l-empty-card strong {
+  color: var(--paper);
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  line-height: 1;
+}
+
 .composite-expansion[data-component-count="1"] .hud-component-column {
   grid-template-columns: minmax(120px, 0.72fr) minmax(0, 1.28fr);
   grid-template-rows: minmax(90px, auto) minmax(132px, 1fr) minmax(96px, auto);
   gap: 9px;
+}
+
+.composite-expansion[data-component-count="1"] .hud-component-column.l-card,
+.composite-expansion[data-component-count="5"] .hud-component-column.l-card,
+.composite-expansion[data-component-count="6"] .hud-component-column.l-card {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
 }
 
 .composite-expansion[data-component-count="5"] .hud-component-column,
@@ -1123,6 +1222,10 @@ h1 {
 .match-license {
   grid-column: 1 / 3;
   overflow-y: auto;
+}
+
+.match-expansion > .match-license {
+  grid-column: 1 / 4;
 }
 
 .match-occurrence {

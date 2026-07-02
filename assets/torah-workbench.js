@@ -122,6 +122,16 @@
     const hud = row.querySelector('.comp-hud-set.is-active');
     const selected = row.querySelector('[data-selected-comp-cells]');
     if (!hud || !selected) return;
+    if (hud.dataset.compEmpty === 'true') {
+      selected.replaceChildren();
+      selected.dataset.cellCount = '1';
+      const piece = document.createElement('span');
+      piece.className = 'selected-piece';
+      piece.dataset.selectedRouteCell = '1';
+      piece.textContent = 'N/A';
+      selected.append(piece);
+      return;
+    }
     const cells = Array.from(hud.querySelectorAll('.hud-component-column'));
     selected.replaceChildren();
     selected.dataset.cellCount = String(Math.max(1, cells.length));
