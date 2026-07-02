@@ -118,14 +118,31 @@
     selectRow(row);
   }
 
+  function optionCell(option, cellId) {
+    return option?.querySelector(`.comp-option-cell[data-comp-cell-index="${CSS.escape(cellId)}"]`) || null;
+  }
+
+  function activeLaneForCell(cell) {
+    return cell?.querySelector('.l-lane-option.is-active') || cell?.querySelector('.l-lane-option') || null;
+  }
+
+  function activeRouteForLane(lane) {
+    return lane?.querySelector('.route-option.is-active') || null;
+  }
+
+  function selectedValueForLane(lane) {
+    const route = activeRouteForLane(lane);
+    return route?.dataset.routeValue || lane?.dataset.laneSelectedValue || 'N/A';
+  }
+
   function updateSelectedGlossFromHud(row) {
     const hud = row.querySelector('.comp-hud-set.is-active');
     const selected = row.querySelector('[data-selected-comp-cells]');
+    if (!hud || !selected) return;
     const activeHudId = hud.dataset.compOptionId || '';
     const activeOption = Array.from(row.querySelectorAll('.comp-option.is-active'))
       .find((item) => (item.dataset.compOptionId || '') === activeHudId)
       || row.querySelector('.comp-option.is-active');
-    if (!hud || !selected) return;
     if (hud.dataset.compEmpty === 'true') {
       selected.replaceChildren();
       selected.dataset.cellCount = '1';
@@ -141,10 +158,9 @@
     selected.dataset.cellCount = String(Math.max(1, cells.length));
     cells.forEach((cell, index) => {
       const cellId = cell.dataset.componentPart || String(index + 1);
-      const routes = Array.from(activeOption?.querySelectorAll('.route-option.is-active') || [])
-        .filter((item) => (item.dataset.routeCell || '') === cellId);
-      const route = routes[routes.length - 1] || null;
-      const value = route?.dataset.routeValue || cell.dataset.selectedValue || 'N/A';
+      const selectedCell = optionCell(activeOption, cellId);
+      const lane = activeLaneForCell(selectedCell);
+      const value = selectedValueForLane(lane) || cell.dataset.selectedValue || 'N/A';
       const piece = document.createElement('span');
       piece.className = 'selected-piece';
       piece.dataset.selectedRouteCell = cellId;
@@ -166,11 +182,53 @@
     selectRow(row);
   }
 
+  function syncLaneDisplay(row, optionId, cellId, lane, value = '') {
+    if (!lane) return;
+    const selectedValue = value || selectedValueForLane(lane);
+    lane.dataset.laneSelectedValue = selectedValue || 'N/A';
+    row.querySelectorAll('.comp-hud-set').forEach((set) => {
+      if ((set.dataset.compOptionId || '') !== optionId) return;
+      set.querySelectorAll('.hud-component-column').forEach((card) => {
+        if ((card.dataset.componentPart || '') !== cellId) return;
+        card.dataset.laneId = lane.dataset.laneId || '';
+        card.dataset.selectedValue = selectedValue || 'N/A';
+        const definition = card.querySelector('[data-component-match-basis]');
+        if (definition) definition.textContent = lane.dataset.laneDefinition || selectedValue || 'N/A';
+        const license = card.querySelector('[data-component-license-basis]');
+        if (license) license.textContent = lane.dataset.laneLicense || '';
+        const licenseDetail = card.querySelector('[data-component-license-detail]');
+        if (licenseDetail) licenseDetail.textContent = lane.dataset.laneLicenseDetail || '';
+        const selectedRoute = card.querySelector('[data-component-selected-route]');
+        if (selectedRoute) selectedRoute.textContent = selectedValue && selectedValue !== 'N/A' ? `Selected: ${selectedValue}. ` : '';
+        const matchText = card.querySelector('[data-component-match-text]');
+        if (matchText) matchText.textContent = lane.dataset.laneMatchText || '';
+      });
+    });
+  }
+
+  function activateLane(lane, update = true) {
+    const row = lane.closest('.word-row');
+    if (!row) return;
+    const holder = lane.closest('[data-comp-option-id]');
+    const optionId = holder?.dataset.compOptionId || '';
+    const cellId = lane.dataset.routeCell || '1';
+    const option = optionId ? Array.from(row.querySelectorAll('.comp-option')).find((item) => item.dataset.compOptionId === optionId) : null;
+    if (option && !option.classList.contains('is-active')) activateCompOption(option);
+    const cell = lane.closest('.comp-option-cell');
+    cell?.querySelectorAll('.l-lane-option').forEach((item) => item.classList.toggle('is-active', item === lane));
+    syncLaneDisplay(row, optionId, cellId, lane);
+    if (update) {
+      updateSelectedGlossFromHud(row);
+      selectRow(row);
+    }
+  }
+
   function syncRouteButtons(row, optionId, cellId, value, selectedButton = null) {
     const option = Array.from(row.querySelectorAll('.comp-option'))
       .find((item) => (item.dataset.compOptionId || '') === optionId);
     if (!option) return;
-    option.querySelectorAll('.route-option').forEach((item) => {
+    const lane = selectedButton?.closest('.l-lane-option') || activeLaneForCell(optionCell(option, cellId));
+    lane?.querySelectorAll('.route-option').forEach((item) => {
       if ((item.dataset.routeCell || '') !== cellId) return;
       const itemValue = item.dataset.routeValue || item.textContent || '';
       item.classList.toggle('is-active', item === selectedButton || itemValue === value);
@@ -178,13 +236,10 @@
   }
 
   function syncRouteDisplay(row, optionId, cellId, value) {
-    row.querySelectorAll('.comp-hud-set').forEach((set) => {
-      if ((set.dataset.compOptionId || '') !== optionId) return;
-      set.querySelectorAll('.hud-component-column').forEach((card) => {
-        if ((card.dataset.componentPart || '') !== cellId) return;
-        card.dataset.selectedValue = value || 'N/A';
-      });
-    });
+    const option = Array.from(row.querySelectorAll('.comp-option'))
+      .find((item) => (item.dataset.compOptionId || '') === optionId);
+    const lane = activeLaneForCell(optionCell(option, cellId));
+    syncLaneDisplay(row, optionId, cellId, lane, value);
   }
 
   function activateRoute(button) {
@@ -194,6 +249,8 @@
     const optionId = holder?.dataset.compOptionId || row.querySelector('.comp-hud-set.is-active')?.dataset.compOptionId || '';
     const option = optionId ? Array.from(row.querySelectorAll('.comp-option')).find((item) => item.dataset.compOptionId === optionId) : null;
     if (option && !option.classList.contains('is-active')) activateCompOption(option);
+    const lane = button.closest('.l-lane-option');
+    if (lane) activateLane(lane, false);
     const value = button.dataset.routeValue || button.textContent || 'N/A';
     const cellId = button.dataset.routeCell || '1';
     syncRouteButtons(row, optionId, cellId, value, button);
@@ -208,6 +265,14 @@
       event.preventDefault();
       event.stopPropagation();
       activateRoute(routeOption);
+      return;
+    }
+
+    const laneOption = event.target.closest('.l-lane-option');
+    if (laneOption) {
+      event.preventDefault();
+      event.stopPropagation();
+      activateLane(laneOption);
       return;
     }
 
