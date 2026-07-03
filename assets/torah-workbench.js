@@ -265,6 +265,16 @@
     selectRow(row);
   }
 
+  function activateExactSource(select) {
+    const panel = select.closest('.l-card-license');
+    if (!panel) return;
+    const selected = select.selectedOptions?.[0];
+    const basis = panel.querySelector('[data-component-license-basis]');
+    const detail = panel.querySelector('[data-component-license-detail]');
+    if (basis) basis.textContent = selected?.dataset.licenseBasis || '';
+    if (detail) detail.textContent = selected?.dataset.licenseDetail || '';
+  }
+
   document.addEventListener('click', (event) => {
     const routeOption = event.target.closest('.route-option');
     if (routeOption) {
@@ -320,6 +330,12 @@
       const cell = laneSelect.closest('.comp-option-cell');
       const lane = laneById(cell, laneSelect.value);
       if (lane) activateLane(lane);
+      return;
+    }
+
+    const sourceSelect = event.target.closest('.m-source-select');
+    if (sourceSelect) {
+      activateExactSource(sourceSelect);
     }
   });
 
