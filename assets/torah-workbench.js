@@ -208,6 +208,7 @@
         if (selectedRoute) selectedRoute.textContent = selectedValue && selectedValue !== 'N/A' ? `Selected: ${selectedValue}. ` : '';
         const matchText = card.querySelector('[data-component-match-text]');
         if (matchText) matchText.textContent = lane.dataset.laneMatchText || '';
+        syncExactSourceSelector(card, lane);
       });
     });
   }
@@ -273,6 +274,59 @@
     const detail = panel.querySelector('[data-component-license-detail]');
     if (basis) basis.textContent = selected?.dataset.licenseBasis || '';
     if (detail) detail.textContent = selected?.dataset.licenseDetail || '';
+  }
+
+  function laneSourceOptions(lane) {
+    try {
+      const parsed = JSON.parse(lane?.dataset?.laneSourceOptions || '[]');
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function buildSourceSelector(panel) {
+    const label = document.createElement('label');
+    label.className = 'm-source-selector';
+    const span = document.createElement('span');
+    span.textContent = 'Exact source';
+    const select = document.createElement('select');
+    select.className = 'm-source-select';
+    select.setAttribute('aria-label', 'Exact license source');
+    label.append(span, select);
+    const basis = panel.querySelector('[data-component-license-basis]');
+    panel.insertBefore(label, basis || null);
+    return select;
+  }
+
+  function syncExactSourceSelector(card, lane) {
+    const panel = card.querySelector('.l-card-license');
+    if (!panel) return;
+    const options = laneSourceOptions(lane);
+    let wrapper = panel.querySelector('.m-source-selector');
+    const basis = panel.querySelector('[data-component-license-basis]');
+    const detail = panel.querySelector('[data-component-license-detail]');
+    if (options.length <= 1) {
+      wrapper?.remove();
+      if (options[0]) {
+        if (basis) basis.textContent = options[0].basis || '';
+        if (detail) detail.textContent = options[0].detail || '';
+      }
+      return;
+    }
+    let select = wrapper?.querySelector('.m-source-select');
+    if (!select) select = buildSourceSelector(panel);
+    select.textContent = '';
+    options.forEach((item, index) => {
+      const option = document.createElement('option');
+      option.value = item.value || `source-${index + 1}`;
+      option.textContent = item.label || `source ${index + 1}`;
+      option.dataset.licenseBasis = item.basis || '';
+      option.dataset.licenseDetail = item.detail || '';
+      if (index === 0) option.selected = true;
+      select.append(option);
+    });
+    activateExactSource(select);
   }
 
   document.addEventListener('click', (event) => {
