@@ -1667,6 +1667,34 @@ h1 {
     grid-column: auto;
   }
 
+  .composite-expansion[data-component-count="2"] {
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+  }
+
+  .composite-expansion[data-component-count="2"] .hud-component-column.l-card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 9px;
+    padding: 12px;
+  }
+
+  .composite-expansion[data-component-count="2"] .hud-component-column.l-card .match-basis,
+  .composite-expansion[data-component-count="2"] .hud-component-column.l-card .match-license,
+  .composite-expansion[data-component-count="2"] .hud-component-column.l-card .match-occurrence {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .composite-expansion[data-component-count="2"] .l-card-definition small,
+  .composite-expansion[data-component-count="2"] .l-card-license small {
+    max-height: 6.4em;
+  }
+
+  .composite-expansion[data-component-count="2"] .hud-component-column.l-card .match-cell {
+    padding: 13px 14px;
+  }
+
   .identity-strip,
   .component-grid {
     grid-template-columns: 1fr;
