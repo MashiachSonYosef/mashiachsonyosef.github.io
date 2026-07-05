@@ -27,9 +27,11 @@ jobs:
             .nojekyll
             404.html
             index.html
+            genesis-1-1.html
             poc-enrichment-summary.json
             assets
             torah
+            hebrew-workbench
           sparse-checkout-cone-mode: false
 
       - name: Configure Pages
@@ -46,6 +48,15 @@ jobs:
           cp -a .nojekyll 404.html index.html poc-enrichment-summary.json .site/
           cp -a assets .site/
           cp -a torah .site/
+
+          if [ -f genesis-1-1.html ]; then
+            cp -a genesis-1-1.html .site/
+            cp -a genesis-1-1.html .site/index.html
+          fi
+
+          if [ -d hebrew-workbench ]; then
+            cp -a hebrew-workbench .site/
+          fi
 
           if find .site -type f \( -name '*.html' -o -name '*.js' -o -name '*.css' \) -print0 | xargs -0 grep -n -E 'Clicked Hebrew form|Best actual hit|data-hud-renderings|data-hud-breakdown|Potential options|No lexical entry yet\.|lexical-fields'; then
             echo "Old HUD marker found in Pages artifact; refusing deployment." >&2
