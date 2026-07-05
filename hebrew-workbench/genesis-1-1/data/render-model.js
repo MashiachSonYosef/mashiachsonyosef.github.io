@@ -52,6 +52,17 @@ window.HEBREW_RENDER_MODEL = {
                 { id: 'B6-R173-BERESHIT-LBUNDLE-0001-R-002', text: 'initially' },
                 { id: 'B6-R173-BERESHIT-LBUNDLE-0001-R-003', text: 'at first' }
               ],
+              pProof: {
+                id: 'B6-R173-BERESHIT-LBUNDLE-0001-P-001',
+                label: 'Exact R-member set',
+                relation: 'exact-d-route-set',
+                bucketKey: 'at first | in the beginning | initially',
+                matchMode: 'Normalize R members as an exact set; ignore separator/order only.',
+                mSupportIds: [
+                  'B6-R173-BERESHIT-LBUNDLE-0001-M-001',
+                  'B6-R173-BERESHIT-LBUNDLE-0001-M-002'
+                ]
+              },
               mSupports: [
                 {
                   id: 'B6-R173-BERESHIT-LBUNDLE-0001-M-001',
@@ -74,6 +85,14 @@ window.HEBREW_RENDER_MODEL = {
               routes: [
                 { id: 'B6-R173-BERESHIT-LBUNDLE-0002-R-001', text: 'Genesis' }
               ],
+              pProof: {
+                id: 'B6-R173-BERESHIT-LBUNDLE-0002-P-001',
+                label: 'Exact R-member set',
+                relation: 'exact-d-route-set',
+                bucketKey: 'genesis',
+                matchMode: 'Normalize R members as an exact set; ignore separator/order only.',
+                mSupportIds: ['B6-R173-BERESHIT-LBUNDLE-0002-M-001']
+              },
               mSupports: [
                 {
                   id: 'B6-R173-BERESHIT-LBUNDLE-0002-M-001',
@@ -90,6 +109,14 @@ window.HEBREW_RENDER_MODEL = {
               routes: [
                 { id: 'B6-R173-BERESHIT-LBUNDLE-0006-R-001', text: 'in the beginning when' }
               ],
+              pProof: {
+                id: 'B6-R173-BERESHIT-LBUNDLE-0006-P-001',
+                label: 'Exact R-member set',
+                relation: 'exact-d-route-set',
+                bucketKey: 'in the beginning when',
+                matchMode: 'Normalize R members as an exact set; ignore separator/order only.',
+                mSupportIds: ['B6-R173-BERESHIT-LBUNDLE-0006-M-001']
+              },
               mSupports: [
                 {
                   id: 'B6-R173-BERESHIT-LBUNDLE-0006-M-001',
@@ -127,6 +154,14 @@ window.HEBREW_RENDER_MODEL = {
                 { id: 'B6-R173-BERESHIT-LBUNDLE-0003-R-003', text: 'during' },
                 { id: 'B6-R173-BERESHIT-LBUNDLE-0003-R-004', text: 'among' }
               ],
+              pProof: {
+                id: 'B6-R173-BERESHIT-LBUNDLE-0003-P-001',
+                label: 'Exact R-member set',
+                relation: 'exact-d-route-set',
+                bucketKey: 'among | during | in | with',
+                matchMode: 'Normalize R members as an exact set; ignore separator/order only.',
+                mSupportIds: ['B6-R173-BERESHIT-LBUNDLE-0003-M-001']
+              },
               mSupports: [
                 {
                   id: 'B6-R173-BERESHIT-LBUNDLE-0003-M-001',
@@ -155,6 +190,14 @@ window.HEBREW_RENDER_MODEL = {
                 { id: 'B6-R173-BERESHIT-LBUNDLE-0004-R-003', text: 'chief' },
                 { id: 'B6-R173-BERESHIT-LBUNDLE-0004-R-004', text: 'firstfruit' }
               ],
+              pProof: {
+                id: 'B6-R173-BERESHIT-LBUNDLE-0004-P-001',
+                label: 'Exact R-member set',
+                relation: 'exact-d-route-set',
+                bucketKey: 'beginning | chief | first | firstfruit',
+                matchMode: 'Normalize R members as an exact set; ignore separator/order only.',
+                mSupportIds: ['B6-R173-BERESHIT-LBUNDLE-0004-M-001']
+              },
               mSupports: [
                 {
                   id: 'B6-R173-BERESHIT-LBUNDLE-0004-M-001',
@@ -172,6 +215,14 @@ window.HEBREW_RENDER_MODEL = {
                 { id: 'B6-R173-BERESHIT-LBUNDLE-0005-R-001', text: 'beginning' },
                 { id: 'B6-R173-BERESHIT-LBUNDLE-0005-R-002', text: 'chief' }
               ],
+              pProof: {
+                id: 'B6-R173-BERESHIT-LBUNDLE-0005-P-001',
+                label: 'Exact R-member set',
+                relation: 'exact-d-route-set',
+                bucketKey: 'beginning | chief',
+                matchMode: 'Normalize R members as an exact set; ignore separator/order only.',
+                mSupportIds: ['B6-R173-BERESHIT-LBUNDLE-0005-M-001']
+              },
               mSupports: [
                 {
                   id: 'B6-R173-BERESHIT-LBUNDLE-0005-M-001',
@@ -187,7 +238,7 @@ window.HEBREW_RENDER_MODEL = {
     }
   ],
   ledgerContracts: {
-    formula: 'C0 -> W -> COMPspan -> L -> D + M <- R',
+    formula: 'C0 -> W -> COMPspan -> L -> ((D + R) <- P) -> M',
     ledgers: {
       v: 'v-c0-lane-index-2026-07-04.md',
       x: 'a4-x-render-state-ledger-2026-07-04-v12.csv',

@@ -56,6 +56,29 @@
     return bundle.mSupports.find((support) => support.id === requested) || bundle.mSupports[0];
   }
 
+  function normalizeRouteMember(text) {
+    return String(text || '').trim().toLowerCase().replace(/\s+/g, ' ');
+  }
+
+  function routeSetKey(bundle) {
+    return bundle.routes
+      .map((route) => normalizeRouteMember(route.text))
+      .sort()
+      .join(' | ');
+  }
+
+  function pProofForBundle(bundle) {
+    const proof = bundle.pProof || {};
+    return {
+      id: proof.id || `${bundle.id}-P`,
+      label: proof.label || 'Exact R-member set',
+      relation: proof.relation || 'exact-d-route-set',
+      bucketKey: proof.bucketKey || routeSetKey(bundle),
+      matchMode: proof.matchMode || 'Normalize R members as an exact set; ignore separator/order only.',
+      mSupportIds: proof.mSupportIds || bundle.mSupports.map((support) => support.id)
+    };
+  }
+
   function firstSection() {
     return (model.passage.sections && model.passage.sections[0]) || null;
   }
@@ -348,13 +371,53 @@
     return wrap;
   }
 
+  function renderRouteControl(bundle) {
+    const selected = selectedRoute(bundle);
+    const wrap = el('div', 'route-select-wrap');
+    const label = el('span', 'control-label', 'R ROUTE');
+    wrap.appendChild(label);
+
+    if (bundle.routes.length <= PILL_LIMIT) {
+      const pills = el('div', 'route-pills ledger-pills');
+      pills.setAttribute('role', 'group');
+      pills.setAttribute('aria-label', `R route inside ${bundle.label}`);
+
+      for (const route of bundle.routes) {
+        const button = el('button', 'route-pill ledger-pill r-route-pill', route.text);
+        button.type = 'button';
+        button.setAttribute('aria-pressed', route.id === selected.id ? 'true' : 'false');
+        button.addEventListener('click', () => {
+          state.routeByLBundle.set(bundle.id, route.id);
+          render();
+        });
+        pills.appendChild(button);
+      }
+
+      wrap.appendChild(pills);
+      return wrap;
+    }
+
+    const select = el('select', 'route-select');
+    select.id = `r-${bundle.id}`;
+    for (const route of bundle.routes) {
+      const option = document.createElement('option');
+      option.value = route.id;
+      option.textContent = route.text;
+      select.appendChild(option);
+    }
+    select.value = selected.id;
+    select.addEventListener('change', () => {
+      state.routeByLBundle.set(bundle.id, select.value);
+      render();
+    });
+    wrap.appendChild(select);
+    return wrap;
+  }
+
   function renderBundleCard(cell, bundle) {
     const card = el('section', 'route-card bundle-card');
     card.appendChild(el('span', 'bundle-layer', 'D BUNDLE'));
     card.appendChild(el('span', 'route-title', bundle.label));
-    if (bundle.mSupports.length > 1) {
-      card.appendChild(el('span', 'route-subtitle', `${bundle.mSupports.length} exact-D M supports`));
-    }
     return card;
   }
 
@@ -376,6 +439,7 @@
       const bundleControl = renderLBundleControl(cell, bundle);
       if (bundleControl) componentShell.appendChild(bundleControl);
       componentShell.appendChild(renderBundleCard(cell, bundle));
+      componentShell.appendChild(renderRouteControl(bundle));
       spanCard.appendChild(componentShell);
     }
 
@@ -396,13 +460,43 @@
   }
 
   function renderDefinitionDetail(cell, bundle) {
+    const route = selectedRoute(bundle);
     const card = el('article', 'detail-card');
     card.appendChild(el('h2', 'section-kicker', 'DEFINITION'));
     card.appendChild(el('h3', 'detail-title', bundle.label));
-    const repeatCopy = bundle.mSupports.length > 1
-      ? ' M repeats prove exact support without changing D.'
-      : '';
-    card.appendChild(el('p', 'detail-copy', `Selected D: ${bundle.label}. ${cell.hebrew} carries this licensed bundle.${repeatCopy}`));
+    const routeLine = el('p', 'detail-route');
+    routeLine.appendChild(el('span', 'detail-route-label', 'R ROUTE'));
+    routeLine.appendChild(el('strong', null, route.text));
+    card.appendChild(routeLine);
+    card.appendChild(el('p', 'detail-copy', `D bundle: ${bundle.label}. R route: ${route.text}.`));
+    return card;
+  }
+
+  function renderPProofDetail(cell, bundle) {
+    const proof = pProofForBundle(bundle);
+    const route = selectedRoute(bundle);
+    const support = selectedMSupport(bundle);
+    const card = el('article', 'detail-card proof-card');
+    card.appendChild(el('h2', 'section-kicker', 'P PROOF'));
+    card.appendChild(el('h3', 'detail-title', proof.label));
+
+    const rows = el('dl', 'proof-rows');
+    const proofRows = [
+      ['relation', proof.relation],
+      ['R active', route.text],
+      ['R set', bundle.routes.map((item) => item.text).join(' | ')],
+      ['P key', proof.bucketKey],
+      ['M bucket', `${proof.mSupportIds.length} support${proof.mSupportIds.length === 1 ? '' : 's'}`],
+      ['M active', support.label]
+    ];
+
+    for (const row of proofRows) {
+      rows.appendChild(el('dt', null, row[0]));
+      rows.appendChild(el('dd', null, row[1]));
+    }
+
+    card.appendChild(rows);
+    card.appendChild(el('p', 'proof-copy', proof.matchMode));
     return card;
   }
 
@@ -469,6 +563,7 @@
       const bundle = selectedLBundle(cell);
       detailStack.appendChild(renderSpanDetail(cell));
       detailStack.appendChild(renderDefinitionDetail(cell, bundle));
+      detailStack.appendChild(renderPProofDetail(cell, bundle));
       detailStack.appendChild(renderLicenseDetail(cell, bundle));
     }
   }
