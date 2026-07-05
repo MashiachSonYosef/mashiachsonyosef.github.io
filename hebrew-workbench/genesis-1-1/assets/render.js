@@ -2,6 +2,7 @@
   const model = window.HEBREW_RENDER_MODEL;
   const PILL_LIMIT = 5;
   const state = {
+    wordUseId: model.word.id,
     compSpanId: model.defaultCompSpanId,
     lBundleByCell: new Map(),
     routeByLBundle: new Map(),
@@ -37,8 +38,30 @@
   const routeStack = document.getElementById('route-stack');
   const detailStack = document.getElementById('detail-stack');
 
+  function selectedWordUse() {
+    return (
+      model.passage.tokens.find((token) => token.id === state.wordUseId) ||
+      model.passage.tokens[0] ||
+      model.word
+    );
+  }
+
+  function selectedWordIsMaterialized() {
+    return selectedWordUse().useStatus === 'materialized';
+  }
+
+  function compSpansForSelectedWord() {
+    const word = selectedWordUse();
+    if (word.compSpanIds && word.compSpanIds.length) {
+      const ids = new Set(word.compSpanIds);
+      return model.compSpans.filter((span) => ids.has(span.id));
+    }
+    return selectedWordIsMaterialized() ? model.compSpans : [];
+  }
+
   function selectedCompSpan() {
-    return model.compSpans.find((span) => span.id === state.compSpanId) || model.compSpans[0];
+    const spans = compSpansForSelectedWord();
+    return spans.find((span) => span.id === state.compSpanId) || spans[0] || null;
   }
 
   function selectedLBundle(cell) {
@@ -215,15 +238,20 @@
       button.type = 'button';
       button.lang = 'he';
       button.dir = 'rtl';
-      button.disabled = !token.active;
       button.dataset.useStatus = token.useStatus || (token.active ? 'materialized' : 'held');
-      button.setAttribute('aria-pressed', token.active ? 'true' : 'false');
+      button.dataset.wordUseId = token.id;
+      button.setAttribute('aria-pressed', token.id === state.wordUseId ? 'true' : 'false');
       if (token.active) {
-        button.title = 'Jump to selected word';
-        button.addEventListener('click', scrollToSelectedWord);
+        button.title = `Jump to ${token.transliteration}`;
       } else {
         button.title = token.materializationReason || 'Not materialized in this render slice';
       }
+      button.addEventListener('click', () => {
+        state.wordUseId = token.id;
+        if (token.defaultCompSpanId) state.compSpanId = token.defaultCompSpanId;
+        render();
+        scrollToSelectedWord();
+      });
       passageLine.appendChild(button);
     }
   }
@@ -248,8 +276,21 @@
 
   function renderSelector() {
     clear(spanOptions);
+    const spans = compSpansForSelectedWord();
+    if (!spans.length) {
+      const held = selectedWordUse();
+      const button = el('button', 'span-option is-held', held.hebrew);
+      button.type = 'button';
+      button.lang = 'he';
+      button.dir = 'rtl';
+      button.disabled = true;
+      button.setAttribute('aria-pressed', 'true');
+      spanOptions.appendChild(button);
+      return;
+    }
+
     appendPillOverflowOptions(spanOptions, {
-      options: model.compSpans,
+      options: spans,
       activeId: selectedCompSpan().id,
       buttonClass: 'span-option',
       overflowClass: 'span-overflow-select',
@@ -268,8 +309,9 @@
   }
 
   function renderWordCard() {
-    wordHebrew.textContent = model.word.hebrew;
-    wordTransliteration.textContent = model.word.transliteration;
+    const word = selectedWordUse();
+    wordHebrew.textContent = word.hebrew;
+    wordTransliteration.textContent = word.transliteration;
   }
 
   function selectedGlossText(span) {
@@ -279,6 +321,13 @@
 
   function renderSelectedGloss(span) {
     clear(selectedGlossStack);
+    if (!span) {
+      const word = selectedWordUse();
+      const line = el('div', 'selected-gloss-line is-held', word.useStatus === 'held' ? 'held' : 'not materialized');
+      selectedGlossStack.appendChild(line);
+      return;
+    }
+
     const line = el('div', `selected-gloss-line${span.isSplit ? ' is-split' : ''}`);
     if (!span.isSplit) {
       line.textContent = selectedGlossText(span);
@@ -458,6 +507,19 @@
 
   function renderChoicePanel(span) {
     clear(routeStack);
+    if (!span) {
+      const word = selectedWordUse();
+      const heldCard = el('article', 'span-card held-card');
+      heldCard.appendChild(el('h2', 'section-kicker', 'U POINTER'));
+      const hebrew = el('p', 'component-hebrew', word.hebrew);
+      hebrew.lang = 'he';
+      hebrew.dir = 'rtl';
+      heldCard.appendChild(hebrew);
+      heldCard.appendChild(el('p', 'detail-copy', word.materializationReason || 'No validated L/D/R/M sidecar is attached to this token yet.'));
+      routeStack.appendChild(heldCard);
+      return;
+    }
+
     const spanCard = el('article', 'span-card');
     spanCard.appendChild(el('h2', 'section-kicker', span.kindLabel.toUpperCase()));
     const spanLabel = el('p', `span-label${span.isSplit ? ' split-label' : ''}`, span.displayLabel);
@@ -547,6 +609,16 @@
 
   function renderDetails(span) {
     clear(detailStack);
+    if (!span) {
+      const word = selectedWordUse();
+      const card = el('article', 'detail-card held-card');
+      card.appendChild(el('h2', 'section-kicker', 'MATERIALIZATION'));
+      card.appendChild(el('h3', 'detail-title', word.useStatus === 'held' ? 'held by U' : 'not materialized'));
+      card.appendChild(el('p', 'detail-copy', word.materializationReason || 'This token has no local render-side L/D/R/M payload.'));
+      detailStack.appendChild(card);
+      return;
+    }
+
     for (const cell of span.cells) {
       const bundle = selectedLBundle(cell);
       detailStack.appendChild(renderSpanDetail(cell));
@@ -557,6 +629,8 @@
 
   function render() {
     const span = selectedCompSpan();
+    renderPassage();
+    renderWordCard();
     renderSelector();
     renderSelectedGloss(span);
     renderChoicePanel(span);
@@ -564,7 +638,5 @@
   }
 
   renderContents();
-  renderPassage();
-  renderWordCard();
   render();
 }());

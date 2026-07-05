@@ -36,6 +36,8 @@ window.HEBREW_RENDER_MODEL = {
       hebrew: token.hebrew,
       transliteration: token.transliteration,
       active: token.renderMaterialized === true,
+      defaultCompSpanId: token.defaultCompSpanId,
+      compSpanIds: token.compSpanIds || [],
       useStatus: token.renderMaterialized === true ? 'materialized' : 'held',
       materializationReason: token.materializationReason || ''
     })),

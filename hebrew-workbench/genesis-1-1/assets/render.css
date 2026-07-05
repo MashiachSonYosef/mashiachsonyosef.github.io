@@ -160,9 +160,21 @@ body {
   color: #fff1bf;
 }
 
-.passage-token:disabled {
+.passage-token[data-use-status="held"] {
   color: rgba(255, 231, 168, .62);
-  cursor: default;
+}
+
+.passage-token[data-use-status="held"][aria-pressed="true"] {
+  color: var(--blue);
+}
+
+.passage-token:hover,
+.passage-token:focus-visible {
+  color: #fff1bf;
+  outline: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .16em;
 }
 
 .reader-frame {
@@ -287,6 +299,10 @@ body {
 
 .selected-gloss-part {
   display: inline-block;
+}
+
+.selected-gloss-line.is-held {
+  color: var(--muted);
 }
 
 .selected-gloss-plus {
@@ -573,6 +589,11 @@ input {
   box-shadow: inset 0 0 0 1px rgba(255, 224, 141, .88);
 }
 
+.span-option.is-held {
+  color: var(--muted);
+  cursor: default;
+}
+
 .render-grid {
   position: relative;
   z-index: 1;
@@ -606,6 +627,10 @@ input {
 
 .span-card {
   padding: 1rem;
+}
+
+.held-card {
+  border-color: var(--line-soft);
 }
 
 .choice-panel {
