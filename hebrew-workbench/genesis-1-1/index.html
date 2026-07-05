@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hebrew Workbench Render</title>
+  <link rel="stylesheet" href="assets/render.css">
+  <script defer src="data/render-model.js"></script>
+  <script defer src="assets/render.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <details class="contents-strip">
+      <summary>CONTENTS <span>292 sections</span></summary>
+      <div class="contents-list" id="contents-list"></div>
+    </details>
+
+    <header class="passage-bar">
+      <nav class="passage-nav" aria-label="Passage navigation">
+        <a href="#page-top">GENESIS 1:1</a>
+        <a href="#page-top">PAGE TOP</a>
+        <a href="#next-section">NEXT SECTION</a>
+        <button class="nav-action" id="top-commentary-button" type="button">COMMENTARY</button>
+      </nav>
+      <div class="passage-line" id="passage-line" dir="rtl" lang="he"></div>
+    </header>
+
+    <section class="reader-frame" id="page-top" aria-label="Selected Hebrew render">
+      <section class="section-control-card" aria-label="Section controls">
+        <strong id="active-section-ref">GENESIS 1:1</strong>
+        <div id="section-commentary-actions"></div>
+      </section>
+
+      <div class="top-card-grid">
+        <section class="word-card" aria-label="Selected Hebrew word">
+          <div class="word-labels">
+            <span>Hebrew</span>
+            <span>Transliteration</span>
+          </div>
+          <div class="word-values">
+            <strong id="word-hebrew" lang="he" dir="rtl"></strong>
+            <span id="word-transliteration"></span>
+          </div>
+        </section>
+
+        <section class="selected-gloss-card" aria-label="Selected gloss">
+          <h2>Selected Gloss</h2>
+          <div id="selected-gloss-stack"></div>
+        </section>
+      </div>
+
+      <div class="selector-row">
+        <span class="selector-label">HEBREW SPAN</span>
+        <div class="span-options" id="span-options" role="group" aria-label="Hebrew span"></div>
+      </div>
+
+      <div class="render-grid">
+        <section class="choice-panel" aria-label="Available route choices">
+          <div id="route-stack"></div>
+        </section>
+
+        <section class="detail-panel" aria-label="Selected route details">
+          <div id="detail-stack"></div>
+        </section>
+      </div>
+    </section>
+
+    <div id="next-section" class="next-anchor" aria-hidden="true"></div>
+  </main>
+  <div class="commentary-scrim" id="commentary-scrim" hidden></div>
+  <aside class="commentary-drawer" id="commentary-drawer" aria-label="Commentary" aria-hidden="true" tabindex="-1">
+    <header class="commentary-drawer-header">
+      <div>
+        <p id="commentary-drawer-context"></p>
+        <h2>Commentary</h2>
+      </div>
+      <button class="commentary-close" id="commentary-close" type="button">Close</button>
+    </header>
+    <div class="commentary-drawer-body" id="commentary-drawer-body"></div>
+  </aside>
+</body>
+</html>

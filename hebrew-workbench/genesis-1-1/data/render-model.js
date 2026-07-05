@@ -1,0 +1,266 @@
+window.HEBREW_RENDER_MODEL = {
+  defaultCompSpanId: 'B6-R173-BERESHIT-COMPSPAN-0001-WHOLE',
+  word: {
+    hebrew: 'בראשית',
+    transliteration: 'bereshit'
+  },
+  passage: {
+    ref: 'Genesis 1:1',
+    tokens: [
+      { id: 'gen-1-1-1', hebrew: 'בראשית', transliteration: 'bereshit', active: true },
+      { id: 'gen-1-1-2', hebrew: 'ברא', transliteration: 'bara', active: false },
+      { id: 'gen-1-1-3', hebrew: 'אלהים', transliteration: 'elohim', active: false },
+      { id: 'gen-1-1-4', hebrew: 'את', transliteration: 'et', active: false },
+      { id: 'gen-1-1-5', hebrew: 'השמים', transliteration: 'hashamayim', active: false },
+      { id: 'gen-1-1-6', hebrew: 'ואת', transliteration: 've-et', active: false },
+      { id: 'gen-1-1-7', hebrew: 'הארץ:', transliteration: 'haaretz', active: false }
+    ],
+    sections: [
+      {
+        id: 'gen-1-1',
+        ref: 'Genesis 1:1',
+        label: 'GENESIS 1:1',
+        commentaryEdgeIds: [
+          'commentary-rashi-genesis',
+          'commentary-ibn-ezra-genesis',
+          'commentary-targum-jonathan-genesis',
+          'commentary-targum-onkelos-genesis'
+        ]
+      }
+    ]
+  },
+  compSpans: [
+    {
+      id: 'B6-R173-BERESHIT-COMPSPAN-0001-WHOLE',
+      selectLabel: 'בראשית',
+      kindLabel: 'whole span',
+      displayLabel: 'בראשית',
+      cells: [
+        {
+          id: 'B6-R173-BERESHIT-CELL-0001-WHOLE',
+          hebrew: 'בראשית',
+          transliteration: 'bereshit',
+          spanKind: 'whole span',
+          defaultLBundleId: 'B6-R173-BERESHIT-LBUNDLE-0001',
+          lBundles: [
+            {
+              id: 'B6-R173-BERESHIT-LBUNDLE-0001',
+              label: 'in the beginning / initially / at first',
+              defaultRouteId: 'B6-R173-BERESHIT-LBUNDLE-0001-R-001',
+              routes: [
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0001-R-001', text: 'in the beginning' },
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0001-R-002', text: 'initially' },
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0001-R-003', text: 'at first' }
+              ],
+              mSupports: [
+                {
+                  id: 'B6-R173-BERESHIT-LBUNDLE-0001-M-001',
+                  label: 'Wiktionary בראשית',
+                  title: 'CC BY-SA | Wiktionary בראשית',
+                  copy: 'oldid=89472033; entry lines 139-146; license lines 253-254; attribution required; ShareAlike required.'
+                }
+              ]
+            },
+            {
+              id: 'B6-R173-BERESHIT-LBUNDLE-0002',
+              label: 'Genesis',
+              defaultRouteId: 'B6-R173-BERESHIT-LBUNDLE-0002-R-001',
+              routes: [
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0002-R-001', text: 'Genesis' }
+              ],
+              mSupports: [
+                {
+                  id: 'B6-R173-BERESHIT-LBUNDLE-0002-M-001',
+                  label: 'Wiktionary בראשית',
+                  title: 'CC BY-SA | Wiktionary בראשית',
+                  copy: 'oldid=89472033; entry lines 157-163; license lines 253-254; attribution required; ShareAlike required.'
+                }
+              ]
+            },
+            {
+              id: 'B6-R173-BERESHIT-LBUNDLE-0006',
+              label: 'in the beginning when',
+              defaultRouteId: 'B6-R173-BERESHIT-LBUNDLE-0006-R-001',
+              routes: [
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0006-R-001', text: 'in the beginning when' }
+              ],
+              mSupports: [
+                {
+                  id: 'B6-R173-BERESHIT-LBUNDLE-0006-M-001',
+                  label: 'Brown-Driver-Briggs H7225',
+                  title: 'Public domain | Brown-Driver-Briggs',
+                  copy: 'Brown-Driver-Briggs via eliranwong/unabridged-BDB-Hebrew-lexicon; README lines 229-231; raw DictBDB top=H7225; Gen.1.1 note; source attribution retained.'
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: 'B6-R173-BERESHIT-COMPSPAN-0002-SPLIT',
+      selectLabel: 'ב־ + ראשית',
+      kindLabel: 'split span',
+      displayLabel: 'ב־ + ראשית',
+      isSplit: true,
+      cells: [
+        {
+          id: 'B6-R173-BERESHIT-CELL-0002-CELL1',
+          hebrew: 'ב־',
+          transliteration: 'b-',
+          spanKind: 'prefix span',
+          defaultLBundleId: 'B6-R173-BERESHIT-LBUNDLE-0003',
+          lBundles: [
+            {
+              id: 'B6-R173-BERESHIT-LBUNDLE-0003',
+              label: 'in / with / during / among',
+              defaultRouteId: 'B6-R173-BERESHIT-LBUNDLE-0003-R-001',
+              routes: [
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0003-R-001', text: 'in' },
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0003-R-002', text: 'with' },
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0003-R-003', text: 'during' },
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0003-R-004', text: 'among' }
+              ],
+              mSupports: [
+                {
+                  id: 'B6-R173-BERESHIT-LBUNDLE-0003-M-001',
+                  label: 'Wiktionary ב־',
+                  title: 'CC BY-SA | Wiktionary ב־',
+                  copy: 'oldid=89024058; entry lines 165-168, 172-178, 179-193, 196-199; license lines 417-418; attribution required; ShareAlike required.'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 'B6-R173-BERESHIT-CELL-0003-CELL2',
+          hebrew: 'ראשית',
+          transliteration: 'reshit',
+          spanKind: 'base span',
+          defaultLBundleId: 'B6-R173-BERESHIT-LBUNDLE-0005',
+          lBundles: [
+            {
+              id: 'B6-R173-BERESHIT-LBUNDLE-0004',
+              label: 'beginning / first / chief / firstfruit',
+              defaultRouteId: 'B6-R173-BERESHIT-LBUNDLE-0004-R-001',
+              routes: [
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0004-R-001', text: 'beginning' },
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0004-R-002', text: 'first' },
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0004-R-003', text: 'chief' },
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0004-R-004', text: 'firstfruit' }
+              ],
+              mSupports: [
+                {
+                  id: 'B6-R173-BERESHIT-LBUNDLE-0004-M-001',
+                  label: 'Wiktionary ראשית',
+                  title: 'CC BY-SA | Wiktionary ראשית',
+                  copy: 'oldid=88955940; entry lines 137-139 and 137-153; license lines 217-218; attribution required; ShareAlike required.'
+                }
+              ]
+            },
+            {
+              id: 'B6-R173-BERESHIT-LBUNDLE-0005',
+              label: 'beginning / chief',
+              defaultRouteId: 'B6-R173-BERESHIT-LBUNDLE-0005-R-001',
+              routes: [
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0005-R-001', text: 'beginning' },
+                { id: 'B6-R173-BERESHIT-LBUNDLE-0005-R-002', text: 'chief' }
+              ],
+              mSupports: [
+                {
+                  id: 'B6-R173-BERESHIT-LBUNDLE-0005-M-001',
+                  label: 'Brown-Driver-Briggs H7225',
+                  title: 'Public domain | Brown-Driver-Briggs',
+                  copy: 'Brown-Driver-Briggs via eliranwong/unabridged-BDB-Hebrew-lexicon; README lines 229-231; raw DictBDB top=H7225; source attribution retained.'
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  ledgerContracts: {
+    formula: 'C0 -> W -> COMPspan -> L -> D + M <- R',
+    ledgers: {
+      v: 'v-c0-lane-index-2026-07-04.md',
+      x: 'a4-x-render-state-ledger-2026-07-04-v12.csv',
+      y: 'a5-y-portable-model-ledger-2026-07-03-v11.csv',
+      z: 'z-single-agent-a6-crawl-pipeline-2026-07-03-v2.md'
+    },
+    commentary: {
+      defaultMode: 'base_only',
+      readinessSource: 'v-x-commentary-render-readiness-summary-2026-07-04.csv',
+      summary: {
+        commentaryEdgesAudited: 28,
+        sourceAndLicenseCleanEdges: 28,
+        baseWithCommentarySplitReady: 0,
+        commentedSectionsOnlySplitReady: 0,
+        commentaryOnlyReady: 0,
+        alignmentArtifactRequiredRows: 28,
+        sourceTextRowsAppended: 0,
+        cleanroomTouched: 0
+      },
+      modes: [
+        {
+          id: 'base_only',
+          label: 'Base only',
+          statusLabel: 'Render enabled',
+          enabled: true,
+          copy: 'Base text and the selected Bereshit route can render from this local model.'
+        },
+        {
+          id: 'base_with_commentary_split',
+          label: 'Base + commentary',
+          statusLabel: 'Held: alignment required',
+          enabled: false,
+          copy: 'Source and license edges are clean, but no accepted alignment artifact is ready for split render.'
+        },
+        {
+          id: 'commented_sections_only_split',
+          label: 'Commented sections',
+          statusLabel: 'Held: alignment required',
+          enabled: false,
+          copy: 'The contract has clean commentary edges, but commented-section slicing is not render-ready.'
+        },
+        {
+          id: 'commentary_only',
+          label: 'Commentary only',
+          statusLabel: 'Held: no materialized text',
+          enabled: false,
+          copy: 'No commentary source text is materialized into this render repo.'
+        }
+      ],
+      availableEdges: [
+        {
+          id: 'commentary-rashi-genesis',
+          work: 'Rashi on Genesis',
+          sectionIds: ['gen-1-1'],
+          status: 'source/license clean; alignment held'
+        },
+        {
+          id: 'commentary-ibn-ezra-genesis',
+          work: 'Ibn Ezra on Genesis',
+          sectionIds: ['gen-1-1'],
+          status: 'source/license clean; alignment held'
+        },
+        {
+          id: 'commentary-targum-jonathan-genesis',
+          work: 'Targum Jonathan on Genesis',
+          sectionIds: ['gen-1-1'],
+          status: 'source/license clean; alignment held'
+        },
+        {
+          id: 'commentary-targum-onkelos-genesis',
+          work: 'Targum Onkelos on Genesis',
+          sectionIds: ['gen-1-1'],
+          status: 'source/license clean; alignment held'
+        }
+      ],
+      contractNotes: [
+        'Machine summary reports 28 audited commentary edges; contract prose references 51. Treat the machine summary as current until reconciled.',
+        'Z is a mutable A6 crawl/control sidecar, not render truth and not a runtime source.'
+      ]
+    }
+  }
+};
