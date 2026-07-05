@@ -174,7 +174,7 @@
   }
 
   function selectedGlossText(span) {
-    const parts = span.cells.map((cell) => selectedLBundle(cell).label);
+    const parts = span.cells.map((cell) => selectedRoute(selectedLBundle(cell)).text);
     return span.isSplit ? parts.join(' + ') : parts[0];
   }
 
@@ -189,7 +189,7 @@
 
     span.cells.forEach((cell, index) => {
       if (index > 0) line.appendChild(el('span', 'selected-gloss-plus', ' + '));
-      line.appendChild(el('span', 'selected-gloss-part', selectedLBundle(cell).label));
+      line.appendChild(el('span', 'selected-gloss-part', selectedRoute(selectedLBundle(cell)).text));
     });
     selectedGlossStack.appendChild(line);
   }
