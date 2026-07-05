@@ -52,8 +52,9 @@
   }
 
   function selectedMSupport(bundle) {
+    const supports = mSupportsForBundle(bundle);
     const requested = state.mSupportByLBundle.get(bundle.id);
-    return bundle.mSupports.find((support) => support.id === requested) || bundle.mSupports[0];
+    return supports.find((support) => support.id === requested) || supports[0];
   }
 
   function normalizeRouteMember(text) {
@@ -77,6 +78,13 @@
       matchMode: proof.matchMode || 'Normalize R members as an exact set; ignore separator/order only.',
       mSupportIds: proof.mSupportIds || bundle.mSupports.map((support) => support.id)
     };
+  }
+
+  function mSupportsForBundle(bundle) {
+    const proof = pProofForBundle(bundle);
+    const proofIds = new Set(proof.mSupportIds);
+    const supports = bundle.mSupports.filter((support) => proofIds.has(support.id));
+    return supports.length ? supports : bundle.mSupports;
   }
 
   function firstSection() {
@@ -472,47 +480,20 @@
     return card;
   }
 
-  function renderPProofDetail(cell, bundle) {
-    const proof = pProofForBundle(bundle);
-    const route = selectedRoute(bundle);
-    const support = selectedMSupport(bundle);
-    const card = el('article', 'detail-card proof-card');
-    card.appendChild(el('h2', 'section-kicker', 'P PROOF'));
-    card.appendChild(el('h3', 'detail-title', proof.label));
-
-    const rows = el('dl', 'proof-rows');
-    const proofRows = [
-      ['relation', proof.relation],
-      ['R active', route.text],
-      ['R set', bundle.routes.map((item) => item.text).join(' | ')],
-      ['P key', proof.bucketKey],
-      ['M bucket', `${proof.mSupportIds.length} support${proof.mSupportIds.length === 1 ? '' : 's'}`],
-      ['M active', support.label]
-    ];
-
-    for (const row of proofRows) {
-      rows.appendChild(el('dt', null, row[0]));
-      rows.appendChild(el('dd', null, row[1]));
-    }
-
-    card.appendChild(rows);
-    card.appendChild(el('p', 'proof-copy', proof.matchMode));
-    return card;
-  }
-
   function renderMSupportControl(bundle, support) {
-    if (bundle.mSupports.length < 2) return null;
+    const supports = mSupportsForBundle(bundle);
+    if (supports.length < 2) return null;
 
     const wrap = el('div', 'source-select-wrap');
     const label = el('span', 'section-kicker source-kicker', 'M SOURCE');
     wrap.appendChild(label);
 
-    if (bundle.mSupports.length <= PILL_LIMIT) {
+    if (supports.length <= PILL_LIMIT) {
       const pills = el('div', 'source-pills ledger-pills');
       pills.setAttribute('role', 'group');
       pills.setAttribute('aria-label', `M source for ${bundle.label}`);
 
-      for (const optionSupport of bundle.mSupports) {
+      for (const optionSupport of supports) {
         const button = el('button', 'source-pill ledger-pill', optionSupport.label);
         button.type = 'button';
         button.setAttribute('aria-pressed', optionSupport.id === support.id ? 'true' : 'false');
@@ -529,7 +510,7 @@
 
     const select = el('select', 'source-select');
     select.id = `m-${bundle.id}`;
-    for (const optionSupport of bundle.mSupports) {
+    for (const optionSupport of supports) {
       const option = document.createElement('option');
       option.value = optionSupport.id;
       option.textContent = optionSupport.label;
@@ -563,7 +544,6 @@
       const bundle = selectedLBundle(cell);
       detailStack.appendChild(renderSpanDetail(cell));
       detailStack.appendChild(renderDefinitionDetail(cell, bundle));
-      detailStack.appendChild(renderPProofDetail(cell, bundle));
       detailStack.appendChild(renderLicenseDetail(cell, bundle));
     }
   }
