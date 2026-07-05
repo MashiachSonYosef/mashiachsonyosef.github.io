@@ -39,10 +39,19 @@ window.HEBREW_RENDER_MODEL = {
       active: token.renderMaterialized === true,
       defaultCompSpanId: token.defaultCompSpanId,
       compSpanIds: token.compSpanIds || [],
+      compSpanCandidateIds: token.compSpanCandidateIds || [],
       useStatus: token.renderMaterialized === true ? 'materialized' : 'held',
       materializationReason: token.materializationReason || ''
     })),
     sections: (U_LEDGER_GENESIS_1_1.passage && U_LEDGER_GENESIS_1_1.passage.sections) || []
+  },
+  compSpanCandidateScaffold: U_LEDGER_GENESIS_1_1.compSpanCandidateScaffold || {
+    candidates: [],
+    summary: {}
+  },
+  importerGapReport: U_LEDGER_GENESIS_1_1.importerGapReport || {
+    missingTokenUseIds: [],
+    requiredOutputsPerToken: []
   },
   compSpans: [
     {

@@ -674,6 +674,23 @@ input {
   cursor: default;
 }
 
+.span-option.is-candidate {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: .24rem .5rem;
+  align-items: baseline;
+  justify-content: center;
+  color: var(--text);
+  opacity: .95;
+}
+
+.candidate-status {
+  color: var(--blue);
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
 .render-grid {
   position: relative;
   z-index: 1;
@@ -711,6 +728,60 @@ input {
 
 .held-card {
   border-color: var(--line-soft);
+}
+
+.candidate-span-list {
+  display: grid;
+  gap: .65rem;
+  margin-top: .9rem;
+}
+
+.candidate-span-row {
+  display: grid;
+  gap: .35rem;
+  padding: .7rem;
+  border: 1px solid rgba(216, 169, 59, .34);
+  border-radius: var(--radius);
+  background: rgba(255, 226, 165, .06);
+}
+
+.candidate-kind {
+  color: var(--blue);
+  font-size: clamp(.78rem, 2.8vw, .9rem);
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.candidate-label {
+  color: var(--text);
+  font-size: clamp(1.35rem, 5.2vw, 1.8rem);
+  line-height: 1.05;
+}
+
+.candidate-cells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+
+.candidate-cell {
+  border: 1px solid rgba(216, 169, 59, .35);
+  border-radius: 999px;
+  padding: .16rem .5rem .22rem;
+  color: var(--muted);
+  background: rgba(255, 226, 165, .06);
+  font-size: clamp(.9rem, 3.2vw, 1rem);
+}
+
+.needs-list {
+  display: grid;
+  gap: .28rem;
+  margin: .75rem 0 0;
+  padding-left: 1.15rem;
+  color: var(--muted);
+  font-size: clamp(.92rem, 3.4vw, 1.05rem);
+  line-height: 1.18;
 }
 
 .choice-panel {

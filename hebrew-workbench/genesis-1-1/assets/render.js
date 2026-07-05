@@ -61,6 +61,13 @@
     return selectedWordIsMaterialized() ? model.compSpans : [];
   }
 
+  function compSpanCandidatesForSelectedWord() {
+    const word = selectedWordUse();
+    const ids = new Set(word.compSpanCandidateIds || []);
+    const scaffold = model.compSpanCandidateScaffold || {};
+    return (scaffold.candidates || []).filter((candidate) => ids.has(candidate.id));
+  }
+
   function selectedCompSpan() {
     const spans = compSpansForSelectedWord();
     return spans.find((span) => span.id === state.compSpanId) || spans[0] || null;
@@ -337,18 +344,75 @@
     sectionCommentaryActions.appendChild(button);
   }
 
+  function candidateStatusText(candidate) {
+    if (candidate.status === 'mechanical_whole_slot_pending_card') return 'whole slot';
+    if (candidate.status === 'split_shape_candidate_pending_validation') return 'split pending';
+    return 'pending';
+  }
+
+  function renderCandidateSpanPills(container, candidates) {
+    for (const candidate of candidates) {
+      const button = el('button', 'span-option is-held is-candidate', candidate.displayLabel);
+      button.type = 'button';
+      button.lang = 'he';
+      button.dir = 'rtl';
+      button.disabled = true;
+      button.dataset.compSpanCandidateId = candidate.id;
+      button.title = `${candidateStatusText(candidate)}; not an accepted render option yet`;
+      button.appendChild(el('span', 'candidate-status', candidateStatusText(candidate)));
+      container.appendChild(button);
+    }
+  }
+
+  function renderCandidateList(candidates) {
+    const list = el('div', 'candidate-span-list');
+    for (const candidate of candidates) {
+      const row = el('section', 'candidate-span-row');
+      row.appendChild(el('span', 'candidate-kind', candidateStatusText(candidate)));
+      const label = el('strong', 'candidate-label', candidate.displayLabel);
+      label.lang = 'he';
+      label.dir = 'rtl';
+      row.appendChild(label);
+
+      const cells = el('div', 'candidate-cells');
+      for (const cell of candidate.cells || []) {
+        const cellPill = el('span', 'candidate-cell', `${cell.hebrew} ${cell.role}`);
+        cellPill.lang = 'he';
+        cellPill.dir = 'rtl';
+        cells.appendChild(cellPill);
+      }
+      row.appendChild(cells);
+      list.appendChild(row);
+    }
+    return list;
+  }
+
+  function renderImporterNeedsList() {
+    const report = model.importerGapReport || {};
+    const list = el('ul', 'needs-list');
+    for (const item of report.requiredOutputsPerToken || []) {
+      list.appendChild(el('li', null, item));
+    }
+    return list;
+  }
+
   function renderSelector() {
     clear(spanOptions);
     const spans = compSpansForSelectedWord();
     if (!spans.length) {
       const held = selectedWordUse();
-      const button = el('button', 'span-option is-held', held.hebrew);
-      button.type = 'button';
-      button.lang = 'he';
-      button.dir = 'rtl';
-      button.disabled = true;
-      button.setAttribute('aria-pressed', 'true');
-      spanOptions.appendChild(button);
+      const candidates = compSpanCandidatesForSelectedWord();
+      if (candidates.length) {
+        renderCandidateSpanPills(spanOptions, candidates);
+      } else {
+        const button = el('button', 'span-option is-held', held.hebrew);
+        button.type = 'button';
+        button.lang = 'he';
+        button.dir = 'rtl';
+        button.disabled = true;
+        button.setAttribute('aria-pressed', 'true');
+        spanOptions.appendChild(button);
+      }
       return;
     }
 
@@ -574,13 +638,15 @@
     clear(routeStack);
     if (!span) {
       const word = selectedWordUse();
+      const candidates = compSpanCandidatesForSelectedWord();
       const heldCard = el('article', 'span-card held-card');
-      heldCard.appendChild(el('h2', 'section-kicker', 'WORD STATUS'));
+      heldCard.appendChild(el('h2', 'section-kicker', candidates.length ? 'COMPspan candidates' : 'WORD STATUS'));
       const hebrew = el('p', 'component-hebrew', word.hebrew);
       hebrew.lang = 'he';
       hebrew.dir = 'rtl';
       heldCard.appendChild(hebrew);
-      heldCard.appendChild(el('p', 'detail-copy', word.materializationReason || 'No validated ledger card is attached to this word yet.'));
+      heldCard.appendChild(el('p', 'detail-copy', candidates.length ? 'These are render-side shape candidates only. They do not unlock definition, route, or source panels until the importer validates the card.' : (word.materializationReason || 'No validated ledger card is attached to this word yet.')));
+      if (candidates.length) heldCard.appendChild(renderCandidateList(candidates));
       routeStack.appendChild(heldCard);
       return;
     }
@@ -676,10 +742,12 @@
     clear(detailStack);
     if (!span) {
       const word = selectedWordUse();
+      const candidates = compSpanCandidatesForSelectedWord();
       const card = el('article', 'detail-card held-card');
-      card.appendChild(el('h2', 'section-kicker', 'LEDGER STATUS'));
+      card.appendChild(el('h2', 'section-kicker', candidates.length ? 'IMPORTER NEEDS' : 'LEDGER STATUS'));
       card.appendChild(el('h3', 'detail-title', word.useStatus === 'held' ? 'pending ledger' : 'not wired'));
-      card.appendChild(el('p', 'detail-copy', word.materializationReason || 'This word has no local render-side ledger payload.'));
+      card.appendChild(el('p', 'detail-copy', candidates.length ? 'The page has C0/W-shaped span slots, but the importer still needs to return the accepted card rows.' : (word.materializationReason || 'This word has no local render-side ledger payload.')));
+      if (candidates.length) card.appendChild(renderImporterNeedsList());
       detailStack.appendChild(card);
       return;
     }
