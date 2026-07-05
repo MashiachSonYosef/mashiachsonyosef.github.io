@@ -124,6 +124,69 @@
     while (node.firstChild) node.removeChild(node.firstChild);
   }
 
+  function optionValue(option) {
+    return option.id;
+  }
+
+  function visibleOptionsForActive(options, activeId) {
+    const firstOptions = options.slice(0, PILL_LIMIT);
+    if (firstOptions.some((option) => optionValue(option) === activeId)) return firstOptions;
+
+    const active = options.find((option) => optionValue(option) === activeId);
+    const visible = [];
+    if (active) visible.push(active);
+
+    for (const option of options) {
+      if (visible.length >= PILL_LIMIT) break;
+      if (optionValue(option) !== activeId) visible.push(option);
+    }
+
+    return visible.length ? visible : firstOptions;
+  }
+
+  function appendPillOverflowOptions(container, config) {
+    const labelForOption = config.labelForOption || ((option) => option.label || option.text || option.selectLabel);
+    const visible = visibleOptionsForActive(config.options, config.activeId);
+    const visibleIds = new Set(visible.map(optionValue));
+    const overflow = config.options.filter((option) => !visibleIds.has(optionValue(option)));
+
+    container.setAttribute('role', 'group');
+    container.setAttribute('aria-label', config.ariaLabel);
+
+    for (const option of visible) {
+      const value = optionValue(option);
+      const button = el('button', config.buttonClass, labelForOption(option));
+      button.type = 'button';
+      button.setAttribute('aria-pressed', value === config.activeId ? 'true' : 'false');
+      if (config.decorateButton) config.decorateButton(button, option);
+      button.addEventListener('click', () => config.onSelect(value));
+      container.appendChild(button);
+    }
+
+    if (!overflow.length) return;
+
+    const select = el('select', `${config.overflowClass} pill-overflow-select`);
+    select.setAttribute('aria-label', `${config.ariaLabel} more options`);
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = `more (${overflow.length})`;
+    select.appendChild(placeholder);
+
+    for (const option of overflow) {
+      const overflowOption = document.createElement('option');
+      overflowOption.value = optionValue(option);
+      overflowOption.textContent = labelForOption(option);
+      select.appendChild(overflowOption);
+    }
+
+    select.value = '';
+    select.addEventListener('change', () => {
+      if (!select.value) return;
+      config.onSelect(select.value);
+    });
+    container.appendChild(select);
+  }
+
   function scrollToSelectedWord() {
     if (!selectedWordCard) return;
     const passageBar = document.querySelector('.passage-bar');
@@ -184,19 +247,23 @@
 
   function renderSelector() {
     clear(spanOptions);
-    for (const span of model.compSpans) {
-      const button = el('button', 'span-option', span.selectLabel);
-      button.type = 'button';
-      button.lang = 'he';
-      button.dir = 'rtl';
-      button.dataset.compSpanId = span.id;
-      button.setAttribute('aria-pressed', span.id === selectedCompSpan().id ? 'true' : 'false');
-      button.addEventListener('click', () => {
-        state.compSpanId = span.id;
+    appendPillOverflowOptions(spanOptions, {
+      options: model.compSpans,
+      activeId: selectedCompSpan().id,
+      buttonClass: 'span-option',
+      overflowClass: 'span-overflow-select',
+      ariaLabel: 'Hebrew span',
+      labelForOption: (span) => span.selectLabel,
+      decorateButton: (button, span) => {
+        button.lang = 'he';
+        button.dir = 'rtl';
+        button.dataset.compSpanId = span.id;
+      },
+      onSelect: (spanId) => {
+        state.compSpanId = spanId;
         render();
-      });
-      spanOptions.appendChild(button);
-    }
+      }
+    });
   }
 
   function renderWordCard() {
@@ -341,41 +408,20 @@
     const label = el('span', 'control-label', 'L BUNDLE');
     wrap.appendChild(label);
 
-    if (cell.lBundles.length <= PILL_LIMIT) {
-      const pills = el('div', 'bundle-pills ledger-pills');
-      pills.setAttribute('role', 'group');
-      pills.setAttribute('aria-label', `L bundle for ${cell.transliteration}`);
-
-      for (const optionBundle of cell.lBundles) {
-        const button = el('button', 'bundle-pill ledger-pill', optionBundle.label);
-        button.type = 'button';
-        button.setAttribute('aria-pressed', optionBundle.id === bundle.id ? 'true' : 'false');
-        button.addEventListener('click', () => {
-          state.lBundleByCell.set(cell.id, optionBundle.id);
-          render();
-        });
-        pills.appendChild(button);
+    const pills = el('div', 'bundle-pills ledger-pills option-pills');
+    appendPillOverflowOptions(pills, {
+      options: cell.lBundles,
+      activeId: bundle.id,
+      buttonClass: 'bundle-pill ledger-pill',
+      overflowClass: 'bundle-overflow-select',
+      ariaLabel: `L bundle for ${cell.transliteration}`,
+      labelForOption: (optionBundle) => optionBundle.label,
+      onSelect: (bundleId) => {
+        state.lBundleByCell.set(cell.id, bundleId);
+        render();
       }
-
-      wrap.appendChild(pills);
-      return wrap;
-    }
-
-    const select = el('select', 'bundle-select');
-    select.id = `l-${cell.id}`;
-    select.dataset.cellId = cell.id;
-    for (const optionBundle of cell.lBundles) {
-      const option = document.createElement('option');
-      option.value = optionBundle.id;
-      option.textContent = optionBundle.label;
-      select.appendChild(option);
-    }
-    select.value = bundle.id;
-    select.addEventListener('change', () => {
-      state.lBundleByCell.set(cell.id, select.value);
-      render();
     });
-    wrap.appendChild(select);
+    wrap.appendChild(pills);
     return wrap;
   }
 
@@ -385,40 +431,20 @@
     const label = el('span', 'control-label', 'R ROUTE');
     wrap.appendChild(label);
 
-    if (bundle.routes.length <= PILL_LIMIT) {
-      const pills = el('div', 'route-pills ledger-pills');
-      pills.setAttribute('role', 'group');
-      pills.setAttribute('aria-label', `R route inside ${bundle.label}`);
-
-      for (const route of bundle.routes) {
-        const button = el('button', 'route-pill ledger-pill r-route-pill', route.text);
-        button.type = 'button';
-        button.setAttribute('aria-pressed', route.id === selected.id ? 'true' : 'false');
-        button.addEventListener('click', () => {
-          state.routeByLBundle.set(bundle.id, route.id);
-          render();
-        });
-        pills.appendChild(button);
+    const pills = el('div', 'route-pills ledger-pills option-pills');
+    appendPillOverflowOptions(pills, {
+      options: bundle.routes,
+      activeId: selected.id,
+      buttonClass: 'route-pill ledger-pill r-route-pill',
+      overflowClass: 'route-overflow-select',
+      ariaLabel: `R route inside ${bundle.label}`,
+      labelForOption: (route) => route.text,
+      onSelect: (routeId) => {
+        state.routeByLBundle.set(bundle.id, routeId);
+        render();
       }
-
-      wrap.appendChild(pills);
-      return wrap;
-    }
-
-    const select = el('select', 'route-select');
-    select.id = `r-${bundle.id}`;
-    for (const route of bundle.routes) {
-      const option = document.createElement('option');
-      option.value = route.id;
-      option.textContent = route.text;
-      select.appendChild(option);
-    }
-    select.value = selected.id;
-    select.addEventListener('change', () => {
-      state.routeByLBundle.set(bundle.id, select.value);
-      render();
     });
-    wrap.appendChild(select);
+    wrap.appendChild(pills);
     return wrap;
   }
 
@@ -488,40 +514,20 @@
     const label = el('span', 'section-kicker source-kicker', 'M SOURCE');
     wrap.appendChild(label);
 
-    if (supports.length <= PILL_LIMIT) {
-      const pills = el('div', 'source-pills ledger-pills');
-      pills.setAttribute('role', 'group');
-      pills.setAttribute('aria-label', `M source for ${bundle.label}`);
-
-      for (const optionSupport of supports) {
-        const button = el('button', 'source-pill ledger-pill', optionSupport.label);
-        button.type = 'button';
-        button.setAttribute('aria-pressed', optionSupport.id === support.id ? 'true' : 'false');
-        button.addEventListener('click', () => {
-          state.mSupportByLBundle.set(bundle.id, optionSupport.id);
-          render();
-        });
-        pills.appendChild(button);
+    const pills = el('div', 'source-pills ledger-pills option-pills');
+    appendPillOverflowOptions(pills, {
+      options: supports,
+      activeId: support.id,
+      buttonClass: 'source-pill ledger-pill',
+      overflowClass: 'source-overflow-select',
+      ariaLabel: `M source for ${bundle.label}`,
+      labelForOption: (optionSupport) => optionSupport.label,
+      onSelect: (supportId) => {
+        state.mSupportByLBundle.set(bundle.id, supportId);
+        render();
       }
-
-      wrap.appendChild(pills);
-      return wrap;
-    }
-
-    const select = el('select', 'source-select');
-    select.id = `m-${bundle.id}`;
-    for (const optionSupport of supports) {
-      const option = document.createElement('option');
-      option.value = optionSupport.id;
-      option.textContent = optionSupport.label;
-      select.appendChild(option);
-    }
-    select.value = support.id;
-    select.addEventListener('change', () => {
-      state.mSupportByLBundle.set(bundle.id, select.value);
-      render();
     });
-    wrap.appendChild(select);
+    wrap.appendChild(pills);
     return wrap;
   }
 
