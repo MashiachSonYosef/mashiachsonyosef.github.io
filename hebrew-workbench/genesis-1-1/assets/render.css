@@ -146,6 +146,14 @@ body {
   line-height: 1.2;
 }
 
+.passage-line[data-mode="selected-word"] {
+  justify-content: center;
+}
+
+.passage-line[data-mode="selected-word"] .passage-token {
+  font-size: 1.08em;
+}
+
 .passage-token {
   border: 0;
   padding: 0 .05em;
@@ -941,18 +949,19 @@ input {
   }
 
   .passage-bar {
-    padding: .58rem .9rem .72rem;
+    padding: .42rem .8rem .52rem;
   }
 
   .passage-nav {
-    gap: .72rem;
-    margin-bottom: .48rem;
+    gap: .58rem;
+    margin-bottom: .36rem;
+    font-size: .78rem;
   }
 
   .passage-line {
-    gap: .18rem .66rem;
-    font-size: clamp(1.38rem, 6.6vw, 2.05rem);
-    line-height: 1.16;
+    gap: .12rem .48rem;
+    font-size: clamp(1.12rem, 5.2vw, 1.55rem);
+    line-height: 1.08;
   }
 
   .reader-frame {
@@ -1005,13 +1014,14 @@ input {
 
 @media (max-width: 430px) {
   .passage-nav {
-    gap: .62rem;
-    font-size: .82rem;
+    gap: .46rem;
+    font-size: .72rem;
   }
 
   .passage-line {
-    font-size: clamp(1.28rem, 6.2vw, 1.8rem);
-    gap: .14rem .52rem;
+    font-size: clamp(1.05rem, 5vw, 1.38rem);
+    gap: .1rem .38rem;
+    line-height: 1.06;
   }
 
   .span-options {

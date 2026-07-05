@@ -3,6 +3,7 @@
   const PILL_LIMIT = 5;
   const state = {
     wordUseId: model.word.id,
+    passageCollapsed: false,
     compSpanId: model.defaultCompSpanId,
     lBundleByCell: new Map(),
     routeByLBundle: new Map(),
@@ -213,7 +214,7 @@
   function scrollToSelectedWord() {
     if (!selectedWordCard) return;
     const passageBar = document.querySelector('.passage-bar');
-    const offset = (passageBar ? passageBar.offsetHeight : 0) + 12;
+    const offset = (passageBar ? passageBar.offsetHeight : 0) + 28;
     const top = selectedWordCard.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
   }
@@ -233,7 +234,10 @@
 
   function renderPassage() {
     clear(passageLine);
-    for (const token of model.passage.tokens) {
+    const tokens = state.passageCollapsed ? [selectedWordUse()] : model.passage.tokens;
+    passageLine.dataset.mode = state.passageCollapsed ? 'selected-word' : 'full-passage';
+
+    for (const token of tokens) {
       const button = el('button', 'passage-token', token.hebrew);
       button.type = 'button';
       button.lang = 'he';
@@ -248,11 +252,21 @@
       }
       button.addEventListener('click', () => {
         state.wordUseId = token.id;
+        state.passageCollapsed = true;
         if (token.defaultCompSpanId) state.compSpanId = token.defaultCompSpanId;
         render();
         scrollToSelectedWord();
       });
       passageLine.appendChild(button);
+    }
+  }
+
+  function wirePassageTopLinks() {
+    for (const link of document.querySelectorAll('a[href="#page-top"]')) {
+      link.addEventListener('click', () => {
+        state.passageCollapsed = false;
+        renderPassage();
+      });
     }
   }
 
@@ -638,5 +652,6 @@
   }
 
   renderContents();
+  wirePassageTopLinks();
   render();
 }());
