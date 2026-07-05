@@ -291,7 +291,7 @@
     button.appendChild(hebrew);
 
     button.appendChild(el('span', 'word-summary-translit', token.transliteration));
-    button.appendChild(el('span', 'word-summary-status', token.active ? 'materialized' : 'held by U'));
+    button.appendChild(el('span', 'word-summary-status', token.active ? 'wired' : 'pending'));
     section.appendChild(button);
     return section;
   }
@@ -388,7 +388,7 @@
     clear(selectedGlossStack);
     if (!span) {
       const word = selectedWordUse();
-      const line = el('div', 'selected-gloss-line is-held', word.useStatus === 'held' ? 'held' : 'not materialized');
+      const line = el('div', 'selected-gloss-line is-held', word.useStatus === 'held' ? 'pending' : 'not wired');
       selectedGlossStack.appendChild(line);
       return;
     }
@@ -575,12 +575,12 @@
     if (!span) {
       const word = selectedWordUse();
       const heldCard = el('article', 'span-card held-card');
-      heldCard.appendChild(el('h2', 'section-kicker', 'U POINTER'));
+      heldCard.appendChild(el('h2', 'section-kicker', 'WORD STATUS'));
       const hebrew = el('p', 'component-hebrew', word.hebrew);
       hebrew.lang = 'he';
       hebrew.dir = 'rtl';
       heldCard.appendChild(hebrew);
-      heldCard.appendChild(el('p', 'detail-copy', word.materializationReason || 'No validated L/D/R/M sidecar is attached to this token yet.'));
+      heldCard.appendChild(el('p', 'detail-copy', word.materializationReason || 'No validated ledger card is attached to this word yet.'));
       routeStack.appendChild(heldCard);
       return;
     }
@@ -677,9 +677,9 @@
     if (!span) {
       const word = selectedWordUse();
       const card = el('article', 'detail-card held-card');
-      card.appendChild(el('h2', 'section-kicker', 'MATERIALIZATION'));
-      card.appendChild(el('h3', 'detail-title', word.useStatus === 'held' ? 'held by U' : 'not materialized'));
-      card.appendChild(el('p', 'detail-copy', word.materializationReason || 'This token has no local render-side L/D/R/M payload.'));
+      card.appendChild(el('h2', 'section-kicker', 'LEDGER STATUS'));
+      card.appendChild(el('h3', 'detail-title', word.useStatus === 'held' ? 'pending ledger' : 'not wired'));
+      card.appendChild(el('p', 'detail-copy', word.materializationReason || 'This word has no local render-side ledger payload.'));
       detailStack.appendChild(card);
       return;
     }

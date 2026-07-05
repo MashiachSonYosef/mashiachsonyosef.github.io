@@ -1,7 +1,7 @@
 window.HEBREW_U_LEDGER_GENESIS_1_1 = {
   id: 'U-GENESIS-1-1-RENDER-POINTER-0001',
   ledgerKind: 'render_usage_pointer',
-  version: '2026-07-05-v2',
+  version: '2026-07-05-v3',
   passageRef: 'Genesis 1:1',
   contractFormula: 'C0 -> W -> COMPspan -> L -> ((D + R) <- P) -> M',
   ownership: {
@@ -97,7 +97,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
         hebrew: 'ברא',
         transliteration: 'bara',
         renderMaterialized: false,
-        materializationReason: 'No validated L/D/R/M sidecar located for this token in the current read-only source pass.'
+        materializationReason: 'This word is waiting for a validated ledger card before it can render.'
       },
       {
         id: 'gen-1-1-3',
@@ -105,7 +105,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
         hebrew: 'אלהים',
         transliteration: 'elohim',
         renderMaterialized: false,
-        materializationReason: 'No validated L/D/R/M sidecar located for this token in the current read-only source pass.'
+        materializationReason: 'This word is waiting for a validated ledger card before it can render.'
       },
       {
         id: 'gen-1-1-4',
@@ -113,7 +113,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
         hebrew: 'את',
         transliteration: 'et',
         renderMaterialized: false,
-        materializationReason: 'No validated L/D/R/M sidecar located for this token in the current read-only source pass.'
+        materializationReason: 'This word is waiting for a validated ledger card before it can render.'
       },
       {
         id: 'gen-1-1-5',
@@ -121,7 +121,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
         hebrew: 'השמים',
         transliteration: 'hashamayim',
         renderMaterialized: false,
-        materializationReason: 'No validated L/D/R/M sidecar located for this token in the current read-only source pass.'
+        materializationReason: 'This word is waiting for a validated ledger card before it can render.'
       },
       {
         id: 'gen-1-1-6',
@@ -129,7 +129,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
         hebrew: 'ואת',
         transliteration: 've-et',
         renderMaterialized: false,
-        materializationReason: 'No validated L/D/R/M sidecar located for this token in the current read-only source pass.'
+        materializationReason: 'This word is waiting for a validated ledger card before it can render.'
       },
       {
         id: 'gen-1-1-7',
@@ -137,7 +137,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
         hebrew: 'הארץ:',
         transliteration: 'haaretz',
         renderMaterialized: false,
-        materializationReason: 'No validated L/D/R/M sidecar located for this token in the current read-only source pass.'
+        materializationReason: 'This word is waiting for a validated ledger card before it can render.'
       }
     ]
   },
