@@ -31,6 +31,7 @@ window.HEBREW_RENDER_MODEL = {
     ref: U_LEDGER_GENESIS_1_1.passageRef || 'Genesis 1:1',
     tokens: U_TOKEN_USES.map((token) => ({
       id: token.id,
+      anchorId: token.anchorId,
       c0OccurrenceId: token.c0OccurrenceId,
       visibleWId: token.visibleWId,
       hebrew: token.hebrew,

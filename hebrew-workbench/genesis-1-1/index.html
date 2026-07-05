@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hebrew Workbench Render</title>
-  <link rel="stylesheet" href="assets/render.css?v=full-passage-token-nav-v1">
-  <script defer src="data/u-ledger-genesis-1-1.js?v=full-passage-token-nav-v1"></script>
-  <script defer src="data/render-model.js?v=full-passage-token-nav-v1"></script>
-  <script defer src="assets/render.js?v=full-passage-token-nav-v1"></script>
+  <link rel="stylesheet" href="assets/render.css?v=genesis-1-1-sequence-v1">
+  <script defer src="data/u-ledger-genesis-1-1.js?v=genesis-1-1-sequence-v1"></script>
+  <script defer src="data/render-model.js?v=genesis-1-1-sequence-v1"></script>
+  <script defer src="assets/render.js?v=genesis-1-1-sequence-v1"></script>
 </head>
 <body>
-  <main class="shell">
+  <main class="shell" id="page-top">
     <details class="contents-strip">
       <summary>CONTENTS <span>292 sections</span></summary>
       <div class="contents-list" id="contents-list"></div>
@@ -25,40 +25,42 @@
       <div class="passage-line" id="passage-line" dir="rtl" lang="he"></div>
     </header>
 
-    <section class="reader-frame" id="page-top" aria-label="Selected Hebrew render">
-      <div class="top-card-grid">
-        <section class="word-card" id="selected-word-card" aria-label="Selected Hebrew word">
-          <div class="word-labels">
-            <span>Hebrew</span>
-            <span>Transliteration</span>
-          </div>
-          <div class="word-values">
-            <strong id="word-hebrew" lang="he" dir="rtl"></strong>
-            <span id="word-transliteration"></span>
-          </div>
-        </section>
+    <div class="word-section-list" id="word-section-list">
+      <section class="reader-frame word-section is-active" id="selected-word-section" aria-label="Selected Hebrew render">
+        <div class="top-card-grid">
+          <section class="word-card" id="selected-word-card" aria-label="Selected Hebrew word">
+            <div class="word-labels">
+              <span>Hebrew</span>
+              <span>Transliteration</span>
+            </div>
+            <div class="word-values">
+              <strong id="word-hebrew" lang="he" dir="rtl"></strong>
+              <span id="word-transliteration"></span>
+            </div>
+          </section>
 
-        <section class="selected-gloss-card" aria-label="Selected gloss">
-          <h2>Selected Gloss</h2>
-          <div id="selected-gloss-stack"></div>
-        </section>
-      </div>
+          <section class="selected-gloss-card" aria-label="Selected gloss">
+            <h2>Selected Gloss</h2>
+            <div id="selected-gloss-stack"></div>
+          </section>
+        </div>
 
-      <div class="selector-row">
-        <span class="selector-label">HEBREW SPAN</span>
-        <div class="span-options" id="span-options" role="group" aria-label="Hebrew span"></div>
-      </div>
+        <div class="selector-row">
+          <span class="selector-label">HEBREW SPAN</span>
+          <div class="span-options" id="span-options" role="group" aria-label="Hebrew span"></div>
+        </div>
 
-      <div class="render-grid">
-        <section class="choice-panel" aria-label="Available route choices">
-          <div id="route-stack"></div>
-        </section>
+        <div class="render-grid">
+          <section class="choice-panel" aria-label="Available route choices">
+            <div id="route-stack"></div>
+          </section>
 
-        <section class="detail-panel" aria-label="Selected route details">
-          <div id="detail-stack"></div>
-        </section>
-      </div>
-    </section>
+          <section class="detail-panel" aria-label="Selected route details">
+            <div id="detail-stack"></div>
+          </section>
+        </div>
+      </section>
+    </div>
 
     <div id="next-section" class="next-anchor" aria-hidden="true"></div>
   </main>

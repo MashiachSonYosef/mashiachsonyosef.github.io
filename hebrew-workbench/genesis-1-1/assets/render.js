@@ -22,6 +22,8 @@
 
   const contentsList = document.getElementById('contents-list');
   const passageLine = document.getElementById('passage-line');
+  const wordSectionList = document.getElementById('word-section-list');
+  const selectedWordSection = document.getElementById('selected-word-section');
   const wordHebrew = document.getElementById('word-hebrew');
   const wordTransliteration = document.getElementById('word-transliteration');
   const selectedWordCard = document.getElementById('selected-word-card');
@@ -151,6 +153,15 @@
     return option.id;
   }
 
+  function wordSectionId(token) {
+    return token.anchorId || `word-section-${token.id}`;
+  }
+
+  function tokenPositionLabel(token) {
+    const index = model.passage.tokens.findIndex((item) => item.id === token.id);
+    return index < 0 ? 'WORD' : `WORD ${index + 1} / ${model.passage.tokens.length}`;
+  }
+
   function visibleOptionsForActive(options, activeId) {
     const firstOptions = options.slice(0, PILL_LIMIT);
     if (firstOptions.some((option) => optionValue(option) === activeId)) return firstOptions;
@@ -211,11 +222,21 @@
   }
 
   function scrollToSelectedWord() {
-    if (!selectedWordCard) return;
+    if (!selectedWordSection) return;
     const passageBar = document.querySelector('.passage-bar');
-    const offset = (passageBar ? passageBar.offsetHeight : 0) + 28;
-    const top = selectedWordCard.getBoundingClientRect().top + window.scrollY - offset;
+    const offset = (passageBar ? passageBar.offsetHeight : 0) + 16;
+    const top = selectedWordSection.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }
+
+  function activateWord(wordUseId, shouldScroll) {
+    const token = model.passage.tokens.find((item) => item.id === wordUseId);
+    if (!token) return;
+
+    state.wordUseId = token.id;
+    if (token.defaultCompSpanId) state.compSpanId = token.defaultCompSpanId;
+    render();
+    if (shouldScroll) requestAnimationFrame(scrollToSelectedWord);
   }
 
   function renderContents() {
@@ -246,14 +267,56 @@
       } else {
         button.title = token.materializationReason || 'Not materialized in this render slice';
       }
-      button.addEventListener('click', () => {
-        state.wordUseId = token.id;
-        if (token.defaultCompSpanId) state.compSpanId = token.defaultCompSpanId;
-        render();
-        scrollToSelectedWord();
-      });
+      button.addEventListener('click', () => activateWord(token.id, true));
       passageLine.appendChild(button);
     }
+  }
+
+  function renderCollapsedWordSection(token) {
+    const section = el('section', 'word-section word-section-summary');
+    section.id = wordSectionId(token);
+    section.dataset.wordUseId = token.id;
+    section.dataset.useStatus = token.useStatus || (token.active ? 'materialized' : 'held');
+
+    const button = el('button', 'word-section-summary-button');
+    button.type = 'button';
+    button.setAttribute('aria-current', token.id === state.wordUseId ? 'true' : 'false');
+    button.addEventListener('click', () => activateWord(token.id, true));
+
+    button.appendChild(el('span', 'word-summary-position', tokenPositionLabel(token)));
+
+    const hebrew = el('strong', 'word-summary-hebrew', token.hebrew);
+    hebrew.lang = 'he';
+    hebrew.dir = 'rtl';
+    button.appendChild(hebrew);
+
+    button.appendChild(el('span', 'word-summary-translit', token.transliteration));
+    button.appendChild(el('span', 'word-summary-status', token.active ? 'materialized' : 'held by U'));
+    section.appendChild(button);
+    return section;
+  }
+
+  function renderWordSections() {
+    if (!wordSectionList || !selectedWordSection) return;
+
+    const word = selectedWordUse();
+    const fragment = document.createDocumentFragment();
+    selectedWordSection.id = wordSectionId(word);
+    selectedWordSection.dataset.wordUseId = word.id;
+    selectedWordSection.dataset.useStatus = word.useStatus || (word.active ? 'materialized' : 'held');
+    selectedWordSection.classList.toggle('is-held-word', !selectedWordIsMaterialized());
+    selectedWordSection.setAttribute('aria-label', `${tokenPositionLabel(word)} selected Hebrew render`);
+
+    for (const token of model.passage.tokens) {
+      if (token.id === state.wordUseId) {
+        fragment.appendChild(selectedWordSection);
+      } else {
+        fragment.appendChild(renderCollapsedWordSection(token));
+      }
+    }
+
+    clear(wordSectionList);
+    wordSectionList.appendChild(fragment);
   }
 
   function renderSectionCommentaryActions() {
@@ -310,6 +373,8 @@
 
   function renderWordCard() {
     const word = selectedWordUse();
+    selectedWordCard.dataset.wordUseId = word.id;
+    selectedWordCard.dataset.useStatus = word.useStatus || (word.active ? 'materialized' : 'held');
     wordHebrew.textContent = word.hebrew;
     wordTransliteration.textContent = word.transliteration;
   }
@@ -630,6 +695,7 @@
   function render() {
     const span = selectedCompSpan();
     renderPassage();
+    renderWordSections();
     renderWordCard();
     renderSelector();
     renderSelectedGloss(span);

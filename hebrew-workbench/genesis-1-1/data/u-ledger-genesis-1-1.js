@@ -1,7 +1,7 @@
 window.HEBREW_U_LEDGER_GENESIS_1_1 = {
   id: 'U-GENESIS-1-1-RENDER-POINTER-0001',
   ledgerKind: 'render_usage_pointer',
-  version: '2026-07-05-v1',
+  version: '2026-07-05-v2',
   passageRef: 'Genesis 1:1',
   contractFormula: 'C0 -> W -> COMPspan -> L -> ((D + R) <- P) -> M',
   ownership: {
@@ -78,6 +78,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
     tokenUses: [
       {
         id: 'gen-1-1-1',
+        anchorId: 'word-section-gen-1-1-1',
         c0OccurrenceId: 'C0-BERESHIT-POC-GENESIS-1-1-0001',
         visibleWId: 'W-BERESHIT-POC-0001',
         hebrew: 'בראשית',
@@ -92,6 +93,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
       },
       {
         id: 'gen-1-1-2',
+        anchorId: 'word-section-gen-1-1-2',
         hebrew: 'ברא',
         transliteration: 'bara',
         renderMaterialized: false,
@@ -99,6 +101,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
       },
       {
         id: 'gen-1-1-3',
+        anchorId: 'word-section-gen-1-1-3',
         hebrew: 'אלהים',
         transliteration: 'elohim',
         renderMaterialized: false,
@@ -106,6 +109,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
       },
       {
         id: 'gen-1-1-4',
+        anchorId: 'word-section-gen-1-1-4',
         hebrew: 'את',
         transliteration: 'et',
         renderMaterialized: false,
@@ -113,6 +117,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
       },
       {
         id: 'gen-1-1-5',
+        anchorId: 'word-section-gen-1-1-5',
         hebrew: 'השמים',
         transliteration: 'hashamayim',
         renderMaterialized: false,
@@ -120,6 +125,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
       },
       {
         id: 'gen-1-1-6',
+        anchorId: 'word-section-gen-1-1-6',
         hebrew: 'ואת',
         transliteration: 've-et',
         renderMaterialized: false,
@@ -127,6 +133,7 @@ window.HEBREW_U_LEDGER_GENESIS_1_1 = {
       },
       {
         id: 'gen-1-1-7',
+        anchorId: 'word-section-gen-1-1-7',
         hebrew: 'הארץ:',
         transliteration: 'haaretz',
         renderMaterialized: false,
