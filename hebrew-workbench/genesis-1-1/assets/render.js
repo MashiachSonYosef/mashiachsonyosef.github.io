@@ -216,12 +216,13 @@
       button.lang = 'he';
       button.dir = 'rtl';
       button.disabled = !token.active;
+      button.dataset.useStatus = token.useStatus || (token.active ? 'materialized' : 'held');
       button.setAttribute('aria-pressed', token.active ? 'true' : 'false');
       if (token.active) {
         button.title = 'Jump to selected word';
         button.addEventListener('click', scrollToSelectedWord);
       } else {
-        button.title = 'Not materialized in this render slice';
+        button.title = token.materializationReason || 'Not materialized in this render slice';
       }
       passageLine.appendChild(button);
     }

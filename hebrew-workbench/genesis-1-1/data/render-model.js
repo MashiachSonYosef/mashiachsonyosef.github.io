@@ -1,33 +1,45 @@
-window.HEBREW_RENDER_MODEL = {
-  defaultCompSpanId: 'B6-R173-BERESHIT-COMPSPAN-0001-WHOLE',
-  word: {
+const U_LEDGER_GENESIS_1_1 = window.HEBREW_U_LEDGER_GENESIS_1_1 || {};
+const U_TOKEN_USES = (
+  U_LEDGER_GENESIS_1_1.passage &&
+  U_LEDGER_GENESIS_1_1.passage.tokenUses
+) || [];
+const U_RENDER_DEFAULTS = U_LEDGER_GENESIS_1_1.renderDefaults || {};
+const U_DEFAULT_WORD_USE = (
+  U_TOKEN_USES.find((token) => token.id === U_RENDER_DEFAULTS.wordUseId) ||
+  U_TOKEN_USES[0] ||
+  {
+    id: 'gen-1-1-1',
+    c0OccurrenceId: 'C0-BERESHIT-POC-GENESIS-1-1-0001',
+    visibleWId: 'W-BERESHIT-POC-0001',
     hebrew: 'בראשית',
     transliteration: 'bereshit'
+  }
+);
+
+window.HEBREW_RENDER_MODEL = {
+  usageLedger: U_LEDGER_GENESIS_1_1,
+  defaultCompSpanId: U_RENDER_DEFAULTS.compSpanId || 'B6-R173-BERESHIT-COMPSPAN-0001-WHOLE',
+  word: {
+    id: U_DEFAULT_WORD_USE.id,
+    c0OccurrenceId: U_DEFAULT_WORD_USE.c0OccurrenceId,
+    visibleWId: U_DEFAULT_WORD_USE.visibleWId,
+    hebrew: U_DEFAULT_WORD_USE.hebrew,
+    transliteration: U_DEFAULT_WORD_USE.transliteration
   },
   passage: {
-    ref: 'Genesis 1:1',
-    tokens: [
-      { id: 'gen-1-1-1', hebrew: 'בראשית', transliteration: 'bereshit', active: true },
-      { id: 'gen-1-1-2', hebrew: 'ברא', transliteration: 'bara', active: false },
-      { id: 'gen-1-1-3', hebrew: 'אלהים', transliteration: 'elohim', active: false },
-      { id: 'gen-1-1-4', hebrew: 'את', transliteration: 'et', active: false },
-      { id: 'gen-1-1-5', hebrew: 'השמים', transliteration: 'hashamayim', active: false },
-      { id: 'gen-1-1-6', hebrew: 'ואת', transliteration: 've-et', active: false },
-      { id: 'gen-1-1-7', hebrew: 'הארץ:', transliteration: 'haaretz', active: false }
-    ],
-    sections: [
-      {
-        id: 'gen-1-1',
-        ref: 'Genesis 1:1',
-        label: 'GENESIS 1:1',
-        commentaryEdgeIds: [
-          'commentary-rashi-genesis',
-          'commentary-ibn-ezra-genesis',
-          'commentary-targum-jonathan-genesis',
-          'commentary-targum-onkelos-genesis'
-        ]
-      }
-    ]
+    id: (U_LEDGER_GENESIS_1_1.passage && U_LEDGER_GENESIS_1_1.passage.id) || 'u-genesis-1-1',
+    ref: U_LEDGER_GENESIS_1_1.passageRef || 'Genesis 1:1',
+    tokens: U_TOKEN_USES.map((token) => ({
+      id: token.id,
+      c0OccurrenceId: token.c0OccurrenceId,
+      visibleWId: token.visibleWId,
+      hebrew: token.hebrew,
+      transliteration: token.transliteration,
+      active: token.renderMaterialized === true,
+      useStatus: token.renderMaterialized === true ? 'materialized' : 'held',
+      materializationReason: token.materializationReason || ''
+    })),
+    sections: (U_LEDGER_GENESIS_1_1.passage && U_LEDGER_GENESIS_1_1.passage.sections) || []
   },
   compSpans: [
     {
