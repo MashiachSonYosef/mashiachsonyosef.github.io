@@ -470,15 +470,12 @@
 
   function render() {
     const span = selectedCompSpan();
-    renderSectionCommentaryActions();
     renderSelector();
     renderSelectedGloss(span);
     renderChoicePanel(span);
     renderDetails(span);
-    renderCommentaryDrawer();
   }
 
-  wireCommentaryControls();
   renderContents();
   renderPassage();
   renderWordCard();
