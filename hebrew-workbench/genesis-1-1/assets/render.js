@@ -3,7 +3,6 @@
   const PILL_LIMIT = 5;
   const state = {
     wordUseId: model.word.id,
-    passageCollapsed: false,
     compSpanId: model.defaultCompSpanId,
     lBundleByCell: new Map(),
     routeByLBundle: new Map(),
@@ -234,10 +233,7 @@
 
   function renderPassage() {
     clear(passageLine);
-    const tokens = state.passageCollapsed ? [selectedWordUse()] : model.passage.tokens;
-    passageLine.dataset.mode = state.passageCollapsed ? 'selected-word' : 'full-passage';
-
-    for (const token of tokens) {
+    for (const token of model.passage.tokens) {
       const button = el('button', 'passage-token', token.hebrew);
       button.type = 'button';
       button.lang = 'he';
@@ -252,21 +248,11 @@
       }
       button.addEventListener('click', () => {
         state.wordUseId = token.id;
-        state.passageCollapsed = true;
         if (token.defaultCompSpanId) state.compSpanId = token.defaultCompSpanId;
         render();
         scrollToSelectedWord();
       });
       passageLine.appendChild(button);
-    }
-  }
-
-  function wirePassageTopLinks() {
-    for (const link of document.querySelectorAll('a[href="#page-top"]')) {
-      link.addEventListener('click', () => {
-        state.passageCollapsed = false;
-        renderPassage();
-      });
     }
   }
 
@@ -652,6 +638,5 @@
   }
 
   renderContents();
-  wirePassageTopLinks();
   render();
 }());
