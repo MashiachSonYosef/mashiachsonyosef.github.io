@@ -23,6 +23,7 @@
   const passageLine = document.getElementById('passage-line');
   const wordHebrew = document.getElementById('word-hebrew');
   const wordTransliteration = document.getElementById('word-transliteration');
+  const selectedWordCard = document.getElementById('selected-word-card');
   const selectedGlossStack = document.getElementById('selected-gloss-stack');
   const activeSectionRef = document.getElementById('active-section-ref');
   const topCommentaryButton = document.getElementById('top-commentary-button');
@@ -92,6 +93,14 @@
     while (node.firstChild) node.removeChild(node.firstChild);
   }
 
+  function scrollToSelectedWord() {
+    if (!selectedWordCard) return;
+    const passageBar = document.querySelector('.passage-bar');
+    const offset = (passageBar ? passageBar.offsetHeight : 0) + 12;
+    const top = selectedWordCard.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }
+
   function renderContents() {
     if (!contentsList) return;
     clear(contentsList);
@@ -114,7 +123,12 @@
       button.dir = 'rtl';
       button.disabled = !token.active;
       button.setAttribute('aria-pressed', token.active ? 'true' : 'false');
-      if (!token.active) button.title = 'Not materialized in this render slice';
+      if (token.active) {
+        button.title = 'Jump to selected word';
+        button.addEventListener('click', scrollToSelectedWord);
+      } else {
+        button.title = 'Not materialized in this render slice';
+      }
       passageLine.appendChild(button);
     }
   }
@@ -160,7 +174,7 @@
   }
 
   function selectedGlossText(span) {
-    const parts = span.cells.map((cell) => selectedRoute(selectedLBundle(cell)).text);
+    const parts = span.cells.map((cell) => selectedLBundle(cell).label);
     return span.isSplit ? parts.join(' + ') : parts[0];
   }
 
@@ -175,7 +189,7 @@
 
     span.cells.forEach((cell, index) => {
       if (index > 0) line.appendChild(el('span', 'selected-gloss-plus', ' + '));
-      line.appendChild(el('span', 'selected-gloss-part', selectedRoute(selectedLBundle(cell)).text));
+      line.appendChild(el('span', 'selected-gloss-part', selectedLBundle(cell).label));
     });
     selectedGlossStack.appendChild(line);
   }
@@ -334,24 +348,13 @@
     return wrap;
   }
 
-  function renderRouteButton(bundle, route) {
-    const button = el('button', 'route-chip route-chip-button r-route-pill', route.text);
-    button.type = 'button';
-    button.setAttribute('aria-pressed', selectedRoute(bundle).id === route.id ? 'true' : 'false');
-    button.addEventListener('click', () => {
-      state.routeByLBundle.set(bundle.id, route.id);
-      render();
-    });
-    return button;
-  }
-
   function renderBundleCard(cell, bundle) {
     const card = el('section', 'route-card bundle-card');
     card.appendChild(el('span', 'bundle-layer', 'D BUNDLE'));
     card.appendChild(el('span', 'route-title', bundle.label));
-    const chips = el('span', 'route-chips');
-    for (const route of bundle.routes) chips.appendChild(renderRouteButton(bundle, route));
-    card.appendChild(chips);
+    if (bundle.mSupports.length > 1) {
+      card.appendChild(el('span', 'route-subtitle', `${bundle.mSupports.length} exact-D M supports`));
+    }
     return card;
   }
 
@@ -393,11 +396,13 @@
   }
 
   function renderDefinitionDetail(cell, bundle) {
-    const route = selectedRoute(bundle);
     const card = el('article', 'detail-card');
     card.appendChild(el('h2', 'section-kicker', 'DEFINITION'));
     card.appendChild(el('h3', 'detail-title', bundle.label));
-    card.appendChild(el('p', 'detail-copy', `Selected R: ${route.text}. D: ${bundle.label}. ${cell.hebrew} carries this licensed bundle.`));
+    const repeatCopy = bundle.mSupports.length > 1
+      ? ' M repeats prove exact support without changing D.'
+      : '';
+    card.appendChild(el('p', 'detail-copy', `Selected D: ${bundle.label}. ${cell.hebrew} carries this licensed bundle.${repeatCopy}`));
     return card;
   }
 

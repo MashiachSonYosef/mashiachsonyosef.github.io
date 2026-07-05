@@ -58,6 +58,12 @@ window.HEBREW_RENDER_MODEL = {
                   label: 'Wiktionary בראשית',
                   title: 'CC BY-SA | Wiktionary בראשית',
                   copy: 'oldid=89472033; entry lines 139-146; license lines 253-254; attribution required; ShareAlike required.'
+                },
+                {
+                  id: 'B6-R173-BERESHIT-LBUNDLE-0001-M-002',
+                  label: 'Exact D repeat proof',
+                  title: 'M repeat proof | same D bundle',
+                  copy: 'Exact-D repeat proof row for this render: same D bundle, second M support, no derivation and no D text alteration.'
                 }
               ]
             },
