@@ -166,6 +166,10 @@
     railBHeading: document.querySelector("#v5-rail-b-heading"),
     openRailB: document.querySelector("#v5-open-rail-b"),
     closeRailB: document.querySelector("#v5-close-rail-b"),
+    hebrewSmaller: document.querySelector("#v5-hebrew-smaller"),
+    hebrewLarger: document.querySelector("#v5-hebrew-larger"),
+    shareLink: document.querySelector("#v5-share-link"),
+    deckToggle: document.querySelector("#v5-deck-toggle"),
   };
 
   const requiredData = [
@@ -3610,6 +3614,7 @@
         state.railProgrammaticScrollUntil = Date.now() + 900;
       });
     }
+    v5UpdateReturnChip();
   };
 
   const v5SyncPillsAndBubbles = () => {
@@ -3699,16 +3704,9 @@
     state.activeSectionRef = item.sectionRef;
     state.activeCommentaryTrack = state.railWork;
     state.commentaryAlignmentRef = "";
-    if (item.kind === "unit") {
-      state.activeClaimRef = item.ref;
-      state.activeSnapGroupKey =
-        commentarySnapGroupByClaimRef.get(item.ref)?.key || "";
-    } else {
-      state.activeClaimRef = "";
-      state.activeSnapGroupKey = "";
-    }
+    // V5.3: scroll focus never steals the selection. The red-ring claim you
+    // clicked stays yours; only an explicit click reassigns it.
     document.body.dataset.v4CommentaryTrack = state.railWork;
-    v5SyncPillsAndBubbles();
     v5HighlightItem(item);
     elements.returnToSource.hidden = false;
     if (scrollSource) v5ScrollSourceToItem(item);
@@ -4088,6 +4086,183 @@
     publishAudit();
   };
 
+  // ── V5.3 · legibility set ──────────────────────────────────────────────
+  // Return-to-selection chip, stacked/split phone deck, Hebrew text size,
+  // and shareable alignment links.
+
+  const v5ReturnDock = (() => {
+    if (!elements.railToolbar) return null;
+    const dock = make("div", "v5-return-dock");
+    dock.hidden = true;
+    const button = make("button", "v5-return-chip");
+    button.type = "button";
+    button.title = "Scroll the rail back to your selected comment";
+    dock.append(button);
+    elements.railToolbar.after(dock);
+    button.addEventListener("click", () => {
+      const index = state.railItems.findIndex(
+        (item) => item.ref === state.activeClaimRef,
+      );
+      if (index < 0) return;
+      state.activeRailIndex = index;
+      v5RefreshRailFocus({ scrollRail: true });
+      updateCommentaryStepper();
+      v5UpdateSnapStateLabel(state.railItems[index]);
+    });
+    return { dock, button };
+  })();
+
+  const v5UpdateReturnChip = () => {
+    if (!v5ReturnDock) return;
+    const selectionIndex = state.activeClaimRef
+      ? state.railItems.findIndex(
+          (item) => item.ref === state.activeClaimRef,
+        )
+      : -1;
+    const show =
+      selectionIndex >= 0 && selectionIndex !== state.activeRailIndex;
+    v5ReturnDock.dock.hidden = !show;
+    if (show) {
+      const item = state.railItems[selectionIndex];
+      setText(
+        v5ReturnDock.button,
+        `↩ ${item ? railItemLabel(item) : "selection"}`,
+      );
+    }
+  };
+
+  const v5SetDeckMode = (mode) => {
+    document.body.dataset.v5Deck = mode;
+    elements.deckToggle?.setAttribute(
+      "aria-pressed",
+      String(mode === "split"),
+    );
+    if (elements.deckToggle) {
+      setText(
+        elements.deckToggle,
+        mode === "split" ? "⇆ Stacked" : "⇆ Side-by-side",
+      );
+    }
+  };
+
+  const v5HebrewScaleSteps = [0.85, 1, 1.15, 1.3, 1.5];
+  let v5HebrewScaleIndex = 1;
+  const v5ApplyHebrewScale = () => {
+    const scale = v5HebrewScaleSteps[v5HebrewScaleIndex];
+    document.documentElement.style.setProperty(
+      "--v5-hebrew-scale",
+      String(scale),
+    );
+    if (elements.hebrewSmaller) {
+      elements.hebrewSmaller.disabled = v5HebrewScaleIndex === 0;
+    }
+    if (elements.hebrewLarger) {
+      elements.hebrewLarger.disabled =
+        v5HebrewScaleIndex === v5HebrewScaleSteps.length - 1;
+    }
+    announce(
+      `Hebrew text scale ${Math.round(scale * 100)} percent.`,
+    );
+  };
+
+  const v5StepHebrewScale = (delta) => {
+    const next = Math.min(
+      v5HebrewScaleSteps.length - 1,
+      Math.max(0, v5HebrewScaleIndex + delta),
+    );
+    if (next === v5HebrewScaleIndex) return;
+    v5HebrewScaleIndex = next;
+    v5ApplyHebrewScale();
+  };
+
+  const v5BuildShareLink = () => {
+    const url = new URL(window.location.href);
+    url.search = "";
+    const position = state.currentSourcePosition;
+    const sectionRef =
+      position?.section_ref || state.activeSectionRef || "Genesis 1:1";
+    url.searchParams.set("v5ref", sectionRef);
+    if (Number.isInteger(position?.word_index)) {
+      url.searchParams.set("v5word", String(position.word_index));
+    }
+    if (state.railWork) url.searchParams.set("v5work", state.railWork);
+    if (state.railBOpen && state.railBWork) {
+      url.searchParams.set("v5counter", state.railBWork);
+    }
+    if (state.activeClaimRef) {
+      url.searchParams.set("v5unit", state.activeClaimRef);
+    }
+    return url.toString();
+  };
+
+  const v5CopyShareLink = async () => {
+    const link = v5BuildShareLink();
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(link);
+      copied = true;
+    } catch {
+      copied = false;
+    }
+    if (!copied) {
+      try {
+        window.prompt("Copy this alignment link:", link);
+        copied = true;
+      } catch {
+        copied = false;
+      }
+    }
+    announce(
+      copied
+        ? "Alignment link copied. It reopens this exact spread."
+        : "The link could not be copied automatically.",
+    );
+    if (elements.shareLink) {
+      const restore = elements.shareLink.textContent;
+      setText(elements.shareLink, copied ? "✓ Copied" : "⧉ Link");
+      window.setTimeout(() => {
+        setText(elements.shareLink, "⧉ Link");
+      }, 1600);
+      void restore;
+    }
+  };
+
+  const v5ApplyShareParams = () => {
+    const parameters = new URLSearchParams(window.location.search);
+    const work = parameters.get("v5work") || "";
+    const counter = parameters.get("v5counter") || "";
+    const unitRef = parameters.get("v5unit") || "";
+    const sectionRef = parameters.get("v5ref") || "";
+    const wordIndex = Number.parseInt(
+      parameters.get("v5word") || "",
+      10,
+    );
+    if (!work && !counter && !sectionRef && !unitRef) return;
+    if (work) v5SetRailWork(work, { focusRef: unitRef });
+    if (counter) v5OpenRailB(counter);
+    if (sectionRef) {
+      const position = sourcePosition(
+        sectionRef,
+        Number.isInteger(wordIndex) && wordIndex > 0 ? wordIndex : 1,
+      );
+      if (position.section_order >= 0) {
+        state.currentSourcePosition = position;
+        openCommentaryWorkspace(null, {
+          followOnMobile: false,
+          rememberTrigger: false,
+        });
+        requestAnimationFrame(() => {
+          const target =
+            wordModuleForPosition(sectionRef, position.word_index) ||
+            articleForSourceRef(sectionRef);
+          state.sourceProgrammaticScrollUntil = Date.now() + 1200;
+          target?.scrollIntoView({ block: "center", behavior: "auto" });
+          v5FollowSource(position, 0);
+        });
+      }
+    }
+  };
+
   function updateCommentarySourcePosition(
     sectionRef,
     wordIndex,
@@ -4310,6 +4485,7 @@
     v5UpdateSnapStateLabel(
       state.railItems[state.activeRailIndex] || null,
     );
+    v5UpdateReturnChip();
     if (origin === "manual") {
       requestAnimationFrame(() => elements.commentaryPane.focus());
     }
@@ -5024,6 +5200,21 @@
     else v5OpenRailB();
   });
   elements.closeRailB?.addEventListener("click", () => v5CloseRailB());
+  elements.hebrewSmaller?.addEventListener("click", () =>
+    v5StepHebrewScale(-1),
+  );
+  elements.hebrewLarger?.addEventListener("click", () =>
+    v5StepHebrewScale(1),
+  );
+  elements.shareLink?.addEventListener("click", () => {
+    void v5CopyShareLink();
+  });
+  elements.deckToggle?.addEventListener("click", () => {
+    v5SetDeckMode(
+      document.body.dataset.v5Deck === "split" ? "stack" : "split",
+    );
+  });
+  v5SetDeckMode("stack");
   if (elements.railB) {
     elements.railB.inert = true;
     ["wheel", "touchstart", "pointerdown"].forEach((type) => {
@@ -5170,4 +5361,6 @@
   // V4.1: materialize the stacked workspace and witness ledger from first
   // paint, so the pane presents the whole record before any pill is chosen.
   renderCommentaryTrack({ origin: "initial" });
+  // V5.3: shareable alignment links reopen an exact spread.
+  v5ApplyShareParams();
 })();
