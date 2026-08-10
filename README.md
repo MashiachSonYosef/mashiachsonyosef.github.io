@@ -10,3 +10,5 @@ Currently a proof slice covering Genesis 1:1–1:2, with the full 50-chapter nav
 - `genesis-book-reader-v4/` — the reader (HTML/CSS/JS) and its data files
 
 Hebrew text licensing: CC BY-SA 4.0 + Public Domain (see the Sources & licenses drawer in the reader).
+
+Served from the gh-pages branch.
