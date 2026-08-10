@@ -590,7 +590,11 @@
     const hint = claim?.visual_hint;
     return Boolean(
       claim?.claim_state === "VISUAL_SUGGESTION_ONLY" &&
-        hint?.grain === "OPENING_PHRASE" &&
+        // V5.4: an interior headword cue (the quoted word sits mid-verse,
+        // e.g. Ramban's va-amar ELOHIM) is the same suggestion discipline
+        // as an opening-phrase cue.
+        (hint?.grain === "OPENING_PHRASE" ||
+          hint?.grain === "INTERIOR_PHRASE") &&
         Number.isInteger(hint.start_word_index) &&
         Number.isInteger(hint.end_word_index) &&
         word.index >= hint.start_word_index &&
@@ -2415,10 +2419,57 @@
           .filter(Boolean),
       ),
     ];
-    await Promise.allSettled(scripts.map(loadScript));
+    // V5.4: probe one shard first. The shards share a folder — when the
+    // first is missing the folder is unpublished, and firing sixty more
+    // doomed requests serves nobody.
+    if (scripts.length) {
+      try {
+        await loadScript(scripts[0]);
+        await Promise.allSettled(scripts.slice(1).map(loadScript));
+      } catch {
+        // Fall through — the usable-word check below presents the exact
+        // proof text instead.
+      }
+    }
     if (renderToken !== state.commentaryRenderToken) return;
 
     const wordRegistry = window[registry] || {};
+    // V5.4 defect repair: the per-word shard files this fixture references
+    // were never published in any branch of the repository. When not a
+    // single word is usable, a wall of held stubs serves nobody — the
+    // comment's exact original-language proof text rides instead, clearly
+    // marked, with nothing invented.
+    const usableOccurrences = occurrences.filter((occurrence) =>
+      wordIsUsable(wordRegistry[occurrence.exact_key]),
+    ).length;
+    if (usableOccurrences === 0) {
+      const proofSegment = legacyProofCommentaryByRef.get(
+        claim.commentary_unit_ref,
+      );
+      if (proofSegment?.he?.proof_text) {
+        const reading = make("div");
+        const raw = make(
+          "p",
+          "v4-commentary-raw-proof",
+          proofSegment.he.proof_text,
+        );
+        raw.lang = "he";
+        raw.dir = "rtl";
+        const heldNote = make("p", "v5-shard-held-note");
+        heldNote.append(
+          make("b", "", "Word-level detail held"),
+          make(
+            "span",
+            "",
+            " · The per-word HUD files for this comment are not published, so the exact proof text is presented whole. No gloss has been invented.",
+          ),
+        );
+        reading.append(raw, heldNote);
+        host.replaceChildren(reading);
+        publishAudit();
+        return;
+      }
+    }
     const run = make("div", "v3-commentary-word-run");
     run.dir = readerAxisContract.modes[state.readerMode].layout_axis;
     run.setAttribute("aria-label", `${compactClaimTitle(claim)} word reading`);
@@ -2948,23 +2999,33 @@
     if (!proofText || !sectionWords.length) return null;
     const headRaw =
       (String(proofText).split(".")[0] || "").trim() || String(proofText);
-    const headWords = v5Normalize(headRaw)
+    const allHeadWords = v5Normalize(headRaw)
       .split(" ")
       .filter(Boolean)
-      .slice(0, 4);
-    if (!headWords.length) return null;
-    for (let len = Math.min(headWords.length, 4); len >= 1; len -= 1) {
-      for (let start = 0; start + len <= sectionWords.length; start += 1) {
-        let holds = true;
-        for (let offset = 0; offset < len; offset += 1) {
-          const verseWord = sectionWords[start + offset];
-          const headWord = headWords[offset];
-          if (verseWord !== headWord && !verseWord.endsWith(headWord)) {
-            holds = false;
-            break;
+      .slice(0, 6);
+    if (!allHeadWords.length) return null;
+    // Up to two non-quotation lead words may be skipped — commentators
+    // often preface the quoted headword ("ve-amar Elohim…").
+    for (let skip = 0; skip <= 2; skip += 1) {
+      const headWords = allHeadWords.slice(skip, skip + 4);
+      if (!headWords.length) break;
+      for (let len = Math.min(headWords.length, 4); len >= 1; len -= 1) {
+        for (
+          let start = 0;
+          start + len <= sectionWords.length;
+          start += 1
+        ) {
+          let holds = true;
+          for (let offset = 0; offset < len; offset += 1) {
+            const verseWord = sectionWords[start + offset];
+            const headWord = headWords[offset];
+            if (verseWord !== headWord && !verseWord.endsWith(headWord)) {
+              holds = false;
+              break;
+            }
           }
+          if (holds) return { start: start + 1, end: start + len };
         }
-        if (holds) return { start: start + 1, end: start + len };
       }
     }
     return null;
