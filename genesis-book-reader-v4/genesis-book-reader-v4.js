@@ -155,6 +155,10 @@
     closeAttribution: document.querySelector("#v3-close-attribution"),
     drawerScrim: document.querySelector("#v3-drawer-scrim"),
     liveStatus: document.querySelector("#v3-live-status"),
+    railToolbar: document.querySelector("#v5-rail-toolbar"),
+    railWorkSelect: document.querySelector("#v5-rail-work"),
+    railSnapState: document.querySelector("#v5-rail-snap-state"),
+    railDivider: document.querySelector("#v5-rail-divider"),
   };
 
   const requiredData = [
@@ -910,6 +914,15 @@
     titleView: null,
     wordViews: new Map(),
     wordContexts: new Map(),
+    // V5 witness rail
+    railWork: "",
+    railItems: [],
+    activeRailIndex: -1,
+    snapMaster: "",
+    snapMasterHoldUntil: 0,
+    railProgrammaticScrollUntil: 0,
+    sourceProgrammaticScrollUntil: 0,
+    railSnapFrame: 0,
   };
 
   let routeAttributionCounter = 0;
@@ -2481,36 +2494,42 @@
     return sections;
   };
 
-  const activeCommentaryTrackIndex = () =>
-    allCommentaryUnitsOrdered.findIndex(
-      (unit) =>
-        unit.claim.commentary_unit_ref === state.activeClaimRef,
-    );
+  // V5: the stepper walks the rail — every item of the flowing work in
+  // canonical order, attached units and ledger segments alike.
+  const activeCommentaryTrackIndex = () => state.activeRailIndex;
+
+  const railItemLabel = (item) =>
+    item
+      ? item.kind === "unit"
+        ? compactClaimTitle(item.unit.claim)
+        : item.ref
+      : "";
 
   const commentaryStepTargetIndex = (delta) => {
-    const units = allCommentaryUnitsOrdered;
-    if (!units.length) return -1;
-    const activeIndex = activeCommentaryTrackIndex();
-    if (activeIndex >= 0) {
-      const candidate = activeIndex + delta;
-      return candidate >= 0 && candidate < units.length ? candidate : -1;
+    const items = state.railItems;
+    if (!items.length) return -1;
+    if (state.activeRailIndex >= 0) {
+      const candidate = state.activeRailIndex + delta;
+      return candidate >= 0 && candidate < items.length ? candidate : -1;
     }
     if (!state.currentSourcePosition) {
-      return delta > 0 ? 0 : units.length - 1;
+      return delta > 0 ? 0 : items.length - 1;
     }
+    const positionOf = (item) =>
+      sourcePosition(item.sectionRef, item.start);
     if (delta > 0) {
-      return units.findIndex(
-        (unit) =>
+      return items.findIndex(
+        (item) =>
           compareSourcePositions(
-            unit.sourcePosition,
+            positionOf(item),
             state.currentSourcePosition,
           ) >= 0,
       );
     }
-    for (let index = units.length - 1; index >= 0; index -= 1) {
+    for (let index = items.length - 1; index >= 0; index -= 1) {
       if (
         compareSourcePositions(
-          units[index].sourcePosition,
+          positionOf(items[index]),
           state.currentSourcePosition,
         ) <= 0
       ) {
@@ -2521,34 +2540,30 @@
   };
 
   const updateCommentaryStepper = () => {
-    const units = allCommentaryUnitsOrdered;
-    const activeIndex = activeCommentaryTrackIndex();
+    const items = state.railItems;
+    const activeIndex = state.activeRailIndex;
     const previousIndex = commentaryStepTargetIndex(-1);
     const nextIndex = commentaryStepTargetIndex(1);
-    elements.commentaryStepper.hidden = units.length === 0;
+    elements.commentaryStepper.hidden = items.length === 0;
     setText(
       elements.commentaryPosition,
       activeIndex >= 0
-        ? `${activeIndex + 1} of ${units.length}`
-        : `— of ${units.length}`,
+        ? `${activeIndex + 1} of ${items.length}`
+        : `— of ${items.length}`,
     );
     elements.previousCommentary.disabled = previousIndex < 0;
     elements.nextCommentary.disabled = nextIndex < 0;
     elements.previousCommentary.setAttribute(
       "aria-label",
       previousIndex >= 0
-        ? `Previous commentary unit, ${compactClaimTitle(
-            units[previousIndex].claim,
-          )}`
-        : "No previous commentary unit",
+        ? `Previous rail item, ${railItemLabel(items[previousIndex])}`
+        : "No previous rail item",
     );
     elements.nextCommentary.setAttribute(
       "aria-label",
       nextIndex >= 0
-        ? `Next commentary unit, ${compactClaimTitle(
-            units[nextIndex].claim,
-          )}`
-        : "No next commentary unit",
+        ? `Next rail item, ${railItemLabel(items[nextIndex])}`
+        : "No next rail item",
     );
   };
 
@@ -2667,12 +2682,15 @@
 
   const scrollCommentaryUnitIntoView = (origin) => {
     const active = elements.commentaryContent.querySelector(
-      ".v4-commentary-unit.is-active",
+      ".v5-rail-item.is-active, .v5-rail-item.is-rail-focus, .v4-commentary-unit.is-active",
     );
     if (!active) {
-      elements.commentaryPane.scrollTop = 0;
+      if (origin !== "rail-work" && origin !== "initial") {
+        elements.commentaryPane.scrollTop = 0;
+      }
       return;
     }
+    state.railProgrammaticScrollUntil = Date.now() + 900;
     const paneRect = elements.commentaryPane.getBoundingClientRect();
     const activeRect = active.getBoundingClientRect();
     const stickyHeight = elements.commentaryPane
@@ -2828,6 +2846,20 @@
           }`,
         ),
       );
+      // V5: any witness can flow in the rail beside the text.
+      const flow = make("button", "v5-witness-flow-button", "Flow");
+      flow.type = "button";
+      flow.title = `Flow ${family.collective_title_en || familyKey} in the witness rail`;
+      flow.setAttribute(
+        "aria-label",
+        `Flow ${family.collective_title_en || familyKey} in the witness rail beside the text`,
+      );
+      flow.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        v5SetRailWork(familyKey, { origin: "rail-work" });
+      });
+      marks.append(flow);
       summary.append(titles, marks);
       const body = make("div", "v4-witness-family-body");
       details.append(summary, body);
@@ -2844,144 +2876,320 @@
     return ledger;
   };
 
+  // ── V5 · the two-rail spine ────────────────────────────────────────────
+  // The verse is the spine. The source pane and the witness rail both
+  // project onto it. Alignment is dibbur-hamatchil shaped: proven headword
+  // edges from the attachment maps, auto-suggested headword matches from
+  // each segment's own opening words, and verse-level anchors for
+  // discursive segments that do not open with a quotation.
+
+  const v5Normalize = (text) =>
+    String(text || "")
+      .replace(/[֑-ׇ׳״]/gu, "")
+      .replace(/־/gu, " ")
+      .replace(/[^א-ת ]/gu, "")
+      .replace(/\s+/gu, " ")
+      .trim();
+
+  const v5SectionWordSequences = new Map();
+  const v5SectionWords = (section) => {
+    if (!section?.ref) return [];
+    if (v5SectionWordSequences.has(section.ref)) {
+      return v5SectionWordSequences.get(section.ref);
+    }
+    const runtime = sectionRuntime(section);
+    const words = [];
+    for (let index = 1; index <= 200; index += 1) {
+      const word = runtime.wordByIndex?.get(index);
+      if (!word) break;
+      words.push(
+        v5Normalize(word.normalized || word.hebrew || word.surface || ""),
+      );
+    }
+    v5SectionWordSequences.set(section.ref, words);
+    return words;
+  };
+
+  // Match a segment's opening words against a section's word sequence.
+  // Returns a 1-based inclusive span, or null when no headword match holds.
+  const v5MatchHeadword = (proofText, sectionWords) => {
+    if (!proofText || !sectionWords.length) return null;
+    const headRaw =
+      (String(proofText).split(".")[0] || "").trim() || String(proofText);
+    const headWords = v5Normalize(headRaw)
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 4);
+    if (!headWords.length) return null;
+    for (let len = Math.min(headWords.length, 4); len >= 1; len -= 1) {
+      for (let start = 0; start + len <= sectionWords.length; start += 1) {
+        let holds = true;
+        for (let offset = 0; offset < len; offset += 1) {
+          const verseWord = sectionWords[start + offset];
+          const headWord = headWords[offset];
+          if (verseWord !== headWord && !verseWord.endsWith(headWord)) {
+            holds = false;
+            break;
+          }
+        }
+        if (holds) return { start: start + 1, end: start + len };
+      }
+    }
+    return null;
+  };
+
+  const v5WitnessFamilies = (() => {
+    const families = new Map();
+    [
+      ...(commentaryData?.commentary || []),
+      ...(commentaryData?.targum || []),
+    ].forEach((family) => {
+      const key = family.commentary_index || family.family_title || "";
+      if (!key || families.has(key)) return;
+      families.set(key, {
+        key,
+        en: family.collective_title_en || family.family_title || key,
+        he: family.collective_title_he || "",
+        kind: family.commentary_kind || "COMMENTARY",
+        segments: family.segments || [],
+      });
+    });
+    // Attached tracks without a ledger family (future sections) still flow.
+    [...commentaryTrackUnitsByTrack.keys()].forEach((track) => {
+      if (!families.has(track)) {
+        families.set(track, {
+          key: track,
+          en: track,
+          he: "",
+          kind: /targum|onkelos/iu.test(track) ? "TARGUM" : "COMMENTARY",
+          segments: [],
+        });
+      }
+    });
+    return families;
+  })();
+
+  const v5DefaultRailWork = () => {
+    const attached = [...commentaryTrackUnitsByTrack.keys()];
+    const onkelosAttached = attached.find((track) =>
+      /onkelos/iu.test(track),
+    );
+    if (onkelosAttached) return onkelosAttached;
+    const onkelosFamily = [...v5WitnessFamilies.keys()].find((key) =>
+      /onkelos/iu.test(key),
+    );
+    return onkelosFamily || attached[0] || [...v5WitnessFamilies.keys()][0] || "";
+  };
+
+  const v5ClaimSpan = (claim) => {
+    if (claim?.claim_state === "PROVEN_EDGE" && claim.asserted_edge) {
+      const edge = claim.asserted_edge;
+      if (Number.isInteger(edge.start_word_index)) {
+        return {
+          start: edge.start_word_index,
+          end: edge.end_word_index || edge.start_word_index,
+          anchorClass: "proven",
+          wholeSection:
+            edge.grain === "VERSE" || edge.grain === "Y_NODE",
+        };
+      }
+      return { start: 1, end: 1, anchorClass: "proven", wholeSection: true };
+    }
+    if (
+      Number.isInteger(claim?.visual_hint?.start_word_index) &&
+      Number.isInteger(claim?.visual_hint?.end_word_index)
+    ) {
+      return {
+        start: claim.visual_hint.start_word_index,
+        end: claim.visual_hint.end_word_index,
+        anchorClass: "hint",
+        wholeSection: false,
+      };
+    }
+    return { start: 1, end: 1, anchorClass: "verse", wholeSection: true };
+  };
+
+  // Build the rail's item list for one flowing work: attached units first
+  // (they carry proofs and word modules), then ledger segments that are not
+  // already attached, each with an auto-suggested or verse-level anchor.
+  const v5BuildRailItems = (workKey) => {
+    const items = [];
+    const attachedRefs = new Set();
+    (commentaryTrackUnitsByTrack.get(workKey) || []).forEach((unit) => {
+      attachedRefs.add(unit.claim.commentary_unit_ref);
+      const span = v5ClaimSpan(unit.claim);
+      items.push({
+        kind: "unit",
+        unit,
+        ref: unit.claim.commentary_unit_ref,
+        sectionRef: unit.section.ref,
+        start: span.start,
+        end: span.end,
+        anchorClass: span.anchorClass,
+        wholeSection: span.wholeSection,
+      });
+    });
+    const family = v5WitnessFamilies.get(workKey);
+    (family?.segments || []).forEach((segment) => {
+      if (attachedRefs.has(segment.ref)) return;
+      const sectionRef = segment.source_anchor_ref || "Genesis 1:1";
+      const section = sectionsByRef.get(sectionRef);
+      let start = 1;
+      let end = 1;
+      let anchorClass = "verse";
+      let wholeSection = true;
+      if (section && segment.he?.proof_text) {
+        const match = v5MatchHeadword(
+          segment.he.proof_text,
+          v5SectionWords(section),
+        );
+        if (match) {
+          start = match.start;
+          end = match.end;
+          anchorClass = "suggested";
+          wholeSection = false;
+        }
+      }
+      items.push({
+        kind: "segment",
+        segment,
+        ref: segment.ref,
+        sectionRef,
+        start,
+        end,
+        anchorClass,
+        wholeSection,
+      });
+    });
+    items.sort((left, right) => {
+      const orderDelta =
+        (sourceSectionOrderByRef.get(left.sectionRef) ?? 9e9) -
+        (sourceSectionOrderByRef.get(right.sectionRef) ?? 9e9);
+      if (orderDelta !== 0) return orderDelta;
+      if (left.start !== right.start) return left.start - right.start;
+      return left.end - right.end;
+    });
+    return items;
+  };
+
+  const v5AnchorChipText = (item) => {
+    const span =
+      item.wholeSection || (item.start === 1 && item.end >= 199)
+        ? "whole verse"
+        : item.start === item.end
+          ? `word ${item.start}`
+          : `words ${item.start}–${item.end}`;
+    if (item.anchorClass === "proven") return `${span} · proven`;
+    if (item.anchorClass === "hint") return `${span} · hinted`;
+    if (item.anchorClass === "suggested")
+      return `${span} · suggested by opening words`;
+    return "whole verse";
+  };
+
   const renderCommentaryTrack = ({ origin = "manual" } = {}) => {
     const renderToken = ++state.commentaryRenderToken;
-    const activeUnit = commentaryTrackUnitByClaimRef.get(
-      state.activeClaimRef,
-    );
-    const trackEntries = [...commentaryTrackUnitsByTrack.entries()];
-    const unitTotal = allCommentaryUnitsOrdered.length;
+    if (!state.railWork) state.railWork = v5DefaultRailWork();
+    const family = v5WitnessFamilies.get(state.railWork);
+    state.railItems = v5BuildRailItems(state.railWork);
+    if (state.activeClaimRef) {
+      state.activeRailIndex = state.railItems.findIndex(
+        (item) => item.ref === state.activeClaimRef,
+      );
+    }
+    if (state.activeRailIndex >= state.railItems.length) {
+      state.activeRailIndex = -1;
+    }
+
     setText(
       elements.commentaryHeading,
-      unitTotal
-        ? `Commentary · ${trackEntries.length} work${
-            trackEntries.length === 1 ? "" : "s"
-          } held open`
-        : "Commentary",
+      family ? family.en : state.railWork || "Commentary",
     );
+    if (elements.railToolbar) {
+      elements.railToolbar.hidden = false;
+      if (
+        elements.railWorkSelect &&
+        elements.railWorkSelect.value !== state.railWork
+      ) {
+        elements.railWorkSelect.value = state.railWork;
+      }
+    }
     updateCommentaryStepper();
 
     const fragment = document.createDocumentFragment();
 
-    if (!unitTotal) {
-      fragment.append(
+    if (!state.railItems.length) {
+      const empty = make("section", "v3-commentary-empty");
+      empty.append(
+        make("p", "", `${family?.en || state.railWork} has no loaded segments.`),
         make(
-          "section",
-          "v3-commentary-empty",
-          "No commentary units are loaded for this book.",
+          "span",
+          "",
+          "Pick another work below — every recorded witness is in the ledger.",
         ),
       );
+      fragment.append(empty);
     }
 
-    if (
-      !activeUnit &&
-      state.activeCommentaryTrack &&
-      state.commentaryAlignmentRef
-    ) {
-      const note = make("section", "v4-commentary-alignment-note");
-      note.append(
+    let currentSectionRef = "";
+    let flowHost = null;
+    state.railItems.forEach((item, index) => {
+      if (item.sectionRef !== currentSectionRef) {
+        currentSectionRef = item.sectionRef;
+        const marker = make("header", "v5-rail-section-marker");
+        marker.dataset.railSectionRef = currentSectionRef;
+        marker.append(
+          make("b", "", currentSectionRef),
+          make("span", "", family?.he || ""),
+        );
+        fragment.append(marker);
+        flowHost = make("div", "v5-rail-flow");
+        fragment.append(flowHost);
+      }
+      const isActiveUnit =
+        item.kind === "unit" &&
+        item.ref === state.activeClaimRef;
+      const article = make(
+        "article",
+        `v5-rail-item${isActiveUnit ? " is-active" : ""}`,
+      );
+      article.dataset.railIndex = String(index);
+      article.dataset.railAnchorClass = item.anchorClass;
+      article.dataset.railSectionRef = item.sectionRef;
+      article.dataset.railStartWord = String(item.start);
+      if (item.kind === "unit") {
+        article.dataset.commentaryUnitRef = item.ref;
+      }
+      if (index === state.activeRailIndex) {
+        article.classList.add("is-rail-focus");
+      }
+      const head = make("button", "v5-rail-item-head");
+      head.type = "button";
+      head.append(
         make(
           "b",
           "",
-          `No verified ${state.activeCommentaryTrack} unit is loaded at ${state.commentaryAlignmentRef}.`,
+          item.kind === "unit"
+            ? compactClaimTitle(item.unit.claim)
+            : item.ref,
         ),
-        make(
-          "span",
-          "",
-          "Nothing from an earlier source section has been substituted. Loaded sections remain available below.",
-        ),
+        make("span", "v5-rail-anchor-chip", v5AnchorChipText(item)),
       );
-      fragment.append(note);
-    }
-
-    trackEntries.forEach(([track]) => {
-      const sections = commentaryTrackSections(track);
-      if (!sections.length) return;
-      const trackBlock = make("section", "v4-commentary-track-block");
-      trackBlock.dataset.commentaryTrack = track;
-      if (track === state.activeCommentaryTrack) {
-        trackBlock.dataset.activeTrack = "true";
-      }
-      const trackHeading = make("header", "v4-commentary-track-heading");
-      const trackUnitCount = sections.reduce(
-        (sum, entry) => sum + entry.units.length,
-        0,
+      head.setAttribute(
+        "aria-label",
+        `Align the text to ${item.ref}, ${v5AnchorChipText(item)}`,
       );
-      trackHeading.append(
-        make("b", "", track),
-        make(
-          "span",
-          "",
-          `${trackUnitCount} unit${trackUnitCount === 1 ? "" : "s"} · all held open`,
-        ),
-      );
-      trackBlock.append(trackHeading);
-      sections.forEach((entry) => {
-        const sectionDetails = make(
-          "details",
-          "v4-commentary-source-section",
-        );
-        sectionDetails.dataset.sourceSectionRef = entry.section.ref;
-        sectionDetails.open = true;
-        const verifiedCount = entry.units.filter(
-          (unit) => unit.claim.claim_state === "PROVEN_EDGE",
-        ).length;
-        const summary = make("summary");
-        summary.append(
-          make("b", "", entry.section.ref),
-          make(
-            "span",
-            "",
-            `${entry.units.length} part${
-              entry.units.length === 1 ? "" : "s"
-            } · ${verifiedCount} aligned`,
-          ),
-        );
-        const list = make("div", "v4-commentary-unit-list");
-        entry.units.forEach((unit) => {
-          const active =
-            unit.claim.commentary_unit_ref === state.activeClaimRef;
-          const item = make(
-            "section",
-            `v4-commentary-unit${active ? " is-active" : ""}`,
-          );
-          item.dataset.commentaryUnitRef =
-            unit.claim.commentary_unit_ref;
-          const selector = make(
-            "button",
-            "v4-commentary-unit-selector",
-          );
-          selector.type = "button";
-          selector.setAttribute("aria-pressed", String(active));
-          selector.append(
-            make("b", "", compactClaimTitle(unit.claim)),
-            make("span", "", scopeLabel(unit.section, unit.claim)),
-          );
-          if (unit.claim.claim_state !== "PROVEN_EDGE") {
-            selector.append(
-              make(
-                "i",
-                "",
-                "Manual only · exact internal alignment not asserted",
-              ),
-            );
-          }
-          selector.addEventListener("click", () => {
-            selectCommentary(unit.section, unit.claim, selector, {
-              origin: "manual-track",
-              preserveSourcePosition: true,
-            });
-          });
-          item.append(selector);
-          const body = make("div", "v4-commentary-unit-body");
-          item.append(body);
-          appendCommentaryRecord(body, unit, origin, renderToken);
-          list.append(item);
-        });
-        sectionDetails.append(summary, list);
-        trackBlock.append(sectionDetails);
+      head.addEventListener("click", () => {
+        v5ActivateRailItem(index, { origin: "rail-item" });
       });
-      fragment.append(trackBlock);
+      article.append(head);
+      const body = make("div", "v5-rail-item-body");
+      article.append(body);
+      if (item.kind === "unit") {
+        appendCommentaryRecord(body, item.unit, origin, renderToken);
+      } else {
+        appendWitnessSegments(body, { segments: [item.segment] });
+      }
+      flowHost?.append(article);
     });
 
     const ledger = buildWitnessLedger();
@@ -3273,19 +3481,300 @@
   };
 
   const moveCommentaryUnit = (delta) => {
-    const units = allCommentaryUnitsOrdered;
     const targetIndex = commentaryStepTargetIndex(delta);
-    const target = units[targetIndex];
-    if (!target) return;
-    selectCommentary(
-      target.section,
-      target.claim,
-      state.lastCommentaryTrigger,
-      {
-        origin: "manual-step",
-        preserveSourcePosition: true,
-      },
+    if (targetIndex < 0) return;
+    v5ActivateRailItem(targetIndex, { origin: "manual-step" });
+  };
+
+  // ── V5 snap controller ─────────────────────────────────────────────────
+  // Magnetic, not welded: whichever pane the reader last touched is the
+  // master; the other follows on settle. Programmatic scrolls are stamped
+  // so a follow never steals mastery back and causes a feedback loop.
+
+  const v5ClaimSnapMaster = (which) => {
+    const now = Date.now();
+    if (which === "source" && now < state.sourceProgrammaticScrollUntil) {
+      return;
+    }
+    if (which === "rail" && now < state.railProgrammaticScrollUntil) return;
+    state.snapMaster = which;
+    state.snapMasterHoldUntil = now + 1100;
+  };
+
+  const v5UpdateSnapStateLabel = (item) => {
+    if (!elements.railSnapState) return;
+    setText(
+      elements.railSnapState,
+      item
+        ? `Snapped · ${item.sectionRef} · ${v5AnchorChipText(item)}`
+        : "",
     );
+  };
+
+  const v5RefreshRailFocus = ({
+    scrollRail = false,
+    behavior = "smooth",
+  } = {}) => {
+    const items = elements.commentaryContent.querySelectorAll(
+      ".v5-rail-item",
+    );
+    let focused = null;
+    items.forEach((node) => {
+      const isFocus =
+        Number(node.dataset.railIndex) === state.activeRailIndex;
+      node.classList.toggle("is-rail-focus", isFocus);
+      node.classList.toggle(
+        "is-active",
+        Boolean(
+          state.activeClaimRef &&
+            node.dataset.commentaryUnitRef === state.activeClaimRef,
+        ),
+      );
+      if (isFocus) focused = node;
+    });
+    if (scrollRail && focused) {
+      state.railProgrammaticScrollUntil = Date.now() + 900;
+      const paneRect = elements.commentaryPane.getBoundingClientRect();
+      const focusRect = focused.getBoundingClientRect();
+      const stickyHeight =
+        elements.commentaryPane
+          .querySelector(".v3-commentary-heading")
+          ?.getBoundingClientRect().height || 0;
+      elements.commentaryPane.scrollTo({
+        top: Math.max(
+          0,
+          elements.commentaryPane.scrollTop +
+            focusRect.top -
+            paneRect.top -
+            stickyHeight -
+            12,
+        ),
+        behavior,
+      });
+    }
+  };
+
+  const v5SyncPillsAndBubbles = () => {
+    document
+      .querySelectorAll("[data-v3-commentary-pill]")
+      .forEach((button) => {
+        const pressed =
+          Boolean(state.activeClaimRef) &&
+          button.dataset.commentaryUnitRef === state.activeClaimRef;
+        button.setAttribute("aria-pressed", String(pressed));
+        button.setAttribute("aria-expanded", String(pressed));
+      });
+    document
+      .querySelectorAll("[data-v3-commentary-bubble]")
+      .forEach((button) => {
+        let refs = [];
+        try {
+          refs = JSON.parse(button.dataset.commentaryRefs || "[]");
+        } catch {
+          refs = [];
+        }
+        button.classList.toggle(
+          "is-active",
+          Boolean(state.activeClaimRef) &&
+            refs.includes(state.activeClaimRef),
+        );
+      });
+  };
+
+  const v5HighlightItem = (item) => {
+    const section = sectionsByRef.get(item.sectionRef);
+    if (!section) return;
+    if (item.kind === "unit") {
+      highlightSourceTarget(
+        section,
+        sourceTargetIdForClaim(section, item.unit.claim),
+        item.unit.claim,
+        state.currentSourcePosition,
+      );
+      return;
+    }
+    clearCommentarySourceStyling();
+    if (item.wholeSection) {
+      markWholeSectionRange(item.sectionRef, state.currentSourcePosition);
+      return;
+    }
+    const runtime = sectionRuntime(section);
+    for (let index = item.start; index <= item.end; index += 1) {
+      const span = runtime.projectionByWordIndex.get(index);
+      const word = span
+        ? document.querySelector(`#${c0TargetDomId(span)}`)
+        : null;
+      word?.classList.add("is-commentary-span-hint");
+    }
+  };
+
+  const v5ScrollSourceToItem = (item, behavior = "smooth") => {
+    state.sourceProgrammaticScrollUntil = Date.now() + 900;
+    const target =
+      (!item.wholeSection &&
+        wordModuleForPosition(item.sectionRef, item.start)) ||
+      articleForSourceRef(item.sectionRef);
+    target?.scrollIntoView({ block: "center", behavior });
+  };
+
+  const v5LightFocusItem = (
+    index,
+    { scrollRail = false, scrollSource = false } = {},
+  ) => {
+    const item = state.railItems[index];
+    if (!item) return;
+    state.activeRailIndex = index;
+    state.activeSectionRef = item.sectionRef;
+    state.activeCommentaryTrack = state.railWork;
+    state.commentaryAlignmentRef = "";
+    if (item.kind === "unit") {
+      state.activeClaimRef = item.ref;
+      state.activeSnapGroupKey =
+        commentarySnapGroupByClaimRef.get(item.ref)?.key || "";
+    } else {
+      state.activeClaimRef = "";
+      state.activeSnapGroupKey = "";
+    }
+    document.body.dataset.v4CommentaryTrack = state.railWork;
+    v5SyncPillsAndBubbles();
+    v5HighlightItem(item);
+    elements.returnToSource.hidden = false;
+    if (scrollSource) v5ScrollSourceToItem(item);
+    v5RefreshRailFocus({ scrollRail });
+    updateCommentaryStepper();
+    v5UpdateSnapStateLabel(item);
+    publishAudit();
+  };
+
+  const v5RailItemIndexForPosition = (position) => {
+    const items = state.railItems;
+    if (!items.length || !position) return -1;
+    const sectionItems = items
+      .map((item, index) => ({ item, index }))
+      .filter(({ item }) => item.sectionRef === position.section_ref);
+    if (sectionItems.length) {
+      const passed = sectionItems.filter(
+        ({ item }) =>
+          item.wholeSection || item.start <= position.word_index,
+      );
+      const spanning = passed.filter(
+        ({ item }) =>
+          item.wholeSection ||
+          (item.start <= position.word_index &&
+            item.end >= position.word_index),
+      );
+      const wordSpanning = spanning.filter(
+        ({ item }) => !item.wholeSection,
+      );
+      return (
+        wordSpanning[wordSpanning.length - 1]?.index ??
+        passed[passed.length - 1]?.index ??
+        sectionItems[0].index
+      );
+    }
+    const positionOrder =
+      sourceSectionOrderByRef.get(position.section_ref) ?? -1;
+    let before = -1;
+    for (let index = 0; index < items.length; index += 1) {
+      const order =
+        sourceSectionOrderByRef.get(items[index].sectionRef) ?? 9e9;
+      if (order <= positionOrder) before = index;
+      else break;
+    }
+    return before >= 0 ? before : 0;
+  };
+
+  const v5FollowSource = (position) => {
+    const index = v5RailItemIndexForPosition(position);
+    if (index < 0) return;
+    if (index === state.activeRailIndex) {
+      refreshActiveCommentaryHighlight();
+      return;
+    }
+    v5LightFocusItem(index, { scrollRail: true, scrollSource: false });
+  };
+
+  const v5FollowRail = () => {
+    if (document.body.dataset.v3CommentaryOpen !== "true") return;
+    if (Date.now() < state.railProgrammaticScrollUntil) return;
+    if (state.snapMaster !== "rail") return;
+    const paneRect = elements.commentaryPane.getBoundingClientRect();
+    const stickyHeight =
+      elements.commentaryPane
+        .querySelector(".v3-commentary-heading")
+        ?.getBoundingClientRect().height || 0;
+    const probeY =
+      paneRect.top + stickyHeight + Math.min(150, paneRect.height * 0.25);
+    const nodes = [
+      ...elements.commentaryContent.querySelectorAll(".v5-rail-item"),
+    ];
+    if (!nodes.length) return;
+    let candidate = nodes[0];
+    nodes.forEach((node) => {
+      const rect = node.getBoundingClientRect();
+      if (rect.top <= probeY) candidate = node;
+    });
+    const index = Number(candidate.dataset.railIndex);
+    if (!Number.isInteger(index) || index === state.activeRailIndex) {
+      return;
+    }
+    v5LightFocusItem(index, { scrollRail: false, scrollSource: true });
+  };
+
+  const v5ActivateRailItem = (index, { origin = "manual" } = {}) => {
+    const item = state.railItems[index];
+    if (!item) return;
+    if (item.kind === "unit") {
+      state.activeRailIndex = index;
+      selectCommentary(
+        item.unit.section,
+        item.unit.claim,
+        state.lastCommentaryTrigger,
+        {
+          origin:
+            origin === "manual-step" ? "manual-step" : "manual-track",
+          preserveSourcePosition: true,
+        },
+      );
+      v5ScrollSourceToItem(item);
+      return;
+    }
+    v5LightFocusItem(index, { scrollRail: true, scrollSource: true });
+    announce(
+      `${item.ref} aligned. ${v5AnchorChipText(item)}.`,
+    );
+  };
+
+  const v5SetRailWork = (
+    workKey,
+    { focusRef = "", origin = "rail-work" } = {},
+  ) => {
+    if (
+      !v5WitnessFamilies.has(workKey) &&
+      !commentaryTrackUnitsByTrack.has(workKey)
+    ) {
+      return;
+    }
+    state.railWork = workKey;
+    state.activeCommentaryTrack = workKey;
+    document.body.dataset.v4CommentaryTrack = workKey;
+    state.activeRailIndex = -1;
+    if (!focusRef) state.activeClaimRef = "";
+    renderCommentaryTrack({ origin });
+    if (focusRef) {
+      const index = state.railItems.findIndex(
+        (item) => item.ref === focusRef,
+      );
+      if (index >= 0) {
+        requestAnimationFrame(() =>
+          v5LightFocusItem(index, { scrollRail: true }),
+        );
+      }
+    }
+    announce(
+      `${v5WitnessFamilies.get(workKey)?.en || workKey} is flowing in the witness rail.`,
+    );
+    publishAudit();
   };
 
   function updateCommentarySourcePosition(
@@ -3303,59 +3792,29 @@
     if (origin === "word-activation") {
       state.manualSourceHoldUntil = Date.now() + 450;
     }
+    // V5: the source pane, when master, pulls the rail along the spine.
     if (
       document.body.dataset.v3CommentaryOpen !== "true" ||
-      !state.activeCommentaryTrack ||
+      !state.railItems.length ||
       !previousPosition ||
-      direction === 0
+      direction === 0 ||
+      Date.now() < state.sourceProgrammaticScrollUntil ||
+      (state.snapMaster === "rail" &&
+        Date.now() < state.snapMasterHoldUntil)
     ) {
       refreshActiveCommentaryHighlight();
       return;
     }
-
-    const groups =
-      commentarySnapGroupsByTrack.get(state.activeCommentaryTrack) || [];
-    const crossedGroups = groups.filter((group) => {
-      const afterPrevious = compareSourcePositions(
-        group.start,
-        previousPosition,
-      );
-      const beforeNext = compareSourcePositions(group.start, nextPosition);
-      return direction > 0
-        ? afterPrevious > 0 && beforeNext <= 0
-        : afterPrevious < 0 && beforeNext >= 0;
-    });
-    const snapGroup =
-      direction > 0
-        ? crossedGroups[crossedGroups.length - 1]
-        : crossedGroups[0];
-    const snapClaim = snapGroup ? claimForSnapGroup(snapGroup) : null;
-    if (
-      snapGroup &&
-      snapClaim &&
-      (snapClaim.commentary_unit_ref !== state.activeClaimRef ||
-        snapGroup.key !== state.activeSnapGroupKey)
-    ) {
-      selectCommentary(
-        snapGroup.section,
-        snapClaim,
-        sourceButtonForSnap(snapGroup, snapClaim),
-        {
-          origin: "snap",
-          preserveSourcePosition: true,
-        },
-      );
-      return;
-    }
-    refreshActiveCommentaryHighlight();
+    v5FollowSource(nextPosition);
   }
 
   const commentarySnapFromScroll = () => {
     state.commentarySnapFrame = 0;
     if (
       Date.now() < state.manualSourceHoldUntil ||
+      Date.now() < state.sourceProgrammaticScrollUntil ||
       document.body.dataset.v3CommentaryOpen !== "true" ||
-      !state.activeCommentaryTrack
+      !state.railItems.length
     ) {
       return;
     }
@@ -3474,6 +3933,8 @@
     const snapGroup = commentarySnapGroupByClaimRef.get(
       claim.commentary_unit_ref,
     );
+    // V5: choosing a claim flows its work in the rail.
+    state.railWork = track;
     state.activeClaimRef = claim.commentary_unit_ref;
     state.activeSectionRef = section.ref;
     state.activeCommentaryTrack = track;
@@ -4017,12 +4478,20 @@
       active_materialized_detailed_sections: detailedArticles.length,
       materialized_detailed_sections: sectionsByRef.size,
       commentary_workspace_model:
-        "V4_1_STACKED__ALL_TRACKS_OPEN__ALL_UNIT_BODIES_RENDERED",
+        "V5_TWO_RAIL__VERSE_SPINE__MAGNETIC_SNAP__DIBBUR_HAMATCHIL_ANCHORS",
       commentary_units_total: allCommentaryUnitsOrdered.length,
-      commentary_unit_bodies_rendered:
-        elements.commentaryContent.querySelectorAll(
-          ".v4-commentary-unit-body",
-        ).length,
+      rail_work: state.railWork || null,
+      rail_item_count: state.railItems.length,
+      rail_active_index:
+        state.activeRailIndex >= 0 ? state.activeRailIndex + 1 : null,
+      rail_anchor_classes: state.railItems.reduce(
+        (tally, item) => {
+          tally[item.anchorClass] = (tally[item.anchorClass] || 0) + 1;
+          return tally;
+        },
+        {},
+      ),
+      rail_snap_master: state.snapMaster || null,
       hud_d_cards_rendered: document.querySelectorAll(
         "[data-v4-d-card]",
       ).length,
@@ -4174,6 +4643,105 @@
   window.addEventListener("resize", scheduleCommentarySnapFromScroll, {
     passive: true,
   });
+
+  // ── V5 wiring · masters, rail follow, work selector, divider ──────────
+  ["wheel", "touchstart", "pointerdown"].forEach((type) => {
+    elements.readingPane.addEventListener(
+      type,
+      () => v5ClaimSnapMaster("source"),
+      { passive: true },
+    );
+    elements.commentaryPane.addEventListener(
+      type,
+      () => v5ClaimSnapMaster("rail"),
+      { passive: true },
+    );
+  });
+  let v5RailSettleTimer = 0;
+  elements.commentaryPane.addEventListener(
+    "scroll",
+    () => {
+      window.clearTimeout(v5RailSettleTimer);
+      v5RailSettleTimer = window.setTimeout(v5FollowRail, 160);
+    },
+    { passive: true },
+  );
+
+  if (elements.railWorkSelect) {
+    const attachedGroup = make("optgroup");
+    attachedGroup.label = "Attached works";
+    const targumGroup = make("optgroup");
+    targumGroup.label = "Targums";
+    const commentaryGroup = make("optgroup");
+    commentaryGroup.label = "Commentaries";
+    const attached = new Set(commentaryTrackUnitsByTrack.keys());
+    [...v5WitnessFamilies.values()]
+      .sort((left, right) => left.en.localeCompare(right.en))
+      .forEach((family) => {
+        const option = make(
+          "option",
+          "",
+          family.he ? `${family.en} · ${family.he}` : family.en,
+        );
+        option.value = family.key;
+        if (attached.has(family.key)) attachedGroup.append(option);
+        else if (family.kind === "TARGUM") targumGroup.append(option);
+        else commentaryGroup.append(option);
+      });
+    [attachedGroup, targumGroup, commentaryGroup].forEach((group) => {
+      if (group.children.length) elements.railWorkSelect.append(group);
+    });
+    elements.railWorkSelect.addEventListener("change", () => {
+      v5SetRailWork(elements.railWorkSelect.value);
+    });
+  }
+
+  if (elements.railDivider) {
+    const shell = document.querySelector("#v3-reader-shell");
+    const setRailSize = (fraction) => {
+      const clamped = Math.min(0.78, Math.max(0.2, fraction));
+      shell?.style.setProperty(
+        "--v5-rail-size",
+        `${(clamped * 100).toFixed(1)}%`,
+      );
+    };
+    let dividerDragging = false;
+    elements.railDivider.addEventListener("pointerdown", (event) => {
+      dividerDragging = true;
+      try {
+        elements.railDivider.setPointerCapture(event.pointerId);
+      } catch {
+        // Pointer capture is a nicety; dragging works without it.
+      }
+    });
+    elements.railDivider.addEventListener("pointermove", (event) => {
+      if (!dividerDragging || !shell) return;
+      const rect = shell.getBoundingClientRect();
+      if (rect.height <= 0) return;
+      setRailSize((rect.bottom - event.clientY) / rect.height);
+    });
+    ["pointerup", "pointercancel"].forEach((type) => {
+      elements.railDivider.addEventListener(type, () => {
+        dividerDragging = false;
+      });
+    });
+    elements.railDivider.addEventListener("keydown", (event) => {
+      if (!shell) return;
+      const current =
+        Number.parseFloat(
+          shell.style.getPropertyValue("--v5-rail-size"),
+        ) || 46;
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        setRailSize((current + 6) / 100);
+      }
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        setRailSize((current - 6) / 100);
+      }
+    });
+  }
+
   elements.returnToSource.addEventListener("click", () => {
     setMobileWorkspace("text");
     const sourceSectionRef = state.activeSectionRef;

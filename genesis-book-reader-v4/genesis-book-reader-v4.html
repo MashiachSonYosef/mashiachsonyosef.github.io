@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Genesis reader · V4 editorial proof slice</title>
+    <title>Genesis reader · V5 two-rail</title>
     <meta
       name="description"
-      content="A dark Hebrew reader and English workbench proof slice with exact commentary attachments and route-level attribution."
+      content="A dark Hebrew reader with a parallel witness rail: Onkelos and 80 more works flowing beside the text, snapped by their opening words."
     />
     <link rel="stylesheet" href="genesis-book-reader-v4.css" />
     <script src="data/y-genesis-navigation-v1.js" defer></script>
@@ -38,7 +38,7 @@
         <span>Torah</span>
         <i aria-hidden="true">/</i>
         <span>Book 1 of 5</span>
-        <span class="v3-version-mark">V4 proof slice</span>
+        <span class="v3-version-mark">V5 two-rail</span>
       </div>
 
       <div class="v3-book-title" id="v3-book-title">
@@ -204,6 +204,17 @@
         </div>
       </section>
 
+      <div
+        class="v5-rail-divider"
+        id="v5-rail-divider"
+        role="separator"
+        aria-orientation="horizontal"
+        aria-label="Resize the witness rail"
+        tabindex="0"
+      >
+        <span aria-hidden="true"></span>
+      </div>
+
       <aside
         class="v3-commentary-pane"
         id="v3-commentary-pane"
@@ -212,7 +223,7 @@
       >
         <header class="v3-commentary-heading">
           <div>
-            <p>Linked book</p>
+            <p>Witness rail</p>
             <h2 id="v3-commentary-heading">Commentary</h2>
           </div>
           <div class="v3-commentary-actions">
@@ -264,6 +275,12 @@
           </div>
         </header>
 
+        <div class="v5-rail-toolbar" id="v5-rail-toolbar" hidden>
+          <label for="v5-rail-work">Flowing work</label>
+          <select id="v5-rail-work"></select>
+          <span class="v5-rail-snap-state" id="v5-rail-snap-state" aria-live="polite"></span>
+        </div>
+
         <div class="v3-commentary-content" id="v3-commentary-content">
           <section class="v3-commentary-empty">
             <p>Select a commentary pill in the text.</p>
@@ -300,18 +317,8 @@
       </div>
     </aside>
 
-    <nav class="v3-mobile-workspace-tabs" aria-label="Reader workspace">
-      <button type="button" data-v3-workspace="text" aria-pressed="true">
-        Text
-      </button>
-      <button
-        type="button"
-        data-v3-workspace="commentary"
-        aria-pressed="false"
-      >
-        Commentary
-      </button>
-    </nav>
+    <!-- V5: the mobile either/or workspace tabs are retired. Phones read
+         over/under — source above, witness rail below, divider between. -->
 
     <p class="v3-live-status" id="v3-live-status" aria-live="polite"></p>
   </body>
