@@ -35,7 +35,14 @@ require(join(root, "data", "genesis-1-1-full-hud-2026-07-19.js"));
 const hud = window.GENESIS_1_1_FULL_HUD_FIXTURE;
 
 const GENERATED_ON = "2026-08-10";
-const RULE_ID = "synthesis-default-gloss-rule-v1-top5-then-ledger";
+const RULE_ID =
+  "synthesis-default-gloss-rule-v2-antiquity-primacy-1940-lastuary";
+// Rule v2 was attested by Kyle (2026-08-10): sort a word's routes by the
+// oldest source year attesting them; sources after 1940 (or with no
+// recorded year) form the last tier; ties break by ledger position. The
+// pool is built exactly the way the reader builds selectable routes
+// (choice + bundle helper routes), so the derived default always matches
+// a real pill. Rule v1 (upstream_top5) is archived in the ledger rows.
 
 // The seven picks previously hardcoded in reader code (V3/V4 lineage),
 // preserved here as unattributed legacy picks so the dispute record is
@@ -53,44 +60,69 @@ const LEGACY_UNATTRIBUTED = {
 const byWordIndex = {};
 const ledgerRows = [];
 
+const LASTUARY_AFTER = 1940;
+
+const definitionMinYear = (definition) => {
+  let minYear = Infinity;
+  (definition?.mSources || []).forEach((source) => {
+    const year = Number.parseInt(source?.sourceYear, 10);
+    if (Number.isInteger(year)) minYear = Math.min(minYear, year);
+  });
+  return minYear;
+};
+
 hud.words.forEach((word) => {
   const cell = word.shapes?.[0]?.cells?.[0];
   const lb = cell?.lBundle;
   if (!lb) return;
-  const routes = [];
-  lb.pBundles.forEach((bundle) =>
-    (bundle.definitions || []).forEach((definition) =>
-      (definition.exactRoutes || []).forEach((exact) => {
-        routes.push({
-          text: exact.text,
-          top5: Boolean(exact.selectedInTop5),
-          ledger: exact.firstLedgerPosition,
-        });
-      }),
-    ),
-  );
+  // Reader-identical pool: each choice contributes its bundle's helper
+  // routes (or its own text); the route's year is the oldest source year
+  // attesting the choice's definition.
   const seen = new Map();
-  routes.forEach((route) => {
-    const key = route.text.toLowerCase();
-    const prev = seen.get(key);
-    if (!prev) seen.set(key, { ...route });
-    else {
-      prev.top5 = prev.top5 || route.top5;
-      prev.ledger = Math.min(prev.ledger, route.ledger);
-    }
+  (lb.choices || []).forEach((choice) => {
+    const bundle = (lb.pBundles || []).find(
+      (candidate) => candidate.id === choice.pBundleId,
+    );
+    const definition = bundle?.definitions?.find(
+      (candidate) => candidate.id === choice.definitionId,
+    );
+    const year = definitionMinYear(definition);
+    const ledger = Number.isInteger(choice.firstLedgerPosition)
+      ? choice.firstLedgerPosition
+      : 9e9;
+    const helpers = bundle?.helperRoutes?.length
+      ? bundle.helperRoutes
+      : [{ text: choice.text }];
+    helpers.forEach((helper) => {
+      const text = String(helper.text || "").trim();
+      if (!text) return;
+      const key = text.toLowerCase();
+      const prev = seen.get(key);
+      if (!prev) seen.set(key, { text, year, ledger });
+      else {
+        prev.year = Math.min(prev.year, year);
+        prev.ledger = Math.min(prev.ledger, ledger);
+      }
+    });
   });
   const pool = [...seen.values()];
-  const top5Pool = pool
-    .filter((route) => route.top5)
-    .sort((a, b) => a.ledger - b.ledger);
-  const ledgerPool = [...pool].sort((a, b) => a.ledger - b.ledger);
-  const pick = top5Pool[0] || ledgerPool[0];
-  if (!pick) return;
-  const signal = top5Pool[0] ? "upstream_top5" : "ledger_order";
+  if (!pool.length) return;
+  const tier = (route) =>
+    Number.isFinite(route.year) && route.year <= LASTUARY_AFTER ? 0 : 1;
+  pool.sort(
+    (a, b) =>
+      tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger,
+  );
+  const pick = pool[0];
+  const signal =
+    tier(pick) === 0
+      ? `antiquity_${pick.year}`
+      : "lastuary_only_no_pre_1940_source";
   const legacy = LEGACY_UNATTRIBUTED[word.index] || null;
   byWordIndex[word.index] = {
     gloss: pick.text,
     signal,
+    source_year: Number.isFinite(pick.year) ? pick.year : null,
     ledger_position: pick.ledger,
     status: "DERIVED_DRAFT",
   };
@@ -99,8 +131,13 @@ hud.words.forEach((word) => {
     hebrew: word.hebrew,
     derived: pick.text,
     signal,
+    source_year: Number.isFinite(pick.year) ? pick.year : null,
     ledger_position: pick.ledger,
-    top5_pool: top5Pool.slice(0, 5).map((route) => route.text),
+    oldest_alternatives: pool
+      .slice(1, 6)
+      .map((route) =>
+        `${route.text} (${Number.isFinite(route.year) ? route.year : "no year"})`,
+      ),
     legacy_unattributed_pick: legacy,
     agrees_with_legacy: legacy
       ? legacy.toLowerCase() === pick.text.toLowerCase()
