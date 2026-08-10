@@ -2213,13 +2213,11 @@
           ? baseGlossProvenance.get(word.index)
           : null;
       if (glossProvenance) {
+        // Backend-only provenance: inspectable in the DOM and the audit,
+        // never explained in the visible UI. The rule is the explanation.
         wordButton.dataset.v6DefaultProvenance = glossProvenance.status;
         wordButton.dataset.v6DefaultGloss = glossProvenance.gloss;
         wordButton.dataset.v6DefaultActive = "true";
-        wordButton.title =
-          glossProvenance.status === "derived"
-            ? `Default gloss derived by rule (${glossProvenance.signal}) · draft until attested`
-            : `Default gloss attested (${glossProvenance.signal})`;
       }
       const activateSourceWord = () =>
         updateCommentarySourcePosition(section.ref, word.index, {
