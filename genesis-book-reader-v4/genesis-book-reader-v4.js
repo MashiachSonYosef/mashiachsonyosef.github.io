@@ -159,6 +159,13 @@
     railWorkSelect: document.querySelector("#v5-rail-work"),
     railSnapState: document.querySelector("#v5-rail-snap-state"),
     railDivider: document.querySelector("#v5-rail-divider"),
+    railB: document.querySelector("#v5-rail-b"),
+    railBContent: document.querySelector("#v5-rail-b-content"),
+    railBWorkSelect: document.querySelector("#v5-rail-b-work"),
+    railBSnapState: document.querySelector("#v5-rail-b-snap-state"),
+    railBHeading: document.querySelector("#v5-rail-b-heading"),
+    openRailB: document.querySelector("#v5-open-rail-b"),
+    closeRailB: document.querySelector("#v5-close-rail-b"),
   };
 
   const requiredData = [
@@ -923,6 +930,12 @@
     railProgrammaticScrollUntil: 0,
     sourceProgrammaticScrollUntil: 0,
     railSnapFrame: 0,
+    // V5.1 counter rail
+    railBOpen: false,
+    railBWork: "",
+    railBItems: [],
+    railBActiveIndex: -1,
+    railBProgrammaticScrollUntil: 0,
   };
 
   let routeAttributionCounter = 0;
@@ -2846,7 +2859,8 @@
           }`,
         ),
       );
-      // V5: any witness can flow in the rail beside the text.
+      // V5: any witness can flow in the rail beside the text — or in the
+      // counter rail, arguing from the other side.
       const flow = make("button", "v5-witness-flow-button", "Flow");
       flow.type = "button";
       flow.title = `Flow ${family.collective_title_en || familyKey} in the witness rail`;
@@ -2859,7 +2873,23 @@
         event.stopPropagation();
         v5SetRailWork(familyKey, { origin: "rail-work" });
       });
-      marks.append(flow);
+      const counter = make(
+        "button",
+        "v5-witness-flow-button v5-witness-counter-button",
+        "Counter",
+      );
+      counter.type = "button";
+      counter.title = `Flow ${family.collective_title_en || familyKey} in the counter rail`;
+      counter.setAttribute(
+        "aria-label",
+        `Flow ${family.collective_title_en || familyKey} in the counter-commentary rail`,
+      );
+      counter.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        v5OpenRailB(familyKey);
+      });
+      marks.append(flow, counter);
       summary.append(titles, marks);
       const body = make("div", "v4-witness-family-body");
       details.append(summary, body);
@@ -3497,6 +3527,9 @@
       return;
     }
     if (which === "rail" && now < state.railProgrammaticScrollUntil) return;
+    if (which === "railB" && now < state.railBProgrammaticScrollUntil) {
+      return;
+    }
     state.snapMaster = which;
     state.snapMasterHoldUntil = now + 1100;
   };
@@ -3646,8 +3679,7 @@
     publishAudit();
   };
 
-  const v5RailItemIndexForPosition = (position) => {
-    const items = state.railItems;
+  const v5ItemIndexForPosition = (items, position) => {
     if (!items.length || !position) return -1;
     const sectionItems = items
       .map((item, index) => ({ item, index }))
@@ -3685,7 +3717,8 @@
   };
 
   const v5FollowSource = (position) => {
-    const index = v5RailItemIndexForPosition(position);
+    const index = v5ItemIndexForPosition(state.railItems, position);
+    v5BFollowPosition(position);
     if (index < 0) return;
     if (index === state.activeRailIndex) {
       refreshActiveCommentaryHighlight();
@@ -3694,31 +3727,39 @@
     v5LightFocusItem(index, { scrollRail: true, scrollSource: false });
   };
 
-  const v5FollowRail = () => {
-    if (document.body.dataset.v3CommentaryOpen !== "true") return;
-    if (Date.now() < state.railProgrammaticScrollUntil) return;
-    if (state.snapMaster !== "rail") return;
-    const paneRect = elements.commentaryPane.getBoundingClientRect();
+  const v5RailProbeIndex = (pane, content) => {
+    const paneRect = pane.getBoundingClientRect();
     const stickyHeight =
-      elements.commentaryPane
-        .querySelector(".v3-commentary-heading")
+      pane
+        .querySelector(".v3-commentary-heading, .v5-rail-b-heading")
         ?.getBoundingClientRect().height || 0;
     const probeY =
       paneRect.top + stickyHeight + Math.min(150, paneRect.height * 0.25);
-    const nodes = [
-      ...elements.commentaryContent.querySelectorAll(".v5-rail-item"),
-    ];
-    if (!nodes.length) return;
+    const nodes = [...content.querySelectorAll(".v5-rail-item")];
+    if (!nodes.length) return -1;
     let candidate = nodes[0];
     nodes.forEach((node) => {
       const rect = node.getBoundingClientRect();
       if (rect.top <= probeY) candidate = node;
     });
     const index = Number(candidate.dataset.railIndex);
-    if (!Number.isInteger(index) || index === state.activeRailIndex) {
-      return;
-    }
+    return Number.isInteger(index) ? index : -1;
+  };
+
+  const v5FollowRail = () => {
+    if (document.body.dataset.v3CommentaryOpen !== "true") return;
+    if (Date.now() < state.railProgrammaticScrollUntil) return;
+    if (state.snapMaster !== "rail") return;
+    const index = v5RailProbeIndex(
+      elements.commentaryPane,
+      elements.commentaryContent,
+    );
+    if (index < 0 || index === state.activeRailIndex) return;
     v5LightFocusItem(index, { scrollRail: false, scrollSource: true });
+    const item = state.railItems[index];
+    if (item) {
+      v5BFollowPosition(sourcePosition(item.sectionRef, item.start));
+    }
   };
 
   const v5ActivateRailItem = (index, { origin = "manual" } = {}) => {
@@ -3774,6 +3815,236 @@
     announce(
       `${v5WitnessFamilies.get(workKey)?.en || workKey} is flowing in the witness rail.`,
     );
+    publishAudit();
+  };
+
+  // ── V5.1 · the counter rail ────────────────────────────────────────────
+  // Main text, commentary, counter-commentary: a second independent rail on
+  // the same verse spine. It follows the spine like the first, leads the
+  // spine when the reader scrolls it, and never disturbs the first rail's
+  // selection state.
+
+  const v5BUpdateSnapLabel = (item) => {
+    if (!elements.railBSnapState) return;
+    setText(
+      elements.railBSnapState,
+      item
+        ? `Snapped · ${item.sectionRef} · ${v5AnchorChipText(item)}`
+        : "",
+    );
+  };
+
+  const v5BRefreshFocus = ({ scrollRailB = false } = {}) => {
+    if (!elements.railBContent) return;
+    let focused = null;
+    elements.railBContent
+      .querySelectorAll(".v5-rail-item")
+      .forEach((node) => {
+        const isFocus =
+          Number(node.dataset.railIndex) === state.railBActiveIndex;
+        node.classList.toggle("is-rail-focus", isFocus);
+        if (isFocus) focused = node;
+      });
+    if (scrollRailB && focused && elements.railB) {
+      state.railBProgrammaticScrollUntil = Date.now() + 900;
+      const paneRect = elements.railB.getBoundingClientRect();
+      const focusRect = focused.getBoundingClientRect();
+      const stickyHeight =
+        elements.railB
+          .querySelector(".v5-rail-b-heading")
+          ?.getBoundingClientRect().height || 0;
+      elements.railB.scrollTo({
+        top: Math.max(
+          0,
+          elements.railB.scrollTop +
+            focusRect.top -
+            paneRect.top -
+            stickyHeight -
+            12,
+        ),
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const v5BLightFocus = (
+    index,
+    { scrollRailB = false, scrollSource = false } = {},
+  ) => {
+    const item = state.railBItems[index];
+    if (!item) return;
+    state.railBActiveIndex = index;
+    if (scrollSource) v5ScrollSourceToItem(item);
+    v5BRefreshFocus({ scrollRailB });
+    v5BUpdateSnapLabel(item);
+    publishAudit();
+  };
+
+  const v5BFollowPosition = (position) => {
+    if (!state.railBOpen || !state.railBItems.length) return;
+    const index = v5ItemIndexForPosition(state.railBItems, position);
+    if (index < 0 || index === state.railBActiveIndex) return;
+    v5BLightFocus(index, { scrollRailB: true, scrollSource: false });
+  };
+
+  const v5BFollowScroll = () => {
+    if (!state.railBOpen) return;
+    if (Date.now() < state.railBProgrammaticScrollUntil) return;
+    if (state.snapMaster !== "railB") return;
+    const index = v5RailProbeIndex(elements.railB, elements.railBContent);
+    if (index < 0 || index === state.railBActiveIndex) return;
+    const item = state.railBItems[index];
+    v5BLightFocus(index, { scrollRailB: false, scrollSource: true });
+    if (item) {
+      const position = sourcePosition(item.sectionRef, item.start);
+      state.currentSourcePosition = position;
+      const railIndex = v5ItemIndexForPosition(state.railItems, position);
+      if (railIndex >= 0 && railIndex !== state.activeRailIndex) {
+        v5LightFocusItem(railIndex, {
+          scrollRail: true,
+          scrollSource: false,
+        });
+      }
+    }
+  };
+
+  const v5RenderRailB = () => {
+    if (!elements.railBContent) return;
+    const renderToken = state.commentaryRenderToken;
+    const family = v5WitnessFamilies.get(state.railBWork);
+    state.railBItems = v5BuildRailItems(state.railBWork);
+    if (state.railBActiveIndex >= state.railBItems.length) {
+      state.railBActiveIndex = -1;
+    }
+    setText(
+      elements.railBHeading,
+      family ? family.en : state.railBWork || "Counter-commentary",
+    );
+    if (
+      elements.railBWorkSelect &&
+      elements.railBWorkSelect.value !== state.railBWork
+    ) {
+      elements.railBWorkSelect.value = state.railBWork;
+    }
+    const fragment = document.createDocumentFragment();
+    if (!state.railBItems.length) {
+      const empty = make("section", "v3-commentary-empty");
+      empty.append(
+        make(
+          "p",
+          "",
+          `${family?.en || state.railBWork} has no loaded segments.`,
+        ),
+        make("span", "", "Pick another counter work above."),
+      );
+      fragment.append(empty);
+    }
+    let currentSectionRef = "";
+    let flowHost = null;
+    state.railBItems.forEach((item, index) => {
+      if (item.sectionRef !== currentSectionRef) {
+        currentSectionRef = item.sectionRef;
+        const marker = make("header", "v5-rail-section-marker");
+        marker.append(
+          make("b", "", currentSectionRef),
+          make("span", "", family?.he || ""),
+        );
+        fragment.append(marker);
+        flowHost = make("div", "v5-rail-flow");
+        fragment.append(flowHost);
+      }
+      const article = make("article", "v5-rail-item");
+      article.dataset.railIndex = String(index);
+      article.dataset.railAnchorClass = item.anchorClass;
+      article.dataset.railSectionRef = item.sectionRef;
+      if (index === state.railBActiveIndex) {
+        article.classList.add("is-rail-focus");
+      }
+      const head = make("button", "v5-rail-item-head");
+      head.type = "button";
+      head.append(
+        make(
+          "b",
+          "",
+          item.kind === "unit"
+            ? compactClaimTitle(item.unit.claim)
+            : item.ref,
+        ),
+        make("span", "v5-rail-anchor-chip", v5AnchorChipText(item)),
+      );
+      head.setAttribute(
+        "aria-label",
+        `Align the text to ${item.ref}, ${v5AnchorChipText(item)}`,
+      );
+      head.addEventListener("click", () => {
+        v5ClaimSnapMaster("railB");
+        v5BLightFocus(index, { scrollRailB: true, scrollSource: true });
+      });
+      article.append(head);
+      const body = make("div", "v5-rail-item-body");
+      article.append(body);
+      if (item.kind === "unit") {
+        appendCommentaryRecord(body, item.unit, "rail-b", renderToken);
+      } else {
+        appendWitnessSegments(body, { segments: [item.segment] });
+      }
+      flowHost?.append(article);
+    });
+    elements.railBContent.replaceChildren(fragment);
+    publishAudit();
+  };
+
+  const v5SetRailBWork = (workKey) => {
+    if (
+      !v5WitnessFamilies.has(workKey) &&
+      !commentaryTrackUnitsByTrack.has(workKey)
+    ) {
+      return;
+    }
+    state.railBWork = workKey;
+    state.railBActiveIndex = -1;
+    v5RenderRailB();
+    if (state.currentSourcePosition) {
+      v5BFollowPosition(state.currentSourcePosition);
+    }
+    announce(
+      `${v5WitnessFamilies.get(workKey)?.en || workKey} is flowing in the counter rail.`,
+    );
+  };
+
+  const v5DefaultCounterWork = () => {
+    const keys = [...v5WitnessFamilies.keys()];
+    const prefer = [/Ramban/iu, /Siftei Chakhamim/iu, /Ibn Ezra/iu];
+    for (const pattern of prefer) {
+      const found = keys.find(
+        (key) => pattern.test(key) && key !== state.railWork,
+      );
+      if (found) return found;
+    }
+    return keys.find((key) => key !== state.railWork) || "";
+  };
+
+  const v5OpenRailB = (workKey = "") => {
+    state.railBOpen = true;
+    document.body.dataset.v5RailB = "true";
+    if (elements.railB) {
+      elements.railB.setAttribute("aria-hidden", "false");
+      elements.railB.inert = false;
+    }
+    elements.openRailB?.setAttribute("aria-pressed", "true");
+    v5SetRailBWork(
+      workKey || state.railBWork || v5DefaultCounterWork(),
+    );
+  };
+
+  const v5CloseRailB = () => {
+    state.railBOpen = false;
+    document.body.dataset.v5RailB = "false";
+    if (elements.railB) {
+      elements.railB.setAttribute("aria-hidden", "true");
+      elements.railB.inert = true;
+    }
+    elements.openRailB?.setAttribute("aria-pressed", "false");
     publishAudit();
   };
 
@@ -3995,6 +4266,10 @@
     );
 
     renderCommentaryTrack({ origin });
+    // V5: keep the rail's snap label truthful for pill/step selections too.
+    v5UpdateSnapStateLabel(
+      state.railItems[state.activeRailIndex] || null,
+    );
     if (origin === "manual") {
       requestAnimationFrame(() => elements.commentaryPane.focus());
     }
@@ -4492,6 +4767,9 @@
         {},
       ),
       rail_snap_master: state.snapMaster || null,
+      rail_b_open: state.railBOpen,
+      rail_b_work: state.railBOpen ? state.railBWork || null : null,
+      rail_b_item_count: state.railBOpen ? state.railBItems.length : 0,
       hud_d_cards_rendered: document.querySelectorAll(
         "[data-v4-d-card]",
       ).length,
@@ -4667,7 +4945,8 @@
     { passive: true },
   );
 
-  if (elements.railWorkSelect) {
+  const v5PopulateWorkSelect = (select) => {
+    if (!select) return;
     const attachedGroup = make("optgroup");
     attachedGroup.label = "Attached works";
     const targumGroup = make("optgroup");
@@ -4689,11 +4968,40 @@
         else commentaryGroup.append(option);
       });
     [attachedGroup, targumGroup, commentaryGroup].forEach((group) => {
-      if (group.children.length) elements.railWorkSelect.append(group);
+      if (group.children.length) select.append(group);
     });
-    elements.railWorkSelect.addEventListener("change", () => {
-      v5SetRailWork(elements.railWorkSelect.value);
+  };
+  v5PopulateWorkSelect(elements.railWorkSelect);
+  v5PopulateWorkSelect(elements.railBWorkSelect);
+  elements.railWorkSelect?.addEventListener("change", () => {
+    v5SetRailWork(elements.railWorkSelect.value);
+  });
+  elements.railBWorkSelect?.addEventListener("change", () => {
+    v5SetRailBWork(elements.railBWorkSelect.value);
+  });
+  elements.openRailB?.addEventListener("click", () => {
+    if (state.railBOpen) v5CloseRailB();
+    else v5OpenRailB();
+  });
+  elements.closeRailB?.addEventListener("click", () => v5CloseRailB());
+  if (elements.railB) {
+    elements.railB.inert = true;
+    ["wheel", "touchstart", "pointerdown"].forEach((type) => {
+      elements.railB.addEventListener(
+        type,
+        () => v5ClaimSnapMaster("railB"),
+        { passive: true },
+      );
     });
+    let v5RailBSettleTimer = 0;
+    elements.railB.addEventListener(
+      "scroll",
+      () => {
+        window.clearTimeout(v5RailBSettleTimer);
+        v5RailBSettleTimer = window.setTimeout(v5BFollowScroll, 160);
+      },
+      { passive: true },
+    );
   }
 
   if (elements.railDivider) {

@@ -278,6 +278,15 @@
         <div class="v5-rail-toolbar" id="v5-rail-toolbar" hidden>
           <label for="v5-rail-work">Flowing work</label>
           <select id="v5-rail-work"></select>
+          <button
+            type="button"
+            id="v5-open-rail-b"
+            class="v5-counter-toggle"
+            aria-pressed="false"
+            title="Open a second rail for counter-commentary"
+          >
+            + Counter
+          </button>
           <span class="v5-rail-snap-state" id="v5-rail-snap-state" aria-live="polite"></span>
         </div>
 
@@ -289,6 +298,38 @@
             </span>
           </section>
         </div>
+      </aside>
+
+      <aside
+        class="v5-rail-b"
+        id="v5-rail-b"
+        aria-labelledby="v5-rail-b-heading"
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <header class="v5-rail-b-heading">
+          <div>
+            <p>Counter rail</p>
+            <h2 id="v5-rail-b-heading">Counter-commentary</h2>
+          </div>
+          <button
+            type="button"
+            id="v5-close-rail-b"
+            aria-controls="v5-rail-b"
+          >
+            Close
+          </button>
+        </header>
+        <div class="v5-rail-toolbar v5-rail-b-toolbar">
+          <label for="v5-rail-b-work">Counter work</label>
+          <select id="v5-rail-b-work"></select>
+          <span
+            class="v5-rail-snap-state"
+            id="v5-rail-b-snap-state"
+            aria-live="polite"
+          ></span>
+        </div>
+        <div class="v5-rail-b-content" id="v5-rail-b-content"></div>
       </aside>
     </main>
 
