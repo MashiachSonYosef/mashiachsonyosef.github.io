@@ -1680,9 +1680,36 @@
     );
     const choices = make("div", "v3-commentary-choice-list");
     choices.setAttribute("role", "list");
-    claims.forEach((claim) =>
-      choices.append(createCommentaryChoice(section, claim, sourceButton)),
-    );
+    // V5.5: at full attachment the first word carries a three-digit claim
+    // count, so the chooser groups by work — a plain header per work, its
+    // claims beneath, the whole list scrollable.
+    const byTrack = new Map();
+    claims.forEach((claim) => {
+      const track = commentaryTrackForClaim(claim);
+      if (!byTrack.has(track)) byTrack.set(track, []);
+      byTrack.get(track).push(claim);
+    });
+    byTrack.forEach((trackClaims, track) => {
+      if (byTrack.size > 1) {
+        const groupHead = make("p", "v5-choice-group-head");
+        groupHead.append(
+          make("b", "", track),
+          make(
+            "span",
+            "",
+            `${trackClaims.length} unit${
+              trackClaims.length === 1 ? "" : "s"
+            }`,
+          ),
+        );
+        choices.append(groupHead);
+      }
+      trackClaims.forEach((claim) =>
+        choices.append(
+          createCommentaryChoice(section, claim, sourceButton),
+        ),
+      );
+    });
     shelf.dataset.controllerId = sourceButton.id;
     shelf.replaceChildren(heading, choices);
     shelf.hidden = false;
@@ -1981,6 +2008,30 @@
     });
 
     content.append(run, commentaryChoiceShelf, shelf);
+    // V5.5: the N record rides with its section. One aggregate chip in the
+    // book bar cannot speak for sections that carry different editions and
+    // licenses (1:1 is Wikisource CC BY-SA 4.0; 1:2 is tanach.us Public
+    // Domain), so each materialized section states its own record.
+    const nRecord = section.base?.source;
+    if (nRecord?.license || nRecord?.version_title) {
+      const licenseLine = make("footer", "v5-section-license");
+      licenseLine.dataset.v5SectionLicense = section.ref;
+      licenseLine.append(
+        make(
+          "span",
+          "",
+          `Hebrew text · ${nRecord.version_title || "Edition unrecorded"} · ${
+            nRecord.license || "License unrecorded"
+          }`,
+        ),
+      );
+      if (nRecord.source_url) {
+        licenseLine.append(
+          makePointerLink(nRecord.source_url, "Exact source"),
+        );
+      }
+      content.append(licenseLine);
+    }
     inner.append(number, content);
     article.append(inner);
     return article;
