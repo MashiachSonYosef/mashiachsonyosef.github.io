@@ -1209,6 +1209,85 @@
     });
   };
 
+  // V6.1 · antiquity ordering (rule attested by Kyle, 2026-08-10):
+  // oldest attesting source year first; sources after 1940 or without a
+  // recorded year form the last tier; ties break by ledger position.
+  const V6_LASTUARY_AFTER = 1940;
+
+  const v6RouteYear = (route) => {
+    let minYear = Infinity;
+    sourcesForRoute(route).forEach((source) => {
+      const year = Number.parseInt(source?.sourceYear, 10);
+      if (Number.isInteger(year)) minYear = Math.min(minYear, year);
+    });
+    return minYear;
+  };
+
+  const v6RouteTier = (route) => {
+    const year = v6RouteYear(route);
+    return Number.isFinite(year) && year <= V6_LASTUARY_AFTER ? 0 : 1;
+  };
+
+  const v6RouteLedger = (route) =>
+    Number.isInteger(route?.choice?.firstLedgerPosition)
+      ? route.choice.firstLedgerPosition
+      : 9e9;
+
+  const v6OrderRoutes = (cell, currentRoute) => {
+    const all = exactRoutesForCell(cell);
+    const seen = new Set();
+    const pool = [];
+    all.forEach((route) => {
+      const key = route.text.toLocaleLowerCase();
+      if (seen.has(key)) return;
+      seen.add(key);
+      pool.push(route);
+    });
+    const currentKey = currentRoute?.text?.toLocaleLowerCase() || "";
+    const rest = pool.filter(
+      (route) => route.text.toLocaleLowerCase() !== currentKey,
+    );
+    rest.sort(
+      (a, b) =>
+        v6RouteTier(a) - v6RouteTier(b) ||
+        v6RouteYear(a) - v6RouteYear(b) ||
+        v6RouteLedger(a) - v6RouteLedger(b),
+    );
+    return currentRoute ? [currentRoute, ...rest] : rest;
+  };
+
+  // All D+M records attesting a route's text, oldest source first — one
+  // pill may rest on one record or five hundred; every one is reachable.
+  const v6RecordsForRoute = (cell, route) => {
+    const lb = cell?.lBundle;
+    if (!lb || !route?.text) return [];
+    const text = route.text.toLocaleLowerCase();
+    const records = [];
+    const seen = new Set();
+    const primary = definitionForRoute(route);
+    const push = (definition) => {
+      if (!definition?.id || seen.has(definition.id)) return;
+      seen.add(definition.id);
+      let year = Infinity;
+      (definition.mSources || []).forEach((source) => {
+        const parsed = Number.parseInt(source?.sourceYear, 10);
+        if (Number.isInteger(parsed)) year = Math.min(year, parsed);
+      });
+      records.push({ definition, year });
+    };
+    if (primary) push(primary);
+    (lb.pBundles || []).forEach((bundle) =>
+      (bundle.definitions || []).forEach((definition) => {
+        const matches = (definition.exactRoutes || []).some(
+          (exact) => exact.text?.toLocaleLowerCase() === text,
+        );
+        if (matches) push(definition);
+      }),
+    );
+    records.sort((a, b) => a.year - b.year);
+    return records;
+  };
+
   const markCopyableHebrew = (button, raw) => {
     raw.dataset.v4CopyableHebrew = "";
     button.addEventListener(
@@ -1505,10 +1584,22 @@
       );
       const choices = make("div", "v3-route-choices");
       const current = view.cellRoutes.get(cell.compcellTemplateId);
-      conciseRoutes(cell, current).forEach((route) => {
+      // V6.1 (rule attested by Kyle): pills sort by antiquity — oldest
+      // attesting source first, post-1940 and unyeared sources last —
+      // with the selected route always leading. Past ten pills the rest
+      // fold into a filterable panel.
+      const makeRouteButton = (route) => {
         const routeButton = make("button", "", route.text);
         routeButton.type = "button";
         routeButton.dataset.v3HudRoute = "";
+        const routeYear = v6RouteYear(route);
+        const routeSources = sourcesForRoute(route);
+        routeButton.title = [
+          Number.isFinite(routeYear) ? String(routeYear) : "no source year",
+          routeSources[0]?.label || "",
+        ]
+          .filter(Boolean)
+          .join(" · ");
         routeButton.setAttribute(
           "aria-pressed",
           String(route.text === current?.text),
@@ -1533,9 +1624,57 @@
           });
           refreshAttributionDrawer();
         });
-        choices.append(routeButton);
-      });
+        return routeButton;
+      };
+      const orderedRoutes = v6OrderRoutes(cell, current);
+      orderedRoutes
+        .slice(0, 10)
+        .forEach((route) => choices.append(makeRouteButton(route)));
       cellSection.append(choices);
+      if (orderedRoutes.length > 10) {
+        const moreWrap = make("div", "v6-route-more");
+        const moreToggle = make(
+          "button",
+          "v6-route-more-toggle",
+          `▾ ${orderedRoutes.length - 10} more routes`,
+        );
+        moreToggle.type = "button";
+        moreToggle.setAttribute("aria-expanded", "false");
+        const panel = make("div", "v6-route-panel");
+        panel.hidden = true;
+        const filter = make("input", "v6-route-filter");
+        filter.type = "search";
+        filter.placeholder = "Filter routes…";
+        filter.setAttribute(
+          "aria-label",
+          "Filter the full route list",
+        );
+        const panelList = make("div", "v6-route-panel-list");
+        orderedRoutes.forEach((route) => {
+          const button = makeRouteButton(route);
+          button.dataset.v6RouteText = route.text.toLowerCase();
+          panelList.append(button);
+        });
+        filter.addEventListener("input", () => {
+          const query = filter.value.trim().toLowerCase();
+          panelList.querySelectorAll("button").forEach((button) => {
+            button.hidden = Boolean(
+              query && !button.dataset.v6RouteText.includes(query),
+            );
+          });
+        });
+        moreToggle.addEventListener("click", () => {
+          panel.hidden = !panel.hidden;
+          moreToggle.setAttribute(
+            "aria-expanded",
+            String(!panel.hidden),
+          );
+          if (!panel.hidden) filter.focus();
+        });
+        panel.append(filter, panelList);
+        moreWrap.append(moreToggle, panel);
+        cellSection.append(moreWrap);
+      }
       if (current) {
         // V4.1: the D card returns. The selected route's exact dictionary
         // definition (its D record) rides under the choices with its
@@ -1561,6 +1700,81 @@
           dCard.append(dHead, dText);
         }
         const attribution = appendRouteAttribution(dCard, current);
+        // V6.1: one pill may rest on many D+M records. The oldest renders
+        // above; the full stack is browsable beneath it.
+        const records = v6RecordsForRoute(cell, current);
+        if (records.length > 1) {
+          const stack = make("details", "v6-record-stack");
+          const summary = make("summary");
+          const oldest = records.find((record) =>
+            Number.isFinite(record.year),
+          );
+          summary.append(
+            make(
+              "b",
+              "",
+              `${records.length} source records for this route`,
+            ),
+            make(
+              "span",
+              "",
+              oldest ? `oldest ${oldest.year}` : "years unrecorded",
+            ),
+          );
+          const list = make("div", "v6-record-list");
+          if (records.length > 12) {
+            const recordFilter = make("input", "v6-route-filter");
+            recordFilter.type = "search";
+            recordFilter.placeholder = "Filter records…";
+            recordFilter.setAttribute(
+              "aria-label",
+              "Filter the source records",
+            );
+            recordFilter.addEventListener("input", () => {
+              const query = recordFilter.value.trim().toLowerCase();
+              list.querySelectorAll(".v6-record").forEach((node) => {
+                node.hidden = Boolean(
+                  query &&
+                    !(node.dataset.v6RecordText || "").includes(query),
+                );
+              });
+            });
+            stack.append(summary, recordFilter, list);
+          } else {
+            stack.append(summary, list);
+          }
+          records.forEach((record) => {
+            const item = make("article", "v6-record");
+            item.dataset.v6RecordText = [
+              record.definition.text || "",
+              ...(record.definition.mSources || []).map(
+                (source) => source.label || "",
+              ),
+            ]
+              .join(" ")
+              .toLowerCase();
+            const head = make("header");
+            head.append(
+              make(
+                "b",
+                "",
+                Number.isFinite(record.year)
+                  ? String(record.year)
+                  : "no year",
+              ),
+              make(
+                "span",
+                "",
+                record.definition.mSources?.[0]?.label || "Source unrecorded",
+              ),
+            );
+            const body = make("p", "", record.definition.text || "");
+            body.dir = "auto";
+            item.append(head, body);
+            list.append(item);
+          });
+          dCard.append(stack);
+        }
         cellSection.append(dCard);
         choices.querySelectorAll("button").forEach((button) => {
           if (button.getAttribute("aria-pressed") === "true") {
