@@ -2706,9 +2706,7 @@
     state.railProgrammaticScrollUntil = Date.now() + 900;
     const paneRect = elements.commentaryPane.getBoundingClientRect();
     const activeRect = active.getBoundingClientRect();
-    const stickyHeight = elements.commentaryPane
-      .querySelector(".v3-commentary-heading")
-      ?.getBoundingClientRect().height || 0;
+    const stickyHeight = v5StickyOffset(elements.commentaryPane);
     const top =
       elements.commentaryPane.scrollTop +
       activeRect.top -
@@ -3544,10 +3542,52 @@
     );
   };
 
-  const v5RefreshRailFocus = ({
-    scrollRail = false,
-    behavior = "smooth",
-  } = {}) => {
+  // V5.2 snap-feel repair: followers move the MINIMUM distance, and only
+  // when their matched item is not already usefully visible. No more
+  // top-align yanks past a long Ramban body.
+  const v5StickyOffset = (pane) => {
+    let offset = 0;
+    pane
+      .querySelectorAll(
+        ".v3-commentary-heading, .v5-rail-toolbar, .v5-rail-b-heading, .v5-rail-b-toolbar",
+      )
+      .forEach((node) => {
+        if (getComputedStyle(node).position === "sticky") {
+          offset += node.getBoundingClientRect().height;
+        }
+      });
+    return offset;
+  };
+
+  const v5MinimalAlign = (pane, node, stampProgrammatic) => {
+    if (!pane || !node) return false;
+    const offset = v5StickyOffset(pane);
+    const paneRect = pane.getBoundingClientRect();
+    const viewTop = paneRect.top + offset;
+    const viewBottom = paneRect.bottom;
+    const viewHeight = Math.max(1, viewBottom - viewTop);
+    const rect = node.getBoundingClientRect();
+    const visible =
+      Math.min(rect.bottom, viewBottom) - Math.max(rect.top, viewTop);
+    if (visible >= Math.min(rect.height, viewHeight) * 0.35) {
+      return false;
+    }
+    stampProgrammatic?.();
+    pane.scrollTo({
+      top: Math.max(0, pane.scrollTop + rect.top - viewTop - 8),
+      behavior: "smooth",
+    });
+    return true;
+  };
+
+  const v5ClampDirectional = (target, current, direction) => {
+    if (target < 0 || current < 0 || !direction) return target;
+    return direction > 0
+      ? Math.max(target, current)
+      : Math.min(target, current);
+  };
+
+  const v5RefreshRailFocus = ({ scrollRail = false } = {}) => {
     const items = elements.commentaryContent.querySelectorAll(
       ".v5-rail-item",
     );
@@ -3566,23 +3606,8 @@
       if (isFocus) focused = node;
     });
     if (scrollRail && focused) {
-      state.railProgrammaticScrollUntil = Date.now() + 900;
-      const paneRect = elements.commentaryPane.getBoundingClientRect();
-      const focusRect = focused.getBoundingClientRect();
-      const stickyHeight =
-        elements.commentaryPane
-          .querySelector(".v3-commentary-heading")
-          ?.getBoundingClientRect().height || 0;
-      elements.commentaryPane.scrollTo({
-        top: Math.max(
-          0,
-          elements.commentaryPane.scrollTop +
-            focusRect.top -
-            paneRect.top -
-            stickyHeight -
-            12,
-        ),
-        behavior,
+      v5MinimalAlign(elements.commentaryPane, focused, () => {
+        state.railProgrammaticScrollUntil = Date.now() + 900;
       });
     }
   };
@@ -3641,13 +3666,27 @@
     }
   };
 
-  const v5ScrollSourceToItem = (item, behavior = "smooth") => {
-    state.sourceProgrammaticScrollUntil = Date.now() + 900;
+  const v5ScrollSourceToItem = (item) => {
     const target =
       (!item.wholeSection &&
         wordModuleForPosition(item.sectionRef, item.start)) ||
       articleForSourceRef(item.sectionRef);
-    target?.scrollIntoView({ block: "center", behavior });
+    if (!target) return;
+    // Minimal motion: leave the source alone when the anchor is already
+    // usefully on screen.
+    const paneRect = elements.readingPane.getBoundingClientRect();
+    const rect = target.getBoundingClientRect();
+    const visible =
+      Math.min(rect.bottom, paneRect.bottom) -
+      Math.max(rect.top, paneRect.top);
+    if (
+      visible >=
+      Math.min(rect.height, paneRect.height) * 0.45
+    ) {
+      return;
+    }
+    state.sourceProgrammaticScrollUntil = Date.now() + 900;
+    target.scrollIntoView({ block: "center", behavior: "smooth" });
   };
 
   const v5LightFocusItem = (
@@ -3716,9 +3755,13 @@
     return before >= 0 ? before : 0;
   };
 
-  const v5FollowSource = (position) => {
-    const index = v5ItemIndexForPosition(state.railItems, position);
-    v5BFollowPosition(position);
+  const v5FollowSource = (position, direction = 0) => {
+    const index = v5ClampDirectional(
+      v5ItemIndexForPosition(state.railItems, position),
+      state.activeRailIndex,
+      direction,
+    );
+    v5BFollowPosition(position, direction);
     if (index < 0) return;
     if (index === state.activeRailIndex) {
       refreshActiveCommentaryHighlight();
@@ -3755,10 +3798,13 @@
       elements.commentaryContent,
     );
     if (index < 0 || index === state.activeRailIndex) return;
+    const direction = Math.sign(index - state.activeRailIndex);
     v5LightFocusItem(index, { scrollRail: false, scrollSource: true });
     const item = state.railItems[index];
     if (item) {
-      v5BFollowPosition(sourcePosition(item.sectionRef, item.start));
+      const position = sourcePosition(item.sectionRef, item.start);
+      state.currentSourcePosition = position;
+      v5BFollowPosition(position, direction);
     }
   };
 
@@ -3846,23 +3892,8 @@
         if (isFocus) focused = node;
       });
     if (scrollRailB && focused && elements.railB) {
-      state.railBProgrammaticScrollUntil = Date.now() + 900;
-      const paneRect = elements.railB.getBoundingClientRect();
-      const focusRect = focused.getBoundingClientRect();
-      const stickyHeight =
-        elements.railB
-          .querySelector(".v5-rail-b-heading")
-          ?.getBoundingClientRect().height || 0;
-      elements.railB.scrollTo({
-        top: Math.max(
-          0,
-          elements.railB.scrollTop +
-            focusRect.top -
-            paneRect.top -
-            stickyHeight -
-            12,
-        ),
-        behavior: "smooth",
+      v5MinimalAlign(elements.railB, focused, () => {
+        state.railBProgrammaticScrollUntil = Date.now() + 900;
       });
     }
   };
@@ -3880,9 +3911,13 @@
     publishAudit();
   };
 
-  const v5BFollowPosition = (position) => {
+  const v5BFollowPosition = (position, direction = 0) => {
     if (!state.railBOpen || !state.railBItems.length) return;
-    const index = v5ItemIndexForPosition(state.railBItems, position);
+    const index = v5ClampDirectional(
+      v5ItemIndexForPosition(state.railBItems, position),
+      state.railBActiveIndex,
+      direction,
+    );
     if (index < 0 || index === state.railBActiveIndex) return;
     v5BLightFocus(index, { scrollRailB: true, scrollSource: false });
   };
@@ -3893,12 +3928,17 @@
     if (state.snapMaster !== "railB") return;
     const index = v5RailProbeIndex(elements.railB, elements.railBContent);
     if (index < 0 || index === state.railBActiveIndex) return;
+    const direction = Math.sign(index - state.railBActiveIndex);
     const item = state.railBItems[index];
     v5BLightFocus(index, { scrollRailB: false, scrollSource: true });
     if (item) {
       const position = sourcePosition(item.sectionRef, item.start);
       state.currentSourcePosition = position;
-      const railIndex = v5ItemIndexForPosition(state.railItems, position);
+      const railIndex = v5ClampDirectional(
+        v5ItemIndexForPosition(state.railItems, position),
+        state.activeRailIndex,
+        direction,
+      );
       if (railIndex >= 0 && railIndex !== state.activeRailIndex) {
         v5LightFocusItem(railIndex, {
           scrollRail: true,
@@ -4076,7 +4116,7 @@
       refreshActiveCommentaryHighlight();
       return;
     }
-    v5FollowSource(nextPosition);
+    v5FollowSource(nextPosition, direction);
   }
 
   const commentarySnapFromScroll = () => {
@@ -4940,7 +4980,7 @@
     "scroll",
     () => {
       window.clearTimeout(v5RailSettleTimer);
-      v5RailSettleTimer = window.setTimeout(v5FollowRail, 160);
+      v5RailSettleTimer = window.setTimeout(v5FollowRail, 90);
     },
     { passive: true },
   );
@@ -4998,7 +5038,7 @@
       "scroll",
       () => {
         window.clearTimeout(v5RailBSettleTimer);
-        v5RailBSettleTimer = window.setTimeout(v5BFollowScroll, 160);
+        v5RailBSettleTimer = window.setTimeout(v5BFollowScroll, 90);
       },
       { passive: true },
     );

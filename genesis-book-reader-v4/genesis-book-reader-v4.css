@@ -3252,3 +3252,181 @@ body[data-v3-commentary-open="true"][data-v5-rail-b="true"]
     padding: 0 0.7rem 1rem;
   }
 }
+
+/* ── V5.2 · snap-feel + quiet chrome ─────────────────────────────────────
+   Slim rail headings, quiet section markers, tighter follow behavior. The
+   chapters stay named; they just stop eating the window. */
+
+.v3-commentary-heading {
+  min-height: 3.1rem;
+  padding-block: 0.4rem;
+}
+
+.v3-commentary-heading > div:first-child p {
+  margin: 0;
+  font-size: 0.56rem;
+}
+
+.v3-commentary-heading h2 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.v5-rail-toolbar {
+  top: 3.1rem;
+  padding-block: 0.35rem;
+}
+
+.v5-rail-section-marker {
+  position: static;
+  margin: 0.65rem 0 0.3rem;
+  padding: 0.15rem 0.2rem;
+  border-bottom: 1px solid rgba(225, 185, 85, 0.28);
+  background: transparent;
+}
+
+.v5-rail-section-marker b {
+  font-size: 0.8rem;
+}
+
+.v5-rail-section-marker span {
+  font-size: 0.74rem;
+}
+
+.v5-rail-item {
+  scroll-margin-top: 3.4rem;
+}
+
+.v5-rail-b-heading {
+  padding-block: 0.4rem;
+}
+
+.v5-rail-b-heading h2 {
+  font-size: 0.92rem;
+}
+
+.v5-rail-b-toolbar {
+  top: 2.9rem;
+}
+
+@media (max-width: 960px) {
+  /* On phones the selects name the flowing works; the big rail titles
+     would only repeat them. */
+  .v3-commentary-heading > div:first-child,
+  .v5-rail-b-heading > div:first-child {
+    display: none;
+  }
+
+  .v3-commentary-heading,
+  .v5-rail-b-heading {
+    justify-content: flex-end;
+    padding-block: 0.25rem;
+  }
+
+  .v3-commentary-actions {
+    gap: 0.3rem;
+  }
+
+  .v3-commentary-actions button,
+  .v5-rail-b-heading button {
+    min-height: 1.9rem;
+    padding-block: 0.15rem;
+    font-size: 0.68rem;
+  }
+
+  .v5-rail-toolbar,
+  .v5-rail-b-toolbar {
+    padding-block: 0.3rem;
+  }
+
+  .v5-rail-divider {
+    height: 1.1rem;
+  }
+}
+
+@media (max-width: 960px) {
+  /* Narrow deck columns: the toolbar must stay to two slim lines. */
+  .v5-rail-toolbar label,
+  .v5-rail-b-toolbar label {
+    display: none;
+  }
+
+  .v5-rail-toolbar select,
+  .v5-rail-b-toolbar select {
+    max-width: none;
+    flex: 1 1 auto;
+    font-size: 0.68rem;
+  }
+
+  .v5-counter-toggle {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.6rem;
+  }
+
+  .v5-rail-snap-state {
+    flex-basis: 100%;
+    margin-left: 0;
+    font-size: 0.56rem;
+    text-align: left;
+  }
+
+  .v5-rail-flow {
+    gap: 0.35rem;
+  }
+
+  .v5-rail-item-head {
+    padding: 0.4rem 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .v5-rail-item-body {
+    padding: 0 0.5rem 0.5rem;
+  }
+
+  .v5-rail-section-marker {
+    margin: 0.45rem 0 0.2rem;
+  }
+}
+
+@media (max-width: 960px) {
+  /* Deck columns are ~50vw: every rail-chrome row must hold one line. */
+  #v3-return-to-source {
+    display: none;
+  }
+
+  .v3-commentary-actions {
+    flex-wrap: nowrap;
+  }
+
+  .v4-commentary-stepper {
+    gap: 0.15rem;
+  }
+
+  .v4-commentary-stepper button {
+    min-width: 1.6rem;
+    min-height: 1.7rem;
+    padding: 0.1rem;
+  }
+
+  #v4-commentary-position {
+    font-size: 0.58rem;
+    white-space: nowrap;
+  }
+
+  #v3-close-commentary,
+  #v5-close-rail-b {
+    min-width: 1.9rem;
+    padding-inline: 0.3rem;
+  }
+
+  .v5-rail-toolbar select {
+    flex: 1 1 55%;
+    min-width: 7rem;
+  }
+
+  .v5-rail-toolbar,
+  .v5-rail-b-toolbar {
+    row-gap: 0.15rem;
+  }
+}
