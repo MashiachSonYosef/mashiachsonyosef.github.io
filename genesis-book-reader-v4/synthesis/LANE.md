@@ -56,12 +56,17 @@ pre-1903 links inherits its oldest source's first sense (הארץ →
 Jastrow's "Palestine" — also a K-lane linking gap worth upstream
 repair). Fix for both remains targum-alignment disambiguation.
 
-## Attestation
+## Overrides
 
-`synthesis/attestations-genesis-1-1.js` is the human override layer —
-the gloss counterpart of a PROVEN_EDGE. Add an entry with the gloss, a
-name, a date, and a basis; the reader prefers it immediately and the
-italic clears. Never attest by editing reader code.
+`synthesis/attestations-genesis-1-1.js` is the project's backend
+override layer. When a different default is wanted than the rule
+derives, it is recorded there in data — unsigned, no justification
+required. The rule is the public explanation; overrides are ordinary
+backend choices, and the ledger keeps their history. What the lane never
+permits is the old failure mode: a pick hiding in reader code.
+Provenance (derived vs overridden) rides as backend data attributes and
+audit fields only; the visible UI presents defaults plainly and does not
+explain itself.
 
 ## Roadmap, in priority order
 
