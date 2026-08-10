@@ -36,20 +36,25 @@ VISUAL_SUGGESTION_ONLY claims; human-validated claims are carried
 byte-for-byte; unmatched segments remain verse-level witnesses. Nothing
 is promoted by machine.
 
-### Default glosses, rule v1 (`tools/derive-default-glosses.mjs`)
-Prefer routes flagged `selectedInTop5` by the upstream pipeline, earliest
-ledger position first; if the flag is absent, earliest ledger position
-alone (weakest evidence). Output status is always DERIVED_DRAFT, shown in
-italics in the reader until attested. Legacy hand picks that previously
-lived in reader code are preserved only as dispute rows in
-`ledger-genesis-1-1-defaults.json` (5 of 7 disputed).
+### Default glosses, rule v2 — antiquity primacy (`tools/derive-default-glosses.mjs`)
+**Rule attested by Kyle, 2026-08-10** — the first rule-level attestation
+in the project. Sort a word's routes by the oldest source year attesting
+them; sources after 1940, or without a recorded year, form the last tier
+("lastuary"); ties break by ledger position. The pool is built exactly
+the way the reader builds selectable pills, so the derived default
+always matches a real route. The same ordering governs the pill row
+(selected route first, then antiquity), the >10-pill filterable panel,
+and the D card's source-record stack (oldest record first).
 
-**Known limits of rule v1, on the record:** function words (the
-direct-object markers) have no contextual route in any dictionary, so
-the rule lands on homographs ("and thou"); words without the upstream
-flag fall back to arbitrary ledger order ("Palestine" for הארץ). The
-upstream flag is itself unvalidated. These are stated draft errors, not
-hidden ones — visible in italics, one tap from every alternative.
+Output status remains DERIVED_DRAFT (italic) until per-word attestation.
+Rule v1 (upstream_top5) is archived; its picks live in the ledger rows.
+
+**Known limits of rule v2, on the record:** function words still land on
+homographs ("you", "and thou") because no dictionary carries a
+contextual route for the object-markers; and a word whose bundle lacks
+pre-1903 links inherits its oldest source's first sense (הארץ →
+Jastrow's "Palestine" — also a K-lane linking gap worth upstream
+repair). Fix for both remains targum-alignment disambiguation.
 
 ## Attestation
 
