@@ -2528,3 +2528,283 @@ body[data-v3-attribution-open="true"] .v3-attribution-drawer {
     transition: none;
   }
 }
+
+/* ── V4.1 editorial amendment · present the data whole ──────────────────
+   Stacked commentary workspace, restored D definition card, and the full
+   witness ledger. Same dark biblical palette; no locked surface restyled. */
+
+.v4-commentary-track-block {
+  margin: 0 0 1.1rem;
+}
+
+.v4-commentary-track-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin: 0 0 0.45rem;
+  padding: 0.35rem 0.15rem 0.4rem;
+  border-bottom: 1px solid var(--v3-line-dark);
+}
+
+.v4-commentary-track-heading b {
+  color: var(--v3-zahav);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+}
+
+.v4-commentary-track-heading span {
+  color: #9aadb0;
+  font-size: 0.66rem;
+  white-space: nowrap;
+}
+
+.v4-commentary-track-block[data-active-track="true"]
+  .v4-commentary-track-heading {
+  border-bottom-color: rgba(225, 185, 85, 0.55);
+}
+
+/* D card — the selected route's exact dictionary definition. */
+
+.v4-hud-d-card {
+  margin-top: 0.55rem;
+  padding: 0.6rem 0.7rem 0.65rem;
+  border: 1px solid var(--v3-line);
+  border-left: 0.22rem solid var(--v3-tekhelet);
+  border-radius: 0.5rem;
+  background: rgba(62, 130, 164, 0.07);
+}
+
+.v4-hud-d-card > header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.v4-hud-d-card > header b {
+  color: var(--v3-tekhelet);
+  font-size: 0.66rem;
+  font-family: var(--v3-ui-font);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.v4-hud-d-card > header span {
+  color: var(--v3-shesh-muted);
+  font-size: 0.68rem;
+}
+
+.v4-hud-d-text {
+  margin: 0.4rem 0 0;
+  color: var(--v3-shesh-bright);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  unicode-bidi: plaintext;
+  user-select: text;
+}
+
+.v4-hud-d-card .v3-route-attribution {
+  margin-top: 0.5rem;
+  padding-top: 0.45rem;
+  border-top: 1px dashed var(--v3-line);
+}
+
+/* Full witness ledger — every recorded work on the verse. */
+
+.v4-witness-ledger {
+  margin: 1.4rem 0 0.6rem;
+  padding: 0.85rem 0.8rem 0.9rem;
+  border: 1px solid var(--v3-line-dark);
+  border-radius: 0.65rem;
+  background: var(--v3-paper-deep);
+}
+
+.v4-witness-ledger-heading {
+  margin: 0 0 0.65rem;
+}
+
+.v4-witness-ledger-heading p {
+  margin: 0;
+  color: var(--v3-zahav);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.v4-witness-ledger-heading h3 {
+  margin: 0.15rem 0 0.25rem;
+  color: var(--v3-shesh-bright);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.12rem;
+}
+
+.v4-witness-ledger-heading > span {
+  display: block;
+  color: #9aadb0;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.v4-witness-family {
+  border: 1px solid var(--v3-line);
+  border-radius: 0.5rem;
+  background: #091b26;
+}
+
+.v4-witness-family + .v4-witness-family {
+  margin-top: 0.4rem;
+}
+
+.v4-witness-family > summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.5rem 0.65rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.v4-witness-family > summary::marker,
+.v4-witness-family > summary::-webkit-details-marker {
+  display: none;
+  content: "";
+}
+
+.v4-witness-family > summary:hover,
+.v4-witness-family > summary:focus-visible {
+  background: #132d3b;
+  border-radius: 0.5rem;
+}
+
+.v4-witness-family[open] > summary {
+  border-bottom: 1px solid var(--v3-line);
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.v4-witness-family-titles {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.v4-witness-family-titles b {
+  color: var(--v3-shesh-bright);
+  font-family: var(--v3-hebrew-font);
+  font-size: 1.02rem;
+  line-height: 1.3;
+}
+
+.v4-witness-family-titles span {
+  color: var(--v3-shesh-muted);
+  font-size: 0.7rem;
+}
+
+.v4-witness-family-marks {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.v4-witness-family-marks i {
+  color: var(--v3-zahav);
+  font-size: 0.6rem;
+  font-style: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.v4-witness-family-marks span {
+  color: #9aadb0;
+  font-size: 0.64rem;
+  white-space: nowrap;
+}
+
+.v4-witness-family[data-witness-kind="targum"] .v4-witness-family-titles b {
+  color: var(--v3-tekhelet);
+}
+
+.v4-witness-family-body {
+  padding: 0.15rem 0.65rem 0.6rem;
+}
+
+.v4-witness-segment {
+  padding: 0.55rem 0 0.6rem;
+}
+
+.v4-witness-segment + .v4-witness-segment {
+  border-top: 1px dashed var(--v3-line);
+}
+
+.v4-witness-segment > header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.v4-witness-segment > header b {
+  color: var(--v3-shesh);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78rem;
+}
+
+.v4-witness-segment > header span {
+  color: var(--v3-shesh-muted);
+  font-family: var(--v3-hebrew-font);
+  font-size: 0.82rem;
+}
+
+.v4-witness-proof {
+  font-size: 1.18rem;
+  line-height: 1.9;
+}
+
+.v4-witness-segment .v3-commentary-meta {
+  margin-top: 0.35rem;
+}
+
+.v4-witness-held {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: 0.35rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px dashed var(--v3-line-dark);
+  border-radius: 0.45rem;
+}
+
+.v4-witness-held b {
+  color: #c49b73;
+  font-size: 0.68rem;
+}
+
+.v4-witness-held span {
+  color: #9aadb0;
+  font-size: 0.66rem;
+  line-height: 1.45;
+}
+
+.v4-witness-held a {
+  color: var(--v3-tekhelet);
+  font-size: 0.66rem;
+}
+
+@media (max-width: 620px) {
+  .v4-commentary-track-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1rem;
+  }
+
+  .v4-witness-family > summary {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}

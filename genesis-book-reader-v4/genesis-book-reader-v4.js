@@ -38,6 +38,24 @@
       "data expansion, validation, accessibility, and defect repair without structural redesign",
   });
 
+  // V4.1 editorial amendment, owner-directed 2026-08-10: the commentary
+  // workspace holds every attached unit of every track open at once, the
+  // per-word HUD regains its D definition card, and the full witness ledger
+  // presents all recorded works on the verse. The V4 lock's one-at-a-time
+  // conditional workspace is superseded by the owner's directive to present
+  // the received data whole.
+  const v41EditorialAmendment = Object.freeze({
+    amendment_id: "genesis-book-reader-v4-1-present-whole-2026-08-10",
+    supersedes: "conditional_commentary_workspace (single active unit)",
+    added_surfaces: Object.freeze([
+      "stacked_commentary_workspace_all_tracks_open",
+      "hud_d_definition_card",
+      "full_witness_ledger_genesis_1_1",
+    ]),
+    display_discipline:
+      "original-language text renders only where its license record clears display; held segments stay visible as metadata",
+  });
+
   const readerAxisContract = Object.freeze({
     numbering_scope: "UNIT_LOCAL",
     authoritative_order: "C0_SPAN",
@@ -832,6 +850,22 @@
     });
   });
 
+  // V4.1: the workspace holds every attached unit at once, so stepping and
+  // counting run over one canonical order across all tracks — source order
+  // first, then the attachment map's display order.
+  const allCommentaryUnitsOrdered = [...commentaryTrackUnitsByTrack.values()]
+    .flat()
+    .sort((left, right) => {
+      const sourceDelta = compareSourcePositions(
+        left.sourcePosition,
+        right.sourcePosition,
+      );
+      return sourceDelta !== 0
+        ? sourceDelta
+        : Number(left.claim.display_order || 0) -
+            Number(right.claim.display_order || 0);
+    });
+
   const commentarySnapContract = Object.freeze({
     contract_id: "v4-sectioned-commentary-track-2026-07-25",
     driver: "BASE_HEBREW_PANE",
@@ -1444,7 +1478,31 @@
       });
       cellSection.append(choices);
       if (current) {
-        const attribution = appendRouteAttribution(cellSection, current);
+        // V4.1: the D card returns. The selected route's exact dictionary
+        // definition (its D record) rides under the choices with its
+        // source attribution, instead of attribution alone.
+        const definition = definitionForRoute(current);
+        const dCard = make("section", "v4-hud-d-card");
+        dCard.dataset.v4DCard = "";
+        if (definition?.text) {
+          const dHead = make("header");
+          const bundleLabel = current.bundle?.label?.trim() || "";
+          dHead.append(
+            make("b", "", "D · Definition"),
+            make(
+              "span",
+              "",
+              bundleLabel && bundleLabel !== definition.text.trim()
+                ? bundleLabel
+                : "Exact dictionary record",
+            ),
+          );
+          const dText = make("p", "v4-hud-d-text", definition.text);
+          dText.dir = "auto";
+          dCard.append(dHead, dText);
+        }
+        const attribution = appendRouteAttribution(dCard, current);
+        cellSection.append(dCard);
         choices.querySelectorAll("button").forEach((button) => {
           if (button.getAttribute("aria-pressed") === "true") {
             button.setAttribute("aria-describedby", attribution.id);
@@ -1583,7 +1641,7 @@
       make(
         "span",
         "",
-        `${claims.length} commentar${claims.length === 1 ? "y" : "ies"}`,
+        `${claims.length} commentar${claims.length === 1 ? "y" : "ies"} · all stay open in the workspace`,
       ),
     );
     const choices = make("div", "v3-commentary-choice-list");
@@ -2301,8 +2359,13 @@
     scope,
     host,
     count,
+    renderToken: providedToken = null,
   }) => {
-    const renderToken = ++state.commentaryRenderToken;
+    // V4.1: sibling records render concurrently in the stacked workspace, so
+    // a caller-provided pass token must not be re-incremented per record —
+    // that would cancel the other records of the same pass.
+    const renderToken =
+      providedToken ?? ++state.commentaryRenderToken;
     const total = fixture.paragraph.occurrences.length;
     const occurrences = fixture.paragraph.occurrences.slice(0, count);
     host.replaceChildren(
@@ -2392,6 +2455,7 @@
           scope,
           host,
           count: state.commentaryVisibleCount,
+          renderToken: state.commentaryRenderToken,
         });
       });
       host.append(more);
@@ -2418,15 +2482,13 @@
   };
 
   const activeCommentaryTrackIndex = () =>
-    (commentaryTrackUnitsByTrack.get(state.activeCommentaryTrack) || [])
-      .findIndex(
-        (unit) =>
-          unit.claim.commentary_unit_ref === state.activeClaimRef,
-      );
+    allCommentaryUnitsOrdered.findIndex(
+      (unit) =>
+        unit.claim.commentary_unit_ref === state.activeClaimRef,
+    );
 
   const commentaryStepTargetIndex = (delta) => {
-    const units =
-      commentaryTrackUnitsByTrack.get(state.activeCommentaryTrack) || [];
+    const units = allCommentaryUnitsOrdered;
     if (!units.length) return -1;
     const activeIndex = activeCommentaryTrackIndex();
     if (activeIndex >= 0) {
@@ -2459,12 +2521,11 @@
   };
 
   const updateCommentaryStepper = () => {
-    const units =
-      commentaryTrackUnitsByTrack.get(state.activeCommentaryTrack) || [];
+    const units = allCommentaryUnitsOrdered;
     const activeIndex = activeCommentaryTrackIndex();
     const previousIndex = commentaryStepTargetIndex(-1);
     const nextIndex = commentaryStepTargetIndex(1);
-    elements.commentaryStepper.hidden = !state.activeCommentaryTrack;
+    elements.commentaryStepper.hidden = units.length === 0;
     setText(
       elements.commentaryPosition,
       activeIndex >= 0
@@ -2491,7 +2552,7 @@
     );
   };
 
-  const appendCommentaryRecord = (host, unit, origin) => {
+  const appendCommentaryRecord = (host, unit, origin, renderToken = null) => {
     const { section, claim } = unit;
     const exactFixture = commentaryFixtureForClaim(section, claim);
     const record = make("article", "v3-commentary-record");
@@ -2546,6 +2607,7 @@
         ...exactFixture,
         host: reading,
         count: fullCount,
+        renderToken,
       });
       return;
     }
@@ -2554,7 +2616,6 @@
       claim.commentary_unit_ref,
     );
     if (proofSegment?.he?.proof_text) {
-      ++state.commentaryRenderToken;
       const meta = make("div", "v3-commentary-meta");
       meta.append(
         make(
@@ -2580,15 +2641,17 @@
       );
       raw.lang = "he";
       raw.dir = "rtl";
-      raw.dataset.v4RawHebrew = "";
-      raw.dataset.v3HebrewToken = "";
+      // V4.1 defect repair: proof-text witnesses are display-only original
+      // language, not selectable-HUD word units, so they must not carry the
+      // hebrew-token/raw-unit markers. V4.0 tagged them and therefore failed
+      // its own visible-Hebrew contract whenever a proof-text unit was the
+      // active selection.
       reading.append(raw);
       record.append(meta, reading);
       host.append(record);
       return;
     }
 
-    ++state.commentaryRenderToken;
     const status = make("section", "v3-commentary-fail-closed");
     status.append(
       make("p", "", "Exact commentary word modules are not materialized."),
@@ -2630,34 +2693,197 @@
     });
   };
 
+  // V4.1: the full witness ledger presents every recorded work on the verse,
+  // not only the units the attachment map has proven. Original-language text
+  // displays only where its license record clears display; every other
+  // segment stays visible as held metadata. The node is built once so open
+  // ledger sections survive workspace re-renders.
+  let witnessLedgerNode = null;
+
+  const witnessSegmentDisplayable = (segment) =>
+    Boolean(
+      segment?.he?.proof_text &&
+        segment?.he?.source_text_present &&
+        (segment?.he?.license_disposition === "OPEN_OR_PUBLIC_DOMAIN" ||
+          (segment?.he?.license_disposition === "NONCOMMERCIAL_REVIEW" &&
+            displayPolicy.commercial_use === false)),
+    );
+
+  const appendWitnessSegments = (host, family) => {
+    (family.segments || []).forEach((segment) => {
+      const article = make("article", "v4-witness-segment");
+      const head = make("header");
+      head.append(
+        make("b", "", segment.ref),
+        make("span", "", segment.he_ref || ""),
+      );
+      article.append(head);
+      if (witnessSegmentDisplayable(segment)) {
+        const proof = make(
+          "p",
+          "v4-commentary-raw-proof v4-witness-proof",
+          segment.he.proof_text,
+        );
+        proof.lang = "he";
+        proof.dir = "rtl";
+        article.append(proof);
+        const meta = make("div", "v3-commentary-meta");
+        meta.append(
+          make(
+            "span",
+            "",
+            segment.he.version_title || "Original-language proof text",
+          ),
+          make("span", "", `License · ${segment.he.license || "Recorded"}`),
+          makeSourceLink({ source_url: segment.source_url }, "Exact source"),
+        );
+        article.append(meta);
+      } else {
+        article.dataset.status = "held";
+        const held = make("div", "v4-witness-held");
+        held.append(
+          make("b", "", "Held · text not cleared for display"),
+          make(
+            "span",
+            "",
+            "The mapping stays visible as metadata; its license record does not clear original-language display in this proof.",
+          ),
+          makeSourceLink({ source_url: segment.source_url }, "Exact source"),
+        );
+        article.append(held);
+      }
+      host.append(article);
+    });
+  };
+
+  const buildWitnessLedger = () => {
+    if (witnessLedgerNode) return witnessLedgerNode;
+    const families = [
+      ...(commentaryData?.commentary || []),
+      ...(commentaryData?.targum || []),
+    ];
+    if (!families.length) return null;
+    const attachedTracks = new Set(commentaryTrackUnitsByTrack.keys());
+    const segmentTotal = families.reduce(
+      (sum, family) => sum + (family.segments?.length || 0),
+      0,
+    );
+    const displayableTotal = families.reduce(
+      (sum, family) =>
+        sum +
+        (family.segments || []).filter(witnessSegmentDisplayable).length,
+      0,
+    );
+    const ledger = make("section", "v4-witness-ledger");
+    ledger.dataset.v4WitnessLedger = "";
+    const heading = make("header", "v4-witness-ledger-heading");
+    heading.append(
+      make("p", "", "Full witness ledger"),
+      make("h3", "", commentaryData?.base?.ref || "Genesis 1:1"),
+      make(
+        "span",
+        "",
+        `${families.length} recorded works · ${segmentTotal} segments · ${displayableTotal} carry cleared original-language text. Every witness this proof holds for the verse, presented whole.`,
+      ),
+    );
+    ledger.append(heading);
+    families.forEach((family) => {
+      const familyKey =
+        family.commentary_index || family.family_title || "";
+      const details = make("details", "v4-witness-family");
+      details.dataset.witnessFamilyKey = family.family_key || familyKey;
+      if (family.commentary_kind === "TARGUM") {
+        details.dataset.witnessKind = "targum";
+      }
+      const summary = make("summary");
+      const titles = make("span", "v4-witness-family-titles");
+      const he = make(
+        "b",
+        "",
+        family.collective_title_he || family.collective_title_en || familyKey,
+      );
+      he.lang = "he";
+      he.dir = "rtl";
+      titles.append(
+        he,
+        make(
+          "span",
+          "",
+          family.collective_title_en || family.family_title || familyKey,
+        ),
+      );
+      const marks = make("span", "v4-witness-family-marks");
+      if (attachedTracks.has(familyKey)) {
+        const attached = make("i", "", "Attached to the text");
+        attached.title =
+          "This work also has proven attachments in the reading pane.";
+        marks.append(attached);
+      }
+      marks.append(
+        make(
+          "span",
+          "",
+          `${family.segments?.length || 0} segment${
+            (family.segments?.length || 0) === 1 ? "" : "s"
+          }`,
+        ),
+      );
+      summary.append(titles, marks);
+      const body = make("div", "v4-witness-family-body");
+      details.append(summary, body);
+      details.addEventListener("toggle", () => {
+        if (!details.open || details.dataset.segmentsLoaded === "true") {
+          return;
+        }
+        details.dataset.segmentsLoaded = "true";
+        appendWitnessSegments(body, family);
+      });
+      ledger.append(details);
+    });
+    witnessLedgerNode = ledger;
+    return ledger;
+  };
+
   const renderCommentaryTrack = ({ origin = "manual" } = {}) => {
-    const track = state.activeCommentaryTrack;
-    const sections = commentaryTrackSections(track);
+    const renderToken = ++state.commentaryRenderToken;
     const activeUnit = commentaryTrackUnitByClaimRef.get(
       state.activeClaimRef,
     );
-    setText(elements.commentaryHeading, track || "Commentary");
+    const trackEntries = [...commentaryTrackUnitsByTrack.entries()];
+    const unitTotal = allCommentaryUnitsOrdered.length;
+    setText(
+      elements.commentaryHeading,
+      unitTotal
+        ? `Commentary · ${trackEntries.length} work${
+            trackEntries.length === 1 ? "" : "s"
+          } held open`
+        : "Commentary",
+    );
     updateCommentaryStepper();
 
-    if (!track || sections.length === 0) {
-      elements.commentaryContent.replaceChildren(
+    const fragment = document.createDocumentFragment();
+
+    if (!unitTotal) {
+      fragment.append(
         make(
           "section",
           "v3-commentary-empty",
           "No commentary units are loaded for this book.",
         ),
       );
-      return;
     }
 
-    const fragment = document.createDocumentFragment();
-    if (!activeUnit && state.commentaryAlignmentRef) {
+    if (
+      !activeUnit &&
+      state.activeCommentaryTrack &&
+      state.commentaryAlignmentRef
+    ) {
       const note = make("section", "v4-commentary-alignment-note");
       note.append(
         make(
           "b",
           "",
-          `No verified ${track} unit is loaded at ${state.commentaryAlignmentRef}.`,
+          `No verified ${state.activeCommentaryTrack} unit is loaded at ${state.commentaryAlignmentRef}.`,
         ),
         make(
           "span",
@@ -2668,74 +2894,99 @@
       fragment.append(note);
     }
 
-    sections.forEach((entry) => {
-      const sectionDetails = make(
-        "details",
-        "v4-commentary-source-section",
+    trackEntries.forEach(([track]) => {
+      const sections = commentaryTrackSections(track);
+      if (!sections.length) return;
+      const trackBlock = make("section", "v4-commentary-track-block");
+      trackBlock.dataset.commentaryTrack = track;
+      if (track === state.activeCommentaryTrack) {
+        trackBlock.dataset.activeTrack = "true";
+      }
+      const trackHeading = make("header", "v4-commentary-track-heading");
+      const trackUnitCount = sections.reduce(
+        (sum, entry) => sum + entry.units.length,
+        0,
       );
-      sectionDetails.dataset.sourceSectionRef = entry.section.ref;
-      sectionDetails.open =
-        activeUnit?.section.ref === entry.section.ref;
-      const verifiedCount = entry.units.filter(
-        (unit) => unit.claim.claim_state === "PROVEN_EDGE",
-      ).length;
-      const summary = make("summary");
-      summary.append(
-        make("b", "", entry.section.ref),
+      trackHeading.append(
+        make("b", "", track),
         make(
           "span",
           "",
-          `${entry.units.length} part${
-            entry.units.length === 1 ? "" : "s"
-          } · ${verifiedCount} aligned`,
+          `${trackUnitCount} unit${trackUnitCount === 1 ? "" : "s"} · all held open`,
         ),
       );
-      const list = make("div", "v4-commentary-unit-list");
-      entry.units.forEach((unit) => {
-        const active =
-          unit.claim.commentary_unit_ref === state.activeClaimRef;
-        const item = make(
-          "section",
-          `v4-commentary-unit${active ? " is-active" : ""}`,
+      trackBlock.append(trackHeading);
+      sections.forEach((entry) => {
+        const sectionDetails = make(
+          "details",
+          "v4-commentary-source-section",
         );
-        item.dataset.commentaryUnitRef =
-          unit.claim.commentary_unit_ref;
-        const selector = make(
-          "button",
-          "v4-commentary-unit-selector",
+        sectionDetails.dataset.sourceSectionRef = entry.section.ref;
+        sectionDetails.open = true;
+        const verifiedCount = entry.units.filter(
+          (unit) => unit.claim.claim_state === "PROVEN_EDGE",
+        ).length;
+        const summary = make("summary");
+        summary.append(
+          make("b", "", entry.section.ref),
+          make(
+            "span",
+            "",
+            `${entry.units.length} part${
+              entry.units.length === 1 ? "" : "s"
+            } · ${verifiedCount} aligned`,
+          ),
         );
-        selector.type = "button";
-        selector.setAttribute("aria-pressed", String(active));
-        selector.append(
-          make("b", "", compactClaimTitle(unit.claim)),
-          make("span", "", scopeLabel(unit.section, unit.claim)),
-        );
-        if (unit.claim.claim_state !== "PROVEN_EDGE") {
-          selector.append(
-            make(
-              "i",
-              "",
-              "Manual only · exact internal alignment not asserted",
-            ),
+        const list = make("div", "v4-commentary-unit-list");
+        entry.units.forEach((unit) => {
+          const active =
+            unit.claim.commentary_unit_ref === state.activeClaimRef;
+          const item = make(
+            "section",
+            `v4-commentary-unit${active ? " is-active" : ""}`,
           );
-        }
-        selector.addEventListener("click", () => {
-          selectCommentary(unit.section, unit.claim, selector, {
-            origin: "manual-track",
-            preserveSourcePosition: true,
+          item.dataset.commentaryUnitRef =
+            unit.claim.commentary_unit_ref;
+          const selector = make(
+            "button",
+            "v4-commentary-unit-selector",
+          );
+          selector.type = "button";
+          selector.setAttribute("aria-pressed", String(active));
+          selector.append(
+            make("b", "", compactClaimTitle(unit.claim)),
+            make("span", "", scopeLabel(unit.section, unit.claim)),
+          );
+          if (unit.claim.claim_state !== "PROVEN_EDGE") {
+            selector.append(
+              make(
+                "i",
+                "",
+                "Manual only · exact internal alignment not asserted",
+              ),
+            );
+          }
+          selector.addEventListener("click", () => {
+            selectCommentary(unit.section, unit.claim, selector, {
+              origin: "manual-track",
+              preserveSourcePosition: true,
+            });
           });
-        });
-        item.append(selector);
-        if (active) {
+          item.append(selector);
           const body = make("div", "v4-commentary-unit-body");
           item.append(body);
-          appendCommentaryRecord(body, unit, origin);
-        }
-        list.append(item);
+          appendCommentaryRecord(body, unit, origin, renderToken);
+          list.append(item);
+        });
+        sectionDetails.append(summary, list);
+        trackBlock.append(sectionDetails);
       });
-      sectionDetails.append(summary, list);
-      fragment.append(sectionDetails);
+      fragment.append(trackBlock);
     });
+
+    const ledger = buildWitnessLedger();
+    if (ledger) fragment.append(ledger);
+
     elements.commentaryContent.replaceChildren(fragment);
     requestAnimationFrame(() => scrollCommentaryUnitIntoView(origin));
   };
@@ -3022,8 +3273,7 @@
   };
 
   const moveCommentaryUnit = (delta) => {
-    const units =
-      commentaryTrackUnitsByTrack.get(state.activeCommentaryTrack) || [];
+    const units = allCommentaryUnitsOrdered;
     const targetIndex = commentaryStepTargetIndex(delta);
     const target = units[targetIndex];
     if (!target) return;
@@ -3766,6 +4016,22 @@
         document.body.dataset.v3AttributionOpen === "true",
       active_materialized_detailed_sections: detailedArticles.length,
       materialized_detailed_sections: sectionsByRef.size,
+      commentary_workspace_model:
+        "V4_1_STACKED__ALL_TRACKS_OPEN__ALL_UNIT_BODIES_RENDERED",
+      commentary_units_total: allCommentaryUnitsOrdered.length,
+      commentary_unit_bodies_rendered:
+        elements.commentaryContent.querySelectorAll(
+          ".v4-commentary-unit-body",
+        ).length,
+      hud_d_cards_rendered: document.querySelectorAll(
+        "[data-v4-d-card]",
+      ).length,
+      witness_ledger_present: Boolean(
+        elements.commentaryContent.querySelector(
+          "[data-v4-witness-ledger]",
+        ),
+      ),
+      v4_1_amendment_id: v41EditorialAmendment.amendment_id,
       v3_parent_validation_id: v4Ancestry.parent_validation_id,
       suggestion_promotions: suggestionsPromoted.map(
         ({ claim }) => claim.commentary_unit_ref,
@@ -3985,4 +4251,7 @@
     }
   }
   setCommentaryLayer(true);
+  // V4.1: materialize the stacked workspace and witness ledger from first
+  // paint, so the pane presents the whole record before any pill is chosen.
+  renderCommentaryTrack({ origin: "initial" });
 })();
