@@ -2032,7 +2032,11 @@
     descriptor.dir = "ltr";
     descriptor.dataset.v4SelectedGloss = "";
     const action = make("span", "v3-title-action", "Genesis · title choices");
-    summary.append(raw, descriptor, action);
+    // V6.4: on phones the long action label is hidden; the same ▾ mark the
+    // word modules use marks the title as definable there instead.
+    const actionCompact = make("span", "v3-title-action-compact", "▾");
+    actionCompact.setAttribute("aria-hidden", "true");
+    summary.append(raw, descriptor, action, actionCompact);
     const hud = make("div", "v3-title-hud");
     hud.id = "v3-work-title-hud";
     summary.setAttribute("aria-controls", hud.id);
@@ -2111,6 +2115,16 @@
           sectionRuntime(section).orderedC0Ids.length
         } C0 rows → ${section.base.words.length} numbered workbench cards`
       : "Proven detail slice · canonical right-to-left Hebrew";
+
+  // Canonical source order for one section — the same words the chapter
+  // copy uses, scoped to a single N record.
+  const canonicalTextForSection = (section) => {
+    const runtime = sectionRuntime(section);
+    return section.base.canonical_sequence
+      .map((index) => runtime.wordByIndex.get(Number(index))?.hebrew || "")
+      .filter(Boolean)
+      .join(" ");
+  };
 
   const createExactVerse = (verse, section) => {
     const numberValue = verseNumber(verse);
@@ -2283,6 +2297,27 @@
           makePointerLink(nRecord.source_url, "Exact source"),
         );
       }
+      // V6.4: copy rides per section — each N record's canonical text is
+      // copyable on its own, alongside the chapter-level copy.
+      const shortRef = section.ref.replace(/^Genesis\s+/u, "");
+      const sectionCopy = make("button", "v5-section-copy", `⧉ Copy ${shortRef}`);
+      sectionCopy.type = "button";
+      sectionCopy.dataset.v5SectionCopy = section.ref;
+      sectionCopy.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(
+            canonicalTextForSection(section),
+          );
+          announce(`${section.ref} copied in canonical source order.`);
+          setText(sectionCopy, "⧉ Copied");
+          window.setTimeout(() => {
+            setText(sectionCopy, `⧉ Copy ${shortRef}`);
+          }, 1600);
+        } catch {
+          announce("Copy is unavailable in this browser context.");
+        }
+      });
+      licenseLine.append(sectionCopy);
       content.append(licenseLine);
     }
     inner.append(number, content);
@@ -2412,6 +2447,8 @@
       document.body.dataset.v3CommentaryOpen === "true";
     closeCommentaryChoosers();
     state.chapter = number;
+    state.streamStart = number;
+    state.appendedThrough = number;
     const verses = versesByChapterId.get(chapter.y_node_id) || [];
     setText(elements.currentChapter, String(number));
     setText(elements.currentVerseCount, String(verses.length));
@@ -2470,6 +2507,98 @@
     }
     scheduleCommentarySnapFromScroll();
     publishAudit();
+  };
+
+  // ── V6.4 · continuous source stream ────────────────────────────────────
+  // Reaching the end of a chapter continues into the next one in the same
+  // stream — the reading does not stop at a chapter boundary. The chapter
+  // chrome (heading, count, copy scope, jumper) follows the scroll. Jumping
+  // from the chapter drawer or the arrows still resets the stream to that
+  // chapter alone.
+  const appendNextChapter = () => {
+    const nextNumber = (state.appendedThrough || state.chapter) + 1;
+    if (nextNumber > chapterNodes.length) return false;
+    const chapter = chapterByNumber.get(nextNumber);
+    if (!chapter) return false;
+    const verses = versesByChapterId.get(chapter.y_node_id) || [];
+    if (!verses.length) return false;
+    const divider = make("header", "v5-chapter-divider");
+    divider.dataset.v5ChapterDivider = String(nextNumber);
+    divider.append(make("h2", "", `Chapter ${nextNumber}`));
+    const fragment = document.createDocumentFragment();
+    fragment.append(divider);
+    verses.forEach((verse) => {
+      const section = sectionsByRef.get(verse.public_ref);
+      fragment.append(
+        section
+          ? createExactVerse(verse, section)
+          : createLazyVerse(verse),
+      );
+    });
+    elements.verseStream.append(fragment);
+    state.appendedThrough = nextNumber;
+    publishAudit();
+    return true;
+  };
+
+  const chapterNumberFromRef = (sectionRef) => {
+    const match = /^Genesis\s+(\d+):/u.exec(String(sectionRef || ""));
+    return match ? Number(match[1]) : null;
+  };
+
+  // Chrome-only follow: no stream rebuild, no scroll reset.
+  const syncChapterChrome = (number) => {
+    if (!Number.isInteger(number) || number === state.chapter) return;
+    const chapter = chapterByNumber.get(number);
+    if (!chapter) return;
+    state.chapter = number;
+    const verses = versesByChapterId.get(chapter.y_node_id) || [];
+    setText(elements.currentChapter, String(number));
+    setText(elements.currentVerseCount, String(verses.length));
+    setText(elements.chapterHeading, `Chapter ${number}`);
+    elements.copyCanonical.disabled = !verses.some((verse) =>
+      sectionsByRef.has(verse.public_ref),
+    );
+    elements.previousChapter.disabled = number <= 1;
+    elements.nextChapter.disabled = number >= chapterNodes.length;
+    elements.chapterGrid
+      .querySelectorAll("[data-chapter]")
+      .forEach((button) => {
+        button.setAttribute(
+          "aria-current",
+          String(Number(button.dataset.chapter) === number),
+        );
+      });
+    publishAudit();
+  };
+
+  let sourceStreamFrame = 0;
+  const sourceStreamScrollCheck = () => {
+    sourceStreamFrame = 0;
+    const pane = elements.readingPane;
+    if (!pane) return;
+    // Continue the stream shortly before the reader runs out of it.
+    if (
+      pane.scrollTop + pane.clientHeight >=
+      pane.scrollHeight - Math.max(560, pane.clientHeight * 0.75)
+    ) {
+      appendNextChapter();
+    }
+    // Follow the chapter under the reading line.
+    const probeY =
+      pane.getBoundingClientRect().top + Math.min(160, pane.clientHeight / 3);
+    const articles = pane.querySelectorAll(".v3-verse");
+    let currentRef = null;
+    for (const article of articles) {
+      if (article.getBoundingClientRect().top > probeY) break;
+      currentRef = article.dataset.verseRef || currentRef;
+    }
+    const number = chapterNumberFromRef(currentRef);
+    if (number) syncChapterChrome(number);
+  };
+  const scheduleSourceStreamCheck = () => {
+    if (sourceStreamFrame) return;
+    sourceStreamFrame = requestAnimationFrame(sourceStreamScrollCheck);
   };
 
   const resolveCommentaryTrackRequest = (request) => {
@@ -5200,6 +5329,17 @@
   function publishAudit() {
     const activeChapter = chapterByNumber.get(state.chapter);
     const activeVerses = versesByChapterId.get(activeChapter?.y_node_id) || [];
+    // V6.4: the source stream may hold several appended chapters; the
+    // rendered-verse contract covers the full appended range, not only the
+    // chrome's current chapter.
+    const streamStart = state.streamStart || state.chapter;
+    const streamEnd = state.appendedThrough || state.chapter;
+    let streamVerseCount = 0;
+    for (let number = streamStart; number <= streamEnd; number += 1) {
+      const chapter = chapterByNumber.get(number);
+      streamVerseCount +=
+        (versesByChapterId.get(chapter?.y_node_id) || []).length;
+    }
     const sectionEntries = [...sectionsByRef.values()];
     const claimEntries = sectionEntries.flatMap((section) =>
       (section.attachment_map?.claims || []).map((claim) => ({
@@ -5296,7 +5436,7 @@
             node.node_kind === "SECTION" && node.branch_kind === "BASE",
         ).length === 1533 &&
         chapterButtons.length === 50 &&
-        renderedVerses.length === activeVerses.length &&
+        renderedVerses.length === streamVerseCount &&
         hebrewContract.violations === 0 &&
         exactSliceReady &&
         commentaryBubbleCoverageReady &&
@@ -5409,6 +5549,16 @@
       synthesis_defaults_derived: Object.keys(synthesisDerivedDefaults)
         .length,
       v3_parent_validation_id: v4Ancestry.parent_validation_id,
+      source_stream: {
+        continuous_scroll: true,
+        stream_start: streamStart,
+        appended_through: streamEnd,
+        stream_verse_count: streamVerseCount,
+        chrome_follows_scroll: true,
+        section_copy_controls: document.querySelectorAll(
+          "[data-v5-section-copy]",
+        ).length,
+      },
       commentary_word_shards: {
         rashi_registry_words: Object.keys(
           window.NESTED_RASHI_HUD_WORDS || {},
@@ -5455,13 +5605,7 @@
       return;
     }
     const canonical = materialized
-      .map((section) => {
-        const runtime = sectionRuntime(section);
-        return section.base.canonical_sequence
-          .map((index) => runtime.wordByIndex.get(Number(index))?.hebrew || "")
-          .filter(Boolean)
-          .join(" ");
-      })
+      .map((section) => canonicalTextForSection(section))
       .join("\n");
     try {
       await navigator.clipboard.writeText(canonical);
@@ -5563,6 +5707,11 @@
   elements.readingPane.addEventListener(
     "scroll",
     scheduleCommentarySnapFromScroll,
+    { passive: true },
+  );
+  elements.readingPane.addEventListener(
+    "scroll",
+    scheduleSourceStreamCheck,
     { passive: true },
   );
   window.addEventListener("resize", scheduleCommentarySnapFromScroll, {
