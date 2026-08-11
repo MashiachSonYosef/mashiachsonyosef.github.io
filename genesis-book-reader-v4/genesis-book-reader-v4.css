@@ -3866,3 +3866,54 @@ body[data-v3-commentary-open="true"][data-v5-rail-b="true"]
   line-height: 1.5;
   unicode-bidi: plaintext;
 }
+
+/* ── V6.2 · phone rail chrome repair ────────────────────────────────────
+   The work selector, + Counter, and stepper must never scroll away with
+   the rail — they pin as two slim rows. The return chip joins normal
+   flow on phones instead of floating clipped over the text. */
+
+@media (max-width: 960px) {
+  .v3-commentary-heading {
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    height: 2.45rem;
+    overflow: hidden;
+    background: rgba(10, 29, 41, 0.97);
+  }
+
+  .v5-rail-toolbar {
+    position: sticky;
+    top: 2.45rem;
+    z-index: 8;
+    background: rgba(7, 21, 31, 0.97);
+  }
+
+  .v5-rail-b-heading {
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    height: 2.45rem;
+    overflow: hidden;
+    background: rgba(10, 29, 41, 0.97);
+  }
+
+  .v5-rail-b-toolbar {
+    position: sticky;
+    top: 2.45rem;
+    z-index: 8;
+    background: rgba(7, 21, 31, 0.97);
+  }
+
+  .v5-return-dock {
+    position: static;
+    top: auto;
+    height: auto;
+    padding: 0.3rem 0.7rem 0;
+  }
+
+  .v5-return-chip {
+    max-width: 100%;
+    transform: none;
+  }
+}
