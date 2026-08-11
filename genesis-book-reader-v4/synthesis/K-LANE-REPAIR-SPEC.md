@@ -1,7 +1,9 @@
-# K-lane repair spec — for Oholiab's agents (2026-08-11, rev 2)
+# Corpus repair spec — for the capture and K lanes (2026-08-11, rev 3)
 
-Repairs in the lexical corpus (`data/lexical/`, main branch). The reader
-needs no changes for any of them: when the corpus updates, the shard
+Repairs 0–4 are in the lexical corpus (`data/lexical/`, main branch) —
+Oholiab's lane. Repair 5 is in the capture lane (Bezalel's) and is why
+Onkelos does not exist in the corpus at all. The reader needs no changes
+for any of them: when the corpus updates, the shard
 generator reruns and the words re-derive. Findings and receipts:
 `synthesis/HOSTILE-REVIEW-2026-08-11.md` §0–2.
 
@@ -91,6 +93,122 @@ supports multi-cell words natively (COMPspan/COMPcell, glosses join with
 " + "), so once breakdown coverage exists, the generator can present
 compounds part-by-part — that generator change is queued on this lane's
 side, not yours.
+
+## Repair 5 · Capture lane — one sampled version decides a whole work
+
+**This one is Bezalel's lane, not Oholiab's**, but it belongs in the same
+document because it is why Onkelos does not exist in the corpus.
+
+`scripts/import_sefaria_sources.ps1` decides a work's license from
+whichever version Sefaria happens to serve by default:
+
+```powershell
+# Get-HebrewVersionMeta, line ~279
+$license = if ($Payload.heLicense) { $Payload.heLicense }
+           elseif ($version -and $version.license) { $version.license }
+           else { 'unknown' }
+```
+
+`$Payload.versions` — the list of every available version — is consulted
+only to look up the *title* of the version already chosen. It is never
+scanned for a better-licensed one. The call site then drops the text:
+
+```powershell
+if (-not (Test-AllowedHebrewSourceLicense -License $versionMeta.license)) {
+  Write-Warning "Skipping $sourceRef with unsupported Hebrew source license …"
+  continue
+}
+```
+
+`$AllowedHebrewSourceLicenses` holds PD / CC0 / CC-BY / CC-BY-SA and
+their variants. CC-BY-NC is absent, so the work is skipped entirely.
+
+**Receipt.** `data/catalog/targum-continuation-probe.json` (2026-05-14)
+blocks `onkelos-genesis` … `onkelos-deuteronomy` with
+`"license": "CC-BY-NC"` and
+`"version_title": "Sifsei Chachomim Chumash, Metsudah Publications, 2009"`.
+That is not an Onkelos edition — it is a modern chumash volume that
+*contains* Onkelos beside Rashi and Siftei Chakhamim, licensed NC as a
+whole publication. Onkelos is a 1st–2nd century Aramaic translation; the
+text cannot be under copyright, only a particular modern typesetting can.
+In the same run, `Aramaic Targum to Proverbs` passed because its default
+version happened to be `"Mikraot Gedolot"`, Public Domain. Identical
+script, identical probe, opposite outcome — decided by which version the
+API served first.
+
+Confirming the conclusion was already known to be wrong:
+`data/nested-onkelos-hud-2026-07-19.js` carries Onkelos Genesis 1:1 in
+Aramaic from he.wikisource under **CC BY-SA**, dated two months *after*
+the probe refused the work. Someone routed around the gate by hand for
+one verse and never went back to fix the gate.
+
+### The fix, in two parts
+
+**Part 1 — select the version, don't accept the default.** Scan every
+Hebrew version, keep the ones whose license is allowed, and choose among
+them by a declared order. This is the one genuine choice in the repair,
+so it is stated before its outputs are accepted:
+
+> **Version preference rule v1.** Among Hebrew versions whose license is
+> allowed, prefer the most permissive license — Public Domain / CC0, then
+> CC-BY, then CC-BY-SA — and among equals keep Sefaria's own ordering, so
+> upstream's preference decides ties rather than this project's taste.
+
+```powershell
+$LicenseRank = @{
+  'Public Domain' = 0; 'PD' = 0; 'CC0' = 0
+  'CC-BY' = 1; 'CC BY' = 1; 'CC-BY 4.0' = 1; 'CC BY 4.0' = 1
+  'CC-BY-SA' = 2; 'CC BY-SA' = 2; 'CC-BY-SA 4.0' = 2; 'CC BY-SA 4.0' = 2
+}
+
+function Select-HebrewVersion {
+  param([object]$Payload)
+
+  $ordered = @()
+  $index = 0
+  foreach ($v in @($Payload.versions)) {
+    if ($v.language -ne 'he') { $index += 1; continue }
+    if (-not (Test-AllowedHebrewSourceLicense -License $v.license)) { $index += 1; continue }
+    $rank = if ($LicenseRank.ContainsKey($v.license.Trim())) { $LicenseRank[$v.license.Trim()] } else { 9 }
+    $ordered += [pscustomobject]@{ Version = $v; Rank = $rank; Order = $index }
+    $index += 1
+  }
+  if (-not $ordered) { return $null }
+  return ($ordered | Sort-Object Rank, Order | Select-Object -First 1).Version
+}
+```
+
+**Part 2 — fetch the text of the version you selected.** This is the part
+that must be confirmed against the live API before it is trusted: the
+`$Payload.he` body belongs to the *default* version, so selecting a
+different version means re-requesting the text for it (Sefaria takes a
+version parameter on the text endpoint). Whoever applies this repair
+should verify the exact parameter against the API in use rather than
+copying a guess from this document — I could not call Sefaria from the
+environment where this was written, and an unverified endpoint is exactly
+the kind of thing this project refuses to assert.
+
+Log every skip with the versions that *were* considered, so a refusal
+records what it looked at rather than only what it rejected.
+
+### Exposure
+
+The same one-sample logic gated **every** import in the corpus. All 62
+files under `data/catalog/` were produced by it, and each `"unknown"` or
+blocked entry in them reflects one version's label, not the work's. How
+much else was wrongly refused is unmeasured and needs Sefaria queries to
+answer. Known from the catalogs today: 5 Onkelos volumes blocked NC, plus
+Targum Sheni on Esther and Targum Neofiti blocked `unknown` (those two
+are manuscript/edition-specific and may be genuine — check, don't assume).
+
+### Acceptance
+
+Re-run the targum probe with version selection in place. Expected:
+`onkelos-genesis` … `onkelos-deuteronomy` become importable under a
+permissive version; the blocked list keeps only entries where **no**
+allowed Hebrew version exists. Then the whole-Torah Onkelos rail the
+reader was designed for becomes possible — today the reader ships a
+single hand-obtained verse.
 
 ## Contract the shard generator consumes (do not break)
 
