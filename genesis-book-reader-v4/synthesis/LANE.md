@@ -36,6 +36,26 @@ VISUAL_SUGGESTION_ONLY claims; human-validated claims are carried
 byte-for-byte; unmatched segments remain verse-level witnesses. Nothing
 is promoted by machine.
 
+### Commentary word shards, rule v1 — exact-form corpus link (`tools/generate-rashi-word-shards.mjs`)
+Generates the 64 per-word HUD shards for Rashi on Genesis 1:1:1
+(`data/nested-rashi-hud-words/`) from the repository's own licensed
+lexical corpus (`data/lexical/`, main branch). Exact normalized-form
+matching only — the work slice (rashi-on-genesis chunk lexicons) first,
+the global source layers when the slice has nothing displayable. Corpus
+order is preserved (its likely-contextual record leads), every M record
+carries the corpus's license row, unresolvable licenses are skipped on
+the ledger, and source years are never invented (all routes sit in the
+lastuary tier until year evidence exists). 48 of 64 words wake; 16 hold
+with their reason recorded. Ledger:
+`synthesis/ledger-rashi-1-1-1-word-shards.json`.
+
+**Known limits of shard rule v1, on the record:** no clitic stripping or
+stemming, so forms the corpus left unmatched stay held; form-matched
+homographs can lead a default (rule v2's own recorded limit); Strong's
+renderings arrive comma-split, so fragments like "properly" surface as
+routes; Ramban and Onkelos are absent from the lexical corpus entirely.
+Upstream repairs belong to the K lane, not reader code.
+
 ### Default glosses, rule v2 — antiquity primacy (`tools/derive-default-glosses.mjs`)
 **Rule attested by Kyle, 2026-08-10** — the first rule-level attestation
 in the project. Sort a word's routes by the oldest source year attesting
@@ -80,10 +100,10 @@ explain itself.
    the verse's C0 spans) and promotes verified claims to PROVEN_EDGE
    with a recorded proof basis — correctness without verse-by-verse hand
    work.
-3. **Commentary word shards.** The per-word HUD files for commentary
-   words (`nested-*-hud-words/`) were never published; the reader
-   presents proof text instead. Generating them from the K layer wakes
-   the words with no reader changes.
+3. **Commentary word shards — shipped for Rashi 1:1:1** (rule v1 above).
+   Remaining: a declared clitic-stripping retry rule for the 16 held
+   forms, and corpus coverage for Ramban and Onkelos (a K-lane
+   acquisition, not a reader change).
 4. **Section-pipeline default audit.** Future sections (1:2 onward)
    carry pipeline defaults of similar draft quality ("beacon",
    "flutter"); run them through the same rule + attestation + ledger
@@ -94,6 +114,8 @@ explain itself.
 ```
 node tools/generate-genesis-1-1-attachment-map.mjs
 node tools/derive-default-glosses.mjs
+node tools/generate-rashi-word-shards.mjs   # needs tools/corpus-cache/ from main
+node tools/test-word-shards.mjs             # local proof against :8321
 ```
 
-Both are deterministic. Outputs land in `data/`; ledgers land here.
+All are deterministic. Outputs land in `data/`; ledgers land here.
