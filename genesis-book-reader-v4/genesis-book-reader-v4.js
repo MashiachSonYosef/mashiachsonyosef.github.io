@@ -74,9 +74,14 @@
     }),
   });
 
+  // V6.6 · the policy now states what is actually true: this is a public,
+  // non-commercial project. `public_release: false` was false on a site
+  // that has been publicly deployed for weeks. `commercial_use: false` is
+  // unchanged and is what opens every Creative Commons posture, including
+  // NonCommercial — attribution still rides with each record, per source.
   const displayPolicy = Object.freeze({
-    mode: "LOCAL_EDITORIAL_PROOF",
-    public_release: false,
+    mode: "PUBLIC_NONCOMMERCIAL",
+    public_release: true,
     commercial_use: false,
     base_text_display_authority: "RECORDED_PER_MATERIALIZED_SECTION",
   });
