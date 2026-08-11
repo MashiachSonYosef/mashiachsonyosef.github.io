@@ -2148,6 +2148,32 @@
       .join(" ");
   };
 
+  // V6.7 · the gate is on export, and the gate is attribution. Text that
+  // leaves the reader carries the edition and license it came from, so a
+  // CC BY or CC BY-SA obligation travels with the words instead of being
+  // stranded on a page the recipient never saw. Public-domain text carries
+  // its record too — naming a source costs nothing and is the point.
+  const exportAttributionForSection = (section) => {
+    const record = section.base?.source;
+    if (!record?.license && !record?.version_title) return "";
+    const parts = [
+      section.ref,
+      record.version_title || "Edition unrecorded",
+      record.license || "License unrecorded",
+    ];
+    if (record.source_url) parts.push(record.source_url);
+    return parts.join(" · ");
+  };
+
+  const withExportAttribution = (blocks) => {
+    const body = blocks.map(({ text }) => text).filter(Boolean).join("\n");
+    const credits = [
+      ...new Set(blocks.map(({ credit }) => credit).filter(Boolean)),
+    ];
+    if (!credits.length) return body;
+    return `${body}\n\n${credits.map((line) => `— ${line}`).join("\n")}`;
+  };
+
   const createExactVerse = (verse, section) => {
     const numberValue = verseNumber(verse);
     const unitScope = `base-${section.unit_id}`;
@@ -2328,9 +2354,16 @@
       sectionCopy.addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(
-            canonicalTextForSection(section),
+            withExportAttribution([
+              {
+                text: canonicalTextForSection(section),
+                credit: exportAttributionForSection(section),
+              },
+            ]),
           );
-          announce(`${section.ref} copied in canonical source order.`);
+          announce(
+            `${section.ref} copied in canonical source order, with its source record.`,
+          );
           setText(sectionCopy, "⧉ Copied");
           window.setTimeout(() => {
             setText(sectionCopy, `⧉ Copy ${shortRef}`);
@@ -5634,13 +5667,18 @@
       announce("No canonical source text is materialized in this chapter.");
       return;
     }
-    const canonical = materialized
-      .map((section) => canonicalTextForSection(section))
-      .join("\n");
+    // Each section carries its own edition, so a multi-section copy can
+    // carry more than one credit line — they ride together, deduped.
+    const canonical = withExportAttribution(
+      materialized.map((section) => ({
+        text: canonicalTextForSection(section),
+        credit: exportAttributionForSection(section),
+      })),
+    );
     try {
       await navigator.clipboard.writeText(canonical);
       announce(
-        `${materialized.map((section) => section.ref).join("–")} copied in canonical source order.`,
+        `${materialized.map((section) => section.ref).join("–")} copied in canonical source order, with source records.`,
       );
     } catch {
       announce("Canonical copy is ready, but this local browser did not grant clipboard access.");
