@@ -2690,6 +2690,30 @@
     return button;
   };
 
+  // V6.3 · dibbur hamatchil presentation. The licensed Rosenbaum–Silbermann
+  // text opens each comment with its headword followed by a period — the
+  // print convention for the dibbur hamatchil, not a punctuation defect.
+  // Presentation marks that opening (headword plus its period) so the
+  // convention reads as intended. The text itself is never mutated: the
+  // wrap re-parents the exact characters and adds none.
+  const V5_LEMMA_MAX_CHARS = 40;
+  const applyLemmaPresentation = (node) => {
+    const text = node.textContent || "";
+    const stop = text.indexOf(".");
+    if (stop <= 0 || stop > V5_LEMMA_MAX_CHARS) return;
+    const lemma = make("span", "v5-lemma", text.slice(0, stop + 1));
+    lemma.dataset.v5Lemma = "";
+    lemma.dataset.v5LemmaBasis = "TEXT_OWN_HEADWORD_PERIOD_CONVENTION";
+    node.replaceChildren(lemma, document.createTextNode(text.slice(stop + 1)));
+  };
+
+  // The character offset just past the comment's opening headword, or 0
+  // when the paragraph does not open with the period convention.
+  const lemmaBoundaryOffset = (paragraphText) => {
+    const stop = String(paragraphText || "").indexOf(".");
+    return stop > 0 && stop <= V5_LEMMA_MAX_CHARS ? stop : 0;
+  };
+
   const renderCommentaryWords = async ({
     claim,
     fixture,
@@ -2759,6 +2783,7 @@
         );
         raw.lang = "he";
         raw.dir = "rtl";
+        applyLemmaPresentation(raw);
         const heldNote = make("p", "v5-shard-held-note");
         heldNote.append(
           make("b", "", "Word-level detail held"),
@@ -2780,6 +2805,20 @@
     const shelf = make("section", "v3-commentary-hud-shelf");
     shelf.id = `v3-commentary-hud-${scope}`;
     shelf.hidden = true;
+    // The word run presents words without the paragraph's punctuation, so
+    // the opening dibbur hamatchil is marked on its word module(s) instead
+    // of by its period.
+    const lemmaBoundary = lemmaBoundaryOffset(fixture.paragraph?.hebrew);
+    const markLemmaButton = (button, occurrence) => {
+      if (
+        lemmaBoundary > 0 &&
+        Number.isInteger(occurrence.character_offset) &&
+        occurrence.character_offset < lemmaBoundary
+      ) {
+        button.classList.add("v5-lemma-word");
+        button.dataset.v5Lemma = "";
+      }
+    };
     occurrences.forEach((occurrence) => {
       const registryWord = wordRegistry[occurrence.exact_key];
       const word = registryWord
@@ -2791,15 +2830,15 @@
               "The exact word shard did not load. The raw source word remains visible and no gloss has been invented.",
           };
       if (!wordIsUsable(word)) {
-        run.append(
-          createHeldCommentaryWordButton({
-            word,
-            occurrence,
-            scope,
-            shelf,
-            setSize: total,
-          }),
-        );
+        const heldButton = createHeldCommentaryWordButton({
+          word,
+          occurrence,
+          scope,
+          shelf,
+          setSize: total,
+        });
+        markLemmaButton(heldButton, occurrence);
+        run.append(heldButton);
         return;
       }
       const wordButton = createWordButton({
@@ -2810,6 +2849,7 @@
         commentary: true,
         setSize: total,
       });
+      markLemmaButton(wordButton, occurrence);
       wordButton.addEventListener("click", () => {
         renderWordShelf({
           shelf,
@@ -3028,6 +3068,7 @@
       );
       raw.lang = "he";
       raw.dir = "rtl";
+      applyLemmaPresentation(raw);
       // V4.1 defect repair: proof-text witnesses are display-only original
       // language, not selectable-HUD word units, so they must not carry the
       // hebrew-token/raw-unit markers. V4.0 tagged them and therefore failed
@@ -3114,6 +3155,7 @@
         );
         proof.lang = "he";
         proof.dir = "rtl";
+        applyLemmaPresentation(proof);
         article.append(proof);
         const meta = make("div", "v3-commentary-meta");
         meta.append(
@@ -5367,6 +5409,24 @@
       synthesis_defaults_derived: Object.keys(synthesisDerivedDefaults)
         .length,
       v3_parent_validation_id: v4Ancestry.parent_validation_id,
+      commentary_word_shards: {
+        rashi_registry_words: Object.keys(
+          window.NESTED_RASHI_HUD_WORDS || {},
+        ).length,
+        rashi_usable_words: Object.values(
+          window.NESTED_RASHI_HUD_WORDS || {},
+        ).filter((word) => wordIsUsable(word)).length,
+        shard_rule:
+          Object.values(window.NESTED_RASHI_HUD_WORDS || {})[0]?.provenance
+            ?.rule_id || null,
+      },
+      lemma_presentation: {
+        proof_text_lemmas: document.querySelectorAll("span.v5-lemma").length,
+        word_module_lemmas:
+          document.querySelectorAll(".v5-lemma-word").length,
+        basis: "TEXT_OWN_HEADWORD_PERIOD_CONVENTION",
+        text_mutation: false,
+      },
       suggestion_promotions: suggestionsPromoted.map(
         ({ claim }) => claim.commentary_unit_ref,
       ),
