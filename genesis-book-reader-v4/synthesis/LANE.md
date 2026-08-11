@@ -108,6 +108,18 @@ explain itself.
    carry pipeline defaults of similar draft quality ("beacon",
    "flutter"); run them through the same rule + attestation + ledger
    discipline.
+5. **Y-layer defaults through the lane.** The title/chapter-token HUD
+   (`data/y-title-hud-2026-07-19.js`) carries upstream-pipeline baked
+   defaults (`default_selected_gloss`), not rule-derived ones. The book
+   title's "in the beginning" is defensible; the chapter-numeral tokens
+   carry junk exact-form matches ("Elephantine", "chameleon"). Rerun
+   them under a declared rule with the ledger recording disputes.
+6. **Work-by-work organization.** The witness ledger already organizes
+   all 81 works with license dispositions; the lexical corpus carries
+   1,401 work manifests. The plan is the same discipline extended per
+   work and per section: dibbur-hamatchil attachment maps, word shards
+   where the corpus covers a work, ledgers naming what is held and why.
+   Nothing is organized by hand; the generators are the organization.
 
 ## Rerun
 
