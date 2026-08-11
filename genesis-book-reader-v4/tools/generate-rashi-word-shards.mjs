@@ -8,13 +8,24 @@
 // open the same exact L/D/M HUD as base-text words.
 //
 // Rule (declared before outputs were accepted):
-//   RULE_ID nested-word-shards-rule-v1-exact-form-corpus-link
-//   1. For each fixture word (its normalized exact_key), take the lexical
-//      corpus entry whose hebrew_word equals the key, exactly. The work slice
-//      (rashi-on-genesis chunk lexicons) is consulted first; when it carries
-//      no entry — or its entry yields no displayable record — the global
-//      source layers are consulted. No prefix stripping, no stemming, no
-//      derivation is performed here.
+//   RULE_ID nested-word-shards-rule-v2-contextual-resolution-first
+//   0. NEW IN v2. The corpus resolves some forms contextually in its
+//      token index (`token_index.forms[].surface_renderings`, carrying a
+//      `surface_context_status` such as resolved_particle,
+//      resolved_prefix_base, resolved_abbreviation, resolved_affix_parser).
+//      Where such a resolution exists for the exact form, its renderings
+//      lead — ahead of every form-matched dictionary route — and carry the
+//      corpus's own resolution note as their basis. Rule v1 read only the
+//      entry lexicon and never looked at this field, so a form the corpus
+//      had already resolved ("של" → "of") was led by a form-matched
+//      homograph ("to pluck off"). That was a defect in this generator, not
+//      in the corpus.
+//   1. Then, for each fixture word (its normalized exact_key), take the
+//      lexical corpus entry whose hebrew_word equals the key, exactly. The
+//      work slice (rashi-on-genesis chunk lexicons) is consulted first; when
+//      it carries no entry — or its entry yields no displayable record — the
+//      global source layers are consulted. No prefix stripping, no stemming,
+//      no derivation is performed here.
 //   2. Each dictionary record (possible_entry) with at least one English
 //      strict_rendering and a resolvable license becomes a P bundle; each
 //      rendering becomes one definition and one selectable route. Corpus
@@ -53,7 +64,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..");
 
 const GENERATED_ON = "2026-08-11";
-const RULE_ID = "nested-word-shards-rule-v1-exact-form-corpus-link";
+const RULE_ID = "nested-word-shards-rule-v2-contextual-resolution-first";
 const GENERATOR = "tools/generate-rashi-word-shards.mjs";
 const REGISTRY = "NESTED_RASHI_HUD_WORDS";
 const REF = "Rashi on Genesis 1:1:1";
@@ -82,6 +93,8 @@ if (!existsSync(chunkDir) || !existsSync(layerDir)) {
 
 const chunkSourceRows = {};
 const workEntriesByWord = new Map();
+// v2: the corpus's contextual resolution layer, keyed by normalized form.
+const contextualByForm = new Map();
 for (const file of readdirSync(chunkDir).sort()) {
   if (!file.endsWith(".json")) continue;
   const chunk = JSON.parse(readFileSync(join(chunkDir, file), "utf8"));
@@ -92,6 +105,20 @@ for (const file of readdirSync(chunkDir).sort()) {
     if (!workEntriesByWord.has(entry.hebrew_word)) {
       workEntriesByWord.set(entry.hebrew_word, entry);
     }
+  }
+  for (const form of chunk.token_index?.forms || []) {
+    const key = form.normalized_word;
+    if (!key || contextualByForm.has(key)) continue;
+    const renderings = (form.surface_renderings || [])
+      .map((text) => String(text).trim())
+      .filter(Boolean);
+    if (!renderings.length) continue;
+    contextualByForm.set(key, {
+      renderings,
+      status: form.surface_context_status || "",
+      note: form.surface_context_note || "",
+      breakdown: form.breakdown || [],
+    });
   }
 }
 
@@ -178,6 +205,17 @@ const resolveMSource = (entry, pe, layerLicense) => {
 };
 
 // ------------------------------------------------------------------ build
+// v2: the corpus's own contextual resolution is project-authored derivation
+// over the licensed layers; the project declares its authored material CC0,
+// and the resolution's own note rides as the record's basis.
+const CONTEXTUAL_SOURCE = {
+  key: "tabernacle_corpus:contextual_resolution",
+  label: "Lexical corpus · contextual resolution layer",
+  licensePosture: "cc0_public_domain",
+  licensePointer: "https://creativecommons.org/publicdomain/zero/1.0/",
+  sourceYear: "S_NO_SOURCE_YEAR",
+};
+
 const shardDir = join(root, "data", "nested-rashi-hud-words");
 mkdirSync(shardDir, { recursive: true });
 
@@ -249,6 +287,55 @@ for (const indexEntry of wordIndex) {
     return built;
   };
 
+  // v2 · the corpus's contextual resolution for this exact form, if any.
+  // It leads: the corpus already decided what this form means in context,
+  // and a form-matched dictionary homograph must not outrank that.
+  const contextual = contextualByForm.get(normalized) || null;
+  const buildContextual = () => {
+    if (!contextual) return null;
+    const pbId = `${bundleId}-PB-CTX`;
+    const choices = [];
+    const definitions = contextual.renderings.map((text, index) => {
+      const defId = `${pbId}-D-${String(index + 1).padStart(4, "0")}`;
+      choices.push({
+        id: `${pbId}-C-${String(index + 1).padStart(4, "0")}`,
+        key: defId,
+        text,
+        firstLedgerPosition: index + 1,
+        sourceYears: ["S_NO_SOURCE_YEAR"],
+        pBundleId: pbId,
+        definitionId: defId,
+      });
+      return {
+        id: defId,
+        text,
+        firstLedgerPosition: index + 1,
+        helperRoutes: [],
+        exactRoutes: [{ text, firstLedgerPosition: index + 1 }],
+        mSources: [
+          {
+            ...CONTEXTUAL_SOURCE,
+            sourceNotes: contextual.note || contextual.status,
+          },
+        ],
+        lemma: hebrew,
+        entryKey: `contextual:${contextual.status || "resolved"}`,
+        contextRole: "corpus_contextual_resolution",
+        relationLabel: contextual.status || "contextual resolution",
+      };
+    });
+    return {
+      bundle: {
+        id: pbId,
+        label: `${hebrew} · corpus contextual resolution`,
+        firstLedgerPosition: 1,
+        helperRoutes: [],
+        definitions,
+      },
+      choices,
+    };
+  };
+
   // Work slice first; when its entry yields nothing displayable, the
   // global layers are consulted for the same exact form.
   let matchedFrom = null;
@@ -273,6 +360,30 @@ for (const indexEntry of wordIndex) {
   }
   const { pBundles, choices, skips, entryKeysUsed } = built;
 
+  // Contextual routes ride at the head of the choice list, so the reader's
+  // default (choices[0]) and the pill row both lead with them. Dictionary
+  // ledger positions are shifted to keep the order stable behind them.
+  const contextualBuilt = buildContextual();
+  if (contextualBuilt) {
+    const offset = contextualBuilt.choices.length;
+    choices.forEach((choice) => {
+      choice.firstLedgerPosition += offset;
+    });
+    pBundles.forEach((bundle) => {
+      bundle.firstLedgerPosition += offset;
+      bundle.definitions.forEach((definition) => {
+        definition.firstLedgerPosition += offset;
+        (definition.exactRoutes || []).forEach((route) => {
+          route.firstLedgerPosition += offset;
+        });
+      });
+    });
+    pBundles.unshift(contextualBuilt.bundle);
+    choices.unshift(...contextualBuilt.choices);
+    entryKeysUsed.unshift(`contextual:${contextual.status || "resolved"}`);
+    if (!matchedFrom) matchedFrom = "corpus_contextual_resolution_only";
+  }
+
   const provenance = {
     generated_on: GENERATED_ON,
     generator: GENERATOR,
@@ -281,6 +392,9 @@ for (const indexEntry of wordIndex) {
     matched_from: matchedFrom || "no_corpus_entry",
     corpus_entry_id: entry?.entry_id || null,
     corpus_context_note: entry?.context_note || "",
+    contextual_resolution: contextual
+      ? { status: contextual.status, note: contextual.note }
+      : null,
   };
 
   let word;
@@ -355,6 +469,8 @@ for (const indexEntry of wordIndex) {
     corpus_entry_id: entry?.entry_id || null,
     dictionary_records_used: entryKeysUsed,
     route_count: choices.length,
+    contextual_resolution: contextual?.status || null,
+    contextual_renderings: contextual?.renderings || [],
     skipped_unresolvable_license: skips,
     status: choices.length ? "WOKEN" : "HELD",
   });
