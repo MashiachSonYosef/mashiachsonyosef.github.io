@@ -513,17 +513,16 @@
           })
           .join(" + ")
       : "Unavailable";
-  setText(elements.hebrewLicenseSummary, fullBaseHebrewLicenseLabel);
-  setText(
-    elements.hebrewLicenseSummaryCompact,
-    compactBaseHebrewLicenseLabel,
-  );
+  // V6.5: the header states no licenses — every section footer carries its
+  // own N record, and this button is only the door to the full records. The
+  // union label survives solely as backend hover/reference data.
   elements.attributionButton.setAttribute(
     "aria-label",
-    `Hebrew text licenses: ${fullBaseHebrewLicenseLabel}. Open exact source and license details.`,
+    "Open source and license records.",
   );
   elements.attributionButton.title =
-    `Hebrew text · ${fullBaseHebrewLicenseLabel}`;
+    `Sources · ${fullBaseHebrewLicenseLabel}`;
+  void compactBaseHebrewLicenseLabel;
 
   const sectionRuntimeCache = new WeakMap();
 
@@ -2484,6 +2483,11 @@
           String(button.dataset.commentaryUnitRef === state.activeClaimRef),
         );
     });
+    // V6.5 (hostile-review repair): the smooth-animated reset to the top
+    // passes through the near-bottom zone and was silently appending the
+    // next chapters during a jump. Appends stay quiet until the reset
+    // settles.
+    state.sourceStreamSuppressUntil = Date.now() + 900;
     elements.readingPane.scrollTop = 0;
     const firstSectionRef = verses[0]?.public_ref || "";
     if (firstSectionRef) {
@@ -2577,10 +2581,13 @@
     sourceStreamFrame = 0;
     const pane = elements.readingPane;
     if (!pane) return;
-    // Continue the stream shortly before the reader runs out of it.
+    // Continue the stream shortly before the reader runs out of it — but
+    // not while a chapter jump's animated reset is still passing through
+    // the near-bottom zone.
     if (
+      Date.now() > (state.sourceStreamSuppressUntil || 0) &&
       pane.scrollTop + pane.clientHeight >=
-      pane.scrollHeight - Math.max(560, pane.clientHeight * 0.75)
+        pane.scrollHeight - Math.max(560, pane.clientHeight * 0.75)
     ) {
       appendNextChapter();
     }
