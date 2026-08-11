@@ -1007,6 +1007,24 @@
       ? "source year not supplied"
       : source.sourceYear;
 
+  // V6.6 · a source has one license. The upstream posture vocabulary
+  // carries seventeen strings for six licenses; the extra eleven encode
+  // provenance notes ("underlying public domain", "document reformatted
+  // source"), which are backend detail, not the license. The reader shows
+  // the license; the posture stays on the element as data.
+  const licenseName = (posture) => {
+    const value = String(posture || "").toLowerCase();
+    if (!value) return "License unrecorded";
+    if (value.startsWith("cc0")) return "CC0";
+    if (/_nc(?:_|$)/u.test(value)) {
+      return /_sa(?:_|$)/u.test(value) ? "CC BY-NC-SA" : "CC BY-NC";
+    }
+    if (value.includes("by_sa") || value.includes("gfdl")) return "CC BY-SA";
+    if (value.startsWith("public_domain")) return "Public Domain";
+    if (value.startsWith("cc_by") || value.includes("wordnet")) return "CC BY";
+    return posture;
+  };
+
   const routeIsDisplayReady = (route) => {
     const definition = definitionForRoute(route);
     const sources = sourcesForRoute(route);
@@ -1085,7 +1103,7 @@
       const line = make("span");
       line.append(
         document.createTextNode(
-          `${source.label} · ${source.licensePosture} · ${sourceYearLabel(source)} · `,
+          `${source.label} · ${licenseName(source.licensePosture)} · ${sourceYearLabel(source)} · `,
         ),
       );
       appendSourcePointers(line, source);
@@ -5174,7 +5192,7 @@
         make(
           "span",
           "",
-          `${source.licensePosture || source.license} · ${sourceYearLabel(source)} · `,
+          `${licenseName(source.licensePosture || source.license)} · ${sourceYearLabel(source)} · `,
         ),
       );
       appendSourcePointers(item, source);
