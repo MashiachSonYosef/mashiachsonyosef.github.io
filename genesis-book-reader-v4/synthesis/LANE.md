@@ -87,6 +87,30 @@ pre-1903 links inherits its oldest source's first sense (הארץ →
 Jastrow's "Palestine" — also a K-lane linking gap worth upstream
 repair). Fix for both remains targum-alignment disambiguation.
 
+## Display and export
+
+One source, one license. The project is public and non-commercial, so
+**display is not the constrained act — export is.** Two consequences, and
+no rules beyond them:
+
+- **Display**: show anything with a license record. Unknown or
+  copyrighted stays held (105 and 1 segments respectively, none of which
+  carries text anyway). Every Creative Commons posture including
+  NonCommercial displays, and each record states its own license where it
+  sits.
+- **Export**: text that leaves the reader carries the edition and license
+  it came from. Attribution travels with the words rather than being
+  stranded on a page the recipient never saw. That satisfies CC BY and
+  CC BY-SA; NonCommercial passes its own terms along; public-domain text
+  carries its record too, because naming a source is the point.
+
+No NoDerivatives license exists anywhere in this corpus, so the one class
+that would force "do not distribute" is not present. The genuine open
+question is not per-source: it is **what license the project's own
+derived data carries**, since the base Hebrew for Genesis 1:1 is
+CC BY-SA (Wikisource Miqra) and share-alike propagates to derivatives.
+That decision belongs to any open-source release, not to the reader.
+
 ## Overrides
 
 `synthesis/attestations-genesis-1-1.js` is the project's backend
