@@ -8,7 +8,34 @@ easy they were to find. Three were repaired during the review (marked
 REPAIRED); the rest are recorded and await a decision, because silently
 fixing taste-level problems is how hand picks sneak back into code.
 
-## 1 · Function-word shards lead with wrong-headed defaults (SERIOUS, open)
+## 0 · The reviewer's own miss — found the day after (SELF-CAUGHT, REPAIRED)
+
+The review above blamed the corpus for של leading with "to pluck off".
+That was half the story and the flattering half. The corpus **had already
+resolved the form correctly** — `token_index.forms[].surface_renderings`
+carries `["of", "belonging to"]` with
+`surface_context_status: resolved_particle`. The shard generator read only
+`lexicon.entries` and never opened the token index, so the corpus's own
+answer was invisible to it and a form-matched homograph led instead.
+
+That is a defect in the synthesis lane, not the K lane. Measured across
+the 64 words, the ignored layer carried: של → "of" (had: "to pluck off"),
+לעמו → "to the nation" (had: "a people (as a congregated unit)"),
+וברצונו → "and delight" (was **held entirely**), הקב״ה → already right.
+
+**Repaired** by shard rule v2 (contextual-resolution-first): where the
+corpus resolves a form contextually, those renderings lead every
+form-matched dictionary route and carry the corpus's own resolution note
+as their basis. Result: 49 woken (was 48), 15 held (was 16), and three
+defaults corrected. Rule declared in the generator header before the
+output was accepted, per lane law.
+
+The lesson worth keeping: a review that only audits its own output
+against the inputs it already chose to read cannot find the inputs it
+never read. Finding 9's blind-spot list now includes "fields of the
+corpus the generator does not consume".
+
+## 1 · Function-word shards lead with wrong-headed defaults (SERIOUS, partly repaired)
 
 Receipts: of the 48 woken Rashi words, **25 display a default route whose
 dictionary record the corpus itself marked `other_possible`, not
@@ -18,6 +45,28 @@ renderings, so a form-matched homograph leads. Worst cases: הם shows
 (usually over night)" (no "to us" anywhere), של shows "to pluck off" (no
 "of"). The dictionaries linked simply never carry the plain
 pronoun/particle sense for these surface forms.
+
+**Amended diagnosis (same day):** the sources published these senses.
+Strong's H1992 (הֵם = "they") is in the capture. Two mechanisms broke it:
+
+1. *Suffix-substring matching.* The `הם` entry (lex-2a211473204c) links
+   twelve content words — H1 אָב "father", H1000 בֵּיצָה "egg", H1004
+   בַּיִת "house" — every one of them a lemma whose WLC surface forms
+   include the 3mp possessive suffix ־הם ("their father", "their egg").
+   All twelve carry `match_key: "המ"`. The matcher matched the pronoun
+   against a suffix inside longer surface forms. H1992 itself is captured
+   but linked to המה/ההם — and, by the same bug, into the בהמה "beast"
+   family.
+2. *Compounds with no headword.* לנו, להם, בה, לכם, מהם are preposition +
+   pronominal suffix. No single Strong's entry exists for them, so the
+   matcher returned its nearest form-match (לנו → לוּן "to lodge";
+   בה → נָכָה "to strike"). The corpus schema already has the right
+   mechanism for these — a `breakdown` field, populated for 679 entries
+   corpus-wide with exactly the right shape — but not for these forms.
+
+So: short-form linking fix plus breakdown coverage. The data exists; the
+wiring is broken. Note also §0: for the forms the corpus *had* resolved,
+the fault was this lane's, not the K lane's.
 
 The hostile question: is a wrong-leading default worse than an honest
 hold? The current rule says a licensed record presented plainly beats no

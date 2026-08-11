@@ -36,8 +36,18 @@ VISUAL_SUGGESTION_ONLY claims; human-validated claims are carried
 byte-for-byte; unmatched segments remain verse-level witnesses. Nothing
 is promoted by machine.
 
-### Commentary word shards, rule v1 — exact-form corpus link (`tools/generate-rashi-word-shards.mjs`)
-Generates the 64 per-word HUD shards for Rashi on Genesis 1:1:1
+### Commentary word shards, rule v2 — contextual resolution first (`tools/generate-rashi-word-shards.mjs`)
+Rule v2 (2026-08-11) adds one step ahead of everything below: where the
+corpus's token index resolves a form contextually
+(`surface_renderings` with a `surface_context_status`), those renderings
+lead every form-matched dictionary route and carry the corpus's own
+resolution note as their basis. Rule v1 never read that field — a
+self-caught defect in this lane, recorded as §0 of the hostile review —
+so forms the corpus had already resolved were led by homographs
+(של showed "to pluck off"; the corpus said "of"). v2 result: 49 woken,
+15 held, three defaults corrected.
+
+The rest of the rule stands as written in v1. It generates the 64 per-word HUD shards for Rashi on Genesis 1:1:1
 (`data/nested-rashi-hud-words/`) from the repository's own licensed
 lexical corpus (`data/lexical/`, main branch). Exact normalized-form
 matching only — the work slice (rashi-on-genesis chunk lexicons) first,
@@ -49,9 +59,10 @@ lastuary tier until year evidence exists). 48 of 64 words wake; 16 hold
 with their reason recorded. Ledger:
 `synthesis/ledger-rashi-1-1-1-word-shards.json`.
 
-**Known limits of shard rule v1, on the record:** no clitic stripping or
+**Known limits of the shard rule, on the record:** no clitic stripping or
 stemming, so forms the corpus left unmatched stay held; form-matched
-homographs can lead a default (rule v2's own recorded limit); Strong's
+homographs can still lead a default where no contextual resolution
+exists (the corpus resolves 4 of these 64 forms today); Strong's
 renderings arrive comma-split, so fragments like "properly" surface as
 routes; Ramban and Onkelos are absent from the lexical corpus entirely.
 Upstream repairs belong to the K lane, not reader code.
@@ -100,10 +111,14 @@ explain itself.
    the verse's C0 spans) and promotes verified claims to PROVEN_EDGE
    with a recorded proof basis — correctness without verse-by-verse hand
    work.
-3. **Commentary word shards — shipped for Rashi 1:1:1** (rule v1 above).
-   Remaining: a declared clitic-stripping retry rule for the 16 held
-   forms, and corpus coverage for Ramban and Onkelos (a K-lane
-   acquisition, not a reader change).
+3. **Commentary word shards — shipped for Rashi 1:1:1** (rule v2 above).
+   Remaining, in order: extend the corpus's contextual resolution layer
+   (highest leverage — it now leads the reader); consume `breakdown[]`
+   so prefix+suffix compounds present part-by-part in the multi-cell HUD
+   the reader already supports; a declared clitic-stripping retry rule
+   for the 15 held forms; corpus coverage for Ramban and Onkelos (a
+   K-lane acquisition, not a reader change). Handoff spec for the K lane:
+   `synthesis/K-LANE-REPAIR-SPEC.md`.
 4. **Section-pipeline default audit.** Future sections (1:2 onward)
    carry pipeline defaults of similar draft quality ("beacon",
    "flutter"); run them through the same rule + attestation + ledger
