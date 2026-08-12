@@ -111,6 +111,41 @@ derived data carries**, since the base Hebrew for Genesis 1:1 is
 CC BY-SA (Wikisource Miqra) and share-alike propagates to derivatives.
 That decision belongs to any open-source release, not to the reader.
 
+### Work antiquity (rail ordering)
+The witness ledger carries `composition_date_evidence` on every segment,
+populated for 65 of 81 works and internally consistent — Onkelos [80,120],
+Targum Jonathan [150,250], Rashi [1075,1105], Ramban [1246,1270], Or
+HaChaim [1718,1742]. It had never been read. The rail's work list now
+sorts oldest first, undated works last, alphabetical within the undated
+tier. Same shape as the attested antiquity rule, applied to works instead
+of dictionary entries. No new rule — the rule was already attested; this
+is the field it was always about.
+
+### Verse-aligned evidence (selectable, not leading)
+`evidenceOnlyDefinitions` are the only records in the HUD that know which
+verse they are in; everything else is a dictionary entry matched by form.
+They are CC BY 4.0 with full source records and were being dropped
+entirely, so "the earth" and "and <obj.>" were unreachable while
+"Palestine" and "and thou" led. They are now in the selectable pool.
+
+They are **not** promoted to lead, and the reason is on the record:
+measured first, leading with them fixes words 6 and 7, regresses word 2
+(בָּרָא's aligned record reads "field/ the"), and replaces two already
+correct glosses with clumsier text. Two fixes against three harms is not
+a rule worth declaring. Where a word has no dictionary routes at all the
+aligned record is its only route and therefore leads — which took Genesis
+1:2 from six blank words to two.
+
+### Draft clitic splits (withheld)
+Six of seven Genesis 1:1 words carry `splitConfidence: "draft_candidate"`
+on a split-span shape. Three of those splits are sound (ב + ראשית,
+ו + את, ה + ארץ) and three are wrong (ברא → ב + רא cuts the root;
+השמים → ה + ש + מ + ים). The flag is identical on all six, so the data
+cannot separate them — it only says none is proven. Draft splits are no
+longer offered as readings, except where nothing else about the word is
+usable. When the split layer earns a confidence upgrade the shapes return
+on their own, because the gate reads the flag.
+
 ## Overrides
 
 `synthesis/attestations-genesis-1-1.js` is the project's backend
