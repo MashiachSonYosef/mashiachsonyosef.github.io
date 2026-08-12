@@ -1142,18 +1142,80 @@
         if (routeIsDisplayReady(candidate)) routes.push(candidate);
       });
     });
+    // V6.8 · evidence-only definitions become selectable.
+    //
+    // These are the verse-ALIGNED records (STEP Bible TAHOT) — the only
+    // rows in the fixture that know which verse this is; everything else
+    // is a dictionary entry matched by form. They carry full CC BY 4.0
+    // source records and were being dropped on the floor, so "the earth"
+    // and "and <obj.>" were unreachable while "Palestine" and "and thou"
+    // led.
+    //
+    // They are added to the pool, NOT promoted to lead. Measured before
+    // deciding: leading with them fixes words 6 and 7, regresses word 2
+    // (בָּרָא's aligned record reads "field/ the"), and replaces two
+    // already-correct glosses with clumsier text. A rule that improves
+    // two words and damages three is not a rule worth declaring. The
+    // attested antiquity rule keeps ordering them — they are 2026 rows,
+    // so they sort into the recent tier, which is honest. Wanting one to
+    // lead on a given word is what the unsigned override file is for.
+    (cell?.lBundle?.evidenceOnlyDefinitions || []).forEach(
+      (definition, index) => {
+        const text = definition?.text?.trim();
+        const normalized = text?.toLocaleLowerCase();
+        if (!text || seen.has(normalized)) return;
+        const bundle = {
+          id: `${cell.lBundle.id || "L"}-EOD`,
+          label: "Verse-aligned evidence",
+          definitions: [definition],
+        };
+        const choice = {
+          id: `${bundle.id}-C-${index + 1}`,
+          text,
+          definitionId: definition.id,
+          pBundleId: bundle.id,
+          firstLedgerPosition: definition.firstLedgerPosition,
+        };
+        const candidate = { key: choice.id, text, choice, bundle };
+        if (!routeIsDisplayReady(candidate)) return;
+        seen.add(normalized);
+        routes.push(candidate);
+      },
+    );
     return routes;
   };
 
-  const usableShapeIndices = (word) =>
-    (word?.shapes || [])
+  // V6.8 · draft clitic splits are not offered as readings.
+  //
+  // Six of the seven Genesis 1:1 words carry
+  // `splitConfidence: "draft_candidate"` on a `split span` shape, and the
+  // splits are half wrong: ב + ראשית, ו + את and ה + ארץ are sound, but
+  // ברא → ב + רא cuts through the root and השמים → ה + ש + מ + ים is four
+  // loose letters. The flag is identical on all six, so the data cannot
+  // separate the good from the bad — it only says none of them is proven.
+  //
+  // The reader presented them as peers of the whole-span reading, which
+  // asserts a morphological analysis the pipeline explicitly disclaims.
+  // Everywhere else this project holds what it cannot prove, so the draft
+  // shapes are withheld — never at the cost of the word itself: a draft
+  // shape still counts when nothing else about the word is usable.
+  const shapeIsDraftSplit = (word, shape) =>
+    word?.splitConfidence === "draft_candidate" &&
+    shape?.kind === "split span";
+
+  const usableShapeIndices = (word) => {
+    const usable = (word?.shapes || [])
       .map((shape, index) => ({ shape, index }))
       .filter(
         ({ shape }) =>
           shape.cells?.length > 0 &&
           shape.cells.every((cell) => exactRoutesForCell(cell).length > 0),
-      )
-      .map(({ index }) => index);
+      );
+    const proven = usable.filter(
+      ({ shape }) => !shapeIsDraftSplit(word, shape),
+    );
+    return (proven.length ? proven : usable).map(({ index }) => index);
+  };
 
   const wordIsUsable = (word) => usableShapeIndices(word).length > 0;
 
@@ -3569,6 +3631,26 @@
     return null;
   };
 
+  // V6.8 · a work's composition year, from the ledger's own
+  // `composition_date_evidence` (a [start, end] range, or a single year).
+  // The earliest evidence in the family wins; a work with none is undated
+  // and sorts last — the same lastuary shape the attested rule uses for
+  // sources without a year. Nothing is inferred: no date, no guess.
+  const v5FamilyComposedYear = (segments) => {
+    let earliest = Infinity;
+    (segments || []).forEach((segment) => {
+      const evidence = segment?.composition_date_evidence;
+      if (evidence === undefined || evidence === null) return;
+      const values = (Array.isArray(evidence) ? evidence : [evidence])
+        .map((value) => Number.parseInt(value, 10))
+        .filter(Number.isInteger);
+      values.forEach((value) => {
+        if (value < earliest) earliest = value;
+      });
+    });
+    return Number.isFinite(earliest) ? earliest : null;
+  };
+
   const v5WitnessFamilies = (() => {
     const families = new Map();
     [
@@ -3583,6 +3665,13 @@
         he: family.collective_title_he || "",
         kind: family.commentary_kind || "COMMENTARY",
         segments: family.segments || [],
+        // V6.8: the ledger carries composition_date_evidence on every
+        // segment, populated for 65 of 81 works and internally consistent
+        // (one value per work). It had never been read. This is the
+        // chronology the attested antiquity rule was always about — Rashi
+        // 1075, Ramban 1246, Or HaChaim 1718 — applied to works rather
+        // than to dictionary entries.
+        composed: v5FamilyComposedYear(family.segments || []),
       });
     });
     // Attached tracks without a ledger family (future sections) still flow.
@@ -3594,6 +3683,7 @@
           he: "",
           kind: /targum|onkelos/iu.test(track) ? "TARGUM" : "COMMENTARY",
           segments: [],
+          composed: null,
         });
       }
     });
@@ -5612,6 +5702,15 @@
       synthesis_defaults_derived: Object.keys(synthesisDerivedDefaults)
         .length,
       v3_parent_validation_id: v4Ancestry.parent_validation_id,
+      work_antiquity: {
+        rule: "oldest composition first; undated works last",
+        source_field: "composition_date_evidence",
+        works_dated: [...v5WitnessFamilies.values()].filter((f) =>
+          Number.isInteger(f.composed),
+        ).length,
+        works_total: v5WitnessFamilies.size,
+      },
+      draft_splits_withheld: true,
       source_stream: {
         continuous_scroll: true,
         stream_start: streamStart,
@@ -5819,14 +5918,31 @@
     commentaryGroup.label = "Commentaries";
     const attached = new Set(commentaryTrackUnitsByTrack.keys());
     [...v5WitnessFamilies.values()]
-      .sort((left, right) => left.en.localeCompare(right.en))
+      // V6.8 · oldest work first; undated works form the last tier and
+      // fall back to alphabetical among themselves. Same shape as the
+      // attested antiquity rule, applied to works.
+      .sort((left, right) => {
+        const leftDated = Number.isInteger(left.composed);
+        const rightDated = Number.isInteger(right.composed);
+        if (leftDated !== rightDated) return leftDated ? -1 : 1;
+        if (leftDated && left.composed !== right.composed) {
+          return left.composed - right.composed;
+        }
+        return left.en.localeCompare(right.en);
+      })
       .forEach((family) => {
+        const label = family.he ? `${family.en} · ${family.he}` : family.en;
         const option = make(
           "option",
           "",
-          family.he ? `${family.en} · ${family.he}` : family.en,
+          Number.isInteger(family.composed)
+            ? `${label} · ${family.composed}`
+            : label,
         );
         option.value = family.key;
+        if (Number.isInteger(family.composed)) {
+          option.dataset.composed = String(family.composed);
+        }
         if (attached.has(family.key)) attachedGroup.append(option);
         else if (family.kind === "TARGUM") targumGroup.append(option);
         else commentaryGroup.append(option);
