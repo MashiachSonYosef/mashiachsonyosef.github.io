@@ -93,7 +93,7 @@
   document.getElementById("prov").textContent =
     `${table.rule_id} · inputs: ` + table.inputs.map((i) => `${i.file} ${i.sha256.slice(0, 12)}…`).join(" · ") +
     " · Counts come from the sealed W inventory; routes from the frame-38 compact catalog layer. " +
-    "Transliteration matching is approximate and never creates coverage.";
+    "Romanizations are generated mechanically as reading aids — downstream of the licensed data, carrying no identity and requiring no license. Transliteration matching is approximate and never creates coverage.";
 
   const strip = (s) => s.normalize("NFC").replace(/[֑-ׇ]/gu, "").trim();
   // Rough consonantal romanization — a reading aid for beginners, never an
@@ -103,6 +103,15 @@
     "נ": "n", "ן": "n", "ס": "s", "ע": "'", "פ": "p", "ף": "p", "צ": "ts", "ץ": "ts",
     "ק": "q", "ר": "r", "ש": "sh", "ת": "t", "־": "-", "״": '"', "׳": "'" };
   const romanize = (form) => [...form].map((c) => ROM[c] ?? c).join("");
+  // A second scheme showing the soft/spirant sounds where they differ
+  // (bet/kaf/pe without dagesh). Both are generated reading aids —
+  // downstream of the licensed data, carrying no identity and no license.
+  const SOFT = { "ב": "v", "כ": "kh", "ך": "kh", "פ": "f", "ף": "f" };
+  const romanizeBoth = (form) => {
+    const common = romanize(form);
+    const soft = [...form].map((c) => SOFT[c] ?? ROM[c] ?? c).join("");
+    return soft === common ? common : `${common} · ${soft}`;
+  };
   const CLASSES = { sh: "ש", ts: "צץ", tz: "צץ", ch: "חכך", kh: "חכך", th: "ת", ph: "פף",
     a: "אעה?", e: "אעה?", i: "י?", o: "ו?", u: "ו?",
     b: "ב", v: "בו", w: "ו", g: "ג", d: "ד", h: "הח", z: "ז", t: "תט", y: "י", k: "כךק",
@@ -184,7 +193,7 @@
       const fb = document.createElement("b"); fb.textContent = form; f.append(fb);
       const o = document.createElement("td"); o.className = "num"; o.textContent = occ < 0 ? "—" : occ.toLocaleString();
       const c = document.createElement("td"); c.className = "num"; c.textContent = rc ? rc.toLocaleString() : "—";
-      const rom = document.createElement("td"); rom.className = "translit"; rom.textContent = romanize(form);
+      const rom = document.createElement("td"); rom.className = "translit"; rom.textContent = romanizeBoth(form);
       const t = document.createElement("td");
       if (texts) {
         texts.split(" \u00b7 ").forEach((routeText, i) => {
