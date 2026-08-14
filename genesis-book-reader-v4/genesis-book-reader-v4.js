@@ -959,6 +959,7 @@
     activeRailIndex: -1,
     snapMaster: "",
     snapMasterHoldUntil: 0,
+    railLinked: false,
     railProgrammaticScrollUntil: 0,
     sourceProgrammaticScrollUntil: 0,
     railSnapFrame: 0,
@@ -2808,6 +2809,202 @@
       : null;
   };
 
+  // V7 · route-store-rule-v1-catalog-compact-top5.
+  //
+  // The definition factory's sealed compact layer (definition-poc frame 38:
+  // 140,532 exact K values, top-5 selected routes, catalog-v86 primary D/M)
+  // is published as 256 static gzip shards under data/route-store/. When a
+  // word module would render HELD — the fixture carries no fully selectable
+  // shape — the reader now asks that layer for the word's byte-exact
+  // kNormalizedKey: sha256(K) names one shard, fetch() gets ~30 KB,
+  // DecompressionStream("gzip") unpacks it in the browser. A hit becomes an
+  // ordinary word module whose routes carry the factory's full M license
+  // record, so routeIsDisplayReady gates them exactly like fixture routes.
+  //
+  // Laws carried over unchanged: exact K only (no folding, no derivation —
+  // FRAME.md), the UI never explains itself (provenance rides in dataset
+  // and the audit, not in visible text), and a miss stays honestly held.
+  const routeStore = {
+    enabled:
+      typeof DecompressionStream === "function" &&
+      typeof crypto !== "undefined" &&
+      !!crypto.subtle,
+    indexPromise: null,
+    index: null,
+    shards: new Map(),
+    lookups: 0,
+    hits: 0,
+    woken: 0,
+  };
+  const routeStoreIndex = () => {
+    routeStore.indexPromise =
+      routeStore.indexPromise ||
+      fetch("data/route-store/index.json")
+        .then((res) => (res.ok ? res.json() : null))
+        .catch(() => null)
+        .then((index) => {
+          routeStore.index = index;
+          return index;
+        });
+    return routeStore.indexPromise;
+  };
+  const routeStoreShardFor = async (key) => {
+    const digest = await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(key),
+    );
+    const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
+    if (!routeStore.shards.has(shard)) {
+      routeStore.shards.set(
+        shard,
+        (async () => {
+          const res = await fetch(`data/route-store/shards/${shard}.bin`);
+          if (!res.ok) throw new Error(String(res.status));
+          const unpacked = res.body.pipeThrough(
+            new DecompressionStream("gzip"),
+          );
+          return JSON.parse(await new Response(unpacked).text());
+        })().catch(() => null),
+      );
+    }
+    return routeStore.shards.get(shard);
+  };
+  // One synthesized word per hit: a single whole-word shape whose bundle
+  // carries one choice/pBundle per stored route, rank order preserved.
+  const routeStoreWord = (surface, key, routes, mSources) => {
+    const base = `RS-${key}`;
+    const pBundles = [];
+    const choices = [];
+    routes.forEach(([rank, routeText, definitionText, mId, year], i) => {
+      const m = mSources[mId];
+      if (!m || !routeText || !definitionText) return;
+      const pbId = `${base}-PB-${i + 1}`;
+      const dId = `${base}-D-${i + 1}`;
+      pBundles.push({
+        id: pbId,
+        label: m.label,
+        firstLedgerPosition: rank,
+        helperRoutes: [{ key: `${pbId}-R`, text: routeText }],
+        definitions: [
+          {
+            id: dId,
+            text: definitionText,
+            firstLedgerPosition: rank,
+            helperRoutes: [],
+            exactRoutes: [{ text: routeText }],
+            mSources: [
+              {
+                key: m.key,
+                label: m.label,
+                licensePosture: m.licensePosture,
+                licensePointer: m.licensePointer,
+                sourceYear: year || m.sourceYear || "S_NO_SOURCE_YEAR",
+                externalCitation: m.licensePointer,
+              },
+            ],
+          },
+        ],
+      });
+      choices.push({
+        id: `${base}-C-${i + 1}`,
+        key: `${base}-C-${i + 1}`,
+        text: routeText,
+        firstLedgerPosition: rank,
+        sourceYears: year && year !== "S_NO_SOURCE_YEAR" ? [year] : [],
+        pBundleId: pbId,
+        definitionId: dId,
+      });
+    });
+    if (!choices.length) return null;
+    return {
+      id: base,
+      hebrew: surface,
+      normalized: key,
+      provenance: {
+        rule_id: "route-store-rule-v1-catalog-compact-top5",
+        source: "definition-poc frame 38 · catalog v86 compact top-5 routes",
+      },
+      shapes: [
+        {
+          kind: "whole word",
+          label: "Ledger route store",
+          cells: [
+            {
+              displayIndex: 1,
+              compcellTemplateId: `${base}-CELL`,
+              surface,
+              kind: "whole word",
+              spanRole: "maximal",
+              kNormalizedKey: key,
+              lBundleId: `${base}-L`,
+              matchBasis: "exact_k_route_store",
+              lBundle: { id: `${base}-L`, choices, pBundles },
+            },
+          ],
+        },
+      ],
+    };
+  };
+  const armRouteStoreWake = ({
+    button,
+    occurrence,
+    scope,
+    shelf,
+    setSize,
+    commentary,
+    sourceRef,
+  }) => {
+    if (!routeStore.enabled || !occurrence.exact_key) return;
+    routeStore.lookups += 1;
+    void (async () => {
+      const [index, shard] = await Promise.all([
+        routeStoreIndex(),
+        routeStoreShardFor(occurrence.exact_key),
+      ]);
+      const routes = shard?.[occurrence.exact_key];
+      if (!index?.m_sources || !routes?.length) return;
+      routeStore.hits += 1;
+      if (!button.isConnected) return;
+      const word = routeStoreWord(
+        occurrence.surface,
+        occurrence.exact_key,
+        routes,
+        index.m_sources,
+      );
+      if (!word || !wordIsUsable(word)) return;
+      const replacement = createWordButton({
+        word,
+        scope,
+        occurrenceId: occurrence.occurrence_index,
+        controls: shelf.id,
+        commentary,
+        setSize,
+      });
+      // The held button may carry caller-set identity (C0 target ids,
+      // provenance datasets). Those move whole to the replacement.
+      if (button.id) replacement.id = button.id;
+      Object.entries(button.dataset).forEach(([k, v]) => {
+        if (!(k in replacement.dataset)) replacement.dataset[k] = v;
+      });
+      replacement.dataset.v7RouteStore = "catalog-v86-top5";
+      replacement.addEventListener("click", () => {
+        renderWordShelf({
+          shelf,
+          word,
+          scope,
+          occurrenceId: occurrence.occurrence_index,
+          sourceButton: replacement,
+          commentary,
+          sourceRef,
+        });
+        publishAudit();
+      });
+      button.replaceWith(replacement);
+      routeStore.woken += 1;
+      publishAudit();
+    })();
+  };
+
   const createHeldCommentaryWordButton = ({
     word,
     occurrence,
@@ -2940,6 +3137,15 @@
         positionBaseHudPanel(shelf, button);
       }
       publishAudit();
+    });
+    armRouteStoreWake({
+      button,
+      occurrence,
+      scope,
+      shelf,
+      setSize,
+      commentary,
+      sourceRef,
     });
     return button;
   };
@@ -3547,6 +3753,15 @@
       const body = make("div", "v4-witness-family-body");
       details.append(summary, body);
       details.addEventListener("toggle", () => {
+        // V7.1 · loadout rule: one witness family open at a time. Opening
+        // a second dropdown unloads the first, like changing zones.
+        if (details.open) {
+          details.parentElement
+            ?.querySelectorAll("details.v4-witness-family[open]")
+            .forEach((other) => {
+              if (other !== details) other.open = false;
+            });
+        }
         if (!details.open || details.dataset.segmentsLoaded === "true") {
           return;
         }
@@ -4229,11 +4444,50 @@
     if (!elements.railSnapState) return;
     setText(
       elements.railSnapState,
-      item
-        ? `Snapped · ${item.sectionRef} · ${v5AnchorChipText(item)}`
-        : "",
+      !state.railLinked
+        ? "Free scroll"
+        : item
+          ? `Snapped · ${item.sectionRef} · ${v5AnchorChipText(item)}`
+          : "",
     );
   };
+
+  // V7.1 · the rail link becomes a real switch, and V7.2 makes FREE the
+  // default. Commentaries are separate works — discrete authored records
+  // anchored by claims — not parallel texts, so nothing scrolls in
+  // sympathy unless asked. Selecting a claim still aligns once (that is
+  // navigation, not connection). Linked mode remains one click away for
+  // reading a verse-parallel witness like Onkelos in step with the text.
+  const v5SetRailLinked = (linked) => {
+    state.railLinked = Boolean(linked);
+    if (elements.railLinkToggle) {
+      elements.railLinkToggle.setAttribute(
+        "aria-pressed",
+        String(state.railLinked),
+      );
+      setText(elements.railLinkToggle, state.railLinked ? "Linked" : "Free");
+    }
+    document.body.dataset.v7RailLinked = String(state.railLinked);
+    v5UpdateSnapStateLabel(state.railItems[state.activeRailIndex] || null);
+    if (state.railLinked && state.currentSourcePosition) {
+      v5FollowSource(state.currentSourcePosition, 0);
+    }
+    publishAudit();
+  };
+  if (elements.railSnapState && !elements.railLinkToggle) {
+    const toggle = make("button", "v5-witness-flow-button v7-rail-link");
+    toggle.type = "button";
+    toggle.title =
+      "Linked: rails and text scroll together. Free: each pane scrolls alone.";
+    toggle.setAttribute("aria-pressed", String(state.railLinked));
+    setText(toggle, state.railLinked ? "Linked" : "Free");
+    document.body.dataset.v7RailLinked = String(state.railLinked);
+    toggle.addEventListener("click", () =>
+      v5SetRailLinked(!state.railLinked),
+    );
+    elements.railSnapState.insertAdjacentElement("beforebegin", toggle);
+    elements.railLinkToggle = toggle;
+  }
 
   // V5.2 snap-feel repair: followers move the MINIMUM distance, and only
   // when their matched item is not already usefully visible. No more
@@ -4477,6 +4731,7 @@
   };
 
   const v5FollowRail = () => {
+    if (!state.railLinked) return;
     if (document.body.dataset.v3CommentaryOpen !== "true") return;
     if (Date.now() < state.railProgrammaticScrollUntil) return;
     if (state.snapMaster !== "rail") return;
@@ -4610,6 +4865,7 @@
   };
 
   const v5BFollowScroll = () => {
+    if (!state.railLinked) return;
     if (!state.railBOpen) return;
     if (Date.now() < state.railBProgrammaticScrollUntil) return;
     if (state.snapMaster !== "railB") return;
@@ -4977,6 +5233,10 @@
       (state.snapMaster === "rail" &&
         Date.now() < state.snapMasterHoldUntil)
     ) {
+      refreshActiveCommentaryHighlight();
+      return;
+    }
+    if (!state.railLinked) {
       refreshActiveCommentaryHighlight();
       return;
     }
@@ -5683,6 +5943,7 @@
         {},
       ),
       rail_snap_master: state.snapMaster || null,
+      rail_linked: state.railLinked,
       rail_b_open: state.railBOpen,
       rail_b_work: state.railBOpen ? state.railBWork || null : null,
       rail_b_item_count: state.railBOpen ? state.railBItems.length : 0,
@@ -5731,6 +5992,17 @@
         shard_rule:
           Object.values(window.NESTED_RASHI_HUD_WORDS || {})[0]?.provenance
             ?.rule_id || null,
+      },
+      route_store: {
+        enabled: routeStore.enabled,
+        rule: "route-store-rule-v1-catalog-compact-top5",
+        index_loaded: !!routeStore.index,
+        shards_fetched: routeStore.shards.size,
+        lookups: routeStore.lookups,
+        hits: routeStore.hits,
+        words_woken: routeStore.woken,
+        woken_modules: document.querySelectorAll("[data-v7-route-store]")
+          .length,
       },
       lemma_presentation: {
         proof_text_lemmas: document.querySelectorAll("span.v5-lemma").length,
