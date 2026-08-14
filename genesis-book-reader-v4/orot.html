@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orot HaKodesh · The Tabernacle</title>
+<title>Zone reader · The Tabernacle</title>
 <style>
   :root { color-scheme: dark; }
   body { margin: 0; background: #081018; color: #e8dcc0; font: 16px/1.6 Georgia, serif; }
@@ -40,7 +40,7 @@
 </head>
 <body>
 <header>
-  <h1>Orot HaKodesh<span lang="he" dir="rtl">אורות הקודש</span></h1>
+  <h1 id="workTitle">Zone reader</h1>
   <p id="meta">Loading the zone…</p>
   <p><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a></p>
 </header>
@@ -69,9 +69,11 @@
     ]);
   } catch {
     document.getElementById("meta").textContent =
-      "The zone is not published yet — the first walk has not landed. Nothing is shown that has not come through the pipeline.";
+      "No book is published on this page yet — no walk has landed. The page takes its name from the zone when one arrives; nothing is shown, and nothing is named, that has not come through the pipeline.";
     return;
   }
+  document.getElementById("workTitle").textContent = zone.work;
+  document.title = `${zone.work} · The Tabernacle`;
   document.getElementById("meta").textContent =
     `${zone.counts.words.toLocaleString()} words · ${zone.counts.sections.toLocaleString()} sections · ` +
     `piped through the installed terminal reader (${zone.emitted_from.walker.pointer_status}) · ` +
