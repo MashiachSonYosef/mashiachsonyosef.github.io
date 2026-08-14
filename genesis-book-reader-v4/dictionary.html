@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dictionary · The Tabernacle</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #081018; color: #e8dcc0; font: 15px/1.5 Georgia, "Times New Roman", serif; }
+  header { padding: 1.1rem 1.4rem 0.6rem; border-bottom: 1px solid #1d3347; }
+  header h1 { margin: 0 0 0.2rem; font-size: 1.35rem; color: #f2e7c9; }
+  header p { margin: 0.15rem 0; opacity: 0.8; font-size: 0.9rem; }
+  header a { color: #9cc3e5; }
+  .search { padding: 0.9rem 1.4rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+  .search input { flex: 1 1 18rem; font-size: 1.25rem; padding: 0.45rem 0.7rem; background: #0d1b26; color: #e8dcc0; border: 1px solid #2c4a63; border-radius: 0.5rem; }
+  .search .hint { flex-basis: 100%; font-size: 0.82rem; opacity: 0.7; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { padding: 0.45rem 0.8rem; border-bottom: 1px solid #14283a; text-align: left; vertical-align: top; }
+  th { position: sticky; top: 0; background: #0d1b26; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: #b8a77d; }
+  td.form, td.form b { font-size: 1.35rem; color: #f4ead0; }
+  td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  tr.defined { cursor: pointer; }
+  tr.defined:hover { background: #0d1b26; }
+  tr.expand td { background: #0a1622; }
+  .routes p { margin: 0.3rem 0; }
+  .routes .att { opacity: 0.72; font-size: 0.82rem; }
+  .routes .att a { color: #9cc3e5; }
+  .undef { opacity: 0.55; }
+  #more { margin: 1rem 1.4rem 2rem; padding: 0.5rem 1rem; font-size: 1rem; background: #0d1b26; color: #e8dcc0; border: 1px solid #2c4a63; border-radius: 0.5rem; cursor: pointer; }
+  #status { padding: 0 1.4rem 0.4rem; font-size: 0.85rem; opacity: 0.75; }
+  footer { padding: 1rem 1.4rem 2rem; font-size: 0.78rem; opacity: 0.6; border-top: 1px solid #1d3347; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Dictionary</h1>
+  <p id="stats">Loading the form table…</p>
+  <p><a href="genesis-book-reader-v4.html">← Back to the reader</a></p>
+</header>
+<div class="search">
+  <input id="q" type="search" placeholder="Hebrew · transliteration · English route text" autocomplete="off">
+  <span class="hint">POC: the table holds the 40 most frequent forms, zoned 20 to a page. Typing an exact Hebrew form looks it up in the full live store (140,532 defined forms). Latin letters search the top slice by approximate transliteration and by English route text. Search is a research aid — displayed routes are always exact-form matches from the licensed catalog.</span>
+</div>
+<div id="status"></div>
+<table>
+  <thead><tr><th>#</th><th>Form</th><th style="text-align:right">Occurrences</th><th style="text-align:right">Routes</th><th>Route texts (top 5)</th></tr></thead>
+  <tbody id="rows"></tbody>
+</table>
+<button id="more" hidden>Next 20 →</button>
+<footer id="prov"></footer>
+<script>
+(async () => {
+  const unpack = async (res) =>
+    JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
+  const licenseName = (posture) => {
+    const v = String(posture || "").toLowerCase();
+    if (!v) return "License unrecorded";
+    if (v.startsWith("cc0")) return "CC0";
+    if (/_nc(?:_|$)/u.test(v)) return /_sa(?:_|$)/u.test(v) ? "CC BY-NC-SA" : "CC BY-NC";
+    if (v.includes("by_sa") || v.includes("gfdl")) return "CC BY-SA";
+    if (v.startsWith("public_domain")) return "Public Domain";
+    if (v.startsWith("cc_by") || v.includes("wordnet")) return "CC BY";
+    return posture;
+  };
+  const [table, index] = await Promise.all([
+    fetch("data/route-store/w-top.bin").then(unpack),
+    fetch("data/route-store/index.json").then((r) => r.json()),
+  ]);
+  const rows = table.rows;
+  document.getElementById("stats").textContent =
+    `POC · the ${table.rows.length} most frequent of ${table.counts.forms.toLocaleString()} attested forms, 20 per page · ` +
+    `${table.counts.defined_forms.toLocaleString()} forms carry licensed routes in the full store · type any exact form to look it up`;
+  document.getElementById("prov").textContent =
+    `${table.rule_id} · inputs: ` + table.inputs.map((i) => `${i.file} ${i.sha256.slice(0, 12)}…`).join(" · ") +
+    " · Counts come from the sealed W inventory; routes from the frame-38 compact catalog layer. " +
+    "Transliteration matching is approximate and never creates coverage.";
+
+  const strip = (s) => s.normalize("NFC").replace(/[֑-ׇ]/gu, "").trim();
+  const CLASSES = { sh: "ש", ts: "צץ", tz: "צץ", ch: "חכך", kh: "חכך", th: "ת", ph: "פף",
+    a: "אעה?", e: "אעה?", i: "י?", o: "ו?", u: "ו?",
+    b: "ב", v: "בו", w: "ו", g: "ג", d: "ד", h: "הח", z: "ז", t: "תט", y: "י", k: "כךק",
+    c: "כךק", l: "ל", m: "מם", n: "נן", s: "סשצץ", p: "פף", f: "פף", q: "ק", r: "ר", j: "גי", x: "" };
+  const translitRegex = (input) => {
+    let i = 0, out = "^";
+    const lower = input.toLowerCase().replace(/[^a-z']/gu, "");
+    while (i < lower.length) {
+      const two = lower.slice(i, i + 2);
+      const cls = CLASSES[two] !== undefined ? (i += 2, CLASSES[two]) :
+                  (CLASSES[lower[i]] !== undefined ? CLASSES[lower[(i += 1) - 1]] : "");
+      if (cls === "") continue;
+      out += cls.endsWith("?") ? `[${cls.slice(0, -1)}]?` : (cls.length > 1 ? `[${cls}]` : cls);
+    }
+    try { return new RegExp(out + "$", "u"); } catch { return null; }
+  };
+
+  const body = document.getElementById("rows");
+  const more = document.getElementById("more");
+  const status = document.getElementById("status");
+  let view = rows, shown = 0, PAGE = 20;
+  const shardCache = new Map();
+  const routesFor = async (form) => {
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(form));
+    const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
+    if (!shardCache.has(shard)) {
+      shardCache.set(shard, fetch(`data/route-store/shards/${shard}.bin`).then(unpack).catch(() => null));
+    }
+    const data = await shardCache.get(shard);
+    return data ? data[form] : null;
+  };
+  const expand = async (tr, form) => {
+    const next = tr.nextElementSibling;
+    if (next && next.classList.contains("expand")) { next.remove(); return; }
+    const holder = document.createElement("tr");
+    holder.className = "expand";
+    holder.innerHTML = `<td colspan="5"><div class="routes"><p>Fetching one shard…</p></div></td>`;
+    tr.after(holder);
+    const routes = await routesFor(form);
+    const div = holder.querySelector(".routes");
+    if (!routes) { div.innerHTML = "<p>No exact route record reachable.</p>"; return; }
+    div.innerHTML = "";
+    routes.forEach(([rank, routeText, definitionText, mId, year]) => {
+      const m = index.m_sources[mId];
+      if (!m) return;
+      const p = document.createElement("p");
+      const b = document.createElement("b");
+      b.textContent = routeText;
+      p.append(b);
+      if (definitionText && definitionText !== routeText) p.append(` — ${definitionText}`);
+      const att = document.createElement("p");
+      att.className = "att";
+      const yearLabel = !year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year;
+      att.append(`${m.label} · ${licenseName(m.licensePosture)} · ${yearLabel} · `);
+      const a = document.createElement("a");
+      if (/^https?:\/\//u.test(m.licensePointer)) { a.href = m.licensePointer; a.target = "_blank"; a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a); }
+      else att.append(`record: ${m.licensePointer}`);
+      div.append(p, att);
+    });
+  };
+  const render = (reset) => {
+    if (reset) { body.replaceChildren(); shown = 0; }
+    const slice = view.slice(shown, shown + PAGE);
+    const frag = document.createDocumentFragment();
+    slice.forEach((r, offset) => {
+      const [form, occ, rc, texts] = r;
+      const tr = document.createElement("tr");
+      tr.className = rc ? "defined" : "undef";
+      const rank = document.createElement("td"); rank.className = "num"; rank.textContent = (shown + offset + 1).toLocaleString();
+      const f = document.createElement("td"); f.className = "form"; f.dir = "rtl"; f.lang = "he";
+      const fb = document.createElement("b"); fb.textContent = form; f.append(fb);
+      const o = document.createElement("td"); o.className = "num"; o.textContent = occ < 0 ? "—" : occ.toLocaleString();
+      const c = document.createElement("td"); c.className = "num"; c.textContent = rc ? rc.toLocaleString() : "—";
+      const t = document.createElement("td"); t.textContent = texts || "";
+      tr.append(rank, f, o, c, t);
+      if (rc) tr.addEventListener("click", () => expand(tr, form));
+      frag.append(tr);
+    });
+    body.append(frag);
+    shown += slice.length;
+    more.hidden = shown >= view.length;
+  };
+  const search = (raw) => {
+    const q = raw.trim();
+    if (!q) { view = rows; status.textContent = ""; render(true); return; }
+    if (/[֐-׿]/u.test(q)) {
+      const key = strip(q);
+      const exact = rows.filter((r) => r[0] === key);
+      const rest = rows.filter((r) => r[0] !== key && r[0].includes(key)).slice(0, 400);
+      view = exact.concat(rest);
+      if (exact.length) {
+        status.textContent = `Exact form pinned first · ${view.length} match${view.length === 1 ? "" : "es"} in the POC slice`;
+      } else {
+        status.textContent = "Checking the full route store for that exact form…";
+        routesFor(key).then((routes) => {
+          if (!routes) {
+            status.textContent = `No exact route record for ${key} in the catalog (and not in the POC slice). Exact spellings only — nothing is folded or guessed.`;
+            return;
+          }
+          view = [[key, -1, routes.length, routes.map((r) => r[1]).join(" · ")]].concat(view);
+          status.textContent = "Exact form found in the live route store · occurrence count not carried in this POC slice";
+          render(true);
+        });
+      }
+    } else {
+      const rx = translitRegex(q);
+      const translit = rx ? rows.filter((r) => rx.test(r[0])).slice(0, 250) : [];
+      const needle = q.toLowerCase();
+      const inRoutes = rows.filter((r) => r[3] && r[3].toLowerCase().includes(needle)).slice(0, 250);
+      const seen = new Set(translit.map((r) => r[0]));
+      view = translit.concat(inRoutes.filter((r) => !seen.has(r[0])));
+      status.textContent = `Latin search · ${translit.length} by approximate transliteration · ${inRoutes.length} by route text (each capped at 250)`;
+    }
+    render(true);
+  };
+  let timer = 0;
+  document.getElementById("q").addEventListener("input", (e) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => search(e.target.value), 250);
+  });
+  more.addEventListener("click", () => render(false));
+  render(true);
+})();
+</script>
+</body>
+</html>
