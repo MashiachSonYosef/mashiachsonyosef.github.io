@@ -151,20 +151,24 @@
   const ac = zone.emitted_from.acquisition, wk = zone.emitted_from.walk, oc = zone.emitted_from.identity_oracle;
   document.getElementById("meta").textContent =
     `${zone.counts.words.toLocaleString()} words · ${zone.counts.sections.toLocaleString()} sections · ` +
-    (wk ? `walked word-by-word through the installed sealed terminal reader (${wk.ids_walked} ids, every one FOUND_EXACT) · rights ride per occurrence from the chain · ` : `Hebrew text: ${ac.hebrew_version} via Sefaria, license ${ac.hebrew_license_seen} (seen live on every payload) · `) +
+    (wk ? (/RESIDENT_SERVE/.test(wk.route || "")
+      ? `served id-by-id from the seal-verified terminal reader artifacts (${wk.ids_walked.toLocaleString()} ids, every one FOUND_EXACT; the installed sealed reader re-answered ${wk.sealed_oracle.report.sampled} sampled ids ${wk.sealed_oracle.report.field_exact}/${wk.sealed_oracle.report.sampled} field-exact) · rights ride per occurrence from the chain · `
+      : `walked word-by-word through the installed sealed terminal reader (${wk.ids_walked.toLocaleString()} ids, every one FOUND_EXACT) · rights ride per occurrence from the chain · `) : `Hebrew text: ${ac.hebrew_version} via Sefaria, license ${ac.hebrew_license_seen} (seen live on every payload) · `) +
     `${zone.counts.verified_units} of ${zone.counts.sections} sections verified word-for-word in count against the sealed corpus allocation` +
     `${zone.counts.drifted_units ? `; ${zone.counts.drifted_units} drift from it and are marked` : ""} · ` +
     `${zone.counts.glossed_words ? zone.counts.glossed_words.toLocaleString() + " words carry their top catalog route as an English gloss (exact spellings only — unmatched forms stay bare) · " : ""}` +
     `tap any word for all routes, sources, and licenses`;
   document.getElementById("prov").textContent =
     `${zone.rule_id} · route: ${zone.route} · identity oracle ${oc.bridge_sha256.slice(0, 16)}… ` +
-    `(416 units, C0 ${oc.first_c0_numeric_id.toLocaleString()}–${oc.last_c0_numeric_id.toLocaleString()}) · ` +
-    (wk ? `walk: module ${wk.module.sha256.slice(0, 12)}…, pointer ${wk.pointer.sha256.slice(0, 12)}… · ${zone.emitted_from.license_receipts.per_occurrence} · ` : `payload sha ${ac.payload_sha256_transferred.slice(0, 16)}… · ${zone.emitted_from.license_receipts.work_activation} · `) +
+    `(${oc.sealed_units.toLocaleString()} units, C0 ${oc.first_c0_numeric_id.toLocaleString()}–${oc.last_c0_numeric_id.toLocaleString()}) · ` +
+    (wk ? `${/RESIDENT_SERVE/.test(wk.route || "") ? `serve rule ${wk.walker_rule}; sealed-reader oracle ${wk.sealed_oracle.report.field_exact}/${wk.sealed_oracle.report.sampled} field-exact; ` : `walk: `}module ${wk.module.sha256.slice(0, 12)}…, pointer ${wk.pointer.sha256.slice(0, 12)}… · ${zone.emitted_from.license_receipts.per_occurrence} · ` : `payload sha ${ac.payload_sha256_transferred.slice(0, 16)}… · ${zone.emitted_from.license_receipts.work_activation} · `) +
     `${zone.emitted_from.gloss_layer ? `glosses: ${zone.emitted_from.gloss_layer.rule} (table sha ${zone.emitted_from.gloss_layer.gloss_table_sha256.slice(0, 12)}…; ${zone.emitted_from.gloss_layer.attribution}) · ` : ""}` +
     `chapter names shown in English come verbatim from the source index receipts; no English translation is paired, because the only licensed one survives as fragments in another edition's paragraphing and honest alignment does not exist · ` +
     (zone.emitted_from.sealed_chain_status
       ? `the installed terminal reader does not yet carry this span (partial-rebuild gap); this page runs the acquisition route until a sealed generation includes the book.`
-      : `this zone came through the installed terminal reader itself — the pipeline route, end to end.`);
+      : (wk && /RESIDENT_SERVE/.test(wk.route || "")
+        ? `this zone was served from the sealed chain's own artifacts, seal-verified once, with the installed terminal reader re-answering sampled ids as oracle — the pipeline route, end to end.`
+        : `this zone came through the installed terminal reader itself — the pipeline route, end to end.`));
 
   const hud = document.getElementById("hud");
   const shardCache = new Map();
