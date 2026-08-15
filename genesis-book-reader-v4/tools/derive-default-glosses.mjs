@@ -37,7 +37,7 @@ const hud = window.GENESIS_1_1_FULL_HUD_FIXTURE;
 const GENERATED_ON = "2026-08-10";
 const RULE_ID =
   "synthesis-default-gloss-rule-v2-antiquity-primacy-1940-lastuary";
-// Rule v2 was attested by Kyle (2026-08-10): sort a word's routes by the
+// Rule v2 was attested 2026-08-10: sort a word's routes by the
 // oldest source year attesting them; sources after 1940 (or with no
 // recorded year) form the last tier; ties break by ledger position. The
 // pool is built exactly the way the reader builds selectable routes
