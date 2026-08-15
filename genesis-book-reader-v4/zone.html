@@ -7,10 +7,13 @@
 <style>
   :root {
     color-scheme: dark;
+    /* Tabernacle materials: shesh (linen), zahav (gold), tekhelet reserved
+       for structure lines — text and links wear linen, never blue. */
     --bg: #0a0f16; --panel: #101823; --panel2: #0d1520;
     --ink: #ece1c4; --ink-strong: #f6ecd2; --muted: #8fa1b3; --faint: #5f7183;
+    --shesh: #d8c7a4; --shesh-bright: #eadbbd;
     --gold: #e8c46a; --gold-dim: #9a7f3f; --amber: #d9a441;
-    --line: #1e2c3c; --link: #8fbfe8;
+    --line: #1e2c3c; --link: var(--shesh);
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Georgia, "Times New Roman", serif; }
@@ -23,8 +26,8 @@
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
   header.top nav { margin-top: 0.6rem; font-size: 0.85rem; }
-  header.top a { color: var(--link); text-decoration: none; }
-  header.top a:hover { text-decoration: underline; }
+  header.top a { color: var(--link); text-decoration: none; border-bottom: 1px solid rgba(216, 199, 164, 0.35); }
+  header.top a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
   /* contents */
   #toc { max-width: 48rem; margin: 1.3rem auto 0; padding: 0 1.5rem; }
@@ -106,7 +109,24 @@
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   #hud .d-card .d-text { margin: 0.25rem 0; }
   .lic-chip { display: inline-block; margin-inline-start: 0.45rem; padding: 0.02rem 0.5rem;
-    border-radius: 999px; background: #12314a; color: var(--link); font-size: 0.72rem; }
+    border-radius: 999px; background: rgba(216, 199, 164, 0.12); border: 1px solid rgba(216, 199, 164, 0.3);
+    color: var(--shesh); font-size: 0.72rem; }
+  /* commentary chip on a word block */
+  .wb { position: relative; }
+  .c-chip { position: absolute; top: -0.35rem; left: -0.5rem; z-index: 2; direction: ltr;
+    font: bold 0.58rem/1.5 Inter, system-ui, sans-serif; color: #2a1a10; background: #b06a4a;
+    border-radius: 999px; min-width: 1.05rem; text-align: center; padding: 0 0.22rem; pointer-events: none; }
+  body.en .c-chip { left: auto; right: -0.5rem; }
+  #hud .c-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
+  #hud .c-pills button { border: 1px solid #5a3a2a; background: #1c1410; color: #d9b49a;
+    border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
+    max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #hud .c-pills button[aria-pressed="true"] { background: #b06a4a; border-color: #b06a4a; color: #1c0f08; font-weight: bold; }
+  #hud .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
+  #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  #hud .c-note { color: var(--faint); font-size: 0.72rem; margin: 0.2rem 0 0; }
+  #prov a { color: var(--shesh); }
 
   footer { max-width: 48rem; margin: 0 auto; padding: 1.1rem 1.5rem 2.2rem; font-size: 0.76rem;
     color: var(--faint); border-top: 1px solid var(--line); direction: ltr; text-align: left; }
@@ -183,6 +203,17 @@
       : (wk && /RESIDENT_SERVE/.test(wk.route || "")
         ? `this zone was served from the sealed chain's own artifacts, seal-verified once, with the installed terminal reader re-answering sampled ids as oracle — the pipeline route, end to end.`
         : `this zone came through the installed terminal reader itself — the pipeline route, end to end.`));
+  // explicit license links, from the zone's own receipts
+  if (zone.emitted_from.license_links && zone.emitted_from.license_links.length) {
+    const provEl = document.getElementById("prov");
+    const linkRow = document.createElement("p");
+    zone.emitted_from.license_links.forEach((l, i) => {
+      if (i) linkRow.append(" · ");
+      const a = document.createElement("a"); a.href = l.url; a.target = "_blank"; a.rel = "noreferrer";
+      a.textContent = l.label; linkRow.append(a);
+    });
+    provEl.append(linkRow);
+  }
 
   const hud = document.getElementById("hud");
   // The reader's display law: route texts pack morpheme spans with "/"; the
@@ -201,7 +232,7 @@
   };
   let activeEl = null;
   const closeHud = () => { hud.hidden = true; hud.replaceChildren(); activeEl?.classList.remove("active"); activeEl = null; };
-  const openHud = async (el, word) => {
+  const openHud = async (el, word, unitId, wordPos) => {
     closeHud();
     activeEl = el; el.classList.add("active");
     const rect = el.getBoundingClientRect();
@@ -214,9 +245,11 @@
     head.append(b, x);
     const status = document.createElement("p"); status.textContent = "Fetching one shard…";
     hud.replaceChildren(head, status);
+    const cm = commentaryFor(unitId, wordPos);
     const routes = await routesFor(word.k);
     if (!routes) {
       status.textContent = "No exact route in the catalog for this form. Exact spellings only — nothing folded, nothing guessed.";
+      appendCommentarySection(cm);
       return;
     }
     hud.removeChild(status);
@@ -225,16 +258,23 @@
     // leads, post-1940 and unyeared sources last; ONE route selected at a
     // time — its D record and attribution ride below; tap a pill to switch,
     // and the gloss under the word follows the selection.
+    // Sense level (rule v3): a route text packs senses with ";" — each sense
+    // is its own pill. One reading on display at a time, in every packing.
     const groups = new Map();
     routes.forEach((row) => {
       const [rank, routeText, definitionText, mId, year] = row;
-      const t = String(routeText || "").trim(); if (!t || !index.m_sources[mId]) return;
+      if (!index.m_sources[mId]) return;
       const y = Number.parseInt(year, 10);
       const yr = Number.isInteger(y) ? y : Infinity;
-      const key = t.toLowerCase();
-      const g = groups.get(key);
-      if (!g) groups.set(key, { text: t, year: yr, ledger: Number(rank), records: [row] });
-      else { g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank)); g.records.push(row); }
+      String(routeText || "").split(";").map((s) => s.trim()).filter(Boolean).forEach((sense) => {
+        const key = sense.toLowerCase();
+        const g = groups.get(key);
+        if (!g) groups.set(key, { text: sense, year: yr, ledger: Number(rank), records: [row] });
+        else {
+          g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank));
+          if (!g.records.includes(row)) g.records.push(row);
+        }
+      });
     });
     const tier = (r) => Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1;
     const pool = [...groups.values()].sort((a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger);
@@ -283,7 +323,7 @@
         pills.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", "false"));
         b.setAttribute("aria-pressed", "true");
         renderDCard();
-        if (glossEl) { glossEl.textContent = spanJoin(route.text); glossEl.title = spanJoin(route.text); }
+        if (glossEl) { glossEl.textContent = spanJoin(route.text); glossEl.title = spanJoin(route.text); glossEl.classList.remove("bare"); }
       });
       return b;
     };
@@ -297,6 +337,83 @@
     }
     renderDCard();
     hud.append(dCard);
+    appendCommentarySection(cm);
+  };
+
+  // Commentary layer — the sidecar rides per book; word-anchored units from
+  // the attachment map, each with its own license, one unit on display at a
+  // time. Absent sidecar or absent anchors = no section, nothing implied.
+  let commentaryStore = null;
+  const commentaryReady = fetch(`data/zones/${BOOK}-commentary.bin`)
+    .then((r) => (r.ok ? unpack(r) : null))
+    .then((s) => { commentaryStore = s; })
+    .catch(() => {});
+  const commentaryFor = (unitId, wordPos) => {
+    const u = commentaryStore && commentaryStore.units && commentaryStore.units[unitId];
+    if (!u || !u.words) return null;
+    return u.words[String(wordPos)] || null;
+  };
+  const appendCommentarySection = (entries) => {
+    if (!entries || !entries.length) return;
+    const label = document.createElement("p"); label.className = "r-label";
+    label.textContent = "Commentary · attached at this word";
+    const pills = document.createElement("div"); pills.className = "c-pills";
+    const card = document.createElement("div"); card.className = "c-card";
+    let selected = entries[0];
+    const renderCard = () => {
+      card.replaceChildren();
+      const heP = document.createElement("p"); heP.className = "c-he"; heP.lang = "he"; heP.dir = "rtl";
+      heP.textContent = selected.text; card.append(heP);
+      const att = document.createElement("p"); att.className = "att";
+      att.append(`${selected.he_ref || selected.ref} · ${selected.version_title} `);
+      const lic = document.createElement("span"); lic.className = "lic-chip"; lic.textContent = selected.license; att.append(lic, " ");
+      if (selected.source_url) {
+        const a = document.createElement("a"); a.href = selected.source_url; a.target = "_blank"; a.rel = "noreferrer";
+        a.textContent = "Source"; att.append(a);
+      }
+      card.append(att);
+      const note = document.createElement("p"); note.className = "c-note";
+      note.textContent = selected.state === "PROVEN_EDGE"
+        ? `Attachment: proven edge (${selected.basis})`
+        : `Attachment: suggested reach only — ${selected.basis}; not a proven word edge`;
+      card.append(note);
+    };
+    entries.slice(0, 12).forEach((e, i) => {
+      const p = document.createElement("button"); p.type = "button";
+      p.textContent = e.title || `${e.family_en} · ${i + 1}`;
+      p.title = `${e.family_en}${e.years && e.years.length ? " · " + e.years.join("–") : ""}`;
+      p.setAttribute("aria-pressed", String(e === selected));
+      p.addEventListener("click", () => {
+        selected = e;
+        pills.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", "false"));
+        p.setAttribute("aria-pressed", "true");
+        renderCard();
+      });
+      pills.append(p);
+    });
+    hud.append(label, pills);
+    if (entries.length > 12) {
+      const more = document.createElement("button"); more.className = "r-more"; more.type = "button";
+      more.textContent = `▾ ${entries.length - 12} more`;
+      more.addEventListener("click", () => {
+        entries.slice(12).forEach((e, j) => {
+          const p = document.createElement("button"); p.type = "button";
+          p.textContent = e.title || `${e.family_en} · ${12 + j + 1}`;
+          p.setAttribute("aria-pressed", "false");
+          p.addEventListener("click", () => {
+            selected = e;
+            pills.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", "false"));
+            p.setAttribute("aria-pressed", "true");
+            renderCard();
+          });
+          pills.append(p);
+        });
+        more.remove();
+      });
+      hud.append(more);
+    }
+    renderCard();
+    hud.append(card);
   };
   document.addEventListener("click", (e) => { if (!hud.hidden && !hud.contains(e.target) && !e.target.closest(".wb")) closeHud(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeHud(); });
@@ -334,7 +451,9 @@
     document.getElementById("toc").hidden = false;
   }
 
-  // text
+  // text — the commentary sidecar (if any) must be in hand before word
+  // blocks render, so C chips land on first paint.
+  await commentaryReady;
   const main = document.getElementById("text");
   const frag = document.createDocumentFragment();
   let curPart = null, curNode = -1;
@@ -364,6 +483,7 @@
       row.append(d);
     }
     const he = document.createElement("p"); he.className = "he-text"; he.lang = "he"; he.dir = "rtl";
+    let wIdx = 0;
     sec.words.forEach((word) => {
       const wb = document.createElement("span");
       wb.className = word.held ? "wb held" : "wb";
@@ -372,8 +492,21 @@
       span.textContent = word.s;
       wb.append(span);
       const g = zone.gloss ? zone.gloss[word.k] : null;
-      if (g) { const ge = document.createElement("span"); ge.className = "g"; ge.textContent = spanJoin(g); ge.title = spanJoin(g); wb.append(ge); }
-      if (!word.held) wb.addEventListener("click", () => openHud(wb, word));
+      // The gloss line always exists — words without English keep an empty
+      // line so the Hebrew never rides higher than its neighbors, in either
+      // reader mode.
+      const ge = document.createElement("span"); ge.className = "g";
+      if (g) { ge.textContent = spanJoin(g); ge.title = spanJoin(g); }
+      else { ge.textContent = " "; ge.classList.add("bare"); }
+      wb.append(ge);
+      const cm = commentaryFor(sec.unit, wIdx);
+      if (cm && cm.length) {
+        const chip = document.createElement("span"); chip.className = "c-chip";
+        chip.textContent = "C" + (cm.length > 1 ? cm.length : "");
+        wb.append(chip);
+      }
+      if (!word.held) wb.addEventListener("click", () => openHud(wb, word, sec.unit, wIdx));
+      wIdx += 1;
       he.append(wb, document.createTextNode(" "));
     });
     s.append(row, he);
