@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zone reader · The Tabernacle</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0a0f16; --panel: #101823; --panel2: #0d1520;
+    --ink: #ece1c4; --ink-strong: #f6ecd2; --muted: #8fa1b3; --faint: #5f7183;
+    --gold: #e8c46a; --gold-dim: #9a7f3f; --amber: #d9a441;
+    --line: #1e2c3c; --link: #8fbfe8;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Georgia, "Times New Roman", serif; }
+
+  header.top { padding: 1.4rem 1.5rem 1rem; border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, #0d1520 0%, var(--bg) 100%); }
+  header.top h1 { margin: 0; font-size: 1.9rem; color: var(--ink-strong); letter-spacing: 0.01em; }
+  header.top h1 .he-t { font-size: 2.1rem; margin-right: 0.7rem; }
+  header.top h1 .en-t { color: var(--gold); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
+  header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); }
+  header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
+  header.top nav { margin-top: 0.6rem; font-size: 0.85rem; }
+  header.top a { color: var(--link); text-decoration: none; }
+  header.top a:hover { text-decoration: underline; }
+
+  /* contents */
+  #toc { max-width: 48rem; margin: 1.3rem auto 0; padding: 0 1.5rem; }
+  #toc h2 { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); margin: 0 0 0.5rem; }
+  #toc .part { margin: 0 0 0.65rem; }
+  #toc .part b { display: block; color: var(--gold); font-variant: small-caps; letter-spacing: 0.1em;
+    font-weight: normal; font-size: 0.92rem; margin-bottom: 0.15rem; }
+  #toc .part b .he-small { color: var(--ink); font-size: 1rem; margin-left: 0.6rem; }
+  #toc a { color: var(--muted); text-decoration: none; font-size: 0.84rem; }
+  #toc a:hover { color: var(--link); }
+  #toc .chs { line-height: 1.9; }
+  #toc .chs a + a::before { content: "· "; color: var(--faint); margin: 0 0.15rem; }
+
+  main { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 5rem; }
+
+  .part-head { margin: 3rem 0 0.4rem; padding-top: 1.6rem; border-top: 1px double var(--gold-dim); }
+  .part-head .he { direction: rtl; text-align: right; font-size: 1.05rem; color: var(--gold); letter-spacing: 0.04em; }
+  .part-head .en { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--faint); text-align: left; }
+
+  .node-head { margin: 1.9rem 0 0.9rem; }
+  .node-head .he { direction: rtl; text-align: right; font-size: 1.55rem; color: var(--ink-strong);
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  .node-head .en { font-size: 0.82rem; font-variant: small-caps; letter-spacing: 0.16em; color: var(--gold); margin-top: 0.1rem; }
+
+  section.seg { margin: 0 0 1.35rem; }
+  .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; direction: ltr; }
+  .vnum { font-size: 0.72rem; color: var(--gold); border: 1px solid #3a3220;
+    background: #151b26; border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
+  .drift-chip { font-size: 0.68rem; color: var(--amber); border: 1px dashed #6b5320; border-radius: 0.5rem;
+    padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
+  .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  .wb { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top;
+    margin: 0 0.16rem 0.55rem; cursor: pointer; }
+  .w { display: block; order: 1; border-bottom: 1px dashed transparent; border-radius: 2px; }
+  .wb:hover .w { color: #ffe08a; border-bottom-color: #6a5a33; }
+  .wb.held { opacity: 0.45; cursor: default; }
+  .wb.active .w { color: var(--gold); border-bottom: 1px solid var(--gold); }
+  .g { display: block; order: 2; direction: ltr; font: 0.66rem/1.25 Georgia, serif; color: var(--muted);
+    letter-spacing: 0.02em; margin-top: 0.06rem; max-width: 11rem; }
+  .wb.active .g { color: var(--gold); }
+
+  /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
+  body.en .he-text { direction: ltr; text-align: left; }
+  body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--ink); margin-top: 0; }
+  body.en .w { order: 2; font-size: 1.02rem; color: #b3a077; margin-top: 0.04rem; }
+  body.en .wb.active .g { color: var(--gold); }
+
+  #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; }
+  .mode-btn { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+    border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
+  .mode-btn.on { background: var(--gold); color: #171105; border-color: var(--gold); font-weight: bold; }
+
+  /* The HUD floats. The Hebrew never moves — law of the house. */
+  #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: 55vh;
+    overflow-y: auto; background: var(--panel); border: 1px solid #2c4a63; border-radius: 0.7rem;
+    padding: 0.85rem 1.05rem; box-shadow: 0 14px 40px rgba(0,0,0,.6); }
+  #hud[hidden] { display: none; }
+  #hud .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem;
+    border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
+  #hud .head b { font-size: 1.55rem; color: var(--ink-strong);
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  #hud .head button { background: none; border: 0; color: var(--link); font-size: 1.15rem; cursor: pointer; }
+  #hud p { margin: 0.45rem 0; }
+  #hud .att { color: var(--muted); font-size: 0.78rem; }
+  #hud .att a { color: var(--link); }
+  .lic-chip { display: inline-block; margin-inline-start: 0.45rem; padding: 0.02rem 0.5rem;
+    border-radius: 999px; background: #12314a; color: var(--link); font-size: 0.72rem; }
+
+  footer { max-width: 48rem; margin: 0 auto; padding: 1.1rem 1.5rem 2.2rem; font-size: 0.76rem;
+    color: var(--faint); border-top: 1px solid var(--line); direction: ltr; text-align: left; }
+
+  @media (max-width: 640px) {
+    .he-text { font-size: 1.32rem; line-height: 2.05; }
+    header.top h1 { font-size: 1.5rem; } header.top h1 .he-t { font-size: 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1 id="workTitle"><span class="he-t" lang="he" dir="rtl"></span><span class="en-t">Zone reader</span></h1>
+  <p class="byline" id="byline"></p>
+  <p id="meta">Loading the zone…</p>
+  <nav><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=orot">Orot</a> · <a href="zone.html?b=genesis-1">Genesis 1</a></nav>
+  <div id="modeRow">
+    <button type="button" class="mode-btn on" id="modeHe">Hebrew reader</button>
+    <button type="button" class="mode-btn" id="modeEn">English reader</button>
+  </div>
+</header>
+<div id="toc" hidden><h2>Contents</h2><div id="tocBody"></div></div>
+<main id="text"></main>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script>
+(async () => {
+  const BOOK = (new URLSearchParams(location.search).get("b") || "orot").replace(/[^a-z0-9-]/g, "");
+  const unpack = async (res) =>
+    JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
+  const licenseName = (posture) => {
+    const v = String(posture || "").toLowerCase();
+    if (!v) return "License unrecorded";
+    if (v.startsWith("cc0")) return "CC0";
+    if (/_nc(?:_|$)/u.test(v)) return /_sa(?:_|$)/u.test(v) ? "CC BY-NC-SA" : "CC BY-NC";
+    if (v.includes("by_sa") || v.includes("gfdl")) return "CC BY-SA";
+    if (v.startsWith("public_domain")) return "Public Domain";
+    if (v.startsWith("cc_by") || v.includes("wordnet")) return "CC BY";
+    return posture;
+  };
+  let zone, index;
+  try {
+    [zone, index] = await Promise.all([
+      fetch(`data/zones/${BOOK}.bin`).then(unpack),
+      fetch("data/route-store/index.json").then((r) => r.json()),
+    ]);
+  } catch {
+    document.getElementById("meta").textContent =
+      "No book is published on this page yet — no walk has landed. The page takes its name from the zone when one arrives; nothing is shown, and nothing is named, that has not come through the pipeline.";
+    return;
+  }
+  document.querySelector("#workTitle .he-t").textContent = zone.work_he || "";
+  document.querySelector("#workTitle .en-t").textContent = zone.work;
+  document.title = `${zone.work} · The Tabernacle`;
+  document.getElementById("byline").textContent = zone.byline || "";
+  const ac = zone.emitted_from.acquisition, wk = zone.emitted_from.walk, oc = zone.emitted_from.identity_oracle;
+  document.getElementById("meta").textContent =
+    `${zone.counts.words.toLocaleString()} words · ${zone.counts.sections.toLocaleString()} sections · ` +
+    (wk ? `walked word-by-word through the installed sealed terminal reader (${wk.ids_walked} ids, every one FOUND_EXACT) · rights ride per occurrence from the chain · ` : `Hebrew text: ${ac.hebrew_version} via Sefaria, license ${ac.hebrew_license_seen} (seen live on every payload) · `) +
+    `${zone.counts.verified_units} of ${zone.counts.sections} sections verified word-for-word in count against the sealed corpus allocation` +
+    `${zone.counts.drifted_units ? `; ${zone.counts.drifted_units} drift from it and are marked` : ""} · ` +
+    `${zone.counts.glossed_words ? zone.counts.glossed_words.toLocaleString() + " words carry their top catalog route as an English gloss (exact spellings only — unmatched forms stay bare) · " : ""}` +
+    `tap any word for all routes, sources, and licenses`;
+  document.getElementById("prov").textContent =
+    `${zone.rule_id} · route: ${zone.route} · identity oracle ${oc.bridge_sha256.slice(0, 16)}… ` +
+    `(416 units, C0 ${oc.first_c0_numeric_id.toLocaleString()}–${oc.last_c0_numeric_id.toLocaleString()}) · ` +
+    (wk ? `walk: module ${wk.module.sha256.slice(0, 12)}…, pointer ${wk.pointer.sha256.slice(0, 12)}… · ${zone.emitted_from.license_receipts.per_occurrence} · ` : `payload sha ${ac.payload_sha256_transferred.slice(0, 16)}… · ${zone.emitted_from.license_receipts.work_activation} · `) +
+    `${zone.emitted_from.gloss_layer ? `glosses: ${zone.emitted_from.gloss_layer.rule} (table sha ${zone.emitted_from.gloss_layer.gloss_table_sha256.slice(0, 12)}…; ${zone.emitted_from.gloss_layer.attribution}) · ` : ""}` +
+    `chapter names shown in English come verbatim from the source index receipts; no English translation is paired, because the only licensed one survives as fragments in another edition's paragraphing and honest alignment does not exist · ` +
+    (zone.emitted_from.sealed_chain_status
+      ? `the installed terminal reader does not yet carry this span (partial-rebuild gap); this page runs the acquisition route until a sealed generation includes the book.`
+      : `this zone came through the installed terminal reader itself — the pipeline route, end to end.`);
+
+  const hud = document.getElementById("hud");
+  const shardCache = new Map();
+  const routesFor = async (key) => {
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
+    const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
+    if (!shardCache.has(shard)) {
+      shardCache.set(shard, fetch(`data/route-store/shards/${shard}.bin`).then(unpack).catch(() => null));
+    }
+    const data = await shardCache.get(shard);
+    return data ? data[key] : null;
+  };
+  let activeEl = null;
+  const closeHud = () => { hud.hidden = true; hud.replaceChildren(); activeEl?.classList.remove("active"); activeEl = null; };
+  const openHud = async (el, word) => {
+    closeHud();
+    activeEl = el; el.classList.add("active");
+    const rect = el.getBoundingClientRect();
+    hud.style.top = Math.min(window.innerHeight - 60, rect.bottom + 8) + "px";
+    hud.style.left = Math.max(8, Math.min(window.innerWidth - Math.min(368, window.innerWidth * 0.92) - 8, rect.left - 100)) + "px";
+    hud.hidden = false;
+    const head = document.createElement("div"); head.className = "head";
+    const b = document.createElement("b"); b.lang = "he"; b.dir = "rtl"; b.textContent = word.s;
+    const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Close"); x.addEventListener("click", closeHud);
+    head.append(b, x);
+    const status = document.createElement("p"); status.textContent = "Fetching one shard…";
+    hud.replaceChildren(head, status);
+    const routes = await routesFor(word.k);
+    if (!routes) {
+      status.textContent = "No exact route in the catalog for this form. Exact spellings only — nothing folded, nothing guessed.";
+      return;
+    }
+    hud.removeChild(status);
+    routes.forEach(([rank, routeText, definitionText, mId, year]) => {
+      const m = index.m_sources[mId];
+      if (!m) return;
+      const p = document.createElement("p");
+      const rb = document.createElement("b"); rb.textContent = routeText; p.append(rb);
+      const lic = document.createElement("span"); lic.className = "lic-chip"; lic.textContent = licenseName(m.licensePosture); p.append(lic);
+      if (definitionText && definitionText !== routeText) p.append(` — ${definitionText}`);
+      const att = document.createElement("p"); att.className = "att";
+      const yearLabel = !year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year;
+      att.append(`${m.label} · ${yearLabel} · `);
+      if (/^https?:\/\//u.test(m.licensePointer)) {
+        const a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank"; a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a);
+      } else att.append(`record: ${m.licensePointer}`);
+      hud.append(p, att);
+    });
+  };
+  document.addEventListener("click", (e) => { if (!hud.hidden && !hud.contains(e.target) && !e.target.closest(".wb")) closeHud(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeHud(); });
+
+  // Hebrew / English reader toggle. Same words, same order, same receipts —
+  // the English mode flips the flow LTR and lets the gloss line lead.
+  const btnHe = document.getElementById("modeHe"), btnEn = document.getElementById("modeEn");
+  const setMode = (m) => {
+    closeHud();
+    document.body.classList.toggle("en", m === "en");
+    btnHe.classList.toggle("on", m !== "en");
+    btnEn.classList.toggle("on", m === "en");
+  };
+  btnHe.addEventListener("click", () => setMode("he"));
+  btnEn.addEventListener("click", () => setMode("en"));
+  if (new URLSearchParams(location.search).get("mode") === "en") setMode("en");
+
+  // contents
+  const nodes = zone.nodes || [];
+  if (nodes.length) {
+    const tocBody = document.getElementById("tocBody");
+    let lastPart = null, partDiv = null, chs = null;
+    nodes.forEach((n, i) => {
+      if (n.part_en !== lastPart) {
+        lastPart = n.part_en;
+        partDiv = document.createElement("div"); partDiv.className = "part";
+        const b = document.createElement("b"); b.textContent = n.part_en;
+        const heSmall = document.createElement("span"); heSmall.className = "he-small"; heSmall.lang = "he"; heSmall.dir = "rtl"; heSmall.textContent = n.part_he;
+        b.append(heSmall); partDiv.append(b);
+        chs = document.createElement("div"); chs.className = "chs"; partDiv.append(chs);
+        tocBody.append(partDiv);
+      }
+      const a = document.createElement("a"); a.href = `#n${i}`; a.textContent = n.name_en; chs.append(a);
+    });
+    document.getElementById("toc").hidden = false;
+  }
+
+  // text
+  const main = document.getElementById("text");
+  const frag = document.createDocumentFragment();
+  let curPart = null, curNode = -1;
+  zone.sections.forEach((sec) => {
+    const n = nodes[sec.node] || {};
+    if (sec.node !== curNode) {
+      if (n.part_en !== curPart) {
+        curPart = n.part_en;
+        const ph = document.createElement("div"); ph.className = "part-head";
+        const phe = document.createElement("div"); phe.className = "he"; phe.lang = "he"; phe.textContent = n.part_he || "";
+        const pen = document.createElement("div"); pen.className = "en"; pen.textContent = n.part_en || "";
+        ph.append(phe, pen); frag.append(ph);
+      }
+      curNode = sec.node;
+      const nh = document.createElement("div"); nh.className = "node-head"; nh.id = `n${sec.node}`;
+      const nhe = document.createElement("div"); nhe.className = "he"; nhe.lang = "he"; nhe.textContent = n.name_he || "";
+      const nen = document.createElement("div"); nen.className = "en"; nen.textContent = n.name_en || "";
+      nh.append(nhe, nen); frag.append(nh);
+    }
+    const s = document.createElement("section"); s.className = "seg";
+    const row = document.createElement("div"); row.className = "seg-row";
+    const v = document.createElement("span"); v.className = "vnum"; v.textContent = sec.label || "";
+    row.append(v);
+    if (sec.drift) {
+      const d = document.createElement("span"); d.className = "drift-chip";
+      d.textContent = `drifts from the sealed count · ${sec.drift.sealed_rows} sealed → ${sec.drift.observed_rows} here`;
+      row.append(d);
+    }
+    const he = document.createElement("p"); he.className = "he-text"; he.lang = "he"; he.dir = "rtl";
+    sec.words.forEach((word) => {
+      const wb = document.createElement("span");
+      wb.className = word.held ? "wb held" : "wb";
+      const span = document.createElement("span");
+      span.className = "w"; span.lang = "he"; span.dir = "rtl";
+      span.textContent = word.s;
+      wb.append(span);
+      const g = zone.gloss ? zone.gloss[word.k] : null;
+      if (g) { const ge = document.createElement("span"); ge.className = "g"; ge.textContent = g; wb.append(ge); }
+      if (!word.held) wb.addEventListener("click", () => openHud(wb, word));
+      he.append(wb, document.createTextNode(" "));
+    });
+    s.append(row, he);
+    frag.append(s);
+  });
+  main.append(frag);
+})();
+</script>
+</body>
+</html>
