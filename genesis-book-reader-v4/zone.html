@@ -681,7 +681,14 @@
   const navNext = document.getElementById("navNext");
   const heads = nodeHeads.map((h) => ({ node: h.node, el: h.el }));
   let atNode = 0;
-  const jump = (el) => { if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 12, behavior: "smooth" }); };
+  // A book this long runs to millions of pixels; smooth scrolling across
+  // that distance stalls, so only short hops animate.
+  const goTo = (top) => {
+    const d = Math.abs(top - window.scrollY);
+    window.scrollTo({ top, behavior: d > 2500 ? "auto" : "smooth" });
+    requestAnimationFrame(paintNav);
+  };
+  const jump = (el) => { if (el) goTo(el.getBoundingClientRect().top + window.scrollY - 12); };
   const currentIndex = () => {
     const y = window.scrollY + 80;
     let lo = 0;
@@ -697,7 +704,7 @@
     navNext.disabled = atNode >= heads.length - 1;
     nav.hidden = window.scrollY < 200 || !hud.hidden;
   };
-  document.getElementById("navTop").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  document.getElementById("navTop").addEventListener("click", () => goTo(0));
   navChapter.addEventListener("click", () => jump(heads[atNode].el));
   navPrev.addEventListener("click", () => { if (atNode > 0) jump(heads[atNode - 1].el); });
   navNext.addEventListener("click", () => { if (atNode < heads.length - 1) jump(heads[atNode + 1].el); });
@@ -732,10 +739,10 @@
     x.setAttribute("aria-label", "Close"); x.addEventListener("click", closePanel); head.append(x);
     const grid = document.createElement("div"); grid.className = "sp-grid";
     const top = document.createElement("a"); top.href = `#n${i}`; top.className = "sp-top"; top.textContent = "chapter top";
-    top.addEventListener("click", closePanel); grid.append(top);
+    top.addEventListener("click", () => { closePanel(); requestAnimationFrame(paintNav); }); grid.append(top);
     list.forEach((sc) => {
       const a = document.createElement("a"); a.href = `#${sc.id}`; a.textContent = sc.label;
-      a.addEventListener("click", closePanel); grid.append(a);
+      a.addEventListener("click", () => { closePanel(); requestAnimationFrame(paintNav); }); grid.append(a);
     });
     panel.append(head, grid);
     panel.hidden = false;
