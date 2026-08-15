@@ -10,9 +10,9 @@
 //   2. If no route carries the flag, take the earliest-ledger route.
 //      Signal name: ledger_order (arbitrary order — weakest evidence).
 //
-// Every derived default is a DRAFT until attested or validated. The reader
-// marks derived defaults; humans attest better picks in
-// synthesis/attestations-genesis-1-1.js (never by editing reader code).
+// Every derived default is exactly that — the declared rule's output.
+// Corrections ride as data in synthesis/gloss-overrides-genesis-1-1.js
+// (never by editing reader code).
 // Known limits, recorded here on purpose:
 //   - Function words (direct-object markers) have no contextual route in
 //     the dictionaries; rule v1 will pick a homograph. Fix planned:
@@ -37,8 +37,8 @@ const hud = window.GENESIS_1_1_FULL_HUD_FIXTURE;
 const GENERATED_ON = "2026-08-10";
 const RULE_ID =
   "synthesis-default-gloss-rule-v2-antiquity-primacy-1940-lastuary";
-// Rule v2 was attested 2026-08-10: sort a word's routes by the
-// oldest source year attesting them; sources after 1940 (or with no
+// Rule v2 · 2026-08-10: sort a word's routes by the
+// oldest source year carrying them; sources after 1940 (or with no
 // recorded year) form the last tier; ties break by ledger position. The
 // pool is built exactly the way the reader builds selectable routes
 // (choice + bundle helper routes), so the derived default always matches
@@ -77,7 +77,7 @@ hud.words.forEach((word) => {
   if (!lb) return;
   // Reader-identical pool: each choice contributes its bundle's helper
   // routes (or its own text); the route's year is the oldest source year
-  // attesting the choice's definition.
+  // recorded for the choice's definition.
   const seen = new Map();
   (lb.choices || []).forEach((choice) => {
     const bundle = (lb.pBundles || []).find(
@@ -152,7 +152,7 @@ const defaults = {
   rule_id: RULE_ID,
   generator: "tools/derive-default-glosses.mjs",
   status:
-    "DERIVED_DRAFT — every pick awaits attestation or targum-alignment validation",
+    "DERIVED_DRAFT — rule output; corrections ride as data (overrides or targum alignment)",
   by_word_index: byWordIndex,
 };
 
@@ -173,7 +173,7 @@ writeFileSync(
       ledger_id: `synthesis-ledger-genesis-1-1-defaults-${GENERATED_ON}`,
       rule_id: RULE_ID,
       generated_on: GENERATED_ON,
-      note: "Dispute rows (agrees_with_legacy=false) await human attestation in synthesis/attestations-genesis-1-1.js or targum-alignment validation.",
+      note: "Dispute rows (agrees_with_legacy=false) resolve by data: an override row in synthesis/gloss-overrides-genesis-1-1.js or targum-alignment validation.",
       rows: ledgerRows,
     },
     null,
