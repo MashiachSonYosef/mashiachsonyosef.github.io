@@ -679,20 +679,23 @@
   const navChapter = document.getElementById("navChapter");
   const navPrev = document.getElementById("navPrev");
   const navNext = document.getElementById("navNext");
-  const heads = nodeHeads.map((h) => ({ node: h.node, el: h.el }));
+  // offsets are measured once — nothing reflows after paint, because the
+  // Hebrew never moves — so position lookups stay pure arithmetic on a page
+  // that can run to millions of pixels
+  const heads = nodeHeads.map((h) => ({ node: h.node, el: h.el, top: h.el.offsetTop }));
   let atNode = 0;
   // A book this long runs to millions of pixels; smooth scrolling across
   // that distance stalls, so only short hops animate.
   const goTo = (top) => {
     const d = Math.abs(top - window.scrollY);
     window.scrollTo({ top, behavior: d > 2500 ? "auto" : "smooth" });
-    requestAnimationFrame(paintNav);
+    setTimeout(paintNav, 0);
   };
   const jump = (el) => { if (el) goTo(el.getBoundingClientRect().top + window.scrollY - 12); };
   const currentIndex = () => {
     const y = window.scrollY + 80;
     let lo = 0;
-    for (let i = 0; i < heads.length; i += 1) { if (heads[i].el.offsetTop <= y) lo = i; else break; }
+    for (let i = 0; i < heads.length; i += 1) { if (heads[i].top <= y) lo = i; else break; }
     return lo;
   };
   const paintNav = () => {
@@ -708,11 +711,15 @@
   navChapter.addEventListener("click", () => jump(heads[atNode].el));
   navPrev.addEventListener("click", () => { if (atNode > 0) jump(heads[atNode - 1].el); });
   navNext.addEventListener("click", () => { if (atNode < heads.length - 1) jump(heads[atNode + 1].el); });
-  let ticking = false;
+  // a page this size can starve requestAnimationFrame, so the bar repaints
+  // on a plain time throttle and on arrival at any anchor
+  let lastPaint = 0;
   window.addEventListener("scroll", () => {
-    if (ticking) return; ticking = true;
-    requestAnimationFrame(() => { paintNav(); ticking = false; });
+    const t = performance.now();
+    if (t - lastPaint < 120) return;
+    lastPaint = t; paintNav();
   }, { passive: true });
+  window.addEventListener("hashchange", () => setTimeout(paintNav, 0));
   paintNav();
   const navSync = new MutationObserver(paintNav);
   navSync.observe(hud, { attributes: true, attributeFilter: ["hidden"] });
@@ -739,10 +746,10 @@
     x.setAttribute("aria-label", "Close"); x.addEventListener("click", closePanel); head.append(x);
     const grid = document.createElement("div"); grid.className = "sp-grid";
     const top = document.createElement("a"); top.href = `#n${i}`; top.className = "sp-top"; top.textContent = "chapter top";
-    top.addEventListener("click", () => { closePanel(); requestAnimationFrame(paintNav); }); grid.append(top);
+    top.addEventListener("click", () => { closePanel(); setTimeout(paintNav, 0); }); grid.append(top);
     list.forEach((sc) => {
       const a = document.createElement("a"); a.href = `#${sc.id}`; a.textContent = sc.label;
-      a.addEventListener("click", () => { closePanel(); requestAnimationFrame(paintNav); }); grid.append(a);
+      a.addEventListener("click", () => { closePanel(); setTimeout(paintNav, 0); }); grid.append(a);
     });
     panel.append(head, grid);
     panel.hidden = false;
