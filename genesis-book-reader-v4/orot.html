@@ -57,14 +57,26 @@
     padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
   .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
-  .wb { display: inline-block; text-align: center; vertical-align: top; margin: 0 0.16rem 0.55rem; cursor: pointer; }
-  .w { display: block; border-bottom: 1px dashed transparent; border-radius: 2px; }
+  .wb { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top;
+    margin: 0 0.16rem 0.55rem; cursor: pointer; }
+  .w { display: block; order: 1; border-bottom: 1px dashed transparent; border-radius: 2px; }
   .wb:hover .w { color: #ffe08a; border-bottom-color: #6a5a33; }
   .wb.held { opacity: 0.45; cursor: default; }
   .wb.active .w { color: var(--gold); border-bottom: 1px solid var(--gold); }
-  .g { display: block; direction: ltr; font: 0.66rem/1.25 Georgia, serif; color: var(--muted);
+  .g { display: block; order: 2; direction: ltr; font: 0.66rem/1.25 Georgia, serif; color: var(--muted);
     letter-spacing: 0.02em; margin-top: 0.06rem; max-width: 11rem; }
   .wb.active .g { color: var(--gold); }
+
+  /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
+  body.en .he-text { direction: ltr; text-align: left; }
+  body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--ink); margin-top: 0; }
+  body.en .w { order: 2; font-size: 1.02rem; color: #b3a077; margin-top: 0.04rem; }
+  body.en .wb.active .g { color: var(--gold); }
+
+  #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; }
+  .mode-btn { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+    border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
+  .mode-btn.on { background: var(--gold); color: #171105; border-color: var(--gold); font-weight: bold; }
 
   /* The HUD floats. The Hebrew never moves — law of the house. */
   #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: 55vh;
@@ -97,6 +109,10 @@
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
   <nav><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a></nav>
+  <div id="modeRow">
+    <button type="button" class="mode-btn on" id="modeHe">Hebrew reader</button>
+    <button type="button" class="mode-btn" id="modeEn">English reader</button>
+  </div>
 </header>
 <div id="toc" hidden><h2>Contents</h2><div id="tocBody"></div></div>
 <main id="text"></main>
@@ -197,6 +213,19 @@
   };
   document.addEventListener("click", (e) => { if (!hud.hidden && !hud.contains(e.target) && !e.target.closest(".wb")) closeHud(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeHud(); });
+
+  // Hebrew / English reader toggle. Same words, same order, same receipts —
+  // the English mode flips the flow LTR and lets the gloss line lead.
+  const btnHe = document.getElementById("modeHe"), btnEn = document.getElementById("modeEn");
+  const setMode = (m) => {
+    closeHud();
+    document.body.classList.toggle("en", m === "en");
+    btnHe.classList.toggle("on", m !== "en");
+    btnEn.classList.toggle("on", m === "en");
+  };
+  btnHe.addEventListener("click", () => setMode("he"));
+  btnEn.addEventListener("click", () => setMode("en"));
+  if (new URLSearchParams(location.search).get("mode") === "en") setMode("en");
 
   // contents
   const nodes = zone.nodes || [];
