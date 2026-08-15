@@ -32,14 +32,26 @@
   /* contents */
   #toc { max-width: 48rem; margin: 1.3rem auto 0; padding: 0 1.5rem; }
   #toc h2 { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); margin: 0 0 0.5rem; }
+  /* Contents is a coordinate grid: positions, not content. Plain English
+     names the structure ("Part 2", "Chapter 7") — describing a thing is not
+     translating it, and an English reader should never be locked out of
+     navigation. The words themselves live in the text, where they can be
+     tapped. */
+  #toc .chs { display: grid; gap: 0.4rem; margin-top: 0.45rem;
+    grid-template-columns: repeat(auto-fill, minmax(3.4rem, 1fr)); }
+  #toc .chs a { display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.1rem; padding: 0.42rem 0.2rem; border: 1px solid var(--line); border-radius: 0.4rem;
+    background: var(--panel2); text-decoration: none; transition: border-color 120ms, background 120ms; }
+  #toc .chs a:hover { border-color: var(--gold); background: #16202c; }
+  #toc .chs a .n { font: bold 1.05rem/1 Georgia, serif; color: var(--gold); font-variant-numeric: tabular-nums; }
+  #toc .chs a .c { font-size: 0.6rem; letter-spacing: 0.06em; color: var(--faint); }
+  #toc .toc-note { margin: 0.9rem 0 0; font-size: 0.72rem; color: var(--faint); }
   #toc .part { margin: 0 0 0.65rem; }
   #toc .part b { display: block; color: var(--gold); font-variant: small-caps; letter-spacing: 0.1em;
     font-weight: normal; font-size: 0.92rem; margin-bottom: 0.15rem; }
   #toc .part b .he-small { color: var(--ink); font-size: 1rem; margin-left: 0.6rem; }
   #toc a { color: var(--muted); text-decoration: none; font-size: 0.84rem; }
   #toc a:hover { color: var(--link); }
-  #toc .chs { line-height: 1.9; }
-  #toc .chs a + a::before { content: "· "; color: var(--faint); margin: 0 0.15rem; }
 
   main { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 5rem; }
 
@@ -56,7 +68,10 @@
   .title-row .g { font-size: 0.62rem; max-width: 9em; }
   .node-head .title-row .g { font-size: 0.68rem; }
   .locator { display: block; font-size: 0.74rem; letter-spacing: 0.16em; font-variant: small-caps;
-    color: var(--faint); margin-top: 0.15rem; }
+    color: var(--faint); margin-bottom: 0.3rem; }
+  .vnum { font-variant-numeric: tabular-nums; }
+  .seg-row .vlabel { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--faint); margin-inline-start: 0.4rem; }
 
   .node-head { margin: 1.9rem 0 0.9rem; }
   .node-head .he { direction: rtl; text-align: right; font-size: 1.55rem; color: var(--ink-strong);
@@ -463,33 +478,37 @@
     return row;
   };
 
-  // Contents is navigation, not text: one surface, one verb. Every tap here
-  // jumps. Titles show in Hebrew (the section's own name — corpus text, and
-  // what makes the list findable); no gloss line and no HUD, because a tap
-  // that might mean two things is the ambiguity worth spending a rule on.
+  // Contents is navigation, not text: one surface, one verb — every tap here
+  // jumps. It carries coordinates, not content: a title is corpus text, and
+  // corpus text belongs where it can be tapped and defined. The Hebrew name
+  // rides as a hover title only, an access aid like the number itself.
   const nodes = zone.nodes || [];
   if (nodes.length) {
     const tocBody = document.getElementById("tocBody");
-    let lastPart = null, partDiv = null, chs = null;
+    const multiPart = new Set(nodes.map((n) => n.part_num || 1)).size > 1;
+    let lastPart = null, chs = null;
     nodes.forEach((n, i) => {
-      const partKey = n.part_he || n.part_en || "";
+      const partKey = n.part_num || 1;
       if (partKey !== lastPart) {
         lastPart = partKey;
-        partDiv = document.createElement("div"); partDiv.className = "part";
-        const b = document.createElement("b");
-        const heSmall = document.createElement("span"); heSmall.className = "he-small"; heSmall.lang = "he"; heSmall.dir = "rtl";
-        heSmall.textContent = n.part_he || "";
-        if (n.part_en) b.textContent = n.part_en;
-        b.append(heSmall); partDiv.append(b);
+        const partDiv = document.createElement("div"); partDiv.className = "part";
+        if (multiPart) { const b = document.createElement("b"); b.textContent = `Part ${partKey}`; partDiv.append(b); }
         chs = document.createElement("div"); chs.className = "chs"; partDiv.append(chs);
         tocBody.append(partDiv);
       }
       const a = document.createElement("a"); a.href = `#n${i}`;
-      if (n.name_he) { a.lang = "he"; a.dir = "rtl"; }
-      a.textContent = n.name_he || n.name_en || "";
-      if (n.sections) { const c = document.createElement("small"); c.textContent = ` · ${n.sections}`; a.append(c); }
+      a.title = n.name_he || n.name_en || "";
+      a.setAttribute("aria-label", `${n.name_en || `Chapter ${n.num || i + 1}`}${n.sections ? `, ${n.sections} sections` : ""}`);
+      const num = document.createElement("span"); num.className = "n"; num.textContent = String(n.num || i + 1);
+      a.append(num);
+      if (n.sections) { const c = document.createElement("span"); c.className = "c"; c.textContent = String(n.sections); a.append(c); }
       chs.append(a);
     });
+    const note = document.createElement("p"); note.className = "toc-note";
+    note.textContent = multiPart
+      ? "Part and chapter numbers are positions; the small figure is the number of sections. Chapter titles read in the text."
+      : "Chapter numbers, with the number of sections beneath each.";
+    tocBody.append(note);
     document.getElementById("toc").hidden = false;
   }
 
@@ -498,7 +517,7 @@
   await commentaryReady;
   const main = document.getElementById("text");
   const frag = document.createDocumentFragment();
-  let curPart = null, curNode = -1;
+  let curPart = null, curNode = -1, openedNode = false;
   zone.sections.forEach((sec) => {
     const n = nodes[sec.node] || {};
     if (sec.node !== curNode) {
@@ -506,23 +525,34 @@
       if (partKey !== curPart) {
         curPart = partKey;
         const ph = document.createElement("div"); ph.className = "part-head";
+        // Plain English names the structure — a position and a count, never a
+        // translation of the title. The title itself is the Hebrew row below.
+        if (n.part_num) { const pen = document.createElement("div"); pen.className = "locator"; pen.textContent = `Part ${n.part_num} · part title`; ph.append(pen); }
         ph.append(titleRow(n.part_tokens, n.part_he));
-        // A locator (the Y schema's "access aid") is a position, not a
-        // translation of the title — it may ride in English. A translated
-        // title may not, unless its own words carry it.
-        if (n.part_en) { const pen = document.createElement("div"); pen.className = "en"; pen.textContent = n.part_en; ph.append(pen); }
         frag.append(ph);
       }
       curNode = sec.node;
       const nh = document.createElement("div"); nh.className = "node-head"; nh.id = `n${sec.node}`;
+      const loc = document.createElement("span"); loc.className = "locator";
+      loc.textContent = `${n.name_en || `Chapter ${n.num || sec.node + 1}`} · chapter title` +
+        (n.sections ? ` · ${n.sections} ${n.sections === 1 ? "section" : "sections"}` : "");
+      nh.append(loc);
       nh.append(titleRow(n.name_tokens, n.name_he));
-      if (n.name_en) { const nen = document.createElement("span"); nen.className = "locator"; nen.textContent = n.name_en; nh.append(nen); }
-      frag.append(nh);
+      frag.append(nh); openedNode = true;
     }
     const s = document.createElement("section"); s.className = "seg";
     const row = document.createElement("div"); row.className = "seg-row";
     const v = document.createElement("span"); v.className = "vnum"; v.textContent = sec.label || "";
+    const parts = String(sec.label || "").split(":");
+    v.title = parts.length === 2 ? `Section ${parts[0]}, paragraph ${parts[1]}` : `Section ${parts[0]}`;
     row.append(v);
+    // name the numbering once per chapter, so a reader meets it before
+    // scrolling past four hundred of them
+    if (openedNode) {
+      const vl = document.createElement("span"); vl.className = "vlabel";
+      vl.textContent = parts.length === 2 ? "section · paragraph" : "section";
+      row.append(vl); openedNode = false;
+    }
     if (sec.drift) {
       const d = document.createElement("span"); d.className = "drift-chip";
       d.textContent = `drifts from the sealed count · ${sec.drift.sealed_rows} sealed → ${sec.drift.observed_rows} here`;
