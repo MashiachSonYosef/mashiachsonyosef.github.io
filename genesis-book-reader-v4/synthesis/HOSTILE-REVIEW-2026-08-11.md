@@ -80,7 +80,7 @@ holds a word whose every route is `other_possible` **and** whose corpus
 entry carries an unresolvable likely record — but note this would also
 re-hold בראשית, whose "the first" default is other_possible and fine, so
 the rule needs the second clause; (c) accept and record. Decision is
-Kyle's lane.
+the owner's lane.
 
 ## 2 · 28% of shard routes are comma-split fragments (SERIOUS, open)
 
@@ -98,7 +98,7 @@ reader-side filter: a filter would be an undeclared editorial rule.
 
 The corpus records no source years, so all 652 routes sit in the lastuary
 tier and rule v2 degenerates to corpus order. The pill order is therefore
-honest but the attested rule does no work here. Latent until year
+honest but the antiquity rule does no work here. Latent until year
 evidence exists in the corpus; recorded so nobody mistakes the current
 order for an antiquity ranking.
 
@@ -123,7 +123,7 @@ unchanged.
 
 "CC BY-SA 4.0 + Public Domain" in the book bar was a deduped union across
 sections — legible but imprecise by construction, and it read as a single
-blanket claim. Per Kyle's call the header now states nothing; it is a
+blanket claim. Per the owner's call (2026-08-11) the header now states nothing; it is a
 plain "Sources" door to the full records, and each section footer remains
 the only license claim, scoped exactly.
 

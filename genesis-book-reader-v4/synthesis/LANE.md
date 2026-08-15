@@ -16,9 +16,9 @@ license posture and exact-entry pointers.
 hand work: rules, generators, ledgers, and validation. Its law:
 
 1. **No picks live in code.** Every default the reader shows is either
-   ATTESTED (a human assertion recorded in data with a name, a date, and
-   a basis) or DERIVED (the output of a declared, rerunnable rule, marked
-   as draft). Attested outranks derived. Disputes are recorded, never
+   OVERRIDDEN (a correction recorded as data with a date and a basis)
+   or DERIVED (the output of a declared, rerunnable rule, marked
+   as draft). Override data outranks derived output. Disputes are recorded, never
    silently resolved.
 2. **Rules are declared before their outputs are accepted.** A rule that
    gets tuned until its outputs look right is a hand pick wearing a lab
@@ -68,8 +68,8 @@ routes; Ramban and Onkelos are absent from the lexical corpus entirely.
 Upstream repairs belong to the K lane, not reader code.
 
 ### Default glosses, rule v2 — antiquity primacy (`tools/derive-default-glosses.mjs`)
-**Rule attested by Kyle, 2026-08-10** — the first rule-level attestation
-in the project. Sort a word's routes by the oldest source year attesting
+**Rule v2 · 2026-08-10** — the first rule-level adoption
+in the project. Sort a word's routes by the oldest source year carrying
 them; sources after 1940, or without a recorded year, form the last tier
 ("lastuary"); ties break by ledger position. The pool is built exactly
 the way the reader builds selectable pills, so the derived default
@@ -77,7 +77,7 @@ always matches a real route. The same ordering governs the pill row
 (selected route first, then antiquity), the >10-pill filterable panel,
 and the D card's source-record stack (oldest record first).
 
-Output status remains DERIVED_DRAFT (italic) until per-word attestation.
+Output status remains DERIVED_DRAFT (italic) until a per-word override lands as data.
 Rule v1 (upstream_top5) is archived; its picks live in the ledger rows.
 
 **Known limits of rule v2, on the record:** function words still land on
@@ -117,8 +117,8 @@ populated for 65 of 81 works and internally consistent — Onkelos [80,120],
 Targum Jonathan [150,250], Rashi [1075,1105], Ramban [1246,1270], Or
 HaChaim [1718,1742]. It had never been read. The rail's work list now
 sorts oldest first, undated works last, alphabetical within the undated
-tier. Same shape as the attested antiquity rule, applied to works instead
-of dictionary entries. No new rule — the rule was already attested; this
+tier. Same shape as the antiquity rule, applied to works instead
+of dictionary entries. No new rule — the rule was already adopted; this
 is the field it was always about.
 
 ### Verse-aligned evidence (selectable, not leading)
@@ -148,7 +148,7 @@ on their own, because the gate reads the flag.
 
 ## Overrides
 
-`synthesis/attestations-genesis-1-1.js` is the project's backend
+`synthesis/gloss-overrides-genesis-1-1.js` is the project's backend
 override layer. When a different default is wanted than the rule
 derives, it is recorded there in data — unsigned, no justification
 required. The rule is the public explanation; overrides are ordinary
@@ -180,7 +180,7 @@ explain itself.
    `synthesis/K-LANE-REPAIR-SPEC.md`.
 4. **Section-pipeline default audit.** Future sections (1:2 onward)
    carry pipeline defaults of similar draft quality ("beacon",
-   "flutter"); run them through the same rule + attestation + ledger
+   "flutter"); run them through the same rule + override + ledger
    discipline.
 5. **Y-layer defaults through the lane.** The title/chapter-token HUD
    (`data/y-title-hud-2026-07-19.js`) carries upstream-pipeline baked
