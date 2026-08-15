@@ -64,7 +64,7 @@
   let zone, index;
   try {
     [zone, index] = await Promise.all([
-      fetch("data/zones/orot-hakodesh.bin").then(unpack),
+      fetch("data/zones/orot.bin").then(unpack),
       fetch("data/route-store/index.json").then((r) => r.json()),
     ]);
   } catch {
@@ -74,14 +74,19 @@
   }
   document.getElementById("workTitle").textContent = zone.work;
   document.title = `${zone.work} · The Tabernacle`;
+  const ac = zone.emitted_from.acquisition, oc = zone.emitted_from.identity_oracle;
   document.getElementById("meta").textContent =
     `${zone.counts.words.toLocaleString()} words · ${zone.counts.sections.toLocaleString()} sections · ` +
-    `piped through the installed terminal reader (${zone.emitted_from.walker.pointer_status}) · ` +
-    `${zone.counts.held ? zone.counts.held.toLocaleString() + " words held by rights · " : ""}every word answers from the live route store`;
+    `Hebrew text: ${ac.hebrew_version} via Sefaria, license ${ac.hebrew_license_seen} (seen live on every payload) · ` +
+    `${zone.counts.verified_units} of ${zone.counts.sections} sections verified word-for-word in count against the sealed corpus allocation` +
+    `${zone.counts.drifted_units ? `; ${zone.counts.drifted_units} drift from it and are marked` : ""} · ` +
+    `every word answers from the live route store`;
   document.getElementById("prov").textContent =
-    `${zone.rule_id} · walk input sha256 ${zone.emitted_from.input_sha256.slice(0, 16)}… · ` +
-    `chain: pointer ${zone.emitted_from.walker.pointer_sha256.slice(0, 12)}…, library ${zone.emitted_from.walker.library_sha256.slice(0, 12)}… · ` +
-    `rights ride per occurrence from the walk; held rows render dimmed and answer nothing.`;
+    `${zone.rule_id} · route: ${zone.route} · identity oracle ${oc.bridge_sha256.slice(0, 16)}… ` +
+    `(416 units, C0 ${oc.first_c0_numeric_id.toLocaleString()}–${oc.last_c0_numeric_id.toLocaleString()}) · ` +
+    `payload sha ${ac.payload_sha256_transferred.slice(0, 16)}… · ${zone.emitted_from.license_receipts.work_activation} · ` +
+    `the installed terminal reader does not yet carry this span (partial-rebuild gap); this page runs the acquisition route, ` +
+    `fetched from the same source and version the corpus receipts name, until a sealed generation includes the book.`;
 
   const hud = document.getElementById("hud");
   const shardCache = new Map();
@@ -138,7 +143,10 @@
   const frag = document.createDocumentFragment();
   zone.sections.forEach((sec) => {
     const s = document.createElement("section");
-    const u = document.createElement("div"); u.className = "unit"; u.textContent = sec.unit;
+    const u = document.createElement("div"); u.className = "unit";
+    u.textContent = sec.drift
+      ? `${sec.unit} · drifts from the sealed count (${sec.drift.sealed_rows} sealed → ${sec.drift.observed_rows} here)`
+      : sec.unit;
     const he = document.createElement("p"); he.className = "he"; he.lang = "he"; he.dir = "rtl";
     sec.words.forEach((word, i) => {
       const span = document.createElement("span");
