@@ -499,14 +499,14 @@
       if (g) { ge.textContent = spanJoin(g); ge.title = spanJoin(g); }
       else { ge.textContent = " "; ge.classList.add("bare"); }
       wb.append(ge);
-      const cm = commentaryFor(sec.unit, wIdx);
+      const myIdx = wIdx; wIdx += 1;
+      const cm = commentaryFor(sec.unit, myIdx);
       if (cm && cm.length) {
         const chip = document.createElement("span"); chip.className = "c-chip";
         chip.textContent = "C" + (cm.length > 1 ? cm.length : "");
         wb.append(chip);
       }
-      if (!word.held) wb.addEventListener("click", () => openHud(wb, word, sec.unit, wIdx));
-      wIdx += 1;
+      if (!word.held) wb.addEventListener("click", () => openHud(wb, word, sec.unit, myIdx));
       he.append(wb, document.createTextNode(" "));
     });
     s.append(row, he);
