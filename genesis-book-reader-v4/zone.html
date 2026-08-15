@@ -44,6 +44,38 @@
     text-decoration: none; font: 0.92rem/1 Georgia, serif; color: var(--gold);
     font-variant-numeric: tabular-nums; transition: border-color 120ms, background 120ms; }
   #toc .chs a:hover { border-color: var(--gold); background: #16202c; }
+  #toc .chs a.on { border-color: var(--gold); background: var(--gold); color: #171105; font-weight: bold; }
+  /* the sections of one chapter, opened in place under the grid */
+  #secPanel { margin-top: 0.7rem; border: 1px solid var(--line); border-radius: 0.5rem;
+    background: var(--panel2); padding: 0.6rem 0.7rem; }
+  #secPanel[hidden] { display: none; }
+  #secPanel .sp-head { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.5rem;
+    font-size: 0.74rem; letter-spacing: 0.14em; font-variant: small-caps; color: var(--faint); }
+  #secPanel .sp-he { font-variant: normal; letter-spacing: 0; font-size: 1rem; color: var(--gold); }
+  #secPanel .sp-x { margin-inline-start: auto; background: none; border: 0; color: var(--muted);
+    font-size: 1.05rem; line-height: 1; cursor: pointer; padding: 0 0.2rem; }
+  #secPanel .sp-grid { display: grid; gap: 0.26rem;
+    grid-template-columns: repeat(auto-fill, minmax(2.9rem, 1fr)); }
+  #secPanel .sp-grid a { display: flex; align-items: center; justify-content: center; min-height: 1.85rem;
+    border: 1px solid var(--line); border-radius: 0.32rem; background: var(--panel);
+    color: var(--muted); text-decoration: none; font-size: 0.76rem; font-variant-numeric: tabular-nums; }
+  #secPanel .sp-grid a:hover { border-color: var(--gold); color: var(--gold); }
+  #secPanel .sp-grid a.sp-top { grid-column: span 2; color: var(--gold); font-variant: small-caps;
+    letter-spacing: 0.1em; border-color: var(--gold-dim); }
+
+  /* one floating bar, not chrome on every section */
+  #nav { position: fixed; z-index: 60; right: 0.9rem; bottom: 0.9rem; display: flex; gap: 0.3rem;
+    background: rgba(16, 24, 35, 0.94); border: 1px solid var(--line); border-radius: 999px;
+    padding: 0.3rem; box-shadow: 0 8px 24px rgba(0,0,0,.5); backdrop-filter: blur(4px); }
+  #nav[hidden] { display: none; }
+  #nav button { border: 0; background: none; color: var(--muted); font: inherit; font-size: 0.75rem;
+    letter-spacing: 0.08em; font-variant: small-caps; cursor: pointer; border-radius: 999px;
+    padding: 0.24rem 0.7rem; white-space: nowrap; }
+  #nav button:hover:not(:disabled) { color: var(--gold); background: #16202c; }
+  #nav button:disabled { opacity: 0.35; cursor: default; }
+  #navPrev, #navNext { font-size: 1rem; padding: 0.14rem 0.55rem; }
+  @media (max-width: 520px) { #nav { left: 0.9rem; right: 0.9rem; justify-content: center; } }
+
   #toc .toc-note { margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--faint); }
   #toc .part { margin: 0 0 0.65rem; }
   #toc .part b { display: block; color: var(--gold); font-variant: small-caps; letter-spacing: 0.1em;
@@ -179,7 +211,13 @@
     <button type="button" class="mode-btn" id="modeEn">English reader</button>
   </div>
 </header>
-<div id="toc" hidden><h2>Contents</h2><div id="tocBody"></div></div>
+<div id="toc" hidden><h2>Contents</h2><div id="tocBody"></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
 <main id="text"></main>
 <div id="hud" hidden></div>
 <footer id="prov"></footer>
@@ -554,6 +592,9 @@
   const main = document.getElementById("text");
   const frag = document.createDocumentFragment();
   let curPart = null, curNode = -1, openedNode = false;
+  let secIdx = 0;
+  const nodeSections = {};
+  const nodeHeads = [];
   zone.sections.forEach((sec) => {
     const n = nodes[sec.node] || {};
     if (sec.node !== curNode) {
@@ -574,9 +615,12 @@
         (n.sections ? ` · ${n.sections} ${n.sections === 1 ? "section" : "sections"}` : "");
       nh.append(loc);
       nh.append(titleRow(n.name_tokens, n.name_he));
-      frag.append(nh); openedNode = true;
+      frag.append(nh); openedNode = true; nodeHeads.push({ node: sec.node, el: nh });
     }
     const s = document.createElement("section"); s.className = "seg";
+    s.id = `s${secIdx}`;
+    (nodeSections[sec.node] = nodeSections[sec.node] || []).push({ label: sec.label || String(secIdx + 1), id: s.id });
+    secIdx += 1;
     const row = document.createElement("div"); row.className = "seg-row";
     const v = document.createElement("span"); v.className = "vnum"; v.textContent = sec.label || "";
     const parts = String(sec.label || "").split(":");
@@ -625,6 +669,86 @@
     frag.append(s);
   });
   main.append(frag);
+
+  // ---- getting around -------------------------------------------------
+  // One floating bar rather than controls on every section: at 1,533
+  // sections per book, per-section chrome is noise. The bar knows which
+  // chapter you are in and stands down whenever the HUD is open, so only
+  // one thing ever asks for a tap.
+  const nav = document.getElementById("nav");
+  const navChapter = document.getElementById("navChapter");
+  const navPrev = document.getElementById("navPrev");
+  const navNext = document.getElementById("navNext");
+  const heads = nodeHeads.map((h) => ({ node: h.node, el: h.el }));
+  let atNode = 0;
+  const jump = (el) => { if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 12, behavior: "smooth" }); };
+  const currentIndex = () => {
+    const y = window.scrollY + 80;
+    let lo = 0;
+    for (let i = 0; i < heads.length; i += 1) { if (heads[i].el.offsetTop <= y) lo = i; else break; }
+    return lo;
+  };
+  const paintNav = () => {
+    if (!heads.length) return;
+    atNode = currentIndex();
+    const n = nodes[heads[atNode].node] || {};
+    navChapter.textContent = `Chapter ${n.num || heads[atNode].node + 1}`;
+    navPrev.disabled = atNode === 0;
+    navNext.disabled = atNode >= heads.length - 1;
+    nav.hidden = window.scrollY < 200 || !hud.hidden;
+  };
+  document.getElementById("navTop").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  navChapter.addEventListener("click", () => jump(heads[atNode].el));
+  navPrev.addEventListener("click", () => { if (atNode > 0) jump(heads[atNode - 1].el); });
+  navNext.addEventListener("click", () => { if (atNode < heads.length - 1) jump(heads[atNode + 1].el); });
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => { paintNav(); ticking = false; });
+  }, { passive: true });
+  paintNav();
+  const navSync = new MutationObserver(paintNav);
+  navSync.observe(hud, { attributes: true, attributeFilter: ["hidden"] });
+
+  // ---- contents: chapter opens its sections ---------------------------
+  // Tap a chapter number for its sections, tap a section number to land —
+  // the same book-chapter-verse drill a reader already knows. Each surface
+  // still carries exactly one verb.
+  const panel = document.getElementById("secPanel");
+  const closePanel = () => { panel.hidden = true; document.querySelectorAll("#toc .chs a.on").forEach((a) => a.classList.remove("on")); };
+  const openPanel = (i, cell) => {
+    const list = nodeSections[i] || [];
+    if (!list.length) return;
+    document.querySelectorAll("#toc .chs a.on").forEach((a) => a.classList.remove("on"));
+    cell.classList.add("on");
+    const n = nodes[i] || {};
+    panel.replaceChildren();
+    const head = document.createElement("div"); head.className = "sp-head";
+    const lbl = document.createElement("span");
+    lbl.textContent = `${n.name_en || `Chapter ${n.num || i + 1}`} · ${list.length} ${list.length === 1 ? "section" : "sections"}`;
+    head.append(lbl);
+    if (n.name_he) { const he2 = document.createElement("span"); he2.className = "sp-he"; he2.lang = "he"; he2.dir = "rtl"; he2.textContent = n.name_he; head.append(he2); }
+    const x = document.createElement("button"); x.type = "button"; x.className = "sp-x"; x.textContent = "×";
+    x.setAttribute("aria-label", "Close"); x.addEventListener("click", closePanel); head.append(x);
+    const grid = document.createElement("div"); grid.className = "sp-grid";
+    const top = document.createElement("a"); top.href = `#n${i}`; top.className = "sp-top"; top.textContent = "chapter top";
+    top.addEventListener("click", closePanel); grid.append(top);
+    list.forEach((sc) => {
+      const a = document.createElement("a"); a.href = `#${sc.id}`; a.textContent = sc.label;
+      a.addEventListener("click", closePanel); grid.append(a);
+    });
+    panel.append(head, grid);
+    panel.hidden = false;
+  };
+  document.querySelectorAll("#toc .chs a").forEach((cell, i) => {
+    cell.addEventListener("click", (e) => {
+      if (!(nodeSections[i] || []).length) return; // nothing to drill into
+      e.preventDefault();
+      if (cell.classList.contains("on")) { closePanel(); return; }
+      openPanel(i, cell);
+    });
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePanel(); });
 })();
 </script>
 </body>
