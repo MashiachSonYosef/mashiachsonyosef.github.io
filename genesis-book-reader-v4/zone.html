@@ -189,6 +189,20 @@
   #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   #hud .c-note { color: var(--faint); font-size: 0.72rem; margin: 0.2rem 0 0; }
+  /* A commentary served from the chain is text, not decoration: its own words
+     carry their own routes, so they are word blocks like any others. */
+  #hud .c-he .wb { margin: 0 0.14rem 0.5rem; }
+  #hud .c-he .w { font-size: 1.05rem; }
+  #hud .c-he .g { font-size: 0.6rem; max-width: 8em; }
+  #hud .c-back { background: none; border: 0; color: var(--link); font: inherit; font-size: 0.74rem;
+    cursor: pointer; padding: 0 0 0.25rem; letter-spacing: 0.04em; }
+  #hud .c-back:hover { color: var(--gold); }
+  /* the section's own commentary handle, sitting with the section number */
+  .c-seg { font-size: 0.68rem; color: #d9b49a; border: 1px solid #5a3a2a; background: #1c1410;
+    border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.04em; cursor: pointer;
+    font-family: inherit; font-variant: small-caps; }
+  .c-seg:hover { border-color: #b06a4a; color: #f0cdb4; }
+  .c-seg[aria-expanded="true"] { background: #b06a4a; color: #1c0f08; border-color: #b06a4a; }
   #prov a { color: var(--shesh); }
 
   footer { max-width: 48rem; margin: 0 auto; padding: 1.1rem 1.5rem 2.2rem; font-size: 0.76rem;
@@ -205,7 +219,7 @@
   <h1 id="workTitle"><span class="he-t" lang="he" dir="rtl"></span><span class="en-t">Zone reader</span></h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
-  <nav><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=orot">Orot</a> · <a href="zone.html?b=genesis">Genesis</a></nav>
+  <nav><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=genesis">Genesis</a> · <a href="zone.html?b=1kings">I Kings</a> · <a href="zone.html?b=orot">Orot</a></nav>
   <div id="modeRow">
     <button type="button" class="mode-btn on" id="modeHe">Hebrew reader</button>
     <button type="button" class="mode-btn" id="modeEn">English reader</button>
@@ -266,7 +280,7 @@
     `(${oc.sealed_units.toLocaleString()} units, C0 ${oc.first_c0_numeric_id.toLocaleString()}–${oc.last_c0_numeric_id.toLocaleString()}) · ` +
     (wk ? `${/RESIDENT_SERVE/.test(wk.route || "") ? `serve rule ${wk.walker_rule}; sealed-reader oracle ${wk.sealed_oracle.report.field_exact}/${wk.sealed_oracle.report.sampled} field-exact; ` : `walk: `}module ${wk.module.sha256.slice(0, 12)}…, pointer ${wk.pointer.sha256.slice(0, 12)}… · ${zone.emitted_from.license_receipts.per_occurrence} · ` : `payload sha ${ac.payload_sha256_transferred.slice(0, 16)}… · ${zone.emitted_from.license_receipts.work_activation} · `) +
     `${zone.emitted_from.gloss_layer ? `glosses: ${zone.emitted_from.gloss_layer.rule} (table sha ${zone.emitted_from.gloss_layer.gloss_table_sha256.slice(0, 12)}…; ${zone.emitted_from.gloss_layer.attribution}) · ` : ""}` +
-    `chapter names shown in English come verbatim from the source index receipts; no English translation is paired, because the only licensed one survives as fragments in another edition's paragraphing and honest alignment does not exist · ` +
+    `${zone.emitted_from.y_ledger?.consequence || zone.emitted_from.y_ledger?.status || ""}${zone.emitted_from.y_ledger ? " · " : ""}` +
     (zone.emitted_from.sealed_chain_status
       ? `the installed terminal reader does not yet carry this span (partial-rebuild gap); this page runs the acquisition route until a sealed generation includes the book.`
       : (wk && /RESIDENT_SERVE/.test(wk.route || "")
@@ -284,6 +298,13 @@
     provEl.append(linkRow);
   }
 
+  // Plain English for the two levels of the coordinate — "chapter · verse"
+  // for a book of the Tanakh, "section · paragraph" for a work numbered that
+  // way. These name the structure; they translate nothing.
+  const COORD = zone.emitted_from.coordinate_labels || { major: "section", minor: "paragraph" };
+  const MAJOR = COORD.major, MINOR = COORD.minor;
+  const MAJOR_C = MAJOR.charAt(0).toUpperCase() + MAJOR.slice(1);
+
   const hud = document.getElementById("hud");
   // The reader's display law: route texts pack morpheme spans with "/"; the
   // page never shows the raw packing — spans join with " + ", exactly the
@@ -300,25 +321,55 @@
     return data ? data[key] : null;
   };
   let activeEl = null;
-  const closeHud = () => { hud.hidden = true; hud.replaceChildren(); activeEl?.classList.remove("active"); activeEl = null; };
-  const openHud = async (el, word, unitId, wordPos) => {
+  const closeHud = () => {
+    hud.hidden = true; hud.replaceChildren();
+    activeEl?.classList.remove("active"); activeEl = null; hudAnchor = null;
+    document.querySelectorAll('.c-seg[aria-expanded="true"]').forEach((c) => c.setAttribute("aria-expanded", "false"));
+  };
+  // Anchor the HUD to whatever was tapped. Three surfaces open it now — a
+  // word, a commentary word, and a section's commentary handle — and a
+  // commentary card is tall, so "just below" is not always on screen.
+  // Below if it fits, above if that fits, clamped into view otherwise; the
+  // HUD is never left hanging off the bottom edge with a strip showing.
+  let hudAnchor = null;
+  const placeHud = (el) => {
+    if (el) hudAnchor = el;
+    if (!hudAnchor) return;
+    hud.hidden = false;
+    const rect = hudAnchor.getBoundingClientRect();
+    const h = hud.offsetHeight || 0, w = hud.offsetWidth || 0;
+    const pad = 8;
+    let top;
+    if (rect.bottom + pad + h <= window.innerHeight - pad) top = rect.bottom + pad;
+    else if (rect.top - pad - h >= pad) top = rect.top - pad - h;
+    else top = Math.max(pad, window.innerHeight - h - pad);
+    hud.style.top = `${top}px`;
+    hud.style.left = `${Math.max(pad, Math.min(window.innerWidth - w - pad, rect.left - 100))}px`;
+  };
+  const backButton = (back) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "c-back";
+    b.textContent = `‹ back to ${back.label}`;
+    b.addEventListener("click", (e) => { e.stopPropagation(); back.open(); });
+    return b;
+  };
+  const openHud = async (el, word, unitId, wordPos, opts = {}) => {
     closeHud();
     activeEl = el; el.classList.add("active");
-    const rect = el.getBoundingClientRect();
-    hud.style.top = Math.min(window.innerHeight - 60, rect.bottom + 8) + "px";
-    hud.style.left = Math.max(8, Math.min(window.innerWidth - Math.min(368, window.innerWidth * 0.92) - 8, rect.left - 100)) + "px";
-    hud.hidden = false;
+    placeHud(el);
     const head = document.createElement("div"); head.className = "head";
     const b = document.createElement("b"); b.lang = "he"; b.dir = "rtl"; b.textContent = word.s;
     const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Close"); x.addEventListener("click", closeHud);
     head.append(b, x);
     const status = document.createElement("p"); status.textContent = "Fetching one shard…";
-    hud.replaceChildren(head, status);
-    const cm = commentaryFor(unitId, wordPos);
+    if (opts.back) hud.replaceChildren(backButton(opts.back), head, status);
+    else hud.replaceChildren(head, status);
+    placeHud();
+    const cm = opts.back ? null : commentaryFor(unitId, wordPos);
     const routes = await routesFor(word.k);
     if (!routes) {
       status.textContent = "No exact route in the catalog for this form. Exact spellings only — nothing folded, nothing guessed.";
       appendCommentarySection(cm);
+      placeHud();
       return;
     }
     hud.removeChild(status);
@@ -430,11 +481,20 @@
     renderDCard();
     hud.append(dCard);
     appendCommentarySection(cm);
+    placeHud();
   };
 
-  // Commentary layer — the sidecar rides per book; word-anchored units from
-  // the attachment map, each with its own license, one unit on display at a
-  // time. Absent sidecar or absent anchors = no section, nothing implied.
+  // Commentary layer — the sidecar rides per book, and there are two grains.
+  //
+  // V1 anchors a commentary unit to one word of one verse, which is what a
+  // word-level attachment map can prove. V2 attaches a whole work to a whole
+  // section, because both works are units of the sealed chain and their unit
+  // ids already carry the same coordinates: i-kings-7-14 receives
+  // targum-jonathan-on-i-kings-7-14. Nothing is fetched and nothing is
+  // guessed; the attachment is the chain's own numbering.
+  //
+  // Absent sidecar, absent anchors, absent section = no commentary shown and
+  // nothing implied.
   let commentaryStore = null;
   const commentaryReady = fetch(`data/zones/${BOOK}-commentary.bin`)
     .then((r) => (r.ok ? unpack(r) : null))
@@ -445,6 +505,13 @@
     if (!u || !u.words) return null;
     return u.words[String(wordPos)] || null;
   };
+  const sectionCommentaryFor = (unitId) => {
+    const u = commentaryStore && commentaryStore.units && commentaryStore.units[unitId];
+    if (!u || !u.section || !u.section.length) return null;
+    return u.section;
+  };
+  const commentaryWorkOf = (entry) =>
+    (commentaryStore && commentaryStore.works && commentaryStore.works[entry.work || 0]) || {};
   const appendCommentarySection = (entries) => {
     if (!entries || !entries.length) return;
     const label = document.createElement("p"); label.className = "r-label";
@@ -514,7 +581,100 @@
     renderCard();
     hud.append(card);
   };
-  document.addEventListener("click", (e) => { if (!hud.hidden && !hud.contains(e.target) && !e.target.closest(".wb")) closeHud(); });
+
+  // One word block, used by the text, by the titles, and by a commentary that
+  // came through the chain — same shape, same gloss line, same tap. The gloss
+  // table is passed in because a commentary carries its own: it answers from
+  // the same catalog, but only for the forms it actually contains.
+  const wordBlock = (word, table) => {
+    const wb = document.createElement("span");
+    wb.className = word.held ? "wb held" : "wb";
+    const w = document.createElement("span");
+    w.className = "w"; w.lang = "he"; w.dir = "rtl"; w.textContent = word.s;
+    wb.append(w);
+    const g = table && word.k ? table[word.k] : null;
+    // The gloss line always exists — words without English keep an empty line
+    // so the Hebrew never rides higher than its neighbors, in either mode.
+    const ge = document.createElement("span"); ge.className = "g";
+    if (g) { ge.textContent = spanJoin(g); ge.title = spanJoin(g); }
+    else { ge.textContent = " "; ge.classList.add("bare"); }
+    wb.append(ge);
+    return wb;
+  };
+
+  // A section's commentary: one pill per attached work, and the work's own
+  // words beneath — tappable, because a commentary a reader cannot
+  // interrogate is decoration. Its licence is its own; nothing inherits.
+  const openSectionCommentary = (el, unitId, label) => {
+    const entries = sectionCommentaryFor(unitId);
+    if (!entries) return;
+    const reopen = () => openSectionCommentary(el, unitId, label);
+    closeHud();
+    activeEl = el; el.setAttribute("aria-expanded", "true");
+    placeHud(el);
+    const head = document.createElement("div"); head.className = "head";
+    const b = document.createElement("b"); b.textContent = label; b.style.fontSize = "0.95rem"; b.style.fontFamily = "inherit";
+    const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Close");
+    x.addEventListener("click", () => { el.setAttribute("aria-expanded", "false"); closeHud(); });
+    head.append(b, x);
+    const lab = document.createElement("p"); lab.className = "r-label"; lab.textContent = "Commentary · attached to this section";
+    const pills = document.createElement("div"); pills.className = "c-pills";
+    const card = document.createElement("div"); card.className = "c-card";
+    let selected = entries[0];
+    const renderCard = () => {
+      card.replaceChildren();
+      const body = document.createElement("p"); body.className = "c-he"; body.lang = "he"; body.dir = "rtl";
+      (selected.words || []).forEach((word) => {
+        const wb = wordBlock(word, commentaryStore.gloss);
+        if (!word.held) wb.addEventListener("click", (ev) => {
+          ev.stopPropagation();
+          openHud(wb, word, null, null, { back: { label: selected.label || selected.ref, open: reopen } });
+        });
+        body.append(wb, document.createTextNode(" "));
+      });
+      if (!body.childNodes.length) { body.dir = "auto"; body.textContent = selected.text || ""; }
+      card.append(body);
+      const w = commentaryWorkOf(selected);
+      const att = document.createElement("p"); att.className = "att";
+      att.append(`${selected.ref}${w.b_n ? ` · ${w.b_n}` : ""} `);
+      const lic = document.createElement("span"); lic.className = "lic-chip"; lic.textContent = w.license || "License unrecorded";
+      att.append(lic);
+      card.append(att);
+      const note = document.createElement("p"); note.className = "c-note";
+      note.textContent = selected.state === "PROVEN_EDGE"
+        ? `Attachment: ${selected.basis === "SEALED_UNIT_COORDINATE_IDENTITY"
+            ? "both works are units of the sealed chain and carry the same coordinates — nothing renumbered, nothing inferred"
+            : selected.basis}`
+        : `Attachment: suggested reach only — ${selected.basis}; not a proven edge`;
+      card.append(note);
+    };
+    entries.forEach((e) => {
+      const p = document.createElement("button"); p.type = "button";
+      p.textContent = commentaryWorkOf(e).family_en || e.label || e.ref;
+      p.setAttribute("aria-pressed", String(e === selected));
+      p.addEventListener("click", () => {
+        selected = e;
+        pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
+        p.setAttribute("aria-pressed", "true");
+        renderCard();
+      });
+      pills.append(p);
+    });
+    renderCard();
+    hud.replaceChildren(head, lab, pills, card);
+    placeHud();
+  };
+
+  document.addEventListener("click", (e) => {
+    if (hud.hidden) return;
+    // A handler may have replaced the HUD's contents before this listener
+    // runs; the node that was tapped is then detached, and asking whether the
+    // HUD still contains it answers no about a tap that came from inside it.
+    if (!e.target.isConnected) return;
+    if (hud.contains(e.target) || e.target.closest(".wb") || e.target.closest(".c-seg")) return;
+    document.querySelectorAll('.c-seg[aria-expanded="true"]').forEach((c) => c.setAttribute("aria-expanded", "false"));
+    closeHud();
+  });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeHud(); });
 
   // Hebrew / English reader toggle. Same words, same order, same receipts —
@@ -538,14 +698,13 @@
     const row = document.createElement("div"); row.className = "title-row";
     if (!toks || !toks.length) { row.lang = "he"; row.dir = "rtl"; row.textContent = raw || ""; return row; }
     toks.forEach((t) => {
-      const wb = document.createElement("span"); wb.className = "wb";
-      const w = document.createElement("span"); w.className = "w"; w.lang = "he"; w.dir = "rtl"; w.textContent = t.s;
-      wb.append(w);
-      const g = zone.gloss ? zone.gloss[t.k] : null;
-      const ge = document.createElement("span"); ge.className = "g";
-      if (g) { ge.textContent = spanJoin(g); ge.title = spanJoin(g); } else { ge.textContent = " "; ge.classList.add("bare"); }
-      wb.append(ge);
-      wb.addEventListener("click", (e) => { e.stopPropagation(); openHud(wb, { s: t.s, k: t.k }, null, null); });
+      const wb = wordBlock(t, zone.gloss);
+      // A token the ledger carries without a key is not a word of the text —
+      // a canonical numeral reuses a letter's identity to name a number. It
+      // reads as part of the title and opens nothing, because the catalog has
+      // nothing to say about a word nobody wrote here.
+      if (t.k) wb.addEventListener("click", (e) => { e.stopPropagation(); openHud(wb, { s: t.s, k: t.k }, null, null); });
+      else wb.style.cursor = "default";
       row.append(wb, document.createTextNode(" "));
     });
     return row;
@@ -579,9 +738,12 @@
       chs.append(a);
     });
     const note = document.createElement("p"); note.className = "toc-note";
-    note.textContent = multiPart
-      ? "Chapter numbers by part. Titles read in the text; hover a number for its title and size."
-      : "Chapter numbers. Titles read in the text; hover a number for its title and size.";
+    const titled = nodes.some((n) => (n.name_tokens && n.name_tokens.length) || n.name_he);
+    note.textContent =
+      `${MAJOR_C} numbers${multiPart ? " by part" : ""}. ` +
+      (titled
+        ? `Titles read in the text; hover a number for its title and size.`
+        : `Hover a number for its size. This work carries no title in the ledger, so none is shown.`);
     tocBody.append(note);
     document.getElementById("toc").hidden = false;
   }
@@ -589,6 +751,16 @@
   // text — the commentary sidecar (if any) must be in hand before word
   // blocks render, so C chips land on first paint.
   await commentaryReady;
+  // Say what the commentary is and where it came from, in the masthead, before
+  // a reader meets the first handle for it.
+  if (commentaryStore && commentaryStore.counts && commentaryStore.counts.attached_sections) {
+    const cc = commentaryStore.counts;
+    const w0 = (commentaryStore.works || [])[0] || {};
+    document.getElementById("meta").textContent +=
+      ` · ${cc.attached_sections.toLocaleString()} of ${cc.base_sections.toLocaleString()} sections carry ` +
+      `${w0.title || "a commentary"} (${w0.license || "license unrecorded"}), served from the same sealed chain and ` +
+      `attached by the coordinates both works already carry`;
+  }
   const main = document.getElementById("text");
   const frag = document.createDocumentFragment();
   let curPart = null, curNode = -1, openedNode = false;
@@ -611,8 +783,12 @@
       curNode = sec.node;
       const nh = document.createElement("div"); nh.className = "node-head"; nh.id = `n${sec.node}`;
       const loc = document.createElement("span"); loc.className = "locator";
-      loc.textContent = `${n.name_en || `Chapter ${n.num || sec.node + 1}`} · chapter title` +
-        (n.sections ? ` · ${n.sections} ${n.sections === 1 ? "section" : "sections"}` : "");
+      // "chapter title" names the row underneath. Say it only when there is
+      // one — a label pointing at nothing reads as a title we failed to load.
+      const hasTitle = (n.name_tokens && n.name_tokens.length) || n.name_he;
+      loc.textContent = `${n.name_en || `${MAJOR_C} ${n.num || sec.node + 1}`}` +
+        (hasTitle ? ` · ${MAJOR} title` : "") +
+        (n.sections ? ` · ${n.sections} ${n.sections === 1 ? MINOR : MINOR + "s"}` : "");
       nh.append(loc);
       nh.append(titleRow(n.name_tokens, n.name_he));
       frag.append(nh); openedNode = true; nodeHeads.push({ node: sec.node, el: nh });
@@ -624,13 +800,14 @@
     const row = document.createElement("div"); row.className = "seg-row";
     const v = document.createElement("span"); v.className = "vnum"; v.textContent = sec.label || "";
     const parts = String(sec.label || "").split(":");
-    v.title = parts.length === 2 ? `Section ${parts[0]}, paragraph ${parts[1]}` : `Section ${parts[0]}`;
+    v.title = parts.length === 2 ? `${MAJOR_C} ${parts[0]}, ${MINOR} ${parts[1]}` : `${MAJOR_C} ${parts[0]}`;
     row.append(v);
     // name the numbering once per chapter, so a reader meets it before
     // scrolling past four hundred of them
     if (openedNode) {
       const vl = document.createElement("span"); vl.className = "vlabel";
-      vl.textContent = parts.length === 2 ? "section · paragraph" : "section";
+      vl.textContent = (parts.length === 2 ? `${MAJOR} · ${MINOR}` : MINOR) +
+        (commentaryStore && commentaryStore.counts && commentaryStore.counts.attached_sections ? " · c opens the commentary" : "");
       row.append(vl); openedNode = false;
     }
     if (sec.drift) {
@@ -638,23 +815,30 @@
       d.textContent = `drifts from the sealed count · ${sec.drift.sealed_rows} sealed → ${sec.drift.observed_rows} here`;
       row.append(d);
     }
+    // A commentary attached to the whole section gets one handle, next to the
+    // number it belongs to. One surface, one verb.
+    const secCm = sectionCommentaryFor(sec.unit);
+    if (secCm) {
+      const cb = document.createElement("button"); cb.type = "button"; cb.className = "c-seg";
+      const fam = secCm.map((e) => commentaryWorkOf(e).family_en || "commentary").join(", ");
+      // Same glyph the word-anchored chips use, so one convention covers both
+      // grains; 817 of these should be a mark, not a sentence. The vlabel
+      // names it once per chapter and the title carries it everywhere.
+      cb.textContent = "C" + (secCm.length > 1 ? secCm.length : "");
+      cb.setAttribute("aria-expanded", "false");
+      cb.setAttribute("aria-label", `Commentary on ${sec.label}: ${fam}`);
+      cb.title = `${fam} · ${sec.label}`;
+      cb.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (cb.getAttribute("aria-expanded") === "true") { closeHud(); return; }
+        openSectionCommentary(cb, sec.unit, `${zone.work} ${sec.label}`);
+      });
+      row.append(cb);
+    }
     const he = document.createElement("p"); he.className = "he-text"; he.lang = "he"; he.dir = "rtl";
     let wIdx = 0;
     sec.words.forEach((word) => {
-      const wb = document.createElement("span");
-      wb.className = word.held ? "wb held" : "wb";
-      const span = document.createElement("span");
-      span.className = "w"; span.lang = "he"; span.dir = "rtl";
-      span.textContent = word.s;
-      wb.append(span);
-      const g = zone.gloss ? zone.gloss[word.k] : null;
-      // The gloss line always exists — words without English keep an empty
-      // line so the Hebrew never rides higher than its neighbors, in either
-      // reader mode.
-      const ge = document.createElement("span"); ge.className = "g";
-      if (g) { ge.textContent = spanJoin(g); ge.title = spanJoin(g); }
-      else { ge.textContent = " "; ge.classList.add("bare"); }
-      wb.append(ge);
+      const wb = wordBlock(word, zone.gloss);
       const myIdx = wIdx; wIdx += 1;
       const cm = commentaryFor(sec.unit, myIdx);
       if (cm && cm.length) {
