@@ -170,7 +170,7 @@
       : `walked word-by-word through the installed sealed terminal reader (${wk.ids_walked.toLocaleString()} ids, every one FOUND_EXACT) · rights ride per occurrence from the chain · `) : `Hebrew text: ${ac.hebrew_version} via Sefaria, license ${ac.hebrew_license_seen} (seen live on every payload) · `) +
     `${zone.counts.verified_units} of ${zone.counts.sections} sections verified word-for-word in count against the sealed corpus allocation` +
     `${zone.counts.drifted_units ? `; ${zone.counts.drifted_units} drift from it and are marked` : ""} · ` +
-    `${zone.counts.glossed_words ? zone.counts.glossed_words.toLocaleString() + " words carry their oldest-attested catalog route as an English gloss (exact spellings only — unmatched forms stay bare) · " : ""}` +
+    `${zone.counts.glossed_words ? zone.counts.glossed_words.toLocaleString() + " words carry their oldest-sourced catalog route as an English gloss (exact spellings only — unmatched forms stay bare) · " : ""}` +
     `tap any word for all routes, sources, and licenses`;
   document.getElementById("prov").textContent =
     `${zone.rule_id} · route: ${zone.route} · identity oracle ${oc.bridge_sha256.slice(0, 16)}… ` +
@@ -220,8 +220,8 @@
       return;
     }
     hud.removeChild(status);
-    // R pills, the reader's law (rule v2, attested 2026-08-10): dedupe routes
-    // by text merging the oldest year and lowest rank; oldest attesting source
+    // R pills, the reader's law (rule v2 · 2026-08-10): dedupe routes
+    // by text merging the oldest year and lowest rank; oldest source
     // leads, post-1940 and unyeared sources last; ONE route selected at a
     // time — its D record and attribution ride below; tap a pill to switch,
     // and the gloss under the word follows the selection.
