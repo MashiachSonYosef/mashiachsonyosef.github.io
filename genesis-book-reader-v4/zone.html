@@ -64,12 +64,13 @@
   .wb.held { opacity: 0.45; cursor: default; }
   .wb.active .w { color: var(--gold); border-bottom: 1px solid var(--gold); }
   .g { display: block; order: 2; direction: ltr; font: 0.66rem/1.25 Georgia, serif; color: var(--muted);
-    letter-spacing: 0.02em; margin-top: 0.06rem; max-width: 11rem; }
+    letter-spacing: 0.02em; margin-top: 0.06rem; max-width: 10em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .wb.active .g { color: var(--gold); }
 
   /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
   body.en .he-text { direction: ltr; text-align: left; }
-  body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--ink); margin-top: 0; }
+  body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--ink); margin-top: 0; max-width: 12em; }
   body.en .w { order: 2; font-size: 1.02rem; color: #b3a077; margin-top: 0.04rem; }
   body.en .wb.active .g { color: var(--gold); }
 
@@ -91,6 +92,19 @@
   #hud p { margin: 0.45rem 0; }
   #hud .att { color: var(--muted); font-size: 0.78rem; }
   #hud .att a { color: var(--link); }
+  /* R pills — one route per pill, one selected at a time (the reader's law). */
+  #hud .r-label { margin: 0.5rem 0 0.3rem; color: var(--faint); font-size: 0.74rem;
+    letter-spacing: 0.06em; text-transform: uppercase; }
+  #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
+  #hud .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+    border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
+    max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #hud .r-pills button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold);
+    color: #171105; font-weight: bold; }
+  #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
+    font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
+  #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
+  #hud .d-card .d-text { margin: 0.25rem 0; }
   .lic-chip { display: inline-block; margin-inline-start: 0.45rem; padding: 0.02rem 0.5rem;
     border-radius: 999px; background: #12314a; color: var(--link); font-size: 0.72rem; }
 
@@ -156,7 +170,7 @@
       : `walked word-by-word through the installed sealed terminal reader (${wk.ids_walked.toLocaleString()} ids, every one FOUND_EXACT) · rights ride per occurrence from the chain · `) : `Hebrew text: ${ac.hebrew_version} via Sefaria, license ${ac.hebrew_license_seen} (seen live on every payload) · `) +
     `${zone.counts.verified_units} of ${zone.counts.sections} sections verified word-for-word in count against the sealed corpus allocation` +
     `${zone.counts.drifted_units ? `; ${zone.counts.drifted_units} drift from it and are marked` : ""} · ` +
-    `${zone.counts.glossed_words ? zone.counts.glossed_words.toLocaleString() + " words carry their top catalog route as an English gloss (exact spellings only — unmatched forms stay bare) · " : ""}` +
+    `${zone.counts.glossed_words ? zone.counts.glossed_words.toLocaleString() + " words carry their oldest-attested catalog route as an English gloss (exact spellings only — unmatched forms stay bare) · " : ""}` +
     `tap any word for all routes, sources, and licenses`;
   document.getElementById("prov").textContent =
     `${zone.rule_id} · route: ${zone.route} · identity oracle ${oc.bridge_sha256.slice(0, 16)}… ` +
@@ -171,6 +185,10 @@
         : `this zone came through the installed terminal reader itself — the pipeline route, end to end.`));
 
   const hud = document.getElementById("hud");
+  // The reader's display law: route texts pack morpheme spans with "/"; the
+  // page never shows the raw packing — spans join with " + ", exactly the
+  // reader's own cell join. One route on display at a time, everywhere.
+  const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
   const shardCache = new Map();
   const routesFor = async (key) => {
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
@@ -202,21 +220,83 @@
       return;
     }
     hud.removeChild(status);
-    routes.forEach(([rank, routeText, definitionText, mId, year]) => {
-      const m = index.m_sources[mId];
-      if (!m) return;
-      const p = document.createElement("p");
-      const rb = document.createElement("b"); rb.textContent = routeText; p.append(rb);
-      const lic = document.createElement("span"); lic.className = "lic-chip"; lic.textContent = licenseName(m.licensePosture); p.append(lic);
-      if (definitionText && definitionText !== routeText) p.append(` — ${definitionText}`);
-      const att = document.createElement("p"); att.className = "att";
-      const yearLabel = !year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year;
-      att.append(`${m.label} · ${yearLabel} · `);
-      if (/^https?:\/\//u.test(m.licensePointer)) {
-        const a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank"; a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a);
-      } else att.append(`record: ${m.licensePointer}`);
-      hud.append(p, att);
+    // R pills, the reader's law (rule v2, attested 2026-08-10): dedupe routes
+    // by text merging the oldest year and lowest rank; oldest attesting source
+    // leads, post-1940 and unyeared sources last; ONE route selected at a
+    // time — its D record and attribution ride below; tap a pill to switch,
+    // and the gloss under the word follows the selection.
+    const groups = new Map();
+    routes.forEach((row) => {
+      const [rank, routeText, definitionText, mId, year] = row;
+      const t = String(routeText || "").trim(); if (!t || !index.m_sources[mId]) return;
+      const y = Number.parseInt(year, 10);
+      const yr = Number.isInteger(y) ? y : Infinity;
+      const key = t.toLowerCase();
+      const g = groups.get(key);
+      if (!g) groups.set(key, { text: t, year: yr, ledger: Number(rank), records: [row] });
+      else { g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank)); g.records.push(row); }
     });
+    const tier = (r) => Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1;
+    const pool = [...groups.values()].sort((a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger);
+    if (!pool.length) {
+      const p = document.createElement("p");
+      p.textContent = "No displayable route in the catalog for this form.";
+      hud.append(p); return;
+    }
+    let selected = pool[0];
+    const label = document.createElement("p"); label.className = "r-label";
+    label.textContent = "Exact selectable routes";
+    const pills = document.createElement("div"); pills.className = "r-pills";
+    const dCard = document.createElement("div"); dCard.className = "d-card";
+    const renderDCard = () => {
+      dCard.replaceChildren();
+      const recs = [...selected.records].sort((a, b) => {
+        const ya = Number.parseInt(a[4], 10), yb = Number.parseInt(b[4], 10);
+        return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yb) ? yb : 9e9);
+      });
+      recs.forEach(([rank, routeText, definitionText, mId, year]) => {
+        const m = index.m_sources[mId];
+        if (definitionText && definitionText !== routeText) {
+          const d = document.createElement("p"); d.className = "d-text"; d.dir = "auto";
+          d.textContent = definitionText; dCard.append(d);
+        }
+        const att = document.createElement("p"); att.className = "att";
+        const yearLabel = !year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year;
+        att.append(`${m.label} · ${yearLabel} `);
+        const lic = document.createElement("span"); lic.className = "lic-chip";
+        lic.textContent = licenseName(m.licensePosture); att.append(lic, " ");
+        if (/^https?:\/\//u.test(m.licensePointer)) {
+          const a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank"; a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a);
+        } else att.append(`record: ${m.licensePointer}`);
+        dCard.append(att);
+      });
+    };
+    const glossEl = el.querySelector(".g");
+    const makePill = (route) => {
+      const b = document.createElement("button"); b.type = "button";
+      b.textContent = spanJoin(route.text);
+      const oldestM = index.m_sources[route.records[0][3]];
+      b.title = [Number.isFinite(route.year) ? String(route.year) : "no source year", oldestM ? oldestM.label : ""].filter(Boolean).join(" · ");
+      b.setAttribute("aria-pressed", String(route === selected));
+      b.addEventListener("click", () => {
+        selected = route;
+        pills.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", "false"));
+        b.setAttribute("aria-pressed", "true");
+        renderDCard();
+        if (glossEl) { glossEl.textContent = spanJoin(route.text); glossEl.title = spanJoin(route.text); }
+      });
+      return b;
+    };
+    pool.slice(0, 10).forEach((r) => pills.append(makePill(r)));
+    hud.append(label, pills);
+    if (pool.length > 10) {
+      const more = document.createElement("button"); more.className = "r-more"; more.type = "button";
+      more.textContent = `▾ ${pool.length - 10} more routes`;
+      more.addEventListener("click", () => { pool.slice(10).forEach((r) => pills.append(makePill(r))); more.remove(); });
+      hud.append(more);
+    }
+    renderDCard();
+    hud.append(dCard);
   };
   document.addEventListener("click", (e) => { if (!hud.hidden && !hud.contains(e.target) && !e.target.closest(".wb")) closeHud(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeHud(); });
@@ -292,7 +372,7 @@
       span.textContent = word.s;
       wb.append(span);
       const g = zone.gloss ? zone.gloss[word.k] : null;
-      if (g) { const ge = document.createElement("span"); ge.className = "g"; ge.textContent = g; wb.append(ge); }
+      if (g) { const ge = document.createElement("span"); ge.className = "g"; ge.textContent = spanJoin(g); ge.title = spanJoin(g); wb.append(ge); }
       if (!word.held) wb.addEventListener("click", () => openHud(wb, word));
       he.append(wb, document.createTextNode(" "));
     });
