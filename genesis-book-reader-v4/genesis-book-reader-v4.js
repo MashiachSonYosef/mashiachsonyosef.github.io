@@ -1294,7 +1294,7 @@
     });
   };
 
-  // V6.1 · antiquity ordering (rule attested by Kyle, 2026-08-10):
+  // V6.1 · antiquity ordering (rule attested 2026-08-10):
   // oldest attesting source year first; sources after 1940 or without a
   // recorded year form the last tier; ties break by ledger position.
   const V6_LASTUARY_AFTER = 1940;
@@ -1669,7 +1669,7 @@
       );
       const choices = make("div", "v3-route-choices");
       const current = view.cellRoutes.get(cell.compcellTemplateId);
-      // V6.1 (rule attested by Kyle): pills sort by antiquity — oldest
+      // V6.1 (rule attested 2026-08-10): pills sort by antiquity — oldest
       // attesting source first, post-1940 and unyeared sources last —
       // with the selected route always leading. Past ten pills the rest
       // fold into a filterable panel.
