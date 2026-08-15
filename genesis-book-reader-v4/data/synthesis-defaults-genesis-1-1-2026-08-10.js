@@ -4,7 +4,7 @@ window.SYNTHESIS_DEFAULT_GLOSSES = Object.freeze({
   "generated_on": "2026-08-10",
   "rule_id": "synthesis-default-gloss-rule-v2-antiquity-primacy-1940-lastuary",
   "generator": "tools/derive-default-glosses.mjs",
-  "status": "DERIVED_DRAFT — every pick awaits attestation or targum-alignment validation",
+  "status": "DERIVED_DRAFT — rule output; corrections ride as data (overrides or targum alignment)",
   "by_word_index": {
     "1": {
       "gloss": "in the beginning",
