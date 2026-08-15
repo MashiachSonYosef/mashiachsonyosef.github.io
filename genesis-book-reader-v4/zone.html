@@ -46,6 +46,17 @@
   .part-head { margin: 3rem 0 0.4rem; padding-top: 1.6rem; border-top: 1px double var(--gold-dim); }
   .part-head .he { direction: rtl; text-align: right; font-size: 1.05rem; color: var(--gold); letter-spacing: 0.04em; }
   .part-head .en { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--faint); text-align: left; }
+  /* Titles are corpus words: same word blocks as the text, sized as a title.
+     Gold on the Hebrew per the Y ledger's own colour contract (structure). */
+  .title-row { direction: rtl; text-align: right; }
+  body.en .title-row { direction: ltr; text-align: left; }
+  .part-head .title-row .w { font-size: 1.05rem; color: var(--gold); letter-spacing: 0.04em; }
+  .node-head .title-row .w { font-size: 1.55rem; color: var(--gold); }
+  .title-row .wb { margin-bottom: 0.35rem; }
+  .title-row .g { font-size: 0.62rem; max-width: 9em; }
+  .node-head .title-row .g { font-size: 0.68rem; }
+  .locator { display: block; font-size: 0.74rem; letter-spacing: 0.16em; font-variant: small-caps;
+    color: var(--faint); margin-top: 0.15rem; }
 
   .node-head { margin: 1.9rem 0 0.9rem; }
   .node-head .he { direction: rtl; text-align: right; font-size: 1.55rem; color: var(--ink-strong);
@@ -432,21 +443,52 @@
   if (new URLSearchParams(location.search).get("mode") === "en") setMode("en");
 
   // contents
+  // A title is the section's own words, so it renders exactly like the text:
+  // word blocks, gloss beneath where that token's route carries one, HUD on
+  // tap. Used in the body only — see the contents note below.
+  const titleRow = (toks, raw) => {
+    const row = document.createElement("div"); row.className = "title-row";
+    if (!toks || !toks.length) { row.lang = "he"; row.dir = "rtl"; row.textContent = raw || ""; return row; }
+    toks.forEach((t) => {
+      const wb = document.createElement("span"); wb.className = "wb";
+      const w = document.createElement("span"); w.className = "w"; w.lang = "he"; w.dir = "rtl"; w.textContent = t.s;
+      wb.append(w);
+      const g = zone.gloss ? zone.gloss[t.k] : null;
+      const ge = document.createElement("span"); ge.className = "g";
+      if (g) { ge.textContent = spanJoin(g); ge.title = spanJoin(g); } else { ge.textContent = " "; ge.classList.add("bare"); }
+      wb.append(ge);
+      wb.addEventListener("click", (e) => { e.stopPropagation(); openHud(wb, { s: t.s, k: t.k }, null, null); });
+      row.append(wb, document.createTextNode(" "));
+    });
+    return row;
+  };
+
+  // Contents is navigation, not text: one surface, one verb. Every tap here
+  // jumps. Titles show in Hebrew (the section's own name — corpus text, and
+  // what makes the list findable); no gloss line and no HUD, because a tap
+  // that might mean two things is the ambiguity worth spending a rule on.
   const nodes = zone.nodes || [];
   if (nodes.length) {
     const tocBody = document.getElementById("tocBody");
     let lastPart = null, partDiv = null, chs = null;
     nodes.forEach((n, i) => {
-      if (n.part_en !== lastPart) {
-        lastPart = n.part_en;
+      const partKey = n.part_he || n.part_en || "";
+      if (partKey !== lastPart) {
+        lastPart = partKey;
         partDiv = document.createElement("div"); partDiv.className = "part";
-        const b = document.createElement("b"); b.textContent = n.part_en;
-        const heSmall = document.createElement("span"); heSmall.className = "he-small"; heSmall.lang = "he"; heSmall.dir = "rtl"; heSmall.textContent = n.part_he;
+        const b = document.createElement("b");
+        const heSmall = document.createElement("span"); heSmall.className = "he-small"; heSmall.lang = "he"; heSmall.dir = "rtl";
+        heSmall.textContent = n.part_he || "";
+        if (n.part_en) b.textContent = n.part_en;
         b.append(heSmall); partDiv.append(b);
         chs = document.createElement("div"); chs.className = "chs"; partDiv.append(chs);
         tocBody.append(partDiv);
       }
-      const a = document.createElement("a"); a.href = `#n${i}`; a.textContent = n.name_en; chs.append(a);
+      const a = document.createElement("a"); a.href = `#n${i}`;
+      if (n.name_he) { a.lang = "he"; a.dir = "rtl"; }
+      a.textContent = n.name_he || n.name_en || "";
+      if (n.sections) { const c = document.createElement("small"); c.textContent = ` · ${n.sections}`; a.append(c); }
+      chs.append(a);
     });
     document.getElementById("toc").hidden = false;
   }
@@ -460,18 +502,22 @@
   zone.sections.forEach((sec) => {
     const n = nodes[sec.node] || {};
     if (sec.node !== curNode) {
-      if (n.part_en !== curPart) {
-        curPart = n.part_en;
+      const partKey = n.part_he || n.part_en || "";
+      if (partKey !== curPart) {
+        curPart = partKey;
         const ph = document.createElement("div"); ph.className = "part-head";
-        const phe = document.createElement("div"); phe.className = "he"; phe.lang = "he"; phe.textContent = n.part_he || "";
-        const pen = document.createElement("div"); pen.className = "en"; pen.textContent = n.part_en || "";
-        ph.append(phe, pen); frag.append(ph);
+        ph.append(titleRow(n.part_tokens, n.part_he));
+        // A locator (the Y schema's "access aid") is a position, not a
+        // translation of the title — it may ride in English. A translated
+        // title may not, unless its own words carry it.
+        if (n.part_en) { const pen = document.createElement("div"); pen.className = "en"; pen.textContent = n.part_en; ph.append(pen); }
+        frag.append(ph);
       }
       curNode = sec.node;
       const nh = document.createElement("div"); nh.className = "node-head"; nh.id = `n${sec.node}`;
-      const nhe = document.createElement("div"); nhe.className = "he"; nhe.lang = "he"; nhe.textContent = n.name_he || "";
-      const nen = document.createElement("div"); nen.className = "en"; nen.textContent = n.name_en || "";
-      nh.append(nhe, nen); frag.append(nh);
+      nh.append(titleRow(n.name_tokens, n.name_he));
+      if (n.name_en) { const nen = document.createElement("span"); nen.className = "locator"; nen.textContent = n.name_en; nh.append(nen); }
+      frag.append(nh);
     }
     const s = document.createElement("section"); s.className = "seg";
     const row = document.createElement("div"); row.className = "seg-row";
