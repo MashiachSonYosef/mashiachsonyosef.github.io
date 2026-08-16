@@ -194,6 +194,12 @@
   #hud .d-card .d-text { margin: 0.25rem 0; color: var(--muted); }
   #hud .d-card .d-sense.on { color: var(--ink-strong); font-weight: bold; }
   #hud .d-card .d-sep { color: var(--faint); }
+  #hud .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
+    color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; padding: 0 0 0.05rem; text-align: left; }
+  #hud .d-more:hover { color: var(--gold); }
+  #hud .d-more[aria-expanded="true"] { color: var(--gold); }
+  #hud .d-drawer { margin-top: 0.3rem; padding-inline-start: 0.6rem; border-inline-start: 1px solid var(--line); }
+  #hud .d-drawer[hidden] { display: none; }
   /* Structure pills — how the form divides, and which block of it is open.
      Quieter than a reading pill on purpose: the reading is the loud thing on
      this card, and the structure is how you got to it. */
@@ -402,6 +408,10 @@
     if (rect.bottom + pad + h <= window.innerHeight - pad) top = rect.bottom + pad;
     else if (rect.top - pad - h >= pad) top = rect.top - pad - h;
     else top = Math.max(pad, window.innerHeight - h - pad);
+    // A card grows when the reader switches reading or opens the records
+    // drawer, and the placement above was computed for the height it had a
+    // moment ago. Clamp unconditionally so no part of it is ever unreachable.
+    top = Math.max(pad, Math.min(top, window.innerHeight - h - pad));
     hud.style.top = `${top}px`;
     hud.style.left = `${Math.max(pad, Math.min(window.innerWidth - w - pad, rect.left - 100))}px`;
   };
@@ -637,11 +647,11 @@
           if (!byText.has(text)) byText.set(text, []);
           byText.get(text).push(row);
         });
-        for (const [text, group] of byText) {
+        // the record as the source packs it: senses divided by ";", cells by
+        // "/" — cells join the way they join everywhere else, and the sense
+        // the reader picked is lit where it sits inside the record
+        const dText = (text) => {
           const d = document.createElement("p"); d.className = "d-text"; d.dir = "auto";
-          // the record as the source packs it: senses divided by ";", cells by
-          // "/" — cells join the way they join everywhere else, and the sense
-          // the reader picked is lit where it sits inside the record
           String(text).split(";").map((x) => x.trim()).filter(Boolean).forEach((sense, i) => {
             if (i) d.append(Object.assign(document.createElement("span"), { className: "d-sep", textContent: " · " }));
             const s = document.createElement("span");
@@ -650,24 +660,55 @@
             d.append(s);
           });
           if (!d.childNodes.length) d.textContent = spanJoin(text);
-          dCard.append(d);
-          group.forEach(([, , , mId, year]) => {
-            const m = index.m_sources[mId];
-            const att = document.createElement("p"); att.className = "att";
-            const yearLabel = !year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year;
-            att.append(`${m.label} · ${yearLabel} `);
-            const lic = document.createElement("span"); lic.className = "lic-chip";
-            lic.textContent = licenseName(m.licensePosture); att.append(lic, " ");
-            if (/^https?:\/\//u.test(m.licensePointer)) {
-              const a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank";
-              a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a);
-            } else att.append(`record: ${m.licensePointer}`);
-            dCard.append(att);
-          });
-        }
+          return d;
+        };
+        const mLine = ([, , , mId, year]) => {
+          const m = index.m_sources[mId];
+          const att = document.createElement("p"); att.className = "att";
+          att.append(`${m.label} · ${!year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year} `);
+          const lic = document.createElement("span"); lic.className = "lic-chip";
+          lic.textContent = licenseName(m.licensePosture); att.append(lic, " ");
+          if (/^https?:\/\//u.test(m.licensePointer)) {
+            const a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank";
+            a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a);
+          } else att.append(`record: ${m.licensePointer}`);
+          return att;
+        };
+        // One record stands the reading up, and it is always on the card.
+        // Anything further is corroboration, and corroboration folds away —
+        // named by its licences, so a reader looking for a particular one can
+        // see from the closed drawer whether it is worth opening.
+        const groups = [...byText.entries()];
+        const [firstText, firstGroup] = groups[0];
+        dCard.append(dText(firstText), mLine(firstGroup[0]));
+        const rest = [...firstGroup.slice(1).map((r) => [firstText, r]),
+                      ...groups.slice(1).flatMap(([t, g]) => g.map((r) => [t, r]))];
+        if (!rest.length) return;
+        const licences = [...new Set(rest.map(([, r]) => licenseName(index.m_sources[r[3]].licensePosture)))];
+        const more = document.createElement("button"); more.type = "button"; more.className = "d-more";
+        const drawer = document.createElement("div"); drawer.className = "d-drawer"; drawer.hidden = true;
+        more.textContent = `${rest.length} further record${rest.length === 1 ? "" : "s"} · ${licences.join(", ")}`;
+        more.setAttribute("aria-expanded", "false");
+        more.addEventListener("click", (ev) => {
+          ev.stopPropagation();
+          const open = drawer.hidden;
+          drawer.hidden = !open; more.setAttribute("aria-expanded", String(open));
+          if (open && !drawer.childNodes.length) {
+            let last = null;
+            for (const [text, row] of rest) {
+              if (text !== last) { drawer.append(dText(text)); last = text; }
+              drawer.append(mLine(row));
+            }
+          }
+          placeHud();
+        });
+        dCard.append(more, drawer);
       };
       let overflow = null;
-      const choose = (route) => { selected = route; picked.set(surface, route); renderDCard(); paintGloss(); };
+      const choose = (route) => {
+        selected = route; picked.set(surface, route);
+        renderDCard(); paintGloss(); placeHud();
+      };
       const makePill = (route) => {
         const btn = document.createElement("button"); btn.type = "button";
         btn.textContent = spanJoin(route.text);
