@@ -120,6 +120,34 @@ const dInvariant = await page.evaluate(async () => {
 });
 check("every reading shows a whole D and its M", dInvariant.bad.length === 0,
   dInvariant.bad.length ? JSON.stringify(dInvariant.bad[0]) : `${dInvariant.pills} readings, each with an unclipped record`);
+
+// A card that grows off the bottom of the screen has hidden the very record
+// the check above just proved was there. Measured on a phone-sized viewport,
+// after switching readings and after opening the records drawer.
+await page.setViewportSize({ width: 412, height: 915 });
+const placement = await page.evaluate(async () => {
+  const worst = [];
+  const measure = (what) => {
+    const r = document.getElementById("hud").getBoundingClientRect();
+    if (r.top < 0 || r.bottom > window.innerHeight + 1 || r.left < 0 || r.right > window.innerWidth + 1)
+      worst.push({ what, top: Math.round(r.top), bottom: Math.round(r.bottom), win: window.innerHeight });
+  };
+  const words = [...document.querySelectorAll("section.seg .wb:not(.held)")].slice(0, 40);
+  for (const w of words.slice(0, 12)) {
+    (w.querySelector(".wr") || w).click();
+    await new Promise((r) => setTimeout(r, 220));
+    measure("opened");
+    for (const p of [...document.querySelectorAll("#hud .r-pills button")]) {
+      p.click(); await new Promise((r) => setTimeout(r, 60)); measure("reading switched");
+    }
+    const more = document.querySelector("#hud .d-more");
+    if (more) { more.click(); await new Promise((r) => setTimeout(r, 120)); measure("records drawer"); }
+  }
+  return worst;
+});
+check("the card is never placed off the screen", placement.length === 0,
+  placement.length ? JSON.stringify(placement[0]) : "12 words on a 412×915 viewport, every reading and drawer");
+await page.setViewportSize({ width: 1100, height: 1500 });
 await page.keyboard.press("Escape");
 
 // ---- the component system, checked against the bin's own arithmetic ------
