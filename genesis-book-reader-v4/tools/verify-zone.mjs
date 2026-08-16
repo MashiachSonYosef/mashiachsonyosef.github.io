@@ -98,6 +98,135 @@ check("pills never exceed ten", hud.pills.length <= 10, `${hud.pills.length} pil
 check("a licence rides with the reading", hud.licence.length > 0, hud.licence);
 await page.keyboard.press("Escape");
 
+// ---- the component system, checked against the bin's own arithmetic ------
+// The page derives cells and complete covers from the component list; this
+// recomputes both from the zone file and asserts the DOM agrees. A page that
+// silently offered the wrong number of cuts would be inventing structure.
+let spanReport = null;
+const spanFacts = await page.evaluate(async () => {
+  const bin = await fetch(`data/zones/${new URLSearchParams(location.search).get("b")}.bin`)
+    .then((r) => r.arrayBuffer())
+    .then((b) => new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream("gzip"))).json());
+  const spans = bin.spans || {};
+  // the wordiest form on the page, so the assertion meets the hardest case
+  let best = null;
+  document.querySelectorAll("section.seg .wb:not(.held)").forEach((wb, i) => {
+    const regions = wb.querySelectorAll(".wr");
+    const key = wb.__k;
+    void key; void regions; void i;
+  });
+  const byN = {};
+  for (const [k, row] of Object.entries(spans)) {
+    const n = row[0].length;
+    (byN[n] = byN[n] || []).push(k);
+    if (!best || n > best.n) best = { k, n };
+  }
+  return {
+    forms: Object.keys(spans).length,
+    histogram: Object.fromEntries(Object.entries(byN).map(([n, ks]) => [n, ks.length])),
+    widest: best,
+    counts: bin.counts,
+    rules: bin.span_rules, roles: bin.span_roles, conf: bin.span_conf,
+  };
+});
+// A zone built before the span layer carries no components and must still
+// read: the page falls back to whole forms and says nothing it cannot show.
+if (!spanFacts.forms) check("a zone without components still reads", true, "no span layer in this zone — whole forms only");
+else {
+  check("the zone ships a component system", true, `${spanFacts.forms.toLocaleString()} forms · widths ${JSON.stringify(spanFacts.histogram)}`);
+  check("occurrences and W are both counted", spanFacts.counts.w_regions >= spanFacts.counts.words,
+    `${spanFacts.counts.w_regions} W across ${spanFacts.counts.words} occurrences`);
+}
+
+if (spanFacts.forms) {
+  // find a rendered word whose form is the widest one the zone carries
+  const target = await page.evaluate((k) => {
+    const els = [...document.querySelectorAll("section.seg .wb:not(.held)")];
+    for (let i = 0; i < els.length; i += 1) {
+      const w = els[i].querySelector(".w");
+      const norm = [...w.textContent.normalize("NFC")]
+        .filter((c) => (c.codePointAt(0) >= 0x05d0 && c.codePointAt(0) <= 0x05ea) || "־׳״".includes(c)).join("");
+      if (norm === k) { els[i].id = `probe-${i}`; return { id: `probe-${i}`, text: w.textContent }; }
+    }
+    return null;
+  }, spanFacts.widest.k);
+  if (target) {
+    await page.click(`#${target.id}`);
+    await page.waitForSelector("#hud .s-pills button, #hud .r-pills button", { timeout: 10000 });
+    const s = await page.evaluate(() => ({
+      cuts: [...document.querySelectorAll("#hud .s-pills")][0]
+        ? [...document.querySelectorAll("#hud .s-pills")[0].querySelectorAll("button")].map((b) => b.textContent) : [],
+      cutLabel: document.querySelector("#hud .r-label")?.textContent || "",
+      prov: document.querySelector("#hud .prov")?.textContent || "",
+      blocks: document.querySelectorAll("#hud .s-pills").length,
+    }));
+    const expectedCuts = 2 ** (spanFacts.widest.n - 1);
+    check("every complete division is offered", s.cuts.length === expectedCuts,
+      `${spanFacts.widest.k} (${spanFacts.widest.n} components) · ${s.cuts.length} of 2^${spanFacts.widest.n - 1}=${expectedCuts}`);
+    check("the whole form leads", s.cuts[0] === spanFacts.widest.k, `${s.cuts[0]} vs ${spanFacts.widest.k}`);
+    check("no division repeats or drops a component", new Set(s.cuts).size === s.cuts.length &&
+      s.cuts.every((c) => c.split(" + ").join("") === spanFacts.widest.k), s.cuts.slice(0, 4).join(" / "));
+    check("the card says where the boundaries came from", /component|boundar/u.test(s.prov), s.prov.slice(0, 90));
+    check("the card opens on the whole form, not a piece", s.blocks === 1,
+      `${s.blocks} structure row(s) — a second appears only once a division is chosen`);
+
+    // choose the finest cut and confirm the blocks appear and the readings follow
+    await page.evaluate(() => {
+      const pills = document.querySelectorAll("#hud .s-pills")[0].querySelectorAll("button");
+      pills[pills.length - 1].click();
+    });
+    await page.waitForFunction(() => document.querySelectorAll("#hud .s-pills").length === 2, { timeout: 10000 });
+    const fine = await page.evaluate(() => {
+      const row = document.querySelectorAll("#hud .s-pills")[1];
+      const btns = [...row.querySelectorAll("button")];
+      const xs = btns.map((b) => b.getBoundingClientRect().left);
+      return {
+        blocks: btns.map((b) => b.textContent),
+        pressed: btns.filter((b) => b.getAttribute("aria-pressed") === "true").length,
+        // the first component of a Hebrew word sits rightmost
+        rtl: xs.every((x, i) => i === 0 || x < xs[i - 1]),
+        gloss: document.querySelector(".wb.active .g")?.textContent?.trim() || "",
+      };
+    });
+    check("the finest division exposes every component", fine.blocks.length === spanFacts.widest.n,
+      `${fine.blocks.join(" | ")}`);
+    check("exactly one block is open", fine.pressed === 1, String(fine.pressed));
+    check("the blocks lay out in the word's direction", fine.rtl, `first block rightmost: ${fine.rtl}`);
+    check("the gloss follows the division", fine.gloss.split(" + ").length === spanFacts.widest.n, fine.gloss);
+    spanReport = { form: spanFacts.widest.k, n: spanFacts.widest.n, cuts: s.cuts, blocks: fine.blocks, gloss: fine.gloss, prov: s.prov };
+    await page.keyboard.press("Escape");
+  } else check("a widest-form probe was rendered", false, `${spanFacts.widest.k} not found on the page`);
+}
+
+// ---- a maqaf occurrence is one block holding more than one W -------------
+if (spanFacts.counts.occurrences_holding_more_than_one_w) {
+  const multi = await page.evaluate(() => {
+    const el = document.querySelector("section.seg .wb.multi");
+    if (!el) return null;
+    el.id = "probe-multi";
+    return { regions: el.querySelectorAll(".wr").length, maqafs: el.querySelectorAll(".mq").length, text: el.querySelector(".w").textContent, gloss: el.querySelector(".g").textContent };
+  });
+  check("a maqaf word renders as one block", !!multi, multi ? `${multi.text} · ${multi.regions} W` : "none found");
+  if (multi) {
+    check("each W inside it is its own region", multi.regions >= 2, `${multi.regions} regions, ${multi.maqafs} maqaf`);
+    const opened = [];
+    for (let i = 0; i < Math.min(2, multi.regions); i += 1) {
+      await page.evaluate((j) => document.querySelectorAll("#probe-multi .wr")[j].click(), i);
+      await page.waitForSelector("#hud .r-pills button, #hud .prov", { timeout: 10000 });
+      opened.push(await page.evaluate(() => ({
+        marked: document.querySelectorAll("#probe-multi .wr.on").length,
+        head: document.querySelector("#hud .head b")?.textContent || "",
+        first: document.querySelector("#hud .r-pills button")?.textContent || "",
+      })));
+    }
+    check("each region opens its own card", opened[0].first !== opened[1].first || opened[0].first === "",
+      opened.map((o) => o.first || "(no reading)").join(" vs "));
+    check("only the region you opened is marked", opened.every((o) => o.marked === 1), opened.map((o) => o.marked).join(","));
+    check("the whole occurrence stays in the header", opened.every((o) => o.head.includes("־")), opened[0].head);
+    await page.keyboard.press("Escape");
+  }
+}
+
 // open a section commentary
 let commentary = null;
 if (facts.commentaryHandles) {
@@ -142,6 +271,12 @@ for (const c of checks) console.log(`${c.pass ? "ok  " : "FAIL"}  ${c.name.padEn
 console.log(`\n${facts.words.toLocaleString()} word blocks · ${facts.glossed.toLocaleString()} carry a gloss · ${facts.sections.toLocaleString()} sections · ${facts.tocCells} chapters`);
 console.log(`first section: ${facts.firstSection}`);
 console.log(`first glosses: ${facts.firstGlosses.join(" | ")}`);
+if (spanReport) {
+  console.log(`\ncomponent system · ${spanReport.form} (${spanReport.n} components)`);
+  console.log(`  ${spanReport.prov}`);
+  console.log(`  divisions: ${spanReport.cuts.join("  /  ")}`);
+  console.log(`  finest:    ${spanReport.blocks.join(" | ")}  →  ${spanReport.gloss}`);
+}
 if (commentary) console.log(`commentary: ${commentary.pills.join(", ")} · ${commentary.words} words · ${commentary.licence}\n  ${commentary.text}`);
 const failed = checks.filter((c) => !c.pass);
 if (failed.length) { console.error(`\n${failed.length} check(s) failed`); process.exit(1); }

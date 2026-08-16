@@ -112,16 +112,49 @@ export const parseCoordinates = (unitId, slug) => {
   return { chapter: Number(m[1]), section: Number(m[2]), label: `${m[1]}:${m[2]}` };
 };
 
-/** Words as the zone stores them: exact surface, exact K, held flag. */
+export const MAQAF = "־";
+
+/**
+ * Words as the zone stores them.
+ *
+ * One row of C0 is one occurrence, and the block on the page is the
+ * occurrence. What is clickable inside that block is whatever the ledger says
+ * the occurrence contains: exact K preserves the boundary maqaf (FRAME rule
+ * 7), and the W inventory records the pieces either side of it as separate W.
+ * So an occurrence written with a maqaf carries more than one W, and each of
+ * them opens on its own.
+ *
+ *   no maqaf   { s, k }
+ *   maqaf      { s, w: [{ s, k }, …] }   regions in printed order
+ *   held       { s, held: true }         the chain's script rule, not ours
+ *
+ * The regions are cut from the printed surface, not rebuilt from the key, so
+ * a region's `s` is always a substring of what the page shows. An edge maqaf
+ * (`לחם־`, three occurrences in this work) yields one region and a maqaf that
+ * belongs to the next occurrence; the maqaf still prints, and it does not
+ * open, because it is not a W.
+ */
 export const wordsOf = (rows) =>
   rows.map((r) => {
-    const w = { s: r.exact_surface_form };
-    if (r.visible_in_hebrew_reader) {
-      const k = exactK(r.exact_surface_form);
-      if (k) w.k = k;
-    } else w.held = true;
+    const surface = r.exact_surface_form;
+    const w = { s: surface };
+    if (!r.visible_in_hebrew_reader) { w.held = true; return w; }
+    const k = exactK(surface);
+    if (!k) return w;
+    if (!k.includes(MAQAF)) { w.k = k; return w; }
+    const pieces = surface.split(MAQAF);
+    const regions = pieces.map((p) => ({ s: p, k: exactK(p) }));
+    require_(
+      regions.map((x) => x.k).join(MAQAF) === k,
+      "MAQAF_REGIONS_DO_NOT_REJOIN",
+      `${surface}: ${regions.map((x) => x.k).join(MAQAF)} vs ${k}`,
+    );
+    w.w = regions.filter((x) => x.k);
     return w;
   });
+
+/** Every W an occurrence contains, whether it carries one or several. */
+export const regionsOf = (word) => (word.w ? word.w : word.k ? [{ s: word.s, k: word.k }] : []);
 
 /**
  * One license posture per zone, computed from the rows rather than asserted.

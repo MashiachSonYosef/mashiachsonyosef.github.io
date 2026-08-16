@@ -39,7 +39,8 @@ import { createHash } from "node:crypto";
 import { gzipSync } from "node:zlib";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
 import { K_RULE_ID, K_RULE_TEXT } from "./k-normalization-v1.mjs";
-import { readServe, readBridge, parseCoordinates, wordsOf, licensePosture, require_ } from "./zone-lib-v1.mjs";
+import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
+import { readServe, readBridge, parseCoordinates, wordsOf, regionsOf, licensePosture, require_ } from "./zone-lib-v1.mjs";
 
 const arg = (flag, fallback = null) => {
   const i = process.argv.indexOf(flag);
@@ -55,6 +56,7 @@ const bridgePath = arg("--bridge");
 const storeDir = arg("--store", "data/route-store");
 const stamp = arg("--stamp");
 const outPath = arg("--out");
+const spansPath = arg("--spans");
 for (const [flag, v] of [["--base-serve", baseServePath], ["--base-work", baseWorkId], ["--serve", servePath], ["--work", workId], ["--title", title], ["--bridge", bridgePath], ["--stamp", stamp], ["--out", outPath]])
   require_(v, "MISSING_ARG", flag);
 
@@ -94,7 +96,7 @@ let attached = 0, words = 0;
 for (const [coord, commUnit] of commAt) {
   const rows = comm.units.get(commUnit).rows;
   const w = wordsOf(rows);
-  w.forEach((x) => { if (x.k) keysNeeded.add(x.k); });
+  w.forEach((x) => regionsOf(x).forEach((g) => keysNeeded.add(g.k)));
   words += w.length;
   attached += 1;
   units[baseAt.get(coord)] = {
@@ -111,9 +113,25 @@ for (const [coord, commUnit] of commAt) {
   };
 }
 
-const { table: gloss, counts: glossCounts, sha256: glossSha } = store.tableFor([...keysNeeded]);
-let glossedWords = 0;
-for (const u of Object.values(units)) for (const e of u.section) for (const w of e.words) if (w.k && gloss[w.k]) glossedWords += 1;
+// The catalog answers per cell surface, so a commentary's own words offer the
+// same component system as the base text: same span slice, same cells, same
+// covers. A commentary a reader cannot cut is decoration in a second way.
+const span = spansPath ? await readSpanSlice(spansPath, keysNeeded) : null;
+const cellSurfaces = new Set(keysNeeded);
+if (span) for (const [, sp] of span.spans) for (const c of cellsOf(sp.s)) cellSurfaces.add(c.surface);
+const { table: gloss, counts: glossCounts, sha256: glossSha } = store.tableFor([...cellSurfaces]);
+const spanRoles = [], spanRules = [], spanConf = [];
+const intern = (arr, v) => { let i = arr.indexOf(v); if (i < 0) { i = arr.length; arr.push(v); } return i; };
+const spans = {};
+if (span) for (const [k, sp] of span.spans)
+  spans[k] = [sp.s, sp.r.map((r) => intern(spanRoles, r)), intern(spanRules, sp.rule), intern(spanConf, sp.conf)];
+let glossedWords = 0, regionCount = 0, splitWords = 0;
+for (const u of Object.values(units)) for (const e of u.section) for (const w of e.words) {
+  const regions = regionsOf(w);
+  regionCount += regions.length;
+  if (w.w) splitWords += 1;
+  if (regions.some((g) => gloss[g.k])) glossedWords += 1;
+}
 
 // ---- rule 5: this work's own licence, computed from its own rows ---------
 const postures = licensePosture(comm.units);
@@ -168,6 +186,7 @@ const sidecar = {
       gloss_table_sha256: glossSha,
       distinct_forms_glossed: glossCounts.glossed,
       distinct_forms_bare: glossCounts.no_exact_route + glossCounts.no_displayable_route,
+      grain: span ? "cell surface" : "whole form",
       note: "the commentary answers from the same exact-form catalog as the base text; an Aramaic form the Hebrew catalog never carries renders bare, which is the honest answer rather than a folded match",
     },
     build: { builder: "tools/build-commentary-zone.mjs", single_pass: true, emitted: stamp },
@@ -178,8 +197,14 @@ const sidecar = {
     base_sections_without_commentary: baseWithout.length,
     words,
     glossed_words: glossedWords,
+    w_regions: regionCount,
+    occurrences_holding_more_than_one_w: splitWords,
     held: comm.held,
   },
+  span_roles: spanRoles,
+  span_rules: spanRules,
+  span_conf: spanConf,
+  spans,
   gloss,
   units,
 };

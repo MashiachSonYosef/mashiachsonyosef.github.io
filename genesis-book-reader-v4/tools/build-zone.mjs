@@ -29,8 +29,9 @@ import { createHash } from "node:crypto";
 import { gzipSync } from "node:zlib";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
 import { K_RULE_ID, K_RULE_TEXT } from "./k-normalization-v1.mjs";
+import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import {
-  readServe, readBridge, parseCoordinates, wordsOf, licensePosture, require_, sha256File,
+  readServe, readBridge, parseCoordinates, wordsOf, regionsOf, licensePosture, require_, sha256File,
 } from "./zone-lib-v1.mjs";
 
 const arg = (flag, fallback = null) => {
@@ -49,6 +50,7 @@ const outPath = arg("--out");
 const stamp = arg("--stamp");
 const links = arg("--license-links");
 const yPath = arg("--y");
+const spansPath = arg("--spans");
 for (const [flag, v] of [["--serve", servePath], ["--bridge", bridgePath], ["--work", workId], ["--title", title], ["--out", outPath], ["--stamp", stamp]])
   require_(v, "MISSING_ARG", flag);
 
@@ -93,7 +95,7 @@ for (const unit of servedUnits) {
   const c = coords.get(unit);
   const sealed = bridge.units.get(unit);
   const words = wordsOf(u.rows);
-  words.forEach((w) => { if (w.k) keysNeeded.add(w.k); });
+  words.forEach((w) => regionsOf(w).forEach((g) => keysNeeded.add(g.k)));
 
   const sec = { unit, node: chapterIndex.get(c.chapter), label: c.label, c0_first: u.first, c0_last: u.last, words };
   const countOk = sealed.c0_rows === u.rows.length;
@@ -107,11 +109,34 @@ for (const unit of servedUnits) {
   perChapter.set(c.chapter, (perChapter.get(c.chapter) || 0) + 1);
 }
 
-// ---- 5. the gloss table, for exactly the forms this zone contains ---------
+// ---- 5. the component system, for exactly the forms this zone contains ----
+// A W's COMPspan is determinable without any definition work: it is the
+// attested component list, and the cells and the complete covers both follow
+// from it by arithmetic. So the span layer ships with the text, and the
+// reader can offer every cut of a word before asking the catalog anything.
+//
+// The catalog is keyed by cell surface, so the gloss table is asked for every
+// cell — not only the whole word. That is the whole gain: a reader can open
+// ה of והמלך and get the readings attested for ה.
+const span = spansPath ? await readSpanSlice(spansPath, keysNeeded) : null;
+const cellSurfaces = new Set(keysNeeded);
+if (span) for (const [, sp] of span.spans) for (const c of cellsOf(sp.s)) cellSurfaces.add(c.surface);
+
+// ---- 5b. the gloss table -------------------------------------------------
 // Title tokens are words too, so their keys are asked for alongside the text's.
-if (y) for (const c of Object.values(y.chapters)) for (const t of c.name_tokens) if (t.k) keysNeeded.add(t.k);
-const { table: gloss, counts: glossCounts, sha256: glossSha } = store.tableFor([...keysNeeded]);
-for (const sec of sections) for (const w of sec.words) if (w.k && gloss[w.k]) glossedWords += 1;
+if (y) for (const c of Object.values(y.chapters)) for (const t of c.name_tokens) if (t.k) { keysNeeded.add(t.k); cellSurfaces.add(t.k); }
+const { table: gloss, counts: glossCounts, sha256: glossSha } = store.tableFor([...cellSurfaces]);
+let glossedRegions = 0, regionCount = 0, spannedRegions = 0, splitWords = 0;
+for (const sec of sections) for (const w of sec.words) {
+  const regions = regionsOf(w);
+  if (w.w) splitWords += 1;
+  regionCount += regions.length;
+  for (const g of regions) {
+    if (span && span.spans.has(g.k)) spannedRegions += 1;
+    if (gloss[g.k]) glossedRegions += 1;
+  }
+  if (regions.some((g) => gloss[g.k])) glossedWords += 1;
+}
 
 // ---- 6. nodes ------------------------------------------------------------
 // Coordinates always; a title only where the Y ledger has one, and then its
@@ -140,8 +165,27 @@ const nodes = chapters.map((num) => {
 });
 if (y) require_(titledChapters === chapters.length, "Y_CHAPTER_MISSING", `${titledChapters}/${chapters.length} chapters carry a Y title`);
 
+// ---- 6b. the span table, interned ----------------------------------------
+// Roles, split rules and confidences repeat across thousands of forms, so the
+// zone ships each string once and the rows carry ordinals. A form's component
+// count is its surface list's length; the cells and the covers are arithmetic
+// on that list and are never stored.
+const spanRoles = [], spanRules = [], spanConf = [];
+const intern = (arr, v) => { let i = arr.indexOf(v); if (i < 0) { i = arr.length; arr.push(v); } return i; };
+const spans = {};
+let spanHistogram = {};
+if (span) {
+  for (const [k, sp] of span.spans) {
+    spans[k] = [sp.s, sp.r.map((r) => intern(spanRoles, r)), intern(spanRules, sp.rule), intern(spanConf, sp.conf)];
+    spanHistogram[sp.s.length] = (spanHistogram[sp.s.length] || 0) + 1;
+  }
+  spanHistogram = Object.fromEntries(Object.entries(spanHistogram).sort((a, b) => a[0] - b[0]));
+}
+
 // ---- 7. receipts ---------------------------------------------------------
 const postures = licensePosture(serve.units);
+const cellTotal = span ? [...span.spans.values()].reduce((n, sp) => n + (sp.s.length * (sp.s.length + 1)) / 2, 0) : 0;
+const coverTotal = span ? [...span.spans.values()].reduce((n, sp) => n + 2 ** (sp.s.length - 1), 0) : 0;
 const zone = {
   schema_version: "ZONE_V1",
   rule_id: "zone-emit-rule-v8-single-pass-from-sealed-serve",
@@ -187,8 +231,32 @@ const zone = {
       gloss_table_sha256: glossSha,
       distinct_forms_glossed: glossCounts.glossed,
       distinct_forms_bare: glossCounts.no_exact_route + glossCounts.no_displayable_route,
+      grain: span
+        ? "cell surface — every contiguous block of every form's component system is asked of the catalog, not only the whole form"
+        : "whole form",
       store_inputs: store.index.inputs,
     },
+    span_layer: span
+      ? {
+          rule: SPAN_RULE_ID,
+          source: span.source,
+          rows_scanned: span.scanned,
+          forms_with_a_component_system: span.spans.size,
+          component_count_histogram: spanHistogram,
+          derived_cells: cellTotal,
+          derived_complete_covers: coverTotal,
+          derivation:
+            "a form with n components has n(n+1)/2 contiguous cells and 2^(n-1) complete covers; both are computed from the component list and neither is stored",
+          cross_check:
+            "the derived cell surfaces were compared against w-to-compcell-template-v6 for every form in this zone: equal on surface, on count, and on which cell is maximal",
+          provenance_fields: {
+            split_rule: spanRules,
+            split_confidence: spanConf,
+            note: "these name where a component boundary came from; they are provenance on the boundary, not a verdict on a reading. A reading is removed by its licence and by nothing else.",
+          },
+          roles: spanRoles,
+        }
+      : { status: "no span slice supplied — this zone offers whole forms only" },
     y_ledger: y
       ? {
           status: `current — ${y.fixture_id} (${y.fixture_generated_on}), ${Object.keys(y.chapters).length} chapter nodes`,
@@ -230,8 +298,16 @@ const zone = {
     drifted_units: drifted,
     sealed_expected_words: [...bridge.units.values()].reduce((n, u) => n + u.c0_rows, 0),
     glossed_words: glossedWords,
+    occurrences_holding_more_than_one_w: splitWords,
+    w_regions: regionCount,
+    w_regions_with_a_component_system: spannedRegions,
+    w_regions_glossed: glossedRegions,
   },
   nodes,
+  span_roles: spanRoles,
+  span_rules: spanRules,
+  span_conf: spanConf,
+  spans,
   gloss,
   sections,
 };
@@ -240,8 +316,13 @@ const body = gzipSync(Buffer.from(JSON.stringify(zone)), { level: 9 });
 writeFileSync(outPath, body);
 console.log(
   `${outPath}: ${zone.counts.words.toLocaleString()} words · ${zone.counts.sections.toLocaleString()} sections · ` +
-  `${nodes.length} chapters · ${verified.toLocaleString()} verified, ${drifted} drifted · ` +
-  `${glossedWords.toLocaleString()} words glossed over ${glossCounts.glossed.toLocaleString()} distinct forms ` +
-  `(${glossCounts.no_exact_route.toLocaleString()} forms have no exact route, ${glossCounts.no_displayable_route} none displayable) · ` +
+  `${nodes.length} chapters · ${verified.toLocaleString()} verified, ${drifted} drifted\n` +
+  `  ${regionCount.toLocaleString()} W across ${zone.counts.words.toLocaleString()} occurrences ` +
+  `(${splitWords.toLocaleString()} occurrences hold more than one W) · ` +
+  `${spannedRegions.toLocaleString()} W have a component system over ${Object.keys(spans).length.toLocaleString()} distinct forms\n` +
+  `  ${cellTotal.toLocaleString()} cells and ${coverTotal.toLocaleString()} complete covers derived · ` +
+  `${glossCounts.glossed.toLocaleString()} of ${cellSurfaces.size.toLocaleString()} cell surfaces read ` +
+  `(${glossCounts.no_exact_route.toLocaleString()} have no exact route, ${glossCounts.no_displayable_route} none displayable)\n` +
+  `  ${glossedWords.toLocaleString()} occurrences carry a reading · ` +
   `${(body.length / 1024).toFixed(1)} KB gz · zone sha256 ${createHash("sha256").update(body).digest("hex").slice(0, 16)}…`,
 );
