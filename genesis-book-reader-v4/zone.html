@@ -113,6 +113,7 @@
   .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; direction: ltr; }
   .vnum { font-size: 0.72rem; color: var(--gold); border: 1px solid #3a3220;
     background: #151b26; border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
+  .vnum.at { background: var(--gold); color: #171105; border-color: var(--gold); font-weight: bold; }
   .drift-chip { font-size: 0.68rem; color: var(--amber); border: 1px dashed #6b5320; border-radius: 0.5rem;
     padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
   .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
@@ -271,7 +272,7 @@
   <h1 id="workTitle"><span class="he-t" lang="he" dir="rtl"></span><span class="en-t">Zone reader</span></h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
-  <nav><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=genesis">Genesis</a> · <a href="zone.html?b=1kings">I Kings</a> · <a href="zone.html?b=orot">Orot</a></nav>
+  <nav><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=genesis">Genesis</a> · <a href="zone.html?b=1kings">I Kings</a> · <a href="zone.html?b=targum-1kings">Targum Jonathan on I Kings</a> · <a href="zone.html?b=orot">Orot</a></nav>
   <div id="modeRow">
     <button type="button" class="mode-btn on" id="modeHe">Hebrew reader</button>
     <button type="button" class="mode-btn" id="modeEn">English reader</button>
@@ -926,10 +927,10 @@
   // A section's commentary: one pill per attached work, and the work's own
   // words beneath — tappable, because a commentary a reader cannot
   // interrogate is decoration. Its licence is its own; nothing inherits.
-  const openSectionCommentary = (el, unitId, label) => {
+  const openSectionCommentary = (el, unitId, label, atLabel) => {
     const entries = sectionCommentaryFor(unitId);
     if (!entries) return;
-    const reopen = () => openSectionCommentary(el, unitId, label);
+    const reopen = () => openSectionCommentary(el, unitId, label, atLabel);
     closeHud();
     activeEl = el; el.setAttribute("aria-expanded", "true");
     placeHud(el);
@@ -965,6 +966,16 @@
             : selected.basis}`
         : `Attachment: suggested reach only — ${selected.basis}; not a proven edge`;
       card.append(note);
+      // A commentary read eleven words at a time is a quotation. Where the work
+      // is published as a book of its own, the card says so and opens it at the
+      // same coordinate.
+      if (w.zone) {
+        const p = document.createElement("p"); p.className = "c-note";
+        const a = document.createElement("a");
+        a.href = `zone.html?b=${encodeURIComponent(w.zone)}${atLabel ? `&at=${encodeURIComponent(atLabel)}` : ""}`;
+        a.textContent = `Read ${w.family_en || w.title} as its own book`;
+        p.append(a); card.append(p);
+      }
     };
     entries.forEach((e) => {
       const p = document.createElement("button"); p.type = "button";
@@ -1081,6 +1092,11 @@
   }
   const main = document.getElementById("text");
   const frag = document.createDocumentFragment();
+  // ?at=7:14 opens the book at that coordinate. A coordinate is a locator, so
+  // one work can hand a reader to another at the same place without either of
+  // them claiming anything about the other.
+  const openAt = (new URLSearchParams(location.search).get("at") || "").trim();
+  const byLabel = new Map();
   let curPart = null, curNode = -1, openedNode = false;
   let secIdx = 0;
   const nodeSections = {};
@@ -1114,6 +1130,7 @@
     const s = document.createElement("section"); s.className = "seg";
     s.id = `s${secIdx}`;
     (nodeSections[sec.node] = nodeSections[sec.node] || []).push({ label: sec.label || String(secIdx + 1), id: s.id });
+    if (sec.label) byLabel.set(sec.label, s.id);
     secIdx += 1;
     const row = document.createElement("div"); row.className = "seg-row";
     const v = document.createElement("span"); v.className = "vnum"; v.textContent = sec.label || "";
@@ -1149,7 +1166,7 @@
       cb.addEventListener("click", (e) => {
         e.stopPropagation();
         if (cb.getAttribute("aria-expanded") === "true") { closeHud(); return; }
-        openSectionCommentary(cb, sec.unit, `${zone.work} ${sec.label}`);
+        openSectionCommentary(cb, sec.unit, `${zone.work} ${sec.label}`, sec.label);
       });
       row.append(cb);
     }
@@ -1188,6 +1205,13 @@
   let atNode = 0;
   // A book this long runs to millions of pixels; smooth scrolling across
   // that distance stalls, so only short hops animate.
+  if (openAt && byLabel.has(openAt)) {
+    const target = document.getElementById(byLabel.get(openAt));
+    if (target) {
+      window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 80);
+      target.querySelector(".vnum")?.classList.add("at");
+    }
+  }
   const goTo = (top) => {
     const d = Math.abs(top - window.scrollY);
     window.scrollTo({ top, behavior: d > 2500 ? "auto" : "smooth" });

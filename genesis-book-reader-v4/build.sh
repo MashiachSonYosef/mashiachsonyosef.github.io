@@ -66,13 +66,32 @@ node tools/build-zone.mjs \
   --license-links data/license-links-tanakh.json --stamp "$STAMP" \
   ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/1kings.bin
 
+# A commentary of the sealed chain is a work like any other, so it is also
+# published as a book of its own rather than only quoted eleven words at a
+# time through a card.
+node tools/build-zone.mjs \
+  --serve "$SERVES/targum-1kings.ndjson" --bridge "$BRIDGE" --store data/route-store \
+  --work targum/targum-jonathan-on-i-kings --title "Targum Jonathan on I Kings" \
+  --byline "Aramaic · served from the sealed terminal artifacts, attached to I Kings by the coordinates both works carry" \
+  --coord-labels "chapter,verse" --stamp "$STAMP" \
+  ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/targum-1kings.bin
+
 echo "── 5 · commentary, served from the same chain as the text ──────────────"
+# Coordinate identity is symmetric, so the same builder runs both ways and
+# neither work is demoted to being only the other's apparatus.
 node tools/build-commentary-zone.mjs \
   --base-serve "$SERVES/1kings.ndjson" --base-work tanakh/i-kings \
   --serve "$SERVES/targum-1kings.ndjson" --work targum/targum-jonathan-on-i-kings \
-  --title "Targum Jonathan on I Kings" --family "Targum Jonathan" \
+  --title "Targum Jonathan on I Kings" --family "Targum Jonathan" --published-as targum-1kings \
   --bridge "$BRIDGE" --store data/route-store --stamp "$STAMP" \
   ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/1kings-commentary.bin
+
+node tools/build-commentary-zone.mjs \
+  --base-serve "$SERVES/targum-1kings.ndjson" --base-work targum/targum-jonathan-on-i-kings \
+  --serve "$SERVES/1kings.ndjson" --work tanakh/i-kings \
+  --title "I Kings" --family "I Kings" --published-as 1kings \
+  --bridge "$BRIDGE" --store data/route-store --stamp "$STAMP" \
+  ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/targum-1kings-commentary.bin
 
 echo "── 6 · assemble the site ───────────────────────────────────────────────"
 cp data/zones/*.bin site/data/zones/
@@ -80,6 +99,7 @@ rm -rf site/data/route-store && cp -r data/route-store site/data/route-store
 
 echo "── 7 · verify by rendering, not by reading ─────────────────────────────"
 node tools/verify-zone.mjs --root site --book 1kings
+node tools/verify-zone.mjs --root site --book targum-1kings
 node tools/verify-zone.mjs --root site --book genesis
 
 echo "done · $(du -sh site | cut -f1) in site/"

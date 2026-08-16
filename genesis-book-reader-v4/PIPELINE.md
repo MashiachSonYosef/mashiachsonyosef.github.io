@@ -140,6 +140,32 @@ is tappable and answers from the same catalog: 9,686 of its 13,651 words carry
 a reading. Its licence is its own, computed from its own rows (Public Domain,
 `LIC-PUBLIC-DOMAIN-PROVIDER-ASSERTED`), and nothing inherits from the base text.
 
+## The commentary is a book
+
+Targum Jonathan on I Kings is the only commentary the sealed chain carries for
+this book — for any book of Nevi'im, in fact. Eleven works that would attach to
+I Kings are not in the corpus: **Radak, Metzudat David, Metzudat Zion, Minchat
+Shai and Malbim are marked `CURRENT_PRESENT` and are absent** (the Malbim row
+matched `tanakh/malbim-ayelet-hashachar`, a different book — the same
+title-collision fault as the Bavli tractates), and **Rashi, Ralbag, Abarbanel,
+Chomat Anakh, Marot HaTzoveot and Steinsaltz on I Kings are queued at
+`V_ATTACHMENT_REVIEW_NOT_COUNTED_B`** and deferred. Both are the corpus lane's
+to repair; this builder attaches any of them the day they exist, because the
+rule is coordinate identity and needs nothing added.
+
+What could be done with the one work that is here was to stop treating it as
+apparatus. 13,651 words of Aramaic were reachable only through a card, eleven
+at a time. Targum Jonathan is now built by the same builder as I Kings, from
+the same serve, with the same component system: **817 sections, 22 chapters,
+13,651 words, 9,686 carrying a reading, 12,877 W with a component system.**
+
+And because coordinate identity is symmetric, the commentary builder runs both
+ways with no rule added: I Kings receives the Targum at every section, and the
+Targum receives I Kings at every section. A card in either book offers to open
+the other at the same coordinate (`?at=7:14`), and a coordinate is a locator,
+so neither work claims anything about the other by linking to it. Neither is
+demoted to being the other's apparatus.
+
 ## Titles
 
 A title is corpus text, so its words need their own definition and source
@@ -212,7 +238,7 @@ rather than by name alone.
 |---|---|---|---|---|---|
 | Genesis | 17,807 | 20,691 | 1,533 | 17,729 | 50 chapters, Y titles, 56 held, no component layer |
 | I Kings | 11,368 | 12,883 | 817 | 10,969 | 22 chapters, locators only, 377 held |
-| Targum Jonathan on I Kings | 13,651 | 13,651 | 817 | 9,686 | section-grain commentary |
+| Targum Jonathan on I Kings | 13,651 | 13,651 | 817 | 9,686 | published as its own book; attached both ways |
 | Orot | 59,759 | 59,759 | 416 | 45,957 | acquisition route, 6 declared drifted units, re-projected |
 
 Genesis gained 2,816 reading words from the maqaf rule alone — it had the same
