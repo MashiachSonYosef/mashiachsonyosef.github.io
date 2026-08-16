@@ -4,7 +4,7 @@ Run `./build.sh` and every published byte is rebuilt from sealed inputs. Run it
 twice and the outputs are byte-identical. Nothing here edits a zone after it is
 written, and nothing reaches for text the corpus lane has not sealed.
 
-Recorded 2026-08-15. Component layer added 2026-08-16.
+Recorded 2026-08-15. Component layer and the deep catalog added 2026-08-16.
 
 ## Why this exists
 
@@ -25,6 +25,7 @@ Every one of those is now a script with its rule declared at the top of it.
 | 0 | `tools/plan-mirror.mjs` | the chain's shard indexes | the exact file list the resident reader needs |
 | 1 | `tools/mishkan-serve-v1.mjs` | a C0 range, the sealed mirror | one NDJSON row per occurrence, oracle-checked |
 | 2 | `tools/build-route-store.mjs` | the sealed definition packages | 256 gzip shards, keyed by exact K |
+| 2b | `tools/regloss-zone.mjs` | a zone + a store | the same zone re-projected onto the store |
 | 3 | `tools/extract-y-nodes.mjs` | the Y navigation ledger | a work's title words, verbatim |
 | 3b | `tools/span-slice-v1.mjs` | the COMPspan template | each form's component list, for the forms one book contains |
 | 4 | `tools/build-zone.mjs` | 1 + 2 + 3 + 3b + the identity bridge | `<book>.bin` |
@@ -156,13 +157,66 @@ ledger is explicit about this: a `CHAPTER_NUMBER` token has an empty
 letter's identity to name a number. Handed to the catalog it would print *the*
 under chapter א׳ — the catalog answering correctly about a word nobody wrote.
 
+## The top-five gate
+
+The route store used to ship only rows the definition package flags
+`selected_visible_top5` — at most five routes per form. For the 6,490 surfaces
+I Kings can open, that dropped **110,151 of 132,717 routes: 83% of the
+catalog**. `נשא` carries 448 and a reader met 5.
+
+Every one of the dropped rows was checked, and every one is licensed: 0 missing
+route text, 0 missing definition text, 0 missing M, 0 with an M short of a
+source key, label, licence posture or pointer. CC BY 4.0 (33,641), CC BY-SA
+(14,307), public domain (35,491 across three postures), CC0, and the rest. The
+earlier build's `refused: 0` was not evidence they were sound — the flag test
+ran one line *above* the licence test, so those rows were never examined.
+
+The flag is a ranking, not a licence. Nothing but a licence removes a reading,
+so rule 2 now ships every route with a complete M record and lets
+`semantic_route_rank` order them rather than gate them. **646,441 routes over
+140,532 keys, 13.1 MB gzipped, largest shard 68 KB.** דוד goes from 5 readings
+to 115, בא to 165, and Genesis's ב to 249.
+
+Two consequences, both handled:
+
+**The default reading moves.** Rule v3 orders antiquity first and the catalog's
+own `semantic_route_rank` only third. With five routes that hardly showed; with
+a hundred and thirty it decides everything, and `אב` reads *author* rather than
+*father*. This is the open item below, and rule v3 has not been changed here.
+
+**A shared store desynchronises every zone.** A zone bakes one reading per key
+so the page paints without fetching 256 shards, while the card computes from
+the store live. Move one and not the other and the printed word disagrees with
+the pressed pill — 55.6% of Genesis's words, 53.6% of Orot's. So every zone was
+re-emitted or re-projected: Genesis and I Kings rebuilt from their serves,
+Orot — which came through the acquisition route and cannot be re-served here —
+re-projected by `regloss-zone.mjs`, which recomputes only the gloss layer and
+copies everything else through untouched.
+
+## Cache, and why a shard is addressed by its store
+
+Deploying a moved store is not enough. A reader whose browser holds yesterday's
+shard keeps being answered from it while the page prints today's reading, and
+the two disagree on screen exactly as if the zone had never been rebuilt.
+
+So the index now carries a `store_version` derived from its input hashes, its
+rule id and its route count, and every shard URL carries that version. The
+index itself is the one file that must never be stale, and it is fetched with
+`cache: "no-cache"` — a conditional request that costs a 304 when nothing has
+moved. Everything downstream is then addressed by which store it belongs to
+rather than by name alone.
+
 ## What is published
 
 | | occurrences | W | sections | reading | notes |
 |---|---|---|---|---|---|
-| Genesis | 17,807 | 17,807 | 1,533 | 14,913 | 50 chapters, Y titles, 56 held, no component layer |
+| Genesis | 17,807 | 20,691 | 1,533 | 17,729 | 50 chapters, Y titles, 56 held, no component layer |
 | I Kings | 11,368 | 12,883 | 817 | 10,969 | 22 chapters, locators only, 377 held |
 | Targum Jonathan on I Kings | 13,651 | 13,651 | 817 | 9,686 | section-grain commentary |
+| Orot | 59,759 | 59,759 | 416 | 45,957 | acquisition route, 6 declared drifted units, re-projected |
+
+Genesis gained 2,816 reading words from the maqaf rule alone — it had the same
+defect I Kings did, and 2,835 of its occurrences hold more than one W.
 
 I Kings gained 1,826 reading words against 2026-08-15 — the maqaf occurrences,
 which were bare and are now two words each. The component layer adds no words
@@ -203,7 +257,15 @@ serve.
    nothing false is printed, but the underlying C0 is wrong and this page
    cannot fix it. The W inventory is clean: it carries no markup key at all.
    The two genuine absences are `וַיּוֹרִדֻהוּ` (1:53) and `כַּצִּדֹנִים` (5:20).
-5. **Genesis has no component layer.** Retrofitting a published book changes
+5. **Rule v3 orders antiquity before the catalog's own rank.** On the deep
+   catalog this decides the default reading, and often badly: `אב` prints
+   *author*, `אביך` prints *filled or abounding with fog or mist*. The
+   catalog's `semantic_route_rank` is only the third tiebreak, after tier and
+   year. Rule v3 is attested 2026-08-10 and has not been rewritten here; every
+   reading is one tap away regardless, but the reading that prints without a
+   tap is chosen by a rule that was calibrated against five routes and now
+   arbitrates a hundred and thirty.
+6. **Genesis has no component layer.** Retrofitting a published book changes
    what every word on it offers, so `build.sh` builds Genesis without `--spans`
    deliberately. The page reads a zone with no component layer as whole forms
    only and says so in its own receipts; that path is verified.
