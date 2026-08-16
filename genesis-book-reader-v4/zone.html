@@ -264,6 +264,17 @@
   #hud .c-back { background: none; border: 0; color: var(--link); font: inherit; font-size: 0.74rem;
     cursor: pointer; padding: 0 0 0.25rem; letter-spacing: 0.04em; }
   #hud .c-back:hover { color: var(--gold); }
+  /* Taking the text out. A reader who can read a verse but not carry it away
+     has been given a display, not a text. Two controls because the page holds
+     two things: the Hebrew as the chain has it, and the English the reader has
+     chosen — which is not the same as the English the page opened with. */
+  .cp { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--line); background: var(--panel2);
+    border-radius: 0.5rem; padding: 0.05rem 0.45rem; letter-spacing: 0.04em; cursor: pointer;
+    font-family: inherit; min-width: 1.5rem; }
+  .cp:hover { border-color: var(--gold-dim); color: var(--shesh); }
+  .cp.done { background: var(--gold); color: #171105; border-color: var(--gold); }
+  .cp.fail { border-color: var(--amber); color: var(--amber); }
+  .cp-he { font-family: "Frank Ruehl CLM", "David Libre", "SBL Hebrew", Georgia, serif; font-size: 0.82rem; }
   /* the section's own commentary handle, sitting with the section number */
   .c-seg { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--line); background: var(--panel2);
     border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.04em; cursor: pointer;
@@ -1176,6 +1187,34 @@
       });
       row.append(cb);
     }
+    // What the reader can carry away. The Hebrew is the exact surfaces the
+    // chain served, joined by the space the page prints between them — no
+    // gloss mixed in, which a plain browser selection cannot avoid because the
+    // gloss lives inside the word block. The English is whatever is on the
+    // gloss line at the moment of the tap, so a reader who has chosen a
+    // different reading copies the reading they chose.
+    const copyBtn = (cls, label, aria, get) => {
+      const b = document.createElement("button"); b.type = "button"; b.className = `cp ${cls}`;
+      b.textContent = label; b.setAttribute("aria-label", aria); b.title = aria;
+      b.addEventListener("click", async (e) => {
+        e.stopPropagation();
+        const text = get();
+        try {
+          await navigator.clipboard.writeText(text);
+          b.classList.add("done"); b.textContent = "✓";
+        } catch {
+          b.classList.add("fail"); b.textContent = "!";
+        }
+        setTimeout(() => { b.classList.remove("done", "fail"); b.textContent = label; }, 1200);
+      });
+      return b;
+    };
+    row.append(
+      copyBtn("cp-he", "א", `Copy the Hebrew of ${sec.label}`,
+        () => sec.words.map((w) => w.s).join(" ")),
+      copyBtn("cp-en", "A", `Copy the English showing for ${sec.label}`,
+        () => [...s.querySelectorAll(".he-text .wb .g")].map((g) => g.textContent.trim()).filter(Boolean).join(" ")),
+    );
     const he = document.createElement("p"); he.className = "he-text"; he.lang = "he"; he.dir = "rtl";
     let wIdx = 0;
     sec.words.forEach((word) => {
