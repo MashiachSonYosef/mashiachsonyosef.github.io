@@ -57,6 +57,11 @@ const storeDir = arg("--store", "data/route-store");
 const stamp = arg("--stamp");
 const outPath = arg("--out");
 const spansPath = arg("--spans");
+// The book id this work is published under, when it is published as one. A
+// commentary read eleven words at a time through a card is a quotation of a
+// work, not the work; where the same text is a zone of its own, the card says
+// so and hands the reader over at the same coordinate.
+const publishedAs = arg("--published-as");
 for (const [flag, v] of [["--base-serve", baseServePath], ["--base-work", baseWorkId], ["--serve", servePath], ["--work", workId], ["--title", title], ["--bridge", bridgePath], ["--stamp", stamp], ["--out", outPath]])
   require_(v, "MISSING_ARG", flag);
 
@@ -148,6 +153,7 @@ const sidecar = {
     family_en: family,
     b_n: `${bridge.b_id} / ${bridge.n_id}`,
     grain: "SECTION",
+    zone: publishedAs || undefined,
     license: row0.rights_authority.normalized_license_class === "PUBLIC_DOMAIN" ? "Public Domain" : row0.rights_authority.normalized_license_class,
     license_class: row0.rights_authority.normalized_license_class,
     license_id: row0.rights_authority.source_row.normalized_license_id,
