@@ -6,8 +6,9 @@
 # lane has not sealed. Run it twice on the same inputs and the outputs are
 # byte-identical; that is the whole point of it existing.
 #
-#   usage:  ./build.sh <workspace-mirror> <bridge.csv.gz> <serve-dir> <stamp>
-#   e.g.    ./build.sh ../mirror ../bridge.csv.gz ../serves 2026-08-15
+#   usage:  ./build.sh <workspace-mirror> <bridge.csv.gz> <serve-dir> <stamp> [compspan.csv.gz]
+#   e.g.    ./build.sh ../mirror ../bridge.csv.gz ../serves 2026-08-16 \
+#             ../ledgers/work/composition-map-v6/w-to-compspan-template-v6.csv.gz
 #
 # Stage 0, the mirror, is planned rather than assembled by hand:
 #     node tools/plan-mirror.mjs --phase 1 --root "<corpus root>"
@@ -20,6 +21,12 @@ MIRROR="${1:?workspace mirror}"
 BRIDGE="${2:?identity bridge csv.gz}"
 SERVES="${3:?directory for serve output}"
 STAMP="${4:?emission date, YYYY-MM-DD}"
+# The COMPspan template is optional: without it a zone offers whole forms only
+# and says so in its own receipts. With it, every form carries its component
+# list, and the reader derives the blocks and the complete divisions from that.
+SPANS="${5:-}"
+SPAN_ARG=()
+if [ -n "$SPANS" ]; then SPAN_ARG=(--spans "$SPANS"); fi
 mkdir -p "$SERVES" build data/zones site/data/zones
 
 echo "── 1 · serve each work id-by-id from the sealed artifacts ──────────────"
@@ -47,6 +54,9 @@ node tools/build-zone.mjs \
   --coord-labels "chapter,verse" --y build/y-genesis.json \
   --license-links data/license-links-tanakh.json --stamp "$STAMP" \
   --out data/zones/genesis.bin
+# Genesis is built without --spans on purpose. Adding the component layer to a
+# published book changes what every word offers, so it is its own decision and
+# not a side effect of running this script.
 
 node tools/build-zone.mjs \
   --serve "$SERVES/1kings.ndjson" --bridge "$BRIDGE" --store data/route-store \
@@ -54,7 +64,7 @@ node tools/build-zone.mjs \
   --byline "Nevi'im · Miqra according to the Masorah · served from the sealed terminal artifacts" \
   --coord-labels "chapter,verse" \
   --license-links data/license-links-tanakh.json --stamp "$STAMP" \
-  --out data/zones/1kings.bin
+  ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/1kings.bin
 
 echo "── 5 · commentary, served from the same chain as the text ──────────────"
 node tools/build-commentary-zone.mjs \
@@ -62,7 +72,7 @@ node tools/build-commentary-zone.mjs \
   --serve "$SERVES/targum-1kings.ndjson" --work targum/targum-jonathan-on-i-kings \
   --title "Targum Jonathan on I Kings" --family "Targum Jonathan" \
   --bridge "$BRIDGE" --store data/route-store --stamp "$STAMP" \
-  --out data/zones/1kings-commentary.bin
+  ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/1kings-commentary.bin
 
 echo "── 6 · assemble the site ───────────────────────────────────────────────"
 cp data/zones/*.bin site/data/zones/

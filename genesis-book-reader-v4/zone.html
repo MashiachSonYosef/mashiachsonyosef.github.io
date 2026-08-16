@@ -123,6 +123,15 @@
   .wb:hover .w { color: #ffe08a; border-bottom-color: #6a5a33; }
   .wb.held { opacity: 0.45; cursor: default; }
   .wb.active .w { color: var(--gold); border-bottom: 1px solid var(--gold); }
+  /* An occurrence written with a maqaf is one block and more than one W. The
+     block never splits; the W inside it light and open one at a time, and the
+     maqaf itself prints without opening, because it is not a W. */
+  .wb.multi:hover .w { color: inherit; border-bottom-color: transparent; }
+  .wb.multi.active .w { color: inherit; border-bottom: 1px dashed transparent; }
+  .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
+  .wr:hover { color: #ffe08a; border-bottom-color: #6a5a33; }
+  .wr.on { color: var(--gold); border-bottom: 1px solid var(--gold); }
+  .mq { color: var(--faint); }
   .g { display: block; order: 2; direction: ltr; font: 0.66rem/1.25 Georgia, serif; color: var(--muted);
     letter-spacing: 0.02em; margin-top: 0.06rem; max-width: 10em;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -171,20 +180,40 @@
   #hud .r-overflow select.on { color: #171105; background: var(--gold); border-color: var(--gold); font-weight: bold; }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   #hud .d-card .d-text { margin: 0.25rem 0; }
+  /* Structure pills — how the form divides, and which block of it is open.
+     Quieter than a reading pill on purpose: the reading is the loud thing on
+     this card, and the structure is how you got to it. */
+  #hud .s-pills { display: flex; flex-wrap: wrap; gap: 0.32rem; direction: ltr; }
+  /* the blocks of one division lay out in the word's own direction, so the
+     row reads as the form does and the word visibly reassembles */
+  #hud .s-pills[dir="rtl"] { direction: rtl; }
+  #hud .s-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+    border-radius: 0.4rem; padding: 0.18rem 0.6rem; font: inherit; font-size: 0.9rem; cursor: pointer;
+    max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  #hud .s-pills button:hover { border-color: var(--gold-dim); color: var(--shesh); }
+  #hud .s-pills button[aria-pressed="true"] { border-color: var(--shesh); color: var(--ink-strong);
+    background: #17222f; }
+  #hud .s-pills button .none { font: 0.62rem/1 Georgia, serif; color: var(--faint); margin-inline-start: 0.35rem; }
+  #hud .prov { color: var(--faint); font-size: 0.72rem; margin: 0.35rem 0 0; }
   .lic-chip { display: inline-block; margin-inline-start: 0.45rem; padding: 0.02rem 0.5rem;
     border-radius: 999px; background: rgba(216, 199, 164, 0.12); border: 1px solid rgba(216, 199, 164, 0.3);
     color: var(--shesh); font-size: 0.72rem; }
-  /* commentary chip on a word block */
+  /* Commentary rides in the same register as the readings: same pill, same
+     selected treatment, same card. It is named by its label, not by a colour
+     of its own — a commentator is one more voice on the card, not a louder
+     kind of thing than the catalog it sits beside. */
   .wb { position: relative; }
   .c-chip { position: absolute; top: -0.35rem; left: -0.5rem; z-index: 2; direction: ltr;
-    font: bold 0.58rem/1.5 Inter, system-ui, sans-serif; color: #2a1a10; background: #b06a4a;
+    font: bold 0.58rem/1.5 Inter, system-ui, sans-serif; color: #171105; background: var(--gold-dim);
     border-radius: 999px; min-width: 1.05rem; text-align: center; padding: 0 0.22rem; pointer-events: none; }
   body.en .c-chip { left: auto; right: -0.5rem; }
   #hud .c-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
-  #hud .c-pills button { border: 1px solid #5a3a2a; background: #1c1410; color: #d9b49a;
+  #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  #hud .c-pills button[aria-pressed="true"] { background: #b06a4a; border-color: #b06a4a; color: #1c0f08; font-weight: bold; }
+  #hud .c-pills button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold);
+    color: #171105; font-weight: bold; }
   #hud .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
@@ -198,11 +227,11 @@
     cursor: pointer; padding: 0 0 0.25rem; letter-spacing: 0.04em; }
   #hud .c-back:hover { color: var(--gold); }
   /* the section's own commentary handle, sitting with the section number */
-  .c-seg { font-size: 0.68rem; color: #d9b49a; border: 1px solid #5a3a2a; background: #1c1410;
+  .c-seg { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--line); background: var(--panel2);
     border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.04em; cursor: pointer;
     font-family: inherit; font-variant: small-caps; }
-  .c-seg:hover { border-color: #b06a4a; color: #f0cdb4; }
-  .c-seg[aria-expanded="true"] { background: #b06a4a; color: #1c0f08; border-color: #b06a4a; }
+  .c-seg:hover { border-color: var(--gold-dim); color: var(--shesh); }
+  .c-seg[aria-expanded="true"] { background: var(--gold); color: #171105; border-color: var(--gold); }
   #prov a { color: var(--shesh); }
 
   footer { max-width: 48rem; margin: 0 auto; padding: 1.1rem 1.5rem 2.2rem; font-size: 0.76rem;
@@ -274,12 +303,24 @@
     `${zone.counts.verified_units} of ${zone.counts.sections} sections verified word-for-word in count against the sealed corpus allocation` +
     `${zone.counts.drifted_units ? `; ${zone.counts.drifted_units} drift from it and are marked` : ""} · ` +
     `${zone.counts.glossed_words ? zone.counts.glossed_words.toLocaleString() + " words carry their oldest-sourced catalog route as an English gloss (exact spellings only — unmatched forms stay bare) · " : ""}` +
+    `${zone.counts.w_regions_with_a_component_system
+      ? `${zone.counts.occurrences_holding_more_than_one_w
+          ? `${zone.counts.occurrences_holding_more_than_one_w.toLocaleString()} of those occurrences are written with a maqaf and hold two words each, ${zone.counts.w_regions.toLocaleString()} words in all; `
+          : ""}` +
+        `${zone.counts.w_regions_with_a_component_system.toLocaleString()} words carry a component system, so every complete division of a word and every block inside one opens on its own · `
+      : ""}` +
     `tap any word for all routes, sources, and licenses`;
   document.getElementById("prov").textContent =
+    `${zone.work_receipts && zone.work_receipts.b_n ? `${zone.work_receipts.b_n} · ` : ""}` +
     `${zone.rule_id} · route: ${zone.route} · identity oracle ${oc.bridge_sha256.slice(0, 16)}… ` +
     `(${oc.sealed_units.toLocaleString()} units, C0 ${oc.first_c0_numeric_id.toLocaleString()}–${oc.last_c0_numeric_id.toLocaleString()}) · ` +
     (wk ? `${/RESIDENT_SERVE/.test(wk.route || "") ? `serve rule ${wk.walker_rule}; sealed-reader oracle ${wk.sealed_oracle.report.field_exact}/${wk.sealed_oracle.report.sampled} field-exact; ` : `walk: `}module ${wk.module.sha256.slice(0, 12)}…, pointer ${wk.pointer.sha256.slice(0, 12)}… · ${zone.emitted_from.license_receipts.per_occurrence} · ` : `payload sha ${ac.payload_sha256_transferred.slice(0, 16)}… · ${zone.emitted_from.license_receipts.work_activation} · `) +
     `${zone.emitted_from.gloss_layer ? `glosses: ${zone.emitted_from.gloss_layer.rule} (table sha ${zone.emitted_from.gloss_layer.gloss_table_sha256.slice(0, 12)}…; ${zone.emitted_from.gloss_layer.attribution}) · ` : ""}` +
+    `${zone.emitted_from.span_layer && zone.emitted_from.span_layer.rule
+      ? `components: ${zone.emitted_from.span_layer.rule} from ${zone.emitted_from.span_layer.source.path} (sha ${zone.emitted_from.span_layer.source.sha256.slice(0, 12)}…), ` +
+        `${zone.emitted_from.span_layer.forms_with_a_component_system.toLocaleString()} forms, ` +
+        `${zone.emitted_from.span_layer.derived_cells.toLocaleString()} blocks and ${zone.emitted_from.span_layer.derived_complete_covers.toLocaleString()} complete divisions derived from the component lists alone · `
+      : ""}` +
     `${zone.emitted_from.y_ledger?.consequence || zone.emitted_from.y_ledger?.status || ""}${zone.emitted_from.y_ledger ? " · " : ""}` +
     (zone.emitted_from.sealed_chain_status
       ? `the installed terminal reader does not yet carry this span (partial-rebuild gap); this page runs the acquisition route until a sealed generation includes the book.`
@@ -323,7 +364,11 @@
   let activeEl = null;
   const closeHud = () => {
     hud.hidden = true; hud.replaceChildren();
-    activeEl?.classList.remove("active"); activeEl = null; hudAnchor = null;
+    activeEl = null; hudAnchor = null;
+    // a card may have been opened from a whole block or from one W inside it,
+    // so both marks are cleared rather than the one we happen to remember
+    document.querySelectorAll(".wb.active").forEach((w) => w.classList.remove("active"));
+    document.querySelectorAll(".wr.on").forEach((r) => r.classList.remove("on"));
     document.querySelectorAll('.c-seg[aria-expanded="true"]').forEach((c) => c.setAttribute("aria-expanded", "false"));
   };
   // Anchor the HUD to whatever was tapped. Three surfaces open it now — a
@@ -352,37 +397,56 @@
     b.addEventListener("click", (e) => { e.stopPropagation(); back.open(); });
     return b;
   };
-  const openHud = async (el, word, unitId, wordPos, opts = {}) => {
-    closeHud();
-    activeEl = el; el.classList.add("active");
-    placeHud(el);
-    const head = document.createElement("div"); head.className = "head";
-    const b = document.createElement("b"); b.lang = "he"; b.dir = "rtl"; b.textContent = word.s;
-    const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Close"); x.addEventListener("click", closeHud);
-    head.append(b, x);
-    const status = document.createElement("p"); status.textContent = "Fetching one shard…";
-    if (opts.back) hud.replaceChildren(backButton(opts.back), head, status);
-    else hud.replaceChildren(head, status);
-    placeHud();
-    const cm = opts.back ? null : commentaryFor(unitId, wordPos);
-    const routes = await routesFor(word.k);
-    if (!routes) {
-      status.textContent = "No exact route in the catalog for this form. Exact spellings only — nothing folded, nothing guessed.";
-      appendCommentarySection(cm);
-      placeHud();
-      return;
+
+  // ---- the component system -------------------------------------------
+  // A W's COMPspan is the attested list of its components. Everything the
+  // card offers below follows from that list by arithmetic and asks the
+  // catalog nothing: n components make n(n+1)/2 contiguous cells and
+  // 2^(n-1) complete covers — every way of dividing the form so that each
+  // component is used exactly once, and none is used twice.
+  const cutsOf = (comps) => {
+    const n = comps.length, out = [];
+    for (let mask = 0; mask < 1 << (n - 1); mask += 1) {
+      const parts = []; let start = 0;
+      const cut = (from, to) => ({ surface: comps.slice(from, to + 1).join(""), from, to });
+      for (let i = 0; i < n - 1; i += 1)
+        if (mask & (1 << i)) { parts.push(cut(start, i)); start = i + 1; }
+      parts.push(cut(start, n - 1));
+      out.push(parts);
     }
-    hud.removeChild(status);
-    // R pills, the reader's law (rule v2 · 2026-08-10): dedupe routes
-    // by text merging the oldest year and lowest rank; oldest source
-    // leads, post-1940 and unyeared sources last; ONE route selected at a
-    // time — its D record and attribution ride below; tap a pill to switch,
-    // and the gloss under the word follows the selection.
-    // Sense level (rule v3): a route text packs senses with ";" — each sense
-    // is its own pill. One reading on display at a time, in every packing.
+    // coarse first, so the whole form leads and the finest cut is last
+    return out.sort((a, b) => a.length - b.length);
+  };
+  const joinCut = (cut) => cut.map((c) => c.surface).join(" + ");
+  // What the boundary is, and where it came from. Provenance on the cut —
+  // not a verdict on any reading that the cut makes reachable.
+  const SPLIT_PROVENANCE = {
+    stepbible_tahot_explicit_source_alignment_v1: "component boundaries aligned to an explicit source",
+    formulaic_clitic_candidate_v1: "component boundaries proposed by the formulaic clitic pass",
+    whole_token_only_v1: "recorded as one component",
+  };
+  const spanOf = (bin, k) => {
+    const row = bin && bin.spans ? bin.spans[k] : null;
+    if (!row) return null;
+    const [surfaces, roleIdx, ruleIdx, confIdx] = row;
+    return {
+      comps: surfaces,
+      roles: roleIdx.map((i) => (bin.span_roles || [])[i]),
+      rule: (bin.span_rules || [])[ruleIdx],
+      conf: (bin.span_conf || [])[confIdx],
+    };
+  };
+
+  // The readings for one cell surface, as the reader's law has them
+  // (rule v3 · 2026-08-10): a route text packs senses with ";" and each sense
+  // is its own pill; pills dedupe by text, merging the oldest year and lowest
+  // rank; oldest source leads, post-1940 and unyeared sources last.
+  const poolFor = async (surface) => {
+    const routes = await routesFor(surface);
+    if (!routes) return null;
     const groups = new Map();
     routes.forEach((row) => {
-      const [rank, routeText, definitionText, mId, year] = row;
+      const [rank, routeText, , mId, year] = row;
       if (!index.m_sources[mId]) return;
       const y = Number.parseInt(year, 10);
       const yr = Number.isInteger(y) ? y : Infinity;
@@ -396,90 +460,222 @@
         }
       });
     });
-    const tier = (r) => Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1;
-    const pool = [...groups.values()].sort((a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger);
-    if (!pool.length) {
-      const p = document.createElement("p");
-      p.textContent = "No displayable route in the catalog for this form.";
-      hud.append(p); return;
-    }
-    let selected = pool[0];
-    const label = document.createElement("p"); label.className = "r-label";
-    label.textContent = "Exact selectable routes";
-    const pills = document.createElement("div"); pills.className = "r-pills";
-    const dCard = document.createElement("div"); dCard.className = "d-card";
-    const renderDCard = () => {
-      dCard.replaceChildren();
-      const recs = [...selected.records].sort((a, b) => {
-        const ya = Number.parseInt(a[4], 10), yb = Number.parseInt(b[4], 10);
-        return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yb) ? yb : 9e9);
+    const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
+    return [...groups.values()].sort((a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger);
+  };
+
+  /**
+   * One card. The rows read top to bottom as one sentence: this is the form,
+   * this is how it divides, this is the block you have open, this is what the
+   * catalog attests for that block, and this is who attested it.
+   *
+   * The card opens on the whole W — one cell, its first reading — because a
+   * complete word is what a reader came for. Every finer cut is one tap away
+   * and none of them is hidden.
+   */
+  const openHud = async (el, region, unitId, wordPos, opts = {}) => {
+    closeHud();
+    activeEl = el;
+    if (!opts.mark) el.classList.add("active");
+    const bin = opts.bin || zone;
+    const word = opts.word || region;
+    const regionIndex = opts.regionIndex || 0;
+    const regions = word.w || [region];
+    if (opts.mark) opts.mark();
+    placeHud(el);
+
+    const head = document.createElement("div"); head.className = "head";
+    const b = document.createElement("b"); b.lang = "he"; b.dir = "rtl";
+    // the whole occurrence in the header, with the W you opened marked, so a
+    // maqaf'd word never loses the half you are not reading
+    if (regions.length > 1) {
+      regions.forEach((r, i) => {
+        if (i) b.append(Object.assign(document.createElement("span"), { className: "mq", textContent: "־" }));
+        const seg = document.createElement("span");
+        seg.textContent = r.s;
+        if (i !== regionIndex) seg.style.color = "var(--faint)";
+        b.append(seg);
       });
-      recs.forEach(([rank, routeText, definitionText, mId, year]) => {
-        const m = index.m_sources[mId];
-        if (definitionText && definitionText !== routeText) {
-          const d = document.createElement("p"); d.className = "d-text"; d.dir = "auto";
-          d.textContent = definitionText; dCard.append(d);
+    } else b.textContent = word.s;
+    const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Close");
+    x.addEventListener("click", closeHud);
+    head.append(b, x);
+    const status = document.createElement("p"); status.textContent = "Fetching one shard…";
+    if (opts.back) hud.replaceChildren(backButton(opts.back), head, status);
+    else hud.replaceChildren(head, status);
+    placeHud();
+
+    const cm = opts.back ? null : commentaryFor(unitId, wordPos);
+    const span = spanOf(bin, region.k);
+    const comps = span ? span.comps : [region.k];
+    const covers = cutsOf(comps);
+
+    let cover = covers[0];
+    let cellIdx = 0;
+    const picked = new Map();          // cell surface -> chosen reading
+    const cache = new Map();           // cell surface -> pool (or null)
+
+    // The gloss under the word follows the whole card: every cell of the cut
+    // you have open, joined the way the reader joins a span. A cell the
+    // catalog does not attest reads as a dash rather than borrowing its
+    // neighbour's word.
+    const glossEl = el.closest(".wb") ? el.closest(".wb").querySelector(".g") : null;
+    const glossParts = opts.glossParts || null;
+    const textOfCell = (surface) => {
+      const p = picked.get(surface);
+      if (p) return spanJoin(p.text);
+      const g = bin.gloss ? bin.gloss[surface] : null;
+      return g ? spanJoin(g) : "—";
+    };
+    const paintGloss = () => {
+      if (!glossEl) return;
+      const mine = cover.map((c) => textOfCell(c.surface)).join(" + ");
+      const line = glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine;
+      glossEl.textContent = line; glossEl.title = line; glossEl.classList.remove("bare");
+    };
+
+    const cutRow = document.createElement("div");
+    const cellRow = document.createElement("div");
+    const readRow = document.createElement("div");
+    const prov = document.createElement("p"); prov.className = "prov";
+    hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, cutRow, cellRow, readRow, prov);
+
+    // --- row 1 · how the form divides ---------------------------------
+    const renderCuts = () => {
+      cutRow.replaceChildren();
+      if (covers.length < 2) return;
+      const label = document.createElement("p"); label.className = "r-label";
+      label.textContent = `Complete divisions · ${covers.length}`;
+      const pills = document.createElement("div"); pills.className = "s-pills";
+      covers.forEach((c) => {
+        const btn = document.createElement("button"); btn.type = "button";
+        btn.lang = "he"; btn.dir = "rtl"; btn.textContent = joinCut(c);
+        btn.setAttribute("aria-pressed", String(c === cover));
+        btn.addEventListener("click", () => { cover = c; cellIdx = 0; renderCuts(); renderCells(); renderReadings(); paintGloss(); });
+        pills.append(btn);
+      });
+      cutRow.append(label, pills);
+    };
+
+    // --- row 2 · which block of it is open -----------------------------
+    const renderCells = () => {
+      cellRow.replaceChildren();
+      if (cover.length < 2) return;
+      const label = document.createElement("p"); label.className = "r-label"; label.textContent = "Block";
+      // the blocks sit in the word's own direction, so the row reads as the
+      // form does and a reader watches the word come back together
+      const pills = document.createElement("div"); pills.className = "s-pills"; pills.dir = "rtl";
+      cover.forEach((c, i) => {
+        const btn = document.createElement("button"); btn.type = "button";
+        btn.lang = "he"; btn.dir = "rtl"; btn.textContent = c.surface;
+        if (span) {
+          const roles = [...new Set(span.roles.slice(c.from, c.to + 1))].join(", ").replace(/_/gu, " ");
+          if (roles) btn.title = roles;
         }
-        const att = document.createElement("p"); att.className = "att";
-        const yearLabel = !year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year;
-        att.append(`${m.label} · ${yearLabel} `);
-        const lic = document.createElement("span"); lic.className = "lic-chip";
-        lic.textContent = licenseName(m.licensePosture); att.append(lic, " ");
-        if (/^https?:\/\//u.test(m.licensePointer)) {
-          const a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank"; a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a);
-        } else att.append(`record: ${m.licensePointer}`);
-        dCard.append(att);
+        btn.setAttribute("aria-pressed", String(i === cellIdx));
+        btn.addEventListener("click", () => { cellIdx = i; renderCells(); renderReadings(); });
+        pills.append(btn);
       });
+      cellRow.append(label, pills);
     };
-    const glossEl = el.querySelector(".g");
-    let overflow = null;
-    const clearPressed = () => {
-      pills.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", "false"));
-      if (overflow) { overflow.selectedIndex = 0; overflow.classList.remove("on"); }
+
+    // --- row 3 · what the catalog attests for that block ---------------
+    const renderReadings = async () => {
+      const surface = cover[cellIdx].surface;
+      readRow.replaceChildren();
+      const label = document.createElement("p"); label.className = "r-label";
+      label.textContent = cover.length > 1 ? `Exact selectable routes · ${surface}` : "Exact selectable routes";
+      const wait = document.createElement("p"); wait.textContent = "Fetching one shard…";
+      readRow.append(label, wait);
+      placeHud();
+      if (!cache.has(surface)) cache.set(surface, await poolFor(surface));
+      if (surface !== cover[cellIdx].surface) return;    // the reader moved on
+      const pool = cache.get(surface);
+      readRow.replaceChildren(label);
+      if (!pool || !pool.length) {
+        const p = document.createElement("p");
+        p.textContent = pool ? "No displayable route in the catalog for this form." : "No exact route in the catalog for this form.";
+        readRow.append(p); placeHud(); return;
+      }
+      let selected = picked.get(surface) || pool[0];
+      const pills = document.createElement("div"); pills.className = "r-pills";
+      const dCard = document.createElement("div"); dCard.className = "d-card";
+      const renderDCard = () => {
+        dCard.replaceChildren();
+        const recs = [...selected.records].sort((a, c) => {
+          const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
+          return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
+        });
+        recs.forEach(([, routeText, definitionText, mId, year]) => {
+          const m = index.m_sources[mId];
+          if (definitionText && definitionText !== routeText) {
+            const d = document.createElement("p"); d.className = "d-text"; d.dir = "auto";
+            d.textContent = definitionText; dCard.append(d);
+          }
+          const att = document.createElement("p"); att.className = "att";
+          const yearLabel = !year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year;
+          att.append(`${m.label} · ${yearLabel} `);
+          const lic = document.createElement("span"); lic.className = "lic-chip";
+          lic.textContent = licenseName(m.licensePosture); att.append(lic, " ");
+          if (/^https?:\/\//u.test(m.licensePointer)) {
+            const a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank";
+            a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a);
+          } else att.append(`record: ${m.licensePointer}`);
+          dCard.append(att);
+        });
+      };
+      let overflow = null;
+      const choose = (route) => { selected = route; picked.set(surface, route); renderDCard(); paintGloss(); };
+      const makePill = (route) => {
+        const btn = document.createElement("button"); btn.type = "button";
+        btn.textContent = spanJoin(route.text);
+        const oldestM = index.m_sources[route.records[0][3]];
+        btn.title = [Number.isFinite(route.year) ? String(route.year) : "no source year", oldestM ? oldestM.label : ""].filter(Boolean).join(" · ");
+        btn.setAttribute("aria-pressed", String(route === selected));
+        btn.addEventListener("click", () => {
+          pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
+          if (overflow) { overflow.selectedIndex = 0; overflow.classList.remove("on"); }
+          btn.setAttribute("aria-pressed", "true"); choose(route);
+        });
+        return btn;
+      };
+      // Ten readings sit out as pills; the rest go to a picker rather than an
+      // ever-growing wall of them. Some words carry hundreds.
+      const SHOWN = 10;
+      pool.slice(0, SHOWN).forEach((r) => pills.append(makePill(r)));
+      readRow.append(pills);
+      if (pool.length > SHOWN) {
+        const rest = pool.slice(SHOWN);
+        const wrap = document.createElement("div"); wrap.className = "r-overflow";
+        const sel = document.createElement("select"); overflow = sel;
+        sel.setAttribute("aria-label", `${rest.length} more readings`);
+        const h = document.createElement("option"); h.textContent = `${rest.length} more readings…`; h.value = ""; sel.append(h);
+        rest.forEach((r, i) => {
+          const o = document.createElement("option"); o.value = String(i);
+          o.textContent = spanJoin(r.text) + (Number.isFinite(r.year) ? `  ·  ${r.year}` : "");
+          sel.append(o);
+        });
+        sel.addEventListener("change", () => {
+          if (sel.value === "") return;
+          pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
+          sel.classList.add("on"); choose(rest[Number(sel.value)]);
+        });
+        wrap.append(sel); readRow.append(wrap);
+      }
+      renderDCard(); readRow.append(dCard);
+      paintGloss();
+      placeHud();
     };
-    const choose = (route) => {
-      selected = route;
-      renderDCard();
-      if (glossEl) { glossEl.textContent = spanJoin(route.text); glossEl.title = spanJoin(route.text); glossEl.classList.remove("bare"); }
-    };
-    const makePill = (route) => {
-      const b = document.createElement("button"); b.type = "button";
-      b.textContent = spanJoin(route.text);
-      const oldestM = index.m_sources[route.records[0][3]];
-      b.title = [Number.isFinite(route.year) ? String(route.year) : "no source year", oldestM ? oldestM.label : ""].filter(Boolean).join(" · ");
-      b.setAttribute("aria-pressed", String(route === selected));
-      b.addEventListener("click", () => { clearPressed(); b.setAttribute("aria-pressed", "true"); choose(route); });
-      return b;
-    };
-    // Ten readings sit out as pills; the rest go to a picker rather than an
-    // ever-growing wall of them. Some words carry hundreds.
-    const SHOWN = 10;
-    pool.slice(0, SHOWN).forEach((r) => pills.append(makePill(r)));
-    hud.append(label, pills);
-    if (pool.length > SHOWN) {
-      const rest = pool.slice(SHOWN);
-      const wrap = document.createElement("div"); wrap.className = "r-overflow";
-      const sel = document.createElement("select"); overflow = sel;
-      sel.setAttribute("aria-label", `${rest.length} more readings`);
-      const head = document.createElement("option");
-      head.textContent = `${rest.length} more readings…`; head.value = ""; sel.append(head);
-      rest.forEach((r, i) => {
-        const o = document.createElement("option"); o.value = String(i);
-        const yr = Number.isFinite(r.year) ? r.year : null;
-        o.textContent = spanJoin(r.text) + (yr ? `  ·  ${yr}` : "");
-        sel.append(o);
-      });
-      sel.addEventListener("change", () => {
-        if (sel.value === "") return;
-        const route = rest[Number(sel.value)];
-        pills.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", "false"));
-        sel.classList.add("on");
-        choose(route);
-      });
-      wrap.append(sel); hud.append(wrap);
-    }
-    renderDCard();
-    hud.append(dCard);
+
+    // --- row 4 · where the boundaries came from ------------------------
+    if (span) {
+      prov.textContent = comps.length === 1
+        ? `${SPLIT_PROVENANCE[span.rule] || span.rule}`.replace(/^./u, (c) => c.toUpperCase())
+        : `${comps.length} components · ${SPLIT_PROVENANCE[span.rule] || span.rule}`;
+    } else prov.textContent = "No component system recorded for this form.";
+
+    renderCuts(); renderCells();
+    await renderReadings();
     appendCommentarySection(cm);
     placeHud();
   };
@@ -590,16 +786,61 @@
     const wb = document.createElement("span");
     wb.className = word.held ? "wb held" : "wb";
     const w = document.createElement("span");
-    w.className = "w"; w.lang = "he"; w.dir = "rtl"; w.textContent = word.s;
+    w.className = "w"; w.lang = "he"; w.dir = "rtl";
+    // The block is the occurrence. What is clickable inside it is whatever the
+    // ledger says the occurrence contains: one W, or several with a maqaf
+    // between them. The maqaf prints and does not open, because it is not a W.
+    const regions = word.w || null;
+    const regionEls = [];
+    if (regions) {
+      wb.classList.add("multi");
+      const printed = word.s.split("־");
+      printed.forEach((piece, i) => {
+        if (i) w.append(Object.assign(document.createElement("span"), { className: "mq", textContent: "־" }));
+        if (!piece) return;
+        const seg = document.createElement("span"); seg.className = "wr"; seg.textContent = piece;
+        w.append(seg); regionEls.push(seg);
+      });
+    } else w.textContent = word.s;
     wb.append(w);
-    const g = table && word.k ? table[word.k] : null;
     // The gloss line always exists — words without English keep an empty line
     // so the Hebrew never rides higher than its neighbors, in either mode.
+    // A word holding several W reads them joined, the same join a span uses.
+    const parts = (regions || (word.k ? [{ k: word.k }] : [])).map((r) => {
+      const g = table ? table[r.k] : null;
+      return g ? spanJoin(g) : "—";
+    });
+    const line = parts.filter((p) => p !== "—").length ? parts.join(" + ") : "";
     const ge = document.createElement("span"); ge.className = "g";
-    if (g) { ge.textContent = spanJoin(g); ge.title = spanJoin(g); }
+    if (line) { ge.textContent = line; ge.title = line; }
     else { ge.textContent = " "; ge.classList.add("bare"); }
     wb.append(ge);
-    return wb;
+    return { wb, regionEls, glossParts: parts };
+  };
+
+  /**
+   * Wire an occurrence so that each W inside it opens on its own. One W and
+   * the whole block is the target; several and each region is, which is what
+   * "one word, both halves clickable" means in the DOM.
+   */
+  const wireWord = (built, word, bin, unitId, wordPos, opts = {}) => {
+    // held by the chain's script rule, or normalizing to nothing at all: no
+    // key, no catalog question, no tap
+    if (word.held || (!word.w && !word.k)) { built.wb.style.cursor = "default"; return built.wb; }
+    const regions = word.w || [{ s: word.s, k: word.k }];
+    const targets = built.regionEls.length ? built.regionEls : [built.wb];
+    targets.forEach((target, i) => {
+      target.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        built.regionEls.forEach((r) => r.classList.remove("on"));
+        openHud(target, regions[i], unitId, wordPos, {
+          ...opts, bin, word, regionIndex: i,
+          glossParts: built.regionEls.length ? built.glossParts : null,
+          mark: () => { if (built.regionEls.length) target.classList.add("on"); built.wb.classList.add("active"); },
+        });
+      });
+    });
+    return built.wb;
   };
 
   // A section's commentary: one pill per attached work, and the work's own
@@ -625,12 +866,9 @@
       card.replaceChildren();
       const body = document.createElement("p"); body.className = "c-he"; body.lang = "he"; body.dir = "rtl";
       (selected.words || []).forEach((word) => {
-        const wb = wordBlock(word, commentaryStore.gloss);
-        if (!word.held) wb.addEventListener("click", (ev) => {
-          ev.stopPropagation();
-          openHud(wb, word, null, null, { back: { label: selected.label || selected.ref, open: reopen } });
-        });
-        body.append(wb, document.createTextNode(" "));
+        const built = wordBlock(word, commentaryStore.gloss);
+        wireWord(built, word, commentaryStore, null, null, { back: { label: selected.label || selected.ref, open: reopen } });
+        body.append(built.wb, document.createTextNode(" "));
       });
       if (!body.childNodes.length) { body.dir = "auto"; body.textContent = selected.text || ""; }
       card.append(body);
@@ -698,14 +936,14 @@
     const row = document.createElement("div"); row.className = "title-row";
     if (!toks || !toks.length) { row.lang = "he"; row.dir = "rtl"; row.textContent = raw || ""; return row; }
     toks.forEach((t) => {
-      const wb = wordBlock(t, zone.gloss);
+      const built = wordBlock(t, zone.gloss);
       // A token the ledger carries without a key is not a word of the text —
       // a canonical numeral reuses a letter's identity to name a number. It
       // reads as part of the title and opens nothing, because the catalog has
       // nothing to say about a word nobody wrote here.
-      if (t.k) wb.addEventListener("click", (e) => { e.stopPropagation(); openHud(wb, { s: t.s, k: t.k }, null, null); });
-      else wb.style.cursor = "default";
-      row.append(wb, document.createTextNode(" "));
+      if (t.k) wireWord(built, t, zone, null, null);
+      else built.wb.style.cursor = "default";
+      row.append(built.wb, document.createTextNode(" "));
     });
     return row;
   };
@@ -838,16 +1076,16 @@
     const he = document.createElement("p"); he.className = "he-text"; he.lang = "he"; he.dir = "rtl";
     let wIdx = 0;
     sec.words.forEach((word) => {
-      const wb = wordBlock(word, zone.gloss);
+      const built = wordBlock(word, zone.gloss);
       const myIdx = wIdx; wIdx += 1;
       const cm = commentaryFor(sec.unit, myIdx);
       if (cm && cm.length) {
         const chip = document.createElement("span"); chip.className = "c-chip";
         chip.textContent = "C" + (cm.length > 1 ? cm.length : "");
-        wb.append(chip);
+        built.wb.append(chip);
       }
-      if (!word.held) wb.addEventListener("click", () => openHud(wb, word, sec.unit, myIdx));
-      he.append(wb, document.createTextNode(" "));
+      wireWord(built, word, zone, sec.unit, myIdx);
+      he.append(built.wb, document.createTextNode(" "));
     });
     s.append(row, he);
     frag.append(s);
