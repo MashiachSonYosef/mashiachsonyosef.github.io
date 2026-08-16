@@ -139,7 +139,10 @@
 
   /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
   body.en .he-text { direction: ltr; text-align: left; }
-  body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--ink); margin-top: 0; max-width: 12em; }
+  /* In the English reader the gloss is the text, not a label on it, so it runs
+     to two lines before it clips rather than one. */
+  body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--ink); margin-top: 0; max-width: 12em;
+    white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   body.en .w { order: 2; font-size: 1.02rem; color: #b3a077; margin-top: 0.04rem; }
   body.en .wb.active .g { color: var(--gold); }
 
@@ -149,7 +152,9 @@
   .mode-btn.on { background: var(--gold); color: #171105; border-color: var(--gold); font-weight: bold; }
 
   /* The HUD floats. The Hebrew never moves — law of the house. */
-  #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: 55vh;
+  /* A card that always carries a whole record needs room for one; 55vh put
+     the source and its licence below the fold on a phone. */
+  #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: min(72vh, 44rem);
     overflow-y: auto; background: var(--panel); border: 1px solid #2c4a63; border-radius: 0.7rem;
     padding: 0.85rem 1.05rem; box-shadow: 0 14px 40px rgba(0,0,0,.6); }
   #hud[hidden] { display: none; }
@@ -165,9 +170,14 @@
   #hud .r-label { margin: 0.5rem 0 0.3rem; color: var(--faint); font-size: 0.74rem;
     letter-spacing: 0.06em; text-transform: uppercase; }
   #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
+  /* A pill is a chooser, so it may run to two lines before it gives up. What
+     it cannot show in full is shown in full by the D record below it, which
+     is never clipped — a reading the reader cannot read whole is not on the
+     card at all. */
   #hud .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
-    border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
-    max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
+    max-width: 100%; text-align: left; white-space: normal; overflow: hidden;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   #hud .r-pills button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold);
     color: #171105; font-weight: bold; }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
@@ -179,7 +189,11 @@
   #hud .r-overflow select:hover { border-color: var(--gold-dim); }
   #hud .r-overflow select.on { color: #171105; background: var(--gold); border-color: var(--gold); font-weight: bold; }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
-  #hud .d-card .d-text { margin: 0.25rem 0; }
+  /* The D record, whole and never clipped. The sense the reader selected is
+     lit inside it, so a truncated pill still resolves to something readable. */
+  #hud .d-card .d-text { margin: 0.25rem 0; color: var(--muted); }
+  #hud .d-card .d-sense.on { color: var(--ink-strong); font-weight: bold; }
+  #hud .d-card .d-sep { color: var(--faint); }
   /* Structure pills — how the form divides, and which block of it is open.
      Quieter than a reading pill on purpose: the reading is the loud thing on
      this card, and the structure is how you got to it. */
@@ -600,29 +614,57 @@
       let selected = picked.get(surface) || pool[0];
       const pills = document.createElement("div"); pills.className = "r-pills";
       const dCard = document.createElement("div"); dCard.className = "d-card";
+      // A selected reading always shows at least one whole D with its M.
+      //
+      // R debundles where the rest of the chain bundles: one route stands on
+      // one definition record, and ten million more would be welcome but are
+      // not needed. So the record that carries it is not optional furniture —
+      // it is what makes the reading a reading, and it prints in full even
+      // when it reads the same as the pill, because the pill is a chooser and
+      // may be clipped while the record may not.
+      //
+      // Identical records from several sources print once, with every source
+      // that carries them beneath.
       const renderDCard = () => {
         dCard.replaceChildren();
         const recs = [...selected.records].sort((a, c) => {
           const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
           return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
         });
-        recs.forEach(([, routeText, definitionText, mId, year]) => {
-          const m = index.m_sources[mId];
-          if (definitionText && definitionText !== routeText) {
-            const d = document.createElement("p"); d.className = "d-text"; d.dir = "auto";
-            d.textContent = definitionText; dCard.append(d);
-          }
-          const att = document.createElement("p"); att.className = "att";
-          const yearLabel = !year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year;
-          att.append(`${m.label} · ${yearLabel} `);
-          const lic = document.createElement("span"); lic.className = "lic-chip";
-          lic.textContent = licenseName(m.licensePosture); att.append(lic, " ");
-          if (/^https?:\/\//u.test(m.licensePointer)) {
-            const a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank";
-            a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a);
-          } else att.append(`record: ${m.licensePointer}`);
-          dCard.append(att);
+        const byText = new Map();
+        recs.forEach((row) => {
+          const text = row[2] || row[1] || "";
+          if (!byText.has(text)) byText.set(text, []);
+          byText.get(text).push(row);
         });
+        for (const [text, group] of byText) {
+          const d = document.createElement("p"); d.className = "d-text"; d.dir = "auto";
+          // the record as the source packs it: senses divided by ";", cells by
+          // "/" — cells join the way they join everywhere else, and the sense
+          // the reader picked is lit where it sits inside the record
+          String(text).split(";").map((x) => x.trim()).filter(Boolean).forEach((sense, i) => {
+            if (i) d.append(Object.assign(document.createElement("span"), { className: "d-sep", textContent: " · " }));
+            const s = document.createElement("span");
+            s.className = sense.toLowerCase() === String(selected.text).toLowerCase() ? "d-sense on" : "d-sense";
+            s.textContent = spanJoin(sense);
+            d.append(s);
+          });
+          if (!d.childNodes.length) d.textContent = spanJoin(text);
+          dCard.append(d);
+          group.forEach(([, , , mId, year]) => {
+            const m = index.m_sources[mId];
+            const att = document.createElement("p"); att.className = "att";
+            const yearLabel = !year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year;
+            att.append(`${m.label} · ${yearLabel} `);
+            const lic = document.createElement("span"); lic.className = "lic-chip";
+            lic.textContent = licenseName(m.licensePosture); att.append(lic, " ");
+            if (/^https?:\/\//u.test(m.licensePointer)) {
+              const a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank";
+              a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a);
+            } else att.append(`record: ${m.licensePointer}`);
+            dCard.append(att);
+          });
+        }
       };
       let overflow = null;
       const choose = (route) => { selected = route; picked.set(surface, route); renderDCard(); paintGloss(); };
