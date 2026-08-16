@@ -306,7 +306,11 @@
   try {
     [zone, index] = await Promise.all([
       fetch(`data/zones/${BOOK}.bin`).then(unpack),
-      fetch("data/route-store/index.json").then((r) => r.json()),
+      // The index names the store's version, and every shard URL carries it.
+      // So this one small file is the only thing that must never be stale:
+      // revalidated on each load (a 304 when nothing moved), and everything
+      // downstream is then addressed by content rather than by name.
+      fetch("data/route-store/index.json", { cache: "no-cache" }).then((r) => r.json()),
     ]);
   } catch {
     document.getElementById("meta").textContent =
