@@ -118,6 +118,20 @@
     padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
   .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  /* A commentary is not a book of its own; it belongs to the section it
+     comments on. Turned on, it reads beneath the verse in the same word
+     blocks, a size down, so the base text stays the text. */
+  .c-inline { direction: rtl; text-align: right; margin: 0.15rem 0 0; padding-inline-end: 0.1rem;
+    border-inline-end: 2px solid var(--line); padding-inline-start: 0; }
+  .c-inline .wb { margin: 0 0.14rem 0.45rem; }
+  .c-inline .w { font-size: 1.12rem; color: #c8bda0;
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  .c-inline .g { font-size: 0.6rem; max-width: 8em; }
+  .c-inline .lab { display: block; direction: ltr; text-align: left; font-size: 0.62rem;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.1rem; }
+  body.en .c-inline { direction: ltr; text-align: left; }
+  body.en .c-inline .g { font-size: 0.86rem; max-width: 11em; }
+  body.en .c-inline .w { font-size: 0.92rem; }
   .wb { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top;
     margin: 0 0.16rem 0.55rem; cursor: pointer; }
   .w { display: block; order: 1; border-bottom: 1px dashed transparent; border-radius: 2px; }
@@ -272,10 +286,11 @@
   <h1 id="workTitle"><span class="he-t" lang="he" dir="rtl"></span><span class="en-t">Zone reader</span></h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
-  <nav><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=genesis">Genesis</a> · <a href="zone.html?b=1kings">I Kings</a> · <a href="zone.html?b=targum-1kings">Targum Jonathan on I Kings</a> · <a href="zone.html?b=orot">Orot</a></nav>
+  <nav><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=genesis">Genesis</a> · <a href="zone.html?b=1kings">I Kings</a> · <a href="zone.html?b=orot">Orot</a></nav>
   <div id="modeRow">
     <button type="button" class="mode-btn on" id="modeHe">Hebrew reader</button>
     <button type="button" class="mode-btn" id="modeEn">English reader</button>
+    <button type="button" class="mode-btn" id="layerC" hidden></button>
   </div>
 </header>
 <div id="toc" hidden><h2>Contents</h2><div id="tocBody"></div><div id="secPanel" hidden></div></div>
@@ -966,16 +981,6 @@
             : selected.basis}`
         : `Attachment: suggested reach only — ${selected.basis}; not a proven edge`;
       card.append(note);
-      // A commentary read eleven words at a time is a quotation. Where the work
-      // is published as a book of its own, the card says so and opens it at the
-      // same coordinate.
-      if (w.zone) {
-        const p = document.createElement("p"); p.className = "c-note";
-        const a = document.createElement("a");
-        a.href = `zone.html?b=${encodeURIComponent(w.zone)}${atLabel ? `&at=${encodeURIComponent(atLabel)}` : ""}`;
-        a.textContent = `Read ${w.family_en || w.title} as its own book`;
-        p.append(a); card.append(p);
-      }
     };
     entries.forEach((e) => {
       const p = document.createElement("button"); p.type = "button";
@@ -1098,6 +1103,7 @@
   const openAt = (new URLSearchParams(location.search).get("at") || "").trim();
   const byLabel = new Map();
   let curPart = null, curNode = -1, openedNode = false;
+  const sectionEls = [];
   let secIdx = 0;
   const nodeSections = {};
   const nodeHeads = [];
@@ -1185,9 +1191,52 @@
       he.append(built.wb, document.createTextNode(" "));
     });
     s.append(row, he);
+    sectionEls.push({ sec, el: s });
     frag.append(s);
   });
   main.append(frag);
+
+  // ---- the commentary layer -------------------------------------------
+  // A commentary is not a book of its own. It belongs to the sections it
+  // comments on, and a reader who wants to read it should read it there,
+  // continuously, rather than opening eight hundred cards. Built once on
+  // first use, because it is as many word blocks again as the text.
+  const cWorks = commentaryStore && commentaryStore.works ? commentaryStore.works : [];
+  if (cWorks.length && commentaryStore.counts && commentaryStore.counts.attached_sections) {
+    const layerBtn = document.getElementById("layerC");
+    const name = cWorks.map((w) => w.family_en || w.title).join(" · ");
+    layerBtn.textContent = name;
+    layerBtn.title = `Read ${name} beneath each ${MINOR}`;
+    layerBtn.hidden = false;
+    let built = false, on = false;
+    layerBtn.addEventListener("click", () => {
+      on = !on;
+      layerBtn.classList.toggle("on", on);
+      if (on && !built) {
+        built = true;
+        for (const { sec, el } of sectionEls) {
+          const entries = sectionCommentaryFor(sec.unit);
+          if (!entries) continue;
+          for (const e of entries) {
+            const p = document.createElement("p"); p.className = "c-inline";
+            p.lang = "he"; p.dir = "rtl";
+            const w = commentaryWorkOf(e);
+            const lab = document.createElement("span"); lab.className = "lab";
+            lab.textContent = `${w.family_en || w.title || e.ref}${w.license ? ` · ${w.license}` : ""}`;
+            p.append(lab);
+            (e.words || []).forEach((word) => {
+              const built2 = wordBlock(word, commentaryStore.gloss);
+              wireWord(built2, word, commentaryStore, null, null);
+              p.append(built2.wb, document.createTextNode(" "));
+            });
+            if (!(e.words || []).length) { p.dir = "auto"; p.append(e.text || ""); }
+            el.append(p);
+          }
+        }
+      }
+      document.querySelectorAll(".c-inline").forEach((p) => { p.hidden = !on; });
+    });
+  }
 
   // ---- getting around -------------------------------------------------
   // One floating bar rather than controls on every section: at 1,533

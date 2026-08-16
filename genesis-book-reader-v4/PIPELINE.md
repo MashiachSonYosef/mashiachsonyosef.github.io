@@ -140,7 +140,7 @@ is tappable and answers from the same catalog: 9,686 of its 13,651 words carry
 a reading. Its licence is its own, computed from its own rows (Public Domain,
 `LIC-PUBLIC-DOMAIN-PROVIDER-ASSERTED`), and nothing inherits from the base text.
 
-## The commentary is a book
+## The commentary belongs to the book
 
 Targum Jonathan on I Kings is the only commentary the sealed chain carries for
 this book — for any book of Nevi'im, in fact. Eleven works that would attach to
@@ -153,18 +153,23 @@ Chomat Anakh, Marot HaTzoveot and Steinsaltz on I Kings are queued at
 to repair; this builder attaches any of them the day they exist, because the
 rule is coordinate identity and needs nothing added.
 
-What could be done with the one work that is here was to stop treating it as
-apparatus. 13,651 words of Aramaic were reachable only through a card, eleven
-at a time. Targum Jonathan is now built by the same builder as I Kings, from
-the same serve, with the same component system: **817 sections, 22 chapters,
-13,651 words, 9,686 carrying a reading, 12,877 W with a component system.**
+A commentary is not a book of its own. It is *served* like one — the same
+walker, the same identity oracle, the same component system, 817 units and
+13,651 words verified against the bridge — and then it belongs to the sections
+it comments on, which is where a reader meets it. Organizationally a commentary
+work may span several books; for a reader it combines into whichever book they
+have open.
 
-And because coordinate identity is symmetric, the commentary builder runs both
-ways with no rule added: I Kings receives the Targum at every section, and the
-Targum receives I Kings at every section. A card in either book offers to open
-the other at the same coordinate (`?at=7:14`), and a coordinate is a locator,
-so neither work claims anything about the other by linking to it. Neither is
-demoted to being the other's apparatus.
+So the reader carries a layer rather than a second book. Turned on, Targum
+Jonathan reads beneath each verse of I Kings in the same word blocks, a size
+down and behind a rule so the base text stays the text: **817 rows, 13,651
+words, 9,686 carrying a reading**, every one of them tappable and answering
+from the same catalog with its own definition, source and licence. The layer is
+built once on first use — 855 ms for the whole book — and the per-verse card
+stays for the attachment receipt.
+
+Nothing inherits. The Targum's licence is its own (Public Domain), computed
+from its own rows, and it is named on every row of the layer.
 
 ## Titles
 
@@ -238,7 +243,7 @@ rather than by name alone.
 |---|---|---|---|---|---|
 | Genesis | 17,807 | 20,691 | 1,533 | 17,729 | 50 chapters, Y titles, 56 held, no component layer |
 | I Kings | 11,368 | 12,883 | 817 | 10,969 | 22 chapters, locators only, 377 held |
-| Targum Jonathan on I Kings | 13,651 | 13,651 | 817 | 9,686 | published as its own book; attached both ways |
+| Targum Jonathan on I Kings | 13,651 | 13,651 | 817 | 9,686 | a layer of I Kings, not a book |
 | Orot | 59,759 | 59,759 | 416 | 45,957 | acquisition route, 6 declared drifted units, re-projected |
 
 Genesis gained 2,816 reading words from the maqaf rule alone — it had the same

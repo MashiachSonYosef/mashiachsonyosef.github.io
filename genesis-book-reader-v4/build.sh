@@ -99,7 +99,6 @@ rm -rf site/data/route-store && cp -r data/route-store site/data/route-store
 
 echo "── 7 · verify by rendering, not by reading ─────────────────────────────"
 node tools/verify-zone.mjs --root site --book 1kings
-node tools/verify-zone.mjs --root site --book targum-1kings
 node tools/verify-zone.mjs --root site --book genesis
 
 echo "done · $(du -sh site | cut -f1) in site/"
