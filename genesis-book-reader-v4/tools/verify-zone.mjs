@@ -96,6 +96,30 @@ check("exactly one reading selected", hud.pressed.length === 1, hud.pressed.join
 check("selected pill equals the printed gloss", hud.pressed[0] === hud.gloss, `${hud.pressed[0]} vs ${hud.gloss}`);
 check("pills never exceed ten", hud.pills.length <= 10, `${hud.pills.length} pills, ${hud.overflow} in picker`);
 check("a licence rides with the reading", hud.licence.length > 0, hud.licence);
+
+// The R inversion. R debundles where everything else bundles: one route needs
+// one definition record, no more — but it does need that one, and it needs it
+// whole. A pill may be clipped; the record it stands on may not be, or the
+// reading is not on the card at all. Checked on every reading of this word,
+// not only the one that opens.
+const dInvariant = await page.evaluate(async () => {
+  const pills = [...document.querySelectorAll("#hud .r-pills button")];
+  const bad = [];
+  for (const p of pills) {
+    p.click();
+    await new Promise((r) => setTimeout(r, 30));
+    const texts = [...document.querySelectorAll("#hud .d-card .d-text")];
+    const atts = [...document.querySelectorAll("#hud .d-card .att")];
+    const lit = [...document.querySelectorAll("#hud .d-card .d-sense.on")].map((s) => s.textContent);
+    const clipped = texts.some((t) => t.scrollHeight > t.clientHeight + 2 || t.scrollWidth > t.clientWidth + 2);
+    const whole = texts.some((t) => t.textContent.includes(p.textContent.trim()));
+    if (!texts.length || !atts.length || clipped || !lit.length || !whole)
+      bad.push({ pill: p.textContent.trim().slice(0, 40), d: texts.length, m: atts.length, clipped, lit: lit.length, whole });
+  }
+  return { pills: pills.length, bad };
+});
+check("every reading shows a whole D and its M", dInvariant.bad.length === 0,
+  dInvariant.bad.length ? JSON.stringify(dInvariant.bad[0]) : `${dInvariant.pills} readings, each with an unclipped record`);
 await page.keyboard.press("Escape");
 
 // ---- the component system, checked against the bin's own arithmetic ------
@@ -190,6 +214,33 @@ if (spanFacts.forms) {
     });
     check("the finest division exposes every component", fine.blocks.length === spanFacts.widest.n,
       `${fine.blocks.join(" | ")}`);
+
+    // the R inversion again, this time over every reading of every block of
+    // the finest cut — the deepest the card ever goes
+    const perBlock = await page.evaluate(async () => {
+      const row = document.querySelectorAll("#hud .s-pills")[1];
+      const blocks = [...row.querySelectorAll("button")];
+      const bad = []; let readings = 0;
+      for (const b of blocks) {
+        b.click();
+        await new Promise((r) => setTimeout(r, 400));
+        const pills = [...document.querySelectorAll("#hud .r-pills button")];
+        for (const p of pills) {
+          p.click();
+          await new Promise((r) => setTimeout(r, 25));
+          readings += 1;
+          const texts = [...document.querySelectorAll("#hud .d-card .d-text")];
+          const atts = [...document.querySelectorAll("#hud .d-card .att")];
+          const clipped = texts.some((t) => t.scrollHeight > t.clientHeight + 2 || t.scrollWidth > t.clientWidth + 2);
+          const whole = texts.some((t) => t.textContent.includes(p.textContent.trim()));
+          if (!texts.length || !atts.length || clipped || !whole)
+            bad.push({ block: b.textContent, pill: p.textContent.trim().slice(0, 30), d: texts.length, m: atts.length, clipped, whole });
+        }
+      }
+      return { readings, bad };
+    });
+    check("every reading of every block shows a whole D and its M", perBlock.bad.length === 0,
+      perBlock.bad.length ? JSON.stringify(perBlock.bad[0]) : `${perBlock.readings} readings across ${fine.blocks.length} blocks`);
     check("exactly one block is open", fine.pressed === 1, String(fine.pressed));
     check("the blocks lay out in the word's direction", fine.rtl, `first block rightmost: ${fine.rtl}`);
     check("the gloss follows the division", fine.gloss.split(" + ").length === spanFacts.widest.n, fine.gloss);
