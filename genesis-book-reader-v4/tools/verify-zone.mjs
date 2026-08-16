@@ -371,6 +371,31 @@ if (facts.commentaryHandles) {
   await page.waitForSelector("#hud .c-card", { timeout: 10000 });
   check("the way back returns to the commentary", true, "reopened");
   await page.keyboard.press("Escape");
+
+  // The layer: a commentary belongs to the sections it comments on, so a
+  // reader must be able to read it there rather than opening a card per verse.
+  const layer = await page.evaluate(async () => {
+    const btn = document.getElementById("layerC");
+    if (!btn || btn.hidden) return null;
+    btn.click();
+    for (let i = 0; i < 60 && !document.querySelector(".c-inline"); i += 1)
+      await new Promise((r) => setTimeout(r, 100));
+    const rows = document.querySelectorAll(".c-inline").length;
+    const words = document.querySelectorAll(".c-inline .wb").length;
+    const labelled = [...document.querySelectorAll(".c-inline")].every((p) => p.querySelector(".lab")?.textContent.trim());
+    const base = document.querySelectorAll("section.seg .he-text .wb").length;
+    btn.click();
+    await new Promise((r) => setTimeout(r, 200));
+    const hiddenAfter = [...document.querySelectorAll(".c-inline")].filter((p) => !p.hidden).length;
+    return { rows, words, labelled, base, hiddenAfter, name: btn.textContent };
+  });
+  if (layer) {
+    check("the commentary reads inside the book", layer.rows === facts.sections,
+      `${layer.rows} rows of ${layer.name} across ${facts.sections} sections, ${layer.words.toLocaleString()} words`);
+    check("every layer row names its work and licence", layer.labelled, "each row labelled");
+    check("the layer leaves the base text alone", layer.base === facts.words, `${layer.base} base words unchanged`);
+    check("the layer turns off", layer.hiddenAfter === 0, `${layer.hiddenAfter} still showing`);
+  }
 }
 
 if (shot) { await page.screenshot({ path: shot, fullPage: false }); }
