@@ -12,9 +12,11 @@
 // Rule, declared before output:
 //   1. Exact K only. The store is keyed by the byte-exact k_normalized_key.
 //      No folding, no derivation, no related edges — FRAME.md law.
-//   2. Only rows with selected_visible_top5=true are shipped (<=5 per K),
-//      in semantic_route_rank order. Alternatives stay in the workshop's
-//      residual ledger; this store never claims to be the full catalog.
+//   2. Every route whose M is complete is shipped, in semantic_route_rank
+//      order. An earlier draft shipped only rows flagged selected_visible_top5
+//      — at most five per K — which dropped 110,151 licensed routes on one
+//      book alone. A ranking flag is not a licence, and nothing but a licence
+//      removes a reading. The rank still orders them; it no longer gates them.
 //   3. Every route ships with its primary D text and full M license record.
 //      A route whose M lacks key/label/posture/pointer is REFUSED, because
 //      the reader's routeIsDisplayReady would hide it anyway — shipping it
@@ -105,11 +107,10 @@ for (const [id, [key, label, posture, pointer]] of M) {
 }
 
 const shards = new Map(); // "00".."ff" -> { K: [[rank,rText,dText,mId,year],...] }
-let header = null, kept = 0, skippedNotTop5 = 0, refusedRoutes = 0, keys = new Set();
+let header = null, kept = 0, refusedRoutes = 0, keys = new Set();
 for await (const row of csvRows(routesFile)) {
   if (!header) { header = row; continue; }
   const rec = Object.fromEntries(header.map((h, i) => [h, row[i]]));
-  if (rec.selected_visible_top5 !== "true") { skippedNotTop5 += 1; continue; }
   const rText = R.get(rec.r_id)?.[0];
   const dText = D.get(rec.primary_d_id)?.[0];
   const mId = rec.primary_m_id;
@@ -144,14 +145,14 @@ const index = {
   shard_path: "data/route-store/shards/{shard}.bin",
   shard_encoding: "gzip(JSON) — unpack with DecompressionStream('gzip')",
   route_row: ["semantic_route_rank", "route_text", "definition_text", "m_id", "source_year_or_S_NO_SOURCE_YEAR"],
-  selection: "selected_visible_top5 only; alternatives remain in the workshop residual ledger",
+  selection: "every route with a complete M record; semantic_route_rank orders them and does not gate them",
   m_sources: Object.fromEntries(
     [...M].filter(([id]) => !refusedM.has(id)).map(([id, [key, label, posture, pointer, year]]) =>
       [id, { key, label, licensePosture: posture, licensePointer: pointer, sourceYear: year }]),
   ),
-  counts: { keys: keys.size, routes: kept, skipped_not_top5: skippedNotTop5, refused_routes: refusedRoutes, refused_m_records: refusedM.size, shards: 256, shard_bytes_total: totalBytes },
+  counts: { keys: keys.size, routes: kept, refused_routes: refusedRoutes, refused_m_records: refusedM.size, shards: 256, shard_bytes_total: totalBytes },
   inputs: [routesFile, rFile, dFile, mFile].map((p) => ({ file: basename(p), sha256: sha256File(p) })),
 };
 writeFileSync(join(outDir, "index.json"), JSON.stringify(index, null, 1));
-console.log(`keys:${keys.size} routes:${kept} not-top5:${skippedNotTop5} refused:${refusedRoutes} (${refusedM.size} M refused)`);
+console.log(`keys:${keys.size} routes:${kept} refused:${refusedRoutes} (${refusedM.size} M refused)`);
 console.log(`shards: 256, total ${(totalBytes / 1e6).toFixed(1)} MB gz; index written to ${outDir}/index.json`);

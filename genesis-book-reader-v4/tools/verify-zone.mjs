@@ -37,7 +37,17 @@ page.on("pageerror", (e) => errors.push(String(e)));
 // A book without a commentary sidecar 404s for it by design — the page asks
 // once and shows nothing. That is the expected shape, not a page error.
 const expected404 = /-commentary\.bin/u;
-page.on("console", (m) => { if (m.type() === "error" && !expected404.test(m.text())) errors.push(m.text()); });
+// The browser's console line for a 404 carries no URL, so the URL is taken
+// from the response itself and the console line is forgiven only when every
+// failed request was a commentary sidecar this book does not ship.
+const missing = [];
+page.on("response", (r) => { if (r.status() === 404) missing.push(r.url()); });
+page.on("console", (m) => {
+  if (m.type() !== "error") return;
+  if (expected404.test(m.text())) return;
+  if (/Failed to load resource/u.test(m.text()) && missing.length && missing.every((u) => expected404.test(u))) return;
+  errors.push(m.text());
+});
 page.on("requestfailed", () => {});
 
 await page.goto(`${base}/zone.html?b=${book}`, { waitUntil: "networkidle" });
@@ -64,7 +74,18 @@ check("page threw no errors", errors.length === 0, errors.slice(0, 3).join(" | "
 check("work title rendered", facts.title.length > 0, facts.title);
 check("sections rendered", facts.sections > 0, `${facts.sections} sections`);
 check("contents grid rendered", facts.tocCells > 0, `${facts.tocCells} chapter cells`);
-check("no drift chips", facts.driftChips === 0, `${facts.driftChips} drifted`);
+// Drift is not a failure — hiding it is. A zone counts the units whose served
+// rows disagree with the sealed allocation; the page must mark exactly those
+// and no others, so a reader meets the disagreement rather than a smoothed
+// number.
+const declaredDrift = await page.evaluate(async () => {
+  const bin = await fetch(`data/zones/${new URLSearchParams(location.search).get("b")}.bin`)
+    .then((r) => r.arrayBuffer())
+    .then((b) => new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream("gzip"))).json());
+  return bin.counts.drifted_units || 0;
+});
+check("drift is marked exactly where the zone declares it", facts.driftChips === declaredDrift,
+  declaredDrift ? `${facts.driftChips} chips for ${declaredDrift} declared drifted units` : "none declared, none shown");
 // Two grains ship: a work attached to a whole section (one handle per section)
 // and units attached to single words (a chip on the word). Either is valid;
 // what must not happen is a handle with nothing behind it.
