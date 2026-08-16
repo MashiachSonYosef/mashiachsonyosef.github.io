@@ -169,7 +169,10 @@
   /* R pills — one route per pill, one selected at a time (the reader's law). */
   #hud .r-label { margin: 0.5rem 0 0.3rem; color: var(--faint); font-size: 0.74rem;
     letter-spacing: 0.06em; text-transform: uppercase; }
-  #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
+  /* Every R is here, so this row is the one thing on the card allowed to be
+     long. It scrolls on its own rather than pushing the D and M off the end. */
+  #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr;
+    max-height: 32vh; overflow-y: auto; }
   /* A pill is a chooser, so it may run to two lines before it gives up. What
      it cannot show in full is shown in full by the D record below it, which
      is never clipped — a reading the reader cannot read whole is not on the
@@ -704,7 +707,6 @@
         });
         dCard.append(more, drawer);
       };
-      let overflow = null;
       const choose = (route) => {
         selected = route; picked.set(surface, route);
         renderDCard(); paintGloss(); placeHud();
@@ -717,34 +719,17 @@
         btn.setAttribute("aria-pressed", String(route === selected));
         btn.addEventListener("click", () => {
           pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
-          if (overflow) { overflow.selectedIndex = 0; overflow.classList.remove("on"); }
           btn.setAttribute("aria-pressed", "true"); choose(route);
         });
         return btn;
       };
-      // Ten readings sit out as pills; the rest go to a picker rather than an
-      // ever-growing wall of them. Some words carry hundreds.
-      const SHOWN = 10;
-      pool.slice(0, SHOWN).forEach((r) => pills.append(makePill(r)));
+      // Every reading is a pill. R is never demoted to a picker, never
+      // truncated away, never capped: it sits above and before the D and the
+      // M, and a reading the catalog attests is a reading the reader can see
+      // and press. A form carrying hundreds gets a taller row, which is the
+      // honest cost of carrying hundreds.
+      pool.forEach((r) => pills.append(makePill(r)));
       readRow.append(pills);
-      if (pool.length > SHOWN) {
-        const rest = pool.slice(SHOWN);
-        const wrap = document.createElement("div"); wrap.className = "r-overflow";
-        const sel = document.createElement("select"); overflow = sel;
-        sel.setAttribute("aria-label", `${rest.length} more readings`);
-        const h = document.createElement("option"); h.textContent = `${rest.length} more readings…`; h.value = ""; sel.append(h);
-        rest.forEach((r, i) => {
-          const o = document.createElement("option"); o.value = String(i);
-          o.textContent = spanJoin(r.text) + (Number.isFinite(r.year) ? `  ·  ${r.year}` : "");
-          sel.append(o);
-        });
-        sel.addEventListener("change", () => {
-          if (sel.value === "") return;
-          pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
-          sel.classList.add("on"); choose(rest[Number(sel.value)]);
-        });
-        wrap.append(sel); readRow.append(wrap);
-      }
       renderDCard(); readRow.append(dCard);
       paintGloss();
       placeHud();
