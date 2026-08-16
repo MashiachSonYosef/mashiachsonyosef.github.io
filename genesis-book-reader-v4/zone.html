@@ -375,11 +375,16 @@
   // reader's own cell join. One route on display at a time, everywhere.
   const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
   const shardCache = new Map();
+  // A shard is addressed by which store it belongs to. Without this a reader
+  // whose browser already holds yesterday's shard keeps being answered from it
+  // while the page prints today's reading — the two disagreeing on screen.
+  const storeVersion = index.store_version || "";
   const routesFor = async (key) => {
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
     const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
     if (!shardCache.has(shard)) {
-      shardCache.set(shard, fetch(`data/route-store/shards/${shard}.bin`).then(unpack).catch(() => null));
+      const url = `data/route-store/shards/${shard}.bin${storeVersion ? `?v=${storeVersion}` : ""}`;
+      shardCache.set(shard, fetch(url).then(unpack).catch(() => null));
     }
     const data = await shardCache.get(shard);
     return data ? data[key] : null;
