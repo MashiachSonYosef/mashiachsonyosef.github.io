@@ -672,7 +672,10 @@
       prov.textContent = comps.length === 1
         ? `${SPLIT_PROVENANCE[span.rule] || span.rule}`.replace(/^./u, (c) => c.toUpperCase())
         : `${comps.length} components · ${SPLIT_PROVENANCE[span.rule] || span.rule}`;
-    } else prov.textContent = "No component system recorded for this form.";
+    } else if (bin.spans) {
+      // this zone carries components and this form is not among them
+      prov.textContent = "No component system recorded for this form.";
+    } else prov.remove();     // this zone carries none at all; say nothing
 
     renderCuts(); renderCells();
     await renderReadings();
