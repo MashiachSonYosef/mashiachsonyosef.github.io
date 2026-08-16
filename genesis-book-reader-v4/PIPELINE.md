@@ -62,7 +62,8 @@ letters, abbreviation punctuation, and boundary maqaf.
 
 On 1 Kings the same rule would have printed **crowley** under קִרְאוּ־לִי.
 
-Keying correctly fixed the poison and left 1,828 occurrences of 1 Kings bare,
+Keying correctly stopped the page asking about fused forms, and left 1,828
+occurrences of 1 Kings bare,
 because `אל־קין` is not a key the catalog holds. That was the state as of
 2026-08-15, and it was incomplete rather than wrong: the W inventory records
 the pieces either side of a maqaf as **separate W**, so the reader was asking
@@ -212,8 +213,9 @@ Two consequences, both handled:
 
 **The default reading moves.** Rule v3 orders antiquity first and the catalog's
 own `semantic_route_rank` only third. With five routes that hardly showed; with
-a hundred and thirty it decides everything, and `אב` reads *author* rather than
-*father*. This is the open item below, and rule v3 has not been changed here.
+a hundred and thirty it decides throughout. Every leader before and after is a
+licensed reading from a named source, so what changed is which attested reading
+prints first, and nothing here ranks them. Rule v3 has not been changed.
 
 **A shared store desynchronises every zone.** A zone bakes one reading per key
 so the page paints without fetching 256 shards, while the card computes from
@@ -265,12 +267,13 @@ serve.
 
 ## Open, and not decided here
 
-1. **`כְּיָמִים` prints "chemical."** Not a fusion — that is the exact written
-   form, and the rule chose it. Within the post-1940 tier the rule orders by
-   year, so a 2024 Wiktionary route outranks a 2026 STEP route the catalog
-   itself ranks first ("like days"). Between two modern sources two years
-   apart, the year is a coin toss that overrides the catalog's own judgement.
-   The rule is as attested and has not been changed.
+1. **Which reading leads is decided by rule v3, and rule v3 is not visible on
+   the card.** The order is tier (source year ≤ 1940 first), then year, then
+   the catalog's `semantic_route_rank`. The card names the source and year of
+   the reading a reader has selected; it does not say that antiquity is why
+   that one led. Every reading is licensed and every one is one tap away, so
+   nothing is hidden — but the basis of the default is inferable rather than
+   stated. Making it stated is a fidelity question, not a ranking one.
 2. **Genesis still carries its fetched commentary sidecar.** It was not built
    from the corpus and was never authorized. It has been left exactly as
    deployed rather than removed on my own initiative.
@@ -288,14 +291,11 @@ serve.
    nothing false is printed, but the underlying C0 is wrong and this page
    cannot fix it. The W inventory is clean: it carries no markup key at all.
    The two genuine absences are `וַיּוֹרִדֻהוּ` (1:53) and `כַּצִּדֹנִים` (5:20).
-5. **Rule v3 orders antiquity before the catalog's own rank.** On the deep
-   catalog this decides the default reading, and often badly: `אב` prints
-   *author*, `אביך` prints *filled or abounding with fog or mist*. The
-   catalog's `semantic_route_rank` is only the third tiebreak, after tier and
-   year. Rule v3 is attested 2026-08-10 and has not been rewritten here; every
-   reading is one tap away regardless, but the reading that prints without a
-   tap is chosen by a rule that was calibrated against five routes and now
-   arbitrates a hundred and thirty.
+5. **The deep catalog moved which reading leads, on most words.** With five
+   routes per form the order rarely changed anything; with up to 448 it
+   decides the default throughout — 1,478 of Genesis's 4,464 forms, 55.6% of
+   its printed words. Rule v3 produced both the old leader and the new one
+   from licensed sources, so this is a record of a change, not of a fault.
 6. **Genesis has no component layer.** Retrofitting a published book changes
    what every word on it offers, so `build.sh` builds Genesis without `--spans`
    deliberately. The page reads a zone with no component layer as whole forms
