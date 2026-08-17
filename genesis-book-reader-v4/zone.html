@@ -615,8 +615,11 @@
     const mId = hit.records[0][3];
     const m = index.m_sources[mId] || {};
     const post = exportPosture(m.licensePosture);
+    // the record's own text, not the page's rendering of it: the page joins a
+    // "/"-packed span with " + " for reading, and a file that leaves the
+    // building must carry what the source wrote, not how we drew it
     return post.ok
-      ? { ok: true, text: shownText, label: m.label, posture: m.licensePosture,
+      ? { ok: true, text: hit.text, label: m.label, posture: m.licensePosture,
           pointer: m.licensePointer, year: m.sourceYear, obligations: post.obligations }
       : { ok: false, why: post.why, label: m.label };
   };
@@ -651,9 +654,33 @@
     return { sec, words, sources: [...sources.values()], obligations: [...obligations], held };
   };
 
-  const workLicence = () => {
+  // The licence of the work itself — the Hebrew. This is the largest thing any
+  // export carries and it is not public domain: 1 Kings' own rights record
+  // reads CC-BY-NC, ALLOW_WITH_OBLIGATIONS. An earlier build printed the work
+  // RECEIPT here, which is a B/N id and a unit count, and called that the
+  // licence. It was not. A receipt says which rows were served; it says
+  // nothing about what may be done with them.
+  const workRights = () => {
     const wr = zone.work_receipts || {};
-    return typeof wr === "string" ? wr : (wr.b_n || "");
+    const receipt = typeof wr === "string" ? wr : (wr.b_n || "");
+    const rec = (zone.emitted_from && zone.emitted_from.license_receipts) || {};
+    const per = String(rec.per_occurrence || "");
+    // the rights record leads with the family and the posture
+    const m = per.match(/([A-Z0-9][A-Z0-9._-]*(?:-[A-Z0-9._-]+)*)\s*·\s*([A-Z_]+)\s*·\s*([A-Z_]+)/);
+    const family = m ? m[1] : null;
+    const posture = m ? m[3] : null;
+    const links = (zone.emitted_from && zone.emitted_from.license_links) || [];
+    const obligations = [];
+    if (family) {
+      if (/BY/.test(family)) obligations.push("Attribution required.");
+      if (/NC/.test(family)) obligations.push("Noncommercial use only — this text may not be used commercially.");
+      if (/SA/.test(family)) obligations.push("Share-alike: anything derived from this must be shared under the same licence.");
+      if (/ND/.test(family)) obligations.push("NoDerivatives.");
+    }
+    if (/ALLOW_WITH_OBLIGATIONS/.test(posture || "")) {
+      if (!obligations.length) obligations.push("The chain records this text as allowed with obligations.");
+    }
+    return { receipt, family, posture, links, obligations, attribution: rec.attribution || zone.byline || "", raw: per };
   };
 
   /** The file itself. One shape for all three kinds; the kind decides columns. */
@@ -661,9 +688,14 @@
     const L = [];
     L.push(`# ${title}`);
     L.push("");
+    const wr = workRights();
     L.push(`${zone.work}${zone.work_he ? ` · ${zone.work_he}` : ""}`);
     if (zone.byline) L.push(zone.byline);
-    L.push(`Work receipt: ${workLicence()}`);
+    L.push("");
+    L.push(`Hebrew text · licence: ${wr.family || "NOT ESTABLISHED"}${wr.posture ? ` · ${wr.posture}` : ""}`);
+    if (wr.attribution) L.push(`Hebrew text · attribution: ${wr.attribution}`);
+    wr.links.forEach((l) => L.push(`Hebrew text · ${l.label}${l.url ? ` — ${l.url}` : ""}`));
+    L.push(`Work receipt: ${wr.receipt}`);
     L.push(`Store: ${index.rule_id} · ${index.store_version}`);
     if (index.reading_rule) L.push(`Reading: ${index.reading_rule}`);
     L.push(`Export: ${EXPORT_RULE}`);
@@ -696,6 +728,7 @@
         L.push(`- ${s.label}${s.year ? ` · ${s.year}` : ""} · ${s.posture}${s.pointer ? ` · ${s.pointer}` : ""}`);
       }
     }
+    wr.obligations.forEach((o) => allObl.add(`The Hebrew text: ${o}`));
     if (allObl.size) {
       L.push("");
       L.push("## Obligations carried by this file");
@@ -736,6 +769,12 @@
     b.addEventListener("click", async (e) => {
       e.stopPropagation();
       if (armed) {
+        const wr = workRights();
+        if (!wr.family) {
+          note.textContent = "Refused: this work's own licence is not established in the zone's rights record, so nothing may leave.";
+          b.classList.remove("armed"); b.textContent = label; armed = null;
+          return;
+        }
         saveFile(filename(), renderExport(armed.bundles, kind, armed.title));
         b.classList.remove("armed"); b.textContent = label;
         note.textContent = "Saved."; armed = null;
@@ -751,8 +790,12 @@
       g.bundles.forEach((x) => { x.sources.forEach((s) => srcs.add(s.label)); x.obligations.forEach((o) => obl.add(o)); held += x.held; });
       note.replaceChildren();
       const say = (t, cls) => { const sp = document.createElement("span"); if (cls) sp.className = cls; sp.textContent = t; note.append(sp); };
+      const wr = workRights();
+      wr.obligations.forEach((o) => obl.add(`The Hebrew text: ${o}`));
       if (kind === "he") {
-        say(`${words} words of Hebrew, on the work's own receipt. `);
+        say(`${words} words of Hebrew · ${wr.family || "licence NOT ESTABLISHED"}`);
+        if (wr.obligations.length) { say(" · "); say(wr.obligations.join(" ")); }
+        say(". ");
       } else {
         say(`${words} words · ${srcs.size} source${srcs.size === 1 ? "" : "s"}`);
         if (obl.size) { say(" · "); say([...obl].join(" ").replace(/\.$/, "")); }
@@ -980,6 +1023,7 @@
       if (found) cover = found;
     }
     let cellIdx = 0;
+    const selectedRecordRef = { m: null };
     // A route object is rebuilt from the shard every time the card opens, so
     // remembering the object itself remembers nothing — the new pool holds
     // different objects carrying the same reading. The choice is held by what
@@ -1017,6 +1061,12 @@
       const mine = cover.map((c) => textOfCell(c.surface)).join(" + ");
       const line = glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine;
       glossEl.textContent = line; glossEl.title = line; glossEl.classList.remove("bare");
+      // record what this reading stands on, so a copy can name it
+      const wbEl2 = glossEl.closest(".wb");
+      if (wbEl2 && selectedRecordRef.m) {
+        wbEl2.dataset.source = selectedRecordRef.m.label || "";
+        wbEl2.dataset.licence = licenseName(selectedRecordRef.m.licensePosture) || "";
+      }
     };
 
     const cutRow = document.createElement("div");
@@ -1192,6 +1242,7 @@
       };
       const choose = (route) => {
         selected = route; picked.set(surface, { key: routeKey(route), text: route.text });
+        selectedRecordRef.m = index.m_sources[route.records[0][3]] || null;
         renderDCard(); paintGloss(); clampHud();
       };
       const makePill = (route) => {
@@ -1213,6 +1264,7 @@
       // honest cost of carrying hundreds.
       pool.forEach((r) => pills.append(makePill(r)));
       readRow.append(pills);
+      selectedRecordRef.m = index.m_sources[selected.records[0][3]] || null;
       renderDCard(); dSlot.replaceChildren(dCard);
       paintGloss();
       clampHud();
@@ -1666,6 +1718,38 @@
     //
     // These sit under the commentary line, at a smaller weight, because taking
     // a copy is the smallest of the three acts a section offers.
+    // A copy is a redistribution too. It used to hand over CC BY-SA readings and
+    // CC BY-NC Hebrew as bare text with no source and no licence, because the
+    // export was built to obey and these two were never revisited.
+    const copyNotice = (kind, el) => {
+      const wr = workRights();
+      const lines = [];
+      if (kind !== "en") {
+        lines.push(`${zone.work} · Hebrew text · ${wr.family || "licence NOT ESTABLISHED"}` +
+          (wr.attribution ? ` · ${wr.attribution}` : ""));
+        wr.obligations.forEach((o) => lines.push(`  ${o}`));
+      }
+      return lines.length ? `\n\n— ${lines.join("\n")}` : "";
+    };
+    // The English copy reads the records the same way the export does, because
+    // naming a source is not optional and a pointer to "open a word" is not a
+    // name. It is slower than a copy used to be; an attribution obligation does
+    // not care.
+    const englishWithSources = async (sec, el) => {
+      const g = await gatherSection(sec, el);
+      const line = g.words.map((w) => (w.held ? "[reading withheld]" : w.en)).join(" ");
+      const wr = workRights();
+      const lines = [];
+      if (g.sources.length) {
+        lines.push("English readings:");
+        for (const s of g.sources) lines.push(`  ${s.label}${s.year ? ` · ${s.year}` : ""} · ${s.posture}${s.pointer ? ` · ${s.pointer}` : ""}`);
+      }
+      const obl = new Set(g.obligations);
+      wr.obligations.forEach((o) => obl.add(`The Hebrew text: ${o}`));
+      if (obl.size) { lines.push("Obligations:"); [...obl].forEach((o) => lines.push(`  ${o}`)); }
+      if (g.held) lines.push(`${g.held} reading${g.held === 1 ? " was" : "s were"} withheld on licence.`);
+      return `${line}\n\n— ${zone.work} ${sec.label || ""}\n${lines.join("\n")}`;
+    };
     const copyBtn = (cls, glyph, name, aria, get) => {
       const b = document.createElement("button"); b.type = "button"; b.className = `cp ${cls}`;
       const paint = () => {
@@ -1678,7 +1762,10 @@
       b.setAttribute("aria-label", aria); b.title = aria;
       b.addEventListener("click", async (e) => {
         e.stopPropagation();
-        const text = get();
+        let text;
+        try { text = await get(); }
+        catch { b.classList.add("fail"); b.textContent = `! ${name}`;
+          setTimeout(() => { b.classList.remove("fail"); paint(); }, 1600); return; }
         try {
           await navigator.clipboard.writeText(text);
           b.classList.add("done"); b.textContent = `✓ ${name}`;
@@ -1692,9 +1779,9 @@
     const cpRow = document.createElement("div"); cpRow.className = "cp-row";
     cpRow.append(
       copyBtn("cp-he", "א", "hebrew", `Copy the Hebrew of ${sec.label}`,
-        () => sec.words.map((w) => w.s).join(" ")),
+        () => sec.words.map((w) => w.s).join(" ") + copyNotice("he", s)),
       copyBtn("cp-en", "A", "english", `Copy the English showing for ${sec.label}`,
-        () => [...s.querySelectorAll(".he-text .wb .g")].map((g) => g.textContent.trim()).filter(Boolean).join(" ")),
+        () => englishWithSources(sec, s)),
     );
     const he = document.createElement("p"); he.className = "he-text"; he.lang = "he"; he.dir = "rtl";
     let wIdx = 0;
