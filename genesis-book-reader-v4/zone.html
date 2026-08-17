@@ -208,7 +208,24 @@
     background: var(--panel); border: 1px solid #2c4a63; border-radius: 0.7rem;
     padding: 0.85rem 1.05rem; box-shadow: 0 14px 40px rgba(0,0,0,.6); }
   /* what scrolls, and what does not */
-  #hud .rows { flex: 1 1 auto; min-height: 5rem; overflow-y: auto; }
+  /* The card is a stack of bands, and each keeps its own share.
+     One region that scrolled as a whole meant whichever band came first could
+     spend the entire card: eight divisions took three rows of pills, the block
+     row took a fourth, and every selectable reading was below the fold on a
+     card that had just opened. A reader who cannot see one thing to press has
+     been handed a card that does nothing.
+     So each band is bounded and scrolls inside itself, and the readings — the
+     thing the reader came to press — take what is left and never less than two
+     rows. Nothing is dropped to achieve it: every division, every block and
+     every reading is in its band, whole and reachable. */
+  #hud .rows { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;
+    overflow: hidden; }
+  #hud .band { display: flex; flex-direction: column; min-height: 0; }
+  #hud .band > .r-label { flex: 0 0 auto; }
+  #hud .band > .s-pills, #hud .band > .r-pills { overflow-y: auto; min-height: 0; }
+  #hud .b-cut { flex: 0 1 auto; max-height: 7rem; }
+  #hud .b-cell { flex: 0 1 auto; max-height: 6rem; }
+  #hud .b-read { flex: 1 1 auto; min-height: 5.6rem; }
   /* The D is the foundational record and it is always on the card. How much of
      the card it takes is not the part that is foundational.
      The old cap was `max-height: 58%`, and it never bound anything: a
@@ -1196,9 +1213,14 @@
       }
     };
 
-    const cutRow = document.createElement("div");
-    const cellRow = document.createElement("div");
-    const readRow = document.createElement("div");
+    // Three bands, each keeping its own share of the card. A band that outgrows
+    // its share scrolls inside itself rather than pushing the ones below it off
+    // the bottom — a form with eight divisions used to spend three rows on them
+    // and a fourth on its blocks, and the reader had to scroll before they
+    // could see a single reading to press.
+    const cutRow = document.createElement("div"); cutRow.className = "band b-cut";
+    const cellRow = document.createElement("div"); cellRow.className = "band b-cell";
+    const readRow = document.createElement("div"); readRow.className = "band b-read";
     const prov = document.createElement("p"); prov.className = "prov";
     // The divisions, the blocks and the readings share one scrolling region;
     // the record sits below it and is never scrolled away. A form with two
