@@ -156,6 +156,12 @@
   .wb:hover .w { color: #ffe08a; border-bottom-color: #6a5a33; }
   .wb.held { opacity: 0.45; cursor: default; }
   .wb.active .w { color: var(--gold); border-bottom: 1px solid var(--gold); }
+  /* A word the reader has ruled on keeps a mark after the card closes. Without
+     it, closing the card left nothing to say which word had just been changed,
+     and the reader had to hold that in their head. It is a tint rather than a
+     border so nothing on the line moves when it appears. */
+  .wb.chosen { background: rgba(214, 178, 90, 0.1); border-radius: 0.25rem; }
+  .wb.chosen.active { background: rgba(214, 178, 90, 0.16); }
   /* An occurrence written with a maqaf is one block and more than one W. The
      block never splits; the W inside it light and open one at a time, and the
      maqaf itself prints without opening, because it is not a W. */
@@ -197,14 +203,46 @@
   /* The HUD floats. The Hebrew never moves — law of the house. */
   /* A card that always carries a whole record needs room for one; 55vh put
      the source and its licence below the fold on a phone. */
-  #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: min(72vh, 44rem);
+  #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: min(84vh, 50rem);
     display: flex; flex-direction: column; overflow: hidden;
     background: var(--panel); border: 1px solid #2c4a63; border-radius: 0.7rem;
     padding: 0.85rem 1.05rem; box-shadow: 0 14px 40px rgba(0,0,0,.6); }
   /* what scrolls, and what does not */
-  #hud .rows { flex: 1 1 auto; min-height: 2.5rem; overflow-y: auto; }
-  #hud .d-slot { flex: 0 0 auto; max-height: 58%; overflow-y: auto; }
+  #hud .rows { flex: 1 1 auto; min-height: 5rem; overflow-y: auto; }
+  /* The D is the foundational record and it is always on the card. How much of
+     the card it takes is not the part that is foundational.
+     The old cap was `max-height: 58%`, and it never bound anything: a
+     percentage height resolves against a container with a definite height, and
+     this card has only a maximum, so the cap computed to none and one long
+     record took 91% of the card — the readings, the divisions and the source
+     all pushed out by a single definition. So the bound is a length, which
+     always resolves; the record's text scrolls inside it; and the source line
+     is pinned under it rather than scrolling with it. The reader's law is that
+     a selected reading always shows one whole D with its M, and pinning the M
+     is how that holds however long the D runs. */
+  /* 0 0, not 0 1: a shrinkable D slot loses its share to whichever sibling has
+     the bigger content, and a form with two hundred readings has a rows region
+     thousands of pixels tall — it took nearly all the shrink and squeezed the
+     source line out of the bottom of a slot that was only 7% of the card. The
+     rows region is the one that scrolls, so it is the one that gives. */
+  #hud .d-slot { flex: 0 0 auto; max-height: 32vh;
+    display: flex; flex-direction: column; overflow: hidden; }
+  #hud .d-card { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+  #hud .d-body { flex: 1 1 auto; min-height: 2.4rem; overflow-y: auto; }
+  #hud .d-foot { flex: 0 0 auto; padding-top: 0.15rem; }
   #hud .prov { flex: 0 0 auto; }
+  /* What is standing under the word right now. The card used to answer this
+     only by which pill was lit, and with two hundred pills in a scrolling row
+     the lit one is often not on screen — so the reader closed the card to find
+     out whether their choice held. It is the first thing under the handle and
+     it never scrolls. */
+  #hud .r-now { flex: 0 0 auto; margin: 0.1rem 0 0.35rem; padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--line); direction: ltr; }
+  #hud .r-now .k { display: block; color: var(--faint); font-size: 0.68rem;
+    letter-spacing: 0.08em; text-transform: uppercase; }
+  #hud .r-now .v { display: block; color: var(--ink-strong); font-size: 0.94rem;
+    line-height: 1.3; overflow-wrap: anywhere; }
+  #hud .r-now .v.none { color: var(--faint); font-style: italic; }
   #hud[hidden] { display: none; }
   /* The head is the handle. A card the reader can move is a card that stops
      being in the way, and a card that is never re-anchored while it is open
@@ -1049,8 +1087,35 @@
       const g = bin.gloss ? bin.gloss[surface] : null;
       return g ? spanJoin(g) : "—";
     };
+    // What is standing under the word right now, said on the card. The reader
+    // used to have to close the card to find out whether their choice held,
+    // because the only answer was which pill was lit — and in a row of two
+    // hundred, the lit one is usually somewhere off screen.
+    const now = document.createElement("p"); now.className = "r-now";
+    const nowK = document.createElement("span"); nowK.className = "k"; nowK.textContent = "reading";
+    const nowV = document.createElement("span"); nowV.className = "v";
+    now.append(nowK, nowV);
+    const paintNow = (line) => {
+      const bare = !line || !line.replace(/[—\s+]/g, "");
+      nowV.textContent = bare ? "no reading in the catalog for this form" : line;
+      nowV.classList.toggle("none", bare);
+      nowV.title = bare ? "" : line;
+    };
+    // say it from the moment the card renders, not only once the readings
+    // have come back from the shard
+    paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "));
+
+    // A word the reader has ruled on keeps a quiet mark once the card closes,
+    // so the page itself says which words have been worked and the reader is
+    // not holding that list in their head. It marks a ruling, not a visit:
+    // opening a word and closing it again changes nothing and leaves no mark.
+    const markRuled = () => { if (wbEl && wbEl.classList) wbEl.classList.add("chosen"); };
+
     const paintGloss = () => {
-      if (!glossEl) return;
+      if (!glossEl) {
+        paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "));
+        return;
+      }
       // The page's own reading is printed whole — that is why the ellipsis came
       // off. But a reading the reader chooses can be longer than the one the
       // page painted, and letting the line grow would move every Hebrew word
@@ -1066,6 +1131,9 @@
       const mine = cover.map((c) => textOfCell(c.surface)).join(" + ");
       const line = glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine;
       glossEl.textContent = line; glossEl.title = line; glossEl.classList.remove("bare");
+      // the card says the same thing, where the reader can see it without
+      // hunting a lit pill through a scrolling row
+      paintNow(mine);
       // record what this reading stands on, so a copy can name it
       const wbEl2 = glossEl.closest(".wb");
       if (wbEl2 && selectedRecordRef.m) {
@@ -1087,7 +1155,7 @@
     const rows = document.createElement("div"); rows.className = "rows";
     rows.append(cutRow, cellRow, readRow);
     const dSlot = document.createElement("div"); dSlot.className = "d-slot";
-    hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, rows, dSlot, prov);
+    hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, prov);
 
     // --- row 1 · how the form divides ---------------------------------
     const renderCuts = () => {
@@ -1102,6 +1170,7 @@
         btn.setAttribute("aria-pressed", String(c === cover));
         btn.addEventListener("click", () => {
           cover = c; mem.cut = cutKey(c); cellIdx = 0;
+          markRuled();
           renderCuts(); renderCells(); renderReadings(); paintGloss();
         });
         pills.append(btn);
@@ -1147,7 +1216,9 @@
       if (!pool || !pool.length) {
         const p = document.createElement("p");
         p.textContent = pool ? "No displayable route in the catalog for this form." : "No exact route in the catalog for this form.";
-        readRow.append(p); clampHud(); return;
+        readRow.append(p);
+        paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "));
+        clampHud(); return;
       }
       const remembered = picked.get(surface);
       let selected = (remembered && pool.find((r) => routeKey(r) === remembered.key)) || pool[0];
@@ -1165,7 +1236,13 @@
       // Identical records from several sources print once, with every source
       // that carries them beneath.
       const renderDCard = () => {
-        dCard.replaceChildren();
+        // The record's own text scrolls; the source line beneath it does not.
+        // A definition running four hundred words is still one record, and one
+        // record is entitled to say what it says — but not to push the M, the
+        // readings and the divisions off the card on its way.
+        const body = document.createElement("div"); body.className = "d-body";
+        const foot = document.createElement("div"); foot.className = "d-foot";
+        dCard.replaceChildren(body, foot);
         // A reading that is a piece cut out of the record beneath it says so.
         // The provider wrote one sentence; this is part of that sentence, not a
         // second thing the provider said, and attributing an arrangement to a
@@ -1176,7 +1253,7 @@
         if (selected.records.some((r) => r[5] === 1)) {
           const cut = document.createElement("p"); cut.className = "d-cut";
           cut.textContent = "This reading is a piece cut out of the record below, not the record's own sentence.";
-          dCard.append(cut);
+          body.append(cut);
         }
         const recs = [...selected.records].sort((a, c) => {
           const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
@@ -1221,7 +1298,12 @@
         // see from the closed drawer whether it is worth opening.
         const groups = [...byText.entries()];
         const [firstText, firstGroup] = groups[0];
-        dCard.append(dText(firstText), mLine(firstGroup[0]));
+        body.append(dText(firstText));
+        // The M is the one line that never scrolls: it is who says this, and a
+        // reading whose source has scrolled out of sight is a reading standing
+        // on nothing the reader can see. Everything else about the record —
+        // its text, its corroboration — scrolls above it.
+        foot.append(mLine(firstGroup[0]));
         const rest = [...firstGroup.slice(1).map((r) => [firstText, r]),
                       ...groups.slice(1).flatMap(([t, g]) => g.map((r) => [t, r]))];
         if (!rest.length) return;
@@ -1243,10 +1325,11 @@
           }
           clampHud();
         });
-        dCard.append(more, drawer);
+        body.append(more, drawer);
       };
       const choose = (route) => {
         selected = route; picked.set(surface, { key: routeKey(route), text: route.text });
+        markRuled();
         selectedRecordRef.m = index.m_sources[route.records[0][3]] || null;
         renderDCard(); paintGloss(); clampHud();
       };
