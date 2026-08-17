@@ -203,14 +203,15 @@
      long. It scrolls on its own rather than pushing the D and M off the end. */
   #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr;
     max-height: 32vh; overflow-y: auto; }
-  /* A pill is a chooser, so it may run to two lines before it gives up. What
-     it cannot show in full is shown in full by the D record below it, which
-     is never clipped — a reading the reader cannot read whole is not on the
-     card at all. */
+  /* A pill shows its whole reading. It used to clamp at two lines, which made
+     the card claim a reading it was not showing — the code beneath says R is
+     "never truncated away" and the clamp was quietly making that false. A long
+     reading now takes the room it needs; the row scrolls, so the D and the M
+     below it are still one flick away, and a reading that runs to a paragraph
+     looks like one, which is information about the record, not noise. */
   #hud .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
-    max-width: 100%; text-align: left; white-space: normal; overflow: hidden;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
   #hud .r-pills button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold);
     color: #171105; font-weight: bold; }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
@@ -473,6 +474,7 @@
   // drawer — the card is only pulled back into view if it has grown past the
   // edge. Re-anchoring on every internal change is what made it feel shifty:
   // the card was being placed for a height it no longer had.
+  const pickedByWord = new WeakMap();   // occurrence -> Map(cell surface -> chosen reading)
   let hudMoved = false;
   const clampHud = () => {
     if (hud.hidden) return;
@@ -646,7 +648,19 @@
 
     let cover = covers[0];
     let cellIdx = 0;
-    const picked = new Map();          // cell surface -> chosen reading
+    // What the reader chose, kept where they chose it. This map used to be
+    // declared here, inside the open, so closing the card threw the choice
+    // away and the next open painted the catalog's default back over the
+    // reader's reading. It is now held against the occurrence itself.
+    const wbEl = (el.closest && el.closest(".wb")) || el;
+    let picked = pickedByWord.get(wbEl);
+    if (!picked) { picked = new Map(); pickedByWord.set(wbEl, picked); }
+    // A route object is rebuilt from the shard every time the card opens, so
+    // remembering the object itself remembers nothing — the new pool holds
+    // different objects carrying the same reading. The choice is held by what
+    // identifies a route in the record instead: its text and the M behind it.
+    const routeKey = (r) => spanJoin(r.text) + " | " +
+      (r.records && r.records[0] ? r.records[0][3] : "no m");
     const cache = new Map();           // cell surface -> pool (or null)
 
     // The gloss under the word follows the whole card: every cell of the cut
@@ -731,7 +745,8 @@
         p.textContent = pool ? "No displayable route in the catalog for this form." : "No exact route in the catalog for this form.";
         readRow.append(p); clampHud(); return;
       }
-      let selected = picked.get(surface) || pool[0];
+      const remembered = picked.get(surface);
+      let selected = (remembered && pool.find((r) => routeKey(r) === remembered.key)) || pool[0];
       const pills = document.createElement("div"); pills.className = "r-pills";
       const dCard = document.createElement("div"); dCard.className = "d-card";
       // A selected reading always shows at least one whole D with its M.
@@ -815,7 +830,7 @@
         dCard.append(more, drawer);
       };
       const choose = (route) => {
-        selected = route; picked.set(surface, route);
+        selected = route; picked.set(surface, { key: routeKey(route), text: route.text });
         renderDCard(); paintGloss(); clampHud();
       };
       const makePill = (route) => {
