@@ -755,13 +755,31 @@
 
   const slug = (t) => String(t).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   let hudMoved = false;
-  const clampHud = () => {
+  // Two rules, and which one applies depends on who moved the card.
+  //
+  // A card the page placed is kept whole on screen: the reader did not ask for
+  // any of it to be off, so none of it is.
+  //
+  // A card the reader dragged is theirs. They may park it half off the side or
+  // hanging below the fold — that is a legitimate thing to want from a card
+  // that sits over the text you are reading. The only thing held back is the
+  // handle: the head must stay reachable, or the card could be pushed
+  // somewhere it can never be pulled back from.
+  const GRAB = 56;
+  const placeInBounds = () => {
     if (hud.hidden) return;
     const h = hud.offsetHeight || 0, w = hud.offsetWidth || 0, pad = 8;
     const top = parseFloat(hud.style.top) || 0, left = parseFloat(hud.style.left) || 0;
+    if (hudMoved) {
+      // free to hang off the left, the right and the bottom; the head stays on
+      hud.style.top = `${Math.max(pad, Math.min(top, window.innerHeight - GRAB))}px`;
+      hud.style.left = `${Math.max(GRAB - w, Math.min(left, window.innerWidth - GRAB))}px`;
+      return;
+    }
     hud.style.top = `${Math.max(pad, Math.min(top, window.innerHeight - h - pad))}px`;
     hud.style.left = `${Math.max(pad, Math.min(left, window.innerWidth - w - pad))}px`;
   };
+  const clampHud = placeInBounds;
   const placeHud = (el) => {
     if (el) hudAnchor = el;
     if (!hudAnchor) return;
@@ -787,6 +805,7 @@
   // path; the close button is excluded so the reader can still hit it.
   let drag = null;
   hud.addEventListener("pointerdown", (e) => {
+    justDragged = false;
     const head = e.target.closest(".head");
     if (!head || !hud.contains(head) || e.target.closest("button")) return;
     drag = { dx: e.clientX - (parseFloat(hud.style.left) || 0),
@@ -799,9 +818,15 @@
     hud.style.left = `${e.clientX - drag.dx}px`;
     hud.style.top = `${e.clientY - drag.dy}px`;
   });
+  // A drag that ends over the page is still a drag, not a tap on the page. The
+  // outside-click handler would otherwise close the card the reader was in the
+  // middle of moving — which is exactly what happens when you park it far
+  // enough that you let go over the text.
+  let justDragged = false;
   const endDrag = () => {
     if (!drag) return;
-    drag = null; hudMoved = true; hud.classList.add("moved"); clampHud();
+    drag = null; justDragged = true;
+    hudMoved = true; hud.classList.add("moved"); clampHud();
   };
   hud.addEventListener("pointerup", endDrag);
   hud.addEventListener("pointercancel", endDrag);
@@ -1340,6 +1365,7 @@
     // runs; the node that was tapped is then detached, and asking whether the
     // HUD still contains it answers no about a tap that came from inside it.
     if (!e.target.isConnected) return;
+    if (justDragged) { justDragged = false; return; }
     if (hud.contains(e.target) || e.target.closest(".wb")) return;
     closeHud();
   });
