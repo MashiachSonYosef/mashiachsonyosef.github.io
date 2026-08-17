@@ -307,24 +307,12 @@
   #hud .c-back { background: none; border: 0; color: var(--link); font: inherit; font-size: 0.74rem;
     cursor: pointer; padding: 0 0 0.25rem; letter-spacing: 0.04em; }
   #hud .c-back:hover { color: var(--gold); }
-  /* Taking the text out. A reader who can read a verse but not carry it away
-     has been given a display, not a text. Two controls because the page holds
-     two things: the Hebrew as the chain has it, and the English the reader has
-     chosen — which is not the same as the English the page opened with. */
-  .cp { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--line); background: var(--panel2);
-    border-radius: 0.5rem; padding: 0.05rem 0.45rem; letter-spacing: 0.04em; cursor: pointer;
-    font-family: inherit; min-width: 1.5rem; }
-  .cp:hover { border-color: var(--gold-dim); color: var(--shesh); }
-  .cp.done { background: var(--gold); color: #171105; border-color: var(--gold); }
-  .cp.fail { border-color: var(--amber); color: var(--amber); }
-  .cp .cp-k { font-family: "Frank Ruehl CLM", "David Libre", "SBL Hebrew", Georgia, serif;
-    font-size: 0.86rem; margin-inline-end: 0.3rem; }
-  .cp .cp-n { font-variant: small-caps; letter-spacing: 0.1em; }
   /* Levels. Three things hang off a section and they are not the same size of
      act. The number names it. The commentary is the section's other text, so
      it gets a line of its own, the width of the column, carrying the name of
-     the work rather than a letter. Taking the text away is the smallest act
-     of the three, so the two copies sit beneath at the smallest weight. */
+     the work rather than a letter. Taking the text away for good is the last
+     act, so the export sits beneath at the smallest weight. Carrying a line
+     off in a clipboard is not a control at all — see below. */
   .c-slot:empty { display: none; }
   .c-bar { display: flex; align-items: center; gap: 0.5rem; width: 100%;
     margin: 0.55rem 0 0.32rem; padding: 0.36rem 0.62rem; border: 1px solid var(--line);
@@ -337,7 +325,25 @@
     border: 1px solid currentColor; border-radius: 0.35rem; padding: 0 0.32rem; opacity: 0.75; }
   .c-bar .c-name { flex: 1 1 auto; }
   .c-bar .c-hint { font-size: 0.66rem; opacity: 0.6; }
-  .cp-row { display: flex; gap: 0.4rem; margin: 0 0 0.5rem; direction: ltr; flex-wrap: wrap; align-items: center; }
+  /* Copying is the reader's act, not the page's. There is no button that writes
+     to a clipboard here — a button doing that is the site handing text over,
+     and text handed over carries obligations. A reader who selects and presses
+     copy is doing what a reader does on any page, and the licences are on the
+     page: on the card, in the footer, and in the export.
+     What the page owes them is a clean selection. The Hebrew and its reading
+     live in one block, so selecting a verse used to interleave them word by
+     word. So the reader you are in decides what selects: the Hebrew reader
+     selects Hebrew, the English reader selects English, and either way what
+     lands is a line rather than a zip of two. */
+  .he-text .wb .g { user-select: none; -webkit-user-select: none; }
+  .he-text .wb .w { user-select: text; -webkit-user-select: text; }
+  body.en .he-text .wb .g { user-select: text; -webkit-user-select: text; }
+  body.en .he-text .wb .w { user-select: none; -webkit-user-select: none; }
+  .c-inline .g { user-select: none; -webkit-user-select: none; }
+  body.en .c-inline .g { user-select: text; -webkit-user-select: text; }
+  body.en .c-inline .w { user-select: none; -webkit-user-select: none; }
+  /* the chrome is not text anyone wants in a copy */
+  .seg-row, .c-bar, .xp-row, #nav, header.top nav, #modeRow { user-select: none; -webkit-user-select: none; }
   /* Taking the text away for good. A copy is a convenience; an export is the
      final stop, so it says what it is about to hand over before it hands it
      over, and it obeys the licence of every record it would carry. */
@@ -1486,6 +1492,127 @@
   btnEn.addEventListener("click", () => setMode("en"));
   if (new URLSearchParams(location.search).get("mode") === "en") setMode("en");
 
+  // Copying is the reader's act. There is no control on this page that writes
+  // to a clipboard, because a control doing that is the site redistributing on
+  // a press, and what is redistributed carries obligations. A reader who
+  // selects a verse and presses copy is doing what a reader does on any page.
+  //
+  // What the page owes them is a clean line, and its own layout works against
+  // that: every word is a block so it can carry its reading underneath, and a
+  // browser serializing blocks puts a newline between each one. A verse came
+  // out of here as a column of single words.
+  //
+  // So this rewrites the whitespace of the reader's own selection and nothing
+  // else. It adds no text — no licence line, no citation, nothing the reader
+  // did not select — and it drops none. Take every space out of what it writes
+  // and you have exactly what the browser would have written on its own: the
+  // words the reader dragged over, in order, in the provider's characters.
+  // It collapses a newline only between blocks of one word-block line, which
+  // is the newline this page's own layout invented; everywhere else the
+  // browser's shape stands.
+  const LINE_HOSTS = ".he-text, .c-inline, .title-row, .c-he";
+  const nearestBlock = (node) => {
+    let el = node.nodeType === 1 ? node : node.parentElement;
+    for (; el && el !== document.body; el = el.parentElement) {
+      const d = getComputedStyle(el).display;
+      if (d !== "inline" && d !== "contents") return el;
+    }
+    return document.body;
+  };
+  const selectionAsText = () => {
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) return null;
+    const range = sel.getRangeAt(0);
+    const root = range.commonAncestorContainer;
+    const walk = document.createTreeWalker(
+      root.nodeType === 1 ? root : root.parentNode, NodeFilter.SHOW_TEXT,
+      { acceptNode: (n) => (range.intersectsNode(n) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT) },
+    );
+    const groups = [];
+    for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+      const host = n.parentElement;
+      if (!host) continue;
+      // a run the page has made unselectable is not in the selection, which is
+      // how the browser already treats it — the reading under a Hebrew word is
+      // not part of a Hebrew verse
+      const cs = getComputedStyle(host);
+      if ((cs.userSelect || cs.webkitUserSelect) === "none") continue;
+      let t = n.data;
+      if (n === range.endContainer && range.endContainer.nodeType === 3) t = t.slice(0, range.endOffset);
+      if (n === range.startContainer && range.startContainer.nodeType === 3) t = t.slice(range.startOffset);
+      if (!t) continue;
+      const block = nearestBlock(n);
+      const line = host.closest ? host.closest(LINE_HOSTS) : null;
+      const last = groups[groups.length - 1];
+      if (last && last.block === block) last.text += t;
+      else groups.push({ block, line, text: t });
+    }
+    let out = "";
+    let prev = null;
+    for (const g of groups) {
+      const t = g.text.replace(/\s+/g, " ").trim();
+      if (!t) continue;
+      if (out) out += prev && g.line && prev.line === g.line ? " " : "\n";
+      out += t;
+      prev = g;
+    }
+    return out.trim() || null;
+  };
+  document.addEventListener("copy", (e) => {
+    // a form field copies itself; nothing here has anything to say about it
+    const t = e.target;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+    const text = selectionAsText();
+    if (!text || !e.clipboardData) return;
+    e.clipboardData.setData("text/plain", text);
+    e.preventDefault();
+  });
+
+  // A reader who wants the whole verse taps three times, the way they would in
+  // any document. Because every word here is its own block, the browser's own
+  // triple click stops at one word; this gives the gesture the line it asked
+  // for. It selects — it does not copy. The reader still presses copy.
+  //
+  // The range runs from the first selectable run in the line to the last, not
+  // from edge to edge: in the English reader the Hebrew is the unselectable
+  // side, so a range starting at the line's edge would start on a run the
+  // browser refuses to select, and be thrown away whole.
+  const selectableRange = (host) => {
+    const walk = document.createTreeWalker(host, NodeFilter.SHOW_TEXT);
+    let first = null, last = null;
+    for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+      if (!n.data.trim()) continue;
+      const el = n.parentElement;
+      if (!el) continue;
+      const cs = getComputedStyle(el);
+      if ((cs.userSelect || cs.webkitUserSelect) === "none") continue;
+      if (!first) first = n;
+      last = n;
+    }
+    if (!first) return null;
+    const r = document.createRange();
+    r.setStart(first, 0); r.setEnd(last, last.data.length);
+    return r;
+  };
+  // Where the first of the three taps landed. The first tap opens the card,
+  // and an open card can stand over the word that opened it — so by the third
+  // tap the reader is often clicking the card, in the place they meant the
+  // text. Three taps in one place means: give me that line.
+  let tapLine = null;
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest) return;
+    if (e.detail <= 1) { tapLine = e.target.closest(LINE_HOSTS); return; }
+    if (e.detail < 3) return;
+    const host = e.target.closest(LINE_HOSTS) || (e.target.closest("#hud") ? tapLine : null);
+    if (!host) return;
+    const r = selectableRange(host);
+    if (!r) return;
+    e.stopPropagation();
+    closeHud();
+    const sel = window.getSelection();
+    sel.removeAllRanges(); sel.addRange(r);
+  }, true);
+
   // contents
   // A title is the section's own words, so it renders exactly like the text:
   // word blocks, gloss beneath where that token's route carries one, HUD on
@@ -1709,80 +1836,9 @@
         cbar.setAttribute("aria-expanded", String(toggleSectionInline(sec, s)));
       });
     }
-    // What the reader can carry away. The Hebrew is the exact surfaces the
-    // chain served, joined by the space the page prints between them — no
-    // gloss mixed in, which a plain browser selection cannot avoid because the
-    // gloss lives inside the word block. The English is whatever is on the
-    // gloss line at the moment of the tap, so a reader who has chosen a
-    // different reading copies the reading they chose.
-    //
-    // These sit under the commentary line, at a smaller weight, because taking
-    // a copy is the smallest of the three acts a section offers.
-    // A copy is a redistribution too. It used to hand over CC BY-SA readings and
-    // CC BY-NC Hebrew as bare text with no source and no licence, because the
-    // export was built to obey and these two were never revisited.
-    const copyNotice = (kind, el) => {
-      const wr = workRights();
-      const lines = [];
-      if (kind !== "en") {
-        lines.push(`${zone.work} · Hebrew text · ${wr.family || "licence NOT ESTABLISHED"}` +
-          (wr.attribution ? ` · ${wr.attribution}` : ""));
-        wr.obligations.forEach((o) => lines.push(`  ${o}`));
-      }
-      return lines.length ? `\n\n— ${lines.join("\n")}` : "";
-    };
-    // The English copy reads the records the same way the export does, because
-    // naming a source is not optional and a pointer to "open a word" is not a
-    // name. It is slower than a copy used to be; an attribution obligation does
-    // not care.
-    const englishWithSources = async (sec, el) => {
-      const g = await gatherSection(sec, el);
-      const line = g.words.map((w) => (w.held ? "[reading withheld]" : w.en)).join(" ");
-      const wr = workRights();
-      const lines = [];
-      if (g.sources.length) {
-        lines.push("English readings:");
-        for (const s of g.sources) lines.push(`  ${s.label}${s.year ? ` · ${s.year}` : ""} · ${s.posture}${s.pointer ? ` · ${s.pointer}` : ""}`);
-      }
-      const obl = new Set(g.obligations);
-      wr.obligations.forEach((o) => obl.add(`The Hebrew text: ${o}`));
-      if (obl.size) { lines.push("Obligations:"); [...obl].forEach((o) => lines.push(`  ${o}`)); }
-      if (g.held) lines.push(`${g.held} reading${g.held === 1 ? " was" : "s were"} withheld on licence.`);
-      return `${line}\n\n— ${zone.work} ${sec.label || ""}\n${lines.join("\n")}`;
-    };
-    const copyBtn = (cls, glyph, name, aria, get) => {
-      const b = document.createElement("button"); b.type = "button"; b.className = `cp ${cls}`;
-      const paint = () => {
-        b.replaceChildren();
-        const k = document.createElement("span"); k.className = "cp-k"; k.textContent = glyph;
-        const n = document.createElement("span"); n.className = "cp-n"; n.textContent = name;
-        b.append(k, n);
-      };
-      paint();
-      b.setAttribute("aria-label", aria); b.title = aria;
-      b.addEventListener("click", async (e) => {
-        e.stopPropagation();
-        let text;
-        try { text = await get(); }
-        catch { b.classList.add("fail"); b.textContent = `! ${name}`;
-          setTimeout(() => { b.classList.remove("fail"); paint(); }, 1600); return; }
-        try {
-          await navigator.clipboard.writeText(text);
-          b.classList.add("done"); b.textContent = `✓ ${name}`;
-        } catch {
-          b.classList.add("fail"); b.textContent = `! ${name}`;
-        }
-        setTimeout(() => { b.classList.remove("done", "fail"); paint(); }, 1200);
-      });
-      return b;
-    };
-    const cpRow = document.createElement("div"); cpRow.className = "cp-row";
-    cpRow.append(
-      copyBtn("cp-he", "א", "hebrew", `Copy the Hebrew of ${sec.label}`,
-        () => sec.words.map((w) => w.s).join(" ") + copyNotice("he", s)),
-      copyBtn("cp-en", "A", "english", `Copy the English showing for ${sec.label}`,
-        () => englishWithSources(sec, s)),
-    );
+    // The text itself. Each word is a block carrying the Hebrew and its
+    // reading, and a space stands between the blocks so a selection that runs
+    // across the verse comes out as words rather than one long run.
     const he = document.createElement("p"); he.className = "he-text"; he.lang = "he"; he.dir = "rtl";
     let wIdx = 0;
     sec.words.forEach((word) => {
@@ -1819,10 +1875,10 @@
       ));
     }
     xpRow.append(xpNote);
-    // The number, the text, then the section's other text where it opens, then
-    // the two smallest acts: take a copy, take it away for good.
-    if (cbar) s.append(row, he, cbar, cSlot, cpRow, xpRow);
-    else s.append(row, he, cpRow, xpRow);
+    // The number, the text, the section's other text where it opens, and the
+    // one act that hands anything over.
+    if (cbar) s.append(row, he, cbar, cSlot, xpRow);
+    else s.append(row, he, xpRow);
     sectionEls.push({ sec, el: s });
     frag.append(s);
   });
