@@ -309,7 +309,25 @@
     border: 1px solid currentColor; border-radius: 0.35rem; padding: 0 0.32rem; opacity: 0.75; }
   .c-bar .c-name { flex: 1 1 auto; }
   .c-bar .c-hint { font-size: 0.66rem; opacity: 0.6; }
-  .cp-row { display: flex; gap: 0.4rem; margin: 0 0 0.5rem; direction: ltr; }
+  .cp-row { display: flex; gap: 0.4rem; margin: 0 0 0.5rem; direction: ltr; flex-wrap: wrap; align-items: center; }
+  /* Taking the text away for good. A copy is a convenience; an export is the
+     final stop, so it says what it is about to hand over before it hands it
+     over, and it obeys the licence of every record it would carry. */
+  .xp-row { display: flex; gap: 0.4rem; margin: 0.55rem 0 0.2rem; direction: ltr;
+    flex-wrap: wrap; align-items: center; }
+  .xp { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--line);
+    background: var(--panel2); border-radius: 0.5rem; padding: 0.12rem 0.5rem;
+    letter-spacing: 0.04em; cursor: pointer; font-family: inherit; }
+  .xp:hover { border-color: var(--gold-dim); color: var(--shesh); }
+  .xp.armed { background: var(--gold); color: #171105; border-color: var(--gold); font-weight: bold; }
+  .xp.busy { opacity: 0.6; cursor: progress; }
+  .xp-note { font-size: 0.66rem; color: var(--faint); direction: ltr; flex: 1 1 100%; margin: 0.1rem 0 0; }
+  .xp-note b { color: var(--shesh); font-weight: normal; }
+  .xp-note .held { color: var(--amber); }
+  .xp-lab { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--faint); margin-inline-end: 0.15rem; }
+  #bookExport { max-width: 48rem; margin: 2.2rem auto 0; padding: 0 1.5rem; direction: ltr; }
+  #bookExport .xp-lab { display: block; margin-bottom: 0.35rem; }
   #prov a { color: var(--shesh); }
 
   footer { max-width: 48rem; margin: 0 auto; padding: 1.1rem 1.5rem 2.2rem; font-size: 0.76rem;
@@ -484,6 +502,209 @@
     return m;
   };
   const cutKey = (c) => c.map((x) => x.surface).join("+");
+
+  // ---- the exporter ---------------------------------------------------
+  // An export is the final stop: the thing that leaves the page and is read
+  // somewhere else, by someone who will never see this reader. So it carries
+  // the licence of every record it stands on, and a licence that forbids
+  // redistribution stops it — per reading, not per file.
+  //
+  // The Hebrew is the sealed text of the work and rides on the work's own
+  // licence. A refused reading never removes a Hebrew word; it removes the
+  // English beside it, and says so where it stood.
+  const LICENCE_RULES = {
+    obligations: {
+      sa: "Share-alike: anything derived from this must be shared under the same licence.",
+      nc: "Noncommercial use only.",
+      by: "Attribution required.",
+    },
+  };
+  const postureOf = (mId) => {
+    const m = index.m_sources[mId];
+    return m ? String(m.licensePosture || "") : "";
+  };
+  // Refusals are decided here and nowhere else. A posture that forbids
+  // derivatives forbids an export, because an export is one.
+  const exportPosture = (posture) => {
+    const p = String(posture || "");
+    if (!p) return { ok: false, why: "the record carries no licence posture" };
+    if (/(^|[^a-z])nd([^a-z]|$)/i.test(p) || /noderiv/i.test(p))
+      return { ok: false, why: `NoDerivatives (${p}) — an export is a redistributed derivative` };
+    const ob = [];
+    if (/(^|_)by(_|$)/.test(p) || /cc_by/.test(p)) ob.push(LICENCE_RULES.obligations.by);
+    if (/(^|_)sa(_|$)/.test(p) || /share.?alike/i.test(p)) ob.push(LICENCE_RULES.obligations.sa);
+    if (/(^|_)nc(_|$)/.test(p) || /noncommercial/i.test(p)) ob.push(LICENCE_RULES.obligations.nc);
+    return { ok: true, why: null, obligations: ob };
+  };
+
+  // What reading is standing under a word right now, and which record it is
+  // standing on. The zone bakes the reading as text with no M attached, so the
+  // record is recovered by asking the store what it attests for that form and
+  // matching the text the page is showing. A reading nobody can trace is not
+  // exported — it is named as untraceable, which is the honest refusal.
+  const attributionFor = async (surface, shownText) => {
+    const pool = await poolFor(surface);
+    if (!pool || !pool.length) return { ok: false, why: "no record in the catalog for this form" };
+    const hit = pool.find((r) => spanJoin(r.text) === shownText) ||
+                pool.find((r) => r.text === shownText);
+    if (!hit) return { ok: false, why: "the reading on the page does not match any record in the store" };
+    const mId = hit.records[0][3];
+    const m = index.m_sources[mId] || {};
+    const post = exportPosture(m.licensePosture);
+    return post.ok
+      ? { ok: true, text: shownText, label: m.label, posture: m.licensePosture,
+          pointer: m.licensePointer, year: m.sourceYear, obligations: post.obligations }
+      : { ok: false, why: post.why, label: m.label };
+  };
+
+  const EXPORT_RULE = "export-rule-v1-licence-per-reading-hebrew-on-the-work";
+
+  /** Gather one section. Returns everything the writer and the confirm need. */
+  const gatherSection = async (sec, el) => {
+    const words = [];
+    const wbs = [...el.querySelectorAll(".he-text .wb")];
+    for (let i = 0; i < sec.words.length; i += 1) {
+      const w = sec.words[i];
+      const wb = wbs[i];
+      const shown = wb ? (wb.querySelector(".g")?.textContent || "").trim() : "";
+      const rec = { he: w.s, en: null, held: null, source: null };
+      if (w.k && shown && shown !== "—") {
+        const a = await attributionFor(w.k, shown);
+        if (a.ok) { rec.en = a.text; rec.source = a; }
+        else { rec.held = a.why; }
+      } else if (!w.k) rec.held = "held by the ledger; no reading is offered";
+      words.push(rec);
+    }
+    const sources = new Map();
+    const obligations = new Set();
+    let held = 0;
+    for (const w of words) {
+      if (w.held) { held += 1; continue; }
+      const s = w.source;
+      if (!sources.has(s.label)) sources.set(s.label, s);
+      (s.obligations || []).forEach((o) => obligations.add(o));
+    }
+    return { sec, words, sources: [...sources.values()], obligations: [...obligations], held };
+  };
+
+  const workLicence = () => {
+    const wr = zone.work_receipts || {};
+    return typeof wr === "string" ? wr : (wr.b_n || "");
+  };
+
+  /** The file itself. One shape for all three kinds; the kind decides columns. */
+  const renderExport = (bundles, kind, title) => {
+    const L = [];
+    L.push(`# ${title}`);
+    L.push("");
+    L.push(`${zone.work}${zone.work_he ? ` · ${zone.work_he}` : ""}`);
+    if (zone.byline) L.push(zone.byline);
+    L.push(`Work receipt: ${workLicence()}`);
+    L.push(`Store: ${index.rule_id} · ${index.store_version}`);
+    if (index.reading_rule) L.push(`Reading: ${index.reading_rule}`);
+    L.push(`Export: ${EXPORT_RULE}`);
+    L.push("");
+    const allSources = new Map(); const allObl = new Set(); let held = 0;
+    for (const b of bundles) {
+      L.push(`## ${b.sec.label || ""}`);
+      L.push("");
+      if (kind !== "en") L.push(b.words.map((w) => w.he).join(" "));
+      if (kind === "both") L.push("");
+      if (kind !== "he") {
+        const line = b.words.map((w) => (w.held ? "[reading withheld]" : w.en)).join(" ");
+        L.push(line);
+      }
+      L.push("");
+      for (const w of b.words) if (w.held) held += 1;
+      b.sources.forEach((s) => allSources.set(s.label, s));
+      b.obligations.forEach((o) => allObl.add(o));
+    }
+    L.push("---");
+    L.push("");
+    L.push("## Sources");
+    L.push("");
+    if (kind === "he") {
+      L.push(`The Hebrew is the sealed text of ${zone.work}, carried on the work's own receipt above.`);
+    } else if (!allSources.size) {
+      L.push("No reading in this export could be traced to a record.");
+    } else {
+      for (const s of [...allSources.values()].sort((a, b) => String(a.label).localeCompare(String(b.label)))) {
+        L.push(`- ${s.label}${s.year ? ` · ${s.year}` : ""} · ${s.posture}${s.pointer ? ` · ${s.pointer}` : ""}`);
+      }
+    }
+    if (allObl.size) {
+      L.push("");
+      L.push("## Obligations carried by this file");
+      L.push("");
+      [...allObl].forEach((o) => L.push(`- ${o}`));
+    }
+    if (held && kind !== "he") {
+      L.push("");
+      L.push("## Withheld");
+      L.push("");
+      L.push(`${held} reading${held === 1 ? " was" : "s were"} not exported. Each is marked [reading withheld] where it stood. A reading is withheld when its record carries a licence that does not permit redistribution, when it carries no licence at all, or when the reading on the page could not be matched to a record. The Hebrew is never withheld: it rides on the work's own licence, not on any reading's.`);
+    }
+    L.push("");
+    return L.join("\n");
+  };
+
+  const saveFile = (name, text) => {
+    const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = name;
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  };
+
+  const KINDS = { he: "Hebrew", en: "English", both: "Hebrew + English" };
+
+  /**
+   * One export control. It arms rather than fires: the first press gathers the
+   * records and says exactly what is about to leave, the second press writes
+   * it. Nothing reaches the reader's disk from a single tap.
+   */
+  const exportButton = (kind, label, note, gather, filename) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "xp"; b.textContent = label;
+    b.setAttribute("aria-label", `Export ${KINDS[kind]}`);
+    let armed = null;
+    b.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      if (armed) {
+        saveFile(filename(), renderExport(armed.bundles, kind, armed.title));
+        b.classList.remove("armed"); b.textContent = label;
+        note.textContent = "Saved."; armed = null;
+        return;
+      }
+      b.classList.add("busy"); note.textContent = "Reading the records this stands on…";
+      let g;
+      try { g = await gather(); }
+      catch (err) { b.classList.remove("busy"); note.textContent = `Could not read the records: ${err.message}`; return; }
+      b.classList.remove("busy");
+      const words = g.bundles.reduce((a, x) => a + x.words.length, 0);
+      const srcs = new Set(); const obl = new Set(); let held = 0;
+      g.bundles.forEach((x) => { x.sources.forEach((s) => srcs.add(s.label)); x.obligations.forEach((o) => obl.add(o)); held += x.held; });
+      note.replaceChildren();
+      const say = (t, cls) => { const sp = document.createElement("span"); if (cls) sp.className = cls; sp.textContent = t; note.append(sp); };
+      if (kind === "he") {
+        say(`${words} words of Hebrew, on the work's own receipt. `);
+      } else {
+        say(`${words} words · ${srcs.size} source${srcs.size === 1 ? "" : "s"}`);
+        if (obl.size) { say(" · "); say([...obl].join(" ")); }
+        if (held) { say(" · "); say(`${held} reading${held === 1 ? "" : "s"} withheld on licence`, "held"); }
+        say(". ");
+      }
+      const strong = document.createElement("b"); strong.textContent = "Press again to save.";
+      note.append(strong);
+      b.classList.add("armed"); b.textContent = "save";
+      armed = g;
+      setTimeout(() => { if (armed) { armed = null; b.classList.remove("armed"); b.textContent = label; note.textContent = ""; } }, 20000);
+    });
+    return b;
+  };
+
+  const slug = (t) => String(t).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   let hudMoved = false;
   const clampHud = () => {
     if (hud.hidden) return;
@@ -1207,12 +1428,24 @@
       el.append(p);
     }
   };
+  // Opening a commentary adds text to the page, which moves everything below
+  // it. If the reader is already past that point, the whole page jumps under
+  // them. So the section the commentary belongs to is pinned: whatever its
+  // distance from the top of the window was before, it is that after. The
+  // commentary lands where it was asked for, and closing it lands the same way.
+  const holdingSection = (el, fn) => {
+    const before = el.getBoundingClientRect().top;
+    fn();
+    const after = el.getBoundingClientRect().top;
+    const drift = after - before;
+    if (Math.abs(drift) > 0.5) window.scrollBy(0, drift);
+  };
   const toggleSectionInline = (sec, el, want) => {
     buildSectionInline(sec, el);
     const ps = [...el.querySelectorAll(".c-inline")];
     if (!ps.length) return false;
     const on = want === undefined ? ps.some((x) => x.hidden) : want;
-    ps.forEach((x) => { x.hidden = !on; });
+    holdingSection(el, () => { ps.forEach((x) => { x.hidden = !on; }); });
     return on;
   };
   const nodeSections = {};
@@ -1343,13 +1576,56 @@
       wireWord(built, word, zone, sec.unit, myIdx);
       he.append(built.wb, document.createTextNode(" "));
     });
-    // number, then the other text, then the smallest act
-    if (cbar) s.append(row, cbar, cpRow, he);
-    else s.append(row, cpRow, he);
+    // The export row sits after the text, not before it: it is the last thing
+    // a reader does with a section, and the first press only tells them what
+    // it would carry.
+    const xpRow = document.createElement("div"); xpRow.className = "xp-row";
+    const xpNote = document.createElement("p"); xpNote.className = "xp-note";
+    const lab = document.createElement("span"); lab.className = "xp-lab"; lab.textContent = "export";
+    xpRow.append(lab);
+    for (const kind of ["he", "en", "both"]) {
+      xpRow.append(exportButton(
+        kind,
+        kind === "he" ? "א" : kind === "en" ? "A" : "א + A",
+        xpNote,
+        async () => ({ bundles: [await gatherSection(sec, s)], title: `${zone.work} ${sec.label || ""}`.trim() }),
+        () => `${slug(zone.work)}-${slug(sec.label || String(secIdx))}-${kind}.md`,
+      ));
+    }
+    xpRow.append(xpNote);
+    // number, then the other text, then the smallest act, then the last stop
+    if (cbar) s.append(row, cbar, cpRow, he, xpRow);
+    else s.append(row, cpRow, he, xpRow);
     sectionEls.push({ sec, el: s });
     frag.append(s);
   });
   main.append(frag);
+
+  // One export for the whole work, after the last section. It reads every
+  // record the book stands on, which is the honest cost of a book-sized
+  // export, and it says so before it does anything.
+  {
+    const box = document.createElement("div"); box.id = "bookExport";
+    const lab = document.createElement("span"); lab.className = "xp-lab";
+    lab.textContent = `export the whole of ${zone.work}`;
+    const row = document.createElement("div"); row.className = "xp-row";
+    const note = document.createElement("p"); note.className = "xp-note";
+    const gatherBook = async () => {
+      const bundles = [];
+      for (const { sec, el } of sectionEls) bundles.push(await gatherSection(sec, el));
+      return { bundles, title: zone.work };
+    };
+    for (const kind of ["he", "en", "both"]) {
+      row.append(exportButton(
+        kind,
+        kind === "he" ? "א  hebrew" : kind === "en" ? "A  english" : "א + A  both",
+        note, gatherBook, () => `${slug(zone.work)}-${kind}.md`,
+      ));
+    }
+    row.append(note);
+    box.append(lab, row);
+    main.append(box);
+  }
 
   // ---- the commentary layer -------------------------------------------
   // A commentary is not a book of its own. It belongs to the sections it
@@ -1367,7 +1643,15 @@
     layerBtn.addEventListener("click", () => {
       on = !on;
       layerBtn.classList.toggle("on", on);
-      for (const { sec, el } of sectionEls) toggleSectionInline(sec, el, on);
+      // 817 sections opening at once moves the page by the height of a book.
+      // Pin whichever section the reader is actually looking at.
+      const seen = sectionEls.find(({ el }) => el.getBoundingClientRect().bottom > 0) || sectionEls[0];
+      holdingSection(seen.el, () => {
+        for (const { sec, el } of sectionEls) {
+          buildSectionInline(sec, el);
+          el.querySelectorAll(".c-inline").forEach((x) => { x.hidden = !on; });
+        }
+      });
       document.querySelectorAll(".c-bar").forEach((b) => b.setAttribute("aria-expanded", String(on)));
     });
   }
