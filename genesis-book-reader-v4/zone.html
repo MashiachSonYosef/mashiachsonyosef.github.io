@@ -245,6 +245,8 @@
   #hud .r-overflow select:hover { border-color: var(--gold-dim); }
   #hud .r-overflow select.on { color: #171105; background: var(--gold); border-color: var(--gold); font-weight: bold; }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
+  #hud .d-cut { margin: 0 0 0.35rem; font-size: 0.72rem; color: var(--amber);
+    border-inline-start: 2px solid var(--amber); padding-inline-start: 0.5rem; }
   /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
   #hud .d-card .d-text { margin: 0.25rem 0; color: var(--muted); }
@@ -1097,6 +1099,18 @@
       // that carries them beneath.
       const renderDCard = () => {
         dCard.replaceChildren();
+        // A reading that is a piece cut out of the record beneath it says so.
+        // The provider wrote one sentence; this is part of that sentence, not a
+        // second thing the provider said, and attributing an arrangement to a
+        // source that did not arrange it that way is only honest if the
+        // arrangement is disclosed. Whether a cut may be shown at all is the
+        // provider's licence to decide, and the store has already decided it —
+        // a licence that forbids derivatives never reaches this card.
+        if (selected.records.some((r) => r[5] === 1)) {
+          const cut = document.createElement("p"); cut.className = "d-cut";
+          cut.textContent = "This reading is a piece cut out of the record below, not the record's own sentence.";
+          dCard.append(cut);
+        }
         const recs = [...selected.records].sort((a, c) => {
           const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
           return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
