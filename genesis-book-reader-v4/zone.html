@@ -127,8 +127,14 @@
   .c-inline .w { font-size: 1.12rem; color: #c8bda0;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   .c-inline .g { font-size: 0.6rem; max-width: 8em; }
+  .c-inline[hidden] { display: none; }
   .c-inline .lab { display: block; direction: ltr; text-align: left; font-size: 0.62rem;
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.1rem; }
+  .c-inline .lab .lic-chip { text-transform: none; letter-spacing: 0.02em; }
+  /* Where the attachment came from, said in place. The card used to carry
+     this; the commentary reads here now, so the basis reads here too. */
+  .c-inline .c-att { display: block; direction: ltr; text-align: left; font-size: 0.64rem;
+    color: var(--faint); margin-top: 0.15rem; }
   body.en .c-inline { direction: ltr; text-align: left; }
   body.en .c-inline .g { font-size: 0.86rem; max-width: 11em; }
   body.en .c-inline .w { font-size: 0.92rem; }
@@ -173,6 +179,15 @@
     overflow-y: auto; background: var(--panel); border: 1px solid #2c4a63; border-radius: 0.7rem;
     padding: 0.85rem 1.05rem; box-shadow: 0 14px 40px rgba(0,0,0,.6); }
   #hud[hidden] { display: none; }
+  /* The head is the handle. A card the reader can move is a card that stops
+     being in the way, and a card that is never re-anchored while it is open
+     stops moving on its own. It is sticky so the handle is reachable however
+     far the record below it has been scrolled. */
+  #hud .head { cursor: grab; touch-action: none; position: sticky; top: -0.85rem; z-index: 2;
+    background: var(--panel); padding-top: 0.85rem; margin-top: -0.85rem; }
+  #hud .head:active { cursor: grabbing; }
+  #hud.moved { box-shadow: 0 14px 40px rgba(0,0,0,.6), 0 0 0 1px var(--gold-dim); }
+  #hud .head button { cursor: pointer; }
   #hud .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem;
     border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
   #hud .head b { font-size: 1.55rem; color: var(--ink-strong);
@@ -274,13 +289,26 @@
   .cp:hover { border-color: var(--gold-dim); color: var(--shesh); }
   .cp.done { background: var(--gold); color: #171105; border-color: var(--gold); }
   .cp.fail { border-color: var(--amber); color: var(--amber); }
-  .cp-he { font-family: "Frank Ruehl CLM", "David Libre", "SBL Hebrew", Georgia, serif; font-size: 0.82rem; }
-  /* the section's own commentary handle, sitting with the section number */
-  .c-seg { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--line); background: var(--panel2);
-    border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.04em; cursor: pointer;
-    font-family: inherit; font-variant: small-caps; }
-  .c-seg:hover { border-color: var(--gold-dim); color: var(--shesh); }
-  .c-seg[aria-expanded="true"] { background: var(--gold); color: #171105; border-color: var(--gold); }
+  .cp .cp-k { font-family: "Frank Ruehl CLM", "David Libre", "SBL Hebrew", Georgia, serif;
+    font-size: 0.86rem; margin-inline-end: 0.3rem; }
+  .cp .cp-n { font-variant: small-caps; letter-spacing: 0.1em; }
+  /* Levels. Three things hang off a section and they are not the same size of
+     act. The number names it. The commentary is the section's other text, so
+     it gets a line of its own, the width of the column, carrying the name of
+     the work rather than a letter. Taking the text away is the smallest act
+     of the three, so the two copies sit beneath at the smallest weight. */
+  .c-bar { display: flex; align-items: center; gap: 0.5rem; width: 100%;
+    margin: 0.1rem 0 0.32rem; padding: 0.36rem 0.62rem; border: 1px solid var(--line);
+    border-radius: 0.55rem; background: var(--panel2); color: var(--muted);
+    font-family: inherit; font-size: 0.78rem; letter-spacing: 0.04em; cursor: pointer;
+    direction: ltr; text-align: left; }
+  .c-bar:hover { border-color: var(--gold-dim); color: var(--shesh); }
+  .c-bar[aria-expanded="true"] { background: var(--gold); color: #171105; border-color: var(--gold); }
+  .c-bar .c-glyph { font-variant: small-caps; letter-spacing: 0.12em; font-size: 0.7rem;
+    border: 1px solid currentColor; border-radius: 0.35rem; padding: 0 0.32rem; opacity: 0.75; }
+  .c-bar .c-name { flex: 1 1 auto; }
+  .c-bar .c-hint { font-size: 0.66rem; opacity: 0.6; }
+  .cp-row { display: flex; gap: 0.4rem; margin: 0 0 0.5rem; direction: ltr; }
   #prov a { color: var(--shesh); }
 
   footer { max-width: 48rem; margin: 0 auto; padding: 1.1rem 1.5rem 2.2rem; font-size: 0.76rem;
@@ -421,14 +449,18 @@
     return data ? data[key] : null;
   };
   let activeEl = null;
-  const closeHud = () => {
+  // release=false means the card is being rebuilt for another word, not shut.
+  // Only shutting it ends the reader's hold on where it sits — otherwise a
+  // card parked out of the way would jump back the moment the next word was
+  // tapped, which is the whole thing being fixed.
+  const closeHud = (release = true) => {
     hud.hidden = true; hud.replaceChildren();
     activeEl = null; hudAnchor = null;
+    if (release) { hudMoved = false; hud.classList.remove("moved"); }
     // a card may have been opened from a whole block or from one W inside it,
     // so both marks are cleared rather than the one we happen to remember
     document.querySelectorAll(".wb.active").forEach((w) => w.classList.remove("active"));
     document.querySelectorAll(".wr.on").forEach((r) => r.classList.remove("on"));
-    document.querySelectorAll('.c-seg[aria-expanded="true"]').forEach((c) => c.setAttribute("aria-expanded", "false"));
   };
   // Anchor the HUD to whatever was tapped. Three surfaces open it now — a
   // word, a commentary word, and a section's commentary handle — and a
@@ -436,10 +468,26 @@
   // Below if it fits, above if that fits, clamped into view otherwise; the
   // HUD is never left hanging off the bottom edge with a strip showing.
   let hudAnchor = null;
+  // Once a card is open it holds still. Anchoring is for opening; while the
+  // reader is working inside a card — switching reading, opening the records
+  // drawer — the card is only pulled back into view if it has grown past the
+  // edge. Re-anchoring on every internal change is what made it feel shifty:
+  // the card was being placed for a height it no longer had.
+  let hudMoved = false;
+  const clampHud = () => {
+    if (hud.hidden) return;
+    const h = hud.offsetHeight || 0, w = hud.offsetWidth || 0, pad = 8;
+    const top = parseFloat(hud.style.top) || 0, left = parseFloat(hud.style.left) || 0;
+    hud.style.top = `${Math.max(pad, Math.min(top, window.innerHeight - h - pad))}px`;
+    hud.style.left = `${Math.max(pad, Math.min(left, window.innerWidth - w - pad))}px`;
+  };
   const placeHud = (el) => {
     if (el) hudAnchor = el;
     if (!hudAnchor) return;
     hud.hidden = false;
+    // A card the reader has taken hold of belongs to the reader. It is not
+    // moved back to a word again, only kept on screen.
+    if (hudMoved) { clampHud(); return; }
     const rect = hudAnchor.getBoundingClientRect();
     const h = hud.offsetHeight || 0, w = hud.offsetWidth || 0;
     const pad = 8;
@@ -454,6 +502,29 @@
     hud.style.top = `${top}px`;
     hud.style.left = `${Math.max(pad, Math.min(window.innerWidth - w - pad, rect.left - 100))}px`;
   };
+  // Moving the card. Pointer events so a finger and a mouse take the same
+  // path; the close button is excluded so the reader can still hit it.
+  let drag = null;
+  hud.addEventListener("pointerdown", (e) => {
+    const head = e.target.closest(".head");
+    if (!head || !hud.contains(head) || e.target.closest("button")) return;
+    drag = { dx: e.clientX - (parseFloat(hud.style.left) || 0),
+             dy: e.clientY - (parseFloat(hud.style.top) || 0) };
+    head.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  });
+  hud.addEventListener("pointermove", (e) => {
+    if (!drag) return;
+    hud.style.left = `${e.clientX - drag.dx}px`;
+    hud.style.top = `${e.clientY - drag.dy}px`;
+  });
+  const endDrag = () => {
+    if (!drag) return;
+    drag = null; hudMoved = true; hud.classList.add("moved"); clampHud();
+  };
+  hud.addEventListener("pointerup", endDrag);
+  hud.addEventListener("pointercancel", endDrag);
+  window.addEventListener("resize", clampHud);
   const backButton = (back) => {
     const b = document.createElement("button"); b.type = "button"; b.className = "c-back";
     b.textContent = `‹ back to ${back.label}`;
@@ -537,7 +608,7 @@
    * and none of them is hidden.
    */
   const openHud = async (el, region, unitId, wordPos, opts = {}) => {
-    closeHud();
+    closeHud(false);
     activeEl = el;
     if (!opts.mark) el.classList.add("active");
     const bin = opts.bin || zone;
@@ -650,7 +721,7 @@
       label.textContent = cover.length > 1 ? `Exact selectable routes · ${surface}` : "Exact selectable routes";
       const wait = document.createElement("p"); wait.textContent = "Fetching one shard…";
       readRow.append(label, wait);
-      placeHud();
+      clampHud();
       if (!cache.has(surface)) cache.set(surface, await poolFor(surface));
       if (surface !== cover[cellIdx].surface) return;    // the reader moved on
       const pool = cache.get(surface);
@@ -658,7 +729,7 @@
       if (!pool || !pool.length) {
         const p = document.createElement("p");
         p.textContent = pool ? "No displayable route in the catalog for this form." : "No exact route in the catalog for this form.";
-        readRow.append(p); placeHud(); return;
+        readRow.append(p); clampHud(); return;
       }
       let selected = picked.get(surface) || pool[0];
       const pills = document.createElement("div"); pills.className = "r-pills";
@@ -739,13 +810,13 @@
               drawer.append(mLine(row));
             }
           }
-          placeHud();
+          clampHud();
         });
         dCard.append(more, drawer);
       };
       const choose = (route) => {
         selected = route; picked.set(surface, route);
-        renderDCard(); paintGloss(); placeHud();
+        renderDCard(); paintGloss(); clampHud();
       };
       const makePill = (route) => {
         const btn = document.createElement("button"); btn.type = "button";
@@ -768,7 +839,7 @@
       readRow.append(pills);
       renderDCard(); readRow.append(dCard);
       paintGloss();
-      placeHud();
+      clampHud();
     };
 
     // --- row 4 · where the boundaries came from ------------------------
@@ -807,6 +878,16 @@
     const u = commentaryStore && commentaryStore.units && commentaryStore.units[unitId];
     if (!u || !u.words) return null;
     return u.words[String(wordPos)] || null;
+  };
+  // Whether any commentary in this zone is anchored to a word rather than to a
+  // whole section. It decides one line of help: a section's commentary now
+  // names itself on its own line, so the only thing left needing a word of
+  // explanation is the mark that sits on a single word.
+  const hasWordAnchoredCommentary = () => {
+    const us = commentaryStore && commentaryStore.units;
+    if (!us) return false;
+    for (const u of Object.values(us)) if (u && u.words && Object.keys(u.words).length) return true;
+    return false;
   };
   const sectionCommentaryFor = (unitId) => {
     const u = commentaryStore && commentaryStore.units && commentaryStore.units[unitId];
@@ -950,74 +1031,13 @@
     return built.wb;
   };
 
-  // A section's commentary: one pill per attached work, and the work's own
-  // words beneath — tappable, because a commentary a reader cannot
-  // interrogate is decoration. Its licence is its own; nothing inherits.
-  const openSectionCommentary = (el, unitId, label, atLabel) => {
-    const entries = sectionCommentaryFor(unitId);
-    if (!entries) return;
-    const reopen = () => openSectionCommentary(el, unitId, label, atLabel);
-    closeHud();
-    activeEl = el; el.setAttribute("aria-expanded", "true");
-    placeHud(el);
-    const head = document.createElement("div"); head.className = "head";
-    const b = document.createElement("b"); b.textContent = label; b.style.fontSize = "0.95rem"; b.style.fontFamily = "inherit";
-    const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Close");
-    x.addEventListener("click", () => { el.setAttribute("aria-expanded", "false"); closeHud(); });
-    head.append(b, x);
-    const lab = document.createElement("p"); lab.className = "r-label"; lab.textContent = "Commentary · attached to this section";
-    const pills = document.createElement("div"); pills.className = "c-pills";
-    const card = document.createElement("div"); card.className = "c-card";
-    let selected = entries[0];
-    const renderCard = () => {
-      card.replaceChildren();
-      const body = document.createElement("p"); body.className = "c-he"; body.lang = "he"; body.dir = "rtl";
-      (selected.words || []).forEach((word) => {
-        const built = wordBlock(word, commentaryStore.gloss);
-        wireWord(built, word, commentaryStore, null, null, { back: { label: selected.label || selected.ref, open: reopen } });
-        body.append(built.wb, document.createTextNode(" "));
-      });
-      if (!body.childNodes.length) { body.dir = "auto"; body.textContent = selected.text || ""; }
-      card.append(body);
-      const w = commentaryWorkOf(selected);
-      const att = document.createElement("p"); att.className = "att";
-      att.append(`${selected.ref}${w.b_n ? ` · ${w.b_n}` : ""} `);
-      const lic = document.createElement("span"); lic.className = "lic-chip"; lic.textContent = w.license || "License unrecorded";
-      att.append(lic);
-      card.append(att);
-      const note = document.createElement("p"); note.className = "c-note";
-      note.textContent = selected.state === "PROVEN_EDGE"
-        ? `Attachment: ${selected.basis === "SEALED_UNIT_COORDINATE_IDENTITY"
-            ? "both works are units of the sealed chain and carry the same coordinates — nothing renumbered, nothing inferred"
-            : selected.basis}`
-        : `Attachment: suggested reach only — ${selected.basis}; not a proven edge`;
-      card.append(note);
-    };
-    entries.forEach((e) => {
-      const p = document.createElement("button"); p.type = "button";
-      p.textContent = commentaryWorkOf(e).family_en || e.label || e.ref;
-      p.setAttribute("aria-pressed", String(e === selected));
-      p.addEventListener("click", () => {
-        selected = e;
-        pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
-        p.setAttribute("aria-pressed", "true");
-        renderCard();
-      });
-      pills.append(p);
-    });
-    renderCard();
-    hud.replaceChildren(head, lab, pills, card);
-    placeHud();
-  };
-
   document.addEventListener("click", (e) => {
     if (hud.hidden) return;
     // A handler may have replaced the HUD's contents before this listener
     // runs; the node that was tapped is then detached, and asking whether the
     // HUD still contains it answers no about a tap that came from inside it.
     if (!e.target.isConnected) return;
-    if (hud.contains(e.target) || e.target.closest(".wb") || e.target.closest(".c-seg")) return;
-    document.querySelectorAll('.c-seg[aria-expanded="true"]').forEach((c) => c.setAttribute("aria-expanded", "false"));
+    if (hud.contains(e.target) || e.target.closest(".wb")) return;
     closeHud();
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeHud(); });
@@ -1116,6 +1136,52 @@
   let curPart = null, curNode = -1, openedNode = false;
   const sectionEls = [];
   let secIdx = 0;
+  const wordAnchored = hasWordAnchoredCommentary();
+  // A commentary belongs under the section it comments on. There is one way it
+  // is drawn — this one — and two surfaces that turn it on: the book-level
+  // button turns every section's on at once, a section's own line turns on
+  // just its own. It carries its reference, its licence and the basis of its
+  // attachment, because a commentary a reader cannot trace is decoration.
+  const inlineBuilt = new WeakSet();
+  const buildSectionInline = (sec, el) => {
+    if (inlineBuilt.has(el)) return;
+    const entries = sectionCommentaryFor(sec.unit);
+    if (!entries) return;
+    inlineBuilt.add(el);
+    for (const e of entries) {
+      const p = document.createElement("p"); p.className = "c-inline";
+      p.lang = "he"; p.dir = "rtl"; p.hidden = true;
+      const w = commentaryWorkOf(e);
+      const lab = document.createElement("span"); lab.className = "lab";
+      lab.append(`${w.family_en || w.title || e.ref} · ${e.ref}${w.b_n ? ` · ${w.b_n}` : ""} `);
+      const lic = document.createElement("span"); lic.className = "lic-chip";
+      lic.textContent = w.license || "License unrecorded";
+      lab.append(lic);
+      p.append(lab);
+      (e.words || []).forEach((word) => {
+        const b = wordBlock(word, commentaryStore.gloss);
+        wireWord(b, word, commentaryStore, null, null);
+        p.append(b.wb, document.createTextNode(" "));
+      });
+      if (!(e.words || []).length) { p.dir = "auto"; p.append(e.text || ""); }
+      const note = document.createElement("span"); note.className = "c-att";
+      note.textContent = e.state === "PROVEN_EDGE"
+        ? `Attachment: ${e.basis === "SEALED_UNIT_COORDINATE_IDENTITY"
+            ? "both works are units of the sealed chain and carry the same coordinates — nothing renumbered, nothing inferred"
+            : e.basis}`
+        : `Attachment: suggested reach only — ${e.basis}; not a proven edge`;
+      p.append(note);
+      el.append(p);
+    }
+  };
+  const toggleSectionInline = (sec, el, want) => {
+    buildSectionInline(sec, el);
+    const ps = [...el.querySelectorAll(".c-inline")];
+    if (!ps.length) return false;
+    const on = want === undefined ? ps.some((x) => x.hidden) : want;
+    ps.forEach((x) => { x.hidden = !on; });
+    return on;
+  };
   const nodeSections = {};
   const nodeHeads = [];
   zone.sections.forEach((sec) => {
@@ -1159,7 +1225,7 @@
     if (openedNode) {
       const vl = document.createElement("span"); vl.className = "vlabel";
       vl.textContent = (parts.length === 2 ? `${MAJOR} · ${MINOR}` : MINOR) +
-        (commentaryStore && commentaryStore.counts && commentaryStore.counts.attached_sections ? " · c opens the commentary" : "");
+        (wordAnchored ? " · c on a word opens the commentary there" : "");
       row.append(vl); openedNode = false;
     }
     if (sec.drift) {
@@ -1167,25 +1233,29 @@
       d.textContent = `drifts from the sealed count · ${sec.drift.sealed_rows} sealed → ${sec.drift.observed_rows} here`;
       row.append(d);
     }
-    // A commentary attached to the whole section gets one handle, next to the
-    // number it belongs to. One surface, one verb.
+    // A commentary attached to the whole section gets a line of its own, under
+    // the number and the width of the column, carrying the name of the work
+    // rather than a letter. It is the section's other text; a letter beside a
+    // verse number was the wrong size for that.
     const secCm = sectionCommentaryFor(sec.unit);
+    let cbar = null;
     if (secCm) {
-      const cb = document.createElement("button"); cb.type = "button"; cb.className = "c-seg";
+      cbar = document.createElement("button"); cbar.type = "button"; cbar.className = "c-bar";
       const fam = secCm.map((e) => commentaryWorkOf(e).family_en || "commentary").join(", ");
-      // Same glyph the word-anchored chips use, so one convention covers both
-      // grains; 817 of these should be a mark, not a sentence. The vlabel
-      // names it once per chapter and the title carries it everywhere.
-      cb.textContent = "C" + (secCm.length > 1 ? secCm.length : "");
-      cb.setAttribute("aria-expanded", "false");
-      cb.setAttribute("aria-label", `Commentary on ${sec.label}: ${fam}`);
-      cb.title = `${fam} · ${sec.label}`;
-      cb.addEventListener("click", (e) => {
+      // The glyph stays, because the word-anchored chips still use it and one
+      // convention should cover both grains; the name beside it says which
+      // work, which a letter never could.
+      const g = document.createElement("span"); g.className = "c-glyph";
+      g.textContent = "C" + (secCm.length > 1 ? secCm.length : "");
+      const nm = document.createElement("span"); nm.className = "c-name"; nm.textContent = fam;
+      cbar.append(g, nm);
+      cbar.setAttribute("aria-expanded", "false");
+      cbar.setAttribute("aria-label", `Commentary on ${sec.label}: ${fam}`);
+      cbar.title = `${fam} · ${sec.label}`;
+      cbar.addEventListener("click", (e) => {
         e.stopPropagation();
-        if (cb.getAttribute("aria-expanded") === "true") { closeHud(); return; }
-        openSectionCommentary(cb, sec.unit, `${zone.work} ${sec.label}`, sec.label);
+        cbar.setAttribute("aria-expanded", String(toggleSectionInline(sec, s)));
       });
-      row.append(cb);
     }
     // What the reader can carry away. The Hebrew is the exact surfaces the
     // chain served, joined by the space the page prints between them — no
@@ -1193,26 +1263,37 @@
     // gloss lives inside the word block. The English is whatever is on the
     // gloss line at the moment of the tap, so a reader who has chosen a
     // different reading copies the reading they chose.
-    const copyBtn = (cls, label, aria, get) => {
+    //
+    // These sit under the commentary line, at a smaller weight, because taking
+    // a copy is the smallest of the three acts a section offers.
+    const copyBtn = (cls, glyph, name, aria, get) => {
       const b = document.createElement("button"); b.type = "button"; b.className = `cp ${cls}`;
-      b.textContent = label; b.setAttribute("aria-label", aria); b.title = aria;
+      const paint = () => {
+        b.replaceChildren();
+        const k = document.createElement("span"); k.className = "cp-k"; k.textContent = glyph;
+        const n = document.createElement("span"); n.className = "cp-n"; n.textContent = name;
+        b.append(k, n);
+      };
+      paint();
+      b.setAttribute("aria-label", aria); b.title = aria;
       b.addEventListener("click", async (e) => {
         e.stopPropagation();
         const text = get();
         try {
           await navigator.clipboard.writeText(text);
-          b.classList.add("done"); b.textContent = "✓";
+          b.classList.add("done"); b.textContent = `✓ ${name}`;
         } catch {
-          b.classList.add("fail"); b.textContent = "!";
+          b.classList.add("fail"); b.textContent = `! ${name}`;
         }
-        setTimeout(() => { b.classList.remove("done", "fail"); b.textContent = label; }, 1200);
+        setTimeout(() => { b.classList.remove("done", "fail"); paint(); }, 1200);
       });
       return b;
     };
-    row.append(
-      copyBtn("cp-he", "א", `Copy the Hebrew of ${sec.label}`,
+    const cpRow = document.createElement("div"); cpRow.className = "cp-row";
+    cpRow.append(
+      copyBtn("cp-he", "א", "hebrew", `Copy the Hebrew of ${sec.label}`,
         () => sec.words.map((w) => w.s).join(" ")),
-      copyBtn("cp-en", "A", `Copy the English showing for ${sec.label}`,
+      copyBtn("cp-en", "A", "english", `Copy the English showing for ${sec.label}`,
         () => [...s.querySelectorAll(".he-text .wb .g")].map((g) => g.textContent.trim()).filter(Boolean).join(" ")),
     );
     const he = document.createElement("p"); he.className = "he-text"; he.lang = "he"; he.dir = "rtl";
@@ -1229,7 +1310,9 @@
       wireWord(built, word, zone, sec.unit, myIdx);
       he.append(built.wb, document.createTextNode(" "));
     });
-    s.append(row, he);
+    // number, then the other text, then the smallest act
+    if (cbar) s.append(row, cbar, cpRow, he);
+    else s.append(row, cpRow, he);
     sectionEls.push({ sec, el: s });
     frag.append(s);
   });
@@ -1247,33 +1330,12 @@
     layerBtn.textContent = name;
     layerBtn.title = `Read ${name} beneath each ${MINOR}`;
     layerBtn.hidden = false;
-    let built = false, on = false;
+    let on = false;
     layerBtn.addEventListener("click", () => {
       on = !on;
       layerBtn.classList.toggle("on", on);
-      if (on && !built) {
-        built = true;
-        for (const { sec, el } of sectionEls) {
-          const entries = sectionCommentaryFor(sec.unit);
-          if (!entries) continue;
-          for (const e of entries) {
-            const p = document.createElement("p"); p.className = "c-inline";
-            p.lang = "he"; p.dir = "rtl";
-            const w = commentaryWorkOf(e);
-            const lab = document.createElement("span"); lab.className = "lab";
-            lab.textContent = `${w.family_en || w.title || e.ref}${w.license ? ` · ${w.license}` : ""}`;
-            p.append(lab);
-            (e.words || []).forEach((word) => {
-              const built2 = wordBlock(word, commentaryStore.gloss);
-              wireWord(built2, word, commentaryStore, null, null);
-              p.append(built2.wb, document.createTextNode(" "));
-            });
-            if (!(e.words || []).length) { p.dir = "auto"; p.append(e.text || ""); }
-            el.append(p);
-          }
-        }
-      }
-      document.querySelectorAll(".c-inline").forEach((p) => { p.hidden = !on; });
+      for (const { sec, el } of sectionEls) toggleSectionInline(sec, el, on);
+      document.querySelectorAll(".c-bar").forEach((b) => b.setAttribute("aria-expanded", String(on)));
     });
   }
 
