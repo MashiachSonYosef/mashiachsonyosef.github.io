@@ -332,16 +332,15 @@
      page: on the card, in the footer, and in the export.
      What the page owes them is a clean selection. The Hebrew and its reading
      live in one block, so selecting a verse used to interleave them word by
-     word. So the reader you are in decides what selects: the Hebrew reader
-     selects Hebrew, the English reader selects English, and either way what
-     lands is a line rather than a zip of two. */
-  .he-text .wb .g { user-select: none; -webkit-user-select: none; }
-  .he-text .wb .w { user-select: text; -webkit-user-select: text; }
-  body.en .he-text .wb .g { user-select: text; -webkit-user-select: text; }
-  body.en .he-text .wb .w { user-select: none; -webkit-user-select: none; }
-  .c-inline .g { user-select: none; -webkit-user-select: none; }
-  body.en .c-inline .g { user-select: text; -webkit-user-select: text; }
-  body.en .c-inline .w { user-select: none; -webkit-user-select: none; }
+     word. So a drag takes one layer, and which one is decided by the word the
+     reader pressed to start it — not by a setting, and never permanently:
+     press a Hebrew word and the drag takes Hebrew, press a reading and it
+     takes readings. Nothing on this page is locked away from a reader who
+     reaches for it. Either way what lands is a line rather than a zip of two. */
+  body.pick-he .wb .g { user-select: none; -webkit-user-select: none; }
+  body.pick-he .wb .w { user-select: text; -webkit-user-select: text; }
+  body.pick-en .wb .g { user-select: text; -webkit-user-select: text; }
+  body.pick-en .wb .w { user-select: none; -webkit-user-select: none; }
   /* the chrome is not text anyone wants in a copy */
   .seg-row, .c-bar, .xp-row, #nav, header.top nav, #modeRow { user-select: none; -webkit-user-select: none; }
   /* Taking the text away for good. A copy is a convenience; an export is the
@@ -1480,6 +1479,15 @@
   // Hebrew / English reader toggle. Same words, same order, same receipts —
   // the English mode flips the flow LTR and lets the gloss line lead.
   const btnHe = document.getElementById("modeHe"), btnEn = document.getElementById("modeEn");
+  // Which of the two layers a drag takes. It follows the word the reader
+  // presses, so nothing is ever locked away: press a Hebrew word and the drag
+  // takes Hebrew, press a reading and it takes readings. The reader you are in
+  // only sets which one it starts on.
+  const pick = (layer) => {
+    document.body.classList.toggle("pick-he", layer !== "en");
+    document.body.classList.toggle("pick-en", layer === "en");
+  };
+  pick("he");
   const setMode = (m) => {
     closeHud();
     // a box fixed at one reader's size is not the other reader's box
@@ -1487,6 +1495,7 @@
     document.body.classList.toggle("en", m === "en");
     btnHe.classList.toggle("on", m !== "en");
     btnEn.classList.toggle("on", m === "en");
+    pick(m === "en" ? "en" : "he");
   };
   btnHe.addEventListener("click", () => setMode("he"));
   btnEn.addEventListener("click", () => setMode("en"));
@@ -1567,6 +1576,16 @@
     e.clipboardData.setData("text/plain", text);
     e.preventDefault();
   });
+
+  // The drag takes the layer of the word it starts on. Pressing is what says
+  // which — before the drag has begun, so the style that governs it is already
+  // in force by the first move. A press that lands on neither leaves the last
+  // choice standing.
+  document.addEventListener("pointerdown", (e) => {
+    if (!e.target.closest) return;
+    if (e.target.closest(".wb .g")) pick("en");
+    else if (e.target.closest(".wb .w")) pick("he");
+  }, true);
 
   // A reader who wants the whole verse taps three times, the way they would in
   // any document. Because every word here is its own block, the browser's own
