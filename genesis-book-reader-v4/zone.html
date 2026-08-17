@@ -474,7 +474,16 @@
   // drawer — the card is only pulled back into view if it has grown past the
   // edge. Re-anchoring on every internal change is what made it feel shifty:
   // the card was being placed for a height it no longer had.
-  const pickedByWord = new WeakMap();   // occurrence -> Map(cell surface -> chosen reading)
+  // What the reader has settled on for one occurrence: which division of the
+  // form they are reading it under, and which reading they chose for each
+  // block of it. Both used to live inside the open and died with the card.
+  const pickedByWord = new WeakMap();   // occurrence -> { cells: Map(surface -> reading), cut: key }
+  const memoryOf = (wbEl) => {
+    let m = pickedByWord.get(wbEl);
+    if (!m) { m = { cells: new Map(), cut: null }; pickedByWord.set(wbEl, m); }
+    return m;
+  };
+  const cutKey = (c) => c.map((x) => x.surface).join("+");
   let hudMoved = false;
   const clampHud = () => {
     if (hud.hidden) return;
@@ -646,15 +655,21 @@
     const comps = span ? span.comps : [region.k];
     const covers = cutsOf(comps);
 
-    let cover = covers[0];
-    let cellIdx = 0;
-    // What the reader chose, kept where they chose it. This map used to be
-    // declared here, inside the open, so closing the card threw the choice
-    // away and the next open painted the catalog's default back over the
-    // reader's reading. It is now held against the occurrence itself.
+    // What the reader chose, kept where they chose it. This lived inside the
+    // open, so closing the card threw it away and the next open painted the
+    // catalog's default back over the reader's reading. Remembering the
+    // readings alone was not enough: the card also reopened on the whole form,
+    // and a reading chosen for a block of a finer division was painted over by
+    // the whole form's own. The division is remembered too.
     const wbEl = (el.closest && el.closest(".wb")) || el;
-    let picked = pickedByWord.get(wbEl);
-    if (!picked) { picked = new Map(); pickedByWord.set(wbEl, picked); }
+    const mem = memoryOf(wbEl);
+    const picked = mem.cells;
+    let cover = covers[0];
+    if (mem.cut) {
+      const found = covers.find((c) => cutKey(c) === mem.cut);
+      if (found) cover = found;
+    }
+    let cellIdx = 0;
     // A route object is rebuilt from the shard every time the card opens, so
     // remembering the object itself remembers nothing — the new pool holds
     // different objects carrying the same reading. The choice is held by what
@@ -699,7 +714,10 @@
         const btn = document.createElement("button"); btn.type = "button";
         btn.lang = "he"; btn.dir = "rtl"; btn.textContent = joinCut(c);
         btn.setAttribute("aria-pressed", String(c === cover));
-        btn.addEventListener("click", () => { cover = c; cellIdx = 0; renderCuts(); renderCells(); renderReadings(); paintGloss(); });
+        btn.addEventListener("click", () => {
+          cover = c; mem.cut = cutKey(c); cellIdx = 0;
+          renderCuts(); renderCells(); renderReadings(); paintGloss();
+        });
         pills.append(btn);
       });
       cutRow.append(label, pills);
