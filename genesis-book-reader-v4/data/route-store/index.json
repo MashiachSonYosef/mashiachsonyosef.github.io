@@ -1,6 +1,8 @@
 {
  "schema_version": "ROUTE_STORE_V1",
- "rule_id": "route-store-rule-v2-every-licensed-route",
+ "rule_id": "route-store-rule-v3-declared-reading",
+ "reading_rule": "provider-declaration-rule-v1-closed-set-ship-whole-by-default",
+ "reading_declared_on": "2026-08-17",
  "generated_by": "tools/build-route-store.mjs",
  "key": "byte-exact kNormalizedKey; shard = sha256(utf8(K)) first 2 hex chars",
  "shard_path": "data/route-store/shards/{shard}.bin",
@@ -1393,7 +1395,46 @@
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 13133945
+  "shard_bytes_total": 13105524,
+  "routes_read_under_a_declaration": 18561,
+  "routes_shipped_whole": 627880,
+  "declaration_refusals": {
+   "the route is not the post-colon list": 1391,
+   "the head is derivation only, with no sense": 581,
+   "no colon in the definition": 137
+  },
+  "marks_a_declared_provider_used_but_did_not_declare": {
+   "-": 1116,
+   "=": 4842,
+   "\"": 4856,
+   "!": 32,
+   "'": 1322,
+   "ֲ": 5,
+   "ִ": 16,
+   ".": 529,
+   ":": 150,
+   "?": 99,
+   "ָ": 95,
+   "&": 18,
+   "ּ": 46,
+   "ַ": 58,
+   "ֹ": 17,
+   "/": 30,
+   "ֱ": 1,
+   "ׁ": 58,
+   "֫": 27,
+   "`": 113,
+   "+": 2,
+   "[": 11,
+   "]": 11,
+   "ֶ": 16,
+   "$": 1,
+   "ְ": 25,
+   "ֵ": 10,
+   "ׂ": 3
+  },
+  "rendering_index_rows_whose_grammar_closes": 12651,
+  "rendering_index_expansions_available": 85028
  },
  "inputs": [
   {
@@ -1413,5 +1454,5 @@
    "sha256": "fbfbfeb796dff44361d0b563eb874f93903e973ca693bd22ca80448332d970e7"
   }
  ],
- "store_version": "0c18fb7ca34a"
+ "store_version": "ca1ac2a52f0f"
 }
