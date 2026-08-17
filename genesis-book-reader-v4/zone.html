@@ -25,7 +25,19 @@
   header.top h1 .en-t { color: var(--gold); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
+  .receipts-btn { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
+    color: var(--link); font: inherit; font-size: 0.8rem; cursor: pointer; padding: 0; }
+  .receipts-btn:hover { color: var(--gold); }
+  .receipts-full { display: block; margin-top: 0.4rem; color: var(--faint); }
+  .receipts-full[hidden] { display: none; }
+  /* A work the ledger has not named in Hebrew keeps its English locator, but
+     the locator does not get to look like a title. */
+  header.top h1 .en-t.unnamed { color: var(--muted); font-variant: normal; letter-spacing: 0.06em; }
   header.top nav { margin-top: 0.6rem; font-size: 0.85rem; }
+  /* A book the ledger has named reads in Hebrew here; one it has not keeps its
+     English locator, at the weight of a locator. */
+  header.top nav a[lang="he"] { font-family: "Frank Ruehl CLM", "David Libre", "SBL Hebrew", Georgia, serif;
+    font-size: 1.02rem; }
   header.top a { color: var(--link); text-decoration: none; border-bottom: 1px solid rgba(216, 199, 164, 0.35); }
   header.top a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
@@ -345,7 +357,7 @@
   <h1 id="workTitle"><span class="he-t" lang="he" dir="rtl"></span><span class="en-t">Zone reader</span></h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
-  <nav><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=genesis">Genesis</a> · <a href="zone.html?b=1kings">I Kings</a> · <a href="zone.html?b=2kings">II Kings</a> · <a href="zone.html?b=orot">Orot</a></nav>
+  <nav id="books"><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=genesis" lang="he" dir="rtl">בראשית</a> · <a href="zone.html?b=1kings">I Kings</a> · <a href="zone.html?b=2kings">II Kings</a> · <a href="zone.html?b=orot" lang="he" dir="rtl">אורות</a></nav>
   <div id="modeRow">
     <button type="button" class="mode-btn on" id="modeHe">Hebrew reader</button>
     <button type="button" class="mode-btn" id="modeEn">English reader</button>
@@ -392,12 +404,30 @@
       "No book is published on this page yet — no walk has landed. The page takes its name from the zone when one arrives; nothing is shown, and nothing is named, that has not come through the pipeline.";
     return;
   }
+  // The book is named in Hebrew where the Y ledger promoted a name for it, and
+  // in English only where it did not. The English is a locator, not the title,
+  // so it is not dressed up as one — and no Hebrew name is typed in here that
+  // did not come through the ledger.
   document.querySelector("#workTitle .he-t").textContent = zone.work_he || "";
   document.querySelector("#workTitle .en-t").textContent = zone.work;
-  document.title = `${zone.work} · The Tabernacle`;
+  if (!zone.work_he) {
+    document.querySelector("#workTitle .en-t").classList.add("unnamed");
+    const y = zone.emitted_from.y_ledger;
+    if (y && y.status) document.querySelector("#workTitle .en-t").title =
+      `No Hebrew name is carried for this work: ${y.status}`;
+  }
+  document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · The Tabernacle`;
   document.getElementById("byline").textContent = zone.byline || "";
   const ac = zone.emitted_from.acquisition, wk = zone.emitted_from.walk, oc = zone.emitted_from.identity_oracle;
-  document.getElementById("meta").textContent =
+  // What this is, in one line. Everything the zone can prove about itself used
+  // to print here, because when this page was first written there was nowhere
+  // else for a receipt to live. There is now: the card carries the licence of
+  // every reading, each section names its own commentary, the export writes
+  // the whole record into the file, and the footer has carried the hashes all
+  // along. So the proof moves down to join them and stops standing between the
+  // reader and the text. Nothing is dropped — the same sentence is one press
+  // away, and the footer block is unchanged.
+  const receiptsText =
     `${zone.counts.words.toLocaleString()} words · ${zone.counts.sections.toLocaleString()} sections · ` +
     (wk ? (/RESIDENT_SERVE/.test(wk.route || "")
       ? `served id-by-id from the seal-verified terminal reader artifacts (${wk.ids_walked.toLocaleString()} ids, every one FOUND_EXACT; the installed sealed reader re-answered ${wk.sealed_oracle.report.sampled} sampled ids ${wk.sealed_oracle.report.field_exact}/${wk.sealed_oracle.report.sampled} field-exact) · rights ride per occurrence from the chain · `
@@ -412,6 +442,24 @@
         `${zone.counts.w_regions_with_a_component_system.toLocaleString()} words carry a component system, so every complete division of a word and every block inside one opens on its own · `
       : ""}` +
     `tap any word for all routes, sources, and licenses`;
+  {
+    const meta = document.getElementById("meta");
+    meta.replaceChildren();
+    meta.append(`${zone.counts.words.toLocaleString()} words in ${zone.counts.sections.toLocaleString()} ${zone.counts.sections === 1 ? "section" : "sections"}, served from the sealed chain. `);
+    const more = document.createElement("button");
+    more.type = "button"; more.className = "receipts-btn";
+    more.textContent = "receipts";
+    more.setAttribute("aria-expanded", "false");
+    const full = document.createElement("span");
+    full.className = "receipts-full"; full.hidden = true; full.textContent = receiptsText;
+    more.addEventListener("click", () => {
+      const on = full.hidden;
+      full.hidden = !on;
+      more.setAttribute("aria-expanded", String(on));
+      more.textContent = on ? "hide receipts" : "receipts";
+    });
+    meta.append(more, full);
+  }
   document.getElementById("prov").textContent =
     `${zone.work_receipts && zone.work_receipts.b_n ? `${zone.work_receipts.b_n} · ` : ""}` +
     `${zone.rule_id} · route: ${zone.route} · identity oracle ${oc.bridge_sha256.slice(0, 16)}… ` +
@@ -1371,12 +1419,17 @@
   // text — the commentary sidecar (if any) must be in hand before word
   // blocks render, so C chips land on first paint.
   await commentaryReady;
-  // Say what the commentary is and where it came from, in the masthead, before
-  // a reader meets the first handle for it.
+  // Say what the commentary is and where it came from — inside the receipts,
+  // not across the masthead. Every section now names its own commentary on its
+  // own line, so this is the proof of it, not the announcement of it. It also
+  // has to go into the receipts element rather than the masthead's textContent:
+  // appending to textContent flattens the element tree and would eat the
+  // control that opens it.
   if (commentaryStore && commentaryStore.counts && commentaryStore.counts.attached_sections) {
     const cc = commentaryStore.counts;
     const w0 = (commentaryStore.works || [])[0] || {};
-    document.getElementById("meta").textContent +=
+    const full = document.querySelector("#meta .receipts-full");
+    if (full) full.textContent +=
       ` · ${cc.attached_sections.toLocaleString()} of ${cc.base_sections.toLocaleString()} sections carry ` +
       `${w0.title || "a commentary"} (${w0.license || "license unrecorded"}), served from the same sealed chain and ` +
       `attached by the coordinates both works already carry`;
