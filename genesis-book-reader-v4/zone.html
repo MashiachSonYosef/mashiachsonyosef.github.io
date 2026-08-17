@@ -165,17 +165,27 @@
   .wr:hover { color: #ffe08a; border-bottom-color: #6a5a33; }
   .wr.on { color: var(--gold); border-bottom: 1px solid var(--gold); }
   .mq { color: var(--faint); }
+  /* The reading under a word is shown whole. It used to run one line and end in
+     an ellipsis, which was the honest thing to do when the average reading was
+     45 characters and the tail ran to 435 — the page could not have carried
+     them. Under the provider declarations the average is 23, so the tail is
+     gone and the ellipsis has nothing left to hide. It wraps in a narrow
+     column instead of widening the row, so a long reading costs its own word a
+     few lines rather than costing the whole line its shape. The height is
+     settled at paint and never changes afterwards: nothing here moves while
+     the reader is reading. */
   .g { display: block; order: 2; direction: ltr; font: 0.66rem/1.25 Georgia, serif; color: var(--muted);
-    letter-spacing: 0.02em; margin-top: 0.06rem; max-width: 10em;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    letter-spacing: 0.02em; margin-top: 0.06rem; max-width: 11em;
+    white-space: normal; overflow-wrap: anywhere; overflow: hidden; }
   .wb.active .g { color: var(--gold); }
 
   /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
   body.en .he-text { direction: ltr; text-align: left; }
-  /* In the English reader the gloss is the text, not a label on it, so it runs
-     to two lines before it clips rather than one. */
+  /* In the English reader the gloss is the text, not a label on it. It clamped
+     at two lines for the same reason the Hebrew-side one clipped at one, and
+     it comes off for the same reason: there is no longer a tail to hide. */
   body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--ink); margin-top: 0; max-width: 12em;
-    white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    white-space: normal; display: block; overflow: visible; }
   body.en .w { order: 2; font-size: 1.02rem; color: #b3a077; margin-top: 0.04rem; }
   body.en .wb.active .g { color: var(--gold); }
 
@@ -987,6 +997,18 @@
     };
     const paintGloss = () => {
       if (!glossEl) return;
+      // The page's own reading is printed whole — that is why the ellipsis came
+      // off. But a reading the reader chooses can be longer than the one the
+      // page painted, and letting the line grow would move every Hebrew word
+      // below it, which is the one thing this page never does. So the moment
+      // before a word's reading is first changed, its box is fixed at the
+      // height it was painted at. Nothing moves; a chosen reading longer than
+      // the painted one is held in the card, which never clips, and on the
+      // line's own title.
+      if (!glossEl.style.height) {
+        const h = glossEl.getBoundingClientRect().height;
+        if (h) glossEl.style.height = `${h}px`;
+      }
       const mine = cover.map((c) => textOfCell(c.surface)).join(" + ");
       const line = glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine;
       glossEl.textContent = line; glossEl.title = line; glossEl.classList.remove("bare");
@@ -1376,6 +1398,8 @@
   const btnHe = document.getElementById("modeHe"), btnEn = document.getElementById("modeEn");
   const setMode = (m) => {
     closeHud();
+    // a box fixed at one reader's size is not the other reader's box
+    document.querySelectorAll(".he-text .wb .g[style]").forEach((g) => { g.style.height = ""; });
     document.body.classList.toggle("en", m === "en");
     btnHe.classList.toggle("on", m !== "en");
     btnEn.classList.toggle("on", m === "en");
