@@ -198,15 +198,19 @@
   /* A card that always carries a whole record needs room for one; 55vh put
      the source and its licence below the fold on a phone. */
   #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: min(72vh, 44rem);
-    overflow-y: auto; background: var(--panel); border: 1px solid #2c4a63; border-radius: 0.7rem;
+    display: flex; flex-direction: column; overflow: hidden;
+    background: var(--panel); border: 1px solid #2c4a63; border-radius: 0.7rem;
     padding: 0.85rem 1.05rem; box-shadow: 0 14px 40px rgba(0,0,0,.6); }
+  /* what scrolls, and what does not */
+  #hud .rows { flex: 1 1 auto; min-height: 2.5rem; overflow-y: auto; }
+  #hud .d-slot { flex: 0 0 auto; max-height: 58%; overflow-y: auto; }
+  #hud .prov { flex: 0 0 auto; }
   #hud[hidden] { display: none; }
   /* The head is the handle. A card the reader can move is a card that stops
      being in the way, and a card that is never re-anchored while it is open
      stops moving on its own. It is sticky so the handle is reachable however
      far the record below it has been scrolled. */
-  #hud .head { cursor: grab; touch-action: none; position: sticky; top: -0.85rem; z-index: 2;
-    background: var(--panel); padding-top: 0.85rem; margin-top: -0.85rem; }
+  #hud .head { cursor: grab; touch-action: none; flex: 0 0 auto; }
   #hud .head:active { cursor: grabbing; }
   #hud.moved { box-shadow: 0 14px 40px rgba(0,0,0,.6), 0 0 0 1px var(--gold-dim); }
   #hud .head button { cursor: pointer; }
@@ -223,8 +227,7 @@
     letter-spacing: 0.06em; text-transform: uppercase; }
   /* Every R is here, so this row is the one thing on the card allowed to be
      long. It scrolls on its own rather than pushing the D and M off the end. */
-  #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr;
-    max-height: 32vh; overflow-y: auto; }
+  #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
   /* A pill shows its whole reading. It used to clamp at two lines, which made
      the card claim a reading it was not showing — the code beneath says R is
      "never truncated away" and the clamp was quietly making that false. A long
@@ -1020,7 +1023,16 @@
     const cellRow = document.createElement("div");
     const readRow = document.createElement("div");
     const prov = document.createElement("p"); prov.className = "prov";
-    hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, cutRow, cellRow, readRow, prov);
+    // The divisions, the blocks and the readings share one scrolling region;
+    // the record sits below it and is never scrolled away. A form with two
+    // hundred readings used to push its D and M off the bottom of the card,
+    // and the reader's own law is that a selected reading always shows at
+    // least one whole D with its M. Pinning it is how that stays true however
+    // many readings the catalog attests — no reading is capped to make room.
+    const rows = document.createElement("div"); rows.className = "rows";
+    rows.append(cutRow, cellRow, readRow);
+    const dSlot = document.createElement("div"); dSlot.className = "d-slot";
+    hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, rows, dSlot, prov);
 
     // --- row 1 · how the form divides ---------------------------------
     const renderCuts = () => {
@@ -1201,7 +1213,7 @@
       // honest cost of carrying hundreds.
       pool.forEach((r) => pills.append(makePill(r)));
       readRow.append(pills);
-      renderDCard(); readRow.append(dCard);
+      renderDCard(); dSlot.replaceChildren(dCard);
       paintGloss();
       clampHud();
     };
