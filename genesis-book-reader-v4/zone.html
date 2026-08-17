@@ -298,8 +298,9 @@
      it gets a line of its own, the width of the column, carrying the name of
      the work rather than a letter. Taking the text away is the smallest act
      of the three, so the two copies sit beneath at the smallest weight. */
+  .c-slot:empty { display: none; }
   .c-bar { display: flex; align-items: center; gap: 0.5rem; width: 100%;
-    margin: 0.1rem 0 0.32rem; padding: 0.36rem 0.62rem; border: 1px solid var(--line);
+    margin: 0.55rem 0 0.32rem; padding: 0.36rem 0.62rem; border: 1px solid var(--line);
     border-radius: 0.55rem; background: var(--panel2); color: var(--muted);
     font-family: inherit; font-size: 0.78rem; letter-spacing: 0.04em; cursor: pointer;
     direction: ltr; text-align: left; }
@@ -691,7 +692,7 @@
         say(`${words} words of Hebrew, on the work's own receipt. `);
       } else {
         say(`${words} words · ${srcs.size} source${srcs.size === 1 ? "" : "s"}`);
-        if (obl.size) { say(" · "); say([...obl].join(" ")); }
+        if (obl.size) { say(" · "); say([...obl].join(" ").replace(/\.$/, "")); }
         if (held) { say(" · "); say(`${held} reading${held === 1 ? "" : "s"} withheld on licence`, "held"); }
         say(". ");
       }
@@ -1425,7 +1426,7 @@
             : e.basis}`
         : `Attachment: suggested reach only — ${e.basis}; not a proven edge`;
       p.append(note);
-      el.append(p);
+      (el.querySelector(".c-slot") || el).append(p);
     }
   };
   // Opening a commentary adds text to the page, which moves everything below
@@ -1445,7 +1446,11 @@
     const ps = [...el.querySelectorAll(".c-inline")];
     if (!ps.length) return false;
     const on = want === undefined ? ps.some((x) => x.hidden) : want;
-    holdingSection(el, () => { ps.forEach((x) => { x.hidden = !on; }); });
+    // Pin the line the reader pressed, not the top of the section: the text
+    // now opens directly beneath it, so that is the thing that must not move.
+    holdingSection(el.querySelector(".c-bar") || el, () => {
+      ps.forEach((x) => { x.hidden = !on; });
+    });
     return on;
   };
   const nodeSections = {};
@@ -1576,6 +1581,11 @@
       wireWord(built, word, zone, sec.unit, myIdx);
       he.append(built.wb, document.createTextNode(" "));
     });
+    // The commentary line sits at the foot of the section, immediately above
+    // the slot its text lands in. It used to sit under the verse number, a
+    // whole verse away from what it opened, so pressing it put the commentary
+    // somewhere the reader was not looking.
+    const cSlot = document.createElement("div"); cSlot.className = "c-slot";
     // The export row sits after the text, not before it: it is the last thing
     // a reader does with a section, and the first press only tells them what
     // it would carry.
@@ -1593,9 +1603,10 @@
       ));
     }
     xpRow.append(xpNote);
-    // number, then the other text, then the smallest act, then the last stop
-    if (cbar) s.append(row, cbar, cpRow, he, xpRow);
-    else s.append(row, cpRow, he, xpRow);
+    // The number, the text, then the section's other text where it opens, then
+    // the two smallest acts: take a copy, take it away for good.
+    if (cbar) s.append(row, he, cbar, cSlot, cpRow, xpRow);
+    else s.append(row, he, cpRow, xpRow);
     sectionEls.push({ sec, el: s });
     frag.append(s);
   });
