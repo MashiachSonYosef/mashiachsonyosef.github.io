@@ -30,11 +30,16 @@
   header.top { padding: 1.4rem 1.5rem 1rem; border-bottom: 1px solid var(--line);
     background: linear-gradient(180deg, #0d1520 0%, var(--bg) 100%); }
   header.top h1 { margin: 0; font-size: 1.9rem; color: var(--ink-strong); letter-spacing: 0.01em; }
-  header.top h1 .he-t { font-size: 2.1rem; margin-right: 0.7rem; }
-  /* A work the ledger has not named in Hebrew leaves this span empty; without
-     this the empty span still spends its margin and the English title stands
-     indented from nothing. */
-  header.top h1 .he-t:empty { display: none; }
+  /* The title is the book's own, from the ledger. The English beside it is
+     not a translation of it and must not be able to be read as one — it is how
+     a reader who does not read Hebrew finds and refers to the book. So each
+     line says which of the two it is, in plain English, before the thing
+     itself. The labels are ours; only the title is the corpus's. */
+  header.top h1 { display: flex; flex-direction: column; gap: 0.1rem; }
+  header.top h1 .t-row { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
+  header.top h1 .t-lab { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--faint); font-variant: normal; flex: 0 0 auto; min-width: 6.4rem; }
+  header.top h1 .he-t { font-size: 2.1rem; }
   header.top h1 .en-t { color: var(--gold); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
@@ -45,7 +50,7 @@
   .receipts-full[hidden] { display: none; }
   /* A work the ledger has not named in Hebrew keeps its English locator, but
      the locator does not get to look like a title. */
-  header.top h1 .en-t.unnamed { color: var(--muted); font-variant: normal; letter-spacing: 0.06em; }
+  header.top h1 .he-t.unnamed { color: var(--muted); font-size: 0.92rem; font-style: italic; }
   header.top nav { margin-top: 0.6rem; font-size: 0.85rem; }
   /* A book named in Hebrew never stands in Hebrew alone. Wherever the Hebrew
      title appears the English is beside it, because a reader who cannot read
@@ -648,10 +653,13 @@
 </head>
 <body>
 <header class="top">
-  <h1 id="workTitle"><span class="he-t" lang="he" dir="rtl"></span><span class="en-t">Zone reader</span></h1>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab">searchable by</span><span class="en-t">Zone reader</span></span>
+  </h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
-  <nav id="books"><a href="/" class="home">The Tabernacle</a> · books: <a href="/genesis" class="bk"><span lang="he" dir="rtl">בראשית</span> <span class="bk-en">Genesis</span></a> · <a href="/1kings" class="bk"><span class="bk-en">I Kings</span></a></nav>
+  <nav id="books"><a href="/" class="home">The Tabernacle</a> · books: <a href="/genesis" class="bk" title="book title בראשית · searchable by Genesis"><span lang="he" dir="rtl">בראשית</span> <span class="bk-en">Genesis</span></a> · <a href="/1kings" class="bk" title="no book title is recorded in the ledger · searchable by I Kings"><span class="bk-en">I Kings</span></a></nav>
   <div id="modeRow">
     <button type="button" class="mode-btn on" id="modeHe">Hebrew reader</button>
     <button type="button" class="mode-btn" id="modeEn">English reader</button>
@@ -720,13 +728,18 @@
   // the Hebrew is the book's own name and the English is how a reader who does
   // not read it knows what they are looking at. Neither is decoration for the
   // other, so neither appears without it.
-  document.querySelector("#workTitle .he-t").textContent = zone.work_he || "";
-  document.querySelector("#workTitle .en-t").textContent = zone.work;
+  const heT = document.querySelector("#workTitle .he-t");
+  const enT = document.querySelector("#workTitle .en-t");
+  heT.textContent = zone.work_he || "";
+  enT.textContent = zone.work;
   if (!zone.work_he) {
-    document.querySelector("#workTitle .en-t").classList.add("unnamed");
-    const y = zone.emitted_from.y_ledger;
-    if (y && y.status) document.querySelector("#workTitle .en-t").title =
-      `No Hebrew name is carried for this work: ${y.status}`;
+    // Say what is missing rather than letting the common name slide into the
+    // place of the title. An empty line under "book title" reads as a title
+    // that failed to load; this says the ledger has not named one.
+    const y = zone.emitted_from.y_ledger || {};
+    heT.classList.add("unnamed");
+    heT.textContent = "none is recorded in the ledger";
+    if (y.status) heT.title = y.status;
   }
   document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · The Tabernacle`;
   document.getElementById("byline").textContent = zone.byline || "";
@@ -2644,6 +2657,12 @@
     // The text itself. Each word is a block carrying the Hebrew and its
     // reading, and a space stands between the blocks so a selection that runs
     // across the verse comes out as words rather than one long run.
+    //
+    // It is built when the section comes within reach of the window, not now.
+    // A book is not a screen: almost none of this is ever on one at a time,
+    // and building all of it up front is the whole of the wait before the
+    // first word exists.
+    const buildBody = () => {
     const he = document.createElement("p"); he.className = "he-text"; he.lang = "he"; he.dir = "rtl";
     let wIdx = 0;
     sec.words.forEach((word) => {
@@ -2683,8 +2702,17 @@
     xpRow.append(xpNote);
     // The number, the text, the section's other text where it opens, and the
     // one act that hands anything over.
-    if (cbar) s.append(row, he, cbar, cSlot, xpRow);
-    else s.append(row, he, xpRow);
+    if (cbar) s.append(he, cbar, cSlot, xpRow);
+    else s.append(he, xpRow);
+    };
+    // The number is here from the start: it is what the section is called and
+    // what an anchor lands on, and it costs almost nothing. Everything else
+    // waits for the reader to come near.
+    s.append(row);
+    s.__sec = sec;
+    s.__body = buildBody;
+    s.__place = placeLineHandles;
+    s.__words = (sec.words || []).length;
     sectionEls.push({ sec, el: s });
     frag.append(s);
   });
@@ -2793,6 +2821,7 @@
   const openFromIndex = (r) => {
     const target = sectionEls[r.secIdx];
     if (!target) return;
+    materialise(target.el);
     target.el.scrollIntoView({ block: "start" });
     if (r.pos == null) {
       toggleSectionInline(target.sec, target.el, true);
@@ -2814,11 +2843,90 @@
     const ci = buildCommentaryIndex();
     if (ci) main.prepend(ci);
   }
+
+  // ---- the book arrives a screen at a time ------------------------------
+  //
+  // Genesis is 1,533 sections and 17,807 words. Built in one pass that is
+  // some 78,000 nodes and about four seconds before the first word exists —
+  // longer on a phone, and almost none of it on screen. So a section arrives
+  // as its number and a reserved height, and fills in as it comes within
+  // reach of the window.
+  //
+  // The reservation is measured, not guessed. The sections that are on screen
+  // at the start get built for real, and what they actually cost per word
+  // sets the reservation for the rest. A guess here is not free: it is the
+  // length of the scrollbar and where an anchor lands.
+  let io = null;
+  // Reading the commentary beneath every section is a state of the book, not
+  // of the sections that happened to be built when it was turned on — a
+  // section arriving later arrives into it.
+  let commentaryLayerOn = false;
+  const materialise = (el) => {
+    const build = el && el.__body;
+    if (!build) return false;
+    el.__body = null;
+    build();
+    el.classList.remove("seg-wait");
+    el.style.minHeight = "";
+    if (io) io.unobserve(el);
+    if (commentaryLayerOn && el.__sec) {
+      buildSectionInline(el.__sec, el);
+      el.querySelectorAll(".c-inline").forEach((x) => { x.hidden = false; });
+      const bar = el.querySelector(".c-bar");
+      if (bar) bar.setAttribute("aria-expanded", "true");
+    }
+    if (el.__place) el.__place(el);
+    return true;
+  };
+  io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) materialise(e.target);
+  }, { rootMargin: "1400px 0px" });
+  // Anything that reaches into a section's words builds it first: the export
+  // reads the readings off the page, and an anchor has to land on the section
+  // at the height it is going to be, not the height it was reserved.
+  const materialiseAll = () => { sectionEls.forEach(({ el }) => materialise(el)); };
+  {
+    const fold = window.innerHeight * 2.5;
+    const built = [];
+    for (const { el } of sectionEls) {
+      if (built.length >= 6 && el.getBoundingClientRect().top > fold) break;
+      if (materialise(el)) built.push(el);
+    }
+    let px = 0, words = 0;
+    for (const el of built) { px += el.getBoundingClientRect().height; words += el.__words || 0; }
+    // If the first sections carried no words to measure, fall back to a row of
+    // text per few words rather than pretending to know.
+    const perWord = words > 20 ? px / words : 26;
+    let waiting = 0;
+    for (const { el } of sectionEls) {
+      if (!el.__body) continue;
+      el.classList.add("seg-wait");
+      el.style.minHeight = `${Math.max(34, Math.round((el.__words || 1) * perWord))}px`;
+      io.observe(el);
+      waiting += 1;
+    }
+    console.log(`[zone] ${built.length} sections built, ${waiting} reserved at ${perWord.toFixed(1)}px per word`);
+  }
+  // An in-page link has to find its section standing at its real height, so
+  // the target is built before the browser goes there rather than after.
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = decodeURIComponent(a.getAttribute("href").slice(1));
+    if (id) materialise(document.getElementById(id));
+  }, true);
+  window.addEventListener("hashchange", () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const el = id && document.getElementById(id);
+    if (el && materialise(el)) el.scrollIntoView({ block: "start" });
+  });
+
   // now that the verses have a width and know where they wrap
   const placeAllHandles = () => {
     for (let i = 0; i < sectionHandlePlacers.length; i += 1) {
       const el = sectionEls[i] && sectionEls[i].el;
-      if (el) sectionHandlePlacers[i](el);
+      // a section still waiting has no lines to hang anything on
+      if (el && !el.__body) sectionHandlePlacers[i](el);
     }
   };
   placeAllHandles();
@@ -2838,6 +2946,8 @@
     const row = document.createElement("div"); row.className = "xp-row";
     const note = document.createElement("p"); note.className = "xp-note";
     const gatherBook = async () => {
+      // every section, so every section has to exist
+      materialiseAll();
       const bundles = [];
       for (const { sec, el } of sectionEls) bundles.push(await gatherSection(sec, el));
       return { bundles, title: zone.work };
@@ -2866,15 +2976,18 @@
     layerBtn.textContent = name;
     layerBtn.title = `Read ${name} beneath each ${MINOR}`;
     layerBtn.hidden = false;
-    let on = false;
     layerBtn.addEventListener("click", () => {
-      on = !on;
+      commentaryLayerOn = !commentaryLayerOn;
+      const on = commentaryLayerOn;
       layerBtn.classList.toggle("on", on);
       // 817 sections opening at once moves the page by the height of a book.
       // Pin whichever section the reader is actually looking at.
       const seen = sectionEls.find(({ el }) => el.getBoundingClientRect().bottom > 0) || sectionEls[0];
       holdingSection(seen.el, () => {
+        // only what has been built — a section still waiting has no slot to
+        // open into, and will open itself when it arrives
         for (const { sec, el } of sectionEls) {
+          if (el.__body) continue;
           buildSectionInline(sec, el);
           el.querySelectorAll(".c-inline").forEach((x) => { x.hidden = !on; });
         }
@@ -2895,13 +3008,17 @@
   // offsets are measured once — nothing reflows after paint, because the
   // Hebrew never moves — so position lookups stay pure arithmetic on a page
   // that can run to millions of pixels
-  const heads = nodeHeads.map((h) => ({ node: h.node, el: h.el, top: h.el.offsetTop }));
+  // Read live: a section that fills in changes every offset below it, so a
+  // top measured once would name the wrong chapter within a screen of reading.
+  const heads = nodeHeads.map((h) => ({ node: h.node, el: h.el,
+    get top() { return h.el.offsetTop; } }));
   let atNode = 0;
   // A book this long runs to millions of pixels; smooth scrolling across
   // that distance stalls, so only short hops animate.
   if (openAt && byLabel.has(openAt)) {
     const target = document.getElementById(byLabel.get(openAt));
     if (target) {
+      materialise(target);
       window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 80);
       target.querySelector(".vnum")?.classList.add("at");
     }
