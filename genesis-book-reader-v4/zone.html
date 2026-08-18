@@ -31,6 +31,10 @@
     background: linear-gradient(180deg, #0d1520 0%, var(--bg) 100%); }
   header.top h1 { margin: 0; font-size: 1.9rem; color: var(--ink-strong); letter-spacing: 0.01em; }
   header.top h1 .he-t { font-size: 2.1rem; margin-right: 0.7rem; }
+  /* A work the ledger has not named in Hebrew leaves this span empty; without
+     this the empty span still spends its margin and the English title stands
+     indented from nothing. */
+  header.top h1 .he-t:empty { display: none; }
   header.top h1 .en-t { color: var(--gold); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
@@ -43,6 +47,11 @@
      the locator does not get to look like a title. */
   header.top h1 .en-t.unnamed { color: var(--muted); font-variant: normal; letter-spacing: 0.06em; }
   header.top nav { margin-top: 0.6rem; font-size: 0.85rem; }
+  /* A book named in Hebrew never stands in Hebrew alone. Wherever the Hebrew
+     title appears the English is beside it, because a reader who cannot read
+     the one still has to know which book they are being offered. */
+  header.top nav a.bk { white-space: nowrap; }
+  header.top nav a.bk .bk-en { font-variant: small-caps; letter-spacing: 0.08em; }
   /* A book the ledger has named reads in Hebrew here; one it has not keeps its
      English locator, at the weight of a locator. */
   header.top nav a[lang="he"] { font-family: "Frank Ruehl CLM", "David Libre", "SBL Hebrew", Georgia, serif;
@@ -629,7 +638,7 @@
   <h1 id="workTitle"><span class="he-t" lang="he" dir="rtl"></span><span class="en-t">Zone reader</span></h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
-  <nav id="books"><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=genesis" lang="he" dir="rtl">בראשית</a> · <a href="zone.html?b=1kings">I Kings</a></nav>
+  <nav id="books"><a href="/" class="home">The Tabernacle</a> · books: <a href="/genesis" class="bk"><span lang="he" dir="rtl">בראשית</span> <span class="bk-en">Genesis</span></a> · <a href="/1kings" class="bk"><span class="bk-en">I Kings</span></a></nav>
   <div id="modeRow">
     <button type="button" class="mode-btn on" id="modeHe">Hebrew reader</button>
     <button type="button" class="mode-btn" id="modeEn">English reader</button>
@@ -649,6 +658,20 @@
 <script>
 (async () => {
   const BOOK = (new URLSearchParams(location.search).get("b") || "genesis").replace(/[^a-z0-9-]/g, "");
+  // Where this reader's own files live, taken from where this file is rather
+  // than written down. The address in the bar may be rewritten to /genesis a
+  // moment from now, and the store's shards are fetched long after that — a
+  // relative path would then resolve against a directory that holds nothing.
+  const ROOT = location.pathname.replace(/[^/]*$/, "");
+  // A reader reached from /genesis or /1kings shows that address rather than
+  // the path it was actually served from. The redirect that brought it here
+  // says so; nothing guesses.
+  {
+    const clean = new URLSearchParams(location.search).get("clean");
+    if (clean && /^[a-z0-9-]+$/.test(clean)) {
+      try { history.replaceState(null, "", `/${clean}`); } catch { /* not ours to insist on */ }
+    }
+  }
   const unpack = async (res) =>
     JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
   const licenseName = (posture) => {
@@ -664,12 +687,12 @@
   let zone, index;
   try {
     [zone, index] = await Promise.all([
-      fetch(`data/zones/${BOOK}.bin`).then(unpack),
+      fetch(`${ROOT}data/zones/${BOOK}.bin`).then(unpack),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
       // revalidated on each load (a 304 when nothing moved), and everything
       // downstream is then addressed by content rather than by name.
-      fetch("data/route-store/index.json", { cache: "no-cache" }).then((r) => r.json()),
+      fetch(`${ROOT}data/route-store/index.json`, { cache: "no-cache" }).then((r) => r.json()),
     ]);
   } catch {
     document.getElementById("meta").textContent =
@@ -680,6 +703,10 @@
   // in English only where it did not. The English is a locator, not the title,
   // so it is not dressed up as one — and no Hebrew name is typed in here that
   // did not come through the ledger.
+  // The Hebrew title and the English name are one thing, always shown together:
+  // the Hebrew is the book's own name and the English is how a reader who does
+  // not read it knows what they are looking at. Neither is decoration for the
+  // other, so neither appears without it.
   document.querySelector("#workTitle .he-t").textContent = zone.work_he || "";
   document.querySelector("#workTitle .en-t").textContent = zone.work;
   if (!zone.work_he) {
@@ -782,7 +809,7 @@
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
     const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
     if (!shardCache.has(shard)) {
-      const url = `data/route-store/shards/${shard}.bin${storeVersion ? `?v=${storeVersion}` : ""}`;
+      const url = `${ROOT}data/route-store/shards/${shard}.bin${storeVersion ? `?v=${storeVersion}` : ""}`;
       shardCache.set(shard, fetch(url).then(unpack).catch(() => null));
     }
     const data = await shardCache.get(shard);
@@ -1813,7 +1840,7 @@
   // Absent sidecar, absent anchors, absent section = no commentary shown and
   // nothing implied.
   let commentaryStore = null;
-  const commentaryReady = fetch(`data/zones/${BOOK}-commentary.bin`)
+  const commentaryReady = fetch(`${ROOT}data/zones/${BOOK}-commentary.bin`)
     .then((r) => (r.ok ? unpack(r) : null))
     .then((s) => { commentaryStore = s; })
     .catch(() => {});
