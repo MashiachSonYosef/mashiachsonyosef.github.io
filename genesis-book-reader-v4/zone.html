@@ -291,15 +291,6 @@
      licence, which is the one thing on this card that is not the reader's to
      lose. Below that floor the provenance goes; the record does not. */
   #hud .prov { flex: 0 1 auto; overflow: hidden; }
-  /* The commentary attached at this word is one more thing on the card, not the
-     card. It scrolls inside its own share like everything else, and it is the
-     first thing asked to give when the bands cannot be served. */
-  #hud .c-band { flex: 0 0 auto; min-height: 0; max-height: min(9rem, 20vh); overflow-y: auto; }
-  /* A card carrying commentary is carrying one more thing than usual, so the
-     record takes a little less of it and the readings keep a share worth having.
-     Where :has is not understood nothing changes, which is the behaviour this
-     replaces. */
-  #hud:has(.c-band) .d-slot { max-height: 24vh; }
   /* The D is the foundational record and it is always on the card. How much of
      the card it takes is not the part that is foundational.
      The old cap was `max-height: 58%`, and it never bound anything: a
@@ -426,10 +417,36 @@
      of its own — a commentator is one more voice on the card, not a louder
      kind of thing than the catalog it sits beside. */
   .wb { position: relative; }
-  .c-chip { position: absolute; top: -0.35rem; left: -0.5rem; z-index: 2; direction: ltr;
-    font: bold 0.58rem/1.5 Inter, system-ui, sans-serif; color: #171105; background: var(--gold-dim);
-    border-radius: 999px; min-width: 1.05rem; text-align: center; padding: 0 0.22rem; pointer-events: none; }
-  body.en .c-chip { left: auto; right: -0.5rem; }
+  /* A commentary handle standing in the line of the verse, after the words it
+     covers. It is inline, so it reads as part of the line; what it opens is
+     block-level, so the words after it fall below and the words above it are
+     what it is about. */
+  .c-mark { display: inline-flex; align-items: center; gap: 0.35rem; vertical-align: middle;
+    direction: ltr; margin: 0 0.25rem 0.55rem; padding: 0.1rem 0.5rem;
+    border: 1px solid var(--gold-dim); border-radius: 999px; background: var(--panel2);
+    color: var(--gold-dim); font: 0.68rem/1.4 Inter, system-ui, sans-serif;
+    letter-spacing: 0.04em; cursor: pointer; }
+  .c-mark:hover { color: var(--gold); border-color: var(--gold); }
+  .c-mark[aria-expanded="true"] { background: var(--gold); border-color: var(--gold);
+    color: #171105; font-weight: bold; }
+  .c-mark .c-glyph { font-variant: small-caps; letter-spacing: 0.08em; }
+  .c-mark-slot { display: block; direction: ltr; text-align: left;
+    margin: 0.15rem 0 0.6rem; padding: 0.5rem 0.7rem;
+    border: 1px solid var(--line); border-inline-start: 2px solid var(--gold-dim);
+    border-radius: 0.5rem; background: var(--panel2); }
+  .c-mark-slot[hidden] { display: none; }
+  .c-mark-slot .c-pick { display: block; color: var(--faint); font-size: 0.72rem; margin-bottom: 0.45rem; }
+  .c-mark-slot .c-pick select { font: inherit; font-size: 0.76rem; color: var(--muted);
+    background: var(--panel); border: 1px solid var(--line); border-radius: 0.4rem;
+    padding: 0.16rem 0.4rem; max-width: 100%; }
+  .c-mark-slot .lab { display: block; color: var(--muted); font-size: 0.74rem;
+    letter-spacing: 0.03em; margin-bottom: 0.3rem; }
+  .c-mark-slot .lab a { color: var(--link); }
+  .c-mark-body { display: block; }
+  .c-mark-text { display: block; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif;
+    text-align: right; }
+  .c-mark-slot .c-att { display: block; color: var(--faint); font-size: 0.68rem; margin-top: 0.4rem; }
   #hud .c-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
   #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
@@ -514,7 +531,7 @@
   body.pick-en .wb .g { user-select: text; -webkit-user-select: text; }
   body.pick-en .wb .w { user-select: none; -webkit-user-select: none; }
   /* the chrome is not text anyone wants in a copy */
-  .seg-row, .c-bar, .xp-row, #nav, header.top nav, #modeRow { user-select: none; -webkit-user-select: none; }
+  .seg-row, .c-bar, .c-mark, .xp-row, #nav, header.top nav, #modeRow { user-select: none; -webkit-user-select: none; }
   /* Taking the text away for good. A copy is a convenience; an export is the
      final stop, so it says what it is about to hand over before it hands it
      over, and it obeys the licence of every record it would carry. */
@@ -1122,14 +1139,6 @@
     // After the record, the provenance line, which is the one thing on the card
     // nobody presses.
     const floors = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
-    // the commentary gives first: it is the one thing here that is beside the
-    // word rather than about it
-    const cBand = hud.querySelector(".c-band");
-    if (cBand) cBand.style.maxHeight = "";
-    if (floors > rowsEl.clientHeight && cBand) {
-      const give = Math.min(floors - rowsEl.clientHeight, Math.max(0, cBand.clientHeight - 44));
-      if (give > 0) cBand.style.maxHeight = `${Math.floor(cBand.clientHeight - give)}px`;
-    }
     if (floors > rowsEl.clientHeight && dSlot) {
       const foot = hud.querySelector(".d-foot");
       const floor = (foot ? foot.offsetHeight : 0) + 22;
@@ -1401,7 +1410,6 @@
     else hud.replaceChildren(head, status);
     placeHud();
 
-    const cm = opts.back ? null : commentaryFor(unitId, wordPos);
     const span = spanOf(bin, region.k);
     const comps = span ? span.comps : [region.k];
     const covers = cutsOf(comps);
@@ -1727,7 +1735,6 @@
 
     renderCuts(); renderCells();
     await renderReadings();
-    appendCommentarySection(cm);
     placeHud();
   };
 
@@ -1769,81 +1776,6 @@
   };
   const commentaryWorkOf = (entry) =>
     (commentaryStore && commentaryStore.works && commentaryStore.works[entry.work || 0]) || {};
-  const appendCommentarySection = (entries) => {
-    if (!entries || !entries.length) return;
-    // In its own band. These used to be appended straight onto the card, as
-    // siblings of the bands, and a word carrying commentary — which on Genesis
-    // 1:1 is every word — had a full Rashi beside its readings. The readings
-    // region was flattened to nothing and its pills rendered behind the record:
-    // on the front page of the site, no reading could be pressed at all.
-    const band = document.createElement("div"); band.className = "c-band";
-    const label = document.createElement("p"); label.className = "r-label";
-    label.textContent = "Commentary · attached at this word";
-    const pills = document.createElement("div"); pills.className = "c-pills";
-    const card = document.createElement("div"); card.className = "c-card";
-    let selected = entries[0];
-    const renderCard = () => {
-      card.replaceChildren();
-      const heP = document.createElement("p"); heP.className = "c-he"; heP.lang = "he"; heP.dir = "rtl";
-      heP.textContent = selected.text; card.append(heP);
-      const att = document.createElement("p"); att.className = "att";
-      att.append(`${selected.he_ref || selected.ref} · ${selected.version_title} `);
-      const lic = document.createElement("span"); lic.className = "lic-chip"; lic.textContent = selected.license; att.append(lic, " ");
-      if (selected.source_url) {
-        const a = document.createElement("a"); a.href = selected.source_url; a.target = "_blank"; a.rel = "noreferrer";
-        a.textContent = "Source"; att.append(a);
-      }
-      card.append(att);
-      const note = document.createElement("p"); note.className = "c-note";
-      note.textContent = selected.state === "PROVEN_EDGE"
-        ? `Attachment: proven edge (${selected.basis})`
-        : `Attachment: suggested reach only — ${selected.basis}; not a proven word edge`;
-      card.append(note);
-    };
-    // Same shape as the readings: ten out front, the rest in a picker. One
-    // word here carries a hundred and six.
-    const C_SHOWN = 10;
-    let cOverflow = null;
-    entries.slice(0, C_SHOWN).forEach((e, i) => {
-      const p = document.createElement("button"); p.type = "button";
-      p.textContent = e.title || `${e.family_en} · ${i + 1}`;
-      p.title = `${e.family_en}${e.years && e.years.length ? " · " + e.years.join("–") : ""}`;
-      p.setAttribute("aria-pressed", String(e === selected));
-      p.addEventListener("click", () => {
-        selected = e;
-        pills.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", "false"));
-        if (cOverflow) { cOverflow.selectedIndex = 0; cOverflow.classList.remove("on"); }
-        p.setAttribute("aria-pressed", "true");
-        renderCard();
-      });
-      pills.append(p);
-    });
-    band.append(label, pills); hud.append(band);
-    if (entries.length > C_SHOWN) {
-      const rest = entries.slice(C_SHOWN);
-      const wrap = document.createElement("div"); wrap.className = "r-overflow";
-      const sel = document.createElement("select"); cOverflow = sel;
-      sel.setAttribute("aria-label", `${rest.length} more commentary units`);
-      const head = document.createElement("option");
-      head.textContent = `${rest.length} more commentary units…`; head.value = ""; sel.append(head);
-      rest.forEach((e, j) => {
-        const o = document.createElement("option"); o.value = String(j);
-        o.textContent = (e.title || `${e.family_en} · ${C_SHOWN + j + 1}`) +
-          (e.years && e.years.length ? `  ·  ${e.years[0]}` : "");
-        sel.append(o);
-      });
-      sel.addEventListener("change", () => {
-        if (sel.value === "") return;
-        selected = rest[Number(sel.value)];
-        pills.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", "false"));
-        sel.classList.add("on");
-        renderCard();
-      });
-      wrap.append(sel); band.append(wrap);
-    }
-    renderCard();
-    band.append(card);
-  };
 
   // One word block, used by the text, by the titles, and by a commentary that
   // came through the chain — same shape, same gloss line, same tap. The gloss
@@ -2285,7 +2217,7 @@
     if (openedNode) {
       const vl = document.createElement("span"); vl.className = "vlabel";
       vl.textContent = (parts.length === 2 ? `${MAJOR} · ${MINOR}` : MINOR) +
-        (wordAnchored ? " · c on a word opens the commentary there" : "");
+        (wordAnchored ? " · a C in the line opens its commentary there" : "");
       row.append(vl); openedNode = false;
     }
     if (sec.drift) {
@@ -2317,6 +2249,88 @@
         cbar.setAttribute("aria-expanded", String(toggleSectionInline(sec, s)));
       });
     }
+    // A commentary standing in the line, at the words it covers.
+    //
+    // It used to be a chip on the word that opened the reader's card, which put
+    // a whole Rashi in the same box as the readings and the record. Commentary
+    // is the section's other text, not part of the card, so it lives in the
+    // section — and where in the section is the point: the handle sits after
+    // the last word it covers, and what it opens opens there.
+    //
+    // The opened panel is block-level inside the verse, so the words after it
+    // fall below it and the words before it stay above. That is the whole
+    // reflow: only what the commentary covers is left standing over it.
+    const wordCommentaryHandle = (entries, sec, sectionEl) => {
+      const fam = [...new Set(entries.map((e) => commentaryWorkOf(e).family_en || "commentary"))].join(", ");
+      const pill = document.createElement("button"); pill.type = "button"; pill.className = "c-mark";
+      const g = document.createElement("span"); g.className = "c-glyph";
+      g.textContent = "C" + (entries.length > 1 ? entries.length : "");
+      const nm = document.createElement("span"); nm.className = "c-name"; nm.textContent = fam;
+      pill.append(g, nm);
+      pill.setAttribute("aria-expanded", "false");
+      pill.setAttribute("aria-label", `${fam} on this word · ${entries.length} unit${entries.length === 1 ? "" : "s"}`);
+      const slot = document.createElement("span"); slot.className = "c-mark-slot"; slot.hidden = true;
+      let built = false;
+      let selected = entries[0];
+      const body = document.createElement("span"); body.className = "c-mark-body";
+      const paint = () => {
+        body.replaceChildren();
+        const w = commentaryWorkOf(selected);
+        const lab = document.createElement("span"); lab.className = "lab";
+        lab.append(`${w.family_en || w.title || selected.ref} · ${selected.he_ref || selected.ref} `);
+        const lic = document.createElement("span"); lic.className = "lic-chip";
+        lic.textContent = w.license || selected.license || "License unrecorded";
+        lab.append(lic);
+        if (selected.source_url) {
+          const a2 = document.createElement("a"); a2.href = selected.source_url;
+          a2.target = "_blank"; a2.rel = "noreferrer"; a2.textContent = "Source";
+          lab.append(" ", a2);
+        }
+        body.append(lab);
+        const t = document.createElement("span"); t.className = "c-mark-text";
+        t.lang = "he"; t.dir = "rtl"; t.textContent = selected.text || "";
+        body.append(t);
+        const note = document.createElement("span"); note.className = "c-att";
+        note.textContent = selected.state === "PROVEN_EDGE"
+          ? `Attachment: proven edge (${selected.basis})`
+          : `Attachment: suggested reach only — ${selected.basis}; not a proven word edge`;
+        body.append(note);
+      };
+      const build = () => {
+        if (built) return;
+        built = true;
+        // Which one, where you pressed. A hundred and six units is a list, not
+        // a row of pills, and the list belongs above the text it chooses.
+        if (entries.length > 1) {
+          const pickRow = document.createElement("span"); pickRow.className = "c-pick";
+          const sel = document.createElement("select");
+          sel.setAttribute("aria-label", `Which of the ${entries.length} commentary units`);
+          entries.forEach((e, i) => {
+            const o = document.createElement("option"); o.value = String(i);
+            o.textContent = (e.title || `${commentaryWorkOf(e).family_en || "unit"} · ${i + 1}`) +
+              (e.years && e.years.length ? ` · ${e.years[0]}` : "");
+            sel.append(o);
+          });
+          sel.addEventListener("change", () => { selected = entries[Number(sel.value)] || entries[0]; paint(); });
+          pickRow.append(`${entries.length} units here `, sel);
+          slot.append(pickRow);
+        }
+        slot.append(body);
+        paint();
+      };
+      pill.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        build();
+        const open = slot.hidden;
+        // the section holds its place, the same way the section line does
+        holdingSection(sectionEl, () => {
+          slot.hidden = !open;
+          pill.setAttribute("aria-expanded", String(open));
+        });
+      });
+      return [pill, slot];
+    };
+
     // The text itself. Each word is a block carrying the Hebrew and its
     // reading, and a space stands between the blocks so a selection that runs
     // across the verse comes out as words rather than one long run.
@@ -2325,14 +2339,15 @@
     sec.words.forEach((word) => {
       const built = wordBlock(word, zone.gloss);
       const myIdx = wIdx; wIdx += 1;
-      const cm = commentaryFor(sec.unit, myIdx);
-      if (cm && cm.length) {
-        const chip = document.createElement("span"); chip.className = "c-chip";
-        chip.textContent = "C" + (cm.length > 1 ? cm.length : "");
-        built.wb.append(chip);
-      }
       wireWord(built, word, zone, sec.unit, myIdx);
       he.append(built.wb, document.createTextNode(" "));
+      // A commentary attached at this word gets its handle here, standing in
+      // the line right after the words it covers, and it opens here too — a
+      // reader should not have to look anywhere else to find what they pressed.
+      // Opening it puts the rest of the verse underneath: what is above the
+      // commentary is what the commentary is about.
+      const cm = commentaryFor(sec.unit, myIdx);
+      if (cm && cm.length) he.append(...wordCommentaryHandle(cm, sec, s));
     });
     // The commentary line sits at the foot of the section, immediately above
     // the slot its text lands in. It used to sit under the verse number, a
