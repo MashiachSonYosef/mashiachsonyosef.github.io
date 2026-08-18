@@ -203,8 +203,14 @@
   /* The HUD floats. The Hebrew never moves — law of the house. */
   /* A card that always carries a whole record needs room for one; 55vh put
      the source and its licence below the fold on a phone. */
+  /* overflow-y: auto, not hidden. Every band on this card has a floor, and on a
+     window short enough that the floors themselves do not fit, hidden would
+     have cut the bottom off — which is the source line, the licence, the one
+     thing here that is not the reader's to lose. Scrolling puts it below the
+     fold; hiding loses it. At any ordinary height nothing scrolls, because
+     nothing has to. */
   #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: min(84vh, 50rem);
-    display: flex; flex-direction: column; overflow: hidden;
+    display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;
     background: var(--panel); border: 1px solid #2c4a63; border-radius: 0.7rem;
     padding: 0.85rem 1.05rem; box-shadow: 0 14px 40px rgba(0,0,0,.6); }
   /* what scrolls, and what does not */
@@ -218,14 +224,53 @@
      thing the reader came to press — take what is left and never less than two
      rows. Nothing is dropped to achieve it: every division, every block and
      every reading is in its band, whole and reachable. */
+  /* The rows region shrinks; what it must never do is shrink below the floors
+     of the bands inside it, because a band that overflows here is clipped at
+     this edge and its pills end up behind the record — present, on screen, and
+     dead to a finger. It is held off that by arithmetic rather than by a
+     keyword: the bands beside the readings are capped at a fixed height, the
+     record is capped at a fraction of the window, and the readings' floor is a
+     single row — so what is left for the readings is never less than the row
+     they are owed. (min-content is the wrong keyword here: a wrapping row's
+     min-content height is its height at its narrowest, which for two hundred
+     pills is enormous, and the card scrolled at every size.) */
   #hud .rows { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;
     overflow: hidden; }
-  #hud .band { display: flex; flex-direction: column; min-height: 0; }
+  /* overflow: hidden on the band itself, so a band can never paint outside its
+     own share. Without it a pill box whose floor was taller than the band's
+     rendered straight over the record below and the reader pressed the record
+     instead of the reading — the pill was there, on screen, and dead. */
+  #hud .band { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
   #hud .band > .r-label { flex: 0 0 auto; }
   #hud .band > .s-pills, #hud .band > .r-pills { overflow-y: auto; min-height: 0; }
-  #hud .b-cut { flex: 0 1 auto; max-height: 7rem; }
-  #hud .b-cell { flex: 0 1 auto; max-height: 6rem; }
-  #hud .b-read { flex: 1 1 auto; min-height: 5.6rem; }
+  /* The structural bands do not shrink. Letting them was the same mistake in a
+     new place: a band whose height is decided by what its siblings weigh gets
+     squeezed to nothing by the one carrying two hundred readings, and a reader
+     could not press a division or a block at all. Their size is decided here
+     and nowhere else — a row and a half of pills, then they scroll. */
+  /* The floor goes on the box that holds the pressable things, not on the band
+     around it: a band held at a minimum whose pill box was still free to shrink
+     gave a row of half-cut pills and nothing to press. One whole row always
+     stands, a row and a half is the most either takes, and the rest scrolls. */
+  #hud .b-cut, #hud .b-cell { flex: 0 0 auto; }
+  #hud .b-cut > .s-pills, #hud .b-cell > .s-pills { min-height: 1.95rem; max-height: 4.8rem; }
+  /* The readings take what is left, and never less than two rows. Their basis
+     is their content, which is what makes the card reach for its full height;
+     because every band beside them has a floor, the shrink that follows lands
+     here, which is the band that can afford it. */
+  /* The floor is one row of readings, not two: a floor is what the band is
+     owed when the card is desperate, and the rows region is owed the sum of
+     its bands' floors, so a generous floor here forced the whole card to
+     scroll and put the source line below the fold on a window that could have
+     held it. On any ordinary window this band is nowhere near its floor — it
+     grows into everything the others do not take. */
+  #hud .b-read { flex: 1 1 auto; min-height: 4rem; }
+  #hud .b-read > .r-pills { min-height: 1.95rem; }
+  /* And the record yields before any of them does. It has a floor of its own —
+     the source line plus a line of the definition — so yielding never costs the
+     licence, which is the one thing on this card that is not the reader's to
+     lose. Below that floor the provenance goes; the record does not. */
+  #hud .prov { flex: 0 1 auto; overflow: hidden; }
   /* The D is the foundational record and it is always on the card. How much of
      the card it takes is not the part that is foundational.
      The old cap was `max-height: 58%`, and it never bound anything: a
@@ -242,12 +287,24 @@
      thousands of pixels tall — it took nearly all the shrink and squeezed the
      source line out of the bottom of a slot that was only 7% of the card. The
      rows region is the one that scrolls, so it is the one that gives. */
+  /* No floor at all, and none is needed once the slot does not shrink: it takes
+     the smaller of what it holds and its cap, and inside it the source line is
+     the part that never gives. min-content was tried here and is a trap — a
+     block of text's min-content height is its height at its narrowest, so the
+     floor came out at 365px on a card capped at 221 and a min beats a max. The
+     same keyword had already lied once, in the rows region. */
+  /* 0 0, not 0 1. Shrink is handed out in proportion to how much content each
+     sibling has, and the rows region carries thousands of pixels of pills — so
+     when the card was short both it and the record were driven to their floors
+     together, and the record's floor cut the source line off. The rows region
+     scrolls inside itself; it is the one that can afford to give, so it gives
+     all of it. What bounds the record is its cap, not its neighbours. */
   #hud .d-slot { flex: 0 0 auto; max-height: 32vh;
     display: flex; flex-direction: column; overflow: hidden; }
   #hud .d-card { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
-  #hud .d-body { flex: 1 1 auto; min-height: 2.4rem; overflow-y: auto; }
+  #hud .d-body { flex: 1 1 auto; min-height: 1.2rem; overflow-y: auto; }
   #hud .d-foot { flex: 0 0 auto; padding-top: 0.15rem; }
-  #hud .prov { flex: 0 0 auto; }
+
   /* What is standing under the word right now. The card used to answer this
      only by which pill was lit, and with two hundred pills in a scrolling row
      the lit one is often not on screen — so the reader closed the card to find
@@ -362,6 +419,41 @@
   #hud .c-back { background: none; border: 0; color: var(--link); font: inherit; font-size: 0.74rem;
     cursor: pointer; padding: 0 0 0.25rem; letter-spacing: 0.04em; }
   #hud .c-back:hover { color: var(--gold); }
+  /* Short windows. These come last on purpose: they were sitting above the
+     rules they mean to override, so the base won on source order and every one
+     of them was dead — measured, not assumed: the record's cap read 32vh on a
+     400px window that was asking for 20vh.
+     Everything the card owes a reader still holds here — a row of divisions, a
+     row of blocks, a row of readings, the record and its source. The room comes
+     from the things that are not owed: the provenance line goes, the structural
+     rows drop to one row apiece, the labels and the head tighten. */
+  @media (max-height: 660px) {
+    #hud { max-height: 94vh; }
+    #hud .prov { display: none; }
+    #hud .r-now { margin: 0 0 0.2rem; padding-bottom: 0.2rem; }
+    #hud .b-cut > .s-pills, #hud .b-cell > .s-pills { max-height: 2.5rem; }
+    #hud .d-slot { max-height: 26vh; }
+  }
+  /* Shorter still — a desktop window a few hundred pixels tall. The structural
+     rows go to a single row each and the labels tighten. Everything the reader
+     must have is still on the card and still pressable; what has gone is room
+     to browse, not anything to reach. */
+  @media (max-height: 480px) {
+    #hud .r-label { margin: 0.15rem 0 0.1rem; font-size: 0.66rem; }
+    #hud .head b { font-size: 1.15rem; }
+    #hud .head { padding-bottom: 0.2rem; margin-bottom: 0.15rem; }
+    #hud .b-cut > .s-pills, #hud .b-cell > .s-pills { max-height: 1.8rem; }
+    #hud .b-read { min-height: 3.4rem; }
+    #hud .b-read > .r-pills { min-height: 1.8rem; }
+    /* At this height a source line that runs to three lines cannot have a floor
+       of its own without starving the readings. So here the record and its
+       source share one scroll and the source line sticks to the bottom of it —
+       still never out of sight, still never the thing that gives. */
+    #hud .d-slot { max-height: 27vh; min-height: 3.6rem; overflow-y: auto; }
+    #hud .d-card, #hud .d-body { overflow: visible; min-height: 0; display: block; }
+    #hud .d-foot { position: sticky; bottom: 0; background: var(--panel); }
+    #hud .s-pills button, #hud .r-pills button { padding-top: 0.08rem; padding-bottom: 0.08rem; }
+  }
   /* Levels. Three things hang off a section and they are not the same size of
      act. The number names it. The commentary is the section's other text, so
      it gets a line of its own, the width of the column, carrying the name of
@@ -1773,10 +1865,26 @@
   // and an open card can stand over the word that opened it — so by the third
   // tap the reader is often clicking the card, in the place they meant the
   // text. Three taps in one place means: give me that line.
-  let tapLine = null;
+  let tapLine = null, tapWord = null;
   document.addEventListener("click", (e) => {
     if (!e.target.closest) return;
-    if (e.detail <= 1) { tapLine = e.target.closest(LINE_HOSTS); return; }
+    if (e.detail <= 1) {
+      tapLine = e.target.closest(LINE_HOSTS);
+      tapWord = e.target.closest(".wb .w, .wb .g");
+      return;
+    }
+    // Two taps means that word. The browser would do this itself, except that
+    // by the second tap the card the first one opened is often standing over
+    // the word — so the tap lands on the card and the reader gets nothing.
+    if (e.detail === 2) {
+      if (!tapWord || !e.target.closest("#hud")) return;
+      const r2 = selectableRange(tapWord);
+      if (!r2) return;
+      e.stopPropagation();
+      const sel2 = window.getSelection();
+      sel2.removeAllRanges(); sel2.addRange(r2);
+      return;
+    }
     if (e.detail < 3) return;
     const host = e.target.closest(LINE_HOSTS) || (e.target.closest("#hud") ? tapLine : null);
     if (!host) return;
