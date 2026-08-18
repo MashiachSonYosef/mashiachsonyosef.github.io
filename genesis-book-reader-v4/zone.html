@@ -1030,7 +1030,71 @@
   // handle: the head must stay reachable, or the card could be pushed
   // somewhere it can never be pulled back from.
   const GRAB = 56;
+  /**
+   * Give each band a whole number of rows.
+   *
+   * The caps were lengths, and a length is a guess about how tall a row of
+   * pills is — which depends on the font, and the font depends on the device.
+   * So a band showed a row and a half, and half a pill reads as something
+   * broken rather than as something scrolling. And the two bands were not
+   * really comparable: the divisions were pinned near one row while the
+   * readings sprawled over five, which is not a proportion anyone chose.
+   *
+   * This measures a row and hands out whole ones. The structural bands get up
+   * to three, or fewer on a short window, or fewer still if that is all they
+   * need. The readings take what is left, rounded down to a whole row, and
+   * never fewer than one — they are still the band that grows into the space
+   * the others do not want.
+   */
+  // Where the rows of a wrapping row of pills actually fall. Not a row height
+  // multiplied out — a pill whose text wraps is taller than its neighbours, so
+  // one number for "a row" cuts the tall ones in half. These are the real
+  // boundaries, read off the laid-out box.
+  const rowsOf = (box) => {
+    const top = box.getBoundingClientRect().top - box.scrollTop;
+    const rows = [];
+    for (const el of box.children) {
+      const r = el.getBoundingClientRect();
+      const t = r.top - top, bt = r.bottom - top;
+      const row = rows.find((x) => Math.abs(x.top - t) < 2);
+      if (row) row.bottom = Math.max(row.bottom, bt);
+      else rows.push({ top: t, bottom: bt });
+    }
+    return rows.sort((a, c) => a.top - c.top);
+  };
+  const fitBands = () => {
+    if (hud.hidden) return;
+    const h = window.innerHeight;
+    const structRows = h >= 660 ? 3 : h >= 480 ? 2 : 1;
+    for (const sel of [".b-cut .s-pills", ".b-cell .s-pills"]) {
+      const box = hud.querySelector(sel);
+      if (!box || !box.children.length) continue;
+      const rows = rowsOf(box);
+      if (!rows.length) continue;
+      box.style.maxHeight = `${Math.ceil(rows[Math.min(structRows, rows.length) - 1].bottom)}px`;
+    }
+    // The readings take what the others left, cut at the last whole row rather
+    // than wherever the space ran out. Half a pill reads as something broken;
+    // a row that stops cleanly reads as something that scrolls.
+    const read = hud.querySelector(".b-read .r-pills");
+    if (!read || !read.children.length) return;
+    read.style.maxHeight = "";
+    // Twice, because capping the box can change whether it needs a scrollbar,
+    // and a scrollbar changes the width, and a different width wraps the pills
+    // onto different rows — so the first answer is computed against a layout
+    // that no longer exists once it is applied. The second pass settles it.
+    for (let pass = 0; pass < 2; pass += 1) {
+      const avail = read.clientHeight;
+      const rows = rowsOf(read);
+      if (!rows.length) return;
+      let last = rows[0];
+      for (const r of rows) if (r.bottom <= avail + 0.5) last = r;
+      read.style.maxHeight = `${Math.ceil(last.bottom)}px`;
+    }
+  };
+
   const placeInBounds = () => {
+    fitBands();
     if (hud.hidden) return;
     const h = hud.offsetHeight || 0, w = hud.offsetWidth || 0, pad = 8;
     const top = parseFloat(hud.style.top) || 0, left = parseFloat(hud.style.left) || 0;
