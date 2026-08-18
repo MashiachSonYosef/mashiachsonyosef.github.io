@@ -15,41 +15,49 @@
          justify-content:center; padding:2rem 1.25rem; overflow-x:hidden; }
   main { width:100%; max-width:40rem; }
   h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--gold); }
-  /* margin-inline-end resolves against this span's OWN direction, and the span
-     is rtl — so the logical property put the gap on the far side and the two
-     names ran together. The physical side is the one that means anything here. */
-  h1 .he { font-family:"Frank Ruehl CLM","Frank Ruehl","David Libre","SBL Hebrew",Georgia,serif;
-           margin-right:.6rem; }
   p.sub { margin:0 0 2rem; color:var(--muted); font-size:.95rem; }
   .books { display:flex; flex-direction:column; gap:.7rem; }
-  a.book { display:flex; align-items:baseline; gap:.8rem; flex-wrap:wrap;
+  a.book { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
            border:1px solid var(--line); border-radius:.7rem; background:var(--panel);
            padding:1rem 1.15rem; text-decoration:none; color:var(--ink); }
   a.book:hover { border-color:var(--gold-dim); }
+  /* The title is the book's own. The English beside it is not a translation of
+     it and must not be able to be read as one — it is how a reader who does not
+     read Hebrew finds and refers to the book. So each line says which of the
+     two it is before the thing itself. The labels are ours; the title is not. */
+  a.book .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
+  a.book .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
+                text-transform:uppercase; color:var(--faint); }
   a.book .he { font-size:1.7rem; color:var(--gold);
                font-family:"Frank Ruehl CLM","Frank Ruehl","David Libre","SBL Hebrew",Georgia,serif; }
+  a.book .he.none { font-size:.92rem; font-style:italic; color:var(--muted); font-family:inherit; }
   a.book .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
-  a.book .of { flex:1 1 100%; color:var(--faint); font-size:.8rem; }
+  a.book .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
   footer { margin-top:2.2rem; color:var(--faint); font-size:.78rem; }
   footer a { color:var(--gold-dim); }
 </style>
 </head>
 <body>
 <main>
-  <h1><span class="he" lang="he" dir="rtl">המשכן</span>The Tabernacle</h1>
+  <!-- The site's own name is the one it was given, in English. There was a
+       Hebrew name standing beside it here that nothing in the chain carried —
+       I had written it, which made the one string on the site with no record
+       behind it the first thing on the page. -->
+  <h1>The Tabernacle</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the licence it was released under.</p>
   <nav class="books">
     <a class="book" href="/genesis">
-      <span class="he" lang="he" dir="rtl">בראשית</span>
-      <span class="en">Genesis</span>
+      <span class="row"><span class="lab">book title</span><span class="he" lang="he" dir="rtl">בראשית</span></span>
+      <span class="row"><span class="lab">searchable by</span><span class="en">Genesis</span></span>
       <span class="of">1,533 sections · word-level readings, the record behind each one, and the commentary attached where it attaches</span>
     </a>
     <a class="book" href="/1kings">
-      <span class="en">I Kings</span>
+      <span class="row"><span class="lab">book title</span><span class="he none">none is recorded in the ledger</span></span>
+      <span class="row"><span class="lab">searchable by</span><span class="en">I Kings</span></span>
       <span class="of">817 sections · Nevi'im, Miqra according to the Masorah, with Targum Jonathan</span>
     </a>
   </nav>
-  <footer>The Hebrew of each book carries its own licence, named on the page it is read from and in anything exported from it.</footer>
+  <footer>A book's title is the one its own record carries; the English beside it is how it is commonly searched for, not a translation of it. The Hebrew of each book carries its own licence, named on the page it is read from and in anything exported from it.</footer>
 </main>
 </body>
 </html>
