@@ -504,6 +504,12 @@
   #cIndex .ci-where { color: var(--gold-dim); }
   #cIndex .ci-what { flex: 1 1 auto; }
   #cIndex .ci-more { color: var(--faint); font-size: 0.72rem; margin: 0.3rem 0 0; }
+  /* A commentary answering another sits under it, indented, and is the one
+     case where two stand open at once. */
+  .c-counter-row { display: block; margin-top: 0.5rem; }
+  .c-counter-mark { font-size: 0.66rem; }
+  .c-mark-slot.c-counter { margin-inline-start: 1.1rem; border-inline-start: 2px solid var(--shesh); }
+  .c-noen { color: var(--amber); }
   #hud .c-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
   #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
@@ -2336,7 +2342,26 @@
     //
     // So the handles are not built with the words. They are placed after the
     // layout exists, and placed again every time it changes.
-    const cmPanel = (entries, i0, sectionEl, host) => {
+    // Which commentary a commentary is answering.
+    //
+    // Read off the entry's own reference and nowhere else: "Divrei David on
+    // Rashi, Genesis 1:1:3" says who it answers, so it may be shown answering.
+    // "Mizrachi, Genesis 1:1:1" does not say, and Mizrachi being a
+    // supercommentary on Rashi is something I know and the corpus does not —
+    // supplying it here would be this page asserting a relation nobody
+    // recorded. Where the reference is silent the entry is one more commentary
+    // on the word, which is what the chain says it is.
+    const answersWhom = (e) => {
+      const m = /\bon\s+([^,]+?)\s*,/.exec(String(e.ref || ""));
+      return m ? m[1].trim() : null;
+    };
+    const counterFor = (entry, pool) => {
+      const fam = commentaryWorkOf(entry).family_en;
+      if (!fam) return [];
+      return pool.filter((e) => e !== entry && answersWhom(e) === fam);
+    };
+
+    const cmPanel = (entries, i0, sectionEl, host, opts = {}) => {
       const slot = document.createElement("span"); slot.className = "c-mark-slot";
       let selected = entries[i0] || entries[0];
       const body = document.createElement("span"); body.className = "c-mark-body";
@@ -2368,6 +2393,15 @@
           ? `Attachment: proven edge (${selected.basis})`
           : `Attachment: suggested reach only — ${selected.basis}; not a proven word edge`;
         body.append(note);
+        // Say what is not here. The chain carries this unit in Hebrew only; the
+        // version it names may be an English edition, but no English text came
+        // with it. A reader looking for one should be told that rather than
+        // left to decide the page is broken.
+        if (!/[A-Za-z]{3}/.test(String(selected.text || ""))) {
+          const noEn = document.createElement("span"); noEn.className = "c-att c-noen";
+          noEn.textContent = `No English recorded for this unit${selected.version_title ? ` · the version named is "${selected.version_title}"` : ""}`;
+          body.append(noEn);
+        }
       };
       if (entries.length > 1) {
         const pick = document.createElement("span"); pick.className = "c-pick";
@@ -2386,7 +2420,49 @@
       }
       slot.append(body);
       paint();
+      // One commentary open at a time. Two open at once is two answers to the
+      // same word standing over each other, and the reader loses which is
+      // which — the exception is the one below, where the second is an answer
+      // to the first and belongs under it.
+      if (!opts.under) {
+        const para0 = sectionEl.querySelector(".he-text");
+        if (para0) para0.querySelectorAll(".c-mark-slot:not(.c-choose)").forEach((x) => x.remove());
+      }
+      slot.className = opts.under ? "c-mark-slot c-counter" : "c-mark-slot";
       host.after(slot);
+
+      // A commentary that answers this one gets its own handle, and what it
+      // opens opens directly beneath — the one place two stand open together,
+      // because the second is about the first.
+      if (!opts.under) {
+        const counters = counterFor(selected, entries);
+        if (counters.length) {
+          const row = document.createElement("span"); row.className = "c-counter-row";
+          const fams = [...new Set(counters.map((e) => commentaryWorkOf(e).family_en || "commentary"))];
+          const btn = document.createElement("button"); btn.type = "button"; btn.className = "c-mark c-counter-mark";
+          const cg = document.createElement("span"); cg.className = "c-glyph";
+          cg.textContent = "C" + (counters.length > 1 ? counters.length : "");
+          btn.append(cg, document.createTextNode(" "),
+            Object.assign(document.createElement("span"), { className: "c-name",
+              textContent: `answering this — ${fams.join(", ")}` }));
+          btn.setAttribute("aria-expanded", "false");
+          btn.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            const open2 = slot.parentNode ? slot.nextElementSibling : null;
+            holdingSection(sectionEl, () => {
+              if (open2 && open2.classList.contains("c-counter")) {
+                open2.remove(); btn.setAttribute("aria-expanded", "false");
+              } else {
+                cmPanel(counters, 0, sectionEl, slot, { under: true });
+                btn.setAttribute("aria-expanded", "true");
+              }
+              placeLineHandles(sectionEl);
+            });
+          });
+          row.append(btn);
+          body.append(row);
+        }
+      }
       return slot;
     };
 
