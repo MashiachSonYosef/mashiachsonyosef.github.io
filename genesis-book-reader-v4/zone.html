@@ -438,7 +438,11 @@
   .c-mark[aria-expanded="true"] { background: var(--gold); border-color: var(--gold);
     color: #171105; font-weight: bold; }
   .c-mark .c-glyph { font-variant: small-caps; letter-spacing: 0.08em; }
+  /* Bounded, like the card's regions. A Rashi runs to a page and it was taking
+     one — the verse it belongs to disappeared above it. It gets a share and
+     scrolls inside it. */
   .c-mark-slot { display: block; direction: ltr; text-align: left;
+    max-height: min(22rem, 46vh); overflow-y: auto; overflow-x: hidden;
     margin: 0.15rem 0 0.6rem; padding: 0.5rem 0.7rem;
     border: 1px solid var(--line); border-inline-start: 2px solid var(--gold-dim);
     border-radius: 0.5rem; background: var(--panel2); }
@@ -447,8 +451,11 @@
   .c-mark-slot .c-pick select { font: inherit; font-size: 0.76rem; color: var(--muted);
     background: var(--panel); border: 1px solid var(--line); border-radius: 0.4rem;
     padding: 0.16rem 0.4rem; max-width: 100%; }
+  /* the reference and the licence stay put while the commentary scrolls under
+     them: a text whose source has scrolled away is a text standing on nothing */
   .c-mark-slot .lab { display: block; color: var(--muted); font-size: 0.74rem;
-    letter-spacing: 0.03em; margin-bottom: 0.3rem; }
+    letter-spacing: 0.03em; margin-bottom: 0.3rem;
+    position: sticky; top: -0.5rem; background: var(--panel2); padding: 0.35rem 0 0.25rem; z-index: 1; }
   .c-mark-slot .lab a { color: var(--link); }
   .c-mark-body { display: block; }
   .c-mark-text { display: block; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
@@ -470,6 +477,33 @@
   .c-shut { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--muted); font: inherit; font-size: 0.7rem; cursor: pointer; padding: 0; }
   .c-shut:hover { color: var(--gold); }
+  /* Every commentary the book carries, in one place, before the text starts. */
+  #cIndex { margin: 0 0 1.6rem; border: 1px solid var(--line); border-radius: 0.6rem;
+    background: var(--panel2); overflow: hidden; }
+  #cIndex .ci-head { display: flex; flex-direction: column; gap: 0.2rem; width: 100%;
+    text-align: left; direction: ltr; background: none; border: 0; color: var(--muted);
+    font: inherit; padding: 0.7rem 0.9rem; cursor: pointer; }
+  #cIndex .ci-head:hover { color: var(--shesh); }
+  #cIndex .ci-head b { color: var(--gold-dim); font-size: 0.95rem; letter-spacing: 0.04em; }
+  #cIndex .ci-head[aria-expanded="true"] b { color: var(--gold); }
+  #cIndex .ci-sum { color: var(--faint); font-size: 0.72rem; }
+  #cIndex .ci-body[hidden] { display: none; }
+  #cIndex .ci-bar { display: flex; gap: 0.5rem; align-items: center; padding: 0 0.9rem 0.5rem; }
+  #cIndex input[type="search"] { flex: 1 1 auto; min-width: 0; font: inherit; font-size: 0.82rem;
+    color: var(--ink); background: var(--panel); border: 1px solid var(--line);
+    border-radius: 0.45rem; padding: 0.35rem 0.6rem; }
+  #cIndex input[type="search"]:focus { outline: none; border-color: var(--gold-dim); }
+  #cIndex .ci-count { color: var(--faint); font-size: 0.72rem; white-space: nowrap; }
+  #cIndex .ci-list { max-height: min(24rem, 50vh); overflow-y: auto; overflow-x: hidden;
+    padding: 0 0.9rem 0.8rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  #cIndex .ci-hit { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.45rem;
+    text-align: left; direction: ltr; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 0.45rem; padding: 0.32rem 0.6rem; color: var(--muted);
+    font: inherit; font-size: 0.78rem; cursor: pointer; }
+  #cIndex .ci-hit:hover { border-color: var(--gold-dim); color: var(--shesh); }
+  #cIndex .ci-where { color: var(--gold-dim); }
+  #cIndex .ci-what { flex: 1 1 auto; }
+  #cIndex .ci-more { color: var(--faint); font-size: 0.72rem; margin: 0.3rem 0 0; }
   #hud .c-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
   #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
@@ -589,7 +623,7 @@
   <h1 id="workTitle"><span class="he-t" lang="he" dir="rtl"></span><span class="en-t">Zone reader</span></h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
-  <nav id="books"><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=genesis" lang="he" dir="rtl">בראשית</a> · <a href="zone.html?b=1kings">I Kings</a> · <a href="zone.html?b=2kings">II Kings</a> · <a href="zone.html?b=orot" lang="he" dir="rtl">אורות</a></nav>
+  <nav id="books"><a href="genesis-book-reader-v4.html">← Genesis reader</a> · <a href="dictionary.html">Dictionary</a> · books: <a href="zone.html?b=genesis" lang="he" dir="rtl">בראשית</a> · <a href="zone.html?b=1kings">I Kings</a></nav>
   <div id="modeRow">
     <button type="button" class="mode-btn on" id="modeHe">Hebrew reader</button>
     <button type="button" class="mode-btn" id="modeEn">English reader</button>
@@ -608,7 +642,7 @@
 <footer id="prov"></footer>
 <script>
 (async () => {
-  const BOOK = (new URLSearchParams(location.search).get("b") || "orot").replace(/[^a-z0-9-]/g, "");
+  const BOOK = (new URLSearchParams(location.search).get("b") || "genesis").replace(/[^a-z0-9-]/g, "");
   const unpack = async (res) =>
     JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
   const licenseName = (posture) => {
@@ -2214,6 +2248,7 @@
   // Handles are placed against a layout, so they are placed after the layout
   // exists — and again whenever it changes shape under them.
   const sectionHandlePlacers = [];
+  const sectionOpeners = [];
   const nodeSections = {};
   const nodeHeads = [];
   zone.sections.forEach((sec) => {
@@ -2429,8 +2464,11 @@
           const pill = document.createElement("button"); pill.type = "button"; pill.className = "c-mark";
           const g = document.createElement("span"); g.className = "c-glyph";
           g.textContent = "C" + (units > 1 ? units : "");
+          // The handle says what it is, not who is in it. Which works, which
+          // units and which word each sits on is what the press is for, and
+          // naming five commentators on a pill only makes the line noisy.
           const nm = document.createElement("span"); nm.className = "c-name";
-          nm.textContent = fams.join(", ");
+          nm.textContent = "Commentary";
           pill.append(g, document.createTextNode(" "), nm);
           pill.setAttribute("aria-expanded", "false");
           pill.setAttribute("aria-label",
@@ -2464,6 +2502,13 @@
       }
     };
     sectionHandlePlacers.push(placeLineHandles);
+    // the index opens a commentary through the same door the handle does, so
+    // there is one way a commentary opens and not two
+    sectionOpeners.push((wb, which) => {
+      if (!wb.__cm || !wb.__cm.length) return;
+      cmPanel(wb.__cm, which || 0, s, wb);
+      placeLineHandles(s);
+    });
 
     // The text itself. Each word is a block carrying the Hebrew and its
     // reading, and a space stands between the blocks so a selection that runs
@@ -2512,7 +2557,128 @@
     sectionEls.push({ sec, el: s });
     frag.append(s);
   });
+  // ---- one box for every commentary in the book ------------------------
+  //
+  // The handles are how a reader meets a commentary while reading. This is how
+  // they meet it without reading: everything the book carries, named, counted,
+  // and searchable — by the commentator, by the reference, by the word it sits
+  // on, or by anything in the commentary's own text. Pressing a result goes to
+  // the verse and opens that commentary where it lives, which is the same
+  // place the handle would have opened it.
+  const buildCommentaryIndex = () => {
+    const units = (commentaryStore && commentaryStore.units) || null;
+    if (!units) return null;
+    const rows = [];
+    zone.sections.forEach((sec, i) => {
+      const u = units[sec.unit];
+      if (!u) return;
+      const at = (entries, pos) => (entries || []).forEach((e, j) => rows.push({
+        e, pos, j, secIdx: i, label: sec.label || String(i + 1),
+        word: pos == null ? null : (sec.words[pos] ? sec.words[pos].s : null),
+        work: commentaryWorkOf(e),
+      }));
+      if (u.words) for (const [pos, entries] of Object.entries(u.words)) at(entries, Number(pos));
+      at(u.section, null);
+    });
+    if (!rows.length) return null;
+
+    const box = document.createElement("section"); box.id = "cIndex";
+    const head = document.createElement("button"); head.type = "button"; head.className = "ci-head";
+    const byWork = new Map();
+    for (const r of rows) {
+      const k = r.work.family_en || r.work.title || r.e.ref || "commentary";
+      byWork.set(k, (byWork.get(k) || 0) + 1);
+    }
+    const summary = [...byWork.entries()].sort((a2, b2) => b2[1] - a2[1])
+      .map(([k, n]) => `${k} · ${n.toLocaleString()}`).join("   ");
+    head.append(Object.assign(document.createElement("b"), { textContent: "Commentary on this book" }));
+    head.append(Object.assign(document.createElement("span"), { className: "ci-sum", textContent: summary }));
+    head.setAttribute("aria-expanded", "false");
+    const body = document.createElement("div"); body.className = "ci-body"; body.hidden = true;
+    const bar = document.createElement("div"); bar.className = "ci-bar";
+    const q = document.createElement("input"); q.type = "search";
+    q.placeholder = "search the commentator, the reference, the word, or the text";
+    q.setAttribute("aria-label", "Search this book's commentary");
+    const count = document.createElement("span"); count.className = "ci-count";
+    bar.append(q, count);
+    const list = document.createElement("div"); list.className = "ci-list";
+    body.append(bar, list);
+
+    const SHOW = 40;
+    const hay = (r) => `${r.work.family_en || ""} ${r.work.title || ""} ${r.e.title || ""} ${r.e.ref || ""} ${r.e.he_ref || ""} ${r.label} ${r.word || ""} ${r.e.text || ""}`.toLowerCase();
+    rows.forEach((r) => { r.hay = hay(r); });
+    const paint = () => {
+      const term = q.value.trim().toLowerCase();
+      const hits = term ? rows.filter((r) => r.hay.includes(term)) : rows;
+      count.textContent = term
+        ? `${hits.length.toLocaleString()} of ${rows.length.toLocaleString()}`
+        : `${rows.length.toLocaleString()} in all`;
+      list.replaceChildren();
+      hits.slice(0, SHOW).forEach((r) => {
+        const b2 = document.createElement("button"); b2.type = "button"; b2.className = "ci-hit";
+        const w = document.createElement("span"); w.className = "ci-where";
+        w.textContent = r.label + (r.word ? " · " : "");
+        if (r.word) {
+          const hw = document.createElement("span"); hw.lang = "he"; hw.dir = "rtl"; hw.textContent = r.word;
+          w.append(hw);
+        }
+        const nm = document.createElement("span"); nm.className = "ci-what";
+        nm.textContent = `${r.work.family_en || r.work.title || r.e.ref}${r.e.title ? ` · ${r.e.title}` : ""}`;
+        const lic = document.createElement("span"); lic.className = "lic-chip";
+        lic.textContent = r.work.license || r.e.license || "License unrecorded";
+        b2.append(w, nm, lic);
+        b2.addEventListener("click", () => openFromIndex(r));
+        list.append(b2);
+      });
+      if (hits.length > SHOW) {
+        const more = document.createElement("p"); more.className = "ci-more";
+        more.textContent = `${(hits.length - SHOW).toLocaleString()} more — narrow the search to reach them`;
+        list.append(more);
+      }
+      if (!hits.length) {
+        const none = document.createElement("p"); none.className = "ci-more";
+        none.textContent = "nothing here matches that";
+        list.append(none);
+      }
+    };
+    let t = null;
+    q.addEventListener("input", () => { clearTimeout(t); t = setTimeout(paint, 120); });
+    head.addEventListener("click", () => {
+      const open = body.hidden;
+      body.hidden = !open;
+      head.setAttribute("aria-expanded", String(open));
+      if (open) { paint(); q.focus(); }
+    });
+    box.append(head, body);
+    return box;
+  };
+
+  // Going to a commentary from the index: the verse, then the commentary
+  // itself, opened where it lives rather than copied into the box.
+  const openFromIndex = (r) => {
+    const target = sectionEls[r.secIdx];
+    if (!target) return;
+    target.el.scrollIntoView({ block: "start" });
+    if (r.pos == null) {
+      toggleSectionInline(target.sec, target.el, true);
+      const bar2 = target.el.querySelector(".c-bar");
+      if (bar2) bar2.setAttribute("aria-expanded", "true");
+      return;
+    }
+    const wb = [...target.el.querySelectorAll(".he-text .wb")][r.pos];
+    if (!wb || !wb.__cm) return;
+    const para = target.el.querySelector(".he-text");
+    para.querySelectorAll(".c-choose").forEach((x) => x.remove());
+    para.querySelectorAll(".c-mark-slot:not(.c-choose)").forEach((x) => x.remove());
+    const open = sectionOpeners[r.secIdx];
+    if (open) holdingSection(target.el, () => open(wb, r.j));
+  };
+
   main.append(frag);
+  {
+    const ci = buildCommentaryIndex();
+    if (ci) main.prepend(ci);
+  }
   // now that the verses have a width and know where they wrap
   const placeAllHandles = () => {
     for (let i = 0; i < sectionHandlePlacers.length; i += 1) {
