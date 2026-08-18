@@ -291,6 +291,15 @@
      licence, which is the one thing on this card that is not the reader's to
      lose. Below that floor the provenance goes; the record does not. */
   #hud .prov { flex: 0 1 auto; overflow: hidden; }
+  /* The commentary attached at this word is one more thing on the card, not the
+     card. It scrolls inside its own share like everything else, and it is the
+     first thing asked to give when the bands cannot be served. */
+  #hud .c-band { flex: 0 0 auto; min-height: 0; max-height: min(9rem, 20vh); overflow-y: auto; }
+  /* A card carrying commentary is carrying one more thing than usual, so the
+     record takes a little less of it and the readings keep a share worth having.
+     Where :has is not understood nothing changes, which is the behaviour this
+     replaces. */
+  #hud:has(.c-band) .d-slot { max-height: 24vh; }
   /* The D is the foundational record and it is always on the card. How much of
      the card it takes is not the part that is foundational.
      The old cap was `max-height: 58%`, and it never bound anything: a
@@ -1113,6 +1122,14 @@
     // After the record, the provenance line, which is the one thing on the card
     // nobody presses.
     const floors = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
+    // the commentary gives first: it is the one thing here that is beside the
+    // word rather than about it
+    const cBand = hud.querySelector(".c-band");
+    if (cBand) cBand.style.maxHeight = "";
+    if (floors > rowsEl.clientHeight && cBand) {
+      const give = Math.min(floors - rowsEl.clientHeight, Math.max(0, cBand.clientHeight - 44));
+      if (give > 0) cBand.style.maxHeight = `${Math.floor(cBand.clientHeight - give)}px`;
+    }
     if (floors > rowsEl.clientHeight && dSlot) {
       const foot = hud.querySelector(".d-foot");
       const floor = (foot ? foot.offsetHeight : 0) + 22;
@@ -1754,6 +1771,12 @@
     (commentaryStore && commentaryStore.works && commentaryStore.works[entry.work || 0]) || {};
   const appendCommentarySection = (entries) => {
     if (!entries || !entries.length) return;
+    // In its own band. These used to be appended straight onto the card, as
+    // siblings of the bands, and a word carrying commentary — which on Genesis
+    // 1:1 is every word — had a full Rashi beside its readings. The readings
+    // region was flattened to nothing and its pills rendered behind the record:
+    // on the front page of the site, no reading could be pressed at all.
+    const band = document.createElement("div"); band.className = "c-band";
     const label = document.createElement("p"); label.className = "r-label";
     label.textContent = "Commentary · attached at this word";
     const pills = document.createElement("div"); pills.className = "c-pills";
@@ -1795,7 +1818,7 @@
       });
       pills.append(p);
     });
-    hud.append(label, pills);
+    band.append(label, pills); hud.append(band);
     if (entries.length > C_SHOWN) {
       const rest = entries.slice(C_SHOWN);
       const wrap = document.createElement("div"); wrap.className = "r-overflow";
@@ -1816,10 +1839,10 @@
         sel.classList.add("on");
         renderCard();
       });
-      wrap.append(sel); hud.append(wrap);
+      wrap.append(sel); band.append(wrap);
     }
     renderCard();
-    hud.append(card);
+    band.append(card);
   };
 
   // One word block, used by the text, by the titles, and by a commentary that
