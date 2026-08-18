@@ -334,8 +334,15 @@
     border-bottom: 1px solid var(--line); direction: ltr; }
   #hud .r-now .k { display: block; color: var(--faint); font-size: 0.68rem;
     letter-spacing: 0.08em; text-transform: uppercase; }
+  /* Bounded, like every other region on this card. One Strong's route runs to
+     four hundred and ninety-two characters, and printed whole it was most of a
+     phone — the divisions, the blocks and the record all pushed out of sight by
+     the line that was only supposed to say what had been chosen. Three lines,
+     then it scrolls. The whole of it is still on its pill and still in the
+     record underneath. */
   #hud .r-now .v { display: block; color: var(--ink-strong); font-size: 0.94rem;
-    line-height: 1.3; overflow-wrap: anywhere; }
+    line-height: 1.3; overflow-wrap: anywhere;
+    max-height: 3.9em; overflow-y: auto; overflow-x: hidden; }
   #hud .r-now .v.none { color: var(--faint); font-style: italic; }
   #hud[hidden] { display: none; }
   /* The head is the handle. A card the reader can move is a card that stops
@@ -421,8 +428,9 @@
      covers. It is inline, so it reads as part of the line; what it opens is
      block-level, so the words after it fall below and the words above it are
      what it is about. */
+  .c-mark-row { display: block; direction: ltr; text-align: left; margin: 0.1rem 0 0.5rem; }
   .c-mark { display: inline-flex; align-items: center; gap: 0.35rem; vertical-align: middle;
-    direction: ltr; margin: 0 0.25rem 0.55rem; padding: 0.1rem 0.5rem;
+    direction: ltr; margin: 0; padding: 0.1rem 0.5rem;
     border: 1px solid var(--gold-dim); border-radius: 999px; background: var(--panel2);
     color: var(--gold-dim); font: 0.68rem/1.4 Inter, system-ui, sans-serif;
     letter-spacing: 0.04em; cursor: pointer; }
@@ -447,6 +455,21 @@
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif;
     text-align: right; }
   .c-mark-slot .c-att { display: block; color: var(--faint); font-size: 0.68rem; margin-top: 0.4rem; }
+  /* The chooser: everything attached to this line, named by its work and by
+     the word it sits on, because a line's handle covers words and this is the
+     reader deciding between them. */
+  .c-choose .lab { color: var(--faint); }
+  .c-choices { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
+  .c-choice { display: inline-flex; align-items: baseline; gap: 0.35rem; direction: ltr;
+    border: 1px solid var(--line); background: var(--panel); color: var(--muted);
+    border-radius: 999px; padding: 0.2rem 0.7rem; font: inherit; font-size: 0.74rem; cursor: pointer; }
+  .c-choice:hover { border-color: var(--gold-dim); color: var(--shesh); }
+  .c-choice .c-on { color: var(--gold-dim); font-size: 0.95rem;
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  .c-more { display: block; width: 100%; color: var(--faint); font-size: 0.68rem; }
+  .c-shut { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
+    color: var(--muted); font: inherit; font-size: 0.7rem; cursor: pointer; padding: 0; }
+  .c-shut:hover { color: var(--gold); }
   #hud .c-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
   #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
@@ -531,7 +554,7 @@
   body.pick-en .wb .g { user-select: text; -webkit-user-select: text; }
   body.pick-en .wb .w { user-select: none; -webkit-user-select: none; }
   /* the chrome is not text anyone wants in a copy */
-  .seg-row, .c-bar, .c-mark, .xp-row, #nav, header.top nav, #modeRow { user-select: none; -webkit-user-select: none; }
+  .seg-row, .c-bar, .c-mark, .c-choose, .xp-row, #nav, header.top nav, #modeRow { user-select: none; -webkit-user-select: none; }
   /* Taking the text away for good. A copy is a convenience; an export is the
      final stop, so it says what it is about to hand over before it hands it
      over, and it obeys the licence of every record it would carry. */
@@ -1774,8 +1797,22 @@
     if (!u || !u.section || !u.section.length) return null;
     return u.section;
   };
-  const commentaryWorkOf = (entry) =>
-    (commentaryStore && commentaryStore.works && commentaryStore.works[entry.work || 0]) || {};
+  // Which work a commentary belongs to. Some sidecars carry a works table and
+  // point each entry at it; others carry the naming on the entry itself and no
+  // table at all, and asking only the table for those got back nothing — so
+  // every handle on Genesis 1:1 read "commentary" while the entry beside it
+  // said Rashi. Ask the table, then ask the entry.
+  const commentaryWorkOf = (entry) => {
+    const w = (commentaryStore && commentaryStore.works && commentaryStore.works[entry.work || 0]) || {};
+    return {
+      ...w,
+      family_en: w.family_en || entry.family_en || null,
+      family_he: w.family_he || entry.family_he || null,
+      title: w.title || entry.version_title || entry.title || null,
+      license: w.license || entry.license || null,
+      b_n: w.b_n || null,
+    };
+  };
 
   // One word block, used by the text, by the titles, and by a commentary that
   // came through the chain — same shape, same gloss line, same tap. The gloss
@@ -2174,6 +2211,9 @@
     });
     return on;
   };
+  // Handles are placed against a layout, so they are placed after the layout
+  // exists — and again whenever it changes shape under them.
+  const sectionHandlePlacers = [];
   const nodeSections = {};
   const nodeHeads = [];
   zone.sections.forEach((sec) => {
@@ -2249,29 +2289,21 @@
         cbar.setAttribute("aria-expanded", String(toggleSectionInline(sec, s)));
       });
     }
-    // A commentary standing in the line, at the words it covers.
+    // Commentary, in the line it belongs to.
     //
-    // It used to be a chip on the word that opened the reader's card, which put
-    // a whole Rashi in the same box as the readings and the record. Commentary
-    // is the section's other text, not part of the card, so it lives in the
-    // section — and where in the section is the point: the handle sits after
-    // the last word it covers, and what it opens opens there.
+    // One handle per line of the verse, not one per word: three words on a
+    // line share a single generic handle under them, and what it covers is
+    // sorted out after the press, not before it. Pressing it lists what is
+    // attached to any word on that line; choosing one opens it directly under
+    // the words it covers, which pushes the words it does not cover onto the
+    // next line — and pushes the handles down with them, because the handles
+    // belong to lines and the lines have just changed.
     //
-    // The opened panel is block-level inside the verse, so the words after it
-    // fall below it and the words before it stay above. That is the whole
-    // reflow: only what the commentary covers is left standing over it.
-    const wordCommentaryHandle = (entries, sec, sectionEl) => {
-      const fam = [...new Set(entries.map((e) => commentaryWorkOf(e).family_en || "commentary"))].join(", ");
-      const pill = document.createElement("button"); pill.type = "button"; pill.className = "c-mark";
-      const g = document.createElement("span"); g.className = "c-glyph";
-      g.textContent = "C" + (entries.length > 1 ? entries.length : "");
-      const nm = document.createElement("span"); nm.className = "c-name"; nm.textContent = fam;
-      pill.append(g, nm);
-      pill.setAttribute("aria-expanded", "false");
-      pill.setAttribute("aria-label", `${fam} on this word · ${entries.length} unit${entries.length === 1 ? "" : "s"}`);
-      const slot = document.createElement("span"); slot.className = "c-mark-slot"; slot.hidden = true;
-      let built = false;
-      let selected = entries[0];
+    // So the handles are not built with the words. They are placed after the
+    // layout exists, and placed again every time it changes.
+    const cmPanel = (entries, i0, sectionEl, host) => {
+      const slot = document.createElement("span"); slot.className = "c-mark-slot";
+      let selected = entries[i0] || entries[0];
       const body = document.createElement("span"); body.className = "c-mark-body";
       const paint = () => {
         body.replaceChildren();
@@ -2283,9 +2315,15 @@
         lab.append(lic);
         if (selected.source_url) {
           const a2 = document.createElement("a"); a2.href = selected.source_url;
-          a2.target = "_blank"; a2.rel = "noreferrer"; a2.textContent = "Source";
-          lab.append(" ", a2);
+          a2.target = "_blank"; a2.rel = "noreferrer"; a2.textContent = "Source"; lab.append(" ", a2);
         }
+        const shut = document.createElement("button"); shut.type = "button"; shut.className = "c-shut";
+        shut.textContent = "close"; shut.setAttribute("aria-label", "Close this commentary");
+        shut.addEventListener("click", (ev) => {
+          ev.stopPropagation();
+          holdingSection(sectionEl, () => { slot.remove(); placeLineHandles(sectionEl); });
+        });
+        lab.append(" ", shut);
         body.append(lab);
         const t = document.createElement("span"); t.className = "c-mark-text";
         t.lang = "he"; t.dir = "rtl"; t.textContent = selected.text || "";
@@ -2296,40 +2334,136 @@
           : `Attachment: suggested reach only — ${selected.basis}; not a proven word edge`;
         body.append(note);
       };
-      const build = () => {
-        if (built) return;
-        built = true;
-        // Which one, where you pressed. A hundred and six units is a list, not
-        // a row of pills, and the list belongs above the text it chooses.
-        if (entries.length > 1) {
-          const pickRow = document.createElement("span"); pickRow.className = "c-pick";
-          const sel = document.createElement("select");
-          sel.setAttribute("aria-label", `Which of the ${entries.length} commentary units`);
-          entries.forEach((e, i) => {
-            const o = document.createElement("option"); o.value = String(i);
-            o.textContent = (e.title || `${commentaryWorkOf(e).family_en || "unit"} · ${i + 1}`) +
-              (e.years && e.years.length ? ` · ${e.years[0]}` : "");
-            sel.append(o);
-          });
-          sel.addEventListener("change", () => { selected = entries[Number(sel.value)] || entries[0]; paint(); });
-          pickRow.append(`${entries.length} units here `, sel);
-          slot.append(pickRow);
-        }
-        slot.append(body);
-        paint();
-      };
-      pill.addEventListener("click", (ev) => {
-        ev.stopPropagation();
-        build();
-        const open = slot.hidden;
-        // the section holds its place, the same way the section line does
-        holdingSection(sectionEl, () => {
-          slot.hidden = !open;
-          pill.setAttribute("aria-expanded", String(open));
+      if (entries.length > 1) {
+        const pick = document.createElement("span"); pick.className = "c-pick";
+        const sel = document.createElement("select");
+        sel.setAttribute("aria-label", `Which of the ${entries.length} units on this word`);
+        entries.forEach((e, i) => {
+          const o = document.createElement("option"); o.value = String(i);
+          o.textContent = (e.title || `${commentaryWorkOf(e).family_en || "unit"} · ${i + 1}`) +
+            (e.years && e.years.length ? ` · ${e.years[0]}` : "");
+          if (e === selected) o.selected = true;
+          sel.append(o);
         });
-      });
-      return [pill, slot];
+        sel.addEventListener("change", () => { selected = entries[Number(sel.value)] || entries[0]; paint(); });
+        pick.append(`${entries.length} units on this word `, sel);
+        slot.append(pick);
+      }
+      slot.append(body);
+      paint();
+      host.after(slot);
+      return slot;
     };
+
+    // What the reader is offered when they press a line's handle: everything
+    // attached to any word on that line, named by its work and by the word it
+    // is on, because a line's handle covers words and the reader is choosing
+    // between them.
+    const cmChooser = (line, sectionEl) => {
+      const box = document.createElement("span"); box.className = "c-mark-slot c-choose";
+      const lab = document.createElement("span"); lab.className = "lab";
+      lab.textContent = `${line.reduce((n, x) => n + x.entries.length, 0)} attached to this line`;
+      box.append(lab);
+      const list = document.createElement("span"); list.className = "c-choices";
+      for (const item of line) {
+        for (let i = 0; i < item.entries.length; i += 1) {
+          const e = item.entries[i];
+          const w = commentaryWorkOf(e);
+          const btn = document.createElement("button"); btn.type = "button"; btn.className = "c-choice";
+          const on = document.createElement("span"); on.className = "c-on";
+          on.lang = "he"; on.dir = "rtl"; on.textContent = item.wb.querySelector(".w").textContent;
+          btn.append(on, document.createTextNode(" "));
+          btn.append(`${w.family_en || w.title || e.ref}${item.entries.length > 1 ? ` · ${i + 1} of ${item.entries.length}` : ""}`);
+          btn.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            holdingSection(sectionEl, () => {
+              box.remove();
+              cmPanel(item.entries, i, sectionEl, item.wb);
+              placeLineHandles(sectionEl);
+            });
+          });
+          list.append(btn);
+          if (i >= 11 && item.entries.length > 12) {
+            const more = document.createElement("span"); more.className = "c-more";
+            more.textContent = `+ ${item.entries.length - 12} more on this word — open one and use its list`;
+            list.append(more);
+            break;
+          }
+        }
+      }
+      box.append(list);
+      return box;
+    };
+
+    // Group the verse's commentary-bearing words by the line they render on,
+    // and give each such line one handle, after its last word. Placing a handle
+    // changes where the words wrap, which changes the lines — so it settles by
+    // looking again at what it just made, the same way the card's bands do.
+    const placeLineHandles = (sectionEl) => {
+      const para = sectionEl.querySelector(".he-text");
+      if (!para) return;
+      for (let pass = 0; pass < 3; pass += 1) {
+        para.querySelectorAll(".c-mark-row, .c-choose").forEach((x) => x.remove());
+        const marked = [...para.querySelectorAll(".wb")].filter((wb) => wb.__cm && wb.__cm.length);
+        if (!marked.length) return;
+        const all = [...para.querySelectorAll(".wb")];
+        const lines = [];
+        for (const wb of marked) {
+          const top = Math.round(wb.getBoundingClientRect().top);
+          const line = lines.find((l) => Math.abs(l.top - top) < 6);
+          if (line) line.items.push({ wb, entries: wb.__cm });
+          else lines.push({ top, items: [{ wb, entries: wb.__cm }], last: null });
+        }
+        // the handle goes under the whole line, so it is anchored to the line's
+        // last word rather than to its last commented one — anchoring it to the
+        // commented word would break the line early and shove the words after
+        // it down for no reason the reader can see
+        for (const line of lines) {
+          line.last = all.filter((w) => Math.abs(Math.round(w.getBoundingClientRect().top) - line.top) < 6).pop();
+        }
+        for (const line of lines) {
+          const last = line.last || line.items[line.items.length - 1].wb;
+          const units = line.items.reduce((n, x) => n + x.entries.length, 0);
+          const fams = [...new Set(line.items.flatMap((x) =>
+            x.entries.map((e) => commentaryWorkOf(e).family_en || "commentary")))];
+          const pill = document.createElement("button"); pill.type = "button"; pill.className = "c-mark";
+          const g = document.createElement("span"); g.className = "c-glyph";
+          g.textContent = "C" + (units > 1 ? units : "");
+          const nm = document.createElement("span"); nm.className = "c-name";
+          nm.textContent = fams.join(", ");
+          pill.append(g, document.createTextNode(" "), nm);
+          pill.setAttribute("aria-expanded", "false");
+          pill.setAttribute("aria-label",
+            `${units} commentary unit${units === 1 ? "" : "s"} on this line — ${fams.join(", ")}`);
+          // Opening the chooser does not re-place the handles: the placer
+          // clears them to rebuild them, and it would clear the chooser it had
+          // just been asked to open. Handles are re-placed when a commentary
+          // opens or closes, which is when words actually change lines.
+          pill.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            const already = para.querySelector(".c-choose");
+            const mine = already && already.previousElementSibling === row;
+            holdingSection(sectionEl, () => {
+              para.querySelectorAll(".c-mark[aria-expanded='true']")
+                .forEach((x) => x.setAttribute("aria-expanded", "false"));
+              if (already) already.remove();
+              if (!mine) {
+                row.after(cmChooser(line.items, sectionEl));
+                pill.setAttribute("aria-expanded", "true");
+              }
+            });
+          });
+          // A row of its own, under the line: block-level, so it takes the line
+          // it is on and the words that follow start after it. Inline, it
+          // wrapped onto the next line and sat among words it had nothing to do
+          // with.
+          const row = document.createElement("span"); row.className = "c-mark-row";
+          row.append(pill);
+          last.after(row);
+        }
+      }
+    };
+    sectionHandlePlacers.push(placeLineHandles);
 
     // The text itself. Each word is a block carrying the Hebrew and its
     // reading, and a space stands between the blocks so a selection that runs
@@ -2347,7 +2481,7 @@
       // Opening it puts the rest of the verse underneath: what is above the
       // commentary is what the commentary is about.
       const cm = commentaryFor(sec.unit, myIdx);
-      if (cm && cm.length) he.append(...wordCommentaryHandle(cm, sec, s));
+      if (cm && cm.length) built.wb.__cm = cm;
     });
     // The commentary line sits at the foot of the section, immediately above
     // the slot its text lands in. It used to sit under the verse number, a
@@ -2379,6 +2513,19 @@
     frag.append(s);
   });
   main.append(frag);
+  // now that the verses have a width and know where they wrap
+  const placeAllHandles = () => {
+    for (let i = 0; i < sectionHandlePlacers.length; i += 1) {
+      const el = sectionEls[i] && sectionEls[i].el;
+      if (el) sectionHandlePlacers[i](el);
+    }
+  };
+  placeAllHandles();
+  let handleTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(handleTimer);
+    handleTimer = setTimeout(placeAllHandles, 120);
+  });
 
   // One export for the whole work, after the last section. It reads every
   // record the book stands on, which is the honest cost of a book-sized
