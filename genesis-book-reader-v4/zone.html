@@ -61,7 +61,19 @@
 
   /* contents */
   #toc { max-width: 48rem; margin: 1.3rem auto 0; padding: 0 1.5rem; }
-  #toc h2 { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); margin: 0 0 0.5rem; }
+  /* Fifty chapters is the whole screen on a phone before a word of the book has
+     been reached, so the grid arrives shut and says how much is behind it. */
+  #toc #tocHead { display: flex; align-items: baseline; gap: 0.5rem; width: 100%; text-align: left;
+    background: none; border: 0; padding: 0.2rem 0; margin: 0 0 0.35rem; cursor: pointer;
+    font: inherit; color: var(--faint); }
+  #toc #tocHead .toc-t { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; }
+  #toc #tocHead .toc-n { font-size: 0.72rem; color: var(--faint); }
+  #toc #tocHead::after { content: "\25be"; margin-inline-start: auto; font-size: 0.8rem;
+    transform: rotate(-90deg); transition: transform 140ms; }
+  #toc #tocHead[aria-expanded="true"] { color: var(--gold); }
+  #toc #tocHead[aria-expanded="true"]::after { transform: none; }
+  #toc #tocHead:hover { color: var(--gold); }
+  #tocBody[hidden] { display: none; }
   /* Contents is a coordinate grid: positions, not content. Plain English
      names the structure ("Part 2", "Chapter 7") — describing a thing is not
      translating it, and an English reader should never be locked out of
@@ -495,7 +507,8 @@
   #cIndex .ci-head:hover { color: var(--shesh); }
   #cIndex .ci-head b { color: var(--gold-dim); font-size: 0.95rem; letter-spacing: 0.04em; }
   #cIndex .ci-head[aria-expanded="true"] b { color: var(--gold); }
-  #cIndex .ci-sum { color: var(--faint); font-size: 0.72rem; }
+  #cIndex .ci-sum { color: var(--faint); font-size: 0.72rem; margin: 0 0 0.55rem;
+    padding: 0 0.9rem; line-height: 1.5; }
   #cIndex .ci-body[hidden] { display: none; }
   #cIndex .ci-bar { display: flex; gap: 0.5rem; align-items: center; padding: 0 0.9rem 0.5rem; }
   #cIndex input[type="search"] { flex: 1 1 auto; min-width: 0; font: inherit; font-size: 0.82rem;
@@ -645,7 +658,7 @@
     <button type="button" class="mode-btn" id="layerC" hidden></button>
   </div>
 </header>
-<div id="toc" hidden><h2>Contents</h2><div id="tocBody"></div><div id="secPanel" hidden></div></div>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
 <div id="nav" hidden>
   <button id="navTop" type="button" title="Back to the top of the page">Top</button>
   <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
@@ -2185,7 +2198,22 @@
         ? `Titles read in the text; hover a number for its title and size.`
         : `Hover a number for its size. This work carries no title in the ledger, so none is shown.`);
     tocBody.append(note);
-    document.getElementById("toc").hidden = false;
+    const tocEl = document.getElementById("toc");
+    const tocHead = document.getElementById("tocHead");
+    tocHead.querySelector(".toc-n").textContent =
+      `${nodes.length.toLocaleString()} ${nodes.length === 1 ? MAJOR : `${MAJOR}s`}`;
+    tocHead.addEventListener("click", () => {
+      const open = tocBody.hidden;
+      tocBody.hidden = !open;
+      tocHead.setAttribute("aria-expanded", String(open));
+      // shutting the grid shuts what was drilled out of it; leaving a chapter's
+      // sections standing under a closed contents is a panel with no parent
+      if (!open) {
+        document.getElementById("secPanel").hidden = true;
+        document.querySelectorAll("#toc .chs a.on").forEach((a) => a.classList.remove("on"));
+      }
+    });
+    tocEl.hidden = false;
   }
 
   // text — the commentary sidecar (if any) must be in hand before word
@@ -2694,10 +2722,14 @@
     }
     const summary = [...byWork.entries()].sort((a2, b2) => b2[1] - a2[1])
       .map(([k, n]) => `${k} · ${n.toLocaleString()}`).join("   ");
-    head.append(Object.assign(document.createElement("b"), { textContent: "Commentary on this book" }));
-    head.append(Object.assign(document.createElement("span"), { className: "ci-sum", textContent: summary }));
+    // The handle says what it is and how much of it there is; which works those
+    // are is what the press is for. Naming five dozen commentators on a shut
+    // box made the top of the book a wall of names before a word of it.
+    head.append(Object.assign(document.createElement("b"),
+      { textContent: `C${rows.length.toLocaleString()} Commentary` }));
     head.setAttribute("aria-expanded", "false");
     const body = document.createElement("div"); body.className = "ci-body"; body.hidden = true;
+    const works = document.createElement("p"); works.className = "ci-sum"; works.textContent = summary;
     const bar = document.createElement("div"); bar.className = "ci-bar";
     const q = document.createElement("input"); q.type = "search";
     q.placeholder = "search the commentator, the reference, the word, or the text";
@@ -2705,7 +2737,7 @@
     const count = document.createElement("span"); count.className = "ci-count";
     bar.append(q, count);
     const list = document.createElement("div"); list.className = "ci-list";
-    body.append(bar, list);
+    body.append(works, bar, list);
 
     const SHOW = 40;
     const hay = (r) => `${r.work.family_en || ""} ${r.work.title || ""} ${r.e.title || ""} ${r.e.ref || ""} ${r.e.he_ref || ""} ${r.label} ${r.word || ""} ${r.e.text || ""}`.toLowerCase();
