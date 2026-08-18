@@ -16,7 +16,16 @@
     --line: #1e2c3c; --link: var(--shesh);
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Georgia, "Times New Roman", serif; }
+  /* text-size-adjust: a phone browser that decides a block is "main content"
+     inflates its font after layout has already been computed. Every box on this
+     page that was sized from a measurement — the reading line held at the height
+     it painted at, a band cut to a whole row — is sized against the font that
+     was there when it was measured, and a font that grows afterwards spills out
+     of all of them. The page sets its own sizes; it does not want them adjusted
+     underneath it. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Georgia, "Times New Roman", serif;
+    overflow-x: hidden; }
 
   header.top { padding: 1.4rem 1.5rem 1rem; border-bottom: 1px solid var(--line);
     background: linear-gradient(180deg, #0d1520 0%, var(--bg) 100%); }
@@ -154,7 +163,15 @@
     margin: 0 0.16rem 0.55rem; cursor: pointer; }
   .w { display: block; order: 1; border-bottom: 1px dashed transparent; border-radius: 2px; }
   .wb:hover .w { color: #ffe08a; border-bottom-color: #6a5a33; }
-  .wb.held { opacity: 0.45; cursor: default; }
+  /* A word the chain holds is printed as the chain has it and not touched. But
+     some of what it holds is not a word — the Miqra source's section markers
+     arrive as a run of markup with no break in it, and an unbreakable run wider
+     than the column pushed the whole page sideways, which is how a phone ends
+     up with the text off the left edge and dead space on the right. It breaks
+     where it must to stay in the column. Nothing is removed or rewritten: this
+     is where the line wraps, not what the line says. */
+  .wb.held { opacity: 0.45; cursor: default; max-width: 100%; }
+  .wb.held .w { overflow-wrap: anywhere; word-break: break-word; }
   .wb.active .w { color: var(--gold); border-bottom: 1px solid var(--gold); }
   /* A word the reader has ruled on keeps a mark after the card closes. Without
      it, closing the card left nothing to say which word had just been changed,
@@ -190,8 +207,15 @@
   /* In the English reader the gloss is the text, not a label on it. It clamped
      at two lines for the same reason the Hebrew-side one clipped at one, and
      it comes off for the same reason: there is no longer a tail to hide. */
+  /* overflow: hidden, as on the Hebrew side. It was visible here on the
+     reasoning that the reading is the text in this reader and should not be
+     hidden — but the box is still held at the height it painted at, so a longer
+     reading did not extend the box, it spilled out of it and printed over the
+     Hebrew beneath. Nothing on this page may move while the reader is reading,
+     so the box cannot grow; what it can do is stop at its own edge. The whole
+     reading is on the card and on the line's own title. */
   body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--ink); margin-top: 0; max-width: 12em;
-    white-space: normal; display: block; overflow: visible; }
+    white-space: normal; display: block; overflow: hidden; }
   body.en .w { order: 2; font-size: 1.02rem; color: #b3a077; margin-top: 0.04rem; }
   body.en .wb.active .g { color: var(--gold); }
 
@@ -242,7 +266,11 @@
      instead of the reading — the pill was there, on screen, and dead. */
   #hud .band { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
   #hud .band > .r-label { flex: 0 0 auto; }
-  #hud .band > .s-pills, #hud .band > .r-pills { overflow-y: auto; min-height: 0; }
+  /* overflow-x hidden as well as overflow-y auto: setting one axis to auto makes
+     the other auto too, and a horizontal scrollbar nobody asked for took nine
+     pixels off the height — so a box given exactly three rows had room to show
+     two and a sliver, and the sliver was a pill cut in half. */
+  #hud .band > .s-pills, #hud .band > .r-pills { overflow-y: auto; overflow-x: hidden; min-height: 0; }
   /* The structural bands do not shrink. Letting them was the same mistake in a
      new place: a band whose height is decided by what its siblings weigh gets
      squeezed to nothing by the one carrying two hundred readings, and a reader
@@ -252,20 +280,12 @@
      around it: a band held at a minimum whose pill box was still free to shrink
      gave a row of half-cut pills and nothing to press. One whole row always
      stands, a row and a half is the most either takes, and the rest scrolls. */
-  #hud .b-cut, #hud .b-cell { flex: 0 0 auto; }
-  #hud .b-cut > .s-pills, #hud .b-cell > .s-pills { min-height: 1.95rem; max-height: 4.8rem; }
-  /* The readings take what is left, and never less than two rows. Their basis
-     is their content, which is what makes the card reach for its full height;
-     because every band beside them has a floor, the shrink that follows lands
-     here, which is the band that can afford it. */
-  /* The floor is one row of readings, not two: a floor is what the band is
-     owed when the card is desperate, and the rows region is owed the sum of
-     its bands' floors, so a generous floor here forced the whole card to
-     scroll and put the source line below the fold on a window that could have
-     held it. On any ordinary window this band is nowhere near its floor — it
-     grows into everything the others do not take. */
-  #hud .b-read { flex: 1 1 auto; min-height: 4rem; }
-  #hud .b-read > .r-pills { min-height: 1.95rem; }
+  /* Every band takes exactly what it is given — no growing into slack, no
+     shrinking to make room. The heights are handed out above, in whole rows,
+     and a band that could still shrink afterwards undid that: a box given
+     three rows sat in a band nine pixels shorter and cut the third one in
+     half. */
+  #hud .b-cut, #hud .b-cell, #hud .b-read { flex: 0 0 auto; min-height: 0; }
   /* And the record yields before any of them does. It has a floor of its own —
      the source line plus a line of the definition — so yielding never costs the
      licence, which is the one thing on this card that is not the reader's to
@@ -431,7 +451,6 @@
     #hud { max-height: 94vh; }
     #hud .prov { display: none; }
     #hud .r-now { margin: 0 0 0.2rem; padding-bottom: 0.2rem; }
-    #hud .b-cut > .s-pills, #hud .b-cell > .s-pills { max-height: 2.5rem; }
     #hud .d-slot { max-height: 26vh; }
   }
   /* Shorter still — a desktop window a few hundred pixels tall. The structural
@@ -442,9 +461,6 @@
     #hud .r-label { margin: 0.15rem 0 0.1rem; font-size: 0.66rem; }
     #hud .head b { font-size: 1.15rem; }
     #hud .head { padding-bottom: 0.2rem; margin-bottom: 0.15rem; }
-    #hud .b-cut > .s-pills, #hud .b-cell > .s-pills { max-height: 1.8rem; }
-    #hud .b-read { min-height: 3.4rem; }
-    #hud .b-read > .r-pills { min-height: 1.8rem; }
     /* At this height a source line that runs to three lines cannot have a floor
        of its own without starving the readings. So here the record and its
        source share one scroll and the source line sticks to the bottom of it —
@@ -1064,37 +1080,95 @@
   };
   const fitBands = () => {
     if (hud.hidden) return;
-    const h = window.innerHeight;
-    const structRows = h >= 660 ? 3 : h >= 480 ? 2 : 1;
-    for (const sel of [".b-cut .s-pills", ".b-cell .s-pills"]) {
-      const box = hud.querySelector(sel);
-      if (!box || !box.children.length) continue;
-      const rows = rowsOf(box);
-      if (!rows.length) continue;
-      box.style.maxHeight = `${Math.ceil(rows[Math.min(structRows, rows.length) - 1].bottom)}px`;
-    }
-    // The readings take what the others left, cut at the last whole row rather
-    // than wherever the space ran out. Half a pill reads as something broken;
-    // a row that stops cleanly reads as something that scrolls.
+    const rowsEl = hud.querySelector(".rows");
+    if (!rowsEl) return;
     const read = hud.querySelector(".b-read .r-pills");
-    if (!read || !read.children.length) return;
-    read.style.maxHeight = "";
-    // Twice, because capping the box can change whether it needs a scrollbar,
-    // and a scrollbar changes the width, and a different width wraps the pills
-    // onto different rows — so the first answer is computed against a layout
-    // that no longer exists once it is applied. The second pass settles it.
-    for (let pass = 0; pass < 2; pass += 1) {
-      const avail = read.clientHeight;
-      const rows = rowsOf(read);
-      if (!rows.length) return;
-      let last = rows[0];
-      for (const r of rows) if (r.bottom <= avail + 0.5) last = r;
-      read.style.maxHeight = `${Math.ceil(last.bottom)}px`;
+    const bands = [
+      { el: hud.querySelector(".b-cut"), box: hud.querySelector(".b-cut .s-pills") },
+      { el: hud.querySelector(".b-cell"), box: hud.querySelector(".b-cell .s-pills") },
+      { el: hud.querySelector(".b-read"), box: read },
+    ].filter((x) => x.el && x.box && x.box.children.length);
+    if (!bands.length) return;
+
+    // measure with nothing imposed, so the rows are where the content puts them
+    // Everything that can be borrowed from goes back first. The provenance line
+    // was being restored *after* the room was measured, so the room counted 35
+    // pixels that a moment later belonged to the line again — and the bands were
+    // handed a share of a card that did not exist.
+    const dSlot = hud.querySelector(".d-slot");
+    const prov = hud.querySelector(".prov");
+    if (dSlot) dSlot.style.maxHeight = "";
+    if (prov) prov.hidden = false;
+    for (const x of bands) { x.box.style.height = ""; x.box.style.maxHeight = ""; }
+    for (const x of bands) {
+      x.rows = rowsOf(x.box);
+      x.chrome = Math.max(0, x.el.clientHeight - x.box.clientHeight);   // its label
     }
+    if (bands.some((x) => !x.rows.length)) return;
+
+    // One whole row each is what the bands are owed. If the card is too short
+    // to owe them that — a word low on the page, with the card opening beneath
+    // it — the record lends the difference: its text gives way down to a line,
+    // and its source line, which is the licence, is not part of what it lends.
+    // After the record, the provenance line, which is the one thing on the card
+    // nobody presses.
+    const floors = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
+    if (floors > rowsEl.clientHeight && dSlot) {
+      const foot = hud.querySelector(".d-foot");
+      const floor = (foot ? foot.offsetHeight : 0) + 22;
+      const give = Math.min(floors - rowsEl.clientHeight, Math.max(0, dSlot.clientHeight - floor));
+      if (give > 0) dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`;
+    }
+    if (floors > rowsEl.clientHeight && prov && prov.offsetHeight) prov.hidden = true;
+
+    // Then hand the room out — and then look, and hand it out again against
+    // what is actually there. The height of the rows region depends on what
+    // else is on the card, and what else is on the card changes as this runs,
+    // so a share worked out from one measurement is a share of a card that no
+    // longer exists. Three passes settle it; each one measures the layout the
+    // last one produced.
+    const cap = window.innerHeight >= 660 ? 3 : window.innerHeight >= 480 ? 2 : 1;
+    let room = 0, take = bands.map(() => 1);
+    for (let pass = 0; pass < 3; pass += 1) {
+      room = rowsEl.clientHeight;
+      take = bands.map(() => 1);
+      let used = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
+      const grow = (i, limit) => {
+        const x = bands[i];
+        while (take[i] < Math.min(limit, x.rows.length)) {
+          const more = x.rows[take[i]].bottom - x.rows[take[i] - 1].bottom;
+          if (used + more > room) return;
+          used += more; take[i] += 1;
+        }
+      };
+      bands.forEach((x, i) => { if (x.box !== read) grow(i, cap); });
+      bands.forEach((x, i) => { if (x.box === read) grow(i, x.rows.length); });
+      bands.forEach((x, i) => {
+        const px = `${Math.ceil(x.rows[take[i] - 1].bottom)}px`;
+        x.box.style.height = px; x.box.style.maxHeight = px;
+      });
+      // the boundaries move when a box's height changes — a scrollbar comes or
+      // goes, the width changes, the pills wrap differently
+      for (const x of bands) {
+        const settled = rowsOf(x.box);
+        if (settled.length) x.rows = settled;
+      }
+    }
+    // did every band end up with the row it is owed, in the space it actually
+    // has? The caller decides what to do about it — there is nothing left here
+    // to take it out of.
+    const stands = bands.reduce((n, x) => n + x.el.offsetHeight, 0);
+    return stands <= rowsEl.clientHeight + 1;
   };
 
   const placeInBounds = () => {
-    fitBands();
+    // If the bands cannot all be served at the height the card was given, the
+    // height goes back — a card that grew after it was placed is better tall
+    // and clamped than short with dead controls in it.
+    if (fitBands() === false && !hudMoved && hud.style.maxHeight) {
+      hud.style.maxHeight = "";
+      fitBands();
+    }
     if (hud.hidden) return;
     const h = hud.offsetHeight || 0, w = hud.offsetWidth || 0, pad = 8;
     const top = parseFloat(hud.style.top) || 0, left = parseFloat(hud.style.left) || 0;
@@ -1115,11 +1189,46 @@
     // A card the reader has taken hold of belongs to the reader. It is not
     // moved back to a word again, only kept on screen.
     if (hudMoved) { clampHud(); return; }
-    const rect = hudAnchor.getBoundingClientRect();
-    const h = hud.offsetHeight || 0, w = hud.offsetWidth || 0;
+    // a height fixed for a previous word's placement is not this word's
+    hud.style.maxHeight = "";
+    let rect = hudAnchor.getBoundingClientRect();
+    let h = hud.offsetHeight || 0;
+    const w = hud.offsetWidth || 0;
     const pad = 8;
+    // The card belongs under the word, always. A card above the word covers the
+    // text the reader was reading to get there, and on a phone that is most of
+    // the verse. When there is not room beneath, the answer is not to flip the
+    // card over the top — it is to bring the word up: the page scrolls until
+    // the word sits high enough for the card to open beneath it. The word moves
+    // with the page, which is a thing a reader can follow; the card appearing
+    // over the text is not.
+    const want = window.innerHeight - pad - h - pad;   // where the word's foot has to be
+    if (rect.bottom > want) {
+      const by = Math.min(rect.bottom - want, Math.max(0, rect.top - pad));
+      if (by > 0) {
+        window.scrollBy(0, by);
+        rect = hudAnchor.getBoundingClientRect();
+      }
+    }
+    // If the word is already as high as it goes and the card still does not
+    // fit beneath it, the card gives up height rather than position. It can
+    // afford to: every band inside it scrolls, so a shorter card holds the same
+    // things in less room. A card that has to shrink past what it can usefully
+    // hold is the only case that still goes above.
+    const room = window.innerHeight - pad - rect.bottom - pad;
+    const FLOOR = 200;
+    if (h > room && room >= FLOOR) {
+      hud.style.maxHeight = `${Math.floor(room)}px`;
+      // and if the card cannot hold a row of every band at that height, it does
+      // not hold them at that height. A card under the word with dead controls
+      // in it is worse than a card that had to open somewhere else.
+      if (fitBands() === false) { hud.style.maxHeight = ""; fitBands(); }
+      h = hud.offsetHeight || 0;
+    }
     let top;
     if (rect.bottom + pad + h <= window.innerHeight - pad) top = rect.bottom + pad;
+    // only if the word cannot be brought up far enough and the card cannot
+    // usefully shrink does it go above, and then it is the lesser harm
     else if (rect.top - pad - h >= pad) top = rect.top - pad - h;
     else top = Math.max(pad, window.innerHeight - h - pad);
     // A card grows when the reader switches reading or opens the records
@@ -1128,6 +1237,8 @@
     top = Math.max(pad, Math.min(top, window.innerHeight - h - pad));
     hud.style.top = `${top}px`;
     hud.style.left = `${Math.max(pad, Math.min(window.innerWidth - w - pad, rect.left - 100))}px`;
+    // the bands were fitted to whatever height the card had a moment ago
+    fitBands();
   };
   // Moving the card. Pointer events so a finger and a mouse take the same
   // path; the close button is excluded so the reader can still hit it.
