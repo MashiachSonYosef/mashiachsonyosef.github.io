@@ -40,6 +40,15 @@
   header.top h1 .t-lab { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--faint); font-variant: normal; flex: 0 0 auto; min-width: 6.4rem; }
   header.top h1 .he-t { font-size: 2.1rem; }
+  /* The book's own title is a word of the corpus like any other: it opens, it
+     carries records, it carries licences. Rendered through the same row the
+     chapter titles use, so there is one way a title is drawn. */
+  header.top h1 .he-t .title-row { display: inline-block; text-align: right; }
+  header.top h1 .he-t .title-row .wb { margin-bottom: 0; }
+  header.top h1 .he-t .title-row .w { font-size: 2.1rem; }
+  header.top h1 .he-t .title-row .g { font-size: 0.62rem; max-width: 12em; }
+  header.top h1 .t-note { font-size: 0.6rem; letter-spacing: 0.06em; color: var(--muted);
+    font-variant: normal; text-transform: none; }
   header.top h1 .en-t { color: var(--gold); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
@@ -669,7 +678,7 @@
 <header class="top">
   <h1 id="workTitle">
     <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
-    <span class="t-row"><span class="t-lab">searchable by</span><span class="en-t">Zone reader</span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">commonly force read as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
   </h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
@@ -2189,6 +2198,38 @@
     });
     return row;
   };
+
+  // The book's own title, drawn the way every other title is drawn. It arrives
+  // from the walk as a string; the key that lets it open was attached by
+  // title-key-rule-v1 and only where the store already answers for the form.
+  if (zone.work_he_tokens && zone.work_he_tokens.some((t) => t.k)) {
+    const heT2 = document.querySelector("#workTitle .he-t");
+    heT2.replaceChildren(titleRow(zone.work_he_tokens, zone.work_he));
+  }
+
+  // And the name it is commonly read by. This is not a translation we supply:
+  // it is one of the readings the store carries for the title's own form, held
+  // to the one the work is filed under, shown with the licence of the record
+  // that carries it. Where no record reads it that way, the line says so
+  // rather than let a name of ours stand where a reading should.
+  (async () => {
+    const lab = document.getElementById("enLab");
+    const chip = document.getElementById("workLic");
+    const key = (zone.work_he_tokens || []).map((t) => t.k).filter(Boolean)[0];
+    if (!key) { lab.textContent = "commonly read as"; return; }
+    let a = null;
+    try { a = await attributionFor(key, zone.work); } catch { a = null; }
+    if (a && a.ok) {
+      chip.textContent = licenseName(a.posture);
+      chip.title = `${a.label}${a.year ? ` · ${a.year}` : ""}`;
+      chip.hidden = false;
+    } else {
+      lab.textContent = "commonly read as";
+      const note = document.createElement("span"); note.className = "t-note";
+      note.textContent = " — no record in the catalogue reads it that way";
+      lab.parentNode.append(note);
+    }
+  })();
 
   // Contents is navigation, not text: one surface, one verb — every tap here
   // jumps. It carries coordinates, not content: a title is corpus text, and
