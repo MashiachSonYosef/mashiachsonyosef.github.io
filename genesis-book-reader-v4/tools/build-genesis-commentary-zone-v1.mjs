@@ -27,6 +27,9 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { createRequire } from "node:module";
+import { exactK, K_RULE_ID } from "./k-normalization-v1.mjs";
+import { MAQAF } from "./zone-lib-v1.mjs";
+import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
 
 const require = createRequire(import.meta.url);
 const arg = (name, dflt) => {
@@ -86,6 +89,47 @@ const zoneEndOf = [];     // 1-based verse word -> 0-based zone word, last one
     throw new Error(`the zone holds ${section.words.length - zi} words the verse does not — refusing output`);
 }
 
+// ---- the commentary's own words -----------------------------------------
+//
+// commentary-words-rule-v1-separate-at-the-spaces-the-author-typed
+//
+// A commentary arrives as one run of the author's characters. To let a reader
+// open a word of it, the run has to be cut into words — and the only cut that
+// is not ours is the one already in the text: the spaces the author typed.
+// That cut keeps every piece, every piece is a run of the author's own
+// characters in the author's own order, and nothing is joined that was
+// written apart. It is the same clause the comma and the semicolon are
+// separated under, and it is checked the same way: put the pieces back
+// together and you must get the text.
+//
+// What prints is the piece exactly as written, punctuation and all. Only the
+// key that asks the store is stripped, and only for the asking — a word whose
+// characters leave nothing lexical behind carries no key, is printed, and
+// opens nothing. The maqaf is the one mark inside a word that divides it,
+// because the chain's own key rule preserves it; the pieces either side open
+// on their own and the maqaf prints between them without opening.
+const TOKEN_RULE_ID = "commentary-words-rule-v1-separate-at-the-spaces-the-author-typed";
+const tokenise = (text, ref) => {
+  const out = [];
+  for (const piece of String(text || "").split(/\s+/)) {
+    if (!piece) continue;
+    const w = { s: piece };
+    const k = exactK(piece);
+    if (!k) { out.push(w); continue; }
+    if (!k.includes(MAQAF)) { w.k = k; out.push(w); continue; }
+    const regions = piece.split(MAQAF).map((p) => ({ s: p, k: exactK(p) }));
+    if (regions.map((x) => x.k).join(MAQAF) !== k)
+      throw new Error(`${ref}: the pieces either side of a maqaf do not rejoin — refusing output`);
+    w.w = regions.filter((x) => x.k);
+    out.push(w);
+  }
+  // the separation invariant: put them back and you have the text
+  const back = out.map((x) => x.s).join("");
+  if (back !== String(text || "").replace(/\s+/gu, ""))
+    throw new Error(`${ref}: the words do not put the commentary back together — refusing output`);
+  return out;
+};
+
 // ---- the segments, by reference -----------------------------------------
 const families = [...(pack.commentary || []), ...(pack.targum || [])];
 const segOf = new Map();
@@ -123,6 +167,7 @@ for (const claim of map.claims) {
     license: he.license,
     source_url: seg.source_url,
     text: he.proof_text,
+    words: tokenise(he.proof_text, seg.ref),
     state: claim.claim_state,
     basis: hint.basis || hint.proof_basis,
     v_words: [vs, ve],
@@ -132,6 +177,34 @@ for (const claim of map.claims) {
   counts.attached += 1;
   counts.per_word[pos] = (counts.per_word[pos] || 0) + 1;
 }
+
+// ---- the readings, projected over the commentary's own keys --------------
+//
+// The same projection the book gets, over a different key list. A commentary
+// is a work, so its words open the way any word opens: the store is asked
+// about exactly the keys this sidecar contains, one reading per key is baked
+// so the panel paints without fetching 256 shards, and the card computes the
+// rest live from the store. A key the store does not answer for prints its
+// Hebrew and opens nothing, which is the honest result and not a gap.
+const store = openRouteStore(arg("store", "data/route-store"));
+const keys = new Set();
+for (const list of Object.values(words))
+  for (const e of list)
+    for (const w of e.words || []) {
+      if (w.w) w.w.forEach((r) => { if (r.k) keys.add(r.k); });
+      else if (w.k) keys.add(w.k);
+    }
+const projected = store.tableFor([...keys]);
+let carrying = 0, wordsTotal = 0;
+for (const list of Object.values(words))
+  for (const e of list)
+    for (const w of e.words || []) {
+      wordsTotal += 1;
+      const rs = w.w ? w.w : (w.k ? [{ k: w.k }] : []);
+      if (rs.some((r) => projected.table[r.k])) carrying += 1;
+    }
+counts.glossed_words = carrying;
+counts.words = wordsTotal;
 
 const out = {
   schema_version: "ZONE_COMMENTARY_V1",
@@ -145,10 +218,25 @@ const out = {
       "they spell the verse word; only open-licensed segments with ridable original-language text ship — " +
       "the license is the only gate; pack segments the map carries no word claim for are not attached " +
       "(the attachment map is the authority)",
+    word_layer: {
+      rule: TOKEN_RULE_ID,
+      key_rule: K_RULE_ID,
+      why: "a commentary is a work, so its own words open the way any word opens; the run is cut " +
+        "only at the spaces its author typed, and the pieces are checked to put the run back together",
+    },
+    gloss_layer: {
+      rule: `${GLOSS_RULE_ID}: ${GLOSS_RULE_TEXT}`,
+      gloss_table_sha256: projected.sha256,
+      keys_asked: projected.counts.keys_asked,
+      distinct_forms_glossed: projected.counts.glossed,
+      distinct_forms_bare: projected.counts.no_exact_route + projected.counts.no_displayable_route,
+      no_exact_route: projected.counts.no_exact_route,
+      no_displayable_route: projected.counts.no_displayable_route,
+    },
   },
   counts,
   units: { [UNIT]: { words } },
-  gloss: {},
+  gloss: projected.table,
 };
 
 if (VERIFY) {
@@ -189,3 +277,6 @@ writeFileSync(OUT, gzipSync(Buffer.from(body, "utf8"), { level: 9 }));
 console.log(`${OUT} · ${counts.attached} attachments · sha256 ${sha(body)}`);
 console.log(`  per word: ${JSON.stringify(counts.per_word)}`);
 console.log(`  skipped: ${counts.skipped_license} on licence, ${counts.skipped_no_text} with no text`);
+console.log(`  words: ${counts.words} · ${counts.glossed_words} carry a reading`);
+console.log(`  keys: ${projected.counts.keys_asked} asked · ${projected.counts.glossed} answered · ` +
+  `${projected.counts.no_exact_route} the catalog does not carry · ${projected.counts.no_displayable_route} unlicensed to print`);
