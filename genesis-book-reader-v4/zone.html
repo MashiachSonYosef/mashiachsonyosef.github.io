@@ -511,6 +511,8 @@
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif;
     text-align: right; }
   .c-mark-slot .c-att { display: block; color: var(--faint); font-size: 0.68rem; margin-top: 0.4rem; }
+  .c-mark-slot .c-undeclared { color: var(--shesh); border-inline-start: 2px solid var(--shesh);
+    padding-inline-start: 0.5rem; }
   /* The chooser: everything attached to this line, named by its work and by
      the word it sits on, because a line's handle covers words and this is the
      reader deciding between them. */
@@ -848,6 +850,10 @@
   const COORD = zone.emitted_from.coordinate_labels || { major: "section", minor: "paragraph" };
   const MAJOR = COORD.major, MINOR = COORD.minor;
   const MAJOR_C = MAJOR.charAt(0).toUpperCase() + MAJOR.slice(1);
+  // U+05BE HEBREW PUNCTUATION MAQAF, named by its codepoint and kept as a
+  // capture so that whatever this file splits a word on is the same character
+  // it draws back between the pieces. No character of the text is typed here.
+  const MAQAF_SPLIT = /(\u05be)/;
 
   const hud = document.getElementById("hud");
   // The reader's display law: route texts pack morpheme spans with "/"; the
@@ -1538,8 +1544,11 @@
     // the whole occurrence in the header, with the W you opened marked, so a
     // maqaf'd word never loses the half you are not reading
     if (regions.length > 1) {
+      // the marks that stand between the regions, taken off the occurrence
+      const marks = String(word.s || "").split(MAQAF_SPLIT).filter((_, i) => i % 2 === 1);
       regions.forEach((r, i) => {
-        if (i) b.append(Object.assign(document.createElement("span"), { className: "mq", textContent: "־" }));
+        if (i) b.append(Object.assign(document.createElement("span"),
+          { className: "mq", textContent: marks[i - 1] || "" }));
         const seg = document.createElement("span");
         seg.textContent = r.s;
         if (i !== regionIndex) seg.style.color = "var(--faint)";
@@ -1951,9 +1960,16 @@
     const regionEls = [];
     if (regions) {
       wb.classList.add("multi");
-      const printed = word.s.split("־");
+      // Split on the mark and keep it, so the character redrawn between the
+      // pieces is the one the source put there. Typing it here would be this
+      // file supplying a character of the text, which is the one thing it may
+      // never do — even a character it is certain of.
+      const printed = word.s.split(MAQAF_SPLIT);
       printed.forEach((piece, i) => {
-        if (i) w.append(Object.assign(document.createElement("span"), { className: "mq", textContent: "־" }));
+        if (i % 2 === 1) {
+          w.append(Object.assign(document.createElement("span"), { className: "mq", textContent: piece }));
+          return;
+        }
         if (!piece) return;
         const seg = document.createElement("span"); seg.className = "wr"; seg.textContent = piece;
         w.append(seg); regionEls.push(seg);
@@ -2372,6 +2388,9 @@
     const ps = [...el.querySelectorAll(".c-inline")];
     if (!ps.length) return false;
     const on = want === undefined ? ps.some((x) => x.hidden) : want;
+    // case 1 · the coordinate is the section, so the section is what carries
+    // the mark — every word of it, the same mark a single word gets.
+    el.querySelectorAll(".he-text .wb").forEach((w) => w.classList.toggle("c-open", on));
     // Pin the line the reader pressed, not the top of the section: the text
     // now opens directly beneath it, so that is the thing that must not move.
     holdingSection(el.querySelector(".c-bar") || el, () => {
@@ -2381,6 +2400,106 @@
   };
   // Handles are placed against a layout, so they are placed after the layout
   // exists — and again whenever it changes shape under them.
+  // commentary-scope-rule-v1 · what a commentary is about, and how much of it
+  //
+  // An attachment carries two things and neither is inferred here: the
+  // COORDINATE the chain gives it, which says what text it is on, and the
+  // CATCHWORD the commentary opens with, which says how much of that text.
+  // Every shape the reader will draw is named below. A shape not named here
+  // is refused where it stands, in plain English, and counted in the
+  // receipts — because a reader that guesses at scale is a reader that has
+  // to be undone at scale.
+  //
+  //   1. SECTION coordinate — the commentary is on the whole section. It
+  //      opens under the section and the whole section carries the mark.
+  //      (817 of 817 in I Kings.)
+  //   2. WORD coordinate with a catchword — it is on the run of words the
+  //      catchword quotes, read from that word. What it quoted stays above
+  //      it; what it did not goes below. (130 of 181 in Genesis, runs of one
+  //      to seven words.)
+  //   3. WORD coordinate with no catchword — it is on that word alone. The
+  //      chain named a word and nothing here extends it. (51 of 181.)
+  //   4. A coordinate spanning SEVERAL SECTIONS — one text about several
+  //      sections. Printed once; every section it covers carries a handle
+  //      onto that one printing, opened under the section pressed from. The
+  //      text is never repeated: a reader cannot tell two printings of one
+  //      comment from two comments. The panel names the range in plain
+  //      English, which describes the coordinate and claims nothing about
+  //      the text. No instance in either book yet.
+  //   5. A coordinate covering a WHOLE WORK — case 4 with the range being the
+  //      work. No instance yet.
+  //   6. ANYTHING ELSE — a catchword that matches a run starting somewhere
+  //      other than its own coordinate, a range that is not contiguous, a
+  //      grain the reader does not know — is refused: shown at the grain the
+  //      coordinate names, with a line saying its shape has not been
+  //      declared, and counted. Nothing is guessed.
+  //
+  // Cases 4 and 5 are declared and not yet drawn, because there is nothing to
+  // draw them against. When a book brings one, the reader refuses it visibly
+  // under case 6 rather than inventing a shape for it.
+
+  // How much of the verse a commentary is about.
+  //
+  // A commentary opens by quoting the words it comments on — the catchword —
+  // and that is the commentary telling us, in its own characters, what it
+  // covers. So the span is read off the entry itself and matched against the
+  // section's own words, starting at the word the chain attached it to.
+  // Nothing is inferred: the two signals agree on every one of the 130
+  // Genesis entries that quote at all, and never point anywhere else.
+  //
+  // Comparison strips the points from both sides: a commentary writes its
+  // catchword bare where the verse carries it pointed, and they are the same
+  // word. Only the comparison is stripped; nothing shown is.
+  const bareHe = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f\u0591-\u05c7]/g, "")
+    .replace(/[^\u05d0-\u05ea]/g, "");
+  const coveredRun = (entry, sec, pos) => scopeOf(entry, sec, pos).run;
+
+  /**
+   * The scope an attachment declares for itself. Returns
+   * { grain, run, shape, declared, why } and never guesses.
+   */
+  const scopeOf = (entry, sec, pos) => {
+    const words = (sec && Array.isArray(sec.words)) ? sec.words : [];
+    // case 4 / 5 · a coordinate that is not one section
+    const ref = entry && entry.covers;
+    if (ref && (ref.sections > 1 || ref.work)) {
+      return { grain: "range", run: words.length, shape: ref.work ? 5 : 4, declared: false,
+        why: "this commentary is carried on a range of sections; the reader has not been given a shape for that yet" };
+    }
+    if (pos === null || pos === undefined) {
+      return { grain: "section", run: words.length, shape: 1, declared: true, why: null };
+    }
+    const opening = String((entry && entry.text) || "").trim().split(/\s+/, 10).map(bareHe);
+    let n = 0;
+    while (n < opening.length && pos + n < words.length &&
+           opening[n] && opening[n] === bareHe(words[pos + n].s)) n += 1;
+    if (n > 0) return { grain: "word", run: n, shape: 2, declared: true, why: null };
+    // case 6 · it quotes, but not from where it was attached
+    const first = opening.find(Boolean);
+    if (first && words.some((w) => bareHe(w.s) === first)) {
+      return { grain: "word", run: 1, shape: 6, declared: false,
+        why: "this commentary opens by quoting a word of the verse other than the one it is attached to" };
+    }
+    return { grain: "word", run: 1, shape: 3, declared: true, why: null };
+  };
+
+  // Every attachment in the book, counted by the shape it declares. A book
+  // arriving with a shape the reader has no drawing for should say so on its
+  // own face, in its receipts, before anybody notices it looks wrong.
+  const scopeCensus = () => {
+    const units = (commentaryStore && commentaryStore.units) || null;
+    const tally = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, total: 0 };
+    if (!units) return tally;
+    for (const sec of zone.sections || []) {
+      const u = units[sec.unit];
+      if (!u) continue;
+      for (const [pos, list] of Object.entries(u.words || {}))
+        for (const e of list) { tally[scopeOf(e, sec, Number(pos)).shape] += 1; tally.total += 1; }
+      for (const e of u.section || []) { tally[scopeOf(e, sec, null).shape] += 1; tally.total += 1; }
+    }
+    return tally;
+  };
+
   const sectionHandlePlacers = [];
   const sectionOpeners = [];
   const nodeSections = {};
@@ -2489,29 +2608,6 @@
       return pool.filter((e) => e !== entry && answersWhom(e) === fam);
     };
 
-    // How much of the verse a commentary is about.
-    //
-    // A commentary opens by quoting the words it comments on — the catchword —
-    // and that is the commentary telling us, in its own characters, what it
-    // covers. So the span is read off the entry itself and matched against the
-    // section's own words, starting at the word the chain attached it to.
-    // Nothing is inferred: the two signals agree on every one of the 130
-    // Genesis entries that quote at all, and never point anywhere else.
-    //
-    // Comparison strips the points from both sides, because Rashi writes
-    // בראשית bare where the verse writes בְּרֵאשִׁית and they are the same word.
-    // Only the comparison is stripped; nothing shown is.
-    const bareHe = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f\u0591-\u05c7]/g, "")
-      .replace(/[^\u05d0-\u05ea]/g, "");
-    const coveredRun = (entry, sec, pos) => {
-      if (!sec || !Array.isArray(sec.words)) return 1;
-      const opening = String(entry.text || "").trim().split(/\s+/, 10).map(bareHe);
-      let n = 0;
-      while (n < opening.length && pos + n < sec.words.length &&
-             opening[n] && opening[n] === bareHe(sec.words[pos + n].s)) n += 1;
-      return Math.max(1, n);
-    };
-
     // No word carries the mark once nothing is open on it.
     const clearCovered = (root) => {
       if (root && root.querySelectorAll) root.querySelectorAll(".wb.c-open").forEach((w) => w.classList.remove("c-open"));
@@ -2557,6 +2653,12 @@
         // version it names may be an English edition, but no English text came
         // with it. A reader looking for one should be told that rather than
         // left to decide the page is broken.
+        // case 6 · the shape is refused, in plain English, where it stands
+        if (opts.scope && opts.scope.declared === false) {
+          const und = document.createElement("span"); und.className = "c-att c-undeclared";
+          und.textContent = `Shape not declared — ${opts.scope.why}. It is shown at the coordinate the chain gives it and nothing is assumed beyond that.`;
+          body.append(und);
+        }
         if (!/[A-Za-z]{3}/.test(String(selected.text || ""))) {
           const noEn = document.createElement("span"); noEn.className = "c-att c-noen";
           noEn.textContent = `No English recorded for this unit${selected.version_title ? ` · the version named is "${selected.version_title}"` : ""}`;
@@ -2661,7 +2763,8 @@
             ev.stopPropagation();
             holdingSection(sectionEl, () => {
               box.remove();
-              cmPanel(item.entries, i, sectionEl, item.wb, { covers: item.runFor(e) });
+              cmPanel(item.entries, i, sectionEl, item.wb,
+                { covers: item.runFor(e), scope: item.scopeFor(e) });
               placeLineHandles(sectionEl);
             });
           });
@@ -2700,9 +2803,10 @@
           const i = all.indexOf(wb);
           return i < 0 ? [wb] : all.slice(i, i + n);
         };
+        const scopeFor = (wb) => (e) => scopeOf(e, sec, wb.__cmAt || 0);
         for (const wb of marked) {
           const top = Math.round(wb.getBoundingClientRect().top);
-          const item = { wb, entries: wb.__cm, runFor: runFor(wb) };
+          const item = { wb, entries: wb.__cm, runFor: runFor(wb), scopeFor: scopeFor(wb) };
           const line = lines.find((l) => Math.abs(l.top - top) < 6);
           if (line) line.items.push(item);
           else lines.push({ top, items: [item], last: null });
@@ -2768,7 +2872,8 @@
       const all = [...s.querySelectorAll(".he-text .wb")];
       const i = all.indexOf(wb);
       const n = coveredRun(e, sec, wb.__cmAt || 0);
-      cmPanel(wb.__cm, which || 0, s, wb, { covers: i < 0 ? [wb] : all.slice(i, i + n) });
+      cmPanel(wb.__cm, which || 0, s, wb,
+        { covers: i < 0 ? [wb] : all.slice(i, i + n), scope: scopeOf(e, sec, wb.__cmAt || 0) });
       placeLineHandles(s);
     });
 
@@ -2811,7 +2916,7 @@
     for (const kind of ["he", "en", "both"]) {
       xpRow.append(exportButton(
         kind,
-        kind === "he" ? "א" : kind === "en" ? "A" : "א + A",
+        kind === "he" ? "hebrew" : kind === "en" ? "english" : "hebrew + english",
         xpNote,
         async () => ({ bundles: [await gatherSection(sec, s)], title: `${zone.work} ${sec.label || ""}`.trim() }),
         () => `${slug(zone.work)}-${slug(sec.label || String(secIdx))}-${kind}.md`,
@@ -2961,6 +3066,24 @@
     const ci = buildCommentaryIndex();
     if (ci) main.prepend(ci);
   }
+  // The census, on the page's own face. Shapes 1 to 3 are drawn; 4 and 5 are
+  // declared and not yet drawn; 6 is anything the reader does not recognise.
+  // A number in the last three is a book asking for a rule, not a bug to find.
+  {
+    const t = scopeCensus();
+    window.__scopeCensus = t;
+    const full = document.querySelector("#meta .receipts-full");
+    if (full && t.total) {
+      const named = t[1] + t[2] + t[3];
+      full.textContent += ` · ${t.total.toLocaleString()} commentary attachments, ` +
+        `${named.toLocaleString()} at a shape the reader draws ` +
+        `(${t[1].toLocaleString()} on a section, ${t[2].toLocaleString()} on the words they quote, ` +
+        `${t[3].toLocaleString()} on the word they are attached to)` +
+        (t[4] + t[5] + t[6]
+          ? `, and ${(t[4] + t[5] + t[6]).toLocaleString()} at a shape not yet declared, shown at the coordinate the chain gives them`
+          : ", and none at a shape it does not know");
+    }
+  }
 
   // ---- the book arrives a screen at a time ------------------------------
   //
@@ -3073,7 +3196,7 @@
     for (const kind of ["he", "en", "both"]) {
       row.append(exportButton(
         kind,
-        kind === "he" ? "א  hebrew" : kind === "en" ? "A  english" : "א + A  both",
+        kind === "he" ? "hebrew" : kind === "en" ? "english" : "hebrew + english",
         note, gatherBook, () => `${slug(zone.work)}-${kind}.md`,
       ));
     }
