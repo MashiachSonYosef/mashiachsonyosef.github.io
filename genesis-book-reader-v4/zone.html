@@ -725,6 +725,30 @@
   }
   const unpack = async (res) =>
     JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
+  // A record packs senses with ";" — but only the semicolons the provider wrote
+  // between senses. One inside its own parentheses is part of what the
+  // parenthesis says: "belonging to you (plural; more owners)" is one reading,
+  // and cutting it there hands the reader "belonging to you (plural" — a run
+  // with a bracket that never closes, which the provider never wrote.
+  //
+  // Same clause as the comma rule one layer down: the mark separates at
+  // parenthesis depth zero and nowhere else, and the pieces rejoin, character
+  // for character, into the text they came from.
+  const senseSplit = (text) => {
+    const t = String(text || "");
+    const out = []; let start = 0, d = 0;
+    for (let i = 0; i < t.length; i += 1) {
+      const c = t[i];
+      if (c === "(") d += 1;
+      else if (c === ")") { if (d > 0) d -= 1; }
+      else if (c === ";" && d === 0) { out.push(t.slice(start, i)); start = i + 1; }
+    }
+    out.push(t.slice(start));
+    // if they do not rejoin they are not its pieces, and it stays whole
+    if (out.join(";") !== t) return [t.trim()].filter(Boolean);
+    return out.map((x) => x.trim()).filter(Boolean);
+  };
+
   const licenseName = (posture) => {
     const v = String(posture || "").toLowerCase();
     if (!v) return "License unrecorded";
@@ -1505,7 +1529,7 @@
       if (!index.m_sources[mId]) return;
       const y = Number.parseInt(year, 10);
       const yr = Number.isInteger(y) ? y : Infinity;
-      String(routeText || "").split(";").map((s) => s.trim()).filter(Boolean).forEach((sense) => {
+      senseSplit(routeText).forEach((sense) => {
         const key = sense.toLowerCase();
         const g = groups.get(key);
         if (!g) groups.set(key, { text: sense, year: yr, ledger: Number(rank), records: [row] });
@@ -1788,7 +1812,7 @@
         // the reader picked is lit where it sits inside the record
         const dText = (text) => {
           const d = document.createElement("p"); d.className = "d-text"; d.dir = "auto";
-          String(text).split(";").map((x) => x.trim()).filter(Boolean).forEach((sense, i) => {
+          senseSplit(text).forEach((sense, i) => {
             if (i) d.append(Object.assign(document.createElement("span"), { className: "d-sep", textContent: " · " }));
             const s = document.createElement("span");
             s.className = sense.toLowerCase() === String(selected.text).toLowerCase() ? "d-sense on" : "d-sense";
