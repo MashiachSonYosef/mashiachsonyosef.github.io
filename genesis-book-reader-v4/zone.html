@@ -510,6 +510,9 @@
   .c-mark-text { display: block; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif;
     text-align: right; }
+  /* Once the words open, they are blocks and carry their own line height. */
+  .c-mark-text.c-worded { line-height: 1.35; }
+  .c-mark-text.c-worded .wb { margin-bottom: 0.3rem; }
   .c-mark-slot .c-att { display: block; color: var(--faint); font-size: 0.68rem; margin-top: 0.4rem; }
   .c-mark-slot .c-undeclared { color: var(--shesh); border-inline-start: 2px solid var(--shesh);
     padding-inline-start: 0.5rem; }
@@ -524,6 +527,9 @@
     border: 1px solid var(--line); background: var(--panel); color: var(--muted);
     border-radius: 999px; padding: 0.2rem 0.7rem; font: inherit; font-size: 0.74rem; cursor: pointer; }
   .c-choice:hover { border-color: var(--gold-dim); color: var(--shesh); }
+  .c-more { font: inherit; font-size: 0.72rem; color: var(--faint); background: none;
+    border: 0; border-bottom: 1px dotted var(--gold-dim); cursor: pointer; padding: 0 0 1px; }
+  .c-more:hover { color: var(--shesh); }
   .c-choice .c-on { color: var(--gold-dim); font-size: 0.95rem;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   .c-more { display: block; width: 100%; color: var(--faint); font-size: 0.68rem; }
@@ -1938,10 +1944,38 @@
       window.__commentaryStore = s;
     })
     .catch(() => {});
+  // commentary-order-rule-v1-oldest-first-by-the-dates-the-chain-records
+  //
+  // A word of Genesis 1:1 carries a hundred and six commentaries. They arrive
+  // in the order the attachment map happened to build them, which is no order
+  // at all: a reader meets a hundred and six works with nothing to navigate
+  // by, and the oldest answer to the one they are reading can sit sixtieth.
+  //
+  // So they are ordered by the composition dates the chain itself records,
+  // oldest first — the same antiquity clause the readings already follow, and
+  // for the same reason: it is a fact the corpus carries rather than a judgment
+  // this page makes. It says nothing about which commentary is right, or
+  // better, or more important. Where the chain records no date the entry keeps
+  // the map's own place, at the end, rather than being guessed a date.
+  //
+  // The list is sorted into a copy. What the sidecar carries is what it
+  // carried, so a check can still ask it what the corpus recorded.
+  const ORDER_RULE_ID = "commentary-order-rule-v1-oldest-first-by-the-dates-the-chain-records";
+  const orderedCache = new Map();
+  const byRecordedDate = (list) => {
+    const at = new Map(list.map((e, i) => [e, i]));
+    const yr = (e) => (e.years && e.years.length && Number.isFinite(Number(e.years[0]))
+      ? Number(e.years[0]) : Infinity);
+    return [...list].sort((a, b) => yr(a) - yr(b) || at.get(a) - at.get(b));
+  };
   const commentaryFor = (unitId, wordPos) => {
     const u = commentaryStore && commentaryStore.units && commentaryStore.units[unitId];
     if (!u || !u.words) return null;
-    return u.words[String(wordPos)] || null;
+    const raw = u.words[String(wordPos)];
+    if (!raw) return null;
+    const ck = `${unitId}|${wordPos}`;
+    if (!orderedCache.has(ck)) orderedCache.set(ck, byRecordedDate(raw));
+    return orderedCache.get(ck);
   };
   // Whether any commentary in this zone is anchored to a word rather than to a
   // whole section. It decides one line of help: a section's commentary now
@@ -2691,6 +2725,8 @@
     const cmPanel = (entries, i0, sectionEl, host, opts = {}) => {
       const slot = document.createElement("span"); slot.className = "c-mark-slot";
       let selected = entries[i0] || entries[0];
+      // the list is built before the placer exists, and calls it after
+      const settleRef = { fn: () => {} };
       const body = document.createElement("span"); body.className = "c-mark-body";
       const paint = () => {
         body.replaceChildren();
@@ -2716,8 +2752,26 @@
         });
         lab.append(" ", shut);
         body.append(lab);
+        // A commentary is a work, so its own words open the way any word of the
+        // book opens: the same block, the same card, the same readings out of
+        // the same store, each with the licence of the record that carries it.
+        // Nothing here is translated. What stands under a word is a reading
+        // somebody licensed, or nothing at all — 31,089 of the 37,900 words of
+        // Genesis commentary carry one and the rest print bare.
         const t = document.createElement("span"); t.className = "c-mark-text";
-        t.lang = "he"; t.dir = "rtl"; t.textContent = selected.text || "";
+        t.lang = "he"; t.dir = "rtl";
+        const cWords = (selected.words && selected.words.length) ? selected.words : null;
+        if (cWords && commentaryStore && commentaryStore.gloss) {
+          t.classList.add("c-worded");
+          cWords.forEach((word) => {
+            const b = wordBlock(word, commentaryStore.gloss);
+            wireWord(b, word, commentaryStore, null, null);
+            t.append(b.wb, document.createTextNode(" "));
+          });
+        } else {
+          // an entry the sidecar carries no words for still prints, whole
+          t.textContent = selected.text || "";
+        }
         body.append(t);
         const note = document.createElement("span"); note.className = "c-att";
         note.textContent = selected.state === "PROVEN_EDGE"
@@ -2729,9 +2783,10 @@
         // with it. A reader looking for one should be told that rather than
         // left to decide the page is broken.
         // case 6 · the shape is refused, in plain English, where it stands
-        if (opts.scope && opts.scope.declared === false) {
+        const sc = opts.scopeFor ? opts.scopeFor(selected) : opts.scope;
+        if (sc && sc.declared === false) {
           const und = document.createElement("span"); und.className = "c-att c-undeclared";
-          und.textContent = `Shape not declared — ${opts.scope.why}. It is shown at the coordinate the chain gives it and nothing is assumed beyond that.`;
+          und.textContent = `Shape not declared — ${sc.why}. It is shown at the coordinate the chain gives it and nothing is assumed beyond that.`;
           body.append(und);
         }
         // Two measurements of the same thing, printed side by side where they
@@ -2739,12 +2794,11 @@
         // a run of the verse in its own characters. Neither is corrected
         // against the other here: the mark follows the chain, and the reader
         // is told what the text in front of them says.
-        if (opts.scope && opts.scope.shape === 2 &&
-            opts.scope.quoted > 0 && opts.scope.quoted !== opts.scope.run) {
+        if (sc && sc.shape === 2 && sc.quoted > 0 && sc.quoted !== sc.run) {
           const q = document.createElement("span"); q.className = "c-att c-two-counts";
           const w = (n) => `${n} ${n === 1 ? "word" : "words"}`;
-          q.textContent = `The chain records this comment on ${w(opts.scope.run)}; ` +
-            `its own opening quotation runs to ${w(opts.scope.quoted)}. ` +
+          q.textContent = `The chain records this comment on ${w(sc.run)}; ` +
+            `its own opening quotation runs to ${w(sc.quoted)}. ` +
             `The mark follows the chain.`;
           body.append(q);
         }
@@ -2765,8 +2819,12 @@
           if (e === selected) o.selected = true;
           sel.append(o);
         });
-        sel.addEventListener("change", () => { selected = entries[Number(sel.value)] || entries[0]; paint(); });
-        pick.append(`${entries.length} units on this word `, sel);
+        sel.addEventListener("change", () => {
+          selected = entries[Number(sel.value)] || entries[0];
+          holdingSection(sectionEl, () => { paint(); settleRef.fn(); placeLineHandles(sectionEl); });
+        });
+        // An ordered list with the order unsaid is a claim. Say it.
+        pick.append(`${entries.length} on this word, oldest first by the dates the chain records `, sel);
         slot.append(pick);
       }
       slot.append(body);
@@ -2783,16 +2841,27 @@
         }
       }
       slot.className = opts.under ? "c-mark-slot c-counter" : "c-mark-slot";
-      // Everything the commentary quoted stays above it; everything it did not
-      // goes below. One word or seven, it is the same rule and the commentary
-      // is the one that decides.
-      const covers = opts.covers && opts.covers.length ? opts.covers : [host];
-      const last = covers[covers.length - 1] || host;
-      last.after(slot);
-      // Which words those are says so only to a reader who already knows to
-      // look. Mark them, so the words and their commentary are one thing on the
-      // page and not two that happen to be adjacent.
-      for (const w of covers) if (w.classList && w.classList.contains("wb")) w.classList.add("c-open");
+      // Everything the span covers stays above it; everything it does not goes
+      // below. One word or seven, the chain decides and the reader sees it.
+      //
+      // This settles again every time the reader picks a different unit from
+      // the list, because the next unit has its own span: leaving the mark
+      // where the last one put it would print one commentary's reach under
+      // another's text, which is the page telling a reader something untrue
+      // about what they are looking at.
+      const settle = () => {
+        const cov = (opts.runFor ? opts.runFor(selected) : opts.covers) || [];
+        const covers = cov.length ? cov : [host];
+        if (!opts.under) clearCovered(sectionEl.querySelector(".he-text") || sectionEl);
+        const last = covers[covers.length - 1] || host;
+        last.after(slot);
+        // Which words those are says so only to a reader who already knows to
+        // look. Mark them, so the words and their commentary are one thing on
+        // the page and not two that happen to be adjacent.
+        for (const w of covers) if (w.classList && w.classList.contains("wb")) w.classList.add("c-open");
+      };
+      settleRef.fn = settle;
+      settle();
 
       // A commentary that answers this one gets its own handle, and what it
       // opens opens directly beneath — the one place two stand open together,
@@ -2833,34 +2902,64 @@
     // attached to any word on that line, named by its work and by the word it
     // is on, because a line's handle covers words and the reader is choosing
     // between them.
-    const cmChooser = (line, sectionEl) => {
+    const cmChooser = (line, sectionEl, showAll) => {
       const box = document.createElement("span"); box.className = "c-mark-slot c-choose";
+      box.__all = !!showAll;
       const lab = document.createElement("span"); lab.className = "lab";
-      lab.textContent = `${line.reduce((n, x) => n + x.entries.length, 0)} attached to this line`;
+      lab.textContent = `${line.reduce((n, x) => n + x.entries.length, 0)} attached to this line` +
+        `, by work, oldest first by the dates the chain records`;
       box.append(lab);
       const list = document.createElement("span"); list.className = "c-choices";
       for (const item of line) {
-        for (let i = 0; i < item.entries.length; i += 1) {
-          const e = item.entries[i];
-          const w = commentaryWorkOf(e);
+        // One button per work, not per unit. A reader choosing among a hundred
+        // and six does not want six buttons that all say the same work, and
+        // showing them costs the place of every work standing behind them —
+        // which is how the oldest answer to what you are reading ends up
+        // sixtieth. The works come out in the order their units already stand
+        // in, which is oldest first by the dates the chain records, and a work
+        // carrying more than one unit says how many.
+        const works = []; const seen = new Map();
+        item.entries.forEach((e, i) => {
+          const name = commentaryWorkOf(e).family_en || e.title || e.ref;
+          const had = seen.get(name);
+          if (had) { had.n += 1; return; }
+          const g = { name, at: i, n: 1 }; seen.set(name, g); works.push(g);
+        });
+        for (let j = 0; j < works.length; j += 1) {
+          const g = works[j];
+          const e = item.entries[g.at];
           const btn = document.createElement("button"); btn.type = "button"; btn.className = "c-choice";
           const on = document.createElement("span"); on.className = "c-on";
           on.lang = "he"; on.dir = "rtl"; on.textContent = item.wb.querySelector(".w").textContent;
           btn.append(on, document.createTextNode(" "));
-          btn.append(`${w.family_en || w.title || e.ref}${item.entries.length > 1 ? ` · ${i + 1} of ${item.entries.length}` : ""}`);
+          btn.append(`${g.name}${g.n > 1 ? ` · ${g.n}` : ""}`);
           btn.addEventListener("click", (ev) => {
             ev.stopPropagation();
             holdingSection(sectionEl, () => {
               box.remove();
-              cmPanel(item.entries, i, sectionEl, item.wb,
-                { covers: item.runFor(e), scope: item.scopeFor(e) });
+              // the placers are handed over, not their results: from inside,
+              // the reader can pick a different unit, and that unit's span is
+              // its own
+              cmPanel(item.entries, g.at, sectionEl, item.wb,
+                { covers: item.runFor(e), scope: item.scopeFor(e),
+                  runFor: item.runFor, scopeFor: item.scopeFor });
               placeLineHandles(sectionEl);
             });
           });
           list.append(btn);
-          if (i >= 11 && item.entries.length > 12) {
-            const more = document.createElement("span"); more.className = "c-more";
-            more.textContent = `+ ${item.entries.length - 12} more on this word — open one and use its list`;
+          // The rest are reached by a press rather than named and withheld:
+          // fifty-one buttons open at once is a wall, and fifty-one a reader
+          // cannot reach is a limit. Neither is acceptable.
+          if (j >= 11 && works.length > 12 && !box.__all) {
+            const more = document.createElement("button"); more.type = "button"; more.className = "c-more";
+            more.textContent = `show the other ${works.length - 12} works on this word`;
+            more.addEventListener("click", (ev) => {
+              ev.stopPropagation();
+              holdingSection(sectionEl, () => {
+                const fresh = cmChooser(line, sectionEl, true);
+                box.replaceWith(fresh);
+              });
+            });
             list.append(more);
             break;
           }
@@ -2879,9 +2978,13 @@
       if (!para) return;
       for (let pass = 0; pass < 3; pass += 1) {
         para.querySelectorAll(".c-mark-row, .c-choose").forEach((x) => x.remove());
-        const marked = [...para.querySelectorAll(".wb")].filter((wb) => wb.__cm && wb.__cm.length);
+        // the verse's own words. A commentary's words are blocks too, and they
+        // stand inside an open panel — they are its text, not this verse's, and
+        // a handle must never be placed among them.
+        const verseOnly = [...para.querySelectorAll(".wb")].filter((w) => !w.closest(".c-mark-slot"));
+        const marked = verseOnly.filter((wb) => wb.__cm && wb.__cm.length);
         if (!marked.length) return;
-        const all = [...para.querySelectorAll(".wb")];
+        const all = verseOnly;
         const lines = [];
         // Which words an entry covers is the span the chain recorded for it,
         // read from the word it is attached to. The run is taken from the
@@ -2889,8 +2992,9 @@
         // rewrapping around whatever is already open.
         const runFor = (wb) => (e) => {
           const n = coveredRun(e, sec, wb.__cmAt || 0);
-          const i = all.indexOf(wb);
-          return i < 0 ? [wb] : all.slice(i, i + n);
+          const live = [...para.querySelectorAll(".wb")].filter((z) => !z.closest(".c-mark-slot"));
+          const i = live.indexOf(wb);
+          return i < 0 ? [wb] : live.slice(i, i + n);
         };
         const scopeFor = (wb) => (e) => scopeOf(e, sec, wb.__cmAt || 0);
         for (const wb of marked) {
@@ -2958,11 +3062,17 @@
     sectionOpeners.push((wb, which) => {
       if (!wb.__cm || !wb.__cm.length) return;
       const e = wb.__cm[which || 0];
-      const all = [...s.querySelectorAll(".he-text .wb")];
-      const i = all.indexOf(wb);
-      const n = coveredRun(e, sec, wb.__cmAt || 0);
+      // the verse's own words, computed at the moment they are needed — a
+      // commentary's words are blocks too, and they are not the verse's
+      const runFor = (x) => {
+        const all = [...s.querySelectorAll(".he-text .wb")].filter((z) => !z.closest(".c-mark-slot"));
+        const i = all.indexOf(wb);
+        const n = coveredRun(x, sec, wb.__cmAt || 0);
+        return i < 0 ? [wb] : all.slice(i, i + n);
+      };
+      const scopeFor = (x) => scopeOf(x, sec, wb.__cmAt || 0);
       cmPanel(wb.__cm, which || 0, s, wb,
-        { covers: i < 0 ? [wb] : all.slice(i, i + n), scope: scopeOf(e, sec, wb.__cmAt || 0) });
+        { covers: runFor(e), scope: scopeFor(e), runFor, scopeFor });
       placeLineHandles(s);
     });
 
