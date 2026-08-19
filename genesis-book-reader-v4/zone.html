@@ -203,6 +203,10 @@
      it, closing the card left nothing to say which word had just been changed,
      and the reader had to hold that in their head. It is a tint rather than a
      border so nothing on the line moves when it appears. */
+  /* A word with its commentary standing open beneath it. */
+  .wb.c-open { background: rgba(214, 178, 90, 0.16); border-radius: 0.25rem;
+    box-shadow: inset 0 -2px 0 var(--gold-dim); }
+  .wb.c-open .w { color: var(--gold); }
   .wb.chosen { background: rgba(214, 178, 90, 0.1); border-radius: 0.25rem; }
   .wb.chosen.active { background: rgba(214, 178, 90, 0.16); }
   /* An occurrence written with a maqaf is one block and more than one W. The
@@ -245,7 +249,11 @@
   body.en .w { order: 2; font-size: 1.02rem; color: #b3a077; margin-top: 0.04rem; }
   body.en .wb.active .g { color: var(--gold); }
 
-  #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; }
+  #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
+  /* Which way the words run, and nothing else. The two readers differ in the
+     direction of the flow, so that is what is said under them. */
+  .mode-pick { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
+  .mode-dir { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--faint); }
   .mode-btn { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
   .mode-btn.on { background: var(--gold); color: #171105; border-color: var(--gold); font-weight: bold; }
@@ -454,7 +462,13 @@
      covers. It is inline, so it reads as part of the line; what it opens is
      block-level, so the words after it fall below and the words above it are
      what it is about. */
-  .c-mark-row { display: block; direction: ltr; text-align: left; margin: 0.1rem 0 0.5rem; }
+  /* Under the start of the line, not its end. The word a handle opens on is the
+     first one it covers — the one left standing above the commentary — so the
+     handle belongs beneath that word, where the reader's eye returns to. The
+     pill's own text stays left-to-right; only where the row sits follows the
+     direction the words are running in. */
+  .c-mark-row { display: block; direction: ltr; text-align: right; margin: 0.1rem 0 0.5rem; }
+  body.en .c-mark-row { text-align: left; }
   .c-mark { display: inline-flex; align-items: center; gap: 0.35rem; vertical-align: middle;
     direction: ltr; margin: 0; padding: 0.1rem 0.5rem;
     border: 1px solid var(--gold-dim); border-radius: 999px; background: var(--panel2);
@@ -661,8 +675,8 @@
   <p id="meta">Loading the zone…</p>
   <nav id="books"><a href="/" class="home">The Tabernacle</a> · books: <a href="/genesis" class="bk" title="book title בראשית · searchable by Genesis"><span lang="he" dir="rtl">בראשית</span> <span class="bk-en">Genesis</span></a> · <a href="/1kings" class="bk" title="no book title is recorded in the ledger · searchable by I Kings"><span class="bk-en">I Kings</span></a></nav>
   <div id="modeRow">
-    <button type="button" class="mode-btn on" id="modeHe">Hebrew reader</button>
-    <button type="button" class="mode-btn" id="modeEn">English reader</button>
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
     <button type="button" class="mode-btn" id="layerC" hidden></button>
   </div>
 </header>
@@ -2429,6 +2443,11 @@
       return pool.filter((e) => e !== entry && answersWhom(e) === fam);
     };
 
+    // No word carries the mark once nothing is open on it.
+    const clearCovered = (root) => {
+      if (root && root.querySelectorAll) root.querySelectorAll(".wb.c-open").forEach((w) => w.classList.remove("c-open"));
+    };
+
     const cmPanel = (entries, i0, sectionEl, host, opts = {}) => {
       const slot = document.createElement("span"); slot.className = "c-mark-slot";
       let selected = entries[i0] || entries[0];
@@ -2449,7 +2468,11 @@
         shut.textContent = "close"; shut.setAttribute("aria-label", "Close this commentary");
         shut.addEventListener("click", (ev) => {
           ev.stopPropagation();
-          holdingSection(sectionEl, () => { slot.remove(); placeLineHandles(sectionEl); });
+          holdingSection(sectionEl, () => {
+            slot.remove();
+            clearCovered(sectionEl);
+            placeLineHandles(sectionEl);
+          });
         });
         lab.append(" ", shut);
         body.append(lab);
@@ -2494,10 +2517,17 @@
       // to the first and belongs under it.
       if (!opts.under) {
         const para0 = sectionEl.querySelector(".he-text");
-        if (para0) para0.querySelectorAll(".c-mark-slot:not(.c-choose)").forEach((x) => x.remove());
+        if (para0) {
+          para0.querySelectorAll(".c-mark-slot:not(.c-choose)").forEach((x) => x.remove());
+          clearCovered(para0);
+        }
       }
       slot.className = opts.under ? "c-mark-slot c-counter" : "c-mark-slot";
       host.after(slot);
+      // The word this is open on stays above it, which says so only to a reader
+      // who already knows to look. Mark it, so the word and its commentary are
+      // one thing on the page and not two that happen to be adjacent.
+      if (host.classList && host.classList.contains("wb")) host.classList.add("c-open");
 
       // A commentary that answers this one gets its own handle, and what it
       // opens opens directly beneath — the one place two stand open together,
