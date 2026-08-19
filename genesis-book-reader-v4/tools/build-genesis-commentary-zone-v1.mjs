@@ -1,0 +1,191 @@
+#!/usr/bin/env node
+// Synthesis lane · zone-commentary-rule-v1-word-anchored-open-license-only
+//
+// The Genesis 1:1 commentary sidecar, emitted from its two sources: the
+// commentary pack the chain sealed, and the attachment map that says which
+// words of the verse each segment sits on. It exists because the sidecar it
+// emits did not: the tool that first made it was written and run in a session
+// whose workspace is gone, so the published file had no re-runnable source.
+// A published byte with no build step behind it is a byte nobody can check.
+//
+// Two things this does not do. It does not decide a span — the map decides,
+// and the map's own generator is beside this file. It does not reach past the
+// licence: a segment whose record is not open, or carries no original-language
+// text, is not emitted, and is counted where it was dropped.
+//
+//   --pack   the sealed commentary pack
+//   --map    the attachment map
+//   --zone   the book zone, for the words the anchors land on
+//   --unit   the section id inside that zone
+//   --out    where to write
+//   --verify compare against an existing sidecar and print the differences
+//            rather than writing
+//
+// Run: node tools/build-genesis-commentary-zone-v1.mjs --verify data/zones/genesis-commentary.bin
+
+import { readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { gzipSync, gunzipSync } from "node:zlib";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+const arg = (name, dflt) => {
+  const i = process.argv.indexOf(`--${name}`);
+  return i > 0 && process.argv[i + 1] ? process.argv[i + 1] : dflt;
+};
+
+const PACK = arg("pack", "data/genesis-1-1-commentary-2026-07-17.js");
+const MAP = arg("map", "data/v4-genesis-1-1-attachment-map-2026-08-10.js");
+const ZONE = arg("zone", "data/zones/genesis.bin");
+const UNIT = arg("unit", "genesis-1-1");
+const OUT = arg("out", "data/zones/genesis-commentary.bin");
+const VERIFY = arg("verify", null);
+
+const sha = (s) => createHash("sha256").update(s).digest("hex");
+const readZone = (f) => JSON.parse(gunzipSync(readFileSync(f)).toString("utf8"));
+
+globalThis.window = {};
+const packBody = readFileSync(PACK, "utf8");
+require(PACK.startsWith("/") ? PACK : `${process.cwd()}/${PACK}`);
+const pack = window.GENESIS_1_1_COMMENTARY;
+const mapBody = readFileSync(MAP, "utf8");
+require(MAP.startsWith("/") ? MAP : `${process.cwd()}/${MAP}`);
+const map = window.V2_GENESIS_1_1_ATTACHMENT_MAP;
+
+const zone = readZone(ZONE);
+const section = (zone.sections || []).find((s) => s.unit === UNIT);
+if (!section) throw new Error(`${ZONE} carries no section ${UNIT} — refusing output`);
+
+// ---- verse word -> zone word -------------------------------------------
+//
+// The map counts the verse's own words. The zone may hold more of them than
+// the verse does, because a zone word is a morpheme and one written word can
+// be several. The two are lined up by running the zone's keys together until
+// they spell the verse word, which is the only join that needs no rule of its
+// own: it either comes out exactly or it does not come out.
+const bare = (t) => String(t || "").replace(/[֑-ׇ׳״]/gu, "")
+  .replace(/־/gu, "").replace(/[^א-ת]/gu, "");
+const verseWords = String(pack.base.hebrew).split(/\s+/u).filter(Boolean);
+const zoneStartOf = [];   // 1-based verse word -> 0-based zone word
+const zoneEndOf = [];     // 1-based verse word -> 0-based zone word, last one
+{
+  let zi = 0;
+  verseWords.forEach((vw, i) => {
+    const want = bare(vw);
+    let got = "", first = zi;
+    while (zi < section.words.length && got !== want) {
+      got += bare(section.words[zi].k || section.words[zi].s);
+      zi += 1;
+    }
+    if (got !== want)
+      throw new Error(`verse word ${i + 1} does not spell out of the zone's words — refusing output`);
+    zoneStartOf[i + 1] = first;
+    zoneEndOf[i + 1] = zi - 1;
+  });
+  if (zi !== section.words.length)
+    throw new Error(`the zone holds ${section.words.length - zi} words the verse does not — refusing output`);
+}
+
+// ---- the segments, by reference -----------------------------------------
+const families = [...(pack.commentary || []), ...(pack.targum || [])];
+const segOf = new Map();
+for (const f of families)
+  for (const s of f.segments || []) segOf.set(s.ref, { seg: s, family: f });
+
+// ---- emit ----------------------------------------------------------------
+const words = {};
+const counts = { attached: 0, per_word: {}, skipped_license: 0, skipped_no_text: 0, glossed_words: 0 };
+
+for (const claim of map.claims) {
+  const found = segOf.get(claim.commentary_unit_ref);
+  if (!found) continue;
+  const { seg, family } = found;
+  const he = seg.he || {};
+  // the licence is the only gate
+  if (he.license_disposition !== "OPEN_OR_PUBLIC_DOMAIN") { counts.skipped_license += 1; continue; }
+  if (!he.source_text_present || !String(he.proof_text || "").trim()) { counts.skipped_no_text += 1; continue; }
+
+  const hint = claim.visual_hint || claim.asserted_edge || null;
+  if (!hint || !hint.start_word_index) continue;
+  const vs = hint.start_word_index, ve = hint.end_word_index;
+  const pos = zoneStartOf[vs];
+  if (pos === undefined) continue;
+
+  (words[pos] = words[pos] || []).push({
+    ref: seg.ref,
+    he_ref: seg.he_ref,
+    title: claim.display_title,
+    topic: claim.topic,
+    family_en: family.collective_title_en || family.family_title,
+    family_he: family.collective_title_he,
+    years: seg.composition_date_evidence || [],
+    version_title: he.version_title,
+    license: he.license,
+    source_url: seg.source_url,
+    text: he.proof_text,
+    state: claim.claim_state,
+    basis: hint.basis || hint.proof_basis,
+    v_words: [vs, ve],
+    // the same span, on the words the reader actually draws
+    z_words: [zoneStartOf[vs], zoneEndOf[ve] + 1],
+  });
+  counts.attached += 1;
+  counts.per_word[pos] = (counts.per_word[pos] || 0) + 1;
+}
+
+const out = {
+  schema_version: "ZONE_COMMENTARY_V1",
+  rule_id: "zone-commentary-rule-v1-word-anchored-open-license-only",
+  work: zone.work || "Genesis",
+  emitted_from: {
+    attachment_map: { id: map.map_id, sha256: sha(mapBody) },
+    commentary_pack: { id: `v-commentary-poc-genesis-1-1-${pack.generated_on}`, sha256: sha(packBody) },
+    note: "claims ride with their own map state (PROVEN_EDGE vs VISUAL_SUGGESTION_ONLY) and basis; " +
+      "verse-word anchors mapped to the zone morpheme words by running the zone's keys together until " +
+      "they spell the verse word; only open-licensed segments with ridable original-language text ship — " +
+      "the license is the only gate; pack segments the map carries no word claim for are not attached " +
+      "(the attachment map is the authority)",
+  },
+  counts,
+  units: { [UNIT]: { words } },
+  gloss: {},
+};
+
+if (VERIFY) {
+  const was = readZone(VERIFY);
+  const wasWords = ((was.units || {})[UNIT] || {}).words || {};
+  const flat = (w) => {
+    const m = new Map();
+    for (const [p, list] of Object.entries(w)) for (const e of list) m.set(e.ref, { pos: Number(p), e });
+    return m;
+  };
+  const A = flat(wasWords), B = flat(words);
+  const diffs = { only_before: [], only_after: [], field: {} };
+  for (const ref of A.keys()) if (!B.has(ref)) diffs.only_before.push(ref);
+  for (const ref of B.keys()) if (!A.has(ref)) diffs.only_after.push(ref);
+  const keys = ["ref", "he_ref", "title", "topic", "family_en", "family_he", "years",
+    "version_title", "license", "source_url", "text", "state", "basis", "v_words", "z_words"];
+  for (const [ref, b] of B) {
+    const a = A.get(ref); if (!a) continue;
+    if (a.pos !== b.pos) (diffs.field.attached_word = diffs.field.attached_word || []).push(ref);
+    for (const k of keys)
+      if (JSON.stringify(a.e[k]) !== JSON.stringify(b.e[k]))
+        (diffs.field[k] = diffs.field[k] || []).push(`${ref}: ${JSON.stringify(a.e[k])} -> ${JSON.stringify(b.e[k])}`);
+  }
+  console.log(`rebuilt ${counts.attached} attachments · the published sidecar carries ${(was.counts || {}).attached}`);
+  console.log(`  in the published file only : ${diffs.only_before.length}`);
+  console.log(`  in the rebuild only        : ${diffs.only_after.length}`);
+  for (const [k, v] of Object.entries(diffs.field)) {
+    console.log(`  ${k}: ${v.length} differ`);
+    v.slice(0, 4).forEach((x) => console.log(`      ${x}`));
+  }
+  if (!Object.keys(diffs.field).length && !diffs.only_before.length && !diffs.only_after.length)
+    console.log("  every field of every attachment is identical");
+  process.exit(0);
+}
+
+const body = JSON.stringify(out);
+writeFileSync(OUT, gzipSync(Buffer.from(body, "utf8"), { level: 9 }));
+console.log(`${OUT} · ${counts.attached} attachments · sha256 ${sha(body)}`);
+console.log(`  per word: ${JSON.stringify(counts.per_word)}`);
+console.log(`  skipped: ${counts.skipped_license} on licence, ${counts.skipped_no_text} with no text`);
