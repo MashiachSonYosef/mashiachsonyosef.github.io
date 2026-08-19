@@ -2489,6 +2489,29 @@
       return pool.filter((e) => e !== entry && answersWhom(e) === fam);
     };
 
+    // How much of the verse a commentary is about.
+    //
+    // A commentary opens by quoting the words it comments on — the catchword —
+    // and that is the commentary telling us, in its own characters, what it
+    // covers. So the span is read off the entry itself and matched against the
+    // section's own words, starting at the word the chain attached it to.
+    // Nothing is inferred: the two signals agree on every one of the 130
+    // Genesis entries that quote at all, and never point anywhere else.
+    //
+    // Comparison strips the points from both sides, because Rashi writes
+    // בראשית bare where the verse writes בְּרֵאשִׁית and they are the same word.
+    // Only the comparison is stripped; nothing shown is.
+    const bareHe = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f\u0591-\u05c7]/g, "")
+      .replace(/[^\u05d0-\u05ea]/g, "");
+    const coveredRun = (entry, sec, pos) => {
+      if (!sec || !Array.isArray(sec.words)) return 1;
+      const opening = String(entry.text || "").trim().split(/\s+/, 10).map(bareHe);
+      let n = 0;
+      while (n < opening.length && pos + n < sec.words.length &&
+             opening[n] && opening[n] === bareHe(sec.words[pos + n].s)) n += 1;
+      return Math.max(1, n);
+    };
+
     // No word carries the mark once nothing is open on it.
     const clearCovered = (root) => {
       if (root && root.querySelectorAll) root.querySelectorAll(".wb.c-open").forEach((w) => w.classList.remove("c-open"));
@@ -2569,11 +2592,16 @@
         }
       }
       slot.className = opts.under ? "c-mark-slot c-counter" : "c-mark-slot";
-      host.after(slot);
-      // The word this is open on stays above it, which says so only to a reader
-      // who already knows to look. Mark it, so the word and its commentary are
-      // one thing on the page and not two that happen to be adjacent.
-      if (host.classList && host.classList.contains("wb")) host.classList.add("c-open");
+      // Everything the commentary quoted stays above it; everything it did not
+      // goes below. One word or seven, it is the same rule and the commentary
+      // is the one that decides.
+      const covers = opts.covers && opts.covers.length ? opts.covers : [host];
+      const last = covers[covers.length - 1] || host;
+      last.after(slot);
+      // Which words those are says so only to a reader who already knows to
+      // look. Mark them, so the words and their commentary are one thing on the
+      // page and not two that happen to be adjacent.
+      for (const w of covers) if (w.classList && w.classList.contains("wb")) w.classList.add("c-open");
 
       // A commentary that answers this one gets its own handle, and what it
       // opens opens directly beneath — the one place two stand open together,
@@ -2633,7 +2661,7 @@
             ev.stopPropagation();
             holdingSection(sectionEl, () => {
               box.remove();
-              cmPanel(item.entries, i, sectionEl, item.wb);
+              cmPanel(item.entries, i, sectionEl, item.wb, { covers: item.runFor(e) });
               placeLineHandles(sectionEl);
             });
           });
@@ -2663,11 +2691,21 @@
         if (!marked.length) return;
         const all = [...para.querySelectorAll(".wb")];
         const lines = [];
+        // Which words an entry covers is the entry's own catchword read against
+        // the verse, from the word it is attached to. The run is taken from the
+        // words as they stand in the paragraph, so it survives the line
+        // rewrapping around whatever is already open.
+        const runFor = (wb) => (e) => {
+          const n = coveredRun(e, sec, wb.__cmAt || 0);
+          const i = all.indexOf(wb);
+          return i < 0 ? [wb] : all.slice(i, i + n);
+        };
         for (const wb of marked) {
           const top = Math.round(wb.getBoundingClientRect().top);
+          const item = { wb, entries: wb.__cm, runFor: runFor(wb) };
           const line = lines.find((l) => Math.abs(l.top - top) < 6);
-          if (line) line.items.push({ wb, entries: wb.__cm });
-          else lines.push({ top, items: [{ wb, entries: wb.__cm }], last: null });
+          if (line) line.items.push(item);
+          else lines.push({ top, items: [item], last: null });
         }
         // the handle goes under the whole line, so it is anchored to the line's
         // last word rather than to its last commented one — anchoring it to the
@@ -2726,7 +2764,11 @@
     // there is one way a commentary opens and not two
     sectionOpeners.push((wb, which) => {
       if (!wb.__cm || !wb.__cm.length) return;
-      cmPanel(wb.__cm, which || 0, s, wb);
+      const e = wb.__cm[which || 0];
+      const all = [...s.querySelectorAll(".he-text .wb")];
+      const i = all.indexOf(wb);
+      const n = coveredRun(e, sec, wb.__cmAt || 0);
+      cmPanel(wb.__cm, which || 0, s, wb, { covers: i < 0 ? [wb] : all.slice(i, i + n) });
       placeLineHandles(s);
     });
 
@@ -2752,7 +2794,7 @@
       // Opening it puts the rest of the verse underneath: what is above the
       // commentary is what the commentary is about.
       const cm = commentaryFor(sec.unit, myIdx);
-      if (cm && cm.length) built.wb.__cm = cm;
+      if (cm && cm.length) { built.wb.__cm = cm; built.wb.__cmAt = myIdx; }
     });
     // The commentary line sits at the foot of the section, immediately above
     // the slot its text lands in. It used to sit under the verse number, a
