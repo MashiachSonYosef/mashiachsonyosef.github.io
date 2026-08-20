@@ -1029,12 +1029,36 @@
   // The Hebrew is the sealed text of the work and rides on the work's own
   // licence. A refused reading never removes a Hebrew word; it removes the
   // English beside it, and says so where it stood.
+  //
+  // licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs
+  //
+  // Every obligation line this reader prints is plain English written here. A
+  // licence is a document; a one-sentence summary of it is not that document
+  // and must never be able to stand in for it. Two earlier code paths each
+  // carried their own wording for the same letter, so the same licence read
+  // one way in an export and another way in the pill. Both are replaced by the
+  // one table below, and wherever a line from it prints, it prints named as
+  // ours, beside the licence it summarises and the record that licence was
+  // released under. The licence governs. The sentence only makes the chip
+  // readable.
   const LICENCE_RULES = {
-    obligations: {
-      sa: "Share-alike: anything derived from this must be shared under the same licence.",
-      nc: "Noncommercial use only.",
-      by: "Attribution required.",
-    },
+    rule: "licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs",
+    whose: "The obligation lines below are plain English written in this reader. They are summaries, not licence text, and no licence is quoted here. The licence named beside each one is what governs, and the record it was released under is linked.",
+    by: "Attribution required.",
+    nc: "Noncommercial use only — this text may not be used commercially.",
+    sa: "Share-alike: anything derived from this must be shared under the same licence.",
+    nd: "NoDerivatives.",
+  };
+  // The letters a family or a posture carries, read in one place so a licence
+  // cannot be summarised two different ways by two different callers.
+  const summarise = (text) => {
+    const t = String(text || "");
+    const out = [];
+    if (/(^|[^a-z])by([^a-z]|$)/i.test(t)) out.push(LICENCE_RULES.by);
+    if (/(^|[^a-z])nc([^a-z]|$)/i.test(t) || /noncommercial/i.test(t)) out.push(LICENCE_RULES.nc);
+    if (/(^|[^a-z])sa([^a-z]|$)/i.test(t) || /share.?alike/i.test(t)) out.push(LICENCE_RULES.sa);
+    if (/(^|[^a-z])nd([^a-z]|$)/i.test(t) || /noderiv/i.test(t)) out.push(LICENCE_RULES.nd);
+    return out;
   };
   const postureOf = (mId) => {
     const m = index.m_sources[mId];
@@ -1047,11 +1071,7 @@
     if (!p) return { ok: false, why: "the record carries no licence posture" };
     if (/(^|[^a-z])nd([^a-z]|$)/i.test(p) || /noderiv/i.test(p))
       return { ok: false, why: `NoDerivatives (${p}) — an export is a redistributed derivative` };
-    const ob = [];
-    if (/(^|_)by(_|$)/.test(p) || /cc_by/.test(p)) ob.push(LICENCE_RULES.obligations.by);
-    if (/(^|_)sa(_|$)/.test(p) || /share.?alike/i.test(p)) ob.push(LICENCE_RULES.obligations.sa);
-    if (/(^|_)nc(_|$)/.test(p) || /noncommercial/i.test(p)) ob.push(LICENCE_RULES.obligations.nc);
-    return { ok: true, why: null, obligations: ob };
+    return { ok: true, why: null, obligations: summarise(p) };
   };
 
   // What reading is standing under a word right now, and which record it is
@@ -1139,16 +1159,15 @@
     const family = m ? m[1] : null;
     const posture = m ? m[3] : null;
     const links = (zone.emitted_from && zone.emitted_from.license_links) || [];
-    const obligations = [];
-    if (family) {
-      if (/BY/.test(family)) obligations.push("Attribution required.");
-      if (/NC/.test(family)) obligations.push("Noncommercial use only — this text may not be used commercially.");
-      if (/SA/.test(family)) obligations.push("Share-alike: anything derived from this must be shared under the same licence.");
-      if (/ND/.test(family)) obligations.push("NoDerivatives.");
-    }
-    if (/ALLOW_WITH_OBLIGATIONS/.test(posture || "")) {
-      if (!obligations.length) obligations.push("The chain records this text as allowed with obligations.");
-    }
+    const obligations = family ? summarise(family) : [];
+    // A posture is a machine token, not a sentence. An earlier build turned
+    // ALLOW_WITH_OBLIGATIONS into "the chain records this text as allowed with
+    // obligations", which reads as the chain having said a thing it never
+    // said, and named no obligation while sitting in a list of them. What is
+    // true is narrower: the token is there, and what it obliges is not written
+    // in anything this reader holds.
+    if (/ALLOW_WITH_OBLIGATIONS/.test(posture || "") && !obligations.length)
+      obligations.push(`The rights record carries the posture ${posture} and no licence family this reader can read. What that posture obliges is not written in anything held here; the record linked below is where it is written.`);
     return { receipt, family, posture, links, obligations, attribution: rec.attribution || zone.byline || "", raw: per };
   };
 
@@ -1213,11 +1232,15 @@
     L.push("");
     L.push("## Sources");
     L.push("");
+    // Whose words the obligation lines are, said before any of them is read.
+    L.push(`_${LICENCE_RULES.whose}_`);
+    L.push(`_(${LICENCE_RULES.rule})_`);
+    L.push("");
     // [H] first, because it stands under every Hebrew word in the file.
     L.push(`- [H] ${wr.family || "LICENCE NOT ESTABLISHED"}${wr.posture ? ` · ${wr.posture}` : ""} — the Hebrew of ${
       kind === "he" ? "this file" : "every section here"}: the sealed text of ${zone.work}${
       wr.attribution ? `, ${wr.attribution}` : ""}`);
-    wr.obligations.forEach((o) => L.push(`    obligation: ${o}`));
+    wr.obligations.forEach((o) => L.push(`    obligation, in our words: ${o}`));
     wr.links.forEach((l) => L.push(`    record: ${l.label}${l.url ? ` — ${l.url}` : ""}`));
     L.push(`    receipt: ${wr.receipt}`);
     if (kind !== "he") {
@@ -1229,7 +1252,7 @@
         for (const { n, s } of [...cited.values()].sort((a, b) => a.n - b.n)) {
           L.push("");
           L.push(`- [${n}] ${s.posture} — ${s.label}${s.year ? ` · ${s.year}` : ""}`);
-          (s.obligations || []).forEach((o) => L.push(`    obligation: ${o}`));
+          (s.obligations || []).forEach((o) => L.push(`    obligation, in our words: ${o}`));
           if (s.pointer) L.push(`    record: ${s.pointer}`);
           (s.also || []).forEach((x) => L.push(`    also attested by: ${x}`));
         }
@@ -1239,6 +1262,8 @@
     if (allObl.size) {
       L.push("");
       L.push("## Obligations carried by this file");
+      L.push("");
+      L.push(`_${LICENCE_RULES.whose}_`);
       L.push("");
       [...allObl].forEach((o) => L.push(`- ${o}`));
     }
@@ -1301,11 +1326,11 @@
       wr.obligations.forEach((o) => obl.add(`The Hebrew text: ${o}`));
       if (kind === "he") {
         say(`${words} words of Hebrew · ${wr.family || "licence NOT ESTABLISHED"}`);
-        if (wr.obligations.length) { say(" · "); say(wr.obligations.join(" ")); }
+        if (wr.obligations.length) { say(" · in our words: "); say(wr.obligations.join(" ")); }
         say(". ");
       } else {
         say(`${words} words · ${srcs.size} source${srcs.size === 1 ? "" : "s"}`);
-        if (obl.size) { say(" · "); say([...obl].join(" ").replace(/\.$/, "")); }
+        if (obl.size) { say(" · in our words: "); say([...obl].join(" ").replace(/\.$/, "")); }
         if (held) { say(" · "); say(`${held} reading${held === 1 ? "" : "s"} withheld on licence`, "held"); }
         say(". ");
       }
@@ -2021,23 +2046,38 @@
       window.__commentaryStore = s;
     })
     .catch(() => {});
-  // commentary-order-rule-v1-oldest-first-by-the-dates-the-chain-records
+  // commentary-order-rule-v1-ordered-here-by-the-dates-the-chain-records
   //
   // A word of Genesis 1:1 carries a hundred and six commentaries. They arrive
   // in the order the attachment map happened to build them, which is no order
   // at all: a reader meets a hundred and six works with nothing to navigate
   // by, and the oldest answer to the one they are reading can sit sixtieth.
   //
-  // So they are ordered by the composition dates the chain itself records,
-  // oldest first — the same antiquity clause the readings already follow, and
-  // for the same reason: it is a fact the corpus carries rather than a judgment
-  // this page makes. It says nothing about which commentary is right, or
-  // better, or more important. Where the chain records no date the entry keeps
-  // the map's own place, at the end, rather than being guessed a date.
+  // So this reader orders them, oldest first, by the composition dates the
+  // chain records. Two things are being said there and only one of them is the
+  // chain's: the dates are recorded, and the decision to sort on them is this
+  // page's. An earlier wording ran them together — "oldest first by the dates
+  // the chain records" — which reads as though the chain handed over an order
+  // it never handed over. Nothing recorded this sequence. It is ours, and it
+  // says so wherever it prints.
+  //
+  // It is not a ranking. It says nothing about which commentary is right, or
+  // better, or more important; it is a way in, and the only one available that
+  // does not require this page to have an opinion. Where the chain records no
+  // date the entry keeps the map's own place, at the end, rather than being
+  // guessed a date.
   //
   // The list is sorted into a copy. What the sidecar carries is what it
   // carried, so a check can still ask it what the corpus recorded.
-  const ORDER_RULE_ID = "commentary-order-rule-v1-oldest-first-by-the-dates-the-chain-records";
+  const ORDER_RULE_ID = "commentary-order-rule-v1-ordered-here-by-the-dates-the-chain-records";
+  // One wording, printed everywhere the order is announced, so the page cannot
+  // say it two ways.
+  const ORDER_SAID = "ordered here, oldest first, by the dates the chain records";
+  // commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press
+  //
+  // How many works the chooser shows before the rest go behind a press. It is
+  // this page's number and nothing else's — see where it is used.
+  const FIRST_SCREEN = 12;
   const orderedCache = new Map();
   const byRecordedDate = (list) => {
     const at = new Map(list.map((e, i) => [e, i]));
@@ -3026,7 +3066,7 @@
           holdingSection(sectionEl, () => { paint(); settleRef.fn(); placeLineHandles(sectionEl); });
         });
         // An ordered list with the order unsaid is a claim. Say it.
-        pick.append(`${entries.length} on this word, oldest first by the dates the chain records `, sel);
+        pick.append(`${entries.length} on this word, ${ORDER_SAID} `, sel);
         slot.append(pick);
       }
       slot.append(body);
@@ -3109,7 +3149,7 @@
       box.__all = !!showAll;
       const lab = document.createElement("span"); lab.className = "lab";
       lab.textContent = `${line.reduce((n, x) => n + x.entries.length, 0)} attached to this line` +
-        `, by work, oldest first by the dates the chain records`;
+        `, by work, ${ORDER_SAID}`;
       box.append(lab);
       const list = document.createElement("span"); list.className = "c-choices";
       for (const item of line) {
@@ -3118,8 +3158,8 @@
         // showing them costs the place of every work standing behind them —
         // which is how the oldest answer to what you are reading ends up
         // sixtieth. The works come out in the order their units already stand
-        // in, which is oldest first by the dates the chain records, and a work
-        // carrying more than one unit says how many.
+        // in — which this page put them in, oldest first, by the dates the
+        // chain records — and a work carrying more than one unit says how many.
         const works = []; const seen = new Map();
         item.entries.forEach((e, i) => {
           const name = commentaryWorkOf(e).family_en || e.title || e.ref;
@@ -3153,9 +3193,18 @@
           // The rest are reached by a press rather than named and withheld:
           // fifty-one buttons open at once is a wall, and fifty-one a reader
           // cannot reach is a limit. Neither is acceptable.
-          if (j >= 11 && works.length > 12 && !box.__all) {
+          //
+          // FIRST_SCREEN is twelve, and twelve is ours. Nothing records it,
+          // nothing measured it, and no rule produces it: it is the number of
+          // buttons that fit a phone at this size before the list runs under
+          // the fold. A number with no ledger behind it is fine as long as it
+          // is a number somebody owns and nothing is lost to it — so the press
+          // says how many are behind it, brings every one of them, and names
+          // the twelve as this page's doing rather than the chain's.
+          if (j >= FIRST_SCREEN - 1 && works.length > FIRST_SCREEN && !box.__all) {
             const more = document.createElement("button"); more.type = "button"; more.className = "c-more";
-            more.textContent = `show the other ${works.length - 12} works on this word`;
+            more.textContent = `show the other ${works.length - FIRST_SCREEN} works on this word` +
+              ` · ${FIRST_SCREEN} shown first, a number this page chose`;
             more.addEventListener("click", (ev) => {
               ev.stopPropagation();
               holdingSection(sectionEl, () => {
