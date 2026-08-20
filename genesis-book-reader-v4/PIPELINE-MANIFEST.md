@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-20.
 
-**23 rules declared · 14 named by a check · 9 unguarded.**
+**24 rules declared · 15 named by a check · 9 unguarded.**
 **13 published artifacts · 13 with a build step · 0 without.**
 
 ## The rules
@@ -16,6 +16,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 
 | rule | declared in | guarded by |
 |---|---|---|
+| `attachment-authorship-rule-v1-the-placement-is-ours-and-says-so` | tools/generate-attachment-map-v2.mjs, zone.html | check-whose-claim-v1 |
 | `commentary-order-rule-v1-oldest-first-by-the-dates-the-chain-records` | zone.html | check-commentary-in-line-v1 |
 | `commentary-scope-rule-v2` | zone.html | check-commentary-in-line-v1 |
 | `commentary-words-rule-v1-separate-at-the-spaces-the-author-typed` | tools/build-commentary-sidecar-v1.mjs | check-commentary-in-line-v1 |

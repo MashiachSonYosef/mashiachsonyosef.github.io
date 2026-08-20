@@ -2082,33 +2082,47 @@
   // a commentary is and what that string meant about this one. They are
   // different questions and the page had answered neither.
   //
-  // A commentary is a work of its own. It is not part of the book it sits on,
-  // and it lands where it lands for a reason the chain records — the sentence
-  // below is that reason said in English, and there is one sentence per reason.
-  // A reason the reader has not been given a sentence for is printed as itself
-  // and named as unexplained, because inventing an explanation for an edge
-  // nobody described is the one thing this page may not do.
+  // attachment-authorship-rule-v1-the-placement-is-ours-and-says-so
+  //
+  // A commentary is a work of its own, and two different things bring it here.
+  //
+  // Which comment of which work, and which section it belongs to, is the
+  // chain's: it arrives with a reference and this page did not decide it.
+  //
+  // Where inside the section it sits is a different matter, and for most of
+  // what is on this page it is not recorded anywhere. No source states it, no
+  // ledger carries it, and no licence covers it — a licence governs the text of
+  // a commentary, and a placement is not text. It was made by this project, by
+  // choosing to honour the convention that a commentary opens by quoting what
+  // it is about.
+  //
+  // This page used to say "the chain records" over the top of that, which took
+  // credit from a source that never gave it and hid an opinion inside a
+  // receipt. The sentences below say who placed each one, and they are the
+  // reason the page can be argued with.
   const HOW_IT_ATTACHES = {
     SEALED_UNIT_COORDINATE_IDENTITY:
       "A work of its own, not a part of this book. It stands here because it carries the same " +
       "coordinate as this section in the sealed chain — the two were matched by number, with " +
-      "nothing read and nothing inferred.",
+      "nothing read, nothing inferred and nothing placed by this reader.",
     EXPLICIT_VISIBLE_HEADWORD:
-      "A work of its own, not a part of this book. It stands here because it names these words " +
-      "at its own head, and the chain proved that edge rather than suggesting it.",
+      "A work of its own, not a part of this book. Which comment of which work is the chain's. " +
+      "Where inside the verse it sits was proven against a record that shows the headword, so it " +
+      "is not this reader's guess either.",
     DIBBUR_HAMATCHIL_SUGGESTION_NOT_PROVEN:
-      "A work of its own, not a part of this book. It stands here because it opens by quoting " +
-      "words of this verse, which is how a commentary usually points at what it is about. The " +
-      "chain records that as a suggestion and not as a proof.",
+      "A work of its own, not a part of this book. Which comment of which work is the chain's; " +
+      "where inside the verse it sits is not. This reader put it here, by honouring the convention " +
+      "that a commentary opens by quoting what it is about. Nobody licenses that convention and " +
+      "nothing recorded this placement — it is ours, and it is offered as a suggestion.",
   };
   const attachSentence = (entry) => {
     const b = (entry && entry.basis) || "";
     const said = HOW_IT_ATTACHES[b];
     if (said) return { said, declared: true, basis: b };
     return {
-      said: "A work of its own, not a part of this book. The chain records why it stands here, " +
-        "and the reader has not been given that reason in English yet — it is printed below as " +
-        "the chain wrote it, and nothing is assumed from it.",
+      said: "A work of its own, not a part of this book. Something recorded why it stands here " +
+        "and the reader has not been given that reason in English yet — it is printed below as it " +
+        "was written, and nothing is assumed from it.",
       declared: false,
       basis: b || "no basis recorded",
     };
@@ -2585,11 +2599,17 @@
   // exists — and again whenever it changes shape under them.
   // commentary-scope-rule-v2 · what a commentary is about, and how much of it
   //
-  // The chain records the span itself. Every attachment carries the coordinate
-  // it sits on and, where that coordinate is a word, the run of words it
-  // covers: the first and last verse word, counted from one. That is the
-  // corpus's own measurement of its own claim, and it is what the reader
-  // draws. The reader does not re-derive it.
+  // Every attachment carries the coordinate it sits on and, where that
+  // coordinate is a word, the run of words it covers: the first and last verse
+  // word, counted from one. That span is what the reader draws, and the reader
+  // does not re-derive it here.
+  //
+  // Whose span it is depends on the entry, and the card says which — see
+  // attachment-authorship-rule-v1 above. For a commentary of the sealed chain
+  // it is the coordinate itself and nobody placed anything. For the 180 that
+  // arrived without one, the span was placed by this project's own attachment
+  // map, by honouring a convention nobody licenses. Drawing it is not the same
+  // as vouching for it, and the difference is printed rather than smoothed.
   //
   // Version 1 of this rule did re-derive it. It read the catchword the
   // commentary opens with and matched it against the verse — a rule of ours
@@ -2598,15 +2618,15 @@
   // ("further one may say", "Rashi, s.v."), which is 51 of the 181 Genesis
   // attachments, and it had no way to read a catchword written with a clitic
   // prefix. The catchword still runs, but only as an observation: where it
-  // disagrees with what the chain recorded, the panel says so in plain English
-  // and the census counts it. It never moves the mark.
+  // disagrees with the placement, the panel says so in plain English and the
+  // census counts it. It never moves the mark.
   //
-  // The chain also carries the same span mapped to the zone's own words. It is
-  // not read here. In Genesis 75 of 181 of those mapped spans disagreed with
-  // the verse span they were mapped from, by one word at the start — 49 of
-  // them collapsing to a span of no words at all — and I Kings carries none of
-  // them. The word the chain attached the entry to is the mapping, and it is
-  // already the key the entry is filed under.
+  // The sidecar also carries the same span mapped onto the zone's own words.
+  // It is not read here, and it no longer needs to be: the map now counts the
+  // section's own words, so its indices are the zone's. The field is kept
+  // because an older sidecar may still be in a reader's cache, and in that one
+  // 75 of 181 of the mapped spans disagreed with the verse span they came from
+  // by a word at the start.
   //
   // Every shape the reader will draw is named below. A shape not named here is
   // refused where it stands, in plain English, and counted in the receipts —
@@ -2685,7 +2705,7 @@
     }
     const quoted = quotedRun(entry, sec, pos);
     const span = entry && entry.v_words;
-    // case 3 · a word coordinate the chain recorded no span for
+    // case 3 · a word coordinate nothing recorded a span for
     if (span === null || span === undefined) {
       return { grain: "word", run: 1, shape: 3, declared: true, why: null, quoted };
     }
@@ -2693,12 +2713,12 @@
     const readable = Array.isArray(span) && span.length === 2 &&
       whole(span[0]) && whole(span[1]) && span[1] >= span[0];
     const run = readable ? span[1] - span[0] + 1 : 0;
-    // case 6 · the chain recorded something the reader cannot read as a run
+    // case 6 · a span the reader cannot read as a run of this section's words
     if (!readable || pos + run > words.length) {
       return { grain: "word", run: 1, shape: 6, declared: false, quoted,
-        why: "the chain records a span for this commentary that does not read as a run of words in this section" };
+        why: "the span recorded for this commentary does not read as a run of words in this section" };
     }
-    // case 2 · the span the chain recorded, drawn as it stands
+    // case 2 · the span it was placed at, drawn as it stands
     return { grain: "word", run, shape: 2, declared: true, why: null, quoted };
   };
 
@@ -2972,15 +2992,16 @@
           body.append(und);
         }
         // Two measurements of the same thing, printed side by side where they
-        // differ. The chain recorded a span; this commentary opens by quoting
-        // a run of the verse in its own characters. Neither is corrected
-        // against the other here: the mark follows the chain, and the reader
-        // is told what the text in front of them says.
+        // differ. One is the placement in the attachment map, which reads
+        // through a lead word and through a clitic prefix; the other is the
+        // same quotation counted strictly from the commentary's first word.
+        // Neither is corrected against the other: the mark follows the
+        // placement, and the reader is told what the stricter count says.
         if (sc && sc.shape === 2 && sc.quoted > 0 && sc.quoted !== sc.run) {
           const q = document.createElement("span"); q.className = "c-att c-two-counts";
           const w = (n) => `${n} ${n === 1 ? "word" : "words"}`;
-          q.textContent = `The chain records this comment on ${w(sc.run)}; ` +
-            `its own opening quotation runs to ${w(sc.quoted)}. The mark follows the chain.`;
+          q.textContent = `This reader placed it on ${w(sc.run)}. Counted strictly from its ` +
+            `opening word it quotes ${w(sc.quoted)}. The mark follows the placement.`;
           body.append(q);
         }
         if (!/[A-Za-z]{3}/.test(String(selected.text || ""))) {
@@ -3168,8 +3189,8 @@
         if (!marked.length) return;
         const all = verseOnly;
         const lines = [];
-        // Which words an entry covers is the span the chain recorded for it,
-        // read from the word it is attached to. The run is taken from the
+        // Which words an entry covers is the span it was placed at, read from
+        // the word it is attached to. The run is taken from the
         // words as they stand in the paragraph, so it survives the line
         // rewrapping around whatever is already open.
         const runFor = (wb) => (e) => {
@@ -3459,13 +3480,13 @@
       const named = t[1] + t[2] + t[3];
       full.textContent += ` · ${t.total.toLocaleString()} commentary attachments, ` +
         `${named.toLocaleString()} at a shape the reader draws ` +
-        `(${t[1].toLocaleString()} on a section, ${t[2].toLocaleString()} on the span the chain recorded for them, ` +
+        `(${t[1].toLocaleString()} on a section, ${t[2].toLocaleString()} on the span they were placed at, ` +
         `${t[3].toLocaleString()} on the word they are attached to)` +
         (t[4] + t[5] + t[6]
           ? `, and ${(t[4] + t[5] + t[6]).toLocaleString()} at a shape not yet declared, shown at the coordinate the chain gives them`
           : ", and none at a shape it does not know") +
         (t.quoted_differs
-          ? ` · on ${t.quoted_differs.toLocaleString()} of them the chain's span and the commentary's own opening quotation come to different lengths; each says so on its face and the mark follows the chain`
+          ? ` · on ${t.quoted_differs.toLocaleString()} of them the placement and a strict count of the opening quotation come to different lengths; each says so on its face and the mark follows the placement`
           : "");
     }
   }
