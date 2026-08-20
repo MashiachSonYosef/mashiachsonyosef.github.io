@@ -568,7 +568,14 @@
   /* Said once, in English, before the names — because "what is this thing"
      comes before "what is it called". */
   .c-how-said { flex: 1 1 14rem; font-size: 0.78rem; line-height: 1.45; color: var(--muted); }
-  .c-how-said.c-suggested { color: var(--shani); }
+  /* Scarlet marks what the page will not vouch for. 180 of the 181 placements
+     on this book's first verse are ours, so colouring the whole sentence
+     scarlet coloured the page — and a mark that is everywhere marks nothing.
+     It sits on the tail instead: the clause that actually makes the claim,
+     five words long, in the one place a reader looks to see whose it is. */
+  .c-how-whose { display: block; margin-top: 0.2rem; font-size: 0.62rem;
+    letter-spacing: 0.04em; color: var(--faint); }
+  .c-how-whose.c-suggested { color: var(--shani); }
   .c-how-basis { display: block; margin-top: 0.15rem; font-size: 0.6rem;
     letter-spacing: 0.06em; color: var(--faint); }
   .c-mark-body { display: block; }
@@ -586,9 +593,9 @@
     padding-inline-start: 0.5rem; }
   .c-mark-slot .c-two-counts { color: var(--shesh); border-inline-start: 2px solid var(--gold-dim);
     padding-inline-start: 0.5rem; }
-  /* A reach the chain calls a suggestion rather than a proven edge. The
-     sentence already said so; this is the same sentence, findable. */
-  .c-att.c-suggested { color: var(--shani); }
+  /* Same rule where the commentary reads in line: the sentence stays linen and
+     the tail carries the colour. */
+  .c-att .c-how-whose.c-suggested { color: var(--shani); }
   /* The chooser: everything attached to this line, named by its work and by
      the word it sits on, because a line's handle covers words and this is the
      reader deciding between them. */
@@ -793,7 +800,13 @@
 <footer id="prov"></footer>
 <script>
 (async () => {
-  const BOOK = (new URLSearchParams(location.search).get("b") || "genesis").replace(/[^a-z0-9-]/g, "");
+  // Every ?param this page reads, taken once and here. The rewrite a few lines
+  // down empties location.search, so anything read after it sees nothing — and
+  // ?at= reached through a clean address was already arriving empty for exactly
+  // that reason. One read, before the address changes, and nothing downstream
+  // has to know the order.
+  const QUERY = new URLSearchParams(location.search);
+  const BOOK = (QUERY.get("b") || "genesis").replace(/[^a-z0-9-]/g, "");
   // Where this reader's own files live, taken from where this file is rather
   // than written down. The address in the bar may be rewritten to /genesis a
   // moment from now, and the store's shards are fetched long after that — a
@@ -803,7 +816,7 @@
   // the path it was actually served from. The redirect that brought it here
   // says so; nothing guesses.
   {
-    const clean = new URLSearchParams(location.search).get("clean");
+    const clean = QUERY.get("clean");
     if (clean && /^[a-z0-9-]+$/.test(clean)) {
       try { history.replaceState(null, "", `/${clean}`); } catch { /* not ours to insist on */ }
     }
@@ -2140,29 +2153,35 @@
   // credit from a source that never gave it and hid an opinion inside a
   // receipt. The sentences below say who placed each one, and they are the
   // reason the page can be argued with.
+  //
+  // Each basis says two things and they are read at different speeds: what the
+  // thing is, which a reader reads once, and who put it where it is, which is
+  // the part they may want to argue with. An earlier build ran both into one
+  // paragraph of sixty words, so the sentence a reader met first was mostly
+  // provenance. They are separated: a line of plain English, and under it a
+  // short tail naming the hand. Nothing was dropped — the tail carries the
+  // whole claim, in fewer words and in the place a claim belongs.
   const HOW_IT_ATTACHES = {
-    SEALED_UNIT_COORDINATE_IDENTITY:
-      "A work of its own, not a part of this book. It stands here because it carries the same " +
-      "coordinate as this section in the sealed chain — the two were matched by number, with " +
-      "nothing read, nothing inferred and nothing placed by this reader.",
-    EXPLICIT_VISIBLE_HEADWORD:
-      "A work of its own, not a part of this book. Which comment of which work is the chain's. " +
-      "Where inside the verse it sits was proven against a record that shows the headword, so it " +
-      "is not this reader's guess either.",
-    DIBBUR_HAMATCHIL_SUGGESTION_NOT_PROVEN:
-      "A work of its own, not a part of this book. Which comment of which work is the chain's; " +
-      "where inside the verse it sits is not. This reader put it here, by honouring the convention " +
-      "that a commentary opens by quoting what it is about. Nobody licenses that convention and " +
-      "nothing recorded this placement — it is ours, and it is offered as a suggestion.",
+    SEALED_UNIT_COORDINATE_IDENTITY: {
+      said: "A work of its own, not part of this book. The chain puts it on this section, by number.",
+      whose: "matched by number · nothing placed by this reader",
+    },
+    EXPLICIT_VISIBLE_HEADWORD: {
+      said: "A work of its own, not part of this book. The chain puts it on this verse; a record showing its opening word puts it on these words.",
+      whose: "placed by that record · not this reader's guess",
+    },
+    DIBBUR_HAMATCHIL_SUGGESTION_NOT_PROVEN: {
+      said: "A work of its own, not part of this book. The chain puts it on this verse; this reader put it here, on the words it opens by quoting.",
+      whose: "ours, a suggestion · no licence covers the convention · nothing recorded this placement",
+    },
   };
   const attachSentence = (entry) => {
     const b = (entry && entry.basis) || "";
     const said = HOW_IT_ATTACHES[b];
-    if (said) return { said, declared: true, basis: b };
+    if (said) return { ...said, declared: true, basis: b };
     return {
-      said: "A work of its own, not a part of this book. Something recorded why it stands here " +
-        "and the reader has not been given that reason in English yet — it is printed below as it " +
-        "was written, and nothing is assumed from it.",
+      said: "A work of its own, not part of this book. Something recorded why it stands here, and that reason is not in English yet — it is printed below as written.",
+      whose: "recorded, unread · nothing assumed from it here",
       declared: false,
       basis: b || "no basis recorded",
     };
@@ -2287,7 +2306,7 @@
   };
   btnHe.addEventListener("click", () => setMode("he"));
   btnEn.addEventListener("click", () => setMode("en"));
-  if (new URLSearchParams(location.search).get("mode") === "en") setMode("en");
+  if (QUERY.get("mode") === "en") setMode("en");
 
   // Copying is the reader's act. There is no control on this page that writes
   // to a clipboard, because a control doing that is the site redistributing on
@@ -2565,7 +2584,7 @@
   // ?at=7:14 opens the book at that coordinate. A coordinate is a locator, so
   // one work can hand a reader to another at the same place without either of
   // them claiming anything about the other.
-  const openAt = (new URLSearchParams(location.search).get("at") || "").trim();
+  const openAt = (QUERY.get("at") || "").trim();
   const byLabel = new Map();
   let curPart = null, curNode = -1, openedNode = false;
   const sectionEls = [];
@@ -2600,8 +2619,11 @@
       if (!(e.words || []).length) { p.dir = "auto"; p.append(e.text || ""); }
       const how = attachSentence(e);
       const note = document.createElement("span");
-      note.className = how.declared && e.state === "PROVEN_EDGE" ? "c-att" : "c-att c-suggested";
+      note.className = "c-att";
       note.textContent = how.said;
+      note.append(Object.assign(document.createElement("span"),
+        { className: how.declared && e.state === "PROVEN_EDGE" ? "c-how-whose" : "c-how-whose c-suggested",
+          textContent: how.whose }));
       note.append(Object.assign(document.createElement("span"),
         { className: "c-how-basis", textContent: how.basis }));
       p.append(note);
@@ -2932,9 +2954,11 @@
         row0.append(Object.assign(document.createElement("span"),
           { className: "c-head-lab", textContent: "what this is" }));
         const howT = document.createElement("span");
-        howT.className = how.declared && selected.state === "PROVEN_EDGE"
-          ? "c-how-said" : "c-how-said c-suggested";
+        howT.className = "c-how-said";
         howT.textContent = how.said;
+        howT.append(Object.assign(document.createElement("span"),
+          { className: how.declared && selected.state === "PROVEN_EDGE" ? "c-how-whose" : "c-how-whose c-suggested",
+            textContent: how.whose }));
         howT.append(Object.assign(document.createElement("span"),
           { className: "c-how-basis", textContent: how.basis }));
         row0.append(howT);
@@ -3718,6 +3742,30 @@
       window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 80);
       target.querySelector(".vnum")?.classList.add("at");
     }
+  }
+  // front-door-rule-v1 · ?c=open lands the reader inside a commentary.
+  //
+  // The door offers "Commentary on Genesis" as a way in of its own, and a way
+  // in that drops a reader at the top of a book with every commentary still
+  // shut is not one — they arrive at the thing they asked for and have to go
+  // find it.
+  //
+  // It presses what a finger would press, in order: the first mark the book
+  // carries, then the first work behind it. Nothing here knows how a
+  // commentary opens; there is one path and this uses it, so the two cannot
+  // drift apart. The marks are placed after layout, so it waits for one to
+  // exist rather than assuming the page is finished.
+  if (QUERY.get("c") === "open") {
+    let waited = 0;
+    const press = () => {
+      const first = document.querySelector("section.seg .c-mark, section.seg .c-bar");
+      if (!first) { if (waited < 4000) { waited += 60; setTimeout(press, 60); } return; }
+      first.scrollIntoView({ block: "center" });
+      first.click();
+      // a word's mark opens a chooser of works; a section's bar opens the text
+      setTimeout(() => { document.querySelector(".c-choose .c-choice")?.click(); }, 0);
+    };
+    press();
   }
   const goTo = (top) => {
     const d = Math.abs(top - window.scrollY);
