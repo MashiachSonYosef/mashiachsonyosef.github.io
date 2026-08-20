@@ -9,8 +9,8 @@ Live site: https://mashiachsonyosef.github.io/
 
 ## What is published
 
-- **Genesis** — 1,533 sections, 17,805 words, with 181 commentary units from 58 works attached at the word
-- **I Kings** — 817 sections, 11,368 words, with 817 commentary units from 1 work attached at the section
+- **Genesis** — 1,533 sections, 17,805 words, with 612 commentary units from 81 works — 181 on the word it opens by quoting · 323 on the section, nothing places them closer · 108 held, named but not printed
+- **I Kings** — 817 sections, 11,368 words, with 817 commentary units from 1 work — 817 on the section by coordinate
 
 Commentary is not a separate book. It is carried by the book it comments on and
 opens where it attaches — at the word, or across the whole section, depending on
