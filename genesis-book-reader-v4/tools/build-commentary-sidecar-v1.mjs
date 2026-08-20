@@ -39,6 +39,7 @@ import { gzipSync, gunzipSync } from "node:zlib";
 import { createRequire } from "node:module";
 import { exactK, K_RULE_ID } from "./k-normalization-v1.mjs";
 import { MAQAF } from "./zone-lib-v1.mjs";
+import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
 
 const require = createRequire(import.meta.url);
@@ -291,6 +292,11 @@ counts.in_record = families.reduce((t, f) => t + (f.segments || []).length, 0);
 // rest live from the store. A key the store does not answer for prints its
 // Hebrew and opens nothing, which is the honest result and not a gap.
 const store = openRouteStore(arg("store", "data/route-store"));
+// pass-through-rule-v1 · the commentary's own words open the same way the
+// book's do, so they get the same component layer. Withholding it would make
+// a commentary word less openable than the word it comments on, for no reason
+// a record supports.
+const spansPath = arg("spans", null);
 const keys = new Set();
 const addKeys = (ws) => {
   for (const w of ws || []) {
@@ -307,7 +313,16 @@ const everyEntry = function* () {
 for (const e of everyEntry()) addKeys(e.words);
 // and the works' own names, so a title opens the way a word of the text opens
 for (const w of works) addKeys(w.he_tokens);
-const projected = store.tableFor([...keys]);
+const span = spansPath ? await readSpanSlice(spansPath, keys) : null;
+// interned the same way every other zone interns them
+const intern = (arr, v) => { let i = arr.indexOf(v); if (i < 0) { i = arr.length; arr.push(v); } return i; };
+const spanRoles = [], spanRules = [], spanConf = [];
+const spans = {};
+if (span) for (const [k, sp] of span.spans)
+  spans[k] = [sp.s, sp.r.map((r) => intern(spanRoles, r)), intern(spanRules, sp.rule), intern(spanConf, sp.conf)];
+const askFor = new Set(keys);
+if (span) for (const [, sp] of span.spans) for (const c of cellsOf(sp.s)) askFor.add(c.surface);
+const projected = store.tableFor([...askFor]);
 let carrying = 0, wordsTotal = 0;
 for (const e of everyEntry())
   for (const w of e.words || []) {
@@ -344,10 +359,23 @@ const out = {
       distinct_forms_bare: projected.counts.no_exact_route + projected.counts.no_displayable_route,
       no_exact_route: projected.counts.no_exact_route,
       no_displayable_route: projected.counts.no_displayable_route,
+      grain: span ? "cell surface" : "whole form",
     },
+    span_layer: span
+      ? {
+          rule: SPAN_RULE_ID,
+          source: span.source,
+          rows_scanned: span.scanned,
+          forms_with_a_component_system: span.spans.size,
+        }
+      : { status: "no span slice supplied — this zone offers whole forms only" },
   },
   counts,
   works,
+  span_roles: spanRoles,
+  span_rules: spanRules,
+  span_conf: spanConf,
+  spans,
   units,
   gloss: projected.table,
 };

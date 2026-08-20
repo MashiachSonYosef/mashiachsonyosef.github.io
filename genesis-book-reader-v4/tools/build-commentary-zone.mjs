@@ -195,6 +195,18 @@ const sidecar = {
       grain: span ? "cell surface" : "whole form",
       note: "the commentary answers from the same exact-form catalog as the base text; an Aramaic form the Hebrew catalog never carries renders bare, which is the honest answer rather than a folded match",
     },
+    // The component layer arrived and the file never said where from. A zone
+    // carrying spans with no record of the sealed file they came from cannot
+    // be reproduced or audited by anyone downstream, which is the whole reason
+    // span-slice records a path and a sha in the first place.
+    span_layer: span
+      ? {
+          rule: SPAN_RULE_ID,
+          source: span.source,
+          rows_scanned: span.scanned,
+          forms_with_a_component_system: span.spans.size,
+        }
+      : { status: "no span slice supplied — this zone offers whole forms only" },
     build: { builder: "tools/build-commentary-zone.mjs", single_pass: true, emitted: stamp },
   },
   counts: {
