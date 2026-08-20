@@ -4,7 +4,16 @@
 // The Hebrew of 1 Kings is CC-BY-NC, ALLOW_WITH_OBLIGATIONS. It is the largest
 // thing any export carries. An earlier build printed the work receipt in its
 // place and shipped the text with no licence at all.
-// GUARDS: provider-declaration-rule-v1-closed-set-ship-whole-by-default
+// GUARDS: provider-declaration-rule-v1-closed-set-ship-whole-by-default, licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs
+//
+// And nothing licensed leaves it wearing words it did not say. Every
+// obligation this page prints is a one-line summary written here; a licence is
+// a document and a summary of it is not that document. So an export has to
+// name the licence, and it has to say — in the file, above the lines — that
+// the lines are ours. An earlier build printed three unmarked sentences beside
+// a licence chip, and one of them ("the chain records this text as allowed
+// with obligations") credited the chain with a sentence the chain never
+// carried.
 //
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
 import fs from "node:fs";
@@ -44,7 +53,17 @@ for (const [nth, kind] of [[1, "hebrew"], [2, "english"], [3, "both"]]) {
       !/ \+ /.test(text.split("\n").find(l => /love|abide/.test(l)) || ""),
       (text.split("\n").find(l => /love|abide/.test(l)) || "").slice(0, 70));
   }
+  // whose words the obligations are, said in the file rather than assumed
+  check(`${kind} export says the obligation lines are its own words`,
+    /plain English written in this reader/.test(text) && /licence-wording-rule-v1/.test(text),
+    (text.split("\n").find((l) => /plain English written/.test(l)) || "absent").slice(0, 70));
+  check(`${kind} export labels every obligation line as ours`,
+    !/^ {4}obligation: /m.test(text) && /^ {4}obligation, in our words: /m.test(text),
+    (text.split("\n").find((l) => /^ {4}obligation/.test(l)) || "no obligation line").trim().slice(0, 60));
+  check(`${kind} export puts no words in the chain's mouth`,
+    !/chain records this text as allowed with obligations/.test(text));
   if (nth === 1) check("the confirm says the licence before anything is written", /CC-BY-NC/.test(note), note.slice(0, 90));
+  if (nth === 1) check("the confirm says the obligation is summarised, not quoted", /in our words/.test(note), note.slice(0, 110));
   await p.waitForTimeout(200);
 }
 

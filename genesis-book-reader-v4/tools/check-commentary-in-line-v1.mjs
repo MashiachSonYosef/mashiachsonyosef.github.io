@@ -216,7 +216,7 @@ for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the Engli
 
 // ---- every attachment in every book, by the shape it declares ---------
 //
-// GUARDS: commentary-scope-rule-v2, commentary-order-rule-v1-oldest-first-by-the-dates-the-chain-records, commentary-words-rule-v1-separate-at-the-spaces-the-author-typed
+// GUARDS: commentary-scope-rule-v2, commentary-order-rule-v1-ordered-here-by-the-dates-the-chain-records, commentary-words-rule-v1-separate-at-the-spaces-the-author-typed, commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press
 //
 // This is the one that guards the corpus. Shapes 1 to 3 the reader draws: a
 // section coordinate covers its section, a word coordinate with a recorded
@@ -507,10 +507,12 @@ for (const book of ["genesis", "1kings"]) {
 // A word of Genesis 1:1 carries a hundred and six commentaries from fifty-one
 // works. Offered in the order the map happened to build them, that is a wall
 // with no way in: the reader meets fifty-one names and nothing to navigate by.
-// They are offered by work, oldest first by the dates the chain itself
-// records. That is not a ranking — the page has no opinion about which
-// commentary is right — it is the same antiquity clause the readings already
-// follow, and it is the only ordering here that nobody had to invent.
+// This page orders them by work, oldest first, on the composition dates the
+// chain records. The dates are the chain's; the decision to sort on them is
+// this page's, and an earlier wording of this comment credited the chain with
+// both. It is not a ranking — the page has no opinion about which commentary
+// is right — and it is not handed down: it is the one way in available that
+// does not require an opinion, and it is ours.
 {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
@@ -556,6 +558,11 @@ for (const book of ["genesis", "1kings"]) {
   check("  and the rest are reached, not withheld",
     more !== null && after.left === 0 && after.choices > 12,
     `"${more}" -> ${after.choices} works offered, ${after.left} still behind a press`);
+  // Twelve is this page's number. Nothing records it and nothing measured it,
+  // so the press that holds the rest has to say both things: how many are
+  // behind it, and that the twelve in front of it is a choice somebody made.
+  check("  and the twelve in front of the press is named as this page's choice",
+    more !== null && /\b12\b/.test(more) && /this page chose/.test(more), `"${more}"`);
   await p.close();
 }
 

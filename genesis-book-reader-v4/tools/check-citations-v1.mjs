@@ -48,7 +48,7 @@ const parse = (text) => {
   for (const line of text.split("\n")) {
     const m = /^- \[(H|\d+)\] (.+)$/.exec(line);
     if (m) { cur = { key: m[1], head: m[2], obligations: [], record: null }; entries.set(m[1], cur); continue; }
-    if (cur && /^ {4}obligation: /.test(line)) cur.obligations.push(line.replace(/^ {4}obligation: /, ""));
+    if (cur && /^ {4}obligation, in our words: /.test(line)) cur.obligations.push(line.replace(/^ {4}obligation, in our words: /, ""));
     else if (cur && /^ {4}record: /.test(line)) cur.record = cur.record || line.replace(/^ {4}record: /, "");
     else if (/^#|^---/.test(line)) cur = null;
   }

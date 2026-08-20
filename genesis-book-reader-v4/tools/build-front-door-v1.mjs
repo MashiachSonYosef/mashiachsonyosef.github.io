@@ -48,9 +48,15 @@ const n = (x) => Number(x).toLocaleString("en-US");
 // The books the door offers are named here, because "which books are
 // published" is a decision and not a fact about a directory — a zone can exist
 // and not be ready. Everything said about them is read out of the zone.
+//
+// The byline is NOT among the things named here. Each zone already carries its
+// own, and an earlier build typed a trimmed copy of it into this list — the
+// same fault as copying a topic out of a pack instead of printing the zone's:
+// two strings for one fact, and the copy is the one on the page. The zone's
+// byline is printed whole, exactly as the zone carries it.
 const BOOKS = [
-  { slug: "genesis", zone: "genesis.bin", byline: "Miqra according to the Masorah" },
-  { slug: "1kings", zone: "1kings.bin", byline: "Nevi'im · Miqra according to the Masorah" },
+  { slug: "genesis", zone: "genesis.bin" },
+  { slug: "1kings", zone: "1kings.bin" },
 ];
 
 const books = [];
@@ -74,7 +80,8 @@ for (const b of BOOKS) {
     }
     worksCount = (c.works && c.works.length) ? c.works.length : seen.size;
   }
-  books.push({ ...b, en: z.work || b.slug, sections, words, units, works: worksCount, grain });
+  if (!z.byline) throw new Error(`${b.zone} carries no byline — the door prints the zone's and will not invent one`);
+  books.push({ ...b, en: z.work || b.slug, byline: z.byline, sections, words, units, works: worksCount, grain });
 }
 if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
 
@@ -269,4 +276,4 @@ for (const b of books) {
 console.log(`${OUT}/index.html + README.md · ${books.length} books · ${n(totalUnits)} commentary units`);
 for (const b of books)
   console.log(`  ${b.slug.padEnd(9)} ${n(b.sections)} sections · ${n(b.words)} words` +
-    (b.units ? ` · ${n(b.units)} commentary from ${b.works} works, at the ${b.grain}` : " · no commentary"));
+    (b.units ? ` · ${n(b.units)} commentary from ${b.works} work${b.works === 1 ? "" : "s"}, at the ${b.grain}` : " · no commentary"));

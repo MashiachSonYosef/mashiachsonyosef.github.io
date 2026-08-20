@@ -18,6 +18,25 @@
 //   4. Antiquity leads: senses whose oldest source is 1940 or earlier come
 //      first, everything later and everything unyeared follows. Within a tier,
 //      older first, then the catalog's own semantic rank.
+//
+//      The number 1940 is this project's, not anybody's record. Nothing
+//      attests it, no source proposes it, and it was chosen here. It sits in
+//      the rule's own name, which advertises it as the thing deciding which
+//      reading a reader meets first — and it is not.
+//
+//      Measured over the 4,984 distinct keys the store answers for in Genesis:
+//      moving the cutoff to 1900 changes 0 printed readings. Moving it to 1950
+//      changes 0. Removing the tier entirely changes 0. It cannot change any,
+//      because the sort that follows it is already ascending by year and an
+//      unyeared sense carries Infinity — so the tier can only ever agree with
+//      the comparison after it. It is inert.
+//
+//      It is left in place rather than removed because the rule id is written
+//      into the receipts of every zone already published, and rebuilding the
+//      corpus to delete a clause that does nothing is a worse trade than
+//      saying plainly that it does nothing. check-antiquity-tier-v1 asserts
+//      the inertness on every run, so if a catalog ever arrives where the tier
+//      would decide something, that is a finding and not a surprise.
 //   5. A route whose M record is missing from the store index is not eligible
 //      — the page would have no license to print beside it.
 //   6. The sense is stored verbatim, "/" morpheme packing included. The page
@@ -54,6 +73,20 @@ export const openRouteStore = (storeDir) => {
   /** Every exact route row for K, or null when the catalog has no exact entry. */
   const routesFor = (k) => shardBody(shardOf(k))[k] || null;
 
+  const senseSplit = (text) => {
+    const t = String(text || "");
+    const out = []; let start = 0, d = 0;
+    for (let i = 0; i < t.length; i += 1) {
+      const c = t[i];
+      if (c === "(") d += 1;
+      else if (c === ")") { if (d > 0) d -= 1; }
+      else if (c === ";" && d === 0) { out.push(t.slice(start, i)); start = i + 1; }
+    }
+    out.push(t.slice(start));
+    if (out.join(";") !== t) return [t.trim()].filter(Boolean);
+    return out.map((x) => x.trim()).filter(Boolean);
+  };
+
   /** Rules 2–5. The ordered reading pool for one K; [] when nothing displays. */
   const readingPool = (routes) => {
     const groups = new Map();
@@ -62,10 +95,11 @@ export const openRouteStore = (storeDir) => {
       if (!index.m_sources[mId]) return; // rule 5
       const parsed = Number.parseInt(year, 10);
       const yr = Number.isInteger(parsed) ? parsed : Infinity;
-      String(routeText || "")
-        .split(";")
-        .map((s) => s.trim())
-        .filter(Boolean)
+      // The mark separates at parenthesis depth zero and nowhere else: a
+      // semicolon inside the provider's own brackets is part of what the
+      // bracket says, and cutting there produces a run they never wrote.
+      // Same clause as the comma rule the store separates under.
+      senseSplit(routeText)
         .forEach((sense) => {
           const key = sense.toLowerCase();
           const g = groups.get(key);
