@@ -28,32 +28,51 @@
   a.book .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
   a.book .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
                 text-transform:uppercase; color:var(--faint); }
-  a.book .he { font-size:1.7rem; color:var(--gold);
-               font-family:"Frank Ruehl CLM","Frank Ruehl","David Libre","SBL Hebrew",Georgia,serif; }
-  a.book .he.none { font-size:.92rem; font-style:italic; color:var(--muted); font-family:inherit; }
   a.book .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
   a.book .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
+  /* The commentary is not a third book. It arrives shut, and what is behind it
+     is one entry per book, each going to the book it belongs to — because that
+     is where a commentary is read. */
+  details.group { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); }
+  details.group > summary { list-style:none; cursor:pointer; padding:1rem 1.15rem;
+    display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
+  details.group > summary::-webkit-details-marker { display:none; }
+  details.group > summary::after { content:"\25be"; margin-left:auto; color:var(--gold-dim);
+    transform:rotate(-90deg); transition:transform 140ms; }
+  details.group[open] > summary::after { transform:none; }
+  details.group > summary .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--faint); }
+  details.group > summary .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
+  details.group > summary .of { flex:1 0 100%; margin-top:.45rem; color:var(--faint); font-size:.8rem; }
+  a.sub-book { display:block; padding:.85rem 1.15rem; border-top:1px solid var(--line);
+    text-decoration:none; color:var(--ink); }
+  a.sub-book:hover { background:rgba(224,182,79,.06); }
+  a.sub-book .en { display:block; font-size:.98rem; color:var(--gold-dim); }
+  a.sub-book .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }
   footer { margin-top:2.2rem; color:var(--faint); font-size:.78rem; }
   footer a { color:var(--gold-dim); }
 </style>
 </head>
 <body>
 <main>
-  <!-- The site's own name is the one it was given, in English. There was a
-       Hebrew name standing beside it here that nothing in the chain carried —
-       I had written it, which made the one string on the site with no record
-       behind it the first thing on the page. -->
+  <!-- Built by tools/build-front-door-v1.mjs from the zones. Every count below
+       is read out of a zone; nothing here is typed twice. -->
   <h1>The Tabernacle</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the licence it was released under.</p>
   <nav class="books">
     <a class="book" href="/genesis">
       <span class="row"><span class="lab">commonly read as</span><span class="en">Genesis</span></span>
-      <span class="of">1,533 sections · word-level readings, the record behind each one, and the commentary attached where it attaches</span>
+      <span class="of">1,533 sections · 17,805 words · Miqra according to the Masorah</span>
     </a>
     <a class="book" href="/1kings">
       <span class="row"><span class="lab">commonly read as</span><span class="en">I Kings</span></span>
-      <span class="of">817 sections · Nevi'im, Miqra according to the Masorah, with Targum Jonathan</span>
+      <span class="of">817 sections · 11,368 words · Nevi'im · Miqra according to the Masorah</span>
     </a>
+    <details class="group">
+      <summary><span class="lab">also carried</span><span class="en">Commentary</span><span class="of">998 attached across 2 books · each opens inside the book it is on, at the words it is on</span></summary>
+      <a class="sub-book" href="/genesis"><span class="en">Commentary on Genesis</span><span class="of">181 attached from 58 works, opened where the word it is on stands</span></a>
+      <a class="sub-book" href="/1kings"><span class="en">Commentary on I Kings</span><span class="of">817 attached from 1 work, opened where the section it is on stands</span></a>
+    </details>
   </nav>
   <!-- A book's own title is corpus text and is not printed here. This page
        carries no records, so it can cite nothing; it says only how each book is
