@@ -83,7 +83,7 @@ const PUBLISHED = [
   { what: "data/zones/1kings-commentary.bin", note: "" },
   { what: "data/zones/targum-1kings-commentary.bin", note: "" },
   { what: "data/route-store", note: "index + 256 shards" },
-  { what: "data/v5-genesis-1-1-attachment-map-2026-08-19.js", note: "which words each commentary sits on" },
+  { what: "data/v5-attachment-map-2026-08-19.js", note: "which words of which section each commentary sits on" },
 ];
 const buildSh = files.get("build.sh") || "";
 const madeBy = (what) => {
