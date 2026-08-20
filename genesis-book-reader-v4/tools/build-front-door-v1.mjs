@@ -91,8 +91,12 @@ const bookCard = (b) => `    <a class="book" href="/${b.slug}">
       <span class="of">${n(b.sections)} sections · ${n(b.words)} words · ${esc(b.byline)}</span>
     </a>`;
 
+// A commentary entry is its own way in, so it opens one. ?c=open tells the
+// reader to press the first mark the book carries and the first work behind it
+// — the same path a finger takes — rather than landing at the top of the book
+// with everything shut. The book's own entry above still opens the book.
 const commentaryLine = (b) => (b.units
-  ? `      <a class="sub-book" href="/${b.slug}"><span class="en">Commentary on ${esc(b.en)}</span><span class="of">${n(b.units)} attached${b.works ? ` from ${n(b.works)} work${b.works === 1 ? "" : "s"}` : ""}, opened where ${b.grain === "word" ? "the word it is on stands" : "the section it is on stands"}</span></a>`
+  ? `      <a class="sub-book" href="/${b.slug}?c=open"><span class="en">Commentary on ${esc(b.en)}</span><span class="of">${n(b.units)} attached${b.works ? ` from ${n(b.works)} work${b.works === 1 ? "" : "s"}` : ""}, opening on ${b.grain === "word" ? "the word it is on" : "the section it is on"}</span></a>`
   : null);
 
 const withCommentary = books.map(commentaryLine).filter(Boolean);
@@ -245,13 +249,19 @@ const redirect = (b) => `<!doctype html>
 <link rel="canonical" href="/${b.slug}">
 <!-- One reader, reached by a clean address. The reader rewrites the bar back to
      /${b.slug} once it has loaded, so this path is what a reader sees, keeps and
-     returns to — and this file is what makes returning to it work. -->
+     returns to — and this file is what makes returning to it work.
+
+     The script goes first, and it is the only one of the two that carries
+     anything asked of this address through: /${b.slug}?c=open has to still say
+     c=open by the time the reader is the one reading it. The meta refresh below
+     it is the fallback for a browser running no script, and it cannot carry a
+     question — which is why it must not be the one that wins the race. -->
+<script>var q=location.search.replace(/^[?]/,"");location.replace("/genesis-book-reader-v4/zone.html?b=${b.slug}&clean=${b.slug}"+(q?"&"+q:""));</script>
 <meta http-equiv="refresh" content="0; url=/genesis-book-reader-v4/zone.html?b=${b.slug}&clean=${b.slug}">
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b1017;
   color:#9fb0c2;font:16px Georgia,serif} a{color:#e0b64f}</style>
 </head>
 <body><p>Opening ${esc(b.en)} — <a href="/genesis-book-reader-v4/zone.html?b=${b.slug}&clean=${b.slug}">continue</a></p>
-<script>location.replace("/genesis-book-reader-v4/zone.html?b=${b.slug}&clean=${b.slug}");</script>
 </body>
 </html>
 `;

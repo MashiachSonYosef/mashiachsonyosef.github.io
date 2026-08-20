@@ -58,10 +58,16 @@ const b = await chromium.launch();
   check("  and the card says this reader put it here",
     /this reader put it here/i.test(r.said), r.said.slice(0, 70) + "…");
   check("  and says nobody licenses the convention it honoured",
-    /licens/i.test(r.said) && /convention/i.test(r.said));
+    /licenc?e/i.test(r.said) && /convention/i.test(r.said));
+  check("  and says nothing recorded the placement",
+    /nothing recorded this placement/i.test(r.said));
   check("  and does not credit the chain for the placement",
     !/the chain records|the chain recorded/i.test(r.said),
     /chain/i.test(r.said) ? "mentions the chain — check it is only for the coordinate" : "no such claim");
+  // Said short. The claim is the point; sixty words of it is a paragraph a
+  // reader skips, and a claim nobody reads is not being made.
+  check("  and says it in a line, not a paragraph", r.said.split(/\s+/).length <= 45,
+    `${r.said.split(/\s+/).length} words`);
   await p.close();
 }
 

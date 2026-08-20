@@ -14,7 +14,7 @@
 // the shape of that tree — deploy-root/ over the site root, the reader under
 // genesis-book-reader-v4/ — and a check that read the reader at its own path
 // would never see it. It takes no URL for the same reason.
-// GUARDS: title-key-rule-v1-only-what-the-store-already-attests
+// GUARDS: title-key-rule-v1-only-what-the-store-already-attests, front-door-rule-v1-the-door-lists-what-the-zones-carry
 //
 import { createServer } from "node:http";
 import { readFile, mkdtemp, mkdir, cp, symlink } from "node:fs/promises";
@@ -39,12 +39,17 @@ await symlink(join(K3, "data"), join(site, "genesis-book-reader-v4", "data"));
 const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json" };
 const srv = createServer(async (req, res) => {
   const p = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "");
+  // What was asked of the address travels with it. Pages keeps the query
+  // across the directory redirect, and a stub that dropped it would report a
+  // failure the real host does not have — the harness has to be the faithful
+  // part or the check is testing the harness.
+  const qs = req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : "";
   try {
     let file = join(site, p);
     if (!extname(p)) {
       // Pages answers a directory with its index.html; so does this.
       if (p.endsWith("/")) file = join(file, "index.html");
-      else { res.writeHead(301, { Location: `${p}/` }); return res.end(); }
+      else { res.writeHead(301, { Location: `${p}/${qs}` }); return res.end(); }
     }
     const body = await readFile(file);
     // shards arrive gzipped and are unpacked by the page, not the transport
@@ -81,9 +86,13 @@ check("it names the site", /Tabernacle/.test(splash.title), splash.title);
 // finished book.
 {
   const FINISHED = ["/genesis", "/1kings"];
-  const stray = splash.links.filter((h) => !FINISHED.includes(h));
+  // A destination is the address, not what is asked of it: /genesis and
+  // /genesis?c=open are the same book, opened two ways. What must not appear
+  // is a place that is not a finished book.
+  const dest = (h) => String(h).split("?")[0];
+  const stray = splash.links.filter((h) => !FINISHED.includes(dest(h)));
   check("every way off it lands on a finished book",
-    stray.length === 0 && FINISHED.every((f) => splash.links.includes(f)),
+    stray.length === 0 && FINISHED.every((f) => splash.links.map(dest).includes(f)),
     `${splash.links.length} links · ${splash.links.join(" ")}${stray.length ? ` · stray: ${stray.join(" ")}` : ""}`);
   // The door is built from the zones, so what it offers is what is there. A
   // commentary the zones carry and the door does not mention is the fault this
@@ -212,6 +221,43 @@ const raw = await p.evaluate(() => ({ addr: location.pathname, secs: document.qu
 check("and the reader at its own path is untouched by any of it",
   raw.addr === "/genesis-book-reader-v4/zone.html" && raw.secs > 100 && raw.glossed > 0,
   `${raw.addr} · ${raw.secs} sections · ${raw.glossed} glossed`);
+
+// ---- the door's commentary entries open a commentary --------------------
+//
+// "Commentary on Genesis" is offered on the door as its own way in. A way in
+// that lands a reader at the top of a book with every commentary still shut is
+// not one — they arrive at the thing they asked for and have to go find it. So
+// the entry carries ?c=open, the address page carries it through, and the
+// reader presses the first mark and the first work behind it.
+console.log("— a commentary entry opens a commentary —");
+await p.goto(`${B}/`, { waitUntil: "networkidle" });
+const doorLinks = await p.evaluate(() => [...document.querySelectorAll("a.sub-book")]
+  .map((a) => ({ href: a.getAttribute("href"), en: a.querySelector(".en")?.textContent || "" })));
+check("the door offers a commentary entry per book that carries one",
+  doorLinks.length >= 2 && doorLinks.every((l) => /\?c=open$/.test(l.href)),
+  doorLinks.map((l) => l.href).join(" · ") || "none");
+
+for (const [slug, shape] of [["genesis", "word"], ["1kings", "section"]]) {
+  await p.goto(`${B}/${slug}?c=open`, { waitUntil: "networkidle" });
+  await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+  await p.waitForTimeout(2500);
+  const r = await p.evaluate(() => ({
+    addr: location.pathname,
+    panels: document.querySelectorAll("section.seg .c-mark-slot:not(.c-choose)").length,
+    inline: [...document.querySelectorAll("section.seg .c-inline")].filter((x) => !x.hidden).length,
+    said: (document.querySelector(".c-how-said, .c-att")?.textContent || "").replace(/\s+/g, " ").slice(0, 60),
+  }));
+  const opened = shape === "word" ? r.panels : r.inline;
+  check(`  ${slug} arrives with a commentary already open`, opened > 0,
+    `${r.panels} panel(s), ${r.inline} in line · "${r.said}…"`);
+  check(`  and the address is still the clean one`, r.addr === `/${slug}`, r.addr);
+}
+// and the book's own entry still opens the book, not a commentary
+await p.goto(`${B}/genesis`, { waitUntil: "networkidle" });
+await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+await p.waitForTimeout(1200);
+const shut = await p.evaluate(() => document.querySelectorAll("section.seg .c-mark-slot:not(.c-choose)").length);
+check("  while the book's own entry opens the book with nothing pressed", shut === 0, `${shut} open`);
 
 // Nothing is rewritten on a say-so that did not come from our own redirect.
 await p.goto(`${B}/genesis-book-reader-v4/zone.html?b=genesis&clean=..%2F..%2Fevil`, { waitUntil: "networkidle" });
