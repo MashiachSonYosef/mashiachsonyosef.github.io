@@ -7,7 +7,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 Read on 2026-08-20.
 
 **23 rules declared · 12 named by a check · 11 unguarded.**
-**12 published artifacts · 12 with a build step · 0 without.**
+**13 published artifacts · 13 with a build step · 0 without.**
 
 ## The rules
 
@@ -49,6 +49,7 @@ machine it was made on is gone, so is the ability to make it again.
 |---|---|
 | `zone.html` · the reader itself | build.sh |
 | `index.html` · the front door | build.sh |
+| `README.md` · the front door, for someone browsing the repository | build.sh |
 | `genesis/index.html` · the clean address for Genesis | build.sh |
 | `1kings/index.html` · the clean address for I Kings | build.sh |
 | `data/zones/genesis.bin` | build.sh |

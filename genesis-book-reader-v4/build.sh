@@ -118,6 +118,7 @@ echo "── 7 · the front door, from the zones ──────────�
 # offered.
 node tools/build-front-door-v1.mjs --zones data/zones --out deploy-root
 cp deploy-root/index.html site/index.html
+cp deploy-root/README.md site/README.md
 for book in genesis 1kings; do
   [ -f "deploy-root/$book/index.html" ] && mkdir -p "site/$book" \
     && cp "deploy-root/$book/index.html" "site/$book/index.html"

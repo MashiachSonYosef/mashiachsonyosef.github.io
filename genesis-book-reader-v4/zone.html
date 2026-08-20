@@ -48,6 +48,16 @@
   body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Georgia, "Times New Roman", serif;
     overflow-x: hidden; }
 
+  /* The header holds the way out in its top corner, and the book's own title
+     below it. On a narrow screen the two stack rather than fight. */
+  #home { display: flex; align-items: baseline; gap: 0.45rem; justify-content: flex-end;
+    margin: 0 0 0.9rem; font-size: 0.85rem; }
+  #home .nav-lab { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--faint); }
+  #home a.home { border: 1px solid var(--line); border-radius: 999px;
+    padding: 0.3rem 0.95rem; background: var(--panel2); color: var(--shesh);
+    text-decoration: none; white-space: nowrap; }
+  #home a.home:hover { color: var(--gold); border-color: var(--gold-dim); }
   header.top { padding: 1.4rem 1.5rem 1rem; border-bottom: 1px solid var(--line);
     background: linear-gradient(180deg, #0d1520 0%, var(--bg) 100%); }
   header.top h1 { margin: 0; font-size: 1.9rem; color: var(--ink-strong); letter-spacing: 0.01em; }
@@ -81,27 +91,8 @@
   /* A work the ledger has not named in Hebrew keeps its English locator, but
      the locator does not get to look like a title. */
   header.top h1 .he-t.unnamed { color: var(--muted); font-size: 0.92rem; font-style: italic; }
-  header.top nav { margin-top: 0.6rem; font-size: 0.85rem;
-    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-  /* The way back. It was a phrase inside a sentence, which is a link a reader
-     has to read to find; on a book that is fifteen hundred sections long the
-     way out should be the same shape wherever you are in it. Same pill as
-     everything else that can be pressed. */
-  header.top nav a.home { border: 1px solid var(--line); border-radius: 999px;
-    padding: 0.28rem 0.85rem; background: var(--panel2); color: var(--shesh);
-    border-bottom: 1px solid var(--line); white-space: nowrap; }
-  header.top nav a.home:hover { color: var(--gold); border-color: var(--gold-dim); }
-  header.top nav .nav-sep { color: var(--faint); }
-  /* A book named in Hebrew never stands in Hebrew alone. Wherever the Hebrew
-     title appears the English is beside it, because a reader who cannot read
-     the one still has to know which book they are being offered. */
-  header.top nav a.bk { white-space: nowrap; }
-  header.top nav a.bk .bk-en { font-variant: small-caps; letter-spacing: 0.08em; }
-  /* A book the ledger has named reads in Hebrew here; one it has not keeps its
-     English locator, at the weight of a locator. */
-  header.top nav a[lang="he"] { font-family: "Frank Ruehl CLM", "David Libre", "SBL Hebrew", Georgia, serif;
-    font-size: 1.02rem; }
   header.top a { color: var(--link); text-decoration: none; border-bottom: 1px solid rgba(216, 199, 164, 0.35); }
+  header.top #home a.home { border-bottom: 1px solid var(--line); }
   header.top a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
   /* contents */
@@ -574,6 +565,12 @@
   .c-head-he.title-row { display: flex; gap: 0.1rem; }
   .c-head-en { color: var(--shesh); font-size: 0.94rem; }
   .c-head-on { color: var(--muted); font-size: 0.82rem; }
+  /* Said once, in English, before the names — because "what is this thing"
+     comes before "what is it called". */
+  .c-how-said { flex: 1 1 14rem; font-size: 0.78rem; line-height: 1.45; color: var(--muted); }
+  .c-how-said.c-suggested { color: var(--shani); }
+  .c-how-basis { display: block; margin-top: 0.15rem; font-size: 0.6rem;
+    letter-spacing: 0.06em; color: var(--faint); }
   .c-mark-body { display: block; }
   .c-mark-text { display: block; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif;
@@ -760,6 +757,12 @@
 </head>
 <body>
 <header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
   <h1 id="workTitle">
     <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
     <span class="t-row"><span class="t-lab" id="enLab">commonly force read as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
@@ -771,7 +774,7 @@
        of the ledger, with its records behind it. The Hebrew that stood here was
        a copy I typed: it matched, but a copy is not a source, and a copy is the
        one thing on the page nothing stands behind. -->
-  <nav id="books"><a href="/" class="home">The Tabernacle</a><span class="nav-sep">books:</span><a href="/genesis" class="bk"><span class="bk-en">Genesis</span></a><span class="nav-sep">·</span><a href="/1kings" class="bk"><span class="bk-en">I Kings</span></a></nav>
+
   <div id="modeRow">
     <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
     <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
@@ -2071,6 +2074,46 @@
   // table at all, and asking only the table for those got back nothing — so
   // every handle on Genesis 1:1 read "commentary" while the entry beside it
   // said Rashi. Ask the table, then ask the entry.
+  // What a commentary is, and why this one is standing here — in plain English,
+  // once, at the head of the card.
+  //
+  // The card used to name the basis and nothing else: a reader met
+  // "DIBBUR_HAMATCHIL_SUGGESTION_NOT_PROVEN" and was left to work out both what
+  // a commentary is and what that string meant about this one. They are
+  // different questions and the page had answered neither.
+  //
+  // A commentary is a work of its own. It is not part of the book it sits on,
+  // and it lands where it lands for a reason the chain records — the sentence
+  // below is that reason said in English, and there is one sentence per reason.
+  // A reason the reader has not been given a sentence for is printed as itself
+  // and named as unexplained, because inventing an explanation for an edge
+  // nobody described is the one thing this page may not do.
+  const HOW_IT_ATTACHES = {
+    SEALED_UNIT_COORDINATE_IDENTITY:
+      "A work of its own, not a part of this book. It stands here because it carries the same " +
+      "coordinate as this section in the sealed chain — the two were matched by number, with " +
+      "nothing read and nothing inferred.",
+    EXPLICIT_VISIBLE_HEADWORD:
+      "A work of its own, not a part of this book. It stands here because it names these words " +
+      "at its own head, and the chain proved that edge rather than suggesting it.",
+    DIBBUR_HAMATCHIL_SUGGESTION_NOT_PROVEN:
+      "A work of its own, not a part of this book. It stands here because it opens by quoting " +
+      "words of this verse, which is how a commentary usually points at what it is about. The " +
+      "chain records that as a suggestion and not as a proof.",
+  };
+  const attachSentence = (entry) => {
+    const b = (entry && entry.basis) || "";
+    const said = HOW_IT_ATTACHES[b];
+    if (said) return { said, declared: true, basis: b };
+    return {
+      said: "A work of its own, not a part of this book. The chain records why it stands here, " +
+        "and the reader has not been given that reason in English yet — it is printed below as " +
+        "the chain wrote it, and nothing is assumed from it.",
+      declared: false,
+      basis: b || "no basis recorded",
+    };
+  };
+
   const commentaryWorkOf = (entry) => {
     const w = (commentaryStore && commentaryStore.works && commentaryStore.works[entry.work || 0]) || {};
     return {
@@ -2501,13 +2544,12 @@
         p.append(b.wb, document.createTextNode(" "));
       });
       if (!(e.words || []).length) { p.dir = "auto"; p.append(e.text || ""); }
+      const how = attachSentence(e);
       const note = document.createElement("span");
-      note.className = e.state === "PROVEN_EDGE" ? "c-att" : "c-att c-suggested";
-      note.textContent = e.state === "PROVEN_EDGE"
-        ? `Attachment: ${e.basis === "SEALED_UNIT_COORDINATE_IDENTITY"
-            ? "both works are units of the sealed chain and carry the same coordinates — nothing renumbered, nothing inferred"
-            : e.basis}`
-        : `Attachment: suggested reach only — ${e.basis}; not a proven edge`;
+      note.className = how.declared && e.state === "PROVEN_EDGE" ? "c-att" : "c-att c-suggested";
+      note.textContent = how.said;
+      note.append(Object.assign(document.createElement("span"),
+        { className: "c-how-basis", textContent: how.basis }));
       p.append(note);
       (el.querySelector(".c-slot") || el).append(p);
     }
@@ -2825,6 +2867,19 @@
         slot.dataset.unit = selected.ref || "";
         const lab = document.createElement("span"); lab.className = "lab";
 
+        const how = attachSentence(selected);
+        const row0 = document.createElement("span"); row0.className = "c-head-row c-how";
+        row0.append(Object.assign(document.createElement("span"),
+          { className: "c-head-lab", textContent: "what this is" }));
+        const howT = document.createElement("span");
+        howT.className = how.declared && selected.state === "PROVEN_EDGE"
+          ? "c-how-said" : "c-how-said c-suggested";
+        howT.textContent = how.said;
+        howT.append(Object.assign(document.createElement("span"),
+          { className: "c-how-basis", textContent: how.basis }));
+        row0.append(howT);
+        lab.append(row0);
+
         const row1 = document.createElement("span"); row1.className = "c-head-row";
         row1.append(Object.assign(document.createElement("span"),
           { className: "c-head-lab", textContent: "commentary" }));
@@ -2904,18 +2959,7 @@
           t.textContent = selected.text || "";
         }
         body.append(t);
-        // The one distinction a reader most needs and the handle cannot make:
-        // 180 of the 181 attachments in Genesis are suggestions, and one is a
-        // proven edge. The words were already here; the colour is the rule at
-        // the top of this file — scarlet is what the page will not vouch for —
-        // and it adds no claim the sentence was not already making.
-        const note = document.createElement("span");
-        const proven = selected.state === "PROVEN_EDGE";
-        note.className = proven ? "c-att" : "c-att c-suggested";
-        note.textContent = proven
-          ? `Attachment: proven edge (${selected.basis})`
-          : `Attachment: suggested reach only — ${selected.basis}; not a proven word edge`;
-        body.append(note);
+
         // Say what is not here. The chain carries this unit in Hebrew only; the
         // version it names may be an English edition, but no English text came
         // with it. A reader looking for one should be told that rather than
