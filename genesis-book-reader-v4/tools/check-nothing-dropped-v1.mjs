@@ -92,9 +92,31 @@ check("  and each held one carries its work and the reason", heldNamed === held,
 // ---- the counts the artifact carries add up ------------------------------
 {
   const c = side.counts || {};
-  const sum = (c.attached || 0) + (c.on_section || 0) + (c.held_licence || 0) + (c.held_no_text || 0);
+  const sum = (c.attached || 0) + (c.on_section || 0) + (c.held_licence || 0) + (c.no_text || 0);
   check("  the artifact's own tally adds to the record's total", sum === (c.in_record || -1),
-    `${c.attached} on a word + ${c.on_section} on the section + ${c.held_licence} held on licence + ${c.held_no_text} with no text = ${sum} of ${c.in_record}`);
+    `${c.attached} on a word + ${c.on_section} on the section + ${c.held_licence} kept off by a licence + ${c.no_text} with no text = ${sum} of ${c.in_record}`);
+}
+// Nobody has authority to hold a text. A licence can forbid printing one and
+// a record can simply be empty, and those are not the same fact — reporting
+// the second as the first invents a refusal. So: every segment the record
+// carries a body for is printed, and the only thing that may keep one off is
+// its own licence, counted out loud.
+{
+  let withText = 0, printed = 0, byLicence = 0;
+  for (const [ref, { s: seg }] of recorded) {
+    const he = seg.he || {};
+    if (!(he.source_text_present && String(he.proof_text || "").trim())) continue;
+    withText += 1;
+    const got = seen.get(ref);
+    if (got && (got.e.words || []).length) printed += 1;
+    else if (got && got.e.held === "licence") byLicence += 1;
+  }
+  check("  every body the record carries is printed, unless its own licence forbids",
+    printed + byLicence === withText,
+    `${printed} printed + ${byLicence} forbidden by a licence = ${printed + byLicence} of ${withText} bodies`);
+  check("  and what a licence keeps off is counted out loud",
+    byLicence === (side.counts || {}).held_licence,
+    `${byLicence} measured · ${(side.counts || {}).held_licence} reported`);
 }
 
 // ---- and the page prints the record's number, not the subset's -----------
@@ -129,8 +151,8 @@ const heldOnPage = await p.evaluate(() => {
   const ps = [...document.querySelectorAll("section.seg .c-inline.c-held")].filter((x) => !x.hidden);
   return { n: ps.length, said: (ps[0]?.textContent || "").replace(/\s+/g, " ").slice(0, 90) };
 });
-check("  a held commentary is on the page, saying why it is held",
-  heldOnPage.n === held && /Held —/.test(heldOnPage.said),
+check("  a commentary with no body says so, and says nothing is being withheld",
+  heldOnPage.n === held && /(Not here —|Held —)/.test(heldOnPage.said),
   `${heldOnPage.n} shown · "${heldOnPage.said}…"`);
 
 await p.close(); await b.close();

@@ -70,7 +70,7 @@ for (const b of BOOKS) {
   // placed on a word, the rest stands on the section because nothing places it
   // any closer. An earlier version of this took whichever grain it met first
   // and printed that one, which named half of what was there.
-  let onWord = 0, onSection = 0, held = 0, byCoordinate = 0, noCloser = 0, worksCount = 0;
+  let onWord = 0, onSection = 0, heldLicence = 0, noText = 0, byCoordinate = 0, noCloser = 0, worksCount = 0;
   const side = `${b.slug}-commentary.bin`;
   if (has(side)) {
     const c = read(join(ZONES, side));
@@ -80,7 +80,8 @@ for (const b of BOOKS) {
         for (const e of list) { onWord += 1; seen.add(e.family_en || e.ref); }
       for (const e of unit.section || []) {
         onSection += 1; seen.add(e.family_en || e.ref);
-        if (e.held) held += 1;
+        if (e.held === "licence") heldLicence += 1;
+        else if (e.held) noText += 1;
         // The section is not one thing. For 1 Kings the chain itself puts the
         // commentary there, by coordinate; for Genesis it is where a segment
         // stands when nothing places it closer. Saying "on the section" for
@@ -94,7 +95,7 @@ for (const b of BOOKS) {
   const units = onWord + onSection;
   if (!z.byline) throw new Error(`${b.zone} carries no byline — the door prints the zone's and will not invent one`);
   books.push({ ...b, en: z.work || b.slug, byline: z.byline, sections, words,
-    units, onWord, onSection, held, byCoordinate, noCloser, works: worksCount });
+    units, onWord, onSection, heldLicence, noText, byCoordinate, noCloser, works: worksCount });
 }
 if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
 
@@ -115,7 +116,8 @@ const whereLine = (b) => {
   if (b.onWord) parts.push(`${n(b.onWord)} on the word it opens by quoting`);
   if (b.byCoordinate) parts.push(`${n(b.byCoordinate)} on the section by coordinate`);
   if (b.noCloser) parts.push(`${n(b.noCloser)} on the section, nothing places them closer`);
-  if (b.held) parts.push(`${n(b.held)} held, named but not printed`);
+  if (b.heldLicence) parts.push(`${n(b.heldLicence)} kept off by a licence`);
+  if (b.noText) parts.push(`${n(b.noText)} named, with no text in the record`);
   return parts.join(" · ");
 };
 const commentaryLine = (b) => (b.units

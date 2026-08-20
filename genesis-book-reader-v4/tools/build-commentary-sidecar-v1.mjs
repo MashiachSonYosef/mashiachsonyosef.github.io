@@ -154,7 +154,7 @@ const workIndex = (family) => {
 
 // ---- emit ----------------------------------------------------------------
 const units = {};
-const counts = { attached: 0, on_section: 0, held_licence: 0, held_no_text: 0,
+const counts = { attached: 0, on_section: 0, held_licence: 0, no_text: 0,
   in_record: 0, sections: 0, per_word: {}, skipped_license: 0,
   skipped_no_text: 0, skipped_no_section: 0, glossed_words: 0 };
 // which segments the map speaks for, so the pass below can take everything else
@@ -167,8 +167,8 @@ for (const claim of map.claims) {
   const he = seg.he || {};
   // A claim we cannot print is not dropped here — it falls through to the pass
   // below, which stands it on the section by name and says why it is held.
-  if (he.license_disposition !== "OPEN_OR_PUBLIC_DOMAIN") { counts.skipped_license += 1; claimedRefs.delete(seg.ref); continue; }
   if (!he.source_text_present || !String(he.proof_text || "").trim()) { counts.skipped_no_text += 1; claimedRefs.delete(seg.ref); continue; }
+  if (he.license_disposition !== "OPEN_OR_PUBLIC_DOMAIN") { counts.skipped_license += 1; claimedRefs.delete(seg.ref); continue; }
 
   const anchor = claim.source_anchor_ref || seg.source_anchor_ref || "";
   const section = sectionAt.get(anchor);
@@ -245,19 +245,33 @@ for (const f of families) {
       source_url: seg.source_url,
       work: workIndex(f),
     };
-    // Held on licence. It is not dropped: a commentary the record carries and
-    // this page will not print is a fact about this page, and a reader is owed
-    // it by name. The text stays out; everything else stands.
+    // The order of these two questions is the whole of the honesty.
+    //
+    // An earlier build asked about the licence first, so a segment with no
+    // body in the pack was reported as "held on licence" — which reads as this
+    // page refusing to print something it has. Measured over all 612 segments
+    // the record maps to Genesis 1:1: every single one of the 108 that cannot
+    // be printed has no source text at all. Not one is kept off this page by a
+    // licence. Asking the licence first invented a refusal on three of them,
+    // including Onkelos, whose CC-BY-NC is the same licence this reader
+    // already ships the whole Hebrew of 1 Kings under.
+    //
+    // Nobody has authority to hold a text. A licence can forbid, and a record
+    // can be empty, and those are different facts. The empty one is asked
+    // first, because it is the one that is true here.
+    if (!he.source_text_present || !String(he.proof_text || "").trim()) {
+      rest.push({ ...common, held: "no text", state: "NO_SOURCE_TEXT_IN_THE_RECORD",
+        basis: "RECORDED_WITHOUT_SOURCE_TEXT", disposition: he.license_disposition || null,
+        licence_says: he.license || null, text: "", words: [] });
+      counts.no_text += 1;
+      continue;
+    }
+    // A body that exists and a licence that forbids printing it. Today this
+    // fires for nothing at all, and the count says so on every build.
     if (he.license_disposition !== "OPEN_OR_PUBLIC_DOMAIN") {
       rest.push({ ...common, held: "licence", disposition: he.license_disposition || null,
         state: "HELD_ON_LICENCE", basis: "HELD_PENDING_LICENCE_REVIEW", text: "", words: [] });
       counts.held_licence += 1;
-      continue;
-    }
-    if (!he.source_text_present || !String(he.proof_text || "").trim()) {
-      rest.push({ ...common, held: "no text", state: "HELD_NO_SOURCE_TEXT",
-        basis: "RECORDED_WITHOUT_SOURCE_TEXT", text: "", words: [] });
-      counts.held_no_text += 1;
       continue;
     }
     rest.push({ ...common, text: he.proof_text, words: tokenise(he.proof_text, seg.ref),
@@ -374,14 +388,14 @@ if (VERIFY) {
 
 const body = JSON.stringify(out);
 writeFileSync(OUT, gzipSync(Buffer.from(body, "utf8"), { level: 9 }));
-console.log(`${OUT} · ${counts.attached + counts.on_section + counts.held_licence + counts.held_no_text} of ${counts.in_record} recorded · sha256 ${sha(body)}`);
+console.log(`${OUT} · ${counts.attached + counts.on_section + counts.held_licence + counts.no_text} of ${counts.in_record} recorded · sha256 ${sha(body)}`);
 console.log(`  on a word: ${counts.attached} · on the section: ${counts.on_section} · ` +
-  `held on licence: ${counts.held_licence} · recorded with no source text: ${counts.held_no_text}`);
+  `kept off by a licence: ${counts.held_licence} · no source text in the record: ${counts.no_text}`);
 console.log(`  over ${counts.sections} section${counts.sections === 1 ? "" : "s"} · per word: ${JSON.stringify(counts.per_word)}`);
 // What is not here at all, and why. A number nobody prints is a number nobody
 // can be held to.
 {
-  const shown = counts.attached + counts.on_section + counts.held_licence + counts.held_no_text;
+  const shown = counts.attached + counts.on_section + counts.held_licence + counts.no_text;
   const missing = counts.in_record - shown;
   console.log(`  ${missing === 0 ? "nothing recorded is missing from this file" : `MISSING: ${missing} recorded segments reach no unit`}` +
     `${counts.skipped_no_section ? ` · ${counts.skipped_no_section} name a section the zone does not carry` : ""}`);
