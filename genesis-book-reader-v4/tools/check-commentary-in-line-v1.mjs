@@ -216,7 +216,7 @@ for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the Engli
 
 // ---- every attachment in every book, by the shape it declares ---------
 //
-// GUARDS: commentary-scope-rule-v2, commentary-order-rule-v1-ordered-here-by-the-dates-the-chain-records, commentary-words-rule-v1-separate-at-the-spaces-the-author-typed, commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press
+// GUARDS: commentary-scope-rule-v2, commentary-order-rule-v2-oldest-first-on-the-earliest-date-recorded, commentary-words-rule-v1-separate-at-the-spaces-the-author-typed, commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press
 //
 // This is the one that guards the corpus. Shapes 1 to 3 the reader draws: a
 // section coordinate covers its section, a word coordinate with a recorded

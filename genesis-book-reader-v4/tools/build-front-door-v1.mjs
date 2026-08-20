@@ -66,22 +66,35 @@ for (const b of BOOKS) {
   const sections = (z.sections || []).length;
   const words = (z.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
   // its commentary, if any zone carries some for it
-  let units = 0, worksCount = 0, grain = null;
+  // A book can carry both grains at once, and Genesis does: some commentary is
+  // placed on a word, the rest stands on the section because nothing places it
+  // any closer. An earlier version of this took whichever grain it met first
+  // and printed that one, which named half of what was there.
+  let onWord = 0, onSection = 0, held = 0, byCoordinate = 0, noCloser = 0, worksCount = 0;
   const side = `${b.slug}-commentary.bin`;
   if (has(side)) {
     const c = read(join(ZONES, side));
-    const u = c.units || {};
     const seen = new Set();
-    for (const unit of Object.values(u)) {
+    for (const unit of Object.values(c.units || {})) {
       for (const list of Object.values(unit.words || {}))
-        for (const e of list) { units += 1; seen.add(e.family_en || e.ref); }
-      for (const e of unit.section || []) { units += 1; seen.add(e.family_en || e.ref); }
-      if (!grain) grain = (unit.words && Object.keys(unit.words).length) ? "word" : "section";
+        for (const e of list) { onWord += 1; seen.add(e.family_en || e.ref); }
+      for (const e of unit.section || []) {
+        onSection += 1; seen.add(e.family_en || e.ref);
+        if (e.held) held += 1;
+        // The section is not one thing. For 1 Kings the chain itself puts the
+        // commentary there, by coordinate; for Genesis it is where a segment
+        // stands when nothing places it closer. Saying "on the section" for
+        // both would flatten a proof and a shrug into one number.
+        else if (e.basis === "SEALED_UNIT_COORDINATE_IDENTITY") byCoordinate += 1;
+        else noCloser += 1;
+      }
     }
     worksCount = (c.works && c.works.length) ? c.works.length : seen.size;
   }
+  const units = onWord + onSection;
   if (!z.byline) throw new Error(`${b.zone} carries no byline — the door prints the zone's and will not invent one`);
-  books.push({ ...b, en: z.work || b.slug, byline: z.byline, sections, words, units, works: worksCount, grain });
+  books.push({ ...b, en: z.work || b.slug, byline: z.byline, sections, words,
+    units, onWord, onSection, held, byCoordinate, noCloser, works: worksCount });
 }
 if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
 
@@ -95,8 +108,18 @@ const bookCard = (b) => `    <a class="book" href="/${b.slug}">
 // reader to press the first mark the book carries and the first work behind it
 // — the same path a finger takes — rather than landing at the top of the book
 // with everything shut. The book's own entry above still opens the book.
+// Where each one stands, and how many this page holds rather than prints. A
+// count with a bound inside it that nobody prints reads as a total.
+const whereLine = (b) => {
+  const parts = [];
+  if (b.onWord) parts.push(`${n(b.onWord)} on the word it opens by quoting`);
+  if (b.byCoordinate) parts.push(`${n(b.byCoordinate)} on the section by coordinate`);
+  if (b.noCloser) parts.push(`${n(b.noCloser)} on the section, nothing places them closer`);
+  if (b.held) parts.push(`${n(b.held)} held, named but not printed`);
+  return parts.join(" · ");
+};
 const commentaryLine = (b) => (b.units
-  ? `      <a class="sub-book" href="/${b.slug}?c=open"><span class="en">Commentary on ${esc(b.en)}</span><span class="of">${n(b.units)} attached${b.works ? ` from ${n(b.works)} work${b.works === 1 ? "" : "s"}` : ""}, opening on ${b.grain === "word" ? "the word it is on" : "the section it is on"}</span></a>`
+  ? `      <a class="sub-book" href="/${b.slug}?c=open"><span class="en">Commentary on ${esc(b.en)}</span><span class="of">${n(b.units)} carried${b.works ? ` from ${n(b.works)} work${b.works === 1 ? "" : "s"}` : ""} — ${whereLine(b)}</span></a>`
   : null);
 
 const withCommentary = books.map(commentaryLine).filter(Boolean);
@@ -166,7 +189,7 @@ const doc = `<!doctype html>
   <nav class="books">
 ${books.map(bookCard).join("\n")}
 ${withCommentary.length ? `    <details class="group">
-      <summary><span class="lab">also carried</span><span class="en">Commentary</span><span class="of">${n(totalUnits)} attached across ${withCommentary.length} book${withCommentary.length === 1 ? "" : "s"} · each opens inside the book it is on, at the words it is on</span></summary>
+      <summary><span class="lab">also carried</span><span class="en">Commentary</span><span class="of">${n(totalUnits)} carried across ${withCommentary.length} book${withCommentary.length === 1 ? "" : "s"} · each opens inside the book it is on, where the record puts it</span></summary>
 ${withCommentary.join("\n")}
     </details>` : ""}
   </nav>
@@ -197,7 +220,7 @@ Live site: https://mashiachsonyosef.github.io/
 ## What is published
 
 ${books.map((b) => `- **${esc(b.en)}** — ${n(b.sections)} sections, ${n(b.words)} words` +
-  (b.units ? `, with ${n(b.units)} commentary units from ${n(b.works)} work${b.works === 1 ? "" : "s"} attached at the ${b.grain}` : "")).join("\n")}
+  (b.units ? `, with ${n(b.units)} commentary units from ${n(b.works)} work${b.works === 1 ? "" : "s"} — ${whereLine(b)}` : "")).join("\n")}
 
 Commentary is not a separate book. It is carried by the book it comments on and
 opens where it attaches — at the word, or across the whole section, depending on
@@ -286,4 +309,4 @@ for (const b of books) {
 console.log(`${OUT}/index.html + README.md · ${books.length} books · ${n(totalUnits)} commentary units`);
 for (const b of books)
   console.log(`  ${b.slug.padEnd(9)} ${n(b.sections)} sections · ${n(b.words)} words` +
-    (b.units ? ` · ${n(b.units)} commentary from ${b.works} work${b.works === 1 ? "" : "s"}, at the ${b.grain}` : " · no commentary"));
+    (b.units ? ` · ${n(b.units)} commentary from ${b.works} work${b.works === 1 ? "" : "s"} · ${whereLine(b)}` : " · no commentary"));

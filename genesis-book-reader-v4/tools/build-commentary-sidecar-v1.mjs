@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Synthesis lane · zone-commentary-rule-v1-word-anchored-open-license-only
+// Synthesis lane · zone-commentary-rule-v2-everything-recorded-stands-somewhere
 //
 // The commentary sidecar for a book whose commentary came from outside the
 // sealed chain: emitted from the pack the chain holds, plus the attachment map
@@ -154,28 +154,35 @@ const workIndex = (family) => {
 
 // ---- emit ----------------------------------------------------------------
 const units = {};
-const counts = { attached: 0, sections: 0, per_word: {}, skipped_license: 0,
+const counts = { attached: 0, on_section: 0, held_licence: 0, held_no_text: 0,
+  in_record: 0, sections: 0, per_word: {}, skipped_license: 0,
   skipped_no_text: 0, skipped_no_section: 0, glossed_words: 0 };
+// which segments the map speaks for, so the pass below can take everything else
+const claimedRefs = new Set(map.claims.map((c) => c.commentary_unit_ref));
 
 for (const claim of map.claims) {
   const found = segOf.get(claim.commentary_unit_ref);
   if (!found) continue;
   const { seg, family } = found;
   const he = seg.he || {};
-  if (he.license_disposition !== "OPEN_OR_PUBLIC_DOMAIN") { counts.skipped_license += 1; continue; }
-  if (!he.source_text_present || !String(he.proof_text || "").trim()) { counts.skipped_no_text += 1; continue; }
+  // A claim we cannot print is not dropped here — it falls through to the pass
+  // below, which stands it on the section by name and says why it is held.
+  if (he.license_disposition !== "OPEN_OR_PUBLIC_DOMAIN") { counts.skipped_license += 1; claimedRefs.delete(seg.ref); continue; }
+  if (!he.source_text_present || !String(he.proof_text || "").trim()) { counts.skipped_no_text += 1; claimedRefs.delete(seg.ref); continue; }
 
   const anchor = claim.source_anchor_ref || seg.source_anchor_ref || "";
   const section = sectionAt.get(anchor);
   if (!section) { counts.skipped_no_section += 1; continue; }
 
+  // A claim with no word to point at is not a word-level placement. It goes
+  // to the section with the rest, rather than quietly nowhere.
   const hint = claim.visual_hint || claim.asserted_edge || null;
-  if (!hint || !hint.start_word_index) continue;
+  if (!hint || !hint.start_word_index) { claimedRefs.delete(seg.ref); continue; }
   // The map counted the section's own words, so its indices are the zone's
   // indices, off by the one that turns counting-from-one into counting-from-zero.
   const vs = hint.start_word_index, ve = hint.end_word_index;
   const pos = vs - 1;
-  if (pos < 0 || ve > section.words.length) { counts.skipped_no_section += 1; continue; }
+  if (pos < 0 || ve > section.words.length) { counts.skipped_no_section += 1; claimedRefs.delete(seg.ref); continue; }
 
   const unit = (units[section.unit] = units[section.unit] || { words: {} });
   const words = unit.words;
@@ -201,7 +208,65 @@ for (const claim of map.claims) {
   counts.attached += 1;
   counts.per_word[pos] = (counts.per_word[pos] || 0) + 1;
 }
+
+// ---- and everything the map made no claim about --------------------------
+//
+// The map claims 182 of the 612 segments the pack maps to Genesis 1:1. The
+// other 430 are what its own stats call verse witnesses: the chain maps them
+// to this verse and our catchword matcher found nothing to hang them on. An
+// earlier build shipped only the 182, and the page said "181 attached" as
+// though that were what the verse carried. It was a third of it. Rashbam and
+// Abarbanel were not on the page at all, and nothing anywhere said so.
+//
+// The pack's own sibling fixture already recorded where they belong:
+// nested-rashi-hud-2026-07-17 carries unmatched_commentary_owner = SECTION.
+// A commentary nobody could place on a word is owned by the section. So they
+// are emitted on the section — which is the one place they can stand without
+// anybody pretending to know more than the record says.
+//
+// This is the opposite of a guess. A word-anchored entry is a placement we
+// made; a section entry is a placement we did not make and are not making.
+for (const f of families) {
+  for (const seg of f.segments || []) {
+    if (claimedRefs.has(seg.ref)) continue;
+    const he = seg.he || {};
+    const section = sectionAt.get(seg.source_anchor_ref || f.source_anchor_ref || "");
+    if (!section) { counts.skipped_no_section += 1; continue; }
+    const unit = (units[section.unit] = units[section.unit] || { words: {} });
+    const rest = (unit.section = unit.section || []);
+    const common = {
+      ref: seg.ref,
+      he_ref: seg.he_ref,
+      family_en: f.collective_title_en || f.family_title,
+      family_he: f.collective_title_he,
+      years: seg.composition_date_evidence || [],
+      version_title: he.version_title,
+      license: he.license,
+      source_url: seg.source_url,
+      work: workIndex(f),
+    };
+    // Held on licence. It is not dropped: a commentary the record carries and
+    // this page will not print is a fact about this page, and a reader is owed
+    // it by name. The text stays out; everything else stands.
+    if (he.license_disposition !== "OPEN_OR_PUBLIC_DOMAIN") {
+      rest.push({ ...common, held: "licence", disposition: he.license_disposition || null,
+        state: "HELD_ON_LICENCE", basis: "HELD_PENDING_LICENCE_REVIEW", text: "", words: [] });
+      counts.held_licence += 1;
+      continue;
+    }
+    if (!he.source_text_present || !String(he.proof_text || "").trim()) {
+      rest.push({ ...common, held: "no text", state: "HELD_NO_SOURCE_TEXT",
+        basis: "RECORDED_WITHOUT_SOURCE_TEXT", text: "", words: [] });
+      counts.held_no_text += 1;
+      continue;
+    }
+    rest.push({ ...common, text: he.proof_text, words: tokenise(he.proof_text, seg.ref),
+      state: "VERSE_WITNESS", basis: "VERSE_MAPPED_NO_WORD_ANCHOR" });
+    counts.on_section += 1;
+  }
+}
 counts.sections = Object.keys(units).length;
+counts.in_record = families.reduce((t, f) => t + (f.segments || []).length, 0);
 
 // ---- the readings, projected over the commentary's own keys --------------
 //
@@ -219,26 +284,29 @@ const addKeys = (ws) => {
     else if (w.k) keys.add(w.k);
   }
 };
-for (const u of Object.values(units))
-  for (const list of Object.values(u.words)) for (const e of list) addKeys(e.words);
+const everyEntry = function* () {
+  for (const u of Object.values(units)) {
+    for (const list of Object.values(u.words || {})) for (const e of list) yield e;
+    for (const e of u.section || []) yield e;
+  }
+};
+for (const e of everyEntry()) addKeys(e.words);
 // and the works' own names, so a title opens the way a word of the text opens
 for (const w of works) addKeys(w.he_tokens);
 const projected = store.tableFor([...keys]);
 let carrying = 0, wordsTotal = 0;
-for (const u of Object.values(units))
-  for (const list of Object.values(u.words))
-    for (const e of list)
-      for (const w of e.words || []) {
-        wordsTotal += 1;
-        const rs = w.w ? w.w : (w.k ? [{ k: w.k }] : []);
-        if (rs.some((r) => projected.table[r.k])) carrying += 1;
-      }
+for (const e of everyEntry())
+  for (const w of e.words || []) {
+    wordsTotal += 1;
+    const rs = w.w ? w.w : (w.k ? [{ k: w.k }] : []);
+    if (rs.some((r) => projected.table[r.k])) carrying += 1;
+  }
 counts.glossed_words = carrying;
 counts.words = wordsTotal;
 
 const out = {
   schema_version: "ZONE_COMMENTARY_V1",
-  rule_id: "zone-commentary-rule-v1-word-anchored-open-license-only",
+  rule_id: "zone-commentary-rule-v2-everything-recorded-stands-somewhere",
   work: zone.work || "Genesis",
   emitted_from: {
     attachment_map: { id: map.map_id, sha256: sha(mapBody) },
@@ -306,10 +374,18 @@ if (VERIFY) {
 
 const body = JSON.stringify(out);
 writeFileSync(OUT, gzipSync(Buffer.from(body, "utf8"), { level: 9 }));
-console.log(`${OUT} · ${counts.attached} attachments · sha256 ${sha(body)}`);
+console.log(`${OUT} · ${counts.attached + counts.on_section + counts.held_licence + counts.held_no_text} of ${counts.in_record} recorded · sha256 ${sha(body)}`);
+console.log(`  on a word: ${counts.attached} · on the section: ${counts.on_section} · ` +
+  `held on licence: ${counts.held_licence} · recorded with no source text: ${counts.held_no_text}`);
 console.log(`  over ${counts.sections} section${counts.sections === 1 ? "" : "s"} · per word: ${JSON.stringify(counts.per_word)}`);
-console.log(`  skipped: ${counts.skipped_license} on licence, ${counts.skipped_no_text} with no text, ` +
-  `${counts.skipped_no_section} on a section the zone does not carry`);
+// What is not here at all, and why. A number nobody prints is a number nobody
+// can be held to.
+{
+  const shown = counts.attached + counts.on_section + counts.held_licence + counts.held_no_text;
+  const missing = counts.in_record - shown;
+  console.log(`  ${missing === 0 ? "nothing recorded is missing from this file" : `MISSING: ${missing} recorded segments reach no unit`}` +
+    `${counts.skipped_no_section ? ` · ${counts.skipped_no_section} name a section the zone does not carry` : ""}`);
+}
 console.log(`  words: ${counts.words} · ${counts.glossed_words} carry a reading`);
 {
   const named = works.filter((w) => (w.he_tokens || []).some((t) => (t.w ? t.w.some((r) => projected.table[r.k]) : projected.table[t.k])));
