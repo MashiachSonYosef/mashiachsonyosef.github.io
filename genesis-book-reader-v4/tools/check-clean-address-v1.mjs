@@ -142,8 +142,17 @@ for (const [href, ...expected] of [["/genesis", ...titleOf("genesis")], ["/1king
       words: document.querySelectorAll("section.seg .he-text .wb").length,
       glossed: [...document.querySelectorAll("section.seg .he-text .wb .g")].filter((g) => g.textContent.trim()).length,
       sections: document.querySelectorAll("section.seg").length,
-      nav: [...document.querySelectorAll("#books a")].map((a) => a.getAttribute("href")),
-      navHe: document.querySelectorAll('#books [lang="he"]').length };
+      // The header offers one thing: the way out. A book offers its own text;
+      // the door offers the books, and a reader goes through the door.
+      nav: [...document.querySelectorAll("header.top nav a")].map((a) => a.getAttribute("href")),
+      navHe: document.querySelectorAll('header.top nav [lang="he"]').length,
+      navLab: (document.querySelector("#home .nav-lab")?.textContent || "").trim(),
+      navRight: (() => {
+        const a = document.querySelector("#home a.home"), h = document.querySelector("header.top");
+        if (!a || !h) return false;
+        const ar = a.getBoundingClientRect(), hr = h.getBoundingClientRect();
+        return hr.right - ar.right < hr.width / 3 && ar.top - hr.top < 90;
+      })() };
   });
   check("  the bar keeps the clean address", r.addr === href, r.addr);
   check("  the tab names the book in both", r.title.includes(en) && (!heTitle || r.title.includes(heTitle)), r.title);
@@ -164,12 +173,15 @@ for (const [href, ...expected] of [["/genesis", ...titleOf("genesis")], ["/1king
     `${r.enLab} · ${r.lic || "no licence"}`);
   check("  the zone still loads under the rewritten bar", r.sections > 100 && r.words > 3, `${r.sections} sections`);
   check("  and its readings came with it", r.glossed > 0, `${r.glossed} of ${r.words} words glossed`);
-  check("  the nav offers the splash and the books, nothing stale",
-    JSON.stringify(r.nav) === JSON.stringify(["/", "/genesis", "/1kings"]), r.nav.join(" "));
+
   // Navigation carries coordinates. A title is corpus text and belongs in the
   // masthead, out of the ledger, where it can be tapped and defined — a copy of
   // it typed into a link would be the one string on the page with nothing
   // behind it.
+  check("  the header offers one way out and nothing else",
+    r.nav.length === 1 && r.nav[0] === "/", r.nav.join(" ") || "nothing");
+  check("  it says what it is, in plain English", /home/i.test(r.navLab), r.navLab || "unsaid");
+  check("  and it sits in the corner the eye goes to", r.navRight);
   check("  the nav prints no title, only where to go", r.navHe === 0, `${r.navHe} Hebrew in the nav`);
 
   // The store is fetched shard by shard as words are pressed — long after the

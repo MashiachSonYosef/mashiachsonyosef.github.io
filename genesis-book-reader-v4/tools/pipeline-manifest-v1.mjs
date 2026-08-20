@@ -73,6 +73,7 @@ for (const [id, r] of rules) if (!r.declaredIn.size && r.guardedBy.size) r.decla
 const PUBLISHED = [
   { what: "zone.html", note: "the reader itself" },
   { what: "index.html", note: "the front door" },
+  { what: "README.md", note: "the front door, for someone browsing the repository" },
   { what: "genesis/index.html", note: "the clean address for Genesis" },
   { what: "1kings/index.html", note: "the clean address for I Kings" },
   { what: "data/zones/genesis.bin", note: "" },

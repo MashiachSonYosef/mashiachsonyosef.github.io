@@ -131,7 +131,9 @@ for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the Engli
       ref: (panel.querySelector(".lab")?.textContent || "").trim().slice(0, 40),
       licence: panel.querySelector(".lic-chip")?.textContent || "",
       text: (panel.querySelector(".c-mark-text")?.textContent || "").trim().length,
-      basis: (panel.querySelector(".c-att")?.textContent || "").slice(0, 12),
+      // the sentence saying what a commentary is; word-anchored cards carry it
+      // at the head, the section layer carries it at the foot
+      basis: (panel.querySelector(".c-how-said, .c-att")?.textContent || "").replace(/\s+/g, " ").trim(),
       canClose: !!panel.querySelector(".c-shut"),
     };
   });
@@ -146,8 +148,8 @@ for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the Engli
       `${open.handles} handles now, was ${shut.handles}`);
     check("  it takes the width of the column", open.fullWidth);
     check("  a word carrying many units offers them all from inside", open.units > 1, `${open.units} units`);
-    check("  it carries its reference, its licence and its basis",
-      open.ref.length > 8 && open.licence.length > 2 && open.basis.startsWith("Attachment"),
+    check("  it names itself, its licence, and why it stands here",
+      open.ref.length > 8 && open.licence.length > 2 && /a work of its own/i.test(open.basis),
       `${open.ref} · ${open.licence}`);
     check("  and it carries the commentary's own text", open.text > 10, `${open.text} characters`);
     check("  it can be closed from where it stands", open.canClose);
@@ -398,9 +400,15 @@ for (const book of ["genesis", "1kings"]) {
       titleOpens: he.filter((w) => (w.querySelector(".g")?.textContent || "").trim()).length,
       on: rows.find((x) => /comments on/i.test(x.lab))?.said || "" };
   });
-  check("  it says what it is before it says anything else",
-    head.rows.length >= 3 && /commentary/i.test(head.rows[0].lab),
+  // What a commentary is comes before what it is called, and what it is called
+  // comes before where it sits. A reader met a reference and a licence chip and
+  // was expected to already know the rest.
+  check("  it says what a commentary is before it says anything else",
+    head.rows.length >= 4 && /what this is/i.test(head.rows[0].lab) &&
+    /a work of its own/i.test(head.rows[0].said),
     head.rows.map((x) => x.lab).join(" · "));
+  check("  and it prints the chain's own reason under that sentence",
+    /[A-Z_]{6,}/.test(head.rows[0].said), (head.rows[0].said.match(/[A-Z_]{6,}/) || ["none"])[0]);
   check("  its own title is drawn like every other title, and opens",
     head.titleBlocks > 0 && head.titleOpens > 0,
     `${head.titleOpens} of ${head.titleBlocks} blocks carry a reading`);

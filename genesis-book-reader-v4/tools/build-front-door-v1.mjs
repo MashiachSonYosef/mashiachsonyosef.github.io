@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 // Synthesis lane · front-door-rule-v1-the-door-lists-what-the-zones-carry
 //
-// The site's front door, built from the zones rather than typed.
+// The site's front door, built from the zones rather than typed — both of its
+// faces: the page a reader arrives at, and the README somebody browsing the
+// repository arrives at. Both said the same kind of thing and both went stale
+// the same way, so both are now read out of the zones at build time.
 //
 // It was typed. Two books were named by hand with their section counts written
 // out beside them, and when a third work arrived — the commentary, 181 units
@@ -165,6 +168,67 @@ ${withCommentary.join("\n")}
 </html>
 `;
 
+// ---- the other face of the door ------------------------------------------
+//
+// The README described a proof slice of two verses with two commentators on it,
+// months after the two books and their commentary had shipped whole. Nobody
+// lied; it was written once and never had a reason to change. So it is written
+// from the same counts as the page.
+const readme = `# The Tabernacle
+
+A Hebrew reader on a sealed chain. Every reading printed under a word traces to
+the record that carries it, and every record to the licence it was released
+under. No English is forced: a word offers every reading its sources attest, one
+at a time, and the reader chooses.
+
+Live site: https://mashiachsonyosef.github.io/
+
+## What is published
+
+${books.map((b) => `- **${esc(b.en)}** — ${n(b.sections)} sections, ${n(b.words)} words` +
+  (b.units ? `, with ${n(b.units)} commentary units from ${n(b.works)} work${b.works === 1 ? "" : "s"} attached at the ${b.grain}` : "")).join("\n")}
+
+Commentary is not a separate book. It is carried by the book it comments on and
+opens where it attaches — at the word, or across the whole section, depending on
+what the chain records for it.
+
+## What is in here
+
+- \`index.html\` — the front door. Built by \`tools/build-front-door-v1.mjs\`; do not edit.
+- \`genesis-book-reader-v4/zone.html\` — the reader. One page serves every book.
+- \`genesis-book-reader-v4/data/zones/\` — the books and their commentary, as built zones.
+- \`genesis-book-reader-v4/data/route-store/\` — the readings, keyed by exact form.
+- \`genesis-book-reader-v4/tools/\` — every build step and every check.
+- \`genesis-book-reader-v4/PIPELINE-MANIFEST.md\` — generated: every rule the code
+  declares and which check guards it, and every published file and what builds it.
+
+## Building and checking
+
+\`\`\`
+./build.sh <mirror> <bridge.csv.gz> <serves> <YYYY-MM-DD>
+tools/run-all-checks.sh
+\`\`\`
+
+The build runs from sealed inputs and is re-runnable: the same inputs give the
+same bytes. The checks run against the rendered page rather than the source, and
+end by printing what they do not cover.
+
+## Two lanes
+
+The corpus lane acquires, verifies and seals the text, the definition records
+and the identity ledgers. Nothing in this repository reaches past what that lane
+has sealed. The synthesis lane — this repository — builds the reader from those
+artifacts and may not add a character to them.
+
+## Licensing
+
+There is no single licence. Every work carries its own, computed from its own
+records and named on the page it is read from and in anything exported from it.
+Nothing inherits a licence from the book it sits in.
+
+Served from the \`gh-pages\` branch.
+`;
+
 const redirect = (b) => `<!doctype html>
 <html lang="en">
 <head>
@@ -190,8 +254,11 @@ const redirect = (b) => `<!doctype html>
 const HEBREW = /[֐-׿]/;
 if (HEBREW.test(doc)) throw new Error("the front door printed a character of the text — refusing output");
 
+if (HEBREW.test(readme)) throw new Error("the README printed a character of the text — refusing output");
+
 mkdirSync(OUT, { recursive: true });
 writeFileSync(join(OUT, "index.html"), doc);
+writeFileSync(join(OUT, "README.md"), readme);
 for (const b of books) {
   mkdirSync(join(OUT, b.slug), { recursive: true });
   const r = redirect(b);
@@ -199,7 +266,7 @@ for (const b of books) {
   writeFileSync(join(OUT, b.slug, "index.html"), r);
 }
 
-console.log(`${OUT}/index.html · ${books.length} books · ${n(totalUnits)} commentary units`);
+console.log(`${OUT}/index.html + README.md · ${books.length} books · ${n(totalUnits)} commentary units`);
 for (const b of books)
   console.log(`  ${b.slug.padEnd(9)} ${n(b.sections)} sections · ${n(b.words)} words` +
     (b.units ? ` · ${n(b.units)} commentary from ${b.works} works, at the ${b.grain}` : " · no commentary"));
