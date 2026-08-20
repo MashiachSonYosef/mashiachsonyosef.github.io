@@ -7,13 +7,34 @@
 <style>
   :root {
     color-scheme: dark;
-    /* Tabernacle materials: shesh (linen), zahav (gold), tekhelet reserved
-       for structure lines — text and links wear linen, never blue. */
+    /* The Tabernacle's materials are named exactly and coloured nowhere.
+       Exodus lists tekhelet, argaman, tola'at shani and shesh by name, over and
+       over, and never says what any of them looked like. Every colour ever put
+       to them is a tradition, and the traditions disagree — tekhelet has been
+       called the blue of the sky and the green of the sea by people who had
+       held it. So the names below are the text's and the values are this
+       page's, and that difference is written down rather than blurred. No
+       reader should come away thinking a hex code is attested.
+
+       What each is for here is a rule, not a mood:
+
+         shesh     linen. The reading surface: text, links, the plain word.
+         zahav     gold. What the reader has acted on — opened, chosen, marked.
+         tekhelet  the structure. Rules, borders, the lines between things.
+         shani     scarlet. What the page will not vouch for: a shape it
+                   refuses to draw, a reach it is told is only suggested. It
+                   never marks something as wrong, only as unwitnessed.
+         argaman   purple. Declared and deliberately unused, so that the day it
+                   appears is a decision somebody made and not a colour that
+                   crept in. */
     --bg: #0a0f16; --panel: #101823; --panel2: #0d1520;
     --ink: #ece1c4; --ink-strong: #f6ecd2; --muted: #8fa1b3; --faint: #5f7183;
     --shesh: #d8c7a4; --shesh-bright: #eadbbd;
     --gold: #e8c46a; --gold-dim: #9a7f3f; --amber: #d9a441;
-    --line: #1e2c3c; --link: var(--shesh);
+    --tekhelet: #2b4a6f; --tekhelet-dim: #1e2c3c;
+    --shani: #c0563f; --shani-dim: #7a3527;
+    --argaman: #6b3f6e;
+    --line: var(--tekhelet-dim); --link: var(--shesh);
   }
   * { box-sizing: border-box; }
   /* text-size-adjust: a phone browser that decides a block is "main content"
@@ -60,7 +81,17 @@
   /* A work the ledger has not named in Hebrew keeps its English locator, but
      the locator does not get to look like a title. */
   header.top h1 .he-t.unnamed { color: var(--muted); font-size: 0.92rem; font-style: italic; }
-  header.top nav { margin-top: 0.6rem; font-size: 0.85rem; }
+  header.top nav { margin-top: 0.6rem; font-size: 0.85rem;
+    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+  /* The way back. It was a phrase inside a sentence, which is a link a reader
+     has to read to find; on a book that is fifteen hundred sections long the
+     way out should be the same shape wherever you are in it. Same pill as
+     everything else that can be pressed. */
+  header.top nav a.home { border: 1px solid var(--line); border-radius: 999px;
+    padding: 0.28rem 0.85rem; background: var(--panel2); color: var(--shesh);
+    border-bottom: 1px solid var(--line); white-space: nowrap; }
+  header.top nav a.home:hover { color: var(--gold); border-color: var(--gold-dim); }
+  header.top nav .nav-sep { color: var(--faint); }
   /* A book named in Hebrew never stands in Hebrew alone. Wherever the Hebrew
      title appears the English is beside it, because a reader who cannot read
      the one still has to know which book they are being offered. */
@@ -77,16 +108,24 @@
   #toc { max-width: 48rem; margin: 1.3rem auto 0; padding: 0 1.5rem; }
   /* Fifty chapters is the whole screen on a phone before a word of the book has
      been reached, so the grid arrives shut and says how much is behind it. */
-  #toc #tocHead { display: flex; align-items: baseline; gap: 0.5rem; width: 100%; text-align: left;
-    background: none; border: 0; padding: 0.2rem 0; margin: 0 0 0.35rem; cursor: pointer;
-    font: inherit; color: var(--faint); }
-  #toc #tocHead .toc-t { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; }
-  #toc #tocHead .toc-n { font-size: 0.72rem; color: var(--faint); }
-  #toc #tocHead::after { content: "\25be"; margin-inline-start: auto; font-size: 0.8rem;
-    transform: rotate(-90deg); transition: transform 140ms; }
-  #toc #tocHead[aria-expanded="true"] { color: var(--gold); }
-  #toc #tocHead[aria-expanded="true"]::after { transform: none; }
-  #toc #tocHead:hover { color: var(--gold); }
+  /* Shut, this used to be a faint grey line the width of two words, and a
+     reader who knew it was there took twenty seconds to find it. A control
+     that has to be hunted for is not a control. It is now the same object as
+     every other thing on this page that can be pressed — a bordered pill in
+     linen — and it carries the count, so the press is worth making before it
+     is made. */
+  #toc #tocHead { display: flex; align-items: center; gap: 0.55rem; text-align: left;
+    background: var(--panel2); border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--gold-dim); border-radius: 0.5rem;
+    padding: 0.5rem 0.85rem; margin: 0 0 0.4rem; cursor: pointer;
+    font: inherit; color: var(--shesh); }
+  #toc #tocHead .toc-t { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; }
+  #toc #tocHead .toc-n { font-size: 0.78rem; color: var(--muted); }
+  #toc #tocHead::after { content: "\25be"; margin-inline-start: auto; font-size: 0.9rem;
+    color: var(--gold-dim); transform: rotate(-90deg); transition: transform 140ms; }
+  #toc #tocHead[aria-expanded="true"] { color: var(--gold); border-inline-start-color: var(--gold); }
+  #toc #tocHead[aria-expanded="true"]::after { transform: none; color: var(--gold); }
+  #toc #tocHead:hover { color: var(--gold); border-color: var(--gold-dim); }
   #tocBody[hidden] { display: none; }
   /* Contents is a coordinate grid: positions, not content. Plain English
      names the structure ("Part 2", "Chapter 7") — describing a thing is not
@@ -534,10 +573,16 @@
   .c-mark-text.c-worded { line-height: 1.35; }
   .c-mark-text.c-worded .wb { margin-bottom: 0.3rem; }
   .c-mark-slot .c-att { display: block; color: var(--faint); font-size: 0.68rem; margin-top: 0.4rem; }
-  .c-mark-slot .c-undeclared { color: var(--shesh); border-inline-start: 2px solid var(--shesh);
+  /* Scarlet, by the rule at the top of this file: the page is refusing to draw
+     a shape it has not been given, and says so where the shape would have
+     been. It is not saying the commentary is wrong. */
+  .c-mark-slot .c-undeclared { color: var(--shani); border-inline-start: 2px solid var(--shani);
     padding-inline-start: 0.5rem; }
   .c-mark-slot .c-two-counts { color: var(--shesh); border-inline-start: 2px solid var(--gold-dim);
     padding-inline-start: 0.5rem; }
+  /* A reach the chain calls a suggestion rather than a proven edge. The
+     sentence already said so; this is the same sentence, findable. */
+  .c-att.c-suggested { color: var(--shani); }
   /* The chooser: everything attached to this line, named by its work and by
      the word it sits on, because a line's handle covers words and this is the
      reader deciding between them. */
@@ -717,7 +762,7 @@
        of the ledger, with its records behind it. The Hebrew that stood here was
        a copy I typed: it matched, but a copy is not a source, and a copy is the
        one thing on the page nothing stands behind. -->
-  <nav id="books"><a href="/" class="home">The Tabernacle</a> · books: <a href="/genesis" class="bk"><span class="bk-en">Genesis</span></a> · <a href="/1kings" class="bk"><span class="bk-en">I Kings</span></a></nav>
+  <nav id="books"><a href="/" class="home">The Tabernacle</a><span class="nav-sep">books:</span><a href="/genesis" class="bk"><span class="bk-en">Genesis</span></a><span class="nav-sep">·</span><a href="/1kings" class="bk"><span class="bk-en">I Kings</span></a></nav>
   <div id="modeRow">
     <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
     <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
@@ -2446,7 +2491,8 @@
         p.append(b.wb, document.createTextNode(" "));
       });
       if (!(e.words || []).length) { p.dir = "auto"; p.append(e.text || ""); }
-      const note = document.createElement("span"); note.className = "c-att";
+      const note = document.createElement("span");
+      note.className = e.state === "PROVEN_EDGE" ? "c-att" : "c-att c-suggested";
       note.textContent = e.state === "PROVEN_EDGE"
         ? `Attachment: ${e.basis === "SEALED_UNIT_COORDINATE_IDENTITY"
             ? "both works are units of the sealed chain and carry the same coordinates — nothing renumbered, nothing inferred"
@@ -2793,8 +2839,15 @@
           t.textContent = selected.text || "";
         }
         body.append(t);
-        const note = document.createElement("span"); note.className = "c-att";
-        note.textContent = selected.state === "PROVEN_EDGE"
+        // The one distinction a reader most needs and the handle cannot make:
+        // 180 of the 181 attachments in Genesis are suggestions, and one is a
+        // proven edge. The words were already here; the colour is the rule at
+        // the top of this file — scarlet is what the page will not vouch for —
+        // and it adds no claim the sentence was not already making.
+        const note = document.createElement("span");
+        const proven = selected.state === "PROVEN_EDGE";
+        note.className = proven ? "c-att" : "c-att c-suggested";
+        note.textContent = proven
           ? `Attachment: proven edge (${selected.basis})`
           : `Attachment: suggested reach only — ${selected.basis}; not a proven word edge`;
         body.append(note);
