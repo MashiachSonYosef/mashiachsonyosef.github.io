@@ -88,7 +88,10 @@ for (const book of ["genesis", "1kings"]) {
         hits: box.querySelectorAll(".ci-hit").length,
         licences: box.querySelectorAll(".ci-hit .lic-chip").length };
     });
-    check("  opening it names the works it holds", ci.open && ci.works.length > 8, ci.works.slice(0, 56));
+    // It says how many works, not which — the roll-call of every name and
+    // count was longer than the thing it introduced.
+    check("  opening it says how many works it holds",
+      ci.open && /\bworks?\b/.test(ci.works) && /\d/.test(ci.works), ci.works.slice(0, 64));
     check("  and offers them with their licences",
       ci.hits > 0 && ci.licences === ci.hits, `${ci.hits} shown, ${ci.licences} licensed`);
   }
