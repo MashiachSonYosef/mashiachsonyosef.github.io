@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-20.
 
-**27 rules declared · 18 named by a check · 9 unguarded.**
+**27 rules declared · 19 named by a check · 8 unguarded.**
 **13 published artifacts · 13 with a build step · 0 without.**
 
 ## The rules
@@ -19,7 +19,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `attachment-authorship-rule-v1-the-placement-is-ours-and-says-so` | tools/generate-attachment-map-v2.mjs, zone.html | check-whose-claim-v1 |
 | `colour-role-rule-v1-the-roles-are-the-ledgers-and-the-values-are-ours` | zone.html | check-colour-roles-v1 |
 | `commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press` | zone.html | check-commentary-in-line-v1 |
-| `commentary-order-rule-v1-ordered-here-by-the-dates-the-chain-records` | zone.html | check-commentary-in-line-v1 |
+| `commentary-order-rule-v2-oldest-first-on-the-earliest-date-recorded` | zone.html | check-commentary-in-line-v1 |
 | `commentary-scope-rule-v2` | zone.html | check-commentary-in-line-v1 |
 | `commentary-words-rule-v1-separate-at-the-spaces-the-author-typed` | tools/build-commentary-sidecar-v1.mjs | check-commentary-in-line-v1 |
 | `dibbur-hamatchil-rule-v2-the-window-is-the-verse` | tools/generate-attachment-map-v2.mjs | check-nothing-hard-wired-v1 |
@@ -39,7 +39,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates` | tools/sense-split-v1.mjs | check-provider-characters-v1, check-sense-split-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, zone.html | check-clean-address-v1 |
-| `zone-commentary-rule-v1-word-anchored-open-license-only` | tools/build-commentary-sidecar-v1.mjs | **UNGUARDED** |
+| `zone-commentary-rule-v2-everything-recorded-stands-somewhere` | tools/build-commentary-sidecar-v1.mjs | check-nothing-dropped-v1 |
 | `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | **UNGUARDED** |
 | `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs | **UNGUARDED** |
 | `zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-page-agrees-with-store-v1 |

@@ -253,6 +253,11 @@
      this; the commentary reads here now, so the basis reads here too. */
   .c-inline .c-att { display: block; direction: ltr; text-align: left; font-size: 0.64rem;
     color: var(--faint); margin-top: 0.15rem; }
+  /* Held: in the record, not printed here. It is not an error and not a gap —
+     it is the page saying what it is holding and why, in the place the text
+     would have stood. */
+  .c-inline.c-held { direction: ltr; text-align: left; font-size: 0.74rem;
+    color: var(--muted); font-style: italic; }
   body.en .c-inline { direction: ltr; text-align: left; }
   body.en .c-inline .g { font-size: 0.86rem; max-width: 11em; }
   body.en .c-inline .w { font-size: 0.92rem; }
@@ -2093,7 +2098,7 @@
       window.__commentaryStore = s;
     })
     .catch(() => {});
-  // commentary-order-rule-v1-ordered-here-by-the-dates-the-chain-records
+  // commentary-order-rule-v2-oldest-first-on-the-earliest-date-recorded
   //
   // A word of Genesis 1:1 carries a hundred and six commentaries. They arrive
   // in the order the attachment map happened to build them, which is no order
@@ -2116,10 +2121,21 @@
   //
   // The list is sorted into a copy. What the sidecar carries is what it
   // carried, so a check can still ask it what the corpus recorded.
-  const ORDER_RULE_ID = "commentary-order-rule-v1-ordered-here-by-the-dates-the-chain-records";
+  const ORDER_RULE_ID = "commentary-order-rule-v2-oldest-first-on-the-earliest-date-recorded";
+  //
+  // And "the date" is a choice too. 46 of the 58 works on this book's first
+  // verse carry a range rather than a year — Targum Jerusalem's is 380 to
+  // 1180, eight centuries wide — and this sorts on the earliest end of it.
+  // Sorting on the latest end instead moves 37 of the 58 to a different place,
+  // so the choice is not cosmetic: it decides which twelve a reader meets
+  // before pressing anything. The earliest end is used because it is the one
+  // end of a range that a range always has, and because "oldest first" on the
+  // earliest possible date is the reading that claims least. It is still ours,
+  // and the wording below says which end it took.
+  //
   // One wording, printed everywhere the order is announced, so the page cannot
   // say it two ways.
-  const ORDER_SAID = "ordered here, oldest first, by the dates the chain records";
+  const ORDER_SAID = "ordered here, oldest first, by the earliest date the chain records for each";
   // commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press
   //
   // How many works the chooser shows before the rest go behind a press. It is
@@ -2128,6 +2144,7 @@
   const orderedCache = new Map();
   const byRecordedDate = (list) => {
     const at = new Map(list.map((e, i) => [e, i]));
+    // the earliest end of whatever the chain recorded — see the note above
     const yr = (e) => (e.years && e.years.length && Number.isFinite(Number(e.years[0]))
       ? Number(e.years[0]) : Infinity);
     return [...list].sort((a, b) => yr(a) - yr(b) || at.get(a) - at.get(b));
@@ -2207,6 +2224,23 @@
     DIBBUR_HAMATCHIL_SUGGESTION_NOT_PROVEN: {
       said: "A work of its own, not part of this book. The chain puts it on this verse; this reader put it here, on the words it opens by quoting.",
       whose: "ours, a suggestion · no licence covers the convention · nothing recorded this placement",
+    },
+    // The ones nobody could place. Two thirds of what the record maps to this
+    // book's first verse are these, and an earlier build shipped none of them —
+    // the page said "181 attached" over a record carrying 612. They stand on
+    // the verse, which is where the pack's own sibling fixture already said an
+    // unmatched commentary is owned.
+    VERSE_MAPPED_NO_WORD_ANCHOR: {
+      said: "A work of its own, not part of this book. The chain puts it on this verse, and nothing puts it on any word of it — so it stands on the whole verse.",
+      whose: "the chain's verse · this reader placed nothing and guessed nothing",
+    },
+    HELD_PENDING_LICENCE_REVIEW: {
+      said: "A work of its own, not part of this book. The chain puts it on this verse. Its text is not printed here.",
+      whose: "held · what is recorded about its licence does not permit printing it",
+    },
+    RECORDED_WITHOUT_SOURCE_TEXT: {
+      said: "A work of its own, not part of this book. The chain puts it on this verse and carries no text for it.",
+      whose: "held · there is nothing to print",
     },
   };
   const attachSentence = (entry) => {
@@ -2642,7 +2676,7 @@
       const lab = document.createElement("span"); lab.className = "lab";
       lab.append(`${w.family_en || w.title || e.ref} · ${e.ref}${w.b_n ? ` · ${w.b_n}` : ""} `);
       const lic = document.createElement("span"); lic.className = "lic-chip";
-      lic.textContent = w.license || "License unrecorded";
+      lic.textContent = e.license || w.license || "License unrecorded";
       lab.append(lic);
       p.append(lab);
       (e.words || []).forEach((word) => {
@@ -2650,7 +2684,19 @@
         wireWord(b, word, commentaryStore, null, null);
         p.append(b.wb, document.createTextNode(" "));
       });
-      if (!(e.words || []).length) { p.dir = "auto"; p.append(e.text || ""); }
+      // A commentary the record carries and this page will not print is a fact
+      // about this page, and the reader is owed it by name rather than by a
+      // gap in a count. An earlier build dropped these before they reached the
+      // file at all.
+      if (e.held) {
+        p.dir = "auto"; p.classList.add("c-held");
+        const why = e.held === "licence"
+          ? (e.disposition === "LICENSE_UNKNOWN"
+            ? "no licence is recorded for it, and this page prints nothing it cannot name a licence for"
+            : `its licence is recorded as ${e.disposition || "something this page cannot read"}, which does not permit printing it here`)
+          : "the record carries its reference and no text for it, so there is nothing to print";
+        p.append(`Held — ${why}. Everything else the record carries about it stands above.`);
+      } else if (!(e.words || []).length) { p.dir = "auto"; p.append(e.text || ""); }
       const how = attachSentence(e);
       const note = document.createElement("span");
       note.className = "c-att";
@@ -2904,7 +2950,21 @@
     let cbar = null;
     if (secCm) {
       cbar = document.createElement("button"); cbar.type = "button"; cbar.className = "c-bar";
-      const fam = secCm.map((e) => commentaryWorkOf(e).family_en || "commentary").join(", ");
+      // One name per work, not one per unit, and a bound on how many are read
+      // out. 1 Kings' section carries one commentary; Genesis 1:1 carries four
+      // hundred and thirty-one, and joining every one of their names put a
+      // paragraph of repeated titles inside a button. The names are distinct
+      // works, the first few of them, and the rest are counted rather than
+      // dropped — the press opens all of them either way.
+      const famAll = [];
+      for (const e of secCm) {
+        const n = commentaryWorkOf(e).family_en || "commentary";
+        if (!famAll.includes(n)) famAll.push(n);
+      }
+      const BAR_NAMES = 4;
+      const fam = famAll.length <= BAR_NAMES
+        ? famAll.join(", ")
+        : `${famAll.slice(0, BAR_NAMES).join(", ")} and ${(famAll.length - BAR_NAMES).toLocaleString()} more works`;
       // The glyph stays, because the word-anchored chips still use it and one
       // convention should cover both grains; the name beside it says which
       // work, which a letter never could.
@@ -2913,8 +2973,9 @@
       const nm = document.createElement("span"); nm.className = "c-name"; nm.textContent = fam;
       cbar.append(g, nm);
       cbar.setAttribute("aria-expanded", "false");
-      cbar.setAttribute("aria-label", `Commentary on ${sec.label}: ${fam}`);
-      cbar.title = `${fam} · ${sec.label}`;
+      cbar.setAttribute("aria-label",
+        `${secCm.length} commentary on ${sec.label}, from ${famAll.length} work${famAll.length === 1 ? "" : "s"}`);
+      cbar.title = `${famAll.join(", ")} · ${sec.label}`;
       cbar.addEventListener("click", (e) => {
         e.stopPropagation();
         cbar.setAttribute("aria-expanded", String(toggleSectionInline(sec, s)));
