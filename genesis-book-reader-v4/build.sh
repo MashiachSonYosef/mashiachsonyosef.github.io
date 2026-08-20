@@ -113,6 +113,16 @@ node tools/build-commentary-sidecar-v1.mjs \
   --store data/route-store --out data/zones/genesis-commentary.bin
 
 echo "── 6 · assemble the site ───────────────────────────────────────────────"
+# The published set is exactly what this build produced, and nothing else.
+#
+# This copy used to be additive, so every zone ever deployed stayed deployed.
+# Four of them were still being served months later — orot, 2kings,
+# 2kings-commentary and an old genesis-1 — none built by this script, none on
+# the front door, none touched by a check, and all of them reachable by typing
+# ?b= into the reader. Orot's masthead said "served from the sealed chain",
+# which it never was: it came through the acquisition route and cannot be
+# re-served here. A deploy that only ever adds cannot un-say a thing like that.
+rm -f site/data/zones/*.bin
 cp data/zones/*.bin site/data/zones/
 rm -rf site/data/route-store && cp -r data/route-store site/data/route-store
 
