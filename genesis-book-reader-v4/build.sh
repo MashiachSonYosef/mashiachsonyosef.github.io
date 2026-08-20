@@ -101,10 +101,15 @@ node tools/build-commentary-zone.mjs \
 # segment sits on. Both steps are re-runnable and both refuse rather than
 # guess, which is the only thing that makes an outside pack safe to publish.
 echo "── 5b · Genesis 1:1 commentary, from the pack and its attachment map ───"
-node tools/generate-genesis-attachment-map-v2.mjs \
-  --out "data/v5-genesis-1-1-attachment-map-$STAMP.js"
-node tools/build-genesis-commentary-zone-v1.mjs \
-  --map "data/v5-genesis-1-1-attachment-map-$STAMP.js" \
+node tools/generate-attachment-map-v2.mjs \
+  --pack data/genesis-1-1-commentary-2026-07-17.js \
+  --carried data/v2-genesis-1-1-attachment-map-2026-07-22.js \
+  --zone data/zones/genesis.bin --stamp "$STAMP" \
+  --out "data/v5-attachment-map-$STAMP.js"
+node tools/build-commentary-sidecar-v1.mjs \
+  --pack data/genesis-1-1-commentary-2026-07-17.js \
+  --map "data/v5-attachment-map-$STAMP.js" \
+  --zone data/zones/genesis.bin \
   --store data/route-store --out data/zones/genesis-commentary.bin
 
 echo "── 6 · assemble the site ───────────────────────────────────────────────"

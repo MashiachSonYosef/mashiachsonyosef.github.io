@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-20.
 
-**23 rules declared · 12 named by a check · 11 unguarded.**
+**23 rules declared · 14 named by a check · 9 unguarded.**
 **13 published artifacts · 13 with a build step · 0 without.**
 
 ## The rules
@@ -18,12 +18,12 @@ whoever is working remembers it, and stops holding the moment they do not.
 |---|---|---|
 | `commentary-order-rule-v1-oldest-first-by-the-dates-the-chain-records` | zone.html | check-commentary-in-line-v1 |
 | `commentary-scope-rule-v2` | zone.html | check-commentary-in-line-v1 |
-| `commentary-words-rule-v1-separate-at-the-spaces-the-author-typed` | tools/build-genesis-commentary-zone-v1.mjs | check-commentary-in-line-v1 |
-| `dibbur-hamatchil-rule-v2-the-window-is-the-verse` | tools/generate-genesis-attachment-map-v2.mjs | **UNGUARDED** |
+| `commentary-words-rule-v1-separate-at-the-spaces-the-author-typed` | tools/build-commentary-sidecar-v1.mjs | check-commentary-in-line-v1 |
+| `dibbur-hamatchil-rule-v2-the-window-is-the-verse` | tools/generate-attachment-map-v2.mjs | check-nothing-hard-wired-v1 |
 | `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | **UNGUARDED** |
 | `export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work` | zone.html | check-citations-v1, check-export-v1 |
 | `fixture-rule-v1-a-real-zone-with-its-own-commentary-hung-at-words` | tools/make-fixture-zone-v1.mjs | **UNGUARDED** |
-| `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs | **UNGUARDED** |
+| `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs | check-nothing-hard-wired-v1 |
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
 | `mark-inventory-rule-v1-closed-set-over-route-text` | tools/mark-inventory-v1.mjs | **UNGUARDED** |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | **UNGUARDED** |
@@ -35,7 +35,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates` | tools/sense-split-v1.mjs | check-provider-characters-v1, check-sense-split-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, zone.html | check-clean-address-v1 |
-| `zone-commentary-rule-v1-word-anchored-open-license-only` | tools/build-genesis-commentary-zone-v1.mjs | **UNGUARDED** |
+| `zone-commentary-rule-v1-word-anchored-open-license-only` | tools/build-commentary-sidecar-v1.mjs | **UNGUARDED** |
 | `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | **UNGUARDED** |
 | `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs | **UNGUARDED** |
 | `zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-gloss-whole-v1, check-page-agrees-with-store-v1 |
@@ -59,7 +59,7 @@ machine it was made on is gone, so is the ability to make it again.
 | `data/zones/1kings-commentary.bin` | build.sh |
 | `data/zones/targum-1kings-commentary.bin` | build.sh |
 | `data/route-store` · index + 256 shards | tools/build-route-store.mjs |
-| `data/v5-genesis-1-1-attachment-map-2026-08-19.js` · which words each commentary sits on | build.sh |
+| `data/v5-attachment-map-2026-08-19.js` · which words of which section each commentary sits on | build.sh |
 
 ## Stages
 
