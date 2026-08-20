@@ -3542,8 +3542,14 @@
       const k = r.work.family_en || r.work.title || r.e.ref || "commentary";
       byWork.set(k, (byWork.get(k) || 0) + 1);
     }
-    const summary = [...byWork.entries()].sort((a2, b2) => b2[1] - a2[1])
-      .map(([k, n]) => `${k} · ${n.toLocaleString()}`).join("   ");
+    // How many works, not which ones. Naming every one with its count was a
+    // roll-call eighty-one entries long — "Mechokekei Yehudah; Yahel Ohr · 115
+    // Or HaChaim · 63 …" — sitting above the search that already reaches all
+    // of them. Nothing is hidden by dropping it: the count says how many there
+    // are, the search finds any of them by name, and the verse's own bar names
+    // the ones standing on it.
+    const summary = `from ${byWork.size.toLocaleString()} work${byWork.size === 1 ? "" : "s"} · ` +
+      `${byWork.size === 1 ? "every unit of it is" : "any one of them is"} findable below`;
     // The handle says what it is and how much of it there is; which works those
     // are is what the press is for. Naming five dozen commentators on a shut
     // box made the top of the book a wall of names before a word of it.
