@@ -1,0 +1,195 @@
+#!/usr/bin/env node
+// The front door, and the addresses it opens.
+//
+// The site's own root is a splash: the books that are finished, and nothing
+// else clickable. Each is reached at a clean address — /genesis, /1kings —
+// which is a small page that hands the reader to the one zone reader and tells
+// it which address to keep. The reader rewrites its bar to that address, which
+// means every path it fetches afterwards has to have been resolved before the
+// rewrite, not from the bar. That is what ROOT is for, and this is the check
+// that it stays that way: an address in the bar the server never served, and
+// the readings still arriving.
+//
+// It serves its own copy of the deployed tree, because the thing under test is
+// the shape of that tree — deploy-root/ over the site root, the reader under
+// genesis-book-reader-v4/ — and a check that read the reader at its own path
+// would never see it. It takes no URL for the same reason.
+// GUARDS: title-key-rule-v1-only-what-the-store-already-attests
+//
+import { createServer } from "node:http";
+import { readFile, mkdtemp, mkdir, cp, symlink } from "node:fs/promises";
+import { readFileSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
+import { tmpdir } from "node:os";
+import { join, dirname, extname, normalize } from "node:path";
+import { fileURLToPath } from "node:url";
+import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+const K3 = join(HERE, "..");
+let bad = 0;
+const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
+
+const site = await mkdtemp(join(tmpdir(), "tabernacle-site-"));
+await cp(join(K3, "deploy-root"), site, { recursive: true });
+await mkdir(join(site, "genesis-book-reader-v4"), { recursive: true });
+await cp(join(K3, "zone.html"), join(site, "genesis-book-reader-v4", "zone.html"));
+await symlink(join(K3, "data"), join(site, "genesis-book-reader-v4", "data"));
+
+const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json" };
+const srv = createServer(async (req, res) => {
+  const p = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "");
+  try {
+    let file = join(site, p);
+    if (!extname(p)) {
+      // Pages answers a directory with its index.html; so does this.
+      if (p.endsWith("/")) file = join(file, "index.html");
+      else { res.writeHead(301, { Location: `${p}/` }); return res.end(); }
+    }
+    const body = await readFile(file);
+    // shards arrive gzipped and are unpacked by the page, not the transport
+    res.writeHead(200, { "content-type": TYPES[extname(file)] || "application/octet-stream" });
+    res.end(body);
+  } catch { res.writeHead(404); res.end("no"); }
+});
+await new Promise((r) => srv.listen(0, "127.0.0.1", r));
+const B = `http://127.0.0.1:${srv.address().port}`;
+
+const b = await pw.chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const p = await b.newPage({ viewport: { width: 412, height: 915 } });
+p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+
+await p.goto(`${B}/`, { waitUntil: "networkidle" });
+const splash = await p.evaluate(() => ({
+  title: document.title,
+  links: [...document.querySelectorAll("a")].map((a) => a.getAttribute("href")),
+  offscreen: document.documentElement.scrollWidth > window.innerWidth + 1,
+  // A Hebrew name never stands by itself: whatever box carries it carries the
+  // English too, so a reader who cannot read it still knows what it offers.
+  he: [...document.querySelectorAll('[lang="he"]')].map((e) => {
+    const box = e.closest("a, h1, h2");
+    return { t: e.textContent.trim(), paired: !!box && /[A-Za-z]/.test(box.textContent.replace(e.textContent, "")) };
+  }),
+}));
+console.log("— the splash —");
+check("it names the site", /Tabernacle/.test(splash.title), splash.title);
+check("only the finished books are clickable off it",
+  JSON.stringify(splash.links) === JSON.stringify(["/genesis", "/1kings"]), splash.links.join(" "));
+check("it does not run off the side", !splash.offscreen);
+// Two kinds of text are allowed on our own surfaces: text from the chain,
+// carrying its record, and plain English of ours that says what a thing is.
+// Hebrew we typed is neither, and the site's own name was the worst place for
+// it — the one string on the page with nothing behind it, at the top.
+const framed = await p.evaluate(() => {
+  const labOf = (e) => (e.closest(".row")?.querySelector(".lab")?.textContent || "").trim();
+  return {
+    inSiteName: document.querySelectorAll("h1 [lang='he']").length,
+    hebrews: [...document.querySelectorAll('[lang="he"]')].map((e) => ({ t: e.textContent.trim(), lab: labOf(e) })),
+    commons: [...document.querySelectorAll("a.book .en")].map((e) => ({ t: e.textContent.trim(), lab: labOf(e) })),
+    unnamed: [...document.querySelectorAll("a.book .he.none")].map((e) => e.textContent.trim()),
+  };
+});
+check("the site's own name carries no Hebrew that nothing recorded",
+  framed.inSiteName === 0, `${framed.inSiteName} found`);
+// The front door carries no records, so it can cite nothing, so it prints no
+// corpus text at all. A book's own title waits inside, where it opens.
+check("the front door prints no Hebrew, because it can source none",
+  framed.hebrews.length === 0, framed.hebrews.map((x) => x.t).join(" · ") || "none");
+check("and the English beside it is labelled as how it is read, not as a translation",
+  framed.commons.length > 0 && framed.commons.every((x) => /^commonly read as$/i.test(x.lab)),
+  framed.commons.map((x) => `${x.t} under "${x.lab}"`).join(" · "));
+
+
+// What the masthead should say is not typed here: it is read out of the zone
+// the page is about to load. A check that carries its own copy of a title is
+// checking the page against me rather than against the chain.
+const titleOf = (book) => {
+  const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${book}.bin`))).toString("utf8"));
+  return [z.work_he || "", z.work || ""];
+};
+for (const [href, ...expected] of [["/genesis", ...titleOf("genesis")], ["/1kings", ...titleOf("1kings")]]) {
+  const [heTitle, en] = expected;
+  console.log(`— ${href} —`);
+  await p.goto(`${B}/`, { waitUntil: "networkidle" });
+  await Promise.all([p.waitForURL(new RegExp(`\\${href}$`), { timeout: 20000 }), p.click(`a[href="${href}"]`)]);
+  await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+  await p.waitForTimeout(700);
+  const r = await p.evaluate(() => {
+    const he = document.querySelector("#workTitle .he-t"), enEl = document.querySelector("#workTitle .en-t");
+    const labOf = (e2) => (e2.closest(".t-row")?.querySelector(".t-lab")?.textContent || "").trim();
+    return { addr: location.pathname + location.search, title: document.title,
+      he: (he.querySelector(".w") || he).textContent.trim(), en: enEl.textContent.trim(),
+      heLab: labOf(he), enLab: labOf(enEl), heUnnamed: he.classList.contains("unnamed"),
+      lic: (() => { const c = document.getElementById("workLic"); return c && !c.hidden ? c.textContent.trim() : ""; })(),
+      titleOpens: !!document.querySelector("#workTitle .he-t .wb"),
+      words: document.querySelectorAll("section.seg .he-text .wb").length,
+      glossed: [...document.querySelectorAll("section.seg .he-text .wb .g")].filter((g) => g.textContent.trim()).length,
+      sections: document.querySelectorAll("section.seg").length,
+      nav: [...document.querySelectorAll("#books a")].map((a) => a.getAttribute("href")),
+      navHe: document.querySelectorAll('#books [lang="he"]').length };
+  });
+  check("  the bar keeps the clean address", r.addr === href, r.addr);
+  check("  the tab names the book in both", r.title.includes(en) && (!heTitle || r.title.includes(heTitle)), r.title);
+  check("  the masthead carries the book's own title, said to be the title",
+    /^book title$/i.test(r.heLab) && (heTitle ? r.he === heTitle && !r.heUnnamed
+      : r.heUnnamed && /ledger/i.test(r.he)), `"${r.heLab}": ${r.he}`);
+  // And it is a word of the corpus, not a caption: it opens the same catalogue
+  // every other word of the book opens.
+  check("  and it opens like any word of the text", heTitle ? r.titleOpens : !r.titleOpens,
+    r.titleOpens ? "pressable" : "not pressable");
+  // Where a record in the store reads the title that way, the line says the
+  // reading is being forced and carries that record's licence. Where none
+  // does, it drops the claim and says only that it is commonly read so.
+  check("  and the common name, said to be a reading held to",
+    /^commonly (force )?read as$/i.test(r.enLab) && r.en === en, `"${r.enLab}": ${r.en}`);
+  check("  cited from a record where one reads it that way, and not where none does",
+    heTitle ? (/force/i.test(r.enLab) && r.lic.length > 2) : (!/force/i.test(r.enLab) && !r.lic),
+    `${r.enLab} · ${r.lic || "no licence"}`);
+  check("  the zone still loads under the rewritten bar", r.sections > 100 && r.words > 3, `${r.sections} sections`);
+  check("  and its readings came with it", r.glossed > 0, `${r.glossed} of ${r.words} words glossed`);
+  check("  the nav offers the splash and the books, nothing stale",
+    JSON.stringify(r.nav) === JSON.stringify(["/", "/genesis", "/1kings"]), r.nav.join(" "));
+  // Navigation carries coordinates. A title is corpus text and belongs in the
+  // masthead, out of the ledger, where it can be tapped and defined — a copy of
+  // it typed into a link would be the one string on the page with nothing
+  // behind it.
+  check("  the nav prints no title, only where to go", r.navHe === 0, `${r.navHe} Hebrew in the nav`);
+
+  // The store is fetched shard by shard as words are pressed — long after the
+  // bar stopped saying where the page came from.
+  await p.click("section.seg .he-text .wb");
+  await p.waitForTimeout(1000);
+  const card = await p.evaluate(() => {
+    const h = document.getElementById("hud");
+    return { open: !h.hidden, readings: h.querySelectorAll(".r-pills button").length,
+      lic: (h.querySelector(".d-card .d-foot")?.textContent || "").replace(/\s+/g, " ").trim().slice(0, 52) };
+  });
+  check("  a word still reaches the store and opens its record",
+    card.open && card.readings > 0, `${card.readings} readings · ${card.lic}`);
+  await p.keyboard.press("Escape");
+}
+
+console.log("— the addresses on their own —");
+await p.goto(`${B}/1kings`, { waitUntil: "networkidle" });
+await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+const typed = await p.evaluate(() => ({ addr: location.pathname, secs: document.querySelectorAll("section.seg").length }));
+check("a clean address typed in lands on the reader and stays",
+  typed.addr === "/1kings" && typed.secs > 100, `${typed.addr} · ${typed.secs} sections`);
+
+await p.goto(`${B}/genesis-book-reader-v4/zone.html?b=genesis`, { waitUntil: "networkidle" });
+await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+const raw = await p.evaluate(() => ({ addr: location.pathname, secs: document.querySelectorAll("section.seg").length,
+  glossed: [...document.querySelectorAll("section.seg .he-text .wb .g")].filter((g) => g.textContent.trim()).length }));
+check("and the reader at its own path is untouched by any of it",
+  raw.addr === "/genesis-book-reader-v4/zone.html" && raw.secs > 100 && raw.glossed > 0,
+  `${raw.addr} · ${raw.secs} sections · ${raw.glossed} glossed`);
+
+// Nothing is rewritten on a say-so that did not come from our own redirect.
+await p.goto(`${B}/genesis-book-reader-v4/zone.html?b=genesis&clean=..%2F..%2Fevil`, { waitUntil: "networkidle" });
+const hostile = await p.evaluate(() => location.pathname);
+check("a clean= that is not one of ours is ignored",
+  hostile === "/genesis-book-reader-v4/zone.html", hostile);
+
+await p.close(); await b.close(); srv.close();
+console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
+process.exit(bad ? 1 : 0);

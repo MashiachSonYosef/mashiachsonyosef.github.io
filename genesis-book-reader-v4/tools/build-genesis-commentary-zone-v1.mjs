@@ -17,6 +17,7 @@
 //   --map    the attachment map
 //   --zone   the book zone, for the words the anchors land on
 //   --unit   the section id inside that zone
+//   --store  the route store to project readings from
 //   --out    where to write
 //   --verify compare against an existing sidecar and print the differences
 //            rather than writing
@@ -38,7 +39,7 @@ const arg = (name, dflt) => {
 };
 
 const PACK = arg("pack", "data/genesis-1-1-commentary-2026-07-17.js");
-const MAP = arg("map", "data/v4-genesis-1-1-attachment-map-2026-08-10.js");
+const MAP = arg("map", "data/v5-genesis-1-1-attachment-map-2026-08-19.js");
 const ZONE = arg("zone", "data/zones/genesis.bin");
 const UNIT = arg("unit", "genesis-1-1");
 const OUT = arg("out", "data/zones/genesis-commentary.bin");
@@ -123,7 +124,6 @@ const tokenise = (text, ref) => {
     w.w = regions.filter((x) => x.k);
     out.push(w);
   }
-  // the separation invariant: put them back and you have the text
   const back = out.map((x) => x.s).join("");
   if (back !== String(text || "").replace(/\s+/gu, ""))
     throw new Error(`${ref}: the words do not put the commentary back together — refusing output`);
@@ -145,7 +145,6 @@ for (const claim of map.claims) {
   if (!found) continue;
   const { seg, family } = found;
   const he = seg.he || {};
-  // the licence is the only gate
   if (he.license_disposition !== "OPEN_OR_PUBLIC_DOMAIN") { counts.skipped_license += 1; continue; }
   if (!he.source_text_present || !String(he.proof_text || "").trim()) { counts.skipped_no_text += 1; continue; }
 
@@ -171,7 +170,6 @@ for (const claim of map.claims) {
     state: claim.claim_state,
     basis: hint.basis || hint.proof_basis,
     v_words: [vs, ve],
-    // the same span, on the words the reader actually draws
     z_words: [zoneStartOf[vs], zoneEndOf[ve] + 1],
   });
   counts.attached += 1;
@@ -251,21 +249,21 @@ if (VERIFY) {
   const diffs = { only_before: [], only_after: [], field: {} };
   for (const ref of A.keys()) if (!B.has(ref)) diffs.only_before.push(ref);
   for (const ref of B.keys()) if (!A.has(ref)) diffs.only_after.push(ref);
-  const keys = ["ref", "he_ref", "title", "topic", "family_en", "family_he", "years",
+  const keysOf = ["ref", "he_ref", "title", "topic", "family_en", "family_he", "years",
     "version_title", "license", "source_url", "text", "state", "basis", "v_words", "z_words"];
   for (const [ref, b] of B) {
     const a = A.get(ref); if (!a) continue;
     if (a.pos !== b.pos) (diffs.field.attached_word = diffs.field.attached_word || []).push(ref);
-    for (const k of keys)
+    for (const k of keysOf)
       if (JSON.stringify(a.e[k]) !== JSON.stringify(b.e[k]))
         (diffs.field[k] = diffs.field[k] || []).push(`${ref}: ${JSON.stringify(a.e[k])} -> ${JSON.stringify(b.e[k])}`);
   }
-  console.log(`rebuilt ${counts.attached} attachments · the published sidecar carries ${(was.counts || {}).attached}`);
-  console.log(`  in the published file only : ${diffs.only_before.length}`);
-  console.log(`  in the rebuild only        : ${diffs.only_after.length}`);
+  console.log(`rebuilt ${counts.attached} attachments · the file compared against carries ${(was.counts || {}).attached}`);
+  console.log(`  only in the file : ${diffs.only_before.length}`);
+  console.log(`  only in rebuild  : ${diffs.only_after.length}`);
   for (const [k, v] of Object.entries(diffs.field)) {
     console.log(`  ${k}: ${v.length} differ`);
-    v.slice(0, 4).forEach((x) => console.log(`      ${x}`));
+    v.slice(0, 3).forEach((x) => console.log(`      ${x}`));
   }
   if (!Object.keys(diffs.field).length && !diffs.only_before.length && !diffs.only_after.length)
     console.log("  every field of every attachment is identical");

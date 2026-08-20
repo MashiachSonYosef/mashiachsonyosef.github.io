@@ -225,7 +225,10 @@ if (spanFacts.forms) {
     for (let i = 0; i < els.length; i += 1) {
       const w = els[i].querySelector(".w");
       const norm = [...w.textContent.normalize("NFC")]
-        .filter((c) => (c.codePointAt(0) >= 0x05d0 && c.codePointAt(0) <= 0x05ea) || "־׳״".includes(c)).join("");
+        // U+05BE MAQAF, U+05F3 GERESH, U+05F4 GERSHAYIM — named by codepoint and
+        // never typed, the same three the key rule preserves
+        .filter((c) => (c.codePointAt(0) >= 0x05d0 && c.codePointAt(0) <= 0x05ea)
+          || "\u05be\u05f3\u05f4".includes(c)).join("");
       if (norm === k) { els[i].id = `probe-${i}`; return { id: `probe-${i}`, text: w.textContent }; }
     }
     return null;
@@ -333,7 +336,8 @@ if (spanFacts.counts.occurrences_holding_more_than_one_w) {
     check("each region opens its own card", opened[0].first !== opened[1].first || opened[0].first === "",
       opened.map((o) => o.first || "(no reading)").join(" vs "));
     check("only the region you opened is marked", opened.every((o) => o.marked === 1), opened.map((o) => o.marked).join(","));
-    check("the whole occurrence stays in the header", opened.every((o) => o.head.includes("־")), opened[0].head);
+    // U+05BE MAQAF, by codepoint: the mark the occurrence is written with
+    check("the whole occurrence stays in the header", opened.every((o) => o.head.includes("\u05be")), opened[0].head);
     await page.keyboard.press("Escape");
   }
 }

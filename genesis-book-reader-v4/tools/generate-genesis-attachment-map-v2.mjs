@@ -5,8 +5,6 @@
 // on, read off the segment's own opening quotation. This supersedes the
 // generator that produced v4, in one respect only.
 //
-// ---- what changed, and why -------------------------------------------
-//
 // v4 said: "the longest run of up to four consecutive verse words wins."
 // Four is a window, not a measurement. A commentary that opens by quoting
 // five words of the verse was recorded on four of them; one that opened by
@@ -62,8 +60,7 @@ const verseWords = verseWordsRaw.map(normalize);
 
 // the window: as far as the verse reaches
 const WINDOW = Number(argOf("window", verseWords.length));
-const OUT_FILE = argOf("out",
-  `data/v5-genesis-1-1-attachment-map-${GENERATED_ON}.js`);
+const OUT_FILE = argOf("out", `data/v5-genesis-1-1-attachment-map-${GENERATED_ON}.js`);
 
 const matchHeadword = (proofText) => {
   const headRaw = (String(proofText).split(".")[0] || "").trim() || String(proofText);

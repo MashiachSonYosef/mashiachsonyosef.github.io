@@ -214,6 +214,8 @@ for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the Engli
 
 // ---- every attachment in every book, by the shape it declares ---------
 //
+// GUARDS: commentary-scope-rule-v2, commentary-order-rule-v1-oldest-first-by-the-dates-the-chain-records, commentary-words-rule-v1-separate-at-the-spaces-the-author-typed
+//
 // This is the one that guards the corpus. Shapes 1 to 3 the reader draws: a
 // section coordinate covers its section, a word coordinate with a recorded
 // span covers that span, a word coordinate without one covers its word.
@@ -277,7 +279,7 @@ for (const book of ["genesis", "1kings"]) {
   await p.waitForSelector("section.seg .c-mark");
   await p.waitForTimeout(700);
   console.log("— a commentary covers the span the chain recorded —");
-  let seen = 0; const widths = new Set(); let saidBoth = 0;
+  let seen = 0; const widths = new Set();
   // one unit of each span width the sidecar records on the first word, taken
   // from the list inside the open commentary, so every width the chain uses is
   // actually drawn at least once
@@ -308,17 +310,11 @@ for (const book of ["genesis", "1kings"]) {
       const para = document.querySelector("section.seg .he-text");
       const panel = para.querySelector(".c-mark-slot:not(.c-choose)");
       if (!panel) return null;
-      // the verse's own words, not the commentary's — a commentary's words are
-      // blocks too now, and they live inside the panel
-      const verseWb = (root) => [...root.querySelectorAll(".wb")]
-        .filter((w) => !w.closest(".c-mark-slot"));
+      const verseWb = (root) => [...root.querySelectorAll(".wb")].filter((w) => !w.closest(".c-mark-slot"));
       const marked = verseWb(para).filter((w) => w.classList.contains("c-open"));
       const wbs = verseWb(para);
       const pr = panel.getBoundingClientRect();
       const lab = (panel.querySelector(".lab")?.textContent || "").trim();
-      // the chain's own number for whichever unit is open, found by the
-      // reference the panel names — the page is not asked what it decided,
-      // the store is asked what it recorded
       let span = null;
       const units = (window.__commentaryStore || {}).units || {};
       for (const u of Object.values(units))
@@ -332,28 +328,26 @@ for (const book of ["genesis", "1kings"]) {
         below: wbs.filter((w) => w.getBoundingClientRect().top >= pr.bottom - 1).length,
         bothCounts: !!panel.querySelector(".c-two-counts") };
     });
+    if (!r) continue;
     // everything the span covers is above the panel and everything else is
     // below it — which is nothing at all when the span is the whole verse,
     // and six comments on Genesis 1:1 are
-    if (!r) continue;
     check(`  ${r.ref}`,
       r.span !== null && r.covered.length === r.span && r.allAbove &&
       r.below === r.words - r.span,
       `chain says ${r.span} of ${r.words} · covers ${r.covered.length} · ${r.covered.join(" ")} · ${r.below} below`);
     if (r.span !== null) widths.add(r.span);
-    if (r.bothCounts) saidBoth += 1;
     seen += 1;
   }
   check("  more than one span length was reached", widths.size >= 2, `${widths.size} lengths across ${seen} opened`);
-  // and at least one of them printed both numbers, so the line is not dead code
-  const anyBoth = await p.evaluate(() => {
+  const reachable = await p.evaluate(() => {
     const units = (window.__commentaryStore || {}).units || {};
     let n = 0;
     for (const u of Object.values(units))
       for (const list of Object.values(u.words || {})) n += list.length;
     return n;
   });
-  check("  the store was reachable to check the chain's own numbers against", anyBoth > 0, `${anyBoth} attachments`);
+  check("  the store was reachable to check the chain's own numbers against", reachable > 0, `${reachable} attachments`);
   await p.close();
 }
 
@@ -380,29 +374,22 @@ for (const book of ["genesis", "1kings"]) {
     const pan = document.querySelector("section.seg .c-mark-slot:not(.c-choose)");
     const lab = (pan.querySelector(".lab")?.textContent || "").trim();
     const wbs = [...pan.querySelectorAll(".c-mark-text .wb")];
-    // what the sidecar itself recorded for whichever unit is open, found by
-    // the reference the panel names rather than by the text it is printing
     let recorded = null;
     const units = (window.__commentaryStore || {}).units || {};
     for (const u of Object.values(units))
       for (const list of Object.values(u.words || {}))
         for (const e of list)
-          if (e.he_ref && lab.includes(e.he_ref))
-            recorded = { words: (e.words || []).length, text: e.text };
-    return { ref: lab.slice(0, 24),
-      blocks: wbs.length, recorded,
+          if (e.he_ref && lab.includes(e.he_ref)) recorded = { words: (e.words || []).length, text: e.text };
+    return { ref: lab.slice(0, 24), blocks: wbs.length, recorded,
       withReading: wbs.filter((w) => (w.querySelector(".g")?.textContent || "").trim()).length,
-      // the pieces put the commentary back together, on the page as in the file
       rejoins: wbs.map((w) => w.querySelector(".w").textContent).join("") ===
         String(recorded ? recorded.text : "").replace(/\s+/gu, "") };
   });
   check("  every word of it is a block", r.recorded && r.blocks === r.recorded.words,
     `${r.ref} · ${r.blocks} blocks, the sidecar records ${r.recorded ? r.recorded.words : "?"}`);
   check("  and the blocks put the commentary back together", r.rejoins);
-  check("  most of them carry a reading", r.withReading > r.blocks / 2,
-    `${r.withReading} of ${r.blocks}`);
+  check("  most of them carry a reading", r.withReading > r.blocks / 2, `${r.withReading} of ${r.blocks}`);
 
-  // pressing one opens the same card the verse's words open
   const pressed = await p.evaluate(() => {
     const w = [...document.querySelectorAll(".c-mark-text .wb")]
       .find((x) => (x.querySelector(".g")?.textContent || "").trim());
@@ -414,15 +401,12 @@ for (const book of ["genesis", "1kings"]) {
   const card = await p.evaluate(() => {
     const h = document.querySelector("#hud");
     if (!h || h.hidden) return { open: false };
-    return { open: true,
-      pills: h.querySelectorAll(".r-pills button, .r-pills .r-pill").length,
-      licences: h.querySelectorAll(".lic-chip").length,
+    return { open: true, pills: h.querySelectorAll(".r-pills button, .r-pills .r-pill").length,
       text: (h.textContent || "").replace(/\s+/g, " ").slice(0, 60) };
   });
   check("  pressing one opens the card", card.open, `${pressed} · ${card.text}`);
   check("  and the card offers its routes", card.pills > 0, `${card.pills} on offer`);
 
-  // a commentary answering another opens under it, and its words open too
   const ans = await p.evaluate(() => {
     const h = document.querySelector("#hud"); if (h) h.hidden = true;
     const btn = document.querySelector(".c-counter-mark");
@@ -430,7 +414,7 @@ for (const book of ["genesis", "1kings"]) {
     btn.click();
     return { none: false, label: btn.textContent.trim() };
   });
-  await p.waitForTimeout(600);
+  await p.waitForTimeout(700);
   if (!ans.none) {
     const under = await p.evaluate(() => {
       const u = document.querySelector(".c-mark-slot.c-counter");
@@ -443,6 +427,48 @@ for (const book of ["genesis", "1kings"]) {
       under && under.blocks > 0 && under.lic,
       `${ans.label} · ${under ? `${under.withReading} of ${under.blocks} carry a reading` : "did not open"}`);
   }
+
+  // the reader it was opened in is the reader it reads in
+  await p.evaluate(() => {
+    const h = document.querySelector("#hud"); if (h) h.hidden = true;
+    const btn = [...document.querySelectorAll("button")].find((x) => /english reader/i.test(x.textContent || ""));
+    if (btn) btn.click();
+  });
+  await p.waitForTimeout(600);
+  const dir = await p.evaluate(() => {
+    const t = document.querySelector(".c-mark-text");
+    const cs = t ? getComputedStyle(t) : null;
+    const bare = [...document.querySelectorAll(".c-mark-text .g.bare")];
+    const row = [...document.querySelectorAll(".c-mark-text .wb")].slice(0, 8)
+      .map((w) => Math.round(w.querySelector(".w").getBoundingClientRect().top));
+    return { en: document.body.classList.contains("en"),
+      direction: cs ? cs.direction : "-", align: cs ? cs.textAlign : "-",
+      glossAlign: (() => { const g = document.querySelector(".c-mark-text .g"); return g ? getComputedStyle(g).textAlign : "-"; })(),
+      bare: bare.length,
+      // The bug was that a word the store answers nothing for lost the row its
+      // reading would have stood on, so its Hebrew climbed into the reading's
+      // line. The test is therefore against the shortest real reading — one
+      // line of it — and not against the tallest: a reading long enough to
+      // wrap is meant to be taller, and always was.
+      spread: (() => {
+        const gs = [...document.querySelectorAll(".c-mark-text .g")];
+        const h = (g) => Math.round(g.getBoundingClientRect().height);
+        const real = gs.filter((g) => !g.classList.contains("bare")).map(h);
+        const bareH = gs.filter((g) => g.classList.contains("bare")).map(h);
+        if (!real.length || !bareH.length) return { oneLine: 0, shortestBare: 0, kept: false };
+        const oneLine = Math.min(...real);
+        const shortestBare = Math.min(...bareH);
+        return { oneLine, shortestBare, kept: shortestBare >= oneLine };
+      })() };
+  });
+  check("  in the English reader the commentary runs left to right too",
+    dir.en && dir.direction === "ltr" && dir.align === "left",
+    `body.en=${dir.en} · ${dir.direction}/${dir.align}`);
+  check("  a reading stands centred under its own word", dir.glossAlign === "center", dir.glossAlign);
+  check("  and a word with no reading still holds the line one would stand on",
+    dir.spread.kept,
+    `${dir.bare} words carry no reading · their line is ${dir.spread.shortestBare}px ` +
+    `against ${dir.spread.oneLine}px for one line of a reading`);
   await p.close();
 }
 
@@ -481,8 +507,6 @@ for (const book of ["genesis", "1kings"]) {
   check("  the first work offered is the oldest the chain records",
     firstWord.length > 0 && firstWord[0].includes(truth.works[0]),
     `offered "${firstWord[0]}" · chain's oldest is ${truth.works[0]}`);
-  // the point of the ordering: the works a reader is looking for are reachable
-  // without hunting, because nothing but a date decided where they sit
   const pos = (name) => firstWord.findIndex((t) => t.includes(name));
   check("  and every work sits where its date puts it",
     truth.works.slice(0, 12).every((w, i) => (firstWord[i] || "").includes(w)),
@@ -491,7 +515,6 @@ for (const book of ["genesis", "1kings"]) {
     pos("Ramban") > 0 && pos("Ramban") < 12,
     `Rashi at ${pos("Rashi") + 1}, Ramban at ${pos("Ramban") + 1} of ${truth.works.length} works`);
 
-  // nothing is withheld: the rest are one press away, and then all of them stand
   const more = await p.evaluate(() => {
     const b2 = document.querySelector(".c-more"); if (!b2) return null;
     const said = b2.textContent; b2.click(); return said;
