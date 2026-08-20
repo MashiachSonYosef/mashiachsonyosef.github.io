@@ -292,8 +292,20 @@
   .wb.c-open { background: rgba(111, 181, 240, 0.15); border-radius: 0.25rem;
     box-shadow: inset 0 -2px 0 var(--sel-dim); }
   .wb.c-open .w { color: var(--sel); }
-  .wb.chosen { background: rgba(111, 181, 240, 0.1); border-radius: 0.25rem; }
+  /* A word the reader has ruled on keeps a mark after the card closes. That is
+     the point of it: the page holds the list of what has been worked so the
+     reader does not have to. But it kept that mark as the same filled blue box
+     that means "open right now", four percent lighter — so ruling on a second
+     word left two filled boxes on the line and the first one read as a
+     selection that had failed to clear. Nothing was stuck; two different
+     things were wearing one appearance.
+     A live state is filled. A remembered one is underlined. Same colour,
+     because the ledger gives every one of these to the reader; different
+     weight, because only one of them is happening now. */
+  .wb.chosen { background: none; box-shadow: inset 0 -1px 0 var(--sel-dim); border-radius: 0.25rem; }
   .wb.chosen.active { background: rgba(111, 181, 240, 0.16); }
+  /* a word that is both ruled on and standing open keeps the open edge */
+  .wb.chosen.c-open { box-shadow: inset 0 -2px 0 var(--sel-dim); }
   /* An occurrence written with a maqaf is one block and more than one W. The
      block never splits; the W inside it light and open one at a time, and the
      maqaf itself prints without opening, because it is not a W. */
