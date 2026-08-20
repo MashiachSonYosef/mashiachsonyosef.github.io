@@ -1,47 +1,78 @@
 #!/usr/bin/env node
-// Synthesis lane · dibbur-hamatchil-rule-v2-the-window-is-the-verse
+// Synthesis lane · attachment-authorship-rule-v1-the-placement-is-ours-and-says-so
+//                 · dibbur-hamatchil-rule-v2-the-window-is-the-verse
 //
-// Which words of a section each commentary segment sits on, read off the
-// segment's own opening quotation.
+// Which words of a section each commentary segment sits on.
 //
-// ---- what changed from the tool this replaces -------------------------
+// ---- whose claim this is ------------------------------------------------
 //
-// It was written for one verse and said so eleven times: the pack's path, the
-// name of the global it arrives in, the anchor "Genesis 1:1" as a literal on
-// every claim, the base text taken from a field that holds exactly one verse.
-// It produced a correct map and it could never have produced a second one.
+// Two different things arrive together and only one of them is anybody else's.
 //
-// Now: the pack is an argument, the anchors are whatever the pack carries, and
-// the words each segment is matched against come from the zone — the book
-// itself, which holds every section — rather than from a single field. An
-// anchor the zone does not carry is refused rather than guessed at.
+// WHICH COMMENT OF WHICH WORK, and which section it belongs to, is the chain's.
+// It comes with the pack, it has a reference, and it is not this project's to
+// decide.
 //
-// ---- the rule, unchanged -----------------------------------------------
+// WHERE INSIDE THE SECTION IT SITS is not recorded anywhere. No source states
+// it, no ledger carries it, and no licence covers it — a licence governs the
+// text of a commentary, and this is not text. It is a placement, and this file
+// makes it. Every word-level span in the map below was computed here, by the
+// rule stated here, and calling it anything else would be this project taking
+// credit from a source that never gave it and hiding an opinion inside a
+// receipt.
 //
-// A commentary points at what it is about by opening with a quotation of it.
-// The headword is the segment's own text up to its first period; up to two
-// non-quotation lead words may be skipped; a section word also matches when it
-// merely ends with the quoted form, for a clitic prefix; and the quotation may
-// run as far as the section itself runs and no further, because there is
-// nothing further for it to reach.
+// So: the placement is ours. It says so on the card, in the receipts, and here.
+//
+// ---- the convention we choose to honour ---------------------------------
+//
+// A commentary opens by quoting the words it is about. Printers set that
+// opening quotation apart, readers have used it to find their place for
+// centuries, and it is the reason a commentary can be laid beside a text at
+// all. It is a convention of the literature. It is not a law, not a record,
+// and not something anyone can grant or withhold permission for.
+//
+// This reader honours it, deliberately, and states the terms:
+//
+//   what it does · the segment's own text up to its first period is read as
+//     its opening quotation; up to two non-quotation lead words may be skipped;
+//     a section word matches when it equals the quoted form or ends with it,
+//     for a clitic prefix; and the quotation may run as far as the section runs
+//     and no further, because there is nothing further for it to reach. The
+//     longest run that holds is the placement.
+//
+//   what it refuses · it will not place a segment whose opening quotation is
+//     not in the section it names. It will not place a segment on a section the
+//     zone does not carry. It will not extend a placement past what the
+//     quotation covers, and it will not shorten one to look tidier. Where it
+//     cannot place a segment it claims nothing and the segment stays a
+//     section-level witness.
+//
+//   what it never claims · that the placement is right. Every claim it makes
+//     carries VISUAL_SUGGESTION_ONLY and a basis of
+//     DIBBUR_HAMATCHIL_SUGGESTION_NOT_PROVEN, which is this project's own token
+//     for its own guess. A claim carried in from an earlier map that was proven
+//     against a record keeps its proof and is not re-derived.
 //
 //   evidence · Genesis 1:1 is seven words and carries 181 word-anchored
-//     segments. Thirteen open by quoting five, six or seven of them.
-//   falsifier · widening the window to the section must not invent an
-//     attachment, lose one, or move one. Measured over all 504 segments that
-//     carry an opening quotation: 0 appeared, 0 were lost, 0 starting words
-//     moved, 13 spans grew.
+//     segments. 178 of them are placed by this rule; 4 are carried from a map
+//     that proved its edges against a corpus fixture; 1 of those survives the
+//     licence gate. Thirteen open by quoting five, six or seven words.
 //
-// What this produces is a suggestion and says so on every claim it makes. The
-// other way a commentary attaches — coordinate identity, where two works of
-// the sealed chain carry the same unit ids — needs none of this and is done by
-// tools/build-commentary-zone.mjs, which proves its edges instead of
-// suggesting them.
+//   falsifier · widening the window from four words to the section must not
+//     invent a placement, lose one, or move one. Measured over all 504 segments
+//     carrying an opening quotation: 0 appeared, 0 were lost, 0 starting words
+//     moved, 13 spans grew. If any of those four numbers is not zero — or if a
+//     placement covers words the segment does not quote — the rule is wrong.
+//
+// The other way a commentary attaches needs none of this: where two works of
+// the sealed chain carry the same unit ids, the coordinate does the attaching
+// and nothing is read at all. That is tools/build-commentary-zone.mjs, and it
+// proves its edges rather than suggesting them. This file is for a commentary
+// that arrived without one.
 //
 //   --pack     the sealed commentary pack
 //   --carried  an earlier map whose claims are carried through unchanged
 //   --zone     the book zone the anchors are resolved against
-//   --window   longest run to match (default: the section's own length)
+//   --window   longest run to place (default: the section's own length)
 //   --out      where to write
 //
 // Run: node tools/generate-attachment-map-v2.mjs --pack … --zone … --out …
@@ -183,6 +214,14 @@ const map = {
   generated_on: GENERATED_ON,
   generator: "tools/generate-attachment-map-v2.mjs",
   rule_id: "dibbur-hamatchil-rule-v2-the-window-is-the-verse",
+  authorship_rule_id: "attachment-authorship-rule-v1-the-placement-is-ours-and-says-so",
+  placed_by:
+    "Which comment of which work, and which section it belongs to, is the chain's. Where inside " +
+    "the section it sits is not recorded anywhere and no licence covers it: every word-level span " +
+    "in this map was placed by tools/generate-attachment-map-v2.mjs, by honouring the convention " +
+    "that a commentary opens by quoting what it is about. The placement is this project's own and " +
+    "is claimed as a suggestion, never as a proof. Claims carried from an earlier map that proved " +
+    "their edges against a record keep those proofs and were not re-derived.",
   match_window: WINDOW_ARG ? Number(WINDOW_ARG) : "the section's own length",
   provenance:
     "Full pass over every recorded segment in the pack. Claims carried from an earlier map are carried unchanged (proven edges stay proven). Every other claim was generated by matching the segment's own opening quotation against the words of the section it names, taken from the zone; up to two non-quotation lead words may be skipped, and the quotation may run as far as the section itself runs. Labels carry only source-derived data. Segments without a word-level match are not claimed; they remain verse-level witnesses in the ledger. An anchor the zone does not carry is refused and counted, never guessed.",
