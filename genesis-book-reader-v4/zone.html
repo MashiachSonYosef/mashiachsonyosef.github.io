@@ -2234,13 +2234,19 @@
       said: "A work of its own, not part of this book. The chain puts it on this verse, and nothing puts it on any word of it — so it stands on the whole verse.",
       whose: "the chain's verse · this reader placed nothing and guessed nothing",
     },
+    // A licence can forbid. Nothing else can. This fires for no commentary on
+    // this book today, and the page would rather carry the sentence unused
+    // than have nowhere to say it.
     HELD_PENDING_LICENCE_REVIEW: {
-      said: "A work of its own, not part of this book. The chain puts it on this verse. Its text is not printed here.",
-      whose: "held · what is recorded about its licence does not permit printing it",
+      said: "A work of its own, not part of this book. The chain puts it on this verse, and its licence does not permit printing it here.",
+      whose: "kept off by its licence · by nothing else",
     },
+    // And the case that is actually true of all 108: the record names it and
+    // carries no body. Calling that "held" made an empty record look like a
+    // refusal, which is a claim this page has no standing to make.
     RECORDED_WITHOUT_SOURCE_TEXT: {
       said: "A work of its own, not part of this book. The chain puts it on this verse and carries no text for it.",
-      whose: "held · there is nothing to print",
+      whose: "the record is empty here · nothing is being withheld",
     },
   };
   const attachSentence = (entry) => {
@@ -2690,12 +2696,16 @@
       // file at all.
       if (e.held) {
         p.dir = "auto"; p.classList.add("c-held");
-        const why = e.held === "licence"
-          ? (e.disposition === "LICENSE_UNKNOWN"
-            ? "no licence is recorded for it, and this page prints nothing it cannot name a licence for"
-            : `its licence is recorded as ${e.disposition || "something this page cannot read"}, which does not permit printing it here`)
-          : "the record carries its reference and no text for it, so there is nothing to print";
-        p.append(`Held — ${why}. Everything else the record carries about it stands above.`);
+        if (e.held === "licence") {
+          p.append(`Held — its licence is recorded as ${e.disposition || "something this page cannot read"}, `
+            + `which does not permit printing it here. A licence is the only thing that can do that. `
+            + `Everything else the record carries about it stands above.`);
+        } else {
+          // Not "held". Nobody is holding it. The record has no body.
+          p.append(`Not here — the record carries its reference and no text for it, so there is nothing to print. `
+            + `Nothing is being withheld${e.licence_says ? `, and its licence is recorded as ${e.licence_says}` : ""}. `
+            + `Everything else the record carries about it stands above.`);
+        }
       } else if (!(e.words || []).length) { p.dir = "auto"; p.append(e.text || ""); }
       const how = attachSentence(e);
       const note = document.createElement("span");
