@@ -111,15 +111,23 @@ echo "── 6 · assemble the site ──────────────�
 cp data/zones/*.bin site/data/zones/
 rm -rf site/data/route-store && cp -r data/route-store site/data/route-store
 
-echo "── 7 · the reader, and the addresses that open it ──────────────────────"
+echo "── 7 · the front door, from the zones ──────────────────────────────────"
+# The door used to be typed, which is why it did not mention the commentary:
+# nothing was going to notice that it should. It is now read out of the zones,
+# so a book or a commentary that exists is a book or a commentary that is
+# offered.
+node tools/build-front-door-v1.mjs --zones data/zones --out deploy-root
+cp deploy-root/index.html site/index.html
+for book in genesis 1kings; do
+  [ -f "deploy-root/$book/index.html" ] && mkdir -p "site/$book" \
+    && cp "deploy-root/$book/index.html" "site/$book/index.html"
+done
+
+echo "── 7b · the reader ─────────────────────────────────────────────────────"
 # zone.html is the one published file with no generator behind it: it is
 # written by hand and copied here. That is recorded rather than hidden — the
 # manifest prints it as having no build step every time anyone runs the checks.
 cp zone.html site/zone.html
-[ -f index.html ] && cp index.html site/index.html
-for book in genesis 1kings; do
-  [ -f "$book/index.html" ] && mkdir -p "site/$book" && cp "$book/index.html" "site/$book/index.html"
-done
 
 echo "── 8 · verify by rendering, not by reading ─────────────────────────────"
 node tools/verify-zone.mjs --root site --book 1kings

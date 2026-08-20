@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-20.
 
-**22 rules declared · 12 named by a check · 10 unguarded.**
+**23 rules declared · 12 named by a check · 11 unguarded.**
 **12 published artifacts · 12 with a build step · 0 without.**
 
 ## The rules
@@ -23,6 +23,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | **UNGUARDED** |
 | `export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work` | zone.html | check-citations-v1, check-export-v1 |
 | `fixture-rule-v1-a-real-zone-with-its-own-commentary-hung-at-words` | tools/make-fixture-zone-v1.mjs | **UNGUARDED** |
+| `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs | **UNGUARDED** |
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
 | `mark-inventory-rule-v1-closed-set-over-route-text` | tools/mark-inventory-v1.mjs | **UNGUARDED** |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | **UNGUARDED** |
@@ -61,7 +62,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 10 of the 21 tools that are not checks.
+`build.sh` calls 11 of the 22 tools that are not checks.
 
 Not called by any build stage:
 

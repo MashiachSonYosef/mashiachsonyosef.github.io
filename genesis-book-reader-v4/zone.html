@@ -565,6 +565,15 @@
     letter-spacing: 0.03em; margin-bottom: 0.3rem;
     position: sticky; top: -0.5rem; background: var(--panel2); padding: 0.35rem 0 0.25rem; z-index: 1; }
   .c-mark-slot .lab a { color: var(--link); }
+  /* Three plain rows: what it is, what it is commonly read as, and where the
+     chain puts it. Same register as the masthead above the book. */
+  .c-head-row { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.2rem; }
+  .c-head-lab { font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--faint); min-width: 8.5em; }
+  .c-head-he { font-family: "Frank Ruehl CLM", "David Libre", "SBL Hebrew", Georgia, serif; }
+  .c-head-he.title-row { display: flex; gap: 0.1rem; }
+  .c-head-en { color: var(--shesh); font-size: 0.94rem; }
+  .c-head-on { color: var(--muted); font-size: 0.82rem; }
   .c-mark-body { display: block; }
   .c-mark-text { display: block; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif;
@@ -2334,16 +2343,17 @@
   // A title is the section's own words, so it renders exactly like the text:
   // word blocks, gloss beneath where that token's route carries one, HUD on
   // tap. Used in the body only — see the contents note below.
-  const titleRow = (toks, raw) => {
+  const titleRow = (toks, raw, bin) => {
+    const src = bin || zone;
     const row = document.createElement("div"); row.className = "title-row";
     if (!toks || !toks.length) { row.lang = "he"; row.dir = "rtl"; row.textContent = raw || ""; return row; }
     toks.forEach((t) => {
-      const built = wordBlock(t, zone.gloss);
+      const built = wordBlock(t, src.gloss);
       // A token the ledger carries without a key is not a word of the text —
       // a canonical numeral reuses a letter's identity to name a number. It
       // reads as part of the title and opens nothing, because the catalog has
       // nothing to say about a word nobody wrote here.
-      if (t.k) wireWord(built, t, zone, null, null);
+      if (t.k) wireWord(built, t, src, null, null);
       else built.wb.style.cursor = "default";
       row.append(built.wb, document.createTextNode(" "));
     });
@@ -2796,15 +2806,51 @@
       const body = document.createElement("span"); body.className = "c-mark-body";
       const paint = () => {
         body.replaceChildren();
+        // What this is, said in plain English before anything else — the same
+        // register as "book title" and "commonly force read as" above. The card
+        // used to open with a work name, a reference in Hebrew and a licence
+        // chip run together in one line, which asked the reader to already know
+        // what they were looking at.
+        //
+        // And the work's own name is drawn the way every other title is drawn:
+        // the Hebrew opening the same card any word opens, the English beside
+        // it as the name it is commonly read by. It was the last title on this
+        // page still handed over as a bare English label, which was a shortcut
+        // and nothing more. The store answers for 55 of the 58 works here.
         const w = commentaryWorkOf(selected);
+        // The unit this card is showing, on the card itself. It is not chrome —
+        // nothing prints it — it is so that anything asking the page what it is
+        // displaying gets the chain's own reference rather than having to read
+        // the words back out of the text.
+        slot.dataset.unit = selected.ref || "";
         const lab = document.createElement("span"); lab.className = "lab";
-        lab.append(`${w.family_en || w.title || selected.ref} · ${selected.he_ref || selected.ref} `);
+
+        const row1 = document.createElement("span"); row1.className = "c-head-row";
+        row1.append(Object.assign(document.createElement("span"),
+          { className: "c-head-lab", textContent: "commentary" }));
+        if (w.he_tokens && w.he_tokens.length) {
+          const t1 = titleRow(w.he_tokens, w.family_he, commentaryStore);
+          t1.classList.add("c-head-he");
+          row1.append(t1);
+        } else if (w.family_he) {
+          const bare = document.createElement("span");
+          bare.lang = "he"; bare.dir = "rtl"; bare.className = "c-head-he";
+          bare.textContent = w.family_he;
+          row1.append(bare);
+        }
+        lab.append(row1);
+
+        const row2 = document.createElement("span"); row2.className = "c-head-row";
+        row2.append(Object.assign(document.createElement("span"),
+          { className: "c-head-lab", textContent: w.family_he ? "commonly read as" : "recorded as" }));
+        row2.append(Object.assign(document.createElement("span"),
+          { className: "c-head-en", textContent: selected.title || w.family_en || selected.ref }));
         const lic = document.createElement("span"); lic.className = "lic-chip";
         lic.textContent = w.license || selected.license || "License unrecorded";
-        lab.append(lic);
+        row2.append(lic);
         if (selected.source_url) {
           const a2 = document.createElement("a"); a2.href = selected.source_url;
-          a2.target = "_blank"; a2.rel = "noreferrer"; a2.textContent = "Source"; lab.append(" ", a2);
+          a2.target = "_blank"; a2.rel = "noreferrer"; a2.textContent = "Source"; row2.append(a2);
         }
         const shut = document.createElement("button"); shut.type = "button"; shut.className = "c-shut";
         shut.textContent = "close"; shut.setAttribute("aria-label", "Close this commentary");
@@ -2816,7 +2862,26 @@
             placeLineHandles(sectionEl);
           });
         });
-        lab.append(" ", shut);
+        row2.append(shut);
+        lab.append(row2);
+
+        // Where it sits, which is the only thing the chain actually asserts.
+        const on = opts.on || null;
+        if (on) {
+          const row3 = document.createElement("span"); row3.className = "c-head-row";
+          row3.append(Object.assign(document.createElement("span"),
+            { className: "c-head-lab", textContent: "comments on" }));
+          const scNow = opts.scopeFor ? opts.scopeFor(selected) : opts.scope;
+          const run = scNow ? scNow.run : null;
+          const of = on.words || null;
+          const words = (n) => `${n} ${n === 1 ? "word" : "words"}`;
+          row3.append(Object.assign(document.createElement("span"), {
+            className: "c-head-on",
+            textContent: `${on.book}${on.label ? ` ${on.label}` : ""}` +
+              (run && of ? ` · ${run === of ? `all ${words(of)}` : `${words(run)} of ${of}`}` : ""),
+          }));
+          lab.append(row3);
+        }
         body.append(lab);
         // A commentary is a work, so its own words open the way any word of the
         // book opens: the same block, the same card, the same readings out of
@@ -2957,7 +3022,7 @@
               if (open2 && open2.classList.contains("c-counter")) {
                 open2.remove(); btn.setAttribute("aria-expanded", "false");
               } else {
-                cmPanel(counters, 0, sectionEl, slot, { under: true });
+                cmPanel(counters, 0, sectionEl, slot, { under: true, on: opts.on });
                 btn.setAttribute("aria-expanded", "true");
               }
               placeLineHandles(sectionEl);
@@ -3014,7 +3079,8 @@
               // its own
               cmPanel(item.entries, g.at, sectionEl, item.wb,
                 { covers: item.runFor(e), scope: item.scopeFor(e),
-                  runFor: item.runFor, scopeFor: item.scopeFor });
+                  runFor: item.runFor, scopeFor: item.scopeFor,
+                  on: { book: zone.work, label: sec.label, words: (sec.words || []).length } });
               placeLineHandles(sectionEl);
             });
           });
@@ -3144,7 +3210,8 @@
       };
       const scopeFor = (x) => scopeOf(x, sec, wb.__cmAt || 0);
       cmPanel(wb.__cm, which || 0, s, wb,
-        { covers: runFor(e), scope: scopeFor(e), runFor, scopeFor });
+        { covers: runFor(e), scope: scopeFor(e), runFor, scopeFor,
+          on: { book: zone.work, label: sec.label, words: (sec.words || []).length } });
       placeLineHandles(s);
     });
 
