@@ -136,6 +136,35 @@ const segOf = new Map();
 for (const f of families)
   for (const s of f.segments || []) segOf.set(s.ref, { seg: s, family: f });
 
+// ---- the works, and their own names --------------------------------------
+//
+// A commentary's title is corpus text like any other title, and it was the one
+// title on this page still being handed to the reader as a bare English label.
+// It gets what a book's title gets: the Hebrew keyed the same way, so it opens
+// the same card, and the English standing beside it as the name it is commonly
+// read by rather than as the thing itself. Measured over Genesis: the store
+// answers for 55 of the 58 works. The other three print bare, which is the
+// honest result — a title nobody has a record for is not a title we invent one
+// for.
+const works = [];
+const workAt = new Map();
+const workIndex = (family) => {
+  const en = family.collective_title_en || family.family_title || null;
+  const he = family.collective_title_he || null;
+  const key = `${en}|${he}`;
+  if (workAt.has(key)) return workAt.get(key);
+  const at = works.length;
+  works.push({
+    family_en: en,
+    family_he: he,
+    he_tokens: he ? tokenise(he, `title of ${en}`) : [],
+    kind: family.commentary_kind || null,
+    index: family.commentary_index || null,
+  });
+  workAt.set(key, at);
+  return at;
+};
+
 // ---- emit ----------------------------------------------------------------
 const words = {};
 const counts = { attached: 0, per_word: {}, skipped_license: 0, skipped_no_text: 0, glossed_words: 0 };
@@ -167,6 +196,7 @@ for (const claim of map.claims) {
     source_url: seg.source_url,
     text: he.proof_text,
     words: tokenise(he.proof_text, seg.ref),
+    work: workIndex(family),
     state: claim.claim_state,
     basis: hint.basis || hint.proof_basis,
     v_words: [vs, ve],
@@ -186,12 +216,15 @@ for (const claim of map.claims) {
 // Hebrew and opens nothing, which is the honest result and not a gap.
 const store = openRouteStore(arg("store", "data/route-store"));
 const keys = new Set();
-for (const list of Object.values(words))
-  for (const e of list)
-    for (const w of e.words || []) {
-      if (w.w) w.w.forEach((r) => { if (r.k) keys.add(r.k); });
-      else if (w.k) keys.add(w.k);
-    }
+const addKeys = (ws) => {
+  for (const w of ws || []) {
+    if (w.w) w.w.forEach((r) => { if (r.k) keys.add(r.k); });
+    else if (w.k) keys.add(w.k);
+  }
+};
+for (const list of Object.values(words)) for (const e of list) addKeys(e.words);
+// and the works' own names, so a title opens the way a word of the text opens
+for (const w of works) addKeys(w.he_tokens);
 const projected = store.tableFor([...keys]);
 let carrying = 0, wordsTotal = 0;
 for (const list of Object.values(words))
@@ -233,6 +266,7 @@ const out = {
     },
   },
   counts,
+  works,
   units: { [UNIT]: { words } },
   gloss: projected.table,
 };
@@ -276,5 +310,9 @@ console.log(`${OUT} · ${counts.attached} attachments · sha256 ${sha(body)}`);
 console.log(`  per word: ${JSON.stringify(counts.per_word)}`);
 console.log(`  skipped: ${counts.skipped_license} on licence, ${counts.skipped_no_text} with no text`);
 console.log(`  words: ${counts.words} · ${counts.glossed_words} carry a reading`);
+{
+  const named = works.filter((w) => (w.he_tokens || []).some((t) => (t.w ? t.w.some((r) => projected.table[r.k]) : projected.table[t.k])));
+  console.log(`  works: ${works.length} · ${named.length} whose own name the store answers for`);
+}
 console.log(`  keys: ${projected.counts.keys_asked} asked · ${projected.counts.glossed} answered · ` +
   `${projected.counts.no_exact_route} the catalog does not carry · ${projected.counts.no_displayable_route} unlicensed to print`);

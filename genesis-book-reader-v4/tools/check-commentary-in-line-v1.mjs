@@ -314,15 +314,15 @@ for (const book of ["genesis", "1kings"]) {
       const marked = verseWb(para).filter((w) => w.classList.contains("c-open"));
       const wbs = verseWb(para);
       const pr = panel.getBoundingClientRect();
-      const lab = (panel.querySelector(".lab")?.textContent || "").trim();
+      // the card says which unit it is showing; ask the store about that one
+      const unit = panel.dataset.unit || "";
       let span = null;
       const units = (window.__commentaryStore || {}).units || {};
       for (const u of Object.values(units))
         for (const list of Object.values(u.words || {}))
           for (const e of list)
-            if (e.he_ref && lab.includes(e.he_ref) && e.v_words)
-              span = e.v_words[1] - e.v_words[0] + 1;
-      return { ref: lab.slice(0, 30), span, words: wbs.length,
+            if (e.ref === unit && e.v_words) span = e.v_words[1] - e.v_words[0] + 1;
+      return { ref: unit.slice(0, 34), span, words: wbs.length,
         covered: marked.map((w) => w.querySelector(".w").textContent.trim()),
         allAbove: marked.every((w) => w.getBoundingClientRect().bottom <= pr.top + 1),
         below: wbs.filter((w) => w.getBoundingClientRect().top >= pr.bottom - 1).length,
@@ -372,19 +372,41 @@ for (const book of ["genesis", "1kings"]) {
 
   const r = await p.evaluate(() => {
     const pan = document.querySelector("section.seg .c-mark-slot:not(.c-choose)");
-    const lab = (pan.querySelector(".lab")?.textContent || "").trim();
+    const unit = pan.dataset.unit || "";
     const wbs = [...pan.querySelectorAll(".c-mark-text .wb")];
     let recorded = null;
     const units = (window.__commentaryStore || {}).units || {};
     for (const u of Object.values(units))
       for (const list of Object.values(u.words || {}))
         for (const e of list)
-          if (e.he_ref && lab.includes(e.he_ref)) recorded = { words: (e.words || []).length, text: e.text };
-    return { ref: lab.slice(0, 24), blocks: wbs.length, recorded,
+          if (e.ref === unit) recorded = { words: (e.words || []).length, text: e.text };
+    return { ref: unit.slice(0, 30), blocks: wbs.length, recorded,
       withReading: wbs.filter((w) => (w.querySelector(".g")?.textContent || "").trim()).length,
       rejoins: wbs.map((w) => w.querySelector(".w").textContent).join("") ===
         String(recorded ? recorded.text : "").replace(/\s+/gu, "") };
   });
+  // What it is, before anything else. The card used to open with a reference
+  // and a licence chip and nothing that said what the reader was looking at.
+  const head = await p.evaluate(() => {
+    const l = document.querySelector("section.seg .c-mark-slot:not(.c-choose) .lab");
+    const rows = [...l.querySelectorAll(".c-head-row")].map((x) => ({
+      lab: (x.querySelector(".c-head-lab")?.textContent || "").trim(),
+      said: x.textContent.replace(/\s+/g, " ").trim() }));
+    const he = [...l.querySelectorAll(".c-head-he .wb")];
+    return { rows,
+      titleBlocks: he.length,
+      titleOpens: he.filter((w) => (w.querySelector(".g")?.textContent || "").trim()).length,
+      on: rows.find((x) => /comments on/i.test(x.lab))?.said || "" };
+  });
+  check("  it says what it is before it says anything else",
+    head.rows.length >= 3 && /commentary/i.test(head.rows[0].lab),
+    head.rows.map((x) => x.lab).join(" · "));
+  check("  its own title is drawn like every other title, and opens",
+    head.titleBlocks > 0 && head.titleOpens > 0,
+    `${head.titleOpens} of ${head.titleBlocks} blocks carry a reading`);
+  check("  and it says what it comments on, in plain English",
+    /Genesis 1:1/.test(head.on) && /word/.test(head.on), head.on);
+
   check("  every word of it is a block", r.recorded && r.blocks === r.recorded.words,
     `${r.ref} · ${r.blocks} blocks, the sidecar records ${r.recorded ? r.recorded.words : "?"}`);
   check("  and the blocks put the commentary back together", r.rejoins);

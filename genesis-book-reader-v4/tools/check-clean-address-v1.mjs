@@ -63,6 +63,7 @@ await p.goto(`${B}/`, { waitUntil: "networkidle" });
 const splash = await p.evaluate(() => ({
   title: document.title,
   links: [...document.querySelectorAll("a")].map((a) => a.getAttribute("href")),
+  body: document.body.textContent.replace(/\s+/g, " "),
   offscreen: document.documentElement.scrollWidth > window.innerWidth + 1,
   // A Hebrew name never stands by itself: whatever box carries it carries the
   // English too, so a reader who cannot read it still knows what it offers.
@@ -73,8 +74,24 @@ const splash = await p.evaluate(() => ({
 }));
 console.log("— the splash —");
 check("it names the site", /Tabernacle/.test(splash.title), splash.title);
-check("only the finished books are clickable off it",
-  JSON.stringify(splash.links) === JSON.stringify(["/genesis", "/1kings"]), splash.links.join(" "));
+// Every way out of the front door lands on a finished book. There is more than
+// one way to reach each of them now — the book itself, and the commentary
+// carried on it, which opens inside that book because that is where a
+// commentary is read. What must not appear is a destination that is not a
+// finished book.
+{
+  const FINISHED = ["/genesis", "/1kings"];
+  const stray = splash.links.filter((h) => !FINISHED.includes(h));
+  check("every way off it lands on a finished book",
+    stray.length === 0 && FINISHED.every((f) => splash.links.includes(f)),
+    `${splash.links.length} links · ${splash.links.join(" ")}${stray.length ? ` · stray: ${stray.join(" ")}` : ""}`);
+  // The door is built from the zones, so what it offers is what is there. A
+  // commentary the zones carry and the door does not mention is the fault this
+  // whole generator exists to make impossible.
+  check("and the commentary is offered, not left off",
+    /Commentary on Genesis/.test(splash.body || "") && /Commentary on I Kings/.test(splash.body || ""),
+    (splash.body || "").match(/Commentary on [A-Za-z ]+/g)?.join(" · ") || "none offered");
+}
 check("it does not run off the side", !splash.offscreen);
 // Two kinds of text are allowed on our own surfaces: text from the chain,
 // carrying its record, and plain English of ours that says what a thing is.
