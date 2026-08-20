@@ -55,10 +55,19 @@ node tools/build-zone.mjs \
   --byline "Miqra according to the Masorah · served from the sealed terminal artifacts" \
   --coord-labels "chapter,verse" --y build/y-genesis.json \
   --license-links data/license-links-tanakh.json --stamp "$STAMP" \
-  --out data/zones/genesis.bin
-# Genesis is built without --spans on purpose. Adding the component layer to a
-# published book changes what every word offers, so it is its own decision and
-# not a side effect of running this script.
+  ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/genesis.bin
+# Genesis used to be built without --spans, and the reason was written here:
+# "adding the component layer to a published book changes what every word
+# offers, so it is its own decision and not a side effect of running this
+# script." The reasoning was sound and the outcome was wrong. The decision was
+# deferred in a comment nobody reads, so the book the front door opens first
+# offered whole forms only — 0 component systems against 3,424 on I Kings —
+# and no reader could tell the layer existed. A deferral that leaves no mark
+# on the page is indistinguishable from an oversight, and this one was found
+# by a reader noticing Genesis had no options.
+#
+# The decision is made: Genesis carries the layer. Every one of its 5,006 keys
+# has a component system in the template — the data was there the whole time.
 
 node tools/build-zone.mjs \
   --serve "$SERVES/1kings.ndjson" --bridge "$BRIDGE" --store data/route-store \
