@@ -7,34 +7,65 @@
 <style>
   :root {
     color-scheme: dark;
-    /* The Tabernacle's materials are named exactly and coloured nowhere.
-       Exodus lists tekhelet, argaman, tola'at shani and shesh by name, over and
-       over, and never says what any of them looked like. Every colour ever put
-       to them is a tradition, and the traditions disagree — tekhelet has been
-       called the blue of the sky and the green of the sea by people who had
-       held it. So the names below are the text's and the values are this
-       page's, and that difference is written down rather than blurred. No
-       reader should come away thinking a hex code is attested.
+    /* colour-role-rule-v1-the-roles-are-the-ledgers-and-the-values-are-ours
+       ===================================================================
 
-       What each is for here is a rule, not a mood:
+       There is a colour contract, and it is recorded. Y-GENESIS-NAVIGATION-V1
+       carries it, generated 2026-07-18, status PASS:
 
-         shesh     linen. The reading surface: text, links, the plain word.
-         zahav     gold. What the reader has acted on — opened, chosen, marked.
-         tekhelet  the structure. Rules, borders, the lines between things.
-         shani     scarlet. What the page will not vouch for: a shape it
-                   refuses to draw, a reach it is told is only suggested. It
-                   never marks something as wrong, only as unwitnessed.
-         argaman   purple. Declared and deliberately unused, so that the day it
-                   appears is a decision somebody made and not a colour that
-                   crept in. */
-    --bg: #0a0f16; --panel: #101823; --panel2: #0d1520;
-    --ink: #ece1c4; --ink-strong: #f6ecd2; --muted: #8fa1b3; --faint: #5f7183;
+         structure             gold
+         reader_selection      electric blue
+         commentary_attachment crimson
+         base_surface          purple
+         commentary_surface    brown
+
+       This page had been painting three of those five and inventing its own
+       scheme over the top of them. Gold was on structure, which the contract
+       says — and also on every selection the reader made, which the contract
+       gives to blue. So one colour was doing two jobs and the second job had
+       no colour at all: nothing on the page looked different because you had
+       chosen it, and gold, spread across both, stopped meaning either. The two
+       surfaces were not painted at all, so a commentary and the text it is
+       about sat on the same ground with nothing but a border between them.
+
+       Meanwhile a note here assigned the Tabernacle materials to roles by
+       itself — tekhelet to structure, most of all — which is the same fault
+       this project exists to catch: deciding a thing the record had already
+       decided, and then citing the decision as though it came from somewhere.
+
+       So: the five roles below are the ledger's, named as it names them. The
+       hex values are this page's, and always were. Exodus lists tekhelet,
+       argaman, tola'at shani and shesh over and over and never once says what
+       any of them looked like; every colour ever put to them is a tradition,
+       and the traditions disagree. No reader should come away thinking a hex
+       code is attested — only that a role is.
+
+       Where the two speak of the same thing they agree by name: the contract's
+       purple is argaman, its crimson is tola'at shani, and the linen the whole
+       page is written in is shesh. */
+    --bg: #0c0910; --panel: #150f1d; --panel2: #110c18;
+    --line: #261d33; --wash: #1b1426;
+    /* the commentary's own surface, so a comment is never mistaken for text */
+    --surface-c: #17100a; --panel-c: #1f160d; --line-c: #2e2114;
+    /* shesh — the reading surface, and the neutrals taken down from it, so a
+       reading is the same cloth as the word it belongs to, only dimmer */
+    --ink: #ece1c4; --ink-strong: #f6ecd2; --muted: #a99a80; --faint: #7a6f5c;
     --shesh: #d8c7a4; --shesh-bright: #eadbbd;
+    /* structure — the spine the ledger records: titles, coordinates, the names
+       of parts and chapters. Never a state. */
     --gold: #e8c46a; --gold-dim: #9a7f3f; --amber: #d9a441;
-    --tekhelet: #2b4a6f; --tekhelet-dim: #1e2c3c;
+    /* reader_selection — and only that: what this reader has opened, chosen,
+       pressed or armed. Nothing wears it at rest. */
+    --sel: #6fb5f0; --sel-dim: #3f6f93; --sel-ink: #071019;
+    /* commentary_attachment — a commentary's mark, and by the same token what
+       the page will not vouch for: a placement that is ours, a reach it is
+       told is only suggested. It never marks something as wrong. */
     --shani: #c0563f; --shani-dim: #7a3527;
-    --argaman: #6b3f6e;
-    --line: var(--tekhelet-dim); --link: var(--shesh);
+    /* argaman is the base surface above; tekhelet has no role in the contract
+       and is kept named, and unused, so the day it appears is a decision
+       somebody made and not a colour that crept in. */
+    --argaman: #6b3f6e; --tekhelet: #2b4a6f;
+    --link: var(--shesh);
   }
   * { box-sizing: border-box; }
   /* text-size-adjust: a phone browser that decides a block is "main content"
@@ -59,7 +90,7 @@
     text-decoration: none; white-space: nowrap; }
   #home a.home:hover { color: var(--gold); border-color: var(--gold-dim); }
   header.top { padding: 1.4rem 1.5rem 1rem; border-bottom: 1px solid var(--line);
-    background: linear-gradient(180deg, #0d1520 0%, var(--bg) 100%); }
+    background: linear-gradient(180deg, var(--panel) 0%, var(--bg) 100%); }
   header.top h1 { margin: 0; font-size: 1.9rem; color: var(--ink-strong); letter-spacing: 0.01em; }
   /* The title is the book's own, from the ledger. The English beside it is
      not a translation of it and must not be able to be read as one — it is how
@@ -114,8 +145,8 @@
   #toc #tocHead .toc-n { font-size: 0.78rem; color: var(--muted); }
   #toc #tocHead::after { content: "\25be"; margin-inline-start: auto; font-size: 0.9rem;
     color: var(--gold-dim); transform: rotate(-90deg); transition: transform 140ms; }
-  #toc #tocHead[aria-expanded="true"] { color: var(--gold); border-inline-start-color: var(--gold); }
-  #toc #tocHead[aria-expanded="true"]::after { transform: none; color: var(--gold); }
+  #toc #tocHead[aria-expanded="true"] { color: var(--sel); border-inline-start-color: var(--sel); }
+  #toc #tocHead[aria-expanded="true"]::after { transform: none; color: var(--sel); }
   #toc #tocHead:hover { color: var(--gold); border-color: var(--gold-dim); }
   #tocBody[hidden] { display: none; }
   /* Contents is a coordinate grid: positions, not content. Plain English
@@ -129,8 +160,8 @@
     border: 1px solid var(--line); border-radius: 0.35rem; background: var(--panel2);
     text-decoration: none; font: 0.92rem/1 Georgia, serif; color: var(--gold);
     font-variant-numeric: tabular-nums; transition: border-color 120ms, background 120ms; }
-  #toc .chs a:hover { border-color: var(--gold); background: #16202c; }
-  #toc .chs a.on { border-color: var(--gold); background: var(--gold); color: #171105; font-weight: bold; }
+  #toc .chs a:hover { border-color: var(--gold); background: var(--wash); }
+  #toc .chs a.on { border-color: var(--sel); background: var(--sel); color: var(--sel-ink); font-weight: bold; }
   /* the sections of one chapter, opened in place under the grid */
   #secPanel { margin-top: 0.7rem; border: 1px solid var(--line); border-radius: 0.5rem;
     background: var(--panel2); padding: 0.6rem 0.7rem; }
@@ -151,13 +182,13 @@
 
   /* one floating bar, not chrome on every section */
   #nav { position: fixed; z-index: 60; right: 0.9rem; bottom: 0.9rem; display: flex; gap: 0.3rem;
-    background: rgba(16, 24, 35, 0.94); border: 1px solid var(--line); border-radius: 999px;
+    background: rgba(21, 18, 13, 0.94); border: 1px solid var(--line); border-radius: 999px;
     padding: 0.3rem; box-shadow: 0 8px 24px rgba(0,0,0,.5); backdrop-filter: blur(4px); }
   #nav[hidden] { display: none; }
   #nav button { border: 0; background: none; color: var(--muted); font: inherit; font-size: 0.75rem;
     letter-spacing: 0.08em; font-variant: small-caps; cursor: pointer; border-radius: 999px;
     padding: 0.24rem 0.7rem; white-space: nowrap; }
-  #nav button:hover:not(:disabled) { color: var(--gold); background: #16202c; }
+  #nav button:hover:not(:disabled) { color: var(--gold); background: var(--wash); }
   #nav button:disabled { opacity: 0.35; cursor: default; }
   #navPrev, #navNext { font-size: 1rem; padding: 0.14rem 0.55rem; }
   @media (max-width: 520px) { #nav { left: 0.9rem; right: 0.9rem; justify-content: center; } }
@@ -197,9 +228,9 @@
 
   section.seg { margin: 0 0 1.35rem; }
   .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; direction: ltr; }
-  .vnum { font-size: 0.72rem; color: var(--gold); border: 1px solid #3a3220;
-    background: #151b26; border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
-  .vnum.at { background: var(--gold); color: #171105; border-color: var(--gold); font-weight: bold; }
+  .vnum { font-size: 0.72rem; color: var(--gold); border: 1px solid var(--line);
+    background: var(--panel); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
+  .vnum.at { background: var(--sel); color: var(--sel-ink); border-color: var(--sel); font-weight: bold; }
   .drift-chip { font-size: 0.68rem; color: var(--amber); border: 1px dashed #6b5320; border-radius: 0.5rem;
     padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
   .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
@@ -207,8 +238,9 @@
   /* A commentary is not a book of its own; it belongs to the section it
      comments on. Turned on, it reads beneath the verse in the same word
      blocks, a size down, so the base text stays the text. */
-  .c-inline { direction: rtl; text-align: right; margin: 0.15rem 0 0; padding-inline-end: 0.1rem;
-    border-inline-end: 2px solid var(--line); padding-inline-start: 0; }
+  .c-inline { direction: rtl; text-align: right; margin: 0.15rem 0 0; padding: 0.35rem 0.5rem 0.2rem;
+    border-inline-end: 2px solid var(--shani-dim); border-radius: 0.4rem;
+    background: var(--surface-c); }
   .c-inline .wb { margin: 0 0.14rem 0.45rem; }
   .c-inline .w { font-size: 1.12rem; color: #c8bda0;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
@@ -244,17 +276,19 @@
      is where the line wraps, not what the line says. */
   .wb.held { opacity: 0.45; cursor: default; max-width: 100%; }
   .wb.held .w { overflow-wrap: anywhere; word-break: break-word; }
-  .wb.active .w { color: var(--gold); border-bottom: 1px solid var(--gold); }
+  .wb.active .w { color: var(--sel); border-bottom: 1px solid var(--sel); }
   /* A word the reader has ruled on keeps a mark after the card closes. Without
      it, closing the card left nothing to say which word had just been changed,
      and the reader had to hold that in their head. It is a tint rather than a
      border so nothing on the line moves when it appears. */
   /* A word with its commentary standing open beneath it. */
-  .wb.c-open { background: rgba(214, 178, 90, 0.16); border-radius: 0.25rem;
-    box-shadow: inset 0 -2px 0 var(--gold-dim); }
-  .wb.c-open .w { color: var(--gold); }
-  .wb.chosen { background: rgba(214, 178, 90, 0.1); border-radius: 0.25rem; }
-  .wb.chosen.active { background: rgba(214, 178, 90, 0.16); }
+  /* Opening a commentary on a word is something the reader did, so the word
+     wears the selection, not the structure. */
+  .wb.c-open { background: rgba(111, 181, 240, 0.15); border-radius: 0.25rem;
+    box-shadow: inset 0 -2px 0 var(--sel-dim); }
+  .wb.c-open .w { color: var(--sel); }
+  .wb.chosen { background: rgba(111, 181, 240, 0.1); border-radius: 0.25rem; }
+  .wb.chosen.active { background: rgba(111, 181, 240, 0.16); }
   /* An occurrence written with a maqaf is one block and more than one W. The
      block never splits; the W inside it light and open one at a time, and the
      maqaf itself prints without opening, because it is not a W. */
@@ -262,7 +296,7 @@
   .wb.multi.active .w { color: inherit; border-bottom: 1px dashed transparent; }
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
   .wr:hover { color: #ffe08a; border-bottom-color: #6a5a33; }
-  .wr.on { color: var(--gold); border-bottom: 1px solid var(--gold); }
+  .wr.on { color: var(--sel); border-bottom: 1px solid var(--sel); }
   .mq { color: var(--faint); }
   /* The reading under a word is shown whole. It used to run one line and end in
      an ellipsis, which was the honest thing to do when the average reading was
@@ -289,7 +323,7 @@
      line stops being a line. Nothing is printed in the space; it is kept. */
   .g.bare { min-height: 1.25em; }
   body.en .g.bare { min-height: 1.3em; }
-  .wb.active .g { color: var(--gold); }
+  .wb.active .g { color: var(--sel); }
 
   /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
   body.en .he-text { direction: ltr; text-align: left; }
@@ -306,7 +340,7 @@
   body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--ink); margin-top: 0; max-width: 12em;
     white-space: normal; display: block; overflow: hidden; }
   body.en .w { order: 2; font-size: 1.02rem; color: #b3a077; margin-top: 0.04rem; }
-  body.en .wb.active .g { color: var(--gold); }
+  body.en .wb.active .g { color: var(--sel); }
 
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
   /* Which way the words run, and nothing else. The two readers differ in the
@@ -315,7 +349,7 @@
   .mode-dir { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--faint); }
   .mode-btn { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
-  .mode-btn.on { background: var(--gold); color: #171105; border-color: var(--gold); font-weight: bold; }
+  .mode-btn.on { background: var(--sel); color: var(--sel-ink); border-color: var(--sel); font-weight: bold; }
 
   /* The HUD floats. The Hebrew never moves — law of the house. */
   /* A card that always carries a whole record needs room for one; 55vh put
@@ -444,7 +478,7 @@
      far the record below it has been scrolled. */
   #hud .head { cursor: grab; touch-action: none; flex: 0 0 auto; }
   #hud .head:active { cursor: grabbing; }
-  #hud.moved { box-shadow: 0 14px 40px rgba(0,0,0,.6), 0 0 0 1px var(--gold-dim); }
+  #hud.moved { box-shadow: 0 14px 40px rgba(0,0,0,.6), 0 0 0 1px var(--sel-dim); }
   #hud .head button { cursor: pointer; }
   #hud .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem;
     border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
@@ -469,7 +503,7 @@
   #hud .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
-  #hud .r-pills button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold);
+  #hud .r-pills button[aria-pressed="true"] { background: var(--sel); border-color: var(--sel);
     color: #171105; font-weight: bold; }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
@@ -478,7 +512,7 @@
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
   #hud .r-overflow select:hover { border-color: var(--gold-dim); }
-  #hud .r-overflow select.on { color: #171105; background: var(--gold); border-color: var(--gold); font-weight: bold; }
+  #hud .r-overflow select.on { color: var(--sel-ink); background: var(--sel); border-color: var(--sel); font-weight: bold; }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   #hud .d-cut { margin: 0 0 0.35rem; font-size: 0.72rem; color: var(--amber);
     border-inline-start: 2px solid var(--amber); padding-inline-start: 0.5rem; }
@@ -506,7 +540,7 @@
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   #hud .s-pills button:hover { border-color: var(--gold-dim); color: var(--shesh); }
   #hud .s-pills button[aria-pressed="true"] { border-color: var(--shesh); color: var(--ink-strong);
-    background: #17222f; }
+    background: var(--wash); }
   #hud .s-pills button .none { font: 0.62rem/1 Georgia, serif; color: var(--faint); margin-inline-start: 0.35rem; }
   #hud .prov { color: var(--faint); font-size: 0.72rem; margin: 0.35rem 0 0; }
   .lic-chip { display: inline-block; margin-inline-start: 0.45rem; padding: 0.02rem 0.5rem;
@@ -530,12 +564,12 @@
   body.en .c-mark-row { text-align: left; }
   .c-mark { display: inline-flex; align-items: center; gap: 0.35rem; vertical-align: middle;
     direction: ltr; margin: 0; padding: 0.1rem 0.5rem;
-    border: 1px solid var(--gold-dim); border-radius: 999px; background: var(--panel2);
-    color: var(--gold-dim); font: 0.68rem/1.4 Inter, system-ui, sans-serif;
+    border: 1px solid var(--shani-dim); border-radius: 999px; background: var(--surface-c);
+    color: var(--shani); font: 0.68rem/1.4 Inter, system-ui, sans-serif;
     letter-spacing: 0.04em; cursor: pointer; }
-  .c-mark:hover { color: var(--gold); border-color: var(--gold); }
-  .c-mark[aria-expanded="true"] { background: var(--gold); border-color: var(--gold);
-    color: #171105; font-weight: bold; }
+  .c-mark:hover { color: var(--shani); border-color: var(--shani); }
+  .c-mark[aria-expanded="true"] { background: var(--sel); border-color: var(--sel);
+    color: var(--sel-ink); font-weight: bold; }
   .c-mark .c-glyph { font-variant: small-caps; letter-spacing: 0.08em; }
   /* Bounded, like the card's regions. A Rashi runs to a page and it was taking
      one — the verse it belongs to disappeared above it. It gets a share and
@@ -543,18 +577,18 @@
   .c-mark-slot { display: block; direction: ltr; text-align: left;
     max-height: min(22rem, 46vh); overflow-y: auto; overflow-x: hidden;
     margin: 0.15rem 0 0.6rem; padding: 0.5rem 0.7rem;
-    border: 1px solid var(--line); border-inline-start: 2px solid var(--gold-dim);
-    border-radius: 0.5rem; background: var(--panel2); }
+    border: 1px solid var(--line-c); border-inline-start: 2px solid var(--shani-dim);
+    border-radius: 0.5rem; background: var(--surface-c); }
   .c-mark-slot[hidden] { display: none; }
   .c-mark-slot .c-pick { display: block; color: var(--faint); font-size: 0.72rem; margin-bottom: 0.45rem; }
   .c-mark-slot .c-pick select { font: inherit; font-size: 0.76rem; color: var(--muted);
-    background: var(--panel); border: 1px solid var(--line); border-radius: 0.4rem;
+    background: var(--panel-c); border: 1px solid var(--line-c); border-radius: 0.4rem;
     padding: 0.16rem 0.4rem; max-width: 100%; }
   /* the reference and the licence stay put while the commentary scrolls under
      them: a text whose source has scrolled away is a text standing on nothing */
   .c-mark-slot .lab { display: block; color: var(--muted); font-size: 0.74rem;
     letter-spacing: 0.03em; margin-bottom: 0.3rem;
-    position: sticky; top: -0.5rem; background: var(--panel2); padding: 0.35rem 0 0.25rem; z-index: 1; }
+    position: sticky; top: -0.5rem; background: var(--surface-c); padding: 0.35rem 0 0.25rem; z-index: 1; }
   .c-mark-slot .lab a { color: var(--link); }
   /* Three plain rows: what it is, what it is commonly read as, and where the
      chain puts it. Same register as the masthead above the book. */
@@ -615,14 +649,14 @@
     color: var(--muted); font: inherit; font-size: 0.7rem; cursor: pointer; padding: 0; }
   .c-shut:hover { color: var(--gold); }
   /* Every commentary the book carries, in one place, before the text starts. */
-  #cIndex { margin: 0 0 1.6rem; border: 1px solid var(--line); border-radius: 0.6rem;
-    background: var(--panel2); overflow: hidden; }
+  #cIndex { margin: 0 0 1.6rem; border: 1px solid var(--line-c); border-radius: 0.6rem;
+    background: var(--surface-c); overflow: hidden; }
   #cIndex .ci-head { display: flex; flex-direction: column; gap: 0.2rem; width: 100%;
     text-align: left; direction: ltr; background: none; border: 0; color: var(--muted);
     font: inherit; padding: 0.7rem 0.9rem; cursor: pointer; }
   #cIndex .ci-head:hover { color: var(--shesh); }
-  #cIndex .ci-head b { color: var(--gold-dim); font-size: 0.95rem; letter-spacing: 0.04em; }
-  #cIndex .ci-head[aria-expanded="true"] b { color: var(--gold); }
+  #cIndex .ci-head b { color: var(--shani); font-size: 0.95rem; letter-spacing: 0.04em; }
+  #cIndex .ci-head[aria-expanded="true"] b { color: var(--sel); }
   #cIndex .ci-sum { color: var(--faint); font-size: 0.72rem; margin: 0 0 0.55rem;
     padding: 0 0.9rem; line-height: 1.5; }
   #cIndex .ci-body[hidden] { display: none; }
@@ -652,7 +686,7 @@
   #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  #hud .c-pills button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold);
+  #hud .c-pills button[aria-pressed="true"] { background: var(--sel); border-color: var(--sel);
     color: #171105; font-weight: bold; }
   #hud .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
@@ -709,8 +743,8 @@
     border-radius: 0.55rem; background: var(--panel2); color: var(--muted);
     font-family: inherit; font-size: 0.78rem; letter-spacing: 0.04em; cursor: pointer;
     direction: ltr; text-align: left; }
-  .c-bar:hover { border-color: var(--gold-dim); color: var(--shesh); }
-  .c-bar[aria-expanded="true"] { background: var(--gold); color: #171105; border-color: var(--gold); }
+  .c-bar:hover { border-color: var(--shani-dim); color: var(--shesh); }
+  .c-bar[aria-expanded="true"] { background: var(--sel); color: var(--sel-ink); border-color: var(--sel); }
   .c-bar .c-glyph { font-variant: small-caps; letter-spacing: 0.12em; font-size: 0.7rem;
     border: 1px solid currentColor; border-radius: 0.35rem; padding: 0 0.32rem; opacity: 0.75; }
   .c-bar .c-name { flex: 1 1 auto; }
@@ -742,7 +776,7 @@
     background: var(--panel2); border-radius: 0.5rem; padding: 0.12rem 0.5rem;
     letter-spacing: 0.04em; cursor: pointer; font-family: inherit; }
   .xp:hover { border-color: var(--gold-dim); color: var(--shesh); }
-  .xp.armed { background: var(--gold); color: #171105; border-color: var(--gold); font-weight: bold; }
+  .xp.armed { background: var(--sel); color: var(--sel-ink); border-color: var(--sel); font-weight: bold; }
   .xp.busy { opacity: 0.6; cursor: progress; }
   .xp-note { font-size: 0.66rem; color: var(--faint); direction: ltr; flex: 1 1 100%; margin: 0.1rem 0 0; }
   .xp-note b { color: var(--shesh); font-weight: normal; }

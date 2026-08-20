@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-20.
 
-**26 rules declared · 17 named by a check · 9 unguarded.**
+**27 rules declared · 18 named by a check · 9 unguarded.**
 **13 published artifacts · 13 with a build step · 0 without.**
 
 ## The rules
@@ -17,6 +17,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | rule | declared in | guarded by |
 |---|---|---|
 | `attachment-authorship-rule-v1-the-placement-is-ours-and-says-so` | tools/generate-attachment-map-v2.mjs, zone.html | check-whose-claim-v1 |
+| `colour-role-rule-v1-the-roles-are-the-ledgers-and-the-values-are-ours` | zone.html | check-colour-roles-v1 |
 | `commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press` | zone.html | check-commentary-in-line-v1 |
 | `commentary-order-rule-v1-ordered-here-by-the-dates-the-chain-records` | zone.html | check-commentary-in-line-v1 |
 | `commentary-scope-rule-v2` | zone.html | check-commentary-in-line-v1 |
@@ -25,7 +26,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | **UNGUARDED** |
 | `export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work` | zone.html | check-citations-v1, check-export-v1 |
 | `fixture-rule-v1-a-real-zone-with-its-own-commentary-hung-at-words` | tools/make-fixture-zone-v1.mjs | **UNGUARDED** |
-| `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs | check-nothing-hard-wired-v1 |
+| `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs, zone.html | check-clean-address-v1, check-nothing-hard-wired-v1 |
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
 | `licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs` | zone.html | check-licence-leaves-v1 |
 | `mark-inventory-rule-v1-closed-set-over-route-text` | tools/mark-inventory-v1.mjs | **UNGUARDED** |
