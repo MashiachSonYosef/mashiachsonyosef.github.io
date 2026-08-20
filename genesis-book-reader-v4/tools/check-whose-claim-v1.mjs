@@ -83,9 +83,15 @@ const b = await chromium.launch();
   await p.waitForTimeout(600);
   const said = await p.evaluate(() =>
     (document.querySelector("section.seg .c-inline .c-att")?.textContent || "").replace(/\s+/g, " "));
-  check("  it is matched by coordinate, not placed", /matched by number/i.test(said), said.slice(0, 70) + "…");
-  check("  and says nothing was placed by this reader",
-    /nothing placed by this reader/i.test(said));
+  // The chain numbers both works; reading two identical numbers as one place
+  // is this project's rule, not the chain's. A page that says "the chain
+  // matched it" has handed its own smallest claim to somebody else.
+  check("  it stands on a coordinate the chain gives, not a placement",
+    /same number/i.test(said) && /numbers are the chain/i.test(said), said.slice(0, 80) + "…");
+  check("  and says that reading them as an attachment is ours",
+    /reading them as an attachment is ours/i.test(said));
+  check("  and still says nothing inside the section was placed",
+    /nothing inside the section was placed/i.test(said));
   await p.close();
 }
 
