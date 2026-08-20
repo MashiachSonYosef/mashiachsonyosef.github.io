@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # The Tabernacle · synthesis lane · one pass, sources to site
 #
-# Every published byte comes out of this file. There is no step that edits a
-# zone after it is written, and no step that reaches for anything the corpus
-# lane has not sealed. Run it twice on the same inputs and the outputs are
-# byte-identical; that is the whole point of it existing.
+# Every published byte that has a generator comes out of this file, and the
+# ones that do not are named by tools/pipeline-manifest-v1.mjs at the end of
+# every run rather than left for somebody to discover. There is no step that
+# edits a zone after it is written, and no step that reaches for anything the
+# corpus lane has not sealed. Run it twice on the same inputs and the outputs
+# are byte-identical; that is the whole point of it existing.
 #
 #   usage:  ./build.sh <workspace-mirror> <bridge.csv.gz> <serve-dir> <stamp> [compspan.csv.gz]
 #   e.g.    ./build.sh ../mirror ../bridge.csv.gz ../serves 2026-08-16 \
@@ -93,12 +95,37 @@ node tools/build-commentary-zone.mjs \
   --bridge "$BRIDGE" --store data/route-store --stamp "$STAMP" \
   ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/targum-1kings-commentary.bin
 
+# The Genesis 1:1 sidecar comes the other way: not from a serve, because the
+# pack was fetched from outside the corpus and has no C0 identity, but from the
+# pack the chain sealed plus the attachment map that says which words each
+# segment sits on. Both steps are re-runnable and both refuse rather than
+# guess, which is the only thing that makes an outside pack safe to publish.
+echo "── 5b · Genesis 1:1 commentary, from the pack and its attachment map ───"
+node tools/generate-genesis-attachment-map-v2.mjs \
+  --out "data/v5-genesis-1-1-attachment-map-$STAMP.js"
+node tools/build-genesis-commentary-zone-v1.mjs \
+  --map "data/v5-genesis-1-1-attachment-map-$STAMP.js" \
+  --store data/route-store --out data/zones/genesis-commentary.bin
+
 echo "── 6 · assemble the site ───────────────────────────────────────────────"
 cp data/zones/*.bin site/data/zones/
 rm -rf site/data/route-store && cp -r data/route-store site/data/route-store
 
-echo "── 7 · verify by rendering, not by reading ─────────────────────────────"
+echo "── 7 · the reader, and the addresses that open it ──────────────────────"
+# zone.html is the one published file with no generator behind it: it is
+# written by hand and copied here. That is recorded rather than hidden — the
+# manifest prints it as having no build step every time anyone runs the checks.
+cp zone.html site/zone.html
+[ -f index.html ] && cp index.html site/index.html
+for book in genesis 1kings; do
+  [ -f "$book/index.html" ] && mkdir -p "site/$book" && cp "$book/index.html" "site/$book/index.html"
+done
+
+echo "── 8 · verify by rendering, not by reading ─────────────────────────────"
 node tools/verify-zone.mjs --root site --book 1kings
 node tools/verify-zone.mjs --root site --book genesis
+
+echo "── 9 · what the pipeline can prove about itself ────────────────────────"
+node tools/pipeline-manifest-v1.mjs --stamp "$STAMP"
 
 echo "done · $(du -sh site | cut -f1) in site/"

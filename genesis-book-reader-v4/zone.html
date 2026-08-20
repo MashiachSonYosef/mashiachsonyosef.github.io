@@ -194,6 +194,13 @@
   body.en .c-inline { direction: ltr; text-align: left; }
   body.en .c-inline .g { font-size: 0.86rem; max-width: 11em; }
   body.en .c-inline .w { font-size: 0.92rem; }
+  /* A commentary opened in the line follows the reader it was opened in. It
+     was left running right to left in the English reader, so the verse above
+     it ran one way and the commentary under it ran the other — two directions
+     on one screen, from one setting. */
+  body.en .c-mark-text { direction: ltr; text-align: left; }
+  body.en .c-mark-text .g { font-size: 0.86rem; max-width: 11em; }
+  body.en .c-mark-text .w { font-size: 0.92rem; }
   .wb { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top;
     margin: 0 0.16rem 0.55rem; cursor: pointer; }
   .w { display: block; order: 1; border-bottom: 1px dashed transparent; border-radius: 2px; }
@@ -236,9 +243,22 @@
      few lines rather than costing the whole line its shape. The height is
      settled at paint and never changes afterwards: nothing here moves while
      the reader is reading. */
-  .g { display: block; order: 2; direction: ltr; font: 0.66rem/1.25 Georgia, serif; color: var(--muted);
+  /* The reading stands centred under its own word. It used to inherit the
+     column's alignment, so in the Hebrew reader a reading long enough to take
+     two lines set both of them hard right — under the right-hand edge of its
+     word and up against the word beside it, which reads as a gap in the wrong
+     place. It belongs under the word it is a reading of. */
+  .g { display: block; order: 2; direction: ltr; text-align: center;
+    font: 0.66rem/1.25 Georgia, serif; color: var(--muted);
     letter-spacing: 0.02em; margin-top: 0.06rem; max-width: 11em;
     white-space: normal; overflow-wrap: anywhere; overflow: hidden; }
+  /* 4 · A word the store has no reading for still holds the line the reading
+     would have stood on. Without it the block is one line shorter than its
+     neighbours, and in the English reader — where the reading leads and the
+     Hebrew rides beneath — the Hebrew climbs into the reading's row and the
+     line stops being a line. Nothing is printed in the space; it is kept. */
+  .g.bare { min-height: 1.25em; }
+  body.en .g.bare { min-height: 1.3em; }
   .wb.active .g { color: var(--gold); }
 
   /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
@@ -2484,7 +2504,7 @@
   // and the census counts it. It never moves the mark.
   //
   // The chain also carries the same span mapped to the zone's own words. It is
-  // not read here. In Genesis 75 of 181 of those mapped spans disagree with
+  // not read here. In Genesis 75 of 181 of those mapped spans disagreed with
   // the verse span they were mapped from, by one word at the start — 49 of
   // them collapsing to a span of no words at all — and I Kings carries none of
   // them. The word the chain attached the entry to is the mapping, and it is
@@ -2500,7 +2520,7 @@
   //      (817 of 817 in I Kings.)
   //   2. WORD coordinate with a recorded span — it is on that many words, read
   //      from the word it is attached to. What it covers stays above it; what
-  //      it does not goes below. (181 of 181 in Genesis, runs of one to four
+  //      it does not goes below. (181 of 181 in Genesis, runs of one to seven
   //      words.)
   //   3. WORD coordinate with no recorded span — it is on that word alone. The
   //      chain named a word and nothing here extends it.
@@ -2798,8 +2818,7 @@
           const q = document.createElement("span"); q.className = "c-att c-two-counts";
           const w = (n) => `${n} ${n === 1 ? "word" : "words"}`;
           q.textContent = `The chain records this comment on ${w(sc.run)}; ` +
-            `its own opening quotation runs to ${w(sc.quoted)}. ` +
-            `The mark follows the chain.`;
+            `its own opening quotation runs to ${w(sc.quoted)}. The mark follows the chain.`;
           body.append(q);
         }
         if (!/[A-Za-z]{3}/.test(String(selected.text || ""))) {
