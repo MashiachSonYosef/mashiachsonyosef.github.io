@@ -177,13 +177,16 @@ for (const [href, ...expected] of [["/genesis", ...titleOf("genesis")], ["/1king
   // every other word of the book opens.
   check("  and it opens like any word of the text", heTitle ? r.titleOpens : !r.titleOpens,
     r.titleOpens ? "pressable" : "not pressable");
-  // Where a record in the store reads the title that way, the line says the
-  // reading is being forced and carries that record's licence. Where none
-  // does, it drops the claim and says only that it is commonly read so.
-  check("  and the common name, said to be a reading held to",
-    /^commonly (force )?read as$/i.test(r.enLab) && r.en === en, `"${r.enLab}": ${r.en}`);
-  check("  cited from a record where one reads it that way, and not where none does",
-    heTitle ? (/force/i.test(r.enLab) && r.lic.length > 2) : (!/force/i.test(r.enLab) && !r.lic),
+  // The English over a book title is always a forced reading — the label never
+  // softens, whether or not a record happens to carry that reading. What
+  // changes is what rides beside it: the licence of the record that reads the
+  // title's own form that way where one exists, and no chip where none does.
+  // The honesty lives in the chip, never in dropping "force". An earlier form
+  // of this check asserted the softening itself; the register rule outranks it.
+  check("  and the common name, said to be a forced reading, never softened",
+    /^commonly force read as$/i.test(r.enLab) && r.en === en, `"${r.enLab}": ${r.en}`);
+  check("  with a licence where a record reads it that way, and none where none does",
+    heTitle ? r.lic.length > 2 : !r.lic,
     `${r.enLab} · ${r.lic || "no licence"}`);
   check("  the zone still loads under the rewritten bar", r.sections > 100 && r.words > 3, `${r.sections} sections`);
   check("  and its readings came with it", r.glossed > 0, `${r.glossed} of ${r.words} words glossed`);

@@ -60,9 +60,17 @@ const n = (x) => Number(x).toLocaleString("en-US");
 // byline is printed whole, exactly as the zone carries it.
 execFileSync("node", ["tools/plan-build-v1.mjs", "--out", PLAN, "--tsv", PLAN.replace(/\.json$/, ".tsv")], { stdio: "pipe" });
 const plan = JSON.parse(readFileSync(PLAN, "utf8"));
+// What each work's build stands on, and what the Y lane holds back from it —
+// derived by tools/emit-work-basis-v1.mjs from the plan and the hold ledgers.
+// The door prints incompleteness rather than presenting a typed-basis work
+// with a sealed work's face; a door that cannot read the basis file would be
+// choosing that face back, so it refuses instead.
+execFileSync("node", ["tools/emit-work-basis-v1.mjs", "--plan", PLAN], { stdio: "pipe" });
+const WB = JSON.parse(readFileSync(arg("basis", "data/work-basis-v1.json"), "utf8"));
 const BOOKS = plan.works.map((w) => ({
   slug: w.published_as, zone: `${w.published_as}.bin`,
   work_id: w.work_id, address_by_rule: w.address_by_rule, basis: w.basis,
+  held: (WB.works[w.published_as] || {}).held_commentaries || 0,
 }));
 // Attachment is directional for presentation: the record's pair is
 // [base, commentary], the same direction the Y schema's attachment_y_node_id
@@ -121,9 +129,18 @@ for (const b of BOOKS) {
 if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
 
 // ---- the door ------------------------------------------------------------
+// A typed-basis work and a sealed work do not wear the same face, and held
+// commentary is counted where the book is offered rather than silently absent.
+const incBits = (b) => {
+  const bits = [];
+  if (b.basis === "TYPED_AWAITING_LEDGER") bits.push("its coordinates are typed by hand, awaiting its Y ledger");
+  if (b.held) bits.push(`${n(b.held)} commentary identities held by the Y ledger, not shown`);
+  return bits;
+};
 const bookCard = (b) => `    <a class="book" href="/${b.slug}">
       <span class="row"><span class="lab">commonly read as</span><span class="en">${esc(b.en)}</span></span>
-      <span class="of">${n(b.sections)} sections · ${n(b.words)} words · ${esc(b.byline)}</span>
+      <span class="of">${n(b.sections)} sections · ${n(b.words)} words · ${esc(b.byline)}</span>${incBits(b).length ? `
+      <span class="of inc">incomplete — ${esc(incBits(b).join(" · "))}</span>` : ""}
     </a>`;
 
 // A commentary entry is its own way in, so it opens one. ?c=open tells the
@@ -155,7 +172,7 @@ const groupFor = (b) => {
   for (const cslug of commentaryOf.get(b.slug) || []) {
     const c = bySlug.get(cslug);
     if (!c) continue;
-    subs.push(`      <a class="sub-work" href="/${c.slug}"><span class="en">${esc(c.en)}</span><span class="of">its own book · ${n(c.sections)} sections · ${n(c.words)} words · ${esc(c.byline)}</span></a>`);
+    subs.push(`      <a class="sub-work" href="/${c.slug}"><span class="en">${esc(c.en)}</span><span class="of">its own book · ${n(c.sections)} sections · ${n(c.words)} words · ${esc(c.byline)}</span>${incBits(c).length ? `<span class="of inc">incomplete — ${esc(incBits(c).join(" · "))}</span>` : ""}</a>`);
     const cl = commentaryLine(c);
     if (cl) subs.push(cl);
   }
@@ -200,6 +217,7 @@ const doc = `<!doctype html>
                 text-transform:uppercase; color:var(--faint); }
   a.book .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
   a.book .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
+  a.book .of.inc { margin-top:.2rem; color:#c0563f; }
   /* The commentary is not a third book. It arrives shut, and what is behind it
      is one entry per book, each going to the book it belongs to — because that
      is where a commentary is read. */
