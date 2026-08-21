@@ -623,6 +623,9 @@
     color: var(--faint); min-width: 8.5em; }
   .c-head-he { font-family: "Frank Ruehl CLM", "David Libre", "SBL Hebrew", Georgia, serif; }
   .c-head-he.title-row { display: flex; gap: 0.1rem; }
+  /* Same voice as the masthead's unnamed title: dimmed, italic, plainly a
+     statement about the record rather than a name. */
+  .c-head-he.unnamed { color: var(--muted); font-style: italic; font-family: Georgia, serif; font-size: 0.8rem; }
   .c-head-en { color: var(--shesh); font-size: 0.94rem; }
   .c-head-on { color: var(--muted); font-size: 0.82rem; }
   /* Said once, in English, before the names — because "what is this thing"
@@ -3109,12 +3112,24 @@
           bare.lang = "he"; bare.dir = "rtl"; bare.className = "c-head-he";
           bare.textContent = w.family_he;
           row1.append(bare);
+        } else {
+          // Same rule as the masthead: say what is missing rather than leave a
+          // slot that reads as a name that failed to load. No Hebrew name has
+          // been recorded for this work reader-side yet; when one lands it
+          // fills this row, and until then the row says so.
+          row1.append(Object.assign(document.createElement("span"),
+            { className: "c-head-he unnamed", textContent: "none is recorded" }));
         }
         lab.append(row1);
 
         const row2 = document.createElement("span"); row2.className = "c-head-row";
+        // The same register as the masthead above, for the same reason: the
+        // English under a work's name is always a forced reading, whether or
+        // not the Hebrew it forces is recorded yet. The label never softens
+        // to "commonly read as" or "recorded as" — what is missing is said in
+        // the Hebrew row, not by quietly relabelling the English one.
         row2.append(Object.assign(document.createElement("span"),
-          { className: "c-head-lab", textContent: w.family_he ? "commonly read as" : "recorded as" }));
+          { className: "c-head-lab", textContent: "commonly force read as" }));
         row2.append(Object.assign(document.createElement("span"),
           { className: "c-head-en", textContent: selected.title || w.family_en || selected.ref }));
         const lic = document.createElement("span"); lic.className = "lic-chip";
