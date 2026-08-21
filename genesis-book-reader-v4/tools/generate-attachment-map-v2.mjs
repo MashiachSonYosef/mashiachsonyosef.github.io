@@ -52,10 +52,20 @@
 //     for its own guess. A claim carried in from an earlier map that was proven
 //     against a record keeps its proof and is not re-derived.
 //
-//   evidence · Genesis 1:1 is seven words and carries 181 word-anchored
-//     segments. 178 of them are placed by this rule; 4 are carried from a map
-//     that proved its edges against a corpus fixture; 1 of those survives the
-//     licence gate. Thirteen open by quoting five, six or seven words.
+//   evidence · Genesis 1:1 is seven W and carries 181 word-anchored segments.
+//     178 of them are placed by this rule; 4 are carried from a map that proved
+//     its edges against a corpus fixture; 1 of those survives the licence gate.
+//     Thirteen open by quoting five, six or seven words.
+//
+//     The comparison is between a quoted word and a run of the section's own
+//     entries rather than a single entry, and that is deliberate rather than
+//     defensive. The sealed HUD holds Genesis 1:1 as seven W; the chain's c0
+//     rows for it are eight, because c0 is the finer grain. A zone built at
+//     either grain places the same 178 with this rule. A zone built at c0 grain
+//     and compared entry-to-word places 127, because a commentary opening on
+//     the first written word matches neither half of a divided entry —
+//     measured on 2026-08-21. The rule should not change its answer because the
+//     grain changed, and now it does not.
 //
 //   falsifier · widening the window from four words to the section must not
 //     invent a placement, lose one, or move one. Measured over all 504 segments
@@ -138,12 +148,36 @@ const matchHeadword = (proofText, sec) => {
     if (!headWords.length) break;
     for (let len = Math.min(headWords.length, WINDOW); len >= 1; len -= 1)
       for (let start = 0; start + len <= sec.norm.length; start += 1) {
-        let holds = true;
+        // A quoted word is spelled by one entry, or by a run of them.
+        //
+        // The chain's c0 numbering is finer than W, and a zone built at that
+        // grain holds the first word of the Torah as two entries. Comparing one
+        // entry to one quoted word matched neither half, so fifty-one
+        // commentaries that name the word they are about fell back to standing
+        // on the whole verse — and the zone was briefly "repaired" instead,
+        // which put the grain of the text under the convenience of this
+        // matcher. It is the matcher that has to read what the record holds.
+        //
+        // So entries are joined only while they still spell the opening of the
+        // quoted word, and the run ends the moment they spell all of it.
+        // Nothing is joined that the quotation does not already account for,
+        // and a single entry still matches exactly as before.
+        let pos = start, holds = true;
         for (let offset = 0; offset < len; offset += 1) {
-          const sw = sec.norm[start + offset], hw = headWords[offset];
-          if (sw !== hw && !sw.endsWith(hw)) { holds = false; break; }
+          const hw = headWords[offset];
+          let acc = "", took = 0;
+          while (pos < sec.norm.length) {
+            const next = acc + sec.norm[pos];
+            // the first entry may also merely END with the quoted word — the
+            // older, looser test, kept for the forms it was written for
+            if (took === 0 && sec.norm[pos].endsWith(hw)) { acc = hw; pos += 1; took += 1; break; }
+            if (!hw.startsWith(next)) break;
+            acc = next; pos += 1; took += 1;
+            if (acc === hw) break;
+          }
+          if (acc !== hw || took === 0) { holds = false; break; }
         }
-        if (holds) return { start: start + 1, end: start + len, skip };
+        if (holds && pos > start) return { start: start + 1, end: pos, skip };
       }
   }
   return null;

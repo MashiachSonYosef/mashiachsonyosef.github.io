@@ -1,0 +1,208 @@
+#!/usr/bin/env node
+// Synthesis lane · plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis
+//
+// The build plan: every published work's parameters, derived rather than typed,
+// each fact carrying the basis it stands on.
+//
+// Why this exists. build.sh named a work thirty-two times — c0 ranges, work
+// ids, titles, a deploy list — and every one of those literals was a hand copy
+// of a field the Y ledger already carries. A hand copy is right until the day
+// the record changes, and then it is wrong in a file nobody thinks of as data.
+// Adding a work meant editing the script, which is why two published works and
+// nine hundred and ninety-seven to come would each have been a hand job.
+//
+// So the parameters are derived here, from two sources with a strict order:
+//
+//   1. A work's Y ledger. Found by shape, not by filename — any fixture in
+//      data/ whose nodes carry a WORK node with a content_work_id — so a new
+//      ledger is picked up by being put in the directory. Its WORK node
+//      supplies the work id, both titles, the c0 range, the unit count and the
+//      order. Basis: SEALED_Y_LEDGER. A ledger whose status is not PASS is
+//      reported and not derived from.
+//
+//   2. data/work-records-v1.js, for a work that is published but has no
+//      ledger yet. Basis: TYPED_AWAITING_LEDGER, and the entry names the day
+//      it dies. A work with BOTH is refused outright — two sources for one
+//      fact is how drift starts, and the fix is deleting the typed entry, not
+//      trusting this tool to pick.
+//
+// The record's `descriptors` ride along either way: byline, coordinate
+// labels, family name, licence links — plain English for usability, the one
+// kind of typing allowed, kept per work and out of the script.
+//
+// Addresses: the rule is the work id's last segment. Two works predate the
+// rule and are published under older names; the plan carries both, and the
+// difference is reported as awaiting the republish step rather than either
+// renamed today or silently kept forever.
+//
+// Outputs:
+//   --out  build/build-plan-v1.json   the plan with its receipts
+//   --tsv  build/build-plan-v1.tsv    the same rows for the shell to read:
+//          W <work_id> <basis> <published_as> <title_en> <title_he|-> <c0_first> <c0_last> <y_fixture|-> <byline> <coord_labels> <license_links|-> <family_en>
+//          A <base_work> <comm_work> <by>
+//          P <work_id> <pack> <carried_map>
+//
+// Run: node tools/plan-build-v1.mjs [--out build/build-plan-v1.json] [--tsv build/build-plan-v1.tsv]
+
+import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+export const PLAN_RULE_ID = "plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+const K3 = join(HERE, "..");
+const DATA = join(K3, "data");
+const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
+const outPath = arg("--out", "build/build-plan-v1.json");
+const tsvPath = arg("--tsv", "build/build-plan-v1.tsv");
+
+const parse = (raw) => {
+  const at = raw.indexOf("{");
+  if (at < 0) return null;
+  try { return JSON.parse(raw.slice(at).replace(/\)\s*;?\s*$/u, "").replace(/;\s*$/u, "")); }
+  catch { return null; }
+};
+const sha16 = (p) => createHash("sha256").update(readFileSync(p)).digest("hex").slice(0, 16);
+const c0num = (id) => Number(String(id || "").replace(/^C0-0*/u, ""));
+
+// ---- source 1 · every Y ledger in data/, found by shape -------------------
+const ledgers = [], notPass = [];
+for (const f of readdirSync(DATA).filter((x) => x.endsWith(".js"))) {
+  const j = parse(readFileSync(join(DATA, f), "utf8"));
+  if (!j || !Array.isArray(j.nodes)) continue;
+  const work = j.nodes.find((n) => n && n.node_kind === "WORK" && n.content_work_id);
+  if (!work) continue;
+  if (j.status !== "PASS") { notPass.push({ file: f, status: j.status }); continue; }
+  ledgers.push({ file: f, sha: sha16(join(DATA, f)), fixture: j, work });
+}
+
+// ---- source 2 · the typed record ------------------------------------------
+let record = null, recordFile = null;
+for (const f of readdirSync(DATA).filter((x) => x.endsWith(".js"))) {
+  const j = parse(readFileSync(join(DATA, f), "utf8"));
+  if (j && j.schema_version === "WORK_RECORDS_V1") { record = j; recordFile = f; }
+}
+if (!record) { console.error("NO_WORK_RECORD — data/ carries no WORK_RECORDS_V1 file"); process.exit(2); }
+const descriptors = record.descriptors || {};
+const typed = record.typed_awaiting_ledger || {};
+
+// ---- the one refusal -------------------------------------------------------
+const both = ledgers.map((l) => l.work.content_work_id).filter((id) => typed[id]);
+if (both.length) {
+  console.error(`A_WORK_HAS_A_LEDGER_AND_A_TYPED_ENTRY — refusing to plan.`);
+  for (const id of both) console.error(`  ${id} · its ledger has landed, so its typed entry in ${recordFile} must be deleted`);
+  process.exit(2);
+}
+
+// ---- the plan --------------------------------------------------------------
+const slugOf = (id) => String(id).split("/").pop();
+const works = [];
+for (const l of ledgers) {
+  const id = l.work.content_work_id;
+  const d = descriptors[id] || {};
+  works.push({
+    work_id: id,
+    basis: "SEALED_Y_LEDGER",
+    derived_from: `${l.file} · ${l.sha}… · node ${l.work.y_node_id}`,
+    y_fixture: `data/${l.file}`,
+    title_en: l.work.public_ref,
+    title_he: l.work.label_hebrew || "",
+    c0_first: c0num(l.work.content_first_c0_id),
+    c0_last: c0num(l.work.content_last_c0_id),
+    unit_count: Number(l.work.content_unit_count),
+    order: l.work.order_path || "",
+    address_by_rule: slugOf(id),
+    published_as: (typed[id] || {}).published_as || d.published_as || slugOf(id),
+    byline: d.byline || "",
+    coord_labels: d.coord_labels || "section,paragraph",
+    family_en: d.family_en || l.work.public_ref,
+    license_links: d.license_links || "",
+  });
+}
+for (const [id, t] of Object.entries(typed)) {
+  const d = descriptors[id] || {};
+  works.push({
+    work_id: id,
+    basis: t.basis || "TYPED_AWAITING_LEDGER",
+    derived_from: `${recordFile} · typed on ${record.recorded_on}`,
+    y_fixture: "",
+    title_en: t.title_en,
+    title_he: "",
+    c0_first: Number(t.c0_first),
+    c0_last: Number(t.c0_last),
+    unit_count: Number(t.unit_count),
+    order: "",
+    address_by_rule: slugOf(id),
+    published_as: t.published_as || slugOf(id),
+    byline: d.byline || "",
+    coord_labels: d.coord_labels || "section,paragraph",
+    family_en: d.family_en || t.title_en,
+    license_links: d.license_links || "",
+  });
+}
+works.sort((a, b) => (a.order || "zzz").localeCompare(b.order || "zzz") || a.work_id.localeCompare(b.work_id));
+
+// What sits in data/zones that the plan does not reach. data/zones is a work
+// directory, not the site: the in-line commentary check keeps its fixture
+// there because that is the one place the reader fetches a zone from, so a
+// stray here is scratch until the moment it reaches site/ — and stage 6 of
+// build.sh publishes only what the plan built, so it cannot. Strays are
+// reported by name; whether one has actually been PUBLISHED is a fact about
+// site/, and check-build-derived-v1 is what fails on that.
+const planned = new Set(works.map((w) => w.published_as));
+const strays = [];
+const ZONES = join(DATA, "zones");
+if (existsSync(ZONES)) {
+  const { gunzipSync } = await import("node:zlib");
+  for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin"))) {
+    const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8"));
+    if ((z.emitted_from || {}).test_instrument) continue;
+    if (!Array.isArray(z.sections) || !z.sections.length) continue;
+    const slug = f.replace(/\.bin$/, "").replace(/-commentary$/, "");
+    if (!planned.has(slug)) strays.push({ file: f, work: z.work });
+  }
+}
+
+const plan = {
+  schema_version: "BUILD_PLAN_V1",
+  rule_id: PLAN_RULE_ID,
+  planned_from: {
+    ledgers: ledgers.map((l) => ({ file: l.file, sha256_16: l.sha, work_id: l.work.content_work_id })),
+    ledgers_not_pass: notPass,
+    record: recordFile,
+  },
+  works,
+  attachments: record.attachments || [],
+  commentary_packs: record.commentary_packs || [],
+  in_the_work_directory_and_not_planned: strays,
+};
+
+mkdirSync(join(K3, "build"), { recursive: true });
+writeFileSync(join(K3, outPath), JSON.stringify(plan, null, 1));
+const esc = (v) => (v === "" || v === null || v === undefined ? "-" : String(v));
+const tsv = [
+  ...works.map((w) => ["W", w.work_id, w.basis, w.published_as, w.title_en, esc(w.title_he),
+    w.c0_first, w.c0_last, esc(w.y_fixture), w.byline, w.coord_labels, esc(w.license_links), w.family_en].join("\t")),
+  ...(record.attachments || []).flatMap((a) => [
+    ["A", a.pair[0], a.pair[1], a.by].join("\t"),
+    ["A", a.pair[1], a.pair[0], a.by].join("\t"),
+  ]),
+  ...(record.commentary_packs || []).map((p) => ["P", p.work_id, p.pack, p.carried_map].join("\t")),
+].join("\n") + "\n";
+writeFileSync(join(K3, tsvPath), tsv);
+
+// ---- said out loud ---------------------------------------------------------
+console.log(`— the build, derived · ${works.length} works —`);
+const pad = Math.max(...works.map((w) => w.work_id.length));
+for (const w of works) {
+  console.log(`  ${w.work_id.padEnd(pad)}  ${String(w.c0_first)}-${String(w.c0_last)} · ${String(w.unit_count).padStart(5)} units · ${w.basis}`);
+  console.log(`  ${"".padEnd(pad)}  from ${w.derived_from}`);
+  if (w.published_as !== w.address_by_rule)
+    console.log(`  ${"".padEnd(pad)}  published as "${w.published_as}" · the address rule says "${w.address_by_rule}" — awaiting the republish step`);
+}
+for (const n of notPass) console.log(`  a ledger that is not PASS is not derived from: ${n.file} · ${n.status}`);
+for (const o of strays) console.log(`  in the work directory and not planned — ${o.file} (${o.work}) · not published by this build`);
+console.log(`  ${outPath} · ${tsvPath}`);
+process.exit(0);

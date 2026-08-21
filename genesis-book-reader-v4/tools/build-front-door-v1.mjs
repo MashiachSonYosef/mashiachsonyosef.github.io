@@ -31,12 +31,14 @@
 // Run: node tools/build-front-door-v1.mjs
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { gunzipSync } from "node:zlib";
 import { join } from "node:path";
 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const ZONES = arg("zones", "data/zones");
 const OUT = arg("out", "deploy-root");
+const PLAN = arg("plan", "build/build-plan-v1.json");
 
 const read = (f) => JSON.parse(gunzipSync(readFileSync(f)).toString("utf8"));
 const has = (f) => existsSync(join(ZONES, f));
@@ -45,19 +47,38 @@ const n = (x) => Number(x).toLocaleString("en-US");
 
 // ---- what the zones carry ------------------------------------------------
 //
-// The books the door offers are named here, because "which books are
-// published" is a decision and not a fact about a directory — a zone can exist
-// and not be ready. Everything said about them is read out of the zone.
+// The books the door offers used to be a typed list of two, which is how the
+// door and the build could disagree about what is published — the Targum was
+// a published work a reader could open and the door never mentioned it as
+// one. The list now comes from the same plan the build runs from, derived
+// fresh so a stale build/ cannot vouch for itself, in the ledgers' own order.
+// A work added by its ledger appears here without anyone editing a list.
 //
-// The byline is NOT among the things named here. Each zone already carries its
-// own, and an earlier build typed a trimmed copy of it into this list — the
-// same fault as copying a topic out of a pack instead of printing the zone's:
+// The byline is NOT among the things carried over. Each zone already carries
+// its own, and an earlier build typed a trimmed copy of it into this list —
 // two strings for one fact, and the copy is the one on the page. The zone's
 // byline is printed whole, exactly as the zone carries it.
-const BOOKS = [
-  { slug: "genesis", zone: "genesis.bin" },
-  { slug: "1kings", zone: "1kings.bin" },
-];
+execFileSync("node", ["tools/plan-build-v1.mjs", "--out", PLAN, "--tsv", PLAN.replace(/\.json$/, ".tsv")], { stdio: "pipe" });
+const plan = JSON.parse(readFileSync(PLAN, "utf8"));
+const BOOKS = plan.works.map((w) => ({
+  slug: w.published_as, zone: `${w.published_as}.bin`,
+  work_id: w.work_id, address_by_rule: w.address_by_rule, basis: w.basis,
+}));
+// Attachment is directional for presentation: the record's pair is
+// [base, commentary], the same direction the Y schema's attachment_y_node_id
+// points — from the commentary to what it stands on. A commentary work keeps
+// its own page and its own address; the door seats it with its base, because
+// a commentary is read where its base is read.
+const commentaryOf = new Map();   // base slug -> [commentary slugs]
+const seated = new Set();         // commentary slugs that sit with a base
+const slugOfWork = new Map(plan.works.map((w) => [w.work_id, w.published_as]));
+for (const a of plan.attachments || []) {
+  const base = slugOfWork.get(a.pair[0]), comm = slugOfWork.get(a.pair[1]);
+  if (!base || !comm) continue;
+  if (!commentaryOf.has(base)) commentaryOf.set(base, []);
+  commentaryOf.get(base).push(comm);
+  seated.add(comm);
+}
 
 const books = [];
 for (const b of BOOKS) {
@@ -124,8 +145,28 @@ const commentaryLine = (b) => (b.units
   ? `      <a class="sub-book" href="/${b.slug}?c=open"><span class="en">Commentary on ${esc(b.en)}</span><span class="of">${n(b.units)} carried${b.works ? ` from ${n(b.works)} work${b.works === 1 ? "" : "s"}` : ""} — ${whereLine(b)}</span></a>`
   : null);
 
-const withCommentary = books.map(commentaryLine).filter(Boolean);
 const totalUnits = books.reduce((t, b) => t + b.units, 0);
+const bySlug = new Map(books.map((b) => [b.slug, b]));
+// One group per base work: its card, the works seated with it, and every way
+// its commentary opens. A seated work is still its own book — the row says so
+// and goes to it — it is just found where it is read.
+const groupFor = (b) => {
+  const subs = [];
+  for (const cslug of commentaryOf.get(b.slug) || []) {
+    const c = bySlug.get(cslug);
+    if (!c) continue;
+    subs.push(`      <a class="sub-work" href="/${c.slug}"><span class="en">${esc(c.en)}</span><span class="of">its own book · ${n(c.sections)} sections · ${n(c.words)} words · ${esc(c.byline)}</span></a>`);
+    const cl = commentaryLine(c);
+    if (cl) subs.push(cl);
+  }
+  const cl = commentaryLine(b);
+  if (cl) subs.push(cl);
+  return `    <div class="workgroup">
+${bookCard(b)}
+${subs.join("\n")}
+    </div>`;
+};
+const shown = books.filter((b) => !seated.has(b.slug));
 
 const doc = `<!doctype html>
 <html lang="en">
@@ -162,6 +203,18 @@ const doc = `<!doctype html>
   /* The commentary is not a third book. It arrives shut, and what is behind it
      is one entry per book, each going to the book it belongs to — because that
      is where a commentary is read. */
+  #find { margin:0 0 1rem; }
+  #find input { width:100%; padding:.6rem .9rem; border:1px solid var(--line); border-radius:.55rem;
+    background:var(--panel); color:var(--ink); font:inherit; font-size:.92rem; }
+  #find input::placeholder { color:var(--faint); }
+  #find input:focus { outline:none; border-color:var(--gold-dim); }
+  .workgroup { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); overflow:hidden; }
+  .workgroup a.book { border:none; border-radius:0; background:none; }
+  a.sub-work { display:block; padding:.85rem 1.15rem 0.85rem 2rem; border-top:1px solid var(--line);
+    text-decoration:none; color:var(--ink); }
+  a.sub-work:hover { background:rgba(224,182,79,.06); }
+  a.sub-work .en { display:block; font-size:.98rem; color:var(--gold-dim); }
+  a.sub-work .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }
   details.group { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); }
   details.group > summary { list-style:none; cursor:pointer; padding:1rem 1.15rem;
     display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
@@ -173,7 +226,7 @@ const doc = `<!doctype html>
     text-transform:uppercase; color:var(--faint); }
   details.group > summary .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
   details.group > summary .of { flex:1 0 100%; margin-top:.45rem; color:var(--faint); font-size:.8rem; }
-  a.sub-book { display:block; padding:.85rem 1.15rem; border-top:1px solid var(--line);
+  a.sub-book { display:block; padding:.85rem 1.15rem .85rem 2rem; border-top:1px solid var(--line);
     text-decoration:none; color:var(--ink); }
   a.sub-book:hover { background:rgba(224,182,79,.06); }
   a.sub-book .en { display:block; font-size:.98rem; color:var(--gold-dim); }
@@ -188,13 +241,44 @@ const doc = `<!doctype html>
        is read out of a zone; nothing here is typed twice. -->
   <h1>The Tabernacle</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the licence it was released under.</p>
+  <form id="find" role="search" onsubmit="return go(event)">
+    <input id="q" type="search" autocomplete="off" spellcheck="false"
+      placeholder="find a book — its name, however you type it"
+      aria-label="find a book" oninput="sift()">
+  </form>
   <nav class="books">
-${books.map(bookCard).join("\n")}
-${withCommentary.length ? `    <details class="group">
-      <summary><span class="lab">also carried</span><span class="en">Commentary</span><span class="of">${n(totalUnits)} carried across ${withCommentary.length} book${withCommentary.length === 1 ? "" : "s"} · each opens inside the book it is on, where the record puts it</span></summary>
-${withCommentary.join("\n")}
-    </details>` : ""}
+${shown.map(groupFor).join("\n")}
   </nav>
+  <script>
+  // Finding is the search box's job, not a record's. A book has one name row
+  // inside; here a reader may type that name any way hands actually type it —
+  // "1 kings", "1-kings", "i-kings" — and reach the same address. The loose
+  // matching is ours and lives only in this box.
+  var norm = function (t) {
+    t = String(t).toLowerCase();
+    t = t.replace(/\\b(iii)\\b/g, "3").replace(/\\b(ii)\\b/g, "2").replace(/\\b(i)\\b/g, "1");
+    return t.replace(/[^a-z0-9]+/g, "");
+  };
+  var groups = [].slice.call(document.querySelectorAll(".workgroup")).map(function (g) {
+    var names = [].slice.call(g.querySelectorAll(".en")).map(function (e) { return e.textContent; });
+    [].slice.call(g.querySelectorAll("a[href]")).forEach(function (a) {
+      names.push(a.getAttribute("href").replace(/^\\//, "").replace(/\\?.*$/, ""));
+    });
+    return { el: g, keys: names.map(norm), first: g.querySelector("a.book") };
+  });
+  function sift() {
+    var q = norm(document.getElementById("q").value);
+    groups.forEach(function (g) {
+      g.el.hidden = !!q && !g.keys.some(function (k) { return k.indexOf(q) >= 0; });
+    });
+  }
+  function go(e) {
+    e.preventDefault();
+    var live = groups.filter(function (g) { return !g.el.hidden; });
+    if (live.length && document.getElementById("q").value.trim()) location.href = live[0].first.getAttribute("href");
+    return false;
+  }
+  </script>
   <!-- A book's own title is corpus text and is not printed here. This page
        carries no records, so it can cite nothing; it says only how each book is
        commonly named, and the title itself waits inside, where it opens. -->

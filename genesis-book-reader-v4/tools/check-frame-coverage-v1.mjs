@@ -14,16 +14,16 @@
 // noticed and leave the rest to be noticed later. There are nine hundred and
 // ninety-nine works. No version of that works by hand.
 //
-// The frame is not typed here. It is read out of the sealed HUD manifests,
-// which record it as a string. If the corpus lane adds a layer, this starts
-// asking about it without anybody editing this file — which is the difference
-// between a pipeline and a list somebody maintains.
+// Neither the frame nor its definitions are typed here. The frame is read out
+// of the sealed HUD manifests, which record it as a string. What each letter
+// means is read out of data/frame-definitions-*.js. If either changes, this
+// starts asking a different question without anybody editing this file — which
+// is the difference between a pipeline and a list somebody maintains.
 //
-// What this does NOT do is enforce the frame. It has no standing to say which
-// layers a work needs: that is not recorded anywhere it can read, and some
-// letters may not be needed at all. The frame is a list of what not to forget,
-// not a specification, and inventing a requirement here would be the same
-// fault this check exists to catch.
+// What this does NOT do is enforce the frame. The definitions record says why
+// in its own words: the letters are what not to forget, not a spec, and what a
+// work needs is recorded nowhere this lane can read. Inventing a requirement
+// here would be the same fault this check exists to catch.
 //
 // So the table is an observation, and one thing only is asserted: no layer is
 // present in one published work and absent from another. That needs no
@@ -64,93 +64,151 @@ if (!frame) { console.log("SKIPPED — no sealed manifest here records the frame
 // Y is the organizational spine and sits above the word frame, so it is
 // prepended rather than edited into the recorded string.
 if (!frame.includes("Y")) frame.unshift("Y");
+
+// ---- what the letters mean, read from the dated record -------------------
+let DEF = null, defFrom = null;
+for (const f of readdirSync(DATA).filter((x) => /^frame-definitions-.*\.js$/.test(x)).sort()) {
+  try {
+    DEF = JSON.parse(readFileSync(join(DATA, f), "utf8")
+      .replace(/^[\s\S]*?window\.[A-Za-z_0-9]+\s*=\s*Object\.freeze\(/, "").replace(/\)\s*;?\s*$/, ""));
+    defFrom = f;
+  } catch { /* a record this lane cannot read is reported below, not guessed at */ }
+}
+
 console.log(`— the frame, as ${frameFrom} records it at manifest version ${frameVersion} —`);
 console.log(`  ${frame.join(" · ")}`);
 console.log(`  ${frame.length} layers, Y prepended as the spine above the word frame`);
+if (DEF) {
+  console.log(`\n— what each letter is, as ${defFrom} records it on ${DEF.recorded_on} —`);
+  for (const l of frame) console.log(`  ${l.padEnd(9)} ${(DEF.definitions || {})[l] || "— not in that statement —"}`);
+  const dropped = Object.entries(DEF.in_the_sealed_frame_and_not_in_this_statement || {})
+    .filter(([l]) => frame.includes(l));
+  if (dropped.length) {
+    console.log(`\n  in the sealed string and not in that statement — reported, not acted on:`);
+    for (const [l, why] of dropped) console.log(`     ${l.padEnd(9)} ${why}`);
+  }
+} else {
+  console.log(`\n  no dated statement of what the letters mean is here — the table below is`);
+  console.log(`  this lane's reading of them and should be checked against one.`);
+}
 
 // ---- what this lane can observe ------------------------------------------
 const store = existsSync(join(ROOT, "data", "route-store", "index.json"))
   ? openRouteStore(join(ROOT, "data", "route-store")) : null;
-const routesFor = (keys) => {
-  if (!store) return null;
-  const seen = { R: 0, D: 0, M: new Set(), S: 0, CIT: 0 };
-  for (const k of keys) for (const row of store.routesFor(k) || []) {
-    const [, text, def, mId, year] = row;
-    if (String(text || "").trim()) seen.R += 1;
-    if (String(def || "").trim()) seen.D += 1;
-    if (mId !== undefined && mId !== null) seen.M.add(mId);
-    if (year !== undefined && String(year) !== "S_NO_SOURCE_YEAR") seen.S += 1;
-    const m = store.index.m_sources[mId];
-    if (m && m.licensePointer) seen.CIT += 1;
-  }
-  return seen;
-};
 
 const PROBE = {
   // nodes with no ledger receipt are locators somebody numbered, not the spine
-  Y: (z) => {
+  Y: ({ z }) => {
     const rec = (z.emitted_from || {}).y_ledger || null;
     return rec && rec.fixture ? (z.nodes || []).length : 0;
   },
-  W: (z) => {
+  // A · "a section of hebrew with 1 license". A sealed unit is exactly that —
+  // but only while the work names one licence over all of them, so that is
+  // asked first and A is left unmeasured rather than assumed when it is not.
+  A: ({ licences, z }) => (licences.size === 1 ? (z.sections || []).length : null),
+  // N · "hebrew license" — the licence record itself, named by the work.
+  N: ({ licences }) => licences.size,
+  // B · "our grouping of As" — the work, carrying the corpus lane's own B id.
+  B: ({ z }) => {
+    const wr = z.work_receipts || {};
+    const s = typeof wr === "string" ? wr : (wr.b_n || "");
+    return /B-?\d+/.test(s) ? 1 : 0;
+  },
+  // V · "commentary" — every commentary entry standing against this work's own
+  // sealed units. Joined by unit id, never by filename: a sidecar belongs to
+  // whichever work its units are found in.
+  V: ({ units, sidecars }) => {
+    let n = 0;
+    for (const s of sidecars)
+      for (const [u, U] of Object.entries(s.units || {})) {
+        if (!units.has(u)) continue;
+        for (const list of Object.values(U.words || {})) n += list.length;
+        n += (U.section || []).length;
+      }
+    return n;
+  },
+  W: ({ z }) => {
     let n = 0;
     for (const s of z.sections || []) for (const w of s.words || []) if (w.s) n += 1;
     return n;
   },
-  K: (z) => {
-    const k = new Set();
-    for (const s of z.sections || []) for (const w of s.words || []) {
-      if (w.w) w.w.forEach((r) => r.k && k.add(r.k)); else if (w.k) k.add(w.k);
-    }
-    return k.size;
-  },
-  COMPspan: (z) => Object.keys(z.spans || {}).length,
+  K: ({ keys }) => keys.size,
+  COMPspan: ({ z }) => Object.keys(z.spans || {}).length,
   // cells are derived from the component list: n(n+1)/2 per form, never stored
-  COMPcell: (z) => Object.values(z.spans || {})
+  COMPcell: ({ z }) => Object.values(z.spans || {})
     .reduce((t, sp) => t + (sp[0].length * (sp[0].length + 1)) / 2, 0),
-  B: (z) => {
-    const wr = z.work_receipts || {};
-    return (typeof wr === "string" ? wr : (wr.b_n || "")) ? 1 : 0;
-  },
+  // P · "the grouper for M, when 2 M's report the exact same D" — one P per
+  // definition text that two or more distinct M records report byte-identically.
+  P: ({ routes }) => (routes ? routes.P : null),
+  R: ({ routes }) => (routes ? routes.R : null),
+  D: ({ routes }) => (routes ? routes.D : null),
+  M: ({ routes }) => (routes ? routes.M.size : null),
+  S: ({ routes }) => (routes ? routes.S : null),
+  CIT: ({ routes }) => (routes ? routes.CIT : null),
 };
 
 // Layers this lane holds no artifact for. Reported as not visible from here —
 // never as missing, because an unobserved layer and an absent one are
 // different facts and this check will not blur them.
 const NOT_VISIBLE = {
-  A: "occurrence-level acquisition identity — corpus lane",
-  N: "the N half of the book identity — travels inside B in these artifacts",
-  V: "commentary membership and attachment — rides on the sidecars, not the book",
-  Z: "not known to this lane; the only Z it holds is z_words, a span in a zone's own words beside v_words in the verse's — see the note to Kyle",
-  L: "lemma identity — corpus lane; this lane sees only what a route prints",
-  P: "provenance chain position — corpus lane",
+  Z: "not a layer this lane emits and none it can name — see the definitions record",
+  L: "lemma identity — corpus lane; this lane sees only what a route prints, which is R and D",
 };
 
 // ---- every published work, against that frame ----------------------------
 const bins = existsSync(ZONES) ? readdirSync(ZONES).filter((f) => f.endsWith(".bin")).sort() : [];
-const books = [];
+// A file with sections is a work a reader opens. A file with units and no
+// sections stands against one — it is asked for V and never asked for a frame
+// of its own, because it has none: it is the commentary layer of the work its
+// unit ids name.
+const works = [], cars = [];
 for (const f of bins) {
   const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8"));
-  if (Array.isArray(z.sections) && z.sections.length) books.push({ f, z });
+  if (Array.isArray(z.sections) && z.sections.length) works.push({ f, z });
+  else if (z.units) cars.push(z);
 }
-check("  there are published works to measure", books.length > 0,
-  `${books.length} of ${bins.length} files carry sections`);
+check("  there are published works to measure", works.length > 0,
+  `${works.length} of ${bins.length} files carry sections · ${cars.length} carry commentary against them`);
 
 const table = [];
-for (const { f, z } of books) {
+for (const { f, z } of works) {
   const keys = new Set();
   for (const s of z.sections || []) for (const w of s.words || []) {
     if (w.w) w.w.forEach((r) => r.k && keys.add(r.k)); else if (w.k) keys.add(w.k);
   }
-  const r = routesFor(keys);
-  const layers = {};
-  for (const l of frame) {
-    if (PROBE[l]) layers[l] = PROBE[l](z);
-    else if (r && ["R", "D", "S", "CIT"].includes(l)) layers[l] = r[l];
-    else if (r && l === "M") layers[l] = r.M.size;
-    else layers[l] = null;
+  const units = new Set((z.sections || []).map((s) => s.unit));
+
+  // the licences this work names, from its own receipts
+  const licences = new Set();
+  const lr = (z.emitted_from || {}).license_receipts || {};
+  const cls = String(lr.per_occurrence || "").match(/rows:\s*([A-Z0-9_-]+)/);
+  if (cls) licences.add(cls[1]);
+
+  // one pass over every route this work's keys reach
+  let routes = null;
+  if (store) {
+    routes = { R: 0, D: 0, M: new Set(), S: 0, CIT: 0, P: 0 };
+    const byD = new Map();
+    for (const k of keys) for (const row of store.routesFor(k) || []) {
+      const [, text, def, mId, year] = row;
+      if (String(text || "").trim()) routes.R += 1;
+      if (String(def || "").trim()) {
+        routes.D += 1;
+        if (!byD.has(def)) byD.set(def, new Set());
+        byD.get(def).add(mId);
+      }
+      if (mId !== undefined && mId !== null) routes.M.add(mId);
+      if (year !== undefined && String(year) !== "S_NO_SOURCE_YEAR") routes.S += 1;
+      const m = store.index.m_sources[mId];
+      if (m && m.licensePointer) routes.CIT += 1;
+    }
+    for (const ms of byD.values()) if (ms.size > 1) routes.P += 1;
   }
-  table.push({ file: f, work: z.work || f, layers });
+
+  const ctx = { z, file: f, keys, units, licences, routes, sidecars: cars };
+  const layers = {};
+  for (const l of frame) layers[l] = PROBE[l] ? PROBE[l](ctx) : null;
+  table.push({ file: f, work: z.work || f, layers, licences: [...licences] });
 }
 
 console.log("\n— every published work, layer by layer —");
@@ -159,6 +217,8 @@ console.log(`  ${"work".padEnd(pad)}  ${frame.map((l) => l.padStart(9)).join("")
 for (const t of table)
   console.log(`  ${String(t.work).padEnd(pad)}  ` + frame.map((l) =>
     (t.layers[l] === null ? "—" : !t.layers[l] ? "OFF" : t.layers[l].toLocaleString()).padStart(9)).join(""));
+console.log(`\n  A is the sealed unit count and is only reported where the work names one licence:`);
+for (const t of table) console.log(`     ${String(t.work).padEnd(pad)}  ${t.licences.join(", ") || "names none"}`);
 console.log("\n  — is this lane holding no artifact that would show the layer:");
 for (const [l, why] of Object.entries(NOT_VISIBLE)) if (frame.includes(l)) console.log(`     ${l.padEnd(9)} ${why}`);
 

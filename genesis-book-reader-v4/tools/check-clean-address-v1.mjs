@@ -85,7 +85,12 @@ check("it names the site", /Tabernacle/.test(splash.title), splash.title);
 // commentary is read. What must not appear is a destination that is not a
 // finished book.
 {
-  const FINISHED = ["/genesis", "/1kings"];
+  // The finished books used to be typed here — two of them, while a third
+  // published work a reader could open sat off the door entirely. The list is
+  // the plan's now, same as the door's own, so this check and the page it
+  // checks cannot disagree about what is published by each carrying a copy.
+  const plan = JSON.parse(readFileSync(join(K3, "build", "build-plan-v1.json"), "utf8"));
+  const FINISHED = plan.works.map((w) => `/${w.published_as}`);
   // A destination is the address, not what is asked of it: /genesis and
   // /genesis?c=open are the same book, opened two ways. What must not appear
   // is a place that is not a finished book.

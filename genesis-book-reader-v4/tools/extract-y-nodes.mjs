@@ -56,6 +56,17 @@ const tokensOf = (id) =>
     });
 
 const nodes = fixture.nodes || [];
+// What the ledger carries against what this tool consumes — counted and said,
+// because the gap used to be silent. The Genesis ledger holds five node kinds
+// and this reads two; the other three (1,533 SECTION nodes with their own
+// anchors and labels, a COMMENTARY_WORK with its Hebrew title, its
+// COMMENTARY_SEGMENT with a V pointer) were being dropped without a word,
+// which read as "the ledger only has chapters" to anyone downstream.
+const kindsPresent = {};
+for (const n of nodes) kindsPresent[n.node_kind] = (kindsPresent[n.node_kind] || 0) + 1;
+const CONSUMED_KINDS = ["WORK", "CHAPTER"];
+const notConsumed = Object.fromEntries(Object.entries(kindsPresent)
+  .filter(([k]) => !CONSUMED_KINDS.includes(k)));
 const workNode = nodes.find((n) => n.node_kind === "WORK" && n.content_work_id === workId);
 if (!workNode) throw new Error(`Y ledger carries no WORK node for ${workId}`);
 
@@ -82,6 +93,13 @@ if (unresolved) throw new Error(`${unresolved} title tokens are unresolved in th
 
 const out = {
   schema_version: "Y_NODES_V1",
+  ledger_node_kinds: kindsPresent,
+  consumed_node_kinds: CONSUMED_KINDS,
+  not_consumed:
+    Object.keys(notConsumed).length
+      ? { kinds: notConsumed,
+          says: "the ledger carries these and this tool does not read them yet — they are present in the record, absent from the page, and that is a gap in the reader, not in the ledger" }
+      : null,
   fixture: fixturePath.split("/").pop(),
   fixture_id: fixture.fixture_id,
   fixture_sha256: sha256,
@@ -101,6 +119,9 @@ const out = {
   chapters,
 };
 writeFileSync(outPath, JSON.stringify(out, null, 1));
+if (Object.keys(notConsumed).length)
+  console.log(`  carried by the ledger, not yet read here: ${Object.entries(notConsumed)
+    .map(([k, n]) => `${k}×${n}`).join(" · ")}`);
 console.log(
   `${outPath}: ${Object.keys(chapters).length} chapter titles from ${fixture.fixture_id} ` +
   `(${out.chapter_label_basis}) · work title "${out.work_node.name_he}" · fixture sha256 ${sha256.slice(0, 16)}…`,

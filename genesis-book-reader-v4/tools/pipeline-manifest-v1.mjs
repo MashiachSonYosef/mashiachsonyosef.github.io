@@ -70,23 +70,46 @@ for (const [id, r] of rules) if (!r.declaredIn.size && r.guardedBy.size) r.decla
 // publishes" is a decision and not a fact about a directory. Adding a
 // published file without adding it here is the mistake this table exists to
 // catch, so the list is short and it is read out loud in the manifest.
+// The per-work rows used to be typed here — six zone files by name — which
+// was the manifest carrying the same disease it diagnoses. They now come from
+// the build plan, which is what build.sh itself runs from, so a work added by
+// its ledger appears here the same way it appears everywhere else: without
+// anyone editing a list.
+const plan = (() => {
+  try { return JSON.parse(read("build/build-plan-v1.json")); } catch { return null; }
+})();
 const PUBLISHED = [
   { what: "zone.html", note: "the reader itself" },
   { what: "index.html", note: "the front door" },
   { what: "README.md", note: "the front door, for someone browsing the repository" },
-  { what: "genesis/index.html", note: "the clean address for Genesis" },
-  { what: "1kings/index.html", note: "the clean address for I Kings" },
-  { what: "data/zones/genesis.bin", note: "" },
-  { what: "data/zones/1kings.bin", note: "" },
-  { what: "data/zones/targum-1kings.bin", note: "" },
-  { what: "data/zones/genesis-commentary.bin", note: "" },
-  { what: "data/zones/1kings-commentary.bin", note: "" },
-  { what: "data/zones/targum-1kings-commentary.bin", note: "" },
+  ...(plan ? plan.works.map((w) => ({ what: `${w.published_as}/index.html`, note: `the clean address · ${w.basis}` })) : []),
+  ...(plan ? plan.works.map((w) => ({ what: `data/zones/${w.published_as}.bin`, note: w.basis })) : []),
+  ...(plan ? plan.attachments.flatMap((a) => a.pair.map((id) => {
+    const w = plan.works.find((x) => x.work_id === id);
+    return { what: `data/zones/${w.published_as}-commentary.bin`, note: `attached by ${a.by}` };
+  })) : []),
+  ...(plan ? plan.commentary_packs.map((c) => {
+    const w = plan.works.find((x) => x.work_id === c.work_id);
+    return { what: `data/zones/${w.published_as}-commentary.bin`, note: "from the pack and its map" };
+  }) : []),
   { what: "data/route-store", note: "index + 256 shards" },
   { what: "data/v5-attachment-map-2026-08-19.js", note: "which words of which section each commentary sits on" },
 ];
+if (!plan) PUBLISHED.push({ what: "build/build-plan-v1.json", note: "NOT DERIVED YET — run tools/plan-build-v1.mjs; the per-work rows above are missing until it exists" });
 const buildSh = files.get("build.sh") || "";
 const madeBy = (what) => {
+  // The zone stages run from the plan, so a zone's builder is resolved from
+  // the shape of its name rather than from a literal in the script.
+  if (plan) {
+    if (/^[a-z0-9-]+\/index\.html$/.test(what)) return "tools/build-front-door-v1.mjs";
+    const m = what.match(/^data\/zones\/([a-z0-9-]+?)(-commentary)?\.bin$/);
+    if (m && plan.works.some((w) => w.published_as === m[1])) {
+      if (!m[2]) return "tools/build-zone.mjs";
+      const w = plan.works.find((x) => x.published_as === m[1]);
+      return plan.commentary_packs.some((c) => c.work_id === w.work_id)
+        ? "tools/build-commentary-sidecar-v1.mjs" : "tools/build-commentary-zone.mjs";
+    }
+  }
   const base = what.split("/").pop();
   // a stage that stamps its output with the build date writes the name with a
   // variable in it, so the date is taken off both sides before comparing
