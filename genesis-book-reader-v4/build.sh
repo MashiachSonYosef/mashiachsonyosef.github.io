@@ -8,9 +8,18 @@
 # corpus lane has not sealed. Run it twice on the same inputs and the outputs
 # are byte-identical; that is the whole point of it existing.
 #
+# This file names no work. It used to name three, thirty-two times — c0
+# ranges, work ids, titles, a deploy list — and every literal was a hand copy
+# of a field the Y ledger already carries, one edit away from contradicting
+# the record. The parameters now come from tools/plan-build-v1.mjs, which
+# derives them from the Y ledgers in data/ and, for a published work whose
+# ledger has not landed yet, from data/work-records-v1.js, where the values
+# are typed in the open under a basis that says so. Adding a work is putting
+# its ledger in data/ — not editing this file. check-build-derived-v1 fails
+# the suite if a work-naming literal ever comes back here.
+#
 #   usage:  ./build.sh <workspace-mirror> <bridge.csv.gz> <serve-dir> <stamp> [compspan.csv.gz]
-#   e.g.    ./build.sh ../mirror ../bridge.csv.gz ../serves 2026-08-16 \
-#             ../ledgers/work/composition-map-v6/w-to-compspan-template-v6.csv.gz
+#           ./build.sh --plan [stamp]     derive and print, run nothing
 #
 # Stage 0, the mirror, is planned rather than assembled by hand:
 #     node tools/plan-mirror.mjs --phase 1 --root "<corpus root>"
@@ -19,6 +28,25 @@
 # reproduces the mirror exactly, so the mirror is an output too.
 
 set -euo pipefail
+
+echo "── 0 · the plan, derived from the ledgers ──────────────────────────────"
+node tools/plan-build-v1.mjs --out build/build-plan-v1.json --tsv build/build-plan-v1.tsv
+PLAN=build/build-plan-v1.tsv
+
+if [ "${1:-}" = "--plan" ]; then
+  STAMP="${2:-STAMP}"
+  echo
+  echo "── what would run, and from which basis ────────────────────────────────"
+  while IFS=$'\t' read -r kind f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12; do
+    case "$kind" in
+      W) echo "  serve $f3 $f6-$f7 · build-zone --work $f1 --title \"$f4\"$( [ "$f5" != "-" ] && printf ' --title-he <ledger>' )$( [ "$f8" != "-" ] && printf ' --y <%s>' "$f8" ) → data/zones/$f3.bin   [$f2]" ;;
+      A) echo "  commentary: $f2 attached onto $f1 by $f3" ;;
+      P) echo "  pack sidecar for $f1: $f2" ;;
+    esac
+  done < "$PLAN"
+  exit 0
+fi
+
 MIRROR="${1:?workspace mirror}"
 BRIDGE="${2:?identity bridge csv.gz}"
 SERVES="${3:?directory for serve output}"
@@ -31,108 +59,99 @@ SPAN_ARG=()
 if [ -n "$SPANS" ]; then SPAN_ARG=(--spans "$SPANS"); fi
 mkdir -p "$SERVES" build data/zones site/data/zones
 
+# The plan's rows, held for the stages that join works to each other.
+declare -A PUB TITLE TITLE_HE YFIX BYLINE LABELS LINKS FAMILY RANGE
+WORKS=()
+while IFS=$'\t' read -r kind f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12; do
+  [ "$kind" = "W" ] || continue
+  WORKS+=("$f1")
+  PUB[$f1]="$f3"; TITLE[$f1]="$f4"; TITLE_HE[$f1]="$f5"; RANGE[$f1]="$f6-$f7"
+  YFIX[$f1]="$f8"; BYLINE[$f1]="$f9"; LABELS[$f1]="$f10"; LINKS[$f1]="$f11"; FAMILY[$f1]="$f12"
+done < "$PLAN"
+
 echo "── 1 · serve each work id-by-id from the sealed artifacts ──────────────"
-serve () { # <name> <c0-range> <oracle sample>
-  [ -f "$SERVES/$1.ndjson" ] || node tools/mishkan-serve-v1.mjs "$2" \
-    --workspace "$MIRROR" --oracle "$3" --out "$SERVES/$1.ndjson"
-}
-serve genesis        69828900-69846706 24   # tanakh/genesis
-serve 1kings         69859535-69870902 24   # tanakh/i-kings
-serve targum-1kings  70513734-70527384 24   # targum/targum-jonathan-on-i-kings
+for W in "${WORKS[@]}"; do
+  [ -f "$SERVES/${PUB[$W]}.ndjson" ] || node tools/mishkan-serve-v1.mjs "${RANGE[$W]}" \
+    --workspace "$MIRROR" --oracle 24 --out "$SERVES/${PUB[$W]}.ndjson"
+done
 
 echo "── 2 · the route store, from the sealed definition packages ────────────"
 [ -f data/route-store/index.json ] || node tools/build-route-store.mjs \
   "$DEFPOC_RDM" "$DEFPOC_BREADTH" --out data/route-store
 
 echo "── 3 · titles, read out of the Y ledger where one is promoted ──────────"
-node tools/extract-y-nodes.mjs \
-  --fixture data/y-genesis-navigation-v1.js --work tanakh/genesis --out build/y-genesis.json
+for W in "${WORKS[@]}"; do
+  [ "${YFIX[$W]}" = "-" ] || node tools/extract-y-nodes.mjs \
+    --fixture "${YFIX[$W]}" --work "$W" --out "build/y-${PUB[$W]}.json"
+done
 
 echo "── 4 · zones ───────────────────────────────────────────────────────────"
-node tools/build-zone.mjs \
-  --serve "$SERVES/genesis.ndjson" --bridge "$BRIDGE" --store data/route-store \
-  --work tanakh/genesis --title "Genesis" --title-he "בראשית" \
-  --byline "Miqra according to the Masorah · served from the sealed terminal artifacts" \
-  --coord-labels "chapter,verse" --y build/y-genesis.json \
-  --license-links data/license-links-tanakh.json --stamp "$STAMP" \
-  ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/genesis.bin
-# Genesis used to be built without --spans, and the reason was written here:
-# "adding the component layer to a published book changes what every word
-# offers, so it is its own decision and not a side effect of running this
-# script." The reasoning was sound and the outcome was wrong. The decision was
-# deferred in a comment nobody reads, so the book the front door opens first
-# offered whole forms only — 0 component systems against 3,424 on I Kings —
-# and no reader could tell the layer existed. A deferral that leaves no mark
-# on the page is indistinguishable from an oversight, and this one was found
-# by a reader noticing Genesis had no options.
-#
-# The decision is made: Genesis carries the layer. Every one of its 5,006 keys
-# has a component system in the template — the data was there the whole time.
-
-node tools/build-zone.mjs \
-  --serve "$SERVES/1kings.ndjson" --bridge "$BRIDGE" --store data/route-store \
-  --work tanakh/i-kings --title "I Kings" \
-  --byline "Nevi'im · Miqra according to the Masorah · served from the sealed terminal artifacts" \
-  --coord-labels "chapter,verse" \
-  --license-links data/license-links-tanakh.json --stamp "$STAMP" \
-  ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/1kings.bin
-
-# A commentary of the sealed chain is a work like any other, so it is also
-# published as a book of its own rather than only quoted eleven words at a
-# time through a card.
-node tools/build-zone.mjs \
-  --serve "$SERVES/targum-1kings.ndjson" --bridge "$BRIDGE" --store data/route-store \
-  --work targum/targum-jonathan-on-i-kings --title "Targum Jonathan on I Kings" \
-  --byline "Aramaic · served from the sealed terminal artifacts, attached to I Kings by the coordinates both works carry" \
-  --coord-labels "chapter,verse" --stamp "$STAMP" \
-  ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/targum-1kings.bin
+# Every zone is built with the component layer when the template is supplied.
+# Genesis once shipped without it — the decision was deferred in a comment
+# nobody read, and the book the front door opens first offered whole forms
+# only. A sealed layer can only be withheld, never added, and withholding is
+# the act that needs justifying.
+for W in "${WORKS[@]}"; do
+  EXTRA=()
+  [ "${TITLE_HE[$W]}" = "-" ] || EXTRA+=(--title-he "${TITLE_HE[$W]}")
+  [ "${YFIX[$W]}" = "-" ] || EXTRA+=(--y "build/y-${PUB[$W]}.json")
+  [ "${LINKS[$W]}" = "-" ] || EXTRA+=(--license-links "${LINKS[$W]}")
+  node tools/build-zone.mjs \
+    --serve "$SERVES/${PUB[$W]}.ndjson" --bridge "$BRIDGE" --store data/route-store \
+    --work "$W" --title "${TITLE[$W]}" \
+    --byline "${BYLINE[$W]}" \
+    --coord-labels "${LABELS[$W]}" --stamp "$STAMP" \
+    ${EXTRA[@]+"${EXTRA[@]}"} \
+    ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out "data/zones/${PUB[$W]}.bin"
+done
 
 echo "── 5 · commentary, served from the same chain as the text ──────────────"
-# Coordinate identity is symmetric, so the same builder runs both ways and
+# Coordinate identity is symmetric, so the plan emits each pair both ways and
 # neither work is demoted to being only the other's apparatus.
-node tools/build-commentary-zone.mjs \
-  --base-serve "$SERVES/1kings.ndjson" --base-work tanakh/i-kings \
-  --serve "$SERVES/targum-1kings.ndjson" --work targum/targum-jonathan-on-i-kings \
-  --title "Targum Jonathan on I Kings" --family "Targum Jonathan" --published-as targum-1kings \
-  --bridge "$BRIDGE" --store data/route-store --stamp "$STAMP" \
-  ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/1kings-commentary.bin
+while IFS=$'\t' read -r kind BASE COMM BY; do
+  [ "$kind" = "A" ] || continue
+  node tools/build-commentary-zone.mjs \
+    --base-serve "$SERVES/${PUB[$BASE]}.ndjson" --base-work "$BASE" \
+    --serve "$SERVES/${PUB[$COMM]}.ndjson" --work "$COMM" \
+    --title "${TITLE[$COMM]}" --family "${FAMILY[$COMM]}" --published-as "${PUB[$COMM]}" \
+    --bridge "$BRIDGE" --store data/route-store --stamp "$STAMP" \
+    ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out "data/zones/${PUB[$BASE]}-commentary.bin"
+done < "$PLAN"
 
-node tools/build-commentary-zone.mjs \
-  --base-serve "$SERVES/targum-1kings.ndjson" --base-work targum/targum-jonathan-on-i-kings \
-  --serve "$SERVES/1kings.ndjson" --work tanakh/i-kings \
-  --title "I Kings" --family "I Kings" --published-as 1kings \
-  --bridge "$BRIDGE" --store data/route-store --stamp "$STAMP" \
-  ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out data/zones/targum-1kings-commentary.bin
-
-# The Genesis 1:1 sidecar comes the other way: not from a serve, because the
-# pack was fetched from outside the corpus and has no C0 identity, but from the
-# pack the chain sealed plus the attachment map that says which words each
-# segment sits on. Both steps are re-runnable and both refuse rather than
-# guess, which is the only thing that makes an outside pack safe to publish.
-echo "── 5b · Genesis 1:1 commentary, from the pack and its attachment map ───"
-node tools/generate-attachment-map-v2.mjs \
-  --pack data/genesis-1-1-commentary-2026-07-17.js \
-  --carried data/v2-genesis-1-1-attachment-map-2026-07-22.js \
-  --zone data/zones/genesis.bin --stamp "$STAMP" \
-  --out "data/v5-attachment-map-$STAMP.js"
-node tools/build-commentary-sidecar-v1.mjs \
-  --pack data/genesis-1-1-commentary-2026-07-17.js \
-  --map "data/v5-attachment-map-$STAMP.js" \
-  --zone data/zones/genesis.bin \
-  --store data/route-store --out data/zones/genesis-commentary.bin
+# A pack fetched from outside the corpus has no C0 identity, so it attaches by
+# its own map instead of by coordinate. Both steps are re-runnable and both
+# refuse rather than guess, which is the only thing that makes an outside pack
+# safe to publish.
+echo "── 5b · pack commentary, from each pack and its attachment map ─────────"
+while IFS=$'\t' read -r kind WID PACK CARRIED; do
+  [ "$kind" = "P" ] || continue
+  node tools/generate-attachment-map-v2.mjs \
+    --pack "$PACK" --carried "$CARRIED" \
+    --zone "data/zones/${PUB[$WID]}.bin" --stamp "$STAMP" \
+    --out "data/v5-attachment-map-$STAMP.js"
+  node tools/build-commentary-sidecar-v1.mjs \
+    --pack "$PACK" --map "data/v5-attachment-map-$STAMP.js" \
+    --zone "data/zones/${PUB[$WID]}.bin" \
+    --store data/route-store --out "data/zones/${PUB[$WID]}-commentary.bin"
+done < "$PLAN"
 
 echo "── 6 · assemble the site ───────────────────────────────────────────────"
 # The published set is exactly what this build produced, and nothing else.
 #
 # This copy used to be additive, so every zone ever deployed stayed deployed.
-# Four of them were still being served months later — orot, 2kings,
-# 2kings-commentary and an old genesis-1 — none built by this script, none on
-# the front door, none touched by a check, and all of them reachable by typing
-# ?b= into the reader. Orot's masthead said "served from the sealed chain",
-# which it never was: it came through the acquisition route and cannot be
-# re-served here. A deploy that only ever adds cannot un-say a thing like that.
+# Four of them were still being served months later — none built by this
+# script, none on the front door, none touched by a check, and all of them
+# reachable by typing ?b= into the reader. A deploy that only ever adds cannot
+# un-say a thing it once said.
+# And "exactly" is enforced rather than hoped: only the zones the plan names
+# are copied, so scratch in the work directory — the in-line commentary
+# check's fixture lives there — can never ship by sitting near the real ones.
 rm -f site/data/zones/*.bin
-cp data/zones/*.bin site/data/zones/
+for W in "${WORKS[@]}"; do
+  cp "data/zones/${PUB[$W]}.bin" site/data/zones/
+  [ -f "data/zones/${PUB[$W]}-commentary.bin" ] \
+    && cp "data/zones/${PUB[$W]}-commentary.bin" site/data/zones/
+done
 rm -rf site/data/route-store && cp -r data/route-store site/data/route-store
 
 echo "── 7 · the front door, from the zones ──────────────────────────────────"
@@ -143,7 +162,8 @@ echo "── 7 · the front door, from the zones ──────────�
 node tools/build-front-door-v1.mjs --zones data/zones --out deploy-root
 cp deploy-root/index.html site/index.html
 cp deploy-root/README.md site/README.md
-for book in genesis 1kings; do
+for W in "${WORKS[@]}"; do
+  book="${PUB[$W]}"
   [ -f "deploy-root/$book/index.html" ] && mkdir -p "site/$book" \
     && cp "deploy-root/$book/index.html" "site/$book/index.html"
 done
@@ -155,8 +175,11 @@ echo "── 7b · the reader ────────────────�
 cp zone.html site/zone.html
 
 echo "── 8 · verify by rendering, not by reading ─────────────────────────────"
-node tools/verify-zone.mjs --root site --book 1kings
-node tools/verify-zone.mjs --root site --book genesis
+# Every published work, not a chosen two: a work the verifier skips is a work
+# whose breakage nobody hears about.
+for W in "${WORKS[@]}"; do
+  node tools/verify-zone.mjs --root site --book "${PUB[$W]}"
+done
 
 echo "── 9 · what the pipeline can prove about itself ────────────────────────"
 node tools/pipeline-manifest-v1.mjs --stamp "$STAMP"
