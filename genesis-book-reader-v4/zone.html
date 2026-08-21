@@ -113,6 +113,8 @@
     font-variant: normal; text-transform: none; }
   header.top h1 .en-t { color: var(--gold); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); }
+  #basisLine, #holdsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 62rem; }
+  #basisLine .inc, #holdsLine .inc { color: var(--shani); font-variant: small-caps; letter-spacing: 0.08em; margin-right: 0.4rem; }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
   .receipts-btn { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--link); font: inherit; font-size: 0.8rem; cursor: pointer; padding: 0; }
@@ -839,6 +841,14 @@
   </h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, said where a reader stands. A sealed work and
+       a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all — the incompleteness was confessed
+       in the repo and invisible on the page. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file. -->
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
   <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
        text and belongs where it can be tapped and defined — the masthead, out
        of the ledger, with its records behind it. The Hebrew that stood here was
@@ -1000,6 +1010,39 @@
     });
     meta.append(more, full);
   }
+  // The basis this build stands on, and what the Y lane is holding back from
+  // this work, printed where a reader stands rather than confessed only in the
+  // repo. Every value is read from data/work-basis-v1.json — derived by
+  // tools/emit-work-basis-v1.mjs from the build plan and the hold ledgers —
+  // and from the zone's own y_ledger record. Nothing on these lines is typed
+  // into this page. A work whose coordinates are typed says so, in the open,
+  // to the reader it is serving; commentary the ledger holds is counted and
+  // named rather than silently absent.
+  (async () => {
+    let wb = null;
+    try { wb = await fetch(`${ROOT}data/work-basis-v1.json`).then((r) => (r.ok ? r.json() : null)); } catch { wb = null; }
+    const entry = wb && wb.works && wb.works[BOOK];
+    if (!entry) return;
+    const basisEl = document.getElementById("basisLine");
+    const mark = () => Object.assign(document.createElement("span"), { className: "inc", textContent: "incomplete" });
+    if (entry.basis === "TYPED_AWAITING_LEDGER") {
+      basisEl.append(mark(),
+        `this build's coordinates are typed by hand — c0 ${Number(entry.c0_first).toLocaleString()}–${Number(entry.c0_last).toLocaleString()}, `
+        + `${Number(entry.unit_count).toLocaleString()} units — awaiting this work's Y ledger. When it lands, the build refuses to run until the typed numbers are deleted.`);
+      basisEl.hidden = false;
+    } else if (entry.basis === "SEALED_Y_LEDGER") {
+      basisEl.append(`built from the sealed Y ledger — ${entry.y_fixture || "fixture"}${zone.emitted_from.y_ledger?.status ? ` · ${zone.emitted_from.y_ledger.status}` : ""}`);
+      basisEl.hidden = false;
+    }
+    if (entry.held_commentaries > 0) {
+      const holdsEl = document.getElementById("holdsLine");
+      holdsEl.append(mark(),
+        `${entry.held_commentaries} commentary identities are recorded for this work and held by the Y ledger — `
+        + entry.holds.map((h) => h.title).join(", ")
+        + ` — none is shown until its exact work id, body, and attachment are proven (${entry.holds_source}).`);
+      holdsEl.hidden = false;
+    }
+  })();
   document.getElementById("prov").textContent =
     `${zone.work_receipts && zone.work_receipts.b_n ? `${zone.work_receipts.b_n} · ` : ""}` +
     `${zone.rule_id} · route: ${zone.route} · identity oracle ${oc.bridge_sha256.slice(0, 16)}… ` +

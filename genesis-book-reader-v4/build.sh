@@ -32,6 +32,9 @@ set -euo pipefail
 echo "── 0 · the plan, derived from the ledgers ──────────────────────────────"
 node tools/plan-build-v1.mjs --out build/build-plan-v1.json --tsv build/build-plan-v1.tsv
 PLAN=build/build-plan-v1.tsv
+# The basis and holds file the pages read their own incompleteness from —
+# derived from the plan and the hold ledgers in data/, never typed.
+node tools/emit-work-basis-v1.mjs --plan build/build-plan-v1.json
 
 if [ "${1:-}" = "--plan" ]; then
   STAMP="${2:-STAMP}"
