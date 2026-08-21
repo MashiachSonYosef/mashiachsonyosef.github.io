@@ -2584,16 +2584,19 @@
     heT2.replaceChildren(titleRow(zone.work_he_tokens, zone.work_he));
   }
 
-  // And the name it is commonly read by. This is not a translation we supply:
-  // it is one of the readings the store carries for the title's own form, held
-  // to the one the work is filed under, shown with the licence of the record
-  // that carries it. Where no record reads it that way, the line says so
-  // rather than let a name of ours stand where a reading should.
+  // The name it is commonly force-read by. The English over a book title is
+  // always a forced reading — we are saying how to read the Hebrew, not
+  // translating it — so the label stays "commonly force read as" whether or
+  // not a licensed record happens to carry that reading. What changes is what
+  // rides beside it: the licence of the record that reads the title's own form
+  // that way when one exists, and, where none does, a plain note that no record
+  // reads it that way. The label never softens; the honesty lives in the chip
+  // or the note, never in dropping "force".
   (async () => {
-    const lab = document.getElementById("enLab");
     const chip = document.getElementById("workLic");
+    const lab = document.getElementById("enLab");
     const key = (zone.work_he_tokens || []).map((t) => t.k).filter(Boolean)[0];
-    if (!key) { lab.textContent = "commonly read as"; return; }
+    if (!key) return;
     let a = null;
     try { a = await attributionFor(key, zone.work); } catch { a = null; }
     if (a && a.ok) {
@@ -2601,7 +2604,6 @@
       chip.title = `${a.label}${a.year ? ` · ${a.year}` : ""}`;
       chip.hidden = false;
     } else {
-      lab.textContent = "commonly read as";
       const note = document.createElement("span"); note.className = "t-note";
       note.textContent = " — no record in the catalogue reads it that way";
       lab.parentNode.append(note);
