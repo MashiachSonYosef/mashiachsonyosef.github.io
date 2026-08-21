@@ -377,7 +377,7 @@ const redirect = (b) => `<!doctype html>
 
 // A page that carries no records may print no corpus text. Checked here rather
 // than trusted, because this file is generated and a generator can drift too.
-const HEBREW = /[֐-׿]/;
+const HEBREW = /[\u0590-\u05FF]/;
 if (HEBREW.test(doc)) throw new Error("the front door printed a character of the text — refusing output");
 
 if (HEBREW.test(readme)) throw new Error("the README printed a character of the text — refusing output");
