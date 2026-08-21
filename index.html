@@ -33,6 +33,18 @@
   /* The commentary is not a third book. It arrives shut, and what is behind it
      is one entry per book, each going to the book it belongs to — because that
      is where a commentary is read. */
+  #find { margin:0 0 1rem; }
+  #find input { width:100%; padding:.6rem .9rem; border:1px solid var(--line); border-radius:.55rem;
+    background:var(--panel); color:var(--ink); font:inherit; font-size:.92rem; }
+  #find input::placeholder { color:var(--faint); }
+  #find input:focus { outline:none; border-color:var(--gold-dim); }
+  .workgroup { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); overflow:hidden; }
+  .workgroup a.book { border:none; border-radius:0; background:none; }
+  a.sub-work { display:block; padding:.85rem 1.15rem 0.85rem 2rem; border-top:1px solid var(--line);
+    text-decoration:none; color:var(--ink); }
+  a.sub-work:hover { background:rgba(224,182,79,.06); }
+  a.sub-work .en { display:block; font-size:.98rem; color:var(--gold-dim); }
+  a.sub-work .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }
   details.group { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); }
   details.group > summary { list-style:none; cursor:pointer; padding:1rem 1.15rem;
     display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
@@ -44,7 +56,7 @@
     text-transform:uppercase; color:var(--faint); }
   details.group > summary .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
   details.group > summary .of { flex:1 0 100%; margin-top:.45rem; color:var(--faint); font-size:.8rem; }
-  a.sub-book { display:block; padding:.85rem 1.15rem; border-top:1px solid var(--line);
+  a.sub-book { display:block; padding:.85rem 1.15rem .85rem 2rem; border-top:1px solid var(--line);
     text-decoration:none; color:var(--ink); }
   a.sub-book:hover { background:rgba(224,182,79,.06); }
   a.sub-book .en { display:block; font-size:.98rem; color:var(--gold-dim); }
@@ -59,21 +71,59 @@
        is read out of a zone; nothing here is typed twice. -->
   <h1>The Tabernacle</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the licence it was released under.</p>
+  <form id="find" role="search" onsubmit="return go(event)">
+    <input id="q" type="search" autocomplete="off" spellcheck="false"
+      placeholder="find a book — its name, however you type it"
+      aria-label="find a book" oninput="sift()">
+  </form>
   <nav class="books">
+    <div class="workgroup">
     <a class="book" href="/genesis">
       <span class="row"><span class="lab">commonly read as</span><span class="en">Genesis</span></span>
       <span class="of">1,533 sections · 17,805 words · Miqra according to the Masorah · served from the sealed terminal artifacts</span>
     </a>
+      <a class="sub-book" href="/genesis?c=open"><span class="en">Commentary on Genesis</span><span class="of">612 carried from 81 works — 181 on the word it opens by quoting · 323 on the section, nothing places them closer · 108 named, with no text in the record</span></a>
+    </div>
+    <div class="workgroup">
     <a class="book" href="/1kings">
       <span class="row"><span class="lab">commonly read as</span><span class="en">I Kings</span></span>
       <span class="of">817 sections · 11,368 words · Nevi'im · Miqra according to the Masorah · served from the sealed terminal artifacts</span>
     </a>
-    <details class="group">
-      <summary><span class="lab">also carried</span><span class="en">Commentary</span><span class="of">1,429 carried across 2 books · each opens inside the book it is on, where the record puts it</span></summary>
-      <a class="sub-book" href="/genesis?c=open"><span class="en">Commentary on Genesis</span><span class="of">612 carried from 81 works — 181 on the word it opens by quoting · 323 on the section, nothing places them closer · 108 named, with no text in the record</span></a>
+      <a class="sub-work" href="/targum-1kings"><span class="en">Targum Jonathan on I Kings</span><span class="of">its own book · 817 sections · 13,651 words · Aramaic · served from the sealed terminal artifacts, attached to I Kings by the coordinates both works carry</span></a>
+      <a class="sub-book" href="/targum-1kings?c=open"><span class="en">Commentary on Targum Jonathan on I Kings</span><span class="of">817 carried from 1 work — 817 on the section by coordinate</span></a>
       <a class="sub-book" href="/1kings?c=open"><span class="en">Commentary on I Kings</span><span class="of">817 carried from 1 work — 817 on the section by coordinate</span></a>
-    </details>
+    </div>
   </nav>
+  <script>
+  // Finding is the search box's job, not a record's. A book has one name row
+  // inside; here a reader may type that name any way hands actually type it —
+  // "1 kings", "1-kings", "i-kings" — and reach the same address. The loose
+  // matching is ours and lives only in this box.
+  var norm = function (t) {
+    t = String(t).toLowerCase();
+    t = t.replace(/\b(iii)\b/g, "3").replace(/\b(ii)\b/g, "2").replace(/\b(i)\b/g, "1");
+    return t.replace(/[^a-z0-9]+/g, "");
+  };
+  var groups = [].slice.call(document.querySelectorAll(".workgroup")).map(function (g) {
+    var names = [].slice.call(g.querySelectorAll(".en")).map(function (e) { return e.textContent; });
+    [].slice.call(g.querySelectorAll("a[href]")).forEach(function (a) {
+      names.push(a.getAttribute("href").replace(/^\//, "").replace(/\?.*$/, ""));
+    });
+    return { el: g, keys: names.map(norm), first: g.querySelector("a.book") };
+  });
+  function sift() {
+    var q = norm(document.getElementById("q").value);
+    groups.forEach(function (g) {
+      g.el.hidden = !!q && !g.keys.some(function (k) { return k.indexOf(q) >= 0; });
+    });
+  }
+  function go(e) {
+    e.preventDefault();
+    var live = groups.filter(function (g) { return !g.el.hidden; });
+    if (live.length && document.getElementById("q").value.trim()) location.href = live[0].first.getAttribute("href");
+    return false;
+  }
+  </script>
   <!-- A book's own title is corpus text and is not printed here. This page
        carries no records, so it can cite nothing; it says only how each book is
        commonly named, and the title itself waits inside, where it opens. -->
