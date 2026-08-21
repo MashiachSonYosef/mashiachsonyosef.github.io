@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-21.
 
-**39 rules declared · 26 named by a check · 13 unguarded.**
+**38 rules declared · 26 named by a check · 12 unguarded.**
 **14 published artifacts · 14 with a build step · 0 without.**
 
 ## The rules
@@ -39,7 +39,6 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
 | `provider-declaration-rule-v1-closed-set-ship-whole-by-default` | tools/declaration-v1.mjs, tools/declarations-v1.json | check-citations-v1, check-cut-readings-v1, check-licence-leaves-v1, check-provider-characters-v1 |
 | `regloss-rule-v1-project-the-store-over-a-zones-own-keys` | tools/regloss-zone.mjs | check-page-agrees-with-store-v1 |
-| `rejoin-rule-v1-only-what-the-store-already-attests` | tools/rejoin-split-clitics-v1.mjs | **UNGUARDED** |
 | `respan-rule-v1-project-the-compspan-template-over-a-zones-own-keys` | tools/respan-zone-v1.mjs | **UNGUARDED** |
 | `route-store-rule-v1-catalog-compact-top5` | tools/build-route-store.mjs | **UNGUARDED** |
 | `route-store-rule-v3-declared-reading` | tools/check-nothing-invented-v1.mjs | check-nothing-invented-v1 |
@@ -80,7 +79,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 12 of the 32 tools that are not checks.
+`build.sh` calls 12 of the 31 tools that are not checks.
 
 Not called by any build stage:
 
@@ -97,7 +96,6 @@ Not called by any build stage:
 - `tools/mark-inventory-v1.mjs`
 - `tools/name-the-titles-v1.mjs`
 - `tools/regloss-zone.mjs`
-- `tools/rejoin-split-clitics-v1.mjs`
 - `tools/respan-zone-v1.mjs`
 - `tools/sense-split-v1.mjs`
 - `tools/span-slice-v1.mjs`
