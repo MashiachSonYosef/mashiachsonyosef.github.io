@@ -71,6 +71,10 @@ const walk = (dir, out = []) => {
     // build directories and the screenshots checks drop as they run are this
     // machine's scratch, not work owed to the branch
     if ([".git", "site", "build", "deploy-root", "shots", "node_modules"].includes(name)) continue;
+    // the in-line commentary check's fixture is check-time scratch, written by
+    // make-fixture-zone-v1 under exactly these names and never published —
+    // stage 6 of build.sh enforces that — so it is not work owed to the branch
+    if (/^fixture(-commentary)?\.bin$/.test(name)) continue;
     const full = join(dir, name);
     if (statSync(full).isDirectory()) walk(full, out);
     else out.push(relative(K3, full));
