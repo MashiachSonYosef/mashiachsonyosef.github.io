@@ -354,8 +354,11 @@ const familySection = (fam) => {
   const reading = titleReading(lf.he_tokens || [], lf.en);
   const foldLines = [`      <span class="of fold-line">${esc(lf.what)}</span>`];
   foldLines.push(`      <span class="of slots fold-line">the bridge records ${fam.members.length === 1 ? "this shelf as" : "these as"}: ${esc(fam.members.join(" · "))} — folded here by ${esc(LEDGER.schema_version)}, which dies the day the corpus rules the column</span>`);
+  // The home page rests fully collapsed into the grouping: every family
+  // folded to its two-row head, the built ones included — a tap opens a
+  // shelf, the search box opens whatever matches. Nothing rests open.
   return `    <section class="family">
-      <details class="fam"${s.built ? " open data-rest-open" : ""}>
+      <details class="fam">
       <summary>
         <span class="row"><span class="lab">family</span>${famHeadHe(lf)}</span>
         <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(lf.en)}</span>${reading
@@ -399,6 +402,16 @@ ${rowsHtml(rows).join("\n")}
       </details>
     </section>`;
 };
+// What this page captures, said on the page: the atlas totals and the built
+// slice, both derived, with the bridge named as the source. A reader (or the
+// owner) can check the claim against the atlas receipt without asking anyone.
+const builtTally = (() => {
+  let c0 = 0, units = 0, books = 0;
+  for (const f of Object.values(ATLAS.families)) for (const w of f.works) {
+    if (byWorkId.has(w.id)) { c0 += w.c0_rows; units += w.units; books += 1; }
+  }
+  return { c0, units, books };
+})();
 const sectionsHtml = [
   ...families.map(familySection),
   awaitingSection(),
@@ -427,7 +440,8 @@ const doc = `<!doctype html>
          justify-content:center; padding:1.4rem 1rem; overflow-x:hidden; }
   main { width:100%; max-width:40rem; }
   h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--gold); }
-  p.sub { margin:0 0 1.2rem; color:var(--muted); font-size:.9rem; }
+  p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }
+  p.tally { margin:0 0 1.2rem; color:var(--faint); font-size:.72rem; }
   .books { display:flex; flex-direction:column; gap:.55rem; }
   .bookcard { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
            border:1px solid var(--line); border-radius:.7rem; background:var(--panel);
@@ -538,6 +552,7 @@ const doc = `<!doctype html>
        is read out of a zone; nothing here is typed twice. -->
   <h1>The Tabernacle</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the licence it was released under.</p>
+  <p class="tally">${n(ATLAS.totals.works)} works placed · ${n(ATLAS.totals.units)} units · ${n(ATLAS.totals.c0_rows)} c0 rows, per ${esc(ATLAS.derived_from.bridge)} · ${n(builtTally.books)} books built and readable, ${n(builtTally.c0)} c0 rows</p>
   <form id="find" role="search" onsubmit="return go(event)">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
       placeholder="find a book — its name, however you type it"
