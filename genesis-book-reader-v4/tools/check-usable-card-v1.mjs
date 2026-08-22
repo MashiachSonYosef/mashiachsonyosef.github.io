@@ -17,7 +17,7 @@ const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 
-const URL = process.argv[2] || "http://127.0.0.1:8899/zone.html?b=1kings";
+const URL = process.argv[2] || "http://127.0.0.1:8899/zone.html?b=genesis";
 const VIEWPORTS = [
   { width: 412, height: 915, name: "a phone" },
   { width: 412, height: 690, name: "a short phone" },

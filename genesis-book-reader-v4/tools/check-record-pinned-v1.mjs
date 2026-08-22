@@ -20,7 +20,7 @@ const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " 
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
-await p.goto(process.argv[2] || "http://127.0.0.1:8899/zone.html?b=1kings", { waitUntil: "networkidle" });
+await p.goto(process.argv[2] || "http://127.0.0.1:8899/zone.html?b=genesis", { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 
 const read = () => p.evaluate(() => {

@@ -18,7 +18,7 @@
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
 const { chromium } = pw;
 
-const URL = process.argv[2] || "http://127.0.0.1:8899/zone.html?b=1kings";
+const URL = process.argv[2] || "http://127.0.0.1:8899/zone.html?b=genesis";
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 

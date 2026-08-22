@@ -1,10 +1,16 @@
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+
+// The address is derived, never typed: a check naming a book by hand goes
+// stale the day that work is renamed, and this one did — it still asked for
+// "1kings", an address retired in August. The argument wins; the fallback
+// names a work that is actually published.
+const URL = process.argv[2] || "http://127.0.0.1:8899/zone.html?b=genesis";
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d="") => { if(!ok) bad++; console.log(`${ok?"  ok  ":"FAIL  "}${n}${d?"  ·  "+d:""}`); };
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
-await p.goto("http://127.0.0.1:8899/zone.html?b=1kings", { waitUntil: "networkidle" });
+await p.goto(URL, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg");
 await (await p.$$("section.seg .he-text .wb"))[1].click();
 await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
