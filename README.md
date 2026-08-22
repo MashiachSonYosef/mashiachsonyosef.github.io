@@ -11,6 +11,8 @@ Live site: https://mashiachsonyosef.github.io/
 
 - **Genesis** — 1,533 sections, 17,805 words, with 612 commentary units from 81 works — 181 on the word it opens by quoting · 323 on the section, nothing places them closer · 108 named, with no text in the record
 - **I Kings** — 817 sections, 11,368 words, with 817 commentary units from 1 work — 817 on the section by coordinate
+- **Ruth** — 85 sections, 1,132 words, with 85 commentary units from 1 work — 85 on the section by coordinate
+- **Aramaic Targum to Ruth** — 85 sections, 2,139 words, with 85 commentary units from 1 work — 85 on the section by coordinate
 - **Targum Jonathan on I Kings** — 817 sections, 13,651 words, with 817 commentary units from 1 work — 817 on the section by coordinate
 
 Commentary is not a separate book. It is carried by the book it comments on and
