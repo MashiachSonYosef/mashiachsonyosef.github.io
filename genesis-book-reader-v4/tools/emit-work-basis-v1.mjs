@@ -109,6 +109,43 @@ for (const w of plan.works) {
   };
 }
 
+// ---- commentary names, sliced from each work's own Y fixture --------------
+// A commentary work's name is the Y ledger's to give, and the Genesis fixture
+// already gives it: COMMENTARY_WORK nodes carry the name twice — label_hebrew,
+// the surface, and label_normalized_sequence, the same words as store keys —
+// so the tokens a page can open are zipped from the record's two fields and
+// nothing else. The slice goes to its own file: work-basis stays a no-text
+// file by its own guard below, and this file's every Hebrew character is
+// copied from a fixture it names as its receipt. A node whose two fields
+// split to different token counts is a record disagreeing with itself, and
+// the emit refuses rather than choosing a side.
+const NAMES_OUT = arg("names-out", "data/commentary-names-v1.json");
+const namesByWork = {};
+const namesFixtures = [];
+for (const [slug, w] of Object.entries(works)) {
+  if (!w.y_fixture || !existsSync(w.y_fixture)) continue;
+  const src = readFileSync(w.y_fixture, "utf8");
+  const fx = JSON.parse(src.slice(src.indexOf("{"), src.lastIndexOf("}") + 1));
+  const nodes = (fx.nodes || []).filter((n) => n.node_kind === "COMMENTARY_WORK");
+  if (!nodes.length) continue;
+  namesFixtures.push({ work: slug, path: w.y_fixture, fixture_id: fx.fixture_id || null, status: fx.status || null });
+  const m = {};
+  for (const n of nodes) {
+    const ss = String(n.label_hebrew || "").split(/\s+/).filter(Boolean);
+    const ks = String(n.label_normalized_sequence || "").split(/\s+/).filter(Boolean);
+    if (!ss.length || ss.length !== ks.length)
+      throw new Error(`LEDGER_LABEL_TOKENS_DISAGREE · ${n.y_node_id} in ${w.y_fixture}: label_hebrew splits to ${ss.length} tokens, label_normalized_sequence to ${ks.length} — the record must agree with itself before a page prints it`);
+    m[n.public_ref] = {
+      he: n.label_hebrew,
+      he_tokens: ss.map((s, i) => ({ s, k: ks[i] })),
+      y_node_id: n.y_node_id,
+      content_work_id: n.content_work_id || null,
+      label_basis: n.label_basis || null,
+    };
+  }
+  namesByWork[slug] = m;
+}
+
 const doc = {
   schema_version: "WORK_BASIS_V1",
   emitted_by: "tools/emit-work-basis-v1.mjs",
@@ -121,4 +158,13 @@ const doc = {
 const text = JSON.stringify(doc, null, 2) + "\n";
 if (/[\u0590-\u05FF]/.test(text)) throw new Error("work-basis carries a character of the text — refusing output");
 writeFileSync(OUT, text);
+const namesDoc = {
+  schema_version: "COMMENTARY_NAMES_V1",
+  emitted_by: "tools/emit-work-basis-v1.mjs",
+  rule: "a commentary card head prints the Y ledger's name where a COMMENTARY_WORK node's public_ref equals the index the pack already carries; every Hebrew value below is copied from a fixture named in derived_from",
+  derived_from: { fixtures: namesFixtures },
+  names: namesByWork,
+};
+writeFileSync(NAMES_OUT, JSON.stringify(namesDoc, null, 2) + "\n");
 console.log(`${OUT} · ${Object.keys(works).length} works · holds: ${Object.entries(works).filter(([, w]) => w.held_commentaries).map(([k, w]) => `${k}=${w.held_commentaries}`).join(" ") || "none"}`);
+console.log(`${NAMES_OUT} · ${Object.entries(namesByWork).map(([k, m]) => `${k}=${Object.keys(m).length}`).join(" ") || "no fixtures carry COMMENTARY_WORK nodes"}`);

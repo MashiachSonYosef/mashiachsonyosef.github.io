@@ -17,7 +17,7 @@
 //      lead — ahead of every form-matched dictionary route — and carry the
 //      corpus's own resolution note as their basis. Rule v1 read only the
 //      entry lexicon and never looked at this field, so a form the corpus
-//      had already resolved ("של" → "of") was led by a form-matched
+//      had already resolved ("\u05E9\u05DC" → "of") was led by a form-matched
 //      homograph ("to pluck off"). That was a defect in this generator, not
 //      in the corpus.
 //   1. Then, for each fixture word (its normalized exact_key), take the
@@ -498,7 +498,7 @@ writeFileSync(
         "The corpus records no source years, so every route sits in the lastuary tier of the antiquity ordering until year evidence exists.",
         "Ramban and Onkelos are not in the lexical corpus (checked all 1,401 work manifests); their words cannot be generated from this source and their comments keep the whole proof text.",
         "Form-matched homographs can lead a word's default (the same limit rule v2 records for base words), and Strong's-derived renderings arrive comma-split, so fragments like 'properly' can surface as routes. Both are upstream K-lane corpus repairs, not reader edits.",
-        "The corpus's grammar-particle records (e.g. של → possessive 'of') carry the license string 'N/A - project lexical rule', which maps to no declared posture; they are skipped rather than guessed, and the form falls back to layer dictionaries.",
+        "The corpus's grammar-particle records (e.g. \u05E9\u05DC → possessive 'of') carry the license string 'N/A - project lexical rule', which maps to no declared posture; they are skipped rather than guessed, and the form falls back to layer dictionaries.",
       ],
       rows: ledgerRows,
     },

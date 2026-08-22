@@ -41,7 +41,7 @@ const isHebrewLetter = (cp) => cp >= 0x05d0 && cp <= 0x05ea;
  * 1,692,773 keys): 2,574 keys carry a maqaf, 93,654 carry geresh/gershayim,
  * 0 carry a combining grapheme joiner, 0 carry a space.
  */
-const KEPT_PUNCTUATION = new Set(["־", "׳", "״"]);
+const KEPT_PUNCTUATION = new Set(["\u05BE", "\u05F3", "\u05F4"]);
 
 /**
  * Everything else is dropped, which covers exactly what the rule names —
