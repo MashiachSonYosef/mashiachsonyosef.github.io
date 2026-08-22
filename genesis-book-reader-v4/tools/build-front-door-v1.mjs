@@ -339,11 +339,19 @@ const rowsHtml = (rows) => rows.map((r) => {
   if (seated.has(r.book.slug)) return seatedRow(r.book);
   return groupFor(r.book);
 });
+// A family's name is words of the ledger, and a word answers for itself:
+// each keyed token is a real control that opens the word's own record — the
+// store's readings, oldest source first, each with its licence — in a card
+// on this page, separately from the fold it happens to sit in. A token the
+// store is silent on prints and opens nothing, the numeral rule's law.
 const famHeadHe = (lf) => {
   if (!lf.he) return `<span class="he none">none is recorded in the ledger</span>`;
   const key = (lf.he_tokens || []).map((t) => t.k).filter(Boolean)[0] || null;
   const gloss = key ? (STORE.glossFor(key).text || "") : "";
-  return `<span class="fam-he" data-named-by="family-ledger-v1#${esc(lf.id)}"><span class="he" lang="he" dir="rtl">${esc(lf.he)}</span>${gloss ? `<span class="g">${esc(gloss)}</span>` : ""}</span>`;
+  const words = (lf.he_tokens || []).map((t) => t.k
+    ? `<button type="button" class="fw" data-k="${esc(t.k)}" title="open this word’s own record — readings oldest source first">${esc(t.s)}</button>`
+    : `<span class="fw inert">${esc(t.s)}</span>`).join(" ");
+  return `<span class="fam-he" data-named-by="family-ledger-v1#${esc(lf.id)}"><span class="he" lang="he" dir="rtl">${words}</span>${gloss ? `<span class="g">${esc(gloss)}</span>` : ""}</span>`;
 };
 const familySection = (fam) => {
   const lf = fam.ledger;
@@ -505,6 +513,32 @@ const doc = `<!doctype html>
   details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.3rem; color:var(--shesh); }
   details.fam > summary .fam-he .g { font-size:.7rem; color:var(--muted); }
+  .fam-he .fw { font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer; }
+  .fam-he .fw:hover { color:var(--gold); }
+  .fam-he .fw.inert { cursor:default; }
+  /* The word's own record, on this page: a card over the door, the same law
+     as the reader's HUD — readings oldest source first, each with the
+     licence of the record that carries it. */
+  #wcard { position:fixed; inset:auto 0 0 0; margin:0 auto; width:min(30rem,100vw); max-height:72vh;
+    background:var(--panel); border:1px solid var(--gold-dim); border-bottom:none;
+    border-radius:.8rem .8rem 0 0; z-index:40; display:flex; flex-direction:column; }
+  #wcard[hidden] { display:none; }
+  #wcard .wc-head { display:flex; align-items:baseline; gap:.6rem; padding:.7rem .9rem .35rem; }
+  #wcard .wc-he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
+    font-size:1.5rem; color:var(--shesh); direction:rtl; }
+  #wcard .wc-lab { font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); }
+  #wcard .wc-x { margin-left:auto; font:inherit; font-size:.72rem; color:var(--muted); background:none;
+    border:1px solid var(--line); border-radius:.5rem; padding:.1rem .55rem; cursor:pointer; }
+  #wcard .wc-rows { overflow-y:auto; padding:.2rem .9rem .8rem; }
+  #wcard .wc-row { display:flex; align-items:baseline; gap:.5rem; padding:.22rem 0; border-top:1px solid var(--line); }
+  #wcard .wc-row:first-child { border-top:none; }
+  #wcard .wc-t { color:var(--ink); font-size:.88rem; }
+  #wcard .wc-y { color:var(--faint); font-size:.68rem; white-space:nowrap; margin-left:auto; }
+  #wcard .wc-c { font-size:.6rem; letter-spacing:.05em; color:var(--muted); border:1px solid var(--line);
+    border-radius:.5rem; padding:.05rem .4rem; white-space:nowrap; }
+  #wcard .wc-foot { padding:.35rem .9rem .6rem; color:var(--faint); font-size:.66rem; border-top:1px solid var(--line); }
+  #wshade { position:fixed; inset:0; background:rgba(5,3,8,.55); z-index:39; }
+  #wshade[hidden] { display:none; }
   details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }
   details.fam > summary > .row:first-child::before { content:"\u25b8"; color:var(--gold-dim); font-size:.8rem; }
   details.fam[open] > summary > .row:first-child::before { content:"\u25be"; }
@@ -561,6 +595,13 @@ const doc = `<!doctype html>
   <nav class="books">
 ${sectionsHtml.join("\n")}
   </nav>
+  <div id="wshade" hidden></div>
+  <div id="wcard" role="dialog" aria-label="the word&#8217;s own record" hidden>
+    <div class="wc-head"><span class="wc-lab">this word&#8217;s record</span><span class="wc-he"></span>
+      <button type="button" class="wc-x">close</button></div>
+    <div class="wc-rows"></div>
+    <div class="wc-foot"></div>
+  </div>
   <script>
   // Finding is the search box's job, not a record's. A book has one name row
   // inside; here a reader may type that name any way hands actually type it —
@@ -609,6 +650,83 @@ ${sectionsHtml.join("\n")}
       if (d) d.open = q ? any : d.hasAttribute("data-rest-open");
     });
   }
+  // ---- the word's own record, on the door ------------------------------
+  // A family name's word opens the store's card for its exact key: readings
+  // oldest source first, each with the licence of the record that carries
+  // it — the same law as the reader's HUD, fetched from the same store,
+  // shard by shard as words are pressed. Pressing the word never toggles
+  // the fold it sits in; the fold is the summary's, the word is its own.
+  var STORE_BASE = "/genesis-book-reader-v4/data/route-store/";
+  var storeIndex = null, shardCache = {};
+  function licName(p) {
+    var v = String(p || "").toLowerCase();
+    if (!v) return "License unrecorded";
+    if (v.indexOf("cc0") === 0) return "CC0";
+    if (/_nc(_|$)/.test(v)) return /_sa(_|$)/.test(v) ? "CC BY-NC-SA" : "CC BY-NC";
+    if (v.indexOf("cc_by") === 0 && v.indexOf("cc_by_sa") !== 0) return "CC BY";
+    if (v.indexOf("by_sa") >= 0 || v.indexOf("gfdl") >= 0) return "CC BY-SA";
+    if (v.indexOf("public_domain") === 0) return "Public Domain";
+    if (v.indexOf("cc_by") === 0 || v.indexOf("wordnet") >= 0) return "CC BY";
+    return p;
+  }
+  function shardOf(k) {
+    return crypto.subtle.digest("SHA-256", new TextEncoder().encode(k)).then(function (buf) {
+      var b = new Uint8Array(buf)[0];
+      return (b < 16 ? "0" : "") + b.toString(16);
+    });
+  }
+  var wcard = document.getElementById("wcard"), wshade = document.getElementById("wshade");
+  function closeCard() { wcard.hidden = true; wshade.hidden = true; }
+  wshade.addEventListener("click", closeCard);
+  wcard.querySelector(".wc-x").addEventListener("click", closeCard);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeCard(); });
+  function openCard(surface, key) {
+    var heEl = wcard.querySelector(".wc-he");
+    heEl.textContent = surface; heEl.setAttribute("lang", "he");
+    var rowsEl = wcard.querySelector(".wc-rows"), foot = wcard.querySelector(".wc-foot");
+    rowsEl.textContent = "reading the records\u2026"; foot.textContent = "";
+    wcard.hidden = false; wshade.hidden = false;
+    var idxP = storeIndex ? Promise.resolve(storeIndex)
+      : fetch(STORE_BASE + "index.json").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { storeIndex = j; return j; });
+    Promise.all([idxP, shardOf(key)]).then(function (pair) {
+      var idx = pair[0], sh = pair[1];
+      if (!idx) { rowsEl.textContent = "the store's index could not be read"; return null; }
+      var url = STORE_BASE + "shards/" + sh + ".bin" + (idx.store_version ? "?v=" + idx.store_version : "");
+      var shP = shardCache[sh] ? Promise.resolve(shardCache[sh])
+        : fetch(url).then(function (r) { return r.ok ? r.body.pipeThrough(new DecompressionStream("gzip")) : null; })
+          .then(function (s) { return s ? new Response(s).json() : null; })
+          .then(function (j) { shardCache[sh] = j; return j; });
+      return shP.then(function (shard) {
+        var rows = (shard && shard[key]) || [];
+        rowsEl.textContent = "";
+        if (!rows.length) { rowsEl.textContent = "no reading in the catalog for this form"; return; }
+        var sorted = rows.slice().sort(function (a, b) {
+          var ya = parseInt(a[4], 10), yb = parseInt(b[4], 10);
+          ya = isNaN(ya) ? 9e9 : ya; yb = isNaN(yb) ? 9e9 : yb;
+          return (ya - yb) || (a[0] - b[0]);
+        });
+        sorted.forEach(function (r) {
+          var m = (idx.m_sources || {})[r[3]] || {};
+          var row = document.createElement("div"); row.className = "wc-row";
+          var t = document.createElement("span"); t.className = "wc-t"; t.textContent = r[1];
+          var c = document.createElement("span"); c.className = "wc-c"; c.textContent = licName(m.licensePosture);
+          c.title = (m.label || r[3]) + (m.sourceYear ? " \u00b7 " + m.sourceYear : "");
+          var y = document.createElement("span"); y.className = "wc-y"; y.textContent = r[4] === "S_NO_SOURCE_YEAR" ? "no source year" : r[4];
+          row.append(t, c, y); rowsEl.append(row);
+        });
+        foot.textContent = sorted.length + " reading" + (sorted.length === 1 ? "" : "s") +
+          " \u00b7 oldest source first \u00b7 " + (idx.rule_id || "the route store") +
+          " \u00b7 each reading carries the licence of the record behind it";
+      });
+    }).catch(function () { rowsEl.textContent = "the store could not be reached"; });
+  }
+  document.addEventListener("click", function (e) {
+    var w = e.target.closest ? e.target.closest(".fw[data-k]") : null;
+    if (!w) return;
+    e.preventDefault();          // the fold's toggle is the summary's default — cancelled
+    e.stopPropagation();
+    openCard(w.textContent, w.getAttribute("data-k"));
+  }, true);
   function go(e) {
     e.preventDefault();
     var live = groups.filter(function (g) { return !g.el.hidden; });
