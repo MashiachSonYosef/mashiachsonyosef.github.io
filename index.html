@@ -135,6 +135,21 @@
     border-radius:999px; background:rgba(216,199,164,.12); border:1px solid rgba(216,199,164,.3);
     color:var(--shesh); font-size:.72rem; }
   #wcard .prov { color:var(--faint); font-size:.72rem; margin:.35rem 0 0; }
+  /* P — the sources carrying the same record as the selected reading. Same
+     rules as the reader's card: a corroboration is not a louder kind of
+     source, so it wears the same chip at a smaller weight. */
+  #wcard .d-also { margin:.3rem 0 0; padding-top:.3rem; border-top:1px dotted var(--line);
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:.3rem .45rem; }
+  #wcard .d-also-lab { flex:1 0 100%; color:var(--faint); font-size:.66rem;
+    letter-spacing:.08em; text-transform:uppercase; }
+  #wcard .d-also-m { font:inherit; font-size:.74rem; color:var(--muted); cursor:pointer;
+    background:var(--panel2); border:1px solid var(--line); border-radius:.6rem;
+    padding:.16rem .55rem; text-align:left; max-width:100%; }
+  #wcard .d-also-m:hover { border-color:var(--sel-dim); color:var(--ink); }
+  #wcard .d-also-read { display:block; color:var(--faint); font-size:.68rem; }
+  #wcard .d-also-more { font:inherit; font-size:.72rem; color:var(--muted);
+    background:var(--panel2); border:1px solid var(--line); border-radius:.5rem;
+    padding:.16rem .4rem; cursor:pointer; max-width:100%; }
   #wshade { position:fixed; inset:0; background:rgba(5,3,8,.55); z-index:69; }
   #wshade[hidden] { display:none; }
   details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }
@@ -4619,6 +4634,66 @@
       a.rel = "noreferrer"; a.textContent = "License terms";
       foot.append(" ", a);
     }
+    // P · the grouper for M, when two M report the exact same D. One reading
+    // stands on one record; when another source carries that same record it
+    // is corroboration, and a card that shows one source for a definition two
+    // sources carry is quietly under-reporting what the store holds. Pressing
+    // a corroborating source goes to how that source read it.
+    // P counts M, not rows. One provider's entry can separate into many
+    // readings on the declaration's own marks — Strong's alone splits into
+    // nineteen for one form — and every piece carries that provider's single
+    // record. Counting rows called one source eighteen; the grouper is M.
+    var D = r[2] || r[1] || "";
+    var also = [], seenM = {};
+    seenM[r[3]] = 1;
+    for (var j = 0; j < rows.length; j += 1) {
+      if (j === idx) continue;
+      if ((rows[j][2] || rows[j][1] || "") !== D) continue;
+      if (seenM[rows[j][3]]) continue;
+      seenM[rows[j][3]] = 1;
+      also.push(j);
+    }
+    if (!also.length) return;
+    var P_INLINE = 3;
+    var line = document.createElement("p"); line.className = "d-also";
+    var lab = document.createElement("span"); lab.className = "d-also-lab";
+    lab.textContent = "the same record, carried by " + also.length + " more source" + (also.length === 1 ? "" : "s");
+    line.append(lab);
+    var srcBtn = function (j) {
+      var mj = (storeIndex.m_sources || {})[rows[j][3]] || {};
+      var btn = document.createElement("button"); btn.type = "button"; btn.className = "d-also-m";
+      btn.append((mj.label || rows[j][3]) + " · " + (rows[j][4] && rows[j][4] !== "S_NO_SOURCE_YEAR" ? rows[j][4] : "no source year"));
+      var c2 = document.createElement("span"); c2.className = "lic-chip";
+      c2.textContent = licName(mj.licensePosture); btn.append(c2);
+      var rd = document.createElement("span"); rd.className = "d-also-read";
+      rd.textContent = "reads it “" + rows[j][1] + "”";
+      btn.append(rd);
+      btn.addEventListener("click", function (ev) { ev.stopPropagation(); paint(rows, j); });
+      return btn;
+    };
+    also.slice(0, P_INLINE).forEach(function (j) { line.append(srcBtn(j)); });
+    if (also.length > P_INLINE) {
+      var restJ = also.slice(P_INLINE);
+      var sel = document.createElement("select"); sel.className = "d-also-more";
+      var o0 = document.createElement("option"); o0.value = "";
+      o0.textContent = restJ.length + " more source" + (restJ.length === 1 ? "" : "s") + "…";
+      sel.append(o0);
+      restJ.forEach(function (j, i2) {
+        var mj = (storeIndex.m_sources || {})[rows[j][3]] || {};
+        var o = document.createElement("option"); o.value = String(i2);
+        o.textContent = (mj.label || rows[j][3]) + " · " + rows[j][4] + " · reads it “" + rows[j][1] + "”";
+        sel.append(o);
+      });
+      sel.addEventListener("change", function (ev) {
+        ev.stopPropagation();
+        var j = restJ[Number(sel.value)];
+        if (j !== undefined) paint(rows, j);
+      });
+      line.append(sel);
+    }
+    // the body scrolls, the foot is pinned — corroboration goes in the part
+    // that can yield, so the source line beneath it never can
+    body.append(line);
   }
   function openCard(surface, key) {
     wcard.querySelector(".head b").textContent = surface;
