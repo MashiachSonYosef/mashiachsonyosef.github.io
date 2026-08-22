@@ -50,6 +50,17 @@ window.WORK_RECORDS_V1 = Object.freeze({
       "byline": "Aramaic · served from the sealed terminal artifacts, attached to I Kings by the coordinates both works carry",
       "coord_labels": "chapter,verse",
       "family_en": "Targum Jonathan"
+    },
+    "tanakh/ruth": {
+      "byline": "Ketuvim · Miqra according to the Masorah · served from the sealed terminal artifacts",
+      "coord_labels": "chapter,verse",
+      "family_en": "Ruth",
+      "license_links": "data/license-links-tanakh.json"
+    },
+    "targum/aramaic-targum-to-ruth": {
+      "byline": "Aramaic · served from the sealed terminal artifacts, attached to Ruth by the coordinates both works carry",
+      "coord_labels": "chapter,verse",
+      "family_en": "Aramaic Targum"
     }
   },
   "typed_awaiting_ledger": {
@@ -70,11 +81,34 @@ window.WORK_RECORDS_V1 = Object.freeze({
       "unit_count": 817,
       "typed_because": "no Y ledger for this work is on this disk; these values were previously typed into build.sh and are the same values, moved into the open",
       "dies_when": "the work's Y ledger lands — delete this entry; plan-build-v1 refuses while both exist"
+    },
+    "tanakh/ruth": {
+      "basis": "TYPED_AWAITING_LEDGER",
+      "title_en": "Ruth",
+      "c0_first": 70326655,
+      "c0_last": 70327786,
+      "unit_count": 85,
+      "typed_because": "no Y ledger for this work is on this disk; these values are read off the bridge by tools/plan-work-shards-v1.mjs and stand here in the open",
+      "dies_when": "the work's Y ledger lands — delete this entry; plan-build-v1 refuses while both exist"
+    },
+    "targum/aramaic-targum-to-ruth": {
+      "basis": "TYPED_AWAITING_LEDGER",
+      "title_en": "Aramaic Targum to Ruth",
+      "c0_first": 70392152,
+      "c0_last": 70394290,
+      "unit_count": 85,
+      "typed_because": "no Y ledger for this work is on this disk; these values are read off the bridge by tools/plan-work-shards-v1.mjs and stand here in the open",
+      "dies_when": "the work's Y ledger lands — delete this entry; plan-build-v1 refuses while both exist"
     }
   },
   "attachments": [
     {
       "pair": ["tanakh/i-kings", "targum/targum-jonathan-on-i-kings"],
+      "by": "SHARED_UNIT_COORDINATES",
+      "basis": "TYPED_AWAITING_LEDGER"
+    },
+    {
+      "pair": ["tanakh/ruth", "targum/aramaic-targum-to-ruth"],
       "by": "SHARED_UNIT_COORDINATES",
       "basis": "TYPED_AWAITING_LEDGER"
     }
