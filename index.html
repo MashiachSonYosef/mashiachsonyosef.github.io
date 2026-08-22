@@ -11,8 +11,11 @@
      purple — and the door had been wearing an invented blue-grey instead,
      so the way in looked like a different building than the rooms. Same
      tokens as zone.html, verbatim. */
-  :root { --bg:#0c0910; --panel:#150f1d; --line:#261d33; --ink:#ece1c4; --muted:#a99a80;
-          --faint:#7a6f5c; --gold:#e8c46a; --gold-dim:#9a7f3f; --shani:#c0563f; --shesh:#d8c7a4; }
+  :root { --bg:#0c0910; --panel:#150f1d; --panel2:#110c18; --line:#261d33; --ink:#ece1c4;
+          --ink-strong:#f6ecd2; --muted:#a99a80; --faint:#7a6f5c;
+          --gold:#e8c46a; --gold-dim:#9a7f3f; --amber:#d9a441;
+          --sel:#6fb5f0; --sel-dim:#3f6f93; --sel-ink:#071019;
+          --shani:#c0563f; --shesh:#d8c7a4; --link:#d8c7a4; }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
@@ -88,28 +91,51 @@
   .fam-he .fw { font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer; }
   .fam-he .fw:hover { color:var(--gold); }
   .fam-he .fw.inert { cursor:default; }
-  /* The word's own record, on this page: a card over the door, the same law
-     as the reader's HUD — readings oldest source first, each with the
-     licence of the record that carries it. */
-  #wcard { position:fixed; inset:auto 0 0 0; margin:0 auto; width:min(30rem,100vw); max-height:72vh;
-    background:var(--panel); border:1px solid var(--gold-dim); border-bottom:none;
-    border-radius:.8rem .8rem 0 0; z-index:40; display:flex; flex-direction:column; }
+  /* The word's own record, on this page — and it is the reader's card, not a
+     new one. The door had grown its own list-shaped thing for the same job the
+     HUD already does, which made the way in look like a different building
+     than the rooms for the second time. Every rule below is zone.html's, with
+     the same tokens: the head is the word, the reading stands under its own
+     label, the routes are pills with one lit, and the record beneath carries
+     the source and the licence that never scroll away. */
+  #wcard { position:fixed; z-index:70; max-width:23rem; width:min(23rem,92vw); max-height:min(84vh,50rem);
+    left:50%; transform:translateX(-50%); bottom:1rem;
+    display:flex; flex-direction:column; overflow-y:auto; overflow-x:hidden;
+    background:var(--panel); border:1px solid #2c4a63; border-radius:.7rem;
+    padding:.85rem 1.05rem; box-shadow:0 14px 40px rgba(0,0,0,.6); }
   #wcard[hidden] { display:none; }
-  #wcard .wc-head { display:flex; align-items:baseline; gap:.6rem; padding:.7rem .9rem .35rem; }
-  #wcard .wc-he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    font-size:1.5rem; color:var(--shesh); direction:rtl; }
-  #wcard .wc-lab { font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); }
-  #wcard .wc-x { margin-left:auto; font:inherit; font-size:.72rem; color:var(--muted); background:none;
-    border:1px solid var(--line); border-radius:.5rem; padding:.1rem .55rem; cursor:pointer; }
-  #wcard .wc-rows { overflow-y:auto; padding:.2rem .9rem .8rem; }
-  #wcard .wc-row { display:flex; align-items:baseline; gap:.5rem; padding:.22rem 0; border-top:1px solid var(--line); }
-  #wcard .wc-row:first-child { border-top:none; }
-  #wcard .wc-t { color:var(--ink); font-size:.88rem; }
-  #wcard .wc-y { color:var(--faint); font-size:.68rem; white-space:nowrap; margin-left:auto; }
-  #wcard .wc-c { font-size:.6rem; letter-spacing:.05em; color:var(--muted); border:1px solid var(--line);
-    border-radius:.5rem; padding:.05rem .4rem; white-space:nowrap; }
-  #wcard .wc-foot { padding:.35rem .9rem .6rem; color:var(--faint); font-size:.66rem; border-top:1px solid var(--line); }
-  #wshade { position:fixed; inset:0; background:rgba(5,3,8,.55); z-index:39; }
+  #wcard .head { display:flex; justify-content:space-between; align-items:baseline; gap:.6rem;
+    border-bottom:1px solid var(--line); padding-bottom:.4rem; margin-bottom:.3rem; flex:0 0 auto; }
+  #wcard .head b { font-size:1.55rem; color:var(--ink-strong);
+    font-family:"Frank Ruehl CLM","Frank Ruehl","David Libre","SBL Hebrew",Georgia,serif; }
+  #wcard .head button { background:none; border:0; color:var(--link); font-size:1.15rem; cursor:pointer; }
+  #wcard p { margin:.45rem 0; }
+  #wcard .r-now { flex:0 0 auto; margin:.1rem 0 .35rem; padding-bottom:.35rem;
+    border-bottom:1px solid var(--line); direction:ltr; }
+  #wcard .r-now .k { display:block; color:var(--faint); font-size:.68rem;
+    letter-spacing:.08em; text-transform:uppercase; }
+  #wcard .r-now .v { display:block; color:var(--ink-strong); font-size:.94rem; line-height:1.3;
+    overflow-wrap:anywhere; max-height:3.9em; overflow-y:auto; overflow-x:hidden; }
+  #wcard .r-now .v.none { color:var(--faint); font-style:italic; }
+  #wcard .r-label { margin:.5rem 0 .3rem; color:var(--faint); font-size:.74rem;
+    letter-spacing:.06em; text-transform:uppercase; }
+  #wcard .r-pills { display:flex; flex-wrap:wrap; gap:.35rem; direction:ltr;
+    overflow-y:auto; overflow-x:hidden; min-height:0; max-height:34vh; }
+  #wcard .r-pills button { border:1px solid var(--line); background:var(--panel2); color:var(--muted);
+    border-radius:.9rem; padding:.22rem .7rem; font:inherit; font-size:.76rem; cursor:pointer;
+    max-width:100%; text-align:left; white-space:normal; overflow-wrap:anywhere; }
+  #wcard .r-pills button[aria-pressed="true"] { background:var(--sel); border-color:var(--sel);
+    color:#171105; font-weight:bold; }
+  #wcard .d-card { margin-top:.55rem; border-top:1px solid var(--line); padding-top:.45rem;
+    flex:0 0 auto; display:flex; flex-direction:column; overflow:hidden; max-height:32vh; }
+  #wcard .d-body { flex:1 1 auto; min-height:1.2rem; overflow-y:auto; color:var(--ink); font-size:.86rem; }
+  #wcard .d-foot { flex:0 0 auto; padding-top:.15rem; color:var(--muted); font-size:.78rem; }
+  #wcard .d-foot a { color:var(--link); }
+  #wcard .lic-chip { display:inline-block; margin-inline-start:.45rem; padding:.02rem .5rem;
+    border-radius:999px; background:rgba(216,199,164,.12); border:1px solid rgba(216,199,164,.3);
+    color:var(--shesh); font-size:.72rem; }
+  #wcard .prov { color:var(--faint); font-size:.72rem; margin:.35rem 0 0; }
+  #wshade { position:fixed; inset:0; background:rgba(5,3,8,.55); z-index:69; }
   #wshade[hidden] { display:none; }
   details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }
   details.fam > summary > .row:first-child::before { content:"▸"; color:var(--gold-dim); font-size:.8rem; }
@@ -4487,10 +4513,12 @@
   </nav>
   <div id="wshade" hidden></div>
   <div id="wcard" role="dialog" aria-label="the word&#8217;s own record" hidden>
-    <div class="wc-head"><span class="wc-lab">this word&#8217;s record</span><span class="wc-he"></span>
-      <button type="button" class="wc-x">close</button></div>
-    <div class="wc-rows"></div>
-    <div class="wc-foot"></div>
+    <div class="head"><b dir="rtl"></b><button type="button" aria-label="Close">&#215;</button></div>
+    <p class="r-now"><span class="k">reading</span><span class="v"></span></p>
+    <p class="r-label">Exact selectable routes</p>
+    <div class="r-pills"></div>
+    <div class="d-card"><div class="d-body"></div><div class="d-foot"></div></div>
+    <p class="prov"></p>
   </div>
   <script>
   // Finding is the search box's job, not a record's. A book has one name row
@@ -4568,19 +4596,47 @@
   var wcard = document.getElementById("wcard"), wshade = document.getElementById("wshade");
   function closeCard() { wcard.hidden = true; wshade.hidden = true; }
   wshade.addEventListener("click", closeCard);
-  wcard.querySelector(".wc-x").addEventListener("click", closeCard);
+  wcard.querySelector(".head button").addEventListener("click", closeCard);
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeCard(); });
+  // One selected reading at a time, and the record under it is the record of
+  // that reading — the reader's law, the reader's card. A pill press moves the
+  // selection and repaints the record; nothing else on the door moves.
+  function paint(rows, idx, idx0) {
+    var r = rows[idx], m = (storeIndex.m_sources || {})[r[3]] || {};
+    wcard.querySelector(".r-now .v").textContent = r[1];
+    [].slice.call(wcard.querySelectorAll(".r-pills button")).forEach(function (b, i) {
+      b.setAttribute("aria-pressed", i === idx ? "true" : "false");
+    });
+    var body = wcard.querySelector(".d-body");
+    body.textContent = r[2] || r[1];
+    var foot = wcard.querySelector(".d-foot");
+    foot.replaceChildren();
+    foot.append((m.label || r[3]) + (r[4] && r[4] !== "S_NO_SOURCE_YEAR" ? " · " + r[4] : ""));
+    var chip = document.createElement("span"); chip.className = "lic-chip";
+    chip.textContent = licName(m.licensePosture); foot.append(chip);
+    if (m.licensePointer) {
+      var a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank";
+      a.rel = "noreferrer"; a.textContent = "License terms";
+      foot.append(" ", a);
+    }
+  }
   function openCard(surface, key) {
-    var heEl = wcard.querySelector(".wc-he");
-    heEl.textContent = surface; heEl.setAttribute("lang", "he");
-    var rowsEl = wcard.querySelector(".wc-rows"), foot = wcard.querySelector(".wc-foot");
-    rowsEl.textContent = "reading the records…"; foot.textContent = "";
+    wcard.querySelector(".head b").textContent = surface;
+    wcard.querySelector(".head b").setAttribute("lang", "he");
+    var pills = wcard.querySelector(".r-pills");
+    wcard.querySelector(".r-now .v").textContent = "reading the records…";
+    wcard.querySelector(".r-now .v").className = "v none";
+    pills.replaceChildren();
+    wcard.querySelector(".d-body").textContent = "";
+    wcard.querySelector(".d-foot").replaceChildren();
+    wcard.querySelector(".prov").textContent = "";
     wcard.hidden = false; wshade.hidden = false;
     var idxP = storeIndex ? Promise.resolve(storeIndex)
-      : fetch(STORE_BASE + "index.json").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { storeIndex = j; return j; });
+      : fetch(STORE_BASE + "index.json").then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) { storeIndex = j; return j; });
     Promise.all([idxP, shardOf(key)]).then(function (pair) {
       var idx = pair[0], sh = pair[1];
-      if (!idx) { rowsEl.textContent = "the store's index could not be read"; return null; }
+      if (!idx) { wcard.querySelector(".r-now .v").textContent = "the store’s index could not be read"; return null; }
       var url = STORE_BASE + "shards/" + sh + ".bin" + (idx.store_version ? "?v=" + idx.store_version : "");
       var shP = shardCache[sh] ? Promise.resolve(shardCache[sh])
         : fetch(url).then(function (r) { return r.ok ? r.body.pipeThrough(new DecompressionStream("gzip")) : null; })
@@ -4588,27 +4644,33 @@
           .then(function (j) { shardCache[sh] = j; return j; });
       return shP.then(function (shard) {
         var rows = (shard && shard[key]) || [];
-        rowsEl.textContent = "";
-        if (!rows.length) { rowsEl.textContent = "no reading in the catalog for this form"; return; }
-        var sorted = rows.slice().sort(function (a, b) {
+        if (!rows.length) {
+          wcard.querySelector(".r-now .v").textContent = "no reading in the catalog for this form";
+          return;
+        }
+        // oldest source first — the same order the reader's own card uses, and
+        // the same one the masthead's chip is chosen by
+        rows = rows.slice().sort(function (a, b) {
           var ya = parseInt(a[4], 10), yb = parseInt(b[4], 10);
           ya = isNaN(ya) ? 9e9 : ya; yb = isNaN(yb) ? 9e9 : yb;
           return (ya - yb) || (a[0] - b[0]);
         });
-        sorted.forEach(function (r) {
+        wcard.querySelector(".r-now .v").className = "v";
+        rows.forEach(function (r, i) {
           var m = (idx.m_sources || {})[r[3]] || {};
-          var row = document.createElement("div"); row.className = "wc-row";
-          var t = document.createElement("span"); t.className = "wc-t"; t.textContent = r[1];
-          var c = document.createElement("span"); c.className = "wc-c"; c.textContent = licName(m.licensePosture);
-          c.title = (m.label || r[3]) + (m.sourceYear ? " · " + m.sourceYear : "");
-          var y = document.createElement("span"); y.className = "wc-y"; y.textContent = r[4] === "S_NO_SOURCE_YEAR" ? "no source year" : r[4];
-          row.append(t, c, y); rowsEl.append(row);
+          var b = document.createElement("button");
+          b.type = "button"; b.textContent = r[1];
+          b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+          b.title = (r[4] && r[4] !== "S_NO_SOURCE_YEAR" ? r[4] + " · " : "") + (m.label || r[3]);
+          b.addEventListener("click", function () { paint(rows, i); });
+          pills.append(b);
         });
-        foot.textContent = sorted.length + " reading" + (sorted.length === 1 ? "" : "s") +
-          " · oldest source first · " + (idx.rule_id || "the route store") +
-          " · each reading carries the licence of the record behind it";
+        paint(rows, 0);
+        wcard.querySelector(".prov").textContent =
+          rows.length + " reading" + (rows.length === 1 ? "" : "s") + " · oldest source first · " +
+          (idx.rule_id || "the route store");
       });
-    }).catch(function () { rowsEl.textContent = "the store could not be reached"; });
+    }).catch(function () { wcard.querySelector(".r-now .v").textContent = "the store could not be reached"; });
   }
   document.addEventListener("click", function (e) {
     var w = e.target.closest ? e.target.closest(".fw[data-k]") : null;
