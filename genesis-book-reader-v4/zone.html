@@ -2726,7 +2726,22 @@
 
   // text — the commentary sidecar (if any) must be in hand before word
   // blocks render, so C chips land on first paint.
+  //
+  // And the names the cards will print, fetched alongside. A commentary
+  // work's name is the Y ledger's to give: data/commentary-names-v1.json is
+  // a slice of each work's sealed fixture — COMMENTARY_WORK nodes only,
+  // surface and keys both the record's own fields — emitted by the same tool
+  // that emits the basis file. Where it answers, the card head prints the
+  // ledger's name and the pack stops naming itself. Where it does not,
+  // nothing changes: the pack's recorded name, or the open slot, stands.
+  const ledgerNamesReady = (async () => {
+    try {
+      const cn = await fetch(`${ROOT}data/commentary-names-v1.json`).then((r) => (r.ok ? r.json() : null));
+      return (cn && cn.names && cn.names[BOOK]) || null;
+    } catch { return null; }
+  })();
   await commentaryReady;
+  const LEDGER_NAMES = await ledgerNamesReady;
   // Say what the commentary is and where it came from — inside the receipts,
   // not across the masthead. Every section now names its own commentary on its
   // own line, so this is the proof of it, not the announcement of it. It also
@@ -3161,7 +3176,21 @@
         const row1 = document.createElement("span"); row1.className = "c-head-row";
         row1.append(Object.assign(document.createElement("span"),
           { className: "c-head-lab", textContent: "commentary" }));
-        if (w.he_tokens && w.he_tokens.length) {
+        // The ledger names the work where it can. led is the Y fixture's
+        // COMMENTARY_WORK node for this pack work — matched by the index the
+        // pack already carries against the node's public_ref, two recorded
+        // values and a string equality — and its tokens open like any words
+        // of the book: surface and key are the record's own two fields,
+        // zipped at emit time. The node id rides on the row so anything
+        // asking who named this work gets the ledger's answer, not the
+        // pack's.
+        const led = LEDGER_NAMES && w.index ? LEDGER_NAMES[w.index] : null;
+        if (led && led.he_tokens && led.he_tokens.length) {
+          const t1 = titleRow(led.he_tokens, led.he, commentaryStore);
+          t1.classList.add("c-head-he");
+          row1.dataset.namedBy = led.y_node_id || "";
+          row1.append(t1);
+        } else if (w.he_tokens && w.he_tokens.length) {
           const t1 = titleRow(w.he_tokens, w.family_he, commentaryStore);
           t1.classList.add("c-head-he");
           row1.append(t1);
