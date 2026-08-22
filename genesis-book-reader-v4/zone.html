@@ -226,6 +226,20 @@
   .node-head .he { direction: rtl; text-align: right; font-size: 1.55rem; color: var(--ink-strong);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   .node-head .en { font-size: 0.82rem; font-variant: small-caps; letter-spacing: 0.16em; color: var(--gold); margin-top: 0.1rem; }
+  /* One register at every head: the same labelled two-row frame the masthead
+     uses, sized down to chapter grain. The label column, the quiet slot and
+     the force-read row match the masthead's forms so a reader learns the
+     frame once. */
+  .nh-row { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 0.15rem; }
+  .nh-lab { flex: 0 0 auto; min-width: 7rem; font-size: 0.6rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--faint); }
+  .nh-en { font-size: 0.88rem; font-variant: small-caps; letter-spacing: 0.14em; color: var(--gold); }
+  .nh-of { font-size: 0.74rem; color: var(--faint); }
+  .nh-he.unnamed { font-family: Georgia, serif; font-size: 0.8rem; font-style: italic; color: var(--faint); }
+  .nh-row .title-row { margin: 0; }
+  /* the ledger's mark for a section, riding beside the coordinate pill */
+  .seg-row .v-he { font-size: 0.85rem; color: var(--shesh);
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
 
   section.seg { margin: 0 0 1.35rem; }
   .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; direction: ltr; }
@@ -2740,8 +2754,21 @@
       return (cn && cn.names && cn.names[BOOK]) || null;
     } catch { return null; }
   })();
+  // And the ledger's chapter and section labels, from the same emit: the
+  // fixture names every level, the sealed zone predates carrying the
+  // section ones, and data/y-nav-labels-v1.json is the slice that closes
+  // that gap without touching a sealed artifact. Where it answers, the
+  // ledger's own numeral stands beside the coordinate; where it does not,
+  // the coordinate stands alone and the chapter head's open slot says why.
+  const navLabelsReady = (async () => {
+    try {
+      const nl = await fetch(`${ROOT}data/y-nav-labels-v1.json`).then((r) => (r.ok ? r.json() : null));
+      return (nl && nl.works && nl.works[BOOK]) || null;
+    } catch { return null; }
+  })();
   await commentaryReady;
   const LEDGER_NAMES = await ledgerNamesReady;
+  const NAV_LABELS = await navLabelsReady;
   // Say what the commentary is and where it came from — inside the receipts,
   // not across the masthead. Every section now names its own commentary on its
   // own line, so this is the proof of it, not the announcement of it. It also
@@ -3013,24 +3040,63 @@
       const partKey = n.part_he || n.part_en || "";
       if (partKey !== curPart) {
         curPart = partKey;
-        const ph = document.createElement("div"); ph.className = "part-head";
-        // Plain English names the structure — a position and a count, never a
-        // translation of the title. The title itself is the Hebrew row below.
-        if (n.part_num) { const pen = document.createElement("div"); pen.className = "locator"; pen.textContent = `Part ${n.part_num} · part title`; ph.append(pen); }
-        ph.append(titleRow(n.part_tokens, n.part_he));
-        frag.append(ph);
+        // A part head only where the work has parts — and then in the same
+        // frame as every other head: the part's own title first, the common
+        // force-read second. Nothing renders for a book with no parts.
+        if (n.part_num || n.part_he || (n.part_tokens || []).length) {
+          const ph = document.createElement("div"); ph.className = "part-head";
+          const p1 = document.createElement("div"); p1.className = "nh-row";
+          p1.append(Object.assign(document.createElement("span"),
+            { className: "nh-lab", textContent: "part title" }));
+          if ((n.part_tokens && n.part_tokens.length) || n.part_he) p1.append(titleRow(n.part_tokens, n.part_he));
+          else p1.append(Object.assign(document.createElement("span"),
+            { className: "nh-he unnamed", textContent: "none is recorded in the ledger" }));
+          ph.append(p1);
+          if (n.part_num) {
+            const p2 = document.createElement("div"); p2.className = "nh-row";
+            p2.append(Object.assign(document.createElement("span"),
+              { className: "nh-lab", textContent: "commonly force read as" }));
+            p2.append(Object.assign(document.createElement("span"),
+              { className: "nh-en", textContent: `Part ${n.part_num}` }));
+            ph.append(p2);
+          }
+          frag.append(ph);
+        }
       }
       curNode = sec.node;
       const nh = document.createElement("div"); nh.className = "node-head"; nh.id = `n${sec.node}`;
-      const loc = document.createElement("span"); loc.className = "locator";
-      // "chapter title" names the row underneath. Say it only when there is
-      // one — a label pointing at nothing reads as a title we failed to load.
-      const hasTitle = (n.name_tokens && n.name_tokens.length) || n.name_he;
-      loc.textContent = `${n.name_en || `${MAJOR_C} ${n.num || sec.node + 1}`}` +
-        (hasTitle ? ` · ${MAJOR} title` : "") +
-        (n.sections ? ` · ${n.sections} ${n.sections === 1 ? MINOR : MINOR + "s"}` : "");
-      nh.append(loc);
-      nh.append(titleRow(n.name_tokens, n.name_he));
+      // The same frame as the masthead, at chapter grain — the register does
+      // not change with the size of the thing it names. First row: the
+      // chapter's own title, which is the ledger's to give. Where the ledger
+      // gives it (Genesis: a canonical Hebrew numeral, inert to the tap by
+      // the numeral rule) it stands with the node id riding on the row;
+      // where no ledger names this work's chapters yet, the row is the same
+      // quiet slot the masthead uses, and it fills when the fixture lands. Second
+      // row: the common force-read, which for a numeral is the position
+      // English readers read it as — no record reads it that way, so no
+      // chip rides beside it, and the label still never softens. An earlier
+      // head printed one English locator line with "chapter title" pointing
+      // at a bare numeral two lines down, which read as a title that failed
+      // to load.
+      const r1 = document.createElement("div"); r1.className = "nh-row";
+      r1.append(Object.assign(document.createElement("span"),
+        { className: "nh-lab", textContent: `${MAJOR} title` }));
+      if ((n.name_tokens && n.name_tokens.length) || n.name_he) {
+        const t = titleRow(n.name_tokens, n.name_he);
+        if (n.y) t.dataset.namedBy = n.y;
+        r1.append(t);
+      } else {
+        r1.append(Object.assign(document.createElement("span"),
+          { className: "nh-he unnamed", textContent: "none is recorded in the ledger" }));
+      }
+      const r2 = document.createElement("div"); r2.className = "nh-row";
+      r2.append(Object.assign(document.createElement("span"),
+        { className: "nh-lab", textContent: "commonly force read as" }));
+      r2.append(Object.assign(document.createElement("span"),
+        { className: "nh-en", textContent: n.name_en || `${MAJOR_C} ${n.num || sec.node + 1}` }));
+      if (n.sections) r2.append(Object.assign(document.createElement("span"),
+        { className: "nh-of", textContent: `${n.sections} ${n.sections === 1 ? MINOR : MINOR + "s"}` }));
+      nh.append(r1, r2);
       frag.append(nh); openedNode = true; nodeHeads.push({ node: sec.node, el: nh });
     }
     const s = document.createElement("section"); s.className = "seg";
@@ -3043,6 +3109,13 @@
     const parts = String(sec.label || "").split(":");
     v.title = parts.length === 2 ? `${MAJOR_C} ${parts[0]}, ${MINOR} ${parts[1]}` : `${MAJOR_C} ${parts[0]}`;
     row.append(v);
+    // The ledger's own mark for this section, where the ledger gives one —
+    // the same layer the chapter head carries, at section grain. A canonical
+    // numeral, so it opens nothing, and the coordinate pill beside it stays
+    // the anchor and the force-read of it.
+    const secHe = NAV_LABELS && NAV_LABELS.sections ? NAV_LABELS.sections[sec.label] : null;
+    if (secHe) row.append(Object.assign(document.createElement("span"),
+      { className: "v-he", lang: "he", dir: "rtl", textContent: secHe }));
     // name the numbering once per chapter, so a reader meets it before
     // scrolling past four hundred of them
     if (openedNode) {
