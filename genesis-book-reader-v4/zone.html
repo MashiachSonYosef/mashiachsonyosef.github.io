@@ -555,6 +555,21 @@
   #hud .r-overflow select:hover { border-color: var(--gold-dim); }
   #hud .r-overflow select.on { color: var(--sel-ink); background: var(--sel); border-color: var(--sel); font-weight: bold; }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
+  /* P — the sources that carry the same record. A corroboration is not a
+     louder kind of source, so it wears the same chip and the same weight as
+     the one above it, a size down, and reads as a list rather than a claim. */
+  #hud .d-also { margin: 0.3rem 0 0; padding-top: 0.3rem; border-top: 1px dotted var(--line);
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.45rem; }
+  #hud .d-also-lab { flex: 1 0 100%; color: var(--faint); font-size: 0.66rem;
+    letter-spacing: 0.08em; text-transform: uppercase; }
+  #hud .d-also-m { font: inherit; font-size: 0.74rem; color: var(--muted); cursor: pointer;
+    background: var(--panel2); border: 1px solid var(--line); border-radius: 0.6rem;
+    padding: 0.16rem 0.55rem; text-align: left; max-width: 100%; }
+  #hud .d-also-m:hover { border-color: var(--sel-dim); color: var(--ink); }
+  #hud .d-also-read { display: block; color: var(--faint); font-size: 0.68rem; }
+  #hud .d-also-more { font: inherit; font-size: 0.72rem; color: var(--muted);
+    background: var(--panel2); border: 1px solid var(--line); border-radius: 0.5rem;
+    padding: 0.16rem 0.4rem; cursor: pointer; max-width: 100%; }
   #hud .d-cut { margin: 0 0 0.35rem; font-size: 0.72rem; color: var(--amber);
     border-inline-start: 2px solid var(--amber); padding-inline-start: 0.5rem; }
   /* The D record, whole and never clipped. The sense the reader selected is
@@ -2104,6 +2119,85 @@
         // on nothing the reader can see. Everything else about the record —
         // its text, its corroboration — scrolls above it.
         foot.append(mLine(firstGroup[0]));
+        // P · the grouper for M, when two M report the exact same D.
+        //
+        // The pool is grouped by reading, so two sources that report the same
+        // definition under different wordings land in different pills and
+        // never meet. `selected.records` is one pill's rows, so this card
+        // could only ever show the sources inside the reading the finger
+        // happened to land on — and every corroboration in the book was
+        // therefore invisible. Not most: 1,002 of Genesis's definitions are
+        // carried by more than one source, and all 1,002 had their sources
+        // split across pills.
+        //
+        // So corroboration is gathered from the whole pool, by the one thing
+        // that makes it corroboration — an identical D. Each source says who
+        // it is and what it read, and pressing it goes to that reading,
+        // because "somebody else says this too" is only useful if you can go
+        // and see how they said it.
+        const alsoCarry = [];
+        {
+          const seen = new Set(recs.map((r) => r[3]));
+          for (const g of pool) {
+            if (g === selected) continue;
+            for (const row of g.records) {
+              if ((row[2] || row[1] || "") !== firstText) continue;
+              if (seen.has(row[3])) continue;
+              seen.add(row[3]);
+              alsoCarry.push({ row, group: g });
+            }
+          }
+        }
+        if (alsoCarry.length) {
+          const P_INLINE = 3;
+          const line = document.createElement("p"); line.className = "d-also";
+          line.append(Object.assign(document.createElement("span"),
+            { className: "d-also-lab", textContent: `the same record, carried by ${alsoCarry.length} more source${alsoCarry.length === 1 ? "" : "s"}` }));
+          const one = ({ row, group }) => {
+            const m = index.m_sources[row[3]];
+            const b = document.createElement("button"); b.type = "button"; b.className = "d-also-m";
+            b.append(`${m.label.split(/[,(]/)[0].trim()} · ${!row[4] || row[4] === "S_NO_SOURCE_YEAR" ? "no source year" : row[4]}`);
+            const lic = document.createElement("span"); lic.className = "lic-chip";
+            lic.textContent = licenseName(m.licensePosture); b.append(lic);
+            b.append(Object.assign(document.createElement("span"),
+              { className: "d-also-read", textContent: `reads it “${group.text}”` }));
+            b.title = `${m.label} — go to this reading`;
+            b.addEventListener("click", (ev) => {
+              ev.stopPropagation();
+              selected = group; picked.set(surface, { key: routeKey(group.records[0]) });
+              [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String(x.textContent === group.text)));
+              paintNow(group.text); renderDCard(); clampHud();
+            });
+            return b;
+          };
+          alsoCarry.slice(0, P_INLINE).forEach((x) => line.append(one(x)));
+          if (alsoCarry.length > P_INLINE) {
+            const more = alsoCarry.slice(P_INLINE);
+            const sel = document.createElement("select"); sel.className = "d-also-more";
+            sel.append(Object.assign(document.createElement("option"),
+              { value: "", textContent: `${more.length} more source${more.length === 1 ? "" : "s"}…` }));
+            more.forEach((x, i) => {
+              const m = index.m_sources[x.row[3]];
+              sel.append(Object.assign(document.createElement("option"),
+                { value: String(i), textContent: `${m.label} · ${x.row[4]} · reads it “${x.group.text}”` }));
+            });
+            sel.addEventListener("change", (ev) => {
+              ev.stopPropagation();
+              const x = more[Number(sel.value)];
+              if (!x) return;
+              selected = x.group; picked.set(surface, { key: routeKey(x.group.records[0]) });
+              [...pills.children].forEach((y) => y.setAttribute("aria-pressed", String(y.textContent === x.group.text)));
+              paintNow(x.group.text); renderDCard(); clampHud();
+            });
+            line.append(sel);
+          }
+          // Into the body, which scrolls — never the foot. The foot carries the
+          // one line the card may not lose: who says this. Corroboration is
+          // secondary to it by definition, and a P line appended to the foot
+          // grew it until, on a window 440px tall, the source line was clipped
+          // off the bottom of its own card. Measured, not reasoned about.
+          body.append(line);
+        }
         const rest = [...firstGroup.slice(1).map((r) => [firstText, r]),
                       ...groups.slice(1).flatMap(([t, g]) => g.map((r) => [t, r]))];
         if (!rest.length) return;
