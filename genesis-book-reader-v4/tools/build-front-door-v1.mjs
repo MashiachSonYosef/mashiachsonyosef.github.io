@@ -130,17 +130,20 @@ if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to w
 
 // ---- the door ------------------------------------------------------------
 // A typed-basis work and a sealed work do not wear the same face, and held
-// commentary is counted where the book is offered rather than silently absent.
+// commentary is counted where the book is offered rather than silently
+// absent — but in the door's own quiet voice, never as an alarm. The frame
+// is recorded as never being grounds to declare a work deficient; an open
+// slot is simply named, and the line goes away when its record lands.
 const incBits = (b) => {
   const bits = [];
-  if (b.basis === "TYPED_AWAITING_LEDGER") bits.push("its coordinates are typed by hand, awaiting its Y ledger");
-  if (b.held) bits.push(`${n(b.held)} commentary identities held by the Y ledger, not shown`);
+  if (b.basis === "TYPED_AWAITING_LEDGER") bits.push("awaiting its Y ledger — its coordinates stand typed in the open until then");
+  if (b.held) bits.push(`${n(b.held)} commentary slots open`);
   return bits;
 };
 const bookCard = (b) => `    <a class="book" href="/${b.slug}">
       <span class="row"><span class="lab">commonly read as</span><span class="en">${esc(b.en)}</span></span>
       <span class="of">${n(b.sections)} sections · ${n(b.words)} words · ${esc(b.byline)}</span>${incBits(b).length ? `
-      <span class="of inc">incomplete — ${esc(incBits(b).join(" · "))}</span>` : ""}
+      <span class="of slots">${esc(incBits(b).join(" · "))}</span>` : ""}
     </a>`;
 
 // A commentary entry is its own way in, so it opens one. ?c=open tells the
@@ -172,7 +175,7 @@ const groupFor = (b) => {
   for (const cslug of commentaryOf.get(b.slug) || []) {
     const c = bySlug.get(cslug);
     if (!c) continue;
-    subs.push(`      <a class="sub-work" href="/${c.slug}"><span class="en">${esc(c.en)}</span><span class="of">its own book · ${n(c.sections)} sections · ${n(c.words)} words · ${esc(c.byline)}</span>${incBits(c).length ? `<span class="of inc">incomplete — ${esc(incBits(c).join(" · "))}</span>` : ""}</a>`);
+    subs.push(`      <a class="sub-work" href="/${c.slug}"><span class="en">${esc(c.en)}</span><span class="of">its own book · ${n(c.sections)} sections · ${n(c.words)} words · ${esc(c.byline)}</span>${incBits(c).length ? `<span class="of slots">${esc(incBits(c).join(" · "))}</span>` : ""}</a>`);
     const cl = commentaryLine(c);
     if (cl) subs.push(cl);
   }
@@ -222,7 +225,7 @@ const doc = `<!doctype html>
                 text-transform:uppercase; color:var(--faint); }
   a.book .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
   a.book .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
-  a.book .of.inc { margin-top:.2rem; color:var(--shani); }
+  a.book .of.slots, a.sub-work .of.slots { margin-top:.2rem; font-style:italic; }
   /* The commentary is not a third book. It arrives shut, and what is behind it
      is one entry per book, each going to the book it belongs to — because that
      is where a commentary is read. */
