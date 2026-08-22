@@ -21,12 +21,18 @@ printed as a word block, glossed "X again". The verse is otherwise correct.
 Serving `tanakh/i-kings` and `tanakh/genesis` from the sealed artifacts and
 classifying every `exact_surface_form`:
 
-| work | c0 rows | raw HTML | unpointed in a pointed text | section markers |
+| work | c0 rows | raw markup | apparatus as text | mid-word split |
 |---|---:|---:|---:|---:|
-| I Kings | 11,368 | **377** | 29 | 4 |
-| Genesis | 17,807 | **51** | 56 | 81 |
-| Ruth | 1,132 | 0 | 12 | 0 |
+| I Kings | 11,368 | **377** | 33 | 0 |
+| Genesis | 17,807 | **51** | 137 | 5 |
+| Ruth | 1,132 | 0 | 12 | 1 |
 | Aramaic Targum to Ruth | 2,139 | 0 | 0 | 0 |
+
+Every one of those 616 occurrences is listed by c0 id in
+`data/corpus-defect-manifest-2026-08-22.json`, emitted by
+`tools/check-corpus-clean-v1.mjs`. Run that tool against a serve after a
+re-ingest; an empty markup column is the proof, and it exits non-zero while
+any markup remains.
 
 The markup is Hebrew Wikisource's own, ingested verbatim:
 
@@ -103,5 +109,15 @@ list; it would not catch the same fault anywhere else.
    list exists, which today is 1 section of 1,533 in Genesis and none at all
    in I Kings, Ruth or the targums.
 
-Ruth and the Aramaic Targum to Ruth are clean. Whatever path those two took
-through the ingest is the one the others should have taken.
+**A correction to an earlier reading of this.** Ruth is clean of *markup*,
+not clean. It carries twelve unpointed ketiv forms as occurrences (יעשה,
+מידע, שמלתך, וירדתי, ושכבתי, קניתי, לגאול …), one stray `י`, one section
+marker, and one mid-word split — `לִ֣י [נִ] י`, which is לִינִי of Ruth 3:13
+cut into three. So the ketiv-as-occurrence and mid-word-split faults reach
+every Hebrew work measured; only the HTML fault is confined to Genesis and
+I Kings.
+
+The Aramaic Targum to Ruth is the one work with nothing at all: 2,139
+occurrences, no markup, no apparatus, no splits. Whatever path it took
+through the ingest is the one to look at first — it is the only proof on
+this disk that the pipeline can produce a clean book.
