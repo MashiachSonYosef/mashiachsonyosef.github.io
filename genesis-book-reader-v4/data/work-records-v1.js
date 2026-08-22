@@ -59,7 +59,6 @@ window.WORK_RECORDS_V1 = Object.freeze({
       "c0_first": 69859535,
       "c0_last": 69870902,
       "unit_count": 817,
-      "published_as": "1kings",
       "typed_because": "no Y ledger for this work is on this disk; these values were previously typed into build.sh and are the same values, moved into the open",
       "dies_when": "the work's Y ledger lands — delete this entry; plan-build-v1 refuses while both exist"
     },
@@ -69,7 +68,6 @@ window.WORK_RECORDS_V1 = Object.freeze({
       "c0_first": 70513734,
       "c0_last": 70527384,
       "unit_count": 817,
-      "published_as": "targum-1kings",
       "typed_because": "no Y ledger for this work is on this disk; these values were previously typed into build.sh and are the same values, moved into the open",
       "dies_when": "the work's Y ledger lands — delete this entry; plan-build-v1 refuses while both exist"
     }
