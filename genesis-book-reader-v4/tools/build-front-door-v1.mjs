@@ -190,6 +190,12 @@ const incBits = (b) => {
   if (b.held) bits.push(`${n(b.held)} commentary slots open`);
   return bits;
 };
+// The card is the collapsed face, so it carries what must never fold away:
+// both title rows — the book's own word first, the force-read below it — and
+// the bare counts. Everything else about the group (its chain line, its open
+// slots, the works seated with it, its commentary) stands behind one quiet
+// fold whose summary names each thing it holds, with its count, so nothing
+// is out of sight without being said.
 const bookCard = (b) => `    <div class="bookcard">
       <span class="row trow"><span class="lab">book title</span>${b.he
         ? (b.defOpen
@@ -199,8 +205,7 @@ const bookCard = (b) => `    <div class="bookcard">
       <a class="book" href="/${b.slug}">
       <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(b.en)}</span>${b.reading
         ? `<span class="chip" title="${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""}">${esc(b.reading.lic)}</span>` : ""}</span>
-      <span class="of">${n(b.sections)} sections · ${n(b.words)} words · ${esc(b.byline)}</span>${incBits(b).length ? `
-      <span class="of slots">${esc(incBits(b).join(" · "))}</span>` : ""}
+      <span class="of">${n(b.sections)} sections · ${n(b.words)} words</span>
       </a>
     </div>`;
 
@@ -230,9 +235,11 @@ const bySlug = new Map(books.map((b) => [b.slug, b]));
 // and goes to it — it is just found where it is read.
 const groupFor = (b) => {
   const subs = [];
+  let seatedCount = 0;
   for (const cslug of commentaryOf.get(b.slug) || []) {
     const c = bySlug.get(cslug);
     if (!c) continue;
+    seatedCount += 1;
     subs.push(`      <a class="sub-work" href="/${c.slug}">${c.he
         ? `<span class="he" lang="he" dir="rtl">${esc(c.he)}</span>`
         : `<span class="he none">none is recorded in the ledger</span>`}<span class="en">${esc(c.en)}</span><span class="of">its own book · ${n(c.sections)} sections · ${n(c.words)} words · ${esc(c.byline)}</span>${incBits(c).length ? `<span class="of slots">${esc(incBits(c).join(" · "))}</span>` : ""}</a>`);
@@ -241,9 +248,23 @@ const groupFor = (b) => {
   }
   const cl = commentaryLine(b);
   if (cl) subs.push(cl);
+  // What the fold holds, said on its face with the counts it holds it at.
+  // A fold that says "more" hides; a fold that says "1 work seated with it ·
+  // commentary · 612 carried · 11 commentary slots open" only shortens.
+  const bits = [];
+  if (seatedCount) bits.push(`${n(seatedCount)} work${seatedCount === 1 ? "" : "s"} seated with it`);
+  if (b.units) bits.push(`commentary · ${n(b.units)} carried`);
+  if (b.basis === "TYPED_AWAITING_LEDGER") bits.push("awaiting its Y ledger");
+  if (b.held) bits.push(`${n(b.held)} commentary slots open`);
+  const foldRows = [`      <span class="of fold-line">${esc(b.byline)}</span>`];
+  if (incBits(b).length) foldRows.push(`      <span class="of slots fold-line">${esc(incBits(b).join(" · "))}</span>`);
   return `    <div class="workgroup">
 ${bookCard(b)}
+      <details class="fold">
+      <summary>${esc(bits.join(" · ") || "its record line")}</summary>
+${foldRows.join("\n")}
 ${subs.join("\n")}
+      </details>
     </div>`;
 };
 const shown = books.filter((b) => !seated.has(b.slug));
@@ -267,14 +288,14 @@ const doc = `<!doctype html>
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
          font:16px/1.6 Georgia,"Times New Roman",serif; display:flex; align-items:center;
-         justify-content:center; padding:2rem 1.25rem; overflow-x:hidden; }
+         justify-content:center; padding:1.4rem 1rem; overflow-x:hidden; }
   main { width:100%; max-width:40rem; }
   h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--gold); }
-  p.sub { margin:0 0 2rem; color:var(--muted); font-size:.95rem; }
-  .books { display:flex; flex-direction:column; gap:.7rem; }
+  p.sub { margin:0 0 1.2rem; color:var(--muted); font-size:.9rem; }
+  .books { display:flex; flex-direction:column; gap:.55rem; }
   .bookcard { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
            border:1px solid var(--line); border-radius:.7rem; background:var(--panel);
-           padding:1rem 1.15rem; }
+           padding:.7rem .9rem .6rem; }
   .bookcard:hover { border-color:var(--gold-dim); }
   a.book { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
            text-decoration:none; color:var(--ink); align-self:stretch; }
@@ -300,7 +321,7 @@ const doc = `<!doctype html>
   .bookcard .chip { font-size:.62rem; letter-spacing:.06em; color:var(--muted);
     border:1px solid var(--line); border-radius:.6rem; padding:.1rem .45rem; }
   a.sub-work .he { font-size:1.05rem; margin-right:.5rem; }
-  .bookcard .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
+  .bookcard .of { margin-top:.25rem; color:var(--faint); font-size:.76rem; }
   .bookcard .of.slots, a.sub-work .of.slots { margin-top:.2rem; font-style:italic; }
   /* The commentary is not a third book. It arrives shut, and what is behind it
      is one entry per book, each going to the book it belongs to — because that
@@ -312,23 +333,26 @@ const doc = `<!doctype html>
   #find input:focus { outline:none; border-color:var(--gold-dim); }
   .workgroup { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); overflow:hidden; }
   .workgroup .bookcard { border:none; border-radius:0; background:none; }
-  a.sub-work { display:block; padding:.85rem 1.15rem 0.85rem 2rem; border-top:1px solid var(--line);
+  a.sub-work { display:block; padding:.6rem .9rem .6rem 1.7rem; border-top:1px solid var(--line);
     text-decoration:none; color:var(--ink); }
   a.sub-work:hover { background:rgba(224,182,79,.06); }
   a.sub-work .en { display:block; font-size:.98rem; color:var(--gold-dim); }
   a.sub-work .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }
-  details.group { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); }
-  details.group > summary { list-style:none; cursor:pointer; padding:1rem 1.15rem;
-    display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
-  details.group > summary::-webkit-details-marker { display:none; }
-  details.group > summary::after { content:"\\25be"; margin-left:auto; color:var(--gold-dim);
-    transform:rotate(-90deg); transition:transform 140ms; }
-  details.group[open] > summary::after { transform:none; }
-  details.group > summary .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
-    text-transform:uppercase; color:var(--faint); }
-  details.group > summary .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
-  details.group > summary .of { flex:1 0 100%; margin-top:.45rem; color:var(--faint); font-size:.8rem; }
-  a.sub-book { display:block; padding:.85rem 1.15rem .85rem 2rem; border-top:1px solid var(--line);
+  /* One quiet fold per group. Its face is the summary line built above —
+     each folded thing named with its count — so collapsed is shorter, never
+     blinder. Closed is the resting state; the search box opens it when a
+     match would otherwise be out of sight. */
+  .workgroup details.fold { border-top:1px solid var(--line); }
+  .workgroup details.fold > summary { list-style:none; cursor:pointer;
+    padding:.4rem .9rem; color:var(--faint); font-size:.72rem; font-style:italic;
+    display:flex; align-items:baseline; gap:.45rem; }
+  .workgroup details.fold > summary::-webkit-details-marker { display:none; }
+  .workgroup details.fold > summary::before { content:"\u25b8"; font-style:normal;
+    color:var(--gold-dim); transition:transform 140ms; }
+  .workgroup details.fold[open] > summary::before { content:"\u25be"; }
+  .workgroup details.fold > summary:hover { color:var(--muted); }
+  .workgroup details.fold .fold-line { display:block; margin:0; padding:.05rem .9rem .4rem; }
+  a.sub-book { display:block; padding:.6rem .9rem .6rem 1.7rem; border-top:1px solid var(--line);
     text-decoration:none; color:var(--ink); }
   a.sub-book:hover { background:rgba(224,182,79,.06); }
   a.sub-book .en { display:block; font-size:.98rem; color:var(--gold-dim); }
@@ -373,6 +397,11 @@ ${shown.map(groupFor).join("\n")}
     var q = norm(document.getElementById("q").value);
     groups.forEach(function (g) {
       g.el.hidden = !!q && !g.keys.some(function (k) { return k.indexOf(q) >= 0; });
+      // A live search opens the fold: the row that matched may stand behind
+      // it, and a hit the reader cannot see is a miss. An emptied box folds
+      // the groups back to rest.
+      var d = g.el.querySelector("details.fold");
+      if (d) d.open = !!q && !g.el.hidden;
     });
   }
   function go(e) {

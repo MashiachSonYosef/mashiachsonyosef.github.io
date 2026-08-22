@@ -156,11 +156,25 @@ check("and the English beside it is labelled as the forced reading it is",
 // checking the page against me rather than against the chain.
 // The walked addresses come from the same plan as the door, not a typed list
 // — every published work gets its masthead read against its own zone.
-const WALK = plan.works.map((w) => [`/${w.published_as}`, ...titleOf(w.published_as)]);
+// The zone's own section count rides with each row: the loaded page is
+// checked against the bin it loads, not against a typed bound. An earlier
+// form asserted sections > 100, which declared every small book broken —
+// Ruth carries 85 sections and loads whole.
+const sectionsOf = (book) =>
+  JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${book}.bin`))).toString("utf8")).sections.length;
+const WALK = plan.works.map((w) => [`/${w.published_as}`, ...titleOf(w.published_as), sectionsOf(w.published_as)]);
 for (const [href, ...expected] of WALK) {
-  const [heTitle, en] = expected;
+  const [heTitle, en, expectSections] = expected;
   console.log(`— ${href} —`);
   await p.goto(`${B}/`, { waitUntil: "networkidle" });
+  // A seated work's row stands behind its group's fold. Opening the fold is
+  // the reader's own gesture — the summary is the control — so the walk makes
+  // it before reaching for the row, exactly as a finger would.
+  await p.evaluate((h) => {
+    const a = document.querySelector(`a[href="${h}"]`);
+    const d = a && a.closest("details");
+    if (d) d.open = true;
+  }, href);
   await Promise.all([p.waitForURL(new RegExp(`\\${href}$`), { timeout: 20000 }), p.click(`a[href="${href}"]`)]);
   await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
   await p.waitForTimeout(700);
@@ -207,7 +221,7 @@ for (const [href, ...expected] of WALK) {
   check("  with a licence where a record reads it that way, and none where none does",
     heTitle ? r.lic.length > 2 : !r.lic,
     `${r.enLab} · ${r.lic || "no licence"}`);
-  check("  the zone still loads under the rewritten bar", r.sections > 100 && r.words > 3, `${r.sections} sections`);
+  check("  the zone still loads under the rewritten bar", r.sections === expectSections && r.words > 3, `${r.sections} of ${expectSections} sections`);
   check("  and its readings came with it", r.glossed > 0, `${r.glossed} of ${r.words} words glossed`);
 
   // Navigation carries coordinates. A title is corpus text and belongs in the
@@ -221,8 +235,17 @@ for (const [href, ...expected] of WALK) {
   check("  the nav prints no title, only where to go", r.navHe === 0, `${r.navHe} Hebrew in the nav`);
 
   // The store is fetched shard by shard as words are pressed — long after the
-  // bar stopped saying where the page came from.
-  await p.click("section.seg .he-text .wb");
+  // bar stopped saying where the page came from. The word pressed is the
+  // first one the zone itself says is glossed: a first word the store has
+  // nothing for is a fact about that word, not a failed page — the Aramaic
+  // Targum to Ruth opens on such a word — and this check is about the wire
+  // to the store, so it presses where the zone says the wire answers.
+  await p.evaluate(() => {
+    const w = [...document.querySelectorAll("section.seg .he-text .wb")]
+      .find((x) => (x.querySelector(".g")?.textContent || "").trim()) ||
+      document.querySelector("section.seg .he-text .wb");
+    w.click();
+  });
   await p.waitForTimeout(1000);
   const card = await p.evaluate(() => {
     const h = document.getElementById("hud");

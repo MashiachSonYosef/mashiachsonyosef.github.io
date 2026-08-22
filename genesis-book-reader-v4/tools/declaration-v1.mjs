@@ -81,21 +81,65 @@ export const readingOf = (routeText, definitionText, sourceKey) => {
   const sep = decl.separates_on;
   if (!sep) return { readings: [R], region: "whole", refused: null, unknownMarks };
 
-  // a mark inside a scope is not separating anything: the provider wrote the
-  // scope, and cutting into it would produce runs it never wrote
-  if (sep.scope && !balanced(R)) {
-    return { readings: [R], region: "whole", refused: "unbalanced " + sep.scope, unknownMarks };
+  // A mark inside a scope is not separating anything: the provider wrote the
+  // scope, and cutting into it would produce runs it never wrote. But the two
+  // ways a scope can fail to balance are not the same failure, and the
+  // declaration adjudicates them apart — an earlier form of this function
+  // refused both the same way, which cost the reader every reading in 133
+  // rows whose only flaw was one ')' that opened nothing.
+  //
+  //   closer_with_nothing_open — a ')' at depth zero holds nothing inside it.
+  //     It is inert: it neither opens nor closes a scope, it is one of the
+  //     provider's characters and stays inside whichever piece it fell in.
+  //     Commas outside every OPEN parenthesis separate normally.
+  //   opener_never_closed — from an unclosed '(' onward the scope's extent is
+  //     unknown, so nothing at or after the piece that carries it is
+  //     separated: everything from that piece stands as one. What stands
+  //     before it is untouched by the failure and separates normally.
+  //
+  // Both rules, their evidence and their falsifiers, are the declaration's
+  // (providers.*.refusals.unbalanced_parentheses); this is only the machinery.
+  let sawOrphanCloser = false;
+  let firstUnclosedOpen = -1;
+  if (sep.scope) {
+    const opens = [];
+    for (let i = 0; i < R.length; i += 1) {
+      const c = R[i];
+      if (c === "(") opens.push(i);
+      else if (c === ")") { if (opens.length) opens.pop(); else sawOrphanCloser = true; }
+    }
+    if (opens.length) firstUnclosedOpen = opens[0];
   }
-  const pieces = topSplit(R, sep.mark);
-  if (pieces.length < 2) return { readings: [R], region: "whole", refused: null, unknownMarks };
+
+  // top-level piece boundaries, orphan closers inert
+  const bounds = []; let start = 0, d = 0;
+  for (let i = 0; i < R.length; i += 1) {
+    const c = R[i];
+    if (c === "(") { d += 1; continue; }
+    if (c === ")") { if (d > 0) d -= 1; continue; }
+    if (c === sep.mark && d === 0) { bounds.push([start, i]); start = i + 1; }
+  }
+  bounds.push([start, R.length]);
+
+  let cut = bounds;
+  let caseName = sawOrphanCloser ? "closer_with_nothing_open" : null;
+  if (firstUnclosedOpen >= 0) {
+    // hold everything from the piece carrying the first unclosed opener
+    const at = bounds.findIndex(([a, z]) => firstUnclosedOpen >= a && firstUnclosedOpen < z);
+    cut = bounds.slice(0, at);
+    cut.push([bounds[at][0], R.length]);
+    caseName = "opener_never_closed";
+  }
+  const pieces = cut.map(([a, z]) => R.slice(a, z).trim()).filter(Boolean);
+  if (pieces.length < 2) return { readings: [R], region: "whole", refused: null, unknownMarks, caseName };
 
   // the pieces must put the route back together, or they are not its pieces
   const rejoined = pieces.join(`${sep.mark} `);
   const norm = (x) => x.replace(/\s+/g, " ").trim();
   if (norm(rejoined) !== norm(R)) {
-    return { readings: [R], region: "whole", refused: "the pieces do not rejoin into the route", unknownMarks };
+    return { readings: [R], region: "whole", refused: "the pieces do not rejoin into the route", unknownMarks, caseName };
   }
-  return { readings: pieces, region: "separated", refused: null, unknownMarks };
+  return { readings: pieces, region: "separated", refused: null, unknownMarks, caseName };
 };
 
 // ---- derivation -------------------------------------------------------
