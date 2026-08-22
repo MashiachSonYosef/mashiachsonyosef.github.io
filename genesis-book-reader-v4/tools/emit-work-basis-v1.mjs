@@ -64,9 +64,36 @@ for (const f of readdirSync(DATA).filter((f) => f.endsWith(".csv")).sort()) {
 }
 
 // ---- one row per published work, straight from the plan -------------------
+// And one honesty scan per work: a commentary bin whose printed entries lean
+// on the work-level licence record instead of carrying their own is the
+// banned inheritance shape — truthful only while a work is uniform. The scan
+// reads the bins as they are and counts, so the page can say it plainly until
+// the commentary build carries each row's own rights.
+import { existsSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
+const entryRights = (slug) => {
+  const p = join(arg("zones", "data/zones"), `${slug}-commentary.bin`);
+  if (!existsSync(p)) return null;
+  const bin = JSON.parse(gunzipSync(readFileSync(p)).toString("utf8"));
+  let printed = 0, withoutOwn = 0;
+  for (const U of Object.values(bin.units || {})) {
+    const buckets = [];
+    if (U.words) for (const arr of Object.values(U.words)) buckets.push(...arr);
+    if (U.section) buckets.push(...[].concat(U.section));
+    if (Array.isArray(U)) buckets.push(...U);
+    for (const e of buckets) {
+      if (e.held) continue;
+      if (!(e.text && String(e.text).trim())) continue;
+      printed++;
+      if (!(e.license && String(e.license).trim())) withoutOwn++;
+    }
+  }
+  return { printed_commentary_entries: printed, entries_without_own_licence: withoutOwn };
+};
 const works = {};
 for (const w of plan.works) {
   const held = holdsByWork[w.work_id];
+  const rights = entryRights(w.published_as);
   works[w.published_as] = {
     work_id: w.work_id,
     basis: w.basis,
@@ -78,6 +105,7 @@ for (const w of plan.works) {
     held_commentaries: held ? held.holds.length : 0,
     holds_source: held ? held.source : null,
     holds: held ? held.holds : [],
+    ...(rights || {}),
   };
 }
 

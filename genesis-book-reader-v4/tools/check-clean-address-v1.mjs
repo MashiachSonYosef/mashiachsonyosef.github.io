@@ -2,7 +2,7 @@
 // The front door, and the addresses it opens.
 //
 // The site's own root is a splash: the books that are finished, and nothing
-// else clickable. Each is reached at a clean address — /genesis, /1kings —
+// else clickable. Each is reached at a clean address derived from its work id —
 // which is a small page that hands the reader to the one zone reader and tells
 // it which address to keep. The reader rewrites its bar to that address, which
 // means every path it fetches afterwards has to have been resolved before the
@@ -18,7 +18,7 @@
 //
 import { createServer } from "node:http";
 import { readFile, mkdtemp, mkdir, cp, symlink } from "node:fs/promises";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { tmpdir } from "node:os";
 import { join, dirname, extname, normalize } from "node:path";
@@ -27,6 +27,7 @@ import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
+const plan = JSON.parse(readFileSync(join(K3, "build", "build-plan-v1.json"), "utf8"));
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 
@@ -89,7 +90,6 @@ check("it names the site", /Tabernacle/.test(splash.title), splash.title);
   // published work a reader could open sat off the door entirely. The list is
   // the plan's now, same as the door's own, so this check and the page it
   // checks cannot disagree about what is published by each carrying a copy.
-  const plan = JSON.parse(readFileSync(join(K3, "build", "build-plan-v1.json"), "utf8"));
   const FINISHED = plan.works.map((w) => `/${w.published_as}`);
   // A destination is the address, not what is asked of it: /genesis and
   // /genesis?c=open are the same book, opened two ways. What must not appear
@@ -138,7 +138,10 @@ const titleOf = (book) => {
   const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${book}.bin`))).toString("utf8"));
   return [z.work_he || "", z.work || ""];
 };
-for (const [href, ...expected] of [["/genesis", ...titleOf("genesis")], ["/1kings", ...titleOf("1kings")]]) {
+// The walked addresses come from the same plan as the door, not a typed list
+// — every published work gets its masthead read against its own zone.
+const WALK = plan.works.map((w) => [`/${w.published_as}`, ...titleOf(w.published_as)]);
+for (const [href, ...expected] of WALK) {
   const [heTitle, en] = expected;
   console.log(`— ${href} —`);
   await p.goto(`${B}/`, { waitUntil: "networkidle" });
@@ -216,11 +219,30 @@ for (const [href, ...expected] of [["/genesis", ...titleOf("genesis")], ["/1king
 }
 
 console.log("— the addresses on their own —");
-await p.goto(`${B}/1kings`, { waitUntil: "networkidle" });
+const A0 = `/${plan.works[plan.works.length - 1].published_as}`;
+await p.goto(`${B}${A0}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
 const typed = await p.evaluate(() => ({ addr: location.pathname, secs: document.querySelectorAll("section.seg").length }));
 check("a clean address typed in lands on the reader and stays",
-  typed.addr === "/1kings" && typed.secs > 100, `${typed.addr} · ${typed.secs} sections`);
+  typed.addr === A0 && typed.secs > 100, `${typed.addr} · ${typed.secs} sections`);
+
+// A published address is a promise: every republished address in the history
+// record still answers, as a redirect to where its work now lives.
+{
+  const histPath = join(K3, "data", "address-history-v1.json");
+  if (existsSync(histPath)) {
+    const hist = JSON.parse(readFileSync(histPath, "utf8"));
+    const slugOfWork = new Map(plan.works.map((w) => [w.work_id, w.published_as]));
+    for (const row of hist.republished || []) {
+      const target = `/${slugOfWork.get(row.to_work_id)}`;
+      await p.goto(`${B}/${row.from}`, { waitUntil: "networkidle" });
+      await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+      const r2 = await p.evaluate(() => ({ addr: location.pathname, secs: document.querySelectorAll("section.seg").length }));
+      check(`the republished address /${row.from} still answers, at its work's new address`,
+        r2.addr === target && r2.secs > 100, `/${row.from} → ${r2.addr} · ${r2.secs} sections`);
+    }
+  }
+}
 
 await p.goto(`${B}/genesis-book-reader-v4/zone.html?b=genesis`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
@@ -245,7 +267,9 @@ check("the door offers a commentary entry per book that carries one",
   doorLinks.length >= 2 && doorLinks.every((l) => /\?c=open$/.test(l.href)),
   doorLinks.map((l) => l.href).join(" · ") || "none");
 
-for (const [slug, shape] of [["genesis", "word"], ["1kings", "section"]]) {
+const wordGrain = plan.works.find((w) => w.basis === "SEALED_Y_LEDGER") || plan.works[0];
+const sectionGrain = plan.works.find((w) => w.basis !== "SEALED_Y_LEDGER") || plan.works[plan.works.length - 1];
+for (const [slug, shape] of [[wordGrain.published_as, "word"], [sectionGrain.published_as, "section"]]) {
   await p.goto(`${B}/${slug}?c=open`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
   await p.waitForTimeout(2500);

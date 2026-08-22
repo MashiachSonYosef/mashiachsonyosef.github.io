@@ -193,8 +193,13 @@ const doc = `<!doctype html>
 <title>The Tabernacle</title>
 <meta name="description" content="A Hebrew reader built on a sealed chain: every reading traceable to the record that carries it, and every record to the licence it was released under.">
 <style>
-  :root { --bg:#0b1017; --panel:#111a26; --line:#22303f; --ink:#e8dcc0; --muted:#9fb0c2;
-          --faint:#6b7f93; --gold:#e0b64f; --gold-dim:#b28f3c; }
+  /* colour-role-rule-v1 · the roles are the ledgers and the values are ours.
+     The reader paints the recorded contract — structure gold, base surface
+     purple — and the door had been wearing an invented blue-grey instead,
+     so the way in looked like a different building than the rooms. Same
+     tokens as zone.html, verbatim. */
+  :root { --bg:#0c0910; --panel:#150f1d; --line:#261d33; --ink:#ece1c4; --muted:#a99a80;
+          --faint:#7a6f5c; --gold:#e8c46a; --gold-dim:#9a7f3f; --shani:#c0563f; }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
@@ -217,7 +222,7 @@ const doc = `<!doctype html>
                 text-transform:uppercase; color:var(--faint); }
   a.book .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
   a.book .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
-  a.book .of.inc { margin-top:.2rem; color:#c0563f; }
+  a.book .of.inc { margin-top:.2rem; color:var(--shani); }
   /* The commentary is not a third book. It arrives shut, and what is behind it
      is one entry per book, each going to the book it belongs to — because that
      is where a commentary is read. */
@@ -385,8 +390,8 @@ const redirect = (b) => `<!doctype html>
      question — which is why it must not be the one that wins the race. -->
 <script>var q=location.search.replace(/^[?]/,"");location.replace("/genesis-book-reader-v4/zone.html?b=${b.slug}&clean=${b.slug}"+(q?"&"+q:""));</script>
 <meta http-equiv="refresh" content="0; url=/genesis-book-reader-v4/zone.html?b=${b.slug}&clean=${b.slug}">
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b1017;
-  color:#9fb0c2;font:16px Georgia,serif} a{color:#e0b64f}</style>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0910;
+  color:#a99a80;font:16px Georgia,serif} a{color:#e8c46a}</style>
 </head>
 <body><p>Opening ${esc(b.en)} — <a href="/genesis-book-reader-v4/zone.html?b=${b.slug}&clean=${b.slug}">continue</a></p>
 </body>
@@ -408,6 +413,44 @@ for (const b of books) {
   const r = redirect(b);
   if (HEBREW.test(r)) throw new Error(`${b.slug}: the address page printed a character of the text — refusing output`);
   writeFileSync(join(OUT, b.slug, "index.html"), r);
+}
+
+// A published address is a promise. Where a work has been republished under
+// the address rule, the old address keeps answering — as a plain redirect to
+// where the work now lives — driven by the recorded events in
+// data/address-history-v1.json, never by a list typed here.
+const HISTORY = arg("history", "data/address-history-v1.json");
+if (existsSync(HISTORY)) {
+  const hist = JSON.parse(readFileSync(HISTORY, "utf8"));
+  for (const row of hist.republished || []) {
+    const target = slugOfWork.get(row.to_work_id);
+    if (!target) throw new Error(`address history points at ${row.to_work_id}, which the plan does not publish — refusing a redirect to nowhere`);
+    const b = books.find((x) => x.slug === target);
+    if (!b) throw new Error(`address history target ${target} has no zone behind it`);
+    mkdirSync(join(OUT, row.from), { recursive: true });
+    const moved = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(b.en)} · The Tabernacle</title>
+<link rel="canonical" href="/${target}">
+<!-- This address was published on this site and later republished at
+     /${target}, when its address was rederived from the work id by the
+     address rule (${esc(row.on)}). A reader who kept this address still
+     arrives; the bar is rewritten to where the work lives now. -->
+<script>var q=location.search.replace(/^[?]/,"");location.replace("/${target}"+(q?"?"+q:""));</script>
+<meta http-equiv="refresh" content="0; url=/${target}">
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0910;
+  color:#a99a80;font:16px Georgia,serif} a{color:#e8c46a}</style>
+</head>
+<body><p>${esc(b.en)} now lives at <a href="/${target}">/${target}</a></p>
+</body>
+</html>
+`;
+    if (HEBREW.test(moved)) throw new Error(`${row.from}: the redirect page printed a character of the text — refusing output`);
+    writeFileSync(join(OUT, row.from, "index.html"), moved);
+  }
 }
 
 console.log(`${OUT}/index.html + README.md · ${books.length} books · ${n(totalUnits)} commentary units`);

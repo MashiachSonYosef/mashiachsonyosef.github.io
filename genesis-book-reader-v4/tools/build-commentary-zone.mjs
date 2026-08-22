@@ -104,6 +104,15 @@ for (const [coord, commUnit] of commAt) {
   w.forEach((x) => regionsOf(x).forEach((g) => keysNeeded.add(g.k)));
   words += w.length;
   attached += 1;
+  // Each entry carries its own unit's rights, from its own serve rows — never
+  // the work record's. Licence inheritance from the work level is the banned
+  // shape: truthful only while a work is uniform, and a lie the day it isn't.
+  // A unit whose rows disagree on rights is refused rather than averaged.
+  const ra = rows[0].rights_authority;
+  for (const r of rows) {
+    if (r.rights_authority.normalized_license_class !== ra.normalized_license_class)
+      throw new Error(`ONE_UNIT_TWO_LICENCES · ${commUnit} rows disagree on rights (${ra.normalized_license_class} vs ${r.rights_authority.normalized_license_class}) — refusing to pick`);
+  }
   units[baseAt.get(coord)] = {
     section: [{
       work: 0,
@@ -114,6 +123,10 @@ for (const [coord, commUnit] of commAt) {
       text: w.map((x) => x.s).join(" "),
       state: "PROVEN_EDGE",
       basis: "SEALED_UNIT_COORDINATE_IDENTITY",
+      license: ra.normalized_license_class === "PUBLIC_DOMAIN" ? "Public Domain" : ra.normalized_license_class,
+      license_class: ra.normalized_license_class,
+      license_id: ra.source_row.normalized_license_id,
+      license_basis: "PER_UNIT_SERVE_ROWS",
     }],
   };
 }

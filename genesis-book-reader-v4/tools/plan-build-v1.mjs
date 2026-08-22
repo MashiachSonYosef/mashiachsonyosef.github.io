@@ -114,7 +114,7 @@ for (const l of ledgers) {
     unit_count: Number(l.work.content_unit_count),
     order: l.work.order_path || "",
     address_by_rule: slugOf(id),
-    published_as: (typed[id] || {}).published_as || d.published_as || slugOf(id),
+    published_as: slugOf(id),
     byline: d.byline || "",
     coord_labels: d.coord_labels || "section,paragraph",
     family_en: d.family_en || l.work.public_ref,
@@ -123,6 +123,11 @@ for (const l of ledgers) {
 }
 for (const [id, t] of Object.entries(typed)) {
   const d = descriptors[id] || {};
+  // An address is derived from the work id — the last segment, by the address
+  // rule — never typed. A typed address survived here once and diverged from
+  // the rule the moment it was written. Refuse rather than prefer either.
+  if (t.published_as || d.published_as)
+    throw new Error(`AN_ADDRESS_IS_DERIVED_NOT_TYPED · ${id} carries published_as in ${recordFile} — delete it; the address rule derives "${slugOf(id)}"`);
   works.push({
     work_id: id,
     basis: t.basis || "TYPED_AWAITING_LEDGER",
@@ -135,7 +140,7 @@ for (const [id, t] of Object.entries(typed)) {
     unit_count: Number(t.unit_count),
     order: "",
     address_by_rule: slugOf(id),
-    published_as: t.published_as || slugOf(id),
+    published_as: slugOf(id),
     byline: d.byline || "",
     coord_labels: d.coord_labels || "section,paragraph",
     family_en: d.family_en || t.title_en,
