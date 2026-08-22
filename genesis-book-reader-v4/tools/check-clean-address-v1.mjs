@@ -172,8 +172,8 @@ for (const [href, ...expected] of WALK) {
   // it before reaching for the row, exactly as a finger would.
   await p.evaluate((h) => {
     const a = document.querySelector(`a[href="${h}"]`);
-    const d = a && a.closest("details");
-    if (d) d.open = true;
+    // every enclosing fold — a group's fold can stand inside a family's
+    for (let d = a && a.closest("details"); d; d = d.parentElement && d.parentElement.closest("details")) d.open = true;
   }, href);
   await Promise.all([p.waitForURL(new RegExp(`\\${href}$`), { timeout: 20000 }), p.click(`a[href="${href}"]`)]);
   await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });

@@ -269,6 +269,54 @@ ${subs.join("\n")}
 };
 const shown = books.filter((b) => !seated.has(b.slug));
 
+// ---- the eventual groupings, worn from the first work ---------------------
+// The library's shape is family → work → what is seated with it, and the
+// door wears that shape now, while one family is enough to hold everything
+// published — so a new work lands inside an existing frame instead of
+// reshaping a flat list, and the twenty-eight families the bridge counts
+// arrive by appearing, not by redesign. A family is derived the way every
+// address is — the first segment of the sealed work id — and its head wears
+// the same two-row register as every other head: the family's own Hebrew
+// name first, which is a name and therefore the ledger's to give (none is
+// recorded yet, so the row is the open slot the mastheads use, and the
+// commentary-names emit pattern fills it the day a family-names record
+// lands), the common force-read second, derived from the id segment and
+// never typed. The counts on the fold's face are sums over everything the
+// section holds, seated works included. Few families rest open; at volume
+// the same rule folds them, and the rest state rides on the element so the
+// search box can restore it.
+const famOf = (b) => String(b.work_id || "").split("/")[0];
+const famDisplay = (f) => f.charAt(0).toUpperCase() + f.slice(1);
+const families = [];
+{
+  const byFam = new Map();
+  for (const b of shown) {
+    const f = famOf(b);
+    if (!byFam.has(f)) byFam.set(f, []);
+    byFam.get(f).push(b);
+  }
+  for (const [key, bs] of byFam) families.push({ key, books: bs });
+}
+const FAM_REST_OPEN = families.length <= 3;
+const familySection = (fam) => {
+  const held = fam.books.flatMap((b) => [b, ...(commentaryOf.get(b.slug) || []).map((s) => bySlug.get(s)).filter(Boolean)]);
+  const words = held.reduce((t, x) => t + (x.words || 0), 0);
+  const cUnits = held.reduce((t, x) => t + (x.units || 0), 0);
+  const bits = [`${n(held.length)} book${held.length === 1 ? "" : "s"}`, `${n(words)} words`];
+  if (cUnits) bits.push(`${n(cUnits)} commentary units`);
+  return `    <section class="family">
+      <details class="fam"${FAM_REST_OPEN ? " open data-rest-open" : ""}>
+      <summary>
+        <span class="row"><span class="lab">family</span><span class="he none">none is recorded in the ledger</span></span>
+        <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(famDisplay(fam.key))}</span><span class="of">${esc(bits.join(" \u00b7 "))}</span></span>
+      </summary>
+      <div class="fgroups">
+${fam.books.map(groupFor).join("\n")}
+      </div>
+      </details>
+    </section>`;
+};
+
 const doc = `<!doctype html>
 <html lang="en">
 <head>
@@ -338,6 +386,23 @@ const doc = `<!doctype html>
   a.sub-work:hover { background:rgba(224,182,79,.06); }
   a.sub-work .en { display:block; font-size:.98rem; color:var(--gold-dim); }
   a.sub-work .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }
+  /* A family is the outermost frame, and its head is the same register at
+     family grain: Hebrew name (an open slot until a ledger names one), the
+     force-read below, the sums of what it holds on the fold's face. Nested
+     folds: the family folds its groups; each group folds its record lines. */
+  section.family { }
+  details.fam > summary { list-style:none; cursor:pointer; padding:.3rem .15rem .45rem; }
+  details.fam > summary::-webkit-details-marker { display:none; }
+  details.fam > summary .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
+  details.fam > summary .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--faint); }
+  details.fam > summary .en { font-size:1.15rem; font-variant:small-caps; letter-spacing:.14em; color:var(--gold); }
+  details.fam > summary .he.none { font-family:Georgia,serif; font-size:.85rem; font-style:italic; color:var(--faint); }
+  details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }
+  details.fam > summary > .row:first-child::before { content:"\u25b8"; color:var(--gold-dim); font-size:.8rem; }
+  details.fam[open] > summary > .row:first-child::before { content:"\u25be"; }
+  details.fam > summary:hover .en { color:var(--shesh); }
+  .fgroups { display:flex; flex-direction:column; gap:.55rem; }
   /* One quiet fold per group. Its face is the summary line built above —
      each folded thing named with its count — so collapsed is shorter, never
      blinder. Closed is the resting state; the search box opens it when a
@@ -373,7 +438,7 @@ const doc = `<!doctype html>
       aria-label="find a book" oninput="sift()">
   </form>
   <nav class="books">
-${shown.map(groupFor).join("\n")}
+${families.map(familySection).join("\n")}
   </nav>
   <script>
   // Finding is the search box's job, not a record's. A book has one name row
@@ -402,6 +467,15 @@ ${shown.map(groupFor).join("\n")}
       // the groups back to rest.
       var d = g.el.querySelector("details.fold");
       if (d) d.open = !!q && !g.el.hidden;
+    });
+    // The family frame follows its contents: hidden when every group inside
+    // is, opened by a live match, restored to its resting state — carried on
+    // the element itself — when the box empties.
+    [].slice.call(document.querySelectorAll("section.family")).forEach(function (fs) {
+      var any = [].slice.call(fs.querySelectorAll(".workgroup")).some(function (g) { return !g.hidden; });
+      fs.hidden = !!q && !any;
+      var d = fs.querySelector("details.fam");
+      if (d) d.open = q ? any : d.hasAttribute("data-rest-open");
     });
   }
   function go(e) {
