@@ -4,7 +4,7 @@
 # The browser checks need the zone served: python3 -m http.server 8899 in this
 # directory. check-nothing-invented reads the corpus off disk instead.
 cd "$(dirname "$0")/.." || exit 1
-URL="${1:-http://127.0.0.1:8899/zone.html?b=1kings}"
+URL="${1:-http://127.0.0.1:8899/zone.html?b=genesis}"
 pass=0; fail=0; skip=0; failed=(); skipped=()
 for t in tools/check-*.mjs; do
   name=$(basename "$t" .mjs)

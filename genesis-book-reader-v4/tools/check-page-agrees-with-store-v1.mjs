@@ -30,7 +30,8 @@ const tmp = mkdtempSync(join(tmpdir(), "agrees-"));
 // The zone names the gloss table it was projected from. If the store on disk
 // cannot reproduce that table, the disagreement is between this store and this
 // zone — and the check should say which, not just count moved words.
-for (const book of ["genesis", "1kings"]) {
+const planPA = JSON.parse(readFileSync(join(K3, "build", "build-plan-v1.json"), "utf8"));
+for (const book of planPA.works.map((w) => w.published_as)) {
   console.log(`— ${book} —`);
   const zonePath = join(K3, "data", "zones", `${book}.bin`);
   const out = join(tmp, `${book}-reprojected.bin`);

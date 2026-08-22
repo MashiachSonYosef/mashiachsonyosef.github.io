@@ -95,8 +95,20 @@ const glyphsInLiterals = (src, isJson) => {
 // generated, never typed — so a carried title is scrubbed before the scan and
 // anything left is a typed character. zone.html carries none at all: its text
 // arrives from data at runtime, and the scrub removes nothing from it.
-const SERVED = ["zone.html", "deploy-root/index.html", "deploy-root/genesis/index.html",
-  "deploy-root/1kings/index.html", "deploy-root/i-kings/index.html"].filter((f) => existsSync(join(K3, f)));
+const SERVED = ["zone.html"];
+{
+  // Every address page the door emits, found by walking, never by naming —
+  // a stub added for a new work or a republished address joins the scan the
+  // moment it exists.
+  const dr = join(K3, "deploy-root");
+  if (existsSync(dr)) {
+    if (existsSync(join(dr, "index.html"))) SERVED.push("deploy-root/index.html");
+    for (const d of readdirSync(dr, { withFileTypes: true })) {
+      if (d.isDirectory() && existsSync(join(dr, d.name, "index.html")))
+        SERVED.push(`deploy-root/${d.name}/index.html`);
+    }
+  }
+}
 check("there are served files to read", SERVED.length > 0, SERVED.join(" ") || "none found");
 const { gunzipSync } = await import("node:zlib");
 const carriedTitles = [];

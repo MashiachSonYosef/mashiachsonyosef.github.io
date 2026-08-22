@@ -82,6 +82,8 @@ const licenseName = (posture) => {
   if (!v) return "License unrecorded";
   if (v.startsWith("cc0")) return "CC0";
   if (/_nc(?:_|$)/u.test(v)) return /_sa(?:_|$)/u.test(v) ? "CC BY-NC-SA" : "CC BY-NC";
+  // Same clause as zone.html: a chosen CC BY outranks a declined gfdl it mentions.
+  if (v.startsWith("cc_by") && !v.startsWith("cc_by_sa")) return "CC BY";
   if (v.includes("by_sa") || v.includes("gfdl")) return "CC BY-SA";
   if (v.startsWith("public_domain")) return "Public Domain";
   if (v.startsWith("cc_by") || v.includes("wordnet")) return "CC BY";

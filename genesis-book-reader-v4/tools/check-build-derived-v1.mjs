@@ -57,7 +57,7 @@ if (!existsSync(join(K3, "build", ".check-plan.json"))) {
 const plan = JSON.parse(readFileSync(join(K3, "build", ".check-plan.json"), "utf8"));
 
 console.log(`— the plan derives, and says what from —`);
-check("  the plan tool ran to a plan", planCode === 0 || plan.published_but_not_planned.length > 0,
+check("  the plan tool ran to a plan", planCode === 0 || (plan.in_the_work_directory_and_not_planned || []).length > 0,
   `${plan.works.length} works · ${plan.planned_from.ledgers.length} from a ledger`);
 for (const w of plan.works)
   check(`  ${w.work_id} carries a basis and its source`,
