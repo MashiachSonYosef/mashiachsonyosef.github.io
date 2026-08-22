@@ -926,6 +926,10 @@
     if (!v) return "License unrecorded";
     if (v.startsWith("cc0")) return "CC0";
     if (/_nc(?:_|$)/u.test(v)) return /_sa(?:_|$)/u.test(v) ? "CC BY-NC-SA" : "CC BY-NC";
+    // A posture that CHOSE CC BY from a dual offering still mentions the
+    // licence it declined; the chosen prefix must win before any substring
+    // scan, or the chip adds a ShareAlike the source never imposed.
+    if (v.startsWith("cc_by") && !v.startsWith("cc_by_sa")) return "CC BY";
     if (v.includes("by_sa") || v.includes("gfdl")) return "CC BY-SA";
     if (v.startsWith("public_domain")) return "Public Domain";
     if (v.startsWith("cc_by") || v.includes("wordnet")) return "CC BY";
@@ -978,11 +982,15 @@
   // along. So the proof moves down to join them and stops standing between the
   // reader and the text. Nothing is dropped — the same sentence is one press
   // away, and the footer block is unchanged.
+  const renderedWordTotal = (zone.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
   const receiptsText =
-    `${zone.counts.words.toLocaleString()} words · ${zone.counts.sections.toLocaleString()} sections · ` +
+    `${renderedWordTotal.toLocaleString()} words · ${zone.counts.sections.toLocaleString()} sections · ` +
+    `${renderedWordTotal !== zone.counts.words
+      ? `the artifact\u2019s counts field says ${zone.counts.words.toLocaleString()} \u2014 it counts the chain\u2019s c0 rows where the words stand at W grain; its word-grain receipts await the corpus-side rebuild \u00b7 `
+      : ""}` +
     (wk ? (/RESIDENT_SERVE/.test(wk.route || "")
-      ? `served id-by-id from the seal-verified terminal reader artifacts (${wk.ids_walked.toLocaleString()} ids, every one FOUND_EXACT; the installed sealed reader re-answered ${wk.sealed_oracle.report.sampled} sampled ids ${wk.sealed_oracle.report.field_exact}/${wk.sealed_oracle.report.sampled} field-exact) · rights ride per occurrence from the chain · `
-      : `walked word-by-word through the installed sealed terminal reader (${wk.ids_walked.toLocaleString()} ids, every one FOUND_EXACT) · rights ride per occurrence from the chain · `) : `Hebrew text: ${ac.hebrew_version} via Sefaria, license ${ac.hebrew_license_seen} (seen live on every payload) · `) +
+      ? `served id-by-id from the seal-verified terminal reader artifacts (${(wk.found_exact ?? wk.ids_walked).toLocaleString()} of ${wk.ids_walked.toLocaleString()} ids FOUND_EXACT${wk.found_exact !== undefined && wk.found_exact !== wk.ids_walked ? `, the rest held from the Hebrew reader by the chain\u2019s own rights and script axes` : ""}; the installed sealed reader re-answered ${wk.sealed_oracle.report.sampled} sampled ids ${wk.sealed_oracle.report.field_exact}/${wk.sealed_oracle.report.sampled} field-exact) · rights ride per occurrence from the chain · `
+      : `walked word-by-word through the installed sealed terminal reader (${(wk.found_exact ?? wk.ids_walked).toLocaleString()} of ${wk.ids_walked.toLocaleString()} ids FOUND_EXACT) · rights ride per occurrence from the chain · `) : `Hebrew text: ${ac.hebrew_version} via Sefaria, license ${ac.hebrew_license_seen} (seen live on every payload) · `) +
     `${zone.counts.verified_units} of ${zone.counts.sections} sections verified word-for-word in count against the sealed corpus allocation` +
     `${zone.counts.drifted_units ? `; ${zone.counts.drifted_units} drift from it and are marked` : ""} · ` +
     `${zone.counts.glossed_words ? zone.counts.glossed_words.toLocaleString() + " words carry their oldest-sourced catalog route as an English gloss (exact spellings only — unmatched forms stay bare) · " : ""}` +
@@ -996,7 +1004,13 @@
   {
     const meta = document.getElementById("meta");
     meta.replaceChildren();
-    meta.append(`${zone.counts.words.toLocaleString()} words in ${zone.counts.sections.toLocaleString()} ${zone.counts.sections === 1 ? "section" : "sections"}, served from the sealed chain. `);
+    // The count printed is the count rendered — summed from the sections this
+    // page is about to draw, never read off a receipt field. Where the
+    // artifact's own counts field disagrees (the chain counts c0 rows where
+    // the words stand at W grain), the receipts drawer says so; the masthead
+    // never asserts a number the page does not show.
+    const renderedWords = (zone.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
+    meta.append(`${renderedWords.toLocaleString()} words in ${zone.counts.sections.toLocaleString()} ${zone.counts.sections === 1 ? "section" : "sections"}, served from the sealed chain. `);
     const more = document.createElement("button");
     more.type = "button"; more.className = "receipts-btn";
     more.textContent = "receipts";
