@@ -129,16 +129,19 @@ const framed = await p.evaluate(() => {
 });
 check("the site's own name carries no Hebrew that nothing recorded",
   framed.inSiteName === 0, `${framed.inSiteName} found`);
-// The door prints a book's own title exactly as its zone carries it — the
-// ledger's word — and nothing else in Hebrew. Every Hebrew string on the door
-// must be one of the zones' own titles; a work whose ledger names none shows
-// the open slot in the masthead's words.
+// The door prints Hebrew from exactly two records and nothing else: a book's
+// own title as its zone carries it, and a family's name as the family ledger
+// gives it (each token store-verified by check-family-ledger-v1). Anything
+// outside both sets is a character nobody recorded. An earlier form of this
+// check knew only the zones — the family ledger's names are records too.
 {
   const carried = new Set(plan.works.map((w) => titleOf(w.published_as)[0]).filter(Boolean));
+  const L = JSON.parse(readFileSync(join(K3, "data", "family-ledger-v1.json"), "utf8"));
+  for (const lf of L.families || []) if (lf.he) { carried.add(lf.he); for (const t of lf.he_tokens || []) carried.add(t.s); }
   const strays = framed.hebrews.filter((x) => !carried.has(x.t));
-  check("every Hebrew on the door is a title a zone carries, and nothing else",
+  check("every Hebrew on the door is a zone's title or the family ledger's name, and nothing else",
     strays.length === 0,
-    strays.length ? strays.map((x) => x.t).join(" · ") : `${framed.hebrews.length} titles, all carried`);
+    strays.length ? strays.map((x) => x.t).join(" · ") : `${framed.hebrews.length} names, all recorded`);
   const unnamedWorks = plan.works.filter((w) => !titleOf(w.published_as)[0]).length;
   check("and a work whose ledger names no title shows the open slot",
     framed.unnamed.length >= Math.min(unnamedWorks, 1) && framed.unnamed.every((t) => /none is recorded/.test(t)),

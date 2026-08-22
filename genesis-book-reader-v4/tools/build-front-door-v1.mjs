@@ -115,6 +115,12 @@ const titleReading = (tokens, en) => {
 // happens to be built would silently shrink the library to this lane's
 // output, and silent truncation reads as coverage.
 const ATLAS = JSON.parse(readFileSync(arg("atlas", "data/corpus-atlas-v1.json"), "utf8"));
+// The family ledger: the synthesis lane's ruling over the bridge's family
+// VALUES — authored on the owner's authorization, checked by
+// check-family-ledger-v1, and dying the day a corpus-side family record
+// lands. The door derives its sections from it; a bridge value the ledger
+// does not rule surfaces verbatim in its own section, never swallowed.
+const LEDGER = JSON.parse(readFileSync(arg("family-ledger", "data/family-ledger-v1.json"), "utf8"));
 const BOOKS = plan.works.map((w) => ({
   slug: w.published_as, zone: `${w.published_as}.bin`,
   work_id: w.work_id, address_by_rule: w.address_by_rule, basis: w.basis,
@@ -273,23 +279,16 @@ ${subs.join("\n")}
       </details>
     </div>`;
 };
-// ---- the library, whole ---------------------------------------------------
-// The door's frame is the atlas: every family the bridge records, every work
-// inside it, built or not — so the organization exists before the books do,
-// and a new work lands inside a section that was already standing. Three
-// kinds of row live in a family: a built base work renders its full group; a
-// built work seated with its base elsewhere renders a linked row here saying
-// where it reads; a work not yet built renders a quiet unlinked row — its
-// id's own last segment (the bridge titles some works inside their ids, and
-// an id is a record) and its measured size. Nothing links to nothing.
-//
-// The family head's English row says exactly what it is: "recorded in the
-// bridge as", the raw corpus_family value, verbatim — underscores, review
-// states, and one literal pipe included — because the column is a working
-// ledger and the door's job is to show it, not to comb it. The Hebrew row
-// stays the open slot until a family-names record exists. Families holding
-// a built book rest open; the rest rest folded, and the resting state rides
-// on the element for the search box to restore.
+// ---- the library, whole, on the ledger's shelves --------------------------
+// The atlas says what exists; the ledger says where it stands and what each
+// shelf is called. A canonical family pools every bridge value the ledger
+// folds into it, renders its Hebrew name where the ledger gives one (each
+// keyed token verified against the store; the gloss under it is the store's
+// oldest displayable reading, the same rule as every title), keeps the open
+// slot where it does not, and says on the fold's inside which bridge values
+// it holds — the receipt of the fold. The two review values the corpus lane
+// left open stand together in their own held section, and any bridge value
+// the ledger has not ruled surfaces verbatim in a section of its own.
 const byWorkId = new Map(books.map((b) => [b.work_id, b]));
 for (const b of books) {
   let found = false;
@@ -298,13 +297,33 @@ for (const b of books) {
 }
 const seatedBaseOf = new Map();   // seated slug -> base book
 for (const [base, comms] of commentaryOf) for (const c of comms) seatedBaseOf.set(c, bySlug.get(base));
-const families = Object.entries(ATLAS.families).map(([key, f]) => {
-  const rows = f.works.map((w) => ({ atlas: w, book: byWorkId.get(w.id) || null }));
-  const built = rows.filter((r) => r.book).length;
-  return { key, rows, built, works: f.works.length, units: f.units, c0_rows: f.c0_rows };
+
+const valueOwner = new Map();     // bridge value -> ledger family id | "(awaiting)"
+for (const f of LEDGER.families) for (const m of f.members) valueOwner.set(m, f.id);
+for (const m of LEDGER.awaiting.members) valueOwner.set(m, "(awaiting)");
+
+const poolOf = (values) => {
+  const rows = [];
+  for (const v of values) {
+    const af = ATLAS.families[v];
+    if (!af) continue;
+    for (const w of af.works) rows.push({ atlas: w, book: byWorkId.get(w.id) || null, value: v });
+  }
+  rows.sort((a, b) => a.atlas.c0_first - b.atlas.c0_first);
+  return rows;
+};
+const sums = (rows) => ({
+  works: rows.length,
+  built: rows.filter((r) => r.book).length,
+  units: rows.reduce((t, r) => t + r.atlas.units, 0),
 });
-// built sections first, then by the bridge's own weight
-families.sort((a, b) => (b.built - a.built) || (b.c0_rows - a.c0_rows));
+const families = LEDGER.families.map((lf) => {
+  const present = lf.members.filter((m) => ATLAS.families[m]);
+  return { ledger: lf, members: present, rows: poolOf(present) };
+}).filter((f) => f.rows.length);
+const unruled = Object.keys(ATLAS.families).filter((v) => !valueOwner.has(v));
+const awaitingRows = poolOf(LEDGER.awaiting.members.filter((m) => ATLAS.families[m]));
+
 const atlasRow = (w) => {
   const segs = w.id.split("/");
   const name = segs[segs.length - 1];
@@ -315,27 +334,76 @@ const seatedRow = (b) => {
   const base = seatedBaseOf.get(b.slug);
   return `      <a class="atlas-row built" href="/${b.slug}"><span class="aw">${esc(b.en)}</span><span class="au">its own book · seated with ${esc(base ? base.en : "its base")} — reads there · ${n(b.sections)} sections</span></a>`;
 };
+const rowsHtml = (rows) => rows.map((r) => {
+  if (!r.book) return atlasRow(r.atlas);
+  if (seated.has(r.book.slug)) return seatedRow(r.book);
+  return groupFor(r.book);
+});
+const famHeadHe = (lf) => {
+  if (!lf.he) return `<span class="he none">none is recorded in the ledger</span>`;
+  const key = (lf.he_tokens || []).map((t) => t.k).filter(Boolean)[0] || null;
+  const gloss = key ? (STORE.glossFor(key).text || "") : "";
+  return `<span class="fam-he" data-named-by="family-ledger-v1#${esc(lf.id)}"><span class="he" lang="he" dir="rtl">${esc(lf.he)}</span>${gloss ? `<span class="g">${esc(gloss)}</span>` : ""}</span>`;
+};
 const familySection = (fam) => {
-  const bits = [`${n(fam.works)} work${fam.works === 1 ? "" : "s"}`];
-  if (fam.built) bits.push(`${n(fam.built)} built`);
-  bits.push(`${n(fam.units)} units`);
-  const body = fam.rows.map((r) => {
-    if (!r.book) return atlasRow(r.atlas);
-    if (seated.has(r.book.slug)) return seatedRow(r.book);
-    return groupFor(r.book);
-  });
+  const lf = fam.ledger;
+  const s = sums(fam.rows);
+  const bits = [`${n(s.works)} work${s.works === 1 ? "" : "s"}`];
+  if (s.built) bits.push(`${n(s.built)} built`);
+  bits.push(`${n(s.units)} units`);
+  const reading = titleReading(lf.he_tokens || [], lf.en);
+  const foldLines = [`      <span class="of fold-line">${esc(lf.what)}</span>`];
+  foldLines.push(`      <span class="of slots fold-line">the bridge records ${fam.members.length === 1 ? "this shelf as" : "these as"}: ${esc(fam.members.join(" · "))} — folded here by ${esc(LEDGER.schema_version)}, which dies the day the corpus rules the column</span>`);
   return `    <section class="family">
-      <details class="fam"${fam.built ? " open data-rest-open" : ""}>
+      <details class="fam"${s.built ? " open data-rest-open" : ""}>
       <summary>
-        <span class="row"><span class="lab">family</span><span class="he none">none is recorded in the ledger</span></span>
-        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en">${esc(fam.key)}</span><span class="of">${esc(bits.join(" \u00b7 "))}</span></span>
+        <span class="row"><span class="lab">family</span>${famHeadHe(lf)}</span>
+        <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(lf.en)}</span>${reading
+          ? `<span class="chip" title="${esc(reading.label)}${reading.year ? ` · ${esc(reading.year)}` : ""}">${esc(reading.lic)}</span>` : ""}<span class="of">${esc(bits.join(" · "))}</span></span>
       </summary>
       <div class="fgroups">
-${body.join("\n")}
+${foldLines.join("\n")}
+${rowsHtml(fam.rows).join("\n")}
       </div>
       </details>
     </section>`;
 };
+const awaitingSection = () => {
+  if (!awaitingRows.length) return "";
+  const s = sums(awaitingRows);
+  return `    <section class="family">
+      <details class="fam">
+      <summary>
+        <span class="row"><span class="lab">held for review</span><span class="he none">the corpus lane&#8217;s own review markers, standing open</span></span>
+        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en">${esc(LEDGER.awaiting.members.join(" · "))}</span><span class="of">${n(s.works)} works · ${n(s.units)} units</span></span>
+      </summary>
+      <div class="fgroups">
+      <span class="of fold-line">${esc(LEDGER.awaiting.why)}</span>
+${rowsHtml(awaitingRows).join("\n")}
+      </div>
+      </details>
+    </section>`;
+};
+const unruledSection = (v) => {
+  const rows = poolOf([v]);
+  const s = sums(rows);
+  return `    <section class="family">
+      <details class="fam">
+      <summary>
+        <span class="row"><span class="lab">family</span><span class="he none">none is recorded in the ledger</span></span>
+        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en">${esc(v)}</span><span class="of">${n(s.works)} works · ${n(s.units)} units · the family ledger has not ruled this value</span></span>
+      </summary>
+      <div class="fgroups">
+${rowsHtml(rows).join("\n")}
+      </div>
+      </details>
+    </section>`;
+};
+const sectionsHtml = [
+  ...families.map(familySection),
+  awaitingSection(),
+  ...unruled.map(unruledSection),
+].filter(Boolean);
 
 const doc = `<!doctype html>
 <html lang="en">
@@ -419,6 +487,10 @@ const doc = `<!doctype html>
   details.fam > summary .en { font-size:1.15rem; font-variant:small-caps; letter-spacing:.14em; color:var(--gold);
     overflow-wrap:anywhere; min-width:0; }
   details.fam > summary .he.none { font-family:Georgia,serif; font-size:.85rem; font-style:italic; color:var(--faint); }
+  details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
+  details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
+    font-size:1.3rem; color:var(--shesh); }
+  details.fam > summary .fam-he .g { font-size:.7rem; color:var(--muted); }
   details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }
   details.fam > summary > .row:first-child::before { content:"\u25b8"; color:var(--gold-dim); font-size:.8rem; }
   details.fam[open] > summary > .row:first-child::before { content:"\u25be"; }
@@ -470,7 +542,7 @@ const doc = `<!doctype html>
       aria-label="find a book" oninput="sift()">
   </form>
   <nav class="books">
-${families.map(familySection).join("\n")}
+${sectionsHtml.join("\n")}
   </nav>
   <script>
   // Finding is the search box's job, not a record's. A book has one name row
@@ -638,6 +710,7 @@ const scrubTitles = (text) => {
   // middle and orphan the remainder as Hebrew nobody owns.
   const known = [];
   for (const b of books) if (b.he) known.push(b.he);
+  for (const lf of LEDGER.families) if (lf.he) for (const t of lf.he_tokens) known.push(t.s);
   for (const f of Object.values(ATLAS.families))
     for (const w of f.works) if (HEBREW.test(w.id)) known.push(esc(w.id.split("/").pop()));
   known.sort((a, b) => b.length - a.length);

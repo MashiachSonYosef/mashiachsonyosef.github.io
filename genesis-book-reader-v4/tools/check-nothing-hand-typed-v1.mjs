@@ -144,6 +144,14 @@ let ATLAS_NAMES = [];
     }
     ATLAS_NAMES.sort((a, b) => b.length - a.length);
   }
+  // and the family ledger's Hebrew names — records of the synthesis lane's
+  // own ledger, verified against the store by check-family-ledger-v1
+  const lp = join(K3, "data", "family-ledger-v1.json");
+  if (existsSync(lp)) {
+    const L = JSON.parse(readFileSync(lp, "utf8"));
+    for (const lf of L.families || []) if (lf.he) for (const t of lf.he_tokens || []) ATLAS_NAMES.push(t.s);
+    ATLAS_NAMES.sort((a, b) => b.length - a.length);
+  }
 }
 for (const f of SERVED) {
   let src = readFileSync(join(K3, f), "utf8");
