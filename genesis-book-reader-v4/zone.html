@@ -113,8 +113,7 @@
     font-variant: normal; text-transform: none; }
   header.top h1 .en-t { color: var(--gold); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); }
-  #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 62rem; }
-  #basisLine .inc, #holdsLine .inc, #rightsLine .inc { color: var(--shani); font-variant: small-caps; letter-spacing: 0.08em; margin-right: 0.4rem; }
+  #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; max-width: 62rem; }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
   .receipts-btn { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--link); font: inherit; font-size: 0.8rem; cursor: pointer; padding: 0; }
@@ -841,12 +840,13 @@
   </h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
-  <!-- What this build stands on, said where a reader stands. A sealed work and
-       a typed-basis work used to wear the same face here, and Y's held
-       commentaries appeared nowhere at all — the incompleteness was confessed
-       in the repo and invisible on the page. These lines are filled from
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
        data/work-basis-v1.json, which a tool derives from the build plan and
-       the hold ledgers; nothing here is typed into this file. -->
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
   <p id="basisLine" hidden></p>
   <p id="holdsLine" hidden></p>
   <p id="rightsLine" hidden></p>
@@ -1011,25 +1011,21 @@
     });
     meta.append(more, full);
   }
-  // The basis this build stands on, and what the Y lane is holding back from
-  // this work, printed where a reader stands rather than confessed only in the
-  // repo. Every value is read from data/work-basis-v1.json — derived by
-  // tools/emit-work-basis-v1.mjs from the build plan and the hold ledgers —
-  // and from the zone's own y_ledger record. Nothing on these lines is typed
-  // into this page. A work whose coordinates are typed says so, in the open,
-  // to the reader it is serving; commentary the ledger holds is counted and
-  // named rather than silently absent.
+  // What this build stands on, and which slots stand open — said in the same
+  // quiet register as the rest of the masthead. The frame is recorded as "a
+  // thing a check may look for and report · never grounds to declare a work
+  // deficient", so nothing here shouts: an open slot is named, in the voice
+  // of "none is recorded in the ledger", and it fills when its record lands.
+  // Every value is read from data/work-basis-v1.json, derived from the plan
+  // and the hold ledgers; nothing on these lines is typed into this page.
   (async () => {
     let wb = null;
     try { wb = await fetch(`${ROOT}data/work-basis-v1.json`).then((r) => (r.ok ? r.json() : null)); } catch { wb = null; }
     const entry = wb && wb.works && wb.works[BOOK];
     if (!entry) return;
     const basisEl = document.getElementById("basisLine");
-    const mark = () => Object.assign(document.createElement("span"), { className: "inc", textContent: "incomplete" });
     if (entry.basis === "TYPED_AWAITING_LEDGER") {
-      basisEl.append(mark(),
-        `this build's coordinates are typed by hand — c0 ${Number(entry.c0_first).toLocaleString()}–${Number(entry.c0_last).toLocaleString()}, `
-        + `${Number(entry.unit_count).toLocaleString()} units — awaiting this work's Y ledger. When it lands, the build refuses to run until the typed numbers are deleted.`);
+      basisEl.append(`awaiting its Y ledger — until that lands, this build\u2019s coordinates stand typed in the open: c0 ${Number(entry.c0_first).toLocaleString()}\u2013${Number(entry.c0_last).toLocaleString()}, ${Number(entry.unit_count).toLocaleString()} units. The ledger\u2019s arrival retires them; the build refuses to run while both exist.`);
       basisEl.hidden = false;
     } else if (entry.basis === "SEALED_Y_LEDGER") {
       basisEl.append(`built from the sealed Y ledger — ${entry.y_fixture || "fixture"}${zone.emitted_from.y_ledger?.status ? ` · ${zone.emitted_from.y_ledger.status}` : ""}`);
@@ -1037,21 +1033,14 @@
     }
     if (entry.held_commentaries > 0) {
       const holdsEl = document.getElementById("holdsLine");
-      holdsEl.append(mark(),
-        `${entry.held_commentaries} commentary identities are recorded for this work and held by the Y ledger — `
+      holdsEl.append(`${Number(entry.held_commentaries).toLocaleString()} commentary slots stand open \u2014 `
         + entry.holds.map((h) => h.title).join(", ")
-        + ` — none is shown until its exact work id, body, and attachment are proven (${entry.holds_source}).`);
+        + ` \u2014 each fills when its exact work id, body, and attachment are proven (${entry.holds_source}).`);
       holdsEl.hidden = false;
     }
-    // Printed commentary whose licence rides on the work-level record instead
-    // of on each entry is the banned inheritance shape — truthful today only
-    // because the work is uniform. Until the commentary build carries each
-    // row's own rights, the page says so where the text is read.
     if (entry.entries_without_own_licence > 0) {
       const el = document.getElementById("rightsLine");
-      el.append(mark(),
-        `${Number(entry.entries_without_own_licence).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} printed commentary entries carry their licence on the work-level record, not on the entry — `
-        + `the licence shown is real, but per-entry receipts await the commentary build.`);
+      el.append(`${Number(entry.entries_without_own_licence).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} printed commentary entries await their own licence receipts from the commentary build \u2014 the work-level licence shown for them is real, and the per-entry grain fills when that build runs.`);
       el.hidden = false;
     }
   })();
