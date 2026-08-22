@@ -27,6 +27,7 @@
 import { writeFileSync, readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync } from "node:zlib";
+import { fileURLToPath } from "node:url";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
 import { K_RULE_ID, K_RULE_TEXT } from "./k-normalization-v1.mjs";
 import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
@@ -205,7 +206,7 @@ const zone = {
         `served by the website-lane resident reader over the sealed artifacts (verify-once); ` +
         `${serve.provenance.sealed_oracle.report.field_exact}/${serve.provenance.sealed_oracle.report.sampled} sampled ids field-exact against the sealed CLI oracle` +
         (serve.held ? `; ${serve.held} rows the chain marks SCRIPT-UNRESOLVED render held (dimmed) exactly as the chain rules them` : ""),
-      module: { path: "tools/mishkan-serve-v1.mjs over sealed codec + indexes", sha256: sha256File(new URL("./mishkan-serve-v1.mjs", import.meta.url).pathname) },
+      module: { path: "tools/mishkan-serve-v1.mjs over sealed codec + indexes", sha256: sha256File(fileURLToPath(new URL("./mishkan-serve-v1.mjs", import.meta.url))) },
       pointer: { path: "gen-8 pointer copy", sha256: serve.provenance.sealed_oracle.pointer_sha256 },
     },
     identity_oracle: {

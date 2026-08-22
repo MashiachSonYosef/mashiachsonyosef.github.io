@@ -62,6 +62,14 @@ SPAN_ARG=()
 if [ -n "$SPANS" ]; then SPAN_ARG=(--spans "$SPANS"); fi
 mkdir -p "$SERVES" build data/zones site/data/zones
 
+# A clean checkout already carries each admitted successor at its published
+# path. Stage those exact pinned bytes before the ordinary zone build can
+# replace them; after construction they are reinstalled generically from the
+# binding. The stage is deleted by a successful install.
+node tools/install-pinned-zone-successors-v1.mjs --mode stage \
+  --bindings data/front-door-three-count-bindings-v1.json \
+  --zones data/zones --stage build/pinned-zone-successors-v1
+
 # The plan's rows, held for the stages that join works to each other.
 declare -A PUB TITLE TITLE_HE YFIX BYLINE LABELS LINKS FAMILY RANGE
 WORKS=()
@@ -107,6 +115,10 @@ for W in "${WORKS[@]}"; do
     ${EXTRA[@]+"${EXTRA[@]}"} \
     ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out "data/zones/${PUB[$W]}.bin"
 done
+
+node tools/install-pinned-zone-successors-v1.mjs --mode install \
+  --bindings data/front-door-three-count-bindings-v1.json \
+  --zones data/zones --stage build/pinned-zone-successors-v1
 
 echo "── 5 · commentary, served from the same chain as the text ──────────────"
 # Coordinate identity is symmetric, so the plan emits each pair both ways and
@@ -162,9 +174,16 @@ echo "── 7 · the front door, from the zones ──────────�
 # nothing was going to notice that it should. It is now read out of the zones,
 # so a book or a commentary that exists is a book or a commentary that is
 # offered.
-node tools/build-front-door-v1.mjs --zones data/zones --out deploy-root
+# The count binding also pins any admitted zone successor. If an earlier build
+# step recreates different bytes, the door refuses here; a successor cannot be
+# silently reverted or replaced without an explicit binding update.
+node tools/build-front-door-v1.mjs --zones data/zones --out deploy-root \
+  --atlas data/corpus-atlas-v1.json \
+  --physical-handoff data/bezelal-front-door-counts-handoff-v1.json \
+  --count-bindings data/front-door-three-count-bindings-v1.json
 cp deploy-root/index.html site/index.html
 cp deploy-root/README.md site/README.md
+cp deploy-root/front-door-counts-receipt-v1.json site/front-door-counts-receipt-v1.json
 for W in "${WORKS[@]}"; do
   book="${PUB[$W]}"
   [ -f "deploy-root/$book/index.html" ] && mkdir -p "site/$book" \

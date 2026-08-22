@@ -7,13 +7,29 @@ at a time, and the reader chooses.
 
 Live site: https://mashiachsonyosef.github.io/
 
+## Audited corpus counts
+
+- **3,081,406,645 current physical C0 rows**
+- **97,901,052 physically backed C0 rows on named work/unit shelves**
+- **45,954 rendered COMPspan records in 5 built zones**
+
+The rendered count is a current-zone snapshot and a different grain: it is
+recomputed from one record per COMPspan actually carried by the built-zone
+bytes and is not a C0-row count. A future zone successor changes the rendered
+snapshot automatically on the next build; no typed count needs editing.
+
+The logical plan names 109,391,214 C0 rows; 11,490,162
+of those plan rows are not physical. Another 2,983,505,593 physical C0
+rows are queryable but not yet mapped to a named work/unit shelf. Exact source
+hashes and per-zone rendered counts are in `front-door-counts-receipt-v1.json`.
+
 ## What is published
 
-- **Genesis** — 1,533 sections, 17,805 words, with 612 commentary units from 81 works — 181 on the word it opens by quoting · 323 on the section, nothing places them closer · 108 named, with no text in the record
-- **I Kings** — 817 sections, 11,368 words, with 817 commentary units from 1 work — 817 on the section by coordinate
-- **Ruth** — 85 sections, 1,132 words, with 85 commentary units from 1 work — 85 on the section by coordinate
-- **Aramaic Targum to Ruth** — 85 sections, 2,139 words, with 85 commentary units from 1 work — 85 on the section by coordinate
-- **Targum Jonathan on I Kings** — 817 sections, 13,651 words, with 817 commentary units from 1 work — 817 on the section by coordinate
+- **Genesis** — 1,533 sections, 17,664 rendered COMPspan records, with 612 commentary units from 81 works — 181 on the word it opens by quoting · 323 on the section, nothing places them closer · 108 named, with no text in the record
+- **I Kings** — 817 sections, 11,368 rendered COMPspan records, with 817 commentary units from 1 work — 817 on the section by coordinate
+- **Ruth** — 85 sections, 1,132 rendered COMPspan records, with 85 commentary units from 1 work — 85 on the section by coordinate
+- **Aramaic Targum to Ruth** — 85 sections, 2,139 rendered COMPspan records, with 85 commentary units from 1 work — 85 on the section by coordinate
+- **Targum Jonathan on I Kings** — 817 sections, 13,651 rendered COMPspan records, with 817 commentary units from 1 work — 817 on the section by coordinate
 
 Commentary is not a separate book. It is carried by the book it comments on and
 opens where it attaches — at the word, or across the whole section, depending on

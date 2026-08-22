@@ -26,17 +26,23 @@
 //      same word opens its full record. A work whose ledger has not named a
 //      title shows the open slot instead, in the masthead's own words. No
 //      other Hebrew may appear, and the guard below holds the page to that.
-//   2. Every number on it is counted from a zone at build time. There is no
-//      figure here that somebody decided.
+//   2. Every number names its grain and its pinned source. Physical and
+//      named-shelf C0 counts come from the sealed physical handoff; the
+//      rendered count is recomputed from the COMPspan records actually
+//      carried by the built zones. Those grains are never made to impersonate one
+//      another.
 //
 //   --zones  directory of built zones        (default data/zones)
 //   --out    directory to write the door into (default deploy-root)
+//   --physical-handoff exact compact physical count handoff
+//   --count-bindings    exact atlas/overlay/hash binding record
 //
 // Run: node tools/build-front-door-v1.mjs
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { gunzipSync } from "node:zlib";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 
@@ -49,6 +55,24 @@ const read = (f) => JSON.parse(gunzipSync(readFileSync(f)).toString("utf8"));
 const has = (f) => existsSync(join(ZONES, f));
 const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const n = (x) => Number(x).toLocaleString("en-US");
+const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
+const readPinnedJson = (label, path, pin) => {
+  const bytes = readFileSync(path);
+  const actual = { bytes: bytes.length, sha256: sha256(bytes) };
+  if (actual.bytes !== pin.bytes || actual.sha256 !== pin.sha256)
+    throw new Error(`${label} is not its pin: expected ${pin.bytes} bytes ${pin.sha256}, got ${actual.bytes} bytes ${actual.sha256}`);
+  return { value: JSON.parse(bytes.toString("utf8")), actual };
+};
+const assertPinnedBytes = (label, bytes, pin) => {
+  const actual = { bytes: bytes.length, sha256: sha256(bytes) };
+  if (actual.bytes !== pin.bytes || actual.sha256 !== pin.sha256)
+    throw new Error(`${label} is not its pin: expected ${pin.bytes} bytes ${pin.sha256}, got ${actual.bytes} bytes ${actual.sha256}`);
+  return actual;
+};
+const requireCount = (name, value) => {
+  if (!Number.isSafeInteger(value) || value < 0) throw new Error(`${name} is not a non-negative safe integer`);
+  return value;
+};
 
 // ---- what the zones carry ------------------------------------------------
 //
@@ -114,7 +138,46 @@ const titleReading = (tokens, en) => {
 // receipt. The door refuses to run without it — a door listing only what
 // happens to be built would silently shrink the library to this lane's
 // output, and silent truncation reads as coverage.
-const ATLAS = JSON.parse(readFileSync(arg("atlas", "data/corpus-atlas-v1.json"), "utf8"));
+const ATLAS_PATH = arg("atlas", "data/corpus-atlas-v1.json");
+const PHYSICAL_HANDOFF_PATH = arg("physical-handoff", "data/bezelal-front-door-counts-handoff-v1.json");
+const COUNT_BINDINGS_PATH = arg("count-bindings", "data/front-door-three-count-bindings-v1.json");
+const BINDINGS_BYTES = readFileSync(COUNT_BINDINGS_PATH);
+const BINDINGS = JSON.parse(BINDINGS_BYTES.toString("utf8"));
+if (BINDINGS.schema !== "mishkan.bezalel.front_door_three_count_bindings.v1")
+  throw new Error(`unexpected count binding schema ${BINDINGS.schema || "(missing)"}`);
+const atlasPinned = readPinnedJson("logical atlas", ATLAS_PATH, BINDINGS.inputs.logical_atlas);
+const handoffPinned = readPinnedJson("physical handoff", PHYSICAL_HANDOFF_PATH, BINDINGS.inputs.physical_handoff);
+const ATLAS = atlasPinned.value;
+const PHYSICAL = handoffPinned.value;
+if (PHYSICAL.schema !== "mishkan.bezalel.front_door_three_count_handoff.v1")
+  throw new Error(`unexpected physical handoff schema ${PHYSICAL.schema || "(missing)"}`);
+const physicalRows = requireCount("physical_terminal_c0_rows", PHYSICAL.physical.physical_terminal_c0_rows);
+const namedShelfRows = requireCount("physical_and_logically_mapped_rows", PHYSICAL.logical.physical_and_logically_mapped_rows);
+const logicalPlanRows = requireCount("logical_plan_rows", PHYSICAL.logical.logical_plan_rows);
+const logicalPlanNotPhysicalRows = requireCount("logical_plan_not_physical_rows", PHYSICAL.logical.logical_plan_not_physical_rows);
+const physicalUnmappedRows = requireCount("physically_queryable_logical_shelf_unmapped_rows", PHYSICAL.logical.physically_queryable_logical_shelf_unmapped_rows);
+if (logicalPlanRows !== namedShelfRows + logicalPlanNotPhysicalRows)
+  throw new Error("logical plan partition does not close");
+if (physicalRows !== namedShelfRows + physicalUnmappedRows)
+  throw new Error("physical partition does not close");
+if (ATLAS.totals.c0_rows !== logicalPlanRows)
+  throw new Error(`logical atlas total ${ATLAS.totals.c0_rows} disagrees with pinned logical plan ${logicalPlanRows}`);
+for (const [name, pin] of Object.entries({ physical_atlas: BINDINGS.inputs.physical_atlas, logical_overlay: BINDINGS.inputs.logical_overlay })) {
+  if (!pin || !/^[0-9a-f]{64}$/.test(pin.sha256 || "")) throw new Error(`${name} has no exact SHA-256 pin`);
+}
+const GENESIS_V3 = BINDINGS.inputs.genesis_clean_successor_v3;
+if (!GENESIS_V3 || GENESIS_V3.grain !== "ONE_RENDER_RECORD_PER_COMPSPAN")
+  throw new Error("clean Genesis v3 binding is absent or has the wrong grain");
+for (const [name, pin] of Object.entries({
+  genesis_zone: GENESIS_V3.zone,
+  genesis_front_door_handoff: GENESIS_V3.front_door_handoff,
+  genesis_defect_provenance: GENESIS_V3.defect_provenance,
+  genesis_validation: GENESIS_V3.validation,
+  genesis_closed_world_seal: GENESIS_V3.closed_world_seal,
+})) {
+  if (!pin || !Number.isSafeInteger(pin.bytes) || pin.bytes <= 0 || !/^[0-9a-f]{64}$/.test(pin.sha256 || ""))
+    throw new Error(`${name} has no exact byte/SHA-256 pin`);
+}
 // The family ledger: the synthesis lane's ruling over the bridge's family
 // VALUES — authored on the owner's authorization, checked by
 // check-family-ledger-v1, and dying the day a corpus-side family record
@@ -143,11 +206,39 @@ for (const a of plan.attachments || []) {
 }
 
 const books = [];
+let cleanGenesisZonesSeen = 0;
 for (const b of BOOKS) {
   if (!has(b.zone)) continue;
-  const z = read(join(ZONES, b.zone));
+  const zonePath = join(ZONES, b.zone);
+  const zoneBytes = readFileSync(zonePath);
+  const z = JSON.parse(gunzipSync(zoneBytes).toString("utf8"));
   const sections = (z.sections || []).length;
   const words = (z.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
+  if (b.work_id === "tanakh/genesis") {
+    cleanGenesisZonesSeen += 1;
+    assertPinnedBytes("clean Genesis v3 zone", zoneBytes, GENESIS_V3.zone);
+    const clean = z.clean_successor || {};
+    const counts = GENESIS_V3.counts || {};
+    const joinedRecords = (clean.presentation_join_groups || [])
+      .reduce((total, group) => total + (group.canonical_successor_occurrence_ids || []).length, 0);
+    if (GENESIS_V3.zone.path !== "genesis-book-reader-v4/data/zones/genesis.bin" ||
+        GENESIS_V3.zone.module_path !== "data/zones/genesis.bin" ||
+        words !== counts.rendered_compspan_records ||
+        z.counts?.words !== counts.rendered_compspan_records ||
+        z.counts?.clean_compspan_successor_occurrences !== counts.canonical_compspan_records ||
+        z.counts?.source_orthographic_records !== counts.folded_source_orthographic_records ||
+        z.counts?.physical_c0_rows !== counts.physical_c0_rows ||
+        clean.one_render_record_per_compspan !== true ||
+        clean.canonical_compspan_successor_occurrences !== counts.canonical_compspan_records ||
+        clean.rendered_records !== counts.rendered_compspan_records ||
+        clean.source_orthographic_records !== counts.folded_source_orthographic_records ||
+        clean.presentation_join_groups?.length !== counts.presentation_join_groups ||
+        joinedRecords !== counts.presentation_join_records ||
+        clean.raw_markup_rows !== counts.raw_markup_records ||
+        clean.apparatus_rows_rendered_as_text !== counts.apparatus_records_rendered_as_text ||
+        clean.mid_word_split_rows !== counts.mid_word_split_records)
+      throw new Error("clean Genesis v3 zone semantics disagree with their pinned binding");
+  }
   // its commentary, if any zone carries some for it
   // A book can carry both grains at once, and Genesis does: some commentary is
   // placed on a word, the rest stands on the section because nothing places it
@@ -184,11 +275,13 @@ for (const b of BOOKS) {
   const titleKey = (z.work_he_tokens || []).map((t) => t.k).filter(Boolean)[0] || null;
   const titleGloss = titleKey ? (STORE.glossFor(titleKey).text || "") : "";
   books.push({ ...b, en: z.work || b.slug, byline: z.byline, sections, words,
+    zoneBytes: zoneBytes.length, zoneSha256: sha256(zoneBytes),
     he: z.work_he || "", heGloss: titleGloss, defOpen: !!(titleKey && titleGloss),
     reading: titleReading(z.work_he_tokens, z.work || b.slug),
     units, onWord, onSection, heldLicence, noText, byCoordinate, noCloser, works: worksCount });
 }
 if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
+if (cleanGenesisZonesSeen !== 1) throw new Error(`expected one pinned clean Genesis v3 zone, found ${cleanGenesisZonesSeen}`);
 
 // ---- the door ------------------------------------------------------------
 // A typed-basis work and a sealed work do not wear the same face, and held
@@ -217,7 +310,7 @@ const bookCard = (b) => `    <div class="bookcard">
       <a class="book" href="/${b.slug}">
       <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(b.en)}</span>${b.reading
         ? `<span class="chip" title="${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""}">${esc(b.reading.lic)}</span>` : ""}</span>
-      <span class="of">${n(b.sections)} sections · ${n(b.words)} words</span>
+      <span class="of">${n(b.sections)} sections · ${n(b.words)} rendered COMPspan records</span>
       </a>
     </div>`;
 
@@ -410,16 +503,60 @@ ${rowsHtml(rows).join("\n")}
       </details>
     </section>`;
 };
-// What this page captures, said on the page: the atlas totals and the built
-// slice, both derived, with the bridge named as the source. A reader (or the
-// owner) can check the claim against the atlas receipt without asking anyone.
-const builtTally = (() => {
-  let c0 = 0, units = 0, books = 0;
-  for (const f of Object.values(ATLAS.families)) for (const w of f.works) {
-    if (byWorkId.has(w.id)) { c0 += w.c0_rows; units += w.units; books += 1; }
-  }
-  return { c0, units, books };
-})();
+// The reader count is a different grain from C0. It is the exact number of
+// COMPspan records the built zones carry now, recomputed from those zone bytes on
+// every run. A future zone successor therefore changes this snapshot without
+// anyone editing a typed count.
+const renderedTally = {
+  compspan_records: books.reduce((total, b) => total + b.words, 0),
+  built_zones: books.length,
+  zones: books.map((b) => ({
+    path: `${ZONES}/${b.zone}`.replace(/\\/g, "/"),
+    work_id: b.work_id,
+    rendered_compspan_records: b.words,
+    bytes: b.zoneBytes,
+    sha256: b.zoneSha256,
+  })),
+};
+renderedTally.zone_manifest_sha256 = sha256(Buffer.from(JSON.stringify(renderedTally.zones)));
+
+const countReceipt = {
+  schema: "mishkan.bezalel.front_door_three_count_receipt.v1",
+  status: "PASS_PINNED_INPUTS__CURRENT_ZONE_SNAPSHOT__DYNAMIC_RENDER_GRAIN",
+  grains: {
+    physical_c0_rows: "C0_ROWS",
+    named_shelf_c0_rows: "C0_ROWS",
+    rendered_compspan_records: "ONE_RECORD_PER_COMPSPAN__NOT_C0_ROWS",
+  },
+  snapshot: {
+    kind: "CURRENT_BUILT_ZONE_BYTES_AT_BUILD_TIME",
+    recomputed_from_zone_bytes_on_every_build: true,
+    future_zone_successor_behavior: "RECOMPUTE_RENDERED_COMPSPAN_RECORDS_WITHOUT_TYPED_COUNT_EDIT",
+    zone_manifest_sha256: renderedTally.zone_manifest_sha256,
+  },
+  counts: {
+    current_physical_c0_rows: physicalRows,
+    physically_backed_c0_rows_on_named_work_unit_shelves: namedShelfRows,
+    rendered_compspan_records: renderedTally.compspan_records,
+    logical_plan_c0_rows: logicalPlanRows,
+    logical_plan_c0_rows_not_physical: logicalPlanNotPhysicalRows,
+    physical_c0_rows_not_yet_mapped_to_named_shelf: physicalUnmappedRows,
+  },
+  equations: {
+    logical_plan_partition: logicalPlanRows === namedShelfRows + logicalPlanNotPhysicalRows ? "PASS" : "FAIL",
+    physical_partition: physicalRows === namedShelfRows + physicalUnmappedRows ? "PASS" : "FAIL",
+  },
+  inputs: {
+    logical_atlas: { path: ATLAS_PATH, ...atlasPinned.actual },
+    physical_handoff: { path: PHYSICAL_HANDOFF_PATH, ...handoffPinned.actual },
+    count_bindings: { path: COUNT_BINDINGS_PATH, bytes: BINDINGS_BYTES.length, sha256: sha256(BINDINGS_BYTES) },
+    physical_atlas: BINDINGS.inputs.physical_atlas,
+    logical_overlay: BINDINGS.inputs.logical_overlay,
+    genesis_clean_successor_v3: GENESIS_V3,
+  },
+  rendered: renderedTally,
+};
+const countReceiptJson = JSON.stringify(countReceipt, null, 2) + "\n";
 const sectionsHtml = [
   ...families.map(familySection),
   awaitingSection(),
@@ -452,7 +589,16 @@ const doc = `<!doctype html>
   main { width:100%; max-width:40rem; }
   h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--gold); }
   p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }
-  p.tally { margin:0 0 1.2rem; color:var(--faint); font-size:.72rem; }
+  .countboard { margin:.8rem 0 1.2rem; padding:.75rem; border:1px solid var(--line);
+                border-radius:.65rem; background:var(--panel2); }
+  .countgrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.45rem; }
+  .count { margin:0; padding:.45rem .5rem; border-left:2px solid var(--gold-dim); }
+  .count .num { display:block; color:var(--ink-strong); font-size:1rem; font-variant-numeric:tabular-nums; }
+  .count .grain { display:block; color:var(--muted); font-size:.7rem; line-height:1.35; }
+  .count-detail, .count-grain, .count-audit { margin:.55rem 0 0; color:var(--faint); font-size:.68rem; line-height:1.45; }
+  .count-grain { color:var(--muted); }
+  .count-audit a { color:var(--gold-dim); }
+  @media (max-width:620px) { .countgrid { grid-template-columns:1fr; } }
   .books { display:flex; flex-direction:column; gap:.55rem; }
   .bookcard { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
            border:1px solid var(--line); border-radius:.7rem; background:var(--panel);
@@ -623,11 +769,30 @@ const doc = `<!doctype html>
 </head>
 <body>
 <main>
-  <!-- Built by tools/build-front-door-v1.mjs from the zones. Every count below
-       is read out of a zone; nothing here is typed twice. -->
+  <!-- Built by tools/build-front-door-v1.mjs from pinned physical/logical
+       authorities and the zones. Every count below names its grain. -->
   <h1>The Tabernacle</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the licence it was released under.</p>
-  <p class="tally">${n(ATLAS.totals.works)} works placed · ${n(ATLAS.totals.units)} units · ${n(ATLAS.totals.c0_rows)} c0 rows, per ${esc(ATLAS.derived_from.bridge)} · ${n(builtTally.books)} books built and readable, ${n(builtTally.c0)} c0 rows</p>
+  <section class="countboard" aria-label="Audited corpus counts"
+    data-logical-atlas-sha256="${atlasPinned.actual.sha256}"
+    data-physical-handoff-sha256="${handoffPinned.actual.sha256}"
+    data-physical-atlas-sha256="${BINDINGS.inputs.physical_atlas.sha256}"
+    data-logical-overlay-sha256="${BINDINGS.inputs.logical_overlay.sha256}"
+    data-genesis-clean-zone-sha256="${GENESIS_V3.zone.sha256}"
+    data-genesis-clean-handoff-sha256="${GENESIS_V3.front_door_handoff.sha256}"
+    data-genesis-clean-validation-sha256="${GENESIS_V3.validation.sha256}"
+    data-genesis-clean-seal-sha256="${GENESIS_V3.closed_world_seal.sha256}"
+    data-rendered-zone-manifest-sha256="${renderedTally.zone_manifest_sha256}">
+    <div class="countgrid">
+      <p class="count" data-count="current-physical-c0"><span class="num">${n(physicalRows)}</span><span class="grain">current physical C0 rows</span></p>
+      <p class="count" data-count="named-shelf-c0"><span class="num">${n(namedShelfRows)}</span><span class="grain">physically backed C0 rows on named work/unit shelves</span></p>
+      <p class="count" data-count="rendered-compspan-records"><span class="num">${n(renderedTally.compspan_records)}</span><span class="grain">rendered COMPspan records in ${n(renderedTally.built_zones)} built zones</span></p>
+    </div>
+    <p class="count-grain">The rendered figure is a current-zone snapshot and a different grain: it counts one record per COMPspan actually carried by the built-zone bytes, not C0 rows. It is recomputed from those zones on every build.</p>
+    <p class="count-detail">Logical plan: ${n(logicalPlanRows)} C0 rows across ${n(ATLAS.totals.works)} works and ${n(ATLAS.totals.units)} units · logical-plan C0 rows not physical: ${n(logicalPlanNotPhysicalRows)} · physical C0 rows not yet mapped to a named shelf: ${n(physicalUnmappedRows)}</p>
+    <p class="count-audit"><a href="/front-door-counts-receipt-v1.json">Open the count receipt</a> · logical atlas ${atlasPinned.actual.sha256.slice(0, 12)} · physical handoff ${handoffPinned.actual.sha256.slice(0, 12)} · physical atlas ${BINDINGS.inputs.physical_atlas.sha256.slice(0, 12)} · logical overlay ${BINDINGS.inputs.logical_overlay.sha256.slice(0, 12)} · zone-successor seal ${GENESIS_V3.closed_world_seal.sha256.slice(0, 12)}</p>
+  </section>
+  <script id="front-door-counts-receipt" type="application/json">${JSON.stringify(countReceipt).replace(/</g, "\\u003c")}</script>
   <form id="find" role="search" onsubmit="return go(event)">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
       placeholder="find a book — its name, however you type it"
@@ -895,9 +1060,25 @@ at a time, and the reader chooses.
 
 Live site: https://mashiachsonyosef.github.io/
 
+## Audited corpus counts
+
+- **${n(physicalRows)} current physical C0 rows**
+- **${n(namedShelfRows)} physically backed C0 rows on named work/unit shelves**
+- **${n(renderedTally.compspan_records)} rendered COMPspan records in ${n(renderedTally.built_zones)} built zones**
+
+The rendered count is a current-zone snapshot and a different grain: it is
+recomputed from one record per COMPspan actually carried by the built-zone
+bytes and is not a C0-row count. A future zone successor changes the rendered
+snapshot automatically on the next build; no typed count needs editing.
+
+The logical plan names ${n(logicalPlanRows)} C0 rows; ${n(logicalPlanNotPhysicalRows)}
+of those plan rows are not physical. Another ${n(physicalUnmappedRows)} physical C0
+rows are queryable but not yet mapped to a named work/unit shelf. Exact source
+hashes and per-zone rendered counts are in \`front-door-counts-receipt-v1.json\`.
+
 ## What is published
 
-${books.map((b) => `- **${esc(b.en)}** — ${n(b.sections)} sections, ${n(b.words)} words` +
+${books.map((b) => `- **${esc(b.en)}** — ${n(b.sections)} sections, ${n(b.words)} rendered COMPspan records` +
   (b.units ? `, with ${n(b.units)} commentary units from ${n(b.works)} work${b.works === 1 ? "" : "s"} — ${whereLine(b)}` : "")).join("\n")}
 
 Commentary is not a separate book. It is carried by the book it comments on and
@@ -997,6 +1178,7 @@ if (HEBREW.test(readme)) throw new Error("the README printed a character of the 
 mkdirSync(OUT, { recursive: true });
 writeFileSync(join(OUT, "index.html"), doc);
 writeFileSync(join(OUT, "README.md"), readme);
+writeFileSync(join(OUT, "front-door-counts-receipt-v1.json"), countReceiptJson);
 for (const b of books) {
   mkdirSync(join(OUT, b.slug), { recursive: true });
   const r = redirect(b);
@@ -1044,5 +1226,5 @@ if (existsSync(HISTORY)) {
 
 console.log(`${OUT}/index.html + README.md · ${books.length} books · ${n(totalUnits)} commentary units`);
 for (const b of books)
-  console.log(`  ${b.slug.padEnd(9)} ${n(b.sections)} sections · ${n(b.words)} words` +
+  console.log(`  ${b.slug.padEnd(9)} ${n(b.sections)} sections · ${n(b.words)} rendered COMPspan records` +
     (b.units ? ` · ${n(b.units)} commentary from ${b.works} work${b.works === 1 ? "" : "s"} · ${whereLine(b)}` : " · no commentary"));
