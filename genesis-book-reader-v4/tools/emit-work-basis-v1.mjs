@@ -120,30 +120,57 @@ for (const w of plan.works) {
 // split to different token counts is a record disagreeing with itself, and
 // the emit refuses rather than choosing a side.
 const NAMES_OUT = arg("names-out", "data/commentary-names-v1.json");
+// And the navigation labels, from the same fixtures: the ledger names every
+// level — work, chapter, section — and the reader owes each level the same
+// frame. Chapter labels already ride inside a zone built from its ledger;
+// the section labels do not (the sealed genesis zone predates carrying
+// them), so this slice puts them where the page can read them without
+// touching a sealed artifact. Keys are the work's own section labels;
+// values are label_hebrew verbatim. A colliding label would silently name
+// the wrong verse, so the emit refuses it.
+const NAV_OUT = arg("nav-out", "data/y-nav-labels-v1.json");
 const namesByWork = {};
+const navByWork = {};
 const namesFixtures = [];
 for (const [slug, w] of Object.entries(works)) {
   if (!w.y_fixture || !existsSync(w.y_fixture)) continue;
   const src = readFileSync(w.y_fixture, "utf8");
   const fx = JSON.parse(src.slice(src.indexOf("{"), src.lastIndexOf("}") + 1));
-  const nodes = (fx.nodes || []).filter((n) => n.node_kind === "COMMENTARY_WORK");
-  if (!nodes.length) continue;
   namesFixtures.push({ work: slug, path: w.y_fixture, fixture_id: fx.fixture_id || null, status: fx.status || null });
-  const m = {};
-  for (const n of nodes) {
-    const ss = String(n.label_hebrew || "").split(/\s+/).filter(Boolean);
-    const ks = String(n.label_normalized_sequence || "").split(/\s+/).filter(Boolean);
-    if (!ss.length || ss.length !== ks.length)
-      throw new Error(`LEDGER_LABEL_TOKENS_DISAGREE · ${n.y_node_id} in ${w.y_fixture}: label_hebrew splits to ${ss.length} tokens, label_normalized_sequence to ${ks.length} — the record must agree with itself before a page prints it`);
-    m[n.public_ref] = {
-      he: n.label_hebrew,
-      he_tokens: ss.map((s, i) => ({ s, k: ks[i] })),
-      y_node_id: n.y_node_id,
-      content_work_id: n.content_work_id || null,
-      label_basis: n.label_basis || null,
-    };
+  const nodes = fx.nodes || [];
+  const comm = nodes.filter((n) => n.node_kind === "COMMENTARY_WORK");
+  if (comm.length) {
+    const m = {};
+    for (const n of comm) {
+      const ss = String(n.label_hebrew || "").split(/\s+/).filter(Boolean);
+      const ks = String(n.label_normalized_sequence || "").split(/\s+/).filter(Boolean);
+      if (!ss.length || ss.length !== ks.length)
+        throw new Error(`LEDGER_LABEL_TOKENS_DISAGREE · ${n.y_node_id} in ${w.y_fixture}: label_hebrew splits to ${ss.length} tokens, label_normalized_sequence to ${ks.length} — the record must agree with itself before a page prints it`);
+      m[n.public_ref] = {
+        he: n.label_hebrew,
+        he_tokens: ss.map((s, i) => ({ s, k: ks[i] })),
+        y_node_id: n.y_node_id,
+        content_work_id: n.content_work_id || null,
+        label_basis: n.label_basis || null,
+      };
+    }
+    namesByWork[slug] = m;
   }
-  namesByWork[slug] = m;
+  // the coordinate tail of the node's own public_ref — "Genesis 1:1" → "1:1"
+  const coordOf = (n) => (/(\d+(?::\d+)?)$/.exec(String(n.public_ref || "")) || [])[1] || null;
+  const chapters = {}, sections = {};
+  for (const n of nodes) {
+    if (n.node_kind !== "CHAPTER" && n.node_kind !== "SECTION") continue;
+    if (!n.label_hebrew) continue;
+    const at = coordOf(n);
+    if (!at) continue;
+    const bag = n.node_kind === "CHAPTER" ? chapters : sections;
+    if (bag[at] !== undefined && bag[at] !== n.label_hebrew)
+      throw new Error(`LEDGER_LABEL_COLLIDES · ${w.y_fixture}: two ${n.node_kind} nodes both stand at "${at}" with different labels — refusing a slice that would name the wrong place`);
+    bag[at] = n.label_hebrew;
+  }
+  if (Object.keys(chapters).length || Object.keys(sections).length)
+    navByWork[slug] = { fixture_id: fx.fixture_id || null, chapters, sections };
 }
 
 const doc = {
@@ -166,5 +193,14 @@ const namesDoc = {
   names: namesByWork,
 };
 writeFileSync(NAMES_OUT, JSON.stringify(namesDoc, null, 2) + "\n");
+const navDoc = {
+  schema_version: "Y_NAV_LABELS_V1",
+  emitted_by: "tools/emit-work-basis-v1.mjs",
+  rule: "every chapter and section label below is a label_hebrew copied verbatim from the fixture named in derived_from, keyed by the coordinate tail of that node's own public_ref; the page prints them beside its coordinates and invents none",
+  derived_from: { fixtures: namesFixtures },
+  works: navByWork,
+};
+writeFileSync(NAV_OUT, JSON.stringify(navDoc) + "\n");
 console.log(`${OUT} · ${Object.keys(works).length} works · holds: ${Object.entries(works).filter(([, w]) => w.held_commentaries).map(([k, w]) => `${k}=${w.held_commentaries}`).join(" ") || "none"}`);
 console.log(`${NAMES_OUT} · ${Object.entries(namesByWork).map(([k, m]) => `${k}=${Object.keys(m).length}`).join(" ") || "no fixtures carry COMMENTARY_WORK nodes"}`);
+console.log(`${NAV_OUT} · ${Object.entries(navByWork).map(([k, m]) => `${k}=${Object.keys(m.chapters).length}ch/${Object.keys(m.sections).length}sec`).join(" ") || "no fixtures carry navigation labels"}`);
