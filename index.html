@@ -22,27 +22,36 @@
   h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--gold); }
   p.sub { margin:0 0 2rem; color:var(--muted); font-size:.95rem; }
   .books { display:flex; flex-direction:column; gap:.7rem; }
-  a.book { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
+  .bookcard { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
            border:1px solid var(--line); border-radius:.7rem; background:var(--panel);
-           padding:1rem 1.15rem; text-decoration:none; color:var(--ink); }
-  a.book:hover { border-color:var(--gold-dim); }
+           padding:1rem 1.15rem; }
+  .bookcard:hover { border-color:var(--gold-dim); }
+  a.book { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
+           text-decoration:none; color:var(--ink); align-self:stretch; }
+  /* Two ways in, and the Hebrew one comes first: the title opens the word's
+     own record — readings oldest source first — because the answer this
+     project gives to an unreadable word is never the force-read below it. */
+  a.titleway { text-decoration:none; display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
+  a.titleway .g { font-size:.72rem; color:var(--muted); border-bottom:1px dotted var(--gold-dim); }
+  a.titleway:hover .g { color:var(--gold); }
+  a.titleway:hover .he { color:var(--shesh-bright, #eadbbd); }
   /* The title is the book's own. The English beside it is not a translation of
      it and must not be able to be read as one — it is how a reader who does not
      read Hebrew finds and refers to the book. So each line says which of the
      two it is before the thing itself. The labels are ours; the title is not. */
-  a.book .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
-  a.book .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
+  .bookcard .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
+  .bookcard .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
                 text-transform:uppercase; color:var(--faint); }
-  a.book .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
-  a.book .he, a.sub-work .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
+  .bookcard .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
+  .bookcard .he, a.sub-work .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.25rem; color:var(--shesh); }
-  a.book .he.none, a.sub-work .he.none { font-family:Georgia,serif; font-size:.85rem;
+  .bookcard .he.none, a.sub-work .he.none { font-family:Georgia,serif; font-size:.85rem;
     font-style:italic; color:var(--faint); }
-  a.book .chip { font-size:.62rem; letter-spacing:.06em; color:var(--muted);
+  .bookcard .chip { font-size:.62rem; letter-spacing:.06em; color:var(--muted);
     border:1px solid var(--line); border-radius:.6rem; padding:.1rem .45rem; }
   a.sub-work .he { font-size:1.05rem; margin-right:.5rem; }
-  a.book .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
-  a.book .of.slots, a.sub-work .of.slots { margin-top:.2rem; font-style:italic; }
+  .bookcard .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
+  .bookcard .of.slots, a.sub-work .of.slots { margin-top:.2rem; font-style:italic; }
   /* The commentary is not a third book. It arrives shut, and what is behind it
      is one entry per book, each going to the book it belongs to — because that
      is where a commentary is read. */
@@ -52,7 +61,7 @@
   #find input::placeholder { color:var(--faint); }
   #find input:focus { outline:none; border-color:var(--gold-dim); }
   .workgroup { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); overflow:hidden; }
-  .workgroup a.book { border:none; border-radius:0; background:none; }
+  .workgroup .bookcard { border:none; border-radius:0; background:none; }
   a.sub-work { display:block; padding:.85rem 1.15rem 0.85rem 2rem; border-top:1px solid var(--line);
     text-decoration:none; color:var(--ink); }
   a.sub-work:hover { background:rgba(224,182,79,.06); }
@@ -91,20 +100,24 @@
   </form>
   <nav class="books">
     <div class="workgroup">
-    <a class="book" href="/genesis">
-      <span class="row"><span class="lab">book title</span><span class="he" lang="he" dir="rtl">בראשית</span></span>
+    <div class="bookcard">
+      <span class="row trow"><span class="lab">book title</span><a class="titleway" href="/genesis?t=open" title="open this word’s own record — readings oldest source first"><span class="he" lang="he" dir="rtl">בראשית</span><span class="g">in the beginning</span></a></span>
+      <a class="book" href="/genesis">
       <span class="row"><span class="lab">commonly force read as</span><span class="en">Genesis</span><span class="chip" title="Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles · 2023">CC BY-SA</span></span>
       <span class="of">1,533 sections · 17,805 words · Miqra according to the Masorah · served from the sealed terminal artifacts</span>
-    </a>
+      </a>
+    </div>
       <a class="sub-book" href="/genesis?c=open"><span class="en">Commentary on Genesis</span><span class="of">612 carried from 81 works — 181 on the word it opens by quoting · 323 on the section, nothing places them closer · 108 named, with no text in the record</span></a>
     </div>
     <div class="workgroup">
-    <a class="book" href="/i-kings">
-      <span class="row"><span class="lab">book title</span><span class="he none">none is recorded in the ledger</span></span>
+    <div class="bookcard">
+      <span class="row trow"><span class="lab">book title</span><span class="he none">none is recorded in the ledger</span></span>
+      <a class="book" href="/i-kings">
       <span class="row"><span class="lab">commonly force read as</span><span class="en">I Kings</span></span>
       <span class="of">817 sections · 11,368 words · Nevi'im · Miqra according to the Masorah · served from the sealed terminal artifacts</span>
       <span class="of slots">awaiting its Y ledger — its coordinates stand typed in the open until then · 11 commentary slots open</span>
-    </a>
+      </a>
+    </div>
       <a class="sub-work" href="/targum-jonathan-on-i-kings"><span class="he none">none is recorded in the ledger</span><span class="en">Targum Jonathan on I Kings</span><span class="of">its own book · 817 sections · 13,651 words · Aramaic · served from the sealed terminal artifacts, attached to I Kings by the coordinates both works carry</span><span class="of slots">awaiting its Y ledger — its coordinates stand typed in the open until then</span></a>
       <a class="sub-book" href="/targum-jonathan-on-i-kings?c=open"><span class="en">Commentary on Targum Jonathan on I Kings</span><span class="of">817 carried from 1 work — 817 on the section by coordinate</span></a>
       <a class="sub-book" href="/i-kings?c=open"><span class="en">Commentary on I Kings</span><span class="of">817 carried from 1 work — 817 on the section by coordinate</span></a>
