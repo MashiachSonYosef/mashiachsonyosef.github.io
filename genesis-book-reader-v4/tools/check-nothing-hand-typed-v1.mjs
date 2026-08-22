@@ -109,9 +109,22 @@ if (existsSync(zonesDir)) {
     } catch { /* a bin the walk cannot read is someone else's problem, not a licence to skip the scan */ }
   }
 }
+// A carried title may appear on the door EXACTLY as often as the door has a
+// place for it: once on its work's own title row, and once more if the work
+// is also seated as a sub-row. A scrub alone would launder a typed duplicate
+// of a real title; a count cannot. zone.html has no place for any: its titles
+// arrive from data at runtime, so nothing is scrubbed from it at all.
+const countIn = (hay, needle) => hay.split(needle).length - 1;
 for (const f of SERVED) {
   let src = readFileSync(join(K3, f), "utf8");
-  for (const t of carriedTitles) src = src.split(t).join("");
+  for (const t of carriedTitles) {
+    if (f === "deploy-root/index.html") {
+      const found = countIn(src, t);
+      check("  the door carries a title no more often than it has places for it",
+        found >= 1 && found <= 2, `${found} occurrence${found === 1 ? "" : "s"} (1\u20132 allowed)`);
+    }
+    if (f.startsWith("deploy-root/")) src = src.split(t).join("");
+  }
   const hits = [];
   for (let i = 0; i < src.length; i += 1) {
     const cp = src.codePointAt(i);
