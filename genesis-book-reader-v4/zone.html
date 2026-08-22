@@ -3953,6 +3953,24 @@
   // commentary opens; there is one path and this uses it, so the two cannot
   // drift apart. The marks are placed after layout, so it waits for one to
   // exist rather than assuming the page is finished.
+  // front-door-rule-v2 · ?t=open lands the reader inside the title's own record.
+  //
+  // The door shows a book's Hebrew name to readers who cannot read it —
+  // "gibberish", as its owner puts it — and the answer to gibberish in this
+  // project is never the force-read: it is the word's own record. Pressing
+  // the title on the door arrives here with that word already open, its
+  // readings sorted oldest source first, exactly as any word in the text
+  // opens. It presses what a finger would press — the first openable title
+  // token — and waits for it to exist rather than assuming the page is done.
+  if (QUERY.get("t") === "open") {
+    let waitedT = 0;
+    const pressTitle = () => {
+      const tok = document.querySelector("#workTitle .he-t .wb");
+      if (!tok) { if (waitedT < 4000) { waitedT += 60; setTimeout(pressTitle, 60); } return; }
+      tok.click();
+    };
+    pressTitle();
+  }
   if (QUERY.get("c") === "open") {
     let waited = 0;
     const press = () => {
