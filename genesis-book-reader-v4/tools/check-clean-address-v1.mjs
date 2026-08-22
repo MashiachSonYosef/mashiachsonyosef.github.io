@@ -124,7 +124,7 @@ const framed = await p.evaluate(() => {
     inSiteName: document.querySelectorAll("h1 [lang='he']").length,
     hebrews: [...document.querySelectorAll('[lang="he"]')].map((e) => ({ t: e.textContent.trim(), lab: labOf(e) })),
     commons: [...document.querySelectorAll("a.book .en")].map((e) => ({ t: e.textContent.trim(), lab: labOf(e) })),
-    unnamed: [...document.querySelectorAll("a.book .he.none")].map((e) => e.textContent.trim()),
+    unnamed: [...document.querySelectorAll(".bookcard .he.none")].map((e) => e.textContent.trim()),
   };
 });
 check("the site's own name carries no Hebrew that nothing recorded",

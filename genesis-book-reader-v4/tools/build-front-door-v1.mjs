@@ -163,8 +163,15 @@ for (const b of BOOKS) {
   }
   const units = onWord + onSection;
   if (!z.byline) throw new Error(`${b.zone} carries no byline — the door prints the zone's and will not invent one`);
+  // The title's own gloss, by the same rule every word in the reader is
+  // glossed under: the store's oldest displayable reading for the form's
+  // exact key. This is the answer to the title being unreadable — not the
+  // force-read, the record.
+  const titleKey = (z.work_he_tokens || []).map((t) => t.k).filter(Boolean)[0] || null;
+  const titleGloss = titleKey ? (STORE.glossFor(titleKey).text || "") : "";
   books.push({ ...b, en: z.work || b.slug, byline: z.byline, sections, words,
-    he: z.work_he || "", reading: titleReading(z.work_he_tokens, z.work || b.slug),
+    he: z.work_he || "", heGloss: titleGloss, defOpen: !!(titleKey && titleGloss),
+    reading: titleReading(z.work_he_tokens, z.work || b.slug),
     units, onWord, onSection, heldLicence, noText, byCoordinate, noCloser, works: worksCount });
 }
 if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
@@ -181,15 +188,19 @@ const incBits = (b) => {
   if (b.held) bits.push(`${n(b.held)} commentary slots open`);
   return bits;
 };
-const bookCard = (b) => `    <a class="book" href="/${b.slug}">
-      <span class="row"><span class="lab">book title</span>${b.he
-        ? `<span class="he" lang="he" dir="rtl">${esc(b.he)}</span>`
+const bookCard = (b) => `    <div class="bookcard">
+      <span class="row trow"><span class="lab">book title</span>${b.he
+        ? (b.defOpen
+          ? `<a class="titleway" href="/${b.slug}?t=open" title="open this word\u2019s own record — readings oldest source first"><span class="he" lang="he" dir="rtl">${esc(b.he)}</span><span class="g">${esc(b.heGloss)}</span></a>`
+          : `<span class="he" lang="he" dir="rtl">${esc(b.he)}</span>`)
         : `<span class="he none">none is recorded in the ledger</span>`}</span>
+      <a class="book" href="/${b.slug}">
       <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(b.en)}</span>${b.reading
         ? `<span class="chip" title="${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""}">${esc(b.reading.lic)}</span>` : ""}</span>
       <span class="of">${n(b.sections)} sections · ${n(b.words)} words · ${esc(b.byline)}</span>${incBits(b).length ? `
       <span class="of slots">${esc(incBits(b).join(" · "))}</span>` : ""}
-    </a>`;
+      </a>
+    </div>`;
 
 // A commentary entry is its own way in, so it opens one. ?c=open tells the
 // reader to press the first mark the book carries and the first work behind it
@@ -259,27 +270,36 @@ const doc = `<!doctype html>
   h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--gold); }
   p.sub { margin:0 0 2rem; color:var(--muted); font-size:.95rem; }
   .books { display:flex; flex-direction:column; gap:.7rem; }
-  a.book { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
+  .bookcard { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
            border:1px solid var(--line); border-radius:.7rem; background:var(--panel);
-           padding:1rem 1.15rem; text-decoration:none; color:var(--ink); }
-  a.book:hover { border-color:var(--gold-dim); }
+           padding:1rem 1.15rem; }
+  .bookcard:hover { border-color:var(--gold-dim); }
+  a.book { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
+           text-decoration:none; color:var(--ink); align-self:stretch; }
+  /* Two ways in, and the Hebrew one comes first: the title opens the word's
+     own record — readings oldest source first — because the answer this
+     project gives to an unreadable word is never the force-read below it. */
+  a.titleway { text-decoration:none; display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
+  a.titleway .g { font-size:.72rem; color:var(--muted); border-bottom:1px dotted var(--gold-dim); }
+  a.titleway:hover .g { color:var(--gold); }
+  a.titleway:hover .he { color:var(--shesh-bright, #eadbbd); }
   /* The title is the book's own. The English beside it is not a translation of
      it and must not be able to be read as one — it is how a reader who does not
      read Hebrew finds and refers to the book. So each line says which of the
      two it is before the thing itself. The labels are ours; the title is not. */
-  a.book .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
-  a.book .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
+  .bookcard .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
+  .bookcard .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
                 text-transform:uppercase; color:var(--faint); }
-  a.book .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
-  a.book .he, a.sub-work .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
+  .bookcard .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
+  .bookcard .he, a.sub-work .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.25rem; color:var(--shesh); }
-  a.book .he.none, a.sub-work .he.none { font-family:Georgia,serif; font-size:.85rem;
+  .bookcard .he.none, a.sub-work .he.none { font-family:Georgia,serif; font-size:.85rem;
     font-style:italic; color:var(--faint); }
-  a.book .chip { font-size:.62rem; letter-spacing:.06em; color:var(--muted);
+  .bookcard .chip { font-size:.62rem; letter-spacing:.06em; color:var(--muted);
     border:1px solid var(--line); border-radius:.6rem; padding:.1rem .45rem; }
   a.sub-work .he { font-size:1.05rem; margin-right:.5rem; }
-  a.book .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
-  a.book .of.slots, a.sub-work .of.slots { margin-top:.2rem; font-style:italic; }
+  .bookcard .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
+  .bookcard .of.slots, a.sub-work .of.slots { margin-top:.2rem; font-style:italic; }
   /* The commentary is not a third book. It arrives shut, and what is behind it
      is one entry per book, each going to the book it belongs to — because that
      is where a commentary is read. */
@@ -289,7 +309,7 @@ const doc = `<!doctype html>
   #find input::placeholder { color:var(--faint); }
   #find input:focus { outline:none; border-color:var(--gold-dim); }
   .workgroup { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); overflow:hidden; }
-  .workgroup a.book { border:none; border-radius:0; background:none; }
+  .workgroup .bookcard { border:none; border-radius:0; background:none; }
   a.sub-work { display:block; padding:.85rem 1.15rem 0.85rem 2rem; border-top:1px solid var(--line);
     text-decoration:none; color:var(--ink); }
   a.sub-work:hover { background:rgba(224,182,79,.06); }
