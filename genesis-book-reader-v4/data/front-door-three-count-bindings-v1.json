@@ -1,18 +1,30 @@
 {
   "schema": "mishkan.bezalel.front_door_three_count_bindings.v1",
   "status": "PINNED_CANDIDATE_INPUTS__CLEAN_GENESIS_V3__NO_CORPUS_EFFECT",
-  "base_commit": "e921cff88cc5a77470575c7a4607021fdab5449c",
+  "base_commit": "d70d8f9f1d0ca4e0b12fe64035f045150c218c16",
+  "exact_text_input_policy": {
+    "rule": "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1",
+    "gitattributes_path": ".gitattributes",
+    "paths": [
+      "genesis-book-reader-v4/data/corpus-atlas-v1.json",
+      "genesis-book-reader-v4/data/bezelal-front-door-counts-handoff-v1.json",
+      "genesis-book-reader-v4/data/front-door-three-count-bindings-v1.json"
+    ],
+    "effect": "bytes and sha256 are over exact LF Git-blob bytes; text eol=lf makes ordinary Windows checkouts materialize the same bytes"
+  },
   "inputs": {
     "logical_atlas": {
       "path": "genesis-book-reader-v4/data/corpus-atlas-v1.json",
-      "bytes": 408028,
-      "sha256": "a24ad833777ecea46ccf911482ce79d356eeaece409276cc7d4cd94768671854"
+      "bytes": 408027,
+      "sha256": "b3c2e0d160cb509606c4f7399d751dcff82b081cd3d8cbaa4a7143ff70e0b7fd",
+      "byte_hash_rule": "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1"
     },
     "physical_handoff": {
       "path": "genesis-book-reader-v4/data/bezelal-front-door-counts-handoff-v1.json",
       "source_path": "corpus-refinement-v1/work/federated-terminal-physical-atlas-v1/bezelal-front-door-counts-handoff-v1.json",
       "bytes": 1035,
-      "sha256": "a3eba4228d36a90721c938d71fb724931c6499fc1cda82c9f688ddc86eaeb404"
+      "sha256": "a3eba4228d36a90721c938d71fb724931c6499fc1cda82c9f688ddc86eaeb404",
+      "byte_hash_rule": "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1"
     },
     "physical_atlas": {
       "source_path": "corpus-refinement-v1/work/federated-terminal-physical-atlas-v1/federated-terminal-physical-atlas-v1.json",

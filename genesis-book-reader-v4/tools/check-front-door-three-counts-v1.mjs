@@ -16,6 +16,12 @@ const arg = (name, fallback) => {
   return i > 0 ? process.argv[i + 1] : fallback;
 };
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
+const TEXT_PIN_RULE = "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1";
+const TEXT_PIN_PATHS = [
+  "genesis-book-reader-v4/data/corpus-atlas-v1.json",
+  "genesis-book-reader-v4/data/bezelal-front-door-counts-handoff-v1.json",
+  "genesis-book-reader-v4/data/front-door-three-count-bindings-v1.json",
+];
 const readBytes = (path) => readFileSync(resolve(path));
 const readJson = (path) => JSON.parse(readBytes(path).toString("utf8"));
 const n = (value) => Number(value).toLocaleString("en-US");
@@ -32,8 +38,9 @@ const receiptPath = arg("receipt", "../front-door-counts-receipt-v1.json");
 const atlasPath = arg("atlas", "data/corpus-atlas-v1.json");
 const handoffPath = arg("physical-handoff", "data/bezelal-front-door-counts-handoff-v1.json");
 const bindingsPath = arg("count-bindings", "data/front-door-three-count-bindings-v1.json");
+const gitattributesPath = arg("gitattributes", "../.gitattributes");
 
-for (const path of [htmlPath, readmePath, receiptPath, atlasPath, handoffPath, bindingsPath])
+for (const path of [htmlPath, readmePath, receiptPath, atlasPath, handoffPath, bindingsPath, gitattributesPath])
   assert(existsSync(resolve(path)), `required input absent: ${path}`);
 
 const html = readBytes(htmlPath).toString("utf8");
@@ -45,6 +52,7 @@ const handoffBytes = readBytes(handoffPath);
 const handoff = JSON.parse(handoffBytes.toString("utf8"));
 const bindingsBytes = readBytes(bindingsPath);
 const bindings = JSON.parse(bindingsBytes.toString("utf8"));
+const gitattributes = readBytes(gitattributesPath).toString("utf8");
 const genesisV3 = bindings.inputs.genesis_clean_successor_v3;
 const genesisZonePath = genesisV3.zone.path.replace(/^genesis-book-reader-v4\//, "");
 assert(existsSync(resolve(genesisZonePath)), `required input absent: ${genesisZonePath}`);
@@ -58,13 +66,30 @@ const check = (name, fn) => {
   console.log(`  ok  ${name}`);
 };
 
-check("logical atlas is its exact input pin", () => {
-  assert.equal(atlasBytes.length, bindings.inputs.logical_atlas.bytes);
-  assert.equal(sha256(atlasBytes), bindings.inputs.logical_atlas.sha256);
+const exactLfActual = (label, bytes) => {
+  assert(!bytes.includes(0x0d), `${label} contains CR bytes despite ${TEXT_PIN_RULE}`);
+  return { bytes: bytes.length, sha256: sha256(bytes), byte_hash_rule: TEXT_PIN_RULE };
+};
+
+check("exact-byte text inputs are forced to LF by repository attributes", () => {
+  assert.equal(bindings.exact_text_input_policy?.rule, TEXT_PIN_RULE);
+  assert.equal(bindings.exact_text_input_policy?.gitattributes_path, ".gitattributes");
+  assert.deepEqual(bindings.exact_text_input_policy?.paths, TEXT_PIN_PATHS);
+  const lines = new Set(gitattributes.split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith("#")));
+  for (const path of TEXT_PIN_PATHS) assert(lines.has(`${path} text eol=lf`), `missing LF attribute for ${path}`);
+  exactLfActual("count bindings", bindingsBytes);
 });
-check("physical handoff is byte-for-byte its exact input pin", () => {
-  assert.equal(handoffBytes.length, bindings.inputs.physical_handoff.bytes);
-  assert.equal(sha256(handoffBytes), bindings.inputs.physical_handoff.sha256);
+check("logical atlas is its exact LF Git-blob pin", () => {
+  const actual = exactLfActual("logical atlas", atlasBytes);
+  assert.equal(bindings.inputs.logical_atlas.byte_hash_rule, TEXT_PIN_RULE);
+  assert.equal(actual.bytes, bindings.inputs.logical_atlas.bytes);
+  assert.equal(actual.sha256, bindings.inputs.logical_atlas.sha256);
+});
+check("physical handoff is its exact LF Git-blob pin", () => {
+  const actual = exactLfActual("physical handoff", handoffBytes);
+  assert.equal(bindings.inputs.physical_handoff.byte_hash_rule, TEXT_PIN_RULE);
+  assert.equal(actual.bytes, bindings.inputs.physical_handoff.bytes);
+  assert.equal(actual.sha256, bindings.inputs.physical_handoff.sha256);
 });
 check("physical atlas and logical overlay carry sealed SHA-256 pins", () => {
   for (const value of [
@@ -130,9 +155,13 @@ check("receipt preserves every handoff count", () => {
   });
 });
 check("receipt binds every compact authority", () => {
+  const bindingsActual = exactLfActual("count bindings", bindingsBytes);
+  assert.deepEqual(receipt.exact_text_input_policy, bindings.exact_text_input_policy);
   assert.equal(receipt.inputs.logical_atlas.sha256, bindings.inputs.logical_atlas.sha256);
+  assert.equal(receipt.inputs.logical_atlas.byte_hash_rule, TEXT_PIN_RULE);
   assert.equal(receipt.inputs.physical_handoff.sha256, bindings.inputs.physical_handoff.sha256);
-  assert.equal(receipt.inputs.count_bindings.sha256, sha256(bindingsBytes));
+  assert.equal(receipt.inputs.physical_handoff.byte_hash_rule, TEXT_PIN_RULE);
+  assert.deepEqual(receipt.inputs.count_bindings, { path: bindingsPath, ...bindingsActual });
   assert.equal(receipt.inputs.physical_atlas.sha256, bindings.inputs.physical_atlas.sha256);
   assert.equal(receipt.inputs.logical_overlay.sha256, bindings.inputs.logical_overlay.sha256);
   assert.deepEqual(receipt.inputs.genesis_clean_successor_v3, genesisV3);
@@ -181,6 +210,7 @@ check("secondary DOM disclosures are complete", () => {
   assert(page.includes("It is recomputed from those zones on every build."));
 });
 check("DOM data pins bind the exact source hashes", () => {
+  assert(html.includes(`data-text-input-byte-rule="${TEXT_PIN_RULE}"`));
   assert(html.includes(`data-logical-atlas-sha256="${bindings.inputs.logical_atlas.sha256}"`));
   assert(html.includes(`data-physical-handoff-sha256="${bindings.inputs.physical_handoff.sha256}"`));
   assert(html.includes(`data-physical-atlas-sha256="${bindings.inputs.physical_atlas.sha256}"`));

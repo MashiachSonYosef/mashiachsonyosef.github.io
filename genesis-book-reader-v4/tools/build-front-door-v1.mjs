@@ -56,9 +56,22 @@ const has = (f) => existsSync(join(ZONES, f));
 const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const n = (x) => Number(x).toLocaleString("en-US");
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
+const TEXT_PIN_RULE = "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1";
+const TEXT_PIN_PATHS = [
+  "genesis-book-reader-v4/data/corpus-atlas-v1.json",
+  "genesis-book-reader-v4/data/bezelal-front-door-counts-handoff-v1.json",
+  "genesis-book-reader-v4/data/front-door-three-count-bindings-v1.json",
+];
+const exactLfActual = (label, bytes) => {
+  if (bytes.includes(0x0d))
+    throw new Error(`${label} violates ${TEXT_PIN_RULE}: CR byte present; checkout must honor text eol=lf`);
+  return { bytes: bytes.length, sha256: sha256(bytes), byte_hash_rule: TEXT_PIN_RULE };
+};
 const readPinnedJson = (label, path, pin) => {
   const bytes = readFileSync(path);
-  const actual = { bytes: bytes.length, sha256: sha256(bytes) };
+  if (pin.byte_hash_rule !== TEXT_PIN_RULE)
+    throw new Error(`${label} has unsupported byte/hash rule ${pin.byte_hash_rule || "(missing)"}`);
+  const actual = exactLfActual(label, bytes);
   if (actual.bytes !== pin.bytes || actual.sha256 !== pin.sha256)
     throw new Error(`${label} is not its pin: expected ${pin.bytes} bytes ${pin.sha256}, got ${actual.bytes} bytes ${actual.sha256}`);
   return { value: JSON.parse(bytes.toString("utf8")), actual };
@@ -142,9 +155,14 @@ const ATLAS_PATH = arg("atlas", "data/corpus-atlas-v1.json");
 const PHYSICAL_HANDOFF_PATH = arg("physical-handoff", "data/bezelal-front-door-counts-handoff-v1.json");
 const COUNT_BINDINGS_PATH = arg("count-bindings", "data/front-door-three-count-bindings-v1.json");
 const BINDINGS_BYTES = readFileSync(COUNT_BINDINGS_PATH);
+const BINDINGS_ACTUAL = exactLfActual("count bindings", BINDINGS_BYTES);
 const BINDINGS = JSON.parse(BINDINGS_BYTES.toString("utf8"));
 if (BINDINGS.schema !== "mishkan.bezalel.front_door_three_count_bindings.v1")
   throw new Error(`unexpected count binding schema ${BINDINGS.schema || "(missing)"}`);
+if (BINDINGS.exact_text_input_policy?.rule !== TEXT_PIN_RULE ||
+    BINDINGS.exact_text_input_policy?.gitattributes_path !== ".gitattributes" ||
+    JSON.stringify(BINDINGS.exact_text_input_policy?.paths) !== JSON.stringify(TEXT_PIN_PATHS))
+  throw new Error("count binding exact-text input policy moved or is incomplete");
 const atlasPinned = readPinnedJson("logical atlas", ATLAS_PATH, BINDINGS.inputs.logical_atlas);
 const handoffPinned = readPinnedJson("physical handoff", PHYSICAL_HANDOFF_PATH, BINDINGS.inputs.physical_handoff);
 const ATLAS = atlasPinned.value;
@@ -523,6 +541,7 @@ renderedTally.zone_manifest_sha256 = sha256(Buffer.from(JSON.stringify(renderedT
 const countReceipt = {
   schema: "mishkan.bezalel.front_door_three_count_receipt.v1",
   status: "PASS_PINNED_INPUTS__CURRENT_ZONE_SNAPSHOT__DYNAMIC_RENDER_GRAIN",
+  exact_text_input_policy: BINDINGS.exact_text_input_policy,
   grains: {
     physical_c0_rows: "C0_ROWS",
     named_shelf_c0_rows: "C0_ROWS",
@@ -549,7 +568,7 @@ const countReceipt = {
   inputs: {
     logical_atlas: { path: ATLAS_PATH, ...atlasPinned.actual },
     physical_handoff: { path: PHYSICAL_HANDOFF_PATH, ...handoffPinned.actual },
-    count_bindings: { path: COUNT_BINDINGS_PATH, bytes: BINDINGS_BYTES.length, sha256: sha256(BINDINGS_BYTES) },
+    count_bindings: { path: COUNT_BINDINGS_PATH, ...BINDINGS_ACTUAL },
     physical_atlas: BINDINGS.inputs.physical_atlas,
     logical_overlay: BINDINGS.inputs.logical_overlay,
     genesis_clean_successor_v3: GENESIS_V3,
@@ -774,6 +793,7 @@ const doc = `<!doctype html>
   <h1>The Tabernacle</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the licence it was released under.</p>
   <section class="countboard" aria-label="Audited corpus counts"
+    data-text-input-byte-rule="${TEXT_PIN_RULE}"
     data-logical-atlas-sha256="${atlasPinned.actual.sha256}"
     data-physical-handoff-sha256="${handoffPinned.actual.sha256}"
     data-physical-atlas-sha256="${BINDINGS.inputs.physical_atlas.sha256}"
