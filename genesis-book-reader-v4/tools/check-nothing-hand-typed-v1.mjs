@@ -127,8 +127,27 @@ if (existsSync(zonesDir)) {
 // of a real title; a count cannot. zone.html has no place for any: its titles
 // arrive from data at runtime, so nothing is scrubbed from it at all.
 const countIn = (hay, needle) => hay.split(needle).length - 1;
+// The door now prints the atlas: recorded work ids, some carrying the work's
+// own Hebrew title inside them. Those are records too, and they are scrubbed
+// FIRST, longest first — a carried zone title can stand inside a recorded id
+// (Genesis inside a Ben-Yehuda essay named for it), and counting or cutting
+// the title before the ids would miscount its places and orphan fragments.
+let ATLAS_NAMES = [];
+{
+  const ap = join(K3, "data", "corpus-atlas-v1.json");
+  if (existsSync(ap)) {
+    const A = JSON.parse(readFileSync(ap, "utf8"));
+    for (const fam of Object.values(A.families)) for (const w of fam.works) {
+      const nm = String(w.id).split("/").pop();
+      if (/[\u0590-\u05FF]/.test(nm))
+        ATLAS_NAMES.push(nm.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"));
+    }
+    ATLAS_NAMES.sort((a, b) => b.length - a.length);
+  }
+}
 for (const f of SERVED) {
   let src = readFileSync(join(K3, f), "utf8");
+  if (f.startsWith("deploy-root/")) for (const nm of ATLAS_NAMES) src = src.split(nm).join("");
   for (const t of carriedTitles) {
     if (f === "deploy-root/index.html") {
       const found = countIn(src, t);

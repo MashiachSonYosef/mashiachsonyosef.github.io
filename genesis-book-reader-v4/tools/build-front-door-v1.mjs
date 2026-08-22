@@ -109,6 +109,12 @@ const titleReading = (tokens, en) => {
   const m = STORE.index.m_sources[hits[0][3]];
   return { lic: licenseName(m.licensePosture), label: m.label || "", year: m.sourceYear || "" };
 };
+// The atlas: every family and every work the bridge records, built or not,
+// emitted by tools/emit-corpus-atlas-v1.mjs with the bridge's sha as its
+// receipt. The door refuses to run without it — a door listing only what
+// happens to be built would silently shrink the library to this lane's
+// output, and silent truncation reads as coverage.
+const ATLAS = JSON.parse(readFileSync(arg("atlas", "data/corpus-atlas-v1.json"), "utf8"));
 const BOOKS = plan.works.map((w) => ({
   slug: w.published_as, zone: `${w.published_as}.bin`,
   work_id: w.work_id, address_by_rule: w.address_by_rule, basis: w.basis,
@@ -267,51 +273,65 @@ ${subs.join("\n")}
       </details>
     </div>`;
 };
-const shown = books.filter((b) => !seated.has(b.slug));
-
-// ---- the eventual groupings, worn from the first work ---------------------
-// The library's shape is family → work → what is seated with it, and the
-// door wears that shape now, while one family is enough to hold everything
-// published — so a new work lands inside an existing frame instead of
-// reshaping a flat list, and the twenty-eight families the bridge counts
-// arrive by appearing, not by redesign. A family is derived the way every
-// address is — the first segment of the sealed work id — and its head wears
-// the same two-row register as every other head: the family's own Hebrew
-// name first, which is a name and therefore the ledger's to give (none is
-// recorded yet, so the row is the open slot the mastheads use, and the
-// commentary-names emit pattern fills it the day a family-names record
-// lands), the common force-read second, derived from the id segment and
-// never typed. The counts on the fold's face are sums over everything the
-// section holds, seated works included. Few families rest open; at volume
-// the same rule folds them, and the rest state rides on the element so the
-// search box can restore it.
-const famOf = (b) => String(b.work_id || "").split("/")[0];
-const famDisplay = (f) => f.charAt(0).toUpperCase() + f.slice(1);
-const families = [];
-{
-  const byFam = new Map();
-  for (const b of shown) {
-    const f = famOf(b);
-    if (!byFam.has(f)) byFam.set(f, []);
-    byFam.get(f).push(b);
-  }
-  for (const [key, bs] of byFam) families.push({ key, books: bs });
+// ---- the library, whole ---------------------------------------------------
+// The door's frame is the atlas: every family the bridge records, every work
+// inside it, built or not — so the organization exists before the books do,
+// and a new work lands inside a section that was already standing. Three
+// kinds of row live in a family: a built base work renders its full group; a
+// built work seated with its base elsewhere renders a linked row here saying
+// where it reads; a work not yet built renders a quiet unlinked row — its
+// id's own last segment (the bridge titles some works inside their ids, and
+// an id is a record) and its measured size. Nothing links to nothing.
+//
+// The family head's English row says exactly what it is: "recorded in the
+// bridge as", the raw corpus_family value, verbatim — underscores, review
+// states, and one literal pipe included — because the column is a working
+// ledger and the door's job is to show it, not to comb it. The Hebrew row
+// stays the open slot until a family-names record exists. Families holding
+// a built book rest open; the rest rest folded, and the resting state rides
+// on the element for the search box to restore.
+const byWorkId = new Map(books.map((b) => [b.work_id, b]));
+for (const b of books) {
+  let found = false;
+  for (const f of Object.values(ATLAS.families)) if (f.works.some((w) => w.id === b.work_id)) { found = true; break; }
+  if (!found) throw new Error(`${b.work_id} is published but the atlas does not know it — the bridge and the zones disagree; refusing output`);
 }
-const FAM_REST_OPEN = families.length <= 3;
+const seatedBaseOf = new Map();   // seated slug -> base book
+for (const [base, comms] of commentaryOf) for (const c of comms) seatedBaseOf.set(c, bySlug.get(base));
+const families = Object.entries(ATLAS.families).map(([key, f]) => {
+  const rows = f.works.map((w) => ({ atlas: w, book: byWorkId.get(w.id) || null }));
+  const built = rows.filter((r) => r.book).length;
+  return { key, rows, built, works: f.works.length, units: f.units, c0_rows: f.c0_rows };
+});
+// built sections first, then by the bridge's own weight
+families.sort((a, b) => (b.built - a.built) || (b.c0_rows - a.c0_rows));
+const atlasRow = (w) => {
+  const segs = w.id.split("/");
+  const name = segs[segs.length - 1];
+  const pre = segs.slice(0, -1).join("/");
+  return `      <span class="atlas-row" data-p="${esc(pre)}"><span class="aw" dir="auto">${esc(name)}</span><span class="au">${n(w.units)} unit${w.units === 1 ? "" : "s"}</span></span>`;
+};
+const seatedRow = (b) => {
+  const base = seatedBaseOf.get(b.slug);
+  return `      <a class="atlas-row built" href="/${b.slug}"><span class="aw">${esc(b.en)}</span><span class="au">its own book · seated with ${esc(base ? base.en : "its base")} — reads there · ${n(b.sections)} sections</span></a>`;
+};
 const familySection = (fam) => {
-  const held = fam.books.flatMap((b) => [b, ...(commentaryOf.get(b.slug) || []).map((s) => bySlug.get(s)).filter(Boolean)]);
-  const words = held.reduce((t, x) => t + (x.words || 0), 0);
-  const cUnits = held.reduce((t, x) => t + (x.units || 0), 0);
-  const bits = [`${n(held.length)} book${held.length === 1 ? "" : "s"}`, `${n(words)} words`];
-  if (cUnits) bits.push(`${n(cUnits)} commentary units`);
+  const bits = [`${n(fam.works)} work${fam.works === 1 ? "" : "s"}`];
+  if (fam.built) bits.push(`${n(fam.built)} built`);
+  bits.push(`${n(fam.units)} units`);
+  const body = fam.rows.map((r) => {
+    if (!r.book) return atlasRow(r.atlas);
+    if (seated.has(r.book.slug)) return seatedRow(r.book);
+    return groupFor(r.book);
+  });
   return `    <section class="family">
-      <details class="fam"${FAM_REST_OPEN ? " open data-rest-open" : ""}>
+      <details class="fam"${fam.built ? " open data-rest-open" : ""}>
       <summary>
         <span class="row"><span class="lab">family</span><span class="he none">none is recorded in the ledger</span></span>
-        <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(famDisplay(fam.key))}</span><span class="of">${esc(bits.join(" \u00b7 "))}</span></span>
+        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en">${esc(fam.key)}</span><span class="of">${esc(bits.join(" \u00b7 "))}</span></span>
       </summary>
       <div class="fgroups">
-${fam.books.map(groupFor).join("\n")}
+${body.join("\n")}
       </div>
       </details>
     </section>`;
@@ -396,13 +416,25 @@ const doc = `<!doctype html>
   details.fam > summary .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
   details.fam > summary .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
     text-transform:uppercase; color:var(--faint); }
-  details.fam > summary .en { font-size:1.15rem; font-variant:small-caps; letter-spacing:.14em; color:var(--gold); }
+  details.fam > summary .en { font-size:1.15rem; font-variant:small-caps; letter-spacing:.14em; color:var(--gold);
+    overflow-wrap:anywhere; min-width:0; }
   details.fam > summary .he.none { font-family:Georgia,serif; font-size:.85rem; font-style:italic; color:var(--faint); }
   details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }
   details.fam > summary > .row:first-child::before { content:"\u25b8"; color:var(--gold-dim); font-size:.8rem; }
   details.fam[open] > summary > .row:first-child::before { content:"\u25be"; }
   details.fam > summary:hover .en { color:var(--shesh); }
   .fgroups { display:flex; flex-direction:column; gap:.55rem; }
+  /* A work not yet built: its recorded id and its measured size, quiet and
+     unlinked — nothing links to nothing. A built work seated elsewhere links
+     to its own page and says where it reads. */
+  .atlas-row { display:flex; align-items:baseline; gap:.6rem; padding:.16rem .35rem;
+    font-size:.8rem; color:var(--faint); text-decoration:none; flex-wrap:wrap; min-width:0; }
+  .atlas-row .aw { color:var(--muted); unicode-bidi:plaintext; flex:1 1 auto; min-width:0;
+    overflow-wrap:anywhere;
+    font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif; }
+  .atlas-row .au { font-size:.68rem; white-space:nowrap; }
+  a.atlas-row.built .aw { color:var(--gold-dim); }
+  a.atlas-row.built:hover .aw { color:var(--gold); }
   /* One quiet fold per group. Its face is the summary line built above —
      each folded thing named with its count — so collapsed is shorter, never
      blinder. Closed is the resting state; the search box opens it when a
@@ -450,6 +482,10 @@ ${families.map(familySection).join("\n")}
     t = t.replace(/\\b(iii)\\b/g, "3").replace(/\\b(ii)\\b/g, "2").replace(/\\b(i)\\b/g, "1");
     return t.replace(/[^a-z0-9\\u0590-\\u05FF]+/g, "");
   };
+  var atlasRows = [].slice.call(document.querySelectorAll(".atlas-row")).map(function (r) {
+    var aw = r.querySelector(".aw");
+    return { el: r, key: norm((r.getAttribute("data-p") || "") + " " + (aw ? aw.textContent : "") + " " + (r.getAttribute("href") || "")) };
+  });
   var groups = [].slice.call(document.querySelectorAll(".workgroup")).map(function (g) {
     var names = [].slice.call(g.querySelectorAll(".en")).map(function (e) { return e.textContent; });
     [].slice.call(g.querySelectorAll(".he:not(.none)")).forEach(function (e) { names.push(e.textContent); });
@@ -468,11 +504,17 @@ ${families.map(familySection).join("\n")}
       var d = g.el.querySelector("details.fold");
       if (d) d.open = !!q && !g.el.hidden;
     });
-    // The family frame follows its contents: hidden when every group inside
+    // The atlas rows sift like the groups do: a row is hidden when it does
+    // not match, so an opened family shows the matches and not the thousands
+    // around them.
+    atlasRows.forEach(function (r) {
+      r.el.hidden = !!q && r.key.indexOf(q) < 0;
+    });
+    // The family frame follows its contents: hidden when everything inside
     // is, opened by a live match, restored to its resting state — carried on
     // the element itself — when the box empties.
     [].slice.call(document.querySelectorAll("section.family")).forEach(function (fs) {
-      var any = [].slice.call(fs.querySelectorAll(".workgroup")).some(function (g) { return !g.hidden; });
+      var any = [].slice.call(fs.querySelectorAll(".workgroup, .atlas-row")).some(function (g) { return !g.hidden; });
       fs.hidden = !!q && !any;
       var d = fs.querySelector("details.fam");
       if (d) d.open = q ? any : d.hasAttribute("data-rest-open");
@@ -488,7 +530,7 @@ ${families.map(familySection).join("\n")}
   <!-- A book's own title is corpus text and is not printed here. This page
        carries no records, so it can cite nothing; it says only how each book is
        commonly named, and the title itself waits inside, where it opens. -->
-  <footer>A book's own title is printed where it can be opened — inside the reader, out of the ledger, with the records behind it. This page names each book only as it is commonly read. The Hebrew of each book carries its own licence, named on the page it is read from and in anything exported from it.</footer>
+  <footer>A book's own title is printed where it can be opened — inside the reader, out of the ledger, with the records behind it. This page names a built book as it is commonly read, and names everything not yet built by its recorded id alone, exactly as the bridge carries it — some ids hold the work's own Hebrew title, and that is the record showing, not this page translating. The Hebrew of each built book carries its own licence, named on the page it is read from and in anything exported from it.</footer>
 </main>
 </body>
 </html>
@@ -588,8 +630,19 @@ const redirect = (b) => `<!doctype html>
 // generated and a generator can drift too.
 const HEBREW = /[\u0590-\u05FF]/;
 const scrubTitles = (text) => {
+  // Two kinds of Hebrew stand on this page and both are records: the carried
+  // zone titles, and the atlas rows' recorded ids (some ids hold the work's
+  // own Hebrew title). One list, longest first — a carried title can sit
+  // inside a recorded id (Genesis inside a Ben-Yehuda essay named for it),
+  // and scrubbing the short one first would cut it out of the long one's
+  // middle and orphan the remainder as Hebrew nobody owns.
+  const known = [];
+  for (const b of books) if (b.he) known.push(b.he);
+  for (const f of Object.values(ATLAS.families))
+    for (const w of f.works) if (HEBREW.test(w.id)) known.push(esc(w.id.split("/").pop()));
+  known.sort((a, b) => b.length - a.length);
   let t = text;
-  for (const b of books) if (b.he) t = t.split(b.he).join("");
+  for (const nm of known) t = t.split(nm).join("");
   return t;
 };
 if (HEBREW.test(scrubTitles(doc))) throw new Error("the front door printed a character of the text beyond the carried titles — refusing output");
