@@ -12,7 +12,7 @@
      so the way in looked like a different building than the rooms. Same
      tokens as zone.html, verbatim. */
   :root { --bg:#0c0910; --panel:#150f1d; --line:#261d33; --ink:#ece1c4; --muted:#a99a80;
-          --faint:#7a6f5c; --gold:#e8c46a; --gold-dim:#9a7f3f; --shani:#c0563f; }
+          --faint:#7a6f5c; --gold:#e8c46a; --gold-dim:#9a7f3f; --shani:#c0563f; --shesh:#d8c7a4; }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
@@ -34,6 +34,13 @@
   a.book .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
                 text-transform:uppercase; color:var(--faint); }
   a.book .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
+  a.book .he, a.sub-work .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
+    font-size:1.25rem; color:var(--shesh); }
+  a.book .he.none, a.sub-work .he.none { font-family:Georgia,serif; font-size:.85rem;
+    font-style:italic; color:var(--faint); }
+  a.book .chip { font-size:.62rem; letter-spacing:.06em; color:var(--muted);
+    border:1px solid var(--line); border-radius:.6rem; padding:.1rem .45rem; }
+  a.sub-work .he { font-size:1.05rem; margin-right:.5rem; }
   a.book .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
   a.book .of.slots, a.sub-work .of.slots { margin-top:.2rem; font-style:italic; }
   /* The commentary is not a third book. It arrives shut, and what is behind it
@@ -85,18 +92,20 @@
   <nav class="books">
     <div class="workgroup">
     <a class="book" href="/genesis">
-      <span class="row"><span class="lab">commonly read as</span><span class="en">Genesis</span></span>
+      <span class="row"><span class="lab">book title</span><span class="he" lang="he" dir="rtl">בראשית</span></span>
+      <span class="row"><span class="lab">commonly force read as</span><span class="en">Genesis</span><span class="chip" title="Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles · 2023">CC BY-SA</span></span>
       <span class="of">1,533 sections · 17,805 words · Miqra according to the Masorah · served from the sealed terminal artifacts</span>
     </a>
       <a class="sub-book" href="/genesis?c=open"><span class="en">Commentary on Genesis</span><span class="of">612 carried from 81 works — 181 on the word it opens by quoting · 323 on the section, nothing places them closer · 108 named, with no text in the record</span></a>
     </div>
     <div class="workgroup">
     <a class="book" href="/i-kings">
-      <span class="row"><span class="lab">commonly read as</span><span class="en">I Kings</span></span>
+      <span class="row"><span class="lab">book title</span><span class="he none">none is recorded in the ledger</span></span>
+      <span class="row"><span class="lab">commonly force read as</span><span class="en">I Kings</span></span>
       <span class="of">817 sections · 11,368 words · Nevi'im · Miqra according to the Masorah · served from the sealed terminal artifacts</span>
       <span class="of slots">awaiting its Y ledger — its coordinates stand typed in the open until then · 11 commentary slots open</span>
     </a>
-      <a class="sub-work" href="/targum-jonathan-on-i-kings"><span class="en">Targum Jonathan on I Kings</span><span class="of">its own book · 817 sections · 13,651 words · Aramaic · served from the sealed terminal artifacts, attached to I Kings by the coordinates both works carry</span><span class="of slots">awaiting its Y ledger — its coordinates stand typed in the open until then</span></a>
+      <a class="sub-work" href="/targum-jonathan-on-i-kings"><span class="he none">none is recorded in the ledger</span><span class="en">Targum Jonathan on I Kings</span><span class="of">its own book · 817 sections · 13,651 words · Aramaic · served from the sealed terminal artifacts, attached to I Kings by the coordinates both works carry</span><span class="of slots">awaiting its Y ledger — its coordinates stand typed in the open until then</span></a>
       <a class="sub-book" href="/targum-jonathan-on-i-kings?c=open"><span class="en">Commentary on Targum Jonathan on I Kings</span><span class="of">817 carried from 1 work — 817 on the section by coordinate</span></a>
       <a class="sub-book" href="/i-kings?c=open"><span class="en">Commentary on I Kings</span><span class="of">817 carried from 1 work — 817 on the section by coordinate</span></a>
     </div>
@@ -109,10 +118,11 @@
   var norm = function (t) {
     t = String(t).toLowerCase();
     t = t.replace(/\b(iii)\b/g, "3").replace(/\b(ii)\b/g, "2").replace(/\b(i)\b/g, "1");
-    return t.replace(/[^a-z0-9]+/g, "");
+    return t.replace(/[^a-z0-9\u0590-\u05FF]+/g, "");
   };
   var groups = [].slice.call(document.querySelectorAll(".workgroup")).map(function (g) {
     var names = [].slice.call(g.querySelectorAll(".en")).map(function (e) { return e.textContent; });
+    [].slice.call(g.querySelectorAll(".he:not(.none)")).forEach(function (e) { names.push(e.textContent); });
     [].slice.call(g.querySelectorAll("a[href]")).forEach(function (a) {
       names.push(a.getAttribute("href").replace(/^\//, "").replace(/\?.*$/, ""));
     });
