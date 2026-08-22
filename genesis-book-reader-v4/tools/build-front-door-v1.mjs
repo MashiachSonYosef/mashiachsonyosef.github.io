@@ -496,6 +496,8 @@ const doc = `<!doctype html>
   details.fam[open] > summary > .row:first-child::before { content:"\u25be"; }
   details.fam > summary:hover .en { color:var(--shesh); }
   .fgroups { display:flex; flex-direction:column; gap:.55rem; }
+  .fgroups > .fold-line { display:block; margin:0; padding:.05rem .35rem; color:var(--faint); font-size:.76rem; }
+  .fgroups > .fold-line.slots { font-style:italic; font-size:.7rem; }
   /* A work not yet built: its recorded id and its measured size, quiet and
      unlinked — nothing links to nothing. A built work seated elsewhere links
      to its own page and says where it reads. */
