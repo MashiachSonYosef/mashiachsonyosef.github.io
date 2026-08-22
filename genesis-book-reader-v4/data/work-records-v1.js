@@ -33,6 +33,10 @@ window.WORK_RECORDS_V1 = Object.freeze({
   "schema_version": "WORK_RECORDS_V1",
   "recorded_on": "2026-08-21",
   "rule": "work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands",
+  "descriptors_basis": {
+    "these_are": "presentation strings typed in this file by the synthesis lane — the byline (including its canon-division words like Nevi'im and Ketuvim), the English family label, the coordinate vocabulary, and the licence-link pointer. None is corpus text and none traces to a record yet.",
+    "dies_when": "a ledger carries the fact — a work's Y node retires its byline's structure claims and its coordinate vocabulary; a family-names record retires family_en; until then every one of these is a typed value standing in the open, same law as typed_awaiting_ledger"
+  },
   "descriptors": {
     "tanakh/genesis": {
       "byline": "Miqra according to the Masorah · served from the sealed terminal artifacts",
@@ -100,6 +104,9 @@ window.WORK_RECORDS_V1 = Object.freeze({
       "typed_because": "no Y ledger for this work is on this disk; these values are read off the bridge by tools/plan-work-shards-v1.mjs and stand here in the open",
       "dies_when": "the work's Y ledger lands — delete this entry; plan-build-v1 refuses while both exist"
     }
+  },
+  "attachments_basis": {
+    "dies_when": "the commentary work's Y fixture lands carrying attachment_y_node_id — the ledger's own statement of what stands on what retires the typed pair, the same day, entry for entry"
   },
   "attachments": [
     {
