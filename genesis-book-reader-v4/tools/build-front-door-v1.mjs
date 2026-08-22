@@ -18,10 +18,14 @@
 //
 // Two rules this page keeps, and keeps by construction rather than by memory:
 //
-//   1. It carries no records, so it cites nothing. A book's own title is
-//      corpus text and needs a definition record and a licence beside it; this
-//      page has neither, so it prints no Hebrew at all and names each book only
-//      as it is commonly read. The title itself waits inside, where it opens.
+//   1. It prints no Hebrew it cannot stand behind. A book's own title is
+//      corpus text; it appears here exactly as its zone carries it — the
+//      ledger's word — with the store's licensed reading beside it under
+//      "commonly force read as", the same two-row frame as the masthead
+//      inside. The title is a doorway: pressing it opens the book, where the
+//      same word opens its full record. A work whose ledger has not named a
+//      title shows the open slot instead, in the masthead's own words. No
+//      other Hebrew may appear, and the guard below holds the page to that.
 //   2. Every number on it is counted from a zone at build time. There is no
 //      figure here that somebody decided.
 //
@@ -34,6 +38,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { gunzipSync } from "node:zlib";
 import { join } from "node:path";
+import { openRouteStore } from "./gloss-store-v1.mjs";
 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const ZONES = arg("zones", "data/zones");
@@ -67,6 +72,41 @@ const plan = JSON.parse(readFileSync(PLAN, "utf8"));
 // choosing that face back, so it refuses instead.
 execFileSync("node", ["tools/emit-work-basis-v1.mjs", "--plan", PLAN], { stdio: "pipe" });
 const WB = JSON.parse(readFileSync(arg("basis", "data/work-basis-v1.json"), "utf8"));
+// The same catalog the masthead asks at runtime, asked once at build time:
+// does a record read this title's own form as the common name? Where one
+// does, its licence rides the force-read line, exactly as it does inside.
+const STORE = openRouteStore(arg("store", "data/route-store"));
+// Same mapping as zone.html's licenseName — the postures are the store's.
+const licenseName = (posture) => {
+  const v = String(posture || "").toLowerCase();
+  if (!v) return "License unrecorded";
+  if (v.startsWith("cc0")) return "CC0";
+  if (/_nc(?:_|$)/u.test(v)) return /_sa(?:_|$)/u.test(v) ? "CC BY-NC-SA" : "CC BY-NC";
+  if (v.includes("by_sa") || v.includes("gfdl")) return "CC BY-SA";
+  if (v.startsWith("public_domain")) return "Public Domain";
+  if (v.startsWith("cc_by") || v.includes("wordnet")) return "CC BY";
+  return posture;
+};
+const titleReading = (tokens, en) => {
+  const key = (tokens || []).map((t) => t.k).filter(Boolean)[0];
+  if (!key) return null;
+  const routes = STORE.routesFor(key);
+  if (!routes) return null;
+  // Exact sense match only — a plain ";"-split cannot create a false exact
+  // equal (a fragment cut inside brackets keeps its bracket and matches
+  // nothing), so the store's own depth rule is not re-implemented here.
+  const hits = routes.filter((row) => {
+    const senses = String(row[1] || "").split(";").map((x) => x.trim());
+    return row[1] === en || senses.includes(en);
+  }).filter((row) => STORE.index.m_sources[row[3]]);
+  if (!hits.length) return null;
+  hits.sort((a, c) => {
+    const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
+    return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
+  });
+  const m = STORE.index.m_sources[hits[0][3]];
+  return { lic: licenseName(m.licensePosture), label: m.label || "", year: m.sourceYear || "" };
+};
 const BOOKS = plan.works.map((w) => ({
   slug: w.published_as, zone: `${w.published_as}.bin`,
   work_id: w.work_id, address_by_rule: w.address_by_rule, basis: w.basis,
@@ -124,6 +164,7 @@ for (const b of BOOKS) {
   const units = onWord + onSection;
   if (!z.byline) throw new Error(`${b.zone} carries no byline — the door prints the zone's and will not invent one`);
   books.push({ ...b, en: z.work || b.slug, byline: z.byline, sections, words,
+    he: z.work_he || "", reading: titleReading(z.work_he_tokens, z.work || b.slug),
     units, onWord, onSection, heldLicence, noText, byCoordinate, noCloser, works: worksCount });
 }
 if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
@@ -141,7 +182,11 @@ const incBits = (b) => {
   return bits;
 };
 const bookCard = (b) => `    <a class="book" href="/${b.slug}">
-      <span class="row"><span class="lab">commonly read as</span><span class="en">${esc(b.en)}</span></span>
+      <span class="row"><span class="lab">book title</span>${b.he
+        ? `<span class="he" lang="he" dir="rtl">${esc(b.he)}</span>`
+        : `<span class="he none">none is recorded in the ledger</span>`}</span>
+      <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(b.en)}</span>${b.reading
+        ? `<span class="chip" title="${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""}">${esc(b.reading.lic)}</span>` : ""}</span>
       <span class="of">${n(b.sections)} sections · ${n(b.words)} words · ${esc(b.byline)}</span>${incBits(b).length ? `
       <span class="of slots">${esc(incBits(b).join(" · "))}</span>` : ""}
     </a>`;
@@ -175,7 +220,9 @@ const groupFor = (b) => {
   for (const cslug of commentaryOf.get(b.slug) || []) {
     const c = bySlug.get(cslug);
     if (!c) continue;
-    subs.push(`      <a class="sub-work" href="/${c.slug}"><span class="en">${esc(c.en)}</span><span class="of">its own book · ${n(c.sections)} sections · ${n(c.words)} words · ${esc(c.byline)}</span>${incBits(c).length ? `<span class="of slots">${esc(incBits(c).join(" · "))}</span>` : ""}</a>`);
+    subs.push(`      <a class="sub-work" href="/${c.slug}">${c.he
+        ? `<span class="he" lang="he" dir="rtl">${esc(c.he)}</span>`
+        : `<span class="he none">none is recorded in the ledger</span>`}<span class="en">${esc(c.en)}</span><span class="of">its own book · ${n(c.sections)} sections · ${n(c.words)} words · ${esc(c.byline)}</span>${incBits(c).length ? `<span class="of slots">${esc(incBits(c).join(" · "))}</span>` : ""}</a>`);
     const cl = commentaryLine(c);
     if (cl) subs.push(cl);
   }
@@ -202,7 +249,7 @@ const doc = `<!doctype html>
      so the way in looked like a different building than the rooms. Same
      tokens as zone.html, verbatim. */
   :root { --bg:#0c0910; --panel:#150f1d; --line:#261d33; --ink:#ece1c4; --muted:#a99a80;
-          --faint:#7a6f5c; --gold:#e8c46a; --gold-dim:#9a7f3f; --shani:#c0563f; }
+          --faint:#7a6f5c; --gold:#e8c46a; --gold-dim:#9a7f3f; --shani:#c0563f; --shesh:#d8c7a4; }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
@@ -224,6 +271,13 @@ const doc = `<!doctype html>
   a.book .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
                 text-transform:uppercase; color:var(--faint); }
   a.book .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
+  a.book .he, a.sub-work .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
+    font-size:1.25rem; color:var(--shesh); }
+  a.book .he.none, a.sub-work .he.none { font-family:Georgia,serif; font-size:.85rem;
+    font-style:italic; color:var(--faint); }
+  a.book .chip { font-size:.62rem; letter-spacing:.06em; color:var(--muted);
+    border:1px solid var(--line); border-radius:.6rem; padding:.1rem .45rem; }
+  a.sub-work .he { font-size:1.05rem; margin-right:.5rem; }
   a.book .of { margin-top:.45rem; color:var(--faint); font-size:.8rem; }
   a.book .of.slots, a.sub-work .of.slots { margin-top:.2rem; font-style:italic; }
   /* The commentary is not a third book. It arrives shut, and what is behind it
@@ -283,10 +337,11 @@ ${shown.map(groupFor).join("\n")}
   var norm = function (t) {
     t = String(t).toLowerCase();
     t = t.replace(/\\b(iii)\\b/g, "3").replace(/\\b(ii)\\b/g, "2").replace(/\\b(i)\\b/g, "1");
-    return t.replace(/[^a-z0-9]+/g, "");
+    return t.replace(/[^a-z0-9\\u0590-\\u05FF]+/g, "");
   };
   var groups = [].slice.call(document.querySelectorAll(".workgroup")).map(function (g) {
     var names = [].slice.call(g.querySelectorAll(".en")).map(function (e) { return e.textContent; });
+    [].slice.call(g.querySelectorAll(".he:not(.none)")).forEach(function (e) { names.push(e.textContent); });
     [].slice.call(g.querySelectorAll("a[href]")).forEach(function (a) {
       names.push(a.getAttribute("href").replace(/^\\//, "").replace(/\\?.*$/, ""));
     });
@@ -401,10 +456,18 @@ const redirect = (b) => `<!doctype html>
 </html>
 `;
 
-// A page that carries no records may print no corpus text. Checked here rather
-// than trusted, because this file is generated and a generator can drift too.
+// The only Hebrew this page may print is a title carried from a zone — the
+// ledger's own word, shown in the masthead's frame. Scrub every carried title
+// out and no Hebrew may remain: anything left is a character this page cannot
+// stand behind. Checked here rather than trusted, because this file is
+// generated and a generator can drift too.
 const HEBREW = /[\u0590-\u05FF]/;
-if (HEBREW.test(doc)) throw new Error("the front door printed a character of the text — refusing output");
+const scrubTitles = (text) => {
+  let t = text;
+  for (const b of books) if (b.he) t = t.split(b.he).join("");
+  return t;
+};
+if (HEBREW.test(scrubTitles(doc))) throw new Error("the front door printed a character of the text beyond the carried titles — refusing output");
 
 if (HEBREW.test(readme)) throw new Error("the README printed a character of the text — refusing output");
 

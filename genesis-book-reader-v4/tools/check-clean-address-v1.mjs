@@ -28,6 +28,13 @@ import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const plan = JSON.parse(readFileSync(join(K3, "build", "build-plan-v1.json"), "utf8"));
+// What the masthead should say is not typed here: it is read out of the zone
+// the page is about to load. A check that carries its own copy of a title is
+// checking the page against me rather than against the chain.
+const titleOf = (book) => {
+  const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${book}.bin`))).toString("utf8"));
+  return [z.work_he || "", z.work || ""];
+};
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 
@@ -122,22 +129,31 @@ const framed = await p.evaluate(() => {
 });
 check("the site's own name carries no Hebrew that nothing recorded",
   framed.inSiteName === 0, `${framed.inSiteName} found`);
-// The front door carries no records, so it can cite nothing, so it prints no
-// corpus text at all. A book's own title waits inside, where it opens.
-check("the front door prints no Hebrew, because it can source none",
-  framed.hebrews.length === 0, framed.hebrews.map((x) => x.t).join(" · ") || "none");
-check("and the English beside it is labelled as how it is read, not as a translation",
-  framed.commons.length > 0 && framed.commons.every((x) => /^commonly read as$/i.test(x.lab)),
+// The door prints a book's own title exactly as its zone carries it — the
+// ledger's word — and nothing else in Hebrew. Every Hebrew string on the door
+// must be one of the zones' own titles; a work whose ledger names none shows
+// the open slot in the masthead's words.
+{
+  const carried = new Set(plan.works.map((w) => titleOf(w.published_as)[0]).filter(Boolean));
+  const strays = framed.hebrews.filter((x) => !carried.has(x.t));
+  check("every Hebrew on the door is a title a zone carries, and nothing else",
+    strays.length === 0,
+    strays.length ? strays.map((x) => x.t).join(" · ") : `${framed.hebrews.length} titles, all carried`);
+  const unnamedWorks = plan.works.filter((w) => !titleOf(w.published_as)[0]).length;
+  check("and a work whose ledger names no title shows the open slot",
+    framed.unnamed.length >= Math.min(unnamedWorks, 1) && framed.unnamed.every((t) => /none is recorded/.test(t)),
+    `${framed.unnamed.length} slots for ${unnamedWorks} unnamed works`);
+}
+// The register never softens, here least of all: the English on a card is a
+// forced reading of the Hebrew above it, recorded or awaited.
+check("and the English beside it is labelled as the forced reading it is",
+  framed.commons.length > 0 && framed.commons.every((x) => /^commonly force read as$/i.test(x.lab)),
   framed.commons.map((x) => `${x.t} under "${x.lab}"`).join(" · "));
 
 
 // What the masthead should say is not typed here: it is read out of the zone
 // the page is about to load. A check that carries its own copy of a title is
 // checking the page against me rather than against the chain.
-const titleOf = (book) => {
-  const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${book}.bin`))).toString("utf8"));
-  return [z.work_he || "", z.work || ""];
-};
 // The walked addresses come from the same plan as the door, not a typed list
 // — every published work gets its masthead read against its own zone.
 const WALK = plan.works.map((w) => [`/${w.published_as}`, ...titleOf(w.published_as)]);

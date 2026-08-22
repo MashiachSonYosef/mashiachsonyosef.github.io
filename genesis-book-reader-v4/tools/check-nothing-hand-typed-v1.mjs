@@ -89,12 +89,29 @@ const glyphsInLiterals = (src, isJson) => {
   return out;
 };
 
-// ---- served files: none at all ---------------------------------------
+// ---- served files: nothing beyond what the zones carry -----------------
+// A page may print no character of the text that somebody typed. The door
+// carries each book's own title verbatim from its zone — the ledger's word,
+// generated, never typed — so a carried title is scrubbed before the scan and
+// anything left is a typed character. zone.html carries none at all: its text
+// arrives from data at runtime, and the scrub removes nothing from it.
 const SERVED = ["zone.html", "deploy-root/index.html", "deploy-root/genesis/index.html",
-  "deploy-root/1kings/index.html"].filter((f) => existsSync(join(K3, f)));
+  "deploy-root/1kings/index.html", "deploy-root/i-kings/index.html"].filter((f) => existsSync(join(K3, f)));
 check("there are served files to read", SERVED.length > 0, SERVED.join(" ") || "none found");
+const { gunzipSync } = await import("node:zlib");
+const carriedTitles = [];
+const zonesDir = join(K3, "data", "zones");
+if (existsSync(zonesDir)) {
+  for (const zf of readdirSync(zonesDir).filter((x) => x.endsWith(".bin") && !x.endsWith("-commentary.bin"))) {
+    try {
+      const z = JSON.parse(gunzipSync(readFileSync(join(zonesDir, zf))).toString("utf8"));
+      if (z.work_he) carriedTitles.push(z.work_he);
+    } catch { /* a bin the walk cannot read is someone else's problem, not a licence to skip the scan */ }
+  }
+}
 for (const f of SERVED) {
-  const src = readFileSync(join(K3, f), "utf8");
+  let src = readFileSync(join(K3, f), "utf8");
+  for (const t of carriedTitles) src = src.split(t).join("");
   const hits = [];
   for (let i = 0; i < src.length; i += 1) {
     const cp = src.codePointAt(i);
