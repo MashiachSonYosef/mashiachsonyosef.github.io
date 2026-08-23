@@ -2600,9 +2600,9 @@
     // ledger says the occurrence contains: one W, or several with a maqaf
     // between them. The maqaf prints and does not open, because it is not a W.
     // The W set of a maqaf occurrence is a COMPcell lattice, not a partition:
-    // A־B holds three W (A, B, A־B), and they overlap. Only the atoms tile the
-    // surface, so only the atoms may be laid against the printed pieces or
-    // joined into one reading line. The joined intervals are real W with real
+    // A chain of two atoms holds three W — each atom, and the whole — and they
+    // overlap. Only the atoms tile the surface, so only the atoms may be laid
+    // against the printed pieces or joined into one reading line. The joined
     // keys, and they open from the mark that makes them.
     const hasMaqaf = (r) => String((r && (r.s || r.k)) || "").includes("\u05be");
     const allRegions = word.w || null;
@@ -3211,8 +3211,8 @@
   // Rule 7 of the frame: an exact key removes niqqud, cantillation, bidi
   // controls, sof pasuq and paseq, and PRESERVES the boundary maqaf. U+05BE is
   // a character the source transmitted, not a separator this file chose, so it
-  // survives both strips. Fusing it would make מן־הארץ key as מןהארץ, a string
-  // no source ever wrote, and let two different words collide on it.
+  // survives both strips. Fusing it would drop U+05BE out of the key and give
+  // back a string no source ever wrote, letting two different words collide.
   const bareHe = (t) => String(t || "").normalize("NFD")
     .replace(/[\u0300-\u036f\u0591-\u05bd\u05bf-\u05c7]/g, "")
     .replace(/[^\u05d0-\u05ea\u05be]/g, "");
