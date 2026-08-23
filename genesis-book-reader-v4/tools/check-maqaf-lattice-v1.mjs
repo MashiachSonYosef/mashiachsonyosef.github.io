@@ -26,6 +26,10 @@
 //   L7  the page draws one clickable atom per printed piece, never one per W
 //   L8  the reading line joins atoms only, because only atoms tile the surface
 //   L9  clicking the i-th printed piece opens the i-th atom and not some other W
+//   L10 a Q's attested count agrees with the forms carried beside it
+//   L11 every issued form carries a role, a surface, a key and an issuance
+//   L12 a site whose forms are not all issued draws no branch at all
+//   L13 choosing a branch does not move one character of the C0
 
 import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
@@ -74,6 +78,40 @@ for (const w of words) {
         refuse("L6", `${w.unit} "${surface}"`,
           `q carries "${banned}"; a Q flag may carry no form, no key and no chosen branch`);
       }
+    }
+  }
+
+  // ---- L10/L11 : the forms beside a Q ----------------------------------
+  if (w.q || w.q_forms) {
+    const forms = Array.isArray(w.q_forms) ? w.q_forms : [];
+    const attested = Number(w.q && w.q.attested_child_form_count);
+    if (forms.length && Number.isFinite(attested) && attested !== forms.length) {
+      refuse("L10", `${w.unit} "${surface}"`,
+        `q attests ${attested} forms; ${forms.length} are carried beside it`);
+    }
+    if (forms.length && !w.q) {
+      refuse("L10", `${w.unit} "${surface}"`, "forms are carried with no Q flag to point at them");
+    }
+    let standing = 0;
+    for (const f of forms) {
+      for (const need of ["role", "s", "k", "semantic_wk_issuance"]) {
+        if (!f[need]) refuse("L11", `${w.unit} "${surface}"`,
+          `a form carries no "${need}"` + (need === "semantic_wk_issuance"
+            ? "; a form with no issuance can never be shown, which is safe but silent" : ""));
+      }
+      if (f.standing) standing += 1;
+      if (String(f.semantic_wk_issuance || "") === "ISSUED" && f.s === undefined) {
+        refuse("L11", `${w.unit} "${surface}"`, "a form is issued but carries no surface");
+      }
+    }
+    if (forms.length && standing !== 1) {
+      refuse("L11", `${w.unit} "${surface}"`,
+        `${standing} forms are marked standing; exactly one is the form the C0 carries`);
+    }
+    const st = forms.find((f) => f.standing);
+    if (st && st.s !== surface) {
+      refuse("L11", `${w.unit} "${surface}"`,
+        `the standing form is "${st.s}" but the C0 reads "${surface}" — the C0 must carry the standing form`);
     }
   }
 
@@ -238,6 +276,53 @@ if (url) {
     }
   }
 
+  // ---- L12/L13 : what the card may draw, and what it may never move ------
+  const qWords = words.map((w, i) => ({ w, i })).filter(({ w }) => w.q);
+  for (const { w, i } of qWords) {
+    const forms = Array.isArray(w.q_forms) ? w.q_forms : [];
+    const issued = forms.filter((f) => String(f.semantic_wk_issuance || "") === "ISSUED");
+    const attested = Number(w.q.attested_child_form_count) || forms.length;
+    const mayDraw = forms.length > 0 && issued.length === forms.length
+      && issued.length === attested && attested > 1;
+
+    await page.evaluate((n) => document.querySelectorAll(".wb")[n].click(), i);
+    await page.waitForTimeout(450);
+    const pills = await page.evaluate(() =>
+      [...document.querySelectorAll("#hud .b-q .s-pills button")].map((b) => b.textContent.trim()));
+
+    if (!mayDraw && pills.length) {
+      refuse("L12", `"${w.s}"`,
+        `${pills.length} branch(es) drawn for a site that is ${forms.length ? "not fully issued" : "held"}` +
+        ` — ${JSON.stringify(pills)}`);
+    }
+    if (mayDraw && pills.length !== issued.length) {
+      refuse("L12", `"${w.s}"`, `${pills.length} branches drawn for ${issued.length} issued forms`);
+    }
+
+    // ---- L13 : the C0 does not move ------------------------------------
+    if (mayDraw && pills.length > 1) {
+      const before = await page.evaluate((n) => ({
+        line: document.querySelectorAll(".wb")[n].querySelector(".w").textContent,
+        head: document.querySelector("#hud .head b")?.textContent || "",
+      }), i);
+      await page.evaluate(() => document.querySelectorAll("#hud .b-q .s-pills button")[1].click());
+      await page.waitForTimeout(500);
+      const after = await page.evaluate((n) => ({
+        line: document.querySelectorAll(".wb")[n].querySelector(".w").textContent,
+        head: document.querySelector("#hud .head b")?.textContent || "",
+      }), i);
+      if (before.line !== after.line) {
+        refuse("L13", `"${w.s}"`,
+          `choosing a branch rewrote the line: "${before.line}" became "${after.line}" — that is a derivative`);
+      }
+      if (before.head !== after.head) {
+        refuse("L13", `"${w.s}"`,
+          `choosing a branch rewrote the card head: "${before.head}" became "${after.head}"`);
+      }
+    }
+  }
+  if (qWords.length) notes.push(`apparatus sites checked          : ${qWords.length}`);
+
   if (pageErrors.length) refuse("L7", "page", pageErrors.join(" | "));
   notes.push(`occurrences drawn on the page    : ${drawn.length.toLocaleString()}`);
   await browser.close();
@@ -248,10 +333,11 @@ console.log(`check-maqaf-lattice-v1 · ${binPath}${url ? ` · ${url}` : ""}`);
 for (const n of notes) console.log(`  ${n}`);
 console.log("");
 if (!fails.length) {
-  console.log(`  PASS · ${url ? "9 laws" : "6 laws (bin only — pass --url to check the page)"}`);
+  console.log(`  PASS · ${url ? "13 laws" : "8 laws (bin only — pass --url to check the page)"}`);
   console.log("");
-  console.log("  Not covered: whether a W's key is the one the corpus lane sealed for it,");
-  console.log("  and whether a Q's forms were issued. Both are the corpus lane's to answer.");
+  console.log("  Not covered: whether a W's key is the one the corpus lane sealed for it, and");
+  console.log("  whether an ISSUED field is true. This file proves the reader obeys that field;");
+  console.log("  only Oholiab can say it was set honestly. Both are the corpus lane's to answer.");
   process.exit(0);
 }
 const byLaw = new Map();
