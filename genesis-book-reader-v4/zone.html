@@ -333,6 +333,13 @@
   /* An occurrence written with a maqaf is one block and more than one W. The
      block never splits; the W inside it light and open one at a time, and the
      maqaf itself prints without opening, because it is not a W. */
+  .mq-open { cursor: pointer; }
+  .mq-open:hover, .mq-open.on { color: var(--sel); }
+  .wjoin { white-space: nowrap; }
+  .wjoin .wb { margin-inline: 0; }
+  .q-mark { font-size: 0.62em; vertical-align: super; color: var(--muted);
+    margin-inline-start: 0.1em; cursor: help; }
+  .wb.has-q .w { border-bottom: 1px dotted var(--muted); }
   .wb.multi:hover .w { color: inherit; border-bottom-color: transparent; }
   .wb.multi.active .w { color: inherit; border-bottom: 1px dashed transparent; }
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
@@ -977,6 +984,16 @@
   } catch {
     document.getElementById("meta").textContent =
       "No book is published on this page yet — no walk has landed. The page takes its name from the zone when one arrives; nothing is shown, and nothing is named, that has not come through the pipeline.";
+    return;
+  }
+  // A fixture is a test instrument, not a work. It carries no licence identity,
+  // so it may not be served as one — the refusal is structural rather than a
+  // matter of nobody linking to it. Every Hebrew string in a fixture is
+  // invented for the test; none of it is corpus, and none of it is published.
+  if (String(zone.schema_version || "").includes("FIXTURE")
+      && QUERY.get("fixture") !== "1") {
+    document.getElementById("meta").textContent =
+      "This zone is a test instrument, not a published work. It carries no licence identity and is not served. Nothing is shown.";
     return;
   }
   // The book is named in Hebrew where the Y ledger promoted a name for it, and
@@ -1832,7 +1849,15 @@
     const bin = opts.bin || zone;
     const word = opts.word || region;
     const regionIndex = opts.regionIndex || 0;
-    const regions = word.w || [region];
+    // Only the atoms tile the occurrence, so only the atoms may be laid out in
+    // the header. Drawing the whole lattice printed each joined interval again
+    // between its own halves. When a joined interval is what was opened, every
+    // atom it spans is lit, because that is what the reader asked about.
+    const atomsOf = (w) => (w && w.w)
+      ? w.w.filter((r) => !String((r.s || r.k) || "").includes("\u05be"))
+      : null;
+    const regions = atomsOf(word) || [region];
+    const openSurfaces = String((region && (region.s || region.k)) || "").split("\u05be");
     if (opts.mark) opts.mark();
     placeHud(el);
 
@@ -1848,7 +1873,8 @@
           { className: "mq", textContent: marks[i - 1] || "" }));
         const seg = document.createElement("span");
         seg.textContent = r.s;
-        if (i !== regionIndex) seg.style.color = "var(--faint)";
+        const lit = regionIndex >= 0 ? (i === regionIndex) : openSurfaces.includes(r.s);
+        if (!lit) seg.style.color = "var(--faint)";
         b.append(seg);
       });
     } else b.textContent = word.s;
@@ -2472,6 +2498,30 @@
   // came through the chain — same shape, same gloss line, same tap. The gloss
   // table is passed in because a commentary carries its own: it answers from
   // the same catalog, but only for the forms it actually contains.
+  // A record the corpus says is one word prints as one word. The separator is
+  // whatever that record names — usually nothing at all — and this file never
+  // supplies one of its own.
+  const appendWord = (host, built, word) => {
+    const pj = word && word.presentation_join;
+    const joinNext = !!(pj && pj.join_next_without_separator);
+    const joinPrev = !!(pj && pj.join_previous_without_separator);
+    if (joinPrev && host.__wjoin) host.__wjoin.append(built.wb);
+    else if (joinNext) {
+      const wrap = document.createElement("span");
+      wrap.className = "wjoin";
+      wrap.append(built.wb);
+      host.append(wrap);
+      host.__wjoin = wrap;
+    } else host.append(built.wb);
+    if (joinNext) {
+      const sep = String((pj && pj.separator_between_group_records) || "");
+      if (sep) (host.__wjoin || host).append(document.createTextNode(sep));
+      return;
+    }
+    host.__wjoin = null;
+    host.append(document.createTextNode(" "));
+  };
+
   const wordBlock = (word, table) => {
     const wb = document.createElement("span");
     wb.className = word.held ? "wb held" : "wb";
@@ -2480,8 +2530,17 @@
     // The block is the occurrence. What is clickable inside it is whatever the
     // ledger says the occurrence contains: one W, or several with a maqaf
     // between them. The maqaf prints and does not open, because it is not a W.
-    const regions = word.w || null;
+    // The W set of a maqaf occurrence is a COMPcell lattice, not a partition:
+    // A־B holds three W (A, B, A־B), and they overlap. Only the atoms tile the
+    // surface, so only the atoms may be laid against the printed pieces or
+    // joined into one reading line. The joined intervals are real W with real
+    // keys, and they open from the mark that makes them.
+    const hasMaqaf = (r) => String((r && (r.s || r.k)) || "").includes("\u05be");
+    const allRegions = word.w || null;
+    const regions = allRegions ? allRegions.filter((r) => !hasMaqaf(r)) : null;
+    const joined = allRegions ? allRegions.filter(hasMaqaf) : [];
     const regionEls = [];
+    const markEls = [];
     if (regions) {
       wb.classList.add("multi");
       // Split on the mark and keep it, so the character redrawn between the
@@ -2491,7 +2550,8 @@
       const printed = word.s.split(MAQAF_SPLIT);
       printed.forEach((piece, i) => {
         if (i % 2 === 1) {
-          w.append(Object.assign(document.createElement("span"), { className: "mq", textContent: piece }));
+          const mk = Object.assign(document.createElement("span"), { className: "mq", textContent: piece });
+          w.append(mk); markEls.push(mk);
           return;
         }
         if (!piece) return;
@@ -2499,6 +2559,21 @@
         w.append(seg); regionEls.push(seg);
       });
     } else w.textContent = word.s;
+    // A Q says only that the source marked this position as one where it
+    // transmits more than one form. It carries no surface, no key, no selector
+    // and no chosen branch, and the forms behind it are candidate evidence that
+    // has not been issued as W/K. So the page marks the place and prints
+    // nothing else — showing a branch here would be this file deciding which
+    // form the text is, which is not its decision to make.
+    if (word.q) {
+      wb.classList.add("has-q");
+      const qm = document.createElement("span");
+      qm.className = "q-mark";
+      qm.setAttribute("aria-label", "the source marks more than one form at this place");
+      qm.title = "The source transmits more than one form here. The forms are recorded and not yet issued, so none is shown.";
+      qm.textContent = "\u2058";
+      w.append(qm);
+    }
     wb.append(w);
     // The gloss line always exists — words without English keep an empty line
     // so the Hebrew never rides higher than its neighbors, in either mode.
@@ -2512,7 +2587,7 @@
     if (line) { ge.textContent = line; ge.title = line; }
     else { ge.textContent = " "; ge.classList.add("bare"); }
     wb.append(ge);
-    return { wb, regionEls, glossParts: parts };
+    return { wb, regionEls, markEls, joined, glossParts: parts };
   };
 
   /**
@@ -2524,7 +2599,11 @@
     // held by the chain's script rule, or normalizing to nothing at all: no
     // key, no catalog question, no tap
     if (word.held || (!word.w && !word.k)) { built.wb.style.cursor = "default"; return built.wb; }
-    const regions = word.w || [{ s: word.s, k: word.k }];
+    // Atoms only. built.regionEls are the printed pieces, one per atom, so the
+    // list laid against them must be the atoms too — pairing them with the full
+    // lattice made the second half of a maqaf'd word open the whole chain.
+    const regions = (word.w ? word.w.filter((r) => !String((r.s || r.k) || "").includes("\u05be"))
+                            : null) || [{ s: word.s, k: word.k }];
     const targets = built.regionEls.length ? built.regionEls : [built.wb];
     targets.forEach((target, i) => {
       target.addEventListener("click", (ev) => {
@@ -2534,6 +2613,25 @@
           ...opts, bin, word, regionIndex: i,
           glossParts: built.regionEls.length ? built.glossParts : null,
           mark: () => { if (built.regionEls.length) target.classList.add("on"); built.wb.classList.add("active"); },
+        });
+      });
+    });
+    // A joined interval is a W the reader can ask about, and the character that
+    // makes it is the maqaf between its halves. Each mark opens the shortest
+    // interval that spans it. At three atoms the whole chain has no mark of its
+    // own and is not reachable here; that is stated rather than hidden.
+    (built.markEls || []).forEach((mk, i) => {
+      const want = [regions[i], regions[i + 1]]
+        .map((r) => r && (r.s || r.k)).filter(Boolean).join("\u05be");
+      const iv = (built.joined || []).find((r) => (r.s || r.k) === want);
+      if (!iv) { mk.style.cursor = "default"; return; }
+      mk.classList.add("mq-open");
+      mk.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        built.regionEls.forEach((r) => r.classList.remove("on"));
+        openHud(mk, iv, unitId, wordPos, {
+          ...opts, bin, word, regionIndex: -1, glossParts: null,
+          mark: () => { mk.classList.add("on"); built.wb.classList.add("active"); },
         });
       });
     });
@@ -2740,7 +2838,7 @@
       // nothing to say about a word nobody wrote here.
       if (t.k) wireWord(built, t, src, null, null);
       else built.wb.style.cursor = "default";
-      row.append(built.wb, document.createTextNode(" "));
+      appendWord(row, built, t);
     });
     return row;
   };
@@ -2913,7 +3011,7 @@
       (e.words || []).forEach((word) => {
         const b = wordBlock(word, commentaryStore.gloss);
         wireWord(b, word, commentaryStore, null, null);
-        p.append(b.wb, document.createTextNode(" "));
+        appendWord(p, b, word);
       });
       // A commentary the record carries and this page will not print is a fact
       // about this page, and the reader is owed it by name rather than by a
@@ -3041,8 +3139,14 @@
   // Comparison strips the points from both sides: a commentary writes its
   // catchword bare where the verse carries it pointed, and they are the same
   // word. Only the comparison is stripped; nothing shown is.
-  const bareHe = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f\u0591-\u05c7]/g, "")
-    .replace(/[^\u05d0-\u05ea]/g, "");
+  // Rule 7 of the frame: an exact key removes niqqud, cantillation, bidi
+  // controls, sof pasuq and paseq, and PRESERVES the boundary maqaf. U+05BE is
+  // a character the source transmitted, not a separator this file chose, so it
+  // survives both strips. Fusing it would make מן־הארץ key as מןהארץ, a string
+  // no source ever wrote, and let two different words collide on it.
+  const bareHe = (t) => String(t || "").normalize("NFD")
+    .replace(/[\u0300-\u036f\u0591-\u05bd\u05bf-\u05c7]/g, "")
+    .replace(/[^\u05d0-\u05ea\u05be]/g, "");
 
   /**
    * How far the entry's own opening quotation runs against this section's
@@ -3438,7 +3542,7 @@
           cWords.forEach((word) => {
             const b = wordBlock(word, commentaryStore.gloss);
             wireWord(b, word, commentaryStore, null, null);
-            t.append(b.wb, document.createTextNode(" "));
+            appendWord(t, b, word);
           });
         } else {
           // an entry the sidecar carries no words for still prints, whole
@@ -3770,7 +3874,7 @@
       const built = wordBlock(word, zone.gloss);
       const myIdx = wIdx; wIdx += 1;
       wireWord(built, word, zone, sec.unit, myIdx);
-      he.append(built.wb, document.createTextNode(" "));
+      appendWord(he, built, word);
       // A commentary attached at this word gets its handle here, standing in
       // the line right after the words it covers, and it opens here too — a
       // reader should not have to look anywhere else to find what they pressed.
