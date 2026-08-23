@@ -605,6 +605,10 @@
   #hud .s-pills button[aria-pressed="true"] { border-color: var(--shesh); color: var(--ink-strong);
     background: var(--wash); }
   #hud .s-pills button .none { font: 0.62rem/1 Georgia, serif; color: var(--faint); margin-inline-start: 0.35rem; }
+  #hud .b-q { flex: 0 0 auto; min-height: 0; }
+  #hud .b-q .q-role { font: 0.6rem/1 Georgia, serif; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--faint); margin-inline-start: 0.4rem; }
+  #hud .b-q button[aria-pressed="true"] .q-role { color: var(--muted); }
   #hud .prov { color: var(--faint); font-size: 0.72rem; margin: 0.35rem 0 0; }
   .lic-chip { display: inline-block; margin-inline-start: 0.45rem; padding: 0.02rem 0.5rem;
     border-radius: 999px; background: rgba(216, 199, 164, 0.12); border: 1px solid rgba(216, 199, 164, 0.3);
@@ -1842,6 +1846,11 @@
    * complete word is what a reader came for. Every finer cut is one tap away
    * and none of them is hidden.
    */
+  // Which transmitted form the reader chose to look at, per apparatus site.
+  // It is a question about the card, never about the line: choosing a branch
+  // changes what the card is about and does not move one character of the C0.
+  const pickedQForm = new Map();
+
   const openHud = async (el, region, unitId, wordPos, opts = {}) => {
     closeHud(false);
     activeEl = el;
@@ -1997,7 +2006,59 @@
     // least one whole D with its M. Pinning it is how that stays true however
     // many readings the catalog attests — no reading is capped to make room.
     const rows = document.createElement("div"); rows.className = "rows";
-    rows.append(cutRow, cellRow, readRow);
+    const qRow = document.createElement("div"); qRow.className = "band b-q";
+    rows.append(qRow, cutRow, cellRow, readRow);
+
+    // --- row 0 · which form the source transmits here ------------------
+    // A Q sits above the divisions, not instead of them: pick the form first,
+    // and whatever that form's own component system is opens underneath it. A
+    // branch written with a maqaf brings its whole lattice with it.
+    //
+    // The row draws only when every form the source attests has been issued as
+    // semantic W/K. Anything else — a held site, a partly issued one, a field
+    // this file does not recognise — draws nothing and says why. Showing one
+    // branch of an unissued pair would be this page deciding which form the
+    // text is, and that is not its decision.
+    const qFlag = word && word.q;
+    const qForms = Array.isArray(word && word.q_forms) ? word.q_forms : [];
+    const qIssued = qForms.filter((f) => String(f.semantic_wk_issuance || "") === "ISSUED");
+    const qAttested = Number(qFlag && qFlag.attested_child_form_count) || qForms.length;
+    const qWhole = qFlag && qForms.length > 0 && qIssued.length === qForms.length
+      && qIssued.length === qAttested && qAttested > 1;
+    if (qFlag) {
+      const label = document.createElement("p"); label.className = "r-label";
+      if (!qWhole) {
+        label.textContent = qForms.length
+          ? `The source transmits ${qAttested} forms here · not yet issued, so none is shown`
+          : "The source marks this place and attests no branch · nothing is inferred";
+        qRow.append(label);
+      } else {
+        label.textContent = `Transmitted forms · ${qIssued.length}`;
+        const pills = document.createElement("div");
+        pills.className = "s-pills"; pills.dir = "rtl";
+        const standing = qIssued.find((f) => f.standing) || qIssued[0];
+        const chosen = pickedQForm.get(qFlag.site) || standing.role;
+        qIssued.forEach((f) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.setAttribute("aria-pressed", String(f.role === chosen));
+          const he = document.createElement("span");
+          he.lang = "he"; he.dir = "rtl"; he.textContent = f.s;
+          const rl = document.createElement("span");
+          rl.className = "q-role";
+          rl.textContent = f.label || String(f.role || "").toLowerCase();
+          btn.append(he, rl);
+          btn.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            if (f.role === chosen) return;
+            pickedQForm.set(qFlag.site, f.role);
+            openHud(el, { s: f.s, k: f.k, w: f.w }, unitId, wordPos, opts);
+          });
+          pills.append(btn);
+        });
+        qRow.append(label, pills);
+      }
+    }
     const dSlot = document.createElement("div"); dSlot.className = "d-slot";
     hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, prov);
 
