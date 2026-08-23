@@ -299,7 +299,13 @@ for (const b of BOOKS) {
     units, onWord, onSection, heldLicence, noText, byCoordinate, noCloser, works: worksCount });
 }
 if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
-if (cleanGenesisZonesSeen !== 1) throw new Error(`expected one pinned clean Genesis v3 zone, found ${cleanGenesisZonesSeen}`);
+// Genesis, when it is here, must be the exact sealed v3 bytes — that check runs
+// above, inside the loop, and is untouched. What is relaxed is the requirement
+// that Genesis be here at all. A door builder that cannot describe the site
+// without one particular work in it cannot describe a withdrawal, and a
+// withdrawal is precisely when the door most needs rebuilding: every count it
+// prints was left standing at five works because this line refused to run.
+if (cleanGenesisZonesSeen > 1) throw new Error(`expected at most one Genesis zone, found ${cleanGenesisZonesSeen}`);
 
 // ---- the door ------------------------------------------------------------
 // A typed-basis work and a sealed work do not wear the same face, and held
@@ -1071,6 +1077,14 @@ ${sectionsHtml.join("\n")}
 // months after the two books and their commentary had shipped whole. Nobody
 // lied; it was written once and never had a reason to change. So it is written
 // from the same counts as the page.
+// A work the plan names and no zone answers for is withheld, not missing. The
+// list is derived from the zones on disk, so it empties itself on the build
+// after a work comes back and can never disagree with what is served.
+const withheldBooks = BOOKS.filter((b) => !books.some((x) => x.slug === b.slug));
+const titleCase = (t) => String(t).split("-").map((w) =>
+  (w.length <= 2 && w === w.toLowerCase() && /^[ivx]+$/.test(w)) ? w.toUpperCase()
+    : w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+
 const readme = `# The Tabernacle
 
 A Hebrew reader on a sealed chain. Every reading printed under a word traces to
@@ -1104,11 +1118,21 @@ ${books.map((b) => `- **${esc(b.en)}** — ${n(b.sections)} sections, ${n(b.word
 Commentary is not a separate book. It is carried by the book it comments on and
 opens where it attaches — at the word, or across the whole section, depending on
 what the chain records for it.
+${withheldBooks.length ? `
+## What is withheld
 
+${withheldBooks.map((b) => `- **${esc(titleCase(b.slug))}**`).join("\n")}
+
+${withheldBooks.length === 1 ? "This work is built and not served, withheld pending\nverification of its transmission apparatus" : "These works are built and not served, withheld\npending verification of their transmission apparatus"} — the positions where a
+source transmits more than one form for the same place in the text. A work is
+served when its apparatus is settled, not before. The ${withheldBooks.length === 1 ? "address" : "addresses"} still answer${withheldBooks.length === 1 ? "s" : ""} and say${withheldBooks.length === 1 ? "s" : ""} so.
+` : ""}
 ## What is in here
 
 - \`index.html\` — the front door. Built by \`tools/build-front-door-v1.mjs\`; do not edit.
 - \`genesis-book-reader-v4/zone.html\` — the reader. One page serves every book.
+  There is one. A per-book page would be a second place for the standard not to
+  apply, so there is not one.
 - \`genesis-book-reader-v4/data/zones/\` — the books and their commentary, as built zones.
 - \`genesis-book-reader-v4/data/route-store/\` — the readings, keyed by exact form.
 - \`genesis-book-reader-v4/tools/\` — every build step and every check.
@@ -1118,6 +1142,7 @@ what the chain records for it.
 ## Building and checking
 
 \`\`\`
+cd genesis-book-reader-v4
 ./build.sh <mirror> <bridge.csv.gz> <serves> <YYYY-MM-DD>
 tools/run-all-checks.sh
 \`\`\`
@@ -1125,6 +1150,15 @@ tools/run-all-checks.sh
 The build runs from sealed inputs and is re-runnable: the same inputs give the
 same bytes. The checks run against the rendered page rather than the source, and
 end by printing what they do not cover.
+
+## Key normalization
+
+An exact key removes niqqud, cantillation, bidi controls, sof pasuq and paseq.
+It preserves Hebrew letters including final forms, internal word boundaries,
+abbreviation punctuation, and the boundary maqaf — the maqaf is a character the
+source transmitted, not a separator this repository chose. A word written with
+one keys with it, never fused. \`tools/check-maqaf-lattice-v1.mjs\` refuses a
+zone that fuses it, and refuses a page that draws the wrong half.
 
 ## Two lanes
 
@@ -1199,6 +1233,33 @@ mkdirSync(OUT, { recursive: true });
 writeFileSync(join(OUT, "index.html"), doc);
 writeFileSync(join(OUT, "README.md"), readme);
 writeFileSync(join(OUT, "front-door-counts-receipt-v1.json"), countReceiptJson);
+// One page, used at a withheld work's own address and at any historical address
+// that pointed to it. A withdrawal does not release a published address; it
+// changes what the address has to say. The build after the work returns writes
+// the ordinary stub over this one, because both are derived from the zones on
+// disk and neither is typed into a list.
+const heldPage = () => `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Withheld · The Tabernacle</title>
+<link rel="canonical" href="/">
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0910;
+  color:#a99a80;font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
+  a{color:#e8c46a} p{max-width:34rem}</style>
+</head>
+<body><p>This address is kept, and the work behind it is not being served.
+It is withheld pending verification of its transmission apparatus, and it
+returns here when that is settled. Nothing is shown in the meantime.<br><br>
+<a href="/">The Tabernacle</a></p>
+</body>
+</html>
+`;
+for (const b of withheldBooks) {
+  mkdirSync(join(OUT, b.slug), { recursive: true });
+  writeFileSync(join(OUT, b.slug, "index.html"), heldPage());
+}
 for (const b of books) {
   mkdirSync(join(OUT, b.slug), { recursive: true });
   const r = redirect(b);
@@ -1217,8 +1278,38 @@ if (existsSync(HISTORY)) {
     const target = slugOfWork.get(row.to_work_id);
     if (!target) throw new Error(`address history points at ${row.to_work_id}, which the plan does not publish — refusing a redirect to nowhere`);
     const b = books.find((x) => x.slug === target);
-    if (!b) throw new Error(`address history target ${target} has no zone behind it`);
     mkdirSync(join(OUT, row.from), { recursive: true });
+    // A published address is a promise, and a withdrawal does not release it.
+    // When the work an address points at is not currently served, the address
+    // still answers — and says so, rather than forwarding a reader into a
+    // reader with nothing in it. It stops saying so on the build after the
+    // work comes back, because this is derived from the zones on disk and
+    // never from a list typed here.
+    if (!b) {
+      writeFileSync(join(OUT, row.from, "index.html"), heldPage());
+      continue;
+    }
+    if (false) {
+      const held = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Withheld · The Tabernacle</title>
+<link rel="canonical" href="/">
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0910;
+  color:#a99a80;font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
+  a{color:#e8c46a} p{max-width:34rem}</style>
+</head>
+<body><p>This address is kept, and the work behind it is not being served.
+It is withheld pending verification of its transmission apparatus, and it
+returns here when that is settled. Nothing is shown in the meantime.<br><br>
+<a href="/">The Tabernacle</a></p>
+</body>
+</html>
+`;
+      writeFileSync(join(OUT, row.from, "index.html"), held);
+    }
     const moved = `<!doctype html>
 <html lang="en">
 <head>
