@@ -3,6 +3,20 @@
 // still while the reader works inside it and can be moved by hand, and the
 // section's three acts sit at three different weights.
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+const SKIP_LABEL = "check-levels-v1";
+// A check about commentary needs a work that carries some. When none is
+// served, that is a fact about the corpus and not a defect in the reader, so
+// this says so and stops rather than failing every assertion against a page
+// with nothing on it.
+{
+  const { zonesWithCommentary } = await import("./zones-on-disk-v1.mjs");
+  if (!zonesWithCommentary().length) {
+    console.log(`${SKIP_LABEL}: no served work carries a commentary sidecar — nothing to check`);
+    process.exit(0);
+  }
+}
+
 
 // The book fills in as it is read: a section arrives as its number and a
 // reserved height, and builds when it comes within reach. A claim about every
@@ -24,7 +38,7 @@ const readThrough = async (p) => {
 };
 const { chromium } = pw;
 
-const URL = process.argv[2] || "http://127.0.0.1:8899/zone.html?b=1kings";
+const URL = defaultZoneUrl();
 const shots = process.argv[3] || "/home/claude/k3/shots";
 let failures = 0;
 const check = (name, ok, detail = "") => {

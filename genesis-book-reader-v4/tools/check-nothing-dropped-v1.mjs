@@ -32,6 +32,20 @@ import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+const SKIP_LABEL = "check-nothing-dropped-v1";
+// A check about commentary needs a work that carries some. When none is
+// served, that is a fact about the corpus and not a defect in the reader, so
+// this says so and stops rather than failing every assertion against a page
+// with nothing on it.
+{
+  const { zonesWithCommentary } = await import("./zones-on-disk-v1.mjs");
+  if (!zonesWithCommentary().length) {
+    console.log(`${SKIP_LABEL}: no served work carries a commentary sidecar — nothing to check`);
+    process.exit(0);
+  }
+}
+
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -124,7 +138,7 @@ const BASE = (process.argv[2] || "http://127.0.0.1:8899/zone.html").split("?")[0
 const b = await pw.chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-await p.goto(`${BASE}?b=genesis`, { waitUntil: "networkidle" });
+await p.goto(`${BASE}?b=${zonesOnDisk()[0]}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(2200);
 const shown = await p.evaluate(() => {

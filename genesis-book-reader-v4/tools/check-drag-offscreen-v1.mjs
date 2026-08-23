@@ -2,6 +2,7 @@
 // A card the reader drags may hang off the edge. A card the page placed may not.
 // Either way the head stays reachable, because it is the only way back.
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
@@ -9,7 +10,7 @@ const W = 412, H = 915;
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 const p = await b.newPage({ viewport: { width: W, height: H } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
-await p.goto(process.argv[2] || "http://127.0.0.1:8899/zone.html?b=1kings", { waitUntil: "networkidle" });
+await p.goto(defaultZoneUrl(), { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg");
 
 const open = async (i = 0) => {

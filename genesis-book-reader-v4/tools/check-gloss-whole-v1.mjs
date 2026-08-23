@@ -4,13 +4,14 @@
 // GUARDS: zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary
 //
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
-await p.goto(process.argv[2] || "http://127.0.0.1:8899/zone.html?b=1kings", { waitUntil: "networkidle" });
+await p.goto(defaultZoneUrl(), { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb .g");
 
 // The book fills in as it is read: a section arrives as its number and a

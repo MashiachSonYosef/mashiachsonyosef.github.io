@@ -13,11 +13,12 @@
 // GUARDS: span-slice-rule-v1-compspan-template-exact-key
 //
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 
-const URL = process.argv[2] || "http://127.0.0.1:8899/zone.html?b=genesis";
+const URL = defaultZoneUrl();
 const VIEWPORTS = [
   { width: 412, height: 915, name: "a phone" },
   { width: 412, height: 690, name: "a short phone" },

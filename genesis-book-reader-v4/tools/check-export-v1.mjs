@@ -3,6 +3,7 @@
 // GUARDS: export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work
 //
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 
 // The book fills in as it is read: a section arrives as its number and a
 // reserved height, and builds when it comes within reach. A claim about every
@@ -25,7 +26,7 @@ const readThrough = async (p) => {
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
-const URL = process.argv[2] || "http://127.0.0.1:8899/zone.html?b=1kings";
+const URL = defaultZoneUrl();
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 const p = await b.newPage({ viewport: { width: 412, height: 915 }, acceptDownloads: true });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });

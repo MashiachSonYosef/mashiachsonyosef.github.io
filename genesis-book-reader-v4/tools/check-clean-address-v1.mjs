@@ -24,6 +24,7 @@ import { tmpdir } from "node:os";
 import { join, dirname, extname, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -286,7 +287,7 @@ check("a clean address typed in lands on the reader and stays",
   }
 }
 
-await p.goto(`${B}/genesis-book-reader-v4/zone.html?b=genesis`, { waitUntil: "networkidle" });
+await p.goto(`${B}/genesis-book-reader-v4/zone.html?b=${zonesOnDisk()[0]}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
 const raw = await p.evaluate(() => ({ addr: location.pathname, secs: document.querySelectorAll("section.seg").length,
   glossed: [...document.querySelectorAll("section.seg .he-text .wb .g")].filter((g) => g.textContent.trim()).length }));
@@ -334,7 +335,7 @@ const shut = await p.evaluate(() => document.querySelectorAll("section.seg .c-ma
 check("  while the book's own entry opens the book with nothing pressed", shut === 0, `${shut} open`);
 
 // Nothing is rewritten on a say-so that did not come from our own redirect.
-await p.goto(`${B}/genesis-book-reader-v4/zone.html?b=genesis&clean=..%2F..%2Fevil`, { waitUntil: "networkidle" });
+await p.goto(`${B}/genesis-book-reader-v4/zone.html?b=${zonesOnDisk()[0]}&clean=..%2F..%2Fevil`, { waitUntil: "networkidle" });
 const hostile = await p.evaluate(() => location.pathname);
 check("a clean= that is not one of ours is ignored",
   hostile === "/genesis-book-reader-v4/zone.html", hostile);

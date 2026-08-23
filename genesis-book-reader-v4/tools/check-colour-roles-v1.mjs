@@ -30,6 +30,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const LEDGER = join(HERE, "..", "data", "y-genesis-navigation-v1.js");
@@ -90,7 +91,7 @@ const BASE = (process.argv[2] || "http://127.0.0.1:8899/zone.html").split("?")[0
 const b = await pw.chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-await p.goto(`${BASE}?b=genesis&c=open`, { waitUntil: "networkidle" });
+await p.goto(`${BASE}?b=${zonesOnDisk()[0]}&c=open`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(2600);
 
