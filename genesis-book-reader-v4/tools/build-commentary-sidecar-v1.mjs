@@ -179,6 +179,29 @@ for (const claim of map.claims) {
   // to the section with the rest, rather than quietly nowhere.
   const hint = claim.visual_hint || claim.asserted_edge || null;
   if (!hint || !hint.start_word_index) { claimedRefs.delete(seg.ref); continue; }
+  // V's attachment grain policy, honoured here rather than argued with:
+  //
+  //   section by default; word pairing requires explicit exact
+  //   normalized-surface evidence
+  //
+  // The map is honest about which of its hints have that and which are the
+  // convention read by eye — it stamps every one with a basis. What this file
+  // used to check was whether a word index existed, not where it came from, so
+  // a hint the map itself calls NOT_PROVEN became a v_words span and the reader
+  // drew a mark on a word for it. 180 of 182.
+  //
+  // An allowlist rather than a denylist: a basis this file has not been taught
+  // to trust goes to the section, which is where V puts it by default anyway.
+  const WORD_GRADE_BASIS = new Set(["EXPLICIT_VISIBLE_HEADWORD"]);
+  const hintBasis = hint.basis || hint.proof_basis || "";
+  if (!WORD_GRADE_BASIS.has(hintBasis)) {
+    counts.not_word_grade = (counts.not_word_grade || 0) + 1;
+    counts.not_word_grade_by_basis = counts.not_word_grade_by_basis || {};
+    counts.not_word_grade_by_basis[hintBasis || "(none)"] =
+      (counts.not_word_grade_by_basis[hintBasis || "(none)"] || 0) + 1;
+    claimedRefs.delete(seg.ref);
+    continue;
+  }
   // The map counted the section's own words, so its indices are the zone's
   // indices, off by the one that turns counting-from-one into counting-from-zero.
   const vs = hint.start_word_index, ve = hint.end_word_index;
