@@ -1313,6 +1313,14 @@
         if (a.ok) { rec.en = a.text; rec.source = a; }
         else { rec.held = a.why; }
       } else if (!w.k) rec.held = "held by the ledger; no reading is offered";
+      // A word that carries a key and shows no reading is the ordinary case —
+      // 677 of Targum Ruth's 2,139 — and it had no branch here. It fell
+      // through with held null and source null, and the tally below skips only
+      // what is held, so the first one of them read .label off null and the
+      // export died. Every work has words like this, so no export has ever
+      // been produced. Naming the reason is also the honest thing: the file
+      // says why a word carries no English rather than passing over it.
+      else rec.held = "no reading is shown for this word";
       words.push(rec);
     }
     const sources = new Map();
