@@ -59,10 +59,25 @@ const parse = (text) => {
 // ---- the Hebrew + English file ---------------------------------------
 const both = await grab(3);
 const B = parse(both);
-// nothing on a reading line stands outside a citation: strip every "text[n]"
-// and every [withheld] and what is left must be whitespace
+// Nothing on a reading line stands outside a citation: strip every "text[n]"
+// and every [withheld], and what is left must be whitespace.
+//
+// The text of a reading may itself carry square brackets — a lexicon writes a
+// supplied word that way, "to/ [the] hearing of", "and/ [he is] going away".
+// The first version of this stripper used [^[\]]*? for the text, a class that
+// cannot cross a "[", so it stopped dead at the first supplied word and
+// reported the reading as uncited. It was reading its own blind spot as a
+// defect in the file. The text run now also admits a bracket group that is not
+// a citation, which is the difference between [the] and [1].
+//
+// What this does NOT catch, stated rather than implied: an uncited run that is
+// followed by a cited one on the same line. The text part is lazy but
+// unbounded, so it will swallow the pair. Only an uncited run after the last
+// citation on a line is found here. Closing that needs a per-reading emission
+// from the export rather than a regex over its prose.
 const uncited = (readings) => readings
-  .replace(/[^[\]]*?\s*\[\d+\]/g, " ").replace(/\[withheld\]/g, " ").trim();
+  .replace(/(?:[^[\]]|\[(?!\d+\])[^\]]*\])*?\s*\[\d+\]/g, " ")
+  .replace(/\[withheld\]/g, " ").trim();
 check("no reading stands in the file without a citation",
   B.marks.length > 0 && uncited(B.readings) === "",
   `${B.marks.length} readings cited${uncited(B.readings) ? `, uncited: "${uncited(B.readings).slice(0, 40)}"` : ""}`);
@@ -81,9 +96,22 @@ check("every numbered entry names a licence before it names anything else",
   [...B.entries.values()].filter((v) => v.key !== "H")[0]?.head.slice(0, 46) || "");
 check("the Hebrew has an entry of its own", B.entries.has("H") && /CC-|PUBLIC|LIC/i.test(B.entries.get("H").head),
   (B.entries.get("H")?.head || "absent").slice(0, 46));
-check("the Hebrew entry carries the work's obligations",
-  (B.entries.get("H")?.obligations || []).some((o) => /Noncommercial/i.test(o)),
-  (B.entries.get("H")?.obligations || []).join(" | ").slice(0, 60));
+// The obligations a work carries are the work's, not this file's to name. An
+// earlier version tested for /Noncommercial/, which is I Kings' licence and
+// nobody else's; run against a public-domain work it failed a file that was
+// correct, because a public-domain work has no obligation to carry. What is
+// actually required is that the entry and the licence agree: a posture that
+// obliges must show what it obliges, and one that does not must not invent one.
+{
+  const H = B.entries.get("H");
+  const head = H?.head || "";
+  const obl = H?.obligations || [];
+  const freely = /PUBLIC_DOMAIN|\bCC0\b/i.test(head) && !/ALLOW_WITH_OBLIGATIONS/i.test(head);
+  check("the Hebrew entry's obligations agree with its licence",
+    freely ? obl.length === 0 : obl.length > 0,
+    freely ? `${head.slice(0, 34)} · ${obl.length} obligation(s), expected none`
+           : `${head.slice(0, 34)} · ${obl.join(" | ").slice(0, 60) || "none carried"}`);
+}
 check("the numbers climb in the order the reader meets them",
   (() => { const seen = []; for (const n of B.marks) if (!seen.includes(n)) seen.push(n);
            return seen.every((n, i) => n === i + 1); })(), B.marks.join(" "));
@@ -93,9 +121,22 @@ check("the file says how to read its marks", /^Citations: /m.test(both));
 //
 // Walk the first few words: read the source off the HUD, then read the number
 // off the file and look its entry up. They must be the same record.
-const wbs = await p.$$("section.seg .he-text .wb");
+// Only words that carry a reading can be walked: a word the catalog has
+// nothing for opens a card with no reading pills in it, and waiting twenty
+// seconds for one is how this check used to die rather than report. 677 of
+// Targum Ruth's 2,139 words are that word.
+const allWbs = await p.$$("section.seg .he-text .wb");
+const wbs = [];
+for (const wb of allWbs) {
+  const has = await wb.evaluate((el) => {
+    const g = el.querySelector(".g");
+    return !!(g && g.textContent.trim() && g.textContent.trim() !== "—");
+  });
+  if (has) wbs.push(wb);
+  if (wbs.length >= 6) break;
+}
 let checked = 0, agreed = 0, disagreed = [];
-for (let i = 0; i < Math.min(wbs.length, 6); i += 1) {
+for (let i = 0; i < wbs.length; i += 1) {
   await wbs[i].click();
   await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
   await p.waitForTimeout(250);

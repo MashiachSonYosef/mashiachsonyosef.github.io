@@ -156,7 +156,16 @@ const NOT_VISIBLE = {
 };
 
 // ---- every published work, against that frame ----------------------------
-const bins = existsSync(ZONES) ? readdirSync(ZONES).filter((f) => f.endsWith(".bin")).sort() : [];
+// Works only. A fixture is a test instrument that says so in its own
+// receipt — "not a work · carries no licence identity and is never served"
+// — so asking whether it carries a B identity is asking the wrong question
+// of the wrong thing, and answering "no" reads as a gap in the frame.
+const bins = existsSync(ZONES)
+  ? readdirSync(ZONES).filter((f) => f.endsWith(".bin"))
+      .filter((f) => !f.startsWith("fixture-"))
+      .filter((f) => !/^[0-9a-f]{2}\.bin$/.test(f) && f !== "w-top.bin")
+      .sort()
+  : [];
 // A file with sections is a work a reader opens. A file with units and no
 // sections stands against one — it is asked for V and never asked for a frame
 // of its own, because it has none: it is the commentary layer of the work its

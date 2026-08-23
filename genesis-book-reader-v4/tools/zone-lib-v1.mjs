@@ -112,7 +112,11 @@ export const parseCoordinates = (unitId, slug) => {
   return { chapter: Number(m[1]), section: Number(m[2]), label: `${m[1]}:${m[2]}` };
 };
 
-export const MAQAF = "־";
+// U+05BE HEBREW PUNCTUATION MAQAF, named by its codepoint. A tool in this
+// tree may not supply a character of the text any more than the page may,
+// and a glyph in a literal here is that file typing one. The escape is the
+// same character and makes no claim to have written it.
+export const MAQAF = "\u05be";
 
 /**
  * Words as the zone stores them.

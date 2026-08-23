@@ -34,7 +34,10 @@
 import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
-const MAQAF = "־";
+// Named by codepoint, never typed. This file may not supply a character of
+// the text any more than the page may — the rule is the whole tree's, and
+// check-nothing-hand-typed-v1 is what noticed it had been broken here.
+const MAQAF = "\u05be";
 const args = process.argv.slice(2);
 const binPath = args.find((a) => !a.startsWith("--"));
 const url = args.includes("--url") ? args[args.indexOf("--url") + 1] : null;
@@ -59,7 +62,7 @@ const latticeOf = (atoms) => {
   return out;
 };
 
-const marks = (t) => (String(t || "").match(/־/g) || []).length;
+const marks = (t) => (String(t || "").match(/\u05be/g) || []).length;
 
 let maqafOccurrences = 0;
 let latticeW = 0;
@@ -227,8 +230,8 @@ if (url) {
   })));
 
   for (const d of drawn) {
-    if (!d.surface.includes("־")) continue;
-    const n = d.surface.split("־").length;
+    if (!d.surface.includes("\u05be")) continue;
+    const n = d.surface.split("\u05be").length;
     // ---- L7 : one clickable atom per printed piece ---------------------
     if (d.atomEls !== n) {
       refuse("L7", `"${d.surface}"`,
@@ -254,7 +257,7 @@ if (url) {
   const multi = await page.$$(".wb.multi");
   for (const wb of multi) {
     const surface = (await wb.$eval(".w", (e) => e.textContent)) || "";
-    const atoms = surface.split("־");
+    const atoms = surface.split("\u05be");
     const pieces = await wb.$$(".wr");
     for (let i = 0; i < pieces.length && i < atoms.length; i += 1) {
       await pieces[i].click();
@@ -266,12 +269,12 @@ if (url) {
         if (!b) return null;
         const lit = [...b.children].filter((c) => !String(c.style.color || "").includes("faint")
           && !c.classList.contains("mq")).map((c) => c.textContent);
-        return lit.join("־");
+        return lit.join("\u05be");
       });
       if (opened !== atoms[i]) {
         refuse("L9", `"${surface}"`,
           `pressing piece ${i + 1} ("${atoms[i]}") opened "${opened}"` +
-          (opened && opened.includes("־") ? " — a joined interval, not the atom pressed" : ""));
+          (opened && opened.includes("\u05be") ? " — a joined interval, not the atom pressed" : ""));
       }
     }
   }
