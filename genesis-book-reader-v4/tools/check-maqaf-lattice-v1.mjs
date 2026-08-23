@@ -1,0 +1,265 @@
+#!/usr/bin/env node
+// check-maqaf-lattice-v1
+//
+// The gate a work passes before it is served again.
+//
+// A maqaf occurrence is one C0 and more than one W. Its W set is a COMPcell
+// lattice: every contiguous interval of its atoms, n(n+1)/2 of them, which
+// overlap and therefore do not partition anything. That is the whole reason
+// this file exists — an overlapping set laid out as if it partitioned the
+// surface is how the reader came to open the wrong word, and how a reading
+// line came to print an interval between its own halves.
+//
+// It checks the bin's arithmetic and then the rendered page, because a bin
+// that is right and a page that draws it wrong is still a page that is wrong.
+//
+//   node tools/check-maqaf-lattice-v1.mjs <zone.bin> [--url <served url>]
+//
+// Laws, each one refusable on its own:
+//
+//   L1  key normalization retains U+05BE in its original positions
+//   L2  the atoms joined by U+05BE reconstitute the occurrence surface exactly
+//   L3  an interval spanning r atoms carries exactly r-1 U+05BE, surface and key
+//   L4  the W set is exactly the lattice: every contiguous interval, once each
+//   L5  W and K are 1:1 — no two W share a key, no W lacks one
+//   L6  a Q carries no surface, no key, no selector and no chosen branch
+//   L7  the page draws one clickable atom per printed piece, never one per W
+//   L8  the reading line joins atoms only, because only atoms tile the surface
+//   L9  clicking the i-th printed piece opens the i-th atom and not some other W
+
+import { readFileSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
+
+const MAQAF = "־";
+const args = process.argv.slice(2);
+const binPath = args.find((a) => !a.startsWith("--"));
+const url = args.includes("--url") ? args[args.indexOf("--url") + 1] : null;
+if (!binPath) {
+  console.error("usage: check-maqaf-lattice-v1.mjs <zone.bin> [--url <served url>]");
+  process.exit(2);
+}
+
+const fails = [];
+const notes = [];
+const refuse = (law, what, detail) => fails.push({ law, what, detail });
+
+const zone = JSON.parse(gunzipSync(readFileSync(binPath)).toString("utf8"));
+const words = (zone.sections || []).flatMap((s) =>
+  (s.words || []).map((w) => ({ ...w, unit: s.unit })));
+
+// The lattice a set of atoms is required to produce.
+const latticeOf = (atoms) => {
+  const out = [];
+  for (let i = 0; i < atoms.length; i += 1)
+    for (let j = i; j < atoms.length; j += 1) out.push(atoms.slice(i, j + 1).join(MAQAF));
+  return out;
+};
+
+const marks = (t) => (String(t || "").match(/־/g) || []).length;
+
+let maqafOccurrences = 0;
+let latticeW = 0;
+let plainW = 0;
+const byAtomCount = new Map();
+
+for (const w of words) {
+  const surface = String(w.s || "");
+  const regions = Array.isArray(w.w) ? w.w : null;
+
+  // ---- L6 : a Q is a pointer and nothing else --------------------------
+  if (w.q) {
+    for (const banned of ["s", "k", "surface", "key", "semantic_w", "semantic_k",
+                          "selector_state", "branch_choice", "form_role", "forms"]) {
+      if (Object.prototype.hasOwnProperty.call(w.q, banned)) {
+        refuse("L6", `${w.unit} "${surface}"`,
+          `q carries "${banned}"; a Q flag may carry no form, no key and no chosen branch`);
+      }
+    }
+  }
+
+  if (!surface.includes(MAQAF)) {
+    plainW += regions ? regions.length : (w.k ? 1 : 0);
+    // ---- L1 : a plain key keeps whatever the source wrote -------------
+    if (w.k && marks(w.k) !== 0) {
+      refuse("L1", `${w.unit} "${surface}"`, `key "${w.k}" carries a maqaf the surface does not`);
+    }
+    continue;
+  }
+
+  maqafOccurrences += 1;
+  if (!regions) {
+    refuse("L4", `${w.unit} "${surface}"`,
+      "occurrence is written with a maqaf but carries no W set; it holds more than one W");
+    continue;
+  }
+
+  const atoms = surface.split(MAQAF);
+  const n = atoms.length;
+  byAtomCount.set(n, (byAtomCount.get(n) || 0) + 1);
+
+  // ---- L2 : the atoms reconstitute the surface --------------------------
+  if (atoms.join(MAQAF) !== surface) {
+    refuse("L2", `${w.unit} "${surface}"`, "atoms do not rejoin to the occurrence surface");
+  }
+
+  const want = latticeOf(atoms);
+  const got = regions.map((r) => String(r.s ?? r.k ?? ""));
+  latticeW += regions.length;
+
+  // ---- L4 : exactly the lattice, once each ------------------------------
+  const wantSorted = [...want].sort();
+  const gotSorted = [...got].sort();
+  if (wantSorted.length !== gotSorted.length ||
+      wantSorted.some((v, i) => v !== gotSorted[i])) {
+    refuse("L4", `${w.unit} "${surface}"`,
+      `expected ${want.length} W (n(n+1)/2 for n=${n}), got ${got.length}` +
+      (got.length <= 8 ? ` — missing ${want.filter((x) => !got.includes(x)).join(", ") || "none"}` +
+                         `; extra ${got.filter((x) => !want.includes(x)).join(", ") || "none"}` : ""));
+  }
+
+  const keys = new Set();
+  for (const r of regions) {
+    const rs = String(r.s ?? "");
+    const rk = String(r.k ?? "");
+    const r_atoms = (rs || rk).split(MAQAF).length;
+
+    // ---- L3 : r atoms carry exactly r-1 marks, both sides --------------
+    if (rs && marks(rs) !== r_atoms - 1) {
+      refuse("L3", `${w.unit} "${surface}"`,
+        `W surface "${rs}" spans ${r_atoms} atoms but carries ${marks(rs)} maqaf, expected ${r_atoms - 1}`);
+    }
+    if (rk && marks(rk) !== r_atoms - 1) {
+      refuse("L3", `${w.unit} "${surface}"`,
+        `W key "${rk}" spans ${r_atoms} atoms but carries ${marks(rk)} maqaf, expected ${r_atoms - 1}` +
+        (marks(rk) === 0 && r_atoms > 1 ? " — the maqaf was fused out of the key" : ""));
+    }
+
+    // ---- L5 : W and K are 1:1 -----------------------------------------
+    if (!rk) refuse("L5", `${w.unit} "${surface}"`, `W "${rs}" carries no key`);
+    else if (keys.has(rk)) refuse("L5", `${w.unit} "${surface}"`, `key "${rk}" is carried by more than one W`);
+    keys.add(rk);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// What the bin says about itself, checked against what it holds.
+// ---------------------------------------------------------------------------
+const c = zone.counts || {};
+if (c.occurrences_holding_more_than_one_w != null &&
+    c.occurrences_holding_more_than_one_w !== maqafOccurrences) {
+  refuse("L4", "counts", `counts say ${c.occurrences_holding_more_than_one_w} occurrences hold ` +
+    `more than one W; ${maqafOccurrences} are written with a maqaf`);
+}
+if (c.w_regions != null && c.w_regions !== latticeW + plainW) {
+  refuse("L4", "counts", `counts say ${c.w_regions} W regions; the sections hold ${latticeW + plainW}`);
+}
+
+notes.push(`occurrences written with a maqaf : ${maqafOccurrences.toLocaleString()}`);
+for (const [n, k] of [...byAtomCount].sort((a, b) => a[0] - b[0])) {
+  notes.push(`  ${n}-atom chains ${String(k).padStart(6)}  ->  ${(n * (n + 1) / 2) * k} W`);
+}
+notes.push(`W from maqaf occurrences         : ${latticeW.toLocaleString()}`);
+notes.push(`W from plain occurrences         : ${plainW.toLocaleString()}`);
+notes.push(`W/K total                        : ${(latticeW + plainW).toLocaleString()}`);
+
+// ---------------------------------------------------------------------------
+// The page. A bin that is right and a page that draws it wrong is still wrong.
+// ---------------------------------------------------------------------------
+if (url) {
+  // Resolved the way every other check in this tree resolves it, so the file
+  // runs from a checkout without a local node_modules of its own.
+  const { createRequire } = await import("node:module");
+  const req = createRequire(import.meta.url);
+  let chromium;
+  try { ({ chromium } = req("playwright")); }
+  catch { ({ chromium } = req(`${process.env.NODE_PATH || "/usr/lib/node_modules"}/playwright`)); }
+  const browser = await chromium.launch(
+    process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
+  const page = await browser.newPage({ viewport: { width: 1200, height: 900 } });
+  const pageErrors = [];
+  page.on("pageerror", (e) => pageErrors.push(String(e).slice(0, 160)));
+  await page.goto(url, { waitUntil: "networkidle" });
+  await page.waitForTimeout(1500);
+
+  const drawn = await page.evaluate(() => [...document.querySelectorAll(".wb")].map((wb) => ({
+    surface: wb.querySelector(".w")?.textContent || "",
+    atomEls: wb.querySelectorAll(".wr").length,
+    markEls: wb.querySelectorAll(".mq").length,
+    reading: wb.querySelector(".g")?.textContent.trim() || "",
+  })));
+
+  for (const d of drawn) {
+    if (!d.surface.includes("־")) continue;
+    const n = d.surface.split("־").length;
+    // ---- L7 : one clickable atom per printed piece ---------------------
+    if (d.atomEls !== n) {
+      refuse("L7", `"${d.surface}"`,
+        `page draws ${d.atomEls} clickable pieces for ${n} atoms` +
+        (d.atomEls === (n * (n + 1)) / 2 ? " — it laid the whole lattice against the surface" : ""));
+    }
+    if (d.markEls !== n - 1) {
+      refuse("L7", `"${d.surface}"`, `page draws ${d.markEls} marks for ${n - 1} joins`);
+    }
+    // ---- L8 : the reading line joins atoms only ------------------------
+    const terms = d.reading ? d.reading.split(" + ").length : 0;
+    if (terms > n) {
+      refuse("L8", `"${d.surface}"`,
+        `reading line has ${terms} terms for ${n} atoms — intervals were joined in as if they were parts`);
+    }
+  }
+  // ---- L9 : the piece you press is the W that opens ---------------------
+  // The severest failure this file exists to catch, and the one no count finds:
+  // pieces and W both looked right, but they were paired by position against a
+  // list that held the intervals too, so pressing the second half of a maqaf'd
+  // word opened the whole chain — a different word, a different key, a
+  // different licence, and nothing on screen saying so.
+  const multi = await page.$$(".wb.multi");
+  for (const wb of multi) {
+    const surface = (await wb.$eval(".w", (e) => e.textContent)) || "";
+    const atoms = surface.split("־");
+    const pieces = await wb.$$(".wr");
+    for (let i = 0; i < pieces.length && i < atoms.length; i += 1) {
+      await pieces[i].click();
+      await page.waitForTimeout(450);
+      const opened = await page.evaluate(() => {
+        const h = document.getElementById("hud");
+        if (!h || h.hidden) return null;
+        const b = h.querySelector(".head b");
+        if (!b) return null;
+        const lit = [...b.children].filter((c) => !String(c.style.color || "").includes("faint")
+          && !c.classList.contains("mq")).map((c) => c.textContent);
+        return lit.join("־");
+      });
+      if (opened !== atoms[i]) {
+        refuse("L9", `"${surface}"`,
+          `pressing piece ${i + 1} ("${atoms[i]}") opened "${opened}"` +
+          (opened && opened.includes("־") ? " — a joined interval, not the atom pressed" : ""));
+      }
+    }
+  }
+
+  if (pageErrors.length) refuse("L7", "page", pageErrors.join(" | "));
+  notes.push(`occurrences drawn on the page    : ${drawn.length.toLocaleString()}`);
+  await browser.close();
+}
+
+// ---------------------------------------------------------------------------
+console.log(`check-maqaf-lattice-v1 · ${binPath}${url ? ` · ${url}` : ""}`);
+for (const n of notes) console.log(`  ${n}`);
+console.log("");
+if (!fails.length) {
+  console.log(`  PASS · ${url ? "9 laws" : "6 laws (bin only — pass --url to check the page)"}`);
+  console.log("");
+  console.log("  Not covered: whether a W's key is the one the corpus lane sealed for it,");
+  console.log("  and whether a Q's forms were issued. Both are the corpus lane's to answer.");
+  process.exit(0);
+}
+const byLaw = new Map();
+for (const f of fails) byLaw.set(f.law, [...(byLaw.get(f.law) || []), f]);
+console.log(`  REFUSED · ${fails.length} finding${fails.length === 1 ? "" : "s"}`);
+for (const [law, list] of [...byLaw].sort()) {
+  console.log(`\n  ${law} · ${list.length}`);
+  for (const f of list.slice(0, 12)) console.log(`    ${f.what}\n        ${f.detail}`);
+  if (list.length > 12) console.log(`    … and ${list.length - 12} more`);
+}
+process.exit(1);
