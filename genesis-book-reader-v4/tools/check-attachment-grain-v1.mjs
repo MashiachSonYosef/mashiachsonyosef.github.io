@@ -23,6 +23,9 @@
 //   A2  the census adds up: word + section + no-text equals what is recorded
 //   A3  a word span reads as a run of the section's own words
 //   A4  the page draws no word-level mark for an entry without word evidence
+//   A5  an entry carries the presentation V chose for it
+//   A6  an entry V scoped to a range is not carried as an attachment
+//   A7  a Targum carries a presentation that allows it to run as parallel text
 //
 // Not covered: whether the evidence itself is honest. A basis of
 // EXPLICIT_VISIBLE_HEADWORD asserts that a record shows the commentary's
@@ -85,6 +88,57 @@ for (const [unitId, unit] of Object.entries(units)) {
   onSection += (unit.section || []).length;
 }
 
+// ---- A5/A6/A7 : the presentation V chose, carried or lost ------------------
+//
+// V decides per row how a commentary is meant to appear: 607 of Genesis 1:1's
+// links are side_panel, 5 are parallel_text_or_side_panel, and 12 are
+// RANGE_NOTICE_ONLY — a notice that a work touches this passage, not an
+// attachment to it. It also says, lane-wide, that paired layers share one
+// scroll track and that a phone shows both members over-under and hides
+// neither.
+//
+// None of that reaches here. The V ledger has the columns; the pack derived
+// from it carries none of them, and the pack's own stated purpose is a
+// "Phone-sized presentation proof". So the reader has never been told how V
+// wants any of this drawn, and invents a single presentation for everything.
+//
+// This does not fail once per entry — the defect is one dropped field, not six
+// hundred bad rows, and six hundred findings would bury it.
+const PRESENTATION_FIELDS = ["presentation_default", "presentation_allowed_modes", "hud_link_policy"];
+{
+  const all = [];
+  for (const unit of Object.values(units)) {
+    for (const list of Object.values(unit.words || {})) all.push(...list);
+    all.push(...(unit.section || []));
+  }
+  for (const f of PRESENTATION_FIELDS) {
+    const carried = all.filter((e) => e[f] !== undefined && e[f] !== null).length;
+    if (all.length && carried === 0) {
+      refuse("A5", `every entry · ${all.length}`,
+        `no entry carries "${f}" — V names it per row and nothing downstream keeps it, ` +
+        `so the reader cannot draw what V chose`);
+    } else if (all.length && carried < all.length) {
+      refuse("A5", `${all.length - carried} of ${all.length} entries`, `carry no "${f}"`);
+    }
+  }
+  const ranged = all.filter((e) => /RANGE_NOTICE_ONLY/.test(String(e.hud_link_policy || "")));
+  const rangedDrawn = ranged.filter((e) => e.v_words !== undefined && e.v_words !== null);
+  if (rangedDrawn.length) {
+    refuse("A6", `${rangedDrawn.length} entries`,
+      "V scopes these to a range and asks for a notice; they are carried with a word span");
+  }
+  const targums = all.filter((e) => /TARGUM/i.test(String(e.commentary_kind || "")));
+  const badTargum = targums.filter((e) =>
+    e.presentation_default !== undefined &&
+    !/parallel/i.test(String(e.presentation_default)));
+  if (badTargum.length) {
+    refuse("A7", `${badTargum.length} Targum entries`,
+      "carry a presentation that does not allow parallel text; V makes Targum its own presentation type");
+  }
+  notes.push(`entries carrying V's presentation : ` +
+    PRESENTATION_FIELDS.map((f) => `${f.split("_")[0]}=${all.filter((e) => e[f] != null).length}/${all.length}`).join("  "));
+}
+
 // ---- A2 : the census adds up ----------------------------------------------
 const c = side.counts || {};
 const recorded = Number(c.recorded ?? c.total ?? NaN);
@@ -140,7 +194,7 @@ console.log(`check-attachment-grain-v1 · ${binPath}${url ? ` · ${url}` : ""}`)
 for (const n of notes) console.log(`  ${n}`);
 console.log("");
 if (!fails.length) {
-  console.log(`  PASS · ${url ? "4 laws" : "3 laws (bin only — pass --url to check the page)"}`);
+  console.log(`  PASS · ${url ? "7 laws" : "6 laws (bin only — pass --url to check the page)"}`);
   console.log("");
   console.log("  Not covered: whether the evidence is honest. This file checks that a word");
   console.log("  mark carries a basis claiming surface evidence; it cannot check the claim.");
