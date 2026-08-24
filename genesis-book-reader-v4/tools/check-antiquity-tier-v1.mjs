@@ -32,7 +32,18 @@ const check = (name, ok, detail = "") => {
   console.log(`${ok ? "  ok  " : "FAIL  "}${name}${detail ? "  ·  " + detail : ""}`);
 };
 
-const ZONE = process.argv[2] || "data/zones/genesis.bin";
+// The zone is whichever work is here, not a work that was here in July. A
+// default naming a file is the same claim about the future as a default
+// naming a URL, and this one went on skipping politely for a work that had
+// been withdrawn — a skip nobody reads is indistinguishable from a pass.
+const { zonesOnDisk } = await import("./zones-on-disk-v1.mjs");
+const ZONE = process.argv[2] && !/^https?:/.test(process.argv[2])
+  ? process.argv[2]
+  : (() => {
+      const u = process.argv[2] || "";
+      const slug = (u.match(/[?&]b=([a-z0-9-]+)/) || [])[1] || zonesOnDisk()[0];
+      return slug ? `data/zones/${slug}.bin` : "";
+    })();
 // A check that cannot reach its inputs has not passed. It says so and stands
 // aside, so an empty run cannot be read as a clean one.
 if (!existsSync(ZONE) || !existsSync("data/route-store/index.json")) {

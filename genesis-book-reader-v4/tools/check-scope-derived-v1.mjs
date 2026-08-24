@@ -51,8 +51,18 @@ for (const f of checkFiles) {
   const src = readFileSync(join(TOOLS, f), "utf8");
   // a slug inside a comment is prose about a book, not a target
   const code = src.split("\n").filter((l) => !/^\s*(\/\/|\*)/.test(l)).join("\n");
-  const m = code.match(/[?&]b=([a-z0-9-]+)/g);
-  if (m) named.push(`${f} → ${[...new Set(m)].join(",")}`);
+  // Two ways a check can name a work, and this only looked for one of them.
+  // A URL target (?b=genesis) and a file target (data/zones/genesis.bin) are
+  // the same claim about the future; check-antiquity-tier-v1 defaulted to the
+  // second and this file called the tree clean. A filter that admits only
+  // certain work names is the third and worst — it does not fail, it silently
+  // examines nothing, which is how check-provider-characters-v1 came to run
+  // its assertions over an empty list.
+  const found = new Set();
+  for (const m of code.matchAll(/[?&]b=([a-z0-9-]+)/g)) found.add(`?b=${m[1]}`);
+  for (const m of code.matchAll(/data\/zones\/([a-z0-9-]+)\.bin/g)) found.add(`data/zones/${m[1]}.bin`);
+  for (const m of code.matchAll(/\/\^\(([a-z0-9|-]+)\)\\\.bin\$\//g)) found.add(`filter:${m[1]}`);
+  if (found.size) named.push(`${f} → ${[...found].join(", ")}`);
 }
 check("no check names a work in its own source", named.length === 0,
   named.length ? named.slice(0, 4).join(" · ") : `${checkFiles.length} checks, all derived`);

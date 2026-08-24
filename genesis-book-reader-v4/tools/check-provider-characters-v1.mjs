@@ -89,7 +89,19 @@ if (existsSync(SHARDS)) {
 // between the store and the page edited it, and the licence printed beside it
 // is naming an author for characters they did not type.
 const ZONES = join(K3, "data", "zones");
-const books = existsSync(ZONES) ? readdirSync(ZONES).filter((f) => /^(genesis|1kings)\.bin$/.test(f)) : [];
+// Every work here, not two named ones. This filter admitted genesis.bin and
+// 1kings.bin; after the withdrawal it admitted nothing, and the assertions
+// below — orphan forms, unknown forms, damaged glosses — ran over an empty
+// list. A filter that names works does not fail when the works move. It
+// examines nothing and reports that as clean, which is the worst way for a
+// check to break because it is the way nobody notices.
+const books = existsSync(ZONES)
+  ? readdirSync(ZONES).filter((f) => f.endsWith(".bin")
+      && !f.endsWith("-commentary.bin")
+      && !f.startsWith("fixture-")
+      && !/^[0-9a-f]{2}\.bin$/.test(f)
+      && f !== "w-top.bin")
+  : [];
 check("there are zones to read", books.length > 0, books.join(" ") || "none on disk");
 
 const readingsFor = new Map();
