@@ -19,7 +19,7 @@
 //   3. The stages build.sh actually runs, against the tools that exist.
 //
 // A check claims what it guards by naming it, either in a GUARDS line —
-//     // GUARDS: zone-gloss-rule-v3-..., regloss-rule-v1-...
+//     // GUARDS: zone-gloss-rule-v4-..., regloss-rule-v1-...
 // — or anywhere else in its text. Claiming is cheap and deliberate: a check
 // that does not name a rule is not counted as guarding it, however much of it
 // it happens to exercise, because a guard nobody can find is not a guard.

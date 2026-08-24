@@ -946,6 +946,29 @@
   // Same clause as the comma rule one layer down: the mark separates at
   // parenthesis depth zero and nowhere else, and the pieces rejoin, character
   // for character, into the text they came from.
+  // A sense divides into readings at the commas outside the provider's own
+  // parentheses — sense-split-rule-v2, mirrored from tools/sense-split-v1.mjs
+  // so the pill that comes up pressed is the reading already printed under
+  // the word. A text whose parentheses do not balance is damaged: something
+  // already edited it, and it is held whole, neither printed nor pooled.
+  const readingSplit = (text) => {
+    const s = String(text);
+    let depth = 0;
+    for (let i = 0; i < s.length; i += 1) {
+      if (s[i] === "(") depth += 1;
+      else if (s[i] === ")") { depth -= 1; if (depth < 0) return { readings: [s], damaged: true }; }
+    }
+    if (depth !== 0) return { readings: [s], damaged: true };
+    const raw = []; let start = 0; depth = 0;
+    for (let i = 0; i < s.length; i += 1) {
+      const c = s[i];
+      if (c === "(") depth += 1;
+      else if (c === ")") depth -= 1;
+      else if (c === "," && depth === 0) { raw.push(s.slice(start, i)); start = i + 1; }
+    }
+    raw.push(s.slice(start));
+    return { readings: raw.map((piece) => piece.trim()).filter(Boolean), damaged: false };
+  };
   const senseSplit = (text) => {
     const t = String(text || "");
     const out = []; let start = 0, d = 0;
@@ -1830,9 +1853,11 @@
   };
 
   // The readings for one cell surface, as the reader's law has them
-  // (rule v3 · 2026-08-10): a route text packs senses with ";" and each sense
-  // is its own pill; pills dedupe by text, merging the oldest year and lowest
-  // rank; oldest source leads, post-1940 and unyeared sources last.
+  // (rule v4 · 2026-08-24): a route text packs senses with ";", a sense
+  // divides into readings at the commas outside the provider's parentheses
+  // (sense-split-rule-v2), and each reading is its own pill; a damaged sense
+  // neither prints nor pools. Pills dedupe by text, merging the oldest year
+  // and lowest rank; oldest source leads, post-1940 and unyeared sources last.
   const poolFor = async (surface) => {
     const routes = await routesFor(surface);
     if (!routes) return null;
@@ -1843,13 +1868,17 @@
       const y = Number.parseInt(year, 10);
       const yr = Number.isInteger(y) ? y : Infinity;
       senseSplit(routeText).forEach((sense) => {
-        const key = sense.toLowerCase();
-        const g = groups.get(key);
-        if (!g) groups.set(key, { text: sense, year: yr, ledger: Number(rank), records: [row] });
-        else {
-          g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank));
-          if (!g.records.includes(row)) g.records.push(row);
-        }
+        const split = readingSplit(sense);
+        if (split.damaged) return;
+        split.readings.forEach((reading) => {
+          const key = reading.toLowerCase();
+          const g = groups.get(key);
+          if (!g) groups.set(key, { text: reading, year: yr, ledger: Number(rank), records: [row] });
+          else {
+            g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank));
+            if (!g.records.includes(row)) g.records.push(row);
+          }
+        });
       });
     });
     const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
@@ -2194,7 +2223,11 @@
           senseSplit(text).forEach((sense, i) => {
             if (i) d.append(Object.assign(document.createElement("span"), { className: "d-sep", textContent: " · " }));
             const s = document.createElement("span");
-            s.className = sense.toLowerCase() === String(selected.text).toLowerCase() ? "d-sense on" : "d-sense";
+            // the chosen reading is finer than the sense that carries it: the
+            // sense is lit when any of its readings is the one the reader holds
+            const holds = readingSplit(sense).readings.some(
+              (reading) => reading.toLowerCase() === String(selected.text).toLowerCase());
+            s.className = holds || sense.toLowerCase() === String(selected.text).toLowerCase() ? "d-sense on" : "d-sense";
             s.textContent = spanJoin(sense);
             d.append(s);
           });

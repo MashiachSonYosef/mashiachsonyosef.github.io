@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// GUARDS: zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary
+// GUARDS: zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary
 //
 // The year in the gloss rule's name decides nothing, and this proves it every
 // run.
 //
-// `zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary` puts a number in its
+// `zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary` puts a number in its
 // own name and thereby advertises 1940 as the thing that chooses which reading
 // a reader meets first, across a corpus of 3.7 billion occurrences. It was
 // chosen by this project. Nothing attests it. And it is inert: the comparison

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // The reading under a word is shown whole, in both readers, and the page does
 // not move while it is being read.
-// GUARDS: zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary
+// GUARDS: zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary
 //
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
 import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";

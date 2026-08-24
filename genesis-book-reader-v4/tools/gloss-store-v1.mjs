@@ -1,4 +1,4 @@
-// Synthesis lane · zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary
+// Synthesis lane · zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary
 //
 // The default reading printed under a word used to be chosen in the browser,
 // which meant the rule lived in a page: it could not be reviewed, diffed, or
@@ -10,9 +10,12 @@
 // The rule, declared before output:
 //   1. Key exactly. A gloss is found by the byte-exact K of the written form
 //      (k-normalization-v1.mjs, FRAME rule 7). Nothing folded, nothing split.
-//   2. A route text packs senses with ";". Each sense is its own reading.
-//      One reading is displayed at a time, in every packing — so a stored
-//      gloss is one sense, never a joined list.
+//   2. A route text packs senses with ";", and a sense divides into readings
+//      at the commas outside the provider's parentheses — sense-split-rule-v2,
+//      imported from its own file, never re-guessed here. One reading is
+//      displayed at a time, in every packing — so a stored gloss is one
+//      reading, never a joined list. A sense the rule holds back as damaged
+//      is not printable and does not pool: corrupted text is not a word's face.
 //   3. Senses pool across every exact route for that K, deduped by lowercased
 //      text, merging the OLDEST source year and the LOWEST semantic rank seen.
 //   4. Antiquity leads: senses whose oldest source is 1940 or earlier come
@@ -44,15 +47,18 @@
 //      rewritten here.
 
 import { readFileSync, existsSync } from "node:fs";
+import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
 import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { join } from "node:path";
 
-export const GLOSS_RULE_ID = "zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary";
+export const GLOSS_RULE_ID = "zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary";
 export const GLOSS_RULE_TEXT =
-  "a route text packs senses with ';' — each sense is its own reading; pool = every sense of every " +
-  "exact route, deduped by text with min year and min rank; oldest source year (<=1940 tier) leads, " +
-  "ties by semantic rank; sense stored verbatim; the page joins '/'-packed spans with ' + '; " +
+  "a route text packs senses with ';' and a sense divides into readings at the commas outside the " +
+  "provider's parentheses (sense-split-rule-v2); each division is one reading; a damaged sense is " +
+  "held whole and neither printed nor pooled; pool = every reading of every exact route, deduped by " +
+  "text with min year and min rank; oldest source year (<=1940 tier) leads, ties by semantic rank; " +
+  "reading stored verbatim; the page joins '/'-packed spans with ' + '; " +
   "one reading on display at a time, everywhere";
 
 export const openRouteStore = (storeDir) => {
@@ -73,7 +79,7 @@ export const openRouteStore = (storeDir) => {
   /** Every exact route row for K, or null when the catalog has no exact entry. */
   const routesFor = (k) => shardBody(shardOf(k))[k] || null;
 
-  const senseSplit = (text) => {
+  const packSplit = (text) => {
     const t = String(text || "");
     const out = []; let start = 0, d = 0;
     for (let i = 0; i < t.length; i += 1) {
@@ -95,20 +101,25 @@ export const openRouteStore = (storeDir) => {
       if (!index.m_sources[mId]) return; // rule 5
       const parsed = Number.parseInt(year, 10);
       const yr = Number.isInteger(parsed) ? parsed : Infinity;
-      // The mark separates at parenthesis depth zero and nowhere else: a
+      // The pack mark separates at parenthesis depth zero and nowhere else: a
       // semicolon inside the provider's own brackets is part of what the
       // bracket says, and cutting there produces a run they never wrote.
-      // Same clause as the comma rule the store separates under.
-      senseSplit(routeText)
-        .forEach((sense) => {
-          const key = sense.toLowerCase();
+      // Each sense then divides into readings under the declared comma rule;
+      // a sense the rule holds back as damaged is provider text something
+      // already edited — it neither prints nor pools.
+      packSplit(routeText).forEach((sense) => {
+        const r = readingSplit(sense);
+        if (r.damaged) return;
+        r.readings.forEach((reading) => {
+          const key = reading.toLowerCase();
           const g = groups.get(key);
-          if (!g) groups.set(key, { text: sense, year: yr, ledger: Number(rank) });
+          if (!g) groups.set(key, { text: reading, year: yr, ledger: Number(rank) });
           else {
             g.year = Math.min(g.year, yr);
             g.ledger = Math.min(g.ledger, Number(rank));
           }
         });
+      });
     });
     const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
     return [...groups.values()].sort(
