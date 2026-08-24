@@ -790,7 +790,15 @@
     #hud { max-height: 94vh; }
     #hud .prov { display: none; }
     #hud .r-now { margin: 0 0 0.2rem; padding-bottom: 0.2rem; }
-    #hud .d-slot { max-height: 26vh; }
+    /* The record and its source share one scroll from this height down, and
+       the source line sticks to the bottom of it. This arrangement lived
+       only in the 480px block, so between 481 and 660 the foot was a static
+       box painting past its slot's floor — the source line cut off at
+       exactly the heights most phones stand at. Never out of sight means
+       here too. */
+    #hud .d-slot { max-height: 26vh; min-height: 3.6rem; overflow-y: auto; }
+    #hud .d-card, #hud .d-body { overflow: visible; min-height: 0; display: block; }
+    #hud .d-foot { position: sticky; bottom: 0; background: var(--panel); }
   }
   /* Shorter still — a desktop window a few hundred pixels tall. The structural
      rows go to a single row each and the labels tighten. Everything the reader
@@ -2276,11 +2284,18 @@
           const att = document.createElement("p"); att.className = "att";
           att.append(`${m.label} · ${!year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year} `);
           const lic = document.createElement("span"); lic.className = "lic-chip";
-          lic.textContent = licenseName(m.licensePosture); att.append(lic, " ");
+          lic.textContent = licenseName(m.licensePosture);
+          // The chain's pointer is the audit's business, not the reading
+          // surface's: a ledger path printed here spent a third of the card
+          // on plumbing no reader can follow. It rides on the chip —
+          // reachable, unprinted — and stays whole in the store and every
+          // receipt, where the audit reads it.
+          if (m.licensePointer) lic.title = m.licensePointer;
+          att.append(lic, " ");
           if (/^https?:\/\//u.test(m.licensePointer)) {
             const a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank";
             a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a);
-          } else att.append(`record: ${m.licensePointer}`);
+          }
           return att;
         };
         // One record stands the reading up, and it is always on the card.
