@@ -35,21 +35,32 @@ const pw = await loadPlaywright();
 import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const LEDGER = join(HERE, "..", "data", "y-genesis-navigation-v1.js");
+const RECORD = join(HERE, "..", "data", "colour-contract-v1.json");
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 
-if (!existsSync(LEDGER)) {
-  console.log("SKIPPED — the Y navigation ledger is not here (data/y-genesis-navigation-v1.js)");
+if (!existsSync(RECORD)) {
+  console.log("SKIPPED — no colour contract record is here (data/colour-contract-v1.json)");
   process.exit(3);
 }
-const raw = readFileSync(LEDGER, "utf8");
-const m = raw.match(/"color_contract":(\{[^}]*\})/);
-if (!m) {
-  console.log("SKIPPED — the ledger carries no color_contract to check against");
-  process.exit(3);
+const contract = JSON.parse(readFileSync(RECORD, "utf8"));
+// the record names its lineage; where the old fixture is present, the roles
+// it carried forward must still agree with it
+{
+  const LEDGER = join(HERE, "..", "data", "y-genesis-navigation-v1.js");
+  if (existsSync(LEDGER)) {
+    const m = readFileSync(LEDGER, "utf8").match(/"color_contract":(\{[^}]*\})/);
+    if (m) {
+      const old = JSON.parse(m[1]);
+      check("the record carries the fixture's roles forward",
+        old.structure === contract.roles.structure &&
+        old.reader_selection === contract.roles.reader_selection &&
+        old.commentary_attachment === contract.roles.commentary_attachment &&
+        old.base_surface === contract.faces.night.base_surface &&
+        old.commentary_surface === contract.faces.night.commentary_surface);
+    }
+  }
 }
-const CONTRACT = JSON.parse(m[1]);
 
 // What each name the ledger uses means as a measurement. Hue is degrees on the
 // wheel; lightness separates a brown from a gold, which are the same angle.
@@ -59,6 +70,10 @@ const FAMILY = {
   crimson: { hue: [-15, 25], minSat: 0.20, light: [0.25, 0.75] },
   purple: { hue: [250, 320], minSat: 0.05, light: [0.01, 0.30] },
   brown: { hue: [15, 50], minSat: 0.05, light: [0.01, 0.30] },
+  // the day face's grounds: linen well below paper white, parchment a shade
+  // warmer and dimmer beneath it, both barely saturated
+  linen: { hue: [30, 60], minSat: 0.03, light: [0.82, 0.97] },
+  parchment: { hue: [30, 60], minSat: 0.03, light: [0.76, 0.95] },
 };
 
 const rgb = (s) => {
@@ -97,7 +112,12 @@ await p.goto(`${BASE}?b=${zonesOnDisk()[0]}&c=open`, { waitUntil: "networkidle" 
 await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(2600);
 
-console.log("— the roles the ledger records, as the page paints them —");
+const commentaryHere = zonesWithCommentary().length > 0;
+for (const face of ["night", "day"]) {
+const CONTRACT = { ...contract.roles, base_surface: contract.faces[face].base_surface, commentary_surface: contract.faces[face].commentary_surface };
+await p.evaluate((f) => window.__face.set(f), face);
+await p.waitForTimeout(150);
+console.log(`— the ${face} face, as the page paints it —`);
 console.log(`  contract: ${Object.entries(CONTRACT).map(([k, v]) => `${k}=${v}`).join(" · ")}`);
 
 // One representative of each role, taken off the live page.
@@ -118,7 +138,6 @@ const painted = await p.evaluate(() => {
 // A commentary role can only be painted where a commentary stands. With no
 // sidecar served, the roles are unpainted because their bearers are absent —
 // the corpus's state, said as such, never scored as a colour fault.
-const commentaryHere = zonesWithCommentary().length > 0;
 for (const [role, name] of Object.entries(CONTRACT)) {
   const got = painted[role];
   if (!got) {
@@ -148,6 +167,18 @@ if (commentaryHere) {
   const apart = a && c && a.some((x, i) => Math.abs(x - c[i]) >= 3);
   check("  a commentary does not sit on the text's own surface", apart,
     `${painted.base_surface} vs ${painted.commentary_surface}`);
+}
+}
+
+// the face button turns the page and names where it turns to
+{
+  const before = await p.evaluate(() => document.documentElement.dataset.scheme);
+  const label = await p.evaluate(() => document.getElementById("face")?.textContent);
+  await p.click("#face");
+  await p.waitForTimeout(120);
+  const after = await p.evaluate(() => document.documentElement.dataset.scheme);
+  check("the face button turns the page to the face it names",
+    !!label && after === label && after !== before, `${before} → pressed "${label}" → ${after}`);
 }
 
 await p.close(); await b.close();

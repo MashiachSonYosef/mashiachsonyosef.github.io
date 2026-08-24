@@ -4,6 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zone reader · The Tabernacle</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+(() => {
+  const root = document.documentElement;
+  let held = null;
+  try { held = localStorage.getItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+  const sys = matchMedia("(prefers-color-scheme: light)");
+  const apply = () => { root.dataset.scheme = held === "day" || held === "night" ? held : (sys.matches ? "day" : "night"); };
+  apply();
+  if (sys.addEventListener) sys.addEventListener("change", apply);
+  window.__face = { set(v) { held = v; try { localStorage.setItem("scheme", v); } catch { /* still reads */ } apply(); } };
+})();
+</script>
 <style>
   :root {
     color-scheme: dark;
@@ -66,6 +82,38 @@
        somebody made and not a colour that crept in. */
     --argaman: #6b3f6e; --tekhelet: #2b4a6f;
     --link: var(--shesh);
+    /* the working tones and washes, named so the day face can revalue them */
+    --c-word: #c8bda0; --en-word: #b3a077;
+    --hover-ink: #ffe08a; --hover-line: #6a5a33;
+    --chip-bg: rgba(216, 199, 164, 0.12); --chip-line: rgba(216, 199, 164, 0.3);
+    --wash-open: rgba(111, 181, 240, 0.15); --wash-chosen: rgba(111, 181, 240, 0.07);
+    --wash-active: rgba(111, 181, 240, 0.18); --wash-copen: rgba(111, 181, 240, 0.12);
+    --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-card: 0 14px 40px rgba(0, 0, 0, 0.6);
+    --shadow-hud: 0 18px 48px rgba(4, 2, 8, 0.55), 0 2px 8px rgba(4, 2, 8, 0.35);
+  }
+  /* The day face — the courtyard: linen hangings in daylight. The same five
+     roles, valued for light, and linen is not glare: the ground sits well
+     below paper white and the ink is warm, not black. Chosen by the device's
+     preference until the reader presses the face button in the header. */
+  :root[data-scheme="day"] {
+    color-scheme: light;
+    --bg: #f1e9d8; --panel: #f8f2e5; --panel2: #ebe2cd;
+    --line: #d5c8ab; --wash: #e8dec7;
+    --surface-c: #ece0c6; --panel-c: #e4d5b4; --line-c: #c6b189;
+    --ink: #2b2519; --ink-strong: #1c180f; --muted: #5f5645; --faint: #7b7058;
+    --shesh: #6b5a35; --shesh-bright: #4f421d;
+    --gold: #8a6b26; --gold-dim: #b0955c; --amber: #8f6a1c;
+    --sel: #275fa6; --sel-dim: #a3bdd9; --sel-ink: #f5f9fe;
+    --shani: #9c3a26; --shani-dim: #bd8672;
+    --c-word: #5c5138; --en-word: #6f6042;
+    --hover-ink: #6b4f0e; --hover-line: #bda15c;
+    --chip-bg: rgba(107, 90, 53, 0.10); --chip-line: rgba(107, 90, 53, 0.32);
+    --wash-open: rgba(39, 95, 166, 0.14); --wash-chosen: rgba(39, 95, 166, 0.08);
+    --wash-active: rgba(39, 95, 166, 0.20); --wash-copen: rgba(39, 95, 166, 0.12);
+    --shadow-pop: 0 8px 24px rgba(96, 80, 48, 0.28);
+    --shadow-card: 0 14px 40px rgba(96, 80, 48, 0.30);
+    --shadow-hud: 0 18px 48px rgba(96, 80, 48, 0.32), 0 2px 8px rgba(96, 80, 48, 0.20);
   }
   * { box-sizing: border-box; }
   /* text-size-adjust: a phone browser that decides a block is "main content"
@@ -89,6 +137,10 @@
     padding: 0.3rem 0.95rem; background: var(--panel2); color: var(--shesh);
     text-decoration: none; white-space: nowrap; }
   #home a.home:hover { color: var(--gold); border-color: var(--gold-dim); }
+  /* the other face, one press away — the button names where it takes you */
+  #home button.face { border: 1px solid var(--line); border-radius: 999px; background: none;
+    color: var(--muted); font: inherit; font-size: 0.72rem; padding: 0.1rem 0.7rem; cursor: pointer; }
+  #home button.face:hover { color: var(--gold); border-color: var(--gold-dim); }
   header.top { padding: 1.4rem 1.5rem 1rem; border-bottom: 1px solid var(--line);
     background: linear-gradient(180deg, var(--panel) 0%, var(--bg) 100%); }
   header.top h1 { margin: 0; font-size: 1.9rem; color: var(--ink-strong); letter-spacing: 0.01em; }
@@ -123,7 +175,7 @@
   /* A work the ledger has not named in Hebrew keeps its English locator, but
      the locator does not get to look like a title. */
   header.top h1 .he-t.unnamed { color: var(--muted); font-size: 0.92rem; font-style: italic; }
-  header.top a { color: var(--link); text-decoration: none; border-bottom: 1px solid rgba(216, 199, 164, 0.35); }
+  header.top a { color: var(--link); text-decoration: none; border-bottom: 1px solid var(--chip-line); }
   header.top #home a.home { border-bottom: 1px solid var(--line); }
   header.top a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
@@ -184,7 +236,7 @@
   /* one floating bar, not chrome on every section */
   #nav { position: fixed; z-index: 60; right: 0.9rem; bottom: 0.9rem; display: flex; gap: 0.3rem;
     background: rgba(21, 18, 13, 0.94); border: 1px solid var(--line); border-radius: 999px;
-    padding: 0.3rem; box-shadow: 0 8px 24px rgba(0,0,0,.5); backdrop-filter: blur(4px); }
+    padding: 0.3rem; box-shadow: var(--shadow-pop); backdrop-filter: blur(4px); }
   #nav[hidden] { display: none; }
   #nav button { border: 0; background: none; color: var(--muted); font: inherit; font-size: 0.75rem;
     letter-spacing: 0.08em; font-variant: small-caps; cursor: pointer; border-radius: 999px;
@@ -257,7 +309,7 @@
     border-inline-end: 2px solid var(--shani-dim); border-radius: 0.4rem;
     background: var(--surface-c); }
   .c-inline .wb { margin: 0 0.14rem 0.45rem; }
-  .c-inline .w { font-size: 1.12rem; color: #c8bda0;
+  .c-inline .w { font-size: 1.12rem; color: var(--c-word);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   .c-inline .g { font-size: 0.6rem; max-width: 8em; }
   .c-inline[hidden] { display: none; }
@@ -286,7 +338,7 @@
   .wb { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top;
     margin: 0 0.16rem 0.55rem; cursor: pointer; }
   .w { display: block; order: 1; border-bottom: 1px dashed transparent; border-radius: 2px; }
-  .wb:hover .w { color: #ffe08a; border-bottom-color: #6a5a33; }
+  .wb:hover .w { color: var(--hover-ink); border-bottom-color: var(--hover-line); }
   /* A word the chain holds is printed as the chain has it and not touched. But
      some of what it holds is not a word — the Miqra source's section markers
      arrive as a run of markup with no break in it, and an unbreakable run wider
@@ -304,7 +356,7 @@
   /* A word with its commentary standing open beneath it. */
   /* Opening a commentary on a word is something the reader did, so the word
      wears the selection, not the structure. */
-  .wb.c-open { background: rgba(111, 181, 240, 0.15); border-radius: 0.25rem;
+  .wb.c-open { background: var(--wash-open); border-radius: 0.25rem;
     box-shadow: inset 0 -2px 0 var(--sel-dim); }
   .wb.c-open .w { color: var(--sel); }
   /* A word the reader has ruled on keeps a mark after the card closes. That is
@@ -326,10 +378,10 @@
      is answered by the difference in strength instead: the live word is more
      than twice the tint of a word already ruled on, and carries the reading
      colour and underline on its own letters besides. */
-  .wb.chosen { background: rgba(111, 181, 240, 0.07); border-radius: 0.25rem; }
-  .wb.chosen.active { background: rgba(111, 181, 240, 0.18); }
+  .wb.chosen { background: var(--wash-chosen); border-radius: 0.25rem; }
+  .wb.chosen.active { background: var(--wash-active); }
   /* a word that is both ruled on and standing open keeps the open edge */
-  .wb.chosen.c-open { background: rgba(111, 181, 240, 0.12); }
+  .wb.chosen.c-open { background: var(--wash-copen); }
   /* An occurrence written with a maqaf is one block and more than one W. The
      block never splits; the W inside it light and open one at a time, and the
      maqaf itself prints without opening, because it is not a W. */
@@ -343,7 +395,7 @@
   .wb.multi:hover .w { color: inherit; border-bottom-color: transparent; }
   .wb.multi.active .w { color: inherit; border-bottom: 1px dashed transparent; }
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
-  .wr:hover { color: #ffe08a; border-bottom-color: #6a5a33; }
+  .wr:hover { color: var(--hover-ink); border-bottom-color: var(--hover-line); }
   .wr.on { color: var(--sel); border-bottom: 1px solid var(--sel); }
   .mq { color: var(--faint); }
   /* The reading under a word is shown whole. It used to run one line and end in
@@ -387,7 +439,7 @@
      reading is on the card and on the line's own title. */
   body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--ink); margin-top: 0; max-width: 12em;
     white-space: normal; display: block; overflow: hidden; }
-  body.en .w { order: 2; font-size: 1.02rem; color: #b3a077; margin-top: 0.04rem; }
+  body.en .w { order: 2; font-size: 1.02rem; color: var(--en-word); margin-top: 0.04rem; }
   body.en .wb.active .g { color: var(--sel); }
 
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
@@ -411,7 +463,7 @@
   #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: min(84vh, 50rem);
     display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;
     background: var(--panel); border: 1px solid #2c4a63; border-radius: 0.7rem;
-    padding: 0.85rem 1.05rem; box-shadow: 0 14px 40px rgba(0,0,0,.6); }
+    padding: 0.85rem 1.05rem; box-shadow: var(--shadow-card); }
   /* what scrolls, and what does not */
   /* The card is a stack of bands, and each keeps its own share.
      One region that scrolled as a whole meant whichever band came first could
@@ -557,7 +609,7 @@
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
   #hud .r-pills button[aria-pressed="true"] { background: var(--sel); border-color: var(--sel);
-    color: #171105; font-weight: bold; }
+    color: var(--sel-ink); font-weight: bold; }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
   #hud .r-overflow { margin-top: 0.45rem; }
@@ -616,7 +668,7 @@
   #hud .b-q button[aria-pressed="true"] .q-role { color: var(--muted); }
   #hud .prov { color: var(--faint); font-size: 0.72rem; margin: 0.35rem 0 0; }
   .lic-chip { display: inline-block; margin-inline-start: 0.45rem; padding: 0.02rem 0.5rem;
-    border-radius: 999px; background: rgba(216, 199, 164, 0.12); border: 1px solid rgba(216, 199, 164, 0.3);
+    border-radius: 999px; background: var(--chip-bg); border: 1px solid var(--chip-line);
     color: var(--shesh); font-size: 0.72rem; }
   /* Commentary rides in the same register as the readings: same pill, same
      selected treatment, same card. It is named by its label, not by a colour
@@ -762,7 +814,7 @@
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #hud .c-pills button[aria-pressed="true"] { background: var(--sel); border-color: var(--sel);
-    color: #171105; font-weight: bold; }
+    color: var(--sel-ink); font-weight: bold; }
   #hud .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
@@ -842,7 +894,7 @@
   *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
   *::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
   *::-webkit-scrollbar-track { background: transparent; }
-  #hud { box-shadow: 0 18px 48px rgba(4, 2, 8, 0.55), 0 2px 8px rgba(4, 2, 8, 0.35); }
+  #hud { box-shadow: var(--shadow-hud); }
   #hud .r-pills button[aria-pressed="true"], #hud .s-pills button[aria-pressed="true"] {
     box-shadow: 0 0 0 1px var(--sel-dim); }
   @media (prefers-reduced-motion: reduce) {
@@ -921,7 +973,7 @@
        books, which put two different jobs in one line and made the way home
        the least noticeable thing in it. A book offers its own text; the door
        offers the books. -->
-  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a><button id="face" class="face" type="button" title="the other face of the page">day</button></nav>
   <h1 id="workTitle">
     <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
     <span class="t-row"><span class="t-lab" id="enLab">commonly force read as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
@@ -978,6 +1030,16 @@
   const META = (name) => document.querySelector(`meta[name="${name}"]`)?.content || "";
   const BOOK = (META("reader-book") || QUERY.get("b") || "").replace(/[^a-z0-9-]/g, "");
   const ROOT = META("reader-home") || location.pathname.replace(/[^/]*$/, "");
+  // the face button carries the name of the face it would turn to
+  {
+    const face = document.getElementById("face");
+    const nameOther = () => { face.textContent = document.documentElement.dataset.scheme === "day" ? "night" : "day"; };
+    nameOther();
+    face.addEventListener("click", () => {
+      window.__face.set(document.documentElement.dataset.scheme === "day" ? "night" : "day");
+      nameOther();
+    });
+  }
   const unpack = async (res) =>
     JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
   // A record packs senses with ";" — but only the semicolons the provider wrote

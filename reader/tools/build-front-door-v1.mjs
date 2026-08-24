@@ -612,6 +612,20 @@ const doc = `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Tabernacle</title>
 <meta name="description" content="A Hebrew reader built on a sealed chain: every reading traceable to the record that carries it, and every record to the licence it was released under.">
+<script>
+// Two faces, both the record's: linen by day, the tent by night. The device
+// decides until the reader chooses; the choice stays on the device.
+(() => {
+  const root = document.documentElement;
+  let held = null;
+  try { held = localStorage.getItem("scheme"); } catch { /* still reads */ }
+  const sys = matchMedia("(prefers-color-scheme: light)");
+  const apply = () => { root.dataset.scheme = held === "day" || held === "night" ? held : (sys.matches ? "day" : "night"); };
+  apply();
+  if (sys.addEventListener) sys.addEventListener("change", apply);
+  window.__face = { set(v) { held = v; try { localStorage.setItem("scheme", v); } catch { /* still reads */ } apply(); } };
+})();
+</script>
 <style>
   /* colour-role-rule-v1 · the roles are the ledgers and the values are ours.
      The reader paints the recorded contract — structure gold, base surface
@@ -622,7 +636,22 @@ const doc = `<!doctype html>
           --ink-strong:#f8f0da; --muted:#b2a489; --faint:#8b7f69;
           --gold:#eac86f; --gold-dim:#a98c4b; --amber:#d9a441;
           --sel:#82bdf4; --sel-dim:#47759c; --sel-ink:#081221;
-          --shani:#c65b42; --shesh:#ddcda9; --link:#ddcda9; }
+          --shani:#c65b42; --shesh:#ddcda9; --link:#ddcda9;
+          --chip-bg:rgba(216,199,164,.12); --chip-line:rgba(216,199,164,.3);
+          --hover-wash:rgba(224,182,79,.06); --shade:rgba(5,3,8,.55);
+          --sel-ink:#081221; --shadow-card:0 14px 40px rgba(0,0,0,.6); }
+  /* the day face — linen, warm and below paper white; same roles, valued
+     for light, chosen by the device until the reader presses the button */
+  :root[data-scheme="day"] {
+    color-scheme: light;
+    --bg:#f1e9d8; --panel:#f8f2e5; --panel2:#ebe2cd; --line:#d5c8ab;
+    --ink:#2b2519; --ink-strong:#1c180f; --muted:#5f5645; --faint:#7b7058;
+    --gold:#8a6b26; --gold-dim:#b0955c; --amber:#8f6a1c;
+    --sel:#275fa6; --sel-dim:#a3bdd9; --sel-ink:#f5f9fe;
+    --shani:#9c3a26; --shesh:#6b5a35; --link:#6b5a35;
+    --chip-bg:rgba(107,90,53,.10); --chip-line:rgba(107,90,53,.32);
+    --hover-wash:rgba(138,107,38,.10); --shade:rgba(96,80,48,.35);
+    --shadow-card:0 14px 40px rgba(96,80,48,.30); }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
@@ -684,7 +713,7 @@ const doc = `<!doctype html>
   .workgroup .bookcard { border:none; border-radius:0; background:none; }
   a.sub-work { display:block; padding:.6rem .9rem .6rem 1.7rem; border-top:1px solid var(--line);
     text-decoration:none; color:var(--ink); }
-  a.sub-work:hover { background:rgba(224,182,79,.06); }
+  a.sub-work:hover { background:var(--hover-wash); }
   a.sub-work .en { display:block; font-size:.98rem; color:var(--gold-dim); }
   a.sub-work .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }
   /* A family is the outermost frame, and its head is the same register at
@@ -718,7 +747,7 @@ const doc = `<!doctype html>
     left:50%; transform:translateX(-50%); bottom:1rem;
     display:flex; flex-direction:column; overflow-y:auto; overflow-x:hidden;
     background:var(--panel); border:1px solid #2c4a63; border-radius:.7rem;
-    padding:.85rem 1.05rem; box-shadow:0 14px 40px rgba(0,0,0,.6); }
+    padding:.85rem 1.05rem; box-shadow:var(--shadow-card); }
   #wcard[hidden] { display:none; }
   #wcard .head { display:flex; justify-content:space-between; align-items:baseline; gap:.6rem;
     border-bottom:1px solid var(--line); padding-bottom:.4rem; margin-bottom:.3rem; flex:0 0 auto; }
@@ -741,14 +770,14 @@ const doc = `<!doctype html>
     border-radius:.9rem; padding:.22rem .7rem; font:inherit; font-size:.76rem; cursor:pointer;
     max-width:100%; text-align:left; white-space:normal; overflow-wrap:anywhere; }
   #wcard .r-pills button[aria-pressed="true"] { background:var(--sel); border-color:var(--sel);
-    color:#171105; font-weight:bold; }
+    color:var(--sel-ink); font-weight:bold; }
   #wcard .d-card { margin-top:.55rem; border-top:1px solid var(--line); padding-top:.45rem;
     flex:0 0 auto; display:flex; flex-direction:column; overflow:hidden; max-height:32vh; }
   #wcard .d-body { flex:1 1 auto; min-height:1.2rem; overflow-y:auto; color:var(--ink); font-size:.86rem; }
   #wcard .d-foot { flex:0 0 auto; padding-top:.15rem; color:var(--muted); font-size:.78rem; }
   #wcard .d-foot a { color:var(--link); }
   #wcard .lic-chip { display:inline-block; margin-inline-start:.45rem; padding:.02rem .5rem;
-    border-radius:999px; background:rgba(216,199,164,.12); border:1px solid rgba(216,199,164,.3);
+    border-radius:999px; background:var(--chip-bg); border:1px solid var(--chip-line);
     color:var(--shesh); font-size:.72rem; }
   #wcard .prov { color:var(--faint); font-size:.72rem; margin:.35rem 0 0; }
   /* P — the sources carrying the same record as the selected reading. Same
@@ -766,7 +795,7 @@ const doc = `<!doctype html>
   #wcard .d-also-more { font:inherit; font-size:.72rem; color:var(--muted);
     background:var(--panel2); border:1px solid var(--line); border-radius:.5rem;
     padding:.16rem .4rem; cursor:pointer; max-width:100%; }
-  #wshade { position:fixed; inset:0; background:rgba(5,3,8,.55); z-index:69; }
+  #wshade { position:fixed; inset:0; background:var(--shade); z-index:69; }
   #wshade[hidden] { display:none; }
   details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }
   details.fam > summary > .row:first-child::before { content:"\u25b8"; color:var(--gold-dim); font-size:.8rem; }
@@ -802,7 +831,7 @@ const doc = `<!doctype html>
   .workgroup details.fold .fold-line { display:block; margin:0; padding:.05rem .9rem .4rem; }
   a.sub-book { display:block; padding:.6rem .9rem .6rem 1.7rem; border-top:1px solid var(--line);
     text-decoration:none; color:var(--ink); }
-  a.sub-book:hover { background:rgba(224,182,79,.06); }
+  a.sub-book:hover { background:var(--hover-wash); }
   a.sub-book .en { display:block; font-size:.98rem; color:var(--gold-dim); }
   a.sub-book .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }
   footer { margin-top:2.2rem; color:var(--faint); font-size:.78rem; }
@@ -817,9 +846,25 @@ const doc = `<!doctype html>
   a, summary, button, input { transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease; }
   :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
   @media (prefers-reduced-motion: reduce) { a, summary, button, input { transition: none; } }
+  .face { position:fixed; top:.9rem; right:.9rem; z-index:80; border:1px solid var(--line);
+    border-radius:999px; background:var(--panel); color:var(--muted); font:inherit;
+    font-size:.72rem; padding:.12rem .7rem; cursor:pointer; }
+  .face:hover { color:var(--gold); border-color:var(--gold-dim); }
 </style>
 </head>
 <body>
+<button id="face" class="face" type="button" title="the other face of the page">day</button>
+<script>
+{
+  const face = document.getElementById("face");
+  const nameOther = () => { face.textContent = document.documentElement.dataset.scheme === "day" ? "night" : "day"; };
+  nameOther();
+  face.addEventListener("click", () => {
+    window.__face.set(document.documentElement.dataset.scheme === "day" ? "night" : "day");
+    nameOther();
+  });
+}
+</script>
 <main>
   <!-- Built by tools/build-front-door-v1.mjs from pinned physical/logical
        authorities and the zones. Every count below names its grain. -->
@@ -1282,9 +1327,25 @@ const heldPage = (reason = "", from = "") => `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Withheld · The Tabernacle</title>
 <link rel="canonical" href="/">
+<script>
+// Two faces, both the record's: linen by day, the tent by night. The device
+// decides until the reader chooses; the choice stays on the device.
+(() => {
+  const root = document.documentElement;
+  let held = null;
+  try { held = localStorage.getItem("scheme"); } catch { /* still reads */ }
+  const sys = matchMedia("(prefers-color-scheme: light)");
+  const apply = () => { root.dataset.scheme = held === "day" || held === "night" ? held : (sys.matches ? "day" : "night"); };
+  apply();
+  if (sys.addEventListener) sys.addEventListener("change", apply);
+  window.__face = { set(v) { held = v; try { localStorage.setItem("scheme", v); } catch { /* still reads */ } apply(); } };
+})();
+</script>
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d0a14;
   color:#b2a489;font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
-  a{color:#eac86f} p{max-width:34rem} .prov{font-size:.82em;color:#8b7f69}</style>
+  a{color:#eac86f} p{max-width:34rem} .prov{font-size:.82em;color:#8b7f69}
+  :root[data-scheme="day"] body{background:#f1e9d8;color:#5f5645}
+  :root[data-scheme="day"] a{color:#8a6b26} :root[data-scheme="day"] .prov{color:#7b7058}</style>
 </head>
 <body><p>This address is kept, and the work behind it is not being served.<br><br>
 ${reason ? esc(reason) + "<br><br>" : ""}Nothing is shown in the meantime, and the
@@ -1341,8 +1402,24 @@ if (existsSync(HISTORY)) {
      arrives; the bar is rewritten to where the work lives now. -->
 <script>var q=location.search.replace(/^[?]/,"");location.replace("/${target}"+(q?"?"+q:""));</script>
 <meta http-equiv="refresh" content="0; url=/${target}">
+<script>
+// Two faces, both the record's: linen by day, the tent by night. The device
+// decides until the reader chooses; the choice stays on the device.
+(() => {
+  const root = document.documentElement;
+  let held = null;
+  try { held = localStorage.getItem("scheme"); } catch { /* still reads */ }
+  const sys = matchMedia("(prefers-color-scheme: light)");
+  const apply = () => { root.dataset.scheme = held === "day" || held === "night" ? held : (sys.matches ? "day" : "night"); };
+  apply();
+  if (sys.addEventListener) sys.addEventListener("change", apply);
+  window.__face = { set(v) { held = v; try { localStorage.setItem("scheme", v); } catch { /* still reads */ } apply(); } };
+})();
+</script>
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d0a14;
-  color:#b2a489;font:16px Georgia,serif} a{color:#eac86f}</style>
+  color:#b2a489;font:16px Georgia,serif} a{color:#eac86f}
+  :root[data-scheme="day"] body{background:#f1e9d8;color:#5f5645}
+  :root[data-scheme="day"] a{color:#8a6b26}</style>
 </head>
 <body><p>${esc(b.en)} now lives at <a href="/${target}">/${target}</a></p>
 </body>
