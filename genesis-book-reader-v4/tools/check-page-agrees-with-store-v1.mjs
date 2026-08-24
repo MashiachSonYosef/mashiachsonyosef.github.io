@@ -30,8 +30,17 @@ const tmp = mkdtempSync(join(tmpdir(), "agrees-"));
 // The zone names the gloss table it was projected from. If the store on disk
 // cannot reproduce that table, the disagreement is between this store and this
 // zone — and the check should say which, not just count moved words.
+// Only the works the plan actually serves. This read every work the plan
+// named, so it spent three of its passes trying to re-project zones for works
+// that had been withdrawn, failed to open the files, and reported that the
+// store and the zone disagreed — about a zone that was not there.
 const planPA = JSON.parse(readFileSync(join(K3, "build", "build-plan-v1.json"), "utf8"));
-for (const book of planPA.works.map((w) => w.published_as)) {
+const servedPA = planPA.works.filter((w) => (w.serve_state || "SERVED") !== "WITHHELD");
+if (!servedPA.length) {
+  console.log("SKIPPED — the plan serves no work, so there is no page to agree with the store");
+  process.exit(3);
+}
+for (const book of servedPA.map((w) => w.published_as)) {
   console.log(`— ${book} —`);
   const zonePath = join(K3, "data", "zones", `${book}.bin`);
   const out = join(tmp, `${book}-reprojected.bin`);

@@ -90,16 +90,30 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { createRequire } from "node:module";
+import { thePack, refusal } from "./planned-packs-v1.mjs";
 
 const require = createRequire(import.meta.url);
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const abs = (p) => (p.startsWith("/") ? p : `${process.cwd()}/${p}`);
 
-const PACK = arg("pack", "data/genesis-1-1-commentary-2026-07-17.js");
-const CARRIED = arg("carried", "data/v2-genesis-1-1-attachment-map-2026-07-22.js");
-const ZONE = arg("zone", "data/zones/genesis.bin");
-const GENERATED_ON = arg("stamp", "2026-08-19");
-const OUT_FILE = arg("out", `data/v5-attachment-map-${GENERATED_ON}.js`);
+// Nothing here defaults to a filename. Every one of these used to: a pack, a
+// carried map, a zone and a stamp, all four naming one withdrawn proof of
+// concept over a single verse, so running this tool with no arguments built a
+// map for a work that is not served out of a body of text that is not here.
+const chosen = thePack(arg("pack", null));
+if (!chosen) { console.error(refusal("generate-attachment-map-v2")); process.exit(2); }
+const PACK = chosen.pack;
+const CARRIED = arg("carried", chosen.carried_map);
+if (!CARRIED) { console.error(`NO_CARRIED_MAP — ${PACK} has no carried_map in the record; pass --carried`); process.exit(2); }
+const ZONE = arg("zone", null);
+if (!ZONE) { console.error("NO_ZONE_NAMED — pass --zone: the zone a map attaches to is never assumed"); process.exit(2); }
+const GENERATED_ON = arg("stamp", null);
+if (!GENERATED_ON) { console.error("NO_STAMP — pass --stamp YYYY-MM-DD: the day is a fact about the run, not a default"); process.exit(2); }
+// The stamp rides inside the file, never in its name. A dated output filename
+// means every build leaves a new artifact and no build ever retires one: this
+// directory carried four generations of the same map, and the tool that read
+// one of them named it by hand, so the newest was the one nothing used.
+const OUT_FILE = arg("out", `data/attachment-map-${String(ZONE).split("/").pop().replace(/\.bin$/u, "")}.js`);
 const WINDOW_ARG = arg("window", null);
 
 globalThis.window = {};

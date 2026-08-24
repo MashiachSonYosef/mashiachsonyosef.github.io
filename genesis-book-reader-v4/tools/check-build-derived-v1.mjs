@@ -73,8 +73,18 @@ for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin"))) {
   if ((z.emitted_from || {}).test_instrument) continue;
   if (Array.isArray(z.sections) && z.sections.length) zoneOf.set(f.replace(/\.bin$/, ""), z);
 }
+// A work the record holds has no zone on purpose. This loop used to demand one
+// from every work the plan named, so withdrawing three works turned three
+// deliberate holdings into three red lines that said nothing was published —
+// which is true, and is the point, and is not a failure. What IS a failure is
+// a held work that built a zone anyway, and that is asserted instead.
 for (const w of plan.works) {
   const z = zoneOf.get(w.published_as);
+  if (w.serve_state === "WITHHELD") {
+    check(`  ${w.work_id} is withheld and built no zone`, !z,
+      z ? `a zone was built for a work the record holds` : `held since ${w.withheld_since}`);
+    continue;
+  }
   if (!z) { check(`  ${w.work_id} has a published zone to check against`, false, `nothing published as ${w.published_as}`); continue; }
   const oracle = (z.emitted_from || {}).identity_oracle || {};
   const wr = typeof z.work_receipts === "string" ? z.work_receipts : ((z.work_receipts || {}).b_n || "");

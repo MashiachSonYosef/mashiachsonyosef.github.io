@@ -53,9 +53,19 @@ if (!bins.length) {
 // Every file here holds Hebrew a reader can open, whether it is a book or a
 // commentary on one, so every one of them is asked the same two questions.
 console.log("— every zone carries the layers the corpus lane sealed —");
-let checked = 0, formsTotal = 0;
+let checked = 0, formsTotal = 0, instruments = 0;
 for (const f of bins) {
   const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8"));
+  // A test instrument has no sealed template behind it, so it has nothing to
+  // withhold. Asking it to carry a component layer asks it to invent one,
+  // which is the exact act pass-through-rule-v1 exists to forbid. It says so
+  // in its own file and is named here rather than passed over quietly.
+  const ti = (z.emitted_from || {}).test_instrument;
+  if (ti) {
+    console.log(`  ${f} is a test instrument, not a work  ·  ${ti.no_component_layer_because || ti.is || "declared in the file"}`);
+    instruments += 1;
+    continue;
+  }
   const layer = (z.emitted_from || {}).span_layer || {};
   const forms = Object.keys(z.spans || {}).length;
   checked += 1; formsTotal += forms;
@@ -73,8 +83,9 @@ for (const f of bins) {
         : "the spans are here and nothing records where they came from");
   }
 }
-check("  every zone in the directory was asked", checked === bins.length,
-  `${checked} zones, carrying ${formsTotal.toLocaleString()} component systems between them`);
+check("  every zone in the directory was asked", checked + instruments === bins.length,
+  `${checked} zones carrying ${formsTotal.toLocaleString()} component systems between them` +
+  (instruments ? `, and ${instruments} test instrument${instruments === 1 ? "" : "s"} named and passed over` : ""));
 
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);

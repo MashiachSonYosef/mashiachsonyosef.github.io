@@ -125,8 +125,25 @@ const heNote = await p.evaluate(() => document.querySelector("section.seg .xp-no
 // The Hebrew rides on the work's own LICENCE, not its receipt. A receipt says
 // which rows were served; it says nothing about what may be done with them,
 // and an earlier build printed it in the licence's place.
+//
+// Which licence is asked of the zone, never typed here. This line used to read
+//
+//   /CC-BY-NC/.test(heNote) && /Noncommercial/.test(heNote)
+//
+// which is one work's licence hard-wired into a check. It went red the day the
+// two works served were public domain — not because the export was wrong but
+// because the check named a licence. Worse than the false red: a page printing
+// CC-BY-NC over a work that is not CC-BY-NC would have passed it, because the
+// assertion was about a string and not about this work.
+const zoneFamily = await p.evaluate(() => {
+  const per = ((window.__zone || {}).emitted_from || {}).license_receipts || {};
+  const m = String(per.per_occurrence || "").match(/rows:\s*([^·]+)·/u);
+  return m ? m[1].trim() : "";
+});
+check("  the zone records a licence family at all", !!zoneFamily && !/NOT[_ ]ESTABLISHED/iu.test(zoneFamily),
+  zoneFamily || "the zone's receipts name no family — nothing may be exported off a licence nobody recorded");
 check("the Hebrew export names the work's own licence before anything is written",
-  /CC-BY-NC/.test(heNote) && /Noncommercial/.test(heNote), heNote.slice(0, 100));
+  !!zoneFamily && heNote.includes(zoneFamily), `${zoneFamily || "no family"} · ${heNote.slice(0, 90)}`);
 
 // ---- the commentary lands where it opens ----
 await p.evaluate(() => { document.querySelectorAll(".xp.armed").forEach((x) => x.click()); });
@@ -142,6 +159,11 @@ const land = await p.evaluate(async () => {
   if (!target) {
     target = secs.find((s) => s.querySelector(".c-bar") && s.getBoundingClientRect().top > 40) ||
              secs.find((s) => s.querySelector(".c-bar"));
+    // No work served today carries a commentary bar. This threw here — an
+    // uncaught TypeError on an undefined section — which aborted the run
+    // after the licence assertions had passed and before the process could
+    // report them. A check that cannot find its subject says so.
+    if (!target) return null;
     target.scrollIntoView({ block: "center" });
     await wait(200);
   }
@@ -153,10 +175,15 @@ const land = await p.evaluate(async () => {
   const afterClose = target.getBoundingClientRect().top;
   return { before, afterOpen, afterClose };
 });
-check("opening a commentary does not move its section",
-  Math.abs(land.afterOpen - land.before) <= 2, `${Math.round(land.before)} → ${Math.round(land.afterOpen)}`);
-check("closing it does not move it either",
-  Math.abs(land.afterClose - land.before) <= 2, `${Math.round(land.before)} → ${Math.round(land.afterClose)}`);
+if (!land) {
+  console.log("  --    opening a commentary does not move its section  ·  not asked: no section on this page carries a commentary bar");
+  console.log("  --    closing it does not move it either  ·  not asked, same reason");
+} else {
+  check("opening a commentary does not move its section",
+    Math.abs(land.afterOpen - land.before) <= 2, `${Math.round(land.before)} → ${Math.round(land.afterOpen)}`);
+  check("closing it does not move it either",
+    Math.abs(land.afterClose - land.before) <= 2, `${Math.round(land.before)} → ${Math.round(land.afterClose)}`);
+}
 
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

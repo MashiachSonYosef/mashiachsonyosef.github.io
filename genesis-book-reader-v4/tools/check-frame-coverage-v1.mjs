@@ -14,11 +14,11 @@
 // noticed and leave the rest to be noticed later. There are nine hundred and
 // ninety-nine works. No version of that works by hand.
 //
-// Neither the frame nor its definitions are typed here. The frame is read out
-// of the sealed HUD manifests, which record it as a string. What each letter
-// means is read out of data/frame-definitions-*.js. If either changes, this
-// starts asking a different question without anybody editing this file — which
-// is the difference between a pipeline and a list somebody maintains.
+// Neither the frame nor its definitions are typed here. Both are read out of
+// data/frame-record-v1.js, which quotes the sealed HUD manifests verbatim and
+// names them. If the record changes, this starts asking a different question
+// without anybody editing this file — which is the difference between a
+// pipeline and a list somebody maintains.
 //
 // What this does NOT do is enforce the frame. The definitions record says why
 // in its own words: the letters are what not to forget, not a spec, and what a
@@ -47,35 +47,38 @@ const DATA = join(ROOT, "data");
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 
-// ---- the frame, read from the record -------------------------------------
-// Highest manifest version wins: a later fixture is a later statement of it.
-let frame = null, frameFrom = null, frameVersion = -1;
-if (existsSync(DATA)) {
-  for (const f of readdirSync(DATA).filter((x) => x.endsWith(".js"))) {
-    const s = readFileSync(join(DATA, f), "utf8");
-    const m = s.match(/"frame":"([^"]+)"/);
-    if (!m) continue;
-    const v = s.match(/"manifest_version":(\d+)/);
-    const ver = v ? Number(v[1]) : 0;
-    if (ver > frameVersion) { frameVersion = ver; frame = m[1].split("/"); frameFrom = f; }
-  }
+// ---- the frame and its letters, read from one record ----------------------
+//
+// This used to scan data/ for any file carrying a "frame" field and take the
+// one with the highest manifest_version — so the frame this check ran against
+// was whichever proof fixture happened to be lying in the directory. The three
+// fixtures that carried it were withdrawn on 2026-08-24 for being publishable
+// presentation proofs over a single verse, and the frame went with them: this
+// check fell silent, and a silent check reads exactly like a passing one.
+//
+// The frame is a record now. data/frame-record-v1.js quotes the sealed string
+// verbatim, names the manifests it was quoted from and hashes one of them, and
+// says in the same file what each letter is.
+let DEF = null, defFrom = null;
+for (const f of readdirSync(DATA).filter((x) => /^frame-record-v\d+\.js$/u.test(x)).sort()) {
+  try {
+    DEF = JSON.parse(readFileSync(join(DATA, f), "utf8")
+      .replace(/^[\s\S]*?window\.[A-Za-z_0-9]+\s*=\s*Object\.freeze\(/u, "").replace(/\)\s*;?\s*$/u, ""));
+    defFrom = f;
+  } catch { DEF = null; }
 }
-if (!frame) { console.log("SKIPPED — no sealed manifest here records the frame"); process.exit(3); }
+if (!DEF || !DEF.sealed_frame) {
+  console.log("SKIPPED — data/ carries no frame record, so there is no frame to check coverage against");
+  process.exit(3);
+}
+const frameFrom = defFrom;
+const frameVersion = ((DEF.sealed_frame_basis || {}).manifest_version) || 0;
+const frame = String(DEF.sealed_frame).split("/");
 // Y is the organizational spine and sits above the word frame, so it is
 // prepended rather than edited into the recorded string.
 if (!frame.includes("Y")) frame.unshift("Y");
 
-// ---- what the letters mean, read from the dated record -------------------
-let DEF = null, defFrom = null;
-for (const f of readdirSync(DATA).filter((x) => /^frame-definitions-.*\.js$/.test(x)).sort()) {
-  try {
-    DEF = JSON.parse(readFileSync(join(DATA, f), "utf8")
-      .replace(/^[\s\S]*?window\.[A-Za-z_0-9]+\s*=\s*Object\.freeze\(/, "").replace(/\)\s*;?\s*$/, ""));
-    defFrom = f;
-  } catch { /* a record this lane cannot read is reported below, not guessed at */ }
-}
-
-console.log(`— the frame, as ${frameFrom} records it at manifest version ${frameVersion} —`);
+console.log(`— the frame, as ${frameFrom} quotes it from manifest version ${frameVersion} —`);
 console.log(`  ${frame.join(" · ")}`);
 console.log(`  ${frame.length} layers, Y prepended as the spine above the word frame`);
 if (DEF) {

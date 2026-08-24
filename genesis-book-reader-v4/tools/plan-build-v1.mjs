@@ -87,6 +87,12 @@ for (const f of readdirSync(DATA).filter((x) => x.endsWith(".js"))) {
 if (!record) { console.error("NO_WORK_RECORD — data/ carries no WORK_RECORDS_V1 file"); process.exit(2); }
 const descriptors = record.descriptors || {};
 const typed = record.typed_awaiting_ledger || {};
+// A withholding is declared, never inferred. The door used to work out which
+// works were held by noticing no zone answered for them, which made a zone
+// deleted by accident indistinguishable from a work deliberately held — and
+// left build.sh, which never saw the distinction at all, serving every work
+// the plan named.
+const withheld = record.withheld || {};
 
 // ---- the one refusal -------------------------------------------------------
 const both = ledgers.map((l) => l.work.content_work_id).filter((id) => typed[id]);
@@ -147,6 +153,22 @@ for (const [id, t] of Object.entries(typed)) {
     license_links: d.license_links || "",
   });
 }
+// ---- the serve state, read off the record ---------------------------------
+const known = new Set(works.map((w) => w.work_id));
+const orphanHolds = Object.keys(withheld).filter((id) => !known.has(id));
+if (orphanHolds.length) {
+  console.error(`A_WITHHOLDING_NAMES_NO_WORK — refusing to plan.`);
+  for (const id of orphanHolds) console.error(`  ${id} is withheld in ${recordFile} and is not a work this plan derives`);
+  process.exit(2);
+}
+for (const w of works) {
+  const h = withheld[w.work_id];
+  w.serve_state = h ? "WITHHELD" : "SERVED";
+  w.withheld_since = h ? h.since || "" : "";
+  w.withheld_reason = h ? h.reason || "" : "";
+  w.withheld_ends_when = h ? h.ends_when || "" : "";
+}
+
 works.sort((a, b) => (a.order || "zzz").localeCompare(b.order || "zzz") || a.work_id.localeCompare(b.work_id));
 
 // What sits in data/zones that the plan does not reach. data/zones is a work
@@ -158,12 +180,17 @@ works.sort((a, b) => (a.order || "zzz").localeCompare(b.order || "zzz") || a.wor
 // site/, and check-build-derived-v1 is what fails on that.
 const planned = new Set(works.map((w) => w.published_as));
 const strays = [];
+// A test instrument is not a work and is not a stray: it is a file somebody
+// made on purpose for a check to press. It is named rather than skipped —
+// silence about a file in the work directory is how an orphan lives.
+const instruments = [];
 const ZONES = join(DATA, "zones");
 if (existsSync(ZONES)) {
   const { gunzipSync } = await import("node:zlib");
   for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin"))) {
     const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8"));
-    if ((z.emitted_from || {}).test_instrument) continue;
+    const ti = (z.emitted_from || {}).test_instrument;
+    if (ti) { instruments.push({ file: f, is: ti.is || z.work || "a test instrument", generator: ti.generator || "" }); continue; }
     if (!Array.isArray(z.sections) || !z.sections.length) continue;
     const slug = f.replace(/\.bin$/, "").replace(/-commentary$/, "");
     if (!planned.has(slug)) strays.push({ file: f, work: z.work });
@@ -172,6 +199,7 @@ if (existsSync(ZONES)) {
 
 const plan = {
   schema_version: "BUILD_PLAN_V1",
+  serve_state_basis: (record.withheld_basis || {}).these_are || "",
   rule_id: PLAN_RULE_ID,
   planned_from: {
     ledgers: ledgers.map((l) => ({ file: l.file, sha256_16: l.sha, work_id: l.work.content_work_id })),
@@ -182,32 +210,51 @@ const plan = {
   attachments: record.attachments || [],
   commentary_packs: record.commentary_packs || [],
   in_the_work_directory_and_not_planned: strays,
+  test_instruments: instruments,
 };
 
 mkdirSync(join(K3, "build"), { recursive: true });
 writeFileSync(join(K3, outPath), JSON.stringify(plan, null, 1));
 const esc = (v) => (v === "" || v === null || v === undefined ? "-" : String(v));
+// The shell reads this file as the build's instruction list, so a W row means
+// serve it. A held work keeps an H row — the door needs to know it exists and
+// why it is not here — and never reaches a stage that would publish it. An
+// attachment with a held side builds nothing: half a pair is not a commentary.
+const isHeld = new Map(works.map((w) => [w.work_id, w.serve_state === "WITHHELD"]));
+const bothSidesServed = (a, b) => !isHeld.get(a) && !isHeld.get(b);
 const tsv = [
-  ...works.map((w) => ["W", w.work_id, w.basis, w.published_as, w.title_en, esc(w.title_he),
+  ...works.filter((w) => w.serve_state === "SERVED").map((w) => ["W", w.work_id, w.basis, w.published_as, w.title_en, esc(w.title_he),
     w.c0_first, w.c0_last, esc(w.y_fixture), w.byline, w.coord_labels, esc(w.license_links), w.family_en].join("\t")),
-  ...(record.attachments || []).flatMap((a) => [
+  ...works.filter((w) => w.serve_state === "WITHHELD").map((w) =>
+    ["H", w.work_id, w.published_as, w.title_en, w.withheld_since, w.withheld_reason].join("\t")),
+  ...(record.attachments || []).filter((a) => bothSidesServed(a.pair[0], a.pair[1])).flatMap((a) => [
     ["A", a.pair[0], a.pair[1], a.by].join("\t"),
     ["A", a.pair[1], a.pair[0], a.by].join("\t"),
   ]),
-  ...(record.commentary_packs || []).map((p) => ["P", p.work_id, p.pack, p.carried_map].join("\t")),
+  ...(record.commentary_packs || []).filter((p) => !isHeld.get(p.work_id)).map((p) => ["P", p.work_id, p.pack, p.carried_map].join("\t")),
 ].join("\n") + "\n";
 writeFileSync(join(K3, tsvPath), tsv);
 
 // ---- said out loud ---------------------------------------------------------
-console.log(`— the build, derived · ${works.length} works —`);
+const servedCount = works.filter((w) => w.serve_state === "SERVED").length;
+const heldCount = works.length - servedCount;
+console.log(`— the build, derived · ${works.length} works · ${servedCount} served, ${heldCount} withheld —`);
 const pad = Math.max(...works.map((w) => w.work_id.length));
 for (const w of works) {
-  console.log(`  ${w.work_id.padEnd(pad)}  ${String(w.c0_first)}-${String(w.c0_last)} · ${String(w.unit_count).padStart(5)} units · ${w.basis}`);
+  const state = w.serve_state === "WITHHELD" ? " · WITHHELD" : "";
+  console.log(`  ${w.work_id.padEnd(pad)}  ${String(w.c0_first)}-${String(w.c0_last)} · ${String(w.unit_count).padStart(5)} units · ${w.basis}${state}`);
   console.log(`  ${"".padEnd(pad)}  from ${w.derived_from}`);
+  if (w.serve_state === "WITHHELD")
+    console.log(`  ${"".padEnd(pad)}  held since ${w.withheld_since} — ${w.withheld_reason}`);
   if (w.published_as !== w.address_by_rule)
     console.log(`  ${"".padEnd(pad)}  published as "${w.published_as}" · the address rule says "${w.address_by_rule}" — awaiting the republish step`);
 }
 for (const n of notPass) console.log(`  a ledger that is not PASS is not derived from: ${n.file} · ${n.status}`);
 for (const o of strays) console.log(`  in the work directory and not planned — ${o.file} (${o.work}) · not published by this build`);
+for (const t of instruments) {
+  console.log(`  a test instrument, not a work — ${t.file} · ${t.is}`);
+  if (/^NOT IN THIS TREE/u.test(t.generator))
+    console.log(`      and it has no generator here: ${t.generator}`);
+}
 console.log(`  ${outPath} · ${tsvPath}`);
 process.exit(0);

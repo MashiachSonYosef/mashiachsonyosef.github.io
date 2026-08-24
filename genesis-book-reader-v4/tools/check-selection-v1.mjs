@@ -212,11 +212,24 @@ for (const [mode, btn, agree] of [["the Hebrew reader", "#modeHe", false], ["the
 
 // ---- and the licence is on the page they copied from -----------------
 {
+  // Which licence, asked of the zone. This looked for the strings CC-BY or
+  // "public domain" or the word "licence" anywhere on the page — so a work
+  // under any other licence could only pass by the page happening to contain
+  // the word "licence", and the detail line could only ever quote a CC-BY.
+  // What matters is that this work's own family is on the page a reader
+  // copied from, and the page says which family that is.
   const lic = await p.evaluate(() => {
+    const per = ((window.__zone || {}).emitted_from || {}).license_receipts || {};
+    const m = String(per.per_occurrence || "").match(/rows:\s*([^·]+)·/u);
+    const family = m ? m[1].trim() : "";
     const txt = document.body.innerText;
-    return { has: /CC[- ]BY|public domain|licen[cs]e/i.test(txt), where: (txt.match(/CC-BY[^\n]{0,44}/) || [""])[0] };
+    const at = family ? txt.indexOf(family) : -1;
+    return { family, has: at >= 0, where: at >= 0 ? txt.slice(at, at + 60).split("\n")[0] : "" };
   });
-  check("the licence is readable on the page they copied from", lic.has, lic.where || "in the receipts");
+  check("  the zone records a licence family at all", !!lic.family && !/NOT[_ ]ESTABLISHED/iu.test(lic.family),
+    lic.family || "the zone's receipts name no family");
+  check("the licence is readable on the page they copied from", lic.has,
+    lic.where || `${lic.family || "no family"} appears nowhere on the page — only in the receipts`);
 }
 
 await b.close();

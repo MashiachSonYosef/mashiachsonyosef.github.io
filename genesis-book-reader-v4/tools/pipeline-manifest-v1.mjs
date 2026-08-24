@@ -78,22 +78,41 @@ for (const [id, r] of rules) if (!r.declaredIn.size && r.guardedBy.size) r.decla
 const plan = (() => {
   try { return JSON.parse(read("build/build-plan-v1.json")); } catch { return null; }
 })();
+const served = plan ? plan.works.filter((w) => (w.serve_state || "SERVED") !== "WITHHELD") : [];
 const PUBLISHED = [
   { what: "zone.html", note: "the reader itself" },
   { what: "index.html", note: "the front door" },
   { what: "README.md", note: "the front door, for someone browsing the repository" },
-  ...(plan ? plan.works.map((w) => ({ what: `${w.published_as}/index.html`, note: `the clean address · ${w.basis}` })) : []),
-  ...(plan ? plan.works.map((w) => ({ what: `data/zones/${w.published_as}.bin`, note: w.basis })) : []),
-  ...(plan ? plan.attachments.flatMap((a) => a.pair.map((id) => {
-    const w = plan.works.find((x) => x.work_id === id);
-    return { what: `data/zones/${w.published_as}-commentary.bin`, note: `attached by ${a.by}` };
+  // Every address the plan names gets a page, held works included: a withheld
+  // work's address still answers, and the page that answers is an artifact
+  // this build makes. What a withheld work does NOT get is a zone — so this
+  // table listed five zones and five sidecars the site does not carry, and
+  // called them published.
+  ...(plan ? plan.works.map((w) => ({
+    what: `${w.published_as}/index.html`,
+    note: w.serve_state === "WITHHELD" ? `the clean address · withheld since ${w.withheld_since}` : `the clean address · ${w.basis}`,
   })) : []),
+  ...(plan ? served.map((w) => ({ what: `data/zones/${w.published_as}.bin`, note: w.basis })) : []),
+  // A sidecar needs both works: the base to sit in and the commentary to
+  // print. One side held means neither is built, which is the same rule the
+  // plan's TSV applies — half a pair is not a commentary.
+  ...(plan ? plan.attachments.filter((a) => a.pair.every((id) => served.some((x) => x.work_id === id)))
+    .flatMap((a) => a.pair.map((id) => {
+      const w = served.find((x) => x.work_id === id);
+      return { what: `data/zones/${w.published_as}-commentary.bin`, note: `attached by ${a.by}` };
+    })) : []),
   ...(plan ? plan.commentary_packs.map((c) => {
-    const w = plan.works.find((x) => x.work_id === c.work_id);
-    return { what: `data/zones/${w.published_as}-commentary.bin`, note: "from the pack and its map" };
-  }) : []),
+    const w = served.find((x) => x.work_id === c.work_id);
+    return w ? { what: `data/zones/${w.published_as}-commentary.bin`, note: "from the pack and its map" } : null;
+  }).filter(Boolean) : []),
   { what: "data/route-store", note: "index + 256 shards" },
-  { what: "data/v5-attachment-map-2026-08-19.js", note: "which words of which section each commentary sits on" },
+  // One map per pack, named for the work it attaches to. There is no row here
+  // when the record names no pack: a template row cannot have a build step,
+  // and an artifact with no build step is the one thing this table is for.
+  ...(plan ? plan.commentary_packs.map((c) => {
+    const w = served.find((x) => x.work_id === c.work_id);
+    return w ? { what: `data/attachment-map-${w.published_as}.js`, note: "which words of which section each commentary sits on" } : null;
+  }).filter(Boolean) : []),
 ];
 if (!plan) PUBLISHED.push({ what: "build/build-plan-v1.json", note: "NOT DERIVED YET — run tools/plan-build-v1.mjs; the per-work rows above are missing until it exists" });
 const buildSh = files.get("build.sh") || "";
@@ -103,9 +122,9 @@ const madeBy = (what) => {
   if (plan) {
     if (/^[a-z0-9-]+\/index\.html$/.test(what)) return "tools/build-front-door-v1.mjs";
     const m = what.match(/^data\/zones\/([a-z0-9-]+?)(-commentary)?\.bin$/);
-    if (m && plan.works.some((w) => w.published_as === m[1])) {
+    if (m && served.some((w) => w.published_as === m[1])) {
       if (!m[2]) return "tools/build-zone.mjs";
-      const w = plan.works.find((x) => x.published_as === m[1]);
+      const w = served.find((x) => x.published_as === m[1]);
       return plan.commentary_packs.some((c) => c.work_id === w.work_id)
         ? "tools/build-commentary-sidecar-v1.mjs" : "tools/build-commentary-zone.mjs";
     }

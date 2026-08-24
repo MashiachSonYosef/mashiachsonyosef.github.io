@@ -47,15 +47,27 @@ const SKIP_LABEL = "check-nothing-dropped-v1";
 }
 
 
+import { thePack } from "./planned-packs-v1.mjs";
+
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 
-const PACK = join(K3, "data", "genesis-1-1-commentary-2026-07-17.js");
-const SIDE = join(K3, "data", "zones", "genesis-commentary.bin");
+// Which pack, asked of the record. This check named one by hand, and went on
+// naming it after it was withdrawn — so what it actually asserted was that a
+// file which no longer exists was not here, and it skipped, and a skip that
+// says nothing reads exactly like a pass.
+const chosen = thePack(null);
+if (!chosen) {
+  console.log("SKIPPED — data/work-records-v1.js names no commentary pack, so there is nothing to have dropped");
+  process.exit(3);
+}
+const PACK = join(K3, chosen.pack);
+const slug = String(chosen.work_id || "").split("/").pop();
+const SIDE = join(K3, "data", "zones", `${slug}-commentary.bin`);
 if (!existsSync(PACK) || !existsSync(SIDE)) {
-  console.log("SKIPPED — the commentary pack or its sidecar is not here");
+  console.log(`SKIPPED — ${chosen.pack} is named by the record and its sidecar is not built`);
   process.exit(3);
 }
 const load = (p) => JSON.parse(readFileSync(p, "utf8")

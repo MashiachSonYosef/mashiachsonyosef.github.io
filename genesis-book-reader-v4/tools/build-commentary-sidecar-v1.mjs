@@ -41,6 +41,7 @@ import { exactK, K_RULE_ID } from "./k-normalization-v1.mjs";
 import { MAQAF } from "./zone-lib-v1.mjs";
 import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
+import { thePack, refusal } from "./planned-packs-v1.mjs";
 
 const require = createRequire(import.meta.url);
 const arg = (name, dflt) => {
@@ -48,10 +49,18 @@ const arg = (name, dflt) => {
   return i > 0 && process.argv[i + 1] ? process.argv[i + 1] : dflt;
 };
 
-const PACK = arg("pack", "data/genesis-1-1-commentary-2026-07-17.js");
-const MAP = arg("map", "data/v5-attachment-map-2026-08-19.js");
-const ZONE = arg("zone", "data/zones/genesis.bin");
-const OUT = arg("out", "data/zones/genesis-commentary.bin");
+// Four defaults, four hand copies, all four naming a withdrawn proof of
+// concept. A tool that reaches for a filename when told nothing will one day
+// publish the wrong body of text under the right work's address, and the only
+// evidence will be a date in a name nobody reads.
+const chosen = thePack(arg("pack", null));
+if (!chosen) { console.error(refusal("build-commentary-sidecar-v1")); process.exit(2); }
+const PACK = chosen.pack;
+const ZONE = arg("zone", null);
+if (!ZONE) { console.error("NO_ZONE_NAMED — pass --zone: the work a sidecar sits on is never assumed"); process.exit(2); }
+const slug = String(ZONE).split("/").pop().replace(/\.bin$/u, "");
+const MAP = arg("map", `data/attachment-map-${slug}.js`);
+const OUT = arg("out", `data/zones/${slug}-commentary.bin`);
 const VERIFY = arg("verify", null);
 
 const sha = (s) => createHash("sha256").update(s).digest("hex");

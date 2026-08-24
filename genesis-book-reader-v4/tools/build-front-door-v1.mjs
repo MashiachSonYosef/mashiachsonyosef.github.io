@@ -205,6 +205,8 @@ const LEDGER = JSON.parse(readFileSync(arg("family-ledger", "data/family-ledger-
 const BOOKS = plan.works.map((w) => ({
   slug: w.published_as, zone: `${w.published_as}.bin`,
   work_id: w.work_id, address_by_rule: w.address_by_rule, basis: w.basis,
+  serve_state: w.serve_state || "SERVED",
+  withheld_reason: w.withheld_reason || "",
   held: (WB.works[w.published_as] || {}).held_commentaries || 0,
 }));
 // Attachment is directional for presentation: the record's pair is
@@ -1077,10 +1079,28 @@ ${sectionsHtml.join("\n")}
 // months after the two books and their commentary had shipped whole. Nobody
 // lied; it was written once and never had a reason to change. So it is written
 // from the same counts as the page.
-// A work the plan names and no zone answers for is withheld, not missing. The
-// list is derived from the zones on disk, so it empties itself on the build
-// after a work comes back and can never disagree with what is served.
-const withheldBooks = BOOKS.filter((b) => !books.some((x) => x.slug === b.slug));
+// A work is withheld because the record says so, not because no zone happened
+// to answer for it. This list used to be derived from the absence of a file,
+// which meant a zone deleted by accident printed the same honest-looking page
+// as a work deliberately held, and nothing anywhere could tell the two apart.
+// So the plan carries the state, this reads it, and the two ways they can
+// disagree are both errors rather than pages.
+const withheldBooks = BOOKS.filter((b) => b.serve_state === "WITHHELD");
+const servedWithNoZone = BOOKS.filter((b) => b.serve_state !== "WITHHELD" && !books.some((x) => x.slug === b.slug));
+if (servedWithNoZone.length) {
+  console.error("A_SERVED_WORK_HAS_NO_ZONE — refusing to build the door.");
+  for (const b of servedWithNoZone)
+    console.error(`  ${b.work_id} is not withheld in the record and ${join(ZONES, b.zone)} does not answer for it`);
+  console.error("  Either the zone build did not run, or the work is being held — and a holding is declared in the record, never left to an absent file.");
+  process.exit(2);
+}
+const heldWithAZone = withheldBooks.filter((b) => books.some((x) => x.slug === b.slug));
+if (heldWithAZone.length) {
+  console.error("A_WITHHELD_WORK_BUILT_A_ZONE — refusing to build the door.");
+  for (const b of heldWithAZone)
+    console.error(`  ${b.work_id} is withheld in the record and ${b.zone} was built anyway`);
+  process.exit(2);
+}
 const titleCase = (t) => String(t).split("-").map((w) =>
   (w.length <= 2 && w === w.toLowerCase() && /^[ivx]+$/.test(w)) ? w.toUpperCase()
     : w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
@@ -1227,7 +1247,10 @@ writeFileSync(join(OUT, "front-door-counts-receipt-v1.json"), countReceiptJson);
 // changes what the address has to say. The build after the work returns writes
 // the ordinary stub over this one, because both are derived from the zones on
 // disk and neither is typed into a list.
-const heldPage = () => `<!doctype html>
+// The reason a work is held is a fact in the record, so the page prints the
+// record's sentence rather than one typed here. A page that says the same
+// thing about every held work is a page that stops being read.
+const heldPage = (reason = "") => `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1238,16 +1261,16 @@ const heldPage = () => `<!doctype html>
   color:#a99a80;font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
   a{color:#e8c46a} p{max-width:34rem}</style>
 </head>
-<body><p>This address is kept, and the work behind it is not being served.
-It is withheld pending verification of its transmission apparatus, and it
-returns here when that is settled. Nothing is shown in the meantime.<br><br>
+<body><p>This address is kept, and the work behind it is not being served.<br><br>
+${reason ? esc(reason) + "<br><br>" : ""}Nothing is shown in the meantime, and the
+address returns here when the holding ends.<br><br>
 <a href="/">The Tabernacle</a></p>
 </body>
 </html>
 `;
 for (const b of withheldBooks) {
   mkdirSync(join(OUT, b.slug), { recursive: true });
-  writeFileSync(join(OUT, b.slug, "index.html"), heldPage());
+  writeFileSync(join(OUT, b.slug, "index.html"), heldPage(b.withheld_reason));
 }
 for (const b of books) {
   mkdirSync(join(OUT, b.slug), { recursive: true });
@@ -1275,29 +1298,9 @@ if (existsSync(HISTORY)) {
     // work comes back, because this is derived from the zones on disk and
     // never from a list typed here.
     if (!b) {
-      writeFileSync(join(OUT, row.from, "index.html"), heldPage());
+      const held = BOOKS.find((x) => x.slug === target);
+      writeFileSync(join(OUT, row.from, "index.html"), heldPage(held ? held.withheld_reason : ""));
       continue;
-    }
-    if (false) {
-      const held = `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Withheld · The Tabernacle</title>
-<link rel="canonical" href="/">
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0910;
-  color:#a99a80;font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
-  a{color:#e8c46a} p{max-width:34rem}</style>
-</head>
-<body><p>This address is kept, and the work behind it is not being served.
-It is withheld pending verification of its transmission apparatus, and it
-returns here when that is settled. Nothing is shown in the meantime.<br><br>
-<a href="/">The Tabernacle</a></p>
-</body>
-</html>
-`;
-      writeFileSync(join(OUT, row.from, "index.html"), held);
     }
     const moved = `<!doctype html>
 <html lang="en">
