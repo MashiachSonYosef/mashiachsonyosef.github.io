@@ -27,7 +27,11 @@ const AT = [0, 1, 4];
 const load = (p) => JSON.parse(gunzipSync(readFileSync(p)).toString("utf8"));
 const save = (p, o) => { writeFileSync(p, gzipSync(Buffer.from(JSON.stringify(o), "utf8"), { level: 9 })); };
 
-const base = load(join(ZONES, "1kings.bin"));
+// The zone it is made from is named, never assumed. This read 1kings.bin —
+// withdrawn on 2026-08-23 — so the fixture maker could not run at all.
+const SRC = (() => { const i = process.argv.indexOf("--from"); return i > 0 ? process.argv[i + 1] : null; })();
+if (!SRC) { console.error("NO_SOURCE_NAMED — pass --from <published slug>: a fixture is made from a zone somebody named"); process.exit(2); }
+const base = load(join(ZONES, `${SRC}.bin`));
 const com = load(join(ZONES, "1kings-commentary.bin"));
 
 const ids = Object.keys(com.units || {});
@@ -59,7 +63,7 @@ ids.forEach((id, n) => {
 });
 com.fixture = {
   rule_id: "fixture-rule-v1-a-real-zone-with-its-own-commentary-hung-at-words",
-  made_from: "data/zones/1kings-commentary.bin",
+  made_from: `data/zones/${SRC}-commentary.bin`,
   hung_at_word_positions: AT,
   second_unit_at_first_position: "the neighbouring section's entry, so one word carries two units",
   entries_hung: hung,

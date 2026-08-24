@@ -15,7 +15,10 @@ import { extname, join, normalize } from "node:path";
 
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
 const root = arg("--root", "site");
-const book = arg("--book", "1kings");
+// No default. This read "1kings" — a work withdrawn from the site — so a run
+// without --book verified a zone that is not there and reported on nothing.
+const book = arg("--book", null);
+if (!book) { console.error("NO_BOOK_NAMED — pass --book <published slug>: the work a verifier opens is never assumed"); process.exit(2); }
 const shot = arg("--shot");
 
 const TYPES = { ".html": "text/html", ".json": "application/json", ".bin": "application/octet-stream", ".css": "text/css", ".js": "text/javascript" };

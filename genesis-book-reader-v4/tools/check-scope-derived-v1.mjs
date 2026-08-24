@@ -41,13 +41,33 @@ const checkFiles = readdirSync(TOOLS)
   .filter((f) => f !== "check-scope-derived-v1.mjs")
   .sort();
 
+// S1 opened only check-*.mjs. A tool that is not a check can name a work just
+// as fatally — commentary-span-findings-v1 read data/zones/genesis.bin
+// outright, for a work withdrawn from the site, and threw where it stood.
+const allTools = readdirSync(TOOLS)
+  .filter((f) => /\.mjs$/.test(f))
+  .filter((f) => f !== "check-scope-derived-v1.mjs")
+  .sort();
+
+// The slugs, asked of the plan and the address history rather than listed here.
+const KNOWN = new Set();
+try {
+  const plan = JSON.parse(readFileSync(join("build", "build-plan-v1.json"), "utf8"));
+  for (const w of plan.works || []) { KNOWN.add(w.published_as); KNOWN.add(w.address_by_rule); }
+} catch { /* reported by its own law below */ }
+try {
+  const hist = JSON.parse(readFileSync(join("data", "address-history-v1.json"), "utf8"));
+  for (const r of hist.republished || []) KNOWN.add(r.from);
+} catch { /* no history is not a defect */ }
+KNOWN.delete(undefined); KNOWN.delete("");
+
 // ---- S1 : no check names a work in its own source -------------------------
 //
 // A slug typed into a check is a claim about the future — true until somebody
 // moves a work, and silent when it stops being true. The zone a check opens
 // belongs to the directory, not to the file.
 const named = [];
-for (const f of checkFiles) {
+for (const f of allTools) {
   const src = readFileSync(join(TOOLS, f), "utf8");
   // a slug inside a comment is prose about a book, not a target
   const code = src.split("\n").filter((l) => !/^\s*(\/\/|\*)/.test(l)).join("\n");
@@ -62,10 +82,22 @@ for (const f of checkFiles) {
   for (const m of code.matchAll(/[?&]b=([a-z0-9-]+)/g)) found.add(`?b=${m[1]}`);
   for (const m of code.matchAll(/data\/zones\/([a-z0-9-]+)\.bin/g)) found.add(`data/zones/${m[1]}.bin`);
   for (const m of code.matchAll(/\/\^\(([a-z0-9|-]+)\)\\\.bin\$\//g)) found.add(`filter:${m[1]}`);
+  // The fourth way, and the one that defeated the three above: the slug in
+  // quotes, reaching the page through a template. Two checks looped over
+  // ["genesis", "1kings"] and opened `?b=${book}`, so neither the URL pattern
+  // nor the file pattern ever fired, and this file reported the tree clean
+  // while two checks pointed at works that had been withdrawn. A slug is
+  // named however it is spelt.
+  for (const slug of KNOWN) {
+    const q = new RegExp(`["'\`]${slug.replace(/[.*+?^$()[\]{}|\\]/gu, "\\$&")}["'\`]`, "u");
+    if (q.test(code)) found.add(`"${slug}"`);
+  }
   if (found.size) named.push(`${f} → ${[...found].join(", ")}`);
 }
-check("no check names a work in its own source", named.length === 0,
-  named.length ? named.slice(0, 4).join(" · ") : `${checkFiles.length} checks, all derived`);
+check("no tool names a work in its own source", named.length === 0,
+  named.length ? named.join(" · ") : `${allTools.length} tools, all derived`);
+check("  and the slugs it looks for were derived, not listed", KNOWN.size > 0,
+  KNOWN.size ? `${KNOWN.size} from the plan and the address history` : "no plan derived — run tools/plan-build-v1.mjs first");
 
 // ---- S2 : every zone on disk is opened by at least one check ---------------
 //

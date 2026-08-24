@@ -40,8 +40,19 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
 const load = (f) => JSON.parse(gunzipSync(readFileSync(f)).toString("utf8"));
-const zone = load("data/zones/genesis.bin");
-const cm = load("data/zones/genesis-commentary.bin");
+
+// The work comes from the directory. These two lines named genesis outright —
+// a work withdrawn from the site — so this tool threw ENOENT where it stood,
+// and a tool that cannot open its own input reports no findings at all.
+const { zonesWithCommentary } = await import("./zones-on-disk-v1.mjs");
+const argOf = (n) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : null; };
+const slug = argOf("book") || zonesWithCommentary()[0];
+if (!slug) {
+  console.log("SKIPPED — no served work carries a commentary sidecar, so there are no spans to report on");
+  process.exit(3);
+}
+const zone = load(`data/zones/${slug}.bin`);
+const cm = load(`data/zones/${slug}-commentary.bin`);
 const sec = zone.sections[0];
 
 const POINTS = /[̀-֑ͯ-ׇ]/g;
@@ -78,9 +89,18 @@ const matchHeadword = (proofText) => {
 };
 const spanText = (m) => (m ? `${m.start}-${m.end}` : "no match");
 
+// The unit is whichever one the store carries, asked of the store. This named
+// "genesis-1-1" and threw on anything else — a TypeError on undefined.words,
+// which is not a finding, it is a tool that cannot open its own input.
+const unitKeys = Object.keys(cm.units || {}).filter((k) => cm.units[k] && cm.units[k].words);
+if (!unitKeys.length) {
+  console.log("SKIPPED — the commentary store carries no unit with words");
+  process.exit(3);
+}
 const rows = [];
-for (const [pos, list] of Object.entries(cm.units["genesis-1-1"].words || {}))
-  for (const e of list) rows.push({ pos: Number(pos), e });
+for (const uk of unitKeys)
+  for (const [pos, list] of Object.entries(cm.units[uk].words || {}))
+    for (const e of list) rows.push({ pos: Number(pos), e });
 
 // how far the comment's own opening quotation runs from where it was attached
 const quotedRun = (e, pos) => {
@@ -124,6 +144,6 @@ for (const r of rows) {
 }
 
 writeFileSync("commentary-span-findings-v1.csv", out.join("\n") + "\n");
-console.log(`${rows.length} attachments read from data/zones/genesis-commentary.bin`);
+console.log(`${rows.length} attachments read from data/zones/${slug}-commentary.bin`);
 for (const [k, n] of Object.entries(tally).sort()) console.log(`  ${k}  ${n}`);
 console.log(`\ncommentary-span-findings-v1.csv  ${out.length - 1} rows`);

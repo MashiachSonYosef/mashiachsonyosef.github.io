@@ -27,9 +27,13 @@ const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const BASE = (defaultZoneUrl()).split("?")[0];
+const BOOKS_ON_DISK = zonesOnDisk();
 
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
-for (const book of ["genesis", "1kings"]) {
+// The books come from the directory. This read ["genesis", "1kings"] — two
+// works withdrawn from the site on 2026-08-23 — so it opened the withheld
+// page twice and asserted about a reader that was never loaded.
+for (const book of BOOKS_ON_DISK) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await p.goto(`${BASE}?b=${book}`, { waitUntil: "networkidle" });
@@ -154,7 +158,10 @@ for (const book of ["genesis", "1kings"]) {
 // everything else that can be pressed, it is in the same place in every book,
 // and it goes to the site's own root and nowhere else.
 {
-  for (const book of ["genesis", "1kings"]) {
+  // The books come from the directory. This read ["genesis", "1kings"] — two
+// works withdrawn from the site on 2026-08-23 — so it opened the withheld
+// page twice and asserted about a reader that was never loaded.
+for (const book of BOOKS_ON_DISK) {
     const p = await b.newPage({ viewport: { width: 412, height: 915 } });
     p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
     await p.goto(`${BASE}?b=${book}`, { waitUntil: "networkidle" });

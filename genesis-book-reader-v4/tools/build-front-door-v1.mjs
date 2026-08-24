@@ -243,8 +243,14 @@ for (const b of BOOKS) {
     const counts = GENESIS_V3.counts || {};
     const joinedRecords = (clean.presentation_join_groups || [])
       .reduce((total, group) => total + (group.canonical_successor_occurrence_ids || []).length, 0);
-    if (GENESIS_V3.zone.path !== "genesis-book-reader-v4/data/zones/genesis.bin" ||
-        GENESIS_V3.zone.module_path !== "data/zones/genesis.bin" ||
+    // The pin must be the pin for the file being read. This compared the
+    // binding's declared paths against two literals naming one work, which is
+    // the same claim written twice and one of them typed here: if Bezalel ever
+    // reissued the binding at a different path, the literal would refuse it
+    // rather than follow it. The comparison is against what this loop actually
+    // opened, which is derived from the zones directory.
+    if (!String(GENESIS_V3.zone.path || "").endsWith(`/${b.zone}`) ||
+        GENESIS_V3.zone.module_path !== `${ZONES}/${b.zone}`.replace(/^\.\//u, "") ||
         words !== counts.rendered_compspan_records ||
         z.counts?.words !== counts.rendered_compspan_records ||
         z.counts?.clean_compspan_successor_occurrences !== counts.canonical_compspan_records ||

@@ -42,6 +42,7 @@ const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const BASE = (defaultZoneUrl()).split("?")[0];
+const BOOKS_ON_DISK = zonesOnDisk();
 
 const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 
@@ -249,7 +250,10 @@ for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the Engli
 // given the reader, and it must stop the build rather than be drawn wrong
 // across everything. The reader refuses it visibly either way; this makes sure
 // nobody ships past the refusal.
-for (const book of ["genesis", "1kings"]) {
+// The books come from the directory. This read ["genesis", "1kings"] — two
+// works withdrawn from the site on 2026-08-23 — so it opened the withheld
+// page twice and asserted about a reader that was never loaded.
+for (const book of BOOKS_ON_DISK) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await p.goto(`${BASE}?b=${book}`, { waitUntil: "networkidle" });
@@ -306,7 +310,12 @@ for (const book of ["genesis", "1kings"]) {
   // from the list inside the open commentary, so every width the chain uses is
   // actually drawn at least once
   const wanted = await p.evaluate(() => {
-    const w0 = (((window.__commentaryStore || {}).units || {})["genesis-1-1"] || {}).words["0"] || [];
+    // Whichever unit the store actually carries words for. This named
+    // "genesis-1-1", so on any other work it read undefined.words and threw —
+    // and a check that throws reports nothing, which reads like green.
+    const units = (window.__commentaryStore || {}).units || {};
+    const uk = Object.keys(units).find((k) => units[k] && units[k].words && Object.keys(units[k].words).length);
+    const w0 = (uk ? units[uk].words["0"] : null) || [];
     const yr = (e) => (e.years && e.years.length && Number.isFinite(Number(e.years[0])) ? Number(e.years[0]) : Infinity);
     const ordered = [...w0].map((e, i) => ({ e, i })).sort((a, b) => yr(a.e) - yr(b.e) || a.i - b.i);
     const first = new Map();
@@ -546,7 +555,12 @@ for (const book of ["genesis", "1kings"]) {
   const shown = await p.evaluate(() => [...document.querySelectorAll(".c-choice")]
     .map((x) => x.textContent.replace(/\s+/g, " ").trim()));
   const truth = await p.evaluate(() => {
-    const w0 = (((window.__commentaryStore || {}).units || {})["genesis-1-1"] || {}).words["0"] || [];
+    // Whichever unit the store actually carries words for. This named
+    // "genesis-1-1", so on any other work it read undefined.words and threw —
+    // and a check that throws reports nothing, which reads like green.
+    const units = (window.__commentaryStore || {}).units || {};
+    const uk = Object.keys(units).find((k) => units[k] && units[k].words && Object.keys(units[k].words).length);
+    const w0 = (uk ? units[uk].words["0"] : null) || [];
     const byWork = new Map();
     for (const e of w0) {
       const y = (e.years && e.years.length && Number.isFinite(Number(e.years[0]))) ? Number(e.years[0]) : Infinity;

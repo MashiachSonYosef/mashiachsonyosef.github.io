@@ -119,12 +119,19 @@ const WINDOW_ARG = arg("window", null);
 globalThis.window = {};
 require(abs(PACK));
 require(abs(CARRIED));
-// the packs name their own global; take whichever one this file defined
+// A pack is found by its shape and never by its name. These two lines used to
+// read g.GENESIS_1_1_COMMENTARY and g.V2_GENESIS_1_1_ATTACHMENT_MAP first and
+// fall back to the shape — so one withdrawn proof of concept's global took
+// precedence over the pack actually named on the command line. Two candidates
+// is an ambiguity, not a thing to pick from.
 const g = globalThis.window;
-const commentaryData = g.GENESIS_1_1_COMMENTARY ||
-  Object.values(g).find((v) => v && v.base && Array.isArray(v.commentary));
-const carriedMap = g.V2_GENESIS_1_1_ATTACHMENT_MAP ||
-  Object.values(g).find((v) => v && Array.isArray(v.claims));
+const byShape = (test, what) => {
+  const found = Object.values(g).filter(test);
+  if (found.length > 1) throw new Error(`${what}: this run defined ${found.length} of them — refusing to choose`);
+  return found[0] || null;
+};
+const commentaryData = byShape((v) => v && v.base && Array.isArray(v.commentary), `${PACK} defines more than one commentary pack`);
+const carriedMap = byShape((v) => v && Array.isArray(v.claims), `${CARRIED} defines more than one attachment map`);
 if (!commentaryData) throw new Error(`${PACK} defined no commentary pack — refusing output`);
 
 const zone = JSON.parse(gunzipSync(readFileSync(ZONE)).toString("utf8"));
@@ -279,7 +286,14 @@ const map = {
   claims: [...carriedClaims, ...generated],
 };
 
-writeFileSync(OUT_FILE, `window.V2_GENESIS_1_1_ATTACHMENT_MAP = Object.freeze(${JSON.stringify(map, null, 2)});\n`);
+// The global a map declares itself under is derived from the work it attaches
+// to. Every map this tool has ever written called itself
+// V2_GENESIS_1_1_ATTACHMENT_MAP — one withdrawn verse's name on every future
+// work's map, and two works' maps colliding on one global if both were ever
+// loaded. Consumers find a map by its shape, so the name is for reading.
+const mapGlobal = `ATTACHMENT_MAP_${String(map.work || map.base_work_id || ZONE.split("/").pop().replace(/\.bin$/u, ""))
+  .replace(/[^A-Za-z0-9]+/gu, "_").toUpperCase()}`;
+writeFileSync(OUT_FILE, `window.${mapGlobal} = Object.freeze(${JSON.stringify(map, null, 2)});\n`);
 console.log(`${OUT_FILE} · ${map.claims.length} claims over ${stats.anchors_seen} anchor${stats.anchors_seen === 1 ? "" : "s"}`);
 console.log(`  ${JSON.stringify(stats)}`);
 if (missingAnchors.size) console.log(`  anchors the zone does not carry: ${[...missingAnchors].slice(0, 5).join(", ")}`);

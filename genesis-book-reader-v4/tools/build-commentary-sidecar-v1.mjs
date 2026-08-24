@@ -71,12 +71,20 @@ const packBody = readFileSync(PACK, "utf8");
 require(PACK.startsWith("/") ? PACK : `${process.cwd()}/${PACK}`);
 const mapBody = readFileSync(MAP, "utf8");
 require(MAP.startsWith("/") ? MAP : `${process.cwd()}/${MAP}`);
-const pack = window.GENESIS_1_1_COMMENTARY ||
-  Object.values(window).find((v) => v && v.base && Array.isArray(v.commentary));
-const map = window.V2_GENESIS_1_1_ATTACHMENT_MAP ||
-  Object.values(window).find((v) => v && Array.isArray(v.claims));
+// Found by shape, never by name — see generate-attachment-map-v2 for why the
+// named global had to go. Ambiguity refuses rather than picks.
+const oneOf = (test, what) => {
+  const found = Object.values(window).filter(test);
+  if (found.length > 1) throw new Error(`${what}: ${found.length} defined in this run — refusing to choose`);
+  return found[0] || null;
+};
+const pack = oneOf((v) => v && v.base && Array.isArray(v.commentary), `${PACK} defines more than one pack`);
+const map = oneOf((v) => v && Array.isArray(v.claims), `${MAP} defines more than one map`);
 if (!pack) throw new Error(`${PACK} defined no commentary pack — refusing output`);
 if (!map) throw new Error(`${MAP} defined no attachment map — refusing output`);
+// A pack that will not say what it is cannot be cited, and a sidecar that
+// cannot cite its pack has no business being published.
+if (!pack.fixture_id) throw new Error(`${PACK} carries no fixture_id — a receipt cannot name it, so refusing output`);
 
 const zone = readZone(ZONE);
 // The same lookup the map generator used: an anchor is found in the book, not
@@ -368,10 +376,18 @@ counts.words = wordsTotal;
 const out = {
   schema_version: "ZONE_COMMENTARY_V1",
   rule_id: "zone-commentary-rule-v2-everything-recorded-stands-somewhere",
-  work: zone.work || "Genesis",
+  // A zone that does not name its work does not get one named for it. This
+  // read `zone.work || "Genesis"`, so a sidecar built over a zone with the
+  // field missing would have published itself as Genesis.
+  work: zone.work,
   emitted_from: {
     attachment_map: { id: map.map_id, sha256: sha(mapBody) },
-    commentary_pack: { id: `v-commentary-poc-genesis-1-1-${pack.generated_on}`, sha256: sha(packBody) },
+    // The pack's id is the pack's own, quoted. This line composed one from a
+    // template — `v-commentary-poc-genesis-1-1-${pack.generated_on}` — so every
+    // sidecar this tool ever built, from any pack, carried a receipt naming a
+    // withdrawn proof of concept over one verse. The sha256 beside it was
+    // right the whole time, which is what made it hard to see.
+    commentary_pack: { id: pack.fixture_id, sha256: sha(packBody) },
     note: "claims ride with their own map state (PROVEN_EDGE vs VISUAL_SUGGESTION_ONLY) and basis; " +
       "verse-word anchors mapped to the zone morpheme words by running the zone's keys together until " +
       "they spell the verse word; only open-licensed segments with ridable original-language text ship — " +
