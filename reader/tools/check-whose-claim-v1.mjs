@@ -19,7 +19,8 @@
 //
 // Run: node tools/check-whose-claim-v1.mjs [url]
 
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
 const SKIP_LABEL = "check-whose-claim-v1";
 // A check about commentary needs a work that carries some. When none is
@@ -41,7 +42,7 @@ const check = (name, ok, detail = "") => {
   if (!ok) bad += 1;
   console.log(`${ok ? "  ok  " : "FAIL  "}${name}${detail ? "  ·  " + detail : ""}`);
 };
-const b = await chromium.launch();
+const b = await chromium.launch(launchOptions());
 
 // ---- a placement we made, on the card ---------------------------------
 {

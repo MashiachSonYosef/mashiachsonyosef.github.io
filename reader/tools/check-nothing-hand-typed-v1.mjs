@@ -28,7 +28,7 @@
 //
 // Reads the files off disk. Takes no URL.
 import { readFileSync, existsSync, readdirSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -109,6 +109,20 @@ const SERVED = ["zone.html"];
     }
   }
 }
+{
+  // The publication itself: the door and every address page at the repository
+  // root — what is actually served, present on every checkout, scanned
+  // whether or not a build has run here. Before this walk, a fresh checkout
+  // scanned exactly one file, and the pages people actually read were
+  // scanned by nothing.
+  const root = join(K3, "..");
+  if (existsSync(join(root, "index.html"))) SERVED.push("../index.html");
+  for (const d of readdirSync(root, { withFileTypes: true })) {
+    if (d.isDirectory() && !d.name.startsWith(".") && d.name !== basename(K3)
+        && existsSync(join(root, d.name, "index.html")))
+      SERVED.push(`../${d.name}/index.html`);
+  }
+}
 check("there are served files to read", SERVED.length > 0, SERVED.join(" ") || "none found");
 const { gunzipSync } = await import("node:zlib");
 const carriedTitles = [];
@@ -155,14 +169,16 @@ let ATLAS_NAMES = [];
 }
 for (const f of SERVED) {
   let src = readFileSync(join(K3, f), "utf8");
-  if (f.startsWith("deploy-root/")) for (const nm of ATLAS_NAMES) src = src.split(nm).join("");
+  const isDoor = f === "deploy-root/index.html" || f === "../index.html";
+  const isEmitted = f.startsWith("deploy-root/") || f.startsWith("../");
+  if (isEmitted) for (const nm of ATLAS_NAMES) src = src.split(nm).join("");
   for (const t of carriedTitles) {
-    if (f === "deploy-root/index.html") {
+    if (isDoor) {
       const found = countIn(src, t);
       check("  the door carries a title no more often than it has places for it",
         found >= 1 && found <= 2, `${found} occurrence${found === 1 ? "" : "s"} (1\u20132 allowed)`);
     }
-    if (f.startsWith("deploy-root/")) src = src.split(t).join("");
+    if (isEmitted) src = src.split(t).join("");
   }
   const hits = [];
   for (let i = 0; i < src.length; i += 1) {

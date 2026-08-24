@@ -8,7 +8,8 @@
 //
 // Usage: node tools/verify-zone.mjs --root site --book 1kings [--shot out.png]
 
-import { chromium } from "playwright";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const { chromium } = await loadPlaywright();
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
@@ -33,7 +34,7 @@ const server = createServer(async (req, res) => {
 await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const base = `http://127.0.0.1:${server.address().port}`;
 
-const browser = await chromium.launch();
+const browser = await chromium.launch(launchOptions());
 const page = await browser.newPage({ viewport: { width: 1100, height: 1500 } });
 const errors = [];
 page.on("pageerror", (e) => errors.push(String(e)));

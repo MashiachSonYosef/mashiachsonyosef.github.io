@@ -3,7 +3,7 @@
  "emitted_by": "tools/emit-workspace-manifest-v1.mjs",
  "rule": "this lane runs in a container that is reclaimed without warning; the branch is not. Every corpus file the lane needs to serve and build the published works is written here, by its path under the workspace root, so recovery after a rollback is one read and one staging call rather than a discovery loop. The list is computed by tools/plan-work-shards-v1.mjs over every work in the build plan, never typed.",
  "recovery": [
-  "git clone -q --depth 1 -b gh-pages <repo> /home/claude/wk",
+  "git clone -q --depth 1 -b gh-pages <repo> <workdir>",
   "node tools/check-workspace-staged-v1.mjs --workspace '/mnt/user-data/uploads/999 footsteps'",
   "stage the paths it prints, under the workspace root, in one call",
   "re-run it: a clean report means every serve and build in this lane can run"

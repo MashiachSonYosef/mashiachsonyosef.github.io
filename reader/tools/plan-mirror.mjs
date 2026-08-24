@@ -30,9 +30,9 @@
 // the mirror it produced.
 //
 // Usage:
-//   node tools/plan-mirror.mjs --phase 1 --root "C:\\...\\999 footsteps"
+//   node tools/plan-mirror.mjs --phase 1 --root <workspace-root>
 //   node tools/plan-mirror.mjs --phase 2 --mirror /path/to/mirror \
-//        --range 69859535-69870902 --range 70513734-70527384 --root "C:\\..."
+//        --range <c0-first>-<c0-last> --root <workspace-root>  (e.g. ranges from the work record .."
 
 import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";

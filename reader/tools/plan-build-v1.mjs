@@ -188,7 +188,7 @@ for (const w of works) {
   const h = withheld[w.work_id];
   w.serve_state = h ? "WITHHELD" : "SERVED";
   w.withheld_basis = h ? (h.basis || "TYPED_AWAITING_HOLD_LEDGER") : "";
-  w.withheld_from = h ? (h.source ? `${h.source} · ${h.hold_id}` : `${recordFile} · typed on ${record.recorded_on}`) : "";
+  w.withheld_from = h ? (h.source ? `${h.source} · ${h.hold_id}` : `${recordFile} · typed on ${h.since || record.recorded_on}`) : "";
   w.withheld_since = h ? h.since || "" : "";
   // A ledger row's reason is its status, verbatim. A typed entry's reason is
   // the sentence typed with it, which is a sentence this lane wrote and says so.

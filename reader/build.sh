@@ -108,6 +108,8 @@ done
 
 echo "── 2 · the route store, from the sealed definition packages ────────────"
 [ -f data/route-store/index.json ] || node tools/build-route-store.mjs \
+# and the pin over what it built: every store file by exact bytes and sha256
+node tools/emit-store-manifest-v1.mjs
   "$DEFPOC_RDM" "$DEFPOC_BREADTH" --out data/route-store
 
 echo "── 3 · titles, read out of the Y ledger where one is promoted ──────────"

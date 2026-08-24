@@ -15,7 +15,8 @@
 // out of what the clipboard holds and it must equal, character for character,
 // the page's own selectable text over that range. Nothing added — no licence
 // line, no citation — and nothing dropped.
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 
@@ -27,7 +28,7 @@ const HE = /[֐-׿]/;
 const LAT = /[A-Za-z]/;
 const bare = (s) => s.replace(/\s+/g, "");
 
-const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const b = await chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 await p.context().grantPermissions(["clipboard-read", "clipboard-write"]);
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });

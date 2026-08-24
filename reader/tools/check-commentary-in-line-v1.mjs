@@ -17,7 +17,8 @@
 // section commentary also hung at word positions. The fixture is a test
 // instrument, never served and never deployed; ?b=1kings below is the real
 // zone, and checks the section-level line is untouched by any of this.
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
 // The instrument this check drives, named once from what is on disk rather
 // than typed into the goto below. A fixture is still a fixture; which one
@@ -44,7 +45,7 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 const BASE = (defaultZoneUrl()).split("?")[0];
 const BOOKS_ON_DISK = zonesOnDisk();
 
-const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const b = await chromium.launch(launchOptions());
 
 for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the English reader"]]) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
@@ -441,8 +442,11 @@ for (const book of BOOKS_ON_DISK) {
   check("  its own title is drawn like every other title, and opens",
     head.titleBlocks > 0 && head.titleOpens > 0,
     `${head.titleOpens} of ${head.titleBlocks} blocks carry a reading`);
+  // The coordinate is the sidecar's, not this file's: a typed "Genesis 1:1"
+  // here would fail the day a pack for any other coordinate lands. What holds
+  // for every pack: a coordinate is said, and the grain is named.
   check("  and it says what it comments on, in plain English",
-    /Genesis 1:1/.test(head.on) && /word/.test(head.on), head.on);
+    /\d+:\d+/.test(head.on) && /word|section/.test(head.on), head.on);
 
   check("  every word of it is a block", r.recorded && r.blocks === r.recorded.words,
     `${r.ref} · ${r.blocks} blocks, the sidecar records ${r.recorded ? r.recorded.words : "?"}`);

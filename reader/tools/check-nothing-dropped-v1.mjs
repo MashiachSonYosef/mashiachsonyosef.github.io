@@ -31,7 +31,8 @@ import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
 const SKIP_LABEL = "check-nothing-dropped-v1";
 // A check about commentary needs a work that carries some. When none is
@@ -147,7 +148,7 @@ check("  and each held one carries its work and the reason", heldNamed === held,
 
 // ---- and the page prints the record's number, not the subset's -----------
 const BASE = (process.argv[2] || "http://127.0.0.1:8899/zone.html").split("?")[0];
-const b = await pw.chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const b = await pw.chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 await p.goto(`${BASE}?b=${zonesOnDisk()[0]}`, { waitUntil: "networkidle" });

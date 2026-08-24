@@ -15,7 +15,8 @@
 //
 // 3. The card opens under the word, never over it. A card above the word covers
 //    the text the reader was reading to get there.
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 let bad = 0;
@@ -28,7 +29,7 @@ const VIEWPORTS = [
   { width: 1440, height: 900, name: "a desktop" },
 ];
 
-const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const b = await chromium.launch(launchOptions());
 for (const vp of VIEWPORTS) {
   for (const mode of ["", "&mode=en"]) {
     const p = await b.newPage({ viewport: { width: vp.width, height: vp.height } });

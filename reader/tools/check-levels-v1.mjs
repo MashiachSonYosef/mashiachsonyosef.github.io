@@ -2,8 +2,12 @@
 // A layout and behaviour check for the two things asked for: the card holds
 // still while the reader works inside it and can be moved by hand, and the
 // section's three acts sit at three different weights.
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 const SKIP_LABEL = "check-levels-v1";
 // A check about commentary needs a work that carries some. When none is
 // served, that is a fact about the corpus and not a defect in the reader, so
@@ -39,14 +43,18 @@ const readThrough = async (p) => {
 const { chromium } = pw;
 
 const URL = defaultZoneUrl();
-const shots = process.argv[3] || "/home/claude/k3/shots";
+const shots = process.argv[3] || (() => {
+  const d = join(dirname(fileURLToPath(import.meta.url)), "..", "build", "shots");
+  mkdirSync(d, { recursive: true });
+  return d;
+})();
 let failures = 0;
 const check = (name, ok, detail = "") => {
   if (!ok) failures += 1;
   console.log(`${ok ? "  ok  " : "FAIL  "}${name}${detail ? "  ·  " + detail : ""}`);
 };
 
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const browser = await chromium.launch(launchOptions());
 const page = await browser.newPage({ viewport: { width: 412, height: 915 } });
 page.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); failures += 1; });
 await page.goto(URL, { waitUntil: "networkidle" });

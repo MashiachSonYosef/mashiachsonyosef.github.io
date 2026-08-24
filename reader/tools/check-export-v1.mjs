@@ -2,7 +2,8 @@
 // The exporter obeys the licence, the commentary lands where it opens.
 // GUARDS: export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work
 //
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 
 // The book fills in as it is read: a section arrives as its number and a
@@ -27,7 +28,7 @@ const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const URL = defaultZoneUrl();
-const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const b = await chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 }, acceptDownloads: true });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
 await p.goto(URL, { waitUntil: "networkidle" });

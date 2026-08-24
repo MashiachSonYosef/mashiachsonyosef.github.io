@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 // A card the reader drags may hang off the edge. A card the page placed may not.
 // Either way the head stays reachable, because it is the only way back.
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const W = 412, H = 915;
-const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const b = await chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: W, height: H } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
 await p.goto(defaultZoneUrl(), { waitUntil: "networkidle" });
@@ -88,7 +89,7 @@ check("after closing, the next card is placed whole on screen again",
   reopened.t >= 0 && reopened.l >= 0 && reopened.b <= H + 1 && reopened.r <= W + 1 && !reopened.moved,
   `${reopened.l},${reopened.t} → ${reopened.r},${reopened.b}`);
 
-await p.screenshot({ path: "/home/claude/k3/shots/drag-offscreen.png" });
+{ const { mkdirSync } = await import("node:fs"); const { dirname: dn, join: jn } = await import("node:path"); const { fileURLToPath: fu } = await import("node:url"); const sh = jn(dn(fu(import.meta.url)), "..", "build", "shots"); mkdirSync(sh, { recursive: true }); await p.screenshot({ path: jn(sh, "drag-offscreen.png") }); }
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);

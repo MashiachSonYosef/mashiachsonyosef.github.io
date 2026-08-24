@@ -3,12 +3,13 @@
 // not move while it is being read.
 // GUARDS: zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary
 //
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
-const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const b = await chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
 await p.goto(defaultZoneUrl(), { waitUntil: "networkidle" });
@@ -108,12 +109,12 @@ await p.waitForTimeout(600);
 const en = await clip();
 check("nor in the English reader", en.clipped === 0,
   `${en.clipped} of ${en.n} · longest ${en.longest} chars`);
-await p.screenshot({ path: "/home/claude/k3/shots/gloss-whole-en.png" });
+{ const { mkdirSync } = await import("node:fs"); const { dirname: dn, join: jn } = await import("node:path"); const { fileURLToPath: fu } = await import("node:url"); const sh = jn(dn(fu(import.meta.url)), "..", "build", "shots"); mkdirSync(sh, { recursive: true }); await p.screenshot({ path: jn(sh, "gloss-whole-en.png") }); }
 await p.click("#modeHe");
 await p.waitForTimeout(500);
 await p.evaluate(() => document.querySelector("section.seg").scrollIntoView({ block: "start" }));
 await p.waitForTimeout(200);
-await p.screenshot({ path: "/home/claude/k3/shots/gloss-whole-he.png" });
+{ const { mkdirSync } = await import("node:fs"); const { dirname: dn, join: jn } = await import("node:path"); const { fileURLToPath: fu } = await import("node:url"); const sh = jn(dn(fu(import.meta.url)), "..", "build", "shots"); mkdirSync(sh, { recursive: true }); await p.screenshot({ path: jn(sh, "gloss-whole-he.png") }); }
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);

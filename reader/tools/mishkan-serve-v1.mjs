@@ -12,9 +12,12 @@ import { spawnSync } from "node:child_process";
 import crypto from "node:crypto";
 import { pathToFileURL } from "node:url";
 
+// The workspace is named by whoever runs this, never assumed: a default
+// naming one machine's path made every other machine's failure read as the
+// mirror being empty rather than unnamed.
 const WORKSPACE = process.argv.includes("--workspace")
   ? path.resolve(process.argv[process.argv.indexOf("--workspace") + 1])
-  : "/home/claude/mishkan-mirror";
+  : (() => { throw new Error("--workspace <staged-root> is required"); })();
 const SRC = path.join(WORKSPACE, "corpus-refinement-v1", "src");
 const { LANE_ROOT, parseCsvLine, resolveWorkspace, sha256File } = await import(pathToFileURL(path.join(SRC, "lib-v1.mjs")).href);
 const { streamRfc4180Csv } = await import(pathToFileURL(path.join(SRC, "current-additive-compact-pilot-lib-v1.mjs")).href);

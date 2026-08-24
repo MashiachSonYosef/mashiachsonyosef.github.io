@@ -8,7 +8,8 @@
 //
 // The same rule the line handles already keep. A shut handle carries a count,
 // never a list; the list is what the press is for.
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
 const SKIP_LABEL = "check-contents-shut-v1";
 // A check about commentary needs a work that carries some. When none is
@@ -29,7 +30,7 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 const BASE = (defaultZoneUrl()).split("?")[0];
 const BOOKS_ON_DISK = zonesOnDisk();
 
-const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const b = await chromium.launch(launchOptions());
 // The books come from the directory. This read ["genesis", "1kings"] — two
 // works withdrawn from the site on 2026-08-23 — so it opened the withheld
 // page twice and asserted about a reader that was never loaded.

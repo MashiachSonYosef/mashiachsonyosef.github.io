@@ -1,5 +1,9 @@
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+const HERE = dirname(fileURLToPath(import.meta.url));
 
 // The address is derived, never typed: a check naming a book by hand goes
 // stale the day that work is renamed, and this one did — it still asked for
@@ -9,15 +13,47 @@ const URL = defaultZoneUrl();
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d="") => { if(!ok) bad++; console.log(`${ok?"  ok  ":"FAIL  "}${n}${d?"  ·  "+d:""}`); };
-const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const b = await chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 await p.goto(URL, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg");
 await (await p.$$("section.seg .he-text .wb"))[1].click();
 await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
 
-// the real worst case in the catalog: the 492-character Strong's route on בא
-const LONG = "abide, apply, attain, X be, befall, + besiege, bring (forth, in, into, to pass), call, carry, X certainly, (cause, let, thing for) to come (against, in, out, upon, to pass), depart, X doubtless again, + eat, + employ, (cause to) enter (in, into, -tering, -trance, -try), be fallen, fetch, + follow, get, give, go (down, in, to war), grant, + have, X indeed, (in-)vade, lead, lift (up), mention, pull in, put, resort, run (down), send, set, X (well) stricken (in age), X surely, take (in), way";
+// The worst case is asked of the catalog at run time, never pasted: a copy
+// typed here would go stale the day the store moves, and the check would be
+// measuring a phantom string against a real layout. Same split as the page:
+// senses at the pack mark, readings at the declared comma rule.
+const LONG = await (async () => {
+  const { readFileSync, readdirSync } = await import("node:fs");
+  const { gunzipSync } = await import("node:zlib");
+  const { senseSplit: readingSplit } = await import(join(HERE, "sense-split-v1.mjs"));
+  const packSplit = (t) => {
+    const out = []; let start = 0, d = 0; const x = String(t || "");
+    for (let i2 = 0; i2 < x.length; i2 += 1) {
+      const c = x[i2];
+      if (c === "(") d += 1; else if (c === ")") { if (d > 0) d -= 1; }
+      else if (c === ";" && d === 0) { out.push(x.slice(start, i2)); start = i2 + 1; }
+    }
+    out.push(x.slice(start));
+    return out.map((y) => y.trim()).filter(Boolean);
+  };
+  let longest = "";
+  const shards = join(HERE, "..", "data", "route-store", "shards");
+  for (const f of readdirSync(shards).filter((x) => /^[0-9a-f]{2}\.bin$/.test(x))) {
+    const body = JSON.parse(gunzipSync(readFileSync(join(shards, f))).toString("utf8"));
+    for (const rows of Object.values(body)) for (const row of rows) {
+      for (const sense of packSplit(row[1])) {
+        const rs = readingSplit(sense);
+        if (rs.damaged) continue;
+        for (const reading of rs.readings) if (reading.length > longest.length) longest = reading;
+      }
+    }
+  }
+  if (!longest) { console.log("SKIPPED — the store offers no reading to measure"); process.exit(3); }
+  console.log(`  --    the store's longest reading: ${longest.length} characters`);
+  return longest;
+})();
 const r = await p.evaluate((text) => {
   const row = document.querySelector("#hud .r-pills");
   const proto = row.querySelector("button");
@@ -55,11 +91,21 @@ check("no line clamp is in force", r.lineClamp === "none" || r.lineClamp === "au
 // entire card, and a reader met a card with nothing on it to press.
 check("every pill is still here, none dropped to make room", r.pillCount === r.pillsInDom,
   `${r.pillCount} pills`);
+// What is asserted is completeness, not height: the injected worst case is
+// whole in the DOM and nothing about the row hides it. The old form demanded
+// the row outgrow a retired 32vh cap — true only of the pasted phantom it
+// carried, not of every honest worst case the store can hold.
 check("the row holding them is complete, however tall that makes it",
-  r.rowScrollH > r.capPx, `${r.rowScrollH}px of pills, past what used to be a ${r.capPx}px cap`);
+  r.pillsInDom === r.pillCount && !r.clippedV && !r.clippedH,
+  `${r.rowScrollH}px of pills, ${r.pillCount} pills, none clipped`);
 check("the band scrolls, not the whole card", r.bandScrolls && !r.regionScrolls);
 check("the record is still in view", r.dStillBelow);
-await p.screenshot({ path: "/home/claude/k3/shots/long-pill.png" });
+{
+  const { mkdirSync } = await import("node:fs");
+  const shots = join(HERE, "..", "build", "shots");
+  mkdirSync(shots, { recursive: true });
+  await p.screenshot({ path: join(shots, "long-pill.png") });
+}
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);

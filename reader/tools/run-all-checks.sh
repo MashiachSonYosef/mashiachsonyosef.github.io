@@ -22,6 +22,11 @@ else
   for z in "${SLUGS[@]}"; do ZONES+=("http://127.0.0.1:8899/zone.html?b=$z"); done
 fi
 
+# The plan the no-URL checks read is derived and gitignored: a fresh checkout
+# has no build/ and eight checks used to crash on its absence — a crash that
+# reads as the site broken when it is the scaffold that is missing. Derive it.
+node tools/plan-build-v1.mjs --out build/build-plan-v1.json --tsv build/build-plan-v1.tsv >/dev/null
+
 pass=0; fail=0; skip=0; failed=(); skipped=()
 # A check that takes no URL is the same check whichever work is served, so it
 # runs once. A check that takes one runs against every work: the second work
@@ -37,7 +42,7 @@ for t in tools/check-*.mjs; do
   printf '%-28s ' "$name"
   # the corpus check reads off disk and takes no URL
   case "$name" in
-    check-nothing-invented-v1|check-licence-names-v1|check-page-agrees-with-store-v1|check-clean-address-v1|check-provider-characters-v1|check-sense-split-v1|check-nothing-hand-typed-v1|check-nothing-hard-wired-v1|check-antiquity-tier-v1|check-sealed-layers-v1|check-frame-coverage-v1|check-w-grain-v1|check-nothing-unlanded-v1|check-build-derived-v1|check-docs-name-what-is-here-v1) args=() ;;
+    check-nothing-invented-v1|check-store-pinned-v1|check-licence-names-v1|check-page-agrees-with-store-v1|check-clean-address-v1|check-provider-characters-v1|check-sense-split-v1|check-nothing-hand-typed-v1|check-nothing-hard-wired-v1|check-antiquity-tier-v1|check-sealed-layers-v1|check-frame-coverage-v1|check-w-grain-v1|check-nothing-unlanded-v1|check-build-derived-v1|check-docs-name-what-is-here-v1) args=() ;;
     *) args=("$URL") ;;
   esac
   # the no-URL checks are about the tree, not about a work: once is enough

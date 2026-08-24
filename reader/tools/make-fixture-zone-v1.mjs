@@ -32,7 +32,9 @@ const save = (p, o) => { writeFileSync(p, gzipSync(Buffer.from(JSON.stringify(o)
 const SRC = (() => { const i = process.argv.indexOf("--from"); return i > 0 ? process.argv[i + 1] : null; })();
 if (!SRC) { console.error("NO_SOURCE_NAMED — pass --from <published slug>: a fixture is made from a zone somebody named"); process.exit(2); }
 const base = load(join(ZONES, `${SRC}.bin`));
-const com = load(join(ZONES, "1kings-commentary.bin"));
+// the sidecar is the named source's own, by the sidecar naming rule —
+// a typed filename here outlived its address once already
+const com = load(join(ZONES, `${SRC}-commentary.bin`));
 
 const ids = Object.keys(com.units || {});
 let hung = 0, units = 0, doubled = 0;

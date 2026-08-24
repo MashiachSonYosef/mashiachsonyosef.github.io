@@ -12,7 +12,8 @@
 // because the failure it exists to catch only showed on some shapes of form.
 // GUARDS: span-slice-rule-v1-compspan-template-exact-key
 //
-import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 let bad = 0;
@@ -27,7 +28,7 @@ const VIEWPORTS = [
 ];
 const WORDS = 24;
 
-const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const b = await chromium.launch(launchOptions());
 for (const vp of VIEWPORTS) {
   const p = await b.newPage({ viewport: { width: vp.width, height: vp.height } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
