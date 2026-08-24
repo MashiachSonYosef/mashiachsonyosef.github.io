@@ -28,6 +28,8 @@
 # reproduces the mirror exactly, so the mirror is an output too.
 
 set -euo pipefail
+# The engine directory's name, read from where this script runs, never typed.
+ENGINE="$(basename "$PWD")"
 
 echo "── 0 · the plan, derived from the ledgers ──────────────────────────────"
 node tools/plan-build-v1.mjs --out build/build-plan-v1.json --tsv build/build-plan-v1.tsv
@@ -181,13 +183,14 @@ echo "── 6 · assemble the site ──────────────�
 # And "exactly" is enforced rather than hoped: only the zones the plan names
 # are copied, so scratch in the work directory — the in-line commentary
 # check's fixture lives there — can never ship by sitting near the real ones.
-rm -f site/data/zones/*.bin
+mkdir -p "site/$ENGINE/data/zones"
+rm -f "site/$ENGINE/data/zones"/*.bin
 for W in "${WORKS[@]}"; do
-  cp "data/zones/${PUB[$W]}.bin" site/data/zones/
+  cp "data/zones/${PUB[$W]}.bin" "site/$ENGINE/data/zones/"
   [ -f "data/zones/${PUB[$W]}-commentary.bin" ] \
-    && cp "data/zones/${PUB[$W]}-commentary.bin" site/data/zones/
+    && cp "data/zones/${PUB[$W]}-commentary.bin" "site/$ENGINE/data/zones/"
 done
-rm -rf site/data/route-store && cp -r data/route-store site/data/route-store
+rm -rf "site/$ENGINE/data/route-store" && cp -r data/route-store "site/$ENGINE/data/route-store"
 
 echo "── 7 · the front door, from the zones ──────────────────────────────────"
 # The door used to be typed, which is why it did not mention the commentary:
@@ -214,7 +217,7 @@ echo "── 7b · the reader ────────────────�
 # zone.html is the one published file with no generator behind it: it is
 # written by hand and copied here. That is recorded rather than hidden — the
 # manifest prints it as having no build step every time anyone runs the checks.
-cp zone.html site/zone.html
+cp zone.html "site/$ENGINE/zone.html"
 
 echo "── 8 · verify by rendering, not by reading ─────────────────────────────"
 # Every published work, not a chosen two: a work the verifier skips is a work

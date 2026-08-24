@@ -43,7 +43,8 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
-import { join } from "node:path";
+import { basename, dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
@@ -57,11 +58,17 @@ const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 const n = (x) => Number(x).toLocaleString("en-US");
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const TEXT_PIN_RULE = "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1";
+// The engine directory's name is read from where this tool stands, never
+// typed. Every path that leaves this file — the pinned inputs, the store
+// base, the reader's home on each work page — derives from it, and the
+// deep-equal against the bindings record below holds the derivation to the
+// record. Renaming the folder is then one move and one record edit.
+const ENGINE = basename(join(dirname(fileURLToPath(import.meta.url)), ".."));
 const TEXT_PIN_PATHS = [
-  "genesis-book-reader-v4/data/corpus-atlas-v1.json",
-  "genesis-book-reader-v4/data/bezelal-front-door-counts-handoff-v1.json",
-  "genesis-book-reader-v4/data/front-door-three-count-bindings-v1.json",
-];
+  "data/corpus-atlas-v1.json",
+  "data/bezelal-front-door-counts-handoff-v1.json",
+  "data/front-door-three-count-bindings-v1.json",
+].map((rel) => `${ENGINE}/${rel}`);
 const exactLfActual = (label, bytes) => {
   if (bytes.includes(0x0d))
     throw new Error(`${label} violates ${TEXT_PIN_RULE}: CR byte present; checkout must honor text eol=lf`);
@@ -900,7 +907,7 @@ ${sectionsHtml.join("\n")}
   // it — the same law as the reader's HUD, fetched from the same store,
   // shard by shard as words are pressed. Pressing the word never toggles
   // the fold it sits in; the fold is the summary's, the word is its own.
-  var STORE_BASE = "/genesis-book-reader-v4/data/route-store/";
+  var STORE_BASE = "/${ENGINE}/data/route-store/";
   var storeIndex = null, shardCache = {};
   // The names are the declarations record's, embedded at build time — the
   // same record the reader fetches. An unknown posture prints verbatim.
@@ -1139,7 +1146,7 @@ address, and returns when what it is waiting on is settled.
 ## The rules this code is held to
 
 Read these before changing anything. Each is enforced by a check named in
-\`genesis-book-reader-v4/PIPELINE-MANIFEST.md\`, which is generated and lists
+\`${ENGINE}/PIPELINE-MANIFEST.md\`, which is generated and lists
 every rule the code declares along with the check that guards it — and, at the
 end of a run, what the checks do not cover.
 
@@ -1162,7 +1169,7 @@ end of a run, what the checks do not cover.
 ## Building and checking
 
 \`\`\`
-cd genesis-book-reader-v4
+cd ${ENGINE}
 ./build.sh <mirror> <bridge.csv.gz> <serves> <YYYY-MM-DD>
 tools/run-all-checks.sh
 \`\`\`
@@ -1190,31 +1197,25 @@ Served from the \`gh-pages\` branch.
 
 `;
 
-const redirect = (b) => `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(b.en)} · The Tabernacle</title>
-<link rel="canonical" href="/${b.slug}">
-<!-- One reader, reached by a clean address. The reader rewrites the bar back to
-     /${b.slug} once it has loaded, so this path is what a reader sees, keeps and
-     returns to — and this file is what makes returning to it work.
-
-     The script goes first, and it is the only one of the two that carries
-     anything asked of this address through: /${b.slug}?c=open has to still say
-     c=open by the time the reader is the one reading it. The meta refresh below
-     it is the fallback for a browser running no script, and it cannot carry a
-     question — which is why it must not be the one that wins the race. -->
-<script>var q=location.search.replace(/^[?]/,"");location.replace("/genesis-book-reader-v4/zone.html?b=${b.slug}&clean=${b.slug}"+(q?"&"+q:""));</script>
-<meta http-equiv="refresh" content="0; url=/genesis-book-reader-v4/zone.html?b=${b.slug}&clean=${b.slug}">
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0910;
-  color:#a99a80;font:16px Georgia,serif} a{color:#e8c46a}</style>
-</head>
-<body><p>Opening ${esc(b.en)} — <a href="/genesis-book-reader-v4/zone.html?b=${b.slug}&clean=${b.slug}">continue</a></p>
-</body>
-</html>
-`;
+// The work's address serves the reader itself. There is no second hop, no
+// ?b=&clean= handshake, and no address rewrite: the address a reader keeps
+// is the address the page is served from. zone.html stays the one
+// hand-written reader; this emits it with two generated lines in its head —
+// which work this page is, and where the reader's own files live — both
+// derived at build time, neither typed. The bare instrument zone.html still
+// answers ?b= for the checks, and with neither meta nor query it names no
+// book and says so.
+const ZONE_HTML = readFileSync("zone.html", "utf8");
+const readerPage = (b) => {
+  const anchor = "<title>";
+  if (!ZONE_HTML.includes(anchor))
+    throw new Error("zone.html lost its <title> anchor — refusing to emit a work page");
+  const metas =
+    `<meta name="reader-book" content="${b.slug}">\n` +
+    `<meta name="reader-home" content="/${ENGINE}/">\n` +
+    `<link rel="canonical" href="/${b.slug}">\n`;
+  return ZONE_HTML.replace(anchor, metas + anchor);
+};
 
 // The only Hebrew this page may print is a title carried from a zone — the
 // ledger's own word, shown in the masthead's frame. Scrub every carried title
@@ -1288,8 +1289,9 @@ for (const b of withheldBooks) {
 }
 for (const b of books) {
   mkdirSync(join(OUT, b.slug), { recursive: true });
-  const r = redirect(b);
-  if (HEBREW.test(r)) throw new Error(`${b.slug}: the address page printed a character of the text — refusing output`);
+  const r = readerPage(b);
+  // The reader supplies no character of the text; a work page is the reader.
+  if (HEBREW.test(r)) throw new Error(`${b.slug}: the work page printed a character of the text — refusing output`);
   writeFileSync(join(OUT, b.slug, "index.html"), r);
 }
 

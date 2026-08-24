@@ -10,6 +10,8 @@ import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { resolve } from "node:path";
 import assert from "node:assert/strict";
+import { basename, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
 
 const arg = (name, fallback) => {
@@ -18,11 +20,15 @@ const arg = (name, fallback) => {
 };
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const TEXT_PIN_RULE = "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1";
+// The engine directory's name is read from where this check stands, never
+// typed; the deep-equal against the bindings record holds the derivation to
+// the record, so a folder rename is one move and one record edit.
+const ENGINE = basename(resolve(dirname(fileURLToPath(import.meta.url)), ".."));
 const TEXT_PIN_PATHS = [
-  "genesis-book-reader-v4/data/corpus-atlas-v1.json",
-  "genesis-book-reader-v4/data/bezelal-front-door-counts-handoff-v1.json",
-  "genesis-book-reader-v4/data/front-door-three-count-bindings-v1.json",
-];
+  "data/corpus-atlas-v1.json",
+  "data/bezelal-front-door-counts-handoff-v1.json",
+  "data/front-door-three-count-bindings-v1.json",
+].map((rel) => `${ENGINE}/${rel}`);
 const readBytes = (path) => readFileSync(resolve(path));
 const readJson = (path) => JSON.parse(readBytes(path).toString("utf8"));
 const n = (value) => Number(value).toLocaleString("en-US");

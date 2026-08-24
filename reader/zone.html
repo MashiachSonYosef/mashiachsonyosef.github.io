@@ -920,21 +920,16 @@
   // that reason. One read, before the address changes, and nothing downstream
   // has to know the order.
   const QUERY = new URLSearchParams(location.search);
-  const BOOK = (QUERY.get("b") || "genesis").replace(/[^a-z0-9-]/g, "");
-  // Where this reader's own files live, taken from where this file is rather
-  // than written down. The address in the bar may be rewritten to /genesis a
-  // moment from now, and the store's shards are fetched long after that — a
-  // relative path would then resolve against a directory that holds nothing.
-  const ROOT = location.pathname.replace(/[^/]*$/, "");
-  // A reader reached from /genesis or /1kings shows that address rather than
-  // the path it was actually served from. The redirect that brought it here
-  // says so; nothing guesses.
-  {
-    const clean = QUERY.get("clean");
-    if (clean && /^[a-z0-9-]+$/.test(clean)) {
-      try { history.replaceState(null, "", `/${clean}`); } catch { /* not ours to insist on */ }
-    }
-  }
+  // Which work this page is, and where the reader's own files live. A work's
+  // address serves the reader itself, and the build wrote both facts into
+  // this page's head — nothing here guesses, and the address in the bar is
+  // the work's own from the first byte, never rewritten. The bare instrument
+  // zone.html carries no metas: it still answers ?b= for the checks, locates
+  // its files beside itself, and with no book named it says so rather than
+  // assuming one.
+  const META = (name) => document.querySelector(`meta[name="${name}"]`)?.content || "";
+  const BOOK = (META("reader-book") || QUERY.get("b") || "").replace(/[^a-z0-9-]/g, "");
+  const ROOT = META("reader-home") || location.pathname.replace(/[^/]*$/, "");
   const unpack = async (res) =>
     JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
   // A record packs senses with ";" — but only the semicolons the provider wrote

@@ -32,15 +32,15 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { dirname, join, relative } from "node:path";
+import { basename, dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const REMOTE = process.argv[2] || "https://github.com/MashiachSonYosef/mashiachsonyosef.github.io.git";
 const BRANCH = process.argv[3] || "gh-pages";
-// where this tree sits inside the branch
-const PREFIX = "genesis-book-reader-v4/";
+// where this tree sits inside the branch — read from where it stands
+const PREFIX = `${basename(K3)}/`;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 

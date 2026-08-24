@@ -20,7 +20,7 @@ address, and returns when what it is waiting on is settled.
 ## The rules this code is held to
 
 Read these before changing anything. Each is enforced by a check named in
-`genesis-book-reader-v4/PIPELINE-MANIFEST.md`, which is generated and lists
+`reader/PIPELINE-MANIFEST.md`, which is generated and lists
 every rule the code declares along with the check that guards it — and, at the
 end of a run, what the checks do not cover.
 
@@ -43,7 +43,7 @@ end of a run, what the checks do not cover.
 ## Building and checking
 
 ```
-cd genesis-book-reader-v4
+cd reader
 ./build.sh <mirror> <bridge.csv.gz> <serves> <YYYY-MM-DD>
 tools/run-all-checks.sh
 ```
