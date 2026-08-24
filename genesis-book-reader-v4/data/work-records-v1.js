@@ -120,12 +120,31 @@ window.WORK_RECORDS_V1 = Object.freeze({
       "basis": "TYPED_AWAITING_LEDGER"
     }
   ],
-  "commentary_packs": [
-    {
-      "work_id": "tanakh/genesis",
-      "pack": "data/genesis-1-1-commentary-2026-07-17.js",
-      "carried_map": "data/v2-genesis-1-1-attachment-map-2026-07-22.js",
-      "note": "fetched from outside the corpus with no C0 identity; the attachment map is a suggestion and says so on every claim"
+  "withheld_basis": {
+    "these_are": "works this lane holds a record for and is not serving. A withholding is a decision made here, not a fact the corpus states, so it is typed in the open with the reason and the condition that ends it — the same law as typed_awaiting_ledger.",
+    "why_it_is_written_down": "the front door used to work out which works were withheld by noticing that no zone answered for them. An absence is not a record. A zone deleted by accident printed the identical page to a work deliberately held, and build.sh — which had no idea any work was held — went on serving all five. The state is declared here now, and a served work with no zone is an error rather than a quiet hold.",
+    "dies_when": "the work is served: delete its entry the same day its zone is published"
+  },
+  "withheld": {
+    "tanakh/genesis": {
+      "since": "2026-08-23",
+      "reason": "Its transmission apparatus is not verified. The source-marked sites in this book are not yet carried as records, so the text cannot be shown without the reader quietly choosing for you between the forms its sources attest.",
+      "ends_when": "the Q sites for this work are issued and the reader can present every attested form"
+    },
+    "tanakh/i-kings": {
+      "since": "2026-08-23",
+      "reason": "Its transmission apparatus is not verified. The source-marked sites in this book are not yet carried as records, so the text cannot be shown without the reader quietly choosing for you between the forms its sources attest.",
+      "ends_when": "the Q sites for this work are issued and the reader can present every attested form"
+    },
+    "tanakh/ruth": {
+      "since": "2026-08-23",
+      "reason": "Its transmission apparatus is not verified. The source-marked sites in this book are not yet carried as records, so the text cannot be shown without the reader quietly choosing for you between the forms its sources attest.",
+      "ends_when": "the Q sites for this work are issued and the reader can present every attested form"
     }
-  ]
+  },
+  "commentary_packs_basis": {
+    "what_a_pack_is": "a body of commentary fetched from outside the corpus, carrying no C0 identity, which therefore attaches by a map rather than by coordinate. Every claim such a map makes is a suggestion and says so.",
+    "why_the_list_is_empty": "the one pack this lane ever held was a proof of concept over a single verse. It was withdrawn on 2026-08-24 along with its four generations of attachment map. The stages that serve packs remain, and refuse rather than guess when no pack is named."
+  },
+  "commentary_packs": []
 });
