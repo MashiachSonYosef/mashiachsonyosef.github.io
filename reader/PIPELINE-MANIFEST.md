@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-24.
 
-**42 rules declared · 30 named by a check · 12 unguarded.**
+**43 rules declared · 31 named by a check · 12 unguarded.**
 **11 published artifacts · 11 with a build step · 0 without.**
 
 ## The rules
@@ -32,6 +32,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs, zone.html | check-clean-address-v1, check-front-door-three-counts-v1, check-nothing-hard-wired-v1 |
 | `front-door-rule-v2` | zone.html | **UNGUARDED** |
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
+| `kq-rule-v1-both-halves-as-written` | tools/check-kq-carried-v1.mjs | check-kq-carried-v1 |
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
 | `licence-name-rule-v1-the-record-names-the-licence` | tools/check-licence-names-v1.mjs | check-licence-names-v1 |
 | `licence-posture-name-rule-v1-the-record-names-the-licence` | tools/emit-license-postures-v1.mjs | **UNGUARDED** |

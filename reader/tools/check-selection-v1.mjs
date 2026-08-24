@@ -36,9 +36,17 @@ await p.goto(URL, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 
 const copyNow = async () => {
+  // The clipboard is cleared to a sentinel first and read until it changes:
+  // a fixed wait read whatever was there when the copy event ran late, and
+  // the suite then judged this page by the previous gesture's text.
+  await p.evaluate(() => navigator.clipboard.writeText("\u0007stale\u0007").catch(() => {}));
   await p.keyboard.press("Control+C");
-  await p.waitForTimeout(140);
-  return p.evaluate(() => navigator.clipboard.readText().catch(() => ""));
+  for (let i = 0; i < 20; i += 1) {
+    await p.waitForTimeout(70);
+    const t = await p.evaluate(() => navigator.clipboard.readText().catch(() => ""));
+    if (t !== "\u0007stale\u0007") return t;
+  }
+  return "";
 };
 const clearClip = () => p.evaluate(() => navigator.clipboard.writeText("·nothing·").catch(() => {}));
 
