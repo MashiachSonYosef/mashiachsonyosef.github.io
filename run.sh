@@ -20,10 +20,11 @@ case "$scan_exit" in
   0) label="no change" ;;
   3) label="state changed" ;;
   2) label="INTEGRITY HOLD" ;;
+  4) label="scanner ERROR" ;;  # ERROR heartbeat was still written — publish it
   *) echo "scan failed (exit $scan_exit) — not committing" >&2; exit "$scan_exit" ;;
 esac
 
-digest=$(node -e "process.stdout.write(JSON.parse(require('fs').readFileSync('status/heartbeat.json','utf8')).state_digest.slice(0,12))")
+digest=$(node -e "const d=JSON.parse(require('fs').readFileSync('status/heartbeat.json','utf8')).state_digest; process.stdout.write((d||'none').slice(0,12))")
 git add -A
 if git diff --cached --quiet; then
   echo "nothing to commit ($label)"

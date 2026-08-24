@@ -2,6 +2,10 @@
 
 Newest first. Each entry is one state change observed by scan-chain-v1.
 
+## 2026-08-24T23:50:46.496Z — digest `0ce5cf7c52c76386…` — integrity HOLD
+- **HOLD** rebuild-c0-w/control/additive-chain-head-v4-w-safe-42355-candidate-v0: DRIFT
+- **HOLD** rebuild-c0-w/control/additive-chain-head-v4-w-safe-42355-candidate-v0/payload: DRIFT
+
 ## 2026-08-25 — editorial: what is known about the v4 HOLD (answer to the website lane)
 
 The corpus lane's evidence on the two missing sealed shards, in full:

@@ -11,7 +11,9 @@
 // so recomputed roots are comparable byte-for-byte with the recorded seals.
 //
 // Exit codes: 0 = no change since last snapshot, 3 = state changed, 2 = INTEGRITY HOLD
-// (an immutable pin or sealed tree no longer matches its recorded hash).
+// (an immutable pin or sealed tree no longer matches its recorded hash), 4 = scanner
+// error — fail-closed: an ERROR heartbeat is still published so the remote can tell a
+// crashed scanner from a silent one.
 
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -59,6 +61,14 @@ function sha256(bytes) {
 
 function bytewise(left, right) {
   return Buffer.from(left, 'utf8').compare(Buffer.from(right, 'utf8'));
+}
+
+// Publish files via temp-plus-rename so a crash mid-write can never leave a truncated
+// snapshot behind (a truncated latest.json would otherwise wedge every later run).
+function writeAtomic(file, text) {
+  const tmp = `${file}.tmp`;
+  fs.writeFileSync(tmp, text);
+  fs.renameSync(tmp, file);
 }
 
 function bindFile(relative) {
@@ -126,13 +136,27 @@ function collectPins(value, location, out) {
 }
 
 function verifyPin(recorded) {
-  const absolute = abs(recorded.path);
-  if (!fs.existsSync(absolute)) {
-    return { status: 'MISSING', live: null };
+  // Every anomaly returns a status (all non-MATCH statuses count as holds) instead of
+  // throwing — a tampered pin path or a pin turned directory is a finding, not a crash.
+  let absolute;
+  try {
+    absolute = abs(recorded.path);
+  } catch (error) {
+    return { status: 'ESCAPES_ROOT', live: null, error: String(error?.message ?? error) };
   }
-  const live = bindFile(recorded.path);
-  const match = live.bytes === recorded.bytes && live.sha256 === recorded.sha256;
-  return { status: match ? 'MATCH' : 'DRIFT', live: { bytes: live.bytes, sha256: live.sha256 } };
+  try {
+    if (!fs.existsSync(absolute)) {
+      return { status: 'MISSING', live: null };
+    }
+    if (!fs.statSync(absolute).isFile()) {
+      return { status: 'NOT_A_FILE', live: null };
+    }
+    const live = bindFile(recorded.path);
+    const match = live.bytes === recorded.bytes && live.sha256 === recorded.sha256;
+    return { status: match ? 'MATCH' : 'DRIFT', live: { bytes: live.bytes, sha256: live.sha256 } };
+  } catch (error) {
+    return { status: 'ERROR', live: null, error: String(error?.message ?? error) };
+  }
 }
 
 // For a drifted tree, name the exact entries that departed from the package's
@@ -153,7 +177,7 @@ function driftVsSeal(packageRel, treeRoot, liveTree) {
     return { seal: sealRel, note: 'target seal unreadable' };
   }
   if (!sealedEntries) return { seal: sealRel, note: `seal has no entry list for root ${treeRoot}` };
-  const sealed = new Map(sealedEntries.filter((e) => e.type === 'file').map((e) => [e.path, e]));
+  const sealed = new Map(sealedEntries.filter((e) => e && e.type === 'file' && typeof e.path === 'string').map((e) => [e.path, e]));
   const live = new Map(liveTree.entries.filter((e) => e.type === 'file').map((e) => [e.path, e]));
   const missing = [...sealed.keys()].filter((p) => !live.has(p)).sort(bytewise)
     .map((p) => ({ path: p, sealed: { bytes: sealed.get(p).bytes, sha256: sealed.get(p).sha256 } }));
@@ -182,7 +206,13 @@ function expandGlob(pattern) {
   return fs.readdirSync(abs(dir))
     .filter((entry) => entry.startsWith(prefix) && entry.endsWith(suffix) && entry.length >= prefix.length + suffix.length)
     .map((entry) => `${dir}/${entry}`)
-    .filter((rel) => fs.statSync(abs(rel)).isFile())
+    .filter((rel) => {
+      try {
+        return fs.statSync(abs(rel)).isFile();
+      } catch {
+        return true; // dangling link etc. — keep it so the watch loop records the anomaly
+      }
+    })
     .sort(bytewise);
 }
 
@@ -212,17 +242,21 @@ function main() {
 
   // ---- 3. Recompute typed trees for every chain package and compare where the
   //         pointer records an expected root.
-  const controlAbs = abs(CONTROL_REL);
-  const packageRels = fs.readdirSync(controlAbs, { withFileTypes: true })
-    .filter((e) => e.isDirectory()
-      && (e.name.startsWith('additive-chain-head-') || e.name.startsWith('current-additive-chain-head-v0')))
-    .map((e) => `${CONTROL_REL}/${e.name}`);
-  const auditsRel = `${CONTROL_REL}/independent-audits`;
-  if (fs.existsSync(abs(auditsRel))) {
-    for (const e of fs.readdirSync(abs(auditsRel), { withFileTypes: true })) {
-      if (e.isDirectory()) packageRels.push(`${auditsRel}/${e.name}`);
+  const packageRels = [];
+  const linkAnomalies = [];
+  const isPackageName = (name) => name.startsWith('additive-chain-head-') || name.startsWith('current-additive-chain-head-v0');
+  const discover = (dirRel, filter) => {
+    for (const e of fs.readdirSync(abs(dirRel), { withFileTypes: true })) {
+      if (!filter(e.name)) continue;
+      const rel = `${dirRel}/${e.name}`;
+      if (e.isDirectory()) packageRels.push(rel);
+      // A sealed package replaced by a junction/symlink is an anomaly, never hashed through.
+      else if (e.isSymbolicLink()) linkAnomalies.push(rel);
     }
-  }
+  };
+  discover(CONTROL_REL, isPackageName);
+  const auditsRel = `${CONTROL_REL}/independent-audits`;
+  if (fs.existsSync(abs(auditsRel))) discover(auditsRel, () => true);
   packageRels.sort(bytewise);
 
   const expectedRoots = new Map();
@@ -242,12 +276,36 @@ function main() {
   recordExpected(pointer.effective_head?.foreign_audit, 'foreign_audit');
 
   const trees = [];
+  const treeError = (root, error) => trees.push({
+    root,
+    typed_tree_sha256: null,
+    entry_count: null,
+    directory_count: null,
+    file_count: null,
+    other_count: null,
+    expected: expectedRoots.has(root) ? { source: expectedRoots.get(root).source, sha256: expectedRoots.get(root).sha256 } : null,
+    status: 'ERROR',
+    error: String(error?.message ?? error),
+    drift_vs_seal: null,
+    files: [],
+  });
+  for (const rel of linkAnomalies) {
+    treeError(rel, new Error('sealed package path is a symlink or junction, refusing to hash through it'));
+  }
   for (const rel of packageRels) {
-    const tree = typedTree(rel);
-    const roots = [{ root: rel, tree }];
+    const roots = [];
+    try {
+      roots.push({ root: rel, tree: typedTree(rel) });
+    } catch (error) {
+      treeError(rel, error);
+    }
     const payloadRel = `${rel}/payload`;
     if (fs.existsSync(abs(payloadRel)) && expectedRoots.has(payloadRel)) {
-      roots.push({ root: payloadRel, tree: typedTree(payloadRel) });
+      try {
+        roots.push({ root: payloadRel, tree: typedTree(payloadRel) });
+      } catch (error) {
+        treeError(payloadRel, error);
+      }
     }
     for (const { root, tree: t } of roots) {
       const expected = expectedRoots.get(root) ?? null;
@@ -261,9 +319,36 @@ function main() {
         other_count: t.other_count,
         expected: expected ? { source: expected.source, sha256: expected.sha256 } : null,
         status,
-        drift_vs_seal: status === 'DRIFT' ? driftVsSeal(rel, root, t) : null,
+        drift_vs_seal: status === 'DRIFT' ? (() => {
+          try {
+            return driftVsSeal(rel, root, t);
+          } catch (error) {
+            return { seal: null, note: `drift detail failed: ${String(error?.message ?? error)}` };
+          }
+        })() : null,
         files: t.entries.filter((e) => e.type === 'file')
           .map(({ path: p, bytes, sha256: h }) => ({ path: p, bytes, sha256: h })),
+      });
+    }
+  }
+  // Fail closed on omission: every recorded root the pointer expects MUST have been
+  // compared. A package that vanished, was renamed, or stopped being a plain directory
+  // otherwise produces no comparison at all — and silence must never read as PASS.
+  const computedRoots = new Set(trees.map((t) => t.root));
+  for (const [root, exp] of [...expectedRoots.entries()].sort((a, b) => bytewise(a[0], b[0]))) {
+    if (!computedRoots.has(root)) {
+      trees.push({
+        root,
+        typed_tree_sha256: null,
+        entry_count: null,
+        directory_count: null,
+        file_count: null,
+        other_count: null,
+        expected: { source: exp.source, sha256: exp.sha256 },
+        status: 'UNVERIFIED',
+        error: 'expected root was never computed (package missing, renamed, or not a plain directory)',
+        drift_vs_seal: null,
+        files: [],
       });
     }
   }
@@ -271,28 +356,38 @@ function main() {
 
   // ---- 4. Watched live files: protected-state paths + explicit watch globs.
   const watchPaths = new Set();
+  const watchExtras = [];
   if (fs.existsSync(abs(PROTECTED_STATE_REL))) {
-    const protectedState = JSON.parse(fs.readFileSync(abs(PROTECTED_STATE_REL), 'utf8'));
-    for (const entry of protectedState.files ?? []) {
-      if (typeof entry?.path === 'string') watchPaths.add(entry.path);
+    try {
+      const protectedState = JSON.parse(fs.readFileSync(abs(PROTECTED_STATE_REL), 'utf8'));
+      for (const entry of protectedState.files ?? []) {
+        if (typeof entry?.path === 'string') watchPaths.add(entry.path);
+      }
+    } catch (error) {
+      watchExtras.push({ path: PROTECTED_STATE_REL, status: 'UNREADABLE', bytes: null, sha256: null, error: String(error?.message ?? error) });
     }
   }
   for (const pattern of WATCH_GLOBS) {
     for (const rel of expandGlob(pattern)) watchPaths.add(rel);
   }
   const watch = [...watchPaths].sort(bytewise).map((rel) => {
-    if (!fs.existsSync(abs(rel))) return { path: rel, status: 'ABSENT', bytes: null, sha256: null };
-    const bound = bindFile(rel);
-    return { path: rel, status: 'PRESENT', bytes: bound.bytes, sha256: bound.sha256 };
-  });
+    try {
+      if (!fs.existsSync(abs(rel))) return { path: rel, status: 'ABSENT', bytes: null, sha256: null };
+      if (!fs.statSync(abs(rel)).isFile()) return { path: rel, status: 'NOT_A_FILE', bytes: null, sha256: null };
+      const bound = bindFile(rel);
+      return { path: rel, status: 'PRESENT', bytes: bound.bytes, sha256: bound.sha256 };
+    } catch (error) {
+      return { path: rel, status: 'ERROR', bytes: null, sha256: null, error: String(error?.message ?? error) };
+    }
+  }).concat(watchExtras);
 
   // ---- 5. Assemble the deterministic snapshot body (no timestamps inside).
   const holds = [
     ...pinResults.filter((p) => p.status !== 'MATCH'),
-    ...trees.filter((t) => t.status === 'DRIFT'),
+    ...trees.filter((t) => ['DRIFT', 'ERROR', 'UNVERIFIED'].includes(t.status)),
   ];
   const body = {
-    schema: 'chain-status-snapshot-v1',
+    schema: 'chain-status-snapshot-v2',
     workspace: '999 footsteps',
     chain: {
       pointer: pointerPin,
@@ -325,8 +420,12 @@ function main() {
   const latestPath = path.join(statusDir, 'latest.json');
 
   let previous = null;
-  if (fs.existsSync(latestPath)) {
-    previous = JSON.parse(fs.readFileSync(latestPath, 'utf8'));
+  try {
+    if (fs.existsSync(latestPath)) {
+      previous = JSON.parse(fs.readFileSync(latestPath, 'utf8'));
+    }
+  } catch {
+    previous = null; // corrupt previous snapshot: treat as first run and self-heal
   }
   const changed = !previous || previous.state_digest !== stateDigest;
 
@@ -362,18 +461,13 @@ function main() {
     }
   }
 
-  fs.writeFileSync(latestPath, `${JSON.stringify(snapshot, null, 2)}\n`);
-  fs.writeFileSync(path.join(statusDir, 'heartbeat.json'), `${JSON.stringify({
-    scanned_at_utc: stamp,
-    state_digest: stateDigest,
-    changed,
-    integrity_verdict: body.integrity.verdict,
-  }, null, 2)}\n`);
-
+  // Write order matters: latest.json is the change detector, so it goes LAST — if any
+  // earlier write dies, the next run still sees the old digest and re-emits the change
+  // records instead of permanently swallowing them.
   if (changed) {
     const historyName = `${stamp.replaceAll(':', '').replaceAll('-', '').replace(/\.\d+Z$/, 'Z')}.json`;
-    fs.writeFileSync(path.join(historyDir, historyName), `${JSON.stringify(snapshot, null, 2)}\n`);
-    fs.writeFileSync(path.join(statusDir, 'diff-latest.json'), `${JSON.stringify({
+    writeAtomic(path.join(historyDir, historyName), `${JSON.stringify(snapshot, null, 2)}\n`);
+    writeAtomic(path.join(statusDir, 'diff-latest.json'), `${JSON.stringify({
       scanned_at_utc: stamp, state_digest: stateDigest, ...diff,
     }, null, 2)}\n`);
 
@@ -393,8 +487,16 @@ function main() {
     for (const h of holds) {
       lines.push(`- **HOLD** ${h.path ?? h.root}: ${h.status}\n`);
     }
-    fs.writeFileSync(changesPath, header + lines.join('') + existing);
+    writeAtomic(changesPath, header + lines.join('') + existing);
   }
+
+  writeAtomic(path.join(statusDir, 'heartbeat.json'), `${JSON.stringify({
+    scanned_at_utc: stamp,
+    state_digest: stateDigest,
+    changed,
+    integrity_verdict: body.integrity.verdict,
+  }, null, 2)}\n`);
+  writeAtomic(latestPath, `${JSON.stringify(snapshot, null, 2)}\n`);
 
   const summary = {
     changed,
@@ -407,4 +509,24 @@ function main() {
   process.exit(changed ? 3 : 0);
 }
 
-main();
+try {
+  main();
+} catch (error) {
+  // Fail closed: even a crashed scan publishes an ERROR heartbeat, so the remote agent
+  // can tell "scanner broke" (verdict ERROR) from "scanner never ran" (stale timestamp).
+  try {
+    const statusDir = path.join(REPO_DIR, 'status');
+    fs.mkdirSync(statusDir, { recursive: true });
+    writeAtomic(path.join(statusDir, 'heartbeat.json'), `${JSON.stringify({
+      scanned_at_utc: new Date().toISOString(),
+      state_digest: null,
+      changed: null,
+      integrity_verdict: 'ERROR',
+      error: String(error?.message ?? error),
+    }, null, 2)}\n`);
+  } catch {
+    // nothing left to do — stderr below is the last signal
+  }
+  console.error(error);
+  process.exit(4);
+}
