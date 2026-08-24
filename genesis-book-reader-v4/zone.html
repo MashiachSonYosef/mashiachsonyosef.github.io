@@ -985,6 +985,12 @@
       // downstream is then addressed by content rather than by name.
       fetch(`${ROOT}data/route-store/index.json`, { cache: "no-cache" }).then((r) => r.json()),
     ]);
+    // The zone as it arrived, by the same rule the commentary sidecar is
+    // exposed under: a check should be able to ask the record what it says
+    // rather than ask the page what it decided. A check that reads its answer
+    // off the page it is checking proves only that the page is consistent
+    // with itself.
+    window.__zone = zone;
   } catch {
     document.getElementById("meta").textContent =
       "No book is published on this page yet — no walk has landed. The page takes its name from the zone when one arrives; nothing is shown, and nothing is named, that has not come through the pipeline.";
