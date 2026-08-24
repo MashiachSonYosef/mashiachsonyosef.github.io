@@ -31,7 +31,7 @@
 //   L12 a site whose forms are not all issued draws no branch at all
 //   L13 choosing a branch does not move one character of the C0
 
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
 // Named by codepoint, never typed. This file may not supply a character of
@@ -39,11 +39,27 @@ import { gunzipSync } from "node:zlib";
 // check-nothing-hand-typed-v1 is what noticed it had been broken here.
 const MAQAF = "\u05be";
 const args = process.argv.slice(2);
-const binPath = args.find((a) => !a.startsWith("--"));
-const url = args.includes("--url") ? args[args.indexOf("--url") + 1] : null;
+const positional = args.filter((a) => !a.startsWith("--"));
+const flagUrl = args.includes("--url") ? args[args.indexOf("--url") + 1] : null;
+
+// The suite runner hands every check a served URL. This one was written to
+// take a zone file, so under the runner it read the URL as a path and died —
+// a check that cannot be run the way the suite runs it is a check that does
+// not run. Given a URL it now finds the zone the URL names and checks both
+// halves against it; given a path it behaves as before.
+const asUrl = positional.find((a) => /^https?:\/\//.test(a)) || flagUrl;
+const asPath = positional.find((a) => !/^https?:\/\//.test(a));
+const zoneIdOf = (u) => (String(u || "").match(/[?&]b=([a-z0-9-]+)/) || [])[1] || null;
+const slug = zoneIdOf(asUrl);
+const binPath = asPath || (slug ? `data/zones/${slug}.bin` : null);
+const url = asUrl;
 if (!binPath) {
-  console.error("usage: check-maqaf-lattice-v1.mjs <zone.bin> [--url <served url>]");
+  console.error("usage: check-maqaf-lattice-v1.mjs <zone.bin | served url> [--url <served url>]");
   process.exit(2);
+}
+if (!existsSync(binPath)) {
+  console.log(`SKIPPED — no zone file at ${binPath} to check against`);
+  process.exit(3);
 }
 
 const fails = [];

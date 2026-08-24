@@ -19,6 +19,12 @@
 // zone, and checks the section-level line is untouched by any of this.
 import pw from "/home/claude/.npm-global/lib/node_modules/playwright/index.js";
 import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+// The instrument this check drives, named once from what is on disk rather
+// than typed into the goto below. A fixture is still a fixture; which one
+// exists is the directory's to say.
+const FIXTURE_ZONE = (await import("node:fs")).readdirSync("data/zones")
+  .filter((f) => f.startsWith("fixture-") && f.endsWith(".bin"))
+  .map((f) => f.replace(/\.bin$/, ""))[0] || "fixture";
 const SKIP_LABEL = "check-commentary-in-line-v1";
 // A check about commentary needs a work that carries some. When none is
 // served, that is a fact about the corpus and not a defect in the reader, so
@@ -27,8 +33,8 @@ const SKIP_LABEL = "check-commentary-in-line-v1";
 {
   const { zonesWithCommentary } = await import("./zones-on-disk-v1.mjs");
   if (!zonesWithCommentary().length) {
-    console.log(`${SKIP_LABEL}: no served work carries a commentary sidecar — nothing to check`);
-    process.exit(0);
+    console.log(`SKIPPED — no served work carries a commentary sidecar, so ${SKIP_LABEL} has nothing to open`);
+    process.exit(3);
   }
 }
 
@@ -42,7 +48,7 @@ const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" })
 for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the English reader"]]) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=fixture${mode}`, { waitUntil: "networkidle" });
+  await p.goto(`${BASE}?b=${FIXTURE_ZONE}${mode}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   await p.waitForTimeout(400);
   console.log(`— ${reader} —`);

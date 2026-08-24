@@ -29,8 +29,8 @@ const SKIP_LABEL = "check-whose-claim-v1";
 {
   const { zonesWithCommentary } = await import("./zones-on-disk-v1.mjs");
   if (!zonesWithCommentary().length) {
-    console.log(`${SKIP_LABEL}: no served work carries a commentary sidecar — nothing to check`);
-    process.exit(0);
+    console.log(`SKIPPED — no served work carries a commentary sidecar, so ${SKIP_LABEL} has nothing to open`);
+    process.exit(3);
   }
 }
 
