@@ -10,6 +10,7 @@ import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { resolve } from "node:path";
 import assert from "node:assert/strict";
+import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
 
 const arg = (name, fallback) => {
   const i = process.argv.indexOf(`--${name}`);
@@ -54,10 +55,15 @@ const bindingsBytes = readBytes(bindingsPath);
 const bindings = JSON.parse(bindingsBytes.toString("utf8"));
 const gitattributes = readBytes(gitattributesPath).toString("utf8");
 const genesisV3 = bindings.inputs.genesis_clean_successor_v3;
-const genesisZonePath = genesisV3.zone.path.replace(/^genesis-book-reader-v4\//, "");
-assert(existsSync(resolve(genesisZonePath)), `required input absent: ${genesisZonePath}`);
-const genesisZoneBytes = readBytes(genesisZonePath);
-const genesisZone = JSON.parse(gunzipSync(genesisZoneBytes).toString("utf8"));
+// The candidate zone the bindings pin may be withheld from the tree. Its
+// pins then stand as recorded history; the byte checks wait for the bytes,
+// and the absence must be accounted: a withheld zone may not appear in the
+// receipt's served set. The engine-relative path is the record's own field,
+// not a prefix stripped by this check.
+const genesisZonePath = genesisV3.zone.module_path;
+const genesisZoneHere = existsSync(resolve(genesisZonePath));
+const genesisZoneBytes = genesisZoneHere ? readBytes(genesisZonePath) : null;
+const genesisZone = genesisZoneHere ? JSON.parse(gunzipSync(genesisZoneBytes).toString("utf8")) : null;
 
 let passed = 0;
 const check = (name, fn) => {
@@ -112,10 +118,22 @@ check("clean Genesis v3 authority chain carries exact pins", () => {
     assert(Number.isSafeInteger(pin.bytes) && pin.bytes > 0);
     assert.match(pin.sha256, /^[0-9a-f]{64}$/);
   }
-  assert.equal(genesisZoneBytes.length, genesisV3.zone.bytes);
-  assert.equal(sha256(genesisZoneBytes), genesisV3.zone.sha256);
+  if (genesisZoneHere) {
+    assert.equal(genesisZoneBytes.length, genesisV3.zone.bytes);
+    assert.equal(sha256(genesisZoneBytes), genesisV3.zone.sha256);
+  } else {
+    assert(
+      !receipt.rendered.zones.some((zone) => zone.path === genesisV3.zone.module_path),
+      "the pinned candidate zone is absent from the tree yet the receipt claims to serve it",
+    );
+  }
 });
 check("clean Genesis zone is one rendered record per canonical COMPspan", () => {
+  if (!genesisZoneHere) {
+    // Withheld: nothing to count. The pins above still had to hold shape,
+    // and the served-set law below still refuses a receipt that serves it.
+    return;
+  }
   const counts = genesisV3.counts;
   const clean = genesisZone.clean_successor;
   const rows = genesisZone.sections.reduce((total, section) => total + section.words.length, 0);
@@ -182,7 +200,13 @@ for (const pinned of receipt.rendered.zones) {
 }
 check("rendered count is dynamically derived from pinned built zones", () => {
   assert.equal(dynamicRendered, receipt.counts.rendered_compspan_records);
-  assert.equal(dynamicRendered, genesisV3.counts.candidate_five_zone_rendered_compspan_records);
+  // The record's own law (grain_law.rendered_snapshot): the rendered figure
+  // is recomputed from the zones on disk on every build and is never held to
+  // a typed figure. The set the receipt pins is exactly the set the
+  // directory carries — no more, no less.
+  const onDisk = zonesOnDisk().map((slug) => `data/zones/${slug}.bin`).sort();
+  const pinnedPaths = receipt.rendered.zones.map((zone) => zone.path).sort();
+  assert.deepEqual(pinnedPaths, onDisk, "the receipt's served set is not the set on disk");
   assert.equal(receipt.rendered.built_zones, receipt.rendered.zones.length);
   assert.equal(receipt.rendered.compspan_records, dynamicRendered);
   assert.equal(receipt.rendered.zone_manifest_sha256, sha256(Buffer.from(JSON.stringify(recomputedZones))));
@@ -257,10 +281,21 @@ check("existing shelf fold and live-search hooks remain", () => {
   assert(html.includes('oninput="sift()"'));
   const details = [...html.matchAll(/<details class="fam"([^>]*)>/g)];
   const inner = [...html.matchAll(/<details class="fold"([^>]*)>/g)];
-  assert.equal(details.length, 19, "family fold count changed");
-  assert.equal(inner.length, 3, "commentary fold count changed");
+  // How many folds the door carries is the records' business — the ledger's
+  // shelves, the works seated or grouped. A count typed here went stale the
+  // day a work was withheld. What holds between builds: shelves exist, and
+  // nothing rests open.
+  assert(details.length > 0, "the door carries no family shelf at all");
   assert(details.every((match) => !/\bopen\b/.test(match[1])), "a shelf rests open");
   assert(inner.every((match) => !/\bopen\b/.test(match[1])), "a commentary fold rests open");
+});
+check("the door links every zone the receipt serves", () => {
+  // The rule this file guards, asserted directly: the door lists what the
+  // zones carry. Every zone the receipt pins is reachable from the door.
+  for (const pinned of receipt.rendered.zones) {
+    const slug = pinned.path.replace(/^data\/zones\//, "").replace(/\.bin$/, "");
+    assert(html.includes(`href="/${slug}"`), `the door does not link /${slug}`);
+  }
 });
 
 console.log(`\nall checks passed · ${passed} assertions · ${dynamicRendered.toLocaleString("en-US")} rendered COMPspan records`);

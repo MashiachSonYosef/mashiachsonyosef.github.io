@@ -1113,7 +1113,7 @@ const titleCase = (t) => String(t).split("-").map((w) =>
 // The README is for somebody arriving at the repository, and what they need is
 // the rules this code is held to — not a snapshot of the corpus. Counts moved
 // out entirely: they were three copies of numbers the receipt already carries,
-// they went stale on every build, and "15,790 rendered COMPspan records" tells
+// they went stale on every build, and a rendered-records figure tells
 // a reader nothing they could act on. Grain vocabulary went with them. What is
 // left is what stays true between builds, so this file changes when the design
 // changes and not when a work lands.
