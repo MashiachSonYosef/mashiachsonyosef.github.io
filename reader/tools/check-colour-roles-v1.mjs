@@ -27,6 +27,7 @@
 // Run: node tools/check-colour-roles-v1.mjs [url]
 
 import { readFileSync, existsSync } from "node:fs";
+import { zonesWithCommentary } from "./zones-on-disk-v1.mjs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
@@ -114,9 +115,19 @@ const painted = await p.evaluate(() => {
   };
 });
 
+// A commentary role can only be painted where a commentary stands. With no
+// sidecar served, the roles are unpainted because their bearers are absent —
+// the corpus's state, said as such, never scored as a colour fault.
+const commentaryHere = zonesWithCommentary().length > 0;
 for (const [role, name] of Object.entries(CONTRACT)) {
   const got = painted[role];
-  if (!got) { check(`  ${role} is painted at all`, false, "nothing on the page carries it"); continue; }
+  if (!got) {
+    if (!commentaryHere && role.startsWith("commentary")) {
+      console.log(`  --    ${role}: no served work carries a commentary, so it has nothing to check against`);
+      continue;
+    }
+    check(`  ${role} is painted at all`, false, "nothing on the page carries it"); continue;
+  }
   const r = inFamily(got, name);
   check(`  ${role} is ${name.replace("_", " ")}`, r.ok, `${got} · ${r.why}`);
 }
@@ -132,7 +143,7 @@ for (const [role, name] of Object.entries(CONTRACT)) {
   check("  structure and selection are not the same colour", apart,
     `${painted.structure} vs ${painted.reader_selection}`);
 }
-{
+if (commentaryHere) {
   const a = rgb(painted.base_surface), c = rgb(painted.commentary_surface);
   const apart = a && c && a.some((x, i) => Math.abs(x - c[i]) >= 3);
   check("  a commentary does not sit on the text's own surface", apart,

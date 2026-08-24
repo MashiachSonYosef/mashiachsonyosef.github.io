@@ -41,11 +41,18 @@ import { gunzipSync } from "node:zlib";
 const WORD_GRADE_BASIS = new Set(["EXPLICIT_VISIBLE_HEADWORD"]);
 
 const args = process.argv.slice(2);
-const binPath = args.find((a) => !a.startsWith("--"));
+let binPath = args.find((a) => !a.startsWith("--"));
 const url = args.includes("--url") ? args[args.indexOf("--url") + 1] : null;
 if (!binPath) {
-  console.error("usage: check-attachment-grain-v1.mjs <commentary.bin> [--url <served url>]");
-  process.exit(2);
+  // No sidecar named: take the sidecars on disk, and with none, say which
+  // fact made this skip — the same guard its sibling commentary checks hold.
+  const { zonesWithCommentary } = await import("./zones-on-disk-v1.mjs");
+  const carried = zonesWithCommentary();
+  if (!carried.length) {
+    console.log("SKIPPED — no served work carries a commentary sidecar, so check-attachment-grain-v1 has nothing to check");
+    process.exit(3);
+  }
+  binPath = `data/zones/${carried[0]}-commentary.bin`;
 }
 
 const fails = [];

@@ -34,7 +34,9 @@ for (const vp of VIEWPORTS) {
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
   await p.goto(URL, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
-  const wbs = await p.$$("section.seg .he-text .wb");
+  // a bare word is the store's honest silence — only a word carrying a
+// reading has a record this check can open
+const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
 
   const seen = [];
   for (let i = 0; i < Math.min(wbs.length, WORDS); i += 1) {

@@ -13,7 +13,10 @@ const b = await chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
 await p.goto(defaultZoneUrl(), { waitUntil: "networkidle" });
-await p.waitForSelector("section.seg .he-text .wb .g");
+// A glossed word, wherever it stands: the first word of a book can be one
+// the store has nothing for — the Aramaic Targum to Ruth opens on such a
+// word — and waiting on it declares an honest bare form a broken page.
+await p.waitForSelector("section.seg .he-text .wb .g:not(.bare)");
 
 // The book fills in as it is read: a section arrives as its number and a
 // reserved height and builds when it comes within reach. A claim about the
@@ -62,14 +65,16 @@ const before = await p.evaluate(() => {
 // find a word whose catalog holds a reading far longer than the one painted —
 // otherwise this proves nothing
 let grew = 0;
-const wbs = await p.$$("section.seg .he-text .wb");
+// Only a word that carries a reading has a record to open — a bare word is
+// the store's honest silence, and waiting for its pills declares it broken.
+const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
 for (let i = 0; i < Math.min(wbs.length, 10); i++) {
   await wbs[i].click();
   await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
   await p.waitForTimeout(250);
   grew = await p.evaluate((i) => {
     const bs = [...document.querySelectorAll("#hud .r-pills button")];
-    const g = [...document.querySelectorAll("section.seg .he-text .wb")][i].querySelector(".g");
+    const g = [...document.querySelectorAll("section.seg .he-text .wb:has(.g:not(.bare))")][i].querySelector(".g");
     const now = g.textContent.trim().length;
     const longest = Math.max(...bs.map((b) => b.textContent.trim().length));
     return longest - now;

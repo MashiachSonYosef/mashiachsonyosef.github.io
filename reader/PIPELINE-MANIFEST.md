@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-24.
 
-**39 rules declared · 28 named by a check · 11 unguarded.**
+**42 rules declared · 30 named by a check · 12 unguarded.**
 **11 published artifacts · 11 with a build step · 0 without.**
 
 ## The rules
@@ -33,6 +33,8 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `front-door-rule-v2` | zone.html | **UNGUARDED** |
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
+| `licence-name-rule-v1-the-record-names-the-licence` | tools/check-licence-names-v1.mjs | check-licence-names-v1 |
+| `licence-posture-name-rule-v1-the-record-names-the-licence` | tools/emit-license-postures-v1.mjs | **UNGUARDED** |
 | `licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs` | zone.html | check-licence-leaves-v1 |
 | `mark-inventory-rule-v1-closed-set-over-route-text` | tools/mark-inventory-v1.mjs | **UNGUARDED** |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | **UNGUARDED** |
@@ -44,9 +46,10 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `respan-rule-v1-project-the-compspan-template-over-a-zones-own-keys` | tools/respan-zone-v1.mjs | **UNGUARDED** |
 | `route-store-rule-v1-catalog-compact-top5` | tools/build-route-store.mjs | **UNGUARDED** |
 | `route-store-rule-v3-declared-reading` | tools/check-nothing-invented-v1.mjs | check-nothing-invented-v1 |
-| `sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates` | tools/sense-split-v1.mjs | check-provider-characters-v1, check-sense-split-v1 |
+| `sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates` | tools/sense-split-v1.mjs, tools/gloss-store-v1.mjs, zone.html | check-provider-characters-v1, check-sense-split-v1 |
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | **UNGUARDED** |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
+| `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
 | `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, zone.html | check-clean-address-v1 |
 | `w-grain-rule-v1-a-component-system-is-drawn-on-a` | tools/check-w-grain-v1.mjs | check-w-grain-v1 |
 | `w-list-rule-v1-the-record-says-which-entries-are` | tools/w-list-v1.mjs | check-w-grain-v1 |
@@ -54,7 +57,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `zone-commentary-rule-v2-everything-recorded-stands-somewhere` | tools/build-commentary-sidecar-v1.mjs | check-nothing-dropped-v1 |
 | `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | **UNGUARDED** |
 | `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs | **UNGUARDED** |
-| `zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-page-agrees-with-store-v1 |
+| `zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-page-agrees-with-store-v1 |
 
 ## What the site publishes
 
@@ -77,7 +80,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 14 of the 35 tools that are not checks.
+`build.sh` calls 16 of the 38 tools that are not checks.
 
 Not called by any build stage:
 
@@ -94,6 +97,7 @@ Not called by any build stage:
 - `tools/name-the-titles-v1.mjs`
 - `tools/plan-work-shards-v1.mjs`
 - `tools/planned-packs-v1.mjs`
+- `tools/playwright-v1.mjs`
 - `tools/regloss-zone.mjs`
 - `tools/respan-zone-v1.mjs`
 - `tools/sense-split-v1.mjs`

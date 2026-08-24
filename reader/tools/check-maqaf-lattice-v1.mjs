@@ -32,6 +32,7 @@
 //   L13 choosing a branch does not move one character of the C0
 
 import { readFileSync, existsSync } from "node:fs";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { gunzipSync } from "node:zlib";
 
 // Named by codepoint, never typed. This file may not supply a character of
@@ -228,8 +229,7 @@ if (url) {
   const { createRequire } = await import("node:module");
   const req = createRequire(import.meta.url);
   let chromium;
-  try { ({ chromium } = req("playwright")); }
-  catch { ({ chromium } = req(`${process.env.NODE_PATH || "/usr/lib/node_modules"}/playwright`)); }
+  ({ chromium } = await loadPlaywright());
   const browser = await chromium.launch(
     process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
   const page = await browser.newPage({ viewport: { width: 1200, height: 900 } });

@@ -57,7 +57,9 @@ const read = () => p.evaluate(() => {
   };
 });
 
-const wbs = await p.$$("section.seg .he-text .wb");
+// a bare word is the store's honest silence — only a word carrying a
+// reading has a record this check can open
+const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
 let worst = null, fattest = null;
 for (let i = 0; i < Math.min(wbs.length, 10); i += 1) {
   await wbs[i].click();

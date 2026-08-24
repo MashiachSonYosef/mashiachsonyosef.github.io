@@ -114,12 +114,20 @@ const showing = async (nth = 0) => p.evaluate((i) => {
   // selection with plain JS, no page handler involved, and watching the same
   // synthetic drag fail to replace it.
   await p.evaluate(() => window.getSelection().removeAllRanges());
-  await p.evaluate(() => document.querySelectorAll("section.seg")[1].scrollIntoView({ block: "center" }));
-  await p.waitForTimeout(200);
+  // Two adjacent verses that fit the viewport together, found by looking:
+  // the first two of a book can be long — the Targum to Ruth opens on such a
+  // pair — and typing 0 and 1 here declared every such book broken.
   const secs = await p.$$("section.seg");
-  const b1 = await (await secs[0].$(".he-text")).boundingBox();
-  const b2 = await (await secs[1].$(".he-text")).boundingBox();
-  if (b1 && b2 && b1.y > 0 && b2.y + b2.height < 915) {
+  let pair = -1, b1 = null, b2 = null;
+  for (let i = 0; i + 1 < Math.min(secs.length, 12); i += 1) {
+    await p.evaluate((n) => document.querySelectorAll("section.seg")[n].scrollIntoView({ block: "center" }), i + 1);
+    await p.waitForTimeout(250);
+    const ha = await secs[i].$(".he-text"), hb = await secs[i + 1].$(".he-text");
+    if (!ha || !hb) continue;
+    const xa = await ha.boundingBox(), xb = await hb.boundingBox();
+    if (xa && xb && xa.y > 0 && xb.y + xb.height < 915) { pair = i; b1 = xa; b2 = xb; break; }
+  }
+  if (pair >= 0) {
     await clearClip();
     await p.mouse.move(b1.x + b1.width - 4, b1.y + 6);
     await p.mouse.down();
@@ -128,7 +136,7 @@ const showing = async (nth = 0) => p.evaluate((i) => {
     await p.waitForTimeout(140);
     const t = (await copyNow()).trim();
     const lines = t.split("\n").filter((l) => l.trim());
-    const d1 = await showing(0), d2 = await showing(1);
+    const d1 = await showing(pair), d2 = await showing(pair + 1);
     check("a drag across two verses gives two lines", lines.length === 2, `${lines.length} lines`);
     check("each line is its own verse, entire",
       lines.length === 2 && bare(lines[0]) === bare(d1.he) && bare(lines[1]) === bare(d2.he),
@@ -160,8 +168,10 @@ const showing = async (nth = 0) => p.evaluate((i) => {
     await p.waitForTimeout(140);
     return (await copyNow()).trim();
   };
-  const W = "section.seg .he-text .wb:first-child .w";
-  const G = "section.seg .he-text .wb:first-child .g";
+  // the first word that carries a reading: a bare word's gloss span is
+  // empty, and a drag begun on nothing takes whatever stands beside it
+  const W = "section.seg .he-text .wb:has(.g:not(.bare)) .w";
+  const G = "section.seg .he-text .wb:has(.g:not(.bare)) .g";
   for (const [mode, btn] of [["the Hebrew reader", "#modeHe"], ["the English reader", "#modeEn"]]) {
     await p.click(btn); await p.waitForTimeout(300);
     const he = await dragFrom(W), en = await dragFrom(G);

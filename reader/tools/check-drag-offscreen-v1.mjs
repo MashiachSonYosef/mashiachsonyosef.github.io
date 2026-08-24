@@ -15,7 +15,8 @@ await p.goto(defaultZoneUrl(), { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg");
 
 const open = async (i = 0) => {
-  await (await p.$$("section.seg .he-text .wb"))[i].click();
+  // a word carrying a reading — a bare word opens no record to drag
+  await (await p.$$("section.seg .he-text .wb:has(.g:not(.bare))"))[i].click();
   await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
   await p.waitForTimeout(400);
 };

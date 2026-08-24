@@ -129,7 +129,26 @@ for (const f of books) {
     const printed = gloss[k];
     if (set.has(printed)) return false;
     const senses = new Set();
-    for (const r of set) for (const piece of r.split(";")) senses.add(piece.trim());
+    // Senses divide at the pack mark outside the provider's parentheses, and
+    // each sense divides into readings under the declared comma rule — the
+    // same two splits the store and the page print by. A plain ";" split
+    // here once compared v4 readings against v3 senses and called every
+    // finer reading an orphan.
+    const packSplit = (t) => {
+      const out = []; let start = 0, d = 0; const x = String(t || "");
+      for (let i = 0; i < x.length; i += 1) {
+        const c = x[i];
+        if (c === "(") d += 1; else if (c === ")") { if (d > 0) d -= 1; }
+        else if (c === ";" && d === 0) { out.push(x.slice(start, i)); start = i + 1; }
+      }
+      out.push(x.slice(start));
+      return out.map((y) => y.trim()).filter(Boolean);
+    };
+    for (const r of set) for (const sense of packSplit(r)) {
+      senses.add(sense);
+      const rs = senseSplit(sense);
+      if (!rs.damaged) for (const reading of rs.readings) senses.add(reading);
+    }
     if (senses.has(printed)) return false;
     return !printed.split(" + ").every((part) => senses.has(part.trim()) || set.has(part.trim()));
   });

@@ -141,13 +141,19 @@ check("the runner does not name a work either",
 // which is a true fact about the corpus and not a defect in the reader — but
 // six silent passes are how a suite comes to mean less than it appears to.
 // They are counted here so the number is on the page.
-const guarded = checkFiles.filter((f) =>
-  /zonesWithCommentary\(/.test(readFileSync(join(TOOLS, f), "utf8")));
+// A check that asks about sidecars to GATE itself skips without them — the
+// skip exit is the tell. One that asks to derive an expectation (how many
+// entries the door should offer) keeps running either way and is not
+// dormant, and counting it here overstated the dormancy it exists to count.
+const guarded = checkFiles.filter((f) => {
+  const src = readFileSync(join(TOOLS, f), "utf8");
+  return /zonesWithCommentary\(/.test(src) && /process\.exit\(3\)/.test(src);
+});
 const commentaryZones = zonesWithCommentary();
 const dormant = commentaryZones.length ? [] : guarded;
 
 check("a check that skips says which fact made it skip",
-  guarded.every((f) => /nothing to check|SKIP_LABEL/.test(readFileSync(join(TOOLS, f), "utf8"))),
+  guarded.every((f) => /nothing to check|nothing to open|SKIP_LABEL/.test(readFileSync(join(TOOLS, f), "utf8"))),
   `${guarded.length} guarded check(s)`);
 
 check("the suite is not mostly dormant",

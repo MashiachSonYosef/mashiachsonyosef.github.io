@@ -55,8 +55,9 @@ for (const vp of VIEWPORTS) {
     check("  and nothing sticks out past the window", wide.n === 0, wide.first.join(", ") || "nothing does");
 
     // ---- 2 · a chosen reading never prints over the Hebrew ------------
-    const wbs = await p.$$("section.seg .he-text .wb");
-    await wbs[3].click();
+    // a word that carries a reading — a bare word opens no pills to measure
+    const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
+    await wbs[0].click();
     await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
     await p.waitForTimeout(300);
     const pills = await p.$$("#hud .r-pills button");

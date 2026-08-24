@@ -1205,7 +1205,7 @@ Served from the \`gh-pages\` branch.
 // derived at build time, neither typed. The bare instrument zone.html still
 // answers ?b= for the checks, and with neither meta nor query it names no
 // book and says so.
-const ZONE_HTML = readFileSync("zone.html", "utf8");
+const ZONE_HTML = readFileSync(arg("reader", "zone.html"), "utf8");
 const readerPage = (b) => {
   const anchor = "<title>";
   if (!ZONE_HTML.includes(anchor))
