@@ -113,18 +113,18 @@ const WB = JSON.parse(readFileSync(arg("basis", "data/work-basis-v1.json"), "utf
 // does a record read this title's own form as the common name? Where one
 // does, its licence rides the force-read line, exactly as it does inside.
 const STORE = openRouteStore(arg("store", "data/route-store"));
-// Same mapping as zone.html's licenseName — the postures are the store's.
+// A posture's name comes from the declarations record — the same record the
+// reader loads as data/license-postures-v1.json — never re-derived from the
+// letters of the key. A posture the record does not declare is named by its
+// key, verbatim: the visible cue that a declaration is missing.
+const POSTURE_NAMES = Object.fromEntries(
+  Object.entries(JSON.parse(readFileSync("tools/declarations-v1.json", "utf8")).export_postures)
+    .map(([key, row]) => [key, row.name])
+);
 const licenseName = (posture) => {
-  const v = String(posture || "").toLowerCase();
-  if (!v) return "License unrecorded";
-  if (v.startsWith("cc0")) return "CC0";
-  if (/_nc(?:_|$)/u.test(v)) return /_sa(?:_|$)/u.test(v) ? "CC BY-NC-SA" : "CC BY-NC";
-  // Same clause as zone.html: a chosen CC BY outranks a declined gfdl it mentions.
-  if (v.startsWith("cc_by") && !v.startsWith("cc_by_sa")) return "CC BY";
-  if (v.includes("by_sa") || v.includes("gfdl")) return "CC BY-SA";
-  if (v.startsWith("public_domain")) return "Public Domain";
-  if (v.startsWith("cc_by") || v.includes("wordnet")) return "CC BY";
-  return posture;
+  const p = String(posture || "");
+  if (!p) return "License unrecorded";
+  return POSTURE_NAMES[p] || p;
 };
 const titleReading = (tokens, en) => {
   const key = (tokens || []).map((t) => t.k).filter(Boolean)[0];
@@ -902,16 +902,13 @@ ${sectionsHtml.join("\n")}
   // the fold it sits in; the fold is the summary's, the word is its own.
   var STORE_BASE = "/genesis-book-reader-v4/data/route-store/";
   var storeIndex = null, shardCache = {};
+  // The names are the declarations record's, embedded at build time — the
+  // same record the reader fetches. An unknown posture prints verbatim.
+  var POSTURE_NAMES = ${JSON.stringify(POSTURE_NAMES)};
   function licName(p) {
-    var v = String(p || "").toLowerCase();
-    if (!v) return "License unrecorded";
-    if (v.indexOf("cc0") === 0) return "CC0";
-    if (/_nc(_|$)/.test(v)) return /_sa(_|$)/.test(v) ? "CC BY-NC-SA" : "CC BY-NC";
-    if (v.indexOf("cc_by") === 0 && v.indexOf("cc_by_sa") !== 0) return "CC BY";
-    if (v.indexOf("by_sa") >= 0 || v.indexOf("gfdl") >= 0) return "CC BY-SA";
-    if (v.indexOf("public_domain") === 0) return "Public Domain";
-    if (v.indexOf("cc_by") === 0 || v.indexOf("wordnet") >= 0) return "CC BY";
-    return p;
+    p = String(p || "");
+    if (!p) return "License unrecorded";
+    return POSTURE_NAMES[p] || p;
   }
   function shardOf(k) {
     return crypto.subtle.digest("SHA-256", new TextEncoder().encode(k)).then(function (buf) {

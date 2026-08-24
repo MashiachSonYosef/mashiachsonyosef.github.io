@@ -35,6 +35,10 @@ PLAN=build/build-plan-v1.tsv
 # The basis and holds file the pages read their own incompleteness from —
 # derived from the plan and the hold ledgers in data/, never typed.
 node tools/emit-work-basis-v1.mjs --plan build/build-plan-v1.json
+# The licence-posture projection the pages read names, permissions and
+# obligations from — one projection of tools/declarations-v1.json, never
+# re-derived from a posture key's letters.
+node tools/emit-license-postures-v1.mjs
 
 if [ "${1:-}" = "--plan" ]; then
   STAMP="${2:-STAMP}"

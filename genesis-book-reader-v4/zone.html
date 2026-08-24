@@ -961,29 +961,31 @@
     return out.map((x) => x.trim()).filter(Boolean);
   };
 
+  // The chip prints the name the declarations record carries for the posture,
+  // never one re-derived from the letters of its key: a dual offer is named
+  // as a dual, and a posture the record does not declare is named by its key,
+  // verbatim — the visible cue that a declaration is missing.
+  let POSTURES = null;
   const licenseName = (posture) => {
-    const v = String(posture || "").toLowerCase();
-    if (!v) return "License unrecorded";
-    if (v.startsWith("cc0")) return "CC0";
-    if (/_nc(?:_|$)/u.test(v)) return /_sa(?:_|$)/u.test(v) ? "CC BY-NC-SA" : "CC BY-NC";
-    // A posture that CHOSE CC BY from a dual offering still mentions the
-    // licence it declined; the chosen prefix must win before any substring
-    // scan, or the chip adds a ShareAlike the source never imposed.
-    if (v.startsWith("cc_by") && !v.startsWith("cc_by_sa")) return "CC BY";
-    if (v.includes("by_sa") || v.includes("gfdl")) return "CC BY-SA";
-    if (v.startsWith("public_domain")) return "Public Domain";
-    if (v.startsWith("cc_by") || v.includes("wordnet")) return "CC BY";
-    return posture;
+    const p = String(posture || "");
+    if (!p) return "License unrecorded";
+    const row = POSTURES && POSTURES.postures && POSTURES.postures[p];
+    return (row && row.name) || p;
   };
   let zone, index;
   try {
-    [zone, index] = await Promise.all([
+    [zone, index, POSTURES] = await Promise.all([
       fetch(`${ROOT}data/zones/${BOOK}.bin`).then(unpack),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
       // revalidated on each load (a 304 when nothing moved), and everything
       // downstream is then addressed by content rather than by name.
       fetch(`${ROOT}data/route-store/index.json`, { cache: "no-cache" }).then((r) => r.json()),
+      // The posture record: names, export permission and obligations, one
+      // projection of tools/declarations-v1.json. Its absence does not stop
+      // the page — the chips fall back to keys verbatim and every export is
+      // refused, which is the record's own default for the undeclared.
+      fetch(`${ROOT}data/license-postures-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
     ]);
     // The zone as it arrived, by the same rule the commentary sidecar is
     // exposed under: a check should be able to ask the record what it says
@@ -1254,14 +1256,17 @@
     const m = index.m_sources[mId];
     return m ? String(m.licensePosture || "") : "";
   };
-  // Refusals are decided here and nowhere else. A posture that forbids
-  // derivatives forbids an export, because an export is one.
+  // Refusals are decided here and nowhere else, and they are read from the
+  // declarations record rather than re-derived from the letters of the key.
+  // A posture the record has not declared is not exported: no licence is as
+  // absolute as a forbidding one, and the undeclared is treated as forbidding.
   const exportPosture = (posture) => {
     const p = String(posture || "");
     if (!p) return { ok: false, why: "the record carries no licence posture" };
-    if (/(^|[^a-z])nd([^a-z]|$)/i.test(p) || /noderiv/i.test(p))
-      return { ok: false, why: `NoDerivatives (${p}) — an export is a redistributed derivative` };
-    return { ok: true, why: null, obligations: summarise(p) };
+    const row = POSTURES && POSTURES.postures && POSTURES.postures[p];
+    if (!row) return { ok: false, why: `undeclared posture (${p}) — a posture with no declaration is not exported` };
+    if (!row.export) return { ok: false, why: `${row.name} (${p}) — the declarations record refuses export for this posture` };
+    return { ok: true, why: null, obligations: row.obligations || [] };
   };
 
   // What reading is standing under a word right now, and which record it is

@@ -37,7 +37,7 @@ for t in tools/check-*.mjs; do
   printf '%-28s ' "$name"
   # the corpus check reads off disk and takes no URL
   case "$name" in
-    check-nothing-invented-v1|check-page-agrees-with-store-v1|check-clean-address-v1|check-provider-characters-v1|check-sense-split-v1|check-nothing-hand-typed-v1|check-nothing-hard-wired-v1|check-antiquity-tier-v1|check-sealed-layers-v1|check-frame-coverage-v1|check-w-grain-v1|check-nothing-unlanded-v1|check-build-derived-v1|check-docs-name-what-is-here-v1) args=() ;;
+    check-nothing-invented-v1|check-licence-names-v1|check-page-agrees-with-store-v1|check-clean-address-v1|check-provider-characters-v1|check-sense-split-v1|check-nothing-hand-typed-v1|check-nothing-hard-wired-v1|check-antiquity-tier-v1|check-sealed-layers-v1|check-frame-coverage-v1|check-w-grain-v1|check-nothing-unlanded-v1|check-build-derived-v1|check-docs-name-what-is-here-v1) args=() ;;
     *) args=("$URL") ;;
   esac
   # the no-URL checks are about the tree, not about a work: once is enough
