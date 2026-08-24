@@ -28,7 +28,10 @@ hand work: rules, generators, ledgers, and validation. Its law:
 
 ## Current rules
 
-### Attachment map generation (`tools/generate-genesis-1-1-attachment-map.mjs`)
+### Attachment map generation — WITHDRAWN 2026-08-24 (`tools/generate-genesis-1-1-attachment-map.mjs`)
+*The tool was withdrawn with the Genesis 1:1 proof of concept it served. The
+rule below is kept as a record of what it did. `tools/generate-attachment-map-v2.mjs`
+is the one in the tree, and it refuses rather than assume which pack it is for.*
 Matches each commentary segment's opening quotation (dibbur hamatchil)
 against the verse's normalized word sequence; up to two non-quotation
 lead words may be skipped. Word-matched segments become
@@ -36,7 +39,9 @@ VISUAL_SUGGESTION_ONLY claims; human-validated claims are carried
 byte-for-byte; unmatched segments remain verse-level witnesses. Nothing
 is promoted by machine.
 
-### Commentary word shards, rule v2 — contextual resolution first (`tools/generate-rashi-word-shards.mjs`)
+### Commentary word shards, rule v2 — WITHDRAWN 2026-08-24 (`tools/generate-rashi-word-shards.mjs`)
+*Withdrawn with the Rashi-on-Genesis-1:1 fixture it read. The rule is kept
+as a record; nothing in the tree implements it today.*
 Rule v2 (2026-08-11) adds one step ahead of everything below: where the
 corpus's token index resolves a form contextually
 (`surface_renderings` with a `surface_context_status`), those renderings
@@ -57,7 +62,7 @@ carries the corpus's license row, unresolvable licenses are skipped on
 the ledger, and source years are never invented (all routes sit in the
 lastuary tier until year evidence exists). 48 of 64 words wake; 16 hold
 with their reason recorded. Ledger:
-`synthesis/ledger-rashi-1-1-1-word-shards.json`.
+`synthesis/ledger-rashi-1-1-1-word-shards.json` — withdrawn 2026-08-24 with its generator.
 
 **Known limits of the shard rule, on the record:** no clitic stripping or
 stemming, so forms the corpus left unmatched stay held; form-matched
@@ -67,7 +72,10 @@ renderings arrive comma-split, so fragments like "properly" surface as
 routes; Ramban and Onkelos are absent from the lexical corpus entirely.
 Upstream repairs belong to the K lane, not reader code.
 
-### Default glosses, rule v2 — antiquity primacy (`tools/derive-default-glosses.mjs`)
+### Default glosses, rule v2 — WITHDRAWN 2026-08-24 (`tools/derive-default-glosses.mjs`)
+*Withdrawn with the Genesis 1:1 fixtures it read. It has been superseded in
+the tree by `zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary` in
+`tools/gloss-store-v1.mjs`, which is what every zone is actually built under.*
 **Rule v2 · 2026-08-10** — the first rule-level adoption
 in the project. Sort a word's routes by the oldest source year carrying
 them; sources after 1940, or without a recorded year, form the last tier
@@ -148,7 +156,7 @@ on their own, because the gate reads the flag.
 
 ## Overrides
 
-`synthesis/gloss-overrides-genesis-1-1.js` is the project's backend
+`synthesis/gloss-overrides-genesis-1-1.js` — withdrawn 2026-08-24 — was the project's backend
 override layer. When a different default is wanted than the rule
 derives, it is recorded there in data — unsigned, no justification
 required. The rule is the public explanation; overrides are ordinary
@@ -183,7 +191,7 @@ explain itself.
    "flutter"); run them through the same rule + override + ledger
    discipline.
 5. **Y-layer defaults through the lane.** The title/chapter-token HUD
-   (`data/y-title-hud-2026-07-19.js`) carries upstream-pipeline baked
+   (`data/y-title-hud-2026-07-19.js`, withdrawn 2026-08-24) carried upstream-pipeline baked
    defaults (`default_selected_gloss`), not rule-derived ones. The book
    title's "in the beginning" is defensible; the chapter-numeral tokens
    carry junk exact-form matches ("Elephantine", "chameleon"). Rerun
@@ -197,11 +205,16 @@ explain itself.
 
 ## Rerun
 
+All four generators this section used to list were withdrawn on 2026-08-24
+with the Genesis 1:1 proof of concept they served. There is one build now,
+and it names no work:
+
 ```
-node tools/generate-genesis-1-1-attachment-map.mjs
-node tools/derive-default-glosses.mjs
-node tools/generate-rashi-word-shards.mjs   # needs tools/corpus-cache/ from main
-node tools/test-word-shards.mjs             # local proof against :8321
+./build.sh --plan              # derive and print, run nothing
+./build.sh <mirror> <bridge.csv.gz> <serve-dir> <stamp> [compspan.csv.gz]
+bash tools/run-all-checks.sh   # needs python3 -m http.server 8899 in this directory
 ```
 
-All are deterministic. Outputs land in `data/`; ledgers land here.
+It is deterministic: run it twice on the same inputs and the outputs are
+byte-identical. `tools/pipeline-manifest-v1.mjs` prints what it can prove
+about itself at the end of every run.
