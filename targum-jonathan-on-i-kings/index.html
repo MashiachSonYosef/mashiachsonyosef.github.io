@@ -500,7 +500,12 @@
   #hud .d-slot { flex: 0 0 auto; max-height: 32vh;
     display: flex; flex-direction: column; overflow: hidden; }
   #hud .d-card { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
-  #hud .d-body { flex: 1 1 auto; min-height: 1.2rem; overflow-y: auto; }
+  /* The record's floor is three lines, not one: a floor of one line left a
+     phone showing a sliver of D with a scrollbar nobody could use, which is
+     clipping wearing a scrollbar's clothes. Whatever the card's budget, the
+     record stands at least this tall; the pill bands above already know how
+     to scroll. */
+  #hud .d-body { flex: 1 1 auto; min-height: 3.9rem; overflow-y: auto; }
   #hud .d-foot { flex: 0 0 auto; padding-top: 0.15rem; }
 
   /* What is standing under the word right now. The card used to answer this
@@ -804,6 +809,17 @@
     #hud .d-foot { position: sticky; bottom: 0; background: var(--panel); }
     #hud .s-pills button, #hud .r-pills button { padding-top: 0.08rem; padding-bottom: 0.08rem; }
   }
+  /* The record, whole, on request. The capped card is the resting state —
+     nothing rests open — but the record is entitled to say what it says, and
+     on a short screen the only honest way to read a long D is to let it
+     stand at its full height while it is wanted. The control sits in the
+     foot beside the M, where the record's own furniture lives. */
+  #hud .d-slot.whole { max-height: min(72vh, 36rem); overflow-y: auto; }
+  #hud .d-slot.whole .d-body { max-height: none; overflow-y: visible; }
+  #hud .d-grow { margin-left: auto; border: 1px solid var(--line); background: var(--panel2);
+    color: var(--muted); border-radius: 999px; font: inherit; font-size: 0.72rem;
+    padding: 0.02rem 0.55rem; cursor: pointer; white-space: nowrap; }
+  #hud .d-foot { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; }
   /* Levels. Three things hang off a section and they are not the same size of
      act. The number names it. The commentary is the section's other text, so
      it gets a line of its own, the width of the column, carrying the name of
@@ -966,6 +982,25 @@
     }
     raw.push(s.slice(start));
     return { readings: raw.map((piece) => piece.trim()).filter(Boolean), damaged: false };
+  };
+  // P · two D records are one record when they carry the same set of
+  // readings, however each provider packed them — ";" between senses, ","
+  // inside a sense at parenthesis depth zero, "/" between spans — folded by
+  // case exactly as the pool folds readings. The bytes each source wrote
+  // stay its own and print verbatim; P only says who is carrying the same
+  // record. Byte-identity was the old test, and it kept "Most High" and
+  // "most high" — one record by this law — from ever corroborating.
+  const pKey = (text) => {
+    const set = new Set();
+    for (const sense of senseSplit(text)) {
+      const r = readingSplit(sense);
+      for (const piece of (r.damaged ? [sense] : r.readings))
+        for (const span of piece.split("/")) {
+          const t = span.trim().toLowerCase();
+          if (t) set.add(t);
+        }
+    }
+    return [...set].sort().join("\u0001");
   };
   const senseSplit = (text) => {
     const t = String(text || "");
@@ -2207,11 +2242,15 @@
           body.append(cut);
         }
         const recs = [...selected.records].sort(EARLIEST_FIRST);
-        const byText = new Map();
+        // Grouped by P, not by bytes: sources whose D carries the same
+        // readings stand together whatever their packing, and the first
+        // source's own wording is the one that prints.
+        const byP = new Map();
         recs.forEach((row) => {
           const text = row[2] || row[1] || "";
-          if (!byText.has(text)) byText.set(text, []);
-          byText.get(text).push(row);
+          const key = pKey(text);
+          if (!byP.has(key)) byP.set(key, { text, rows: [] });
+          byP.get(key).rows.push(row);
         });
         // the record as the source packs it: senses divided by ";", cells by
         // "/" — cells join the way they join everywhere else, and the sense
@@ -2248,14 +2287,36 @@
         // Anything further is corroboration, and corroboration folds away —
         // named by its licences, so a reader looking for a particular one can
         // see from the closed drawer whether it is worth opening.
-        const groups = [...byText.entries()];
-        const [firstText, firstGroup] = groups[0];
+        const groups = [...byP.values()];
+        const first = groups[0];
+        const firstText = first.text;
+        const firstGroup = first.rows;
         body.append(dText(firstText));
         // The M is the one line that never scrolls: it is who says this, and a
         // reading whose source has scrolled out of sight is a reading standing
         // on nothing the reader can see. Everything else about the record —
         // its text, its corroboration — scrolls above it.
         foot.append(mLine(firstGroup[0]));
+        // The record, whole, on request: when the capped card is clipping
+        // the D, the foot offers the whole record; pressing again folds it.
+        // The check is made after layout, because clipping is a fact about
+        // the laid-out card, not about the text.
+        requestAnimationFrame(() => {
+          const slot = dCard.closest(".d-slot");
+          if (!slot) return;
+          const clipped = body.scrollHeight > body.clientHeight + 2 || slot.scrollHeight > slot.clientHeight + 2;
+          if (!clipped && !slot.classList.contains("whole")) return;
+          const grow = document.createElement("button");
+          grow.type = "button"; grow.className = "d-grow";
+          const say = () => { grow.textContent = slot.classList.contains("whole") ? "fold the record" : "the record, whole"; };
+          say();
+          grow.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            slot.classList.toggle("whole");
+            say(); clampHud();
+          });
+          foot.append(grow);
+        });
         // P · the grouper for M, when two M report the exact same D.
         //
         // The pool is grouped by reading, so two sources that report the same
@@ -2274,14 +2335,24 @@
         // and see how they said it.
         const alsoCarry = [];
         {
-          const seen = new Set(recs.map((r) => r[3]));
+          const firstKey = pKey(firstText);
+          const seen = new Set([firstGroup[0][3]]);
+          // the rest of the first bucket: the same record by P, carried by
+          // other sources inside this very reading — the ones the old foot
+          // silently dropped
+          for (const row of firstGroup.slice(1)) {
+            if (seen.has(row[3])) continue;
+            seen.add(row[3]);
+            alsoCarry.push({ row, group: selected, text: row[2] || row[1] || "" });
+          }
           for (const g of pool) {
             if (g === selected) continue;
             for (const row of g.records) {
-              if ((row[2] || row[1] || "") !== firstText) continue;
+              const t = row[2] || row[1] || "";
+              if (pKey(t) !== firstKey) continue;
               if (seen.has(row[3])) continue;
               seen.add(row[3]);
-              alsoCarry.push({ row, group: g });
+              alsoCarry.push({ row, group: g, text: t });
             }
           }
         }
@@ -2290,14 +2361,15 @@
           const line = document.createElement("p"); line.className = "d-also";
           line.append(Object.assign(document.createElement("span"),
             { className: "d-also-lab", textContent: `the same record, carried by ${alsoCarry.length} more source${alsoCarry.length === 1 ? "" : "s"}` }));
-          const one = ({ row, group }) => {
+          const one = ({ row, group, text }) => {
             const m = index.m_sources[row[3]];
             const b = document.createElement("button"); b.type = "button"; b.className = "d-also-m";
             b.append(`${m.label.split(/[,(]/)[0].trim()} · ${!row[4] || row[4] === "S_NO_SOURCE_YEAR" ? "no source year" : row[4]}`);
             const lic = document.createElement("span"); lic.className = "lic-chip";
             lic.textContent = licenseName(m.licensePosture); b.append(lic);
-            b.append(Object.assign(document.createElement("span"),
-              { className: "d-also-read", textContent: `reads it “${group.text}”` }));
+            if (text && text !== firstText)
+              b.append(Object.assign(document.createElement("span"),
+                { className: "d-also-read", textContent: `reads it “${text}”` }));
             b.title = `${m.label} — go to this reading`;
             b.addEventListener("click", (ev) => {
               ev.stopPropagation();
@@ -2315,8 +2387,9 @@
               { value: "", textContent: `${more.length} more source${more.length === 1 ? "" : "s"}…` }));
             more.forEach((x, i) => {
               const m = index.m_sources[x.row[3]];
+              const says = x.text && x.text !== firstText ? ` · reads it “${x.text}”` : "";
               sel.append(Object.assign(document.createElement("option"),
-                { value: String(i), textContent: `${m.label} · ${x.row[4]} · reads it “${x.group.text}”` }));
+                { value: String(i), textContent: `${m.label} · ${x.row[4]}${says}` }));
             });
             sel.addEventListener("change", (ev) => {
               ev.stopPropagation();
@@ -2335,8 +2408,12 @@
           // off the bottom of its own card. Measured, not reasoned about.
           body.append(line);
         }
-        const rest = [...firstGroup.slice(1).map((r) => [firstText, r]),
-                      ...groups.slice(1).flatMap(([t, g]) => g.map((r) => [t, r]))];
+        // The drawer holds the genuinely different records — other P
+        // buckets attesting this same reading. Sources carrying the SAME
+        // record stand in the corroboration line above, not here: listing a
+        // source in both places said "further record" about a record already
+        // on the card.
+        const rest = groups.slice(1).flatMap((g) => g.rows.map((r) => [g.text, r]));
         if (!rest.length) return;
         const licences = [...new Set(rest.map(([, r]) => licenseName(index.m_sources[r[3]].licensePosture)))];
         const more = document.createElement("button"); more.type = "button"; more.className = "d-more";
