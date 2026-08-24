@@ -231,6 +231,54 @@ const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
       onCard.band === 0 && onCard.pills === 0 && onCard.card === 0, onCard.kinds);
     await p.keyboard.press("Escape");
   }
+  // ---- the record stands under the deepest path -----------------------
+  //
+  // Division, then block, then a route: the path with the most pills on the
+  // card, and the one that lost the record on a real phone — the bands
+  // demanded everything, the record lent itself down past a line, and the
+  // source stood on nothing. Whatever the bands take, at least two lines of
+  // the record stay visible above its source, and the whole record stays
+  // reachable by the slot's own scroll.
+  {
+    await wbs[0].click();
+    await p.waitForSelector("#hud .s-pills button", { timeout: 20000 });
+    await p.waitForTimeout(250);
+    await p.evaluate(() => {
+      const pills = [...document.querySelectorAll("#hud .s-pills button")];
+      (pills.find((x) => x.textContent.includes("+")) || pills[pills.length - 1]).click();
+    });
+    await p.waitForTimeout(400);
+    await p.evaluate(() => {
+      const blocks = [...document.querySelectorAll("#hud [class*=blk] button")];
+      if (blocks.length) blocks[blocks.length - 1].click();
+    });
+    await p.waitForTimeout(800);
+    const r = await p.evaluate(() => {
+      const slot = document.querySelector("#hud .d-slot");
+      const body = document.querySelector("#hud .d-card .d-body");
+      const foot = document.querySelector("#hud .d-card .d-foot");
+      if (!slot || !body || !foot) return null;
+      const sr = slot.getBoundingClientRect(), br = body.getBoundingClientRect(), fr = foot.getBoundingClientRect();
+      const line = parseFloat(getComputedStyle(document.querySelector("#hud .d-text") || body).lineHeight) || 26;
+      const visible = Math.max(0, Math.min(br.bottom, fr.top) - Math.max(br.top, sr.top));
+      // a record one line long standing whole IS the law satisfied — the
+      // demand is two lines or the whole record, whichever is less; a window
+      // squashed flat affords one line at rest, with the rest a scroll away
+      const afford = innerHeight >= 660 ? 2 : 1;
+      const owed = Math.min(Math.round(line * afford), body.scrollHeight) - 2;
+      return { visible: Math.round(visible), owed, line: Math.round(line),
+        reachable: slot.scrollHeight >= body.scrollHeight,
+        footInView: fr.bottom <= sr.bottom + 1 && fr.top >= sr.top - 1,
+        hasText: (body.textContent || "").trim().length > 0 };
+    });
+    check(`  under division and block, the record still stands above its source (${vp.name})`,
+      !!r && r.hasText && r.visible >= r.owed,
+      r ? `${r.visible}px visible, ${r.owed}px owed` : "no record on the card at all");
+    check("  and the whole record is reachable, its source in view",
+      !!r && r.reachable && r.footInView,
+      r ? `scrollable ${r.reachable} · foot in view ${r.footInView}` : "nothing to reach");
+    await p.keyboard.press("Escape");
+  }
   await p.close();
 }
 await b.close();

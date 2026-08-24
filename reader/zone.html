@@ -546,16 +546,17 @@
      together, and the record's floor cut the source line off. The rows region
      scrolls inside itself; it is the one that can afford to give, so it gives
      all of it. What bounds the record is its cap, not its neighbours. */
-  #hud .d-slot { flex: 0 0 auto; max-height: 32vh;
-    display: flex; flex-direction: column; overflow: hidden; }
-  #hud .d-card { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
-  /* The record's floor is three lines, not one: a floor of one line left a
-     phone showing a sliver of D with a scrollbar nobody could use, which is
-     clipping wearing a scrollbar's clothes. Whatever the card's budget, the
-     record stands at least this tall; the pill bands above already know how
-     to scroll. */
-  #hud .d-body { flex: 1 1 auto; min-height: 3.9rem; overflow-y: auto; }
-  #hud .d-foot { flex: 0 0 auto; padding-top: 0.15rem; }
+  /* One arrangement at every height: the record and its source share one
+     scroll, and the source line sticks to the bottom of it. This used to be
+     the short-screen arrangement only, while taller screens got a flex
+     column that clipped — and a real phone's font metrics found the seam
+     between the two and lost the record entirely, foot standing on nothing.
+     The record's floor is three lines, not one: a floor of one line is
+     clipping wearing a scrollbar's clothes. */
+  #hud .d-slot { flex: 0 0 auto; max-height: max(32vh, 10rem); overflow-y: auto; }
+  #hud .d-card { display: block; }
+  #hud .d-body { min-height: 3.9rem; }
+  #hud .d-foot { position: sticky; bottom: 0; background: var(--panel); padding-top: 0.15rem; }
 
   /* What is standing under the word right now. The card used to answer this
      only by which pill was lit, and with two hundred pills in a scrolling row
@@ -839,15 +840,7 @@
     #hud { max-height: 94vh; }
     #hud .prov { display: none; }
     #hud .r-now { margin: 0 0 0.2rem; padding-bottom: 0.2rem; }
-    /* The record and its source share one scroll from this height down, and
-       the source line sticks to the bottom of it. This arrangement lived
-       only in the 480px block, so between 481 and 660 the foot was a static
-       box painting past its slot's floor — the source line cut off at
-       exactly the heights most phones stand at. Never out of sight means
-       here too. */
-    #hud .d-slot { max-height: 26vh; min-height: 3.6rem; overflow-y: auto; }
-    #hud .d-card, #hud .d-body { overflow: visible; min-height: 0; display: block; }
-    #hud .d-foot { position: sticky; bottom: 0; background: var(--panel); }
+    #hud .d-slot { max-height: max(26vh, 9rem); }
   }
   /* Shorter still — a desktop window a few hundred pixels tall. The structural
      rows go to a single row each and the labels tighten. Everything the reader
@@ -857,13 +850,7 @@
     #hud .r-label { margin: 0.15rem 0 0.1rem; font-size: 0.66rem; }
     #hud .head b { font-size: 1.15rem; }
     #hud .head { padding-bottom: 0.2rem; margin-bottom: 0.15rem; }
-    /* At this height a source line that runs to three lines cannot have a floor
-       of its own without starving the readings. So here the record and its
-       source share one scroll and the source line sticks to the bottom of it —
-       still never out of sight, still never the thing that gives. */
-    #hud .d-slot { max-height: 27vh; min-height: 3.6rem; overflow-y: auto; }
-    #hud .d-card, #hud .d-body { overflow: visible; min-height: 0; display: block; }
-    #hud .d-foot { position: sticky; bottom: 0; background: var(--panel); }
+    #hud .d-slot { max-height: max(27vh, 8.75rem); }
     #hud .s-pills button, #hud .r-pills button { padding-top: 0.08rem; padding-bottom: 0.08rem; }
   }
   /* The record, whole, on request. The capped card is the resting state —
@@ -1768,14 +1755,17 @@
 
     // One whole row each is what the bands are owed. If the card is too short
     // to owe them that — a word low on the page, with the card opening beneath
-    // it — the record lends the difference: its text gives way down to a line,
-    // and its source line, which is the licence, is not part of what it lends.
-    // After the record, the provenance line, which is the one thing on the card
-    // nobody presses.
+    // it — the record lends the difference: its text gives way down to three
+    // lines, which is the record's floor everywhere, and its source line,
+    // which is the licence, is not part of what it lends. A floor of one line
+    // once left a phone with the source standing on no record at all. After
+    // the record, the provenance line, the one thing on the card nobody
+    // presses.
     const floors = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
     if (floors > rowsEl.clientHeight && dSlot) {
       const foot = hud.querySelector(".d-foot");
-      const floor = (foot ? foot.offsetHeight : 0) + 22;
+      const dLine = parseFloat(getComputedStyle(hud.querySelector(".d-text") || dSlot).lineHeight) || 26;
+      const floor = (foot ? foot.offsetHeight : 0) + Math.ceil(dLine * 3);
       const give = Math.min(floors - rowsEl.clientHeight, Math.max(0, dSlot.clientHeight - floor));
       if (give > 0) dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`;
     }
