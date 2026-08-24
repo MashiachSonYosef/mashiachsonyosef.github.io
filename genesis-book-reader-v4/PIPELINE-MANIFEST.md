@@ -76,7 +76,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 14 of the 34 tools that are not checks.
+`build.sh` calls 14 of the 35 tools that are not checks.
 
 Not called by any build stage:
 
@@ -98,6 +98,7 @@ Not called by any build stage:
 - `tools/sense-split-v1.mjs`
 - `tools/span-slice-v1.mjs`
 - `tools/w-list-v1.mjs`
+- `tools/work-holds-v1.mjs`
 - `tools/zone-lib-v1.mjs`
 - `tools/zones-on-disk-v1.mjs`
 
