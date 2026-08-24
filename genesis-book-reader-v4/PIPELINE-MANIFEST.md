@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-24.
 
-**38 rules declared · 27 named by a check · 11 unguarded.**
+**39 rules declared · 28 named by a check · 11 unguarded.**
 **11 published artifacts · 11 with a build step · 0 without.**
 
 ## The rules
@@ -23,6 +23,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `commentary-scope-rule-v2` | zone.html | check-commentary-in-line-v1 |
 | `commentary-words-rule-v1-separate-at-the-spaces-the-author-typed` | tools/build-commentary-sidecar-v1.mjs | check-commentary-in-line-v1 |
 | `dibbur-hamatchil-rule-v2-the-window-is-the-verse` | tools/generate-attachment-map-v2.mjs | check-nothing-hard-wired-v1 |
+| `doc-currency-rule-v1-an-undated-document-names-only-what-is-here` | tools/check-docs-name-what-is-here-v1.mjs | check-docs-name-what-is-here-v1 |
 | `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | **UNGUARDED** |
 | `export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work` | zone.html | check-citations-v1, check-export-v1 |
 | `family-ledger-rule-v1-values-are-ruled-works-are-not` | tools/check-family-ledger-v1.mjs | check-family-ledger-v1 |
