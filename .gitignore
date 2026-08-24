@@ -1,0 +1,10 @@
+# Scratch, and only scratch.
+#
+# build/ is where every stage writes what the next stage reads: the derived
+# plan, the staged pinned zones, the assembled door before it is copied out.
+# None of it is a record and none of it is published — but it sits inside the
+# published tree, so without this line one `git add -A` puts a build's private
+# working state on the site. That nearly happened on 2026-08-24.
+genesis-book-reader-v4/build/
+genesis-book-reader-v4/site/
+genesis-book-reader-v4/deploy-root/
