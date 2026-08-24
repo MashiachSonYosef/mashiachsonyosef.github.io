@@ -43,6 +43,7 @@ if [ "${1:-}" = "--plan" ]; then
   while IFS=$'\t' read -r kind f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12; do
     case "$kind" in
       W) echo "  serve $f3 $f6-$f7 · build-zone --work $f1 --title \"$f4\"$( [ "$f5" != "-" ] && printf ' --title-he <ledger>' )$( [ "$f8" != "-" ] && printf ' --y <%s>' "$f8" ) → data/zones/$f3.bin   [$f2]" ;;
+      H) echo "  WITHHELD $f2 ($f3) · held since $f4 — $f5" ;;
       A) echo "  commentary: $f2 attached onto $f1 by $f3" ;;
       P) echo "  pack sidecar for $f1: $f2" ;;
     esac
@@ -71,8 +72,21 @@ node tools/install-pinned-zone-successors-v1.mjs --mode stage \
   --zones data/zones --stage build/pinned-zone-successors-v1
 
 # The plan's rows, held for the stages that join works to each other.
+#
+# A W row means serve it. A work this lane is holding gets an H row instead,
+# and never reaches a stage that could publish it — the state is declared in
+# data/work-records-v1.js and derived by plan-build-v1, not worked out here
+# from which files happen to exist. This script once had no idea a work could
+# be held: five works were named, three had been withdrawn from the site, and
+# a single run of this file would have put all five back.
 declare -A PUB TITLE TITLE_HE YFIX BYLINE LABELS LINKS FAMILY RANGE
 WORKS=()
+HELD=()
+while IFS=$'\t' read -r kind h1 h2 h3 h4 h5; do
+  [ "$kind" = "H" ] || continue
+  HELD+=("$h1")
+  echo "  withheld · $h1 ($h2) since $h4"
+done < "$PLAN"
 while IFS=$'\t' read -r kind f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12; do
   [ "$kind" = "W" ] || continue
   WORKS+=("$f1")
@@ -140,14 +154,16 @@ done < "$PLAN"
 echo "── 5b · pack commentary, from each pack and its attachment map ─────────"
 while IFS=$'\t' read -r kind WID PACK CARRIED; do
   [ "$kind" = "P" ] || continue
+  # The map's name is derived from the work it attaches to, and the day it was
+  # made rides inside it. This line used to write data/v5-attachment-map-$STAMP.js,
+  # so every build left a new tracked file and no build retired one — four
+  # generations accumulated, and the tool that read a map named one of them by
+  # hand, which is how the newest ended up being the one nothing used.
   node tools/generate-attachment-map-v2.mjs \
     --pack "$PACK" --carried "$CARRIED" \
-    --zone "data/zones/${PUB[$WID]}.bin" --stamp "$STAMP" \
-    --out "data/v5-attachment-map-$STAMP.js"
+    --zone "data/zones/${PUB[$WID]}.bin" --stamp "$STAMP"
   node tools/build-commentary-sidecar-v1.mjs \
-    --pack "$PACK" --map "data/v5-attachment-map-$STAMP.js" \
-    --zone "data/zones/${PUB[$WID]}.bin" \
-    --store data/route-store --out "data/zones/${PUB[$WID]}-commentary.bin"
+    --pack "$PACK" --zone "data/zones/${PUB[$WID]}.bin" --store data/route-store
 done < "$PLAN"
 
 echo "── 6 · assemble the site ───────────────────────────────────────────────"

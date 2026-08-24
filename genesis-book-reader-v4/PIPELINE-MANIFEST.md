@@ -6,8 +6,8 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-24.
 
-**40 rules declared · 27 named by a check · 13 unguarded.**
-**6 published artifacts · 6 with a build step · 0 without.**
+**38 rules declared · 27 named by a check · 11 unguarded.**
+**11 published artifacts · 11 with a build step · 0 without.**
 
 ## The rules
 
@@ -35,7 +35,6 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs` | zone.html | check-licence-leaves-v1 |
 | `mark-inventory-rule-v1-closed-set-over-route-text` | tools/mark-inventory-v1.mjs | **UNGUARDED** |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | **UNGUARDED** |
-| `nested-word-shards-rule-v2-contextual-resolution-first` | tools/generate-rashi-word-shards.mjs | **UNGUARDED** |
 | `pass-through-rule-v1-a-sealed-layer-can-only-be-withheld-never-added` | tools/build-commentary-sidecar-v1.mjs | check-sealed-layers-v1 |
 | `pipeline-manifest-rule-v1-a-rule-with-no-guard-is-printed-as-having-none` | tools/pipeline-manifest-v1.mjs | **UNGUARDED** |
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
@@ -47,7 +46,6 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates` | tools/sense-split-v1.mjs | check-provider-characters-v1, check-sense-split-v1 |
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | **UNGUARDED** |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
-| `synthesis-default-gloss-rule-v2-antiquity-primacy-1940-lastuary` | tools/derive-default-glosses.mjs | **UNGUARDED** |
 | `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, zone.html | check-clean-address-v1 |
 | `w-grain-rule-v1-a-component-system-is-drawn-on-a` | tools/check-w-grain-v1.mjs | check-w-grain-v1 |
 | `w-list-rule-v1-the-record-says-which-entries-are` | tools/w-list-v1.mjs | check-w-grain-v1 |
@@ -67,13 +65,18 @@ machine it was made on is gone, so is the ability to make it again.
 | `zone.html` · the reader itself | build.sh |
 | `index.html` · the front door | build.sh |
 | `README.md` · the front door, for someone browsing the repository | build.sh |
+| `genesis/index.html` · the clean address · withheld since 2026-08-23 | tools/build-front-door-v1.mjs |
+| `i-kings/index.html` · the clean address · withheld since 2026-08-23 | tools/build-front-door-v1.mjs |
+| `ruth/index.html` · the clean address · withheld since 2026-08-23 | tools/build-front-door-v1.mjs |
+| `aramaic-targum-to-ruth/index.html` · the clean address · TYPED_AWAITING_LEDGER | tools/build-front-door-v1.mjs |
+| `targum-jonathan-on-i-kings/index.html` · the clean address · TYPED_AWAITING_LEDGER | tools/build-front-door-v1.mjs |
+| `data/zones/aramaic-targum-to-ruth.bin` · TYPED_AWAITING_LEDGER | tools/build-zone.mjs |
+| `data/zones/targum-jonathan-on-i-kings.bin` · TYPED_AWAITING_LEDGER | tools/build-zone.mjs |
 | `data/route-store` · index + 256 shards | tools/build-route-store.mjs |
-| `data/v5-attachment-map-2026-08-19.js` · which words of which section each commentary sits on | build.sh |
-| `build/build-plan-v1.json` · NOT DERIVED YET — run tools/plan-build-v1.mjs; the per-work rows above are missing until it exists | tools/plan-build-v1.mjs |
 
 ## Stages
 
-`build.sh` calls 14 of the 37 tools that are not checks.
+`build.sh` calls 14 of the 34 tools that are not checks.
 
 Not called by any build stage:
 
@@ -81,22 +84,19 @@ Not called by any build stage:
 - `tools/carry-span-receipt-v1.mjs`
 - `tools/commentary-span-findings-v1.mjs`
 - `tools/declaration-v1.mjs`
-- `tools/derive-default-glosses.mjs`
 - `tools/emit-corpus-atlas-v1.mjs`
 - `tools/emit-workspace-manifest-v1.mjs`
-- `tools/generate-genesis-1-1-attachment-map.mjs`
-- `tools/generate-rashi-word-shards.mjs`
 - `tools/gloss-store-v1.mjs`
 - `tools/k-normalization-v1.mjs`
 - `tools/make-fixture-zone-v1.mjs`
 - `tools/mark-inventory-v1.mjs`
 - `tools/name-the-titles-v1.mjs`
 - `tools/plan-work-shards-v1.mjs`
+- `tools/planned-packs-v1.mjs`
 - `tools/regloss-zone.mjs`
 - `tools/respan-zone-v1.mjs`
 - `tools/sense-split-v1.mjs`
 - `tools/span-slice-v1.mjs`
-- `tools/test-word-shards.mjs`
 - `tools/w-list-v1.mjs`
 - `tools/zone-lib-v1.mjs`
 - `tools/zones-on-disk-v1.mjs`
