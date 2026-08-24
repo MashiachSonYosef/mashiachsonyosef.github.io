@@ -15,8 +15,8 @@ p.on("pageerror", e => { console.log("PAGE ERROR:", e.message); bad++; });
 await p.goto(URL, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg");
 
-// Kyle's case: the first word of 1 Kings, read under a finer division, with a
-// reading chosen for one of its blocks.
+// The remembered case: the first word of I Kings, read under a finer
+// division, with a reading chosen for one of its blocks.
 await (await p.$("section.seg .he-text .wb")).click();
 await p.waitForSelector("#hud .s-pills button", { timeout: 20000 });
 const cuts = await p.evaluate(() => [...document.querySelectorAll("#hud .s-pills button")].map(b => b.textContent.trim()));

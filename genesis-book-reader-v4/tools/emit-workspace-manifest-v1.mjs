@@ -32,7 +32,6 @@ const arg = (name, dflt) => {
 };
 const BRIDGE = arg("bridge");
 const WORKSPACE = arg("workspace");
-const DEVICE_ROOT = arg("device-root", "C:\\Users\\owner\\Documents\\999 footsteps");
 const PLAN = arg("plan", "build/build-plan-v1.json");
 const OUT = arg("out", "data/workspace-manifest-v1.json");
 if (!BRIDGE || !WORKSPACE) throw new Error("--bridge and --workspace are both required");
@@ -87,7 +86,6 @@ const rows = [...files.entries()].sort((a, b) => a[0].localeCompare(b[0])).map((
   const here = existsSync(abs);
   return {
     path: p,
-    device_path: `${DEVICE_ROOT}\\${p.split("/").join("\\")}`,
     bytes: here ? statSync(abs).size : null,
     why: e.why,
     works: [...e.works].sort(),
@@ -98,14 +96,13 @@ const rows = [...files.entries()].sort((a, b) => a[0].localeCompare(b[0])).map((
 const doc = {
   schema_version: "WORKSPACE_MANIFEST_V1",
   emitted_by: "tools/emit-workspace-manifest-v1.mjs",
-  rule: "this lane runs in a container that is reclaimed without warning; the branch is not. Every corpus file the lane needs to serve and build the published works is written here, with its path on the owner's machine, so recovery after a rollback is one read and one staging call rather than a discovery loop. The list is computed by tools/plan-work-shards-v1.mjs over every work in the build plan, never typed.",
+  rule: "this lane runs in a container that is reclaimed without warning; the branch is not. Every corpus file the lane needs to serve and build the published works is written here, by its path under the workspace root, so recovery after a rollback is one read and one staging call rather than a discovery loop. The list is computed by tools/plan-work-shards-v1.mjs over every work in the build plan, never typed.",
   recovery: [
     "git clone -q --depth 1 -b gh-pages <repo> /home/claude/wk",
     "node tools/check-workspace-staged-v1.mjs --workspace '/mnt/user-data/uploads/999 footsteps'",
-    "stage the device paths it prints, in one call",
+    "stage the paths it prints, under the workspace root, in one call",
     "re-run it: a clean report means every serve and build in this lane can run",
   ],
-  device_root: DEVICE_ROOT,
   derived_from: { plan: PLAN, bridge: BRIDGE.split("/").pop() },
   counts: { files: rows.length, works_planned: plan.works.length, works_whose_dictionary_shards_were_unresolved: incomplete },
   files: rows,

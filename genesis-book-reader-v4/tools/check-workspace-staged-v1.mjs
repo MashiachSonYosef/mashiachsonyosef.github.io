@@ -4,7 +4,7 @@
 // Reads data/workspace-manifest-v1.json — written on the branch, which
 // survives what the container does not — and says which corpus files are
 // missing from the staged workspace. It prints them twice: once as a list a
-// person can read, and once as the exact JSON array of device paths, so the
+// person can read, and once as the exact JSON array of workspace-relative paths, so the
 // whole recovery is one staging call instead of a guess-and-fail loop.
 //
 // Exit 0 when nothing is missing, 1 when something is. Exit 3 when the
@@ -52,8 +52,8 @@ if (wrong.length) {
 if (missing.length) {
   console.log("\nmissing, by what it is for:");
   for (const f of missing) console.log(`  ${f.path}\n      ${f.why}${f.works.length ? `  ·  ${f.works.join(", ")}` : ""}`);
-  console.log("\nstage these — one call, paths as the device carries them:\n");
-  console.log(JSON.stringify([...missing, ...wrong].map((f) => f.device_path), null, 0));
+  console.log("\nstage these — one call, paths under the workspace root:\n");
+  console.log(JSON.stringify([...missing, ...wrong].map((f) => f.path), null, 0));
 }
 
 console.log();
