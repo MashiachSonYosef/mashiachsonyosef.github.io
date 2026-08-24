@@ -207,6 +207,8 @@ const BOOKS = plan.works.map((w) => ({
   work_id: w.work_id, address_by_rule: w.address_by_rule, basis: w.basis,
   serve_state: w.serve_state || "SERVED",
   withheld_reason: w.withheld_reason || "",
+  withheld_basis: w.withheld_basis || "",
+  withheld_from: w.withheld_from || "",
   held: (WB.works[w.published_as] || {}).held_commentaries || 0,
 }));
 // Attachment is directional for presentation: the record's pair is
@@ -1250,7 +1252,16 @@ writeFileSync(join(OUT, "front-door-counts-receipt-v1.json"), countReceiptJson);
 // The reason a work is held is a fact in the record, so the page prints the
 // record's sentence rather than one typed here. A page that says the same
 // thing about every held work is a page that stops being read.
-const heldPage = (reason = "") => `<!doctype html>
+// A withholding carries its own provenance onto the page, the same as every
+// other claim here. A sentence this lane wrote and a status a ledger issued
+// are different kinds of thing, and a reader is entitled to know which one is
+// keeping a book from them.
+const heldFrom = (b) => {
+  if (!b || b.serve_state !== "WITHHELD") return "";
+  if (b.withheld_basis === "SEALED_HOLD_LEDGER") return `Held by the record: ${b.withheld_from}`;
+  return `Held by this lane, not yet by a record: ${b.withheld_from}`;
+};
+const heldPage = (reason = "", from = "") => `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1259,18 +1270,18 @@ const heldPage = (reason = "") => `<!doctype html>
 <link rel="canonical" href="/">
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0910;
   color:#a99a80;font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
-  a{color:#e8c46a} p{max-width:34rem}</style>
+  a{color:#e8c46a} p{max-width:34rem} .prov{font-size:.82em;color:#6d6152}</style>
 </head>
 <body><p>This address is kept, and the work behind it is not being served.<br><br>
 ${reason ? esc(reason) + "<br><br>" : ""}Nothing is shown in the meantime, and the
 address returns here when the holding ends.<br><br>
-<a href="/">The Tabernacle</a></p>
+${from ? `<span class="prov">${esc(from)}</span><br><br>` : ""}<a href="/">The Tabernacle</a></p>
 </body>
 </html>
 `;
 for (const b of withheldBooks) {
   mkdirSync(join(OUT, b.slug), { recursive: true });
-  writeFileSync(join(OUT, b.slug, "index.html"), heldPage(b.withheld_reason));
+  writeFileSync(join(OUT, b.slug, "index.html"), heldPage(b.withheld_reason, heldFrom(b)));
 }
 for (const b of books) {
   mkdirSync(join(OUT, b.slug), { recursive: true });
@@ -1299,7 +1310,7 @@ if (existsSync(HISTORY)) {
     // never from a list typed here.
     if (!b) {
       const held = BOOKS.find((x) => x.slug === target);
-      writeFileSync(join(OUT, row.from, "index.html"), heldPage(held ? held.withheld_reason : ""));
+      writeFileSync(join(OUT, row.from, "index.html"), heldPage(held ? held.withheld_reason : "", heldFrom(held)));
       continue;
     }
     const moved = `<!doctype html>

@@ -27,6 +27,8 @@ const OUT = arg("out", "data/work-basis-v1.json");
 
 const plan = JSON.parse(readFileSync(PLAN, "utf8"));
 
+import { isWorkHold } from "./work-holds-v1.mjs";
+
 // ---- holds, found by shape ------------------------------------------------
 const splitCsvLine = (line) => {
   const out = []; let cur = "", inQ = false;
@@ -55,6 +57,10 @@ for (const f of readdirSync(DATA).filter((f) => f.endsWith(".csv")).sort()) {
     const row = splitCsvLine(line);
     const workId = row[col("base_work_id")];
     if (!workId) continue;
+    // A row that holds the WORK is not a commentary this work is holding, and
+    // counting it as one would print "1 commentary held" on a page for a book
+    // that is not being served at all. plan-build-v1 reads those rows.
+    if (isWorkHold(row[col("status")], col("current_effect") > -1 ? row[col("current_effect")] : "")) continue;
     (holdsByWork[workId] ||= { source: f, holds: [] }).holds.push({
       hold_id: row[col("hold_id")],
       title: col("commentary_title") > -1 ? row[col("commentary_title")] : "",

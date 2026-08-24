@@ -49,6 +49,8 @@ import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { workHoldsFromLedgers } from "./work-holds-v1.mjs";
+
 export const PLAN_RULE_ID = "plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -87,12 +89,33 @@ for (const f of readdirSync(DATA).filter((x) => x.endsWith(".js"))) {
 if (!record) { console.error("NO_WORK_RECORD — data/ carries no WORK_RECORDS_V1 file"); process.exit(2); }
 const descriptors = record.descriptors || {};
 const typed = record.typed_awaiting_ledger || {};
-// A withholding is declared, never inferred. The door used to work out which
-// works were held by noticing no zone answered for them, which made a zone
-// deleted by accident indistinguishable from a work deliberately held — and
-// left build.sh, which never saw the distinction at all, serving every work
-// the plan named.
-const withheld = record.withheld || {};
+// A withholding has two possible sources and a strict order between them, the
+// same order every other fact here stands under.
+//
+//   1. A hold ledger. Found by shape — any CSV in data/ carrying hold_id,
+//      base_work_id and status — with a status that holds the WORK rather than
+//      a commentary on it. Basis: SEALED_HOLD_LEDGER. The reason is the
+//      ledger's own status string; nothing here composes one.
+//   2. data/work-records-v1.js, for a work held with no ledger row yet.
+//      Basis: TYPED_AWAITING_HOLD_LEDGER, and the entry names the day it dies.
+//
+// A work with BOTH is refused outright — two sources for one fact is how drift
+// starts — exactly as a work with both a Y ledger and a typed entry is.
+//
+// None of this was here before. The door worked out which works were held by
+// noticing no zone answered for them, which cannot tell a zone deleted by
+// accident from a work deliberately withdrawn, and build.sh never saw the
+// distinction at all.
+const ledgerHolds = workHoldsFromLedgers(DATA);
+const typedHolds = record.withheld || {};
+const heldBoth = Object.keys(typedHolds).filter((id) => ledgerHolds[id]);
+if (heldBoth.length) {
+  console.error(`A_WORK_IS_HELD_BY_A_LEDGER_AND_BY_A_TYPED_ENTRY — refusing to plan.`);
+  for (const id of heldBoth)
+    console.error(`  ${id} is held by ${ledgerHolds[id].source} (${ledgerHolds[id].hold_id}), so its withheld entry in ${recordFile} must be deleted`);
+  process.exit(2);
+}
+const withheld = { ...typedHolds, ...ledgerHolds };
 
 // ---- the one refusal -------------------------------------------------------
 const both = ledgers.map((l) => l.work.content_work_id).filter((id) => typed[id]);
@@ -164,8 +187,12 @@ if (orphanHolds.length) {
 for (const w of works) {
   const h = withheld[w.work_id];
   w.serve_state = h ? "WITHHELD" : "SERVED";
+  w.withheld_basis = h ? (h.basis || "TYPED_AWAITING_HOLD_LEDGER") : "";
+  w.withheld_from = h ? (h.source ? `${h.source} · ${h.hold_id}` : `${recordFile} · typed on ${record.recorded_on}`) : "";
   w.withheld_since = h ? h.since || "" : "";
-  w.withheld_reason = h ? h.reason || "" : "";
+  // A ledger row's reason is its status, verbatim. A typed entry's reason is
+  // the sentence typed with it, which is a sentence this lane wrote and says so.
+  w.withheld_reason = h ? (h.status || h.reason || "") : "";
   w.withheld_ends_when = h ? h.ends_when || "" : "";
 }
 
@@ -226,7 +253,7 @@ const tsv = [
   ...works.filter((w) => w.serve_state === "SERVED").map((w) => ["W", w.work_id, w.basis, w.published_as, w.title_en, esc(w.title_he),
     w.c0_first, w.c0_last, esc(w.y_fixture), w.byline, w.coord_labels, esc(w.license_links), w.family_en].join("\t")),
   ...works.filter((w) => w.serve_state === "WITHHELD").map((w) =>
-    ["H", w.work_id, w.published_as, w.title_en, w.withheld_since, w.withheld_reason].join("\t")),
+    ["H", w.work_id, w.published_as, w.title_en, w.withheld_basis, w.withheld_from, w.withheld_reason].join("\t")),
   ...(record.attachments || []).filter((a) => bothSidesServed(a.pair[0], a.pair[1])).flatMap((a) => [
     ["A", a.pair[0], a.pair[1], a.by].join("\t"),
     ["A", a.pair[1], a.pair[0], a.by].join("\t"),
@@ -244,8 +271,10 @@ for (const w of works) {
   const state = w.serve_state === "WITHHELD" ? " · WITHHELD" : "";
   console.log(`  ${w.work_id.padEnd(pad)}  ${String(w.c0_first)}-${String(w.c0_last)} · ${String(w.unit_count).padStart(5)} units · ${w.basis}${state}`);
   console.log(`  ${"".padEnd(pad)}  from ${w.derived_from}`);
-  if (w.serve_state === "WITHHELD")
-    console.log(`  ${"".padEnd(pad)}  held since ${w.withheld_since} — ${w.withheld_reason}`);
+  if (w.serve_state === "WITHHELD") {
+    console.log(`  ${"".padEnd(pad)}  held · ${w.withheld_basis} · from ${w.withheld_from}`);
+    console.log(`  ${"".padEnd(pad)}  ${w.withheld_reason}`);
+  }
   if (w.published_as !== w.address_by_rule)
     console.log(`  ${"".padEnd(pad)}  published as "${w.published_as}" · the address rule says "${w.address_by_rule}" — awaiting the republish step`);
 }

@@ -1,7 +1,14 @@
 #!/usr/bin/env node
-// The rule that divides a provider's field into readings, tested on the fields
-// themselves. No page, no store, no network: string in, readings out, and the
-// pieces must rejoin to what they came from.
+// The rule that divides a provider's field into readings — tested on the
+// fields themselves, and then on what actually shipped.
+//
+// The second half is the half that was missing. This file tested the module
+// and passed, thirteen assertions, every day, while the store that builds the
+// zones carried its own private splitter that separates on ';' and nothing
+// else. A rule can be declared, and guarded, and still not be the rule the
+// output was made under — and a check that only tests the module is how that
+// goes unnoticed. So the last section asks the shipped zones whether the
+// readings they print are single readings by this rule.
 // GUARDS: sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates
 //
 import { dirname, join } from "node:path";
@@ -50,5 +57,48 @@ check("a plain field is one reading", senseSplit("in the beginning").readings.le
 check("balanced text reports no damage", unbalancedAt("a (b, c) d") === -1);
 check("an opener never closed is damage", unbalancedAt("a (b, c d") >= 0);
 check("a closer with nothing open is damage", unbalancedAt("a b) c") === 3);
+
+// ---- and now the half that was missing: what actually shipped --------------
+//
+// One reading on display at a time is the reader's whole promise. A pill that
+// holds several readings glued by a comma breaks it in the one way a reader
+// cannot see: there is nothing to press, because the page believes it is
+// showing one thing.
+const { readFileSync, existsSync, readdirSync } = await import("node:fs");
+const { gunzipSync } = await import("node:zlib");
+const HERE2 = dirname(fileURLToPath(import.meta.url));
+const ZONES = join(HERE2, "..", "data", "zones");
+if (!existsSync(ZONES)) {
+  console.log("\n  --    no zones directory here, so nothing shipped can be asked");
+} else {
+  const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")).sort();
+  let asked = 0, glued = 0, damaged = 0;
+  const worst = [];
+  for (const f of bins) {
+    const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8"));
+    if ((z.emitted_from || {}).test_instrument) continue;
+    for (const [k, text] of Object.entries(z.gloss || {})) {
+      asked += 1;
+      const r = senseSplit(String(text));
+      if (r.damaged) damaged += 1;
+      if (r.readings.length > 1) {
+        glued += 1;
+        if (worst.length < 5) worst.push(`${k} → ${JSON.stringify(text)} is ${r.readings.length}`);
+      }
+    }
+  }
+  if (!asked) {
+    console.log("\n  --    no zone here carries a reading table, so nothing shipped can be asked");
+  } else {
+    console.log(`\n— and the readings that shipped, asked under the same rule —`);
+    check("  every reading a zone prints is one reading by this rule", glued === 0,
+      glued
+        ? `${glued.toLocaleString()} of ${asked.toLocaleString()} hold more than one · ${worst.join(" · ")}`
+        : `${asked.toLocaleString()} readings, each whole`);
+    check("  and none was damaged by the split", damaged === 0,
+      damaged ? `${damaged} carry a separator this rule cuts through` : "none");
+  }
+}
+
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);
