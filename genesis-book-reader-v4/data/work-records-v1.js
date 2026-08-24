@@ -121,22 +121,27 @@ window.WORK_RECORDS_V1 = Object.freeze({
     }
   ],
   "withheld_basis": {
-    "these_are": "works this lane holds a record for and is not serving. A withholding is a decision made here, not a fact the corpus states, so it is typed in the open with the reason and the condition that ends it — the same law as typed_awaiting_ledger.",
-    "why_it_is_written_down": "the front door used to work out which works were withheld by noticing that no zone answered for them. An absence is not a record. A zone deleted by accident printed the identical page to a work deliberately held, and build.sh — which had no idea any work was held — went on serving all five. The state is declared here now, and a served work with no zone is an error rather than a quiet hold.",
-    "dies_when": "the work is served: delete its entry the same day its zone is published"
+    "these_are": "works this lane is not serving, typed here because no hold ledger on this disk carries them yet. Basis TYPED_AWAITING_HOLD_LEDGER — the same law typed_awaiting_ledger stands under, and the same death: the day a hold ledger carries the row, this entry is deleted, and plan-build-v1 refuses while both exist.",
+    "where_it_belongs": "a row in a hold ledger — any CSV in data/ carrying hold_id, base_work_id and status, found by shape and never by filename, exactly as the commentary holds already are. A work-level row is one whose status begins HOLD_WORK__ or whose current_effect is WORK_WITHHELD. tools/work-holds-v1.mjs reads them; plan-build-v1 prefers them over anything typed here.",
+    "why_it_is_written_down_at_all": "the front door used to work out which works were held by noticing that no zone answered for them. An absence is not a record: a zone deleted by accident printed the identical page to a work deliberately held, and build.sh — which had no idea any work was held — would have re-served all five on one run.",
+    "the_reason_below_is_ours": "each reason is a sentence this lane wrote, not a status a ledger issued. A ledger row's reason is its status string, verbatim. Until these are ledger rows, the reader is being told why a work is held by us and not by the record, and that is the whole of what is still owed here.",
+    "dies_when": "a hold ledger carries the work — delete the entry the same day"
   },
   "withheld": {
     "tanakh/genesis": {
+      "basis": "TYPED_AWAITING_HOLD_LEDGER",
       "since": "2026-08-23",
       "reason": "Its transmission apparatus is not verified. The source-marked sites in this book are not yet carried as records, so the text cannot be shown without the reader quietly choosing for you between the forms its sources attest.",
       "ends_when": "the Q sites for this work are issued and the reader can present every attested form"
     },
     "tanakh/i-kings": {
+      "basis": "TYPED_AWAITING_HOLD_LEDGER",
       "since": "2026-08-23",
       "reason": "Its transmission apparatus is not verified. The source-marked sites in this book are not yet carried as records, so the text cannot be shown without the reader quietly choosing for you between the forms its sources attest.",
       "ends_when": "the Q sites for this work are issued and the reader can present every attested form"
     },
     "tanakh/ruth": {
+      "basis": "TYPED_AWAITING_HOLD_LEDGER",
       "since": "2026-08-23",
       "reason": "Its transmission apparatus is not verified. The source-marked sites in this book are not yet carried as records, so the text cannot be shown without the reader quietly choosing for you between the forms its sources attest.",
       "ends_when": "the Q sites for this work are issued and the reader can present every attested form"
