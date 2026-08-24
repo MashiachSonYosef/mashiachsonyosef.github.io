@@ -46,24 +46,24 @@
        Where the two speak of the same thing they agree by name: the contract's
        purple is argaman, its crimson is tola'at shani, and the linen the whole
        page is written in is shesh. */
-    --bg: #0c0910; --panel: #150f1d; --panel2: #110c18;
-    --line: #261d33; --wash: #1b1426;
+    --bg: #0d0a14; --panel: #171021; --panel2: #120d1a;
+    --line: #2b2039; --wash: #1c1428;
     /* the commentary's own surface, so a comment is never mistaken for text */
-    --surface-c: #17100a; --panel-c: #1f160d; --line-c: #2e2114;
+    --surface-c: #17100a; --panel-c: #201709; --line-c: #332513;
     /* shesh — the reading surface, and the neutrals taken down from it, so a
        reading is the same cloth as the word it belongs to, only dimmer */
-    --ink: #ece1c4; --ink-strong: #f6ecd2; --muted: #a99a80; --faint: #7a6f5c;
-    --shesh: #d8c7a4; --shesh-bright: #eadbbd;
+    --ink: #efe6cf; --ink-strong: #f8f0da; --muted: #b2a489; --faint: #8b7f69;
+    --shesh: #ddcda9; --shesh-bright: #eee0c2;
     /* structure — the spine the ledger records: titles, coordinates, the names
        of parts and chapters. Never a state. */
-    --gold: #e8c46a; --gold-dim: #9a7f3f; --amber: #d9a441;
+    --gold: #eac86f; --gold-dim: #a98c4b; --amber: #d9a441;
     /* reader_selection — and only that: what this reader has opened, chosen,
        pressed or armed. Nothing wears it at rest. */
-    --sel: #6fb5f0; --sel-dim: #3f6f93; --sel-ink: #071019;
+    --sel: #82bdf4; --sel-dim: #47759c; --sel-ink: #081221;
     /* commentary_attachment — a commentary's mark, and by the same token what
        the page will not vouch for: a placement that is ours, a reach it is
        told is only suggested. It never marks something as wrong. */
-    --shani: #c0563f; --shani-dim: #7a3527;
+    --shani: #c65b42; --shani-dim: #8a3d2c;
     /* argaman is the base surface above; tekhelet has no role in the contract
        and is kept named, and unused, so the day it appears is a decision
        somebody made and not a colour that crept in. */
@@ -828,6 +828,30 @@
     color: var(--muted); border-radius: 999px; font: inherit; font-size: 0.72rem;
     padding: 0.02rem 0.55rem; cursor: pointer; white-space: nowrap; }
   #hud .d-foot { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; }
+  /* The polish layer · values only, cascade-late so order wins ties.
+     What a professional surface adds and an honest one may: the same roles,
+     the same families, executed with care — motion that acknowledges a
+     press, focus a keyboard can see, scrollbars in the page's own cloth,
+     selection in the reader's own blue, elevation that says what floats. */
+  * { -webkit-tap-highlight-color: transparent; }
+  body { font-kerning: normal; }
+  ::selection { background: var(--sel-dim); color: var(--ink-strong); }
+  button, select { transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease; }
+  button:hover:not([disabled]) { border-color: var(--gold-dim); }
+  button:active:not([disabled]) { transform: translateY(0.5px); }
+  :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
+  * { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+  *::-webkit-scrollbar { width: 8px; height: 8px; }
+  *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+  *::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+  *::-webkit-scrollbar-track { background: transparent; }
+  #hud { box-shadow: 0 18px 48px rgba(4, 2, 8, 0.55), 0 2px 8px rgba(4, 2, 8, 0.35); }
+  #hud .r-pills button[aria-pressed="true"], #hud .s-pills button[aria-pressed="true"] {
+    box-shadow: 0 0 0 1px var(--sel-dim); }
+  @media (prefers-reduced-motion: reduce) {
+    button, select { transition: none; }
+    button:active:not([disabled]) { transform: none; }
+  }
   /* Levels. Three things hang off a section and they are not the same size of
      act. The number names it. The commentary is the section's other text, so
      it gets a line of its own, the width of the column, carrying the name of
@@ -2264,7 +2288,15 @@
         // "/" — cells join the way they join everywhere else, and the sense
         // the reader picked is lit where it sits inside the record
         const dText = (text) => {
-          const d = document.createElement("p"); d.className = "d-text"; d.dir = "auto";
+          const d = document.createElement("p"); d.className = "d-text";
+          // dir=auto reads the first strong character, and a record that
+          // opens with its Hebrew lemma laid a whole English sentence out
+          // right-to-left, scrambling the words around the citation. The
+          // record's direction is what the record mostly is; the embedded
+          // run the browser handles.
+          const heb = (String(text).match(/[\u0590-\u05FF]/g) || []).length;
+          const lat = (String(text).match(/[A-Za-z]/g) || []).length;
+          d.dir = heb > lat ? "rtl" : "ltr";
           senseSplit(text).forEach((sense, i) => {
             if (i) d.append(Object.assign(document.createElement("span"), { className: "d-sep", textContent: " · " }));
             const s = document.createElement("span");

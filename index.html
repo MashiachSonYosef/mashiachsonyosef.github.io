@@ -11,11 +11,11 @@
      purple — and the door had been wearing an invented blue-grey instead,
      so the way in looked like a different building than the rooms. Same
      tokens as zone.html, verbatim. */
-  :root { --bg:#0c0910; --panel:#150f1d; --panel2:#110c18; --line:#261d33; --ink:#ece1c4;
-          --ink-strong:#f6ecd2; --muted:#a99a80; --faint:#7a6f5c;
-          --gold:#e8c46a; --gold-dim:#9a7f3f; --amber:#d9a441;
-          --sel:#6fb5f0; --sel-dim:#3f6f93; --sel-ink:#071019;
-          --shani:#c0563f; --shesh:#d8c7a4; --link:#d8c7a4; }
+  :root { --bg:#0d0a14; --panel:#171021; --panel2:#120d1a; --line:#2b2039; --ink:#efe6cf;
+          --ink-strong:#f8f0da; --muted:#b2a489; --faint:#8b7f69;
+          --gold:#eac86f; --gold-dim:#a98c4b; --amber:#d9a441;
+          --sel:#82bdf4; --sel-dim:#47759c; --sel-ink:#081221;
+          --shani:#c65b42; --shesh:#ddcda9; --link:#ddcda9; }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
@@ -200,6 +200,16 @@
   a.sub-book .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }
   footer { margin-top:2.2rem; color:var(--faint); font-size:.78rem; }
   footer a { color:var(--gold-dim); }
+  /* the polish layer — same as the reader's: motion that acknowledges a
+     press, focus a keyboard can see, selection in the reader's own blue */
+  * { -webkit-tap-highlight-color: transparent; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+  ::selection { background: var(--sel-dim); color: var(--ink-strong); }
+  *::-webkit-scrollbar { width: 8px; height: 8px; }
+  *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+  *::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+  a, summary, button, input { transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease; }
+  :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
+  @media (prefers-reduced-motion: reduce) { a, summary, button, input { transition: none; } }
 </style>
 </head>
 <body>

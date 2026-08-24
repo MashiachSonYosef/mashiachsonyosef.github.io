@@ -618,11 +618,11 @@ const doc = `<!doctype html>
      purple — and the door had been wearing an invented blue-grey instead,
      so the way in looked like a different building than the rooms. Same
      tokens as zone.html, verbatim. */
-  :root { --bg:#0c0910; --panel:#150f1d; --panel2:#110c18; --line:#261d33; --ink:#ece1c4;
-          --ink-strong:#f6ecd2; --muted:#a99a80; --faint:#7a6f5c;
-          --gold:#e8c46a; --gold-dim:#9a7f3f; --amber:#d9a441;
-          --sel:#6fb5f0; --sel-dim:#3f6f93; --sel-ink:#071019;
-          --shani:#c0563f; --shesh:#d8c7a4; --link:#d8c7a4; }
+  :root { --bg:#0d0a14; --panel:#171021; --panel2:#120d1a; --line:#2b2039; --ink:#efe6cf;
+          --ink-strong:#f8f0da; --muted:#b2a489; --faint:#8b7f69;
+          --gold:#eac86f; --gold-dim:#a98c4b; --amber:#d9a441;
+          --sel:#82bdf4; --sel-dim:#47759c; --sel-ink:#081221;
+          --shani:#c65b42; --shesh:#ddcda9; --link:#ddcda9; }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
@@ -807,6 +807,16 @@ const doc = `<!doctype html>
   a.sub-book .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }
   footer { margin-top:2.2rem; color:var(--faint); font-size:.78rem; }
   footer a { color:var(--gold-dim); }
+  /* the polish layer — same as the reader's: motion that acknowledges a
+     press, focus a keyboard can see, selection in the reader's own blue */
+  * { -webkit-tap-highlight-color: transparent; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+  ::selection { background: var(--sel-dim); color: var(--ink-strong); }
+  *::-webkit-scrollbar { width: 8px; height: 8px; }
+  *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+  *::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+  a, summary, button, input { transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease; }
+  :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
+  @media (prefers-reduced-motion: reduce) { a, summary, button, input { transition: none; } }
 </style>
 </head>
 <body>
@@ -1272,9 +1282,9 @@ const heldPage = (reason = "", from = "") => `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Withheld · The Tabernacle</title>
 <link rel="canonical" href="/">
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0910;
-  color:#a99a80;font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
-  a{color:#e8c46a} p{max-width:34rem} .prov{font-size:.82em;color:#6d6152}</style>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d0a14;
+  color:#b2a489;font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
+  a{color:#eac86f} p{max-width:34rem} .prov{font-size:.82em;color:#8b7f69}</style>
 </head>
 <body><p>This address is kept, and the work behind it is not being served.<br><br>
 ${reason ? esc(reason) + "<br><br>" : ""}Nothing is shown in the meantime, and the
@@ -1331,8 +1341,8 @@ if (existsSync(HISTORY)) {
      arrives; the bar is rewritten to where the work lives now. -->
 <script>var q=location.search.replace(/^[?]/,"");location.replace("/${target}"+(q?"?"+q:""));</script>
 <meta http-equiv="refresh" content="0; url=/${target}">
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0910;
-  color:#a99a80;font:16px Georgia,serif} a{color:#e8c46a}</style>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d0a14;
+  color:#b2a489;font:16px Georgia,serif} a{color:#eac86f}</style>
 </head>
 <body><p>${esc(b.en)} now lives at <a href="/${target}">/${target}</a></p>
 </body>
