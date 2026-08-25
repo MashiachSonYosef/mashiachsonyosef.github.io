@@ -210,6 +210,7 @@ for (const [href, ...expected] of WALK) {
       he: (he.querySelector(".w") || he).textContent.trim(), en: enEl.textContent.trim(),
       heLab: labOf(he), enLab: labOf(enEl), heUnnamed: he.classList.contains("unnamed"),
       lic: (() => { const c = document.getElementById("workLic"); return c && !c.hidden ? c.textContent.trim() : ""; })(),
+      enNote: (document.querySelector("#workTitle .t-note")?.textContent || "").trim(),
       titleOpens: !!document.querySelector("#workTitle .he-t .wb"),
       words: document.querySelectorAll("section.seg .he-text .wb").length,
       glossed: [...document.querySelectorAll("section.seg .he-text .wb .g")].filter((g) => g.textContent.trim()).length,
@@ -236,16 +237,19 @@ for (const [href, ...expected] of WALK) {
   check("  and it opens like any word of the text", heTitle ? r.titleOpens : !r.titleOpens,
     r.titleOpens ? "pressable" : "not pressable");
   // The English over a book title is always a forced reading — the label never
-  // softens, whether or not a record happens to carry that reading. What
-  // changes is what rides beside it: the licence of the record that reads the
-  // title's own form that way where one exists, and no chip where none does.
-  // The honesty lives in the chip, never in dropping "force". An earlier form
-  // of this check asserted the softening itself; the register rule outranks it.
+  // softens, whether or not a record happens to carry that reading. And a
+  // forced reading is a claim: the ledger's English may stand only with the
+  // licence of a record that reads the title's own form that way riding
+  // beside it. Where none does, the row reads the work's own address plainly
+  // — asserting nothing beyond the address — and a note says what the
+  // English is waiting on. Two lawful states, nothing between them.
+  const addrPlain = href.replace(/^\//, "").replace(/[-_]+/g, " ");
   check("  and the common name, said to be a forced reading, never softened",
-    /^commonly force read as$/i.test(r.enLab) && r.en === en, `"${r.enLab}": ${r.en}`);
-  check("  with a licence where a record reads it that way, and none where none does",
-    heTitle ? r.lic.length > 2 : !r.lic,
-    `${r.enLab} · ${r.lic || "no licence"}`);
+    /^commonly force read as$/i.test(r.enLab) &&
+    (r.lic ? r.en === en : r.en === addrPlain), `"${r.enLab}": ${r.en}`);
+  check("  with a licence where a record reads it that way, and the address read plainly where none does",
+    r.lic ? r.lic.length > 2 && !r.enNote : /waits on a licensed record/.test(r.enNote),
+    `${r.enLab} · ${r.lic || r.enNote || "no licence and no note"}`);
   check("  the zone still loads under the rewritten bar", r.sections === expectSections && r.words > 3, `${r.sections} of ${expectSections} sections`);
   check("  and its readings came with it", r.glossed > 0, `${r.glossed} of ${r.words} words glossed`);
 

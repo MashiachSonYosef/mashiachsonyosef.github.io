@@ -159,5 +159,8 @@ export const openRouteStore = (storeDir) => {
     return { table, counts, sha256: createHash("sha256").update(body).digest("hex") };
   };
 
-  return { index, routesFor, readingPool, glossFor, tableFor };
+  // packSplit rides on the store so a consumer that must ask "which licensed
+  // route carries this exact reading" divides the route text under the
+  // store's own depth rule instead of re-implementing it.
+  return { index, routesFor, readingPool, glossFor, tableFor, packSplit };
 };

@@ -46,6 +46,7 @@ import { createHash } from "node:crypto";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
+import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const ZONES = arg("zones", "data/zones");
@@ -153,6 +154,41 @@ const titleReading = (tokens, en) => {
   const m = STORE.index.m_sources[hits[0][3]];
   return { lic: licenseName(m.licensePosture), label: m.label || "", year: m.sourceYear || "" };
 };
+// The M behind one printed reading: the oldest licensed route whose own text
+// divides — under the store's own pack and reading rules — to that exact
+// reading. A gloss printed without this beside it is a reading shown without
+// its licence, and no reading on the door may stand that way.
+const glossSource = (key, text) => {
+  if (!key || !text) return null;
+  const routes = STORE.routesFor(key);
+  if (!routes) return null;
+  const want = String(text).toLowerCase();
+  const hits = routes.filter((row) => {
+    if (!STORE.index.m_sources[row[3]]) return false;
+    return STORE.packSplit(row[1]).some((sense) => {
+      const r = readingSplit(sense);
+      return !r.damaged && r.readings.some((x) => x.toLowerCase() === want);
+    });
+  });
+  if (!hits.length) return null;
+  hits.sort((a, c) => {
+    const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
+    return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
+  });
+  const m = STORE.index.m_sources[hits[0][3]];
+  return { lic: licenseName(m.licensePosture), label: m.label || "", year: m.sourceYear || "" };
+};
+const chipHtml = (src) => src
+  ? `<span class="chip" title="${esc(src.label)}${src.year ? ` · ${esc(String(src.year))}` : ""}">${esc(src.lic)}</span>`
+  : "";
+// A force-read in English is a claim about how to read the Hebrew, and a
+// claim needs a record: the ledger's English prints only when a licensed
+// record reads the form that way, with that record's licence riding beside
+// it. Until one does, the recorded id itself is read plainly — hyphens as
+// spaces — which asserts nothing beyond the id, and the line says what it
+// is waiting on.
+const AWAITS_M = "the recorded id read plainly — an English name waits on a licensed record";
+const plainId = (id) => String(id).split("/").pop().replace(/[-_]+/g, " ");
 // The atlas: every family and every work the bridge records, built or not,
 // emitted by tools/emit-corpus-atlas-v1.mjs with the bridge's sha as its
 // receipt. The door refuses to run without it — a door listing only what
@@ -316,6 +352,10 @@ for (const b of BOOKS) {
     units, onWord, onSection, heldLicence, noText, byCoordinate, noCloser, works: worksCount });
 }
 if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
+// Every place a book is referred to in English refers to it by the one name
+// the law allows to print: the ledger's English when a licensed record backs
+// it, the address read plainly when none does.
+for (const b of books) b.disp = b.reading ? b.en : plainId(b.slug);
 // Genesis, when it is here, must be the exact sealed v3 bytes — that check runs
 // above, inside the loop, and is untouched. What is relaxed is the requirement
 // that Genesis be here at all. A door builder that cannot describe the site
@@ -349,8 +389,9 @@ const bookCard = (b) => `    <div class="bookcard">
           : `<span class="he" lang="he" dir="rtl">${esc(b.he)}</span>`)
         : `<span class="he none">none is recorded in the ledger</span>`}</span>
       <a class="book" href="/${b.slug}">
-      <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(b.en)}</span>${b.reading
-        ? `<span class="chip" title="${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""}">${esc(b.reading.lic)}</span>` : ""}</span>
+      <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(b.reading ? b.en : plainId(b.slug))}</span>${b.reading
+        ? `<span class="chip" title="${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""}">${esc(b.reading.lic)}</span>`
+        : `<span class="of" title="${esc(AWAITS_M)}">awaits a licensed record</span>`}</span>
       <span class="of">${n(b.sections)} sections · ${n(b.words)} rendered COMPspan records</span>
       </a>
     </div>`;
@@ -371,7 +412,7 @@ const whereLine = (b) => {
   return parts.join(" · ");
 };
 const commentaryLine = (b) => (b.units
-  ? `      <a class="sub-book" href="/${b.slug}?c=open"><span class="en">Commentary on ${esc(b.en)}</span><span class="of">${n(b.units)} carried${b.works ? ` from ${n(b.works)} work${b.works === 1 ? "" : "s"}` : ""} — ${whereLine(b)}</span></a>`
+  ? `      <a class="sub-book" href="/${b.slug}?c=open"><span class="en">Commentary on ${esc(b.disp)}</span><span class="of">${n(b.units)} carried${b.works ? ` from ${n(b.works)} work${b.works === 1 ? "" : "s"}` : ""} — ${whereLine(b)}</span></a>`
   : null);
 
 const totalUnits = books.reduce((t, b) => t + b.units, 0);
@@ -458,15 +499,20 @@ const families = LEDGER.families.map((lf) => {
 const unruled = Object.keys(ATLAS.families).filter((v) => !valueOwner.has(v));
 const awaitingRows = poolOf(LEDGER.awaiting.members.filter((m) => ATLAS.families[m]));
 
+// A book's name is a record too. The row stays two columns — the bridge's
+// name and the unit count — and the name itself opens the book's own card:
+// the masthead's frame at book grain, in a card so the rows stay uncluttered.
 const atlasRow = (w) => {
   const segs = w.id.split("/");
   const name = segs[segs.length - 1];
   const pre = segs.slice(0, -1).join("/");
-  return `      <span class="atlas-row" data-p="${esc(pre)}"><span class="aw" dir="auto">${esc(name)}</span><span class="au">${n(w.units)} unit${w.units === 1 ? "" : "s"}</span></span>`;
+  const fam = valueOwner.get(pre);
+  const famAttr = fam && fam !== "(awaiting)" ? ` data-fam="${esc(fam)}"` : "";
+  return `      <span class="atlas-row" data-p="${esc(pre)}"><button type="button" class="aw" dir="auto" data-w="${esc(w.id)}" data-u="${w.units}" data-cr="${w.c0_rows}" data-cf="${w.c0_first}"${famAttr} title="open this book&#8217;s own record">${esc(name)}</button><span class="au">${n(w.units)} unit${w.units === 1 ? "" : "s"}</span></span>`;
 };
 const seatedRow = (b) => {
   const base = seatedBaseOf.get(b.slug);
-  return `      <a class="atlas-row built" href="/${b.slug}"><span class="aw">${esc(b.en)}</span><span class="au">its own book · seated with ${esc(base ? base.en : "its base")} — reads there · ${n(b.sections)} sections</span></a>`;
+  return `      <a class="atlas-row built" href="/${b.slug}"><span class="aw">${esc(b.disp)}</span><span class="au">its own book · seated with ${esc(base ? base.disp : "its base")} — reads there · ${n(b.sections)} sections</span></a>`;
 };
 const rowsHtml = (rows) => rows.map((r) => {
   if (!r.book) return atlasRow(r.atlas);
@@ -482,10 +528,13 @@ const famHeadHe = (lf) => {
   if (!lf.he) return `<span class="he none">none is recorded in the ledger</span>`;
   const key = (lf.he_tokens || []).map((t) => t.k).filter(Boolean)[0] || null;
   const gloss = key ? (STORE.glossFor(key).text || "") : "";
+  // the reading under the name carries the licence of the record it is
+  // read from, the same chip the reader's card shows
+  const gsrc = gloss ? glossSource(key, gloss) : null;
   const words = (lf.he_tokens || []).map((t) => t.k
     ? `<button type="button" class="fw" data-k="${esc(t.k)}" title="open this word’s own record — readings oldest source first">${esc(t.s)}</button>`
     : `<span class="fw inert">${esc(t.s)}</span>`).join(" ");
-  return `<span class="fam-he" data-named-by="family-ledger-v1#${esc(lf.id)}"><span class="he" lang="he" dir="rtl">${words}</span>${gloss ? `<span class="g">${esc(gloss)}</span>` : ""}</span>`;
+  return `<span class="fam-he" data-named-by="family-ledger-v1#${esc(lf.id)}"><span class="he" lang="he" dir="rtl">${words}</span>${gloss ? `<span class="g">${esc(gloss)}${chipHtml(gsrc)}</span>` : ""}</span>`;
 };
 const familySection = (fam) => {
   const lf = fam.ledger;
@@ -494,6 +543,12 @@ const familySection = (fam) => {
   if (s.built) bits.push(`${n(s.built)} built`);
   bits.push(`${n(s.units)} units`);
   const reading = titleReading(lf.he_tokens || [], lf.en);
+  // The ledger's English shows only when a licensed record reads the family's
+  // own Hebrew that way; until then the bridge's recorded values are read
+  // plainly, and the row says what it is waiting on.
+  const enCell = reading
+    ? `<span class="en">${esc(lf.en)}</span><span class="chip" title="${esc(reading.label)}${reading.year ? ` · ${esc(reading.year)}` : ""}">${esc(reading.lic)}</span>`
+    : `<span class="en">${esc(fam.members.map(plainId).join(" · "))}</span><span class="of" title="${esc(AWAITS_M)}">awaits a licensed record</span>`;
   const foldLines = [`      <span class="of fold-line">${esc(lf.what)}</span>`];
   foldLines.push(`      <span class="of slots fold-line">the bridge records ${fam.members.length === 1 ? "this shelf as" : "these as"}: ${esc(fam.members.join(" · "))} — folded here by ${esc(LEDGER.schema_version)}, which dies the day the corpus rules the column</span>`);
   // The home page rests fully collapsed into the grouping: every family
@@ -503,8 +558,7 @@ const familySection = (fam) => {
       <details class="fam">
       <summary>
         <span class="row"><span class="lab">family</span>${famHeadHe(lf)}</span>
-        <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(lf.en)}</span>${reading
-          ? `<span class="chip" title="${esc(reading.label)}${reading.year ? ` · ${esc(reading.year)}` : ""}">${esc(reading.lic)}</span>` : ""}<span class="of">${esc(bits.join(" · "))}</span></span>
+        <span class="row"><span class="lab">commonly force read as</span>${enCell}<span class="of">${esc(bits.join(" · "))}</span></span>
       </summary>
       <div class="fgroups">
 ${foldLines.join("\n")}
@@ -733,6 +787,13 @@ const doc = `<!doctype html>
   details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.3rem; color:var(--shesh); }
   details.fam > summary .fam-he .g { font-size:.7rem; color:var(--muted); }
+  /* the licence rides beside every printed reading and every backed
+     force-read, in the same quiet chip the reader's card uses */
+  details.fam > summary .chip, .fam-he .g .chip, #bkcard .chip {
+    display:inline-block; margin-inline-start:.45rem; font-size:.6rem; letter-spacing:.06em;
+    font-variant:normal; font-style:normal; color:var(--muted);
+    border:1px solid var(--line); border-radius:.6rem; padding:.06rem .45rem; white-space:nowrap; }
+  details.fam > summary .of[title] { cursor:help; }
   .fam-he .fw { font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer; }
   .fam-he .fw:hover { color:var(--gold); }
   .fam-he .fw.inert { cursor:default; }
@@ -813,8 +874,39 @@ const doc = `<!doctype html>
     overflow-wrap:anywhere;
     font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif; }
   .atlas-row .au { font-size:.68rem; white-space:nowrap; }
+  .atlas-row button.aw { font:inherit; font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
+    text-align:start; background:none; border:0; padding:0; cursor:pointer; }
+  .atlas-row button.aw:hover, .atlas-row button.aw:focus-visible { color:var(--gold); }
   a.atlas-row.built .aw { color:var(--gold-dim); }
   a.atlas-row.built:hover .aw { color:var(--gold); }
+  /* The book's own record, on this page — the masthead's frame at book
+     grain. What a ledger records stands as itself; what none records says
+     so; the force-read is the bridge id read plainly, and the family line
+     is the family ledger's own, its Hebrew word a way into the word's
+     record like anywhere else on the door. */
+  #bkcard { position:fixed; z-index:70; max-width:26rem; width:min(26rem,92vw); max-height:min(84vh,40rem);
+    left:50%; transform:translateX(-50%); bottom:1rem;
+    display:flex; flex-direction:column; overflow-y:auto; overflow-x:hidden;
+    background:var(--panel); border:1px solid var(--line); border-radius:.7rem;
+    padding:.85rem 1.05rem; box-shadow:var(--shadow-card); }
+  #bkcard[hidden] { display:none; }
+  #bkcard .head { display:flex; justify-content:space-between; align-items:baseline; gap:.6rem; }
+  #bkcard .head b { font-size:.9rem; color:var(--muted); font-weight:normal; overflow-wrap:anywhere; }
+  #bkcard .head button { background:none; border:0; color:var(--link); font-size:1.15rem; cursor:pointer; }
+  #bkcard .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; margin:.3rem 0; }
+  #bkcard .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--faint); }
+  #bkcard .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim);
+    overflow-wrap:anywhere; min-width:0; }
+  #bkcard .he.none { font-family:Georgia,serif; font-size:.85rem; font-style:italic; color:var(--faint); }
+  #bkcard .slot { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.1rem; }
+  #bkcard .slot .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
+  #bkcard .slot .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
+    font-size:1.2rem; color:var(--shesh); }
+  #bkcard .slot .fam-he .g { font-size:.7rem; color:var(--muted); }
+  #bkcard .slot .of .en { font-size:.85rem; }
+  #bkcard .of { color:var(--faint); font-size:.76rem; }
+  #bkcard .prov { color:var(--faint); font-size:.72rem; margin:.35rem 0 0; }
   /* One quiet fold per group. Its face is the summary line built above —
      each folded thing named with its count — so collapsed is shorter, never
      blinder. Closed is the resting state; the search box opens it when a
@@ -900,6 +992,14 @@ const doc = `<!doctype html>
 ${sectionsHtml.join("\n")}
   </nav>
   <div id="wshade" hidden></div>
+  <div id="bkcard" role="dialog" aria-label="the book&#8217;s own record" hidden>
+    <div class="head"><b></b><button type="button" aria-label="Close">&#215;</button></div>
+    <p class="row bk-he"><span class="lab">hebrew title</span><span class="he none">none is recorded in the ledger</span></p>
+    <p class="row bk-en"><span class="lab">commonly force read as</span><span class="en"></span></p>
+    <p class="row bk-fam"><span class="lab">family</span><span class="slot"></span></p>
+    <p class="row bk-n"><span class="lab">recorded</span><span class="of"></span></p>
+    <p class="prov">named by the bridge, hyphens read as spaces &#183; counted by ${esc(ATLAS.schema_version || "corpus-atlas-v1")} &#183; the Hebrew title row waits on a work ledger</p>
+  </div>
   <div id="wcard" role="dialog" aria-label="the word&#8217;s own record" hidden>
     <div class="head"><b dir="rtl"></b><button type="button" aria-label="Close">&#215;</button></div>
     <p class="r-now"><span class="k">reading</span><span class="v"></span></p>
@@ -979,10 +1079,56 @@ ${sectionsHtml.join("\n")}
     });
   }
   var wcard = document.getElementById("wcard"), wshade = document.getElementById("wshade");
-  function closeCard() { wcard.hidden = true; wshade.hidden = true; }
+  var bkcard = document.getElementById("bkcard");
+  function closeCard() { wcard.hidden = true; bkcard.hidden = true; wshade.hidden = true; }
   wshade.addEventListener("click", closeCard);
   wcard.querySelector(".head button").addEventListener("click", closeCard);
+  bkcard.querySelector(".head button").addEventListener("click", closeCard);
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeCard(); });
+  // The book's own card: every field of it is a record already on this page —
+  // the bridge id and the atlas counts ride on the row's own button, the
+  // family frame is the family ledger's, and the one thing no ledger records
+  // yet is said to be unrecorded rather than invented. The family's Hebrew
+  // word inside the card opens the word's own record, the same way it does
+  // from the family head.
+  var FAM_FRAMES = ${JSON.stringify(Object.fromEntries(families.map((f) => {
+    const r = titleReading(f.ledger.he_tokens || [], f.ledger.en);
+    return [f.ledger.id, {
+      he: famHeadHe(f.ledger),
+      en: r ? f.ledger.en : f.members.map(plainId).join(" · "),
+      lic: r ? r.lic : null,
+      licTitle: r ? `${r.label}${r.year ? ` · ${r.year}` : ""}` : AWAITS_M,
+    }];
+  }))).replace(/</g, "\\u003c")};
+  function openBook(btn) {
+    bkcard.querySelector(".head b").textContent = btn.getAttribute("data-w");
+    bkcard.querySelector(".bk-en .en").textContent = btn.textContent.replace(/-/g, " ");
+    var slot = bkcard.querySelector(".bk-fam .slot");
+    var famId = btn.getAttribute("data-fam"), fam = famId ? FAM_FRAMES[famId] : null;
+    if (fam) {
+      slot.innerHTML = fam.he +
+        '<span class="of">commonly force read as <span class="en"></span><span class="chip"></span></span>';
+      slot.querySelector(".of .en").textContent = fam.en;
+      var famChip = slot.querySelector(".of .chip");
+      if (fam.lic) { famChip.textContent = fam.lic; famChip.title = fam.licTitle; }
+      else { famChip.textContent = "awaits a licensed record"; famChip.title = fam.licTitle; }
+    } else {
+      slot.innerHTML = '<span class="he none">none is recorded in the ledger</span>';
+    }
+    var num = function (x) { var v = Number(x); return isFinite(v) ? v.toLocaleString("en-US") : String(x); };
+    bkcard.querySelector(".bk-n .of").textContent =
+      num(btn.getAttribute("data-u")) + " units · " + num(btn.getAttribute("data-cr")) +
+      " C0 rows · first row " + num(btn.getAttribute("data-cf"));
+    wcard.hidden = true;
+    bkcard.hidden = false; wshade.hidden = false;
+  }
+  document.addEventListener("click", function (e) {
+    var w = e.target.closest ? e.target.closest("button.aw[data-w]") : null;
+    if (!w) return;
+    e.preventDefault();          // the fold's toggle is the summary's default — cancelled
+    e.stopPropagation();
+    openBook(w);
+  }, true);
   // One selected reading at a time, and the record under it is the record of
   // that reading — the reader's law, the reader's card. A pill press moves the
   // selection and repaints the record; nothing else on the door moves.
@@ -1394,7 +1540,7 @@ if (existsSync(HISTORY)) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(b.en)} · The Tabernacle</title>
+<title>${esc(b.disp)} · The Tabernacle</title>
 <link rel="canonical" href="/${target}">
 <!-- This address was published on this site and later republished at
      /${target}, when its address was rederived from the work id by the
@@ -1421,7 +1567,7 @@ if (existsSync(HISTORY)) {
   :root[data-scheme="day"] body{background:#f1e9d8;color:#5f5645}
   :root[data-scheme="day"] a{color:#8a6b26}</style>
 </head>
-<body><p>${esc(b.en)} now lives at <a href="/${target}">/${target}</a></p>
+<body><p>${esc(b.disp)} now lives at <a href="/${target}">/${target}</a></p>
 </body>
 </html>
 `;

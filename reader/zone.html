@@ -1153,7 +1153,12 @@
   const heT = document.querySelector("#workTitle .he-t");
   const enT = document.querySelector("#workTitle .en-t");
   heT.textContent = zone.work_he || "";
-  enT.textContent = zone.work;
+  // Until a licensed record is found to back the ledger's English (checked
+  // just below), the line reads the work's own address plainly — hyphens as
+  // spaces — which asserts nothing beyond the address itself.
+  const ADDR_PLAIN = (BOOK || location.pathname.split("/").filter(Boolean).pop() || "")
+    .replace(/[-_]+/g, " ");
+  enT.textContent = ADDR_PLAIN || zone.work;
   if (!zone.work_he) {
     // Say what is missing rather than letting the common name slide into the
     // place of the title. An empty line under "book title" reads as a title
@@ -1335,16 +1340,46 @@
   // drawer — the card is only pulled back into view if it has grown past the
   // edge. Re-anchoring on every internal change is what made it feel shifty:
   // the card was being placed for a height it no longer had.
-  // What the reader has settled on for one occurrence: which division of the
-  // form they are reading it under, and which reading they chose for each
-  // block of it. Both used to live inside the open and died with the card.
-  const pickedByWord = new WeakMap();   // occurrence -> { cells: Map(surface -> reading), cut: key }
-  const memoryOf = (wbEl) => {
-    let m = pickedByWord.get(wbEl);
-    if (!m) { m = { cells: new Map(), cut: null }; pickedByWord.set(wbEl, m); }
+  // What the reader has settled on: which division of the form they are
+  // reading it under, and which reading they chose for each block of it.
+  // Both used to live inside the open and died with the card; then they were
+  // remembered, but by the occurrence that was tapped, so the same form asked
+  // the same question at every place it stood. The catalog's record is the
+  // form's, not the occurrence's — every place the same form stands offers
+  // the same divisions and the same routes — so the ruling is remembered by
+  // the form's own key, and a reading ruled at one place is the reading at
+  // all of them.
+  const pickedByForm = new Map();       // form key -> { cells: Map(surface -> reading), cut: key }
+  const memoryOf = (formKey) => {
+    let m = pickedByForm.get(formKey);
+    if (!m) { m = { cells: new Map(), cut: null }; pickedByForm.set(formKey, m); }
     return m;
   };
   const cutKey = (c) => c.map((x) => x.surface).join("+");
+  // Every place a form stands, recorded as the words are built. A ruling
+  // repaints the places already standing; a section built later asks the
+  // memory itself, so the ruling reaches it too.
+  const standsOf = new Map();           // form key -> [{ wb, glossEl, glossParts, partIndex }]
+  const standAt = (k, entry) => {
+    if (!k) return;
+    let list = standsOf.get(k);
+    if (!list) { list = []; standsOf.set(k, list); }
+    list.push(entry);
+  };
+  // The line a ruling composes for one form: the remembered division, each
+  // block read from the remembered choice, and a block the reader has not
+  // ruled on read from the catalog's own table. Null when nothing was ruled.
+  const ruledLine = (k, table) => {
+    const m = pickedByForm.get(k);
+    if (!m || (!m.cut && !m.cells.size)) return null;
+    const surfaces = m.cut ? m.cut.split("+") : [k];
+    return surfaces.map((s) => {
+      const p = m.cells.get(s);
+      if (p) return spanJoin(p.text);
+      const g = table ? table[s] : null;
+      return g ? spanJoin(g) : "—";
+    }).join(" + ");
+  };
 
   // ---- the exporter ---------------------------------------------------
   // An export is the final stop: the thing that leaves the page and is read
@@ -2068,7 +2103,7 @@
     // and a reading chosen for a block of a finer division was painted over by
     // the whole form's own. The division is remembered too.
     const wbEl = (el.closest && el.closest(".wb")) || el;
-    const mem = memoryOf(wbEl);
+    const mem = memoryOf(region.k);
     const picked = mem.cells;
     let cover = covers[0];
     if (mem.cut) {
@@ -2102,7 +2137,13 @@
     // because the only answer was which pill was lit — and in a row of two
     // hundred, the lit one is usually somewhere off screen.
     const now = document.createElement("p"); now.className = "r-now";
-    const nowK = document.createElement("span"); nowK.className = "k"; nowK.textContent = "reading";
+    // The label carries the reach of a ruling, because a new row would cost
+    // the card height it does not have on a squeezed screen. Without the
+    // reach said somewhere, the reader assumes the card speaks for one place
+    // and sets out to fix a common form card by card, which is not a way to
+    // work through a book.
+    const nowK = document.createElement("span"); nowK.className = "k";
+    nowK.textContent = "reading · at every place this form stands";
     const nowV = document.createElement("span"); nowV.className = "v";
     now.append(nowK, nowV);
     const paintNow = (line) => {
@@ -2119,36 +2160,78 @@
     // so the page itself says which words have been worked and the reader is
     // not holding that list in their head. It marks a ruling, not a visit:
     // opening a word and closing it again changes nothing and leaves no mark.
-    const markRuled = () => { if (wbEl && wbEl.classList) wbEl.classList.add("chosen"); };
+    let ruled = false;
+    const markRuled = () => { ruled = true; if (wbEl && wbEl.classList) wbEl.classList.add("chosen"); };
+
+    // The page's own reading is printed whole — that is why the ellipsis came
+    // off. But a reading the reader chooses can be longer than the one the
+    // page painted, and letting the line grow would move every Hebrew word
+    // below it, which is the one thing this page never does. So the moment
+    // before a word's reading is first changed, its box is fixed at the
+    // height it was painted at. Nothing moves; and because the box is held, a
+    // longer reading is cut at its edge. A cut with no mark reads as the
+    // whole reading with its tail missing — on a small screen there is no
+    // hover title to say otherwise — so the clamp prints the mark at the cut;
+    // the whole reading stays on the card and on the line's own title.
+    const holdAndPaint = (box, line) => {
+      if (!box.style.height) {
+        const h = box.getBoundingClientRect().height;
+        if (h) {
+          box.style.height = `${h}px`;
+          const lh = parseFloat(getComputedStyle(box).lineHeight) || h;
+          box.style.display = "-webkit-box";
+          box.style.webkitBoxOrient = "vertical";
+          box.style.webkitLineClamp = String(Math.max(1, Math.round(h / lh)));
+        }
+      }
+      // The height alone was not the whole promise: a wider reading widens
+      // its word's box up to the reading's own cap, and one word widening
+      // re-wraps every line after it. The word's box is held at the width it
+      // painted at, so a ruling repainted at a hundred places moves none of
+      // them.
+      const host = box.closest(".wb");
+      if (host && !host.style.width) {
+        const w = host.getBoundingClientRect().width;
+        if (w) host.style.width = `${w}px`;
+      }
+      box.textContent = line; box.title = line; box.classList.remove("bare");
+    };
 
     const paintGloss = () => {
-      if (!glossEl) {
-        paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "));
+      const mine = cover.map((c) => textOfCell(c.surface)).join(" + ");
+      // the card says the reading plainly, where the reader can see it
+      // without hunting a lit pill through a scrolling row
+      paintNow(mine);
+      if (!glossEl) return;
+      // An open only repaints its own line; nothing was ruled, so nothing
+      // else on the page is owed a repaint.
+      if (!ruled) {
+        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine);
         return;
       }
-      // The page's own reading is printed whole — that is why the ellipsis came
-      // off. But a reading the reader chooses can be longer than the one the
-      // page painted, and letting the line grow would move every Hebrew word
-      // below it, which is the one thing this page never does. So the moment
-      // before a word's reading is first changed, its box is fixed at the
-      // height it was painted at. Nothing moves; a chosen reading longer than
-      // the painted one is held in the card, which never clips, and on the
-      // line's own title.
-      if (!glossEl.style.height) {
-        const h = glossEl.getBoundingClientRect().height;
-        if (h) glossEl.style.height = `${h}px`;
+      // A ruling is the form's, not the tapped occurrence's, so it is
+      // painted at every place the form stands on the page — reading the
+      // same form card by card is not a way to work through a book. Places
+      // in sections not yet built recall the ruling as they are built.
+      const stands = standsOf.get(region.k) || [];
+      for (const s of stands) {
+        const line = s.glossParts ? (s.glossParts[s.partIndex] = mine, s.glossParts.join(" + ")) : mine;
+        holdAndPaint(s.glossEl, line);
+        s.wb.classList.add("chosen");
+        // record what this reading stands on, so a copy can name it
+        if (selectedRecordRef.m) {
+          s.wb.dataset.source = selectedRecordRef.m.label || "";
+          s.wb.dataset.licence = licenseName(selectedRecordRef.m.licensePosture) || "";
+        }
       }
-      const mine = cover.map((c) => textOfCell(c.surface)).join(" + ");
-      const line = glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine;
-      glossEl.textContent = line; glossEl.title = line; glossEl.classList.remove("bare");
-      // the card says the same thing, where the reader can see it without
-      // hunting a lit pill through a scrolling row
-      paintNow(mine);
-      // record what this reading stands on, so a copy can name it
-      const wbEl2 = glossEl.closest(".wb");
-      if (wbEl2 && selectedRecordRef.m) {
-        wbEl2.dataset.source = selectedRecordRef.m.label || "";
-        wbEl2.dataset.licence = licenseName(selectedRecordRef.m.licensePosture) || "";
+      // a tapped word outside the registry (a commentary word) still paints
+      if (!stands.some((s) => s.glossEl === glossEl)) {
+        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine);
+        const wbEl2 = glossEl.closest(".wb");
+        if (wbEl2 && selectedRecordRef.m) {
+          wbEl2.dataset.source = selectedRecordRef.m.label || "";
+          wbEl2.dataset.licence = licenseName(selectedRecordRef.m.licensePosture) || "";
+        }
       }
     };
 
@@ -2862,15 +2945,29 @@
     // The gloss line always exists — words without English keep an empty line
     // so the Hebrew never rides higher than its neighbors, in either mode.
     // A word holding several W reads them joined, the same join a span uses.
+    let wasRuled = false;
     const parts = (regions || (word.k ? [{ k: word.k }] : [])).map((r) => {
+      // a form the reader has already ruled on reads under its ruling, even
+      // in a section built after the ruling was made
+      const held = ruledLine(r.k, table);
+      if (held !== null) { wasRuled = true; return held; }
       const g = table ? table[r.k] : null;
       return g ? spanJoin(g) : "—";
     });
-    const line = parts.filter((p) => p !== "—").length ? parts.join(" + ") : "";
+    // a ruling made on a joined interval spoke for the whole line
+    const heldJoint = joined.map((r) => ruledLine(r.k, table)).find((x) => x != null);
+    const line = heldJoint != null ? (wasRuled = true, heldJoint)
+      : (parts.filter((p) => p !== "—").length ? parts.join(" + ") : "");
     const ge = document.createElement("span"); ge.className = "g";
     if (line) { ge.textContent = line; ge.title = line; }
     else { ge.textContent = " "; ge.classList.add("bare"); }
     wb.append(ge);
+    // every place this form stands goes on the ledger, so a ruling made at
+    // any one of them can be painted at all of them
+    if (regions) regions.forEach((r, i) => standAt(r.k, { wb, glossEl: ge, glossParts: parts, partIndex: i }));
+    else if (word.k) standAt(word.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 });
+    joined.forEach((r) => standAt(r.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 }));
+    if (wasRuled) wb.classList.add("chosen");
     return { wb, regionEls, markEls, joined, glossParts: parts };
   };
 
@@ -2949,7 +3046,8 @@
   const setMode = (m) => {
     closeHud();
     // a box fixed at one reader's size is not the other reader's box
-    document.querySelectorAll(".he-text .wb .g[style]").forEach((g) => { g.style.height = ""; });
+    document.querySelectorAll(".he-text .wb .g[style]").forEach((g) => { g.removeAttribute("style"); });
+    document.querySelectorAll(".he-text .wb[style]").forEach((w) => { w.style.width = ""; });
     document.body.classList.toggle("en", m === "en");
     btnHe.classList.toggle("on", m !== "en");
     btnEn.classList.toggle("on", m === "en");
@@ -3137,26 +3235,26 @@
 
   // The name it is commonly force-read by. The English over a book title is
   // always a forced reading — we are saying how to read the Hebrew, not
-  // translating it — so the label stays "commonly force read as" whether or
-  // not a licensed record happens to carry that reading. What changes is what
-  // rides beside it: the licence of the record that reads the title's own form
-  // that way when one exists, and, where none does, a plain note that no record
-  // reads it that way. The label never softens; the honesty lives in the chip
-  // or the note, never in dropping "force".
+  // translating it — and a forced reading is a claim, so the ledger's
+  // English prints only when a licensed record reads the title's own form
+  // that way, with that record's licence riding beside it. Until one does,
+  // the row does not fall silent and its label never softens: it reads the
+  // work's own address plainly, which asserts nothing beyond the address,
+  // and the note says what the English is waiting on.
   (async () => {
     const chip = document.getElementById("workLic");
     const lab = document.getElementById("enLab");
     const key = (zone.work_he_tokens || []).map((t) => t.k).filter(Boolean)[0];
-    if (!key) return;
     let a = null;
-    try { a = await attributionFor(key, zone.work); } catch { a = null; }
+    if (key) { try { a = await attributionFor(key, zone.work); } catch { a = null; } }
     if (a && a.ok) {
+      enT.textContent = zone.work;
       chip.textContent = licenseName(a.posture);
       chip.title = `${a.label}${a.year ? ` · ${a.year}` : ""}`;
       chip.hidden = false;
     } else {
       const note = document.createElement("span"); note.className = "t-note";
-      note.textContent = " — no record in the catalogue reads it that way";
+      note.textContent = " — the address read plainly; an English name waits on a licensed record";
       lab.parentNode.append(note);
     }
   })();
