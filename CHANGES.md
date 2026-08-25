@@ -2,6 +2,36 @@
 
 Newest first. Each entry is one state change observed by scan-chain-v1.
 
+## 2026-08-25 — evidence: the custody-membership answer, and it is the worse story
+
+The website lane asked whether canonical custody holds the two missing ranges. Findings,
+all read-only and re-verified today:
+
+1. **The canonical shard directory is empty.** `rebuild-c0-w/output/c0/shards/` holds
+   **0 of the 4,646 files** its own sibling summary records (97,858,697 rows,
+   3,332,486,664 compressed bytes, generated 2026-07-22). The directory's mtime is
+   **2026-08-13 10:52 — the same minute** `candidate-shards/` was emptied. One event
+   removed both the canonical store and the two sealed candidates.
+2. **The ranges are therefore absent from custody.** By the website lane's own framing:
+   the HOLD stands harder.
+3. **Adoption did not move them.** The sealed v4 payload itself records
+   `boundaries.canonical_shards_written: false` — the promotion never wrote canonical
+   shards, so "candidates were promoted into custody" is not the seal's story.
+4. **The surviving same-range files are not the sealed bytes.** The v3-gap-repair
+   candidates (`output/c0-candidates/additive-chain-head-v3-gap-repair-v0/shards/`)
+   cover the same C0 ranges but differ: 1,562,695 / 344,630 bytes on disk vs the seal's
+   1,189,350 / 276,704.
+5. **No record blesses the deletion.** The 2026-08-23 retention adjudication
+   (`ledger-retention-cleanup-final-deletion-disposition-v2.json`) does not name
+   `c0/shards`; the run logs begin 2026-08-13 11:43, after the 10:52 removal. The
+   deletion is, on current evidence, unadjudicated.
+6. **A rebuild path survives.** The custody manifest and summary are intact and now
+   watched by the scanner; `recovered-source-streams-w-accepted.json` (11.7 MB, watched,
+   hash unchanged since the protected-state snapshot) is the materialization source the
+   summary names. The store looks rebuildable; that is the owner's call, not this lane's.
+
+Consequence for the fleet order: there are currently no canonical shards on disk to ship.
+
 ## 2026-08-24T23:50:46.496Z — digest `0ce5cf7c52c76386…` — integrity HOLD
 - **HOLD** rebuild-c0-w/control/additive-chain-head-v4-w-safe-42355-candidate-v0: DRIFT
 - **HOLD** rebuild-c0-w/control/additive-chain-head-v4-w-safe-42355-candidate-v0/payload: DRIFT

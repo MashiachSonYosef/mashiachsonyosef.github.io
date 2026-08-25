@@ -37,6 +37,8 @@ const PROTECTED_STATE_REL = 'rebuild-c0-w/control/current-additive-chain-head-v0
 // information, not corruption). Globs are simple prefix+suffix patterns.
 const WATCH_GLOBS = [
   'rebuild-c0-w/control/current-additive-chain-head-v0.json',
+  'rebuild-c0-w/output/c0/c0-active-rebuild-partial-manifest.csv',
+  'rebuild-c0-w/output/c0/c0-active-rebuild-partial-summary.json',
   'ledgers/work/y/y-current.json',
   'ledgers/work/y/y-hebrew-navigation-seal-v*.json',
   'storage-maintenance-v1/control/ledger-retention-cleanup-g0-v1/ledger-retention-cleanup-checkpoint-*.json',
