@@ -77,7 +77,11 @@ for (const f of FILES) {
     else if (HEB(s) && !POINTED(s)) {
       cls = "APPARATUS_AS_TEXT";
       note = SECTION_MARKER.test(s) ? "section marker" : "unpointed inside a pointed text";
-    } else if (/^[([]/.test(s.trim()) && /[)\]]׃?$/.test(s.trim()) && HEB(s)) {
+    } else if (/^(\([^()[\]]+\)|\[[^()[\]]+\])׃?$/.test(s.trim()) && HEB(s)) {
+      // One balanced bracket group and nothing outside it. The first form of
+      // this test checked only the ends, so a surface that merely began and
+      // ended with brackets — unwrapped text between — would have classified
+      // as wrapped; the corpus lane's review caught it before any data could.
       // A pointed word wholly wrapped in brackets slipped every earlier
       // class: pointed, so not APPARATUS_AS_TEXT; no markup; longer than
       // one letter. It is the edition's variant mark carried as a word —
@@ -85,6 +89,12 @@ for (const f of FILES) {
       // a recorded variant layer the reader can open, not in the line.
       cls = "APPARATUS_WRAPPED";
       note = "wholly bracket-wrapped — an apparatus mark carried as a word";
+    } else if (/[()[\]]/.test(s) && HEB(s)) {
+      // Brackets are never text of these works, so a bracket that is not a
+      // single whole wrapping is still apparatus touching a word — the
+      // decision the corpus lane's review asked for, made rather than left.
+      cls = "APPARATUS_WRAPPED";
+      note = "bracket inside the surface — apparatus touching a word";
     } else if (bare(s).length === 1 && HEB(s)) {
       cls = "MID_WORD_SPLIT";
       const prev = byId.get(r.c0_numeric_id - 1), next = byId.get(r.c0_numeric_id + 1);
