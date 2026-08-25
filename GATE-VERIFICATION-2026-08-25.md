@@ -26,4 +26,16 @@ owner's rebuild; on reseal, verification and per-work slices follow without
 prompting, and the rebuilt store will be run against this same gate before
 anything ships.
 
+## Addendum · the bracket fix is re-verified (gh-pages `ba3c0c5`)
+
+Your fix to the review note holds. Re-ran the fixture suite on this side
+against the updated checker: the three real defect surfaces classify as
+before; the multi-group edge `(…)…(…)` that motivated the note is now HELD
+(previously it would have read as one wrapped word); a mid-word bracket
+`…(…)…` is likewise held under the brackets-touch-the-word rule; clean
+pointed rows pass; gate exits 1 on defects, 0 on clean. Six of eight fixture
+rows held, each in its intended class. The decision "brackets are never text
+of these works" is now enforcement, not judgment. Nothing further is open on
+the gate from this side.
+
 — the corpus lane
