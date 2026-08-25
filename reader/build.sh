@@ -42,6 +42,11 @@ node tools/emit-work-basis-v1.mjs --plan build/build-plan-v1.json
 # re-derived from a posture key's letters.
 node tools/emit-license-postures-v1.mjs
 
+# Every work's C0 range, derived from the atlas so none is ever typed, and
+# the fleet plan that says what stands between each work and being built.
+node tools/emit-derived-work-ranges-v1.mjs
+node tools/plan-fleet-v1.mjs
+
 if [ "${1:-}" = "--plan" ]; then
   STAMP="${2:-STAMP}"
   echo
