@@ -39,6 +39,15 @@ import { readFileSync, writeFileSync } from "node:fs";
 const args = process.argv.slice(2);
 const mi = args.indexOf("--manifest");
 const MANIFEST = mi > -1 ? args[mi + 1] : null;
+// --gate: the measuring run becomes a refusing run. The serve law
+// (SERVE-LAW-2026-08-25.md) makes the gates the only judges, so the fleet
+// driver runs this between serve and zone: ANY class found — markup,
+// apparatus carried as text, a wrapped apparatus word, a mid-word split —
+// refuses the work, because each is a surface the reader would be handed
+// as scripture that the edition never issued as scripture. A work leaves
+// the hold when its serve comes back clean or its apparatus arrives as a
+// recorded layer instead of as words.
+const GATE = args.includes("--gate");
 // mi is -1 when --manifest is absent, and mi + 1 is then 0 — which silently
 // dropped the first file. Only exclude the manifest's own value.
 const FILES = args.filter((a, i) => !a.startsWith("--") && !(mi > -1 && i === mi + 1));
@@ -68,6 +77,14 @@ for (const f of FILES) {
     else if (HEB(s) && !POINTED(s)) {
       cls = "APPARATUS_AS_TEXT";
       note = SECTION_MARKER.test(s) ? "section marker" : "unpointed inside a pointed text";
+    } else if (/^[([]/.test(s.trim()) && /[)\]]׃?$/.test(s.trim()) && HEB(s)) {
+      // A pointed word wholly wrapped in brackets slipped every earlier
+      // class: pointed, so not APPARATUS_AS_TEXT; no markup; longer than
+      // one letter. It is the edition's variant mark carried as a word —
+      // the Aramaic Targum to Ruth serves one tonight — and it belongs in
+      // a recorded variant layer the reader can open, not in the line.
+      cls = "APPARATUS_WRAPPED";
+      note = "wholly bracket-wrapped — an apparatus mark carried as a word";
     } else if (bare(s).length === 1 && HEB(s)) {
       cls = "MID_WORD_SPLIT";
       const prev = byId.get(r.c0_numeric_id - 1), next = byId.get(r.c0_numeric_id + 1);
@@ -80,12 +97,12 @@ for (const f of FILES) {
 }
 
 let markup = 0;
-console.log("work                       rows      markup   apparatus   mid-word split");
+console.log("work                       rows      markup   apparatus   wrapped   mid-word split");
 for (const w of all) {
   const c = (k) => w.found.filter((x) => x.class === k).length;
   markup += c("RAW_MARKUP");
   console.log(`${w.work.padEnd(24)} ${String(w.rows).padStart(7)} ${String(c("RAW_MARKUP")).padStart(9)} ` +
-    `${String(c("APPARATUS_AS_TEXT")).padStart(11)} ${String(c("MID_WORD_SPLIT")).padStart(15)}`);
+    `${String(c("APPARATUS_AS_TEXT")).padStart(11)} ${String(c("APPARATUS_WRAPPED")).padStart(9)} ${String(c("MID_WORD_SPLIT")).padStart(15)}`);
 }
 for (const w of all) {
   const m = w.found.filter((x) => x.class === "RAW_MARKUP");
@@ -108,6 +125,7 @@ if (MANIFEST) {
       rows: w.rows,
       RAW_MARKUP: w.found.filter((x) => x.class === "RAW_MARKUP").length,
       APPARATUS_AS_TEXT: w.found.filter((x) => x.class === "APPARATUS_AS_TEXT").length,
+      APPARATUS_WRAPPED: w.found.filter((x) => x.class === "APPARATUS_WRAPPED").length,
       MID_WORD_SPLIT: w.found.filter((x) => x.class === "MID_WORD_SPLIT").length,
     }])),
     occurrences: all.flatMap((w) => w.found),
@@ -117,6 +135,15 @@ if (MANIFEST) {
 }
 
 console.log();
+if (GATE) {
+  const total = all.reduce((t, w) => t + w.found.length, 0);
+  if (total) {
+    console.log(`GATE: ${total} occurrences are not text of the work — the work is held, not served`);
+    process.exit(1);
+  }
+  console.log("GATE: every occurrence is text of the work");
+  process.exit(0);
+}
 if (markup) {
   console.log(`${markup} occurrences carry markup — the serve is returning the source page, not the source text`);
   process.exit(1);

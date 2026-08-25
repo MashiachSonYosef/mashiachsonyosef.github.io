@@ -65,6 +65,14 @@ while IFS=$'\t' read -r kind WID PUB LO HI; do
       HELD=$((HELD+1)); rm -f "$SERVES/$PUB.ndjson"; continue
     fi
   fi
+  # The text gate. Markup, apparatus carried as words, wrapped variant
+  # marks, mid-word splits — any of them and the work is held here, before
+  # a zone can exist. This is how the failure of 2026-08-23 is refused
+  # automatically instead of remembered.
+  if ! node tools/check-corpus-clean-v1.mjs "$SERVES/$PUB.ndjson" --gate > "build/fleet-$PUB.clean" 2>&1; then
+    echo -e "HELD\t$WID\ttext\t$(tail -1 "build/fleet-$PUB.clean" | tr '\t' ' ')" >> "$REPORT"
+    HELD=$((HELD+1)); continue
+  fi
   if ! node tools/build-zone.mjs \
       --serve "$SERVES/$PUB.ndjson" --bridge "$BRIDGE" --store data/route-store \
       --work "$WID" --title "$(echo "$PUB" | tr '-' ' ')" \
