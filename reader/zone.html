@@ -2908,7 +2908,28 @@
     const joined = allRegions ? allRegions.filter(hasMaqaf) : [];
     const regionEls = [];
     const markEls = [];
-    if (regions) {
+    if (word.kq && regions && regions.length) {
+      // A source-marked pair. The line prints the exact MAM carrier \u2014 the
+      // ketiv wearing its parentheses, the qere its square brackets, in the
+      // source's own order \u2014 and each branch is its own way into its own
+      // record. Choosing a branch changes what the card is about and moves
+      // no character of the line: the carrier IS the text, whole. The
+      // separators between the branches are cut out of the carrier itself,
+      // never typed here.
+      wb.classList.add("multi", "kq");
+      let rest = word.s;
+      regions.forEach((r, i) => {
+        const at = rest.indexOf(r.s);
+        if (at > 0) w.append(document.createTextNode(rest.slice(0, at)));
+        rest = rest.slice(at + r.s.length);
+        const seg = document.createElement("span"); seg.className = "wr"; seg.textContent = r.s;
+        seg.title = r.role === "KETIV"
+          ? "ketiv \u2014 the form the source writes; opens its own record"
+          : "qere \u2014 the form the source reads; opens its own record";
+        w.append(seg); regionEls.push(seg);
+      });
+      if (rest) w.append(document.createTextNode(rest));
+    } else if (regions) {
       wb.classList.add("multi");
       // Split on the mark and keep it, so the character redrawn between the
       // pieces is the one the source put there. Typing it here would be this
