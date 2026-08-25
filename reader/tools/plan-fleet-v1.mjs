@@ -85,6 +85,11 @@ const rows = ranges.works.map((w) => {
 const count = (s) => rows.filter((r) => r.state === s).length;
 
 mkdirSync(dirname(OUT), { recursive: true });
+// The staged rows again as TSV, for the driver shell to read the way
+// build.sh reads the build plan: S <id> <published_as> <c0_first> <c0_last>
+writeFileSync(OUT.replace(/\.json$/, ".tsv"),
+  rows.filter((r) => r.state === "SHARDS_STAGED")
+    .map((r) => ["S", r.id, r.published_as, r.c0_first, r.c0_last].join("\t")).join("\n") + "\n");
 writeFileSync(OUT, JSON.stringify({
   schema_version: "FLEET_PLAN_V1",
   rule: "fleet-rule-v1-a-work-builds-the-day-its-shards-arrive-and-not-a-day-sooner",
