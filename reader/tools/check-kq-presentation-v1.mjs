@@ -39,7 +39,10 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 // the fixture's name is derived from its own path, typed once — the scope
 // guard's law: a check never names a zone twice, so a rename cannot desync
 const FIX = join(K3, "build", "kq-fixture", "kq-fixture-v1.bin");
-const SLUG = FIX.split("/").pop().replace(/\.bin$/, "");
+// split on either separator: join() emits backslashes on Windows, and the
+// corpus lane runs this check there — its counter-verification found both
+// of these seams
+const SLUG = FIX.split(/[\\/]/).pop().replace(/\.bin$/, "");
 execFileSync("node", [join(HERE, "make-kq-fixture-zone-v1.mjs"), "--bundle", BUNDLE, "--out", FIX], { stdio: "pipe", cwd: K3 });
 const zone = JSON.parse(gunzipSync(readFileSync(FIX)).toString("utf8"));
 const overlay = readFileSync(join(BUNDLE, "candidate", "mam-reader-overlay-v1.jsonl"), "utf8")
@@ -56,7 +59,8 @@ check(`every pair carries both halves, brackets as written (${pairs.length} pair
 // 3 · the reader renders it under the presentation law
 const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json", ".bin": "application/octet-stream" };
 const srv = createServer((req, res) => {
-  const p = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "");
+  const p = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "")
+    .replace(/\\/g, "/");   // normalize() emits backslashes on Windows; URLs never do
   const path = p === `/data/zones/${SLUG}.bin` ? FIX : join(K3, p);
   try {
     const body = readFileSync(path);
