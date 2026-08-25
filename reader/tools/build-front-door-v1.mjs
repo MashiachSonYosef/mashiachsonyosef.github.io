@@ -116,6 +116,15 @@ const plan = JSON.parse(readFileSync(PLAN, "utf8"));
 // with a sealed work's face; a door that cannot read the basis file would be
 // choosing that face back, so it refuses instead.
 execFileSync("node", ["tools/emit-work-basis-v1.mjs", "--plan", PLAN], { stdio: "pipe" });
+// The frame is complete, or it is not a frame: every work the record names
+// carries its standing — serving, held with its reason said, or awaiting
+// its text — and the door says it on the work's own card. Derived fresh
+// from the fleet plan (SERVE-LAW-2026-08-25.md §4).
+const FLEET_PLAN = arg("fleet-plan", "build/fleet-plan-v1.json");
+execFileSync("node", ["tools/emit-derived-work-ranges-v1.mjs"], { stdio: "pipe" });
+execFileSync("node", ["tools/plan-fleet-v1.mjs", "--out", FLEET_PLAN], { stdio: "pipe" });
+const FLEET = JSON.parse(readFileSync(FLEET_PLAN, "utf8"));
+const FLEET_STATE = new Map(FLEET.works.map((w) => [w.id, w.state]));
 const WB = JSON.parse(readFileSync(arg("basis", "data/work-basis-v1.json"), "utf8"));
 // The same catalog the masthead asks at runtime, asked once at build time:
 // does a record read this title's own form as the common name? Where one
@@ -508,7 +517,8 @@ const atlasRow = (w) => {
   const pre = segs.slice(0, -1).join("/");
   const fam = valueOwner.get(pre);
   const famAttr = fam && fam !== "(awaiting)" ? ` data-fam="${esc(fam)}"` : "";
-  return `      <span class="atlas-row" data-p="${esc(pre)}"><button type="button" class="aw" dir="auto" data-w="${esc(w.id)}" data-u="${w.units}" data-cr="${w.c0_rows}" data-cf="${w.c0_first}"${famAttr} title="open this book&#8217;s own record">${esc(name)}</button><span class="au">${n(w.units)} unit${w.units === 1 ? "" : "s"}</span></span>`;
+  const st = FLEET_STATE.get(w.id) || "AWAITING_SHARDS";
+  return `      <span class="atlas-row" data-p="${esc(pre)}"><button type="button" class="aw" dir="auto" data-w="${esc(w.id)}" data-u="${w.units}" data-cr="${w.c0_rows}" data-cf="${w.c0_first}" data-st="${esc(st)}"${famAttr} title="open this book&#8217;s own record">${esc(name)}</button><span class="au">${n(w.units)} unit${w.units === 1 ? "" : "s"}</span></span>`;
 };
 const seatedRow = (b) => {
   const base = seatedBaseOf.get(b.slug);
@@ -998,6 +1008,7 @@ ${sectionsHtml.join("\n")}
     <p class="row bk-en"><span class="lab">commonly force read as</span><span class="en"></span></p>
     <p class="row bk-fam"><span class="lab">family</span><span class="slot"></span></p>
     <p class="row bk-n"><span class="lab">recorded</span><span class="of"></span></p>
+    <p class="row bk-st"><span class="lab">standing</span><span class="of"></span></p>
     <p class="prov">named by the bridge, hyphens read as spaces &#183; counted by ${esc(ATLAS.schema_version || "corpus-atlas-v1")} &#183; the Hebrew title row waits on a work ledger</p>
   </div>
   <div id="wcard" role="dialog" aria-label="the word&#8217;s own record" hidden>
@@ -1119,6 +1130,17 @@ ${sectionsHtml.join("\n")}
     bkcard.querySelector(".bk-n .of").textContent =
       num(btn.getAttribute("data-u")) + " units · " + num(btn.getAttribute("data-cr")) +
       " C0 rows · first row " + num(btn.getAttribute("data-cf"));
+    // The work's standing in the frame — every book has one, always: it
+    // serves, or it is held with its reason said where it stands, or it
+    // awaits its text. No book is outside the system; a state is not an
+    // absence.
+    var ST = {
+      PLANNED: "in the build plan — its page says whether it serves or is held, and why",
+      SHARDS_STAGED: "its text is staged; the gates decide next, and a hold would be said here",
+      AWAITING_SHARDS: "awaiting its text from custody — nothing is withheld; it has not arrived",
+    };
+    bkcard.querySelector(".bk-st .of").textContent =
+      ST[btn.getAttribute("data-st")] || ST.AWAITING_SHARDS;
     wcard.hidden = true;
     bkcard.hidden = false; wshade.hidden = false;
   }
