@@ -2,6 +2,24 @@
 
 Newest first. Each entry is one state change observed by scan-chain-v1.
 
+## 2026-08-25 — adjudication: the owner ruled on the Aug-13 deletion and the fleet order
+
+The owner answered both open questions directly, in chat, to the corpus lane:
+
+1. **The deletion was the owner's, and intentional.** The canonical shard store (and
+   with it the two sealed candidates) was deleted because it presented qere/ketiv
+   separately in the Hebrew rather than as MAM. The HOLD is therefore explained — not
+   tampering, a content ruling. Note the consequence: a byte-identical rematerialization
+   would reproduce the defect, so the rebuild must carry the corrected qere/ketiv
+   treatment, and the v4 HOLD closes by a resealed successor head over the corrected
+   store — not by restoration of the old bytes. This aligns with the website lane's
+   pair law.
+2. **Fleet order disposition: rebuild, then ship.** The owner named the cargo himself:
+   once the store is rebuilt with the corrected presentation, the corpus lane verifies
+   it against the custody manifest and ships per-work sliced branches. Nothing ships
+   before the rebuilt store exists. The rebuild runs on the owner's side — this lane
+   stays read-only and will see the store reappear through the watched custody files.
+
 ## 2026-08-25 — evidence: the custody-membership answer, and it is the worse story
 
 The website lane asked whether canonical custody holds the two missing ranges. Findings,
