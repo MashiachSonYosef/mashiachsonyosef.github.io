@@ -168,10 +168,25 @@ const showing = async (nth = 0) => p.evaluate((i) => {
     const el = await p.$(sel);
     await el.scrollIntoViewIfNeeded();
     const bb = await el.boundingBox();
-    const para = await (await p.$("section.seg .he-text")).boundingBox();
+    // The drag ends ON the paragraph's own last word, not at a corner of its
+    // box: a pixel corner is a bet about line metrics, and a font swap in
+    // the harness environment landed the old corner on the next chapter's
+    // head — the copy swept a frame the gesture never touched. The last
+    // word's box moves with the layout, so the gesture stays the gesture.
+    // …and on-screen: the Targum's first paragraph is taller than a phone,
+    // so "the last word" must mean the last word a finger could reach
+    // without scrolling — a coordinate outside the viewport is not a
+    // gesture at all.
+    const tail = await p.$$("section.seg .he-text:first-of-type .wb .w");
+    let tb = null;
+    for (const w of tail) {
+      const cand = await w.boundingBox();
+      if (cand && cand.y > bb.y && cand.y + cand.height < 875) tb = cand;
+    }
+    if (!tb) tb = await tail[Math.min(8, tail.length - 1)].boundingBox();
     await p.mouse.move(bb.x + bb.width - 2, bb.y + bb.height / 2);
     await p.mouse.down();
-    await p.mouse.move(para.x + 4, para.y + para.height - 6, { steps: 18 });
+    await p.mouse.move(tb.x + 2, tb.y + tb.height / 2, { steps: 18 });
     await p.mouse.up();
     await p.waitForTimeout(140);
     return (await copyNow()).trim();

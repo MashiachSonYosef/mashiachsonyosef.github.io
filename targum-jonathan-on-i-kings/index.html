@@ -590,7 +590,11 @@
   #hud.moved { box-shadow: 0 14px 40px rgba(0,0,0,.6), 0 0 0 1px var(--sel-dim); }
   #hud .head button { cursor: pointer; }
   #hud .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem;
-    border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
+    flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
+  /* which half of a source-marked pair the card is about, said in words —
+     hover titles do not exist on a phone */
+  #hud .head .kq-role { flex: 1 1 100%; margin: 0; color: var(--muted);
+    font-size: 0.74rem; font-style: italic; direction: ltr; text-align: left; }
   #hud .head b { font-size: 1.55rem; color: var(--ink-strong);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   #hud .head button { background: none; border: 0; color: var(--link); font-size: 1.15rem; cursor: pointer; }
@@ -2090,6 +2094,20 @@
     const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Close");
     x.addEventListener("click", closeHud);
     head.append(b, x);
+    // A source-marked branch says which half it is ON the card, in words —
+    // the roles lived only in hover titles, and a phone has no hover. The
+    // ketiv/qere words are the tradition's own names for the halves, not
+    // this file's coinage; what follows the dash is ours and says so by
+    // being plain English about the source.
+    if (region && region.role === "KETIV") {
+      const roleLine = document.createElement("p"); roleLine.className = "kq-role";
+      roleLine.textContent = "ketiv — the form the source writes, carried as written";
+      head.append(roleLine);
+    } else if (region && region.role === "QERE") {
+      const roleLine = document.createElement("p"); roleLine.className = "kq-role";
+      roleLine.textContent = "qere — the form the source reads, carried as written";
+      head.append(roleLine);
+    }
     const status = document.createElement("p"); status.textContent = "Fetching one shard…";
     if (opts.back) hud.replaceChildren(backButton(opts.back), head, status);
     else hud.replaceChildren(head, status);

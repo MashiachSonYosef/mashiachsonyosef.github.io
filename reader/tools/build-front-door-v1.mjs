@@ -724,6 +724,26 @@ const doc = `<!doctype html>
   main { width:100%; max-width:40rem; }
   h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--gold); }
   p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }
+  /* The face speaks plainly; the audited panel stands whole behind one quiet
+     fold, its grains and receipts byte-identical for the count guard. What a
+     reader meets first is what they can read, not the machine room. */
+  .face-line { margin:.8rem 0 .5rem; color:var(--muted); font-size:.9rem; }
+  .reads-now { display:flex; flex-wrap:wrap; gap:.6rem; margin:0 0 1rem; }
+  .read-link { flex:1 1 16rem; display:flex; flex-direction:column; gap:.15rem;
+    padding:.7rem .9rem; border:1px solid var(--gold-dim); border-radius:.7rem;
+    background:var(--panel); text-decoration:none; }
+  .read-link:hover { border-color:var(--gold); background:var(--hover-wash); }
+  .read-link .rl-he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
+    font-size:1.25rem; color:var(--shesh); }
+  .read-link .rl-he:empty { display:none; }
+  .read-link .rl-en { font-variant:small-caps; letter-spacing:.1em; color:var(--gold); font-size:1.02rem; }
+  .read-link .rl-of { color:var(--faint); font-size:.74rem; }
+  .counts-fold { margin:.4rem 0 1.1rem; }
+  .counts-fold > summary { cursor:pointer; color:var(--faint); font-size:.78rem;
+    letter-spacing:.04em; list-style:none; }
+  .counts-fold > summary::-webkit-details-marker { display:none; }
+  .counts-fold > summary::before { content:"▸ "; }
+  .counts-fold[open] > summary::before { content:"▾ "; }
   .countboard { margin:.8rem 0 1.2rem; padding:.75rem; border:1px solid var(--line);
                 border-radius:.65rem; background:var(--panel2); }
   .countgrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.45rem; }
@@ -972,6 +992,12 @@ const doc = `<!doctype html>
        authorities and the zones. Every count below names its grain. -->
   <h1>The Tabernacle</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the licence it was released under.</p>
+  <p class="face-line">${n(books.length)} book${books.length === 1 ? "" : "s"} readable today · ${n(ATLAS.totals.works - books.length)} more stand listed, each saying on its own card what it awaits</p>
+  <nav class="reads-now" aria-label="Readable now">
+${books.map((b) => `    <a class="read-link" href="/${b.slug}">${b.he ? `<span class="rl-he" lang="he" dir="rtl">${esc(b.he)}</span>` : ""}<span class="rl-en">${esc(b.disp)}</span><span class="rl-of">${n(b.sections)} sections</span></a>`).join("\n")}
+  </nav>
+  <details class="counts-fold">
+  <summary>the counts, at their exact grains — audited on every build</summary>
   <section class="countboard" aria-label="Audited corpus counts"
     data-text-input-byte-rule="${TEXT_PIN_RULE}"
     data-logical-atlas-sha256="${atlasPinned.actual.sha256}"
@@ -992,10 +1018,12 @@ const doc = `<!doctype html>
     <p class="count-detail">Logical plan: ${n(logicalPlanRows)} C0 rows across ${n(ATLAS.totals.works)} works and ${n(ATLAS.totals.units)} units · logical-plan C0 rows not physical: ${n(logicalPlanNotPhysicalRows)} · physical C0 rows not yet mapped to a named shelf: ${n(physicalUnmappedRows)}</p>
     <p class="count-audit"><a href="/front-door-counts-receipt-v1.json">Open the count receipt</a> · logical atlas ${atlasPinned.actual.sha256.slice(0, 12)} · physical handoff ${handoffPinned.actual.sha256.slice(0, 12)} · physical atlas ${BINDINGS.inputs.physical_atlas.sha256.slice(0, 12)} · logical overlay ${BINDINGS.inputs.logical_overlay.sha256.slice(0, 12)} · zone-successor seal ${GENESIS_V3.closed_world_seal.sha256.slice(0, 12)}</p>
   </section>
+  </details>
   <script id="front-door-counts-receipt" type="application/json">${JSON.stringify(countReceipt).replace(/</g, "\\u003c")}</script>
   <form id="find" role="search" onsubmit="return go(event)">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
-      placeholder="find a book — its name, however you type it"
+      placeholder="find a book"
+      title="type its name however your hands type it — 1 kings, i-kings, 1-kings all land"
       aria-label="find a book" oninput="sift()">
   </form>
   <nav class="books">
@@ -1139,8 +1167,17 @@ ${sectionsHtml.join("\n")}
       SHARDS_STAGED: "its text is staged; the gates decide next, and a hold would be said here",
       AWAITING_SHARDS: "awaiting its text from custody — nothing is withheld; it has not arrived",
     };
-    bkcard.querySelector(".bk-st .of").textContent =
-      ST[btn.getAttribute("data-st")] || ST.AWAITING_SHARDS;
+    var stEl = bkcard.querySelector(".bk-st .of");
+    var st = btn.getAttribute("data-st");
+    stEl.textContent = ST[st] || ST.AWAITING_SHARDS;
+    // a planned work's page is one tap away — the standing line is the way
+    // in, not a description of a door somewhere else
+    if (st === "PLANNED") {
+      var a = document.createElement("a");
+      a.href = "/" + btn.getAttribute("data-w").split("/").pop();
+      a.textContent = "open its page";
+      stEl.append(" · ", a);
+    }
     wcard.hidden = true;
     bkcard.hidden = false; wshade.hidden = false;
   }

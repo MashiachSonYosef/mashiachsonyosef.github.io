@@ -118,6 +118,7 @@ const kqProof = await p.evaluate(async () => {
     heads.push({
       pressed: seg.textContent,
       headText: head ? head.textContent : null,
+      roleSaid: (document.querySelector("#hud .kq-role") || {}).textContent || "",
       litInHead: head ? [...head.querySelectorAll("span")].filter((x) =>
         getComputedStyle(x).color !== "" && x.textContent === seg.textContent).length > 0 : false,
     });
@@ -133,6 +134,13 @@ check("each branch opens a card about the whole occurrence",
   kqProof.found ? kqProof.heads.map((h) => `${h.pressed}→${h.headText ? "card" : "nothing"}`).join(" · ") : "");
 check("choosing branches moved no character of the line",
   kqProof.found && kqProof.lineAfter === kqProof.lineBefore);
+// the roles are said on the card in words — hover titles do not exist on a
+// phone; the ketiv branch says ketiv, the qere says qere
+check("each branch's card says which half it is, in words",
+  kqProof.found
+    && kqProof.heads.some((h) => /^ketiv/.test(h.roleSaid))
+    && kqProof.heads.some((h) => /^qere/.test(h.roleSaid)),
+  kqProof.found ? kqProof.heads.map((h) => h.roleSaid || "(silent)").join(" · ") : "");
 
 await b.close(); srv.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

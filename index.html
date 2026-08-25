@@ -53,6 +53,26 @@
   main { width:100%; max-width:40rem; }
   h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--gold); }
   p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }
+  /* The face speaks plainly; the audited panel stands whole behind one quiet
+     fold, its grains and receipts byte-identical for the count guard. What a
+     reader meets first is what they can read, not the machine room. */
+  .face-line { margin:.8rem 0 .5rem; color:var(--muted); font-size:.9rem; }
+  .reads-now { display:flex; flex-wrap:wrap; gap:.6rem; margin:0 0 1rem; }
+  .read-link { flex:1 1 16rem; display:flex; flex-direction:column; gap:.15rem;
+    padding:.7rem .9rem; border:1px solid var(--gold-dim); border-radius:.7rem;
+    background:var(--panel); text-decoration:none; }
+  .read-link:hover { border-color:var(--gold); background:var(--hover-wash); }
+  .read-link .rl-he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
+    font-size:1.25rem; color:var(--shesh); }
+  .read-link .rl-he:empty { display:none; }
+  .read-link .rl-en { font-variant:small-caps; letter-spacing:.1em; color:var(--gold); font-size:1.02rem; }
+  .read-link .rl-of { color:var(--faint); font-size:.74rem; }
+  .counts-fold { margin:.4rem 0 1.1rem; }
+  .counts-fold > summary { cursor:pointer; color:var(--faint); font-size:.78rem;
+    letter-spacing:.04em; list-style:none; }
+  .counts-fold > summary::-webkit-details-marker { display:none; }
+  .counts-fold > summary::before { content:"▸ "; }
+  .counts-fold[open] > summary::before { content:"▾ "; }
   .countboard { margin:.8rem 0 1.2rem; padding:.75rem; border:1px solid var(--line);
                 border-radius:.65rem; background:var(--panel2); }
   .countgrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.45rem; }
@@ -301,6 +321,13 @@
        authorities and the zones. Every count below names its grain. -->
   <h1>The Tabernacle</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the licence it was released under.</p>
+  <p class="face-line">2 books readable today · 4,045 more stand listed, each saying on its own card what it awaits</p>
+  <nav class="reads-now" aria-label="Readable now">
+    <a class="read-link" href="/aramaic-targum-to-ruth"><span class="rl-en">aramaic targum to ruth</span><span class="rl-of">85 sections</span></a>
+    <a class="read-link" href="/targum-jonathan-on-i-kings"><span class="rl-en">targum jonathan on i kings</span><span class="rl-of">817 sections</span></a>
+  </nav>
+  <details class="counts-fold">
+  <summary>the counts, at their exact grains — audited on every build</summary>
   <section class="countboard" aria-label="Audited corpus counts"
     data-text-input-byte-rule="EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1"
     data-logical-atlas-sha256="b3c2e0d160cb509606c4f7399d751dcff82b081cd3d8cbaa4a7143ff70e0b7fd"
@@ -321,10 +348,12 @@
     <p class="count-detail">Logical plan: 109,391,214 C0 rows across 4,047 works and 789,806 units · logical-plan C0 rows not physical: 11,490,162 · physical C0 rows not yet mapped to a named shelf: 2,983,505,593</p>
     <p class="count-audit"><a href="/front-door-counts-receipt-v1.json">Open the count receipt</a> · logical atlas b3c2e0d160cb · physical handoff a3eba4228d36 · physical atlas 6999f17ca8b0 · logical overlay 0a946675b2bd · zone-successor seal f9086f08929b</p>
   </section>
+  </details>
   <script id="front-door-counts-receipt" type="application/json">{"schema":"mishkan.bezalel.front_door_three_count_receipt.v1","status":"PASS_PINNED_INPUTS__CURRENT_ZONE_SNAPSHOT__DYNAMIC_RENDER_GRAIN","exact_text_input_policy":{"rule":"EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1","gitattributes_path":".gitattributes","paths":["reader/data/corpus-atlas-v1.json","reader/data/bezelal-front-door-counts-handoff-v1.json","reader/data/front-door-three-count-bindings-v1.json"],"effect":"bytes and sha256 are over exact LF Git-blob bytes; text eol=lf makes ordinary Windows checkouts materialize the same bytes"},"grains":{"physical_c0_rows":"C0_ROWS","named_shelf_c0_rows":"C0_ROWS","rendered_compspan_records":"ONE_RECORD_PER_COMPSPAN__NOT_C0_ROWS"},"snapshot":{"kind":"CURRENT_BUILT_ZONE_BYTES_AT_BUILD_TIME","recomputed_from_zone_bytes_on_every_build":true,"future_zone_successor_behavior":"RECOMPUTE_RENDERED_COMPSPAN_RECORDS_WITHOUT_TYPED_COUNT_EDIT","zone_manifest_sha256":"9bdf78b2e3d22fda829c0e6446d565f85e2c379c65ba7a7230ec9e33cb7a49d6"},"counts":{"current_physical_c0_rows":3081406645,"physically_backed_c0_rows_on_named_work_unit_shelves":97901052,"rendered_compspan_records":15790,"logical_plan_c0_rows":109391214,"logical_plan_c0_rows_not_physical":11490162,"physical_c0_rows_not_yet_mapped_to_named_shelf":2983505593},"equations":{"logical_plan_partition":"PASS","physical_partition":"PASS"},"inputs":{"logical_atlas":{"path":"data/corpus-atlas-v1.json","bytes":408027,"sha256":"b3c2e0d160cb509606c4f7399d751dcff82b081cd3d8cbaa4a7143ff70e0b7fd","byte_hash_rule":"EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1"},"physical_handoff":{"path":"data/bezelal-front-door-counts-handoff-v1.json","bytes":1035,"sha256":"a3eba4228d36a90721c938d71fb724931c6499fc1cda82c9f688ddc86eaeb404","byte_hash_rule":"EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1"},"count_bindings":{"path":"data/front-door-three-count-bindings-v1.json","bytes":4660,"sha256":"0f6c51aa81dec2a4cfcefc3afd1a67a2415a0d7458faa7654f17dccc18962dd2","byte_hash_rule":"EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1"},"physical_atlas":{"source_path":"corpus-refinement-v1/work/federated-terminal-physical-atlas-v1/federated-terminal-physical-atlas-v1.json","bytes":122038,"sha256":"6999f17ca8b0def606679a24fe2e6cd264666d175d69696c856b17a834fe08f9","closed_world_seal_sha256":"6205d9eb0fb5fb3f4ebe5468094180db0dab4f5eebc4d3491e5d69bac0c86e5c"},"logical_overlay":{"source_path":"corpus-refinement-v1/work/federated-terminal-logical-overlay-v1/candidate/federated-terminal-logical-overlay-v1.json","bytes":6846,"sha256":"0a946675b2bd24c1e00fba0fdf252d025569fbf421dcfb0e859708bf265c9bfe","validation_sha256":"198aef97db720ae17f2cef455184fe7eac547b8249b24be482bfe0e3504ba81e","closed_world_seal_sha256":"79b92ef3b7bb1bcafda0e2f6a49df24449686e7396bf0e26a4010aa0c8b80b68"},"genesis_clean_successor_v3":{"zone":{"path":"reader/data/zones/genesis.bin","module_path":"data/zones/genesis.bin","source_path":"corpus-refinement-v1/work/bezalel-genesis-clean-successor-v3/candidate/genesis-zone-clean-successor-v3.bin","bytes":368183,"sha256":"cd6bf44aea0a7179b2a06fc6083493624dac8dd5a812745fca2e86ee7811d7a7"},"front_door_handoff":{"source_path":"corpus-refinement-v1/work/bezalel-genesis-clean-successor-v3/candidate/front-door-render-count-clean-successor-handoff-v3.json","bytes":942,"sha256":"da929ac0b827e391ecd23a560c9b294303d42208789bdd764a3d3a6c1ce5706c"},"defect_provenance":{"source_path":"corpus-refinement-v1/work/bezalel-genesis-clean-successor-v3/candidate/genesis-clean-defect-provenance-v3.json","bytes":7098,"sha256":"a99ad4aff67d244f544cccb42c207cb518e87c129d0b094a3af0d893d5c6e9db"},"validation":{"source_path":"corpus-refinement-v1/work/bezalel-genesis-clean-successor-v3/candidate/validation-v3.json","bytes":231769,"sha256":"2d55fd74d8ee04845f4b3a5ef9d77db152046ca3af7d30914efba9805778fea1"},"closed_world_seal":{"source_path":"corpus-refinement-v1/work/bezalel-genesis-clean-successor-v3/candidate/closed-world-seal-v3.json","bytes":7452,"sha256":"f9086f08929b156e478ffa4679f358fa0ec19a50415b65f19d0f9970cb135b97"},"counts":{"physical_c0_rows":17807,"canonical_compspan_records":17664,"rendered_compspan_records":17664,"folded_source_orthographic_records":17660,"presentation_join_groups":4,"presentation_join_records":8,"candidate_five_zone_rendered_compspan_records":45954,"raw_markup_records":0,"apparatus_records_rendered_as_text":0,"mid_word_split_records":0},"grain":"ONE_RENDER_RECORD_PER_COMPSPAN"}},"rendered":{"compspan_records":15790,"built_zones":2,"zones":[{"path":"data/zones/aramaic-targum-to-ruth.bin","work_id":"targum/aramaic-targum-to-ruth","rendered_compspan_records":2139,"bytes":39442,"sha256":"d8d5f70ea152695be4e29b651da013abe6a54e0d68855ecbc8c8d376d1c69940"},{"path":"data/zones/targum-jonathan-on-i-kings.bin","work_id":"targum/targum-jonathan-on-i-kings","rendered_compspan_records":13651,"bytes":150049,"sha256":"2cd5074853e5ba695a8a1b99b9707808cb1a2c026ff4f091ccc7217d8cd81119"}],"zone_manifest_sha256":"9bdf78b2e3d22fda829c0e6446d565f85e2c379c65ba7a7230ec9e33cb7a49d6"}}</script>
   <form id="find" role="search" onsubmit="return go(event)">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
-      placeholder="find a book — its name, however you type it"
+      placeholder="find a book"
+      title="type its name however your hands type it — 1 kings, i-kings, 1-kings all land"
       aria-label="find a book" oninput="sift()">
   </form>
   <nav class="books">
@@ -4733,8 +4762,17 @@
       SHARDS_STAGED: "its text is staged; the gates decide next, and a hold would be said here",
       AWAITING_SHARDS: "awaiting its text from custody — nothing is withheld; it has not arrived",
     };
-    bkcard.querySelector(".bk-st .of").textContent =
-      ST[btn.getAttribute("data-st")] || ST.AWAITING_SHARDS;
+    var stEl = bkcard.querySelector(".bk-st .of");
+    var st = btn.getAttribute("data-st");
+    stEl.textContent = ST[st] || ST.AWAITING_SHARDS;
+    // a planned work's page is one tap away — the standing line is the way
+    // in, not a description of a door somewhere else
+    if (st === "PLANNED") {
+      var a = document.createElement("a");
+      a.href = "/" + btn.getAttribute("data-w").split("/").pop();
+      a.textContent = "open its page";
+      stEl.append(" · ", a);
+    }
     wcard.hidden = true;
     bkcard.hidden = false; wshade.hidden = false;
   }
