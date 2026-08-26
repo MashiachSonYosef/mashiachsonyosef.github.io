@@ -397,6 +397,12 @@
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
   .wr:hover { color: var(--hover-ink); border-bottom-color: var(--hover-line); }
   .wr.on { color: var(--sel); border-bottom: 1px solid var(--sel); }
+  /* The half of a source-marked pair that the shown English is reading from.
+     An underline in the selection role, not a new colour: it marks provenance
+     of the gloss, never a choice about the text — both halves keep printing
+     exactly as the source wrote them, and text-decoration moves no glyph. */
+  .wb.kq .wr.backs-en { text-decoration: underline; text-decoration-color: var(--sel);
+    text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   .mq { color: var(--faint); }
   /* The reading under a word is shown whole. It used to run one line and end in
      an ellipsis, which was the honest thing to do when the average reading was
@@ -2235,6 +2241,9 @@
       for (const s of stands) {
         const line = s.glossParts ? (s.glossParts[s.partIndex] = mine, s.glossParts.join(" + ")) : mine;
         holdAndPaint(s.glossEl, line);
+        // a ruling on one half of a pair moves the provenance mark with it:
+        // the English now reads from the ruled branch, everywhere it stands
+        if (s.kqEls) s.kqEls.forEach((el, j) => el.classList.toggle("backs-en", j === s.kqIdx));
         s.wb.classList.add("chosen");
         // record what this reading stands on, so a copy can name it
         if (selectedRecordRef.m) {
@@ -2995,15 +3004,34 @@
     });
     // a ruling made on a joined interval spoke for the whole line
     const heldJoint = joined.map((r) => ruledLine(r.k, table)).find((x) => x != null);
+    // A pair's halves are alternatives, not components: the maqaf join reads
+    // its atoms as one line, but joining a ketiv's reading to a qere's would
+    // print a compound the source never attested. One half backs the English
+    // at a time — a ruled branch first, else the qere, the half the source
+    // itself calls the read form — and that half wears the mark that says so.
+    let kqShown = -1;
+    if (word.kq && regions) {
+      const ruledIdx = regions.findIndex((r) => ruledLine(r.k, table) !== null);
+      const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—";
+      const qereIdx = regions.findIndex((r) => r.role !== "KETIV");
+      const ketivIdx = regions.findIndex((r) => r.role === "KETIV");
+      kqShown = ruledIdx >= 0 ? ruledIdx : usable(qereIdx) ? qereIdx : usable(ketivIdx) ? ketivIdx : -1;
+    }
     const line = heldJoint != null ? (wasRuled = true, heldJoint)
+      : word.kq && regions ? (kqShown >= 0 && parts[kqShown] !== "—" ? parts[kqShown] : "")
       : (parts.filter((p) => p !== "—").length ? parts.join(" + ") : "");
+    if (word.kq && kqShown >= 0 && line) regionEls[kqShown] && regionEls[kqShown].classList.add("backs-en");
     const ge = document.createElement("span"); ge.className = "g";
     if (line) { ge.textContent = line; ge.title = line; }
     else { ge.textContent = " "; ge.classList.add("bare"); }
     wb.append(ge);
     // every place this form stands goes on the ledger, so a ruling made at
-    // any one of them can be painted at all of them
-    if (regions) regions.forEach((r, i) => standAt(r.k, { wb, glossEl: ge, glossParts: parts, partIndex: i }));
+    // any one of them can be painted at all of them. A pair's stand carries
+    // its branch elements too, so a ruling can move the provenance mark to
+    // the half it ruled on — at every place the form stands.
+    if (word.kq && regions) regions.forEach((r, i) =>
+      standAt(r.k, { wb, glossEl: ge, glossParts: null, partIndex: -1, kqEls: regionEls, kqIdx: i }));
+    else if (regions) regions.forEach((r, i) => standAt(r.k, { wb, glossEl: ge, glossParts: parts, partIndex: i }));
     else if (word.k) standAt(word.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 });
     joined.forEach((r) => standAt(r.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 }));
     if (wasRuled) wb.classList.add("chosen");

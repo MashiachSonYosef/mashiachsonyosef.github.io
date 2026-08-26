@@ -142,6 +142,54 @@ check("each branch's card says which half it is, in words",
     && kqProof.heads.some((h) => /^qere/.test(h.roleSaid)),
   kqProof.found ? kqProof.heads.map((h) => h.roleSaid || "(silent)").join(" · ") : "");
 
+// 5 · the provenance mark: the half the shown English reads from wears the
+// mark, and a ruling on a branch moves the mark to that branch — while the
+// carrier itself never changes by a byte. The mark is provenance of the
+// gloss, never a choice about the text.
+const markProof = await p.evaluate(async () => {
+  const wbs = [...document.querySelectorAll("section.seg .he-text .wb.kq")];
+  const pillsOf = () => [...document.querySelectorAll("#hud .r-pills button")];
+  const esc = async () => { document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })); await new Promise((r) => setTimeout(r, 250)); };
+  for (const wb of wbs) {
+    const segs = [...wb.querySelectorAll(".wr")];
+    if (segs.length !== 2) continue;
+    const lineBefore = wb.querySelector(".w").textContent;
+    const rulings = [];
+    for (let i = 0; i < 2; i += 1) {
+      segs[i].click();
+      await new Promise((r) => setTimeout(r, 900));
+      const pills = pillsOf();
+      if (!pills.length) { await esc(); continue; }
+      pills[0].click();
+      await new Promise((r) => setTimeout(r, 350));
+      rulings.push({
+        idx: i,
+        marked: segs.map((s) => s.classList.contains("backs-en")),
+        gloss: (wb.querySelector(".g") || {}).textContent || "",
+        pill: pills[0].textContent,
+      });
+      await esc();
+    }
+    if (rulings.length) return {
+      found: true, rulings,
+      lineAfter: wb.querySelector(".w").textContent, lineBefore,
+    };
+  }
+  return { found: false };
+});
+check("ruling on a branch marks that half as the English's source",
+  markProof.found && markProof.rulings.every((r) =>
+    r.marked[r.idx] === true && r.marked[1 - r.idx] === false && r.gloss === r.pill),
+  markProof.found
+    ? markProof.rulings.map((r) => `branch ${r.idx}: marked ${r.marked.join("/")} · gloss "${r.gloss.slice(0, 24)}"`).join(" · ")
+    : "no pair with pooled readings to rule on");
+check("the mark moves between halves when the ruling moves",
+  markProof.found && (markProof.rulings.length < 2
+    || markProof.rulings[0].marked.join() !== markProof.rulings[1].marked.join()),
+  markProof.found ? `${markProof.rulings.length} branch(es) poolable` : "");
+check("the provenance mark moved no character of the carrier",
+  markProof.found && markProof.lineAfter === markProof.lineBefore);
+
 await b.close(); srv.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);
