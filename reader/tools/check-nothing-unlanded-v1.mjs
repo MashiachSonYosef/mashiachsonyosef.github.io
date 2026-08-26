@@ -30,9 +30,10 @@
 // Run: node tools/check-nothing-unlanded-v1.mjs [remote] [branch]
 
 import { execFileSync } from "node:child_process";
-import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync, statSync, mkdtempSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { basename, dirname, join, relative } from "node:path";
+import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -45,7 +46,13 @@ let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 
 // ---- the branch, as it actually is ---------------------------------------
-const git = (...args) => execFileSync("git", args, { cwd: K3, encoding: "buffer", maxBuffer: 1 << 28, timeout: 120000 });
+// The scratch repo the fetch lands in lives in the system's temp dir, never
+// inside the tree: a .git created in K3 shadowed the real repository for
+// every later git command run from this directory — commits went into the
+// ghost, fetches answered from a stale shallow head, and the failures looked
+// like network trouble. Scratch goes where scratch lives.
+const SCRATCH = mkdtempSync(join(tmpdir(), "unlanded-"));
+const git = (...args) => execFileSync("git", args, { cwd: SCRATCH, encoding: "buffer", maxBuffer: 1 << 28, timeout: 120000 });
 let head = null;
 try {
   git("init", "-q");                       // somewhere for the fetch to land

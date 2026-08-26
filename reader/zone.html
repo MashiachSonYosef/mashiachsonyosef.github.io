@@ -3090,15 +3090,20 @@
     // A pair's halves are alternatives, not components: the maqaf join reads
     // its atoms as one line, but joining a ketiv's reading to a qere's would
     // print a compound the source never attested. One half backs the English
-    // at a time — a ruled branch first, else the qere, the half the source
-    // itself calls the read form — and that half wears the mark that says so.
+    // at a time — a ruled branch first, else the KETIV: the received letters,
+    // the older witness class, the thing the chain itself serves. Every
+    // committee translation silently renders the qere and never says so;
+    // this page defaults to the written form with the mark showing and the
+    // reading tradition one tap away — the owner's ruling, and the antiquity
+    // law applied to the pair. A ketiv the catalog cannot read falls back to
+    // the qere, marked as such by the mark itself.
     let kqShown = -1;
     if (word.kq && regions) {
       const ruledIdx = regions.findIndex((r) => ruledLine(r.k, table) !== null);
       const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—";
       const qereIdx = regions.findIndex((r) => r.role !== "KETIV");
       const ketivIdx = regions.findIndex((r) => r.role === "KETIV");
-      kqShown = ruledIdx >= 0 ? ruledIdx : usable(qereIdx) ? qereIdx : usable(ketivIdx) ? ketivIdx : -1;
+      kqShown = ruledIdx >= 0 ? ruledIdx : usable(ketivIdx) ? ketivIdx : usable(qereIdx) ? qereIdx : -1;
     }
     const line = heldJoint != null ? (wasRuled = true, heldJoint)
       : word.kq && regions ? (kqShown >= 0 && parts[kqShown] !== "—" ? parts[kqShown] : "")
