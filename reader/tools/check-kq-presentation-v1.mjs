@@ -148,6 +148,13 @@ check("the card carries the notation's key, both mappings",
   kqProof.found && kqProof.heads.every((h) =>
     /\( \).*ketiv/.test(h.keySaid) && /\[ \].*qere/.test(h.keySaid)),
   kqProof.found ? (kqProof.heads[0].keySaid || "(absent)").slice(0, 70) : "");
+// and the scribes' story, mechanism only — the received letters unchanged,
+// the reading recorded beside them — because the motive is disputed and the
+// card prints only what is attested
+check("the card says why the pair exists, in one attested sentence",
+  kqProof.found && kqProof.heads.every((h) =>
+    /scribes changed nothing/.test(h.keySaid) && /recorded beside/.test(h.keySaid)),
+  kqProof.found ? "mechanism stated, motive left to the record" : "");
 
 // 5 · the provenance mark: the half the shown English reads from wears the
 // mark, and a ruling on a branch moves the mark to that branch — while the

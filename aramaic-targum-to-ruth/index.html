@@ -2127,7 +2127,13 @@
     // source's own; this line only says what it says.
     if (region && (region.role === "KETIV" || region.role === "QERE")) {
       const key = document.createElement("p"); key.className = "kq-key";
-      key.textContent = "( ) holds the ketiv, as written · [ ] holds the qere, as read — press either half";
+      // The story states only the mechanism, because the mechanism is
+      // attested and the motive is disputed: the received letters were not
+      // to be altered, so the reading was recorded beside them, never over
+      // them. Every pair on the page is a scribe's refusal to edit.
+      key.textContent = "( ) holds the ketiv, as written · [ ] holds the qere, as read — press either half. "
+        + "Where the reading differed from the received letters, the scribes changed nothing: "
+        + "the written form kept, the read form recorded beside it.";
       head.append(key);
     }
     const status = document.createElement("p"); status.textContent = "Fetching one shard…";
