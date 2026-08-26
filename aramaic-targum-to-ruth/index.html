@@ -75,7 +75,10 @@
     --gold: #eac86f; --gold-dim: #a98c4b; --amber: #d9a441;
     /* reader_selection — and only that: what this reader has opened, chosen,
        pressed or armed. Nothing wears it at rest. */
-    --sel: #82bdf4; --sel-dim: #47759c; --sel-ink: #081221;
+    /* deepened from a pastel sky toward dyed thread — the same family the
+       ledger names, valued to look dipped rather than emitted; the contrast
+       judge holds it at 7:1 on the tent's ground */
+    --sel: #5f9fe8; --sel-dim: #3a6a9a; --sel-ink: #081221;
     /* commentary_attachment — a commentary's mark, and by the same token what
        the page will not vouch for: a placement that is ours, a reach it is
        told is only suggested. It never marks something as wrong. */
@@ -89,8 +92,8 @@
     --c-word: #c8bda0; --en-word: #b3a077;
     --hover-ink: #ffe08a; --hover-line: #6a5a33;
     --chip-bg: rgba(216, 199, 164, 0.12); --chip-line: rgba(216, 199, 164, 0.3);
-    --wash-open: rgba(111, 181, 240, 0.15); --wash-chosen: rgba(111, 181, 240, 0.07);
-    --wash-active: rgba(111, 181, 240, 0.18); --wash-copen: rgba(111, 181, 240, 0.12);
+    --wash-open: rgba(85, 150, 228, 0.15); --wash-chosen: rgba(85, 150, 228, 0.07);
+    --wash-active: rgba(85, 150, 228, 0.18); --wash-copen: rgba(85, 150, 228, 0.12);
     --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.5);
     --shadow-card: 0 14px 40px rgba(0, 0, 0, 0.6);
     --shadow-hud: 0 18px 48px rgba(4, 2, 8, 0.55), 0 2px 8px rgba(4, 2, 8, 0.35);
@@ -109,7 +112,10 @@
     --gold: #8a6b26; --gold-dim: #b0955c; --amber: #8f6a1c;
     --sel: #275fa6; --sel-dim: #a3bdd9; --sel-ink: #f5f9fe;
     --shani: #9c3a26; --shani-dim: #bd8672;
-    --c-word: #5c5138; --en-word: #6f6042;
+    /* the scripture's own ink, darkened to the AAA floor the contrast judge
+       holds body text to — still warm, never black; linen is not glare and
+       ink is not tar, but thin niqqud marks need 7:1 to stay marks */
+    --c-word: #453b25; --en-word: #6f6042;
     --hover-ink: #6b4f0e; --hover-line: #bda15c;
     --chip-bg: rgba(107, 90, 53, 0.10); --chip-line: rgba(107, 90, 53, 0.32);
     --wash-open: rgba(39, 95, 166, 0.14); --wash-chosen: rgba(39, 95, 166, 0.08);
@@ -587,6 +593,14 @@
     max-height: 3.9em; overflow-y: auto; overflow-x: hidden; }
   #hud .r-now .v.none { color: var(--faint); font-style: italic; }
   #hud[hidden] { display: none; }
+  /* The tether: while a card is open, four faint lines in the reader's own
+     colour run from its corners back to the word it opened from, so the page
+     says plainly where you were working. An overlay — it moves no text,
+     takes no taps, and dies with the card. */
+  #tether { position: fixed; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 69; }
+  #tether line { stroke: var(--sel); stroke-width: 1; opacity: 0.28;
+    stroke-dasharray: 5 4; }
   /* The head is the handle. A card the reader can move is a card that stops
      being in the way, and a card that is never re-anchored while it is open
      stops moving on its own. It is sticky so the handle is reachable however
@@ -1887,6 +1901,42 @@
     hud.style.left = `${Math.max(pad, Math.min(left, window.innerWidth - w - pad))}px`;
   };
   const clampHud = placeInBounds;
+  // The tether tracks the card's four corners back to the word it opened
+  // from — the owner's own mechanic, carried in: a card should say where
+  // you were working without the reader hunting for the lit word. Driven
+  // per frame so drag, scroll, clamp and growth all keep it true; the
+  // change-detection key makes an idle frame cost one string compare.
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const tether = document.createElementNS(SVGNS, "svg");
+  tether.id = "tether"; tether.setAttribute("aria-hidden", "true");
+  const tetherLines = [0, 1, 2, 3].map(() => {
+    const l = document.createElementNS(SVGNS, "line"); tether.append(l); return l;
+  });
+  tether.style.display = "none";
+  document.body.append(tether);
+  let tetherKey = "";
+  const drawTether = () => {
+    const anchor = activeEl && activeEl.isConnected ? activeEl : hudAnchor;
+    if (hud.hidden || !anchor || !anchor.isConnected) {
+      if (tetherKey) { tether.style.display = "none"; tetherKey = ""; }
+      return;
+    }
+    const a = anchor.getBoundingClientRect(), h = hud.getBoundingClientRect();
+    const pts = [
+      [a.left, a.top, h.left, h.top], [a.right, a.top, h.right, h.top],
+      [a.left, a.bottom, h.left, h.bottom], [a.right, a.bottom, h.right, h.bottom],
+    ];
+    const key = pts.map((p) => p.map(Math.round).join(",")).join(";");
+    if (key === tetherKey) return;
+    tetherKey = key;
+    tether.style.display = "";
+    pts.forEach(([x1, y1, x2, y2], i) => {
+      const l = tetherLines[i];
+      l.setAttribute("x1", x1); l.setAttribute("y1", y1);
+      l.setAttribute("x2", x2); l.setAttribute("y2", y2);
+    });
+  };
+  (function tetherLoop() { drawTether(); requestAnimationFrame(tetherLoop); })();
   const placeHud = (el) => {
     if (el) hudAnchor = el;
     if (!hudAnchor) return;

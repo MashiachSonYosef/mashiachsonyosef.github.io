@@ -109,6 +109,32 @@ check("a chosen reading longer than the box is still reachable whole",
   after.title >= after.text, `title carries ${after.title} chars`);
 await p.keyboard.press("Escape");
 
+// The tether: an open card runs four faint lines back to the word it opened
+// from, so the page says where you were working. It is an overlay — it must
+// take no taps, and it must die with the card.
+{
+  const t = await p.evaluate(async () => {
+    const wb = document.querySelector("section.seg .he-text .wb:has(.g:not(.bare))");
+    wb.click();
+    await new Promise((r) => setTimeout(r, 900));
+    const svg = document.getElementById("tether");
+    const open = svg && getComputedStyle(svg).display !== "none";
+    const lines = svg ? svg.querySelectorAll("line").length : 0;
+    const noTaps = svg && getComputedStyle(svg).pointerEvents === "none";
+    const a = wb.getBoundingClientRect();
+    const l0 = svg && svg.querySelector("line");
+    const anchored = l0 && Math.abs(Number(l0.getAttribute("x1")) - a.left) < 2
+      && Math.abs(Number(l0.getAttribute("y1")) - a.top) < 2;
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+    await new Promise((r) => setTimeout(r, 300));
+    const closed = getComputedStyle(svg).display === "none";
+    return { open, lines, noTaps, anchored, closed };
+  });
+  check("an open card runs its tether back to the word", t.open && t.lines === 4 && t.anchored,
+    `${t.lines} lines · anchored ${t.anchored}`);
+  check("the tether takes no taps and dies with the card", t.noTaps && t.closed);
+}
+
 await p.click("#modeEn");
 await p.waitForTimeout(600);
 const en = await clip();

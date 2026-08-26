@@ -162,6 +162,34 @@ for (const [role, name] of Object.entries(CONTRACT)) {
   check("  structure and selection are not the same colour", apart,
     `${painted.structure} vs ${painted.reader_selection}`);
 }
+// Legibility is attested, not assumed: WCAG relative-luminance ratios
+// measured off the live page, per face. Body text holds the AA+ floor;
+// readings and selections hold AA for normal text; structure sits at
+// display sizes, where the large-text floor applies, held with margin.
+{
+  const lum = ([r, g, bl]) => {
+    const f = (v) => { const c = v / 255; return c <= 0.03928 ? c / 12.92 : (((c + 0.055) / 1.055) ** 2.4); };
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(bl);
+  };
+  const ratio = (a, c) => { const [x, y] = [lum(a), lum(c)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+  const inks = await p.evaluate(() => {
+    const cs = (sel, prop = "color") => { const e = document.querySelector(sel); return e ? getComputedStyle(e)[prop] : null; };
+    // not the clicked word — an earlier sample landed on the active word and
+    // measured the selection twice while calling it ink
+    return { ink: cs("section.seg .he-text .wb:not(.active):not(.chosen) .w"), gloss: cs("section.seg .he-text .g:not(.bare)") };
+  });
+  const ground = rgb(painted.base_surface);
+  for (const [what, colour, floor] of [
+    ["the text's ink on the ground", inks.ink, 7],
+    ["a reading's gloss on the ground", inks.gloss, 4.5],
+    ["the selection on the ground", painted.reader_selection, 4.5],
+    ["structure on the ground", painted.structure, 4],
+  ]) {
+    const c = rgb(colour);
+    const r2 = c && ground ? ratio(c, ground) : 0;
+    check(`  ${what} reads (>= ${floor}:1)`, r2 >= floor, `${r2.toFixed(1)}:1`);
+  }
+}
 if (commentaryHere) {
   const a = rgb(painted.base_surface), c = rgb(painted.commentary_surface);
   const apart = a && c && a.some((x, i) => Math.abs(x - c[i]) >= 3);
