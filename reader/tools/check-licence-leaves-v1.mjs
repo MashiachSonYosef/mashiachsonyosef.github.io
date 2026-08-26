@@ -4,7 +4,15 @@
 // The Hebrew of 1 Kings is CC-BY-NC, ALLOW_WITH_OBLIGATIONS. It is the largest
 // thing any export carries. An earlier build printed the work receipt in its
 // place and shipped the text with no licence at all.
-// GUARDS: provider-declaration-rule-v1-closed-set-ship-whole-by-default, licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs
+// GUARDS: provider-declaration-rule-v1-closed-set-ship-whole-by-default, licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs, export-custody-rule-v1-what-leaves-carries-its-own-way-back
+//
+// And nothing leaves without its way back. A hash on a card was asked for and
+// refused — on the page the chain is a click away. A file is past the border,
+// which is where a hash does its work: each section in it names the unit it
+// was served from and the c0 rows it stands on, and a Custody section at the
+// foot carries the sealed artifacts that answer for them, hashes whole. All
+// of it is read from the zone's own record here and compared to the file, so
+// the file cannot say a custody the zone does not hold.
 //
 // And nothing licensed leaves it wearing words it did not say. Every
 // obligation this page prints is a one-line summary written here; a licence is
@@ -42,6 +50,21 @@ const grab = async (nth) => {
 // is a fact about the work and not about this check.
 const linkCount = await p.evaluate(() =>
   ((window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.license_links) || []).length);
+
+// The custody the zone itself holds, asked of the zone so the file is
+// compared to the record and never to a string typed here.
+const custody = await p.evaluate(() => {
+  const z = window.__zone || {};
+  const ef = z.emitted_from || {};
+  const s0 = (z.sections || [])[0] || {};
+  return {
+    unit: s0.unit || null, c0First: s0.c0_first ?? null, c0Last: s0.c0_last ?? null,
+    oracleSha: (ef.identity_oracle || {}).bridge_sha256 || null,
+    pointerSha: ((ef.walk || {}).pointer || {}).sha256 || null,
+    moduleSha: ((ef.walk || {}).module || {}).sha256 || null,
+    left: location.origin + location.pathname + location.search,
+  };
+});
 
 for (const [nth, kind] of [[1, "hebrew"], [2, "english"], [3, "both"]]) {
   const { note, text } = await grab(nth);
@@ -89,6 +112,29 @@ for (const [nth, kind] of [[1, "hebrew"], [2, "english"], [3, "both"]]) {
       || (obliged ? "no obligation line, and this licence obliges" : "none to label")).trim().slice(0, 60));
   check(`${kind} export puts no words in the chain's mouth`,
     !/chain records this text as allowed with obligations/.test(text));
+  // the way back: the section's chain address, and the artifacts that answer
+  const unitLine = text.split("\n").find((l) => /^unit: /.test(l)) || "";
+  check(`${kind} export names the section's unit and c0 rows, the zone's own`,
+    custody.unit
+      ? unitLine.includes(`unit: ${custody.unit}`) &&
+        (custody.c0First == null || unitLine.includes(`c0 rows ${custody.c0First}–${custody.c0Last}`))
+      : unitLine === "",
+    unitLine.slice(0, 70) || "the zone records no unit, and none is printed");
+  check(`${kind} export carries a Custody section, and it stands last`,
+    /^## Custody$/m.test(text) && text.lastIndexOf("\n## ") === text.indexOf("\n## Custody"));
+  check(`${kind} export carries the identity oracle's hash whole`,
+    custody.oracleSha
+      ? /^[0-9a-f]{64}$/.test(custody.oracleSha) && text.includes(`sha256 ${custody.oracleSha}`)
+      : !/identity oracle:/.test(text),
+    custody.oracleSha ? `${custody.oracleSha.slice(0, 16)}… carried entire` : "none recorded, none printed");
+  check(`${kind} export carries the serve pointer and walker hashes the zone records`,
+    (!custody.pointerSha || text.includes(`serve pointer: sha256 ${custody.pointerSha}`)) &&
+    (!custody.moduleSha || text.includes(`walker module: sha256 ${custody.moduleSha}`)));
+  check(`${kind} export says the custody sentences are its own words`,
+    /_These sentences are plain English written in this reader/.test(text) &&
+    /export-custody-rule-v1/.test(text));
+  check(`${kind} export names the page it left`,
+    text.includes(`this file left: ${custody.left}`), custody.left);
   if (nth === 1) check("the confirm says the licence before anything is written",
     /·\s*[A-Z0-9][A-Z0-9._-]*/.test(note), note.slice(0, 90));
   if (nth === 1) check("the confirm says the obligation is summarised, not quoted",

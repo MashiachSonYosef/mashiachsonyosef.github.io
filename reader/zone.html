@@ -1516,6 +1516,14 @@
   };
 
   const EXPORT_RULE = "export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work";
+  // The border is where a hash does its work. On the page a word carries its
+  // ids and the seal stays in the colophon — a hash on a card was asked for
+  // and refused, because on the page the chain is a click away. A file that
+  // has left the page is past the border: whoever holds it holds neither the
+  // page nor the chain, so the file itself says where its text stood and
+  // which sealed artifacts answer for it, hashes whole, because a truncated
+  // hash verifies nothing.
+  const CUSTODY_RULE = "export-custody-rule-v1-what-leaves-carries-its-own-way-back";
 
   /** Gather one section. Returns everything the writer and the confirm need. */
   const gatherSection = async (sec, el) => {
@@ -1616,6 +1624,7 @@
     L.push(`Store: ${index.rule_id} · ${index.store_version}`);
     if (index.reading_rule) L.push(`Reading: ${index.reading_rule}`);
     L.push(`Export: ${EXPORT_RULE}`);
+    L.push(`Custody: ${CUSTODY_RULE}`);
     L.push("");
     L.push(kind === "he"
       ? "Citations: [H] marks the Hebrew. Its entry under Sources names the license it is released under."
@@ -1625,6 +1634,12 @@
     for (const b of bundles) {
       L.push(`## ${b.sec.label || ""}`);
       L.push("");
+      // the section's own address in the chain — the unit it was served from
+      // and the c0 rows it stands on, which is what a checker walks back along
+      if (b.sec.unit) {
+        L.push(`unit: ${b.sec.unit}${b.sec.c0_first != null && b.sec.c0_last != null ? ` · c0 rows ${b.sec.c0_first}–${b.sec.c0_last}` : ""}`);
+        L.push("");
+      }
       // The Hebrew is marked on its label rather than on each word: it is one
       // work under one license, and threading Latin digits through a right-to-
       // left run would rearrange the text on the page it is pasted into.
@@ -1682,6 +1697,35 @@
       L.push("## Withheld");
       L.push("");
       L.push(`${held} reading${held === 1 ? " was" : "s were"} not exported. Each is marked [withheld] where it stood, carrying no citation number because there is no source to cite. A reading is withheld when its record carries a license that does not permit redistribution, when it carries no license at all, or when the reading on the page could not be matched to a record. The Hebrew is never withheld: it rides on the work's own license, not on any reading's.`);
+    }
+    // ---- custody: the way back -------------------------------------------
+    // Last, the way the colophon is last: everything above it is the text,
+    // and this is where the text says it can be checked.
+    {
+      const ef = zone.emitted_from || {};
+      const oc2 = ef.identity_oracle, wk2 = ef.walk, ac2 = ef.acquisition;
+      L.push("");
+      L.push("## Custody");
+      L.push("");
+      L.push("_These sentences are plain English written in this reader; the identifiers are the chain's own. Each section above names the unit it was served from and the c0 rows it stands on — the sealed chain's row identifiers for exactly those words. Against these, and against the artifacts below, this file can be checked by someone holding neither this page nor its reader._");
+      L.push(`_(${CUSTODY_RULE})_`);
+      L.push("");
+      if (oc2 && oc2.bridge_sha256) {
+        L.push(`- identity oracle: ${oc2.bridge} · sha256 ${oc2.bridge_sha256}`);
+        if (oc2.first_c0_numeric_id != null)
+          L.push(`    the work stands on ${Number(oc2.sealed_c0_rows || 0).toLocaleString("en")} c0 rows in ${Number(oc2.sealed_units || 0).toLocaleString("en")} units · c0 ${oc2.first_c0_numeric_id}–${oc2.last_c0_numeric_id}`);
+      }
+      if (wk2 && wk2.pointer && wk2.pointer.sha256) L.push(`- serve pointer: sha256 ${wk2.pointer.sha256}`);
+      if (wk2 && wk2.module && wk2.module.sha256) L.push(`- walker module: sha256 ${wk2.module.sha256}`);
+      if (!wk2 && ac2 && ac2.payload_sha256_transferred) L.push(`- payload transferred: sha256 ${ac2.payload_sha256_transferred}`);
+      if (ef.gloss_layer && ef.gloss_layer.gloss_table_sha256) L.push(`- gloss table: sha256 ${ef.gloss_layer.gloss_table_sha256}`);
+      L.push(`- work receipt: ${wr.receipt}`);
+      L.push(`- this file left: ${location.origin}${location.pathname}${location.search}`);
+      // the repository is never typed here — a copy is the one string with
+      // nothing behind it. On a github.io address the repository is the
+      // address itself, read back off the page's own location.
+      const gh = location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i);
+      if (gh) L.push(`- the reader, its checks, and these artifacts: https://github.com/${gh[1]}/${location.hostname}`);
     }
     L.push("");
     return L.join("\n");

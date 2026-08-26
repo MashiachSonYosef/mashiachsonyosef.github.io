@@ -1,7 +1,7 @@
 # The Tabernacle
 
 A Hebrew reader on a sealed chain. Every reading printed under a word traces to
-the record that carries it, and every record to the licence it was released
+the record that carries it, and every record to the license it was released
 under. No English is forced: a word offers every reading its sources attest, one
 at a time, and the reader chooses.
 
@@ -25,11 +25,11 @@ every rule the code declares along with the check that guards it — and, at the
 end of a run, what the checks do not cover.
 
 - **Nothing is typed that the record can say.** No page and no tool supplies a
-  character of the text, a work's name, a count, or a licence. Where you find a
+  character of the text, a work's name, a count, or a license. Where you find a
   literal standing in for a record, that is the bug.
 - **One reader.** A per-book page would be a second place for the standard not
   to apply, so there is not one.
-- **A licence travels with the text it covers**, is named on the page the text
+- **A license travels with the text it covers**, is named on the page the text
   is read from and in anything exported from it, and is never inherited from
   the book a work sits in.
 - **A key keeps what the source wrote.** Points and cantillation come off; the
@@ -63,8 +63,8 @@ artifacts and may not add a character to them.
 
 ## Licensing
 
-There is no single licence. Every work carries its own, computed from its own
-records. Nothing here is licensed as a whole, and nothing inherits a licence
+There is no single license. Every work carries its own, computed from its own
+records. Nothing here is licensed as a whole, and nothing inherits a license
 from what it sits beside.
 
 Served from the `gh-pages` branch.
