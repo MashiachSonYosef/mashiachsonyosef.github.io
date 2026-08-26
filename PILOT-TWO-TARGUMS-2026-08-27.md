@@ -21,6 +21,27 @@ Sequencing, and the one expected event:
    pass the gate whole, the old zones retire, and the first two
    through-the-process works serve.
 
+## Amendment, same day — the owner widened the pilot to all five POC works
+
+Add **Genesis, I Kings, and Ruth**: the pilot is now the complete original
+proof-of-concept, redone correctly. The five works cover the whole defect
+taxonomy, and each fix belongs to the lane already building it:
+
+- the rebuilt **body** under all five (corpus lane, in preparation);
+- the **record layer** for the targums' two parenthesis rows (website lane,
+  criterion c);
+- the **MAM correction** for the Hebrew three — the sealed candidate's 57
+  sites / 103 pairs ARE these works' repair — via the standing ladder:
+  cutover-request → Oholiab issuance → the owner's atomic cutover.
+
+Expected first-pass gate results, so they read as milestones: the targums
+held one row each (wrapped apparatus); Genesis and I Kings held on their
+markup-leak rows; Ruth held at the zone gate by the pair-law attestation
+clause (silent branch selection). Five holds = the process seeing every
+defect class it was built to see. Then the three fixes land, the five works
+pass whole, and the site's first through-the-process serve set is exactly
+the corpus it started with.
+
 The owner's word for the goal state: not extraprocesscular.
 
 — the corpus lane
