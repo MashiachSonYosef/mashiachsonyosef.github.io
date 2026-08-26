@@ -119,6 +119,7 @@ const kqProof = await p.evaluate(async () => {
       pressed: seg.textContent,
       headText: head ? head.textContent : null,
       roleSaid: (document.querySelector("#hud .kq-role") || {}).textContent || "",
+      keySaid: (document.querySelector("#hud .kq-key") || {}).textContent || "",
       litInHead: head ? [...head.querySelectorAll("span")].filter((x) =>
         getComputedStyle(x).color !== "" && x.textContent === seg.textContent).length > 0 : false,
     });
@@ -141,6 +142,12 @@ check("each branch's card says which half it is, in words",
     && kqProof.heads.some((h) => /^ketiv/.test(h.roleSaid))
     && kqProof.heads.some((h) => /^qere/.test(h.roleSaid)),
   kqProof.found ? kqProof.heads.map((h) => h.roleSaid || "(silent)").join(" · ") : "");
+// the notation's key sits beside the selector on every branch card — both
+// mappings at once, the marks teaching their own meaning
+check("the card carries the notation's key, both mappings",
+  kqProof.found && kqProof.heads.every((h) =>
+    /\( \).*ketiv/.test(h.keySaid) && /\[ \].*qere/.test(h.keySaid)),
+  kqProof.found ? (kqProof.heads[0].keySaid || "(absent)").slice(0, 70) : "");
 
 // 5 · the provenance mark: the half the shown English reads from wears the
 // mark, and a ruling on a branch moves the mark to that branch — while the

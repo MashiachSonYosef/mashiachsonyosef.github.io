@@ -599,6 +599,8 @@
     flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
   /* which half of a source-marked pair the card is about, said in words —
      hover titles do not exist on a phone */
+  #hud .head .kq-key { flex: 1 1 100%; margin: 0; color: var(--faint);
+    font-size: 0.68rem; direction: ltr; text-align: left; }
   #hud .head .kq-role { flex: 1 1 100%; margin: 0; color: var(--muted);
     font-size: 0.74rem; font-style: italic; direction: ltr; text-align: left; }
   #hud .head b { font-size: 1.55rem; color: var(--ink-strong);
@@ -2118,6 +2120,15 @@
       const roleLine = document.createElement("p"); roleLine.className = "kq-role";
       roleLine.textContent = "qere — the form the source reads, carried as written";
       head.append(roleLine);
+    }
+    // And beside the branch selector, the notation's key — the marks teaching
+    // their own meaning, both mappings at once, so a reader learns the code
+    // here and can read every pair on the page. The punctuation is the
+    // source's own; this line only says what it says.
+    if (region && (region.role === "KETIV" || region.role === "QERE")) {
+      const key = document.createElement("p"); key.className = "kq-key";
+      key.textContent = "( ) holds the ketiv, as written · [ ] holds the qere, as read — press either half";
+      head.append(key);
     }
     const status = document.createElement("p"); status.textContent = "Fetching one shard…";
     if (opts.back) hud.replaceChildren(backButton(opts.back), head, status);
