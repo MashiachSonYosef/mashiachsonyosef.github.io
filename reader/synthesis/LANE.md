@@ -72,10 +72,41 @@ renderings arrive comma-split, so fragments like "properly" surface as
 routes; Ramban and Onkelos are absent from the lexical corpus entirely.
 Upstream repairs belong to the K lane, not reader code.
 
+### Default glosses, rule v5 — ADOPTED 2026-08-26 (`tools/gloss-store-v1.mjs`)
+**`zone-gloss-rule-v5-the-catalogs-own-order-leads`** — the reading a zone
+prints under a form is the catalog's own leading displayable route: lowest
+ledger rank first, readings tied on rank standing as the catalog lists
+them. The source year orders nothing.
+
+It replaces the antiquity ordering (v3/v4), which was this lane's own
+invention — nothing attests that an older dictionary's first sense is a
+word's reading — and whose output was the owner's defect report verbatim:
+under v4, Genesis 1:1 would have printed "in the beginning + cut down +
+judges + a ploughshare + the heavens + and thou + Palestine", every
+reading attested and every reading at the wrong place, while the catalog's
+rank-1 routes (its verse-aligned interlinear, where one exists) sat in the
+last tier because their source is dated 2026. The ledger rank is the
+catalog's ordering of its own routes; this lane stops re-judging it by
+birth year. `check-antiquity-tier-v1` is kept under its historic name with
+its claim made absolute: rewrite every source year and no printed reading
+may move.
+
+**Known limits of rule v5, on the record:** rank leads only where the
+catalog has something contextual to rank first. Aramaic forms that collide
+with Hebrew spellings still print the Hebrew route where it is the only
+route (למיכל "to eat" carries only "to/ Michal"; וכד "and when" only
+"and/ jar"), and a form whose rank-1 route is itself a homograph still
+leads wrong (משיחא ranks "rope" before "Messiah"). Both are catalog
+gaps, not ordering gaps: no reader-side rule can cure them. The upstream
+ask is recorded — language-tagged routes, so an Aramaic form never
+inherits a Hebrew word's routes, and a targum-aligned occurrence-level
+source. K-lane work, not reader code.
+
 ### Default glosses, rule v2 — WITHDRAWN 2026-08-24 (`tools/derive-default-glosses.mjs`)
-*Withdrawn with the Genesis 1:1 fixtures it read. It has been superseded in
-the tree by `zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary` in
-`tools/gloss-store-v1.mjs`, which is what every zone is actually built under.*
+*Withdrawn with the Genesis 1:1 fixtures it read. It was superseded in
+the tree by `zone-gloss-rule-v3-sense-level-antiquity-1940-lastuary`, then
+v4 (reading-level), both in `tools/gloss-store-v1.mjs`, both retired by
+rule v5 above.*
 **Rule v2 · 2026-08-10** — the first rule-level adoption
 in the project. Sort a word's routes by the oldest source year carrying
 them; sources after 1940, or without a recorded year, form the last tier

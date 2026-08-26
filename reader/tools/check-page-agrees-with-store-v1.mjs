@@ -11,7 +11,7 @@
 // So: re-project each zone over the store on disk and see whether anything
 // moves. Nothing should. This reads the artifacts, not a served page, so it
 // takes no URL.
-// GUARDS: zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary, regloss-rule-v1-project-the-store-over-a-zones-own-keys
+// GUARDS: zone-gloss-rule-v5-the-catalogs-own-order-leads, regloss-rule-v1-project-the-store-over-a-zones-own-keys
 //
 import { execFileSync } from "node:child_process";
 import { readFileSync, mkdtempSync } from "node:fs";
