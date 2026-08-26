@@ -1,4 +1,4 @@
-// Synthesis lane · zone-gloss-rule-v5-the-catalogs-own-order-leads
+// Synthesis lane · zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary
 //
 // The default reading printed under a word used to be chosen in the browser,
 // which meant the rule lived in a page: it could not be reviewed, diffed, or
@@ -17,32 +17,29 @@
 //      reading, never a joined list. A sense the rule holds back as damaged
 //      is not printable and does not pool: corrupted text is not a word's face.
 //   3. Senses pool across every exact route for that K, deduped by lowercased
-//      text, merging the OLDEST source year and the LOWEST ledger rank seen.
-//   4. The catalog's own order leads: readings sort by the lowest ledger rank
-//      carrying them, and readings tied on rank stand in the order the catalog
-//      lists them. The source year orders nothing — it is merged and carried
-//      because the pool reports it, and for no other reason.
+//      text, merging the OLDEST source year and the LOWEST semantic rank seen.
+//   4. Antiquity leads: senses whose oldest source is 1940 or earlier come
+//      first, everything later and everything unyeared follows. Within a tier,
+//      older first, then the catalog's own semantic rank.
 //
-//      One partition stands ahead of the rank: a reading that carries
-//      Hebrew-script characters is the dictionary describing the form
-//      ("to-infinitive of חָשַׁב"), not rendering it in English, so it pools —
-//      it is real, licensed, pressable — but it follows every plain reading.
-//      A page whose English line prints the source's own script has stopped
-//      translating, and the front door's scrub law says the same thing from
-//      the other side: no Hebrew may print that is not a carried title.
+//      The number 1940 is this project's, not anybody's record. Nothing
+//      attests it, no source proposes it, and it was chosen here. It sits in
+//      the rule's own name, which advertises it as the thing deciding which
+//      reading a reader meets first — and it is not.
 //
-//      Rule v4 sorted the other way: oldest source year first, under a 1940
-//      tier its own check proved inert. Antiquity was this project's ordering,
-//      not the record's — nothing attests that an older dictionary's first
-//      sense is a word's reading — and what it chose was Strong's 1890
-//      root-glosses over the catalog's leading records. Under it Genesis 1:1
-//      would have printed "in the beginning + cut down + judges +
-//      a ploughshare + the heavens + and thou + Palestine": every reading
-//      attested, every reading at the wrong place. The ledger rank is the
-//      catalog's own ordering of its routes, with its likely-contextual
-//      record first where one exists; this file stops re-judging that order
-//      by birth year. check-antiquity-tier-v1 remains, with its claim made
-//      absolute: under v5 the year cannot move a printed reading at all.
+//      Measured over the 4,984 distinct keys the store answers for in Genesis:
+//      moving the cutoff to 1900 changes 0 printed readings. Moving it to 1950
+//      changes 0. Removing the tier entirely changes 0. It cannot change any,
+//      because the sort that follows it is already ascending by year and an
+//      unyeared sense carries Infinity — so the tier can only ever agree with
+//      the comparison after it. It is inert.
+//
+//      It is left in place rather than removed because the rule id is written
+//      into the receipts of every zone already published, and rebuilding the
+//      corpus to delete a clause that does nothing is a worse trade than
+//      saying plainly that it does nothing. check-antiquity-tier-v1 asserts
+//      the inertness on every run, so if a catalog ever arrives where the tier
+//      would decide something, that is a finding and not a surprise.
 //   5. A route whose M record is missing from the store index is not eligible
 //      — the page would have no license to print beside it.
 //   6. The sense is stored verbatim, "/" morpheme packing included. The page
@@ -55,15 +52,12 @@ import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { join } from "node:path";
 
-export const GLOSS_RULE_ID = "zone-gloss-rule-v5-the-catalogs-own-order-leads";
+export const GLOSS_RULE_ID = "zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary";
 export const GLOSS_RULE_TEXT =
   "a route text packs senses with ';' and a sense divides into readings at the commas outside the " +
   "provider's parentheses (sense-split-rule-v2); each division is one reading; a damaged sense is " +
   "held whole and neither printed nor pooled; pool = every reading of every exact route, deduped by " +
-  "text with min year and min rank; the catalog's own order leads — lowest ledger rank first, ties " +
-  "standing as the catalog lists them, the source year ordering nothing; a reading carrying " +
-  "Hebrew-script characters describes the form rather than reads it, so it pools after every " +
-  "plain reading; " +
+  "text with min year and min rank; oldest source year (<=1940 tier) leads, ties by semantic rank; " +
   "reading stored verbatim; the page joins '/'-packed spans with ' + '; " +
   "one reading on display at a time, everywhere";
 
@@ -127,12 +121,9 @@ export const openRouteStore = (storeDir) => {
         });
       });
     });
-    // Rule 4. Stable sort: plain readings before script-carrying ones, then
-    // the rank alone; readings tied on both keep the order they pooled in,
-    // which is the order the catalog lists them.
-    const carriesScript = (r) => (/[\u0590-\u05FF]/.test(r.text) ? 1 : 0);
+    const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
     return [...groups.values()].sort(
-      (a, b) => carriesScript(a) - carriesScript(b) || a.ledger - b.ledger,
+      (a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger,
     );
   };
 

@@ -1,20 +1,24 @@
 #!/usr/bin/env node
-// GUARDS: zone-gloss-rule-v5-the-catalogs-own-order-leads
+// GUARDS: zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary
 //
-// The source year decides nothing, and this proves it every run.
+// The year in the gloss rule's name decides nothing, and this proves it every
+// run.
 //
-// Under rule v4 this check proved a weaker claim: the 1940 tier in the rule's
-// own name was inert, because the year-ascending sort after it always agreed
-// with it. The year itself still decided everything — Strong's 1890 root
-// glosses led wherever they stood, which is how Genesis 1:1 would have
-// printed "cut down + judges". Rule v5 removed the year from the comparison:
-// the catalog's own ledger rank orders the pool, and readings tied on rank
-// stand as the catalog lists them.
+// `zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary` puts a number in its
+// own name and thereby advertises 1940 as the thing that chooses which reading
+// a reader meets first, across a corpus of 3.7 billion occurrences. It was
+// chosen by this project. Nothing attests it. And it is inert: the comparison
+// after it already sorts ascending by year, with an unyeared sense carrying
+// Infinity, so the tier can only ever agree with what follows it.
 //
-// So the claim this file asserts is now absolute. Rewrite every source year —
-// to nothing, to one constant, to a different constant per row — and the
-// printed reading of every form must be the same one. If this ever fails, a
-// year has crept back into the comparison, and somebody must own it.
+// A choice that decides nothing is not a fault. A choice that decides nothing
+// while looking like it decides everything is, because the next person to read
+// the rule will believe a number is doing work that no number is doing. So the
+// inertness is asserted rather than remembered: move the cutoff, remove it, and
+// the printed reading of every form must be the same one.
+//
+// If this ever fails, the tier has started deciding something — which is a
+// finding about the catalog, and a number somebody must own.
 //
 // Run: node tools/check-antiquity-tier-v1.mjs [zone]
 
@@ -43,7 +47,7 @@ const ZONE = process.argv[2] && !/^https?:/.test(process.argv[2])
 // A check that cannot reach its inputs has not passed. It says so and stands
 // aside, so an empty run cannot be read as a clean one.
 if (!existsSync(ZONE) || !existsSync("data/route-store/index.json")) {
-  console.log(`SKIPPED — the zone or the route store is not here (${ZONE}, data/route-store)`);
+  console.log(`SKIPPED \u2014 the zone or the route store is not here (${ZONE}, data/route-store)`);
   process.exit(3);
 }
 const store = openRouteStore("data/route-store");
@@ -56,42 +60,53 @@ for (const s of zone.sections || [])
     else if (w.k) keys.add(w.k);
   }
 
-// The leader, computed through the rule's own machinery — readingPool is the
-// function every builder calls, not a copy of it — with the years rewritten
-// on the way in. If the comparison consults a year in any branch, one of
-// these rewrites finds it.
-const YEAR_AT = 4; // route row shape: [rank, reading, routeText, mId, year]
-const leaderUnder = (routes, mutate) => {
-  const rows = routes.map((row, i) => {
-    const out = row.slice();
-    out[YEAR_AT] = mutate(out[YEAR_AT], i);
-    return out;
-  });
-  const pool = store.readingPool(rows);
-  return pool.length ? pool[0].text : null;
+// The pool, rebuilt with the cutoff as a parameter. Everything else is the
+// rule's own machinery, copied so the comparison is against what it does.
+const senseSplit = (t) => {
+  const out = []; let start = 0, d = 0;
+  for (let i = 0; i < t.length; i += 1) {
+    const c = t[i];
+    if (c === "(") d += 1;
+    else if (c === ")") { if (d > 0) d -= 1; }
+    else if (c === ";" && d === 0) { out.push(t.slice(start, i)); start = i + 1; }
+  }
+  out.push(t.slice(start));
+  if (out.join(";") !== t) return [t.trim()].filter(Boolean);
+  return out.map((x) => x.trim()).filter(Boolean);
+};
+const leaderAt = (routes, cut) => {
+  const groups = new Map();
+  for (const row of routes || []) {
+    const [rank, text, , mId, year] = row;
+    if (!store.index.m_sources[mId]) continue;
+    const parsed = Number.parseInt(year, 10);
+    const yr = Number.isInteger(parsed) ? parsed : Infinity;
+    for (const sense of senseSplit(String(text || ""))) {
+      const k = sense.toLowerCase(); const g = groups.get(k);
+      if (!g) groups.set(k, { text: sense, year: yr, ledger: Number(rank) });
+      else { g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank)); }
+    }
+  }
+  const tier = (r) => (cut === null ? 0 : (Number.isFinite(r.year) && r.year <= cut ? 0 : 1));
+  const out = [...groups.values()].sort((a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger);
+  return out.length ? out[0].text : null;
 };
 
-console.log(`— the source year decides nothing · ${ZONE} —`);
-const MUTATIONS = [
-  ["every year removed", () => ""],
-  ["every year 1500", () => "1500"],
-  ["every year 3000", () => "3000"],
-  ["a different year per row", (y, i) => String(1800 + (i * 37) % 300)],
-];
-const moved = Object.fromEntries(MUTATIONS.map(([n]) => [n, 0]));
+console.log(`— the year in the rule's name decides nothing · ${ZONE} —`);
+const CUTS = [1700, 1900, 1950, 2100, null];
+const moved = Object.fromEntries(CUTS.map((c) => [String(c), 0]));
 let asked = 0;
 for (const k of keys) {
   const routes = store.routesFor(k);
   if (!routes) continue;
   asked += 1;
-  const base = leaderUnder(routes, (y) => y);
-  for (const [name, mutate] of MUTATIONS)
-    if (leaderUnder(routes, mutate) !== base) moved[name] += 1;
+  const base = leaderAt(routes, 1940);
+  for (const c of CUTS) if (leaderAt(routes, c) !== base) moved[String(c)] += 1;
 }
 check("  there are forms to ask about", asked > 100, `${asked} distinct keys the store answers for`);
-for (const [name] of MUTATIONS)
-  check(`  with ${name}, no printed reading moves`, moved[name] === 0,
-    `${moved[name]} of ${asked} would change`);
+for (const c of CUTS)
+  check(`  moving the cutoff to ${c === null ? "nothing at all" : c} moves no printed reading`,
+    moved[String(c)] === 0, `${moved[String(c)]} of ${asked} would change`);
 
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);

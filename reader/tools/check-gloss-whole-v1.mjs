@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // The reading under a word is shown whole, in both readers, and the page does
 // not move while it is being read.
-// GUARDS: zone-gloss-rule-v5-the-catalogs-own-order-leads
+// GUARDS: zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary
 //
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();

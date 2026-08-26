@@ -1197,7 +1197,7 @@
       : `walked word-by-word through the installed sealed terminal reader (${(wk.found_exact ?? wk.ids_walked).toLocaleString()} of ${wk.ids_walked.toLocaleString()} ids FOUND_EXACT) · rights ride per occurrence from the chain · `) : `Hebrew text: ${ac.hebrew_version}${ac.hebrew_source ? ` via ${ac.hebrew_source}` : ""}, license ${ac.hebrew_license_seen} (seen live on every payload) · `) +
     `${zone.counts.verified_units} of ${zone.counts.sections} sections verified word-for-word in count against the sealed corpus allocation` +
     `${zone.counts.drifted_units ? `; ${zone.counts.drifted_units} drift from it and are marked` : ""} · ` +
-    `${zone.counts.glossed_words ? zone.counts.glossed_words.toLocaleString() + " words carry the catalog's own leading route as an English gloss (exact spellings only — unmatched forms stay bare) · " : ""}` +
+    `${zone.counts.glossed_words ? zone.counts.glossed_words.toLocaleString() + " words carry their oldest-sourced catalog route as an English gloss (exact spellings only — unmatched forms stay bare) · " : ""}` +
     `${zone.counts.w_regions_with_a_component_system
       ? `${zone.counts.occurrences_holding_more_than_one_w
           ? `${zone.counts.occurrences_holding_more_than_one_w.toLocaleString()} of those occurrences are written with a maqaf and hold two words each, ${zone.counts.w_regions.toLocaleString()} words in all; `
@@ -2009,16 +2009,11 @@
   };
 
   // The readings for one cell surface, as the reader's law has them
-  // (zone-gloss-rule-v5-the-catalogs-own-order-leads): a route text packs
-  // senses with ";", a sense divides into readings at the commas outside the
-  // provider's parentheses (sense-split-rule-v2), and each reading is its own
-  // pill; a damaged sense neither prints nor pools. Pills dedupe by text,
-  // merging the oldest year and lowest rank; the catalog's own order leads —
-  // lowest ledger rank first, ties standing as the catalog lists them. The
-  // source year orders nothing: ordering readings by their dictionary's birth
-  // year put Strong's 1890 root-glosses over the catalog's leading records,
-  // and a page that reads Genesis 1:1 as "cut down + judges" has chosen
-  // wrong at the one place everyone checks.
+  // (rule v4 · 2026-08-24): a route text packs senses with ";", a sense
+  // divides into readings at the commas outside the provider's parentheses
+  // (sense-split-rule-v2), and each reading is its own pill; a damaged sense
+  // neither prints nor pools. Pills dedupe by text, merging the oldest year
+  // and lowest rank; oldest source leads, post-1940 and unyeared sources last.
   const poolFor = async (surface) => {
     const routes = await routesFor(surface);
     if (!routes) return null;
@@ -2042,13 +2037,8 @@
         });
       });
     });
-    // stable sort: plain readings before script-carrying ones ("to-infinitive
-    // of <the form itself>" is the dictionary describing the word, not an
-    // English reading of it — it stays pressable, and it never leads), then
-    // the rank alone; readings tied on both keep the order they pooled in,
-    // which is the order the catalog lists them
-    const carriesScript = (r) => (/[\u0590-\u05FF]/.test(r.text) ? 1 : 0);
-    return [...groups.values()].sort((a, b) => carriesScript(a) - carriesScript(b) || a.ledger - b.ledger);
+    const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
+    return [...groups.values()].sort((a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger);
   };
 
   /**
@@ -2654,8 +2644,8 @@
       const makePill = (route) => {
         const btn = document.createElement("button"); btn.type = "button";
         btn.textContent = spanJoin(route.text);
-        const firstM = index.m_sources[route.records[0][3]];
-        btn.title = [Number.isFinite(route.year) ? String(route.year) : "no source year", firstM ? firstM.label : ""].filter(Boolean).join(" · ");
+        const oldestM = index.m_sources[route.records[0][3]];
+        btn.title = [Number.isFinite(route.year) ? String(route.year) : "no source year", oldestM ? oldestM.label : ""].filter(Boolean).join(" · ");
         btn.setAttribute("aria-pressed", String(route === selected));
         btn.addEventListener("click", () => {
           pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
@@ -4707,7 +4697,7 @@
   // "gibberish", as its owner puts it — and the answer to gibberish in this
   // project is never the force-read: it is the word's own record. Pressing
   // the title on the door arrives here with that word already open, its
-  // readings in the catalog's own order, exactly as any word in the text
+  // readings sorted oldest source first, exactly as any word in the text
   // opens. It presses what a finger would press — the first openable title
   // token — and waits for it to exist rather than assuming the page is done.
   if (QUERY.get("t") === "open") {
