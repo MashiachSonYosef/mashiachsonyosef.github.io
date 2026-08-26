@@ -412,6 +412,13 @@
      exactly as the source wrote them, and text-decoration moves no glyph. */
   .wb.kq .wr.backs-en { text-decoration: underline; text-decoration-color: var(--sel);
     text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  /* ...and the same mark on the English it backs: two underlines in the same
+     colour, stacked, are the two ends of one claim — this reading, that half.
+     The connector is the pair of marks, not a drawn line; it costs no ink the
+     eye must climb over and moves nothing. Only pairs wear it: a plain word's
+     gloss has one possible source, so a mark would say nothing. */
+  .wb.kq .g.backs-en { text-decoration: underline; text-decoration-color: var(--sel);
+    text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   .mq { color: var(--faint); }
   /* The reading under a word is shown whole. It used to run one line and end in
      an ellipsis, which was the honest thing to do when the average reading was
@@ -2317,8 +2324,12 @@
         const line = s.glossParts ? (s.glossParts[s.partIndex] = mine, s.glossParts.join(" + ")) : mine;
         holdAndPaint(s.glossEl, line);
         // a ruling on one half of a pair moves the provenance mark with it:
-        // the English now reads from the ruled branch, everywhere it stands
-        if (s.kqEls) s.kqEls.forEach((el, j) => el.classList.toggle("backs-en", j === s.kqIdx));
+        // the English now reads from the ruled branch, everywhere it stands —
+        // and the English wears the matching mark, the other end of the claim
+        if (s.kqEls) {
+          s.kqEls.forEach((el, j) => el.classList.toggle("backs-en", j === s.kqIdx));
+          s.glossEl.classList.add("backs-en");
+        }
         s.wb.classList.add("chosen");
         // record what this reading stands on, so a copy can name it
         if (selectedRecordRef.m) {
@@ -3097,6 +3108,7 @@
       : (parts.filter((p) => p !== "—").length ? parts.join(" + ") : "");
     if (word.kq && kqShown >= 0 && line) regionEls[kqShown] && regionEls[kqShown].classList.add("backs-en");
     const ge = document.createElement("span"); ge.className = "g";
+    if (word.kq && kqShown >= 0 && line) ge.classList.add("backs-en");
     if (line) { ge.textContent = line; ge.title = line; }
     else { ge.textContent = " "; ge.classList.add("bare"); }
     wb.append(ge);

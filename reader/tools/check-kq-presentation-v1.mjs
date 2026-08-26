@@ -180,6 +180,7 @@ const markProof = await p.evaluate(async () => {
         idx: i,
         marked: segs.map((s) => s.classList.contains("backs-en")),
         gloss: (wb.querySelector(".g") || {}).textContent || "",
+        glossMarked: (wb.querySelector(".g") || { classList: { contains: () => false } }).classList.contains("backs-en"),
         pill: pills[0].textContent,
       });
       await esc();
@@ -197,6 +198,10 @@ check("ruling on a branch marks that half as the English's source",
   markProof.found
     ? markProof.rulings.map((r) => `branch ${r.idx}: marked ${r.marked.join("/")} · gloss "${r.gloss.slice(0, 24)}"`).join(" · ")
     : "no pair with pooled readings to rule on");
+// the English wears the matching mark — two underlines, one claim
+check("the English wears the same mark as the half it reads from",
+  markProof.found && markProof.rulings.every((r) => r.glossMarked === true),
+  markProof.found ? "both ends of the claim underlined" : "");
 check("the mark moves between halves when the ruling moves",
   markProof.found && (markProof.rulings.length < 2
     || markProof.rulings[0].marked.join() !== markProof.rulings[1].marked.join()),
