@@ -9,11 +9,11 @@ itself while its source's name stood near it.
 ## The source
 
 The Hebrew scripture this site served came from **Miqra According to the
-Masorah (MAM)** via Hebrew Wikisource, under **CC BY-SA 4.0** — a licence
+Masorah (MAM)** via Hebrew Wikisource, under **CC BY-SA 4.0** — a license
 whose obligations include attribution and an indication of changes. MAM is
 a living edition with editors who make deliberate, careful decisions about
 exactly the features this site damaged. This record is, among other
-things, the public indication-of-changes the licence asks for, made
+things, the public indication-of-changes the license asks for, made
 retroactively and plainly.
 
 ## What was displayed, and when

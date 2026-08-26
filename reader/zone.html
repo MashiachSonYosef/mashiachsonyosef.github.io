@@ -155,7 +155,7 @@
     color: var(--faint); font-variant: normal; flex: 0 0 auto; min-width: 6.4rem; }
   header.top h1 .he-t { font-size: 2.1rem; }
   /* The book's own title is a word of the corpus like any other: it opens, it
-     carries records, it carries licences. Rendered through the same row the
+     carries records, it carries licenses. Rendered through the same row the
      chapter titles use, so there is one way a title is drawn. */
   header.top h1 .he-t .title-row { display: inline-block; text-align: right; }
   header.top h1 .he-t .title-row .wb { margin-bottom: 0; }
@@ -453,10 +453,10 @@
 
   /* The HUD floats. The Hebrew never moves — law of the house. */
   /* A card that always carries a whole record needs room for one; 55vh put
-     the source and its licence below the fold on a phone. */
+     the source and its license below the fold on a phone. */
   /* overflow-y: auto, not hidden. Every band on this card has a floor, and on a
      window short enough that the floors themselves do not fit, hidden would
-     have cut the bottom off — which is the source line, the licence, the one
+     have cut the bottom off — which is the source line, the license, the one
      thing here that is not the reader's to lose. Scrolling puts it below the
      fold; hiding loses it. At any ordinary height nothing scrolls, because
      nothing has to. */
@@ -515,7 +515,7 @@
   #hud .b-cut, #hud .b-cell, #hud .b-read { flex: 0 0 auto; min-height: 0; }
   /* And the record yields before any of them does. It has a floor of its own —
      the source line plus a line of the definition — so yielding never costs the
-     licence, which is the one thing on this card that is not the reader's to
+     license, which is the one thing on this card that is not the reader's to
      lose. Below that floor the provenance goes; the record does not. */
   #hud .prov { flex: 0 1 auto; overflow: hidden; }
   /* The D is the foundational record and it is always on the card. How much of
@@ -713,7 +713,7 @@
   .c-mark-slot .c-pick select { font: inherit; font-size: 0.76rem; color: var(--muted);
     background: var(--panel-c); border: 1px solid var(--line-c); border-radius: 0.4rem;
     padding: 0.16rem 0.4rem; max-width: 100%; }
-  /* the reference and the licence stay put while the commentary scrolls under
+  /* the reference and the license stay put while the commentary scrolls under
      them: a text whose source has scrolled away is a text standing on nothing */
   .c-mark-slot .lab { display: block; color: var(--muted); font-size: 0.74rem;
     letter-spacing: 0.03em; margin-bottom: 0.3rem;
@@ -913,7 +913,7 @@
   /* Copying is the reader's act, not the page's. There is no button that writes
      to a clipboard here — a button doing that is the site handing text over,
      and text handed over carries obligations. A reader who selects and presses
-     copy is doing what a reader does on any page, and the licences are on the
+     copy is doing what a reader does on any page, and the licenses are on the
      page: on the card, in the footer, and in the export.
      What the page owes them is a clean selection. The Hebrew and its reading
      live in one block, so selecting a verse used to interleave them word by
@@ -930,7 +930,7 @@
   .seg-row, .c-bar, .c-mark, .c-choose, .xp-row, #nav, header.top nav, #modeRow { user-select: none; -webkit-user-select: none; }
   /* Taking the text away for good. A copy is a convenience; an export is the
      final stop, so it says what it is about to hand over before it hands it
-     over, and it obeys the licence of every record it would carry. */
+     over, and it obeys the license of every record it would carry. */
   .xp-row { display: flex; gap: 0.4rem; margin: 0.55rem 0 0.2rem; direction: ltr;
     flex-wrap: wrap; align-items: center; }
   .xp { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--line);
@@ -1136,14 +1136,14 @@
       "No book is published on this page yet — no walk has landed. The page takes its name from the zone when one arrives; nothing is shown, and nothing is named, that has not come through the pipeline.";
     return;
   }
-  // A fixture is a test instrument, not a work. It carries no licence identity,
+  // A fixture is a test instrument, not a work. It carries no license identity,
   // so it may not be served as one — the refusal is structural rather than a
   // matter of nobody linking to it. Every Hebrew string in a fixture is
   // invented for the test; none of it is corpus, and none of it is published.
   if (String(zone.schema_version || "").includes("FIXTURE")
       && QUERY.get("fixture") !== "1") {
     document.getElementById("meta").textContent =
-      "This zone is a test instrument, not a published work. It carries no licence identity and is not served. Nothing is shown.";
+      "This zone is a test instrument, not a published work. It carries no license identity and is not served. Nothing is shown.";
     return;
   }
   // The book is named in Hebrew where the Y ledger promoted a name for it, and
@@ -1177,7 +1177,7 @@
   const ac = zone.emitted_from.acquisition, wk = zone.emitted_from.walk, oc = zone.emitted_from.identity_oracle;
   // What this is, in one line. Everything the zone can prove about itself used
   // to print here, because when this page was first written there was nowhere
-  // else for a receipt to live. There is now: the card carries the licence of
+  // else for a receipt to live. There is now: the card carries the license of
   // every reading, each section names its own commentary, the export writes
   // the whole record into the file, and the footer has carried the hashes all
   // along. So the proof moves down to join them and stops standing between the
@@ -1255,7 +1255,7 @@
     }
     if (entry.entries_without_own_licence > 0) {
       const el = document.getElementById("rightsLine");
-      el.append(`${Number(entry.entries_without_own_licence).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} printed commentary entries await their own licence receipts from the commentary build \u2014 the work-level licence shown for them is real, and the per-entry grain fills when that build runs.`);
+      el.append(`${Number(entry.entries_without_own_licence).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} printed commentary entries await their own license receipts from the commentary build \u2014 the work-level license shown for them is real, and the per-entry grain fills when that build runs.`);
       el.hidden = false;
     }
   })();
@@ -1388,33 +1388,33 @@
   // ---- the exporter ---------------------------------------------------
   // An export is the final stop: the thing that leaves the page and is read
   // somewhere else, by someone who will never see this reader. So it carries
-  // the licence of every record it stands on, and a licence that forbids
+  // the license of every record it stands on, and a license that forbids
   // redistribution stops it — per reading, not per file.
   //
   // The Hebrew is the sealed text of the work and rides on the work's own
-  // licence. A refused reading never removes a Hebrew word; it removes the
+  // license. A refused reading never removes a Hebrew word; it removes the
   // English beside it, and says so where it stood.
   //
   // licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs
   //
   // Every obligation line this reader prints is plain English written here. A
-  // licence is a document; a one-sentence summary of it is not that document
+  // license is a document; a one-sentence summary of it is not that document
   // and must never be able to stand in for it. Two earlier code paths each
-  // carried their own wording for the same letter, so the same licence read
+  // carried their own wording for the same letter, so the same license read
   // one way in an export and another way in the pill. Both are replaced by the
   // one table below, and wherever a line from it prints, it prints named as
-  // ours, beside the licence it summarises and the record that licence was
-  // released under. The licence governs. The sentence only makes the chip
+  // ours, beside the license it summarises and the record that license was
+  // released under. The license governs. The sentence only makes the chip
   // readable.
   const LICENCE_RULES = {
     rule: "licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs",
-    whose: "The obligation lines below are plain English written in this reader. They are summaries, not licence text, and no licence is quoted here. The licence named beside each one is what governs, and the record it was released under is linked.",
+    whose: "The obligation lines below are plain English written in this reader. They are summaries, not license text, and no license is quoted here. The license named beside each one is what governs, and the record it was released under is linked.",
     by: "Attribution required.",
     nc: "Noncommercial use only — this text may not be used commercially.",
-    sa: "Share-alike: anything derived from this must be shared under the same licence.",
+    sa: "Share-alike: anything derived from this must be shared under the same license.",
     nd: "NoDerivatives.",
   };
-  // The letters a family or a posture carries, read in one place so a licence
+  // The letters a family or a posture carries, read in one place so a license
   // cannot be summarised two different ways by two different callers.
   const summarise = (text) => {
     const t = String(text || "");
@@ -1431,11 +1431,11 @@
   };
   // Refusals are decided here and nowhere else, and they are read from the
   // declarations record rather than re-derived from the letters of the key.
-  // A posture the record has not declared is not exported: no licence is as
+  // A posture the record has not declared is not exported: no license is as
   // absolute as a forbidding one, and the undeclared is treated as forbidding.
   const exportPosture = (posture) => {
     const p = String(posture || "");
-    if (!p) return { ok: false, why: "the record carries no licence posture" };
+    if (!p) return { ok: false, why: "the record carries no license posture" };
     const row = POSTURES && POSTURES.postures && POSTURES.postures[p];
     if (!row) return { ok: false, why: `undeclared posture (${p}) — a posture with no declaration is not exported` };
     if (!row.export) return { ok: false, why: `${row.name} (${p}) — the declarations record refuses export for this posture` };
@@ -1519,11 +1519,11 @@
     return { sec, words, sources: [...sources.values()], obligations: [...obligations], held };
   };
 
-  // The licence of the work itself — the Hebrew. This is the largest thing any
+  // The license of the work itself — the Hebrew. This is the largest thing any
   // export carries and it is not public domain: 1 Kings' own rights record
   // reads CC-BY-NC, ALLOW_WITH_OBLIGATIONS. An earlier build printed the work
   // RECEIPT here, which is a B/N id and a unit count, and called that the
-  // licence. It was not. A receipt says which rows were served; it says
+  // license. It was not. A receipt says which rows were served; it says
   // nothing about what may be done with them.
   const workRights = () => {
     const wr = zone.work_receipts || {};
@@ -1543,19 +1543,19 @@
     // true is narrower: the token is there, and what it obliges is not written
     // in anything this reader holds.
     if (/ALLOW_WITH_OBLIGATIONS/.test(posture || "") && !obligations.length)
-      obligations.push(`The rights record carries the posture ${posture} and no licence family this reader can read. What that posture obliges is not written in anything held here; the record linked below is where it is written.`);
+      obligations.push(`The rights record carries the posture ${posture} and no license family this reader can read. What that posture obliges is not written in anything held here; the record linked below is where it is written.`);
     return { receipt, family, posture, links, obligations, attribution: rec.attribution || zone.byline || "", raw: per };
   };
 
   /** The file itself. One shape for all three kinds; the kind decides columns.
    *
    * Every run of text in the file carries a citation mark, and every mark has
-   * an entry under Sources naming the licence it was released under. A file
+   * an entry under Sources naming the license it was released under. A file
    * that listed six sources at the foot and left the reader to guess which of
-   * them stood behind which word was naming licences without attaching them,
+   * them stood behind which word was naming licenses without attaching them,
    * which is most of the way to not naming them at all.
    *
-   * [H] is the Hebrew — one work, one licence, every Hebrew word in the file.
+   * [H] is the Hebrew — one work, one license, every Hebrew word in the file.
    * [1] [2] … are the readings, numbered by where they first appear, so the
    * numbers climb as the reader reads. A source used by four words carries the
    * same number in all four, because it is one source, cited four times. */
@@ -1575,7 +1575,7 @@
     L.push(`${zone.work}${zone.work_he ? ` · ${zone.work_he}` : ""}`);
     if (zone.byline) L.push(zone.byline);
     L.push("");
-    L.push(`Hebrew text [H] · licence: ${wr.family || "NOT ESTABLISHED"}${wr.posture ? ` · ${wr.posture}` : ""}`);
+    L.push(`Hebrew text [H] · license: ${wr.family || "NOT ESTABLISHED"}${wr.posture ? ` · ${wr.posture}` : ""}`);
     if (wr.attribution) L.push(`Hebrew text [H] · attribution: ${wr.attribution}`);
     wr.links.forEach((l) => L.push(`Hebrew text [H] · ${l.label}${l.url ? ` — ${l.url}` : ""}`));
     L.push(`Work receipt: ${wr.receipt}`);
@@ -1584,15 +1584,15 @@
     L.push(`Export: ${EXPORT_RULE}`);
     L.push("");
     L.push(kind === "he"
-      ? "Citations: [H] marks the Hebrew. Its entry under Sources names the licence it is released under."
-      : "Citations: [H] marks the Hebrew; [1] [2] … mark each reading. Every mark has an entry under Sources naming the licence that reading is released under, and the entry is the record the reading is cited from — the earliest attestation the store carries, the same one the reader sees on the card. The same source keeps the same number wherever it appears. Where a reading is attested by further records, they are named under the entry; they are not what it was cited from.");
+      ? "Citations: [H] marks the Hebrew. Its entry under Sources names the license it is released under."
+      : "Citations: [H] marks the Hebrew; [1] [2] … mark each reading. Every mark has an entry under Sources naming the license that reading is released under, and the entry is the record the reading is cited from — the earliest attestation the store carries, the same one the reader sees on the card. The same source keeps the same number wherever it appears. Where a reading is attested by further records, they are named under the entry; they are not what it was cited from.");
     L.push("");
     const allObl = new Set(); let held = 0;
     for (const b of bundles) {
       L.push(`## ${b.sec.label || ""}`);
       L.push("");
       // The Hebrew is marked on its label rather than on each word: it is one
-      // work under one licence, and threading Latin digits through a right-to-
+      // work under one license, and threading Latin digits through a right-to-
       // left run would rearrange the text on the page it is pasted into.
       if (kind !== "en") { if (kind === "both") L.push("Hebrew [H]"); L.push(b.words.map((w) => w.he).join(" ")); }
       if (kind === "both") { L.push(""); L.push("Readings"); }
@@ -1647,7 +1647,7 @@
       L.push("");
       L.push("## Withheld");
       L.push("");
-      L.push(`${held} reading${held === 1 ? " was" : "s were"} not exported. Each is marked [withheld] where it stood, carrying no citation number because there is no source to cite. A reading is withheld when its record carries a licence that does not permit redistribution, when it carries no licence at all, or when the reading on the page could not be matched to a record. The Hebrew is never withheld: it rides on the work's own licence, not on any reading's.`);
+      L.push(`${held} reading${held === 1 ? " was" : "s were"} not exported. Each is marked [withheld] where it stood, carrying no citation number because there is no source to cite. A reading is withheld when its record carries a license that does not permit redistribution, when it carries no license at all, or when the reading on the page could not be matched to a record. The Hebrew is never withheld: it rides on the work's own license, not on any reading's.`);
     }
     L.push("");
     return L.join("\n");
@@ -1679,7 +1679,7 @@
       if (armed) {
         const wr = workRights();
         if (!wr.family) {
-          note.textContent = "Refused: this work's own licence is not established in the zone's rights record, so nothing may leave.";
+          note.textContent = "Refused: this work's own license is not established in the zone's rights record, so nothing may leave.";
           b.classList.remove("armed"); b.textContent = label; armed = null;
           return;
         }
@@ -1701,13 +1701,13 @@
       const wr = workRights();
       wr.obligations.forEach((o) => obl.add(`The Hebrew text: ${o}`));
       if (kind === "he") {
-        say(`${words} words of Hebrew · ${wr.family || "licence NOT ESTABLISHED"}`);
+        say(`${words} words of Hebrew · ${wr.family || "license NOT ESTABLISHED"}`);
         if (wr.obligations.length) { say(" · in our words: "); say(wr.obligations.join(" ")); }
         say(". ");
       } else {
         say(`${words} words · ${srcs.size} source${srcs.size === 1 ? "" : "s"}`);
         if (obl.size) { say(" · in our words: "); say([...obl].join(" ").replace(/\.$/, "")); }
-        if (held) { say(" · "); say(`${held} reading${held === 1 ? "" : "s"} withheld on licence`, "held"); }
+        if (held) { say(" · "); say(`${held} reading${held === 1 ? "" : "s"} withheld on license`, "held"); }
         say(". ");
       }
       const strong = document.createElement("b"); strong.textContent = "Press again to save.";
@@ -1796,7 +1796,7 @@
     // to owe them that — a word low on the page, with the card opening beneath
     // it — the record lends the difference: its text gives way down to three
     // lines, which is the record's floor everywhere, and its source line,
-    // which is the licence, is not part of what it lends. A floor of one line
+    // which is the license, is not part of what it lends. A floor of one line
     // once left a phone with the source standing on no record at all. After
     // the record, the provenance line, the one thing on the card nobody
     // presses.
@@ -2239,7 +2239,7 @@
         // record what this reading stands on, so a copy can name it
         if (selectedRecordRef.m) {
           s.wb.dataset.source = selectedRecordRef.m.label || "";
-          s.wb.dataset.licence = licenseName(selectedRecordRef.m.licensePosture) || "";
+          s.wb.dataset.license = licenseName(selectedRecordRef.m.licensePosture) || "";
         }
       }
       // a tapped word outside the registry (a commentary word) still paints
@@ -2248,7 +2248,7 @@
         const wbEl2 = glossEl.closest(".wb");
         if (wbEl2 && selectedRecordRef.m) {
           wbEl2.dataset.source = selectedRecordRef.m.label || "";
-          wbEl2.dataset.licence = licenseName(selectedRecordRef.m.licensePosture) || "";
+          wbEl2.dataset.license = licenseName(selectedRecordRef.m.licensePosture) || "";
         }
       }
     };
@@ -2416,8 +2416,8 @@
         // second thing the provider said, and attributing an arrangement to a
         // source that did not arrange it that way is only honest if the
         // arrangement is disclosed. Whether a cut may be shown at all is the
-        // provider's licence to decide, and the store has already decided it —
-        // a licence that forbids derivatives never reaches this card.
+        // provider's license to decide, and the store has already decided it —
+        // a license that forbids derivatives never reaches this card.
         if (selected.records.some((r) => r[5] === 1)) {
           const cut = document.createElement("p"); cut.className = "d-cut";
           cut.textContent = "This reading is a piece cut out of the record below, not the record's own sentence.";
@@ -2482,7 +2482,7 @@
         };
         // One record stands the reading up, and it is always on the card.
         // Anything further is corroboration, and corroboration folds away —
-        // named by its licences, so a reader looking for a particular one can
+        // named by its licenses, so a reader looking for a particular one can
         // see from the closed drawer whether it is worth opening.
         const groups = [...byP.values()];
         const first = groups[0];
@@ -2612,10 +2612,10 @@
         // on the card.
         const rest = groups.slice(1).flatMap((g) => g.rows.map((r) => [g.text, r]));
         if (!rest.length) return;
-        const licences = [...new Set(rest.map(([, r]) => licenseName(index.m_sources[r[3]].licensePosture)))];
+        const licenses = [...new Set(rest.map(([, r]) => licenseName(index.m_sources[r[3]].licensePosture)))];
         const more = document.createElement("button"); more.type = "button"; more.className = "d-more";
         const drawer = document.createElement("div"); drawer.className = "d-drawer"; drawer.hidden = true;
-        more.textContent = `${rest.length} further record${rest.length === 1 ? "" : "s"} · ${licences.join(", ")}`;
+        more.textContent = `${rest.length} further record${rest.length === 1 ? "" : "s"} · ${licenses.join(", ")}`;
         more.setAttribute("aria-expanded", "false");
         more.addEventListener("click", (ev) => {
           ev.stopPropagation();
@@ -2796,7 +2796,7 @@
   //
   // Where inside the section it sits is a different matter, and for most of
   // what is on this page it is not recorded anywhere. No source states it, no
-  // ledger carries it, and no licence covers it — a licence governs the text of
+  // ledger carries it, and no license covers it — a license governs the text of
   // a commentary, and a placement is not text. It was made by this project, by
   // choosing to honour the convention that a commentary opens by quoting what
   // it is about.
@@ -2829,7 +2829,7 @@
     },
     DIBBUR_HAMATCHIL_SUGGESTION_NOT_PROVEN: {
       said: "A work of its own, not part of this book. The chain puts it on this verse; this reader put it here, on the words it opens by quoting.",
-      whose: "ours, a suggestion · no licence covers the convention · nothing recorded this placement",
+      whose: "ours, a suggestion · no license covers the convention · nothing recorded this placement",
     },
     // The ones nobody could place. Two thirds of what the record maps to this
     // book's first verse are these, and an earlier build shipped none of them —
@@ -2840,12 +2840,12 @@
       said: "A work of its own, not part of this book. The chain puts it on this verse, and nothing puts it on any word of it — so it stands on the whole verse.",
       whose: "the chain's verse · this reader placed nothing and guessed nothing",
     },
-    // A licence can forbid. Nothing else can. This fires for no commentary on
+    // A license can forbid. Nothing else can. This fires for no commentary on
     // this book today, and the page would rather carry the sentence unused
     // than have nowhere to say it.
     HELD_PENDING_LICENCE_REVIEW: {
-      said: "A work of its own, not part of this book. The chain puts it on this verse, and its licence does not permit printing it here.",
-      whose: "kept off by its licence · by nothing else",
+      said: "A work of its own, not part of this book. The chain puts it on this verse, and its license does not permit printing it here.",
+      whose: "kept off by its license · by nothing else",
     },
     // And the case that is actually true of all 108: the record names it and
     // carries no body. Calling that "held" made an empty record look like a
@@ -3107,7 +3107,7 @@
   // out of here as a column of single words.
   //
   // So this rewrites the whitespace of the reader's own selection and nothing
-  // else. It adds no text — no licence line, no citation, nothing the reader
+  // else. It adds no text — no license line, no citation, nothing the reader
   // did not select — and it drops none. Take every space out of what it writes
   // and you have exactly what the browser would have written on its own: the
   // words the reader dragged over, in order, in the provider's characters.
@@ -3276,7 +3276,7 @@
   // always a forced reading — we are saying how to read the Hebrew, not
   // translating it — and a forced reading is a claim, so the ledger's
   // English prints only when a licensed record reads the title's own form
-  // that way, with that record's licence riding beside it. Until one does,
+  // that way, with that record's license riding beside it. Until one does,
   // the row does not fall silent and its label never softens: it reads the
   // work's own address plainly, which asserts nothing beyond the address,
   // and the note says what the English is waiting on.
@@ -3411,7 +3411,7 @@
   // A commentary belongs under the section it comments on. There is one way it
   // is drawn — this one — and two surfaces that turn it on: the book-level
   // button turns every section's on at once, a section's own line turns on
-  // just its own. It carries its reference, its licence and the basis of its
+  // just its own. It carries its reference, its license and the basis of its
   // attachment, because a commentary a reader cannot trace is decoration.
   const inlineBuilt = new WeakSet();
   const buildSectionInline = (sec, el) => {
@@ -3440,14 +3440,14 @@
       // file at all.
       if (e.held) {
         p.dir = "auto"; p.classList.add("c-held");
-        if (e.held === "licence") {
-          p.append(`Held — its licence is recorded as ${e.disposition || "something this page cannot read"}, `
-            + `which does not permit printing it here. A licence is the only thing that can do that. `
+        if (e.held === "license") {
+          p.append(`Held — its license is recorded as ${e.disposition || "something this page cannot read"}, `
+            + `which does not permit printing it here. A license is the only thing that can do that. `
             + `Everything else the record carries about it stands above.`);
         } else {
           // Not "held". Nobody is holding it. The record has no body.
           p.append(`Not here — the record carries its reference and no text for it, so there is nothing to print. `
-            + `Nothing is being withheld${e.licence_says ? `, and its licence is recorded as ${e.licence_says}` : ""}. `
+            + `Nothing is being withheld${e.licence_says ? `, and its license is recorded as ${e.licence_says}` : ""}. `
             + `Everything else the record carries about it stands above.`);
         }
       } else if (!(e.words || []).length) { p.dir = "auto"; p.append(e.text || ""); }
@@ -3833,7 +3833,7 @@
         body.replaceChildren();
         // What this is, said in plain English before anything else — the same
         // register as "book title" and "commonly force read as" above. The card
-        // used to open with a work name, a reference in Hebrew and a licence
+        // used to open with a work name, a reference in Hebrew and a license
         // chip run together in one line, which asked the reader to already know
         // what they were looking at.
         //
@@ -3951,7 +3951,7 @@
         body.append(lab);
         // A commentary is a work, so its own words open the way any word of the
         // book opens: the same block, the same card, the same readings out of
-        // the same store, each with the licence of the record that carries it.
+        // the same store, each with the license of the record that carries it.
         // Nothing here is translated. What stands under a word is a reading
         // somebody licensed, or nothing at all — 31,089 of the 37,900 words of
         // Genesis commentary carry one and the rest print bare.

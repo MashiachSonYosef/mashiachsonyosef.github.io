@@ -53,14 +53,14 @@ for (const [nth, kind] of [[1, "hebrew"], [2, "english"], [3, "both"]]) {
   // public-domain work has no noncommercial obligation to carry and no
   // licence link to point at. What is required is that the file and the work
   // agree — the same rule check-citations was corrected to on 2026-08-23.
-  const declared = (text.match(/Hebrew text \[H\] · licence: (.+)/) || [])[1] || "";
+  const declared = (text.match(/Hebrew text \[H\] · license: (.+)/) || [])[1] || "";
   const obliged = /ALLOW_WITH_OBLIGATIONS/.test(declared) ||
                   /\bNC\b|NONCOMMERCIAL/i.test(declared);
-  const hasFamily = /Hebrew text \[H\] · licence: \S/.test(text);
+  const hasFamily = /Hebrew text \[H\] · license: \S/.test(text);
   const hasNC = obliged ? /Noncommercial use only/.test(text) : true;
   const hasLink = /Hebrew text \[H\] · License family/.test(text);
   const hasEntry = /^- \[H\] \S/m.test(text);
-  check(`${kind} export names the Hebrew's licence`, hasFamily, text.split("\n").find(l => /Hebrew text .*· licence/.test(l)) || "absent");
+  check(`${kind} export names the Hebrew's licence`, hasFamily, text.split("\n").find(l => /Hebrew text .*· license/.test(l)) || "absent");
   check(`${kind} export carries the noncommercial obligation`, hasNC);
   // A link is carried when the zone records one. A work whose rights record
   // names no link cannot print one, and printing one anyway is the defect.

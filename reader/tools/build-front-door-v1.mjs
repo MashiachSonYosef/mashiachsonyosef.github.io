@@ -128,7 +128,7 @@ const FLEET_STATE = new Map(FLEET.works.map((w) => [w.id, w.state]));
 const WB = JSON.parse(readFileSync(arg("basis", "data/work-basis-v1.json"), "utf8"));
 // The same catalog the masthead asks at runtime, asked once at build time:
 // does a record read this title's own form as the common name? Where one
-// does, its licence rides the force-read line, exactly as it does inside.
+// does, its license rides the force-read line, exactly as it does inside.
 const STORE = openRouteStore(arg("store", "data/route-store"));
 // A posture's name comes from the declarations record — the same record the
 // reader loads as data/license-postures-v1.json — never re-derived from the
@@ -166,7 +166,7 @@ const titleReading = (tokens, en) => {
 // The M behind one printed reading: the oldest licensed route whose own text
 // divides — under the store's own pack and reading rules — to that exact
 // reading. A gloss printed without this beside it is a reading shown without
-// its licence, and no reading on the door may stand that way.
+// its license, and no reading on the door may stand that way.
 const glossSource = (key, text) => {
   if (!key || !text) return null;
   const routes = STORE.routesFor(key);
@@ -192,7 +192,7 @@ const chipHtml = (src) => src
   : "";
 // A force-read in English is a claim about how to read the Hebrew, and a
 // claim needs a record: the ledger's English prints only when a licensed
-// record reads the form that way, with that record's licence riding beside
+// record reads the form that way, with that record's license riding beside
 // it. Until one does, the recorded id itself is read plainly — hyphens as
 // spaces — which asserts nothing beyond the id, and the line says what it
 // is waiting on.
@@ -334,7 +334,7 @@ for (const b of BOOKS) {
         for (const e of list) { onWord += 1; seen.add(e.family_en || e.ref); }
       for (const e of unit.section || []) {
         onSection += 1; seen.add(e.family_en || e.ref);
-        if (e.held === "licence") heldLicence += 1;
+        if (e.held === "license") heldLicence += 1;
         else if (e.held) noText += 1;
         // The section is not one thing. For 1 Kings the chain itself puts the
         // commentary there, by coordinate; for Genesis it is where a segment
@@ -416,7 +416,7 @@ const whereLine = (b) => {
   if (b.onWord) parts.push(`${n(b.onWord)} on the word it opens by quoting`);
   if (b.byCoordinate) parts.push(`${n(b.byCoordinate)} on the section by coordinate`);
   if (b.noCloser) parts.push(`${n(b.noCloser)} on the section, nothing places them closer`);
-  if (b.heldLicence) parts.push(`${n(b.heldLicence)} kept off by a licence`);
+  if (b.heldLicence) parts.push(`${n(b.heldLicence)} kept off by a license`);
   if (b.noText) parts.push(`${n(b.noText)} named, with no text in the record`);
   return parts.join(" · ");
 };
@@ -531,14 +531,14 @@ const rowsHtml = (rows) => rows.map((r) => {
 });
 // A family's name is words of the ledger, and a word answers for itself:
 // each keyed token is a real control that opens the word's own record — the
-// store's readings, oldest source first, each with its licence — in a card
+// store's readings, oldest source first, each with its license — in a card
 // on this page, separately from the fold it happens to sit in. A token the
 // store is silent on prints and opens nothing, the numeral rule's law.
 const famHeadHe = (lf) => {
   if (!lf.he) return `<span class="he none">none is recorded in the ledger</span>`;
   const key = (lf.he_tokens || []).map((t) => t.k).filter(Boolean)[0] || null;
   const gloss = key ? (STORE.glossFor(key).text || "") : "";
-  // the reading under the name carries the licence of the record it is
+  // the reading under the name carries the license of the record it is
   // read from, the same chip the reader's card shows
   const gsrc = gloss ? glossSource(key, gloss) : null;
   const words = (lf.he_tokens || []).map((t) => t.k
@@ -675,7 +675,7 @@ const doc = `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Tabernacle</title>
-<meta name="description" content="A Hebrew reader built on a sealed chain: every reading traceable to the record that carries it, and every record to the licence it was released under.">
+<meta name="description" content="A Hebrew reader built on a sealed chain: every reading traceable to the record that carries it, and every record to the license it was released under.">
 <script>
 // Two faces, both the record's: linen by day, the tent by night. The device
 // decides until the reader chooses; the choice stays on the device.
@@ -817,7 +817,7 @@ const doc = `<!doctype html>
   details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.3rem; color:var(--shesh); }
   details.fam > summary .fam-he .g { font-size:.7rem; color:var(--muted); }
-  /* the licence rides beside every printed reading and every backed
+  /* the license rides beside every printed reading and every backed
      force-read, in the same quiet chip the reader's card uses */
   details.fam > summary .chip, .fam-he .g .chip, #bkcard .chip {
     display:inline-block; margin-inline-start:.45rem; font-size:.6rem; letter-spacing:.06em;
@@ -833,7 +833,7 @@ const doc = `<!doctype html>
      than the rooms for the second time. Every rule below is zone.html's, with
      the same tokens: the head is the word, the reading stands under its own
      label, the routes are pills with one lit, and the record beneath carries
-     the source and the licence that never scroll away. */
+     the source and the license that never scroll away. */
   #wcard { position:fixed; z-index:70; max-width:23rem; width:min(23rem,92vw); max-height:min(84vh,50rem);
     left:50%; transform:translateX(-50%); bottom:1rem;
     display:flex; flex-direction:column; overflow-y:auto; overflow-x:hidden;
@@ -991,7 +991,7 @@ const doc = `<!doctype html>
   <!-- Built by tools/build-front-door-v1.mjs from pinned physical/logical
        authorities and the zones. Every count below names its grain. -->
   <h1>The Tabernacle</h1>
-  <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the licence it was released under.</p>
+  <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the license it was released under.</p>
   <p class="face-line">${n(books.length)} book${books.length === 1 ? "" : "s"} readable today · ${n(ATLAS.totals.works - books.length)} more stand listed, each saying on its own card what it awaits</p>
   <nav class="reads-now" aria-label="Readable now">
 ${books.map((b) => `    <a class="read-link" href="/${b.slug}">${b.he ? `<span class="rl-he" lang="he" dir="rtl">${esc(b.he)}</span>` : ""}<span class="rl-en">${esc(b.disp)}</span><span class="rl-of">${n(b.sections)} sections</span></a>`).join("\n")}
@@ -1097,7 +1097,7 @@ ${sectionsHtml.join("\n")}
   }
   // ---- the word's own record, on the door ------------------------------
   // A family name's word opens the store's card for its exact key: readings
-  // oldest source first, each with the licence of the record that carries
+  // oldest source first, each with the license of the record that carries
   // it — the same law as the reader's HUD, fetched from the same store,
   // shard by shard as words are pressed. Pressing the word never toggles
   // the fold it sits in; the fold is the summary's, the word is its own.
@@ -1339,7 +1339,7 @@ ${sectionsHtml.join("\n")}
   <!-- A book's own title is corpus text and is not printed here. This page
        carries no records, so it can cite nothing; it says only how each book is
        commonly named, and the title itself waits inside, where it opens. -->
-  <footer>A book's own title is printed where it can be opened — inside the reader, out of the ledger, with the records behind it. This page names a built book as it is commonly read, and names everything not yet built by its recorded id alone, exactly as the bridge carries it — some ids hold the work's own Hebrew title, and that is the record showing, not this page translating. The Hebrew of each built book carries its own licence, named on the page it is read from and in anything exported from it.</footer>
+  <footer>A book's own title is printed where it can be opened — inside the reader, out of the ledger, with the records behind it. This page names a built book as it is commonly read, and names everything not yet built by its recorded id alone, exactly as the bridge carries it — some ids hold the work's own Hebrew title, and that is the record showing, not this page translating. The Hebrew of each built book carries its own license, named on the page it is read from and in anything exported from it.</footer>
 </main>
 </body>
 </html>
@@ -1387,7 +1387,7 @@ const titleCase = (t) => String(t).split("-").map((w) =>
 const readme = `# The Tabernacle
 
 A Hebrew reader on a sealed chain. Every reading printed under a word traces to
-the record that carries it, and every record to the licence it was released
+the record that carries it, and every record to the license it was released
 under. No English is forced: a word offers every reading its sources attest, one
 at a time, and the reader chooses.
 
@@ -1411,11 +1411,11 @@ every rule the code declares along with the check that guards it — and, at the
 end of a run, what the checks do not cover.
 
 - **Nothing is typed that the record can say.** No page and no tool supplies a
-  character of the text, a work's name, a count, or a licence. Where you find a
+  character of the text, a work's name, a count, or a license. Where you find a
   literal standing in for a record, that is the bug.
 - **One reader.** A per-book page would be a second place for the standard not
   to apply, so there is not one.
-- **A licence travels with the text it covers**, is named on the page the text
+- **A license travels with the text it covers**, is named on the page the text
   is read from and in anything exported from it, and is never inherited from
   the book a work sits in.
 - **A key keeps what the source wrote.** Points and cantillation come off; the
@@ -1449,8 +1449,8 @@ artifacts and may not add a character to them.
 
 ## Licensing
 
-There is no single licence. Every work carries its own, computed from its own
-records. Nothing here is licensed as a whole, and nothing inherits a licence
+There is no single license. Every work carries its own, computed from its own
+records. Nothing here is licensed as a whole, and nothing inherits a license
 from what it sits beside.
 
 Served from the \`gh-pages\` branch.
