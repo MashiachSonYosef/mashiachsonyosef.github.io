@@ -46,6 +46,13 @@ storage relief as a validator-backed conveyor, never ad-hoc deletion.
 6. **Disposition.** Only after the receipt exists, and only by the
    local lanes/owner, and only for files the receipt covers. The receipt id
    belongs in the deletion's own record — no more unadjudicated 10:52s.
+7. **Re-verify at disposal time, not mirror time** (website lane's clause,
+   adopted 2026-08-26): a receipt ages the moment it is written. Whatever is
+   about to be removed — locally, or from git during slimming — gets its
+   hash check against R2 re-run in the same transaction as the removal, and
+   the removal's record carries that fresh receipt, not the original.
+   Copy-verified-then-delete-later has a window; copy-verified-as-deleted
+   has none.
 
 ## First targets (per the construction lane, endorsed)
 
