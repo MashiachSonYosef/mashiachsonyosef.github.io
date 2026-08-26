@@ -1201,6 +1201,11 @@
     `${zone.counts.verified_units} of ${zone.counts.sections} sections verified word-for-word in count against the sealed corpus allocation` +
     `${zone.counts.drifted_units ? `; ${zone.counts.drifted_units} drift from it and are marked` : ""} · ` +
     `${zone.counts.glossed_words ? zone.counts.glossed_words.toLocaleString() + " words carry their oldest-sourced catalog route as an English gloss (exact spellings only — unmatched forms stay bare) · " : ""}` +
+    // The bracket convention is the source's own notation, taught once per
+    // book rather than decorated per occurrence: apparatus at the grain
+    // where it varies, instruction once per witness.
+    `${(() => { const n = (zone.sections || []).reduce((a, s) => a + ((s.words || []).filter((w) => w.kq).length), 0);
+      return n ? `${n.toLocaleString()} places carry a source-marked pair, printed exactly as the source writes it — the ketiv, as written, in parentheses; the qere, as read, in brackets; either half opens its own record, and the half the shown English reads from is underlined · ` : ""; })()}` +
     `${zone.counts.w_regions_with_a_component_system
       ? `${zone.counts.occurrences_holding_more_than_one_w
           ? `${zone.counts.occurrences_holding_more_than_one_w.toLocaleString()} of those occurrences are written with a maqaf and hold two words each, ${zone.counts.w_regions.toLocaleString()} words in all; `
