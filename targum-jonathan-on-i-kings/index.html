@@ -417,6 +417,11 @@
      The connector is the pair of marks, not a drawn line; it costs no ink the
      eye must climb over and moves nothing. Only pairs wear it: a plain word's
      gloss has one possible source, so a mark would say nothing. */
+  /* A variant site: the source's own mark is already in the carrier; the
+     dotted line only says a record stands behind it. Structure's colour,
+     because the mark is the text's own apparatus, not a reader's act. */
+  .wb.vs .w { text-decoration: underline dotted; text-decoration-color: var(--gold-dim);
+    text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   .wb.kq .g.backs-en { text-decoration: underline; text-decoration-color: var(--sel);
     text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   .mq { color: var(--faint); }
@@ -1187,6 +1192,16 @@
   // not read it knows what they are looking at. Neither is decoration for the
   // other, so neither appears without it.
   const heT = document.querySelector("#workTitle .he-t");
+  // A mark in the text that transmits an assertion must open the record of
+  // that assertion. Two targum parenthesis sites stood in the live zones as
+  // typography to guess at — as written, so not the markup-leak class, but
+  // apparatus with no record saying what the wrapping asserts. Under this
+  // rule a zone carries each such site as a record on the word (vs: the
+  // source's own sentence, and where it is read from); the carrier prints
+  // exactly as the source wrote it, the word opens the record, and the gate
+  // refuses a zone that declares the rule and ships a marked site bare.
+  // Declared here, above the masthead that names it.
+  const VS_RULE = "variant-site-rule-v1-the-mark-opens-a-record-or-the-zone-does-not-board";
   const enT = document.querySelector("#workTitle .en-t");
   heT.textContent = zone.work_he || "";
   // Until a licensed record is found to back the ledger's English (checked
@@ -1232,6 +1247,8 @@
     // where it varies, instruction once per witness.
     `${(() => { const n = (zone.sections || []).reduce((a, s) => a + ((s.words || []).filter((w) => w.kq).length), 0);
       return n ? `${n.toLocaleString()} places carry a source-marked pair, printed exactly as the source writes it — the ketiv, as written, in parentheses; the qere, as read, in brackets; either half opens its own record, and the half the shown English reads from is underlined · ` : ""; })()}` +
+    `${(() => { const n = (zone.sections || []).reduce((a, s) => a + ((s.words || []).filter((w) => w.vs).length), 0);
+      return n ? `${n.toLocaleString()} place${n === 1 ? " carries" : "s carry"} a source-marked variant site, printed exactly as the source writes it, with its record one tap away (${VS_RULE}) · ` : ""; })()}` +
     `${zone.counts.w_regions_with_a_component_system
       ? `${zone.counts.occurrences_holding_more_than_one_w
           ? `${zone.counts.occurrences_holding_more_than_one_w.toLocaleString()} of those occurrences are written with a maqaf and hold two words each, ${zone.counts.w_regions.toLocaleString()} words in all; `
@@ -2237,6 +2254,20 @@
         + "the written form kept, the read form recorded beside it.";
       head.append(key);
     }
+    // A variant site the source marked. The card prints the record's own
+    // sentence about the site and where it is read from — this file adds no
+    // meaning to the mark, because what the source's wrapping asserts is the
+    // record's to say, not this page's to guess. Two such sites stood in the
+    // live zones as typography to guess at; under the variant-site rule they
+    // are carried as records the reader opens, and this is where they open.
+    if (word.vs && word.vs.said) {
+      const vsLine = document.createElement("p"); vsLine.className = "kq-role";
+      vsLine.textContent = `variant site — ${word.vs.said}`;
+      head.append(vsLine);
+      const vsKey = document.createElement("p"); vsKey.className = "kq-key";
+      vsKey.textContent = `${word.vs.from ? `Read from ${word.vs.from}. ` : ""}The wrapped form prints exactly as the source wrote it; this card is the record the mark opens.`;
+      head.append(vsKey);
+    }
     const status = document.createElement("p"); status.textContent = "Fetching one shard…";
     if (opts.back) hud.replaceChildren(backButton(opts.back), head, status);
     else hud.replaceChildren(head, status);
@@ -3104,6 +3135,10 @@
         w.append(seg); regionEls.push(seg);
       });
     } else w.textContent = word.s;
+    // A variant-site record marks its word. The mark the source wrote is in
+    // the carrier already; this class only says a record stands behind it,
+    // and the card is where the record speaks.
+    if (word.vs) wb.classList.add("vs");
     // A Q says only that the source marked this position as one where it
     // transmits more than one form. It carries no surface, no key, no selector
     // and no chosen branch, and the forms behind it are candidate evidence that
