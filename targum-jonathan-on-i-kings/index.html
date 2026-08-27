@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="reader-book" content="targum-jonathan-on-i-kings">
 <meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
 <link rel="canonical" href="/targum-jonathan-on-i-kings">
 <title>Zone reader · The Tabernacle</title>
 <script>
@@ -1058,6 +1059,11 @@
   const META = (name) => document.querySelector(`meta[name="${name}"]`)?.content || "";
   const BOOK = (META("reader-book") || QUERY.get("b") || "").replace(/[^a-z0-9-]/g, "");
   const ROOT = META("reader-home") || location.pathname.replace(/[^/]*$/, "");
+  // What the house calls itself. The door builder injects it, derived from the
+  // address the site answers at; a bare reader carries no meta and keeps the
+  // project's working name. Typed in one place, shown in two.
+  const SITE = META("site-name") || "The Tabernacle";
+  { const h = document.querySelector("#home a.home"); if (h) h.textContent = SITE; }
   // the face button carries the name of the face it would turn to
   {
     const face = document.getElementById("face");
@@ -1258,7 +1264,7 @@
     heT.textContent = "none is recorded in the ledger";
     if (y.status) heT.title = y.status;
   }
-  document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · The Tabernacle`;
+  document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · ${SITE}`;
   document.getElementById("byline").textContent = zone.byline || "";
   const ac = zone.emitted_from.acquisition, wk = zone.emitted_from.walk, oc = zone.emitted_from.identity_oracle;
   // What this is, in one line. Everything the zone can prove about itself used
@@ -1784,11 +1790,17 @@
       const zbSha = (window.__binShas || {})[`${BOOK}.bin`];
       if (zbSha) L.push(`- this zone's bin, verified against its pin at load: sha256 ${zbSha}`);
       L.push(`- this file left: ${location.origin}${location.pathname}${location.search}`);
-      // the repository is never typed here — a copy is the one string with
-      // nothing behind it. On a github.io address the repository is the
-      // address itself, read back off the page's own location.
-      const gh = location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i);
-      if (gh) L.push(`- the reader, its checks, and these artifacts: https://github.com/${gh[1]}/${location.hostname}`);
+      // The repository is never typed here — a copy is the one string with
+      // nothing behind it. It was read off the page's own hostname, which
+      // worked only while the site answered at a github.io address; the day
+      // the work moved to its own domain that match failed and every export
+      // silently lost its way back. So the pointer is a record now, derived
+      // at build time from the remote the tree actually pushes to, and the
+      // hostname reading stays as the fallback for a bare reader.
+      const repo = (ZSTORE && ZSTORE.repository) ||
+        (location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i)
+          ? `https://github.com/${RegExp.$1}/${location.hostname}` : "");
+      if (repo) L.push(`- the reader, its checks, and these artifacts: ${repo}`);
     }
     L.push("");
     return L.join("\n");

@@ -70,11 +70,16 @@ const ENGINE = basename(join(dirname(fileURLToPath(import.meta.url)), ".."));
 // on the day the site moved it became a promise nobody had kept — the README
 // still sent readers to an address the work had left. CNAME is the record: it
 // is what the host serves under, and it is a build input like any other.
-const SITE_URL = (() => {
+const SITE_HOST = (() => {
   const cname = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "CNAME");
-  const named = existsSync(cname) ? readFileSync(cname, "utf8").trim().split(/\s+/)[0] : "";
-  return named ? `https://${named}/` : "";
+  return existsSync(cname) ? readFileSync(cname, "utf8").trim().split(/\s+/)[0] : "";
 })();
+const SITE_URL = SITE_HOST ? `https://${SITE_HOST}/` : "";
+// What the house calls itself, in front of readers: its own address, once it
+// has one of its own. Until then the working name stands. This is the only
+// place either is decided, so the door, the work pages, the held addresses
+// and the README cannot drift apart from one another.
+const SITE_NAME = SITE_HOST || "The Tabernacle";
 const TEXT_PIN_PATHS = [
   "data/corpus-atlas-v1.json",
   "data/bezelal-front-door-counts-handoff-v1.json",
@@ -684,7 +689,7 @@ const doc = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Tabernacle</title>
+<title>${SITE_NAME}</title>
 <meta name="description" content="A Hebrew reader built on a sealed chain: every reading traceable to the record that carries it, and every record to the license it was released under.">
 <script>
 // Two faces, both the record's: linen by day, the tent by night. The device
@@ -1000,7 +1005,7 @@ const doc = `<!doctype html>
 <main>
   <!-- Built by tools/build-front-door-v1.mjs from pinned physical/logical
        authorities and the zones. Every count below names its grain. -->
-  <h1>The Tabernacle</h1>
+  <h1>${SITE_NAME}</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the license it was released under.</p>
   <p class="face-line">${n(books.length)} book${books.length === 1 ? "" : "s"} readable today · ${n(ATLAS.totals.works - books.length)} more stand listed, each saying on its own card what it awaits</p>
   <nav class="reads-now" aria-label="Readable now">
@@ -1394,7 +1399,7 @@ const titleCase = (t) => String(t).split("-").map((w) =>
 // a reader nothing they could act on. Grain vocabulary went with them. What is
 // left is what stays true between builds, so this file changes when the design
 // changes and not when a work lands.
-const readme = `# The Tabernacle
+const readme = `# ${SITE_NAME}
 
 A Hebrew reader on a sealed chain. Every reading printed under a word traces to
 the record that carries it, and every record to the license it was released
@@ -1482,6 +1487,7 @@ const readerPage = (b) => {
   const metas =
     `<meta name="reader-book" content="${b.slug}">\n` +
     `<meta name="reader-home" content="/${ENGINE}/">\n` +
+    `<meta name="site-name" content="${SITE_NAME}">\n` +
     `<link rel="canonical" href="/${b.slug}">\n`;
   return ZONE_HTML.replace(anchor, metas + anchor);
 };
@@ -1539,7 +1545,7 @@ const heldPage = (reason = "", from = "") => `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Withheld · The Tabernacle</title>
+<title>Withheld · ${SITE_NAME}</title>
 <link rel="canonical" href="/">
 <script>
 // Two faces, both the record's: linen by day, the tent by night. The device
@@ -1564,7 +1570,7 @@ const heldPage = (reason = "", from = "") => `<!doctype html>
 <body><p>This address is kept, and the work behind it is not being served.<br><br>
 ${reason ? esc(reason) + "<br><br>" : ""}Nothing is shown in the meantime, and the
 address returns here when the holding ends.<br><br>
-${from ? `<span class="prov">${esc(from)}</span><br><br>` : ""}<a href="/">The Tabernacle</a></p>
+${from ? `<span class="prov">${esc(from)}</span><br><br>` : ""}<a href="/">${SITE_NAME}</a></p>
 </body>
 </html>
 `;
@@ -1608,7 +1614,7 @@ if (existsSync(HISTORY)) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(b.disp)} · The Tabernacle</title>
+<title>${esc(b.disp)} · ${SITE_NAME}</title>
 <link rel="canonical" href="/${target}">
 <!-- This address was published on this site and later republished at
      /${target}, when its address was rederived from the work id by the

@@ -1055,6 +1055,11 @@
   const META = (name) => document.querySelector(`meta[name="${name}"]`)?.content || "";
   const BOOK = (META("reader-book") || QUERY.get("b") || "").replace(/[^a-z0-9-]/g, "");
   const ROOT = META("reader-home") || location.pathname.replace(/[^/]*$/, "");
+  // What the house calls itself. The door builder injects it, derived from the
+  // address the site answers at; a bare reader carries no meta and keeps the
+  // project's working name. Typed in one place, shown in two.
+  const SITE = META("site-name") || "The Tabernacle";
+  { const h = document.querySelector("#home a.home"); if (h) h.textContent = SITE; }
   // the face button carries the name of the face it would turn to
   {
     const face = document.getElementById("face");
@@ -1255,7 +1260,7 @@
     heT.textContent = "none is recorded in the ledger";
     if (y.status) heT.title = y.status;
   }
-  document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · The Tabernacle`;
+  document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · ${SITE}`;
   document.getElementById("byline").textContent = zone.byline || "";
   const ac = zone.emitted_from.acquisition, wk = zone.emitted_from.walk, oc = zone.emitted_from.identity_oracle;
   // What this is, in one line. Everything the zone can prove about itself used
