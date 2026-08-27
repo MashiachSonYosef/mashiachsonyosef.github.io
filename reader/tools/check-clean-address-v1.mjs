@@ -92,7 +92,18 @@ const splash = await p.evaluate(() => ({
   }),
 }));
 console.log("— the splash —");
-check("it names the site", /Tabernacle/.test(splash.title), splash.title);
+// What the site calls itself is read from the site's own record, never typed
+// here. This line held the literal "Tabernacle", so the day the work moved to
+// its own address the check failed a door that was correct — and worse, a
+// door that had silently kept the wrong name would have passed it. The name
+// is CNAME's when the site has an address of its own, and the working name
+// until then; the same rule the door builder decides it by.
+const SITE_NAME = (() => {
+  const cname = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "CNAME");
+  const named = existsSync(cname) ? readFileSync(cname, "utf8").trim().split(/\s+/)[0] : "";
+  return named || "The Tabernacle";
+})();
+check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} · expected to name ${SITE_NAME}`);
 // Every way out of the front door lands on a finished book. There is more than
 // one way to reach each of them now — the book itself, and the commentary
 // carried on it, which opens inside that book because that is where a

@@ -743,16 +743,12 @@ const doc = `<!doctype html>
      fold, its grains and receipts byte-identical for the count guard. What a
      reader meets first is what they can read, not the machine room. */
   .face-line { margin:.8rem 0 .5rem; color:var(--muted); font-size:.9rem; }
-  .reads-now { display:flex; flex-wrap:wrap; gap:.6rem; margin:0 0 1rem; }
-  .read-link { flex:1 1 16rem; display:flex; flex-direction:column; gap:.15rem;
-    padding:.7rem .9rem; border:1px solid var(--gold-dim); border-radius:.7rem;
-    background:var(--panel); text-decoration:none; }
-  .read-link:hover { border-color:var(--gold); background:var(--hover-wash); }
-  .read-link .rl-he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    font-size:1.25rem; color:var(--shesh); }
-  .read-link .rl-he:empty { display:none; }
-  .read-link .rl-en { font-variant:small-caps; letter-spacing:.1em; color:var(--gold); font-size:1.02rem; }
-  .read-link .rl-of { color:var(--faint); font-size:.74rem; }
+  /* There was a block here that lifted the readable works to the top of the
+     page in a shape of their own. It was a proof-of-concept affordance: with
+     two books live, the door had to point somewhere. It is gone. The door
+     lists what the corpus holds, in one order, by one rule, and a work that
+     can be read is reached the same way as any other — through its family, or
+     by typing its name. Nothing is promoted by hand. */
   .counts-fold { margin:.4rem 0 1.1rem; }
   .counts-fold > summary { cursor:pointer; color:var(--faint); font-size:.78rem;
     letter-spacing:.04em; list-style:none; }
@@ -1008,9 +1004,6 @@ const doc = `<!doctype html>
   <h1>${SITE_NAME}</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the license it was released under.</p>
   <p class="face-line">${n(books.length)} book${books.length === 1 ? "" : "s"} readable today · ${n(ATLAS.totals.works - books.length)} more stand listed, each saying on its own card what it awaits</p>
-  <nav class="reads-now" aria-label="Readable now">
-${books.map((b) => `    <a class="read-link" href="/${b.slug}">${b.he ? `<span class="rl-he" lang="he" dir="rtl">${esc(b.he)}</span>` : ""}<span class="rl-en">${esc(b.disp)}</span><span class="rl-of">${n(b.sections)} sections</span></a>`).join("\n")}
-  </nav>
   <details class="counts-fold">
   <summary>the counts, at their exact grains — audited on every build</summary>
   <section class="countboard" aria-label="Audited corpus counts"
