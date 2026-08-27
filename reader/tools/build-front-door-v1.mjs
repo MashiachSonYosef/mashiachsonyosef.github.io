@@ -1065,7 +1065,7 @@ ${sectionsHtml.join("\n")}
   </div>
   <div id="wcard" role="dialog" aria-label="the word&#8217;s own record" hidden>
     <div class="head"><b dir="rtl"></b><button type="button" aria-label="Close">&#215;</button></div>
-    <p class="w-open" hidden><span class="lab">the book this word titles</span><span class="slot"></span></p>
+    <p class="w-open" hidden><span class="lab">commonly force read as</span><span class="slot"></span></p>
     <p class="r-now"><span class="k">reading</span><span class="v"></span></p>
     <p class="r-label">Exact selectable routes</p>
     <div class="r-pills"></div>
@@ -1298,15 +1298,21 @@ ${sectionsHtml.join("\n")}
   function openCard(surface, key, book, bookName) {
     wcard.querySelector(".head b").textContent = surface;
     wcard.querySelector(".head b").setAttribute("lang", "he");
-    // The book layer. A word that titles a book carries the way into it as a
-    // band of its own card, built here rather than sitting in the page as an
-    // empty link: the door's links are checked, and a link to nowhere is a
-    // link. The record is read first and the book is entered under it.
+    // The book layer, by the owner's ruling: a title's words are corpus text
+    // and open their records; the force-read English is a separate function
+    // entirely — press it and you are in the book. The same split every
+    // hierarchically higher text keeps: Hebrew opens the record, the
+    // force-read name is the door. So the band wears the site's one label
+    // for an English name, and the name itself is the link. Built here
+    // rather than sitting in the page as an empty anchor: the door's links
+    // are checked, and a link to nowhere is a link.
     var wo = wcard.querySelector(".w-open"), woSlot = wo.querySelector(".slot");
     woSlot.replaceChildren();
     if (book) {
       var a = document.createElement("a");
-      a.href = book; a.className = "wo-link"; a.textContent = "open " + (bookName || "the book");
+      a.href = book; a.className = "wo-link";
+      a.textContent = bookName || book.slice(1).replace(/-/g, " ");
+      a.title = "opens the book itself \u2014 a separate act from reading this word\u2019s record";
       woSlot.append(a);
     }
     wo.hidden = !book;

@@ -120,12 +120,30 @@ const layer = await p.evaluate(async (slug) => {
 }, served);
 check("a word that titles a book carries the way into it", layer.shown && layer.href === `/${served}`,
   `${layer.says} → ${layer.href}`);
-check("the layer names what it is, in words", /the book this word titles/.test(layer.label || ""), layer.label);
+// The owner's ruling: the band wears the site's one label for an English
+// name, and the force-read name itself is the link — a separate function
+// from the title's words, which open records. The same split every
+// hierarchically higher text keeps.
+check("the way in is the force-read name under the site's one label for it",
+  /commonly force read as/.test(layer.label || "") && layer.says === served.replace(/-/g, " "),
+  `${layer.label} · ${layer.says}`);
 check("the record is read first and the book entered under it", layer.aboveReadings);
 check("and the word's own routes are still there beneath it", layer.readingsStillThere);
 
-// 4 · the card lets go
+// 4 · pressing the force-read name lands in the book itself
+await Promise.all([
+  p.waitForNavigation({ waitUntil: "domcontentloaded" }),
+  p.click("#wcard .w-open a.wo-link"),
+]);
+const landed = await p.evaluate(() => location.pathname);
+check("pressing it opens right to the book", landed.replace(/\/$/, "") === `/${served}`, landed);
+await p.goBack({ waitUntil: "networkidle" });
+
+// 5 · the card lets go
 const shut = await p.evaluate(async () => {
+  const w = document.querySelector(".fam-he .fw[data-k]");
+  w.click();
+  await new Promise((r) => setTimeout(r, 600));
   document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   await new Promise((r) => setTimeout(r, 300));
   return { card: document.getElementById("wcard").hidden, shade: document.getElementById("wshade").hidden };
