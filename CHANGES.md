@@ -2,6 +2,10 @@
 
 Newest first. Each entry is one state change observed by scan-chain-v1.
 
+## 2026-08-27T01:50:51.453Z — digest `f6959a674da4e21d…` — integrity PASS
+- CHANGED tree:rebuild-c0-w/control/additive-chain-head-v4-w-safe-42355-candidate-v0
+- CHANGED tree:rebuild-c0-w/control/additive-chain-head-v4-w-safe-42355-candidate-v0/payload
+
 ## 2026-08-25 — adjudication: the owner ruled on the Aug-13 deletion and the fleet order
 
 The owner answered both open questions directly, in chat, to the corpus lane:
