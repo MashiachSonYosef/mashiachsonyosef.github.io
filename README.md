@@ -5,7 +5,7 @@ the record that carries it, and every record to the license it was released
 under. No English is forced: a word offers every reading its sources attest, one
 at a time, and the reader chooses.
 
-Live site: https://mashiachsonyosef.github.io/
+Live site: https://fireandhail.com/
 
 ## What is served, and how much of it
 

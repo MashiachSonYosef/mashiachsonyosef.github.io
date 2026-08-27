@@ -65,6 +65,16 @@ const TEXT_PIN_RULE = "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1";
 // deep-equal against the bindings record below holds the derivation to the
 // record. Renaming the folder is then one move and one record edit.
 const ENGINE = basename(join(dirname(fileURLToPath(import.meta.url)), ".."));
+// Where the site answers, read from the site's own declaration of it rather
+// than typed here. A published address used to be a string in this file, and
+// on the day the site moved it became a promise nobody had kept — the README
+// still sent readers to an address the work had left. CNAME is the record: it
+// is what the host serves under, and it is a build input like any other.
+const SITE_URL = (() => {
+  const cname = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "CNAME");
+  const named = existsSync(cname) ? readFileSync(cname, "utf8").trim().split(/\s+/)[0] : "";
+  return named ? `https://${named}/` : "";
+})();
 const TEXT_PIN_PATHS = [
   "data/corpus-atlas-v1.json",
   "data/bezelal-front-door-counts-handoff-v1.json",
@@ -1391,8 +1401,7 @@ the record that carries it, and every record to the license it was released
 under. No English is forced: a word offers every reading its sources attest, one
 at a time, and the reader chooses.
 
-Live site: https://mashiachsonyosef.github.io/
-
+${SITE_URL ? `Live site: ${SITE_URL}\n` : ""}
 ## What is served, and how much of it
 
 The front page lists every work and counts what it holds. Exact figures, per-work
