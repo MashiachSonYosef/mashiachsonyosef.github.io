@@ -30,7 +30,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `fixture-rule-v1-a-real-zone-with-its-own-commentary-hung-at-words` | tools/make-fixture-zone-v1.mjs | **UNGUARDED** |
 | `fleet-rule-v1-a-work-builds-the-day-its-shards-arrive-and-not-a-day-sooner` | tools/plan-fleet-v1.mjs | check-derived-ranges-v1 |
 | `frame-coverage-rule-v1-no-layer-is-on-one-work-and-off-another` | tools/check-frame-coverage-v1.mjs | check-frame-coverage-v1 |
-| `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs, zone.html | check-clean-address-v1, check-front-door-three-counts-v1, check-nothing-hard-wired-v1 |
+| `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-three-counts-v1, check-nothing-hard-wired-v1 |
 | `front-door-rule-v2` | zone.html | **UNGUARDED** |
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
 | `kq-rule-v1-both-halves-as-written` | tools/make-kq-fixture-zone-v1.mjs | check-kq-carried-v1, check-kq-presentation-v1 |
@@ -52,7 +52,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | **UNGUARDED** |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
-| `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, zone.html | check-clean-address-v1 |
+| `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1 |
 | `variant-site-rule-v1-the-mark-opens-a-record-or-the-zone-does-not-board` | zone.html | check-variant-site-v1 |
 | `w-grain-rule-v1-a-component-system-is-drawn-on-a` | tools/check-w-grain-v1.mjs | check-w-grain-v1 |
 | `w-list-rule-v1-the-record-says-which-entries-are` | tools/w-list-v1.mjs | check-w-grain-v1 |

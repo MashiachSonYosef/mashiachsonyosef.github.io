@@ -372,6 +372,7 @@ for (const b of BOOKS) {
   books.push({ ...b, en: z.work || b.slug, byline: z.byline, sections, words,
     zoneBytes: zoneBytes.length, zoneSha256: sha256(zoneBytes),
     he: z.work_he || "", heGloss: titleGloss, defOpen: !!(titleKey && titleGloss),
+    heTokens: z.work_he_tokens || [],
     reading: titleReading(z.work_he_tokens, z.work || b.slug),
     units, onWord, onSection, heldLicence, noText, byCoordinate, noCloser, works: worksCount });
 }
@@ -406,10 +407,20 @@ const incBits = (b) => {
 // slots, the works seated with it, its commentary) stands behind one quiet
 // fold whose summary names each thing it holds, with its count, so nothing
 // is out of sight without being said.
+// A book's title is words, and a word opens its own record — the same law
+// the reader works by, brought onto the door. It used to be one link straight
+// into the book, which made the title the only corpus word on this page a
+// reader could not question: press it and you were somewhere else before you
+// had read it. Now each word carries its key, and the book it titles rides on
+// the word as another layer of the same card — the record first, the way in
+// under it. A title of several words gives that layer to every one of them.
+const titleWords = (b) => (b.heTokens || []).map((t) => t.k
+  ? `<button type="button" class="fw" data-k="${esc(t.k)}" data-book="/${b.slug}" data-bookname="${esc(b.disp || b.slug)}" title="open this word\u2019s own record, and the book it titles">${esc(t.s)}</button>`
+  : `<span class="fw inert">${esc(t.s)}</span>`).join(" ");
 const bookCard = (b) => `    <div class="bookcard">
       <span class="row trow"><span class="lab">book title</span>${b.he
-        ? (b.defOpen
-          ? `<a class="titleway" href="/${b.slug}?t=open" title="open this word\u2019s own record — readings oldest source first"><span class="he" lang="he" dir="rtl">${esc(b.he)}</span><span class="g">${esc(b.heGloss)}</span></a>`
+        ? (titleWords(b)
+          ? `<span class="fam-he"><span class="he" lang="he" dir="rtl">${titleWords(b)}</span>${b.heGloss ? `<span class="g">${esc(b.heGloss)}</span>` : ""}</span>`
           : `<span class="he" lang="he" dir="rtl">${esc(b.he)}</span>`)
         : `<span class="he none">none is recorded in the ledger</span>`}</span>
       <a class="book" href="/${b.slug}">
@@ -835,6 +846,11 @@ const doc = `<!doctype html>
     font-variant:normal; font-style:normal; color:var(--muted);
     border:1px solid var(--line); border-radius:.6rem; padding:.06rem .45rem; white-space:nowrap; }
   details.fam > summary .of[title] { cursor:help; }
+  #wcard .w-open { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; margin:.1rem 0 .45rem;
+    padding-bottom:.4rem; border-bottom:1px solid var(--line); }
+  #wcard .w-open[hidden] { display:none; }
+  #wcard .w-open .lab { flex:0 0 auto; font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); }
+  #wcard .w-open .wo-link { font-size:.92rem; font-variant:small-caps; letter-spacing:.1em; color:var(--gold); }
   .fam-he .fw { font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer; }
   .fam-he .fw:hover { color:var(--gold); }
   .fam-he .fw.inert { cursor:default; }
@@ -1049,6 +1065,7 @@ ${sectionsHtml.join("\n")}
   </div>
   <div id="wcard" role="dialog" aria-label="the word&#8217;s own record" hidden>
     <div class="head"><b dir="rtl"></b><button type="button" aria-label="Close">&#215;</button></div>
+    <p class="w-open" hidden><span class="lab">the book this word titles</span><span class="slot"></span></p>
     <p class="r-now"><span class="k">reading</span><span class="v"></span></p>
     <p class="r-label">Exact selectable routes</p>
     <div class="r-pills"></div>
@@ -1278,9 +1295,21 @@ ${sectionsHtml.join("\n")}
     // that can yield, so the source line beneath it never can
     body.append(line);
   }
-  function openCard(surface, key) {
+  function openCard(surface, key, book, bookName) {
     wcard.querySelector(".head b").textContent = surface;
     wcard.querySelector(".head b").setAttribute("lang", "he");
+    // The book layer. A word that titles a book carries the way into it as a
+    // band of its own card, built here rather than sitting in the page as an
+    // empty link: the door's links are checked, and a link to nowhere is a
+    // link. The record is read first and the book is entered under it.
+    var wo = wcard.querySelector(".w-open"), woSlot = wo.querySelector(".slot");
+    woSlot.replaceChildren();
+    if (book) {
+      var a = document.createElement("a");
+      a.href = book; a.className = "wo-link"; a.textContent = "open " + (bookName || "the book");
+      woSlot.append(a);
+    }
+    wo.hidden = !book;
     var pills = wcard.querySelector(".r-pills");
     wcard.querySelector(".r-now .v").textContent = "reading the records\u2026";
     wcard.querySelector(".r-now .v").className = "v none";
@@ -1335,7 +1364,8 @@ ${sectionsHtml.join("\n")}
     if (!w) return;
     e.preventDefault();          // the fold's toggle is the summary's default — cancelled
     e.stopPropagation();
-    openCard(w.textContent, w.getAttribute("data-k"));
+    openCard(w.textContent, w.getAttribute("data-k"),
+      w.getAttribute("data-book"), w.getAttribute("data-bookname"));
   }, true);
   function go(e) {
     e.preventDefault();
