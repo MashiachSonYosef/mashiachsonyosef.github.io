@@ -1067,6 +1067,41 @@
   }
   const unpack = async (res) =>
     JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
+  // The door keeps the seals; the shelf keeps the weight. A zone bin may be
+  // served from another host — the store record beside this reader names it —
+  // and a bin that crosses a host boundary is past a border, which is where
+  // a hash does its work. The pins live in this repository, published with
+  // the door; the bin is hashed as it arrives and refused on a mismatch, so
+  // moving the shelf can never move the text. A remote bin with no pin at
+  // home is a border crossing with no seal to check, and is refused the same
+  // way. A local bin with no pin still shows: the repository itself is its
+  // custody, the same custody this page has always stood on.
+  const ZONE_STORE_RULE = "zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight";
+  let ZSTORE = null;
+  try {
+    ZSTORE = await fetch(`${ROOT}data/zone-store-v1.json`, { cache: "no-cache" })
+      .then((r) => (r.ok ? r.json() : null));
+  } catch { ZSTORE = null; }
+  const binUrl = (name) => (ZSTORE && ZSTORE.base
+    ? `${String(ZSTORE.base).replace(/\/$/, "")}/${name}.bin`
+    : `${ROOT}data/zones/${name}.bin`);
+  const hexOf = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+  const fetchBin = async (name) => {
+    const res = await fetch(binUrl(name));
+    if (!res.ok) throw new Error(`${name}.bin: ${res.status}`);
+    const buf = await res.arrayBuffer();
+    const pin = ZSTORE && ZSTORE.pins && ZSTORE.pins[`${name}.bin`];
+    if (pin && crypto.subtle) {
+      const got = hexOf(await crypto.subtle.digest("SHA-256", buf));
+      if (got !== pin.sha256)
+        throw new Error(`REFUSED: ${name}.bin arrived not matching its pin — the store record expects sha256 ${pin.sha256.slice(0, 16)}… and this fetch carried ${got.slice(0, 16)}…. Nothing that fails its seal is shown. (${ZONE_STORE_RULE})`);
+      window.__binShas = window.__binShas || {};
+      window.__binShas[`${name}.bin`] = got;
+    } else if (ZSTORE && ZSTORE.base) {
+      throw new Error(`REFUSED: ${name}.bin is served from another host and carries no pin in the store record — a border crossing with no seal to check. Nothing is shown. (${ZONE_STORE_RULE})`);
+    }
+    return JSON.parse(await new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"))).text());
+  };
   // A record packs senses with ";" — but only the semicolons the provider wrote
   // between senses. One inside its own parentheses is part of what the
   // parenthesis says: "belonging to you (plural; more owners)" is one reading,
@@ -1147,7 +1182,7 @@
   let zone, index;
   try {
     [zone, index, POSTURES] = await Promise.all([
-      fetch(`${ROOT}data/zones/${BOOK}.bin`).then(unpack),
+      fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
       // revalidated on each load (a 304 when nothing moved), and everything
@@ -1165,9 +1200,13 @@
     // off the page it is checking proves only that the page is consistent
     // with itself.
     window.__zone = zone;
-  } catch {
+  } catch (e) {
+    // a refusal is not an absence: a bin that failed its seal says so in the
+    // refusal's own words, and a page with no book keeps the honest silence
     document.getElementById("meta").textContent =
-      "No book is published on this page yet — no walk has landed. The page takes its name from the zone when one arrives; nothing is shown, and nothing is named, that has not come through the pipeline.";
+      String((e && e.message) || "").startsWith("REFUSED")
+        ? e.message
+        : "No book is published on this page yet — no walk has landed. The page takes its name from the zone when one arrives; nothing is shown, and nothing is named, that has not come through the pipeline.";
     return;
   }
   // A fixture is a test instrument, not a work. It carries no license identity,
@@ -1737,6 +1776,10 @@
       if (!wk2 && ac2 && ac2.payload_sha256_transferred) L.push(`- payload transferred: sha256 ${ac2.payload_sha256_transferred}`);
       if (ef.gloss_layer && ef.gloss_layer.gloss_table_sha256) L.push(`- gloss table: sha256 ${ef.gloss_layer.gloss_table_sha256}`);
       L.push(`- work receipt: ${wr.receipt}`);
+      // where the page itself verified the zone's bin against its pin at
+      // load, the export carries that hash too — the same seal, both borders
+      const zbSha = (window.__binShas || {})[`${BOOK}.bin`];
+      if (zbSha) L.push(`- this zone's bin, verified against its pin at load: sha256 ${zbSha}`);
       L.push(`- this file left: ${location.origin}${location.pathname}${location.search}`);
       // the repository is never typed here — a copy is the one string with
       // nothing behind it. On a github.io address the repository is the
@@ -2857,15 +2900,22 @@
   // Absent sidecar, absent anchors, absent section = no commentary shown and
   // nothing implied.
   let commentaryStore = null;
-  const commentaryReady = fetch(`${ROOT}data/zones/${BOOK}-commentary.bin`)
-    .then((r) => (r.ok ? unpack(r) : null))
+  const commentaryReady = fetchBin(`${BOOK}-commentary`)
     .then((s) => {
       commentaryStore = s;
       // the sidecar as it arrived, so a check can ask the corpus what it
       // recorded rather than ask the page what it decided
       window.__commentaryStore = s;
     })
-    .catch(() => {});
+    .catch((e) => {
+      // an absent sidecar is the ordinary case and stays silent; a sidecar
+      // that failed its seal is not shown AND not silent — the refusal is
+      // recorded where a check can read it
+      if (String((e && e.message) || "").startsWith("REFUSED")) {
+        window.__commentaryRefused = e.message;
+        console.error(e.message);
+      }
+    });
   // commentary-order-rule-v2-oldest-first-on-the-earliest-date-recorded
   //
   // A word of Genesis 1:1 carries a hundred and six commentaries. They arrive

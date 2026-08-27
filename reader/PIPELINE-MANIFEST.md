@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-27.
 
-**47 rules declared · 35 named by a check · 12 unguarded.**
+**48 rules declared · 36 named by a check · 12 unguarded.**
 **11 published artifacts · 11 with a build step · 0 without.**
 
 ## The rules
@@ -63,6 +63,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | **UNGUARDED** |
 | `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs | **UNGUARDED** |
 | `zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-page-agrees-with-store-v1 |
+| `zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight` | tools/emit-zone-store-v1.mjs, zone.html | check-zone-store-v1 |
 
 ## What the site publishes
 
@@ -85,7 +86,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 18 of the 41 tools that are not checks.
+`build.sh` calls 18 of the 42 tools that are not checks.
 
 Not called by any build stage:
 
@@ -95,6 +96,7 @@ Not called by any build stage:
 - `tools/declaration-v1.mjs`
 - `tools/emit-corpus-atlas-v1.mjs`
 - `tools/emit-workspace-manifest-v1.mjs`
+- `tools/emit-zone-store-v1.mjs`
 - `tools/gloss-store-v1.mjs`
 - `tools/k-normalization-v1.mjs`
 - `tools/make-fixture-zone-v1.mjs`
