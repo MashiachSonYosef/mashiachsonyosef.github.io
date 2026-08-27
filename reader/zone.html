@@ -1001,7 +1001,7 @@
   <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a><button id="face" class="face" type="button" title="the other face of the page">day</button></nav>
   <h1 id="workTitle">
     <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
-    <span class="t-row"><span class="t-lab" id="enLab">commonly force read as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">recorded in the bridge as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
   </h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
@@ -3532,11 +3532,13 @@
   // The name it is commonly force-read by. The English over a book title is
   // always a forced reading — we are saying how to read the Hebrew, not
   // translating it — and a forced reading is a claim, so the ledger's
-  // English prints only when a licensed record reads the title's own form
-  // that way, with that record's license riding beside it. Until one does,
-  // the row does not fall silent and its label never softens: it reads the
-  // work's own address plainly, which asserts nothing beyond the address,
-  // and the note says what the English is waiting on.
+  // The label is a claim and follows the evidence — the owner's ruling. An
+  // earlier law here said the label never softens; the owner overruled it the
+  // day "liturgy" stood under the claim with no record anywhere behind it.
+  // The row loads in the honest register — the bridge's value read plainly —
+  // and takes the claim label only when a licensed record reads the title's
+  // own form that way, the force license riding beside it. Two lawful states:
+  // claim with license, or record with note. Nothing between.
   (async () => {
     const chip = document.getElementById("workLic");
     const lab = document.getElementById("enLab");
@@ -3544,13 +3546,14 @@
     let a = null;
     if (key) { try { a = await attributionFor(key, zone.work); } catch { a = null; } }
     if (a && a.ok) {
+      lab.textContent = "commonly force read as";
       enT.textContent = zone.work;
       chip.textContent = licenseName(a.posture);
       chip.title = `${a.label}${a.year ? ` · ${a.year}` : ""}`;
       chip.hidden = false;
     } else {
       const note = document.createElement("span"); note.className = "t-note";
-      note.textContent = " — the address read plainly; an English name waits on a licensed record";
+      note.textContent = " — the recorded id read plainly; an English name waits on a licensed record";
       lab.parentNode.append(note);
     }
   })();

@@ -147,7 +147,8 @@ const framed = await p.evaluate(() => {
   return {
     inSiteName: document.querySelectorAll("h1 [lang='he']").length,
     hebrews: [...document.querySelectorAll('[lang="he"]')].map((e) => ({ t: e.textContent.trim(), lab: labOf(e) })),
-    commons: [...document.querySelectorAll(".family summary .en")].map((e) => ({ t: e.textContent.trim(), lab: labOf(e) })),
+    commons: [...document.querySelectorAll(".family summary .en")].map((e) => ({ t: e.textContent.trim(), lab: labOf(e),
+      chip: (e.parentElement.querySelector(".chip") || {}).textContent || "" })),
     unnamed: [...document.querySelectorAll(".bookcard .he.none")].map((e) => e.textContent.trim()),
   };
 });
@@ -181,6 +182,12 @@ check("and the English beside it says what register it stands in",
   framed.commons.length > 0 &&
     framed.commons.every((x) => /^commonly force read as$/i.test(x.lab) || /^recorded in the bridge as$/i.test(x.lab)),
   framed.commons.map((x) => `${x.t} under "${x.lab}"`).join(" · ").slice(0, 200));
+// The owner's ruling, made at the liturgy shelf: the claim label prints only
+// with the record's force license beside it — a claim with no chip is the
+// exact fault this door carried.
+check("and every claim label carries its force license",
+  framed.commons.filter((x) => /^commonly force read as$/i.test(x.lab)).every((x) => x.chip && x.chip.length > 2),
+  framed.commons.filter((x) => /^commonly force read as$/i.test(x.lab)).map((x) => `${x.t}: ${x.chip || "NO LICENSE"}`).join(" · ").slice(0, 200) || "no claim labels on this door");
 
 // A directory address answers with or without its closing slash — the slash
 // is the server's dress, not a second address.
@@ -247,20 +254,21 @@ for (const [href, ...expected] of WALK) {
   // every other word of the book opens.
   check("  and it opens like any word of the text", heTitle ? r.titleOpens : !r.titleOpens,
     r.titleOpens ? "pressable" : "not pressable");
-  // The English over a book title is always a forced reading — the label never
-  // softens, whether or not a record happens to carry that reading. And a
-  // forced reading is a claim: the ledger's English may stand only with the
-  // licence of a record that reads the title's own form that way riding
-  // beside it. Where none does, the row reads the work's own address plainly
-  // — asserting nothing beyond the address — and a note says what the
+  // The label is a claim and follows the evidence — the owner's ruling,
+  // which overruled the law this block used to state ("the label never
+  // softens"). "commonly force read as" may head an English only when a
+  // licensed record reads the title's own form that way, the force license
+  // riding beside it; where none does, the row is the bridge's value read
+  // plainly under the register that says so, with the note naming what the
   // English is waiting on. Two lawful states, nothing between them.
   const addrPlain = href.replace(/^\//, "").replace(/[-_]+/g, " ");
-  check("  and the common name, said to be a forced reading, never softened",
-    /^commonly force read as$/i.test(r.enLab) &&
-    (r.lic ? r.en === en : r.en === addrPlain), `"${r.enLab}": ${r.en}`);
-  check("  with a licence where a record reads it that way, and the address read plainly where none does",
+  check("  the claim label stands only where a record backs the claim",
+    r.lic ? /^commonly force read as$/i.test(r.enLab) && r.en === en
+          : /^recorded in the bridge as$/i.test(r.enLab) && r.en === addrPlain,
+    `"${r.enLab}": ${r.en}`);
+  check("  with a force license on the claim, and the note on the record",
     r.lic ? r.lic.length > 2 && !r.enNote : /waits on a licensed record/.test(r.enNote),
-    `${r.enLab} · ${r.lic || r.enNote || "no licence and no note"}`);
+    `${r.enLab} · ${r.lic || r.enNote || "no license and no note"}`);
   check("  the zone still loads under the rewritten bar", r.sections === expectSections && r.words > 3, `${r.sections} of ${expectSections} sections`);
   check("  and its readings came with it", r.glossed > 0, `${r.glossed} of ${r.words} words glossed`);
 

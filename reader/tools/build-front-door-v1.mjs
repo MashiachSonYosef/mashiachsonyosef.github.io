@@ -415,7 +415,9 @@ const incBits = (b) => {
 // the word as another layer of the same card — the record first, the way in
 // under it. A title of several words gives that layer to every one of them.
 const titleWords = (b) => (b.heTokens || []).map((t) => t.k
-  ? `<button type="button" class="fw" data-k="${esc(t.k)}" data-book="/${b.slug}" data-bookname="${esc(b.disp || b.slug)}" title="open this word\u2019s own record, and the book it titles">${esc(t.s)}</button>`
+  ? `<button type="button" class="fw" data-k="${esc(t.k)}" data-book="/${b.slug}" data-bookname="${esc(b.disp || b.slug)}"${b.reading
+      ? ` data-booklic="${esc(b.reading.lic)}" data-booklictitle="${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""}"`
+      : ""} title="open this word\u2019s own record, and the book it titles">${esc(t.s)}</button>`
   : `<span class="fw inert">${esc(t.s)}</span>`).join(" ");
 const bookCard = (b) => `    <div class="bookcard">
       <span class="row trow"><span class="lab">book title</span>${b.he
@@ -582,9 +584,15 @@ const familySection = (fam) => {
   // The ledger's English shows only when a licensed record reads the family's
   // own Hebrew that way; until then the bridge's recorded values are read
   // plainly, and the row says what it is waiting on.
+  // The label is a claim and follows the evidence — the owner's ruling, made
+  // the day "liturgy" stood under "commonly force read as" with no D card and
+  // no M anywhere behind it. The id was honest; the label was not. A claim
+  // prints only with the record's force license riding beside it; an unbacked
+  // row is the bridge's value read plainly, and says so in the register the
+  // awaiting shelf already uses.
   const enCell = reading
-    ? `<span class="en">${esc(lf.en)}</span><span class="chip" title="${esc(reading.label)}${reading.year ? ` · ${esc(reading.year)}` : ""}">${esc(reading.lic)}</span>`
-    : `<span class="en">${esc(fam.members.map(plainId).join(" · "))}</span><span class="of" title="${esc(AWAITS_M)}">awaits a licensed record</span>`;
+    ? `<span class="lab">commonly force read as</span><span class="en">${esc(lf.en)}</span><span class="chip" title="${esc(reading.label)}${reading.year ? ` · ${esc(reading.year)}` : ""}">${esc(reading.lic)}</span>`
+    : `<span class="lab">recorded in the bridge as</span><span class="en">${esc(fam.members.map(plainId).join(" · "))}</span><span class="of" title="${esc(AWAITS_M)}">awaits a licensed record</span>`;
   const foldLines = [`      <span class="of fold-line">${esc(lf.what)}</span>`];
   foldLines.push(`      <span class="of slots fold-line">the bridge records ${fam.members.length === 1 ? "this shelf as" : "these as"}: ${esc(fam.members.join(" · "))} — folded here by ${esc(LEDGER.schema_version)}, which dies the day the corpus rules the column</span>`);
   // The home page rests fully collapsed into the grouping: every family
@@ -594,7 +602,7 @@ const familySection = (fam) => {
       <details class="fam">
       <summary>
         <span class="row"><span class="lab">family</span>${famHeadHe(lf)}</span>
-        <span class="row"><span class="lab">commonly force read as</span>${enCell}<span class="of">${esc(bits.join(" · "))}</span></span>
+        <span class="row">${enCell}<span class="of">${esc(bits.join(" · "))}</span></span>
       </summary>
       <div class="fgroups">
 ${foldLines.join("\n")}
@@ -1057,7 +1065,7 @@ ${sectionsHtml.join("\n")}
   <div id="bkcard" role="dialog" aria-label="the book&#8217;s own record" hidden>
     <div class="head"><b></b><button type="button" aria-label="Close">&#215;</button></div>
     <p class="row bk-he"><span class="lab">hebrew title</span><span class="he none">none is recorded in the ledger</span></p>
-    <p class="row bk-en"><span class="lab">commonly force read as</span><span class="en"></span></p>
+    <p class="row bk-en"><span class="lab">recorded in the bridge as</span><span class="en"></span><span class="of" title="the recorded id read plainly &#8212; an English name waits on a licensed record">awaits a licensed record</span></p>
     <p class="row bk-fam"><span class="lab">family</span><span class="slot"></span></p>
     <p class="row bk-n"><span class="lab">recorded</span><span class="of"></span></p>
     <p class="row bk-st"><span class="lab">standing</span><span class="of"></span></p>
@@ -1170,8 +1178,10 @@ ${sectionsHtml.join("\n")}
     var slot = bkcard.querySelector(".bk-fam .slot");
     var famId = btn.getAttribute("data-fam"), fam = famId ? FAM_FRAMES[famId] : null;
     if (fam) {
+      // the register is the claim's, only when a record backs the claim
       slot.innerHTML = fam.he +
-        '<span class="of">commonly force read as <span class="en"></span><span class="chip"></span></span>';
+        '<span class="of"><span class="fr-lab"></span> <span class="en"></span><span class="chip"></span></span>';
+      slot.querySelector(".of .fr-lab").textContent = fam.lic ? "commonly force read as" : "recorded in the bridge as";
       slot.querySelector(".of .en").textContent = fam.en;
       var famChip = slot.querySelector(".of .chip");
       if (fam.lic) { famChip.textContent = fam.lic; famChip.title = fam.licTitle; }
@@ -1295,7 +1305,7 @@ ${sectionsHtml.join("\n")}
     // that can yield, so the source line beneath it never can
     body.append(line);
   }
-  function openCard(surface, key, book, bookName) {
+  function openCard(surface, key, book, bookName, bookLic, bookLicTitle) {
     wcard.querySelector(".head b").textContent = surface;
     wcard.querySelector(".head b").setAttribute("lang", "he");
     // The book layer, by the owner's ruling: a title's words are corpus text
@@ -1309,11 +1319,19 @@ ${sectionsHtml.join("\n")}
     var wo = wcard.querySelector(".w-open"), woSlot = wo.querySelector(".slot");
     woSlot.replaceChildren();
     if (book) {
+      // the register follows the evidence: the claim label only with the
+      // record's force license riding beside the name, the bridge register
+      // and the awaiting note when nothing backs it
+      wo.querySelector(".lab").textContent = bookLic ? "commonly force read as" : "recorded in the bridge as";
       var a = document.createElement("a");
       a.href = book; a.className = "wo-link";
       a.textContent = bookName || book.slice(1).replace(/-/g, " ");
       a.title = "opens the book itself \u2014 a separate act from reading this word\u2019s record";
       woSlot.append(a);
+      var mark = document.createElement("span");
+      if (bookLic) { mark.className = "chip"; mark.textContent = bookLic; mark.title = bookLicTitle || ""; }
+      else { mark.className = "of"; mark.textContent = "awaits a licensed record"; mark.title = "the recorded id read plainly \u2014 an English name waits on a licensed record"; }
+      woSlot.append(mark);
     }
     wo.hidden = !book;
     var pills = wcard.querySelector(".r-pills");
@@ -1371,7 +1389,8 @@ ${sectionsHtml.join("\n")}
     e.preventDefault();          // the fold's toggle is the summary's default — cancelled
     e.stopPropagation();
     openCard(w.textContent, w.getAttribute("data-k"),
-      w.getAttribute("data-book"), w.getAttribute("data-bookname"));
+      w.getAttribute("data-book"), w.getAttribute("data-bookname"),
+      w.getAttribute("data-booklic"), w.getAttribute("data-booklictitle"));
   }, true);
   function go(e) {
     e.preventDefault();
