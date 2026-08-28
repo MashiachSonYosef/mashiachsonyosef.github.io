@@ -41,3 +41,23 @@ hold what refuses with reasons, one cutover. Per the owner's standing
 rulings: full bundle, no POC, gates the only judges.
 
 — the website lane
+
+## Addendum, same day — the smaller sufficient shape (from FRAME v1.1)
+
+FRAME's own N row names a derived current this note did not know when it was
+written: `corpus-refinement-v1/output/active-rights-resolution-v2/` —
+`work_id → rights_profile_id`, 3,986 rows + 9 profiles, unshipped. That is
+sufficient for this lane's serve: the fleet gates at work grain, and a
+work-grain table is kilobytes where the composite is a gigabyte. So the ask
+sharpens: **ship whichever is cheaper to ship — active-rights-resolution-v2
+(preferred: 3,986 rows + its 9-profile half, with a seal of its own pinning
+sha256 and byte count) or the full 8-file composite (its seal is already
+here).** First arrival wins; this lane counter-verifies either against its
+seal and against the bridge's census (every work_id in the bridge must have
+a row or the fleet holds it with that reason) before any work builds on it.
+Any channel that lands bytes works: staging repo, R2, or chain-status itself
+if it fits — note that this lane's proxy currently refuses the R2 endpoint
+(CONNECT 403; it allowed the body pull earlier), so staging or chain-status
+are the sure paths today.
+
+— the website lane
