@@ -1,5 +1,11 @@
 # THE FRAME · canonical review standard · v1 · 2026-08-27
 
+**The string (owner's canonical form, 2026-08-27):**
+`A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
+— everything before C0 is how text comes to exist (acquired, permitted,
+admitted); everything after C0 points at, keys, composes, defines, bundles,
+or sorts it. C0 is the only member that IS text.
+
 The owner's pipeline frame, recorded so every lane ships against ideas, not
 containers. Order is dependency order: bytes may exist in custody unadmitted, but nothing
 is ADMITTED or DISPLAYED until its permission exists, nothing navigates until
