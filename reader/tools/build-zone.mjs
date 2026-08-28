@@ -29,7 +29,7 @@ import { createHash } from "node:crypto";
 import { gzipSync } from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
-import { K_RULE_ID, K_RULE_TEXT } from "./k-normalization-v1.mjs";
+import { K_RULE_ID, K_RULE_TEXT, exactK } from "./k-normalization-v1.mjs";
 import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import {
   readServe, readBridge, parseCoordinates, wordsOf, regionsOf, licensePosture, require_, sha256File,
@@ -74,6 +74,11 @@ require_(unserved.length === 0, "BRIDGE_UNIT_NOT_SERVED", `${unserved.length}, f
 
 // ---- 3. coordinates from the sealed unit id ------------------------------
 const coords = new Map(servedUnits.map((u) => [u, parseCoordinates(u, slug)]));
+// A zone speaks one coordinate language. A work whose sealed unit ids mix
+// nested and flat shapes is refused with the count, never guessed at.
+const flatUnits = [...coords.values()].filter((c) => c.flat).length;
+require_(flatUnits === 0 || flatUnits === coords.size, "COORDINATE_SHAPES_MIXED", `${flatUnits}/${coords.size} units are flat-sequence`);
+const flatShape = flatUnits > 0;
 const chapters = [...new Set([...coords.values()].map((c) => c.chapter))].sort((a, b) => a - b);
 chapters.forEach((c, i) => require_(c === i + 1, "CHAPTER_NUMBERING_GAP", `chapter ${c} at position ${i + 1}`));
 
@@ -108,6 +113,58 @@ for (const unit of servedUnits) {
   }
   sections.push(sec);
   perChapter.set(c.chapter, (perChapter.get(c.chapter) || 0) + 1);
+}
+
+// ---- 4b. the title, from the text itself ---------------------------------
+// The owner's ruling (2026-08-27, the frame's Y row): the Hebrew structural
+// world belongs in C0. On the shelf whose ids are the works' own opening
+// words (the 2,919/2,933 measurement), the title is not a supplied string —
+// it IS rows 1..k of the work, and the masthead reads those rows from the
+// serve exactly as the body does. The id is the finder, never the text: a
+// title is claimed only when the id's own tokens and the opening occurrences
+// fold to the same K, token for token, whole and in order, none of them
+// rights-held. Anything less claims nothing, and the masthead stands in the
+// recorded register it already has. Because the claimed tokens ARE text
+// words, they keep their text keys — the store is asked at press time, the
+// same as every word on the page.
+// GUARDS: title-from-c0-rule-v1-the-title-is-the-works-own-opening-words
+let workHe = titleHe, workHeTokens = null, titleFromC0 = null;
+if (process.argv.includes("--title-from-c0")) {
+  const idTokens = slug.split("-").filter(Boolean);
+  while (idTokens.length && /^\d+$/.test(idTokens[idTokens.length - 1])) idTokens.pop(); // catalog residue, excluded by the census's own rule
+  const folds = idTokens.map((t) => exactK(t));
+  const idReadsHebrew = folds.length > 0 && folds.every(Boolean);
+  const openingWords = sections.length ? sections[0].words : [];
+  const openingRows = sections.length ? serve.units.get(sections[0].unit).rows : [];
+  let matched = 0;
+  if (idReadsHebrew && openingWords.length >= folds.length) {
+    while (matched < folds.length) {
+      const w = openingWords[matched];
+      if (w.held || exactK(w.s) !== folds[matched]) break;
+      matched += 1;
+    }
+  }
+  const RULE_TITLE = "title-from-c0-rule-v1-the-title-is-the-works-own-opening-words";
+  if (idReadsHebrew && matched === folds.length) {
+    workHeTokens = openingWords.slice(0, matched).map((w) => JSON.parse(JSON.stringify(w)));
+    workHe = workHeTokens.map((w) => w.s).join(" ");
+    titleFromC0 = {
+      rule_id: RULE_TITLE,
+      matched_tokens: matched,
+      c0_rows: openingRows.slice(0, matched).map((r) => r.c0_numeric_id),
+      id_segment: slug,
+      note: "the title is the work's own opening occurrences, read from the serve; the id found them and matched K-for-K, whole and in order",
+    };
+  } else {
+    titleFromC0 = {
+      rule_id: RULE_TITLE,
+      matched_tokens: 0,
+      id_segment: slug,
+      reason: !idReadsHebrew
+        ? "the id does not read as Hebrew tokens; the title, if the work has one, awaits corpus-minted title rows"
+        : "the opening occurrences do not carry the id's tokens whole, in order, and unheld; no title is claimed",
+    };
+  }
 }
 
 // ---- 5. the component system, for exactly the forms this zone contains ----
@@ -191,7 +248,8 @@ const zone = {
   schema_version: "ZONE_V1",
   rule_id: "zone-emit-rule-v8-single-pass-from-sealed-serve",
   work: title,
-  work_he: titleHe,
+  work_he: workHe,
+  ...(workHeTokens ? { work_he_tokens: workHeTokens } : {}),
   byline,
   work_receipts: {
     b_n: `${bridge.b_id} / ${bridge.n_id} · work_id=${workId} · ${bridge.units.size.toLocaleString()} sealed units, ${chapters.length} chapters`,
@@ -220,6 +278,7 @@ const zone = {
         ? { path: "gen-8 pointer copy", sha256: serve.provenance.sealed_oracle.pointer_sha256 }
         : { path: "July store manifest, every shard re-hashed against it", sha256: serve.provenance.body_oracle.manifest_sha256 },
     },
+    ...(titleFromC0 ? { title_from_c0: titleFromC0 } : {}),
     identity_oracle: {
       bridge: bridgePath.split("/").pop(),
       bridge_sha256: bridge.sha256,
@@ -295,6 +354,9 @@ const zone = {
     // "Chapter 7, verse 14" instead of a generic "section, paragraph". These
     // name the structure; they are not translations of anything in the text.
     coordinate_labels: { major: coordLabels[0], minor: coordLabels[1] },
+    coordinate_shape: flatShape
+      ? "SEALED_UNIT_SEQUENCE — one sealed unit is one top-level section; the chain records no nesting and none is invented"
+      : "CHAPTER_SECTION — nested coordinates from the sealed unit id",
     build: {
       builder: "tools/build-zone.mjs",
       single_pass: true,

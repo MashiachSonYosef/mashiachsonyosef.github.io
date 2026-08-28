@@ -114,7 +114,7 @@ for (const [work, e] of works) {
   } catch (err) { mark(work, e, "HOLD", "SERVE", String(err.stderr || err.message).trim().split("\n")[0].slice(0, 160)); continue; }
   try {
     const zoneArgs = ["--serve", serveOut, "--bridge", BRIDGE, "--store", join(K3, "data", "route-store"),
-      "--work", work, "--title", slug.replace(/[-_]+/g, " "),
+      "--work", work, "--title", slug.replace(/[-_]+/g, " "), "--title-from-c0",
       "--out", join(K3, "build", "fleet", `${slug}.bin`), "--stamp", new Date().toISOString().slice(0, 10)];
     if (SPANS) zoneArgs.push("--spans", SPANS);
     execFileSync("node", [join(HERE, "build-zone.mjs"), ...zoneArgs], { stdio: "pipe" });

@@ -108,8 +108,16 @@ export const readBridge = (path, workId) => {
  */
 export const parseCoordinates = (unitId, slug) => {
   const m = new RegExp(`^${slug.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&")}-(\\d+)-(\\d+)$`, "u").exec(unitId);
-  require_(m, "UNIT_ID_UNPARSED", `${unitId} does not read as ${slug}-<chapter>-<section>`);
-  return { chapter: Number(m[1]), section: Number(m[2]), label: `${m[1]}:${m[2]}` };
+  if (m) return { chapter: Number(m[1]), section: Number(m[2]), label: `${m[1]}:${m[2]}` };
+  // The second sealed shape: a flat sequence — `…--unit-00027` — where the
+  // chain records no chapter/section nesting at all, only the unit's ordinal
+  // (the Ben-Yehuda shelf and kin, 209k units in the bridge). One sealed unit
+  // is one top-level section; no structure the chain did not seal is
+  // invented around it, so the locator is the bare ordinal.
+  const f = /--unit-0*(\d+)$/u.exec(unitId);
+  require_(f, "UNIT_ID_UNPARSED",
+    `${unitId} reads as neither ${slug}-<chapter>-<section> nor …--unit-<ordinal>`);
+  return { chapter: Number(f[1]), section: 1, label: String(Number(f[1])), flat: true };
 };
 
 // U+05BE HEBREW PUNCTUATION MAQAF, named by its codepoint. A tool in this
