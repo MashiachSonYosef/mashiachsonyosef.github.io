@@ -21,7 +21,7 @@ owner's to make.
 | **L** | Vestigial bundle label — no artifact, no obligation | — | n/a |
 | **D** | A definition — the English definitional record for a form | in `ledgers/work/ldmprs/` | ✗ |
 | **M** | The dictionary — the source work a D comes from | in `ldmprs/` | ✗ |
-| **P** | The bundler — declares two D's identical ONLY on byte-perfect form match, semantics ignored. No meaning-equality is ever asserted, only written-equality | in `ldmprs/` | ✗ |
+| **P** | The bundler — declares two D's identical ONLY on byte-perfect form match, semantics ignored. Its purpose: for any D, show ALL the M's that carry it, and cycling swaps in each dictionary's own D as written, byte-exact. Agreement is never merged — identical definitions remain separate witnesses, each displayed in its own source's hand | in `ldmprs/` | ✗ |
 | **R** | Rights — `work_id → rights_profile_id`, per work, fail-closed on unresolved | `active-rights-resolution-v2/` (3,986 rows + 9 profiles) | ✗ — catalog half (the 9 profiles) already in the 89 |
 | **S** | Source year — antiquity, the sort law. Oldest source leads (the owner's standing gloss-order ruling, rule v4) | in `ldmprs/` | ✗ |
 | — | the body — C0 occurrences, the text itself | R2 `body/c0-rebuilt-20260827/` | ✓ verified 4,646/4,646 on the website lane's disk |
