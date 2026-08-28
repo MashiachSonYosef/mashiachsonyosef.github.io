@@ -115,11 +115,15 @@ difference is what lies underneath: a force read re-reads Hebrew that
 exists; a suggestion fills where Hebrew is missing. One display grammar,
 two type labels.
 
-**Open (corpus-lane recommendation, pending owner):** whether suggestions
-run over every C0 or only where Y is empty. Recommendation: generate and
-store everywhere — disagreement between a stored suggestion and a witnessed
-title is audit signal for Y's checker — but display only where Y has no
-binding; Y wins the surface. Data kept, clutter avoided.
+**RULED 2026-08-28 (owner, in the website lane's chat): "id say either keep
+them in the drawer or a level hidden."** Y wins the surface. Suggestions are
+stored everywhere (disagreement between a stored suggestion and a witnessed
+title remains audit signal for Y's checker); where Y has no binding the
+guess displays in the open suggestion register; where a witnessed title
+stands, a coexisting guess folds one level down — a drawer that names what
+it holds before it opens, never a second title on the masthead. Implemented
+and gated the same day on the website lane (check-suggested-title-v1, 11
+assertions: open register, drawer, fold-away, witness keeps the surface).
 
 ## The Retirement Doctrine (owner + construction, 2026-08-27)
 
