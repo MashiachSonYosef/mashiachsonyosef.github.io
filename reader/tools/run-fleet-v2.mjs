@@ -99,6 +99,21 @@ const mark = (work, e, verdict, stage, reason) => {
 };
 const RIGHTS_REASON = "no rights record in custody covers this work; the binding composite is asked of the corpus lane";
 const JOBS = Number(arg("jobs", "4"));
+
+// The curated plan's parameters govern the works it names. The sealed
+// ledgers already derive an English title, a byline, coordinate labels, and
+// license links for those works; the fleet consults that same derivation
+// rather than shipping a lesser one it made up from the slug. Works the
+// plan does not name keep the fleet's own derivations.
+let planned = new Map();
+try {
+  execFileSync("node", [join(HERE, "plan-build-v1.mjs"),
+    "--out", join(K3, "build", ".fleet-curated-plan.json"),
+    "--tsv", join(K3, "build", ".fleet-curated-plan.tsv")], { cwd: K3, stdio: "pipe" });
+} catch { /* the plan tool exits nonzero when works are unplanned; what it planned is still written */ }
+if (existsSync(join(K3, "build", ".fleet-curated-plan.json")))
+  planned = new Map(JSON.parse(readFileSync(join(K3, "build", ".fleet-curated-plan.json"), "utf8"))
+    .works.map((w) => [w.work_id, w]));
 const run = (cmd, args) => new Promise((resolve, reject) => {
   execFile(cmd, args, { maxBuffer: 16 * 1024 * 1024 }, (err, stdout, stderr) =>
     err ? reject(Object.assign(err, { stderr })) : resolve(stdout));
@@ -141,9 +156,17 @@ const runWork = async (work, e) => {
     return;
   }
   try {
+    const p = planned.get(work);
     const zoneArgs = ["--serve", serveOut, "--bridge", BRIDGE, "--store", join(K3, "data", "route-store"),
-      "--work", work, "--title", slug.replace(/[-_]+/g, " "), "--title-from-c0",
+      "--work", work, "--title", (p && p.title_en) || slug.replace(/[-_]+/g, " "), "--title-from-c0",
       "--out", join(K3, "build", "fleet", `${slug}.bin`), "--stamp", new Date().toISOString().slice(0, 10)];
+    // The plan's byline is NOT carried: it describes the serve route ("the
+    // sealed terminal artifacts"), and these zones serve from the body — a
+    // body serve wearing the walk's byline would be a costume. The builder
+    // derives the route's own true sentence instead.
+    if (p && p.coord_labels) zoneArgs.push("--coord-labels", p.coord_labels);
+    if (p && p.license_links && p.license_links !== "-") zoneArgs.push("--license-links", p.license_links);
+    if (p && p.title_he && p.title_he !== "-") zoneArgs.push("--title-he", p.title_he);
     if (SPANS) zoneArgs.push("--spans", SPANS);
     await run("node", [join(HERE, "build-zone.mjs"), ...zoneArgs]);
     mark(work, e, "GREEN_BUILT", "ZONE", null);

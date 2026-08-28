@@ -39,7 +39,7 @@
 //
 // Run: node tools/build-front-door-v1.mjs
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
@@ -543,7 +543,7 @@ const poolOf = (values) => {
 };
 const sums = (rows) => ({
   works: rows.length,
-  built: rows.filter((r) => r.book).length,
+  built: rows.filter((r) => r.book || has(`${r.atlas.id.split("/").pop()}.bin`)).length,
   units: rows.reduce((t, r) => t + r.atlas.units, 0),
 });
 const families = LEDGER.families.map((lf) => {
@@ -563,6 +563,12 @@ const atlasRow = (w) => {
   const fam = valueOwner.get(pre);
   const famAttr = fam && fam !== "(awaiting)" ? ` data-fam="${esc(fam)}"` : "";
   const st = FLEET_STATE.get(w.id) || "AWAITING_SHARDS";
+  // A work whose zone stands on the shelf is served, and a served work
+  // answers at its own address — the fleet's zones are not a state chip, they
+  // are books. The name printed is still the recorded id, dir=auto because
+  // most of this shelf's ids are the works' own Hebrew opening words.
+  if (has(`${name}.bin`))
+    return `      <a class="atlas-row built" href="/${name}"><span class="aw" dir="auto">${esc(name)}</span><span class="au">reads at its own address · ${n(w.units)} unit${w.units === 1 ? "" : "s"}</span></a>`;
   return `      <span class="atlas-row" data-p="${esc(pre)}"><button type="button" class="aw" dir="auto" data-w="${esc(w.id)}" data-u="${w.units}" data-cr="${w.c0_rows}" data-cf="${w.c0_first}" data-st="${esc(st)}"${famAttr} title="open this book&#8217;s own record">${esc(name)}</button><span class="au">${n(w.units)} unit${w.units === 1 ? "" : "s"}</span></span>`;
 };
 const seatedRow = (b) => {
@@ -1657,6 +1663,29 @@ for (const b of books) {
   // The reader supplies no character of the text; a work page is the reader.
   if (HEBREW.test(r)) throw new Error(`${b.slug}: the work page printed a character of the text — refusing output`);
   writeFileSync(join(OUT, b.slug, "index.html"), r);
+}
+// Every zone on the shelf answers at its own address — the fleet's works
+// included. The page is the reader, stamped with the bin's own name; the
+// only Hebrew such a page may carry is that name, which is the recorded id
+// (a record, the same standing as the atlas rows' ids) — so the base reader
+// is asserted Hebrew-free once, and the emitted page is asserted to carry
+// no Hebrew beyond the id's own occurrences.
+if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew — refusing to emit any work page");
+{
+  const covered = new Set([...books.map((b) => b.slug), ...withheldBooks.map((b) => b.slug)]);
+  let fleetPages = 0;
+  for (const f of readdirSync(ZONES)) {
+    if (!f.endsWith(".bin") || f.startsWith("fixture-") || f.endsWith("-commentary.bin")) continue;
+    const slug = f.replace(/\.bin$/, "");
+    if (covered.has(slug)) continue;
+    const page = readerPage({ slug });
+    const stripped = page.split(slug).join("");
+    if (HEBREW.test(stripped)) throw new Error(`${slug}: the work page carries Hebrew beyond the recorded id — refusing output`);
+    mkdirSync(join(OUT, slug), { recursive: true });
+    writeFileSync(join(OUT, slug, "index.html"), page);
+    fleetPages += 1;
+  }
+  console.log(`  ${n(fleetPages)} fleet work addresses emitted beside the ${books.length} book page${books.length === 1 ? "" : "s"}`);
 }
 
 // A published address is a promise. Where a work has been republished under
