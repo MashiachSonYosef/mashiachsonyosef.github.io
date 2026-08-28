@@ -46,6 +46,15 @@ and Y invents no English and owns no Hebrew — it only points. The correction
 is global: EVERY R pill exposes all licenses/witnesses that justify it —
 never merely one convenient M.
 
+**"Title," defined:** not a property C0 has — a role Y assigns. A title is a
+C0 interval that a Y row designates as naming a structural node (work, part,
+chapter, section), with grain and parent/ordinal. The bytes are just words;
+the title-ness lives in the pointer. One interval may hold two roles (Bereshit
+is the first word AND the book's name) with nothing duplicated. A title absent
+from every witness has no C0 to point at; supplying one means minting a TYPED
+editorial C0 occurrence with its own provenance — never disguising an
+editorial act as witness text.
+
 ## The standing rule this document creates
 
 Shipping is reviewed **by frame, not by container**: a layer is either in the
