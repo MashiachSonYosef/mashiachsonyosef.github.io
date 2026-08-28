@@ -92,6 +92,15 @@ if (arg("binding")) {
       `the canonical rights resolution holds ${WORK} fail-closed: rights_state=${b.rights_state}`);
   const p = readCsv(profsPath).find((r) => r.rights_profile_id === b.rights_profile_id);
   if (!p) die("RIGHTS_PROFILE_MISSING", b.rights_profile_id);
+  // A display conditioned on attribution is dischargeable only with the
+  // attribution in hand. This machine holds no attribution string for any
+  // work — the licensor identity lives in the N ledger, corpus-side — so a
+  // profile that says ALLOW_WITH_ATTRIBUTION serves nothing here: serving
+  // the text dark would misread the license as a hold, and serving it lit
+  // without the credit would violate it. Fail closed, ask for the cargo.
+  if (p.reader_display_state !== "ALLOW")
+    die("RIGHTS_ATTRIBUTION_NOT_IN_CUSTODY",
+      `${WORK}: reader display is ${p.reader_display_state}; the attribution that discharges it is not in custody — the N ledger's licensor identity is asked of the corpus lane`);
   // the profile's own vocabulary, verbatim — nothing translated here
   const rights = {
     reader_display_axis: p.reader_display_state,

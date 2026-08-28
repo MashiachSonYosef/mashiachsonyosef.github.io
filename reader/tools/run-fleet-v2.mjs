@@ -103,7 +103,14 @@ const run = (cmd, args) => new Promise((resolve, reject) => {
   execFile(cmd, args, { maxBuffer: 16 * 1024 * 1024 }, (err, stdout, stderr) =>
     err ? reject(Object.assign(err, { stderr })) : resolve(stdout));
 });
-const firstLine = (err) => String(err.stderr || err.message).trim().split("\n")[0].slice(0, 160);
+// A thrown refusal prints its stack before its sentence; the ledger wants
+// the sentence. Prefer the "Error: CODE — detail" line, else a line that
+// leads with a refusal code, else the first line as a last resort.
+const firstLine = (err) => {
+  const lines = String(err.stderr || err.message).trim().split("\n");
+  const said = lines.find((l) => l.startsWith("Error: ")) || lines.find((l) => /^[A-Z][A-Z_]+[ :—-]/.test(l));
+  return (said ? said.replace(/^Error: /, "") : lines[0]).slice(0, 160);
+};
 
 // One work, start to verdict. The serve NDJSON is scaffolding — the fleet's
 // whole serve set would weigh tens of gigabytes, so each work's is removed

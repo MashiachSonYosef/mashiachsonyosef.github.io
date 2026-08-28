@@ -244,13 +244,22 @@ if (span) {
 const postures = licensePosture(serve.units);
 const cellTotal = span ? [...span.spans.values()].reduce((n, sp) => n + (sp.s.length * (sp.s.length + 1)) / 2, 0) : 0;
 const coverTotal = span ? [...span.spans.values()].reduce((n, sp) => n + 2 ** (sp.s.length - 1), 0) : 0;
+// The byline is the zone's own statement of what it is — the sealed targum's
+// reads "served from the sealed terminal artifacts…". A body serve states
+// its own route the same way, every word from its receipts, nothing beyond
+// them: the door prints the zone's byline and will not invent one, so a zone
+// may not arrive without one it can stand behind.
+const bylineOut = byline || (serve.provenance.body_oracle
+  ? `served from the verified rebuilt body, every shard re-hashed against the July manifest; rights per the canonical rights resolution, riding on every occurrence`
+  : `served from the sealed terminal reader artifacts; rights ride per occurrence`);
+
 const zone = {
   schema_version: "ZONE_V1",
   rule_id: "zone-emit-rule-v8-single-pass-from-sealed-serve",
   work: title,
   work_he: workHe,
   ...(workHeTokens ? { work_he_tokens: workHeTokens } : {}),
-  byline,
+  byline: bylineOut,
   work_receipts: {
     b_n: `${bridge.b_id} / ${bridge.n_id} · work_id=${workId} · ${bridge.units.size.toLocaleString()} sealed units, ${chapters.length} chapters`,
   },
@@ -293,7 +302,7 @@ const zone = {
         postures.map((p) => `${p.rows.toLocaleString()} rows: ${p.posture}`).join(" | ") +
         ` — computed over the full serve output on ${stamp}` +
         (serve.held ? `; ${serve.held} SCRIPT-UNRESOLVED rows held dark by the chain's own script rule` : ""),
-      attribution: byline || `served from the sealed terminal reader artifacts; rights ride per occurrence`,
+      attribution: bylineOut,
     },
     gloss_layer: {
       source: "route store built by tools/build-route-store.mjs from the sealed definition packages — the same catalog the word HUD answers from",
