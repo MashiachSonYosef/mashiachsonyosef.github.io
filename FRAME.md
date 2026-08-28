@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v1.20 · 2026-08-27
+# THE FRAME · canonical review standard · v1.21 · 2026-08-27
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -167,6 +167,15 @@ website lane's custody, or explicitly marked not-needed-for-serve by the lane
 that reads it. Any layer in neither state is a finding. The corpus lane's
 sweep checks this table's custody column; the website lane annotates the
 need column; the owner corrects the ideas.
+
+**Governance (owner, 2026-08-28): no approvals — the five lanes are equals.**
+No lane waits on authorization, the owner's included. What binds instead is
+peer verification: seals, counter-verification, audits — a disputed
+clearance is an absent clearance, between any two peers. For irreversible
+outward pushes (gh-pages cutovers and kin) the practice is ANNOUNCE, DON'T
+ASK: intent posted to the channel with exact diff and rollback, shipped
+absent an evidence-backed objection. Nobody's subordinate; everybody's
+checkable.
 
 ## The need column, read whole (website lane, 2026-08-28)
 
