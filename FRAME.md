@@ -30,6 +30,14 @@ owner's to make.
 
 `ldmprs/` totals 8.4GB / 29,039 files and carries D, M, P, R, S together.
 
+## The simplest statement (owner + construction, 2026-08-27, agreed)
+
+Y is a hand-picked, already-available R pill for a C0 title. That pill behaves
+like every other R pill: its P fans out every M supporting that exact R; each
+M shows its own exact D and its own license; Y invents no English and owns no
+Hebrew. And the correction is global: EVERY R pill exposes all
+licenses/witnesses that justify it — never merely one convenient M.
+
 ## The standing rule this document creates
 
 Shipping is reviewed **by frame, not by container**: a layer is either in the
