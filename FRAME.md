@@ -90,6 +90,16 @@ prove, and what cannot prove full position still exists — typed, never
 deleted, never promoted. Grammar of the trio: X points at proven testimony,
 Y selects among proven testimony, Z holds what is not yet proven testimony.
 
+**Z is trinary (owner, 2026-08-27): on / off / missing.** ON = examined and
+offered — the suggestion stands, displayed as suggestion, model/run
+provenance attached. OFF = examined and refused — a decision with its own
+provenance; held, never displayed, never re-suggested without a new ruling.
+MISSING = never examined — the typed absence, eligible and untouched. A
+binary would collapse "refused" into "unexamined," which is exactly the
+indistinguishability the frame outlaws. Precedent: old Z was already
+trinary — retained rows (on), removed rows with receipted rationale (off),
+and a declared unlisted_source_policy governing the missing state.
+
 ## The Retirement Doctrine (owner + construction, 2026-08-27)
 
 The final state is a clean active namespace, not fossilized ledgers — but no
