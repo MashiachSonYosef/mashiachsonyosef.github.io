@@ -65,6 +65,21 @@ with provenance; (3) SUGGESTED — AI-filled, a separate suggestion layer that
 never enters C0 and displays its machine origin openly. Absence remains a
 lawful fourth state, typed, never papered over.
 
+## The Recitability Law (owner, 2026-08-27)
+
+If the owner cannot name a letter's function from memory, the letter is
+presumptively wrong until proven right. The owner's recitation of the frame
+is the audit schedule: what cannot be recited is not being reviewed, and
+today's evidence is exact — the two letters missing from the recited string
+(X, Z) were the two that rotted unwatched, one still holding a live custody
+claim. Memorability is not convenience; it is integrity.
+
+**Standing intent:** once old X and Z retire through the doctrine below, the
+letters are reassigned (step 7, explicit new frame version) to the title
+trio so the frame stays recitable: X = pointer to P's exact entry for Y's
+selected pill; Y = the title binding; Z = the admitted machine suggestion.
+Same functions as the Y-scoped surfaces, wearing memorable names.
+
 ## The Retirement Doctrine (owner + construction, 2026-08-27)
 
 The final state is a clean active namespace, not fossilized ledgers — but no
