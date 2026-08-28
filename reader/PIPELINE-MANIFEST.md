@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-28.
 
-**48 rules declared · 36 named by a check · 12 unguarded.**
+**49 rules declared · 36 named by a check · 13 unguarded.**
 **11 published artifacts · 11 with a build step · 0 without.**
 
 ## The rules
@@ -30,7 +30,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work` | zone.html | check-citations-v1, check-export-v1 |
 | `family-ledger-rule-v1-values-are-ruled-works-are-not` | tools/check-family-ledger-v1.mjs | check-family-ledger-v1 |
 | `fixture-rule-v1-a-real-zone-with-its-own-commentary-hung-at-words` | tools/make-fixture-zone-v1.mjs | **UNGUARDED** |
-| `fleet-rule-v1-a-work-builds-the-day-its-shards-arrive-and-not-a-day-sooner` | tools/plan-fleet-v1.mjs | check-derived-ranges-v1 |
+| `fleet-rule-v1-a-work-builds-the-day-its-shards-arrive-and-not-a-day-sooner` | tools/plan-fleet-v1.mjs, tools/run-fleet-v2.mjs | check-derived-ranges-v1 |
 | `frame-coverage-rule-v1-no-layer-is-on-one-work-and-off-another` | tools/check-frame-coverage-v1.mjs | check-frame-coverage-v1 |
 | `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-three-counts-v1, check-nothing-hard-wired-v1 |
 | `front-door-rule-v2` | zone.html | **UNGUARDED** |
@@ -51,6 +51,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `route-store-rule-v1-catalog-compact-top5` | tools/build-route-store.mjs | **UNGUARDED** |
 | `route-store-rule-v3-declared-reading` | tools/check-nothing-invented-v1.mjs | check-nothing-invented-v1 |
 | `sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates` | tools/sense-split-v1.mjs, tools/gloss-store-v1.mjs, zone.html | check-provider-characters-v1, check-sense-split-v1 |
+| `serve-from-body-rule-v1-the-verified-body-is-the-text-the-binding-is-the-rights` | tools/serve-from-body-v1.mjs | **UNGUARDED** |
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | **UNGUARDED** |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
@@ -86,7 +87,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 18 of the 42 tools that are not checks.
+`build.sh` calls 18 of the 44 tools that are not checks.
 
 Not called by any build stage:
 
@@ -108,7 +109,9 @@ Not called by any build stage:
 - `tools/playwright-v1.mjs`
 - `tools/regloss-zone.mjs`
 - `tools/respan-zone-v1.mjs`
+- `tools/run-fleet-v2.mjs`
 - `tools/sense-split-v1.mjs`
+- `tools/serve-from-body-v1.mjs`
 - `tools/span-slice-v1.mjs`
 - `tools/w-list-v1.mjs`
 - `tools/work-holds-v1.mjs`
