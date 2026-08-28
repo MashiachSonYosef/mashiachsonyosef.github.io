@@ -32,11 +32,13 @@ owner's to make.
 
 ## The simplest statement (owner + construction, 2026-08-27, agreed)
 
-Y is a hand-picked, already-available R pill for a C0 title. That pill behaves
-like every other R pill: its P fans out every M supporting that exact R; each
-M shows its own exact D and its own license; Y invents no English and owns no
-Hebrew. And the correction is global: EVERY R pill exposes all
-licenses/witnesses that justify it — never merely one convenient M.
+A title is ordinary C0 — just C0 we happen to be pointing to. Like any C0
+occurrence it has R pills; Y hand-picks one of the pills that C0 already has.
+The pill and its P belong to the C0, never to Y: the P fans out every M
+supporting that exact R, each M shows its own exact D and its own license,
+and Y invents no English and owns no Hebrew — it only points. The correction
+is global: EVERY R pill exposes all licenses/witnesses that justify it —
+never merely one convenient M.
 
 ## The standing rule this document creates
 
