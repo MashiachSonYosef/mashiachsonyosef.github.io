@@ -173,6 +173,21 @@
   header.top h1 .he-t .title-row .g { font-size: 0.62rem; max-width: 12em; }
   header.top h1 .t-note { font-size: 0.6rem; letter-spacing: 0.06em; color: var(--muted);
     font-variant: normal; text-transform: none; }
+  /* The third register: a machine's guess, named by its author. The chip is
+     an attribution, never a license, and dresses differently — dashed where
+     a license chip is solid — so no reader and no gate can mistake the one
+     for the other. */
+  header.top h1 .t-sug { display: block; font-size: 0.62rem; color: var(--muted);
+    letter-spacing: 0.04em; margin-top: 0.18rem; font-variant: normal; text-transform: none; }
+  header.top h1 .sug-chip { border: 1px dashed var(--line); border-radius: 0.6rem;
+    padding: 0 0.4rem; font-size: 0.58rem; color: var(--muted); }
+  /* The drawer for a guess that coexists with a witness: the surface is the
+     witness's, and the guess waits one level down behind a press that names
+     what it holds. */
+  header.top h1 .sug-fold { display: block; margin-top: 0.18rem; padding: 0;
+    border: none; background: none; cursor: pointer; font: inherit;
+    font-size: 0.58rem; letter-spacing: 0.04em; color: var(--muted);
+    text-decoration: underline dotted; font-variant: normal; text-transform: none; }
   header.top h1 .en-t { color: var(--gold); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); }
   #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; max-width: 62rem; }
@@ -1664,8 +1679,12 @@
     // said, and named no obligation while sitting in a list of them. What is
     // true is narrower: the token is there, and what it obliges is not written
     // in anything this reader holds.
-    if (/ALLOW_WITH_OBLIGATIONS/.test(posture || "") && !obligations.length)
-      obligations.push(`The rights record carries the posture ${posture} and no license family this reader can read. What that posture obliges is not written in anything held here; the record linked below is where it is written.`);
+    // Any gated posture, not one typed token: the canonical rights resolution
+    // speaks its own vocabulary (ALLOW_WITH_PROVENANCE_GATE arrived with it),
+    // and this page honors whatever gate the record names without pretending
+    // to read its terms.
+    if (posture && posture !== "ALLOW" && !obligations.length)
+      obligations.push(`The rights record carries the posture ${posture}. What that posture obliges is not written in anything held here; the record linked below is where it is written.`);
     return { receipt, family, posture, links, obligations, attribution: rec.attribution || zone.byline || "", raw: per };
   };
 
@@ -2770,13 +2789,18 @@
         // it is and what it read, and pressing it goes to that reading,
         // because "somebody else says this too" is only useful if you can go
         // and see how they said it.
-        const alsoCarry = [];
+        // The frame's P ruling (owner, 2026-08-27): P is membership in the
+        // exact R-pill identity, never a byte-match of D strings. So the two
+        // gatherings below are two different facts and carry two different
+        // labels. alsoCarry is P proper — more witnesses of THIS pill whose
+        // record reads the same. elsewhere is not P at all: byte-identical
+        // wording standing under a DIFFERENT reading, offered as a
+        // cross-reference because the sameness of bytes is a fact, not a
+        // membership.
+        const alsoCarry = [], elsewhere = [];
         {
           const firstKey = pKey(firstText);
           const seen = new Set([firstGroup[0][3]]);
-          // the rest of the first bucket: the same record by P, carried by
-          // other sources inside this very reading — the ones the old foot
-          // silently dropped
           for (const row of firstGroup.slice(1)) {
             if (seen.has(row[3])) continue;
             seen.add(row[3]);
@@ -2789,15 +2813,15 @@
               if (pKey(t) !== firstKey) continue;
               if (seen.has(row[3])) continue;
               seen.add(row[3]);
-              alsoCarry.push({ row, group: g, text: t });
+              elsewhere.push({ row, group: g, text: t });
             }
           }
         }
-        if (alsoCarry.length) {
+        const carryLine = (list, labelText) => {
           const P_INLINE = 3;
           const line = document.createElement("p"); line.className = "d-also";
           line.append(Object.assign(document.createElement("span"),
-            { className: "d-also-lab", textContent: `the same record, carried by ${alsoCarry.length} more source${alsoCarry.length === 1 ? "" : "s"}` }));
+            { className: "d-also-lab", textContent: labelText }));
           const one = ({ row, group, text }) => {
             const m = index.m_sources[row[3]];
             const b = document.createElement("button"); b.type = "button"; b.className = "d-also-m";
@@ -2816,9 +2840,9 @@
             });
             return b;
           };
-          alsoCarry.slice(0, P_INLINE).forEach((x) => line.append(one(x)));
-          if (alsoCarry.length > P_INLINE) {
-            const more = alsoCarry.slice(P_INLINE);
+          list.slice(0, P_INLINE).forEach((x) => line.append(one(x)));
+          if (list.length > P_INLINE) {
+            const more = list.slice(P_INLINE);
             const sel = document.createElement("select"); sel.className = "d-also-more";
             sel.append(Object.assign(document.createElement("option"),
               { value: "", textContent: `${more.length} more source${more.length === 1 ? "" : "s"}…` }));
@@ -2844,7 +2868,11 @@
           // grew it until, on a window 440px tall, the source line was clipped
           // off the bottom of its own card. Measured, not reasoned about.
           body.append(line);
-        }
+        };
+        if (alsoCarry.length) carryLine(alsoCarry,
+          `the same record, carried by ${alsoCarry.length} more witness${alsoCarry.length === 1 ? "" : "es"} of this reading`);
+        if (elsewhere.length) carryLine(elsewhere,
+          `the same wording, standing under ${elsewhere.length} other reading${elsewhere.length === 1 ? "" : "s"}`);
         // The drawer holds the genuinely different records — other P
         // buckets attesting this same reading. Sources carrying the SAME
         // record stand in the corroboration line above, not here: listing a
@@ -3568,12 +3596,73 @@
       lab.textContent = "commonly force read as";
       enT.textContent = zone.work;
       chip.textContent = licenseName(a.posture);
-      chip.title = `${a.label}${a.year ? ` · ${a.year}` : ""}`;
+      // The frame's force-license ladder, top rung — no pick exists. The chip
+      // fronts the oldest witness because the standing S law leads every card,
+      // never because anyone chose its license; every other witness with its
+      // own license is one press away, on the title word's own record.
+      chip.title = [
+        `${a.label}${a.year ? ` · ${a.year}` : ""} — the oldest witness leads by the standing rule`,
+        ...(a.also || []),
+      ].join("\n");
       chip.hidden = false;
+      const opens = [...heT.querySelectorAll(".wb")].find((w) => w.style.cursor !== "default");
+      if (opens) {
+        enT.style.cursor = "pointer";
+        enT.title = "every witness and license behind this reading — press to see them all";
+        enT.addEventListener("click", () => opens.click());
+      }
     } else {
       const note = document.createElement("span"); note.className = "t-note";
       note.textContent = " — the recorded id read plainly; an English name waits on a licensed record";
       lab.parentNode.append(note);
+      // The third register — the machine's guess, ruled 2026-08-28. It lives
+      // only in this branch, so a licensed claim structurally outranks it:
+      // when the claim label prints, no guess can. The sentence is the
+      // owner's, read back from this page's own logic, with one correction
+      // that logic already made once: the subject is the NAMED model — an
+      // anonymous category ("artificial intelligence", "the website") cannot
+      // be audited; a model and run can. "Not witnessed by this work" is the
+      // frame's own vocabulary and the exact epistemic fact. The chip is an
+      // attribution, never a license, and prints nothing unless every field
+      // of the authorship is present — a guess with no auditable author is
+      // an unsourced English string, which nothing here may print.
+      //
+      // And the surface belongs to the witness — the owner's ruling,
+      // 2026-08-28, in his words: "either keep them in the drawer or a level
+      // hidden." Where the masthead shows a witnessed title, a coexisting
+      // guess never stands beside it: it folds one level down, reachable by
+      // a press that says what it is before it opens, the same way the
+      // D-card folds its further records. Only where the work has no
+      // witnessed title does the guess print in the open — its job is
+      // filling silence, never seconding testimony.
+      const sug = zone.title_suggestion;
+      if (sug && sug.text && sug.model && sug.run && sug.date) {
+        const sugLine = () => {
+          const line = document.createElement("span"); line.className = "t-sug";
+          const who = document.createElement("span"); who.className = "sug-chip";
+          who.textContent = sug.model;
+          who.title = `${sug.model} · run ${sug.run} · ${sug.date} — an attribution, not a license. ` +
+            `A guess graduates only by becoming an editorial title with provenance, then an ordinary title binding.`;
+          line.append(who);
+          line.append(` guesses the title is “${sug.text}” — but that is not witnessed by this work`);
+          return line;
+        };
+        const witnessed = !!(zone.work_he_tokens && zone.work_he_tokens.some((t) => t.k));
+        const h1 = document.getElementById("workTitle");
+        if (!witnessed) h1.append(sugLine());
+        else {
+          const fold = document.createElement("button");
+          fold.type = "button"; fold.className = "sug-fold";
+          fold.textContent = "a machine's guess is held one level down";
+          fold.setAttribute("aria-expanded", "false");
+          let open = null;
+          fold.addEventListener("click", () => {
+            if (open) { open.remove(); open = null; fold.setAttribute("aria-expanded", "false"); }
+            else { open = sugLine(); h1.append(open); fold.setAttribute("aria-expanded", "true"); }
+          });
+          h1.append(fold);
+        }
+      }
     }
   })();
 

@@ -194,7 +194,11 @@ check("receipt binds every compact authority", () => {
 let dynamicRendered = 0;
 const recomputedZones = [];
 for (const pinned of receipt.rendered.zones) {
-  assert.match(pinned.path, /^data\/zones\/[a-z0-9-]+\.bin$/);
+  // A bin's name is the recorded id, and most of the shelf's ids are the
+  // works' own Hebrew opening words — the shape assert admits any name that
+  // stays inside the zones directory and is a work bin.
+  assert.match(pinned.path, /^data\/zones\/[^/]+\.bin$/);
+  assert.ok(!pinned.path.includes("fixture-") && !pinned.path.endsWith("-commentary.bin"), `${pinned.path} is not a work bin`);
   const bytes = readBytes(pinned.path);
   const zone = JSON.parse(gunzipSync(bytes).toString("utf8"));
   const rows = (zone.sections || []).reduce((total, section) => total + (section.words || []).length, 0);

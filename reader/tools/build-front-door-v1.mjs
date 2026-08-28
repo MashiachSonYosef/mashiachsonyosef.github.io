@@ -674,16 +674,29 @@ ${rowsHtml(rows).join("\n")}
 // COMPspan records the built zones carry now, recomputed from those zone bytes on
 // every run. A future zone successor therefore changes this snapshot without
 // anyone editing a typed count.
+// The set the receipt pins is exactly the set the directory carries — the
+// fleet's zones included, not only the curated books. A receipt that pinned
+// two zones while two thousand served would be a snapshot of a shelf that
+// no longer exists.
+const servedZoneFiles = readdirSync(ZONES)
+  .filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith("-commentary.bin"))
+  .sort();
+const zoneTallyRows = servedZoneFiles.map((f) => {
+  const bk = books.find((b) => b.zone === f);
+  if (bk) return { path: `${ZONES}/${f}`.replace(/\\/g, "/"), work_id: bk.work_id,
+    rendered_compspan_records: bk.words, bytes: bk.zoneBytes, sha256: bk.zoneSha256 };
+  const bytes = readFileSync(join(ZONES, f));
+  const z = JSON.parse(gunzipSync(bytes).toString("utf8"));
+  const words = (z.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
+  const wr = typeof z.work_receipts === "string" ? z.work_receipts : ((z.work_receipts || {}).b_n || "");
+  const m = wr.match(/work_id=([^\s·]+)/);
+  return { path: `${ZONES}/${f}`.replace(/\\/g, "/"), work_id: m ? m[1] : f.replace(/\.bin$/, ""),
+    rendered_compspan_records: words, bytes: bytes.length, sha256: sha256(bytes) };
+});
 const renderedTally = {
-  compspan_records: books.reduce((total, b) => total + b.words, 0),
-  built_zones: books.length,
-  zones: books.map((b) => ({
-    path: `${ZONES}/${b.zone}`.replace(/\\/g, "/"),
-    work_id: b.work_id,
-    rendered_compspan_records: b.words,
-    bytes: b.zoneBytes,
-    sha256: b.zoneSha256,
-  })),
+  compspan_records: zoneTallyRows.reduce((total, r) => total + r.rendered_compspan_records, 0),
+  built_zones: zoneTallyRows.length,
+  zones: zoneTallyRows,
 };
 renderedTally.zone_manifest_sha256 = sha256(Buffer.from(JSON.stringify(renderedTally.zones)));
 
