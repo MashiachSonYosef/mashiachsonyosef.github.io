@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-28.
 
-**49 rules declared · 36 named by a check · 13 unguarded.**
+**50 rules declared · 37 named by a check · 13 unguarded.**
 **11 published artifacts · 11 with a build step · 0 without.**
 
 ## The rules
@@ -55,6 +55,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | **UNGUARDED** |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
+| `title-from-c0-rule-v1-the-title-is-the-works-own-opening-words` | tools/build-zone.mjs | check-title-from-c0-v1 |
 | `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1 |
 | `variant-site-rule-v1-the-mark-opens-a-record-or-the-zone-does-not-board` | zone.html | check-variant-site-v1 |
 | `w-grain-rule-v1-a-component-system-is-drawn-on-a` | tools/check-w-grain-v1.mjs | check-w-grain-v1 |

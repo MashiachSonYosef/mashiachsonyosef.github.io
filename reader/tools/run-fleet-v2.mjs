@@ -30,8 +30,8 @@
 //        [--build-zones]   (without it, works that would build are counted
 //                           READY_TO_BUILD and no zone is emitted — the dry
 //                           ledger; with it, zones land in build/fleet/)
-import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from "node:fs";
-import { execFileSync } from "node:child_process";
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from "node:fs";
+import { execFile, execFileSync } from "node:child_process";
 import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
@@ -98,36 +98,70 @@ const mark = (work, e, verdict, stage, reason) => {
   tally.set(`${verdict} · ${reason || stage}`, (tally.get(`${verdict} · ${reason || stage}`) || 0) + 1);
 };
 const RIGHTS_REASON = "no rights record in custody covers this work; the binding composite is asked of the corpus lane";
-let done = 0;
-for (const [work, e] of works) {
-  done += 1;
-  if (serving.has(work)) { mark(work, e, "SERVING", "ZONE", `serving as ${serving.get(work)}; the standing zone is this pipeline's sealed output and faces the full suite on every deploy`); continue; }
-  if (!covered(e.min, e.max)) { mark(work, e, "HOLD", "TEXT", "the verified body does not cover this work's c0 range"); continue; }
-  if (!BINDING) { mark(work, e, "HOLD", "RIGHTS", RIGHTS_REASON); continue; }
-  if (!has("build-zones")) { mark(work, e, "READY_TO_BUILD", "RIGHTS", null); continue; }
-  // serve + zone, refusals recorded verbatim
+const JOBS = Number(arg("jobs", "4"));
+const run = (cmd, args) => new Promise((resolve, reject) => {
+  execFile(cmd, args, { maxBuffer: 16 * 1024 * 1024 }, (err, stdout, stderr) =>
+    err ? reject(Object.assign(err, { stderr })) : resolve(stdout));
+});
+const firstLine = (err) => String(err.stderr || err.message).trim().split("\n")[0].slice(0, 160);
+
+// One work, start to verdict. The serve NDJSON is scaffolding — the fleet's
+// whole serve set would weigh tens of gigabytes, so each work's is removed
+// the moment its zone build has spoken, success or refusal alike; the ledger
+// keeps the reason, the zone keeps the receipts.
+const runWork = async (work, e) => {
+  // --rebuild-serving: the cutover posture. One pipeline builds every work,
+  // the standing zones included — a standing zone is not grandfathered past
+  // the run that replaces it.
+  if (serving.has(work) && !has("rebuild-serving")) {
+    mark(work, e, "SERVING", "ZONE", `serving as ${serving.get(work)}; the standing zone is this pipeline's sealed output and faces the full suite on every deploy`);
+    return;
+  }
+  if (!covered(e.min, e.max)) { mark(work, e, "HOLD", "TEXT", "the verified body does not cover this work's c0 range"); return; }
+  if (!BINDING) { mark(work, e, "HOLD", "RIGHTS", RIGHTS_REASON); return; }
+  if (!has("build-zones")) { mark(work, e, "READY_TO_BUILD", "RIGHTS", null); return; }
   const slug = work.split("/").pop();
   const serveOut = join(K3, "build", "fleet", `${slug}.ndjson`);
   try {
-    execFileSync("node", [join(HERE, "serve-from-body-v1.mjs"), "--work", work, "--body", BODY,
-      "--bridge", BRIDGE, "--binding", BINDING, "--out", serveOut], { stdio: "pipe" });
+    await run("node", [join(HERE, "serve-from-body-v1.mjs"), "--work", work, "--body", BODY,
+      "--bridge", BRIDGE, "--binding", BINDING, "--out", serveOut]);
   } catch (err) {
-    const reason = String(err.stderr || err.message).trim().split("\n")[0].slice(0, 160);
+    const reason = firstLine(err);
     // a refusal the rights record made is the RIGHTS stage speaking, even
     // though the adapter is where it spoke
     mark(work, e, "HOLD", reason.startsWith("RIGHTS_") ? "RIGHTS" : "SERVE", reason);
-    continue;
+    try { unlinkSync(serveOut); } catch { /* nothing was written */ }
+    return;
   }
   try {
     const zoneArgs = ["--serve", serveOut, "--bridge", BRIDGE, "--store", join(K3, "data", "route-store"),
       "--work", work, "--title", slug.replace(/[-_]+/g, " "), "--title-from-c0",
       "--out", join(K3, "build", "fleet", `${slug}.bin`), "--stamp", new Date().toISOString().slice(0, 10)];
     if (SPANS) zoneArgs.push("--spans", SPANS);
-    execFileSync("node", [join(HERE, "build-zone.mjs"), ...zoneArgs], { stdio: "pipe" });
+    await run("node", [join(HERE, "build-zone.mjs"), ...zoneArgs]);
     mark(work, e, "GREEN_BUILT", "ZONE", null);
-  } catch (err) { mark(work, e, "HOLD", "ZONE", String(err.stderr || err.message).trim().split("\n")[0].slice(0, 160)); }
-  if (done % 200 === 0) console.error(`${done}/${works.size}`);
-}
+  } catch (err) { mark(work, e, "HOLD", "ZONE", firstLine(err)); }
+  try { unlinkSync(serveOut); } catch { /* already gone */ }
+};
+
+// the pool: JOBS works in flight, ledger order restored by sorting at the end
+let done = 0;
+const started = Date.now();
+const queue = [...works.entries()];
+await Promise.all(Array.from({ length: Math.max(1, JOBS) }, async () => {
+  for (;;) {
+    const next = queue.shift();
+    if (!next) return;
+    await runWork(next[0], next[1]);
+    done += 1;
+    if (done % 50 === 0) {
+      const rate = done / ((Date.now() - started) / 1000);
+      console.error(`${done}/${works.size} · ${rate.toFixed(2)}/s · ~${Math.round((works.size - done) / rate / 60)} min left`);
+    }
+  }
+}));
+const order = new Map([...works.keys()].map((w, i) => [w, i]));
+ledger.sort((a, b) => order.get(a.work) - order.get(b.work));
 
 const out = {
   rule: "fleet-rule-v1-a-work-builds-the-day-its-shards-arrive-and-not-a-day-sooner",
