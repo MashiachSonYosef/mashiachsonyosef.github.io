@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v1.17 · 2026-08-27
+# THE FRAME · canonical review standard · v1.18 · 2026-08-27
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -122,7 +122,6 @@ difference is what lies underneath: a force read re-reads Hebrew that
 exists; a suggestion fills where Hebrew is missing. One display grammar,
 two type labels.
 
-<<<<<<< HEAD
 **RULED 2026-08-28 (owner, in the website lane's chat): "id say either keep
 them in the drawer or a level hidden."** Y wins the surface. Suggestions are
 stored everywhere (disagreement between a stored suggestion and a witnessed
@@ -132,17 +131,9 @@ stands, a coexisting guess folds one level down — a drawer that names what
 it holds before it opens, never a second title on the masthead. Implemented
 and gated the same day on the website lane (check-suggested-title-v1, 11
 assertions: open register, drawer, fold-away, witness keeps the surface).
-=======
-**Open (pending the owner alone — both lanes agree):** whether suggestions
-run over every node or only where Y is empty. Corpus recommendation, which
-the website lane concurs with (2026-08-28, its display already built and
-gated): generate and store everywhere — disagreement between a stored
-suggestion and a witnessed title is audit signal for Y's checker — but
-display only where Y has no binding; Y wins the surface. Data kept, clutter
-avoided. If adopted, the four states stay a partition of the DISPLAY
-surface: a stored suggestion beneath a Y binding is Y-checker audit input,
-never a second state.
->>>>>>> 121528e (FRAME v1.17 (audit repairs: header version, X fifth cell + artifact, COMPcell idea, Z need state, N/R shipped status, body coverage caveat, two-absences reconciliation, prospective new-Z law, totality domain) + rights binding landed on-channel: rights/active-rights-resolution-v2 with seal, re-verified vs staging seal 4/4)
+The four display states remain a partition of the surface: the drawer's
+folded guess beneath a witnessed title is storage and Y-checker audit
+input, never a second display state.
 
 ## The Retirement Doctrine (owner + construction, 2026-08-27)
 
