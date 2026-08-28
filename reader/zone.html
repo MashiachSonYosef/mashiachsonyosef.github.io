@@ -169,6 +169,14 @@
   header.top h1 .he-t .title-row .g { font-size: 0.62rem; max-width: 12em; }
   header.top h1 .t-note { font-size: 0.6rem; letter-spacing: 0.06em; color: var(--muted);
     font-variant: normal; text-transform: none; }
+  /* The third register: a machine's guess, named by its author. The chip is
+     an attribution, never a license, and dresses differently — dashed where
+     a license chip is solid — so no reader and no gate can mistake the one
+     for the other. */
+  header.top h1 .t-sug { display: block; font-size: 0.62rem; color: var(--muted);
+    letter-spacing: 0.04em; margin-top: 0.18rem; font-variant: normal; text-transform: none; }
+  header.top h1 .sug-chip { border: 1px dashed var(--line); border-radius: 0.6rem;
+    padding: 0 0.4rem; font-size: 0.58rem; color: var(--muted); }
   header.top h1 .en-t { color: var(--gold); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); }
   #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; max-width: 62rem; }
@@ -3596,6 +3604,28 @@
       const note = document.createElement("span"); note.className = "t-note";
       note.textContent = " — the recorded id read plainly; an English name waits on a licensed record";
       lab.parentNode.append(note);
+      // The third register — the machine's guess, ruled 2026-08-28. It lives
+      // only in this branch, so a licensed claim structurally outranks it:
+      // when the claim label prints, no guess can. The sentence is the
+      // owner's, read back from this page's own logic, with one correction
+      // that logic already made once: the subject is the NAMED model — an
+      // anonymous category ("artificial intelligence", "the website") cannot
+      // be audited; a model and run can. "Not witnessed by this work" is the
+      // frame's own vocabulary and the exact epistemic fact. The chip is an
+      // attribution, never a license, and prints nothing unless every field
+      // of the authorship is present — a guess with no auditable author is
+      // an unsourced English string, which nothing here may print.
+      const sug = zone.title_suggestion;
+      if (sug && sug.text && sug.model && sug.run && sug.date) {
+        const line = document.createElement("span"); line.className = "t-sug";
+        const who = document.createElement("span"); who.className = "sug-chip";
+        who.textContent = sug.model;
+        who.title = `${sug.model} · run ${sug.run} · ${sug.date} — an attribution, not a license. ` +
+          `A guess graduates only by becoming an editorial title with provenance, then an ordinary title binding.`;
+        line.append(who);
+        line.append(` guesses the title is “${sug.text}” — but that is not witnessed by this work`);
+        document.getElementById("workTitle").append(line);
+      }
     }
   })();
 
