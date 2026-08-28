@@ -80,6 +80,16 @@ trio so the frame stays recitable: X = pointer to P's exact entry for Y's
 selected pill; Y = the title binding; Z = the admitted machine suggestion.
 Same functions as the Y-scoped surfaces, wearing memorable names.
 
+**Z's continuity (owner, 2026-08-27):** the letter is inherited, not merely
+reassigned — Z is the WARRANT ZONE: where content whose claim exceeds its
+license is typed down to its true position. Old Z demoted trespassers after
+the fact (entity labels overpositioned as definitions); new Z runs the same
+law forward (suggestions born pre-demoted, admitted as such). Source Zoning
+becomes Position Zoning: nothing enters at a position its warrant cannot
+prove, and what cannot prove full position still exists — typed, never
+deleted, never promoted. Grammar of the trio: X points at proven testimony,
+Y selects among proven testimony, Z holds what is not yet proven testimony.
+
 ## The Retirement Doctrine (owner + construction, 2026-08-27)
 
 The final state is a clean active namespace, not fossilized ledgers — but no
