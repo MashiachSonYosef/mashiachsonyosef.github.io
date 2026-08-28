@@ -196,18 +196,29 @@ const zone = {
   work_receipts: {
     b_n: `${bridge.b_id} / ${bridge.n_id} · work_id=${workId} · ${bridge.units.size.toLocaleString()} sealed units, ${chapters.length} chapters`,
   },
-  route: "TERMINAL_READER_WALK__SEALED_CHAIN",
+  route: serve.provenance.route || "TERMINAL_READER_WALK__SEALED_CHAIN",
   emitted_from: {
     walk: {
       ...serve.provenance,
       ids_walked: serve.rows,
       found_exact: serve.rows - serve.held,
-      note:
-        `served by the website-lane resident reader over the sealed artifacts (verify-once); ` +
-        `${serve.provenance.sealed_oracle.report.field_exact}/${serve.provenance.sealed_oracle.report.sampled} sampled ids field-exact against the sealed CLI oracle` +
-        (serve.held ? `; ${serve.held} rows the chain marks SCRIPT-UNRESOLVED render held (dimmed) exactly as the chain rules them` : ""),
-      module: { path: "tools/mishkan-serve-v1.mjs over sealed codec + indexes", sha256: sha256File(fileURLToPath(new URL("./mishkan-serve-v1.mjs", import.meta.url))) },
-      pointer: { path: "gen-8 pointer copy", sha256: serve.provenance.sealed_oracle.pointer_sha256 },
+      // Which oracle vouched for the text names the route's whole story. A
+      // terminal-reader walk cites the sealed CLI oracle it sampled against;
+      // a body serve cites the July manifest the rebuilt shards were re-hashed
+      // against on this side. Each route's receipts are its own — a body
+      // serve wearing a walk's oracle line would be a costume.
+      note: serve.provenance.sealed_oracle
+        ? `served by the website-lane resident reader over the sealed artifacts (verify-once); ` +
+          `${serve.provenance.sealed_oracle.report.field_exact}/${serve.provenance.sealed_oracle.report.sampled} sampled ids field-exact against the sealed CLI oracle` +
+          (serve.held ? `; ${serve.held} rows the chain marks SCRIPT-UNRESOLVED render held (dimmed) exactly as the chain rules them` : "")
+        : `served from the rebuilt canonical body, ${serve.provenance.body_oracle.shards_verified}` +
+          (serve.held ? `; ${serve.held} rows held by their own rights record` : ""),
+      module: serve.provenance.sealed_oracle
+        ? { path: "tools/mishkan-serve-v1.mjs over sealed codec + indexes", sha256: sha256File(fileURLToPath(new URL("./mishkan-serve-v1.mjs", import.meta.url))) }
+        : { path: "tools/serve-from-body-v1.mjs over the verified body", sha256: sha256File(fileURLToPath(new URL("./serve-from-body-v1.mjs", import.meta.url))) },
+      pointer: serve.provenance.sealed_oracle
+        ? { path: "gen-8 pointer copy", sha256: serve.provenance.sealed_oracle.pointer_sha256 }
+        : { path: "July store manifest, every shard re-hashed against it", sha256: serve.provenance.body_oracle.manifest_sha256 },
     },
     identity_oracle: {
       bridge: bridgePath.split("/").pop(),

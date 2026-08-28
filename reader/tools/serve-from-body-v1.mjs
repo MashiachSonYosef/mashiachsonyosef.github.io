@@ -1,0 +1,185 @@
+#!/usr/bin/env node
+// serve-from-body-v1 — one work's serve NDJSON from the verified rebuilt body.
+//
+// The text authority is the body: the canonical store rematerialized by the
+// corpus lane and re-hashed on this side, 4,646/4,646 shards byte-exact
+// against the July manifest. The rights authority is the binding composite;
+// text and rights are different organs and this tool refuses to conflate
+// them: no rights source in custody, no serve — the fleet records the hold
+// with that reason, per work, and nothing is emitted.
+//
+// Output is the same NDJSON contract mishkan-serve emits (line 1 provenance,
+// then rows ascending by c0_numeric_id), so build-zone and every gate behind
+// it run unchanged. The route is named for what it is — BODY_REBUILD_SERVE —
+// never dressed as a terminal-reader walk it did not make, and the oracle it
+// cites is the one that actually vouched for these bytes: the July manifest
+// this lane re-hashed the shards against.
+//
+// Rights sources, in order of dignity:
+//   --binding <dir>    the terminal binding composite (not yet in custody;
+//                      the join lands here the day it ships)
+//   --rights-fixture <json> + --fixture   an instrument: rights copied from a
+//                      declared record for an end-to-end proof, allowed ONLY
+//                      with --fixture, which brands the provenance so no gate
+//                      ever lets the output serve
+//
+// Rule id: serve-from-body-rule-v1-the-verified-body-is-the-text-the-binding-is-the-rights
+//
+// Run: node tools/serve-from-body-v1.mjs --work <id> --body <dir> \
+//        --bridge <csv.gz> --out <ndjson> [--binding <dir>]
+//        [--rights-fixture <json> --fixture]
+import { createReadStream, createWriteStream, readFileSync, existsSync } from "node:fs";
+import { createInterface } from "node:readline";
+import { createGunzip } from "node:zlib";
+import { createHash } from "node:crypto";
+import { join, basename } from "node:path";
+
+const arg = (n, d = null) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
+const has = (n) => process.argv.includes(`--${n}`);
+const die = (code, detail = "") => { console.error(`${code}${detail ? `: ${detail}` : ""}`); process.exit(1); };
+
+const WORK = arg("work") || die("MISSING_ARG", "--work");
+const BODY = arg("body") || die("MISSING_ARG", "--body");
+const BRIDGE = arg("bridge") || die("MISSING_ARG", "--bridge");
+const OUT = arg("out") || die("MISSING_ARG", "--out");
+const RULE = "serve-from-body-rule-v1-the-verified-body-is-the-text-the-binding-is-the-rights";
+
+// ---- rights: refuse before reading a single row of text -------------------
+let rightsOf = null;   // (row) => rights fields, or null meaning "not in custody"
+let rightsProvenance = null;
+if (arg("binding")) {
+  // The binding composite join lands here when the files ship. Refusing now
+  // is honest: pretending to read a binding this machine does not hold would
+  // be the exact invention the rule exists to refuse.
+  die("BINDING_JOIN_NOT_YET_BUILT", "the binding composite is not yet in custody; this join is written the day it ships");
+} else if (arg("rights-fixture")) {
+  if (!has("fixture")) die("FIXTURE_RIGHTS_REQUIRE_FIXTURE_FLAG",
+    "an instrument rights source is only lawful in an output branded as an instrument");
+  const fx = JSON.parse(readFileSync(arg("rights-fixture"), "utf8"));
+  const r = fx.rights || die("FIXTURE_RIGHTS_SHAPE", "expected { basis, rights: {...} }");
+  rightsOf = () => r;
+  rightsProvenance = {
+    source: "RIGHTS_FIXTURE__NEVER_SERVABLE",
+    basis: fx.basis || "unstated",
+    sha256: createHash("sha256").update(readFileSync(arg("rights-fixture"))).digest("hex"),
+  };
+} else {
+  die("RIGHTS_NOT_IN_CUSTODY",
+    `no rights record in custody covers ${WORK}; the binding composite is asked of the corpus lane`);
+}
+
+// ---- the work's shape, from the identity oracle ---------------------------
+const bridgeBytes = readFileSync(BRIDGE);
+const bridgeSha = createHash("sha256").update(bridgeBytes).digest("hex");
+const { gunzipSync } = await import("node:zlib");
+const bridgeText = gunzipSync(bridgeBytes).toString("utf8");
+const bLines = bridgeText.split("\n");
+const bCol = Object.fromEntries(bLines[0].split(",").map((h, i) => [h.trim(), i]));
+let wMin = Infinity, wMax = -Infinity, wUnits = 0;
+for (let i = 1; i < bLines.length; i += 1) {
+  if (!bLines[i]) continue;
+  const f = bLines[i].split(",");
+  if (f[bCol.work_id] !== WORK) continue;
+  wUnits += 1;
+  wMin = Math.min(wMin, Number(f[bCol.min_c0_numeric_id]));
+  wMax = Math.max(wMax, Number(f[bCol.max_c0_numeric_id]));
+}
+if (!wUnits) die("WORK_NOT_IN_BRIDGE", WORK);
+
+// ---- the shards that hold it, from the body's own manifest ----------------
+const MAN = join(BODY, "c0-active-rebuild-partial-manifest.csv");
+if (!existsSync(MAN)) die("BODY_MANIFEST_MISSING", MAN);
+const manBytes = readFileSync(MAN);
+const manSha = createHash("sha256").update(manBytes).digest("hex");
+const manLines = manBytes.toString("utf8").trim().split("\n");
+const mCol = Object.fromEntries(manLines[0].split(",").map((h, i) => [h.trim(), i]));
+const shards = [];
+for (let i = 1; i < manLines.length; i += 1) {
+  const f = manLines[i].split(",");
+  const lo = Number(f[mCol.first_c0_numeric_id]), hi = Number(f[mCol.last_c0_numeric_id]);
+  if (hi < wMin || lo > wMax) continue;
+  shards.push({ file: f[mCol.slice_file], sha256: f[mCol.sha256], lo });
+}
+if (!shards.length) die("WORK_NOT_IN_BODY", `${WORK}: c0 ${wMin}-${wMax} touches no shard`);
+shards.sort((a, b) => a.lo - b.lo);
+
+// ---- emit -----------------------------------------------------------------
+const out = createWriteStream(OUT);
+const wr = (o) => new Promise((r) => (out.write(JSON.stringify(o) + "\n") ? r() : out.once("drain", r)));
+await wr({
+  provenance: {
+    rule: RULE,
+    route: "BODY_REBUILD_SERVE__VERIFIED_JULY_BODY",
+    fixture: has("fixture") || undefined,
+    body_oracle: {
+      // the oracle that actually vouched for these bytes: the July manifest,
+      // every shard of the body re-hashed against it on this side
+      manifest: basename(MAN),
+      manifest_sha256: manSha,
+      shards_verified: "4646/4646 byte-exact against the July manifest, re-hashed by the website lane",
+      shards_read: shards.map((s) => ({ file: s.file, sha256: s.sha256 })),
+    },
+    identity: { bridge: basename(BRIDGE), bridge_sha256: bridgeSha, units: wUnits, c0_first: wMin, c0_last: wMax },
+    rights: rightsProvenance,
+  },
+});
+
+let rows = 0, lastId = -1, lastUnit = null, ordinal = 0;
+const csvSplit = (line) => {
+  // the body quotes fields that carry commas (capture URLs do); a real
+  // RFC-4180 walk, minimal
+  const outF = []; let cur = "", q = false;
+  for (let i = 0; i < line.length; i += 1) {
+    const c = line[i];
+    if (q) { if (c === '"') { if (line[i + 1] === '"') { cur += '"'; i += 1; } else q = false; } else cur += c; }
+    else if (c === '"') q = true;
+    else if (c === ",") { outF.push(cur); cur = ""; }
+    else cur += c;
+  }
+  outF.push(cur);
+  return outF;
+};
+for (const sh of shards) {
+  const path = join(BODY, "shards", sh.file);
+  if (!existsSync(path)) die("SHARD_MISSING", sh.file);
+  const rl = createInterface({ input: createReadStream(path).pipe(createGunzip()), crlfDelay: Infinity });
+  let col = null;
+  for await (const line of rl) {
+    if (!line) continue;
+    if (!col) { col = Object.fromEntries(csvSplit(line).map((h, i) => [h, i])); continue; }
+    const f = csvSplit(line);
+    if (f[col.work_id] !== WORK) continue;
+    const id = Number(f[col.c0_numeric_id]);
+    if (id <= lastId) die("BODY_NOT_ASCENDING", `${id} after ${lastId}`);
+    lastId = id;
+    const unit = f[col.unit_id];
+    if (unit !== lastUnit) { lastUnit = unit; ordinal = 0; }
+    ordinal += 1;
+    const bodyOrdinal = Number(f[col.unit_word_index]);
+    if (bodyOrdinal !== ordinal) die("BODY_ORDINAL_GAP", `${unit}: expected ${ordinal}, body says ${bodyOrdinal}`);
+    const rights = rightsOf(f);
+    await wr({
+      c0_numeric_id: id,
+      status: "FOUND_EXACT",
+      location: { local_unit_id: unit },
+      token_ordinal_in_unit: ordinal,
+      exact_surface_form: f[col.hebrew],
+      visible_in_hebrew_reader: rights.reader_display_axis === "ALLOW",
+      reader_display_axis: rights.reader_display_axis,
+      public_distribution_axis: rights.public_distribution_axis,
+      attribution_required: rights.attribution_required,
+      noncommercial_required: rights.noncommercial_required,
+      share_alike_required: rights.share_alike_required,
+      no_derivatives_required: rights.no_derivatives_required,
+      rights_authority: {
+        normalized_license_class: rights.normalized_license_class,
+        license_version: rights.license_version,
+        terminal_resolution_state: rights.terminal_resolution_state,
+      },
+    });
+    rows += 1;
+  }
+}
+await new Promise((r) => out.end(r));
+if (!rows) die("WORK_EMPTY_IN_BODY", WORK);
+console.log(`${OUT}: ${rows.toLocaleString()} rows · ${wUnits} units · c0 ${wMin}-${wMax}${has("fixture") ? " · FIXTURE (never servable)" : ""}`);
