@@ -185,6 +185,9 @@
   /* A work the ledger has not named in Hebrew keeps its English locator, but
      the locator does not get to look like a title. */
   header.top h1 .he-t.unnamed { color: var(--muted); font-size: 0.92rem; font-style: italic; }
+  /* the name slot's absence, same voice as the title slot's */
+  header.top h1 .en-t.unnamed { color: var(--muted); font-size: 0.92rem; font-style: italic;
+    font-variant: normal; letter-spacing: normal; }
   header.top a { color: var(--link); text-decoration: none; border-bottom: 1px solid var(--chip-line); }
   header.top #home a.home { border-bottom: 1px solid var(--line); }
   header.top a:hover { color: var(--gold); border-bottom-color: var(--gold); }
@@ -1254,7 +1257,19 @@
   // spaces — which asserts nothing beyond the address itself.
   const ADDR_PLAIN = (BOOK || location.pathname.split("/").filter(Boolean).pop() || "")
     .replace(/[-_]+/g, " ");
-  enT.textContent = ADDR_PLAIN || zone.work;
+  // A name slot never dresses a record as prose — the owner's ruling. The
+  // recorded id prints plainly only when what results is plain Latin text;
+  // an id in another script or shape (2,933 of the bridge's ids are works'
+  // own Hebrew titles with a catalog number) is not shown as a name. The
+  // slot says the absence in words and the raw id rides in the hover.
+  const nameCandidate = ADDR_PLAIN || zone.work || "";
+  if (/^[a-z0-9 ]+$/i.test(nameCandidate) && /[a-z]/i.test(nameCandidate)) {
+    enT.textContent = nameCandidate;
+  } else {
+    enT.textContent = "none is recorded in plain letters";
+    enT.classList.add("unnamed");
+    if (nameCandidate) enT.title = nameCandidate;
+  }
   if (!zone.work_he) {
     // Say what is missing rather than letting the common name slide into the
     // place of the title. An empty line under "book title" reads as a title

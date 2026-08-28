@@ -182,6 +182,22 @@ check("and the English beside it says what register it stands in",
   framed.commons.length > 0 &&
     framed.commons.every((x) => /^commonly force read as$/i.test(x.lab) || /^recorded in the bridge as$/i.test(x.lab)),
   framed.commons.map((x) => `${x.t} under "${x.lab}"`).join(" · ").slice(0, 200));
+// The owner's ruling on the name slot: it never dresses a record as prose.
+// A slot under either register prints plain Latin text or says the absence
+// in words — never a bridge id from another script read as if it were a
+// name. Asserted over every name slot the door builds, because the census
+// found 2,933 Hebrew bridge ids waiting to be printed the day the library
+// fills.
+{
+  const NO_PLAIN = "none is recorded in plain letters";
+  const slots = await p.evaluate(() =>
+    [...document.querySelectorAll(".family summary .en, .bookcard .en, .atlas-row.built .aw")]
+      .map((e) => e.textContent.trim()));
+  const badSlots = slots.filter((t) => !(t === NO_PLAIN || (/^[a-z0-9 \u00b7·]+$/i.test(t) && /[a-z]/i.test(t))));
+  check("every name slot is plain letters or says the absence in words",
+    slots.length > 0 && badSlots.length === 0,
+    badSlots.length ? badSlots.map((t) => JSON.stringify(t.slice(0, 40))).join(" · ").slice(0, 160) : `${slots.length} slots plain`);
+}
 // The owner's ruling, made at the liturgy shelf: the claim label prints only
 // with the record's force license beside it — a claim with no chip is the
 // exact fault this door carried.

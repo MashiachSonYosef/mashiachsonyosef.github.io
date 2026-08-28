@@ -213,6 +213,21 @@ const chipHtml = (src) => src
 // is waiting on.
 const AWAITS_M = "the recorded id read plainly — an English name waits on a licensed record";
 const plainId = (id) => String(id).split("/").pop().replace(/[-_]+/g, " ");
+// The name slot never dresses a record as prose — the owner's ruling. plainId
+// reads an id's separators as spaces, which is honest exactly when what is
+// left is plain Latin text; the census found 2,933 bridge ids that are the
+// works' own Hebrew titles with a catalog number tailed on, and hyphens read
+// as spaces would have printed them in the English slot as neither a name
+// nor a record. A name slot prints plainId only when the result is
+// plain-letter text; anything else prints the absence, said in words, with
+// the raw id riding in the title attribute where a hover still reads it.
+// Records stay shown verbatim where records are shown — the atlas rows, the
+// fold lines, the book card — that register never plainifies.
+const NO_PLAIN_NAME = "none is recorded in plain letters";
+const plainName = (id) => {
+  const t = plainId(id).toLowerCase();
+  return /^[a-z0-9 ]+$/.test(t) && /[a-z]/.test(t) ? t : null;
+};
 // The atlas: every family and every work the bridge records, built or not,
 // emitted by tools/emit-corpus-atlas-v1.mjs with the bridge's sha as its
 // receipt. The door refuses to run without it — a door listing only what
@@ -380,7 +395,7 @@ if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to w
 // Every place a book is referred to in English refers to it by the one name
 // the law allows to print: the ledger's English when a licensed record backs
 // it, the address read plainly when none does.
-for (const b of books) b.disp = b.reading ? b.en : plainId(b.slug);
+for (const b of books) b.disp = b.reading ? b.en : (plainName(b.slug) ?? b.slug);
 // Genesis, when it is here, must be the exact sealed v3 bytes — that check runs
 // above, inside the loop, and is untouched. What is relaxed is the requirement
 // that Genesis be here at all. A door builder that cannot describe the site
@@ -426,9 +441,11 @@ const bookCard = (b) => `    <div class="bookcard">
           : `<span class="he" lang="he" dir="rtl">${esc(b.he)}</span>`)
         : `<span class="he none">none is recorded in the ledger</span>`}</span>
       <a class="book" href="/${b.slug}">
-      <span class="row"><span class="lab">commonly force read as</span><span class="en">${esc(b.reading ? b.en : plainId(b.slug))}</span>${b.reading
-        ? `<span class="chip" title="${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""}">${esc(b.reading.lic)}</span>`
-        : `<span class="of" title="${esc(AWAITS_M)}">awaits a licensed record</span>`}</span>
+      <span class="row">${b.reading
+        ? `<span class="lab">commonly force read as</span><span class="en">${esc(b.en)}</span><span class="chip" title="${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""}">${esc(b.reading.lic)}</span>`
+        : `<span class="lab">recorded in the bridge as</span>${plainName(b.slug)
+          ? `<span class="en">${esc(plainName(b.slug))}</span>`
+          : `<span class="en none" title="${esc(b.slug)}">${NO_PLAIN_NAME}</span>`}<span class="of" title="${esc(AWAITS_M)}">awaits a licensed record</span>`}</span>
       <span class="of">${n(b.sections)} sections · ${n(b.words)} rendered COMPspan records</span>
       </a>
     </div>`;
@@ -592,7 +609,12 @@ const familySection = (fam) => {
   // awaiting shelf already uses.
   const enCell = reading
     ? `<span class="lab">commonly force read as</span><span class="en">${esc(lf.en)}</span><span class="chip" title="${esc(reading.label)}${reading.year ? ` · ${esc(reading.year)}` : ""}">${esc(reading.lic)}</span>`
-    : `<span class="lab">recorded in the bridge as</span><span class="en">${esc(fam.members.map(plainId).join(" · "))}</span><span class="of" title="${esc(AWAITS_M)}">awaits a licensed record</span>`;
+    : (() => {
+        const readable = fam.members.map(plainName).filter(Boolean);
+        return readable.length
+          ? `<span class="lab">recorded in the bridge as</span><span class="en" title="${esc(fam.members.join(" · "))}">${esc(readable.join(" · "))}</span><span class="of" title="${esc(AWAITS_M)}">awaits a licensed record</span>`
+          : `<span class="lab">recorded in the bridge as</span><span class="en none" title="${esc(fam.members.join(" · "))}">${NO_PLAIN_NAME}</span><span class="of" title="${esc(AWAITS_M)}">awaits a licensed record</span>`;
+      })();
   const foldLines = [`      <span class="of fold-line">${esc(lf.what)}</span>`];
   foldLines.push(`      <span class="of slots fold-line">the bridge records ${fam.members.length === 1 ? "this shelf as" : "these as"}: ${esc(fam.members.join(" · "))} — folded here by ${esc(LEDGER.schema_version)}, which dies the day the corpus rules the column</span>`);
   // The home page rests fully collapsed into the grouping: every family
@@ -618,7 +640,7 @@ const awaitingSection = () => {
       <details class="fam">
       <summary>
         <span class="row"><span class="lab">held for review</span><span class="he none">the corpus lane&#8217;s own review markers, standing open</span></span>
-        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en">${esc(LEDGER.awaiting.members.join(" · "))}</span><span class="of">${n(s.works)} works · ${n(s.units)} units</span></span>
+        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en" title="${esc(LEDGER.awaiting.members.join(" · "))}">${esc(LEDGER.awaiting.members.map((m) => plainName(m) ?? NO_PLAIN_NAME).join(" · "))}</span><span class="of">${n(s.works)} works · ${n(s.units)} units</span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">${esc(LEDGER.awaiting.why)}</span>
@@ -634,7 +656,7 @@ const unruledSection = (v) => {
       <details class="fam">
       <summary>
         <span class="row"><span class="lab">family</span><span class="he none">none is recorded in the ledger</span></span>
-        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en">${esc(v)}</span><span class="of">${n(s.works)} works · ${n(s.units)} units · the family ledger has not ruled this value</span></span>
+        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en" title="${esc(v)}">${esc(plainName(v) ?? NO_PLAIN_NAME)}</span><span class="of">${n(s.works)} works · ${n(s.units)} units · the family ledger has not ruled this value</span></span>
       </summary>
       <div class="fgroups">
 ${rowsHtml(rows).join("\n")}
@@ -843,6 +865,9 @@ const doc = `<!doctype html>
   details.fam > summary .en { font-size:1.15rem; font-variant:small-caps; letter-spacing:.14em; color:var(--gold);
     overflow-wrap:anywhere; min-width:0; }
   details.fam > summary .he.none { font-family:Georgia,serif; font-size:.85rem; font-style:italic; color:var(--faint); }
+  /* the name slot's absence, said in words — same voice as the title slot's */
+  .en.none { font-family:Georgia,serif; font-size:.8rem; font-style:italic; color:var(--faint);
+    font-variant:normal; letter-spacing:normal; }
   details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.3rem; color:var(--shesh); }
