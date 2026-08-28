@@ -110,11 +110,16 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
 // commentary is read. What must not appear is a destination that is not a
 // finished book.
 {
-  // The finished books used to be typed here — two of them, while a third
-  // published work a reader could open sat off the door entirely. The list is
-  // the plan's now, same as the door's own, so this check and the page it
-  // checks cannot disagree about what is published by each carrying a copy.
-  const FINISHED = plan.works.map((w) => `/${w.published_as}`);
+  // The finished books used to be typed here, then the curated plan's — five
+  // works, while the fleet shelf carries thousands. The publishing authority
+  // is the shelf itself: a zone on disk is a finished book, and the door is
+  // built from exactly that directory, so this check and the page it checks
+  // derive the same list from the same place.
+  const { zonesOnDisk } = await import("./zones-on-disk-v1.mjs");
+  const FINISHED = [...new Set([
+    ...zonesOnDisk().map((slug) => `/${slug}`),
+    ...plan.works.map((w) => `/${w.published_as}`),
+  ])];
   // The door also points at its own counts receipt — a record of the door,
   // not a way out of it. It is the one non-book destination allowed.
   FINISHED.push("/front-door-counts-receipt-v1.json");
@@ -160,7 +165,10 @@ check("the site's own name carries no Hebrew that nothing recorded",
 // outside both sets is a character nobody recorded. An earlier form of this
 // check knew only the zones — the family ledger's names are records too.
 {
-  const carried = new Set(plan.works.map((w) => titleOf(w.published_as)[0]).filter(Boolean));
+  // every zone on the shelf may carry its own claimed title to the door —
+  // the fleet's zones included, by the same authority as the curated plan's:
+  // the zone's own work_he, claimed from its own C0 under the title rule
+  const carried = new Set(zonesOnDisk().map((slug) => titleOf(slug)[0]).filter(Boolean));
   const L = JSON.parse(readFileSync(join(K3, "data", "family-ledger-v1.json"), "utf8"));
   for (const lf of L.families || []) if (lf.he) { carried.add(lf.he); for (const t of lf.he_tokens || []) carried.add(t.s); }
   const strays = framed.hebrews.filter((x) => !carried.has(x.t));

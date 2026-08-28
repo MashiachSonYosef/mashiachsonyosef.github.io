@@ -553,6 +553,34 @@ const families = LEDGER.families.map((lf) => {
 const unruled = Object.keys(ATLAS.families).filter((v) => !valueOwner.has(v));
 const awaitingRows = poolOf(LEDGER.awaiting.members.filter((m) => ATLAS.families[m]));
 
+// Every zone on the shelf, read once — the tally pins it, the rows draw
+// from it. One law, no tiers: a zone on the shelf is a book, and its card
+// derives from its own receipts, the curated two included among the rest.
+const ZONE_INFO = new Map();
+for (const f of readdirSync(ZONES)
+  .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith("-commentary.bin"))
+  .sort()) {
+  const bytes = readFileSync(join(ZONES, f));
+  const z = JSON.parse(gunzipSync(bytes).toString("utf8"));
+  const words = (z.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
+  const wr = typeof z.work_receipts === "string" ? z.work_receipts : ((z.work_receipts || {}).b_n || "");
+  const m = wr.match(/work_id=([^\s·]+)/);
+  const slug = f.replace(/\.bin$/, "");
+  ZONE_INFO.set(slug, {
+    slug,
+    work_id: m ? m[1] : slug,
+    words,
+    sections: (z.sections || []).length,
+    bytes: bytes.length,
+    sha256: sha256(bytes),
+    heTokens: z.work_he_tokens || [],
+    workEn: z.work || slug,
+    // the force-read claim, by the same evidence law as everywhere: a
+    // licensed record reading the title's own form as this English, or null
+    reading: titleReading(z.work_he_tokens, z.work || slug),
+  });
+}
+
 // A book's name is a record too. The row stays two columns — the bridge's
 // name and the unit count — and the name itself opens the book's own card:
 // the masthead's frame at book grain, in a card so the rows stay uncluttered.
@@ -563,12 +591,26 @@ const atlasRow = (w) => {
   const fam = valueOwner.get(pre);
   const famAttr = fam && fam !== "(awaiting)" ? ` data-fam="${esc(fam)}"` : "";
   const st = FLEET_STATE.get(w.id) || "AWAITING_SHARDS";
-  // A work whose zone stands on the shelf is served, and a served work
-  // answers at its own address — the fleet's zones are not a state chip, they
-  // are books. The name printed is still the recorded id, dir=auto because
-  // most of this shelf's ids are the works' own Hebrew opening words.
-  if (has(`${name}.bin`))
-    return `      <a class="atlas-row built" href="/${name}"><span class="aw" dir="auto">${esc(name)}</span><span class="au">reads at its own address · ${n(w.units)} unit${w.units === 1 ? "" : "s"}</span></a>`;
+  // A work whose zone stands on the shelf is served, and a served work is a
+  // book — the same two-treatment card the curated books get, derived from
+  // the zone's own receipts. The title words the zone claims from its own C0
+  // open their records (the door's card machinery is global); the name is
+  // the way in; the counts are the zone's. A zone claiming no title keeps
+  // the recorded id as its name, read plainly, dir=auto because most of
+  // this shelf's ids are the works' own Hebrew opening words.
+  const zi = ZONE_INFO.get(name);
+  if (zi) {
+    const tw = titleWords({ heTokens: zi.heTokens, slug: name, disp: plainName(name) || zi.workEn, reading: zi.reading });
+    const he = zi.heTokens.some((t) => t.k)
+      ? `<span class="fam-he"><span class="he" lang="he" dir="rtl">${tw}</span></span>`
+      : "";
+    // the name slot's law, everywhere: plain letters, or the absence said
+    // in words with the recorded id riding on the hover — never a raw id
+    // dressed as a name
+    const pn = plainName(name);
+    const label = pn ? esc(pn) : `<span class="none" title="${esc(name)}">${NO_PLAIN_NAME}</span>`;
+    return `      <span class="atlas-row built">${he}<a class="aw" href="/${name}" title="open this book">${label}</a><span class="au">${n(zi.sections)} section${zi.sections === 1 ? "" : "s"} · ${n(w.units)} unit${w.units === 1 ? "" : "s"}</span></span>`;
+  }
   return `      <span class="atlas-row" data-p="${esc(pre)}"><button type="button" class="aw" dir="auto" data-w="${esc(w.id)}" data-u="${w.units}" data-cr="${w.c0_rows}" data-cf="${w.c0_first}" data-st="${esc(st)}"${famAttr} title="open this book&#8217;s own record">${esc(name)}</button><span class="au">${n(w.units)} unit${w.units === 1 ? "" : "s"}</span></span>`;
 };
 const seatedRow = (b) => {
@@ -678,21 +720,13 @@ ${rowsHtml(rows).join("\n")}
 // fleet's zones included, not only the curated books. A receipt that pinned
 // two zones while two thousand served would be a snapshot of a shelf that
 // no longer exists.
-const servedZoneFiles = readdirSync(ZONES)
-  .filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith("-commentary.bin"))
-  .sort();
-const zoneTallyRows = servedZoneFiles.map((f) => {
-  const bk = books.find((b) => b.zone === f);
-  if (bk) return { path: `${ZONES}/${f}`.replace(/\\/g, "/"), work_id: bk.work_id,
-    rendered_compspan_records: bk.words, bytes: bk.zoneBytes, sha256: bk.zoneSha256 };
-  const bytes = readFileSync(join(ZONES, f));
-  const z = JSON.parse(gunzipSync(bytes).toString("utf8"));
-  const words = (z.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
-  const wr = typeof z.work_receipts === "string" ? z.work_receipts : ((z.work_receipts || {}).b_n || "");
-  const m = wr.match(/work_id=([^\s·]+)/);
-  return { path: `${ZONES}/${f}`.replace(/\\/g, "/"), work_id: m ? m[1] : f.replace(/\.bin$/, ""),
-    rendered_compspan_records: words, bytes: bytes.length, sha256: sha256(bytes) };
-});
+const zoneTallyRows = [...ZONE_INFO.values()].map((zi) => ({
+  path: `${ZONES}/${zi.slug}.bin`.replace(/\\/g, "/"),
+  work_id: zi.work_id,
+  rendered_compspan_records: zi.words,
+  bytes: zi.bytes,
+  sha256: zi.sha256,
+}));
 const renderedTally = {
   compspan_records: zoneTallyRows.reduce((total, r) => total + r.rendered_compspan_records, 0),
   built_zones: zoneTallyRows.length,
@@ -988,6 +1022,19 @@ const doc = `<!doctype html>
   .atlas-row button.aw:hover, .atlas-row button.aw:focus-visible { color:var(--gold); }
   a.atlas-row.built .aw { color:var(--gold-dim); }
   a.atlas-row.built:hover .aw { color:var(--gold); }
+  /* A built row is a book: the zone's own title words first (each opens its
+     record — the same global card as everywhere), then the name as the way
+     in, then the zone's counts. One law for the curated two and the fleet's
+     thousands alike. */
+  span.atlas-row.built { color:var(--faint); }
+  span.atlas-row.built .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
+    font-size:.95rem; color:var(--ink); }
+  span.atlas-row.built .fam-he .fw { font:inherit; color:inherit; background:none; border:none;
+    padding:0; cursor:pointer; }
+  span.atlas-row.built .fam-he .fw:hover { color:var(--gold); }
+  span.atlas-row.built .fam-he .fw.inert { cursor:default; }
+  span.atlas-row.built a.aw { color:var(--gold-dim); text-decoration:none; }
+  span.atlas-row.built a.aw:hover { color:var(--gold); }
   /* The book's own record, on this page — the masthead's frame at book
      grain. What a ledger records stands as itself; what none records says
      so; the force-read is the bridge id read plainly, and the family line
@@ -1600,6 +1647,9 @@ const scrubTitles = (text) => {
   const known = [];
   for (const b of books) if (b.he) known.push(b.he);
   for (const lf of LEDGER.families) if (lf.he) for (const t of lf.he_tokens) known.push(t.s);
+  // the titles the zones themselves claim from their own C0 — carried
+  // records, the exact category this scrub exists to allow
+  for (const zi of ZONE_INFO.values()) for (const t of zi.heTokens) known.push(esc(t.s));
   for (const f of Object.values(ATLAS.families))
     for (const w of f.works) if (HEBREW.test(w.id)) known.push(esc(w.id.split("/").pop()));
   known.sort((a, b) => b.length - a.length);
