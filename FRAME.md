@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v1 · 2026-08-27
+# THE FRAME · canonical review standard · v1.17 · 2026-08-27
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -15,7 +15,7 @@ owner's to make.
 | layer | the idea | current artifact | custody (website lane) | need (website lane) |
 |---|---|---|---|---|
 | **A** | Acquisition — the raw fact that bytes were obtained, before any claim about them | `ledgers/work/a/` (1MB) | ✗ | NOT NEEDED FOR SERVE — serve reads the verified body and the bridge; acquisition history stays corpus-side |
-| **N** | Permission + source identity — licensor, license, custody, display right, forbidden effect. Acquired bytes may exist in custody before N; N gates ADMISSION and DISPLAY, not raw existence | `ledgers/work/n/` (337MB, 241 files; batch-shaped) + derived current: `corpus-refinement-v1/output/active-rights-resolution-v2/` | ✗ — the live launch blocker | **NEEDED — the one open row.** Either shape serves: `active-rights-resolution-v2` (3,986 rows + 9 profiles, kilobyte-scale) or the full binding composite (its seal is already held for counter-verification) |
+| **N** | Permission + source identity — licensor, license, custody, display right, forbidden effect. Acquired bytes may exist in custody before N; N gates ADMISSION and DISPLAY, not raw existence | `ledgers/work/n/` (337MB, 241 files; batch-shaped) + derived current: `corpus-refinement-v1/output/active-rights-resolution-v2/` | ✗ pending counter-verify — SHIPPED 2026-08-27: staging `706d122` (seal `SHA256SUMS-n-and-rights.txt`) AND this branch `rights/active-rights-resolution-v2/` (seal `SHA256SUMS.txt`; bytes re-verified against the staging seal at ship time, 4/4 OK) | **NEEDED — the one open row.** Either shape serves: `active-rights-resolution-v2` (3,986 rows + 9 profiles, kilobyte-scale) or the full binding composite (its seal is already held for counter-verification) |
 | **B** | Admission to the corpus spine — the census of works | `ledgers/work/b/`, `b-corpus-spine/` | ✗ | NOT NEEDED FOR SERVE — the bridge in custody carries the census the fleet walks |
 | **Y** | SETTLED 2026-08-27: C0 owns the Hebrew — every work/part/chapter/section title is an ordered C0 binding. Y checks and classifies ("this C0 interval is a chapter title," parent/ordinal) with row-wise cardinality: every C0 title binding has EXACTLY ONE Y checker row; absence is a TYPED N/A, never an omitted row. And Y is a CURATED ROUTE SELECTION, not a translation ledger: the commonly_force_read_as rider never stores English — it hand-selects an EXISTING R pill backed by at least one display-eligible, licensed M witness; the English shown always comes from that R/M/D route. No suitable route → N/A/HOLD, never improvisation. **Case law — the liturgy error:** Y once carried "liturgy" as free English unlicensed in the HUD; the fix was not licensing Y but the law itself: never let Y claim English the HUD cannot already prove. (Most Ben-Yehuda work is C0 interval designation plus Y checking; only genuinely absent editorial titles require new C0 occurrences) | `ledgers/work/y/` (1.3GB, pre-repair) | ✗ | NEEDED ONLY as the English rider (commonly_force_read_as), null lawful — exactly the ruling: the site already derives navigation from C0 and the bridge; the pre-repair ledger is not needed on this disk |
 | **Q** | Pure pointer, no content — points a C0 site at its MAM form for display: full carrier renders unchanged; the card's lattice (above the COMPspan) shows qere and ketiv separately; clicking underlines that half in the C0, marking which written form the current English defines | Q pointers in the MAM candidate (57 shipped) | ✓ in candidate | NEEDED — held; the lattice, the underline, and their gates are live |
@@ -23,17 +23,17 @@ owner's to make.
 | **W** | The witnessed form — word-forms as written, the inventory the validator cross-checks (1,485,250 forms) | `ledgers/work/w/` (146MB) | ✗ | NOT NEEDED FOR SERVE — an audit inventory; wanted for the deferred W-grain check, never for serving |
 | **W/K on MAM** | Both halves of a pair are real words: ketiv and qere EACH walk the definitional pipeline and each gets its English (the 103 pairs) | MAM candidate (shipped) | ✓ in candidate | NEEDED — held; both halves serve |
 | **COMPspan** | Spans — how occurrences compose into readable structure; the reader's component system draws from the span table | `ledgers/work/compspan/` (100MB) | ✗ | NEEDED as the span template the zone builder reads — held site-side; the 100MB ledger stays corpus-side |
-| **COMPcell** | Cells of composition | `ledgers/work/compcell/` (181MB) | ✗ | NOT NEEDED — derived on site, never stored |
+| **COMPcell** | Cells of composition — the atomic display cells a span resolves to: COMPspan is the structure, COMPcell the atoms, and the site derives cells from the span template plus the body at render time (idea recorded by the corpus lane from the derived-on-site behavior; the owner corrects it if richer) | `ledgers/work/compcell/` (181MB) | ✗ | NOT NEEDED — derived on site, never stored |
 | **L** | NOT_MATERIALIZED — vestigial bundle label, recorded not deleted | — | n/a | n/a — agreed |
-| **X** | CORRECTED 2026-08-27: the letter is OCCUPIED, not free — X is the provisional project/work pool, locked to the 999 selections (July snapshot, no `x-current.json`). Likely obsolete; retirement candidate under the Retirement Doctrine below. The force-read/license functions once floated for "X" are implemented as Y-scoped surfaces instead (see Y row). Historical note superseded by this correction: The existing graph expresses force-read licensing: `C0 title → Y title-role checker → hand-selected EXISTING R pill → one or more existing M witnesses → each M's exact D`. A force-read with no existing R identity receives a TYPED title-force-read R route with an M/source/license — it never remains an unsourced English string in Y. Licensing and provenance travel through the R–M relationship, so X is unnecessary FOR TRANSPORT. **The force-license question (owner, 2026-08-27) — when a pill is carried by multiple M's under different licenses, what fronts the display? Resolution ladder, most correct first:** (a) **the true-R-pill answer, owner-preferred:** no pick exists — Y's force-read is a full R pill offering ALL M witnesses and ALL their licenses, reader cycles exact testimony, and the DEFAULT follows the standing S law (oldest witness leads) like every other card. Selecting one license would be an editorial assertion; offering all is witnesses testifying; (b) fallback if display must narrow: deepen Y's selection grain to (R pill + specific M) so the license follows the chosen witness, typed; (c) last resort: X materializes as the force-license ledger. X stays RESERVED for (c), expected never | — | n/a |
+| **X** | CORRECTED 2026-08-27: the letter is OCCUPIED, not free — X is the provisional project/work pool, locked to the 999 selections (July snapshot, no `x-current.json`). Likely obsolete; retirement candidate under the Retirement Doctrine below. The force-read/license functions once floated for "X" are implemented as Y-scoped surfaces instead (see Y row). Historical note superseded by this correction: The existing graph expresses force-read licensing: `C0 title → Y title-role checker → hand-selected EXISTING R pill → one or more existing M witnesses → each M's exact D`. A force-read with no existing R identity receives a TYPED title-force-read R route with an M/source/license — it never remains an unsourced English string in Y. Licensing and provenance travel through the R–M relationship, so X is unnecessary FOR TRANSPORT. **The force-license question (owner, 2026-08-27) — when a pill is carried by multiple M's under different licenses, what fronts the display? Resolution ladder, most correct first:** (a) **the true-R-pill answer, owner-preferred:** no pick exists — Y's force-read is a full R pill offering ALL M witnesses and ALL their licenses, reader cycles exact testimony, and the DEFAULT follows the standing S law (oldest witness leads) like every other card. Selecting one license would be an editorial assertion; offering all is witnesses testifying; (b) fallback if display must narrow: deepen Y's selection grain to (R pill + specific M) so the license follows the chosen witness, typed; (c) last resort: X materializes as the force-license ledger. X stays RESERVED for (c), expected never | `ledgers/work/x/` July snapshot — 5 lock/pool files, ~575KB (plus one stray A/B-audit intake file `a-b-omission-source-audit-intake-v1.json`, a retirement-census item) | n/a | n/a — not a serve surface; retirement candidate, RESERVED for (c) only, expected never |
 | **D** | A definition — the English definitional record for a form | in `ledgers/work/ldmprs/` | ✗ | NEEDED in serving form — held as the route store; `ldmprs/` itself is not needed on this disk |
 | **M** | The dictionary — the source work a D comes from | in `ldmprs/` | ✗ | NEEDED in serving form — held (a source per reading, via the route store) |
 | **P** | RULED 2026-08-27 (owner's P fix, construction's precision): P groups an exact R-PILL IDENTITY — never identical D strings. Membership comes from sharing the authoritative R identity, not from any string comparison. Every M/source/license carrying that R pill is clickable-through, and each click displays that M's own D exactly as written — EVEN WHEN THE D STRINGS DIFFER. No fuzzy semantic grouping is ever inferred | in `ldmprs/` | ✗ | NEEDED as the byte-perfect rule — held site-side; the OPEN expansion awaits the owner's ruling |
-| **R** | The ROUTE — the selectable definition route (the "R pill") a reader cycles among. Licensing is not the pill: rights accompany the witness, they never define the route. (The separate rights mapping `work_id → rights_profile_id` lives at `active-rights-resolution-v2/` — 3,986 rows + 9 profiles, unshipped; its catalog half is already in the 89) | routes in `ldmprs/`; rights mapping in `output/` | ✗ | NEEDED — routes held via the route store; the rights mapping in this row is N's cargo: needed, not held |
+| **R** | The ROUTE — the selectable definition route (the "R pill") a reader cycles among. Licensing is not the pill: rights accompany the witness, they never define the route. (The separate rights mapping `work_id → rights_profile_id` lives at `active-rights-resolution-v2/` — 3,986 rows + 9 profiles, SHIPPED 2026-08-27 to staging `706d122` and this branch `rights/`; its catalog half is already in the 89) | routes in `ldmprs/`; rights mapping in `output/` | ✗ | NEEDED — routes held via the route store; the rights mapping in this row is N's cargo: needed, not held |
 | **S** | Source year — antiquity as provenance and sort law: the oldest witness leads (the owner's standing rule v4). A sort key, never an inclusion gate | in `ldmprs/` | ✗ | NEEDED — held (a year per reading; the sort law runs on every card) |
-| **Z** | Source Zoning — governs lexical vs entity-association source posture. `z-current.json` is LIVE: points at the structured-evidence catalog and records why 350,411 entity-association rows were excluded while 37,634 lexical rows were retained. Retirement possible but gated: current controls still claim Z owns that proof — dependency census and rebinding required first | `ledgers/work/z/` + `z-current.json` | ✗ | possibly derivable elsewhere; check before retiring |
+| **Z** | Source Zoning — governs lexical vs entity-association source posture. `z-current.json` is LIVE: points at the structured-evidence catalog and records why 350,411 entity-association rows were excluded while 37,634 lexical rows were retained. Retirement possible but gated: current controls still claim Z owns that proof — dependency census and rebinding required first | `ledgers/work/z/` + `z-current.json` | ✗ | n/a — NOT NEEDED FOR SERVE: corpus-side adjudication record; retirement gated on the dependency census (the proof possibly derivable elsewhere; check before retiring) |
 | — | **Y-scoped surfaces (construction, 2026-08-27):** Y-R-P view — derives the exact P bundle for Y's selected R, exposing every supporting M/license; a compact serve index, creates NO new identity. Y-SUG — optional machine suggestion for a genuinely untitled node: outside authoritative C0/Y cardinality, carries model/run provenance, never licensed or authoritative by label; graduates only through editorial C0 → ordinary Y row → R/P/M route | planned | — | the SUGGESTED rung's display is BUILT AND GATED site-side (2026-08-28): one overlay slot in the masthead, two type labels at their warrants — force-read wears the license chip, the guess wears a dashed attribution chip naming the model (run·date riding, "an attribution, not a license"), sentence "\<model\> guesses the title is X — but that is not witnessed by this work"; prints only with every authorship field present; a licensed claim structurally outranks it; gate check-suggested-title-v1. Awaiting: the Y/Z four-state lookup surface (Z OFF vs MISSING both display nothing — the zone will carry the state so decided and pending stay distinguishable in the record), and the owner's display-in-absence ruling — the website lane agrees with the corpus recommendation: Y wins the surface, store everywhere, the disagreement is Y-checker audit signal; the switch is one line either way |
-| — | the body — C0 occurrences, the text itself | R2 `body/c0-rebuilt-20260827/` | ✓ verified 4,646/4,646 on the website lane's disk | NEEDED — held |
+| — | the body — C0 occurrences, the text itself | R2 `body/c0-rebuilt-20260827/` | ✓ verified 4,646/4,646 on the website lane's disk | NEEDED — held; coverage caveat (fleet, 2026-08-28): the body covers 89.5% of works, 61 works HOLD·TEXT outside it — residual to materialize or type absent |
 | — | c0 bridge (unit → C0 ranges) | in the 89 | ✓ | NEEDED — held |
 
 `ldmprs/` totals 8.4GB / 29,039 files and carries D, M, P, R, S together.
@@ -89,6 +89,9 @@ becomes Position Zoning: nothing enters at a position its warrant cannot
 prove, and what cannot prove full position still exists — typed, never
 deleted, never promoted. Grammar of the trio: X points at proven testimony,
 Y selects among proven testimony, Z holds what is not yet proven testimony.
+Until old Z clears doctrine steps 1–6, the table's Z row remains the
+letter's live meaning; the warrant-zone law binds prospectively and takes
+the letter only at step 7's explicit new frame version.
 
 **Z is trinary (owner, 2026-08-27): on / off / missing.** ON = examined and
 offered — the suggestion stands, displayed as suggestion, model/run
@@ -100,13 +103,17 @@ indistinguishability the frame outlaws. Precedent: old Z was already
 trinary — retained rows (on), removed rows with receipted rationale (off),
 and a declared unlisted_source_policy governing the missing state.
 
-**Y and Z are jointly total (owner, 2026-08-27):** Z rules on any C0
-including the lack thereof — Y points to all the proven bindings, Z points
-to the complement (every refusal, every blank). Every C0 resolves to
-exactly one of: Y binding (display the witness) / Z ON (display the
-suggestion, suggestion register, provenance attached) / Z OFF (display
-nothing, decided) / Z MISSING (display nothing, pending). The website lane
-does one lookup and the surface answers both "what to show" and "why."
+**Y and Z are jointly total (owner, 2026-08-27):** Z rules on any node of
+the title surface including nodes with no C0 title at all ("the lack
+thereof") — Y points to all the proven bindings, Z points to the complement
+(every refusal, every blank). Every structural node resolves to exactly one
+of: Y binding (display the witness) / Z ON (display the suggestion,
+suggestion register, provenance attached) / Z OFF (display nothing,
+decided) / Z MISSING (display nothing, pending). The website lane does one
+lookup and the surface answers both "what to show" and "why." Two absences,
+two owners, no conflict: Y's typed N/A types the absence of a checker
+decision on an EXISTING C0 title binding; Z MISSING types the absence of
+examination where no binding exists at all.
 
 **Same mechanism as force reads (owner, 2026-08-27):** a "commonly force
 read as" display and a suggested title are one move — an overlay assertion
@@ -115,6 +122,7 @@ difference is what lies underneath: a force read re-reads Hebrew that
 exists; a suggestion fills where Hebrew is missing. One display grammar,
 two type labels.
 
+<<<<<<< HEAD
 **RULED 2026-08-28 (owner, in the website lane's chat): "id say either keep
 them in the drawer or a level hidden."** Y wins the surface. Suggestions are
 stored everywhere (disagreement between a stored suggestion and a witnessed
@@ -124,6 +132,17 @@ stands, a coexisting guess folds one level down — a drawer that names what
 it holds before it opens, never a second title on the masthead. Implemented
 and gated the same day on the website lane (check-suggested-title-v1, 11
 assertions: open register, drawer, fold-away, witness keeps the surface).
+=======
+**Open (pending the owner alone — both lanes agree):** whether suggestions
+run over every node or only where Y is empty. Corpus recommendation, which
+the website lane concurs with (2026-08-28, its display already built and
+gated): generate and store everywhere — disagreement between a stored
+suggestion and a witnessed title is audit signal for Y's checker — but
+display only where Y has no binding; Y wins the surface. Data kept, clutter
+avoided. If adopted, the four states stay a partition of the DISPLAY
+surface: a stored suggestion beneath a Y binding is Y-checker audit input,
+never a second state.
+>>>>>>> 121528e (FRAME v1.17 (audit repairs: header version, X fifth cell + artifact, COMPcell idea, Z need state, N/R shipped status, body coverage caveat, two-absences reconciliation, prospective new-Z law, totality domain) + rights binding landed on-channel: rights/active-rights-resolution-v2 with seal, re-verified vs staging seal 4/4)
 
 ## The Retirement Doctrine (owner + construction, 2026-08-27)
 
