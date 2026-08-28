@@ -100,6 +100,27 @@ indistinguishability the frame outlaws. Precedent: old Z was already
 trinary — retained rows (on), removed rows with receipted rationale (off),
 and a declared unlisted_source_policy governing the missing state.
 
+**Y and Z are jointly total (owner, 2026-08-27):** Z rules on any C0
+including the lack thereof — Y points to all the proven bindings, Z points
+to the complement (every refusal, every blank). Every C0 resolves to
+exactly one of: Y binding (display the witness) / Z ON (display the
+suggestion, suggestion register, provenance attached) / Z OFF (display
+nothing, decided) / Z MISSING (display nothing, pending). The website lane
+does one lookup and the surface answers both "what to show" and "why."
+
+**Same mechanism as force reads (owner, 2026-08-27):** a "commonly force
+read as" display and a suggested title are one move — an overlay assertion
+typed at its warrant, worn in a register visibly not the witness. The
+difference is what lies underneath: a force read re-reads Hebrew that
+exists; a suggestion fills where Hebrew is missing. One display grammar,
+two type labels.
+
+**Open (corpus-lane recommendation, pending owner):** whether suggestions
+run over every C0 or only where Y is empty. Recommendation: generate and
+store everywhere — disagreement between a stored suggestion and a witnessed
+title is audit signal for Y's checker — but display only where Y has no
+binding; Y wins the surface. Data kept, clutter avoided.
+
 ## The Retirement Doctrine (owner + construction, 2026-08-27)
 
 The final state is a clean active namespace, not fossilized ledgers — but no
