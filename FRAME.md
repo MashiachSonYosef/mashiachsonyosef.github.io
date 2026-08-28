@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v1.18 · 2026-08-27
+# THE FRAME · canonical review standard · v1.19 · 2026-08-27
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -114,6 +114,19 @@ lookup and the surface answers both "what to show" and "why." Two absences,
 two owners, no conflict: Y's typed N/A types the absence of a checker
 decision on an EXISTING C0 title binding; Z MISSING types the absence of
 examination where no binding exists at all.
+
+**The Sum Law (owner, 2026-08-28):** the totality generalizes past titles to
+ANY overlay surface (titles, folio/coordinate grids, whatever comes): Y-type
+checkers point at what C0 CONTAINS; Z points at what C0 LACKS; the census
+is only their SUM. Y alone shows a collection — the instances that made it
+into the text; completeness exists solely as Y + Z. Z is the one exception
+to "everything on a surface is C0": the single layer licensed to assert at
+absence. Warrant grades (sealed verified mapping vs machine-aligned guess)
+are typing WITHIN Z's complement, carried as provenance on its entries —
+they never escape the sum. Worked example, daf grids: folio markers a
+witness printed are C0 role-typed (the contained side); every folio
+boundary the text does not carry is a Z entry (the absent side); the whole
+citation grid is reachable only as the sum.
 
 **Same mechanism as force reads (owner, 2026-08-27):** a "commonly force
 read as" display and a suggested title are one move — an overlay assertion
