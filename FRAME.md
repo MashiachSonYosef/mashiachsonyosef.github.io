@@ -55,6 +55,14 @@ from every witness has no C0 to point at; supplying one means minting a TYPED
 editorial C0 occurrence with its own provenance — never disguising an
 editorial act as witness text.
 
+**No coverage mandate (owner, 2026-08-27):** the cardinality law runs one way —
+every C0 title gets a Y row; no node is required to HAVE a title. The title
+provenance ladder, each rung admitting what it is: (1) WITNESSED — the source
+wrote it, ordinary C0; (2) EDITORIAL — a human supplied it, typed editorial C0
+with provenance; (3) SUGGESTED — AI-filled, a separate suggestion layer that
+never enters C0 and displays its machine origin openly. Absence remains a
+lawful fourth state, typed, never papered over.
+
 ## The standing rule this document creates
 
 Shipping is reviewed **by frame, not by container**: a layer is either in the
