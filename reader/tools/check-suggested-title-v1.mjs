@@ -109,6 +109,57 @@ await p.goto(`${B}/${served}`, { waitUntil: "networkidle" });
 const none = await p.evaluate(() => !!document.querySelector("#workTitle .t-sug"));
 check("a zone carrying no suggestion prints no guess", !none);
 
+// 3 · a guess coexisting with a witnessed title — the owner's ruling,
+// 2026-08-28: "either keep them in the drawer or a level hidden." The
+// surface is the witness's; the guess folds one level down and opens only
+// on a press that names what it holds.
+const FIX2 = join(FIXDIR, "fixture-sug-wit-v1.bin");
+const SLUG2 = "fixture-sug-wit-v1";
+const zf2 = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${served}.bin`))).toString("utf8"));
+zf2.title_suggestion = SUG;
+// a witnessed title, cut from the zone's own first words — real surfaces,
+// real keys, nothing typed by this check
+const w0 = zf2.sections[0].words.find((w) => w.k || w.w);
+zf2.work_he_tokens = [w0.w ? { s: w0.s, k: w0.w[0].k } : { s: w0.s, k: w0.k }];
+zf2.work_he = w0.s;
+writeFileSync(FIX2, gzipSync(Buffer.from(JSON.stringify(zf2), "utf8")));
+const srv2 = createServer((req, res) => {
+  const p2 = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "").replace(/\\/g, "/");
+  const path = p2 === `/data/zones/${SLUG2}.bin` ? FIX2 : join(K3, p2);
+  try {
+    const body = readFileSync(path);
+    res.writeHead(200, { "content-type": TYPES[extname(path)] || "application/octet-stream" });
+    res.end(body);
+  } catch { res.writeHead(404); res.end("no"); }
+});
+await new Promise((r) => srv2.listen(0, "127.0.0.1", r));
+await p.goto(`http://127.0.0.1:${srv2.address().port}/zone.html?b=${SLUG2}&fixture=1`, { waitUntil: "networkidle" });
+await p.waitForSelector("#workTitle .sug-fold", { timeout: 15000 }).catch(() => {});
+const drawer = await p.evaluate(async () => {
+  const openLine = !!document.querySelector("#workTitle .t-sug");
+  const fold = document.querySelector("#workTitle .sug-fold");
+  if (!fold) return { fold: false, openLine };
+  const label = fold.textContent;
+  fold.click();
+  await new Promise((r) => setTimeout(r, 150));
+  const after = document.querySelector("#workTitle .t-sug");
+  const shown = after ? after.textContent : "";
+  fold.click();
+  await new Promise((r) => setTimeout(r, 150));
+  const closed = !document.querySelector("#workTitle .t-sug");
+  return { fold: true, openLine, label, shown, closed,
+           witnessShown: !!document.querySelector("#workTitle .he-t .wb") };
+});
+check("beside a witnessed title, no guess stands on the surface", drawer.fold && !drawer.openLine);
+check("the drawer names what it holds before it opens",
+  drawer.fold && /machine's guess/.test(drawer.label || ""), drawer.label || "");
+check("pressed, it reads the same ruled sentence",
+  /guesses the title is/.test(drawer.shown || "") && /not witnessed by this work/.test(drawer.shown || ""),
+  (drawer.shown || "").slice(0, 80));
+check("pressed again, it folds away and the witness keeps the surface",
+  drawer.closed && drawer.witnessShown);
+srv2.close();
+
 await b.close(); srv.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);
