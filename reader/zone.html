@@ -1660,8 +1660,12 @@
     // said, and named no obligation while sitting in a list of them. What is
     // true is narrower: the token is there, and what it obliges is not written
     // in anything this reader holds.
-    if (/ALLOW_WITH_OBLIGATIONS/.test(posture || "") && !obligations.length)
-      obligations.push(`The rights record carries the posture ${posture} and no license family this reader can read. What that posture obliges is not written in anything held here; the record linked below is where it is written.`);
+    // Any gated posture, not one typed token: the canonical rights resolution
+    // speaks its own vocabulary (ALLOW_WITH_PROVENANCE_GATE arrived with it),
+    // and this page honors whatever gate the record names without pretending
+    // to read its terms.
+    if (posture && posture !== "ALLOW" && !obligations.length)
+      obligations.push(`The rights record carries the posture ${posture}. What that posture obliges is not written in anything held here; the record linked below is where it is written.`);
     return { receipt, family, posture, links, obligations, attribution: rec.attribution || zone.byline || "", raw: per };
   };
 

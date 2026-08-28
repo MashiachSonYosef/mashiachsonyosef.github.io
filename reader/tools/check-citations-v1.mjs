@@ -107,7 +107,10 @@ check("the Hebrew has an entry of its own", B.entries.has("H") && /CC-|PUBLIC|LI
   const H = B.entries.get("H");
   const head = H?.head || "";
   const obl = H?.obligations || [];
-  const freely = /PUBLIC_DOMAIN|\bCC0\b/i.test(head) && !/ALLOW_WITH_OBLIGATIONS/i.test(head);
+  // any gated posture counts, not one typed token — the rights vocabulary is
+  // the record's own (ALLOW_WITH_PROVENANCE_GATE joined it with the canonical
+  // resolution) and a gate of any name must show what the page says about it
+  const freely = /PUBLIC_DOMAIN|\bCC0\b/i.test(head) && !/ALLOW_WITH_[A-Z_]+/i.test(head);
   check("the Hebrew entry's obligations agree with its licence",
     freely ? obl.length === 0 : obl.length > 0,
     freely ? `${head.slice(0, 34)} · ${obl.length} obligation(s), expected none`

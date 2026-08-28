@@ -111,7 +111,13 @@ for (const [work, e] of works) {
   try {
     execFileSync("node", [join(HERE, "serve-from-body-v1.mjs"), "--work", work, "--body", BODY,
       "--bridge", BRIDGE, "--binding", BINDING, "--out", serveOut], { stdio: "pipe" });
-  } catch (err) { mark(work, e, "HOLD", "SERVE", String(err.stderr || err.message).trim().split("\n")[0].slice(0, 160)); continue; }
+  } catch (err) {
+    const reason = String(err.stderr || err.message).trim().split("\n")[0].slice(0, 160);
+    // a refusal the rights record made is the RIGHTS stage speaking, even
+    // though the adapter is where it spoke
+    mark(work, e, "HOLD", reason.startsWith("RIGHTS_") ? "RIGHTS" : "SERVE", reason);
+    continue;
+  }
   try {
     const zoneArgs = ["--serve", serveOut, "--bridge", BRIDGE, "--store", join(K3, "data", "route-store"),
       "--work", work, "--title", slug.replace(/[-_]+/g, " "), "--title-from-c0",

@@ -16,8 +16,11 @@
 // this lane re-hashed the shards against.
 //
 // Rights sources, in order of dignity:
-//   --binding <dir>    the terminal binding composite (not yet in custody;
-//                      the join lands here the day it ships)
+//   --binding <dir>    the canonical current N — active-rights-resolution-v2
+//                      (work → rights_profile_id → 9-profile catalog), shipped
+//                      by the corpus lane on the owner's word and verified on
+//                      this side against its SHA256SUMS and the bridge census.
+//                      Fail-closed: no row, or an unresolved row, serves nothing
 //   --rights-fixture <json> + --fixture   an instrument: rights copied from a
 //                      declared record for an end-to-end proof, allowed ONLY
 //                      with --fixture, which brands the provenance so no gate
@@ -44,14 +47,80 @@ const BRIDGE = arg("bridge") || die("MISSING_ARG", "--bridge");
 const OUT = arg("out") || die("MISSING_ARG", "--out");
 const RULE = "serve-from-body-rule-v1-the-verified-body-is-the-text-the-binding-is-the-rights";
 
+const csvSplit = (line) => {
+  // quoted fields carry commas (capture URLs, provider assertions); a real
+  // RFC-4180 walk, minimal
+  const outF = []; let cur = "", q = false;
+  for (let i = 0; i < line.length; i += 1) {
+    const c = line[i];
+    if (q) { if (c === '"') { if (line[i + 1] === '"') { cur += '"'; i += 1; } else q = false; } else cur += c; }
+    else if (c === '"') q = true;
+    else if (c === ",") { outF.push(cur); cur = ""; }
+    else cur += c;
+  }
+  outF.push(cur);
+  return outF;
+};
+const readCsv = (path) => {
+  const lines = readFileSync(path, "utf8").trim().split("\n");
+  const col = csvSplit(lines[0]);
+  return lines.slice(1).map((l) => Object.fromEntries(csvSplit(l).map((v, i) => [col[i], v])));
+};
+
 // ---- rights: refuse before reading a single row of text -------------------
 let rightsOf = null;   // (row) => rights fields, or null meaning "not in custody"
 let rightsProvenance = null;
+let bindingScope = null; // the binding's own claim of extent, verified against the serve at the end
 if (arg("binding")) {
-  // The binding composite join lands here when the files ship. Refusing now
-  // is honest: pretending to read a binding this machine does not hold would
-  // be the exact invention the rule exists to refuse.
-  die("BINDING_JOIN_NOT_YET_BUILT", "the binding composite is not yet in custody; this join is written the day it ships");
+  // The canonical current N: active-rights-resolution-v2, shipped by the
+  // corpus lane on the owner's word (staging 706d122, verified 245/245
+  // against SHA256SUMS-n-and-rights.txt, then counter-verified on this side:
+  // one row per work, c0 ranges byte-equal to the bridge's own aggregates).
+  // work → rights_profile_id → the 9-profile catalog in the same shipment.
+  // Fail-closed is the shipment's own law and this join keeps it: a work the
+  // resolution does not carry, or carries unresolved, serves nothing.
+  const dir = arg("binding");
+  const bindsPath = join(dir, "representation-rights-bindings-v2.csv");
+  const profsPath = join(dir, "rights-profiles-v2.csv");
+  if (!existsSync(bindsPath) || !existsSync(profsPath))
+    die("BINDING_FILES_MISSING", `${dir} does not carry representation-rights-bindings-v2.csv + rights-profiles-v2.csv`);
+  const b = readCsv(bindsPath).find((r) => r.work_id === WORK);
+  if (!b) die("RIGHTS_NOT_IN_CUSTODY",
+    `the canonical rights resolution carries no row for ${WORK}; fail-closed, nothing serves`);
+  if (b.rights_state !== "RESOLVED")
+    die("RIGHTS_HOLD_UNRESOLVED",
+      `the canonical rights resolution holds ${WORK} fail-closed: rights_state=${b.rights_state}`);
+  const p = readCsv(profsPath).find((r) => r.rights_profile_id === b.rights_profile_id);
+  if (!p) die("RIGHTS_PROFILE_MISSING", b.rights_profile_id);
+  // the profile's own vocabulary, verbatim — nothing translated here
+  const rights = {
+    reader_display_axis: p.reader_display_state,
+    public_distribution_axis: p.public_distribution_state,
+    attribution_required: p.attribution_required,
+    noncommercial_required: p.noncommercial_required,
+    share_alike_required: p.share_alike_required,
+    no_derivatives_required: p.no_derivatives_required,
+    normalized_license_class: p.normalized_license_class,
+    license_version: p.license_version,
+    terminal_resolution_state: p.rights_state,
+  };
+  rightsOf = () => rights;
+  bindingScope = {
+    first: Number(b.first_c0_numeric_id),
+    last: Number(b.last_c0_numeric_id),
+    rows: Number(b.c0_rows),
+  };
+  rightsProvenance = {
+    source: "ACTIVE_RIGHTS_RESOLUTION_V2__CANONICAL_CURRENT",
+    bindings_sha256: createHash("sha256").update(readFileSync(bindsPath)).digest("hex"),
+    profiles_sha256: createHash("sha256").update(readFileSync(profsPath)).digest("hex"),
+    rights_profile_id: b.rights_profile_id,
+    normalized_license_id: p.normalized_license_id,
+    commercial_use_state: p.commercial_use_state,
+    authority_record_id: b.authority_record_id,
+    binding_scope: bindingScope,
+    note: "rights bind to the exact representation, never the abstract work; profile fields carried verbatim in the resolution's own vocabulary",
+  };
 } else if (arg("rights-fixture")) {
   if (!has("fixture")) die("FIXTURE_RIGHTS_REQUIRE_FIXTURE_FLAG",
     "an instrument rights source is only lawful in an output branded as an instrument");
@@ -125,20 +194,6 @@ await wr({
 });
 
 let rows = 0, lastId = -1, lastUnit = null, ordinal = 0;
-const csvSplit = (line) => {
-  // the body quotes fields that carry commas (capture URLs do); a real
-  // RFC-4180 walk, minimal
-  const outF = []; let cur = "", q = false;
-  for (let i = 0; i < line.length; i += 1) {
-    const c = line[i];
-    if (q) { if (c === '"') { if (line[i + 1] === '"') { cur += '"'; i += 1; } else q = false; } else cur += c; }
-    else if (c === '"') q = true;
-    else if (c === ",") { outF.push(cur); cur = ""; }
-    else cur += c;
-  }
-  outF.push(cur);
-  return outF;
-};
 for (const sh of shards) {
   const path = join(BODY, "shards", sh.file);
   if (!existsSync(path)) die("SHARD_MISSING", sh.file);
@@ -182,4 +237,9 @@ for (const sh of shards) {
 }
 await new Promise((r) => out.end(r));
 if (!rows) die("WORK_EMPTY_IN_BODY", WORK);
+// The binding names its own extent; a serve that read more or less than the
+// binding covers is serving rows the rights record never spoke for.
+if (bindingScope && (rows !== bindingScope.rows || wMin !== bindingScope.first || wMax !== bindingScope.last))
+  die("RIGHTS_SCOPE_MISMATCH",
+    `binding covers c0 ${bindingScope.first}-${bindingScope.last} (${bindingScope.rows} rows); served c0 ${wMin}-${wMax} (${rows} rows)`);
 console.log(`${OUT}: ${rows.toLocaleString()} rows · ${wUnits} units · c0 ${wMin}-${wMax}${has("fixture") ? " · FIXTURE (never servable)" : ""}`);

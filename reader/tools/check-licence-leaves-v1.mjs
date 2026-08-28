@@ -77,8 +77,11 @@ for (const [nth, kind] of [[1, "hebrew"], [2, "english"], [3, "both"]]) {
   // licence link to point at. What is required is that the file and the work
   // agree — the same rule check-citations was corrected to on 2026-08-23.
   const declared = (text.match(/Hebrew text \[H\] · license: (.+)/) || [])[1] || "";
-  const obliged = /ALLOW_WITH_OBLIGATIONS/.test(declared) ||
-                  /\bNC\b|NONCOMMERCIAL/i.test(declared);
+  // Noncommercial-ness reads from the licence family, never from the posture
+  // token: the posture vocabulary is the rights record's own and grew a new
+  // member (ALLOW_WITH_PROVENANCE_GATE) with the canonical resolution — a
+  // provenance gate is not a noncommercial clause and must not demand one.
+  const obliged = /\bNC\b|NONCOMMERCIAL/i.test(declared);
   const hasFamily = /Hebrew text \[H\] · license: \S/.test(text);
   const hasNC = obliged ? /Noncommercial use only/.test(text) : true;
   const hasLink = /Hebrew text \[H\] · License family/.test(text);
