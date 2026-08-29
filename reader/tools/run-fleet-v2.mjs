@@ -111,9 +111,14 @@ try {
     "--out", join(K3, "build", ".fleet-curated-plan.json"),
     "--tsv", join(K3, "build", ".fleet-curated-plan.tsv")], { cwd: K3, stdio: "pipe" });
 } catch { /* the plan tool exits nonzero when works are unplanned; what it planned is still written */ }
+// An empty plan is a fact the run must say out loud: pass 3 ran with a
+// silently failed plan derivation and stamped slug titles over the curated
+// works — the derived check caught it a suite later than it should have.
+
 if (existsSync(join(K3, "build", ".fleet-curated-plan.json")))
   planned = new Map(JSON.parse(readFileSync(join(K3, "build", ".fleet-curated-plan.json"), "utf8"))
     .works.map((w) => [w.work_id, w]));
+console.error(`curated plan: ${planned.size} works carry plan parameters${planned.size === 0 ? " — NONE PLANNED; slug-derived titles will stamp everything" : ""}`);
 const run = (cmd, args) => new Promise((resolve, reject) => {
   execFile(cmd, args, { maxBuffer: 16 * 1024 * 1024 }, (err, stdout, stderr) =>
     err ? reject(Object.assign(err, { stderr })) : resolve(stdout));

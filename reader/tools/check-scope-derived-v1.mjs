@@ -79,8 +79,11 @@ for (const f of allTools) {
   // examines nothing, which is how check-provider-characters-v1 came to run
   // its assertions over an empty list.
   const found = new Set();
-  for (const m of code.matchAll(/[?&]b=([a-z0-9-]+)/g)) found.add(`?b=${m[1]}`);
-  for (const m of code.matchAll(/data\/zones\/([a-z0-9-]+)\.bin/g)) found.add(`data/zones/${m[1]}.bin`);
+  // a fixture-… reference is an instrument a check builds and serves itself,
+  // not a work whose name could go stale — the same convention zonesOnDisk
+  // already excludes
+  for (const m of code.matchAll(/[?&]b=([a-z0-9-]+)/g)) { if (!m[1].startsWith("fixture-")) found.add(`?b=${m[1]}`); }
+  for (const m of code.matchAll(/data\/zones\/([a-z0-9-]+)\.bin/g)) { if (!m[1].startsWith("fixture-")) found.add(`data/zones/${m[1]}.bin`); }
   for (const m of code.matchAll(/\/\^\(([a-z0-9|-]+)\)\\\.bin\$\//g)) found.add(`filter:${m[1]}`);
   // The fourth way, and the one that defeated the three above: the slug in
   // quotes, reaching the page through a template. Two checks looped over

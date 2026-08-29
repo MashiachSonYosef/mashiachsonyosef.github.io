@@ -193,9 +193,15 @@ for (const w of words) {
         (marks(rk) === 0 && r_atoms > 1 ? " — the maqaf was fused out of the key" : ""));
     }
 
-    // ---- L5 : W and K are 1:1 -----------------------------------------
+    // ---- L5 : every W carries exactly one key -------------------------
+    // The 1:1 law's other half — "no two W share a key" — was written before
+    // the shelf met לך־לך, where two POSITIONALLY DISTINCT atoms fold to the
+    // same key lawfully: the text repeats a word across its own maqaf. What
+    // the old refusal actually guarded (a build duplicating a lattice cell)
+    // is guarded exactly by L4's multiset reconstruction above, which counts
+    // repeats. So L5 keeps only the half that is always true: a W without a
+    // key is not a W.
     if (!rk) refuse("L5", `${w.unit} "${surface}"`, `W "${rs}" carries no key`);
-    else if (keys.has(rk)) refuse("L5", `${w.unit} "${surface}"`, `key "${rk}" is carried by more than one W`);
     keys.add(rk);
   }
 }

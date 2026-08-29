@@ -32,6 +32,7 @@ import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { exactK } from "./k-normalization-v1.mjs";
+import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -141,7 +142,15 @@ if (zone) {
 }
 
 // ---- the refusal half: a Latin id claims nothing --------------------------
-const latin = Object.keys(openings).filter((w) => idTokensOf(w).every((s) => !exactK(s))).sort();
+// A Latin-id work that parses is proven by the shelf itself: the fleet has
+// already built it. The openings survey in id order fronts forty ari and
+// chasidut works whose unit-id shapes do not parse, and a coordinate hold is
+// that work's own story, not this check's subject — so works standing on
+// disk go first, and the rest stay behind them as fallback.
+const onDisk = new Set(zonesOnDisk(join(K3, "data", "zones")));
+const latinAll = Object.keys(openings).filter((w) => idTokensOf(w).every((s) => !exactK(s))).sort();
+const latin = [...latinAll.filter((w) => onDisk.has(w.split("/").pop())),
+               ...latinAll.filter((w) => !onDisk.has(w.split("/").pop()))];
 let zone2 = null, work2 = null;
 for (const w of latin.slice(0, 40)) {
   const nd = join(OUT, "refused.ndjson"), bin = join(OUT, "refused.bin");

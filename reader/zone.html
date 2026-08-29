@@ -1998,6 +1998,7 @@
     // once left a phone with the source standing on no record at all. After
     // the record, the provenance line, the one thing on the card nobody
     // presses.
+    const cap = window.innerHeight >= 660 ? 3 : window.innerHeight >= 480 ? 2 : 1;
     const floors = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
     if (floors > rowsEl.clientHeight && dSlot) {
       const foot = hud.querySelector(".d-foot");
@@ -2014,38 +2015,92 @@
     // so a share worked out from one measurement is a share of a card that no
     // longer exists. Three passes settle it; each one measures the layout the
     // last one produced.
-    const cap = window.innerHeight >= 660 ? 3 : window.innerHeight >= 480 ? 2 : 1;
     let room = 0, take = bands.map(() => 1);
-    for (let pass = 0; pass < 3; pass += 1) {
-      room = rowsEl.clientHeight;
-      take = bands.map(() => 1);
-      let used = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
-      const grow = (i, limit) => {
-        const x = bands[i];
-        while (take[i] < Math.min(limit, x.rows.length)) {
-          const more = x.rows[take[i]].bottom - x.rows[take[i] - 1].bottom;
-          if (used + more > room) return;
-          used += more; take[i] += 1;
+    const handOut = () => {
+      for (const x of bands) { x.box.style.height = ""; x.box.style.maxHeight = ""; }
+      for (const x of bands) { const r = rowsOf(x.box); if (r.length) x.rows = r; }
+      for (let pass = 0; pass < 3; pass += 1) {
+        room = rowsEl.clientHeight;
+        take = bands.map(() => 1);
+        let used = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
+        const grow = (i, limit) => {
+          const x = bands[i];
+          while (take[i] < Math.min(limit, x.rows.length)) {
+            const more = x.rows[take[i]].bottom - x.rows[take[i] - 1].bottom;
+            if (used + more > room) return;
+            used += more; take[i] += 1;
+          }
+        };
+        bands.forEach((x, i) => { if (x.box !== read) grow(i, cap); });
+        bands.forEach((x, i) => { if (x.box === read) grow(i, x.rows.length); });
+        bands.forEach((x, i) => {
+          const px = `${Math.ceil(x.rows[take[i] - 1].bottom)}px`;
+          x.box.style.height = px; x.box.style.maxHeight = px;
+        });
+        // the boundaries move when a box's height changes — a scrollbar comes
+        // or goes, the width changes, the pills wrap differently
+        for (const x of bands) {
+          const settled = rowsOf(x.box);
+          if (settled.length) x.rows = settled;
         }
-      };
-      bands.forEach((x, i) => { if (x.box !== read) grow(i, cap); });
-      bands.forEach((x, i) => { if (x.box === read) grow(i, x.rows.length); });
-      bands.forEach((x, i) => {
-        const px = `${Math.ceil(x.rows[take[i] - 1].bottom)}px`;
-        x.box.style.height = px; x.box.style.maxHeight = px;
-      });
-      // the boundaries move when a box's height changes — a scrollbar comes or
-      // goes, the width changes, the pills wrap differently
-      for (const x of bands) {
-        const settled = rowsOf(x.box);
-        if (settled.length) x.rows = settled;
+      }
+    };
+    handOut();
+    // A structural band's share is the whole of it, up to the window's cap —
+    // and the measured room can lie high about whether it fits. At measure
+    // time the unfitted bands are at their natural height, the card is hard
+    // against its cap, and the provenance line is crushed to nothing; the
+    // arithmetic sees its space as free. Then whole rows are assigned, the
+    // card comes off its cap, the line re-inflates — and takes a division
+    // row back. So the outcome is what gets checked, not the estimate, and
+    // when a band ended short of its share the yielders yield in the card's
+    // own order: the record down to its floor — never the source line — and
+    // after the record, the provenance line. Each yield is followed by a
+    // fresh handout against the layout it actually produced.
+    const owedShort = () => bands.some((x, i) => x.box !== read && take[i] < Math.min(cap, x.rows.length));
+    if (owedShort() && dSlot && !dSlot.classList.contains("whole")) {
+      const foot = hud.querySelector(".d-foot");
+      const dLine = parseFloat(getComputedStyle(hud.querySelector(".d-text") || dSlot).lineHeight) || 26;
+      const floor = (foot ? foot.offsetHeight : 0) + Math.ceil(dLine * 3);
+      const shares = bands.reduce((n, x) => n + x.chrome
+        + x.rows[Math.min(x.box === read ? 1 : cap, x.rows.length) - 1].bottom, 0);
+      const give = Math.min(Math.ceil(shares - rowsEl.clientHeight), Math.max(0, dSlot.clientHeight - floor));
+      if (give > 0) { dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`; handOut(); }
+    }
+    if (owedShort() && prov && prov.offsetHeight) { prov.hidden = true; handOut(); }
+    // The record's floor, held against the laid-out foot. The stylesheet caps
+    // the slot at a length written for a one-row source line, but the M is as
+    // tall as its own chips: a licence whose names wrap takes three rows of
+    // foot, and under the cap the record stood fourteen pixels tall above
+    // it — the source standing on a sliver. Only the laid-out card knows the
+    // foot's real height, so the floor binds here: a line of record above
+    // the source on a squashed window, two where the window affords them,
+    // and never more than the slack the card actually has — a band's row is
+    // not the record's to take.
+    let floorMet = true;
+    const dBody = hud.querySelector(".d-card .d-body");
+    const dFoot = hud.querySelector(".d-card .d-foot");
+    if (dSlot && dBody && dFoot && !dSlot.classList.contains("whole")) {
+      const lineH = parseFloat(getComputedStyle(hud.querySelector(".d-text") || dBody).lineHeight) || 26;
+      const sr = dSlot.getBoundingClientRect(), br = dBody.getBoundingClientRect();
+      const seen = Math.min(br.bottom, dFoot.getBoundingClientRect().top) - Math.max(br.top, sr.top);
+      const afford = window.innerHeight >= 660 ? 2 : 1;
+      const oweD = Math.min(Math.ceil(lineH * afford), dBody.scrollHeight);
+      if (seen < oweD) {
+        const capH = parseFloat(getComputedStyle(hud).maxHeight);
+        const slack = Math.max(0, Math.floor(Math.min(
+          Number.isFinite(capH) ? capH : Infinity,
+          window.innerHeight - 16) - hud.offsetHeight));
+        const raise = Math.min(Math.ceil(oweD - seen), slack);
+        if (raise > 0) dSlot.style.maxHeight = `${dSlot.clientHeight + raise}px`;
+        floorMet = raise >= Math.ceil(oweD - seen);
       }
     }
     // did every band end up with the row it is owed, in the space it actually
     // has? The caller decides what to do about it — there is nothing left here
     // to take it out of.
     const stands = bands.reduce((n, x) => n + x.el.offsetHeight, 0);
-    return stands <= rowsEl.clientHeight + 1;
+    return floorMet && stands <= rowsEl.clientHeight + 1;
   };
 
   const placeInBounds = () => {
@@ -2783,6 +2838,9 @@
             say(); clampHud();
           });
           foot.append(grow);
+          // the control just made the foot a row taller, after the card was
+          // fitted — refit, or the row it took comes out of the record
+          clampHud();
         });
         // P · the grouper for M, when two M report the exact same D.
         //
