@@ -306,6 +306,15 @@
      uses, sized down to chapter grain. The label column, the quiet slot and
      the force-read row match the masthead's forms so a reader learns the
      frame once. */
+  /* The frame is the page's voice, not the corpus's text: labels, registers,
+     locators, and absence sentences never ride along in a copy. The same law
+     that keeps a reading out of a copied Hebrew verse keeps "commonly force
+     read as" out of a drag that crosses a section head — the browser already
+     treats unselectable as not-selected, and the copy rewrite follows it.
+     The title words inside the frame stay selectable; they are text. */
+  .nh-lab, .nh-en, .nh-he.unnamed, .nh-of, .vlabel, .t-lab, .t-note, .t-sug,
+  .sug-fold, .en-t, header.top .lic-chip, .vnum, .toc-note, #meta, .byline
+    { user-select: none; -webkit-user-select: none; }
   .nh-row { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 0.15rem; }
   .nh-lab { flex: 0 0 auto; min-width: 7rem; font-size: 0.6rem; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--faint); }

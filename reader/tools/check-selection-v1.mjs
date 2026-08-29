@@ -35,6 +35,29 @@ p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 await p.goto(URL, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 
+// The copy laws are about verses a reader would copy — lines of text. A
+// fleet shelf carries zones whose sections hold one word each (poem shards,
+// dedication pages); on those, a triple-tap's 20-character floor and a
+// two-verse drag's geometry witness nothing but the zone's smallness, and
+// the drag can wander into the masthead. The verse is derived: the first
+// section pair where both hold at least four words. A zone with no such
+// pair offers no witness for these laws — the panel's larger zones carry
+// them — and this check says so instead of failing the smallness.
+const VERSE_IX = await p.evaluate(() => {
+  const secs = [...document.querySelectorAll("section.seg")];
+  for (let i = 0; i + 1 < secs.length; i += 1) {
+    const a = secs[i].querySelectorAll(".he-text .wb").length;
+    const c = secs[i + 1].querySelectorAll(".he-text .wb").length;
+    if (a >= 4 && c >= 4) return i;
+  }
+  return -1;
+});
+if (VERSE_IX < 0) {
+  console.log("SKIPPED — no adjacent pair of four-word verses on this zone; the copy laws are witnessed on the panel's larger zones");
+  await b.close();
+  process.exit(3);
+}
+
 const copyNow = async () => {
   // The clipboard is cleared to a sentinel first and read until it changes:
   // a fixed wait read whatever was there when the copy event ran late, and
@@ -76,8 +99,8 @@ const showing = async (nth = 0) => p.evaluate((i) => {
 
 // ---- the Hebrew reader copies Hebrew ---------------------------------
 {
-  const t = (await tripleVerse()).trim();
-  const dom = await showing();
+  const t = (await tripleVerse(VERSE_IX)).trim();
+  const dom = await showing(VERSE_IX);
   check("three taps on a verse copy the verse", t.length > 20, `${t.length} chars`);
   check("the Hebrew reader copies Hebrew", HE.test(t), t.slice(0, 42));
   check("no reading is zipped into it", !LAT.test(t),
@@ -132,6 +155,13 @@ const showing = async (nth = 0) => p.evaluate((i) => {
     await p.waitForTimeout(250);
     const ha = await secs[i].$(".he-text"), hb = await secs[i + 1].$(".he-text");
     if (!ha || !hb) continue;
+    // the same four-word law as the verse pick: a one-word dedication line
+    // witnesses nothing about verse-line copying
+    const [wa, wb2] = await p.evaluate((n) => {
+      const ss = document.querySelectorAll("section.seg");
+      return [ss[n].querySelectorAll(".he-text .wb").length, ss[n + 1].querySelectorAll(".he-text .wb").length];
+    }, i);
+    if (wa < 4 || wb2 < 4) continue;
     const xa = await ha.boundingBox(), xb = await hb.boundingBox();
     if (xa && xb && xa.y > 0 && xb.y + xb.height < 915) { pair = i; b1 = xa; b2 = xb; break; }
   }
@@ -163,9 +193,13 @@ const showing = async (nth = 0) => p.evaluate((i) => {
 // applying a technical restriction to licensed material, and every licence in
 // this corpus asks for attribution, not for lockdown.
 {
+  // anchored to the derived verse, not the page's first section — on a flat
+  // zone the first section is a one-word dedication and a drag from it
+  // witnesses nothing
+  const dragSec = (await p.$$("section.seg"))[VERSE_IX];
   const dragFrom = async (sel) => {
     await clearClip();
-    const el = await p.$(sel);
+    const el = await dragSec.$(sel);
     await el.scrollIntoViewIfNeeded();
     const bb = await el.boundingBox();
     // The drag ends ON the paragraph's own last word, not at a corner of its
@@ -177,7 +211,7 @@ const showing = async (nth = 0) => p.evaluate((i) => {
     // so "the last word" must mean the last word a finger could reach
     // without scrolling — a coordinate outside the viewport is not a
     // gesture at all.
-    const tail = await p.$$("section.seg .he-text:first-of-type .wb .w");
+    const tail = await dragSec.$$(".he-text .wb .w");
     let tb = null;
     for (const w of tail) {
       const cand = await w.boundingBox();
@@ -193,8 +227,8 @@ const showing = async (nth = 0) => p.evaluate((i) => {
   };
   // the first word that carries a reading: a bare word's gloss span is
   // empty, and a drag begun on nothing takes whatever stands beside it
-  const W = "section.seg .he-text .wb:has(.g:not(.bare)) .w";
-  const G = "section.seg .he-text .wb:has(.g:not(.bare)) .g";
+  const W = ".he-text .wb:has(.g:not(.bare)) .w";
+  const G = ".he-text .wb:has(.g:not(.bare)) .g";
   for (const [mode, btn] of [["the Hebrew reader", "#modeHe"], ["the English reader", "#modeEn"]]) {
     await p.click(btn); await p.waitForTimeout(300);
     const he = await dragFrom(W), en = await dragFrom(G);
@@ -210,8 +244,8 @@ await p.click("#modeEn");
 await p.waitForTimeout(350);
 {
   check("the page can be read in English", await p.evaluate(() => document.body.classList.contains("en")));
-  const t = (await tripleVerse()).trim();
-  const dom = await showing();
+  const t = (await tripleVerse(VERSE_IX)).trim();
+  const dom = await showing(VERSE_IX);
   check("the English reader copies English", LAT.test(t), t.slice(0, 42));
   check("no Hebrew is zipped into it", !HE.test(t),
     (t.match(/[֐-׿]+/g) || []).slice(0, 3).join(" | ") || "clean");
@@ -232,14 +266,14 @@ await p.waitForTimeout(350);
 // here. The readings cannot, being English words arranged in Hebrew's order.
 for (const [mode, btn, agree] of [["the Hebrew reader", "#modeHe", false], ["the English reader", "#modeEn", true]]) {
   await p.click(btn); await p.waitForTimeout(300);
-  const o = await p.evaluate(() => {
-    const s = document.querySelector("section.seg");
+  const o = await p.evaluate((ix) => {
+    const s = document.querySelectorAll("section.seg")[ix];
     const els = [...s.querySelectorAll(".he-text .wb .g")];
     const doc = els.map((e) => e.textContent.trim());
     const eye = els.map((e) => { const r = e.getBoundingClientRect(); return { t: e.textContent.trim(), y: Math.round(r.y / 14), x: r.x }; })
       .sort((a, b) => a.y - b.y || a.x - b.x).map((z) => z.t);
     return { doc, eye, agree: doc.join("|") === eye.join("|") };
-  });
+  }, VERSE_IX);
   check(`in ${mode}, the eye's order ${agree ? "agrees with the text's" : "does not — and the text's is what is copied"}`,
     o.agree === agree, `text starts "${o.doc[0]}", the eye meets "${o.eye[0]}" first`);
 }
