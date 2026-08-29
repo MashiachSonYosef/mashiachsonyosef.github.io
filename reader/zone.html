@@ -3760,14 +3760,24 @@
       // selector's provenance, and wears both: the license chip (the M's,
       // solid) and the selector chip (the model's, dashed). A bare guess is
       // a candidate in the store, never a sentence on the page.
+      // And the causeway stands on Hebrew or it does not stand — the
+      // owner's ruling, 2026-08-29, in his words: "there cant be an X
+      // justifying Z if there is no hebrew to source it from." A guess is a
+      // reading OF something: a suggestion that cannot name the work's own
+      // Hebrew it was read from has nothing under it — no source, no
+      // causeway, no display, however licensed the words it chose are. So
+      // the register also requires the Hebrew source, and a suggestion
+      // arriving without one is refused whole, license and model and all.
       const sug = zone.title_suggestion;
-      if (sug && sug.text && sug.model && sug.run && sug.date && sug.license && sug.m_label) {
+      if (sug && sug.text && sug.model && sug.run && sug.date && sug.license && sug.m_label
+          && sug.source_he && /[֐-׿]/u.test(String(sug.source_he))) {
         const sugLine = () => {
           const line = document.createElement("span"); line.className = "t-sug";
           const who = document.createElement("span"); who.className = "sug-chip";
           who.textContent = sug.model;
           who.title = `${sug.model} · run ${sug.run} · ${sug.date} — the selector, not the licensor. ` +
-            `The reading is a licensed route's own word; the machine only chose among words already licensed.`;
+            `The reading is a licensed route's own word; the machine only chose among words already licensed. ` +
+            `Read from the work's own Hebrew: ${sug.source_he}`;
           const lic = document.createElement("span"); lic.className = "lic-chip";
           lic.textContent = sug.license;
           lic.title = `${sug.m_label}${sug.m_year ? ` · ${sug.m_year}` : ""} — the licensed witness carrying this reading`;

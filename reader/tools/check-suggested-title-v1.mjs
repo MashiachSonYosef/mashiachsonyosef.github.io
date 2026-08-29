@@ -39,6 +39,13 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 
 // the fixture: a served zone, its own words untouched, a guess attached
 const served = zonesOnDisk()[0];
+// the Hebrew source the guess reads from — cut from the zone's own first
+// word, real surface, nothing typed. The owner's ruling (2026-08-29):
+// "there cant be an X justifying Z if there is no hebrew to source it
+// from" — a suggestion without its Hebrew source has no causeway and
+// never prints, however licensed its words.
+const zSrc = JSON.parse(gunzipSync(readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "data", "zones", `${served}.bin`))).toString("utf8"));
+const w0src = zSrc.sections[0].words.find((w) => w.s);
 const SUG = {
   text: "The Fixture Scroll",
   model: "fixture-model-1",
@@ -49,6 +56,7 @@ const SUG = {
   license: "TEST-LICENSE-1.0",
   m_label: "the fixture's instrument witness",
   m_year: "1900",
+  source_he: w0src.s,
 };
 const FIXDIR = join(K3, "build", "sug-fixture");
 mkdirSync(FIXDIR, { recursive: true });
@@ -114,6 +122,9 @@ check("the selector chip is the model's and says so — run and date ride on it"
 check("it stands under the bridge register, never as a claim",
   got.found && /recorded in the bridge as/.test(got.claimLabel) && got.bridgeNote,
   got.claimLabel);
+check("the selector's chip names the Hebrew the guess was read from",
+  got.found && got.chipTitle.includes(SUG.source_he),
+  (got.chipTitle || "").slice(-40));
 
 // 1b · a bare guess — no licensed route resolved — never prints: the store
 // may hold it as a candidate; the page may not say it
@@ -133,6 +144,29 @@ await p.waitForTimeout(1500);
 const bareShown = await p.evaluate(() => !!document.querySelector("#workTitle .t-sug"));
 check("a bare guess — no licensed route — never prints", !bareShown);
 srvB.close();
+
+// 1c · a guess with its license but no Hebrew source — the owner's ruling,
+// 2026-08-29: "there cant be an X justifying Z if there is no hebrew to
+// source it from." However licensed the words it chose, a suggestion that
+// names no Hebrew of the work it was read from has no causeway, and the
+// page refuses it whole.
+const FIXC = join(FIXDIR, "fixture-sug-nohe-v1.bin");
+const zc = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${served}.bin`))).toString("utf8"));
+zc.title_suggestion = { ...SUG };
+delete zc.title_suggestion.source_he;
+writeFileSync(FIXC, gzipSync(Buffer.from(JSON.stringify(zc), "utf8")));
+const srvC = createServer((req, res) => {
+  const pC = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "").replace(/\\/g, "/");
+  const path = pC === `/data/zones/fixture-sug-nohe-v1.bin` ? FIXC : join(K3, pC);
+  try { const body = readFileSync(path); res.writeHead(200, { "content-type": TYPES[extname(path)] || "application/octet-stream" }); res.end(body); }
+  catch { res.writeHead(404); res.end("no"); }
+});
+await new Promise((r) => srvC.listen(0, "127.0.0.1", r));
+await p.goto(`http://127.0.0.1:${srvC.address().port}/zone.html?b=fixture-sug-nohe-v1&fixture=1`, { waitUntil: "networkidle" });
+await p.waitForTimeout(1500);
+const noHeShown = await p.evaluate(() => !!document.querySelector("#workTitle .t-sug"));
+check("a licensed guess with no Hebrew source — no causeway — never prints", !noHeShown);
+srvC.close();
 
 // 2 · the same zone without a suggestion: the register does not exist
 await p.goto(`${B}/${served}`, { waitUntil: "networkidle" });
