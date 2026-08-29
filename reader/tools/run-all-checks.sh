@@ -13,13 +13,50 @@ cd "$(dirname "$0")/.." || exit 1
 if [ -n "$1" ]; then
   ZONES=("$1")
 else
+  # The fleet-scale form of the sweep law. "Every URL check against every
+  # work" was written for a two-zone shelf; at thousands of zones it is a
+  # multi-week suite, which is a suite that never reports. What actually
+  # varies per zone is already covered without a browser: every bin's bytes
+  # are hashed against the store's pins on every run. What the browser
+  # checks verify is the reader's behavior — one codebase — so the sweep
+  # walks every SHAPE the shelf carries rather than every instance: each
+  # coordinate shape, a titled and an untitled zone, a Hebrew-id and a
+  # Latin-id slug, the largest and the smallest bin, and the shelf's first
+  # and last in sort order. Derived, never typed; deduped; the panel grows
+  # by itself the day a new shape appears.
   mapfile -t SLUGS < <(node -e '
-    import("./tools/zones-on-disk-v1.mjs").then(m => m.zonesOnDisk().forEach(z => console.log(z)))' 2>/dev/null)
+    const { readFileSync, readdirSync, statSync } = await import("node:fs");
+    const { gunzipSync } = await import("node:zlib");
+    const { zonesOnDisk } = await import("./tools/zones-on-disk-v1.mjs");
+    const all = zonesOnDisk();
+    const pick = new Map(); // reason -> slug (first match wins, sorted order)
+    const sizes = all.map((z) => [z, statSync(`data/zones/${z}.bin`).size]);
+    pick.set("first", all[0]);
+    pick.set("last", all[all.length - 1]);
+    pick.set("largest", sizes.reduce((a, c) => (c[1] > a[1] ? c : a))[0]);
+    pick.set("smallest", sizes.reduce((a, c) => (c[1] < a[1] ? c : a))[0]);
+    for (const z of all) {
+      const needTitle = !pick.has("titled"), needBare = !pick.has("untitled");
+      const needFlat = !pick.has("flat"), needNested = !pick.has("nested");
+      const needHe = !pick.has("hebrew-id"), needLat = !pick.has("latin-id");
+      if (!(needTitle || needBare || needFlat || needNested || needHe || needLat)) break;
+      const zz = JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.bin`)).toString("utf8"));
+      const shape = String((zz.emitted_from || {}).coordinate_shape || "");
+      if (needFlat && shape.startsWith("SEALED_UNIT_SEQUENCE")) pick.set("flat", z);
+      if (needNested && shape.startsWith("CHAPTER_SECTION")) pick.set("nested", z);
+      if (needTitle && (zz.work_he_tokens || []).some((t) => t.k)) pick.set("titled", z);
+      if (needBare && !(zz.work_he_tokens || []).length) pick.set("untitled", z);
+      if (needHe && /[֐-׿]/.test(z)) pick.set("hebrew-id", z);
+      if (needLat && !/[֐-׿]/.test(z)) pick.set("latin-id", z);
+    }
+    for (const z of new Set(pick.values())) console.log(z);
+  ' --input-type=module 2>/dev/null)
   if [ "${#SLUGS[@]}" -eq 0 ]; then
     echo "no zone on disk — refusing to run a suite against nothing"; exit 2
   fi
   ZONES=()
   for z in "${SLUGS[@]}"; do ZONES+=("http://127.0.0.1:8899/zone.html?b=$z"); done
+  echo "shape panel: ${SLUGS[*]}"
 fi
 
 # The plan the no-URL checks read is derived and gitignored: a fresh checkout
