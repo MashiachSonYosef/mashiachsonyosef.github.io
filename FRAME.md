@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v2.2 · 2026-08-29 — the letters reassigned
+# THE FRAME · canonical review standard · v2.3 · 2026-08-29 — the letters reassigned
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -146,19 +146,23 @@ The four display states remain a partition of the surface: the drawer's
 folded guess beneath a witnessed title is storage and Y-checker audit
 input, never a second display state.
 
-**Z expanded to every title node + the display gate (owner, 2026-08-29):**
-Z runs over EVERY title node — book, part, chapter, section — one forced
-English reading per node, machine-selected. The gate: EVEN Z CANNOT SHOW
-WITHOUT M. Fill Z internally without limit (bare guesses stored as
-candidates), but display requires resolving through X to an existing
-route — at least one licensed M witness, full R-pill fan-out preferred.
-With this, no layer anywhere authors English: Y's force-read and Z's
-suggestion are both selections of existing licensed routes; the only
-differences are the selector (human vs machine) and the register worn.
-The liturgy error becomes impossible by construction. Display tiers: the
-TOC wears the one forced reading in a uniform machine-selected-but-licensed
-register for usability; inside the section, the full HUD-able testimony —
-lattice, pills, every witness cycleable.
+**The partition and the projection (owner + construction, 2026-08-29 — supersedes "Z over every node"):**
+Y = nodes whose title is present in C0. Z = nodes whose title is absent
+from C0. Y ∪ Z = every title-bearing node, disjoint — the Sum Law's
+partition, kept. Z never carries a row for a node Y covers; a duplicate Z
+row per existing C0 title would make Z a shadow ledger, not a complement.
+The uniform surface is a DERIVED TITLE-DISPLAY PROJECTION presenting Y and
+Z identically across the site: for a Y node, English derives from its
+selected R pill's licensed M fan-out; for a Z node, the stored suggestion
+displays only when X resolves it to at least one licensed M (full fan-out
+preferred); a Z suggestion with no matching M stays internal and hidden.
+"Commonly force read as" is the projection's derived DISPLAY FIELD — not a
+second competing ledger. Machine guesses coexisting with a witnessed title
+(the drawer, the Y-checker audit signal) are projection/audit data, never Z
+rows. The gate stands: NOTHING SHOWS WITHOUT M. Display tiers stand: the
+TOC wears the projection's one reading per node, uniform, for usability;
+inside the section, the full HUD-able testimony — lattice, pills, every
+witness cycleable.
 
 **One forced-reading layer (owner, 2026-08-29, v2.2): commonly_force_read_as
 is RETIRED into Z.** Y returns to pure pointer and checker — it points,
