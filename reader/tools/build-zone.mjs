@@ -133,6 +133,29 @@ for (const unit of servedUnits) {
     `${leaked} surfaces carry literal markup (e.g. ${example}); the work holds until the corpus lane reissues a clean stream`);
 }
 
+// ---- 4a2. raw variant sites stand on the review's record ------------------
+// The kq review's law at build grain, so a fleet pass cannot re-seat what
+// the suite would refuse: a parenthesis-wrapped run of corpus script outside
+// a kq pair is an apparatus site, and it ships only where the standing
+// record (data/variant-sites-standing-v1.json) reviews it — the same record
+// that reviews the two standing targum sites. An unreviewed site holds the
+// work by name for the corpus lane's review; nothing is stripped or hidden.
+{
+  const RAW_VS = /\((?=[֐-׿])[^()]*\)/u;
+  const LEDGER_VS = fileURLToPath(new URL("../data/variant-sites-standing-v1.json", import.meta.url));
+  const standing = JSON.parse(readFileSync(LEDGER_VS, "utf8")).standing || {};
+  let unreviewed = 0, example = null;
+  for (const sec of sections) (sec.words || []).forEach((w, j) => {
+    if (w.kq || w.vs) return;
+    if (!RAW_VS.test(w.s || "")) return;
+    const st = standing[slug];
+    if (st && st[sec.unit]) return;
+    unreviewed += 1; example = example || `${sec.unit} word ${j}`;
+  });
+  require_(unreviewed === 0, "RAW_SITE_AWAITS_KQ_REVIEW",
+    `${unreviewed} parenthesis-wrapped sites outside the standing record (e.g. ${example}); the work holds for the kq review`);
+}
+
 // ---- 4b. the title, from the text itself ---------------------------------
 // The owner's ruling (2026-08-27, the frame's Y row): the Hebrew structural
 // world belongs in C0. On the shelf whose ids are the works' own opening
