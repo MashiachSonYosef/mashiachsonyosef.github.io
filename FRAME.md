@@ -160,6 +160,20 @@ TOC wears the one forced reading in a uniform machine-selected-but-licensed
 register for usability; inside the section, the full HUD-able testimony —
 lattice, pills, every witness cycleable.
 
+**Z expanded to every title node + the display gate (owner, 2026-08-29):**
+Z runs over EVERY title node — book, part, chapter, section — one forced
+English reading per node, machine-selected. The gate: EVEN Z CANNOT SHOW
+WITHOUT M. Fill Z internally without limit (bare guesses stored as
+candidates), but display requires resolving through X to an existing
+route — at least one licensed M witness, full R-pill fan-out preferred.
+With this, no layer anywhere authors English: Y's force-read and Z's
+suggestion are both selections of existing licensed routes; the only
+differences are the selector (human vs machine) and the register worn.
+The liturgy error becomes impossible by construction. Display tiers: the
+TOC wears the one forced reading in a uniform machine-selected-but-licensed
+register for usability; inside the section, the full HUD-able testimony —
+lattice, pills, every witness cycleable.
+
 ## The Retirement Doctrine (owner + construction, 2026-08-27)
 
 The final state is a clean active namespace, not fossilized ledgers — but no
