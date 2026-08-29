@@ -922,6 +922,15 @@
     #hud .d-slot { max-height: max(27vh, 8.75rem); }
     #hud .s-pills button, #hud .r-pills button { padding-top: 0.08rem; padding-bottom: 0.08rem; }
   }
+  /* A desktop window squashed flat is short but wide, and a card locked to
+     phone width there wrapped its source line to three rows — rows that came
+     straight out of the record's share, under a word at the top of the page
+     with nowhere higher to go. Where the window affords width, the card
+     takes it: the source line stands in one row and the record keeps its
+     line above it. Height was the scarce thing; width was free. */
+  @media (max-height: 480px) and (min-width: 640px) {
+    #hud { max-width: 34rem; width: min(34rem, 92vw); }
+  }
   /* The record, whole, on request. The capped card is the resting state —
      nothing rests open — but the record is entitled to say what it says, and
      on a short screen the only honest way to read a long D is to let it
@@ -2002,6 +2011,7 @@
     // once left a phone with the source standing on no record at all. After
     // the record, the provenance line, the one thing on the card nobody
     // presses.
+    const cap = window.innerHeight >= 660 ? 3 : window.innerHeight >= 480 ? 2 : 1;
     const floors = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
     if (floors > rowsEl.clientHeight && dSlot) {
       const foot = hud.querySelector(".d-foot");
@@ -2018,31 +2028,106 @@
     // so a share worked out from one measurement is a share of a card that no
     // longer exists. Three passes settle it; each one measures the layout the
     // last one produced.
-    const cap = window.innerHeight >= 660 ? 3 : window.innerHeight >= 480 ? 2 : 1;
     let room = 0, take = bands.map(() => 1);
-    for (let pass = 0; pass < 3; pass += 1) {
-      room = rowsEl.clientHeight;
-      take = bands.map(() => 1);
-      let used = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
-      const grow = (i, limit) => {
-        const x = bands[i];
-        while (take[i] < Math.min(limit, x.rows.length)) {
-          const more = x.rows[take[i]].bottom - x.rows[take[i] - 1].bottom;
-          if (used + more > room) return;
-          used += more; take[i] += 1;
+    const handOut = () => {
+      for (const x of bands) { x.box.style.height = ""; x.box.style.maxHeight = ""; }
+      for (const x of bands) { const r = rowsOf(x.box); if (r.length) x.rows = r; }
+      for (let pass = 0; pass < 3; pass += 1) {
+        room = rowsEl.clientHeight;
+        take = bands.map(() => 1);
+        let used = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
+        const grow = (i, limit) => {
+          const x = bands[i];
+          while (take[i] < Math.min(limit, x.rows.length)) {
+            const more = x.rows[take[i]].bottom - x.rows[take[i] - 1].bottom;
+            if (used + more > room) return;
+            used += more; take[i] += 1;
+          }
+        };
+        bands.forEach((x, i) => { if (x.box !== read) grow(i, cap); });
+        bands.forEach((x, i) => { if (x.box === read) grow(i, x.rows.length); });
+        bands.forEach((x, i) => {
+          const px = `${Math.ceil(x.rows[take[i] - 1].bottom)}px`;
+          x.box.style.height = px; x.box.style.maxHeight = px;
+        });
+        // the boundaries move when a box's height changes — a scrollbar comes
+        // or goes, the width changes, the pills wrap differently
+        for (const x of bands) {
+          const settled = rowsOf(x.box);
+          if (settled.length) x.rows = settled;
         }
-      };
-      bands.forEach((x, i) => { if (x.box !== read) grow(i, cap); });
-      bands.forEach((x, i) => { if (x.box === read) grow(i, x.rows.length); });
-      bands.forEach((x, i) => {
-        const px = `${Math.ceil(x.rows[take[i] - 1].bottom)}px`;
-        x.box.style.height = px; x.box.style.maxHeight = px;
-      });
-      // the boundaries move when a box's height changes — a scrollbar comes or
-      // goes, the width changes, the pills wrap differently
-      for (const x of bands) {
-        const settled = rowsOf(x.box);
-        if (settled.length) x.rows = settled;
+      }
+    };
+    handOut();
+    // A structural band's share is the whole of it, up to the window's cap —
+    // and the measured room can lie high about whether it fits. At measure
+    // time the unfitted bands are at their natural height, the card is hard
+    // against its cap, and the provenance line is crushed to nothing; the
+    // arithmetic sees its space as free. Then whole rows are assigned, the
+    // card comes off its cap, the line re-inflates — and takes a division
+    // row back. So the outcome is what gets checked, not the estimate, and
+    // when a band ended short of its share the yielders yield in the card's
+    // own order: the record down to its floor — never the source line — and
+    // after the record, the provenance line. Each yield is followed by a
+    // fresh handout against the layout it actually produced.
+    const owedShort = () => bands.some((x, i) => x.box !== read && take[i] < Math.min(cap, x.rows.length));
+    if (owedShort() && dSlot && !dSlot.classList.contains("whole")) {
+      const foot = hud.querySelector(".d-foot");
+      const dLine = parseFloat(getComputedStyle(hud.querySelector(".d-text") || dSlot).lineHeight) || 26;
+      const floor = (foot ? foot.offsetHeight : 0) + Math.ceil(dLine * 3);
+      const shares = bands.reduce((n, x) => n + x.chrome
+        + x.rows[Math.min(x.box === read ? 1 : cap, x.rows.length) - 1].bottom, 0);
+      const give = Math.min(Math.ceil(shares - rowsEl.clientHeight), Math.max(0, dSlot.clientHeight - floor));
+      if (give > 0) { dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`; handOut(); }
+    }
+    if (owedShort() && prov && prov.offsetHeight) { prov.hidden = true; handOut(); }
+    // The record's floor, held against the laid-out foot. The stylesheet caps
+    // the slot at a length written for a one-row source line, but the M is as
+    // tall as its own chips: a licence whose names wrap takes three rows of
+    // foot, and under the cap the record stood fourteen pixels tall above
+    // it — the source standing on a sliver. Only the laid-out card knows the
+    // foot's real height, so the floor binds here: a line of record above
+    // the source on a squashed window, two where the window affords them,
+    // and never more than the slack the card actually has — a band's row is
+    // not the record's to take.
+    // The raise spends only slack — room the card has under its own caps —
+    // never position: a shortfall here must not push the card off its
+    // placement, because a card that grew upward stood over the very word
+    // it belongs to, and under-the-word outranks every comfort inside the
+    // card. Short of slack, the record rests a line shy and the whole of it
+    // stays a press away on its own control.
+    const dBody = hud.querySelector(".d-card .d-body");
+    const dFoot = hud.querySelector(".d-card .d-foot");
+    if (dSlot && dBody && dFoot && !dSlot.classList.contains("whole")) {
+      const lineH = parseFloat(getComputedStyle(hud.querySelector(".d-text") || dBody).lineHeight) || 26;
+      const sr = dSlot.getBoundingClientRect(), br = dBody.getBoundingClientRect();
+      const seen = Math.min(br.bottom, dFoot.getBoundingClientRect().top) - Math.max(br.top, sr.top);
+      const afford = window.innerHeight >= 660 ? 2 : 1;
+      const oweD = Math.min(Math.ceil(lineH * afford), dBody.scrollHeight);
+      if (seen < oweD) {
+        // slack is the room below where the card actually stands, not below
+        // the top of the window: a raise measured from the wrong datum
+        // pushed the card's own bottom two pixels off the screen
+        const capH = parseFloat(getComputedStyle(hud).maxHeight);
+        const slack = Math.max(0, Math.floor(Math.min(
+          Number.isFinite(capH) ? capH : Infinity,
+          window.innerHeight - 8 - (parseFloat(hud.style.top) || 8)) - hud.offsetHeight));
+        const raise = Math.min(Math.ceil(oweD - seen), slack);
+        if (raise > 0) dSlot.style.maxHeight = `${dSlot.clientHeight + raise}px`;
+      }
+      // And the matching maximum: the record never takes more than half the
+      // card. The slot's stylesheet cap is written against the window, but
+      // under a placement budget the card is shorter than the window ever
+      // told the stylesheet — a 509px card carried a 293px record, and the
+      // readings paid for it. The slot yields to what the rest of the card
+      // stands at, never below its own floor, and the bands are handed the
+      // room it returns.
+      const other = hud.clientHeight - dSlot.clientHeight;
+      if (dSlot.clientHeight > other + 1) {
+        const chromeAbove = Math.max(0, Math.ceil(br.top - sr.top + dSlot.scrollTop));
+        const floorPx = dFoot.offsetHeight + Math.ceil(lineH * afford) + chromeAbove;
+        const to = Math.max(floorPx, other);
+        if (to < dSlot.clientHeight - 1) { dSlot.style.maxHeight = `${Math.floor(to)}px`; handOut(); }
       }
     }
     // did every band end up with the row it is owed, in the space it actually
@@ -2068,6 +2153,18 @@
       hud.style.top = `${Math.max(pad, Math.min(top, window.innerHeight - GRAB))}px`;
       hud.style.left = `${Math.max(GRAB - w, Math.min(left, window.innerWidth - GRAB))}px`;
       return;
+    }
+    // A placed card that grew may no longer fit where it was put, and the
+    // clamp below would pull it up over the very word it opened from — a
+    // card above the word covers the text the reader was reading to get
+    // there. The word outranks the clamp: when pulling the card up would
+    // stand it on its own word, it is placed again under the whole law —
+    // the word scrolls up, the card shrinks, and only past usefulness does
+    // it stand anywhere else.
+    if (hudAnchor && hudAnchor.isConnected) {
+      const newTop = Math.max(pad, Math.min(top, window.innerHeight - h - pad));
+      const a = hudAnchor.getBoundingClientRect();
+      if (newTop < top - 0.5 && a.bottom > newTop + 0.5 && a.top < newTop + h - 0.5) { placeHud(); return; }
     }
     hud.style.top = `${Math.max(pad, Math.min(top, window.innerHeight - h - pad))}px`;
     hud.style.left = `${Math.max(pad, Math.min(left, window.innerWidth - w - pad))}px`;
@@ -2144,7 +2241,13 @@
     // hold is the only case that still goes above.
     const room = window.innerHeight - pad - rect.bottom - pad;
     const FLOOR = 200;
-    if (h > room && room >= FLOOR) {
+    // The budget is set whether or not the card currently needs it: a card
+    // is measured here before its readings render, so "h > room" read a
+    // 29px shell, took no cap, and the full card later grew to the
+    // stylesheet's own maximum — 40px past the room beneath its word. A
+    // max-height costs a small card nothing and tells the grown card where
+    // its bottom is.
+    if (room >= FLOOR) {
       hud.style.maxHeight = `${Math.floor(room)}px`;
       // and if the card cannot hold a row of every band at that height, it does
       // not hold them at that height. A card under the word with dead controls
@@ -2787,6 +2890,9 @@
             say(); clampHud();
           });
           foot.append(grow);
+          // the control just made the foot a row taller, after the card was
+          // fitted — refit, or the row it took comes out of the record
+          clampHud();
         });
         // P · the grouper for M, when two M report the exact same D.
         //
@@ -3658,14 +3764,24 @@
       // selector's provenance, and wears both: the license chip (the M's,
       // solid) and the selector chip (the model's, dashed). A bare guess is
       // a candidate in the store, never a sentence on the page.
+      // And the causeway stands on Hebrew or it does not stand — the
+      // owner's ruling, 2026-08-29, in his words: "there cant be an X
+      // justifying Z if there is no hebrew to source it from." A guess is a
+      // reading OF something: a suggestion that cannot name the work's own
+      // Hebrew it was read from has nothing under it — no source, no
+      // causeway, no display, however licensed the words it chose are. So
+      // the register also requires the Hebrew source, and a suggestion
+      // arriving without one is refused whole, license and model and all.
       const sug = zone.title_suggestion;
-      if (sug && sug.text && sug.model && sug.run && sug.date && sug.license && sug.m_label) {
+      if (sug && sug.text && sug.model && sug.run && sug.date && sug.license && sug.m_label
+          && sug.source_he && /[\u0590-\u05FF]/u.test(String(sug.source_he))) {
         const sugLine = () => {
           const line = document.createElement("span"); line.className = "t-sug";
           const who = document.createElement("span"); who.className = "sug-chip";
           who.textContent = sug.model;
           who.title = `${sug.model} · run ${sug.run} · ${sug.date} — the selector, not the licensor. ` +
-            `The reading is a licensed route's own word; the machine only chose among words already licensed.`;
+            `The reading is a licensed route's own word; the machine only chose among words already licensed. ` +
+            `Read from the work's own Hebrew: ${sug.source_he}`;
           const lic = document.createElement("span"); lic.className = "lic-chip";
           lic.textContent = sug.license;
           lic.title = `${sug.m_label}${sug.m_year ? ` · ${sug.m_year}` : ""} — the licensed witness carrying this reading`;

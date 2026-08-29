@@ -639,9 +639,20 @@ const famHeadHe = (lf) => {
     : `<span class="fw inert">${esc(t.s)}</span>`).join(" ");
   return `<span class="fam-he" data-named-by="family-ledger-v1#${esc(lf.id)}"><span class="he" lang="he" dir="rtl">${words}</span>${gloss ? `<span class="g">${esc(gloss)}${chipHtml(gsrc)}</span>` : ""}</span>`;
 };
+// The shelf shows what serves; the census keeps every record — the owner's
+// ruling, 2026-08-29: "why not just show the ones we can serve on home page
+// for now, corpus stays it can be empty i know we are missing torah but can
+// keep torah section." A family's shelf lists only books a reader can open
+// today. The family keeps its head even when nothing under it serves — an
+// empty shelf with its counts is the honest state, not a hidden one — and
+// every unserved record stands below in the census, unchanged in every
+// column it always carried.
+const rowServes = (r) => !!r.book || ZONE_INFO.has(String(r.atlas.id).split("/").pop());
 const familySection = (fam) => {
   const lf = fam.ledger;
   const s = sums(fam.rows);
+  const shelfRows = fam.rows.filter(rowServes);
+  const censusCount = fam.rows.length - shelfRows.length;
   const bits = [`${n(s.works)} work${s.works === 1 ? "" : "s"}`];
   if (s.built) bits.push(`${n(s.built)} built`);
   bits.push(`${n(s.units)} units`);
@@ -668,6 +679,12 @@ const familySection = (fam) => {
   // The home page rests fully collapsed into the grouping: every family
   // folded to its two-row head, the built ones included — a tap opens a
   // shelf, the search box opens whatever matches. Nothing rests open.
+  const shelfBody = shelfRows.length
+    ? rowsHtml(shelfRows).join("\n")
+    : `      <span class="of fold-line">nothing on this shelf serves yet — its ${n(s.works)} work${s.works === 1 ? " stands" : "s stand"} in the census below, each saying what it awaits</span>`;
+  const censusNote = shelfRows.length && censusCount
+    ? `\n      <span class="of fold-line">${n(censusCount)} more work${censusCount === 1 ? "" : "s"} of this family stand${censusCount === 1 ? "s" : ""} in the census below, each saying what it awaits</span>`
+    : "";
   return `    <section class="family">
       <details class="fam">
       <summary>
@@ -676,7 +693,30 @@ const familySection = (fam) => {
       </summary>
       <div class="fgroups">
 ${foldLines.join("\n")}
-${rowsHtml(fam.rows).join("\n")}
+${shelfBody}${censusNote}
+      </div>
+      </details>
+    </section>`;
+};
+// The census: the same records, in the same columns, standing apart from
+// the shelf so a reader who opens a family meets books first. No family
+// head repeats its Hebrew here — the ledger's words already stand once
+// above, and the census speaks in the bridge's own register: recorded ids,
+// plain letters where they read as a name, and what each work awaits.
+const censusFamily = (fam) => {
+  const rows = fam.rows.filter((r) => !rowServes(r));
+  if (!rows.length) return "";
+  const s = sums(rows);
+  const readable = fam.members.map(plainName).filter(Boolean);
+  const label = readable.length ? esc(readable.join(" · ")) : NO_PLAIN_NAME;
+  return `    <section class="family">
+      <details class="fam">
+      <summary>
+        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en${readable.length ? "" : " none"}" title="${esc(fam.members.join(" · "))}">${label}</span></span>
+        <span class="row"><span class="of">${n(s.works)} work${s.works === 1 ? "" : "s"} not yet served · ${n(s.units)} units — every row says on its own card what it awaits</span></span>
+      </summary>
+      <div class="fgroups">
+${rowsHtml(rows).join("\n")}
       </div>
       </details>
     </section>`;
@@ -772,10 +812,19 @@ const countReceipt = {
   rendered: renderedTally,
 };
 const countReceiptJson = JSON.stringify(countReceipt, null, 2) + "\n";
-const sectionsHtml = [
-  ...families.map(familySection),
+const censusSections = [
+  ...families.map(censusFamily),
   awaitingSection(),
   ...unruled.map(unruledSection),
+].filter(Boolean);
+const sectionsHtml = [
+  ...families.map(familySection),
+  censusSections.length
+    ? `    <section class="family census-head">
+      <p class="of">THE CENSUS · every work the bridge records that does not serve yet. Nothing here is hidden and nothing is promised: each row carries its recorded id, its measured size, and — on its card — what it awaits.</p>
+    </section>`
+    : "",
+  ...censusSections,
 ].filter(Boolean);
 
 const doc = `<!doctype html>
@@ -910,6 +959,11 @@ const doc = `<!doctype html>
      force-read below, the sums of what it holds on the fold's face. Nested
      folds: the family folds its groups; each group folds its record lines. */
   section.family { }
+  /* the census banner: a quiet rule between the shelf and the records —
+     the shelf is books, the census is the bridge's ledger of the rest */
+  section.census-head { margin-top: 2.2rem; padding-top: 1rem;
+    border-top: 1px solid var(--line); }
+  section.census-head .of { letter-spacing: 0.04em; }
   details.fam > summary { list-style:none; cursor:pointer; padding:.3rem .15rem .45rem; }
   details.fam > summary::-webkit-details-marker { display:none; }
   details.fam > summary .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }

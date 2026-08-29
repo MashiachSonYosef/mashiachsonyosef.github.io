@@ -3770,7 +3770,7 @@
       // arriving without one is refused whole, license and model and all.
       const sug = zone.title_suggestion;
       if (sug && sug.text && sug.model && sug.run && sug.date && sug.license && sug.m_label
-          && sug.source_he && /[֐-׿]/u.test(String(sug.source_he))) {
+          && sug.source_he && /[\u0590-\u05FF]/u.test(String(sug.source_he))) {
         const sugLine = () => {
           const line = document.createElement("span"); line.className = "t-sug";
           const who = document.createElement("span"); who.className = "sug-chip";
