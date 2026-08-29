@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v1.21 · 2026-08-27
+# THE FRAME · canonical review standard · v2.0 · 2026-08-29 — the letters reassigned
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -25,13 +25,13 @@ owner's to make.
 | **COMPspan** | Spans — how occurrences compose into readable structure; the reader's component system draws from the span table | `ledgers/work/compspan/` (100MB) | ✗ | NEEDED as the span template the zone builder reads — held site-side; the 100MB ledger stays corpus-side |
 | **COMPcell** | Cells of composition — the atomic display cells a span resolves to: COMPspan is the structure, COMPcell the atoms, and the site derives cells from the span template plus the body at render time (idea recorded by the corpus lane from the derived-on-site behavior; the owner corrects it if richer) | `ledgers/work/compcell/` (181MB) | ✗ | NOT NEEDED — derived on site, never stored |
 | **L** | NOT_MATERIALIZED — vestigial bundle label, recorded not deleted | — | n/a | n/a — agreed |
-| **X** | CORRECTED 2026-08-27: the letter is OCCUPIED, not free — X is the provisional project/work pool, locked to the 999 selections (July snapshot, no `x-current.json`). Likely obsolete; retirement candidate under the Retirement Doctrine below. The force-read/license functions once floated for "X" are implemented as Y-scoped surfaces instead (see Y row). Historical note superseded by this correction: The existing graph expresses force-read licensing: `C0 title → Y title-role checker → hand-selected EXISTING R pill → one or more existing M witnesses → each M's exact D`. A force-read with no existing R identity receives a TYPED title-force-read R route with an M/source/license — it never remains an unsourced English string in Y. Licensing and provenance travel through the R–M relationship, so X is unnecessary FOR TRANSPORT. **The force-license question (owner, 2026-08-27) — when a pill is carried by multiple M's under different licenses, what fronts the display? Resolution ladder, most correct first:** (a) **the true-R-pill answer, owner-preferred:** no pick exists — Y's force-read is a full R pill offering ALL M witnesses and ALL their licenses, reader cycles exact testimony, and the DEFAULT follows the standing S law (oldest witness leads) like every other card. Selecting one license would be an editorial assertion; offering all is witnesses testifying; (b) fallback if display must narrow: deepen Y's selection grain to (R pill + specific M) so the license follows the chosen witness, typed; (c) last resort: X materializes as the force-license ledger. X stays RESERVED for (c), expected never | `ledgers/work/x/` July snapshot — 5 lock/pool files, ~575KB (plus one stray A/B-audit intake file `a-b-omission-source-audit-intake-v1.json`, a retirement-census item) | n/a | n/a — not a serve surface; retirement candidate, RESERVED for (c) only, expected never |
+| **X** | REASSIGNED (owner's frame v2.0, 2026-08-29): the CAUSEWAY — the typed pointer from the unproven into proven testimony. A Z suggestion that matches an existing P entry carries X (the exact pill, its M witnesses, their licenses); a Z-OFF collision refusal names its witness through X; Y's P-bundle view (Y-R-P) is the same pointer serving the proven side. X points at proven testimony on behalf of the unproven and creates no new identity. Old X (provisional 999 pool) retired — see Retired letters | planned with the title-factory surfaces | — | build with the suggestion store |
 | **D** | A definition — the English definitional record for a form | in `ledgers/work/ldmprs/` | ✗ | NEEDED in serving form — held as the route store; `ldmprs/` itself is not needed on this disk |
 | **M** | The dictionary — the source work a D comes from | in `ldmprs/` | ✗ | NEEDED in serving form — held (a source per reading, via the route store) |
 | **P** | RULED 2026-08-27 (owner's P fix, construction's precision): P groups an exact R-PILL IDENTITY — never identical D strings. Membership comes from sharing the authoritative R identity, not from any string comparison. Every M/source/license carrying that R pill is clickable-through, and each click displays that M's own D exactly as written — EVEN WHEN THE D STRINGS DIFFER. No fuzzy semantic grouping is ever inferred | in `ldmprs/` | ✗ | NEEDED as the byte-perfect rule — held site-side; the expansion RULED CLOSED (owner, 2026-08-28): the full fan-out per the simplest statement — every R pill exposes every M/license/D carrying it, reader cycles witnesses, S law leads the default — build when cutover settles |
 | **R** | The ROUTE — the selectable definition route (the "R pill") a reader cycles among. Licensing is not the pill: rights accompany the witness, they never define the route. (The separate rights mapping `work_id → rights_profile_id` lives at `active-rights-resolution-v2/` — 3,986 rows + 9 profiles, SHIPPED 2026-08-27 to staging `706d122` and this branch `rights/`; its catalog half is already in the 89) | routes in `ldmprs/`; rights mapping in `output/` | ✗ | NEEDED — routes held via the route store; the rights mapping in this row is N's cargo: needed, not held |
 | **S** | Source year — antiquity as provenance and sort law: the oldest witness leads (the owner's standing rule v4). A sort key, never an inclusion gate | in `ldmprs/` | ✗ | NEEDED — held (a year per reading; the sort law runs on every card) |
-| **Z** | Source Zoning — governs lexical vs entity-association source posture. `z-current.json` is LIVE: points at the structured-evidence catalog and records why 350,411 entity-association rows were excluded while 37,634 lexical rows were retained. Retirement possible but gated: current controls still claim Z owns that proof — dependency census and rebinding required first | `ledgers/work/z/` + `z-current.json` | ✗ | n/a — NOT NEEDED FOR SERVE: corpus-side adjudication record; retirement gated on the dependency census (the proof possibly derivable elsewhere; check before retiring) |
+| **Z** | REASSIGNED (owner's frame v2.0, 2026-08-29): the WARRANT ZONE — the admitted machine-suggestion layer; the one licensed exception to everything-is-C0. Trinary on/off/missing; jointly total with Y (the Sum Law); one overlay grammar with force reads; drawer display per the owner's ruling. Every Z law written above is THIS Z's constitution. Old Z (Source Zoning) retired; its invariants survive as law via the structured-evidence catalog — see Retired letters | suggestion store: planned (the title factory) | — | the SUGGESTED rung |
 | — | **Y-scoped surfaces (construction, 2026-08-27):** Y-R-P view — derives the exact P bundle for Y's selected R, exposing every supporting M/license; a compact serve index, creates NO new identity. Y-SUG — optional machine suggestion for a genuinely untitled node: outside authoritative C0/Y cardinality, carries model/run provenance, never licensed or authoritative by label; graduates only through editorial C0 → ordinary Y row → R/P/M route | planned | — | the SUGGESTED rung's display is BUILT AND GATED site-side (2026-08-28): one overlay slot in the masthead, two type labels at their warrants — force-read wears the license chip, the guess wears a dashed attribution chip naming the model (run·date riding, "an attribution, not a license"), sentence "\<model\> guesses the title is X — but that is not witnessed by this work"; prints only with every authorship field present; a licensed claim structurally outranks it; gate check-suggested-title-v1. Awaiting: the Y/Z four-state lookup surface (Z OFF vs MISSING both display nothing — the zone will carry the state so decided and pending stay distinguishable in the record), and the owner's display-in-absence ruling — the website lane agrees with the corpus recommendation: Y wins the surface, store everywhere, the disagreement is Y-checker audit signal; the switch is one line either way |
 | — | the body — C0 occurrences, the text itself | R2 `body/c0-rebuilt-20260827/` | ✓ verified 4,646/4,646 on the website lane's disk | NEEDED — held; coverage caveat (fleet, 2026-08-28): the body covers 89.5% of works, 61 works HOLD·TEXT outside it — residual to materialize or type absent |
 | — | c0 bridge (unit → C0 ranges) | in the 89 | ✓ | NEEDED — held |
@@ -74,7 +74,7 @@ today's evidence is exact — the two letters missing from the recited string
 (X, Z) were the two that rotted unwatched, one still holding a live custody
 claim. Memorability is not convenience; it is integrity.
 
-**Standing intent:** once old X and Z retire through the doctrine below, the
+**Standing intent — ENACTED at v2.0 (2026-08-29):** old X and Z retired through the doctrine below, the
 letters are reassigned (step 7, explicit new frame version) to the title
 trio so the frame stays recitable: X = pointer to P's exact entry for Y's
 selected pill; Y = the title binding; Z = the admitted machine suggestion.
@@ -89,9 +89,7 @@ becomes Position Zoning: nothing enters at a position its warrant cannot
 prove, and what cannot prove full position still exists — typed, never
 deleted, never promoted. Grammar of the trio: X points at proven testimony,
 Y selects among proven testimony, Z holds what is not yet proven testimony.
-Until old Z clears doctrine steps 1–6, the table's Z row remains the
-letter's live meaning; the warrant-zone law binds prospectively and takes
-the letter only at step 7's explicit new frame version.
+ENACTED at frame v2.0 (2026-08-29): the owner's explicit ruling collapsed the ceremony — receipt retire-letters-xz-20260829; the warrant-zone law now IS the letter's live meaning.
 
 **Z is trinary (owner, 2026-08-27): on / off / missing.** ON = examined and
 offered — the suggestion stands, displayed as suggestion, model/run
@@ -187,6 +185,22 @@ longer a gigabyte ask. The fleet's join is written against whichever shape
 arrives first; the composite's seal is held either way, and a work-grain
 table will be counter-verified against its own row count and the bridge's
 census before a single work builds on it.
+
+## Retired letters (frame v2.0, 2026-08-29)
+
+Old X (provisional 999 work pool, July snapshot) and old Z (Source Zoning)
+retired by the owner's explicit ruling; receipt
+`retire-letters-xz-20260829` (this branch, the bucket, and The
+Tabernacle). Bytes preserved twice, verified: cold custody at
+`The Tabernacle/retired-cold-custody/` and `r2:mishkan/retired/letters-xz-20260829/`
+— saved under other names, exactly as ruled; nothing removed. Their full
+former rows live in this file's git history (v1.x). Census: zero live
+runtime readers; dormant tools that read the old paths (rebuild-c0-w
+tranche scripts; one commentary-poc July tool) must be rebound before any
+re-run — the list is in the receipt. Old Z's eviction of entity-association
+evidence from the lexical pool REMAINS LAW via the structured-evidence
+catalog; the deportee-registry amendment still gates those rows' final
+disposition.
 
 — recorded by the corpus lane from the owner's account of the frame
 — need column annotated by the website lane, 2026-08-28
