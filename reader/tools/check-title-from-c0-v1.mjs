@@ -103,6 +103,7 @@ const readZone = (p) => JSON.parse(gunzipSync(readFileSync(p)).toString("utf8"))
 // the first candidate that both serves and zones; a coordinate-shaped hold on
 // one work is that work's own story, not this check's subject
 let zone = null, work = null, serveRows = null;
+const whys = [];
 for (const w of candidates.slice(0, 12)) {
   const nd = join(OUT, "claimed.ndjson"), bin = join(OUT, "claimed.bin");
   try {
@@ -112,9 +113,10 @@ for (const w of candidates.slice(0, 12)) {
     zone = readZone(bin);
     serveRows = readFileSync(nd, "utf8").trim().split("\n").slice(1).map((l) => JSON.parse(l));
     break;
-  } catch { /* held by its own shape; the next candidate answers */ }
+  } catch (e) { whys.push(`${w.split("/").pop().slice(0, 24)}: ${String(e.stderr || e.message).trim().split("\n").find((l) => l.startsWith("Error: ")) || String(e.message).slice(0, 60)}`); }
 }
-check("a candidate work runs the real pipeline end-to-end", !!zone, work || "none of the first 12 built");
+check("a candidate work runs the real pipeline end-to-end", !!zone,
+  work || `none of the first 12 built — ${whys.slice(0, 3).join(" · ")}`);
 
 if (zone) {
   const toks = idTokensOf(work);
@@ -149,9 +151,10 @@ for (const w of latin.slice(0, 12)) {
     work2 = w;
     zone2 = readZone(bin);
     break;
-  } catch { /* same posture as above */ }
+  } catch (e) { whys.push(`${w.split("/").pop().slice(0, 24)}: ${String(e.stderr || e.message).trim().split("\n").find((l) => l.startsWith("Error: ")) || String(e.message).slice(0, 60)}`); }
 }
-check("a Latin-id work runs the pipeline too", !!zone2, work2 || "none of the first 12 built");
+check("a Latin-id work runs the pipeline too", !!zone2,
+  work2 || `none of the first 12 built — ${whys.slice(-3).join(" · ")}`);
 if (zone2) {
   const r2 = (zone2.emitted_from || {}).title_from_c0 || {};
   check("it claims no Hebrew title — no tokens, no invented text",
