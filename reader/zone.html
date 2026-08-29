@@ -60,6 +60,7 @@
        purple is argaman, its crimson is tola'at shani, and the linen the whole
        page is written in is shesh. */
     --bg: #0d0a14; --panel: #171021; --panel2: #120d1a;
+    --nav-veil: rgba(21, 18, 13, 0.94);
     --line: #2b2039; --wash: #1c1428;
     /* the commentary's own surface, so a comment is never mistaken for text */
     --surface-c: #17100a; --panel-c: #201709; --line-c: #332513;
@@ -102,6 +103,7 @@
   :root[data-scheme="day"] {
     color-scheme: light;
     --bg: #f1e9d8; --panel: #f8f2e5; --panel2: #ebe2cd;
+    --nav-veil: rgba(248, 242, 229, 0.94);
     --line: #d5c8ab; --wash: #e8dec7;
     --surface-c: #ece0c6; --panel-c: #e4d5b4; --line-c: #c6b189;
     --ink: #2b2519; --ink-strong: #1c180f; --muted: #5f5645; --faint: #7b7058;
@@ -263,8 +265,10 @@
     letter-spacing: 0.1em; border-color: var(--gold-dim); }
 
   /* one floating bar, not chrome on every section */
+  /* the bar wears the scheme's own panel, veiled — a hard-coded night
+     background stood black over the day parchment */
   #nav { position: fixed; z-index: 60; right: 0.9rem; bottom: 0.9rem; display: flex; gap: 0.3rem;
-    background: rgba(21, 18, 13, 0.94); border: 1px solid var(--line); border-radius: 999px;
+    background: var(--nav-veil, rgba(21, 18, 13, 0.94)); border: 1px solid var(--line); border-radius: 999px;
     padding: 0.3rem; box-shadow: var(--shadow-pop); backdrop-filter: blur(4px); }
   #nav[hidden] { display: none; }
   #nav button { border: 0; background: none; color: var(--muted); font: inherit; font-size: 0.75rem;
@@ -2584,6 +2588,20 @@
         if (w) host.style.width = `${w}px`;
       }
       box.textContent = line; box.title = line; box.classList.remove("bare");
+      // Shown whole outranks held still. The clamp above was settled for
+      // the line that painted first, and a ruled compspan reading joins its
+      // cells with " + " — longer than the gloss it replaced, and clipped
+      // by the old clamp to "both…": the reader's own ruling was the one
+      // reading the page refused to show. The box grows to fit what it now
+      // says — by whole lines, never shrinking back, its width still held
+      // so nothing re-wraps beside it. A reading costs its own word a few
+      // lines; it never costs the reader the reading.
+      if (box.style.height && box.scrollHeight > box.clientHeight + 1) {
+        const lh = parseFloat(getComputedStyle(box).lineHeight) || box.scrollHeight;
+        const lines = Math.max(1, Math.ceil((box.scrollHeight - 1) / lh));
+        box.style.height = `${Math.ceil(lines * lh)}px`;
+        box.style.webkitLineClamp = String(lines);
+      }
     };
 
     const paintGloss = () => {

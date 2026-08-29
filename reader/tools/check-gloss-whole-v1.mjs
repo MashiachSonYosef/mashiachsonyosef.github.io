@@ -53,18 +53,22 @@ check("no reading under a word is cut off in the Hebrew reader", he.clipped === 
   `${he.clipped} of ${he.n} · longest shown is ${he.longest} chars, "${he.sample}…"`);
 check("nothing is left ellipsising", he.clamp === "none", `line-clamp ${he.clamp}`);
 
-// The page must not move while the reader works in it. Measured in document
-// coordinates, not viewport ones — clicking scrolls the page, and a scroll is
-// not a reflow.
-const before = await p.evaluate(() => {
-  return {
-    laterSection: document.querySelectorAll("section.seg")[6].offsetTop,
-    docHeight: document.body.scrollHeight,
-  };
-});
+// The page must not re-wrap while the reader works in it — and a reader who
+// RULES a longer reading is owed the whole of it. The old resolution froze
+// the box at first-paint height and let the hover title carry the tail, and
+// the owner met the result on a phone, where nothing hovers: his own ruling
+// clipped to "both…" — the one reading on the page the page refused to
+// show. The law now (owner, 2026-08-29): shown whole outranks held still.
+// The box grows by whole lines — a reading costs its own word a few lines,
+// never the reader the reading — its width stays held so nothing re-wraps
+// beside it, and the vertical room it takes is the lawful cost.
+const before = await p.evaluate(() => ({
+  docWidth: document.documentElement.scrollWidth,
+  docHeight: document.body.scrollHeight,
+}));
 // find a word whose catalog holds a reading far longer than the one painted —
 // otherwise this proves nothing
-let grew = 0;
+let grew = 0, ruledIx = -1;
 // Only a word that carries a reading has a record to open — a bare word is
 // the store's honest silence, and waiting for its pills declares it broken.
 const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
@@ -79,7 +83,7 @@ for (let i = 0; i < Math.min(wbs.length, 10); i++) {
     const longest = Math.max(...bs.map((b) => b.textContent.trim().length));
     return longest - now;
   }, i);
-  if (grew > 40) { await p.evaluate(() => {
+  if (grew > 40) { ruledIx = i; await p.evaluate(() => {
       const bs = [...document.querySelectorAll("#hud .r-pills button")];
       bs.sort((a, b) => b.textContent.length - a.textContent.length)[0].click();
     }); break; }
@@ -87,26 +91,33 @@ for (let i = 0; i < Math.min(wbs.length, 10); i++) {
 }
 console.log(`  ..  worst case found: a reading ${grew} characters longer than the one painted`);
 await p.waitForTimeout(400);
-const after = await p.evaluate(() => {
-  const g = [...document.querySelectorAll("section.seg .he-text .wb .g")].find((x) => x.style.height);
+const after = await p.evaluate((i) => {
+  const wb = [...document.querySelectorAll("section.seg .he-text .wb:has(.g:not(.bare))")][i];
+  const g = wb ? wb.querySelector(".g") : null;
   return {
-    laterSection: document.querySelectorAll("section.seg")[6].offsetTop,
+    docWidth: document.documentElement.scrollWidth,
     docHeight: document.body.scrollHeight,
-    boxH: g ? Math.round(g.getBoundingClientRect().height) : 0,
-    lockedTo: g ? Math.round(parseFloat(g.style.height)) : 0,
+    clipped: g ? g.scrollHeight > g.clientHeight + 1 || g.scrollWidth > g.clientWidth + 1 : true,
+    widthHeld: !!(wb && wb.style.width),
     text: g ? g.textContent.trim().length : 0,
-    locked: !!g,
     title: g ? (g.title || "").length : 0,
   };
-});
-check("choosing a different reading does not move the Hebrew",
-  after.laterSection === before.laterSection && after.docHeight === before.docHeight,
-  `section 7 at ${before.laterSection} → ${after.laterSection}; page ${before.docHeight} → ${after.docHeight}`);
-check("the word's box is fixed at the height it painted at",
-  after.locked && after.boxH === after.lockedTo,
-  `box held at ${after.boxH}px while its reading became ${after.text} chars`);
-check("a chosen reading longer than the box is still reachable whole",
+}, ruledIx);
+check("the ruled reading is shown whole — the box grows to fit what the reader chose",
+  ruledIx >= 0 && !after.clipped, `${after.text} chars, none clipped`);
+check("its word's width is held, so nothing re-wraps beside it",
+  after.widthHeld && after.docWidth === before.docWidth,
+  `page ${before.docWidth}px wide → ${after.docWidth}px`);
+check("the page grew only downward, the reading's own lawful cost",
+  after.docHeight >= before.docHeight,
+  `page ${before.docHeight} → ${after.docHeight}`);
+check("and the whole reading still rides the box for any surface that asks",
   after.title >= after.text, `title carries ${after.title} chars`);
+// after the ruling, the global law still holds everywhere: nothing on the
+// page is clipped, the repainted occurrences included
+const ruledSweep = await clip();
+check("no reading anywhere is cut off after the ruling", ruledSweep.clipped === 0,
+  `${ruledSweep.clipped} of ${ruledSweep.n}`);
 await p.keyboard.press("Escape");
 
 // The tether: an open card runs four faint lines back to the word it opened
