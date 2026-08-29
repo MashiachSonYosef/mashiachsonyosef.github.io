@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v2.5 · 2026-08-29 — the letters reassigned
+# THE FRAME · canonical review standard · v2.6 · 2026-08-29 — the letters reassigned
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -159,7 +159,23 @@ preferred); a Z suggestion with no matching M stays internal and hidden.
 "Commonly force read as" is the projection's derived DISPLAY FIELD — not a
 second competing ledger. Machine guesses coexisting with a witnessed title
 (the drawer, the Y-checker audit signal) are projection/audit data, never Z
-rows. The gate stands: NOTHING SHOWS WITHOUT M. Display tiers stand: the
+rows. The gate stands: NOTHING SHOWS WITHOUT M.
+
+**The Hebrew anchor law (owner, 2026-08-29):** there can be no X justifying
+a Z suggestion if no Hebrew sources it — M testifies about Hebrew forms,
+and a node in Z is defined by the absence of a Hebrew title. Resolution,
+from the frame's own title definition: DISPLAYABLE Z SUGGESTIONS ARE
+INTERVAL SUGGESTIONS, never English strings. The machine points at a C0
+interval WITHIN the node (the incipit model — Bereshit is the first word
+wearing a second role); the interval's Hebrew routes through K→R→M like
+every word on the site; the displayed English is the interval's routed
+English; X always has real Hebrew to point at. A suggestion is thus a
+dashed proto-Y row, and graduation is a human confirming the pointer.
+Remainders: structural ordinals ("Section 1") are B-spine facts, not Z
+content, lawful as arithmetic; a descriptive title no interval can carry
+has one path only — a human minting typed editorial Hebrew C0, after which
+routes exist. Free English inventions never display; nothing can license
+them. The title factory's job is extractive, not generative. Display tiers stand: the
 TOC wears the projection's one reading per node, uniform, for usability;
 inside the section, the full HUD-able testimony — lattice, pills, every
 witness cycleable.
