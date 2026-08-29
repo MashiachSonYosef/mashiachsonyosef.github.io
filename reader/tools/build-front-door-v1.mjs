@@ -1172,6 +1172,9 @@ const doc = `<!doctype html>
     overflow-wrap:anywhere; min-width:0; }
   #bkcard .he.none { font-family:Georgia,serif; font-size:.85rem; font-style:italic; color:var(--faint); }
   #bkcard .slot { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.1rem; }
+  #bkcard .att-line { font-size:.7rem; line-height:1.5; overflow-wrap:anywhere; }
+  #bkcard .att-line a { color:var(--link); }
+  #bkcard .att-held { color:var(--faint); font-style:italic; }
   #bkcard .slot .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   #bkcard .slot .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.2rem; color:var(--shesh); }
@@ -1277,6 +1280,7 @@ ${sectionsHtml.join("\n")}
     <p class="row bk-fam"><span class="lab">family</span><span class="slot"></span></p>
     <p class="row bk-n"><span class="lab">recorded</span><span class="of"></span></p>
     <p class="row bk-st"><span class="lab">standing</span><span class="of"></span></p>
+    <p class="row bk-att" hidden><span class="lab">attribution</span><span class="of att-line"></span></p>
     <p class="prov">named by the bridge, hyphens read as spaces &#183; counted by ${esc(ATLAS.schema_version || "corpus-atlas-v1")} &#183; the Hebrew title row waits on a work ledger</p>
   </div>
   <div id="wcard" role="dialog" aria-label="the word&#8217;s own record" hidden>
@@ -1380,6 +1384,20 @@ ${sectionsHtml.join("\n")}
       attTitle: r ? `${r.label}${r.year ? ` · ${r.year}` : ""} — attests this usage; a name is an identification, not licensed expression (FRAME v2.7)` : AWAITS_M,
     }];
   }))).replace(/</g, "\\u003c")};
+  // The attribution table, lazily: the cleared v3 candidate, fetched once
+  // on first card open — nothing rides the door's static bytes, and a
+  // table that cannot be read leaves the band absent rather than wrong.
+  var ATT_P = null;
+  function loadAtt() {
+    if (!ATT_P) ATT_P = fetch("/reader/data/work-attribution-display-v3.json")
+      .then(function (r) { if (!r.ok) throw new Error("no table"); return r.json(); })
+      .then(function (j) {
+        if (j.schema !== "mishkan.oholiab.elijah_remote_work_attribution_display.v3") throw new Error("wrong schema");
+        var m = {}; (j.rows || []).forEach(function (row) { m[row.work_id] = row; });
+        return m;
+      });
+    return ATT_P;
+  }
   function openBook(btn) {
     bkcard.querySelector(".head b").textContent = btn.getAttribute("data-w");
     bkcard.querySelector(".bk-en .en").textContent = btn.textContent.replace(/-/g, " ");
@@ -1421,6 +1439,33 @@ ${sectionsHtml.join("\n")}
       a.textContent = "open its page";
       stEl.append(" · ", a);
     }
+    // The attribution band — the cleared v3 candidate, root cards only,
+    // exactly the payload's own display scope (no README, no work page, no
+    // zone, no HUD). A display-ready row shows its credit line; the license
+    // link rides only where the distribution row is ready too — a held link
+    // says its held state in words; a display-held work shows nothing, fail
+    // closed; serve is untouched, as the seal's boundary demands.
+    var att = bkcard.querySelector(".bk-att");
+    att.hidden = true;
+    var attLine = att.querySelector(".att-line");
+    attLine.textContent = "";
+    var wid = btn.getAttribute("data-w");
+    loadAtt().then(function (rows) {
+      if (bkcard.hidden || bkcard.querySelector(".head b").textContent !== wid) return;
+      var r = rows[wid];
+      if (!r || String(r.display_state).indexOf("READY") !== 0) return;
+      attLine.textContent = r.credit_line || "";
+      if (String(r.distribution_state).indexOf("READY") === 0 && r.license_link) {
+        attLine.appendChild(document.createTextNode(" \u00b7 "));
+        var a = document.createElement("a"); a.href = r.license_link; a.target = "_blank"; a.rel = "noreferrer";
+        a.textContent = "License terms"; attLine.appendChild(a);
+      } else {
+        var h = document.createElement("span"); h.className = "att-held";
+        h.textContent = " \u00b7 license link held: " + String(r.distribution_state).toLowerCase().replace(/_/g, " ");
+        attLine.appendChild(h);
+      }
+      att.hidden = false;
+    }).catch(function () { /* an unreadable table leaves the band absent, never wrong */ });
     wcard.hidden = true;
     bkcard.hidden = false; wshade.hidden = false;
   }
