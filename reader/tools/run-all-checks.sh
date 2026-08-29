@@ -59,6 +59,21 @@ else
   echo "shape panel: ${SLUGS[*]}"
 fi
 
+# The server the browser checks need, owned by the run. Containers restart
+# and shells reset; a suite that assumes somebody else's server reports every
+# browser check as a crash the moment that assumption breaks — it happened
+# three times in one night. If 8899 answers, it is used; if not, one is
+# started here and stopped when the run ends.
+if ! curl -s -o /dev/null --max-time 2 http://127.0.0.1:8899/zone.html; then
+  python3 -m http.server 8899 --directory . >/dev/null 2>&1 &
+  SRV_PID=$!
+  trap '[ -n "$SRV_PID" ] && kill "$SRV_PID" 2>/dev/null' EXIT
+  for _ in $(seq 1 20); do
+    curl -s -o /dev/null --max-time 2 http://127.0.0.1:8899/zone.html && break
+    sleep 0.5
+  done
+fi
+
 # The plan the no-URL checks read is derived and gitignored: a fresh checkout
 # has no build/ and eight checks used to crash on its absence — a crash that
 # reads as the site broken when it is the scaffold that is missing. Derive it.
