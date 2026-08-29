@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v2.1 · 2026-08-29 — the letters reassigned
+# THE FRAME · canonical review standard · v2.2 · 2026-08-29 — the letters reassigned
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -17,7 +17,7 @@ owner's to make.
 | **A** | Acquisition — the raw fact that bytes were obtained, before any claim about them | `ledgers/work/a/` (1MB) | ✗ | NOT NEEDED FOR SERVE — serve reads the verified body and the bridge; acquisition history stays corpus-side |
 | **N** | Permission + source identity — licensor, license, custody, display right, forbidden effect. Acquired bytes may exist in custody before N; N gates ADMISSION and DISPLAY, not raw existence | `ledgers/work/n/` (337MB, 241 files; batch-shaped) + derived current: `corpus-refinement-v1/output/active-rights-resolution-v2/` | ✗ pending counter-verify — SHIPPED 2026-08-27: staging `706d122` (seal `SHA256SUMS-n-and-rights.txt`) AND this branch `rights/active-rights-resolution-v2/` (seal `SHA256SUMS.txt`; bytes re-verified against the staging seal at ship time, 4/4 OK) | **NEEDED — the one open row.** Either shape serves: `active-rights-resolution-v2` (3,986 rows + 9 profiles, kilobyte-scale) or the full binding composite (its seal is already held for counter-verification) |
 | **B** | Admission to the corpus spine — the census of works | `ledgers/work/b/`, `b-corpus-spine/` | ✗ | NOT NEEDED FOR SERVE — the bridge in custody carries the census the fleet walks |
-| **Y** | SETTLED 2026-08-27: C0 owns the Hebrew — every work/part/chapter/section title is an ordered C0 binding. Y checks and classifies ("this C0 interval is a chapter title," parent/ordinal) with row-wise cardinality: every C0 title binding has EXACTLY ONE Y checker row; absence is a TYPED N/A, never an omitted row. And Y is a CURATED ROUTE SELECTION, not a translation ledger: the commonly_force_read_as rider never stores English — it hand-selects an EXISTING R pill backed by at least one display-eligible, licensed M witness; the English shown always comes from that R/M/D route. No suitable route → N/A/HOLD, never improvisation. **Case law — the liturgy error:** Y once carried "liturgy" as free English unlicensed in the HUD; the fix was not licensing Y but the law itself: never let Y claim English the HUD cannot already prove. (Most Ben-Yehuda work is C0 interval designation plus Y checking; only genuinely absent editorial titles require new C0 occurrences) | `ledgers/work/y/` (1.3GB, pre-repair) | ✗ | NEEDED ONLY as the English rider (commonly_force_read_as), null lawful — exactly the ruling: the site already derives navigation from C0 and the bridge; the pre-repair ledger is not needed on this disk |
+| **Y** | SETTLED 2026-08-27: C0 owns the Hebrew — every work/part/chapter/section title is an ordered C0 binding. Y checks and classifies ("this C0 interval is a chapter title," parent/ordinal) with row-wise cardinality: every C0 title binding has EXACTLY ONE Y checker row; absence is a TYPED N/A, never an omitted row. And Y is a CURATED ROUTE SELECTION, not a translation ledger: the commonly_force_read_as rider never stores English — it hand-selects an EXISTING R pill backed by at least one display-eligible, licensed M witness; the English shown always comes from that R/M/D route. No suitable route → N/A/HOLD, never improvisation. **Case law — the liturgy error:** Y once carried "liturgy" as free English unlicensed in the HUD; the fix was not licensing Y but the law itself: never let Y claim English the HUD cannot already prove. (Most Ben-Yehuda work is C0 interval designation plus Y checking; only genuinely absent editorial titles require new C0 occurrences) | `ledgers/work/y/` (1.3GB, pre-repair) | ✗ | NOT NEEDED (v2.2, owner, 2026-08-29): the English rider is RETIRED into Z — serve reads the single Z layer; the pre-repair ledger is not needed on this disk |
 | **Q** | Pure pointer, no content — points a C0 site at its MAM form for display: full carrier renders unchanged; the card's lattice (above the COMPspan) shows qere and ketiv separately; clicking underlines that half in the C0, marking which written form the current English defines | Q pointers in the MAM candidate (57 shipped) | ✓ in candidate | NEEDED — held; the lattice, the underline, and their gates are live |
 | **K** | The key — normalized lexical identity that routes to definitions | route store, site-side (140,532 keys / 774,277 routes) | ✓ | NEEDED — held |
 | **W** | The witnessed form — word-forms as written, the inventory the validator cross-checks (1,485,250 forms) | `ledgers/work/w/` (146MB) | ✗ | NOT NEEDED FOR SERVE — an audit inventory; wanted for the deferred W-grain check, never for serving |
@@ -160,19 +160,18 @@ TOC wears the one forced reading in a uniform machine-selected-but-licensed
 register for usability; inside the section, the full HUD-able testimony —
 lattice, pills, every witness cycleable.
 
-**Z expanded to every title node + the display gate (owner, 2026-08-29):**
-Z runs over EVERY title node — book, part, chapter, section — one forced
-English reading per node, machine-selected. The gate: EVEN Z CANNOT SHOW
-WITHOUT M. Fill Z internally without limit (bare guesses stored as
-candidates), but display requires resolving through X to an existing
-route — at least one licensed M witness, full R-pill fan-out preferred.
-With this, no layer anywhere authors English: Y's force-read and Z's
-suggestion are both selections of existing licensed routes; the only
-differences are the selector (human vs machine) and the register worn.
-The liturgy error becomes impossible by construction. Display tiers: the
-TOC wears the one forced reading in a uniform machine-selected-but-licensed
-register for usability; inside the section, the full HUD-able testimony —
-lattice, pills, every witness cycleable.
+**One forced-reading layer (owner, 2026-08-29, v2.2): commonly_force_read_as
+is RETIRED into Z.** Y returns to pure pointer and checker — it points,
+classifies, keeps cardinality, and NEVER speaks; no English rider remains
+anywhere in Y. Every forced English reading — family names, title
+translations, every node — lives in the single Z layer: a selected existing
+route through X to licensed M testimony. The selector is provenance on the
+row: human-confirmed rows wear the curated register (and are the graduation
+target); machine-only rows wear the dashed register. One layer, one
+causeway, one gate — no show without M. Y's force-read case law above
+remains as history and precedent; its mechanism is Z's now. Migration: the
+live door's COMMONLY FORCE READ AS chips become Z-layer output —
+post-cutover emission work, no sealed inputs change.
 
 ## The Retirement Doctrine (owner + construction, 2026-08-27)
 
