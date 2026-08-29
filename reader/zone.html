@@ -3646,16 +3646,28 @@
       // D-card folds its further records. Only where the work has no
       // witnessed title does the guess print in the open — its job is
       // filling silence, never seconding testimony.
+      // The display gate, FRAME v2.1 (owner, 2026-08-29): EVEN Z CANNOT SHOW
+      // WITHOUT M. A suggestion displays only when it has resolved through
+      // the causeway to an existing licensed route — the machine SELECTS
+      // among words the dictionaries already license, it never authors. So
+      // the register requires the route's license and witness alongside the
+      // selector's provenance, and wears both: the license chip (the M's,
+      // solid) and the selector chip (the model's, dashed). A bare guess is
+      // a candidate in the store, never a sentence on the page.
       const sug = zone.title_suggestion;
-      if (sug && sug.text && sug.model && sug.run && sug.date) {
+      if (sug && sug.text && sug.model && sug.run && sug.date && sug.license && sug.m_label) {
         const sugLine = () => {
           const line = document.createElement("span"); line.className = "t-sug";
           const who = document.createElement("span"); who.className = "sug-chip";
           who.textContent = sug.model;
-          who.title = `${sug.model} · run ${sug.run} · ${sug.date} — an attribution, not a license. ` +
-            `A guess graduates only by becoming an editorial title with provenance, then an ordinary title binding.`;
+          who.title = `${sug.model} · run ${sug.run} · ${sug.date} — the selector, not the licensor. ` +
+            `The reading is a licensed route's own word; the machine only chose among words already licensed.`;
+          const lic = document.createElement("span"); lic.className = "lic-chip";
+          lic.textContent = sug.license;
+          lic.title = `${sug.m_label}${sug.m_year ? ` · ${sug.m_year}` : ""} — the licensed witness carrying this reading`;
           line.append(who);
-          line.append(` guesses the title is “${sug.text}” — but that is not witnessed by this work`);
+          line.append(` guesses the title is “${sug.text}” — but that is not witnessed by this work `);
+          line.append(lic);
           return line;
         };
         const witnessed = !!(zone.work_he_tokens && zone.work_he_tokens.some((t) => t.k));

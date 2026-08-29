@@ -8,9 +8,12 @@
 // sentence states the act plainly ("guesses"), states the gap plainly ("not
 // witnessed by this work"), and its subject is the NAMED model — never an
 // anonymous category — because an attribution that cannot be audited is not
-// an attribution. The chip it wears is an attribution chip, dashed where a
-// license chip is solid, and no license chip may ever stand in this
-// register, because the absence of a license IS the register's honesty.
+// an attribution. Under the display gate (FRAME v2.1, owner 2026-08-29),
+// EVEN Z CANNOT SHOW WITHOUT M: the register wears two chips — the licensed
+// witness's (solid; the words are a route's own, machine-SELECTED never
+// authored) and the selector's (dashed; the model, run, date). A bare guess
+// with no resolved route is a candidate in the store and never a sentence
+// on the page.
 //
 // No corpus suggestion exists yet, so this drives the register with a
 // fixture zone — a served zone with title_suggestion attached by this check,
@@ -41,6 +44,11 @@ const SUG = {
   model: "fixture-model-1",
   run: "r-0001",
   date: "2026-08-28",
+  // the display gate (FRAME v2.1): even Z cannot show without M — the
+  // suggestion arrives resolved to a licensed route or it does not print
+  license: "TEST-LICENSE-1.0",
+  m_label: "the fixture's instrument witness",
+  m_year: "1900",
 };
 const FIXDIR = join(K3, "build", "sug-fixture");
 mkdirSync(FIXDIR, { recursive: true });
@@ -95,14 +103,36 @@ check("in the ruled sentence — the act and the gap both plain",
 check("its subject is the named model, never an anonymous category",
   got.chip === SUG.model && !/artificial intelligence|the website/i.test(got.text),
   got.chip || "NO CHIP");
-check("the chip is an attribution and says so — run and date ride on it",
-  got.found && got.chipIsLicense === false && got.licenseChipsInLine === 0
+check("the licensed witness rides beside the selector — the display gate's M",
+  got.found && got.text.includes(SUG.license),
+  got.text.slice(-40));
+check("the selector chip is the model's and says so — run and date ride on it",
+  got.found && got.chipIsLicense === false && got.licenseChipsInLine === 1
     && got.chipTitle.includes(SUG.run) && got.chipTitle.includes(SUG.date)
-    && /not a license/.test(got.chipTitle),
+    && /the selector, not the licensor/.test(got.chipTitle),
   got.chipTitle.slice(0, 80));
 check("it stands under the bridge register, never as a claim",
   got.found && /recorded in the bridge as/.test(got.claimLabel) && got.bridgeNote,
   got.claimLabel);
+
+// 1b · a bare guess — no licensed route resolved — never prints: the store
+// may hold it as a candidate; the page may not say it
+const FIXB = join(FIXDIR, "fixture-sug-bare-v1.bin");
+const zb = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${served}.bin`))).toString("utf8"));
+zb.title_suggestion = { text: "The Fixture Scroll", model: "fixture-model-1", run: "r-0001", date: "2026-08-28" };
+writeFileSync(FIXB, gzipSync(Buffer.from(JSON.stringify(zb), "utf8")));
+const srvB = createServer((req, res) => {
+  const pB = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "").replace(/\\/g, "/");
+  const path = pB === `/data/zones/fixture-sug-bare-v1.bin` ? FIXB : join(K3, pB);
+  try { const body = readFileSync(path); res.writeHead(200, { "content-type": TYPES[extname(path)] || "application/octet-stream" }); res.end(body); }
+  catch { res.writeHead(404); res.end("no"); }
+});
+await new Promise((r) => srvB.listen(0, "127.0.0.1", r));
+await p.goto(`http://127.0.0.1:${srvB.address().port}/zone.html?b=fixture-sug-bare-v1&fixture=1`, { waitUntil: "networkidle" });
+await p.waitForTimeout(1500);
+const bareShown = await p.evaluate(() => !!document.querySelector("#workTitle .t-sug"));
+check("a bare guess — no licensed route — never prints", !bareShown);
+srvB.close();
 
 // 2 · the same zone without a suggestion: the register does not exist
 await p.goto(`${B}/${served}`, { waitUntil: "networkidle" });
