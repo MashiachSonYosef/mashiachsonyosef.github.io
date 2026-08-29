@@ -2111,6 +2111,20 @@
         const raise = Math.min(Math.ceil(oweD - seen), slack);
         if (raise > 0) dSlot.style.maxHeight = `${dSlot.clientHeight + raise}px`;
       }
+      // And the matching maximum: the record never takes more than half the
+      // card. The slot's stylesheet cap is written against the window, but
+      // under a placement budget the card is shorter than the window ever
+      // told the stylesheet — a 509px card carried a 293px record, and the
+      // readings paid for it. The slot yields to what the rest of the card
+      // stands at, never below its own floor, and the bands are handed the
+      // room it returns.
+      const other = hud.clientHeight - dSlot.clientHeight;
+      if (dSlot.clientHeight > other + 1) {
+        const chromeAbove = Math.max(0, Math.ceil(br.top - sr.top + dSlot.scrollTop));
+        const floorPx = dFoot.offsetHeight + Math.ceil(lineH * afford) + chromeAbove;
+        const to = Math.max(floorPx, other);
+        if (to < dSlot.clientHeight - 1) { dSlot.style.maxHeight = `${Math.floor(to)}px`; handOut(); }
+      }
     }
     // did every band end up with the row it is owed, in the space it actually
     // has? The caller decides what to do about it — there is nothing left here
