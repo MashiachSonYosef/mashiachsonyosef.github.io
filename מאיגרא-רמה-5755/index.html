@@ -1075,7 +1075,13 @@
   // its files beside itself, and with no book named it says so rather than
   // assuming one.
   const META = (name) => document.querySelector(`meta[name="${name}"]`)?.content || "";
-  const BOOK = (META("reader-book") || QUERY.get("b") || "").replace(/[^a-z0-9-]/g, "");
+  // The slug alphabet is letters in any script, digits, and hyphens — most
+  // of this shelf's recorded ids are the works' own Hebrew opening words,
+  // and an ASCII-only scrub here turned every one of those books into a
+  // dark page. What the scrub actually guards is the fetch path, so what it
+  // strips is everything that is not a letter, a digit, or a hyphen: no
+  // dots, no slashes, no percent tricks survive.
+  const BOOK = (META("reader-book") || QUERY.get("b") || "").replace(/[^\p{L}\p{N}-]/gu, "");
   const ROOT = META("reader-home") || location.pathname.replace(/[^/]*$/, "");
   // What the house calls itself. The door builder injects it, derived from the
   // address the site answers at; a bare reader carries no meta and keeps the

@@ -61,6 +61,8 @@ export function zoneUrls(dir = ZONES) {
 
 /** The slug out of a url a check was handed. */
 export function zoneIdOf(url) {
-  const m = String(url || "").match(/[?&]b=([a-z0-9-]+)/);
-  return m ? m[1] : null;
+  // letters in any script — most of the shelf's slugs are Hebrew; an
+  // ASCII-only match here silently returned null for two thousand works
+  const m = String(url || "").match(/[?&]b=([^&#]+)/);
+  return m ? decodeURIComponent(m[1]) : null;
 }
