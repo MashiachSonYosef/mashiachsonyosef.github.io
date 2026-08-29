@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v2.0 · 2026-08-29 — the letters reassigned
+# THE FRAME · canonical review standard · v2.1 · 2026-08-29 — the letters reassigned
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -25,7 +25,7 @@ owner's to make.
 | **COMPspan** | Spans — how occurrences compose into readable structure; the reader's component system draws from the span table | `ledgers/work/compspan/` (100MB) | ✗ | NEEDED as the span template the zone builder reads — held site-side; the 100MB ledger stays corpus-side |
 | **COMPcell** | Cells of composition — the atomic display cells a span resolves to: COMPspan is the structure, COMPcell the atoms, and the site derives cells from the span template plus the body at render time (idea recorded by the corpus lane from the derived-on-site behavior; the owner corrects it if richer) | `ledgers/work/compcell/` (181MB) | ✗ | NOT NEEDED — derived on site, never stored |
 | **L** | NOT_MATERIALIZED — vestigial bundle label, recorded not deleted | — | n/a | n/a — agreed |
-| **X** | REASSIGNED (owner's frame v2.0, 2026-08-29): the CAUSEWAY — the typed pointer from the unproven into proven testimony. A Z suggestion that matches an existing P entry carries X (the exact pill, its M witnesses, their licenses); a Z-OFF collision refusal names its witness through X; Y's P-bundle view (Y-R-P) is the same pointer serving the proven side. X points at proven testimony on behalf of the unproven and creates no new identity. Old X (provisional 999 pool) retired — see Retired letters | planned with the title-factory surfaces | — | build with the suggestion store |
+| **X** | REASSIGNED (owner's frame v2.0, 2026-08-29): the CAUSEWAY — the typed pointer from the unproven into proven testimony. A Z suggestion that matches an existing P entry carries X (the exact pill, its M witnesses, their licenses); a Z-OFF collision refusal names its witness through X; X serves Z ALONE (owner, 2026-08-29): Y stands on M and needs no escort — the Y-R-P view is Y's own derivation, not X's. X points at proven testimony on behalf of the unproven and creates no new identity. Old X (provisional 999 pool) retired — see Retired letters | planned with the title-factory surfaces | — | build with the suggestion store |
 | **D** | A definition — the English definitional record for a form | in `ledgers/work/ldmprs/` | ✗ | NEEDED in serving form — held as the route store; `ldmprs/` itself is not needed on this disk |
 | **M** | The dictionary — the source work a D comes from | in `ldmprs/` | ✗ | NEEDED in serving form — held (a source per reading, via the route store) |
 | **P** | RULED 2026-08-27 (owner's P fix, construction's precision): P groups an exact R-PILL IDENTITY — never identical D strings. Membership comes from sharing the authoritative R identity, not from any string comparison. Every M/source/license carrying that R pill is clickable-through, and each click displays that M's own D exactly as written — EVEN WHEN THE D STRINGS DIFFER. No fuzzy semantic grouping is ever inferred | in `ldmprs/` | ✗ | NEEDED as the byte-perfect rule — held site-side; the expansion RULED CLOSED (owner, 2026-08-28): the full fan-out per the simplest statement — every R pill exposes every M/license/D carrying it, reader cycles witnesses, S law leads the default — build when cutover settles |
@@ -145,6 +145,20 @@ assertions: open register, drawer, fold-away, witness keeps the surface).
 The four display states remain a partition of the surface: the drawer's
 folded guess beneath a witnessed title is storage and Y-checker audit
 input, never a second display state.
+
+**Z expanded to every title node + the display gate (owner, 2026-08-29):**
+Z runs over EVERY title node — book, part, chapter, section — one forced
+English reading per node, machine-selected. The gate: EVEN Z CANNOT SHOW
+WITHOUT M. Fill Z internally without limit (bare guesses stored as
+candidates), but display requires resolving through X to an existing
+route — at least one licensed M witness, full R-pill fan-out preferred.
+With this, no layer anywhere authors English: Y's force-read and Z's
+suggestion are both selections of existing licensed routes; the only
+differences are the selector (human vs machine) and the register worn.
+The liturgy error becomes impossible by construction. Display tiers: the
+TOC wears the one forced reading in a uniform machine-selected-but-licensed
+register for usability; inside the section, the full HUD-able testimony —
+lattice, pills, every witness cycleable.
 
 ## The Retirement Doctrine (owner + construction, 2026-08-27)
 
