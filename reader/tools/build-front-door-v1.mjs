@@ -816,6 +816,36 @@ const countReceipt = {
   rendered: renderedTally,
 };
 const countReceiptJson = JSON.stringify(countReceipt, null, 2) + "\n";
+// The reader, working — the owner's home-page ruling: demonstration first.
+// One verse stands on the door with the machinery live, and it is DERIVED,
+// never picked (demo-verse-rule-v1): the opening words of the first book on
+// the shelf in shelf order, the first ten of its first section — the same
+// rule check-nothing-hand-typed and check-clean-address re-derive
+// independently, so a hand-swapped verse fails the gates. Every keyed word
+// is the same .fw control as every other word on this page; its reading is
+// the store's oldest displayable with its license beside it, the door's
+// standing gloss law.
+const DEMO_N = 10;
+const demo = (() => {
+  const first = [...ZONE_INFO.keys()][0];
+  if (!first) return null;
+  const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, `${first}.bin`))).toString("utf8"));
+  const sec = (z.sections || [])[0];
+  if (!sec || !(sec.words || []).length) return null;
+  const words = sec.words.slice(0, DEMO_N).map((w) => {
+    const k = w.k || (Array.isArray(w.w) && w.w[0] && w.w[0].k) || null;
+    const g = k ? (STORE.glossFor(k).text || "") : "";
+    return { s: w.s, k, g, src: g ? glossSource(k, g) : null };
+  });
+  return { slug: first, label: plainName(first), words };
+})();
+const demoHtml = demo ? `  <section id="demo" aria-label="The reader, working">
+    <p class="demo-lab">the reader, working — press any word</p>
+    <p class="d-verse"><span class="demo-he"><span class="he" dir="rtl">${demo.words.map((w) => w.k
+      ? `<span class="dw"><button type="button" class="fw" lang="he" data-k="${esc(w.k)}" title="open this word&#8217;s own record — readings oldest source first">${esc(w.s)}</button>${w.g ? `<span class="g">${esc(w.g)}${chipHtml(w.src)}</span>` : ""}</span>`
+      : `<span class="dw"><span class="fw inert" lang="he">${esc(w.s)}</span></span>`).join(" ")}</span></p>
+    <p class="of">the opening words of <a href="/${demo.slug}">${demo.label ? esc(demo.label) : `<span class="none" title="${esc(demo.slug)}">${NO_PLAIN_NAME}</span>`}</a>, cut from its own record — derived by rule, the first book on the shelf, never chosen. Each reading above is the store&#8217;s oldest displayable witness with its license; the whole book reads the same way, with its component lattice live on every word.</p>
+  </section>` : "";
 const censusSections = [
   ...families.map(censusFamily),
   awaitingSection(),
@@ -824,9 +854,19 @@ const censusSections = [
 const sectionsHtml = [
   ...families.map(familySection),
   censusSections.length
-    ? `    <section class="family census-head">
+    ? (() => {
+        // the state of the library, said in fractions the data owes: how
+        // many served titles are witnessed (the work's own opening words),
+        // how many read plainly by their recorded ids — and the registers
+        // that are built and empty, said so, because an empty register is a
+        // fact and a silent one reads as a hidden one
+        const witnessed = [...ZONE_INFO.values()].filter((zi) => (zi.heTokens || []).some((t) => t.k)).length;
+        const plain = ZONE_INFO.size - witnessed;
+        return `    <section class="family census-head">
       <p class="of">THE CENSUS · every work the bridge records that does not serve yet. Nothing here is hidden and nothing is promised: each row carries its recorded id, its measured size, and — on its card — what it awaits.</p>
-    </section>`
+      <p class="of">The state of the library: of the ${n(ZONE_INFO.size)} books serving, ${n(witnessed)} carry witnessed Hebrew titles — their own opening words, claimed from their own records — and ${n(plain)} read plainly by their recorded ids. The editorial and machine-pointer title registers are built and empty: nothing on this site is guessed.</p>
+    </section>`;
+      })()
     : "",
   ...censusSections,
 ].filter(Boolean);
@@ -968,6 +1008,20 @@ const doc = `<!doctype html>
   section.census-head { margin-top: 2.2rem; padding-top: 1rem;
     border-top: 1px solid var(--line); }
   section.census-head .of { letter-spacing: 0.04em; }
+  /* the reader, working: one derived verse with the machinery live */
+  .demo-he .fw { font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer;
+    font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif; }
+  .demo-he .fw:hover { color:var(--gold); }
+  .demo-he .fw.inert { cursor:default; }
+  #demo { margin: 1rem 0 1.4rem; padding: .9rem 1rem 1rem; border: 1px solid var(--line);
+    border-radius: .6rem; background: var(--panel); }
+  #demo .demo-lab { margin: 0 0 .55rem; font-size: .7rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--gold); }
+  #demo .d-verse { margin: 0; font-size: 1.35rem; line-height: 1.5; }
+  #demo .dw { display: inline-block; margin: 0 .18rem .4rem; text-align: center; vertical-align: top; }
+  #demo .dw .g { display: block; font-size: .6rem; line-height: 1.35; color: var(--muted);
+    max-width: 9em; direction: ltr; }
+  #demo .of { margin: .45rem 0 0; font-size: .78rem; color: var(--faint); }
   details.fam > summary { list-style:none; cursor:pointer; padding:.3rem .15rem .45rem; }
   details.fam > summary::-webkit-details-marker { display:none; }
   details.fam > summary .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
@@ -1205,6 +1259,7 @@ const doc = `<!doctype html>
   </section>
   </details>
   <script id="front-door-counts-receipt" type="application/json">${JSON.stringify(countReceipt).replace(/</g, "\\u003c")}</script>
+${demoHtml}
   <form id="find" role="search" onsubmit="return go(event)">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
       placeholder="find a book"
@@ -1712,6 +1767,11 @@ const scrubTitles = (text) => {
   // the titles the zones themselves claim from their own C0 — carried
   // records, the exact category this scrub exists to allow
   for (const zi of ZONE_INFO.values()) for (const t of zi.heTokens) known.push(esc(t.s));
+  // the working verse (demo-verse-rule-v1): the first zone's opening words,
+  // records cut from its own serve — the same rule the gates re-derive. The
+  // keys ride too: a vocalized surface folds to a consonantal key, and the
+  // key is as much the record's as the surface it folds from.
+  if (demo) for (const w of demo.words) { known.push(esc(w.s)); if (w.k) known.push(esc(w.k)); }
   for (const f of Object.values(ATLAS.families))
     for (const w of f.works) if (HEBREW.test(w.id)) known.push(esc(w.id.split("/").pop()));
   known.sort((a, b) => b.length - a.length);
@@ -1719,7 +1779,12 @@ const scrubTitles = (text) => {
   for (const nm of known) t = t.split(nm).join("");
   return t;
 };
-if (HEBREW.test(scrubTitles(doc))) throw new Error("the front door printed a character of the text beyond the carried titles — refusing output");
+{
+  const residue = scrubTitles(doc);
+  const hit = residue.search(HEBREW);
+  if (hit >= 0) throw new Error("the front door printed a character of the text beyond the carried titles — refusing output · at: "
+    + JSON.stringify(residue.slice(Math.max(0, hit - 80), hit + 40)));
+}
 
 if (HEBREW.test(readme)) throw new Error("the README printed a character of the text — refusing output");
 

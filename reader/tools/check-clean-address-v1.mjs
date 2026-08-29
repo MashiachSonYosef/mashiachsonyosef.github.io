@@ -171,6 +171,21 @@ check("the site's own name carries no Hebrew that nothing recorded",
   const carried = new Set(zonesOnDisk().map((slug) => titleOf(slug)[0]).filter(Boolean));
   const L = JSON.parse(readFileSync(join(K3, "data", "family-ledger-v1.json"), "utf8"));
   for (const lf of L.families || []) if (lf.he) { carried.add(lf.he); for (const t of lf.he_tokens || []) carried.add(t.s); }
+  // demo-verse-rule-v1, re-derived: the door's working verse is the first
+  // ten words of the first section of the first zone in shelf order — each
+  // word a recorded surface, carried like a title's own words
+  {
+    const { readdirSync } = await import("node:fs");
+    const { gunzipSync } = await import("node:zlib");
+    const zdir = join(K3, "data", "zones");
+    const firstZone = readdirSync(zdir)
+      .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith("-commentary.bin"))
+      .sort()[0];
+    if (firstZone) {
+      const z = JSON.parse(gunzipSync(readFileSync(join(zdir, firstZone))).toString("utf8"));
+      for (const w of ((z.sections || [])[0]?.words || []).slice(0, 10)) if (w.s) carried.add(w.s);
+    }
+  }
   const strays = framed.hebrews.filter((x) => !carried.has(x.t));
   check("every Hebrew on the door is a zone's title or the family ledger's name, and nothing else",
     strays.length === 0,

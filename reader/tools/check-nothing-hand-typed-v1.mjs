@@ -144,6 +144,24 @@ if (existsSync(zonesDir)) {
       }
     } catch { /* a bin the walk cannot read is someone else's problem, not a licence to skip the scan */ }
   }
+  // demo-verse-rule-v1, re-derived independently of the door: the working
+  // verse on the door is the first ten words of the first section of the
+  // first zone in shelf order — each owed on the door once, its key an owed
+  // key, like every other data word. A hand-swapped verse is a word the
+  // data does not owe, and fails here.
+  const firstZone = readdirSync(zonesDir)
+    .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith("-commentary.bin"))
+    .sort()[0];
+  if (firstZone) {
+    try {
+      const z = JSON.parse(gunzipSync(readFileSync(join(zonesDir, firstZone))).toString("utf8"));
+      for (const w of ((z.sections || [])[0]?.words || []).slice(0, 10)) {
+        if (w.s) oweWord(w.s);
+        const k = w.k || (Array.isArray(w.w) && w.w[0] && w.w[0].k) || null;
+        if (k) owedKeys.add(k);
+      }
+    } catch { /* the door will have failed to build from it too */ }
+  }
 }
 // zone.html has no place for any title: its titles arrive from data at
 // runtime, so nothing is scrubbed from it at all. The door's title law is
