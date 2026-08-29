@@ -126,21 +126,28 @@ const SERVED = ["zone.html"];
 check("there are served files to read", SERVED.length > 0, SERVED.join(" ") || "none found");
 const { gunzipSync } = await import("node:zlib");
 const carriedTitles = [];
+const owedWords = new Map();          // surface → how many places the data owes it
+const owedKeys = new Set();           // route keys the tokens carry
+const zoneNames = new Set();          // the shelf's own addresses
+const oweWord = (s) => owedWords.set(s, (owedWords.get(s) || 0) + 1);
 const zonesDir = join(K3, "data", "zones");
 if (existsSync(zonesDir)) {
   for (const zf of readdirSync(zonesDir).filter((x) => x.endsWith(".bin") && !x.endsWith("-commentary.bin"))) {
     try {
       const z = JSON.parse(gunzipSync(readFileSync(join(zonesDir, zf))).toString("utf8"));
+      zoneNames.add(zf.replace(/\.bin$/, ""));
       if (z.work_he) carriedTitles.push(z.work_he);
+      if (Array.isArray(z.work_he_tokens)) for (const t of z.work_he_tokens) {
+        oweWord(t.s);
+        if (t.k) owedKeys.add(t.k);
+        if (Array.isArray(t.w)) for (const c of t.w) if (c.k) owedKeys.add(c.k);
+      }
     } catch { /* a bin the walk cannot read is someone else's problem, not a licence to skip the scan */ }
   }
 }
-// A carried title may appear on the door EXACTLY as often as the door has a
-// place for it: once on its work's own title row, and once more if the work
-// is also seated as a sub-row. A scrub alone would launder a typed duplicate
-// of a real title; a count cannot. zone.html has no place for any: its titles
-// arrive from data at runtime, so nothing is scrubbed from it at all.
-const countIn = (hay, needle) => hay.split(needle).length - 1;
+// zone.html has no place for any title: its titles arrive from data at
+// runtime, so nothing is scrubbed from it at all. The door's title law is
+// below, at the door's own grain — the .fw word multiset.
 // The door now prints the atlas: recorded work ids, some carrying the work's
 // own Hebrew title inside them. Those are records too, and they are scrubbed
 // FIRST, longest first — a carried zone title can stand inside a recorded id
@@ -163,7 +170,7 @@ let ATLAS_NAMES = [];
   const lp = join(K3, "data", "family-ledger-v1.json");
   if (existsSync(lp)) {
     const L = JSON.parse(readFileSync(lp, "utf8"));
-    for (const lf of L.families || []) if (lf.he) for (const t of lf.he_tokens || []) ATLAS_NAMES.push(t.s);
+    for (const lf of L.families || []) if (lf.he) for (const t of lf.he_tokens || []) { ATLAS_NAMES.push(t.s); oweWord(t.s); if (t.k) owedKeys.add(t.k); }
     ATLAS_NAMES.sort((a, b) => b.length - a.length);
   }
 }
@@ -171,13 +178,51 @@ for (const f of SERVED) {
   let src = readFileSync(join(K3, f), "utf8");
   const isDoor = f === "deploy-root/index.html" || f === "../index.html";
   const isEmitted = f.startsWith("deploy-root/") || f.startsWith("../");
+  if (isDoor) {
+    // The door prints a title word by word \u2014 each word a pressable route
+    // button \u2014 so a contiguous title string is not what the door carries,
+    // and counting titles as strings charged every common word with every
+    // row that shares it. The door's law at the door's own grain: the
+    // multiset of .fw words IS the multiset the data owes \u2014 every zone's
+    // title tokens once, every family's ledger tokens once \u2014 no word more,
+    // no word fewer. A scrub alone would launder a typed duplicate of a
+    // real word; the count cannot: a typed duplicate is one occurrence
+    // over what the data owes, and a word from nowhere owes zero.
+    const unesc = (s) => s.replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+    const fwWords = [...src.matchAll(/class="fw(?: inert)?"[^>]*>([^<]+)</g)].map((m) => unesc(m[1]));
+    const doorHas = new Map();
+    for (const w of fwWords) doorHas.set(w, (doorHas.get(w) || 0) + 1);
+    const diffs = [];
+    for (const [w, owed] of owedWords) {
+      const has = doorHas.get(w) || 0;
+      if (has !== owed) diffs.push(`${w}: door ${has}, data owes ${owed}`);
+    }
+    for (const [w, has] of doorHas) if (!owedWords.has(w)) diffs.push(`${w}: door ${has}, data owes 0`);
+    check("  the door's title words are the data's, word for word, count for count",
+      diffs.length === 0,
+      diffs.length ? `${diffs.length} words off \u2014 ${diffs.slice(0, 3).join(" \u00b7 ")}` : `${fwWords.length} words, every one owed`);
+    // The buttons' own attributes are data too: the key is the token's
+    // route key, the address names a zone on the shelf, and the book name
+    // is that address spaced \u2014 verified against the data, then blanked,
+    // so the residual scan judges only what stands outside them.
+    const tagBad = [];
+    for (const m of src.matchAll(/<(?:button|span)[^>]*class="fw(?: inert)?"[^>]*>/g)) {
+      const tag = m[0];
+      const at = (n) => { const mm = tag.match(new RegExp(`${n}="([^"]*)"`)); return mm ? unesc(mm[1]) : null; };
+      const k = at("data-k"), book = at("data-book"), bn = at("data-bookname");
+      if (k && !owedKeys.has(k)) tagBad.push(`key ${k} owed by no token`);
+      if (book && !zoneNames.has(book.replace(/^\//, ""))) tagBad.push(`address ${book} names no zone`);
+      if (bn && /[\u0590-\u05ff]/u.test(bn) && book
+          && bn.replace(/ /g, "-") !== book.replace(/^\//, "").replace(/_/g, "-"))
+        tagBad.push(`book name "${bn}" is not its address spaced`);
+    }
+    check("  the buttons' keys, addresses and book names are the data's own",
+      tagBad.length === 0, tagBad.slice(0, 3).join(" \u00b7 ") || "verified");
+    src = src.replace(/<(button|span)[^>]*class="fw(?: inert)?"[^>]*>/g, '<$1 class="fw">');
+    src = src.replace(/(class="fw"[^>]*>)[^<]+</g, "$1<");
+  }
   if (isEmitted) for (const nm of ATLAS_NAMES) src = src.split(nm).join("");
   for (const t of carriedTitles) {
-    if (isDoor) {
-      const found = countIn(src, t);
-      check("  the door carries a title no more often than it has places for it",
-        found >= 1 && found <= 2, `${found} occurrence${found === 1 ? "" : "s"} (1\u20132 allowed)`);
-    }
     if (isEmitted) src = src.split(t).join("");
   }
   const hits = [];

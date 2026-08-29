@@ -46,8 +46,8 @@ else
       if (needNested && shape.startsWith("CHAPTER_SECTION")) pick.set("nested", z);
       if (needTitle && (zz.work_he_tokens || []).some((t) => t.k)) pick.set("titled", z);
       if (needBare && !(zz.work_he_tokens || []).length) pick.set("untitled", z);
-      if (needHe && /[֐-׿]/.test(z)) pick.set("hebrew-id", z);
-      if (needLat && !/[֐-׿]/.test(z)) pick.set("latin-id", z);
+      if (needHe && /[\u0590-\u05FF]/u.test(z)) pick.set("hebrew-id", z);
+      if (needLat && !/[\u0590-\u05FF]/u.test(z)) pick.set("latin-id", z);
     }
     for (const z of new Set(pick.values())) console.log(z);
   ' --input-type=module 2>/dev/null)
