@@ -127,23 +127,25 @@ check("a word that titles a book carries the way into it", layer.shown && layer.
 // the band must stand in the bridge's register with the awaiting note.
 check("an unbacked name stands in the bridge's register, with the note",
   /recorded in the bridge as/.test(layer.label || "") && layer.says === served.replace(/-/g, " ")
-    && /awaits a licensed record/.test(layer.note || ""),
+    && /awaits an attested usage/.test(layer.note || ""),
   `${layer.label} · ${layer.says} · ${layer.note || "(no note)"}`);
-// and with a force license attached, the claim label prints with its chip
+// and with an attestation attached, the claim label prints with its chip —
+// who attests the usage, never who permits it (FRAME v2.7: a name is an
+// identification, not licensed expression)
 const claimed = await p.evaluate(async () => {
   document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   await new Promise((r) => setTimeout(r, 200));
-  const w = document.querySelector(".fam-he .fw[data-book]");
-  w.setAttribute("data-booklic", "TEST-LICENSE-1.0");
-  w.setAttribute("data-booklictitle", "the fixture's instrument license");
+  const w = document.querySelector(".fam-he .fw[data-k][data-book]");
+  w.setAttribute("data-bookatt", "attested: the fixture's instrument witness");
+  w.setAttribute("data-bookatttitle", "the fixture's instrument witness — attests this usage");
   w.click();
   await new Promise((r) => setTimeout(r, 900));
   const band = document.querySelector("#wcard .w-open");
   return { label: band.querySelector(".lab").textContent,
            chip: (band.querySelector(".chip") || {}).textContent || "" };
 });
-check("a backed name takes the claim label with its force license beside it",
-  /commonly force read as/.test(claimed.label) && claimed.chip === "TEST-LICENSE-1.0",
+check("a backed name takes the claim label with its attestation beside it",
+  /commonly force read as/.test(claimed.label) && claimed.chip === "attested: the fixture's instrument witness",
   `${claimed.label} · ${claimed.chip || "NO CHIP"}`);
 check("the record is read first and the book entered under it", layer.aboveReadings);
 check("and the word's own routes are still there beneath it", layer.readingsStillThere);

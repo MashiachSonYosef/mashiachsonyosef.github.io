@@ -177,6 +177,11 @@
     letter-spacing: 0.04em; margin-top: 0.18rem; font-variant: normal; text-transform: none; }
   header.top h1 .sug-chip { border: 1px dashed var(--line); border-radius: 0.6rem;
     padding: 0 0.4rem; font-size: 0.58rem; color: var(--muted); }
+  /* the interval's words inside the register: the work's own, pressable,
+     scaled to the register they stand in — a pointer, not the masthead */
+  header.top h1 .t-sug .title-row { display: inline-block; vertical-align: middle; }
+  header.top h1 .t-sug .title-row .w { font-size: 1.05rem; }
+  header.top h1 .t-sug .title-row .g { font-size: 0.56rem; max-width: 8em; }
   /* The drawer for a guess that coexists with a witness: the surface is the
      witness's, and the guess waits one level down behind a press that names
      what it holds. */
@@ -3700,9 +3705,11 @@
   // earlier law here said the label never softens; the owner overruled it the
   // day "liturgy" stood under the claim with no record anywhere behind it.
   // The row loads in the honest register — the bridge's value read plainly —
-  // and takes the claim label only when a licensed record reads the title's
-  // own form that way, the force license riding beside it. Two lawful states:
-  // claim with license, or record with note. Nothing between.
+  // and takes the claim label only when a record reads the title's own form
+  // that way, the ATTESTATION riding beside it (FRAME v2.7: a common name is
+  // an identification, uncopyrightable fact — who attests the usage, never
+  // who permits it). Two lawful states: claim with attestation, or record
+  // with note. Nothing between.
   (async () => {
     const chip = document.getElementById("workLic");
     const lab = document.getElementById("enLab");
@@ -3712,13 +3719,16 @@
     if (a && a.ok) {
       lab.textContent = "commonly force read as";
       enT.textContent = zone.work;
-      chip.textContent = licenseName(a.posture);
-      // The frame's force-license ladder, top rung — no pick exists. The chip
-      // fronts the oldest witness because the standing S law leads every card,
-      // never because anyone chose its license; every other witness with its
-      // own license is one press away, on the title word's own record.
+      // Attestation, not license — FRAME v2.7. A common name is an
+      // identification: uncopyrightable fact, not reproduced expression, so
+      // the chip says WHO ATTESTS the usage and never who permits it. The
+      // license chip that stood here cited the database the name was found
+      // in as if the name were expression — the category error the ruling
+      // retired. The witness is still the oldest by the standing S law;
+      // every other witness is one press away on the title word's record.
+      chip.textContent = `attested: ${a.label}`;
       chip.title = [
-        `${a.label}${a.year ? ` · ${a.year}` : ""} — the oldest witness leads by the standing rule`,
+        `${a.label}${a.year ? ` · ${a.year}` : ""} — attests this usage; the oldest witness leads by the standing rule. A name is an identification, not licensed expression.`,
         ...(a.also || []),
       ].join("\n");
       chip.hidden = false;
@@ -3730,7 +3740,7 @@
       }
     } else {
       const note = document.createElement("span"); note.className = "t-note";
-      note.textContent = " — the recorded id read plainly; an English name waits on a licensed record";
+      note.textContent = " — the recorded id read plainly; an English name waits on an attested usage";
       lab.parentNode.append(note);
       // The third register — the machine's guess, ruled 2026-08-28. It lives
       // only in this branch, so a licensed claim structurally outranks it:
@@ -3752,38 +3762,46 @@
       // D-card folds its further records. Only where the work has no
       // witnessed title does the guess print in the open — its job is
       // filling silence, never seconding testimony.
-      // The display gate, FRAME v2.1 (owner, 2026-08-29): EVEN Z CANNOT SHOW
-      // WITHOUT M. A suggestion displays only when it has resolved through
-      // the causeway to an existing licensed route — the machine SELECTS
-      // among words the dictionaries already license, it never authors. So
-      // the register requires the route's license and witness alongside the
-      // selector's provenance, and wears both: the license chip (the M's,
-      // solid) and the selector chip (the model's, dashed). A bare guess is
-      // a candidate in the store, never a sentence on the page.
-      // And the causeway stands on Hebrew or it does not stand — the
-      // owner's ruling, 2026-08-29, in his words: "there cant be an X
-      // justifying Z if there is no hebrew to source it from." A guess is a
-      // reading OF something: a suggestion that cannot name the work's own
-      // Hebrew it was read from has nothing under it — no source, no
-      // causeway, no display, however licensed the words it chose are. So
-      // the register also requires the Hebrew source, and a suggestion
-      // arriving without one is refused whole, license and model and all.
+      // FRAME v2.7 (owner, 2026-08-29): X is retired, and the machine's
+      // title suggestion is a DASHED PROTO-Y ROW inside Y's own machinery —
+      // never free text, never Z. The cargo is a C0 INTERVAL: the machine
+      // points at words of the work itself (the incipit model — Bereshit is
+      // the first word wearing a second role), and everything displayed is
+      // the interval's own. The Hebrew is the zone's words verbatim, key
+      // for key; the English arrives the way every English on this site
+      // arrives — through the ordinary route store, rendered by the same
+      // titleRow machinery the witnessed masthead uses, every word
+      // pressable to its witnesses and licenses. What the dashed chip marks
+      // is the one thing the machine actually did: SELECT the interval.
+      // The Hebrew anchor law is structural now, not a field: a suggestion
+      // whose tokens are not the work's own words — surface and key,
+      // verbatim — has no interval and never prints. Graduation is a human
+      // confirming the pointer; until then the row stays dashed.
       const sug = zone.title_suggestion;
-      if (sug && sug.text && sug.model && sug.run && sug.date && sug.license && sug.m_label
-          && sug.source_he && /[\u0590-\u05FF]/u.test(String(sug.source_he))) {
+      const sugTokens = (() => {
+        if (!sug || !Array.isArray(sug.tokens) || !sug.tokens.length
+            || !sug.model || !sug.run || !sug.date) return null;
+        const own = new Set();
+        for (const sec of zone.sections || [])
+          for (const w of sec.words || []) {
+            if (w.s && w.k) own.add(`${w.s} ${w.k}`);
+            if (Array.isArray(w.w)) for (const r of w.w) if (r.s && r.k) own.add(`${r.s} ${r.k}`);
+          }
+        for (const t of sug.tokens)
+          if (!t.s || !t.k || !own.has(`${t.s} ${t.k}`)) return null;
+        return sug.tokens.map((t) => ({ s: t.s, k: t.k }));
+      })();
+      if (sugTokens) {
         const sugLine = () => {
           const line = document.createElement("span"); line.className = "t-sug";
           const who = document.createElement("span"); who.className = "sug-chip";
           who.textContent = sug.model;
-          who.title = `${sug.model} · run ${sug.run} · ${sug.date} — the selector, not the licensor. ` +
-            `The reading is a licensed route's own word; the machine only chose among words already licensed. ` +
-            `Read from the work's own Hebrew: ${sug.source_he}`;
-          const lic = document.createElement("span"); lic.className = "lic-chip";
-          lic.textContent = sug.license;
-          lic.title = `${sug.m_label}${sug.m_year ? ` · ${sug.m_year}` : ""} — the licensed witness carrying this reading`;
+          who.title = `${sug.model} · run ${sug.run} · ${sug.date} — selected the interval, nothing more. ` +
+            `The words are the work's own; the English is their routed reading; ` +
+            `dashed means a pointer awaiting a human's confirmation.`;
           line.append(who);
-          line.append(` guesses the title is “${sug.text}” — but that is not witnessed by this work `);
-          line.append(lic);
+          line.append(" points at the work's own opening words as its title — a pointer, not a confirmation: ");
+          line.append(titleRow(sugTokens, sugTokens.map((t) => t.s).join(" ")));
           return line;
         };
         const witnessed = !!(zone.work_he_tokens && zone.work_he_tokens.some((t) => t.k));

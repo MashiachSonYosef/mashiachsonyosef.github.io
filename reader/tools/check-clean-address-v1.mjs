@@ -209,9 +209,12 @@ check("and the English beside it says what register it stands in",
 // The owner's ruling, made at the liturgy shelf: the claim label prints only
 // with the record's force license beside it — a claim with no chip is the
 // exact fault this door carried.
-check("and every claim label carries its force license",
-  framed.commons.filter((x) => /^commonly force read as$/i.test(x.lab)).every((x) => x.chip && x.chip.length > 2),
-  framed.commons.filter((x) => /^commonly force read as$/i.test(x.lab)).map((x) => `${x.t}: ${x.chip || "NO LICENSE"}`).join(" · ").slice(0, 200) || "no claim labels on this door");
+// Attestation, not license — FRAME v2.7: a common name is an identification,
+// an uncopyrightable fact, so the chip beside a claim label says WHO ATTESTS
+// the usage. A license name here was the category error the ruling retired.
+check("and every claim label carries its attestation, never a license",
+  framed.commons.filter((x) => /^commonly force read as$/i.test(x.lab)).every((x) => /^attested: .+/.test(x.chip || "")),
+  framed.commons.filter((x) => /^commonly force read as$/i.test(x.lab)).map((x) => `${x.t}: ${x.chip || "NO ATTESTATION"}`).join(" · ").slice(0, 200) || "no claim labels on this door");
 
 // A directory address answers with or without its closing slash — the slash
 // is the server's dress, not a second address.
@@ -281,18 +284,20 @@ for (const [href, ...expected] of WALK) {
   // The label is a claim and follows the evidence — the owner's ruling,
   // which overruled the law this block used to state ("the label never
   // softens"). "commonly force read as" may head an English only when a
-  // licensed record reads the title's own form that way, the force license
-  // riding beside it; where none does, the row is the bridge's value read
-  // plainly under the register that says so, with the note naming what the
-  // English is waiting on. Two lawful states, nothing between them.
+  // record reads the title's own form that way, its ATTESTATION riding
+  // beside it (FRAME v2.7: a name is an identification, not licensed
+  // expression — who attests, never who permits); where none does, the row
+  // is the bridge's value read plainly under the register that says so,
+  // with the note naming what the English is waiting on. Two lawful
+  // states, nothing between them.
   const addrPlain = href.replace(/^\//, "").replace(/[-_]+/g, " ");
   check("  the claim label stands only where a record backs the claim",
     r.lic ? /^commonly force read as$/i.test(r.enLab) && r.en === en
           : /^recorded in the bridge as$/i.test(r.enLab) && r.en === addrPlain,
     `"${r.enLab}": ${r.en}`);
-  check("  with a force license on the claim, and the note on the record",
-    r.lic ? r.lic.length > 2 && !r.enNote : /waits on a licensed record/.test(r.enNote),
-    `${r.enLab} · ${r.lic || r.enNote || "no license and no note"}`);
+  check("  with an attestation on the claim, and the note on the record",
+    r.lic ? /^attested: .+/.test(r.lic) && !r.enNote : /waits on an attested usage/.test(r.enNote),
+    `${r.enLab} · ${r.lic || r.enNote || "no attestation and no note"}`);
   check("  the zone still loads under the rewritten bar", r.sections === expectSections && r.words > 3, `${r.sections} of ${expectSections} sections`);
   check("  and its readings came with it", r.glossed > 0, `${r.glossed} of ${r.words} words glossed`);
 
