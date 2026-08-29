@@ -50,7 +50,8 @@ const flagUrl = args.includes("--url") ? args[args.indexOf("--url") + 1] : null;
 // halves against it; given a path it behaves as before.
 const asUrl = positional.find((a) => /^https?:\/\//.test(a)) || flagUrl;
 const asPath = positional.find((a) => !/^https?:\/\//.test(a));
-const zoneIdOf = (u) => (String(u || "").match(/[?&]b=([a-z0-9-]+)/) || [])[1] || null;
+// letters in any script — most of the shelf's slugs are Hebrew
+const zoneIdOf = (u) => { const m = String(u || "").match(/[?&]b=([^&#]+)/); return m ? decodeURIComponent(m[1]) : null; };
 const slug = zoneIdOf(asUrl);
 const binPath = asPath || (slug ? `data/zones/${slug}.bin` : null);
 const url = asUrl;

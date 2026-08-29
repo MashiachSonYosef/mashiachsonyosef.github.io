@@ -104,7 +104,7 @@ const readZone = (p) => JSON.parse(gunzipSync(readFileSync(p)).toString("utf8"))
 // one work is that work's own story, not this check's subject
 let zone = null, work = null, serveRows = null;
 const whys = [];
-for (const w of candidates.slice(0, 12)) {
+for (const w of candidates.slice(0, 40)) {
   const nd = join(OUT, "claimed.ndjson"), bin = join(OUT, "claimed.bin");
   try {
     serve(w, nd);
@@ -116,7 +116,7 @@ for (const w of candidates.slice(0, 12)) {
   } catch (e) { whys.push(`${w.split("/").pop().slice(0, 24)}: ${String(e.stderr || e.message).trim().split("\n").find((l) => l.startsWith("Error: ")) || String(e.message).slice(0, 60)}`); }
 }
 check("a candidate work runs the real pipeline end-to-end", !!zone,
-  work || `none of the first 12 built — ${whys.slice(0, 3).join(" · ")}`);
+  work || `none of the first 40 built — ${whys.slice(0, 3).join(" · ")}`);
 
 if (zone) {
   const toks = idTokensOf(work);
@@ -143,7 +143,7 @@ if (zone) {
 // ---- the refusal half: a Latin id claims nothing --------------------------
 const latin = Object.keys(openings).filter((w) => idTokensOf(w).every((s) => !exactK(s))).sort();
 let zone2 = null, work2 = null;
-for (const w of latin.slice(0, 12)) {
+for (const w of latin.slice(0, 40)) {
   const nd = join(OUT, "refused.ndjson"), bin = join(OUT, "refused.bin");
   try {
     serve(w, nd);
@@ -154,7 +154,7 @@ for (const w of latin.slice(0, 12)) {
   } catch (e) { whys.push(`${w.split("/").pop().slice(0, 24)}: ${String(e.stderr || e.message).trim().split("\n").find((l) => l.startsWith("Error: ")) || String(e.message).slice(0, 60)}`); }
 }
 check("a Latin-id work runs the pipeline too", !!zone2,
-  work2 || `none of the first 12 built — ${whys.slice(-3).join(" · ")}`);
+  work2 || `none of the first 40 built — ${whys.slice(-3).join(" · ")}`);
 if (zone2) {
   const r2 = (zone2.emitted_from || {}).title_from_c0 || {};
   check("it claims no Hebrew title — no tokens, no invented text",

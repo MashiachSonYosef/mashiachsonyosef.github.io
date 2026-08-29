@@ -22,6 +22,14 @@ const K3 = join(dirname(fileURLToPath(import.meta.url)), "..");
 const WORKSPACE = arg("workspace", "/mnt/user-data/uploads/999 footsteps");
 const MAN = arg("manifest", join(K3, "data", "workspace-manifest-v1.json"));
 
+// The workspace this manifest describes is the local corpus machine's. On
+// any machine that does not mount it — the cloud fleet box among them — the
+// check cannot reach its subject and says so, rather than reading a missing
+// mount as a thousand missing files.
+if (!existsSync(WORKSPACE)) {
+  console.log(`SKIPPED — the staged workspace (${WORKSPACE}) is not mounted on this machine`);
+  process.exit(3);
+}
 if (!existsSync(MAN)) {
   console.log(`SKIPPED — ${MAN} is not on this branch; run emit-workspace-manifest-v1 once from a warm workspace`);
   process.exit(3);
