@@ -115,6 +115,24 @@ for (const unit of servedUnits) {
   perChapter.set(c.chapter, (perChapter.get(c.chapter) || 0) + 1);
 }
 
+// ---- 4a. the surfaces are text, not markup -------------------------------
+// The capture leak: some source streams carry literal <b>/<br>/<small> tags
+// INSIDE sealed surfaces, and a page that renders them shows the reader
+// angle brackets nobody wrote as Hebrew. The chain sealed those bytes, so
+// this lane neither strips nor repairs them — the work holds, by name, until
+// the corpus lane's clean-successor program reissues the stream (the same
+// program that produced clean Genesis v3). Fifty works of the first fleet
+// carried this; the gate keeps the next one out.
+{
+  const TAG = /<(?:b|i|br|small|sup|sub|big|u|span|div|p)\b|<\//iu;
+  let leaked = 0, example = null;
+  for (const sec of sections) for (const w of sec.words) {
+    if (TAG.test(w.s)) { leaked += 1; example = example || `${sec.unit}: ${w.s.slice(0, 30)}`; }
+  }
+  require_(leaked === 0, "MARKUP_LEAK_IN_SURFACES",
+    `${leaked} surfaces carry literal markup (e.g. ${example}); the work holds until the corpus lane reissues a clean stream`);
+}
+
 // ---- 4b. the title, from the text itself ---------------------------------
 // The owner's ruling (2026-08-27, the frame's Y row): the Hebrew structural
 // world belongs in C0. On the shelf whose ids are the works' own opening
