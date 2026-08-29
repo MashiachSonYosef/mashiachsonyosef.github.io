@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v2.4 · 2026-08-29 — the letters reassigned
+# THE FRAME · canonical review standard · v2.5 · 2026-08-29 — the letters reassigned
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -164,19 +164,21 @@ TOC wears the projection's one reading per node, uniform, for usability;
 inside the section, the full HUD-able testimony — lattice, pills, every
 witness cycleable.
 
-**The mislabel reversal (owner + construction, 2026-08-29):** old Z's
-eviction is reversed as policy — NO licensed definition is ever removed on
-a classification judgment. The Source Zoning successor is a versioned
-REVIEW SIDECAR outside the frame proper: no admission effect, no license
-gate, no deletion list — it emits one non-destructive annotation,
-`suggested_as_a_mislabel`, with review provenance, displayed as a register
-on the card (the label never gates, hides, or softens the record; exports
-carry it like obligations). The 350,411 historically excluded rows stand as
-unrevalidated inventory until re-derived from retained acquisitions and
-re-admitted wearing the annotation — historical counts are evidence of
-classification, never of fairness. The deportee-registry amendment
-resolves: the deportees come home, labeled. The title partition (v2.3)
-is untouched — the mislabel sidecar is not a frame letter.
+**The kind ruling (owner, 2026-08-29 — refines the mislabel reversal):** NO
+licensed definition is ever removed on a classification judgment — and none
+is doubted by one either. `suggested_as_a_mislabel` is retired before
+birth: a doubt-tag is still the system editorializing about a witness, an
+unlicensed claim riding on testimony. What the review sidecar emits instead
+is the record's KIND, a provable fact from its own source: `record_kind:
+definition` (lexeme sense gloss — what the word means) or `record_kind:
+identification` (item label/description — who or what the name refers to).
+Every record displays AS its kind, with provenance; identification cards
+are honest, useful content ("who this refers to"), never suspects. Nothing
+removed, nothing accused, everything typed at its true position — old Z's
+data was correct AS TYPING all along; only its eviction and the doubt-tag
+were wrong framings. The 350,411 rows return as typed identification
+records once re-derived. The sidecar stays outside the frame proper; the
+title partition (v2.3) is untouched.
 
 **One forced-reading layer (owner, 2026-08-29, v2.2): commonly_force_read_as
 is RETIRED into Z.** Y returns to pure pointer and checker — it points,
@@ -242,7 +244,7 @@ Tabernacle). Bytes preserved twice, verified: cold custody at
 former rows live in this file's git history (v1.x). Census: zero live
 runtime readers; dormant tools that read the old paths (rebuild-c0-w
 tranche scripts; one commentary-poc July tool) must be rebound before any
-re-run — the list is in the receipt. Old Z's eviction was REVERSED as policy on 2026-08-29 (the mislabel reversal, above): the excluded rows return as licensed definitions wearing the suggested_as_a_mislabel annotation once re-derived; the deportee-registry amendment is thereby resolved.
+re-run — the list is in the receipt. Old Z's eviction was REVERSED as policy on 2026-08-29 (the mislabel reversal, above): the excluded rows return as licensed definitions as typed identification records once re-derived (the kind ruling); the deportee-registry amendment is thereby resolved.
 
 — recorded by the corpus lane from the owner's account of the frame
 — need column annotated by the website lane, 2026-08-28
