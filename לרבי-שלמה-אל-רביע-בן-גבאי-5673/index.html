@@ -310,6 +310,15 @@
      uses, sized down to chapter grain. The label column, the quiet slot and
      the force-read row match the masthead's forms so a reader learns the
      frame once. */
+  /* The frame is the page's voice, not the corpus's text: labels, registers,
+     locators, and absence sentences never ride along in a copy. The same law
+     that keeps a reading out of a copied Hebrew verse keeps "commonly force
+     read as" out of a drag that crosses a section head — the browser already
+     treats unselectable as not-selected, and the copy rewrite follows it.
+     The title words inside the frame stay selectable; they are text. */
+  .nh-lab, .nh-en, .nh-he.unnamed, .nh-of, .vlabel, .t-lab, .t-note, .t-sug,
+  .sug-fold, .en-t, header.top .lic-chip, .vnum, .toc-note, #meta, .byline
+    { user-select: none; -webkit-user-select: none; }
   .nh-row { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 0.15rem; }
   .nh-lab { flex: 0 0 auto; min-width: 7rem; font-size: 0.6rem; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--faint); }
@@ -3641,16 +3650,28 @@
       // D-card folds its further records. Only where the work has no
       // witnessed title does the guess print in the open — its job is
       // filling silence, never seconding testimony.
+      // The display gate, FRAME v2.1 (owner, 2026-08-29): EVEN Z CANNOT SHOW
+      // WITHOUT M. A suggestion displays only when it has resolved through
+      // the causeway to an existing licensed route — the machine SELECTS
+      // among words the dictionaries already license, it never authors. So
+      // the register requires the route's license and witness alongside the
+      // selector's provenance, and wears both: the license chip (the M's,
+      // solid) and the selector chip (the model's, dashed). A bare guess is
+      // a candidate in the store, never a sentence on the page.
       const sug = zone.title_suggestion;
-      if (sug && sug.text && sug.model && sug.run && sug.date) {
+      if (sug && sug.text && sug.model && sug.run && sug.date && sug.license && sug.m_label) {
         const sugLine = () => {
           const line = document.createElement("span"); line.className = "t-sug";
           const who = document.createElement("span"); who.className = "sug-chip";
           who.textContent = sug.model;
-          who.title = `${sug.model} · run ${sug.run} · ${sug.date} — an attribution, not a license. ` +
-            `A guess graduates only by becoming an editorial title with provenance, then an ordinary title binding.`;
+          who.title = `${sug.model} · run ${sug.run} · ${sug.date} — the selector, not the licensor. ` +
+            `The reading is a licensed route's own word; the machine only chose among words already licensed.`;
+          const lic = document.createElement("span"); lic.className = "lic-chip";
+          lic.textContent = sug.license;
+          lic.title = `${sug.m_label}${sug.m_year ? ` · ${sug.m_year}` : ""} — the licensed witness carrying this reading`;
           line.append(who);
-          line.append(` guesses the title is “${sug.text}” — but that is not witnessed by this work`);
+          line.append(` guesses the title is “${sug.text}” — but that is not witnessed by this work `);
+          line.append(lic);
           return line;
         };
         const witnessed = !!(zone.work_he_tokens && zone.work_he_tokens.some((t) => t.k));
