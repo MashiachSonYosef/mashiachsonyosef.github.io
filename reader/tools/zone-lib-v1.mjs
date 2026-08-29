@@ -161,7 +161,22 @@ export const wordsOf = (rows) =>
       "MAQAF_REGIONS_DO_NOT_REJOIN",
       `${surface}: ${regions.map((x) => x.k).join(MAQAF)} vs ${k}`,
     );
-    w.w = regions.filter((x) => x.k);
+    // The W set of a maqaf occurrence is the COMPcell lattice, not the atoms
+    // alone: a chain of n atoms holds n(n+1)/2 W — every atom and every
+    // contiguous joined interval, the whole included. The atoms tile the
+    // printed surface; the joined intervals open from the maqaf marks that
+    // make them. The body route used to emit only the atoms, which left the
+    // whole of בן־יהודה unreachable — the lattice gate caught it the first
+    // time a maqaf-carrying shelf faced it.
+    const atoms = regions.filter((x) => x.k);
+    const cells = [...atoms];
+    for (let len = 2; len <= atoms.length; len += 1)
+      for (let i = 0; i + len <= atoms.length; i += 1)
+        cells.push({
+          s: atoms.slice(i, i + len).map((a) => a.s).join(MAQAF),
+          k: atoms.slice(i, i + len).map((a) => a.k).join(MAQAF),
+        });
+    w.w = cells;
     return w;
   });
 

@@ -37,6 +37,28 @@ for (const vp of VIEWPORTS) {
   // a bare word is the store's honest silence — only a word carrying a
 // reading has a record this check can open
 const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
+// The division-dependent walks below used to open the first glossed word and
+// wait for its component system — true on every zone until the fleet, where
+// a first word may carry none. The word for those walks is derived: the
+// first glossed word among the opening sixty whose card offers divisions.
+// None at all → those walks are skipped in words, not failed.
+const divIx = await p.evaluate(async () => {
+  const ws = [...document.querySelectorAll("section.seg .he-text .wb:has(.g:not(.bare))")].slice(0, 60);
+  for (let i = 0; i < ws.length; i += 1) {
+    ws[i].click();
+    await new Promise((r) => setTimeout(r, 350));
+    if (document.querySelectorAll("#hud .s-pills button").length > 0) {
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+      await new Promise((r) => setTimeout(r, 150));
+      return i;
+    }
+    const x = document.querySelector("#hud .head button");
+    if (x) x.click();
+    await new Promise((r) => setTimeout(r, 150));
+  }
+  return -1;
+});
+const wbDiv = divIx >= 0 ? wbs[divIx] : null;
 
   const seen = [];
   for (let i = 0; i < Math.min(wbs.length, WORDS); i += 1) {
@@ -158,8 +180,8 @@ const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
   // is a band that has not been tested. So: two hundred divisions and two
   // hundred blocks, cloned onto a real card, and the readings must still be
   // there to press.
-  {
-    await wbs[0].click();
+  if (wbDiv) {
+    await wbDiv.click();
     await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
     await p.waitForTimeout(150);
     await p.evaluate(() => {
@@ -239,8 +261,8 @@ const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
   // source stood on nothing. Whatever the bands take, at least two lines of
   // the record stay visible above its source, and the whole record stays
   // reachable by the slot's own scroll.
-  {
-    await wbs[0].click();
+  if (wbDiv) {
+    await wbDiv.click();
     await p.waitForSelector("#hud .s-pills button", { timeout: 20000 });
     await p.waitForTimeout(250);
     await p.evaluate(() => {
