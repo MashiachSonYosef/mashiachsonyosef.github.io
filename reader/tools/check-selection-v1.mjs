@@ -107,13 +107,19 @@ const showing = async (nth = 0) => p.evaluate((i) => {
 {
   const t = (await tripleVerse(VERSE_IX)).trim();
   const dom = await showing(VERSE_IX);
-  check("three taps on a verse copy the verse", t.length > 20, `${t.length} chars`);
+  // what a whole copy owes is the verse's own measure, not a typed one: a
+  // fleet essay's opening unit is four words of seventeen characters, and
+  // holding it to a Tanakh verse's length failed a copy that was exact
+  const owedChars = Math.min(21, bare(dom.he).length);
+  const owedWords = Math.min(5, dom.he.split(/\s+/).filter(Boolean).length);
+  check("three taps on a verse copy the verse", t.length >= owedChars,
+    `${t.length} chars, ${owedChars} owed by this verse`);
   check("the Hebrew reader copies Hebrew", HE.test(t), t.slice(0, 42));
   check("no reading is zipped into it", !LAT.test(t),
     (t.match(/[A-Za-z][A-Za-z ]*/g) || []).slice(0, 3).join(" | ") || "clean");
   check("it comes out as a line, not a column of words",
-    !t.includes("\n") && t.split(" ").filter(Boolean).length >= 5,
-    `${t.split("\n").length} line(s), ${t.split(" ").filter(Boolean).length} words`);
+    !t.includes("\n") && t.split(" ").filter(Boolean).length >= owedWords,
+    `${t.split("\n").length} line(s), ${t.split(" ").filter(Boolean).length} words, ${owedWords} owed`);
   check("no word is glued to the next", !t.split(/\s+/).some((w) => w.length > 24),
     `longest ${Math.max(...t.split(/\s+/).map((w) => w.length))}`);
   check("the chrome does not come with it",

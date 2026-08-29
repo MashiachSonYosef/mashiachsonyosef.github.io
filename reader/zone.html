@@ -918,6 +918,15 @@
     #hud .d-slot { max-height: max(27vh, 8.75rem); }
     #hud .s-pills button, #hud .r-pills button { padding-top: 0.08rem; padding-bottom: 0.08rem; }
   }
+  /* A desktop window squashed flat is short but wide, and a card locked to
+     phone width there wrapped its source line to three rows — rows that came
+     straight out of the record's share, under a word at the top of the page
+     with nowhere higher to go. Where the window affords width, the card
+     takes it: the source line stands in one row and the record keeps its
+     line above it. Height was the scarce thing; width was free. */
+  @media (max-height: 480px) and (min-width: 640px) {
+    #hud { max-width: 34rem; width: min(34rem, 92vw); }
+  }
   /* The record, whole, on request. The capped card is the resting state —
      nothing rests open — but the record is entitled to say what it says, and
      on a short screen the only honest way to read a long D is to let it
@@ -2077,7 +2086,12 @@
     // the source on a squashed window, two where the window affords them,
     // and never more than the slack the card actually has — a band's row is
     // not the record's to take.
-    let floorMet = true;
+    // The raise spends only slack — room the card has under its own caps —
+    // never position: a shortfall here must not push the card off its
+    // placement, because a card that grew upward stood over the very word
+    // it belongs to, and under-the-word outranks every comfort inside the
+    // card. Short of slack, the record rests a line shy and the whole of it
+    // stays a press away on its own control.
     const dBody = hud.querySelector(".d-card .d-body");
     const dFoot = hud.querySelector(".d-card .d-foot");
     if (dSlot && dBody && dFoot && !dSlot.classList.contains("whole")) {
@@ -2087,20 +2101,22 @@
       const afford = window.innerHeight >= 660 ? 2 : 1;
       const oweD = Math.min(Math.ceil(lineH * afford), dBody.scrollHeight);
       if (seen < oweD) {
+        // slack is the room below where the card actually stands, not below
+        // the top of the window: a raise measured from the wrong datum
+        // pushed the card's own bottom two pixels off the screen
         const capH = parseFloat(getComputedStyle(hud).maxHeight);
         const slack = Math.max(0, Math.floor(Math.min(
           Number.isFinite(capH) ? capH : Infinity,
-          window.innerHeight - 16) - hud.offsetHeight));
+          window.innerHeight - 8 - (parseFloat(hud.style.top) || 8)) - hud.offsetHeight));
         const raise = Math.min(Math.ceil(oweD - seen), slack);
         if (raise > 0) dSlot.style.maxHeight = `${dSlot.clientHeight + raise}px`;
-        floorMet = raise >= Math.ceil(oweD - seen);
       }
     }
     // did every band end up with the row it is owed, in the space it actually
     // has? The caller decides what to do about it — there is nothing left here
     // to take it out of.
     const stands = bands.reduce((n, x) => n + x.el.offsetHeight, 0);
-    return floorMet && stands <= rowsEl.clientHeight + 1;
+    return stands <= rowsEl.clientHeight + 1;
   };
 
   const placeInBounds = () => {
@@ -2119,6 +2135,18 @@
       hud.style.top = `${Math.max(pad, Math.min(top, window.innerHeight - GRAB))}px`;
       hud.style.left = `${Math.max(GRAB - w, Math.min(left, window.innerWidth - GRAB))}px`;
       return;
+    }
+    // A placed card that grew may no longer fit where it was put, and the
+    // clamp below would pull it up over the very word it opened from — a
+    // card above the word covers the text the reader was reading to get
+    // there. The word outranks the clamp: when pulling the card up would
+    // stand it on its own word, it is placed again under the whole law —
+    // the word scrolls up, the card shrinks, and only past usefulness does
+    // it stand anywhere else.
+    if (hudAnchor && hudAnchor.isConnected) {
+      const newTop = Math.max(pad, Math.min(top, window.innerHeight - h - pad));
+      const a = hudAnchor.getBoundingClientRect();
+      if (newTop < top - 0.5 && a.bottom > newTop + 0.5 && a.top < newTop + h - 0.5) { placeHud(); return; }
     }
     hud.style.top = `${Math.max(pad, Math.min(top, window.innerHeight - h - pad))}px`;
     hud.style.left = `${Math.max(pad, Math.min(left, window.innerWidth - w - pad))}px`;
@@ -2195,7 +2223,13 @@
     // hold is the only case that still goes above.
     const room = window.innerHeight - pad - rect.bottom - pad;
     const FLOOR = 200;
-    if (h > room && room >= FLOOR) {
+    // The budget is set whether or not the card currently needs it: a card
+    // is measured here before its readings render, so "h > room" read a
+    // 29px shell, took no cap, and the full card later grew to the
+    // stylesheet's own maximum — 40px past the room beneath its word. A
+    // max-height costs a small card nothing and tells the grown card where
+    // its bottom is.
+    if (room >= FLOOR) {
       hud.style.maxHeight = `${Math.floor(room)}px`;
       // and if the card cannot hold a row of every band at that height, it does
       // not hold them at that height. A card under the word with dead controls

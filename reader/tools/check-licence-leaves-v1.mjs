@@ -81,9 +81,14 @@ for (const [nth, kind] of [[1, "hebrew"], [2, "english"], [3, "both"]]) {
   // token: the posture vocabulary is the rights record's own and grew a new
   // member (ALLOW_WITH_PROVENANCE_GATE) with the canonical resolution — a
   // provenance gate is not a noncommercial clause and must not demand one.
-  const obliged = /\bNC\b|NONCOMMERCIAL/i.test(declared);
+  // And noncommercial is one obligation, not the whole of obligation: a
+  // CC-BY-SA work obliges attribution and share-alike with no NC clause at
+  // all, and reading "obliges" off the NC letters alone failed a confirm
+  // that summarised exactly what its licence demands.
+  const nc = /\bNC\b|NONCOMMERCIAL/i.test(declared);
+  const obliged = nc || /\b(BY|SA|ND)\b|ATTRIBUTION|SHARE[- ]?ALIKE|NO[- ]?DERIV/i.test(declared);
   const hasFamily = /Hebrew text \[H\] · license: \S/.test(text);
-  const hasNC = obliged ? /Noncommercial use only/.test(text) : true;
+  const hasNC = nc ? /Noncommercial use only/.test(text) : true;
   const hasLink = /Hebrew text \[H\] · License family/.test(text);
   const hasEntry = /^- \[H\] \S/m.test(text);
   check(`${kind} export names the Hebrew's licence`, hasFamily, text.split("\n").find(l => /Hebrew text .*· license/.test(l)) || "absent");

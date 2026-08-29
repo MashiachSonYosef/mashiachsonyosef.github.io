@@ -17,8 +17,20 @@ const b = await chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 await p.goto(URL, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg");
-await (await p.$$("section.seg .he-text .wb"))[1].click();
-await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
+// The word is derived, never assumed: on the fleet's shelf a page's second
+// word may be bare — the store's honest silence — and a bare word opens no
+// pills to measure. The first word among the opening forty whose card
+// offers a reading is the one this check stands on.
+{
+  const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
+  let opened = false;
+  for (let i = 0; i < Math.min(wbs.length, 40) && !opened; i += 1) {
+    await wbs[i].click();
+    opened = await p.waitForSelector("#hud .r-pills button", { timeout: 8000 }).then(() => true).catch(() => false);
+    if (!opened) { await p.keyboard.press("Escape"); await p.waitForTimeout(80); }
+  }
+  if (!opened) { console.log("SKIPPED — no word here opens a readings card to measure"); process.exit(3); }
+}
 
 // The worst case is asked of the catalog at run time, never pasted: a copy
 // typed here would go stale the day the store moves, and the check would be

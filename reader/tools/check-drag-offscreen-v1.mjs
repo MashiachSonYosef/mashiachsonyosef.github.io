@@ -15,8 +15,27 @@ await p.goto(defaultZoneUrl(), { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg");
 
 const open = async (i = 0) => {
-  // a word carrying a reading — a bare word opens no record to drag
-  await (await p.$$("section.seg .he-text .wb:has(.g:not(.bare))"))[i].click();
+  // a word carrying a reading — a bare word opens no record to drag. And a
+  // word standing behind the parked card is not a word a finger can reach:
+  // on a short poem the card the reader parked at the top covers the opening
+  // lines, so the check does what a reader would — it takes the next word
+  // that is clear of the card, scrolled to the middle of the window first.
+  const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
+  const covered = (h) => h.evaluate((e) => {
+    const hud = document.getElementById("hud");
+    if (!hud || hud.hidden) return false;
+    const r = e.getBoundingClientRect(), c = hud.getBoundingClientRect();
+    const x = r.left + r.width / 2, y = r.top + r.height / 2;
+    return x >= c.left && x <= c.right && y >= c.top && y <= c.bottom;
+  });
+  let target = null;
+  for (let j = i; j < wbs.length; j += 1) {
+    await wbs[j].evaluate((e) => e.scrollIntoView({ block: "center" }));
+    await p.waitForTimeout(80);
+    if (!(await covered(wbs[j]))) { target = wbs[j]; break; }
+  }
+  if (!target) throw new Error("no reachable word clear of the parked card");
+  await target.click();
   await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
   await p.waitForTimeout(400);
 };
