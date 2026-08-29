@@ -1118,7 +1118,7 @@ const doc = `<!doctype html>
        authorities and the zones. Every count below names its grain. -->
   <h1>${SITE_NAME}</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the license it was released under.</p>
-  <p class="face-line">${n(books.length)} book${books.length === 1 ? "" : "s"} readable today · ${n(ATLAS.totals.works - books.length)} more stand listed, each saying on its own card what it awaits</p>
+  <p class="face-line">${n(ZONE_INFO.size)} book${ZONE_INFO.size === 1 ? "" : "s"} readable today · ${n(ATLAS.totals.works - ZONE_INFO.size)} more stand listed, each saying on its own card what it awaits</p>
   <details class="counts-fold">
   <summary>the counts, at their exact grains — audited on every build</summary>
   <section class="countboard" aria-label="Audited corpus counts"
