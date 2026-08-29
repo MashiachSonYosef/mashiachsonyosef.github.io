@@ -62,7 +62,10 @@ try {
   console.log(`SKIPPED — could not reach ${REMOTE} ${BRANCH} (${String(e.message).split("\n")[0].slice(0, 80)})`);
   process.exit(3);
 }
-const listing = git("ls-tree", "-r", "--name-only", "FETCH_HEAD").toString("utf8").split("\n").filter(Boolean);
+// -z, because most of the shelf's names are Hebrew: with newline output git
+// quotes non-ASCII paths into backslash octal, and two thousand zones that
+// were on the branch read as missing from it
+const listing = git("ls-tree", "-r", "--name-only", "-z", "FETCH_HEAD").toString("utf8").split("\0").filter(Boolean);
 const onBranch = new Set();
 for (const p of listing) if (p.startsWith(PREFIX)) onBranch.add(p.slice(PREFIX.length));
 console.log(`— the branch, at ${head.slice(0, 7)} —`);
