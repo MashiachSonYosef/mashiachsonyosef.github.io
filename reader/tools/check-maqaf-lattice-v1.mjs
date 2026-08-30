@@ -152,16 +152,24 @@ for (const w of words) {
     continue;
   }
 
-  const atoms = surface.split(MAQAF);
+  // A maqaf at the surface's edge joins nothing — Ben-Yehuda print uses it
+  // as a line hyphen — so an edge maqaf leaves the occurrence one W wearing
+  // punctuation, and the lattice is that one W whole. Only interior maqafim
+  // divide. (Found 2026-08-30 on a trailing-hyphen occurrence the shape
+  // panel had never sampled.)
+  const rawAtoms = surface.split(MAQAF);
+  const atoms = rawAtoms.filter((x) => x.length > 0);
   const n = atoms.length;
   byAtomCount.set(n, (byAtomCount.get(n) || 0) + 1);
 
   // ---- L2 : the atoms reconstitute the surface --------------------------
-  if (atoms.join(MAQAF) !== surface) {
+  if (rawAtoms.join(MAQAF) !== surface) {
     refuse("L2", `${w.unit} "${surface}"`, "atoms do not rejoin to the occurrence surface");
   }
 
-  const want = latticeOf(atoms);
+  // the W is the word-piece; the edge punctuation stays in the surface —
+  // exactly how the ledger records it
+  const want = n <= 1 ? [atoms[0] ?? surface] : latticeOf(atoms);
   const got = regions.map((r) => String(r.s ?? r.k ?? ""));
   latticeW += regions.length;
 

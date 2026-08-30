@@ -132,7 +132,9 @@ await p.keyboard.press("Escape");
     const open = svg && getComputedStyle(svg).display !== "none";
     const lines = svg ? svg.querySelectorAll("line").length : 0;
     const noTaps = svg && getComputedStyle(svg).pointerEvents === "none";
-    const a = wb.getBoundingClientRect();
+    // the tether holds the Hebrew word's own corners — the owner's ruling,
+    // 2026-08-30 — not the block around it
+    const a = (wb.querySelector(".w") || wb).getBoundingClientRect();
     const l0 = svg && svg.querySelector("line");
     const anchored = l0 && Math.abs(Number(l0.getAttribute("x1")) - a.left) < 2
       && Math.abs(Number(l0.getAttribute("y1")) - a.top) < 2;
