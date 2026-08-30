@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v2.8 · 2026-08-29 — the letters reassigned
+# THE FRAME · canonical review standard · v2.9 · 2026-08-29 — the letters reassigned
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -248,6 +248,15 @@ outward pushes (gh-pages cutovers and kin) the practice is ANNOUNCE, DON'T
 ASK: intent posted to the channel with exact diff and rollback, shipped
 absent an evidence-backed objection. Nobody's subordinate; everybody's
 checkable.
+
+**The ratification law (owner, 2026-08-30):** only owner-ratified rulings
+bind — a rule's authority comes from its provenance, never its eloquence.
+Documents excavated from old trees (charters, standards, contracts from
+the alignment months) are AI MUSINGS until countersigned: typed as found,
+cited as drafts, binding on nothing. Even a recovered rule that sounds
+exactly like the owner is a resemblance, not a signature. The live
+channel's owner-dated rulings are the only constitution; everything else
+is commentary awaiting review.
 
 ## The need column, read whole (website lane, 2026-08-28)
 
