@@ -412,7 +412,7 @@ if (cleanGenesisZonesSeen > 1) throw new Error(`expected at most one Genesis zon
 // slot is simply named, and the line goes away when its record lands.
 const incBits = (b) => {
   const bits = [];
-  if (b.basis === "TYPED_AWAITING_LEDGER") bits.push("awaiting its Y ledger — its coordinates stand typed in the open until then");
+  if (b.basis === "TYPED_AWAITING_LEDGER") bits.push("recorded deviation: its location range is entered by hand and disclosed, until its navigation record is issued");
   if (b.held) bits.push(`${n(b.held)} commentary slots open`);
   return bits;
 };
@@ -439,14 +439,14 @@ const bookCard = (b) => `    <div class="bookcard">
         ? (titleWords(b)
           ? `<span class="fam-he"><span class="he" lang="he" dir="rtl">${titleWords(b)}</span>${b.heGloss ? `<span class="g">${esc(b.heGloss)}</span>` : ""}</span>`
           : `<span class="he" lang="he" dir="rtl">${esc(b.he)}</span>`)
-        : `<span class="he none">none is recorded in the ledger</span>`}</span>
+        : `<span class="he none">no name is on record</span>`}</span>
       <a class="book" href="/${b.slug}">
       <span class="row">${b.reading
         ? `<span class="lab">commonly force read as</span><span class="en">${esc(b.en)}</span><span class="chip" title="${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""} — attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: ${esc(b.reading.label)}</span>`
         : `<span class="lab">recorded in the bridge as</span>${plainName(b.slug)
           ? `<span class="en">${esc(plainName(b.slug))}</span>`
           : `<span class="en none" title="${esc(b.slug)}">${NO_PLAIN_NAME}</span>`}<span class="of" title="${esc(AWAITS_M)}">awaits an attested usage</span>`}</span>
-      <span class="of">${n(b.sections)} sections · ${n(b.words)} rendered COMPspan records</span>
+      <span class="of">${n(b.sections)} sections · ${n(b.words)} displayed word records</span>
       </a>
     </div>`;
 
@@ -483,7 +483,7 @@ const groupFor = (b) => {
     seatedCount += 1;
     subs.push(`      <a class="sub-work" href="/${c.slug}">${c.he
         ? `<span class="he" lang="he" dir="rtl">${esc(c.he)}</span>`
-        : `<span class="he none">none is recorded in the ledger</span>`}<span class="en">${esc(c.en)}</span><span class="of">its own book · ${n(c.sections)} sections · ${n(c.words)} words · ${esc(c.byline)}</span>${incBits(c).length ? `<span class="of slots">${esc(incBits(c).join(" · "))}</span>` : ""}</a>`);
+        : `<span class="he none">no name is on record</span>`}<span class="en">${esc(c.en)}</span><span class="of">its own book · ${n(c.sections)} sections · ${n(c.words)} words · ${esc(c.byline)}</span>${incBits(c).length ? `<span class="of slots">${esc(incBits(c).join(" · "))}</span>` : ""}</a>`);
     const cl = commentaryLine(c);
     if (cl) subs.push(cl);
   }
@@ -495,7 +495,7 @@ const groupFor = (b) => {
   const bits = [];
   if (seatedCount) bits.push(`${n(seatedCount)} work${seatedCount === 1 ? "" : "s"} seated with it`);
   if (b.units) bits.push(`commentary · ${n(b.units)} carried`);
-  if (b.basis === "TYPED_AWAITING_LEDGER") bits.push("awaiting its Y ledger");
+  if (b.basis === "TYPED_AWAITING_LEDGER") bits.push("awaiting its navigation record");
   if (b.held) bits.push(`${n(b.held)} commentary slots open`);
   const foldRows = [`      <span class="of fold-line">${esc(b.byline)}</span>`];
   if (incBits(b).length) foldRows.push(`      <span class="of slots fold-line">${esc(incBits(b).join(" · "))}</span>`);
@@ -631,7 +631,7 @@ const rowsHtml = (rows) => rows.map((r) => {
 // on this page, separately from the fold it happens to sit in. A token the
 // store is silent on prints and opens nothing, the numeral rule's law.
 const famHeadHe = (lf) => {
-  if (!lf.he) return `<span class="he none">none is recorded in the ledger</span>`;
+  if (!lf.he) return `<span class="he none">no name is on record</span>`;
   const key = (lf.he_tokens || []).map((t) => t.k).filter(Boolean)[0] || null;
   const gloss = key ? (STORE.glossFor(key).text || "") : "";
   // the reading under the name carries the license of the record it is
@@ -755,7 +755,7 @@ const unruledSection = (v, keep = () => true) => {
   return `    <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="he none">none is recorded in the ledger</span></span>
+        <span class="row"><span class="lab">family</span><span class="he none">no name is on record</span></span>
         <span class="row"><span class="lab">recorded in the bridge as</span><span class="en" title="${esc(v)}">${esc(plainName(v) ?? NO_PLAIN_NAME)}</span><span class="of">${n(s.works)} works · ${n(s.units)} units · the family ledger has not ruled this value</span></span>
       </summary>
       <div class="fgroups">
@@ -1330,9 +1330,9 @@ ${page.counts ? `  <details class="counts-fold">
     <div class="countgrid">
       <p class="count" data-count="current-physical-c0"><span class="num">${n(physicalRows)}</span><span class="grain">current physical C0 rows</span></p>
       <p class="count" data-count="named-shelf-c0"><span class="num">${n(namedShelfRows)}</span><span class="grain">physically backed C0 rows on named work/unit shelves</span></p>
-      <p class="count" data-count="rendered-compspan-records"><span class="num">${n(renderedTally.compspan_records)}</span><span class="grain">rendered COMPspan records in ${n(renderedTally.built_zones)} built zones</span></p>
+      <p class="count" data-count="rendered-compspan-records"><span class="num">${n(renderedTally.compspan_records)}</span><span class="grain">displayed word records in ${n(renderedTally.built_zones)} built books</span></p>
     </div>
-    <p class="count-grain">The rendered figure is a current-zone snapshot and a different grain: it counts one record per COMPspan actually carried by the built-zone bytes, not C0 rows. It is recomputed from those zones on every build.</p>
+    <p class="count-grain">The displayed figure is a snapshot at a different grain: it counts one record per word block actually carried by the built books’ own bytes, not rows of the sealed text store. It is recomputed from those books on every build.</p>
     <p class="count-detail">Logical plan: ${n(logicalPlanRows)} C0 rows across ${n(ATLAS.totals.works)} works and ${n(ATLAS.totals.units)} units · logical-plan C0 rows not physical: ${n(logicalPlanNotPhysicalRows)} · physical C0 rows not yet mapped to a named shelf: ${n(physicalUnmappedRows)}</p>
     <p class="count-audit"><a href="/front-door-counts-receipt-v1.json">Open the count receipt</a> · logical atlas ${atlasPinned.actual.sha256.slice(0, 12)} · physical handoff ${handoffPinned.actual.sha256.slice(0, 12)} · physical atlas ${BINDINGS.inputs.physical_atlas.sha256.slice(0, 12)} · logical overlay ${BINDINGS.inputs.logical_overlay.sha256.slice(0, 12)} · zone-successor seal ${GENESIS_V3.closed_world_seal.sha256.slice(0, 12)}</p>
   </section>
@@ -1352,7 +1352,7 @@ ${page.sections.join("\n")}
   <div id="wshade" hidden></div>
   <div id="bkcard" role="dialog" aria-label="the book&#8217;s own record" hidden>
     <div class="head"><b></b><button type="button" aria-label="Close">&#215;</button></div>
-    <p class="row bk-he"><span class="lab">hebrew title</span><span class="he none">none is recorded in the ledger</span></p>
+    <p class="row bk-he"><span class="lab">hebrew title</span><span class="he none">no name is on record</span></p>
     <p class="row bk-en"><span class="lab">recorded in the bridge as</span><span class="en"></span><span class="of" title="the recorded id read plainly &#8212; an English name waits on an attested usage">awaits an attested usage</span></p>
     <p class="row bk-fam"><span class="lab">family</span><span class="slot"></span></p>
     <p class="row bk-n"><span class="lab">recorded</span><span class="of"></span></p>
@@ -1490,7 +1490,7 @@ ${page.sections.join("\n")}
       if (fam.att) { famChip.textContent = fam.att; famChip.title = fam.attTitle; }
       else { famChip.textContent = "awaits an attested usage"; famChip.title = fam.attTitle; }
     } else {
-      slot.innerHTML = '<span class="he none">none is recorded in the ledger</span>';
+      slot.innerHTML = '<span class="he none">no name is on record</span>';
     }
     var num = function (x) { var v = Number(x); return isFinite(v) ? v.toLocaleString("en-US") : String(x); };
     bkcard.querySelector(".bk-n .of").textContent =
