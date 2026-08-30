@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v2.7 · 2026-08-29 — the letters reassigned
+# THE FRAME · canonical review standard · v2.8 · 2026-08-29 — the letters reassigned
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -25,7 +25,7 @@ owner's to make.
 | **COMPspan** | Spans — how occurrences compose into readable structure; the reader's component system draws from the span table | `ledgers/work/compspan/` (100MB) | ✗ | NEEDED as the span template the zone builder reads — held site-side; the 100MB ledger stays corpus-side |
 | **COMPcell** | Cells of composition — the atomic display cells a span resolves to: COMPspan is the structure, COMPcell the atoms, and the site derives cells from the span template plus the body at render time (idea recorded by the corpus lane from the derived-on-site behavior; the owner corrects it if richer) | `ledgers/work/compcell/` (181MB) | ✗ | NOT NEEDED — derived on site, never stored |
 | **L** | NOT_MATERIALIZED — vestigial bundle label, recorded not deleted | — | n/a | n/a — agreed |
-| **X** | RETIRED ENTIRELY (owner, 2026-08-29, v2.7): no X at all. The causeway dissolved under its own rulings — interval suggestions are C0 and ride the ordinary K→R→M routes; common names are identifications and ride attestation; nothing needs a bridge letter. Three roles in one week (999 pool, force-license reserve, causeway), each dissolved on inspection — the letter's lesson is that the frame never needed it. See Retired letters | — | n/a | n/a — retired, unassigned, intentionally empty |
+| **X** | THE ATTESTATION STORE (owner, 2026-08-30, v2.8): the registry-witness layer — the actual attesting records Z's common names quote: Wikidata responses (QID + raw response), Sefaria index entries, catalog rows. Acquired bytes with their own provenance and rights posture (typically CC0/PD, held separately from the uncopyrightable names they attest). Every Z row's attestation reference resolves into an X record. X never displays directly — it stands behind Z exactly as M stands behind Y's routes. The grammar: Y stands on M (titles witnessed by dictionaries); Z stands on X (names witnessed by catalogs). Fourth assignment of the letter and the first that is a store, not a bridge — bytes need custody; stores do not dissolve. Prior three roles retired: see Retired letters | attestation records in definition-poc acquisitions; work-grain store: to build with the Z work-name ledger | — | build with the Z ledger; consumed via Z, never served bare |
 | **D** | A definition — the English definitional record for a form | in `ledgers/work/ldmprs/` | ✗ | NEEDED in serving form — held as the route store; `ldmprs/` itself is not needed on this disk |
 | **M** | The dictionary — the source work a D comes from | in `ldmprs/` | ✗ | NEEDED in serving form — held (a source per reading, via the route store) |
 | **P** | RULED 2026-08-27 (owner's P fix, construction's precision): P groups an exact R-PILL IDENTITY — never identical D strings. Membership comes from sharing the authoritative R identity, not from any string comparison. Every M/source/license carrying that R pill is clickable-through, and each click displays that M's own D exactly as written — EVEN WHEN THE D STRINGS DIFFER. No fuzzy semantic grouping is ever inferred | in `ldmprs/` | ✗ | NEEDED as the byte-perfect rule — held site-side; the expansion RULED CLOSED (owner, 2026-08-28): the full fan-out per the simplest statement — every R pill exposes every M/license/D carrying it, reader cycles witnesses, S law leads the default — build when cutover settles |
@@ -183,8 +183,9 @@ confirmed or machine-proposed (dashed), English arriving by route through
 licensed M. Z — usage-attested: common names, identification-kind,
 attestation not license. Ordinals are B-spine arithmetic. The projection
 composes them: a work may show its Hebrew title (Y) and its common name (Z)
-side by side, each typed; sections usually have only Y-or-ordinal. X is
-retired entirely — the causeway dissolved. Open to the owner's recitation:
+side by side, each typed; sections usually have only Y-or-ordinal. X was
+retired as a causeway (v2.7), then re-founded as the ATTESTATION STORE
+(v2.8): Y stands on M, Z stands on X — two lanes, two witness stores. Open to the owner's recitation:
 whether Z enters the canonical string (after Y) or remains a sidecar layer. Display tiers stand: the
 TOC wears the projection's one reading per node, uniform, for usability;
 inside the section, the full HUD-able testimony — lattice, pills, every
