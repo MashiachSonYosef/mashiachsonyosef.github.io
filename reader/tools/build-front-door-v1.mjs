@@ -211,7 +211,7 @@ const chipHtml = (src) => src
 // it. Until one does, the recorded id itself is read plainly — hyphens as
 // spaces — which asserts nothing beyond the id, and the line says what it
 // is waiting on.
-const AWAITS_M = "the recorded id read plainly — an English name waits on an attested usage (a name is an identification, not licensed expression; FRAME v2.7)";
+const AWAITS_M = "its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt";
 const plainId = (id) => String(id).split("/").pop().replace(/[-_]+/g, " ");
 // The name slot never dresses a record as prose — the owner's ruling. plainId
 // reads an id's separators as spaces, which is honest exactly when what is
@@ -443,9 +443,9 @@ const bookCard = (b) => `    <div class="bookcard">
       <a class="book" href="/${b.slug}">
       <span class="row">${b.reading
         ? `<span class="lab">commonly force read as</span><span class="en">${esc(b.en)}</span><span class="chip" title="${esc(b.reading.label)}${b.reading.year ? ` \u00b7 ${esc(b.reading.year)}` : ""} — attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: ${esc(b.reading.label)}</span>`
-        : `<span class="lab">recorded in the bridge as</span>${plainName(b.slug)
+        : `<span class="lab">listed in the catalog as</span>${plainName(b.slug)
           ? `<span class="en">${esc(plainName(b.slug))}</span>`
-          : `<span class="en none" title="${esc(b.slug)}">${NO_PLAIN_NAME}</span>`}<span class="of" title="${esc(AWAITS_M)}">awaits an attested usage</span>`}</span>
+          : `<span class="en none" title="${esc(b.slug)}">${NO_PLAIN_NAME}</span>`}<span class="of" title="${esc(AWAITS_M)}">awaiting a named source</span>`}</span>
       <span class="of">${n(b.sections)} sections · ${n(b.words)} displayed word records</span>
       </a>
     </div>`;
@@ -689,8 +689,8 @@ const familySection = (fam) => {
     : (() => {
         const readable = fam.members.map(plainName).filter(Boolean);
         return readable.length
-          ? `<span class="lab">recorded in the bridge as</span><span class="en" title="${esc(fam.members.join(" · "))}">${esc(readable.join(" · "))}</span><span class="of" title="${esc(AWAITS_M)}">awaits an attested usage</span>`
-          : `<span class="lab">recorded in the bridge as</span><span class="en none" title="${esc(fam.members.join(" · "))}">${NO_PLAIN_NAME}</span><span class="of" title="${esc(AWAITS_M)}">awaits an attested usage</span>`;
+          ? `<span class="lab">listed in the catalog as</span><span class="en" title="${esc(fam.members.join(" · "))}">${esc(readable.join(" · "))}</span><span class="of" title="${esc(AWAITS_M)}">awaiting a named source</span>`
+          : `<span class="lab">listed in the catalog as</span><span class="en none" title="${esc(fam.members.join(" · "))}">${NO_PLAIN_NAME}</span><span class="of" title="${esc(AWAITS_M)}">awaiting a named source</span>`;
       })();
   const foldLines = [`      <span class="of fold-line">${esc(lf.what)}</span>`];
   foldLines.push(`      <span class="of slots fold-line">the bridge records ${fam.members.length === 1 ? "this shelf as" : "these as"}: ${esc(fam.members.join(" · "))} — folded here by ${esc(LEDGER.schema_version)}, which dies the day the corpus rules the column</span>`);
@@ -730,7 +730,7 @@ const censusFamily = (fam) => {
   return `    <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en${readable.length ? "" : " none"}" title="${esc(fam.members.join(" · "))}">${label}</span></span>
+        <span class="row"><span class="lab">listed in the catalog as</span><span class="en${readable.length ? "" : " none"}" title="${esc(fam.members.join(" · "))}">${label}</span></span>
         <span class="row"><span class="of">${n(s.works)} work${s.works === 1 ? "" : "s"} not yet served · ${n(s.units)} units — every row says on its own card what it awaits</span></span>
       </summary>
       <div class="fgroups">
@@ -750,7 +750,7 @@ const awaitingSection = (rows = awaitingRows) => {
       <details class="fam">
       <summary>
         <span class="row"><span class="lab">held for review</span><span class="he none">the corpus lane&#8217;s own review markers, standing open</span></span>
-        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en" title="${esc(LEDGER.awaiting.members.join(" · "))}">${esc(LEDGER.awaiting.members.map((m) => plainName(m) ?? NO_PLAIN_NAME).join(" · "))}</span><span class="of">${n(s.works)} works · ${n(s.units)} units</span></span>
+        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="${esc(LEDGER.awaiting.members.join(" · "))}">${esc(LEDGER.awaiting.members.map((m) => plainName(m) ?? NO_PLAIN_NAME).join(" · "))}</span><span class="of">${n(s.works)} works · ${n(s.units)} units</span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">${esc(LEDGER.awaiting.why)}</span>
@@ -767,7 +767,7 @@ const unruledSection = (v, keep = () => true) => {
       <details class="fam">
       <summary>
         <span class="row"><span class="lab">family</span><span class="he none">no name is on record</span></span>
-        <span class="row"><span class="lab">recorded in the bridge as</span><span class="en" title="${esc(v)}">${esc(plainName(v) ?? NO_PLAIN_NAME)}</span><span class="of">${n(s.works)} works · ${n(s.units)} units · the family ledger has not ruled this value</span></span>
+        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="${esc(v)}">${esc(plainName(v) ?? NO_PLAIN_NAME)}</span><span class="of">${n(s.works)} works · ${n(s.units)} units · the family ledger has not ruled this value</span></span>
       </summary>
       <div class="fgroups">
 ${rowsHtml(rows).join("\n")}
@@ -1374,7 +1374,7 @@ ${page.sections.join("\n")}
   <div id="bkcard" role="dialog" aria-label="the book&#8217;s own record" hidden>
     <div class="head"><b></b><button type="button" aria-label="Close">&#215;</button></div>
     <p class="row bk-he"><span class="lab">hebrew title</span><span class="he none">no name is on record</span></p>
-    <p class="row bk-en"><span class="lab">recorded in the bridge as</span><span class="en"></span><span class="of" title="the recorded id read plainly &#8212; an English name waits on an attested usage">awaits an attested usage</span></p>
+    <p class="row bk-en"><span class="lab">listed in the catalog as</span><span class="en"></span><span class="of" title="its catalog entry read as plain words &#8212; a proper name will show once a source on record uses one">awaiting a named source</span></p>
     <p class="row bk-fam"><span class="lab">family</span><span class="slot"></span></p>
     <p class="row bk-n"><span class="lab">recorded</span><span class="of"></span></p>
     <p class="row bk-st"><span class="lab">standing</span><span class="of"></span></p>
@@ -1505,11 +1505,11 @@ ${page.sections.join("\n")}
       // the register is the claim's, only when a record backs the claim
       slot.innerHTML = fam.he +
         '<span class="of"><span class="fr-lab"></span> <span class="en"></span><span class="chip"></span></span>';
-      slot.querySelector(".of .fr-lab").textContent = fam.att ? "commonly force read as" : "recorded in the bridge as";
+      slot.querySelector(".of .fr-lab").textContent = fam.att ? "commonly force read as" : "listed in the catalog as";
       slot.querySelector(".of .en").textContent = fam.en;
       var famChip = slot.querySelector(".of .chip");
       if (fam.att) { famChip.textContent = fam.att; famChip.title = fam.attTitle; }
-      else { famChip.textContent = "awaits an attested usage"; famChip.title = fam.attTitle; }
+      else { famChip.textContent = "awaiting a named source"; famChip.title = fam.attTitle; }
     } else {
       slot.innerHTML = '<span class="he none">no name is on record</span>';
     }
@@ -1673,7 +1673,7 @@ ${page.sections.join("\n")}
       // the register follows the evidence: the claim label only with the
       // record's force license riding beside the name, the bridge register
       // and the awaiting note when nothing backs it
-      wo.querySelector(".lab").textContent = bookAtt ? "commonly force read as" : "recorded in the bridge as";
+      wo.querySelector(".lab").textContent = bookAtt ? "commonly force read as" : "listed in the catalog as";
       var a = document.createElement("a");
       a.href = book; a.className = "wo-link";
       a.textContent = bookName || book.slice(1).replace(/-/g, " ");
@@ -1681,7 +1681,7 @@ ${page.sections.join("\n")}
       woSlot.append(a);
       var mark = document.createElement("span");
       if (bookAtt) { mark.className = "chip"; mark.textContent = bookAtt; mark.title = bookAttTitle || ""; }
-      else { mark.className = "of"; mark.textContent = "awaits an attested usage"; mark.title = "the recorded id read plainly \u2014 an English name waits on an attested usage"; }
+      else { mark.className = "of"; mark.textContent = "awaiting a named source"; mark.title = "the recorded id read plainly \u2014 an English name waits on an attested usage"; }
       woSlot.append(mark);
     }
     wo.hidden = !book;

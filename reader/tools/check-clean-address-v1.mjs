@@ -223,7 +223,7 @@ check("the site's own name carries no Hebrew that nothing recorded",
 // recorded value. Both say so; what is refused is English with no register.
 check("and the English beside it says what register it stands in",
   framed.commons.length > 0 &&
-    framed.commons.every((x) => /^commonly force read as$/i.test(x.lab) || /^recorded in the bridge as$/i.test(x.lab)),
+    framed.commons.every((x) => /^commonly force read as$/i.test(x.lab) || /^listed in the catalog as$/i.test(x.lab)),
   framed.commons.map((x) => `${x.t} under "${x.lab}"`).join(" · ").slice(0, 200));
 // The owner's ruling on the name slot: it never dresses a record as prose.
 // A slot under either register prints plain Latin text or says the absence
@@ -328,7 +328,7 @@ for (const [href, ...expected] of WALK) {
   const addrPlain = href.replace(/^\//, "").replace(/[-_]+/g, " ");
   check("  the claim label stands only where a record backs the claim",
     r.lic ? /^commonly force read as$/i.test(r.enLab) && r.en === en
-          : /^recorded in the bridge as$/i.test(r.enLab) && r.en === addrPlain,
+          : /^listed in the catalog as$/i.test(r.enLab) && r.en === addrPlain,
     `"${r.enLab}": ${r.en}`);
   check("  with an attestation on the claim, and the note on the record",
     r.lic ? /^attested: .+/.test(r.lic) && !r.enNote : /waits on an attested usage/.test(r.enNote),

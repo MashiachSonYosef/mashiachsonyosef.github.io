@@ -124,7 +124,7 @@ check("its English arrives by route, on the words themselves — no free text, n
   got.glossed > 0 && got.pressable > 0 && got.licenseChipsInLine === 0,
   `${got.glossed} of ${got.words} glossed · ${got.pressable} pressable`);
 check("it stands under the bridge register, never as a claim",
-  got.found && /recorded in the bridge as/.test(got.claimLabel) && got.bridgeNote,
+  got.found && /listed in the catalog as/.test(got.claimLabel) && got.bridgeNote,
   got.claimLabel);
 srv.close();
 

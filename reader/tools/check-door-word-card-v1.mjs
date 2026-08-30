@@ -126,8 +126,8 @@ check("a word that titles a book carries the way into it", layer.shown && layer.
 // claim that follows the evidence. This pass attached no force license, so
 // the band must stand in the bridge's register with the awaiting note.
 check("an unbacked name stands in the bridge's register, with the note",
-  /recorded in the bridge as/.test(layer.label || "") && layer.says === served.replace(/-/g, " ")
-    && /awaits an attested usage/.test(layer.note || ""),
+  /listed in the catalog as/.test(layer.label || "") && layer.says === served.replace(/-/g, " ")
+    && /awaiting a named source/.test(layer.note || ""),
   `${layer.label} · ${layer.says} · ${layer.note || "(no note)"}`);
 // and with an attestation attached, the claim label prints with its chip —
 // who attests the usage, never who permits it (FRAME v2.7: a name is an

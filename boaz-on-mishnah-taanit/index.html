@@ -1061,7 +1061,7 @@
   <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a><button id="face" class="face" type="button" title="the other face of the page">day</button></nav>
   <h1 id="workTitle">
     <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
-    <span class="t-row"><span class="t-lab" id="enLab">recorded in the bridge as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
   </h1>
   <p class="byline" id="byline"></p>
   <p id="meta">Loading the zone…</p>
@@ -3809,7 +3809,17 @@
       }
     } else {
       const note = document.createElement("span"); note.className = "t-note";
-      note.textContent = " — the recorded id read plainly; an English name waits on an attested usage";
+      note.textContent = " — its catalog entry read as plain words; a proper name will show once a source on record uses one";
+      // The owner's rule, universal: nothing shows on anyone's say-so — this
+      // line stands on the catalog record itself, and says so. The record's
+      // name and fingerprint come from this book's own receipts.
+      const oracle = (zone.emitted_from || {}).identity_oracle || {};
+      if (oracle.bridge) {
+        note.title = `from the catalog record ${oracle.bridge}` +
+          (oracle.bridge_sha256 ? ` (${String(oracle.bridge_sha256).slice(0, 12)}…)` : "") +
+          ` — the entry is the record's, not this site's; the full fingerprint is in this book's receipts`;
+        enT.title = note.title;
+      } a proper name will show once a source on record uses one";
       lab.parentNode.append(note);
       // The third register — the machine's guess, ruled 2026-08-28. It lives
       // only in this branch, so a licensed claim structurally outranks it:
