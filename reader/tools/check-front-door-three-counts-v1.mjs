@@ -232,7 +232,7 @@ check("three primary DOM counts use their exact grains", () => {
   assert.equal(block(html, "current-physical-c0"), `${n(physical)} current physical C0 rows`);
   assert.equal(block(html, "named-shelf-c0"), `${n(mapped)} physically backed C0 rows on named work/unit shelves`);
   const rendered = block(html, "rendered-compspan-records");
-  assert.equal(rendered, `${n(dynamicRendered)} rendered COMPspan records in ${n(receipt.rendered.built_zones)} built zones`);
+  assert.equal(rendered, `${n(dynamicRendered)} displayed word records in ${n(receipt.rendered.built_zones)} built books`);
   assert(!/C0/i.test(rendered), "rendered count block calls COMPspan records C0");
 });
 check("secondary DOM disclosures are complete", () => {
@@ -240,8 +240,8 @@ check("secondary DOM disclosures are complete", () => {
   assert(page.includes(`Logical plan: ${n(plan)} C0 rows`));
   assert(page.includes(`logical-plan C0 rows not physical: ${n(notPhysical)}`));
   assert(page.includes(`physical C0 rows not yet mapped to a named shelf: ${n(unmapped)}`));
-  assert(page.includes("The rendered figure is a current-zone snapshot and a different grain"));
-  assert(page.includes("It is recomputed from those zones on every build."));
+  assert(page.includes("The displayed figure is a snapshot at a different grain"));
+  assert(page.includes("It is recomputed from those books on every build."));
 });
 check("DOM data pins bind the exact source hashes", () => {
   assert(html.includes(`data-text-input-byte-rule="${TEXT_PIN_RULE}"`));
