@@ -79,8 +79,42 @@ const coords = new Map(servedUnits.map((u) => [u, parseCoordinates(u, slug)]));
 const flatUnits = [...coords.values()].filter((c) => c.flat).length;
 require_(flatUnits === 0 || flatUnits === coords.size, "COORDINATE_SHAPES_MIXED", `${flatUnits}/${coords.size} units are flat-sequence`);
 const flatShape = flatUnits > 0;
+
+// ---- 3a. numbering: a witnessed gap is a fact, a collision is a fault ----
+// This gate used to refuse any chapter sequence that was not exactly 1..N.
+// The corpus lane's 2026-08-30 split measured the whole bridge: 1,027 works
+// carry witnessed mid-sequence skips or start-offsets, and ZERO works
+// anywhere carry a duplicate ordinal — the collision the old law existed to
+// refuse. So the law narrows to what it was for. Two sealed units claiming
+// the same address cannot both be that address: a DUPLICATE ordinal still
+// refuses. A witnessed skip ADMITS — the sealed ids skip it, so the shelf
+// skips it — recorded as a typed fact on the zone's own receipts, each gap
+// named (after N, next M). A witnessed start-offset ADMITS the same way
+// (the recorded shape where an introduction displaces the count). Nothing
+// is renumbered and no ordinal is invented to fill a gap.
+// GUARDS: numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault
+{
+  const claimed = new Map();
+  for (const [u, c] of coords) {
+    const prior = claimed.get(c.label);
+    require_(!prior, "DUPLICATE_ORDINAL", `${c.label} claimed by both ${prior} and ${u}`);
+    claimed.set(c.label, u);
+  }
+}
 const chapters = [...new Set([...coords.values()].map((c) => c.chapter))].sort((a, b) => a - b);
-chapters.forEach((c, i) => require_(c === i + 1, "CHAPTER_NUMBERING_GAP", `chapter ${c} at position ${i + 1}`));
+const numberingGaps = [];
+for (let i = 1; i < chapters.length; i += 1)
+  if (chapters[i] !== chapters[i - 1] + 1) numberingGaps.push({ after: chapters[i - 1], next: chapters[i] });
+const numberingStartsAt = chapters.length && chapters[0] !== 1 ? chapters[0] : null;
+const numbering = (numberingGaps.length || numberingStartsAt !== null)
+  ? {
+      rule_id: "numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault",
+      ...(numberingStartsAt !== null ? { starts_at: numberingStartsAt } : {}),
+      gaps: numberingGaps,
+      note:
+        "the sealed unit ids witness these ordinals and no others; the shelf reads them as sealed — nothing renumbered, no ordinal invented to fill a gap, and a duplicate ordinal would have refused the work",
+    }
+  : null;
 
 // ---- 3b. the Y ledger, when this work has a promoted one -----------------
 const y = yPath ? JSON.parse(readFileSync(yPath, "utf8")) : null;
@@ -400,6 +434,7 @@ const zone = {
     license_links: links ? JSON.parse(readFileSync(links, "utf8")) : [],
     coordinate_basis:
       `chapter and section numbers are read from the sealed unit id (${slug}-<chapter>-<section>); nothing is renumbered`,
+    ...(numbering ? { numbering } : {}),
     // Plain English for the two levels of the coordinate, so a page can say
     // "Chapter 7, verse 14" instead of a generic "section, paragraph". These
     // name the structure; they are not translations of anything in the text.
