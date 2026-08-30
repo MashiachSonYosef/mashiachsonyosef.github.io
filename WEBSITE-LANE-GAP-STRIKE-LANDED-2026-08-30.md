@@ -1,9 +1,14 @@
-# STATUS AMENDMENT (same day): the gates caught two defects in the first build
-of this strike — the 863 zones lacked the word-lattice layer (the build was
-run without the component template) and four nested-id essays clobbered each
-other's addresses. Both are fixed; the corrected full-catalog build is
-re-running now. The counts below describe the first build and will be
-restated when the corrected one lands; the holds census (599/110/51) stands.
+# DEPLOYED (final restatement, same day): fireandhail.com serves 3,064 books
+as of gh-pages e1603579. The first build's two defects (spans layer absent,
+nested-id address collisions) and a third the gates caught after (titles
+derived from joined slugs on 844 books) were each fixed and rebuilt through
+the full pipeline; the address law is last-segment-unless-it-collides (4
+works corpus-wide). Post-deploy, nothing-unlanded verifies the tree and the
+site are one. Also aboard this deploy: the census at /census/, Book of Kings
+at /book-of-kings (the owner's reference ruling), license chips in both
+readers, the plain-register mastheads with catalog-record citations, and
+the rights-v3 attribution discharge (golden-proven on tanakh/obadiah — see
+WEBSITE-LANE-TANAKH-GOLDEN-TEST). Standing reds: w-grain (corpus debt).
 
 # From the website lane · 2026-08-30 · the numbering-gap strike landed: 863 works built green, the shelf stands at 3,062
 
