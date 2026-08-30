@@ -1004,6 +1004,14 @@
      press a Hebrew word and the drag takes Hebrew, press a reading and it
      takes readings. Nothing on this page is locked away from a reader who
      reaches for it. Either way what lands is a line rather than a zip of two. */
+  /* the gloss's license chip: visible in the English reader — the owner's
+     ruling, "english and license reader… never let them separate even by a
+     display degree" — quiet in the Hebrew reader, where every license is
+     one tap away on the word's card; never in a copy, by the frame law */
+  .g .g-lic { display: none; user-select: none; -webkit-user-select: none; }
+  body.en .g .g-lic { display: inline-block; margin-left: 0.32em; padding: 0 0.32em;
+    border: 1px solid var(--line); border-radius: 0.6em; font-size: 0.8em;
+    color: var(--muted); white-space: nowrap; vertical-align: baseline; }
   body.pick-he .wb .g { user-select: none; -webkit-user-select: none; }
   body.pick-he .wb .w { user-select: text; -webkit-user-select: text; }
   body.pick-en .wb .g { user-select: text; -webkit-user-select: text; }
@@ -3443,6 +3451,32 @@
     if (word.kq && kqShown >= 0 && line) ge.classList.add("backs-en");
     if (line) { ge.textContent = line; ge.title = line; }
     else { ge.textContent = " "; ge.classList.add("bare"); }
+    // The English and license reader — the owner's ruling, 2026-08-30:
+    // "never let them separate even by a display degree." Where the baked
+    // gloss table backs this line, the M that carries it rides it: one chip
+    // when one witness backs every part of the line, a counted chip naming
+    // each on hover when a joined line crosses witnesses, and nothing when
+    // the line is a ruling or the table cannot answer for it — an absent
+    // chip over a wrong one, always. A repaint under a ruling replaces the
+    // text node and the chip goes with it, by the same law.
+    if (line && !wasRuled && table === zone.gloss && zone.gloss_m) {
+      const ks = word.kq && regions ? (kqShown >= 0 ? [regions[kqShown].k] : [])
+        : regions ? regions.filter((r, i) => parts[i] !== "—" && ruledLine(r.k, table) == null).map((r) => r.k)
+        : word.k ? [word.k] : [];
+      const ms = ks.map((k) => zone.gloss_m[k]).filter(Boolean);
+      if (ks.length && ms.length === ks.length) {
+        const uniq = [...new Map(ms.map((m) => [`${m.lic} ${m.m}`, m])).values()];
+        const chip = document.createElement("span"); chip.className = "g-lic";
+        if (uniq.length === 1) {
+          chip.textContent = uniq[0].lic;
+          chip.title = `${uniq[0].m}${uniq[0].y ? ` · ${uniq[0].y}` : ""} — the oldest witness carrying this reading; every other witness is on the word's own card`;
+        } else {
+          chip.textContent = `${uniq.length} licenses`;
+          chip.title = uniq.map((m) => `${m.lic} — ${m.m}${m.y ? ` · ${m.y}` : ""}`).join("\n");
+        }
+        ge.append(chip);
+      }
+    }
     wb.append(ge);
     // every place this form stands goes on the ledger, so a ruling made at
     // any one of them can be painted at all of them. A pair's stand carries

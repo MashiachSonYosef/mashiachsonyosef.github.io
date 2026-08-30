@@ -94,7 +94,13 @@ const tripleVerse = async (nth = 0, target = ".wb .w") => {
 // anything the copy path touched
 const showing = async (nth = 0) => p.evaluate((i) => {
   const s = document.querySelectorAll("section.seg")[i];
-  const sel = (q) => [...s.querySelectorAll(q)].map((x) => x.textContent).join(" ");
+  // the license chip inside a gloss is frame, not text — it never rides a
+  // copy, so the "shown" measure strips it too
+  const sel = (q) => [...s.querySelectorAll(q)].map((x) => {
+    const c = x.cloneNode(true);
+    c.querySelectorAll(".g-lic").forEach((e) => e.remove());
+    return c.textContent;
+  }).join(" ");
   return {
     he: sel(".he-text .wb .w"),
     en: sel(".he-text .wb .g"),
