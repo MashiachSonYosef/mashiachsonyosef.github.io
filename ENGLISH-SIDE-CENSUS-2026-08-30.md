@@ -55,3 +55,19 @@ never taste. The manifest re-derives after every works wave, so M grows
 in lockstep with the library. Next build from this lane: the thin-key
 demand census (zero-route and thin-route keys from the route origins in
 ldmprs), which turns this census's referee list into exact shopping lists.
+
+## The demand census, built (corpus lane, 2026-08-30)
+
+Staging: `corpus-lane/work/moses-thin-key-demand-census-v1/`. The join of
+the route store (140,532 keys) against the attested W inventory
+(1,277,980 canonical keys): **1.16M zero-route keys carrying 24.9M
+occurrences; 72k thin-route keys carrying 10.7M more.** Top of the
+zero-route list is the reader's real hunger: שנאמר (81k occurrences —
+the citation formula on every rabbinic page), שאינו, שהרי, גמ׳, ע״כ.
+
+Caveat, typed: many zero-route full-forms are prefix-fused; their
+components may route via the span split, so the v1 ranking is candidate
+demand, not proven reader-facing absence. v2 refines composition-aware.
+The demand-manifest law stands: per-dictionary shopping lists = headword
+joins against these CSVs, zero-route formulae first. Jastrow's entry for
+שנאמר exists; the corpus is asking for it by name, 81,392 times.
