@@ -1,3 +1,10 @@
+# STATUS AMENDMENT (same day): the gates caught two defects in the first build
+of this strike — the 863 zones lacked the word-lattice layer (the build was
+run without the component template) and four nested-id essays clobbered each
+other's addresses. Both are fixed; the corrected full-catalog build is
+re-running now. The counts below describe the first build and will be
+restated when the corrected one lands; the holds census (599/110/51) stands.
+
 # From the website lane · 2026-08-30 · the numbering-gap strike landed: 863 works built green, the shelf stands at 3,062
 
 The amendment announced in WEBSITE-LANE-GAP-STRIKE-ANNOUNCED shipped exactly
