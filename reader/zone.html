@@ -1008,10 +1008,8 @@
      ruling, "english and license reader… never let them separate even by a
      display degree" — quiet in the Hebrew reader, where every license is
      one tap away on the word's card; never in a copy, by the frame law */
-  .g .g-lic { display: none; user-select: none; -webkit-user-select: none; }
-  body.en .g .g-lic { display: inline-block; margin-left: 0.32em; padding: 0 0.32em;
-    border: 1px solid var(--line); border-radius: 0.6em; font-size: 0.8em;
-    color: var(--muted); white-space: nowrap; vertical-align: baseline; }
+  .g .g-lic { display: inline-block; user-select: none; -webkit-user-select: none; margin-left: 0.32em; padding: 0 0.32em; border: 1px solid var(--line); border-radius: 0.6em; font-size: 0.8em; color: var(--muted); white-space: nowrap; vertical-align: baseline; }
+  /* the chip shows in both readers — the owner chose the demonstration look, 2026-08-30 */
   body.pick-he .wb .g { user-select: none; -webkit-user-select: none; }
   body.pick-he .wb .w { user-select: text; -webkit-user-select: text; }
   body.pick-en .wb .g { user-select: text; -webkit-user-select: text; }
@@ -2216,7 +2214,10 @@
       if (tetherKey) { tether.style.display = "none"; tetherKey = ""; }
       return;
     }
-    const a = anchor.getBoundingClientRect(), h = hud.getBoundingClientRect();
+    // the corners tracked are the Hebrew word's own — the reader asked the
+    // tether to hold the Hebrew, not the block around it (owner, 2026-08-30)
+    const heEl = (anchor.querySelector && (anchor.querySelector(".w") || anchor.closest(".wb")?.querySelector(".w"))) || anchor;
+    const a = heEl.getBoundingClientRect(), h = hud.getBoundingClientRect();
     const pts = [
       [a.left, a.top, h.left, h.top], [a.right, a.top, h.right, h.top],
       [a.left, a.bottom, h.left, h.bottom], [a.right, a.bottom, h.right, h.bottom],

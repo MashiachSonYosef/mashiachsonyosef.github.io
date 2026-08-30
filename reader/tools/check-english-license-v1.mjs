@@ -24,14 +24,16 @@ p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 await p.goto(defaultZoneUrl(), { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb .g:not(.bare)");
 
-// 1 · Hebrew reader: chips exist in the DOM but stay quiet
+// 1 · both readers wear the license — the owner chose the demonstration
+// look (2026-08-30): the chip rides the reading in the Hebrew reader too,
+// never separated even by a display degree
 const heMode = await p.evaluate(() => {
   const chips = [...document.querySelectorAll("section.seg .g .g-lic")];
   return { chips: chips.length,
     visible: chips.filter((c) => getComputedStyle(c).display !== "none").length };
 });
-check("the Hebrew reader keeps the chips quiet — licenses one tap away",
-  heMode.chips > 0 && heMode.visible === 0,
+check("the Hebrew reader wears the chips too — the demonstration look",
+  heMode.chips > 0 && heMode.visible === heMode.chips,
   `${heMode.chips} chips carried, ${heMode.visible} showing`);
 
 // 2 · English reader: every chip shows, and glossed words overwhelmingly wear one
