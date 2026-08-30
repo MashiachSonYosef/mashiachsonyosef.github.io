@@ -412,7 +412,7 @@ if (cleanGenesisZonesSeen > 1) throw new Error(`expected at most one Genesis zon
 // slot is simply named, and the line goes away when its record lands.
 const incBits = (b) => {
   const bits = [];
-  if (b.basis === "TYPED_AWAITING_LEDGER") bits.push("recorded deviation: its location range is entered by hand and disclosed, until its navigation record is issued");
+  if (b.basis === "TYPED_AWAITING_LEDGER") bits.push("its place was entered by hand and is marked as such, until its record is issued");
   if (b.held) bits.push(`${n(b.held)} commentary slots open`);
   return bits;
 };

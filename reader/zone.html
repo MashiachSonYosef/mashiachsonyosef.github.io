@@ -1409,7 +1409,7 @@
     if (!entry) return;
     const basisEl = document.getElementById("basisLine");
     if (entry.basis === "TYPED_AWAITING_LEDGER") {
-      basisEl.append(`a recorded deviation stands on this book: no navigation record has been issued for it \u2014 the naming program has covered one book so far \u2014 so its location range was entered by hand and is disclosed here rather than hidden: rows ${Number(entry.c0_first).toLocaleString()}\u2013${Number(entry.c0_last).toLocaleString()} of the sealed text store, ${Number(entry.unit_count).toLocaleString()} passages. Impact is contained: every word, reading, and license on this page is still machine-derived from sealed records. The deviation closes when this book\u2019s navigation record is issued; the build then refuses to run until the hand-entered numbers are removed.`);
+      basisEl.append(`No record has been issued yet that names this book or numbers its chapters. It is shown anyway: its place in the sealed text store (${Number(entry.unit_count).toLocaleString()} passages) was entered by hand and is marked as such. Once the record is issued, the hand-entered numbers must be removed before this book will build again.`);
       basisEl.hidden = false;
     } else if (entry.basis === "SEALED_Y_LEDGER") {
       basisEl.append(`chapter names and order are read from this book\u2019s issued navigation record \u2014 ${entry.y_fixture || "record"}${zone.emitted_from.y_ledger?.status ? ` \u00b7 ${zone.emitted_from.y_ledger.status}` : ""}`);
