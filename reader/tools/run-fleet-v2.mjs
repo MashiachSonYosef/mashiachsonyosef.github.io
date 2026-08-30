@@ -147,7 +147,13 @@ const runWork = async (work, e) => {
   if (!covered(e.min, e.max)) { mark(work, e, "HOLD", "TEXT", "the verified body does not cover this work's c0 range"); return; }
   if (!BINDING) { mark(work, e, "HOLD", "RIGHTS", RIGHTS_REASON); return; }
   if (!has("build-zones")) { mark(work, e, "READY_TO_BUILD", "RIGHTS", null); return; }
-  const slug = work.split("/").pop();
+  // The address is every segment after the family, joined — derived from
+  // the id, never typed. For the two-segment ids that is the last segment
+  // exactly as before; for a nested id (modern-thought/<collection>/<essay>)
+  // it keeps the collection, because two essays named article-01 in two
+  // collections cannot both stand at /article-01 — the first fleet pass
+  // that dropped the middle segment clobbered one with the other.
+  const slug = work.split("/").slice(1).join("-");
   const serveOut = join(K3, "build", "fleet", `${slug}.ndjson`);
   try {
     await run("node", [join(HERE, "serve-from-body-v1.mjs"), "--work", work, "--body", BODY,

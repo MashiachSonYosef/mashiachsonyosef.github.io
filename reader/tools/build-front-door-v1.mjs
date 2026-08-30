@@ -543,7 +543,7 @@ const poolOf = (values) => {
 };
 const sums = (rows) => ({
   works: rows.length,
-  built: rows.filter((r) => r.book || has(`${r.atlas.id.split("/").pop()}.bin`)).length,
+  built: rows.filter((r) => r.book || has(`${r.atlas.id.split("/").slice(1).join("-")}.bin`)).length,
   units: rows.reduce((t, r) => t + r.atlas.units, 0),
 });
 const families = LEDGER.families.map((lf) => {
@@ -586,8 +586,11 @@ for (const f of readdirSync(ZONES)
 // the masthead's frame at book grain, in a card so the rows stay uncluttered.
 const atlasRow = (w) => {
   const segs = w.id.split("/");
-  const name = segs[segs.length - 1];
-  const pre = segs.slice(0, -1).join("/");
+  // the address is every segment after the family, joined — same derivation
+  // as the fleet runner's, so a nested id (a collection's essay) keeps its
+  // collection in the address and two essays never share one
+  const name = segs.slice(1).join("-");
+  const pre = segs[0];
   const fam = valueOwner.get(pre);
   const famAttr = fam && fam !== "(awaiting)" ? ` data-fam="${esc(fam)}"` : "";
   const st = FLEET_STATE.get(w.id) || "AWAITING_SHARDS";
@@ -647,7 +650,7 @@ const famHeadHe = (lf) => {
 // empty shelf with its counts is the honest state, not a hidden one — and
 // every unserved record stands below in the census, unchanged in every
 // column it always carried.
-const rowServes = (r) => !!r.book || ZONE_INFO.has(String(r.atlas.id).split("/").pop());
+const rowServes = (r) => !!r.book || ZONE_INFO.has(String(r.atlas.id).split("/").slice(1).join("-"));
 const familySection = (fam) => {
   const lf = fam.ledger;
   const s = sums(fam.rows);
@@ -725,9 +728,13 @@ ${rowsHtml(rows).join("\n")}
       </details>
     </section>`;
 };
-const awaitingSection = () => {
-  if (!awaitingRows.length) return "";
-  const s = sums(awaitingRows);
+// Both registers split like the families do: a row whose zone stands on the
+// shelf is a book and belongs on the door, whichever register its family
+// waits in — the census move (2026-08-30) first carried these sections off
+// whole and took 14 built books' door links with them.
+const awaitingSection = (rows = awaitingRows) => {
+  if (!rows.length) return "";
+  const s = sums(rows);
   return `    <section class="family">
       <details class="fam">
       <summary>
@@ -736,13 +743,14 @@ const awaitingSection = () => {
       </summary>
       <div class="fgroups">
       <span class="of fold-line">${esc(LEDGER.awaiting.why)}</span>
-${rowsHtml(awaitingRows).join("\n")}
+${rowsHtml(rows).join("\n")}
       </div>
       </details>
     </section>`;
 };
-const unruledSection = (v) => {
-  const rows = poolOf([v]);
+const unruledSection = (v, keep = () => true) => {
+  const rows = poolOf([v]).filter(keep);
+  if (!rows.length) return "";
   const s = sums(rows);
   return `    <section class="family">
       <details class="fam">
@@ -881,8 +889,8 @@ const censusDemoHtml = demo && demo.zi ? `  <section id="census-demo" aria-label
   </section>` : "";
 const censusSections = [
   ...families.map(censusFamily),
-  awaitingSection(),
-  ...unruled.map(unruledSection),
+  awaitingSection(awaitingRows.filter((r) => !rowServes(r))),
+  ...unruled.map((v) => unruledSection(v, (r) => !rowServes(r))),
 ].filter(Boolean);
 // The census stands at its own address (/census/), linked from the door's
 // top corner — the owner's ask, 2026-08-30: not forgotten at the bottom of
@@ -910,6 +918,8 @@ const censusPointer = censusSections.length
   : "";
 const sectionsHtml = [
   ...families.map(familySection),
+  awaitingSection(awaitingRows.filter(rowServes)),
+  ...unruled.map((v) => unruledSection(v, rowServes)),
   censusPointer,
 ].filter(Boolean);
 
@@ -1502,7 +1512,7 @@ ${page.sections.join("\n")}
     // in, not a description of a door somewhere else
     if (st === "PLANNED") {
       var a = document.createElement("a");
-      a.href = "/" + btn.getAttribute("data-w").split("/").pop();
+      a.href = "/" + btn.getAttribute("data-w").split("/").slice(1).join("-");
       a.textContent = "open its page";
       stEl.append(" · ", a);
     }

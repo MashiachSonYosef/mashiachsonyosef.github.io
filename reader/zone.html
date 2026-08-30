@@ -1667,7 +1667,17 @@
     for (let i = 0; i < sec.words.length; i += 1) {
       const w = sec.words[i];
       const wb = wbs[i];
-      const shown = wb ? (wb.querySelector(".g")?.textContent || "").trim() : "";
+      const shown = wb ? (() => {
+        // the reading as shown, without its frame: the license chip rides
+        // inside .g for display, but it is frame, not text — an export that
+        // read it as part of the reading matched nothing in the store and
+        // withheld every word (the 2026-08-30 all-[withheld] regression)
+        const g = wb.querySelector(".g");
+        if (!g) return "";
+        const c = g.cloneNode(true);
+        c.querySelectorAll(".g-lic").forEach((x) => x.remove());
+        return (c.textContent || "").trim();
+      })() : "";
       const rec = { he: w.s, en: null, held: null, source: null };
       if (w.k && shown && shown !== "—") {
         const a = await attributionFor(w.k, shown);

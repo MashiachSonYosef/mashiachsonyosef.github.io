@@ -60,7 +60,11 @@ const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 await p.goto(`${B}/`, { waitUntil: "networkidle" });
 
-const openCardFor = (workId) => p.evaluate(async (wid) => {
+// A work's row stands on the door while it serves and in the census
+// (/census/, its own page since 2026-08-30) while it does not — one
+// publication, two pages. The card machinery is identical on both, so the
+// drive looks where the row lives: the door first, the census on a miss.
+const openCardOnPage = (workId) => p.evaluate(async (wid) => {
   document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   await new Promise((r) => setTimeout(r, 120));
   const btn = document.querySelector(`button.aw[data-w="${wid.replace(/"/g, '\\"')}"]`);
@@ -79,6 +83,17 @@ const openCardFor = (workId) => p.evaluate(async (wid) => {
     held: !!line.querySelector(".att-held"),
   };
 }, workId);
+let onPage = "/";
+const openCardFor = async (workId) => {
+  let r = await openCardOnPage(workId);
+  if (!r.found) {
+    const other = onPage === "/" ? "/census/" : "/";
+    await p.goto(`${B}${other}`, { waitUntil: "networkidle" });
+    onPage = other;
+    r = await openCardOnPage(workId);
+  }
+  return r;
+};
 
 // 1 · ready display + ready distribution: credit and link, both the table's
 {

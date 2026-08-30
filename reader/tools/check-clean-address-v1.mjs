@@ -123,6 +123,15 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
   // The door also points at its own counts receipt — a record of the door,
   // not a way out of it. It is the one non-book destination allowed.
   FINISHED.push("/front-door-counts-receipt-v1.json");
+  // And at the census — the register of every work the bridge records that
+  // does not serve yet, standing at its own address since 2026-08-30 (the
+  // owner's ask: not forgotten at the bottom of the home page). It is the
+  // publication's own second page, so the way there must exist and land.
+  {
+    const censusFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "census", "index.html");
+    check("the census stands at its own address", existsSync(censusFile), censusFile);
+    FINISHED.push("/census/");
+  }
   // A destination is the address, not what is asked of it: /genesis and
   // /genesis?c=open are the same book, opened two ways. What must not appear
   // is a place that is not a finished book.
