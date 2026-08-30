@@ -131,6 +131,13 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
     const censusFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "census", "index.html");
     check("the census stands at its own address", existsSync(censusFile), censusFile);
     FINISHED.push("/census/");
+  // and the reference pages: each group in the typed reference record
+  // (data/reference-groups-v1.json, the owner's naming ruling) is a
+  // published address the door points at
+  {
+    const rg = join(dirname(fileURLToPath(import.meta.url)), "..", "data", "reference-groups-v1.json");
+    if (existsSync(rg)) for (const g of JSON.parse(readFileSync(rg, "utf8")).groups || []) FINISHED.push(`/${g.slug}`);
+  }
   }
   // A destination is the address, not what is asked of it: /genesis and
   // /genesis?c=open are the same book, opened two ways. What must not appear

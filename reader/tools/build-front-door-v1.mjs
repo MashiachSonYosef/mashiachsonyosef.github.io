@@ -927,11 +927,21 @@ const censusPointer = censusSections.length
       <p class="of"><a href="/census/">THE CENSUS</a> · every work the bridge records that does not serve yet stands at its own page — nothing hidden, nothing promised: each row carries its recorded id, its measured size, and what it awaits.</p>
     </section>`
   : "";
+const refPointer = (() => {
+  try {
+    const RG = JSON.parse(readFileSync("data/reference-groups-v1.json", "utf8"));
+    const links = (RG.groups || []).map((g) => `<a href="/${g.slug}">${esc(g.name_en)}</a>`).join(" \u00b7 ");
+    return links ? `    <section class="family census-head">
+      <p class="of">REFERENCES \u00b7 ${links} \u2014 a traditional name gathering its sealed pieces; the pieces stay themselves.</p>
+    </section>` : "";
+  } catch { return ""; }
+})();
 const sectionsHtml = [
   ...families.map(familySection),
   awaitingSection(awaitingRows.filter(rowServes)),
   ...unruled.map((v) => unruledSection(v, rowServes)),
   censusPointer,
+  refPointer,
 ].filter(Boolean);
 
 // One shell, two pages. The door and the census share every style, every
@@ -2043,6 +2053,42 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
     fleetPages += 1;
   }
   console.log(`  ${n(fleetPages)} fleet work addresses emitted beside the ${books.length} book page${books.length === 1 ? "" : "s"}`);
+}
+
+// ---- reference groups: the owner's naming ruling, 2026-08-30 --------------
+// A traditional book the chain records in pieces may be referred to — whole,
+// or by any piece — under its traditional name. The ruling and each group
+// are typed in the open in data/reference-groups-v1.json (a reference
+// record, not a text record); this page is derived from that record and
+// from the shelf's own state, and carries no words of any text.
+const REF_GROUPS_PATH = "data/reference-groups-v1.json";
+if (existsSync(REF_GROUPS_PATH)) {
+  const RG = JSON.parse(readFileSync(REF_GROUPS_PATH, "utf8"));
+  for (const g of RG.groups || []) {
+    const rows = g.members.map((id) => {
+      const addr = addressOf(id);
+      return ZONE_INFO.has(addr)
+        ? `<p><a href="/${addr}">${esc(plainId(id))}</a> — serving; every word opens its own record.</p>`
+        : `<p>${esc(plainId(id))} — not yet served; its card in <a href="/census/">the census</a> says what it awaits.</p>`;
+    }).join("\n");
+    const page = `<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(g.name_en)} \u00b7 ${SITE_NAME}</title>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d0a14;
+  color:#b2a489;font:16px/1.6 Georgia,serif;padding:2rem}
+  a{color:#eac86f} main{max-width:36rem} h1{font-size:1.3rem;letter-spacing:.08em;font-variant:small-caps;color:#eac86f}
+  .prov{font-size:.82em;color:#8b7f69}</style>
+</head>
+<body><main><h1>${esc(g.name_en)}</h1>
+<p>${esc(g.note)}</p>
+${rows}
+<p class="prov">${esc(RG.ruling)} \u2014 ruled by ${esc(RG.ruled_by)}.</p>
+<p><a href="/">${SITE_NAME}</a></p>
+</main></body></html>\n`;
+    mkdirSync(join(OUT, g.slug), { recursive: true });
+    writeFileSync(join(OUT, g.slug, "index.html"), page);
+  }
 }
 
 // A published address is a promise. Where a work has been republished under
