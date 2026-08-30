@@ -543,7 +543,7 @@ const poolOf = (values) => {
 };
 const sums = (rows) => ({
   works: rows.length,
-  built: rows.filter((r) => r.book || has(`${r.atlas.id.split("/").slice(1).join("-")}.bin`)).length,
+  built: rows.filter((r) => r.book || has(`${addressOf(r.atlas.id)}.bin`)).length,
   units: rows.reduce((t, r) => t + r.atlas.units, 0),
 });
 const families = LEDGER.families.map((lf) => {
@@ -584,13 +584,24 @@ for (const f of readdirSync(ZONES)
 // A book's name is a record too. The row stays two columns — the bridge's
 // name and the unit count — and the name itself opens the book's own card:
 // the masthead's frame at book grain, in a card so the rows stay uncluttered.
+// The address rule, same as the fleet runner's: the last id segment — the
+// published rule since the cutover — unless another work in the atlas shares
+// it, and only then the segments after the family joined. A blanket join
+// here once moved 844 published addresses; the collision set is 4 works.
+const LAST_SEG_COUNT = new Map();
+for (const fam of Object.values(ATLAS.families)) for (const w of fam.works) {
+  const l = String(w.id).split("/").pop();
+  LAST_SEG_COUNT.set(l, (LAST_SEG_COUNT.get(l) || 0) + 1);
+}
+const addressOf = (id) => {
+  const segs = String(id).split("/");
+  const last = segs[segs.length - 1];
+  return LAST_SEG_COUNT.get(last) > 1 ? segs.slice(1).join("-") : last;
+};
 const atlasRow = (w) => {
   const segs = w.id.split("/");
-  // the address is every segment after the family, joined — same derivation
-  // as the fleet runner's, so a nested id (a collection's essay) keeps its
-  // collection in the address and two essays never share one
-  const name = segs.slice(1).join("-");
-  const pre = segs[0];
+  const name = addressOf(w.id);
+  const pre = segs.slice(0, -1).join("/");
   const fam = valueOwner.get(pre);
   const famAttr = fam && fam !== "(awaiting)" ? ` data-fam="${esc(fam)}"` : "";
   const st = FLEET_STATE.get(w.id) || "AWAITING_SHARDS";
@@ -650,7 +661,7 @@ const famHeadHe = (lf) => {
 // empty shelf with its counts is the honest state, not a hidden one — and
 // every unserved record stands below in the census, unchanged in every
 // column it always carried.
-const rowServes = (r) => !!r.book || ZONE_INFO.has(String(r.atlas.id).split("/").slice(1).join("-"));
+const rowServes = (r) => !!r.book || ZONE_INFO.has(addressOf(r.atlas.id));
 const familySection = (fam) => {
   const lf = fam.ledger;
   const s = sums(fam.rows);
@@ -1512,7 +1523,7 @@ ${page.sections.join("\n")}
     // in, not a description of a door somewhere else
     if (st === "PLANNED") {
       var a = document.createElement("a");
-      a.href = "/" + btn.getAttribute("data-w").split("/").slice(1).join("-");
+      a.href = "/" + btn.getAttribute("data-w").split("/").pop();
       a.textContent = "open its page";
       stEl.append(" · ", a);
     }

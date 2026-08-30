@@ -62,6 +62,10 @@ for (let i = 1; i < bl.length; i += 1) {
   e.max = Math.max(e.max, Number(f[bc.max_c0_numeric_id]));
 }
 
+// every last segment's claim count, for the address rule below
+const LAST_SEG_COUNT = new Map();
+for (const w of works.keys()) { const l = w.split("/").pop(); LAST_SEG_COUNT.set(l, (LAST_SEG_COUNT.get(l) || 0) + 1); }
+
 // ---- what the body covers, from its manifest ------------------------------
 const man = readFileSync(join(BODY, "c0-active-rebuild-partial-manifest.csv"), "utf8").trim().split("\n");
 const mc = Object.fromEntries(man[0].split(",").map((h, i) => [h.trim(), i]));
@@ -147,13 +151,15 @@ const runWork = async (work, e) => {
   if (!covered(e.min, e.max)) { mark(work, e, "HOLD", "TEXT", "the verified body does not cover this work's c0 range"); return; }
   if (!BINDING) { mark(work, e, "HOLD", "RIGHTS", RIGHTS_REASON); return; }
   if (!has("build-zones")) { mark(work, e, "READY_TO_BUILD", "RIGHTS", null); return; }
-  // The address is every segment after the family, joined — derived from
-  // the id, never typed. For the two-segment ids that is the last segment
-  // exactly as before; for a nested id (modern-thought/<collection>/<essay>)
-  // it keeps the collection, because two essays named article-01 in two
-  // collections cannot both stand at /article-01 — the first fleet pass
-  // that dropped the middle segment clobbered one with the other.
-  const slug = work.split("/").slice(1).join("-");
+  // The address is the work id's last segment — the published rule since the
+  // cutover — unless another bridge work shares that segment: only then does
+  // the address keep the collection (two essays named article-01 in two
+  // collections cannot both stand at /article-01). Derived from the whole
+  // bridge, never typed; a blanket join here once moved 844 published
+  // addresses and was reverted the same day.
+  const segs = work.split("/");
+  const last = segs[segs.length - 1];
+  const slug = (LAST_SEG_COUNT.get(last) > 1) ? segs.slice(1).join("-") : last;
   const serveOut = join(K3, "build", "fleet", `${slug}.ndjson`);
   try {
     await run("node", [join(HERE, "serve-from-body-v1.mjs"), "--work", work, "--body", BODY,
