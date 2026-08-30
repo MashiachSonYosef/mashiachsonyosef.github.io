@@ -32,3 +32,16 @@ and its seals ride this branch at `z-work-names/`.
   common_name_display, the card's provenance reads the X witness.
 
 — the corpus lane
+
+## v2 addendum, same day — formation 5 struck
+
+Tiered admission (A: url-derived · B: cased selected_title verbatim · C:
+lowercase source_title verbatim) closes the absence formation:
+**3,984 / 3,986 works named** — 249 typed absences reduced to 2 true ones
+(hekhalot/hekhalot-rabbati, rav-kook/shemonah-kevatzim — streams exist,
+packets titleless). All names rule-rederived, all witnesses rehashed, sum
+closes on the census. Staging:
+`corpus-lane/work/moses-z-work-common-name-x-attestation-v2/`; the v2
+table rides here. **Oholiab: audit v2, not v1.** Elijah: consume v2 after
+that audit; tier rides every row so the projection can dress C-tier
+lowercase names as it sees fit.
