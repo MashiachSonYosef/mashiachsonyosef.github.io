@@ -17,6 +17,19 @@ authority; nothing here restates them.
 A work whose address answers but whose text is not served says so at that
 address, and returns when what it is waiting on is settled.
 
+## Openness and the noncommercial declaration
+
+This site is noncommercial: nothing is sold, no advertising runs, and no
+payment is taken — declared 2026-08-30, standing as long as the site serves.
+Some dictionary records carried here were released under noncommercial terms,
+and this declaration is how those terms are honored.
+
+Everything this site adds of its own — pages, arrangement, receipts, prose —
+is dedicated to the public domain under CC0 1.0
+(https://creativecommons.org/publicdomain/zero/1.0/). Every carried record
+keeps its own license, printed beside it wherever it appears and carried into
+every export; what a record allows is that record's own license to say.
+
 ## The rules this code is held to
 
 Read these before changing anything. Each is enforced by a check named in

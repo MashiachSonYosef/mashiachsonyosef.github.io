@@ -127,7 +127,11 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
   // /genesis?c=open are the same book, opened two ways. What must not appear
   // is a place that is not a finished book.
   const dest = (h) => String(h).split("?")[0];
-  const stray = splash.links.filter((h) => !FINISHED.includes(dest(h)));
+  // one exception, typed: a rel="license" citation link (the CC0 dedication
+  // in the openness declaration) is a receipt, not a way off — it points at
+  // the license text the declaration stands under
+  const stray = splash.links.filter((h) => !FINISHED.includes(dest(h))
+    && !/^https:\/\/creativecommons\.org\/publicdomain\//.test(String(h)));
   check("every way off it lands on a finished book",
     stray.length === 0 && FINISHED.every((f) => splash.links.map(dest).includes(f)),
     `${splash.links.length} links · ${splash.links.join(" ")}${stray.length ? ` · stray: ${stray.join(" ")}` : ""}`);
