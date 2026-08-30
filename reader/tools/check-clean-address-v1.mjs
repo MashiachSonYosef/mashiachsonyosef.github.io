@@ -311,7 +311,7 @@ for (const [href, ...expected] of WALK) {
   check("  the tab names the book in both", r.title.includes(en) && (!heTitle || r.title.includes(heTitle)), r.title);
   check("  the masthead carries the book's own title, said to be the title",
     /^book title$/i.test(r.heLab) && (heTitle ? r.he === heTitle && !r.heUnnamed
-      : r.heUnnamed && /ledger/i.test(r.he)), `"${r.heLab}": ${r.he}`);
+      : r.heUnnamed && /on record/i.test(r.he)), `"${r.heLab}": ${r.he}`);
   // And it is a word of the corpus, not a caption: it opens the same catalogue
   // every other word of the book opens.
   check("  and it opens like any word of the text", heTitle ? r.titleOpens : !r.titleOpens,
@@ -331,7 +331,7 @@ for (const [href, ...expected] of WALK) {
           : /^listed in the catalog as$/i.test(r.enLab) && r.en === addrPlain,
     `"${r.enLab}": ${r.en}`);
   check("  with an attestation on the claim, and the note on the record",
-    r.lic ? /^attested: .+/.test(r.lic) && !r.enNote : /waits on an attested usage/.test(r.enNote),
+    r.lic ? /^attested: .+/.test(r.lic) && !r.enNote : /a source on record uses one/.test(r.enNote),
     `${r.enLab} · ${r.lic || r.enNote || "no attestation and no note"}`);
   check("  the zone still loads under the rewritten bar", r.sections === expectSections && r.words > 3, `${r.sections} of ${expectSections} sections`);
   check("  and its readings came with it", r.glossed > 0, `${r.glossed} of ${r.words} words glossed`);

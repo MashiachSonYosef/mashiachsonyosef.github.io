@@ -2245,7 +2245,12 @@
     if (hudMoved) { clampHud(); return; }
     // a height fixed for a previous word's placement is not this word's
     hud.style.maxHeight = "";
-    let rect = hudAnchor.getBoundingClientRect();
+    // The card must clear the word's whole block, not just the span that was
+    // pressed: a ruled reading painted under the word grows the block (the
+    // growth law), and a card anchored on the span alone covered the ruled
+    // reading's second line — caught by the overlaps gate, 2026-08-30.
+    const anchorBlock = (hudAnchor.closest && hudAnchor.closest(".wb")) || hudAnchor;
+    let rect = anchorBlock.getBoundingClientRect();
     let h = hud.offsetHeight || 0;
     const w = hud.offsetWidth || 0;
     const pad = 8;
@@ -2261,7 +2266,7 @@
       const by = Math.min(rect.bottom - want, Math.max(0, rect.top - pad));
       if (by > 0) {
         window.scrollBy(0, by);
-        rect = hudAnchor.getBoundingClientRect();
+        rect = anchorBlock.getBoundingClientRect();
       }
     }
     // If the word is already as high as it goes and the card still does not
@@ -3819,7 +3824,7 @@
           (oracle.bridge_sha256 ? ` (${String(oracle.bridge_sha256).slice(0, 12)}…)` : "") +
           ` — the entry is the record's, not this site's; the full fingerprint is in this book's receipts`;
         enT.title = note.title;
-      } a proper name will show once a source on record uses one";
+      }
       lab.parentNode.append(note);
       // The third register — the machine's guess, ruled 2026-08-28. It lives
       // only in this branch, so a licensed claim structurally outranks it:

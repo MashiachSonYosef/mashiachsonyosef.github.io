@@ -929,7 +929,7 @@ const censusPointer = censusSections.length
   : "";
 const refPointer = (() => {
   try {
-    const RG = JSON.parse(readFileSync("data/reference-groups-v1.json", "utf8"));
+    const RG = JSON.parse(readFileSync(arg("reference-groups", "data/reference-groups-v1.json"), "utf8"));
     const links = (RG.groups || []).map((g) => `<a href="/${g.slug}">${esc(g.name_en)}</a>`).join(" \u00b7 ");
     return links ? `    <section class="family census-head">
       <p class="of">REFERENCES \u00b7 ${links} \u2014 a traditional name gathering its sealed pieces; the pieces stay themselves.</p>
@@ -2061,7 +2061,7 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
 // are typed in the open in data/reference-groups-v1.json (a reference
 // record, not a text record); this page is derived from that record and
 // from the shelf's own state, and carries no words of any text.
-const REF_GROUPS_PATH = "data/reference-groups-v1.json";
+const REF_GROUPS_PATH = arg("reference-groups", "data/reference-groups-v1.json");
 if (existsSync(REF_GROUPS_PATH)) {
   const RG = JSON.parse(readFileSync(REF_GROUPS_PATH, "utf8"));
   for (const g of RG.groups || []) {

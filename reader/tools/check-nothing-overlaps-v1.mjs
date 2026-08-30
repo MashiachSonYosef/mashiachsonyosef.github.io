@@ -101,9 +101,29 @@ for (const vp of VIEWPORTS) {
       try {
         await wbs[i].click();
         await p.waitForSelector("#hud .r-pills button", { timeout: 8000 });
-        await p.waitForTimeout(100);
-        const o = await p.evaluate((k) => {
-          const wb = document.querySelectorAll("section.seg .he-text .wb")[k].getBoundingClientRect();
+        // the law is about settled geometry: the card's final clamp lands in
+        // an animation frame, and under a loaded machine (the suite runs in
+        // parallel) a fixed 100ms read mid-flight and failed a placement the
+        // settled page gets right. Wait until the card's box holds still for
+        // two consecutive frames, capped at a second.
+        await p.evaluate(async () => {
+          const box = () => { const h = document.getElementById("hud").getBoundingClientRect(); return `${h.top}|${h.bottom}`; };
+          const t0 = performance.now();
+          let last = box(), still = 0;
+          while (still < 2 && performance.now() - t0 < 1000) {
+            await new Promise((r) => requestAnimationFrame(r));
+            const now = box();
+            still = now === last ? still + 1 : 0;
+            last = now;
+          }
+        });
+        // measured on the very element that was clicked: this loop walks the
+        // GLOSSED words, and indexing the all-words list by the same i once
+        // measured a clicked word's neighbour — the card was judged against
+        // a word it never belonged to (found 2026-08-30, when the first word
+        // of the shelf's first book went bare and the two lists diverged)
+        const o = await wbs[i].evaluate((el) => {
+          const wb = el.getBoundingClientRect();
           const h = document.getElementById("hud").getBoundingClientRect();
           return {
             below: h.top >= wb.bottom - 0.5,
@@ -111,7 +131,7 @@ for (const vp of VIEWPORTS) {
             wordOnScreen: wb.top >= -1 && wb.bottom <= innerHeight + 1,
             word: [Math.round(wb.top), Math.round(wb.bottom)], card: [Math.round(h.top), Math.round(h.bottom)],
           };
-        }, i);
+        });
         n += 1;
         if (o.below) below += 1; else if (!example) example = o;
         if (o.covers) covering += 1;
