@@ -41,3 +41,17 @@ open biblical-scholarship stack (BDB, Strong's, Gesenius). Acquiring items
 S-law currently surfaces thin defaults ("the Western Wall", "republic").
 Every item above is acquisition work in construction's existing
 source-class machinery; no new laws needed — M witnesses are M witnesses.
+
+## Amendment (owner, 2026-08-30): the demand-driven M acquisition law
+
+We do not import dictionaries; we import the datum the corpus asks for.
+Acquisition = the deterministic join: candidate dictionary headwords ×
+our attested K/W inventories → a per-dictionary DEMAND MANIFEST, ranked
+zero-route keys first, then thin-pool keys, weighted by occurrence
+frequency. Only manifest entries are acquired, each with per-entry
+provenance (source, entry, year, byte-exact text). The criterion is
+closed-world and re-runnable — the corpus's own attestation selects,
+never taste. The manifest re-derives after every works wave, so M grows
+in lockstep with the library. Next build from this lane: the thin-key
+demand census (zero-route and thin-route keys from the route origins in
+ldmprs), which turns this census's referee list into exact shopping lists.
