@@ -324,9 +324,15 @@ const coverTotal = span ? [...span.spans.values()].reduce((n, sp) => n + 2 ** (s
 // its own route the same way, every word from its receipts, nothing beyond
 // them: the door prints the zone's byline and will not invent one, so a zone
 // may not arrive without one it can stand behind.
-const bylineOut = byline || (serve.provenance.body_oracle
+// Where the rights record carries a credit (a display conditioned on
+// attribution, discharged by the credit inside the binding), the credit
+// leads the byline — printing it is what honors the condition, so it stands
+// first on every page of the work, in the record's own words.
+const credit = serve.provenance.credit || null;
+const baseByline = serve.provenance.body_oracle
   ? `served from the verified rebuilt body, every shard re-hashed against the July manifest; rights per the canonical rights resolution, riding on every occurrence`
-  : `served from the sealed terminal reader artifacts; rights ride per occurrence`);
+  : `served from the sealed terminal reader artifacts; rights ride per occurrence`;
+const bylineOut = byline || (credit ? `${credit.line} · ${baseByline}` : baseByline);
 
 const zone = {
   schema_version: "ZONE_V1",
@@ -378,6 +384,7 @@ const zone = {
         ` — computed over the full serve output on ${stamp}` +
         (serve.held ? `; ${serve.held} SCRIPT-UNRESOLVED rows held dark by the chain's own script rule` : ""),
       attribution: bylineOut,
+      ...(credit ? { credit_discharged_in_display: credit } : {}),
     },
     gloss_layer: {
       source: "route store built by tools/build-route-store.mjs from the sealed definition packages — the same catalog the word HUD answers from",

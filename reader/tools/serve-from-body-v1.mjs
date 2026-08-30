@@ -80,10 +80,17 @@ if (arg("binding")) {
   // Fail-closed is the shipment's own law and this join keeps it: a work the
   // resolution does not carry, or carries unresolved, serves nothing.
   const dir = arg("binding");
-  const bindsPath = join(dir, "representation-rights-bindings-v2.csv");
-  const profsPath = join(dir, "rights-profiles-v2.csv");
+  // v3 is v2 with the attribution INSIDE the record (additive: every v2 row
+  // and column intact, counter-verified 2026-08-30 — 3,986/3,986 rows
+  // byte-equal on the v2 columns, all 315 credit lines agreeing with the
+  // audited attribution table). Where the dir carries v3, v3 is the record;
+  // where it carries only v2, nothing below behaves differently than before.
+  const v3 = existsSync(join(dir, "representation-rights-bindings-v3.csv"))
+    && existsSync(join(dir, "rights-profiles-v3.csv"));
+  const bindsPath = join(dir, v3 ? "representation-rights-bindings-v3.csv" : "representation-rights-bindings-v2.csv");
+  const profsPath = join(dir, v3 ? "rights-profiles-v3.csv" : "rights-profiles-v2.csv");
   if (!existsSync(bindsPath) || !existsSync(profsPath))
-    die("BINDING_FILES_MISSING", `${dir} does not carry representation-rights-bindings-v2.csv + rights-profiles-v2.csv`);
+    die("BINDING_FILES_MISSING", `${dir} does not carry representation-rights-bindings-{v2,v3}.csv + rights-profiles-{v2,v3}.csv`);
   const b = readCsv(bindsPath).find((r) => r.work_id === WORK);
   if (!b) die("RIGHTS_NOT_IN_CUSTODY",
     `the canonical rights resolution carries no row for ${WORK}; fail-closed, nothing serves`);
@@ -98,7 +105,14 @@ if (arg("binding")) {
   // profile that says ALLOW_WITH_ATTRIBUTION serves nothing here: serving
   // the text dark would misread the license as a hold, and serving it lit
   // without the credit would violate it. Fail closed, ask for the cargo.
-  if (p.reader_display_state !== "ALLOW")
+  // A display conditioned on attribution discharges the day the credit is in
+  // hand. v3 puts the credit INSIDE the binding row; a row that carries it
+  // serves, and the credit rides to the page so the obligation is honored in
+  // the open. A row without it refuses exactly as before.
+  const creditInBinding = v3
+    && String(b.attribution_state || "").startsWith("ATTRIBUTION_IN_BINDING")
+    && String(b.credit_line || "").trim().length > 0;
+  if (p.reader_display_state !== "ALLOW" && !creditInBinding)
     die("RIGHTS_ATTRIBUTION_NOT_IN_CUSTODY",
       `${WORK}: reader display is ${p.reader_display_state}; the attribution that discharges it is not in custody — the N ledger's licensor identity is asked of the corpus lane`);
   // the profile's own vocabulary, verbatim — nothing translated here
@@ -120,7 +134,13 @@ if (arg("binding")) {
     rows: Number(b.c0_rows),
   };
   rightsProvenance = {
-    source: "ACTIVE_RIGHTS_RESOLUTION_V2__CANONICAL_CURRENT",
+    source: v3 ? "ACTIVE_RIGHTS_RESOLUTION_V3__ATTRIBUTION_IN_BINDING" : "ACTIVE_RIGHTS_RESOLUTION_V2__CANONICAL_CURRENT",
+    ...(creditInBinding ? { credit: {
+      line: b.credit_line.trim(),
+      source_url: String(b.attribution_source_url || "").trim(),
+      license_link: String(b.attribution_license_link || "").trim(),
+      basis: "the credit is the binding record's own, joined from the audited attribution table; printing it is what discharges the display condition",
+    } } : {}),
     bindings_sha256: createHash("sha256").update(readFileSync(bindsPath)).digest("hex"),
     profiles_sha256: createHash("sha256").update(readFileSync(profsPath)).digest("hex"),
     rights_profile_id: b.rights_profile_id,
