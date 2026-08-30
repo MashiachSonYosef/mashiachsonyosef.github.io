@@ -1335,7 +1335,7 @@
     // that failed to load; this says the ledger has not named one.
     const y = zone.emitted_from.y_ledger || {};
     heT.classList.add("unnamed");
-    heT.textContent = "none is recorded in the ledger";
+    heT.textContent = "no name is on record";
     if (y.status) heT.title = y.status;
   }
   document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · ${SITE}`;
@@ -1403,7 +1403,7 @@
   // quiet register as the rest of the masthead. The frame is recorded as "a
   // thing a check may look for and report · never grounds to declare a work
   // deficient", so nothing here shouts: an open slot is named, in the voice
-  // of "none is recorded in the ledger", and it fills when its record lands.
+  // of "no name is on record", and it fills when its record lands.
   // Every value is read from data/work-basis-v1.json, derived from the plan
   // and the hold ledgers; nothing on these lines is typed into this page.
   (async () => {
@@ -1413,10 +1413,10 @@
     if (!entry) return;
     const basisEl = document.getElementById("basisLine");
     if (entry.basis === "TYPED_AWAITING_LEDGER") {
-      basisEl.append(`awaiting its Y ledger — until that lands, this build\u2019s coordinates stand typed in the open: c0 ${Number(entry.c0_first).toLocaleString()}\u2013${Number(entry.c0_last).toLocaleString()}, ${Number(entry.unit_count).toLocaleString()} units. The ledger\u2019s arrival retires them; the build refuses to run while both exist.`);
+      basisEl.append(`No record has been issued yet that names this book or numbers its chapters. It is shown anyway: its place in the sealed text store (${Number(entry.unit_count).toLocaleString()} passages) was entered by hand and is marked as such. Once the record is issued, the hand-entered numbers must be removed before this book will build again.`);
       basisEl.hidden = false;
     } else if (entry.basis === "SEALED_Y_LEDGER") {
-      basisEl.append(`built from the sealed Y ledger — ${entry.y_fixture || "fixture"}${zone.emitted_from.y_ledger?.status ? ` · ${zone.emitted_from.y_ledger.status}` : ""}`);
+      basisEl.append(`chapter names and order are read from this book\u2019s issued navigation record \u2014 ${entry.y_fixture || "record"}${zone.emitted_from.y_ledger?.status ? ` \u00b7 ${zone.emitted_from.y_ledger.status}` : ""}`);
       basisEl.hidden = false;
     }
     if (entry.held_commentaries > 0) {
@@ -4263,7 +4263,7 @@
             { className: "nh-lab", textContent: "part title" }));
           if ((n.part_tokens && n.part_tokens.length) || n.part_he) p1.append(titleRow(n.part_tokens, n.part_he));
           else p1.append(Object.assign(document.createElement("span"),
-            { className: "nh-he unnamed", textContent: "none is recorded in the ledger" }));
+            { className: "nh-he unnamed", textContent: "no name is on record" }));
           ph.append(p1);
           if (n.part_num) {
             const p2 = document.createElement("div"); p2.className = "nh-row";
@@ -4300,7 +4300,7 @@
         r1.append(t);
       } else {
         r1.append(Object.assign(document.createElement("span"),
-          { className: "nh-he unnamed", textContent: "none is recorded in the ledger" }));
+          { className: "nh-he unnamed", textContent: "no name is on record" }));
       }
       const r2 = document.createElement("div"); r2.className = "nh-row";
       r2.append(Object.assign(document.createElement("span"),
