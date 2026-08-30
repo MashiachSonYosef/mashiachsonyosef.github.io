@@ -687,7 +687,7 @@ const familySection = (fam) => {
     ? rowsHtml(shelfRows).join("\n")
     : `      <span class="of fold-line">nothing on this shelf serves yet — its ${n(s.works)} work${s.works === 1 ? " stands" : "s stand"} in the census below, each saying what it awaits</span>`;
   const censusNote = shelfRows.length && censusCount
-    ? `\n      <span class="of fold-line">${n(censusCount)} more work${censusCount === 1 ? "" : "s"} of this family stand${censusCount === 1 ? "s" : ""} in the census below, each saying what it awaits</span>`
+    ? `\n      <span class="of fold-line">${n(censusCount)} more work${censusCount === 1 ? "" : "s"} of this family stand${censusCount === 1 ? "s" : ""} in <a href="/census/">the census</a>, each saying what it awaits</span>`
     : "";
   return `    <section class="family">
       <details class="fam">
@@ -837,7 +837,22 @@ const demo = (() => {
     const g = k ? (STORE.glossFor(k).text || "") : "";
     return { s: w.s, k, g, src: g ? glossSource(k, g) : null };
   });
-  return { slug: first, label: plainName(first), words };
+  // the same zone's census facts, read from its own receipts for the
+  // census-in-the-title demonstration below — nothing typed, nothing chosen
+  const perOcc = String(((z.emitted_from || {}).license_receipts || {}).per_occurrence || "");
+  // each rows-group's composite leads with its license posture; the chip
+  // says that posture in the declarations record's plain words and carries
+  // the whole composite on the hover — machine register never prints
+  const postures = [];
+  for (const m of perOcc.split(" — ")[0].matchAll(/[\d,]+ rows: ([^|]+?)(?= \| |$)/g)) {
+    const full = m[1].trim();
+    // the composite's head is the posture in the rights lane's uppercase
+    // register; the declarations record keys it lowercase
+    const name = licenseName(full.split(" · ")[0].toLowerCase());
+    if (!postures.some((p) => p.name === name)) postures.push({ name, full });
+  }
+  const zi = ZONE_INFO.get(first);
+  return { slug: first, label: plainName(first), words, postures, zi };
 })();
 const demoHtml = demo ? `  <section id="demo" aria-label="The reader, working">
     <p class="demo-lab">the reader, working — press any word</p>
@@ -846,37 +861,70 @@ const demoHtml = demo ? `  <section id="demo" aria-label="The reader, working">
       : `<span class="dw"><span class="fw inert" lang="he">${esc(w.s)}</span></span>`).join(" ")}</span></p>
     <p class="of">the opening words of <a href="/${demo.slug}">${demo.label ? esc(demo.label) : `<span class="none" title="${esc(demo.slug)}">${NO_PLAIN_NAME}</span>`}</a>, cut from its own record — derived by rule, the first book on the shelf, never chosen. Each reading above is the store&#8217;s oldest displayable witness with its license; the whole book reads the same way, with its component lattice live on every word.</p>
   </section>` : "";
+// The census, worn in the title — a demonstration, same derived book as the
+// verse above (demo-verse-rule-v1's pick, never chosen). The owner's ask,
+// 2026-08-30: rather than a separate census place, the title itself wears
+// what the census would say about the work — its attested usage, its rows'
+// license, its measured size, whether its Hebrew title is witnessed. Every
+// chip below is read from the zone's own receipts at build time; nothing is
+// typed and no Hebrew is repeated (the shelf row keeps the witnessed title;
+// this line wears the facts).
+const censusDemoHtml = demo && demo.zi ? `  <section id="census-demo" aria-label="The census, worn in the title">
+    <p class="demo-lab">the census, worn in the title — a demonstration</p>
+    <p class="cd-line"><a class="cd-name" href="/${demo.slug}">${demo.label ? esc(demo.label) : `<span class="none" title="${esc(demo.slug)}">${NO_PLAIN_NAME}</span>`}</a>${
+      demo.zi.reading ? `<span class="chip" title="${esc(demo.zi.reading.label)}${demo.zi.reading.year ? ` · ${esc(String(demo.zi.reading.year))}` : ""} — attests this usage; a name is an identification, not licensed expression (FRAME v2.7)">attested: ${esc(demo.zi.reading.label)}</span>` : ""
+    }${demo.postures.map((p) => `<span class="chip" title="the license standing on this work&#8217;s rows, from the zone&#8217;s own per-occurrence receipts: ${esc(p.full)}">${esc(p.name)}</span>`).join("")
+    }<span class="chip" title="measured from the zone&#8217;s own sections at build time">${n(demo.zi.sections)} section${demo.zi.sections === 1 ? "" : "s"} · ${n(demo.zi.words)} words</span>${
+      demo.zi.heTokens.some((t) => t.k) ? `<span class="chip" title="the Hebrew title on the shelf row is the work&#8217;s own opening words, claimed from its own record — not supplied">title witnessed</span>` : ""
+    }</p>
+    <p class="of">every fact a census row would say, worn by the name instead — read from the book&#8217;s own receipts, derived for the same first book as the verse above. Where the census register is heading: into the titles, not a separate place.</p>
+  </section>` : "";
 const censusSections = [
   ...families.map(censusFamily),
   awaitingSection(),
   ...unruled.map(unruledSection),
 ].filter(Boolean);
-const sectionsHtml = [
-  ...families.map(familySection),
-  censusSections.length
-    ? (() => {
-        // the state of the library, said in fractions the data owes: how
-        // many served titles are witnessed (the work's own opening words),
-        // how many read plainly by their recorded ids — and the registers
-        // that are built and empty, said so, because an empty register is a
-        // fact and a silent one reads as a hidden one
-        const witnessed = [...ZONE_INFO.values()].filter((zi) => (zi.heTokens || []).some((t) => t.k)).length;
-        const plain = ZONE_INFO.size - witnessed;
-        return `    <section class="family census-head">
-      <p class="of">THE CENSUS · every work the bridge records that does not serve yet. Nothing here is hidden and nothing is promised: each row carries its recorded id, its measured size, and — on its card — what it awaits.</p>
+// The census stands at its own address (/census/), linked from the door's
+// top corner — the owner's ask, 2026-08-30: not forgotten at the bottom of
+// the home page, and informationally whole where it stands. The door keeps
+// one line saying the census exists and what it holds.
+const censusHead = censusSections.length
+  ? (() => {
+      // the state of the library, said in fractions the data owes: how
+      // many served titles are witnessed (the work's own opening words),
+      // how many read plainly by their recorded ids — and the registers
+      // that are built and empty, said so, because an empty register is a
+      // fact and a silent one reads as a hidden one
+      const witnessed = [...ZONE_INFO.values()].filter((zi) => (zi.heTokens || []).some((t) => t.k)).length;
+      const plain = ZONE_INFO.size - witnessed;
+      return `    <section class="family census-head">
       <p class="of">The state of the library: of the ${n(ZONE_INFO.size)} books serving, ${n(witnessed)} carry witnessed Hebrew titles — their own opening words, claimed from their own records — and ${n(plain)} read plainly by their recorded ids. The editorial and machine-pointer title registers are built and empty: nothing on this site is guessed.</p>
     </section>`;
-      })()
-    : "",
-  ...censusSections,
+    })()
+  : "";
+const censusPageSections = [censusHead, ...censusSections].filter(Boolean);
+const censusPointer = censusSections.length
+  ? `    <section class="family census-head">
+      <p class="of"><a href="/census/">THE CENSUS</a> · every work the bridge records that does not serve yet stands at its own page — nothing hidden, nothing promised: each row carries its recorded id, its measured size, and what it awaits.</p>
+    </section>`
+  : "";
+const sectionsHtml = [
+  ...families.map(familySection),
+  censusPointer,
 ].filter(Boolean);
 
-const doc = `<!doctype html>
+// One shell, two pages. The door and the census share every style, every
+// card, and every script — the census is the same publication standing at
+// its own address (/census/), per the owner's ask (2026-08-30): the census
+// must not sit forgotten at the bottom of the home page, and must lose
+// nothing by moving. `page` picks the parts: the door carries the shelf,
+// the demonstrations and the counts; the census carries the register.
+const pageDoc = (page) => `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${SITE_NAME}</title>
+<title>${page.title}</title>
 <meta name="description" content="A Hebrew reader built on a sealed chain: every reading traceable to the record that carries it, and every record to the license it was released under.">
 <script>
 // Two faces, both the record's: linen by day, the tent by night. The device
@@ -1026,6 +1074,15 @@ const doc = `<!doctype html>
   #demo .dw .g { display: block; font-size: .6rem; line-height: 1.35; color: var(--muted);
     max-width: 9em; direction: ltr; }
   #demo .of { margin: .45rem 0 0; font-size: .78rem; color: var(--faint); }
+  #census-demo { margin: 0 0 1.4rem; padding: .9rem 1rem 1rem; border: 1px solid var(--line);
+    border-radius: .5rem; }
+  #census-demo .demo-lab { margin: 0 0 .55rem; font-size: .7rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--faint); }
+  #census-demo .cd-line { margin: 0; display: flex; align-items: center; flex-wrap: wrap; row-gap: .35rem; }
+  #census-demo .cd-name { font-size: 1.05rem; font-variant: small-caps; letter-spacing: .12em;
+    color: var(--gold); text-decoration: none; }
+  #census-demo .cd-name:hover { text-decoration: underline; }
+  #census-demo .of { margin: .45rem 0 0; font-size: .78rem; color: var(--faint); }
   details.fam > summary { list-style:none; cursor:pointer; padding:.3rem .15rem .45rem; }
   details.fam > summary::-webkit-details-marker { display:none; }
   details.fam > summary .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
@@ -1043,7 +1100,7 @@ const doc = `<!doctype html>
   details.fam > summary .fam-he .g { font-size:.7rem; color:var(--muted); }
   /* the license rides beside every printed reading and every backed
      force-read, in the same quiet chip the reader's card uses */
-  details.fam > summary .chip, .fam-he .g .chip, .demo-he .g .chip, #bkcard .chip {
+  details.fam > summary .chip, .fam-he .g .chip, .demo-he .g .chip, #bkcard .chip, #census-demo .chip {
     display:inline-block; margin-inline-start:.45rem; font-size:.6rem; letter-spacing:.06em;
     font-variant:normal; font-style:normal; color:var(--muted);
     border:1px solid var(--line); border-radius:.6rem; padding:.06rem .45rem; white-space:nowrap;
@@ -1222,10 +1279,14 @@ const doc = `<!doctype html>
     border-radius:999px; background:var(--panel); color:var(--muted); font:inherit;
     font-size:.72rem; padding:.12rem .7rem; cursor:pointer; }
   .face:hover { color:var(--gold); border-color:var(--gold-dim); }
+  /* the census stands at its own address; the door wears the way there in
+     the same corner the faces live in, one step down */
+  a.alt-face { top:3.1rem; text-decoration:none; }
 </style>
 </head>
 <body>
 <button id="face" class="face" type="button" title="the other face of the page">day</button>
+${page.altLink}
 <script>
 {
   const face = document.getElementById("face");
@@ -1240,10 +1301,10 @@ const doc = `<!doctype html>
 <main>
   <!-- Built by tools/build-front-door-v1.mjs from pinned physical/logical
        authorities and the zones. Every count below names its grain. -->
-  <h1>${SITE_NAME}</h1>
-  <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the license it was released under.</p>
+  <h1>${page.h1}</h1>
+  <p class="sub">${page.sub}</p>
   <p class="face-line">${n(ZONE_INFO.size)} book${ZONE_INFO.size === 1 ? "" : "s"} readable today · ${n(ATLAS.totals.works - ZONE_INFO.size)} more stand listed, each saying on its own card what it awaits</p>
-  <details class="counts-fold">
+${page.counts ? `  <details class="counts-fold">
   <summary>the counts, at their exact grains — audited on every build</summary>
   <section class="countboard" aria-label="Audited corpus counts"
     data-text-input-byte-rule="${TEXT_PIN_RULE}"
@@ -1266,8 +1327,9 @@ const doc = `<!doctype html>
     <p class="count-audit"><a href="/front-door-counts-receipt-v1.json">Open the count receipt</a> · logical atlas ${atlasPinned.actual.sha256.slice(0, 12)} · physical handoff ${handoffPinned.actual.sha256.slice(0, 12)} · physical atlas ${BINDINGS.inputs.physical_atlas.sha256.slice(0, 12)} · logical overlay ${BINDINGS.inputs.logical_overlay.sha256.slice(0, 12)} · zone-successor seal ${GENESIS_V3.closed_world_seal.sha256.slice(0, 12)}</p>
   </section>
   </details>
-  <script id="front-door-counts-receipt" type="application/json">${JSON.stringify(countReceipt).replace(/</g, "\\u003c")}</script>
-${demoHtml}
+  <script id="front-door-counts-receipt" type="application/json">${JSON.stringify(countReceipt).replace(/</g, "\\u003c")}</script>` : ""}
+${page.demo ? demoHtml : ""}
+${page.demo ? censusDemoHtml : ""}
   <form id="find" role="search" onsubmit="return go(event)">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
       placeholder="find a book"
@@ -1275,7 +1337,7 @@ ${demoHtml}
       aria-label="find a book" oninput="sift()">
   </form>
   <nav class="books">
-${sectionsHtml.join("\n")}
+${page.sections.join("\n")}
   </nav>
   <div id="wshade" hidden></div>
   <div id="bkcard" role="dialog" aria-label="the book&#8217;s own record" hidden>
@@ -1666,6 +1728,24 @@ ${sectionsHtml.join("\n")}
 </body>
 </html>
 `;
+const doc = pageDoc({
+  title: SITE_NAME,
+  h1: SITE_NAME,
+  sub: "A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the license it was released under.",
+  counts: true,
+  demo: true,
+  altLink: `<a class="face alt-face" href="/census/" title="every work the bridge records that does not serve yet — nothing hidden, nothing promised">the census</a>`,
+  sections: sectionsHtml,
+});
+const censusPageDoc = pageDoc({
+  title: `the census · ${SITE_NAME}`,
+  h1: "the census",
+  sub: "Every work the bridge records that does not serve yet. Nothing here is hidden and nothing is promised: each row carries its recorded id, its measured size, and — on its card — what it awaits. The same records, the same cards, the same laws as the door.",
+  counts: false,
+  demo: false,
+  altLink: `<a class="face alt-face" href="/" title="back to the shelf">the door</a>`,
+  sections: censusPageSections,
+});
 
 // ---- the other face of the door ------------------------------------------
 //
@@ -1854,6 +1934,8 @@ if (HEBREW.test(readme)) throw new Error("the README printed a character of the 
 
 mkdirSync(OUT, { recursive: true });
 writeFileSync(join(OUT, "index.html"), doc);
+mkdirSync(join(OUT, "census"), { recursive: true });
+writeFileSync(join(OUT, "census", "index.html"), censusPageDoc);
 writeFileSync(join(OUT, "README.md"), readme);
 writeFileSync(join(OUT, "front-door-counts-receipt-v1.json"), countReceiptJson);
 // One page, used at a withheld work's own address and at any historical address
