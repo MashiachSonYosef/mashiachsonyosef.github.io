@@ -3757,10 +3757,21 @@
       return;
     }
     // Two taps means that word. The browser would do this itself, except that
-    // by the second tap the card the first one opened is often standing over
-    // the word — so the tap lands on the card and the reader gets nothing.
+    // the first tap opens a card, and the card both stands over the word and
+    // MOVES THE PAGE UNDER IT — thirty pixels on a phone, enough that the
+    // second tap lands just off the glyph it was aimed at.
+    //
+    // This used to fire only when the second tap hit the card, which caught
+    // the first of those and not the second. A tap landing on the word block
+    // beside the glyph is not on the card, so nothing rescued it and the
+    // browser selected what was actually under the finger: the space after
+    // the word. A reader double-tapping a word on a phone got a space.
+    //
+    // The first tap is what says which word. Where the second one lands is an
+    // accident of a layout that moved between them, so it does not get a
+    // vote — if the first tap was on a word, two taps mean that word.
     if (e.detail === 2) {
-      if (!tapWord || !e.target.closest("#hud")) return;
+      if (!tapWord) return;
       const r2 = selectableRange(tapWord);
       if (!r2) return;
       e.stopPropagation();

@@ -136,10 +136,28 @@ const showing = async (nth = 0) => p.evaluate((i) => {
 }
 
 // ---- a word on its own ------------------------------------------------
+// The gestures above leave a card standing, and opening a card scrolls the
+// page under it. So a box measured before them points at a screen position
+// that now holds the card's own head — the two taps landed on the card,
+// selected nothing, and copied nothing. This read for a long time as "two taps
+// do not copy a word," which the page does perfectly well: dismiss the card and
+// it copies the word every time.
+//
+// Dismiss first, then measure. Not measure, then dismiss — the dismissal is
+// itself what moves the page back.
 {
+  await p.keyboard.press("Escape");
+  await p.waitForTimeout(200);
   await clearClip();
   const w = await p.$("section.seg .he-text .wb .w");
   const box = await w.boundingBox();
+  // and prove the word is what is actually under the point about to be tapped,
+  // so a covered word is reported as covered rather than as a failure to copy
+  const atPoint = await p.evaluate(({ x, y }) => {
+    const el = document.elementFromPoint(x, y);
+    return el ? el.className || el.tagName : "nothing";
+  }, { x: box.x + box.width / 2, y: box.y + box.height / 2 });
+  check("  the word is what stands at its own coordinates", String(atPoint).includes("w"), atPoint);
   await p.mouse.click(box.x + box.width / 2, box.y + box.height / 2, { clickCount: 2 });
   await p.waitForTimeout(120);
   const t = (await copyNow()).trim();
