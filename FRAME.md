@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v5.0 · 2026-08-31 — the letters, settled
+# THE FRAME · canonical review standard · v6.0 · 2026-08-31 — the reshuffle settled
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -90,51 +90,58 @@ lawful fourth state, typed, never papered over.
 
 
 
-## THE LETTERS (owner, 2026-08-31 — settled by debate, supersedes the table below)
 
-Every letter states what it holds and, where it names something, who attests it.
-L is deleted. The table further down is retained as the prior version's record.
+## THE LETTERS (owner, 2026-08-31 — v6, the reshuffle settled)
 
-**The import side — what comes in, and by whose permission**
+**Import — what comes in, by whose permission, called what**
 | letter | holds |
 |---|---|
-| **A** | a licensable Hebrew span — a tractate, a book. The unit of import. |
-| **N** | the license for that span |
-| **B** | an ATTESTABLE GROUPING named by a Hebrew word or phrase — מלכים gathering the two books of Kings, בראשית gathering a book and the commentary printed with it, רש״י gathering an author's corpus. Admission test: the tradition has a Hebrew name for it, attested through X. A work may belong to several groupings. B carries NO license of its own; members carry theirs, a grouping page shows every member's chip, and any action that leaves the page is bound by the strictest member. "Works I acquired in July" fails the test — no Hebrew name, no admission. |
+| **A** | a licensable Hebrew or Aramaic span |
+| **N** | the license for that span. NO Yiddish, Mandaic, Syriac, or Arabic in this project. |
+| **B** | the NAMED THING and its attested names — an attestable grouping named by a Hebrew word or phrase (מלכים gathering the two books of Kings), and equally what the world calls it when it is not in front of you ("Book of Kings," "Tikkunei Zohar," what a reader types in a search box). Hebrew name attested to the tradition, usage name attested to catalogs; both through X. A single work is a named thing too, not only a gathering. |
 
-**The text side — the occurrence and what it is made of**
+**Text — the occurrence and its parts**
 | letter | holds |
 |---|---|
 | **C0** | the exact location and unique identifier of a specific occurrence |
-| **W** | the compositional holder for the Hebrew word at that occurrence — בְּסִפְרוֹ as attested |
-| **COMPspan** | the ENTIRE SET of licensable component combinations for that word: בְּ · סִפְר · וֹ · בְּ+סִפְר · סִפְר+וֹ · בְּ+סִפְר+וֹ |
-| **COMPcell** | each SELECTABLE MEMBER of that set. The maximal COMPcell is the full combination — not a second COMPspan. Premappable for every word from the morphology alone, before any definition exists: these are the things licenses are needed for. |
-| **K** | the normalized key, only when needed — the searchable form |
+| **W** | the compositional holder for the Hebrew word — בְּסִפְרוֹ as attested |
+| **COMPspan** | the ENTIRE SET of licensable component combinations: בְּ · סִפְר · וֹ · בְּ+סִפְר · סִפְר+וֹ · בְּ+סִפְר+וֹ |
+| **COMPcell** | each SELECTABLE MEMBER of that set. The maximal COMPcell is the full combination, not a second COMPspan. Premappable from morphology alone, before any definition exists — these are the things licenses are needed for. |
+| **K** | a search key that DISCARDS EVIDENCE through normalization. A D matched on K alone is weaker than one matched on the pointed surface. |
 
-**The meaning side — definitions and their permissions**
+**Meaning — definitions and their permissions**
 | letter | holds |
 |---|---|
 | **D** | the exact licensable definition of a given COMPcell |
-| **R** | the debundler: the selection gloss layer when a COMPcell carries several definitions inside a single license, so any one can hold the full frame |
-| **M** | the license record |
-| **P** | the holder for M, so M stays focused on license alone: where D and R match exactly across sources, P lumps them as one D/R with two or more Ms |
-| **S** | the source year attached to M. Year present → D is attested through a dated source. Year absent → D is not source-year-bound, which is stronger evidence the word is inherited rather than a later construction. |
+| **R** | the debundler: the selection gloss layer when a COMPcell carries several definitions inside one license, so any one can hold the full frame |
+| **M** | the license record AND the book it came from, which must be Hebrew or Aramaic |
+| **P** | assigns M to R pills |
+| **S** | a pointer for source year — helps sort only, carries no inference |
 
-**The naming and apparatus side — who says so, and what the scribes marked**
+**Naming, marks, and connections**
 | letter | holds |
 |---|---|
-| **X** | ATTESTATIONS — who says so. Serves B (the grouping's name), Y (the scheme or title), and Z (the common name). |
+| **X** | ATTESTATIONS — who says so. Serves B (the names) and Y (the scheme or title). |
 | **Y** | FOR LOCATING — how you address a part of a work once you are inside it: chapter 22, daf 92a, tikkun 58, the title of a section. Attested to whoever devised the scheme. A number is a name that happens to be numeric. |
-| **Z** | FOR FINDING — what the world calls the thing when it is not in front of you: "Book of Kings," "Tikkunei Zohar," what a reader types in a search box. Attested to catalogs and usage. |
-| **V** | HAMATCHIL (ד״ה) — the catchword a comment quotes to anchor itself to the exact phrase it is about |
-| **Q** | QERE/KETIV POINTER. C0 holds the actual forms: ketiv in parens `(לעבדיך)`, unpointed, as written; qere in brackets `[לְעַבְדָ֖ךְ]`, pointed, as read. The pointed one is the spoken one. |
-| **U** | BREAKS POINTER. C0 holds the actual marks: `{פ}` petuchah, the full break — line ends, rest stays blank, next passage starts fresh; `{ס}` setumah, the gap break — about nine letters of space, same line, text continues. |
-| **O** | SCRIBAL MARK POINTER. C0 holds the actual marks: `׆` the inverted nun. Kind rides on the row, so further marks cost rows, not letters. |
+| **Z** | DIBUR HAMATCHIL (דיבור המתחיל), abbreviated ד״ה — the catchword a comment quotes to name the phrase it is about. The quoted string as the commentary wrote it. |
+| **V** | THE CONNECTION from a Z catchword to the C0 span it quotes. A pointer that can succeed or FAIL — and a failure is evidence that the commentator's copy read differently from ours. |
+| **Q** | a pointer for THE SOURCE'S OWN MARKS — kind: ketiv/qere · petuchah · setumah · inverted nun. C0 holds the actual mark. Q never holds text; every mark it names must be findable inside the carrier, in order, or the build refuses rather than retyping the text. A mark's card answers for the word it abbreviates, never for the glyph as a letter — ׆ never carries a key for the letter nun, and a bare ס or פ never routes to the letter. |
+| **U** | work-to-work relationals |
+| **O** | the named stream, including which copy is broken |
 
-**Unruled, flagged not assumed:**
-1. **S and typed absence.** "No source year" and "no source year *recorded*" look identical in the data. Read as written, the rule rewards bad cataloguing as if it were evidence of antiquity. The two states need typing apart before S's inference is trusted.
-2. **M and the source's identity.** M is the license record — but nothing yet names *which book the definition came from* except through M, and S hangs a year on M as if M were the source. Whether M carries the source's identity or a separate thing does needs one sentence.
-3. **The dots and the sized letters.** The dots over letters are present in our streams today as bare Unicode inside words (8 in Genesis), untyped. They fit O as rows. The sized, suspended, and broken letters are absent entirely — unrepresentable without markup, so they need a witness that marks them.
+**Notation, for the record**
+`(לעבדיך)` ketiv, written, unpointed · `[לְעַבְדָ֖ךְ]` qere, read, pointed — the pointed one is the spoken one.
+סְתוּמָה abbreviated `{ס}` — setumah, closed: a gap, same line, text continues.
+פְּתוּחָה abbreviated `{פ}` — petuchah, open: line ends, rest blank, next passage starts fresh.
+נוּן הֲפוּכָה `׆` — nun hafukhah, the inverted nun.
+
+**Still unruled:** the POINTING has no letter. Consonants, vowels, and
+cantillation are three transmission layers with different histories,
+authority, and licensing — MAM itself publishes them as separate pages — yet
+a consonantal witness and a fully pointed one are indistinguishable in this
+model. K knows pointing is evidence ("weaker than the pointed surface") but
+nothing records WHO SUPPLIED IT, which matters because the pointing is often
+the only part of a modern edition still under copyright.
 
 ## The Recitability Law (owner, 2026-08-27)
 
