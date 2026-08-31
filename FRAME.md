@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v2.9 · 2026-08-29 — the letters reassigned
+# THE FRAME · canonical review standard · v3.0 · 2026-08-30 — justifications, not judgments
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -6,11 +6,32 @@
 admitted); everything after C0 points at, keys, composes, defines, bundles,
 or sorts it. C0 is the only member that IS text.
 
-The owner's pipeline frame, recorded so every lane ships against ideas, not
+The pipeline frame, recorded so every lane ships against ideas, not
 containers. Order is dependency order: bytes may exist in custody unadmitted, but nothing
 is ADMITTED or DISPLAYED until its permission exists, nothing navigates until
-its identity exists, nothing means until its witness exists. Authored from the owner's own account; corrections are the
-owner's to make.
+its identity exists, nothing means until its witness exists.
+
+**What this document is (owner, 2026-08-30 — the correction that governs all
+of it).** This system asserts nothing of its own. It displays witnesses under
+their licenses, and every entry below is a JUSTIFICATION, not a judgment: a
+documented rationale that an action conforms to what the sources already
+require — the Hebrew, the Masorah, the licenses, the attested usage — even
+where those sources never named the tolerance in advance, because they could
+not have anticipated a digitized reader.
+
+The quality-systems shape is exact: an SOP's silence grants no rule-making
+power. It obliges a written justification, reviewable against the original
+authority rather than against anyone's discretion. Nobody here legislates
+about the Hebrew. The work is compilation and conformance — Strong's
+category, not an author's.
+
+**The citation test (standing, applies to every entry in this file):** a
+justification MUST name the upstream authority it conforms to. If an entry
+cannot name one — Masorah, license text, a source's own structure, attested
+usage, a measured property of the corpus — it is not a justification but an
+invention wearing the format, and it is struck or referred to the owner.
+"The owner ruled" is not a citation; what the owner recognized the sources to
+require is.
 
 | layer | the idea | current artifact | custody (website lane) | need (website lane) |
 |---|---|---|---|---|
@@ -238,9 +259,11 @@ Shipping is reviewed **by frame, not by container**: a layer is either in the
 website lane's custody, or explicitly marked not-needed-for-serve by the lane
 that reads it. Any layer in neither state is a finding. The corpus lane's
 sweep checks this table's custody column; the website lane annotates the
-need column; the owner corrects the ideas.
+need column; the owner tests the justifications against what the sources require.
 
 **Governance (owner, 2026-08-28): no approvals — the five lanes are equals.**
+Authority in this operation is never a lane's; it is the sources' and the
+licenses'. What a lane holds is the duty to justify conformance to them.
 No lane waits on authorization, the owner's included. What binds instead is
 peer verification: seals, counter-verification, audits — a disputed
 clearance is an absent clearance, between any two peers. For irreversible
@@ -249,8 +272,8 @@ ASK: intent posted to the channel with exact diff and rollback, shipped
 absent an evidence-backed objection. Nobody's subordinate; everybody's
 checkable.
 
-**The ratification law (owner, 2026-08-30):** only owner-ratified rulings
-bind — a rule's authority comes from its provenance, never its eloquence.
+**The ratification law (owner, 2026-08-30):** only owner-ratified
+justifications bind — a rule's authority comes from its provenance, never its eloquence.
 Documents excavated from old trees (charters, standards, contracts from
 the alignment months) are AI MUSINGS until countersigned: typed as found,
 cited as drafts, binding on nothing. Even a recovered rule that sounds
