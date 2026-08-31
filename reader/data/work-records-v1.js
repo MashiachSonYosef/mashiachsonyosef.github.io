@@ -67,44 +67,8 @@ window.WORK_RECORDS_V1 = Object.freeze({
       "family_en": "Aramaic Targum"
     }
   },
-  "typed_awaiting_ledger": {
-    "tanakh/i-kings": {
-      "basis": "TYPED_AWAITING_LEDGER",
-      "title_en": "I Kings",
-      "c0_first": 69859535,
-      "c0_last": 69870902,
-      "unit_count": 817,
-      "typed_because": "no Y ledger for this work is on this disk; these values were previously typed into build.sh and are the same values, moved into the open",
-      "dies_when": "the work's Y ledger lands — delete this entry; plan-build-v1 refuses while both exist"
-    },
-    "targum/targum-jonathan-on-i-kings": {
-      "basis": "TYPED_AWAITING_LEDGER",
-      "title_en": "Targum Jonathan on I Kings",
-      "c0_first": 70513734,
-      "c0_last": 70527384,
-      "unit_count": 817,
-      "typed_because": "no Y ledger for this work is on this disk; these values were previously typed into build.sh and are the same values, moved into the open",
-      "dies_when": "the work's Y ledger lands — delete this entry; plan-build-v1 refuses while both exist"
-    },
-    "tanakh/ruth": {
-      "basis": "TYPED_AWAITING_LEDGER",
-      "title_en": "Ruth",
-      "c0_first": 70326655,
-      "c0_last": 70327786,
-      "unit_count": 85,
-      "typed_because": "no Y ledger for this work is on this disk; these values are read off the bridge by tools/plan-work-shards-v1.mjs and stand here in the open",
-      "dies_when": "the work's Y ledger lands — delete this entry; plan-build-v1 refuses while both exist"
-    },
-    "targum/aramaic-targum-to-ruth": {
-      "basis": "TYPED_AWAITING_LEDGER",
-      "title_en": "Aramaic Targum to Ruth",
-      "c0_first": 70392152,
-      "c0_last": 70394290,
-      "unit_count": 85,
-      "typed_because": "no Y ledger for this work is on this disk; these values are read off the bridge by tools/plan-work-shards-v1.mjs and stand here in the open",
-      "dies_when": "the work's Y ledger lands — delete this entry; plan-build-v1 refuses while both exist"
-    }
-  },
+  "typed_awaiting_ledger": {},
+  "typed_awaiting_ledger_emptied": "2026-08-30, the owner's ruling: no hand-done books at all. The four entries that stood here (both Kings, both Ruths) are deleted — every published book is built by the fleet from the bridge and the verified body, coordinates derived from the sealed ids, never typed. The register stays so the law it carries stays legible; it must remain empty.",
   "attachments_basis": {
     "dies_when": "the commentary work's Y fixture lands carrying attachment_y_node_id — the ledger's own statement of what stands on what retires the typed pair, the same day, entry for entry"
   },

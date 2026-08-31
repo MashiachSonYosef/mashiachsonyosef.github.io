@@ -178,11 +178,30 @@ for (const [id, t] of Object.entries(typed)) {
 }
 // ---- the serve state, read off the record ---------------------------------
 const known = new Set(works.map((w) => w.work_id));
-const orphanHolds = Object.keys(withheld).filter((id) => !known.has(id));
+// A withheld entry keeps a published address for a withdrawn work — the
+// address law — and since the typed work register was emptied (the owner's
+// ruling, 2026-08-30: no hand-done books at all), a withheld work is no
+// longer necessarily a work this plan derives. It must still name a REAL
+// work: the atlas is the census that says so.
+const atlasKnown = new Set();
+try {
+  const A = JSON.parse(readFileSync("data/corpus-atlas-v1.json", "utf8"));
+  for (const fam of Object.values(A.families)) for (const w of fam.works) atlasKnown.add(String(w.id));
+} catch { /* no atlas on this disk — the plan-known set alone judges */ }
+const orphanHolds = Object.keys(withheld).filter((id) => !known.has(id) && !atlasKnown.has(id));
 if (orphanHolds.length) {
   console.error(`A_WITHHOLDING_NAMES_NO_WORK — refusing to plan.`);
   for (const id of orphanHolds) console.error(`  ${id} is withheld in ${recordFile} and is not a work this plan derives`);
   process.exit(2);
+}
+// a withheld work the plan no longer derives still gets a stub row, so the
+// door keeps its address answering — the address law, nothing more
+for (const id of Object.keys(withheld)) {
+  if (works.some((w) => w.work_id === id)) continue;
+  works.push({ work_id: id, published_as: id.split("/").pop(),
+    title_en: id.split("/").pop().replace(/[-_]+/g, " "),
+    basis: "WITHHELD_ADDRESS_ONLY", c0_first: null, c0_last: null, unit_count: null,
+    byline: "", coord_labels: "section,paragraph", family_en: "", license_links: "" });
 }
 for (const w of works) {
   const h = withheld[w.work_id];
