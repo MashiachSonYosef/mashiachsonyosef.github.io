@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v4.0 · 2026-08-31 — the letter assignments
+# THE FRAME · canonical review standard · v5.0 · 2026-08-31 — the letters, settled
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -89,31 +89,52 @@ never enters C0 and displays its machine origin openly. Absence remains a
 lawful fourth state, typed, never papered over.
 
 
-## THE LETTER ASSIGNMENTS (owner, 2026-08-31 — explicit new frame version)
 
-Recorded verbatim as ruled. Each apparatus layer gets its own letter, and
-every claim about a name or a scheme is attested through X.
+## THE LETTERS (owner, 2026-08-31 — settled by debate, supersedes the table below)
 
-| letter | holds | recitable |
-|---|---|---|
-| **X** | ATTESTATIONS — the witness records everything else cites | who says so |
-| **Z** | COMMON NAME, with X attestation | what it's called |
-| **Y** | SECTIONING SCHEMES, with X attestation — the 1250s chapter divisions and every other scheme (verses, daf, tikkun, weekly readings), each a witness, none privileged | how it's numbered |
-| **U** | THE BREAKS — full break (line ends, rest blank, fresh line; petuchah) and gap break (nine-letter space, same line, continues; setumah) | where the scroll breaks |
-| **Q** | QERE/KETIV — the written form and the read form, both real words, both routed | written vs read |
-| **V** | HAMATCHIL — the catchword a commentary quotes to anchor its entry to the exact phrase it comments on | what the comment is on |
-| **O** | INVERTED NUNS — the scribal anomaly marks (7 present, all Psalm 107; the 2 in Numbers lost to source flattening). Neighbours in the same class, found and not yet ruled: the dots over letters (present in our streams as bare Unicode, untyped — Genesis carries 8), and the sized/suspended/broken letters (absent entirely, unrepresentable without markup) | the scribes' own flags |
+Every letter states what it holds and, where it names something, who attests it.
+L is deleted. The table further down is retained as the prior version's record.
 
-**Open for the owner, flagged not decided:** Y previously held the
-title-binding checker (every C0 title binding gets exactly one Y row,
-absence typed). This ruling gives Y to sectioning. Where the title-binding
-function lands — a letter of its own, folded into Y as "a section's name",
-or elsewhere — is unruled, and no lane should assume.
+**The import side — what comes in, and by whose permission**
+| letter | holds |
+|---|---|
+| **A** | a licensable Hebrew span — a tractate, a book. The unit of import. |
+| **N** | the license for that span |
+| **B** | an ATTESTABLE GROUPING named by a Hebrew word or phrase — מלכים gathering the two books of Kings, בראשית gathering a book and the commentary printed with it, רש״י gathering an author's corpus. Admission test: the tradition has a Hebrew name for it, attested through X. A work may belong to several groupings. B carries NO license of its own; members carry theirs, a grouping page shows every member's chip, and any action that leaves the page is bound by the strictest member. "Works I acquired in July" fails the test — no Hebrew name, no admission. |
 
-**Open, same class as O:** whether the dots and the sized letters join O or
-take their own letter. The dots need a ruling soon regardless: they sit
-inside words as raw characters today, so any normalization silently decides
-about them.
+**The text side — the occurrence and what it is made of**
+| letter | holds |
+|---|---|
+| **C0** | the exact location and unique identifier of a specific occurrence |
+| **W** | the compositional holder for the Hebrew word at that occurrence — בְּסִפְרוֹ as attested |
+| **COMPspan** | the ENTIRE SET of licensable component combinations for that word: בְּ · סִפְר · וֹ · בְּ+סִפְר · סִפְר+וֹ · בְּ+סִפְר+וֹ |
+| **COMPcell** | each SELECTABLE MEMBER of that set. The maximal COMPcell is the full combination — not a second COMPspan. Premappable for every word from the morphology alone, before any definition exists: these are the things licenses are needed for. |
+| **K** | the normalized key, only when needed — the searchable form |
+
+**The meaning side — definitions and their permissions**
+| letter | holds |
+|---|---|
+| **D** | the exact licensable definition of a given COMPcell |
+| **R** | the debundler: the selection gloss layer when a COMPcell carries several definitions inside a single license, so any one can hold the full frame |
+| **M** | the license record |
+| **P** | the holder for M, so M stays focused on license alone: where D and R match exactly across sources, P lumps them as one D/R with two or more Ms |
+| **S** | the source year attached to M. Year present → D is attested through a dated source. Year absent → D is not source-year-bound, which is stronger evidence the word is inherited rather than a later construction. |
+
+**The naming and apparatus side — who says so, and what the scribes marked**
+| letter | holds |
+|---|---|
+| **X** | ATTESTATIONS — who says so. Serves B (the grouping's name), Y (the scheme or title), and Z (the common name). |
+| **Y** | FOR LOCATING — how you address a part of a work once you are inside it: chapter 22, daf 92a, tikkun 58, the title of a section. Attested to whoever devised the scheme. A number is a name that happens to be numeric. |
+| **Z** | FOR FINDING — what the world calls the thing when it is not in front of you: "Book of Kings," "Tikkunei Zohar," what a reader types in a search box. Attested to catalogs and usage. |
+| **V** | HAMATCHIL (ד״ה) — the catchword a comment quotes to anchor itself to the exact phrase it is about |
+| **Q** | QERE/KETIV POINTER. C0 holds the actual forms: ketiv in parens `(לעבדיך)`, unpointed, as written; qere in brackets `[לְעַבְדָ֖ךְ]`, pointed, as read. The pointed one is the spoken one. |
+| **U** | BREAKS POINTER. C0 holds the actual marks: `{פ}` petuchah, the full break — line ends, rest stays blank, next passage starts fresh; `{ס}` setumah, the gap break — about nine letters of space, same line, text continues. |
+| **O** | SCRIBAL MARK POINTER. C0 holds the actual marks: `׆` the inverted nun. Kind rides on the row, so further marks cost rows, not letters. |
+
+**Unruled, flagged not assumed:**
+1. **S and typed absence.** "No source year" and "no source year *recorded*" look identical in the data. Read as written, the rule rewards bad cataloguing as if it were evidence of antiquity. The two states need typing apart before S's inference is trusted.
+2. **M and the source's identity.** M is the license record — but nothing yet names *which book the definition came from* except through M, and S hangs a year on M as if M were the source. Whether M carries the source's identity or a separate thing does needs one sentence.
+3. **The dots and the sized letters.** The dots over letters are present in our streams today as bare Unicode inside words (8 in Genesis), untyped. They fit O as rows. The sized, suspended, and broken letters are absent entirely — unrepresentable without markup, so they need a witness that marks them.
 
 ## The Recitability Law (owner, 2026-08-27)
 
