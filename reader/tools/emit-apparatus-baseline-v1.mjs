@@ -81,6 +81,12 @@ for (const r of census.ledger || []) {
   works[r.work] = {
     units: r.units, tokens: r.tokens, apparatus_rows: total,
     labels,
+    // which copy these figures came out of, when the census recorded it. A
+    // figure with no copy behind it is not reproducible: the same book can be
+    // read from a stream that kept the source labels or one that discarded
+    // them, and nothing in the filename tells the two apart.
+    read_from: r.read_from || null,
+    copy_identified: Boolean(r.read_from && (r.read_from.shards || []).length),
     // a book whose labels are all gone is either genuinely flat or a stripped
     // copy, and this record cannot tell those apart — it says which it saw
     carries_apparatus: total > 0,
@@ -121,6 +127,7 @@ const record = {
     + "read, and they were arrived at without choosing a copy, which is the part that needs fixing.",
   counts: {
     works: Object.keys(works).length,
+    works_whose_copy_is_identified: Object.values(works).filter((w) => w.copy_identified).length,
     works_carrying_apparatus: Object.values(works).filter((w) => w.carries_apparatus).length,
     works_carrying_none: flat.length,
     apparatus_rows: Object.values(works).reduce((n, w) => n + w.apparatus_rows, 0),

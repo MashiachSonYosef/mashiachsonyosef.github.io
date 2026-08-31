@@ -70,7 +70,25 @@ const scanWork = async (r) => {
   try {
     await run("node", [join(HERE, "serve-from-body-v1.mjs"), "--work", r.work, "--body", BODY,
       "--bridge", BRIDGE, "--binding", BINDING, "--out", out]);
-    const rows = (await readRows(out)).slice(1);
+    // Row 0 is the adapter's provenance, and it names the exact shards these
+    // figures were read out of, each with its own sha256. That is the identity
+    // of the COPY — which this pass used to throw away with the rest of the
+    // header, and which turned out to be the one thing the numbers most needed.
+    //
+    // One work can hold several stream copies under one filename, the ten-hex
+    // content hash inside that filename included. Copies can share row count,
+    // C0 span and first id and differ only in whether the source's own class
+    // labels survived. So a per-work apparatus figure with no record of which
+    // shards produced it is not reproducible, and two lanes counting the same
+    // corpus can differ by twelve percent with neither having miscounted.
+    const all = await readRows(out);
+    const oracle = ((all[0] || {}).provenance || {}).body_oracle || {};
+    row.read_from = {
+      manifest: oracle.manifest || null,
+      manifest_sha256: oracle.manifest_sha256 || null,
+      shards: oracle.shards_read || [],
+    };
+    const rows = all.slice(1);
     row.tokens = rows.length;
     let lastK = -1;
     for (let i = 0; i < rows.length; i += 1) {
