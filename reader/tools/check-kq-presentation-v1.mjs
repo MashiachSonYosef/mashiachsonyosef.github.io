@@ -28,9 +28,20 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
 const BUNDLE = arg("bundle", null);
-if (!BUNDLE || !existsSync(join(BUNDLE, "candidate", "mam-reader-overlay-v1.jsonl"))) {
+// A skip is honest only when the bundle is absent. This check skipped on a
+// bundle that was present, because the candidate's row file had been renamed
+// and reshaped under it — so the whole pair-presentation law went unguarded
+// and said nothing. Absence skips; a present bundle whose rows cannot be
+// found fails.
+const ROW_FILES = ["mam-presentation-records-candidate-v1.jsonl", "mam-reader-overlay-v1.jsonl"];
+const rowsPath = BUNDLE ? ROW_FILES.map((f) => join(BUNDLE, "candidate", f)).find(existsSync) : null;
+if (!BUNDLE || !existsSync(join(BUNDLE, "candidate"))) {
   console.log("SKIPPED — the MAM presentation candidate bundle is not here; the fixture cannot be built");
   process.exit(3);
+}
+if (!rowsPath) {
+  console.log(`FAIL  the bundle is here but carries none of its known row files  ·  ${ROW_FILES.join(", ")}`);
+  process.exit(1);
 }
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
@@ -45,7 +56,7 @@ const FIX = join(K3, "build", "kq-fixture", "kq-fixture-v1.bin");
 const SLUG = FIX.split(/[\\/]/).pop().replace(/\.bin$/, "");
 execFileSync("node", [join(HERE, "make-kq-fixture-zone-v1.mjs"), "--bundle", BUNDLE, "--out", FIX], { stdio: "pipe", cwd: K3 });
 const zone = JSON.parse(gunzipSync(readFileSync(FIX)).toString("utf8"));
-const overlay = readFileSync(join(BUNDLE, "candidate", "mam-reader-overlay-v1.jsonl"), "utf8")
+const overlay = readFileSync(rowsPath, "utf8")
   .split("\n").filter(Boolean).map((l) => JSON.parse(l));
 
 // 2 · the zone gate's own pair contract, held against the fixture bin
@@ -96,7 +107,7 @@ await p.evaluate(async () => {
   window.scrollTo(0, 0);
   await new Promise((r) => setTimeout(r, 80));
 });
-const carriers = overlay.map((r) => r.presentation.exact_mam_carrier.exact_presentation_text);
+const carriers = overlay.map((r) => (r.presentation || r).exact_mam_carrier.exact_presentation_text);
 const rendered = await p.evaluate(() =>
   [...document.querySelectorAll("section.seg .he-text .wb .w")].map((w) => w.textContent));
 check(`every carrier prints exactly as the source wrote it (${carriers.length} sites)`,
