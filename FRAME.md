@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v6.0 · 2026-08-31 — the reshuffle settled
+# THE FRAME · canonical review standard · v6.1 · 2026-08-31 — V attaches, U relates, Z dual
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -121,12 +121,12 @@ lawful fourth state, typed, never papered over.
 **Naming, marks, and connections**
 | letter | holds |
 |---|---|
-| **X** | ATTESTATIONS — who says so. Serves B (the names) and Y (the scheme or title). |
+| **X** | ATTESTATIONS — who says so. Serves B (the names), Y (the scheme or title), and V (the attachment). |
 | **Y** | FOR LOCATING — how you address a part of a work once you are inside it: chapter 22, daf 92a, tikkun 58, the title of a section. Attested to whoever devised the scheme. A number is a name that happens to be numeric. |
-| **Z** | DIBUR HAMATCHIL (דיבור המתחיל), abbreviated ד״ה — the catchword a comment quotes to name the phrase it is about. The quoted string as the commentary wrote it. |
-| **V** | THE CONNECTION from a Z catchword to the C0 span it quotes. A pointer that can succeed or FAIL — and a failure is evidence that the commentator's copy read differently from ours. |
+| **Z** | DIBUR HAMATCHIL (דיבור המתחיל), ד״ה — DUAL: the catchword exactly as the commentary wrote it, AND where it lands in our C0. A catchword that lands nowhere is not an error, it is EVIDENCE — the commentator's copy read differently from ours. One letter: this comment is about this phrase, here is the phrase as quoted, here is where it sits, and if it sits nowhere that is a finding. |
+| **V** | ATTACHES WHOLE WORKS — commentary, counter-commentary, super-commentary, and other attachable works, to what they attach to. Attachment has a display consequence: an attached work renders inside its base work's page. Attested through X. |
 | **Q** | a pointer for THE SOURCE'S OWN MARKS — kind: ketiv/qere · petuchah · setumah · inverted nun. C0 holds the actual mark. Q never holds text; every mark it names must be findable inside the carrier, in order, or the build refuses rather than retyping the text. A mark's card answers for the word it abbreviates, never for the glyph as a letter — ׆ never carries a key for the letter nun, and a bare ס or פ never routes to the letter. |
-| **U** | work-to-work relationals |
+| **U** | WORK-TO-WORK RELATIONS other than attachment — edition-of, translation-of, recension-of, membership under a grouping. Relates entries; changes no page. |
 | **O** | the named stream, including which copy is broken |
 
 **Notation, for the record**
