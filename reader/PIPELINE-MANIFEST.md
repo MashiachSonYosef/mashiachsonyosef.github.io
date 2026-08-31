@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-31.
 
-**55 rules declared · 40 named by a check · 15 unguarded.**
+**56 rules declared · 41 named by a check · 15 unguarded.**
 **10 published artifacts · 10 with a build step · 0 without.**
 
 ## The rules
@@ -39,6 +39,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
 | `kq-rule-v1-both-halves-as-written` | tools/make-kq-fixture-zone-v1.mjs | check-kq-carried-v1, check-kq-presentation-v1 |
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
+| `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
 | `licence-name-rule-v1-the-record-names-the-licence` | tools/check-licence-names-v1.mjs | check-licence-names-v1 |
 | `licence-posture-name-rule-v1-the-record-names-the-licence` | tools/emit-license-postures-v1.mjs | **UNGUARDED** |
 | `licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs` | zone.html | check-licence-leaves-v1 |
@@ -92,7 +93,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 18 of the 46 tools that are not checks.
+`build.sh` calls 18 of the 49 tools that are not checks.
 
 Not called by any build stage:
 
@@ -109,17 +110,20 @@ Not called by any build stage:
 - `tools/k-normalization-v1.mjs`
 - `tools/make-fixture-zone-v1.mjs`
 - `tools/make-kq-fixture-zone-v1.mjs`
+- `tools/mam-apparatus-census-v1.mjs`
 - `tools/mark-inventory-v1.mjs`
 - `tools/name-the-titles-v1.mjs`
 - `tools/plan-work-shards-v1.mjs`
 - `tools/planned-packs-v1.mjs`
 - `tools/playwright-v1.mjs`
+- `tools/redrive-zone-gloss-v1.mjs`
 - `tools/regloss-zone.mjs`
 - `tools/respan-zone-v1.mjs`
 - `tools/run-fleet-v2.mjs`
 - `tools/sense-split-v1.mjs`
 - `tools/serve-from-body-v1.mjs`
 - `tools/span-slice-v1.mjs`
+- `tools/strike-language-v1.mjs`
 - `tools/w-list-v1.mjs`
 - `tools/work-holds-v1.mjs`
 - `tools/zone-lib-v1.mjs`
