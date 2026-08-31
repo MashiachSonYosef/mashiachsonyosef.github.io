@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v3.2 · 2026-08-30 — justifications, not judgments
+# THE FRAME · canonical review standard · v4.0 · 2026-08-31 — the letter assignments
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -87,6 +87,33 @@ wrote it, ordinary C0; (2) EDITORIAL — a human supplied it, typed editorial C0
 with provenance; (3) SUGGESTED — AI-filled, a separate suggestion layer that
 never enters C0 and displays its machine origin openly. Absence remains a
 lawful fourth state, typed, never papered over.
+
+
+## THE LETTER ASSIGNMENTS (owner, 2026-08-31 — explicit new frame version)
+
+Recorded verbatim as ruled. Each apparatus layer gets its own letter, and
+every claim about a name or a scheme is attested through X.
+
+| letter | holds | recitable |
+|---|---|---|
+| **X** | ATTESTATIONS — the witness records everything else cites | who says so |
+| **Z** | COMMON NAME, with X attestation | what it's called |
+| **Y** | SECTIONING SCHEMES, with X attestation — the 1250s chapter divisions and every other scheme (verses, daf, tikkun, weekly readings), each a witness, none privileged | how it's numbered |
+| **U** | THE BREAKS — full break (line ends, rest blank, fresh line; petuchah) and gap break (nine-letter space, same line, continues; setumah) | where the scroll breaks |
+| **Q** | QERE/KETIV — the written form and the read form, both real words, both routed | written vs read |
+| **V** | HAMATCHIL — the catchword a commentary quotes to anchor its entry to the exact phrase it comments on | what the comment is on |
+| **O** | INVERTED NUNS — the scribal anomaly marks (7 present, all Psalm 107; the 2 in Numbers lost to source flattening). Neighbours in the same class, found and not yet ruled: the dots over letters (present in our streams as bare Unicode, untyped — Genesis carries 8), and the sized/suspended/broken letters (absent entirely, unrepresentable without markup) | the scribes' own flags |
+
+**Open for the owner, flagged not decided:** Y previously held the
+title-binding checker (every C0 title binding gets exactly one Y row,
+absence typed). This ruling gives Y to sectioning. Where the title-binding
+function lands — a letter of its own, folded into Y as "a section's name",
+or elsewhere — is unruled, and no lane should assume.
+
+**Open, same class as O:** whether the dots and the sized letters join O or
+take their own letter. The dots need a ruling soon regardless: they sit
+inside words as raw characters today, so any normalization silently decides
+about them.
 
 ## The Recitability Law (owner, 2026-08-27)
 
