@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-08-31.
 
-**56 rules declared · 41 named by a check · 15 unguarded.**
+**59 rules declared · 44 named by a check · 15 unguarded.**
 **10 published artifacts · 10 with a build step · 0 without.**
 
 ## The rules
@@ -16,6 +16,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 
 | rule | declared in | guarded by |
 |---|---|---|
+| `apparatus-baseline-rule-v1-arithmetic-over-positions-cannot-see-a-label-that-is-gone` | tools/emit-apparatus-baseline-v1.mjs | check-apparatus-not-stripped-v1 |
 | `attachment-authorship-rule-v1-the-placement-is-ours-and-says-so` | tools/generate-attachment-map-v2.mjs, zone.html | check-whose-claim-v1 |
 | `colour-role-rule-v1-the-roles-are-the-ledgers-and-the-values-are-ours` | zone.html, tools/build-front-door-v1.mjs | check-colour-roles-v1 |
 | `commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press` | zone.html | check-commentary-in-line-v1 |
@@ -37,6 +38,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `front-door-rule-v2` | zone.html | **UNGUARDED** |
 | `gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed` | tools/enrich-gloss-m-v1.mjs | check-english-license-v1 |
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
+| `import-side-effect-rule-v1-a-check-that-rebuilds-its-own-baseline-cannot-fail` | tools/check-no-import-side-effects-v1.mjs | check-no-import-side-effects-v1 |
 | `kq-rule-v1-both-halves-as-written` | tools/make-kq-fixture-zone-v1.mjs | check-kq-carried-v1, check-kq-presentation-v1 |
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
 | `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
@@ -66,6 +68,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `variant-site-rule-v1-the-mark-opens-a-record-or-the-zone-does-not-board` | zone.html | check-variant-site-v1 |
 | `w-grain-rule-v1-a-component-system-is-drawn-on-a` | tools/check-w-grain-v1.mjs | check-w-grain-v1 |
 | `w-list-rule-v1-the-record-says-which-entries-are` | tools/w-list-v1.mjs | check-w-grain-v1 |
+| `work-attachment-rule-v1-parallel-numbering-is-not-intent` | tools/emit-work-attachment-v1.mjs | check-work-attachment-v1 |
 | `work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands` | tools/check-build-derived-v1.mjs | check-build-derived-v1 |
 | `zone-commentary-rule-v2-everything-recorded-stands-somewhere` | tools/build-commentary-sidecar-v1.mjs | check-nothing-dropped-v1 |
 | `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | **UNGUARDED** |
@@ -93,7 +96,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 18 of the 49 tools that are not checks.
+`build.sh` calls 18 of the 51 tools that are not checks.
 
 Not called by any build stage:
 
@@ -101,7 +104,9 @@ Not called by any build stage:
 - `tools/carry-span-receipt-v1.mjs`
 - `tools/commentary-span-findings-v1.mjs`
 - `tools/declaration-v1.mjs`
+- `tools/emit-apparatus-baseline-v1.mjs`
 - `tools/emit-corpus-atlas-v1.mjs`
+- `tools/emit-work-attachment-v1.mjs`
 - `tools/emit-workspace-manifest-v1.mjs`
 - `tools/emit-zone-store-v1.mjs`
 - `tools/enrich-gloss-m-v1.mjs`
