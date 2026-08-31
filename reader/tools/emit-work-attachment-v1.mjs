@@ -118,6 +118,16 @@ const unitsCarrying = (base, keys) => {
   return hit;
 };
 
+// The atlas knows how many units every work has, served or not — so a base
+// that is not on the shelf can still say how big it is.
+const ATLAS = JSON.parse(readFileSync(join(K3, "data", "corpus-atlas-v1.json"), "utf8"));
+const baseUnitsOf = {};
+(function walk(o) {
+  if (!o || typeof o !== "object") return;
+  if (o.id && typeof o.units === "number") baseUnitsOf[String(o.id).split("/").pop()] = o.units;
+  for (const v of Object.values(o)) walk(v);
+})(ATLAS);
+
 const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")).sort();
 const onShelf = new Set(bins.map((f) => f.replace(/\.bin$/, "")));
 
@@ -143,11 +153,36 @@ for (const f of bins) {
   pairs.push({
     id, target, targetServes: onShelf.has(target),
     relation: named ? named.relation : "UNDETERMINED",
+    baseUnits: baseUnitsOf[target] || null,
     relationBecause: named ? named.because
       : "the name gives the target and not the kind: \"-on-\" is written the same by a commentary, "
       + "a translation and a set of notes. U's relation awaits something that says which.",
   });
 }
+
+// A work that carries a unit for every unit of its base runs PARALLEL to it:
+// it stands instead of the text, aligned. One that carries units for a
+// fraction of it is SELECTIVE: it stands about the text, at chosen places.
+// That is the difference between a translation and a commentary, and it is
+// measurable — so the shape is read from coverage and never from the name.
+// Coverage gives the family; the name, where it carries a word for it, gives
+// which of U s parallel kinds. Neither is guessed.
+const shapeOf = (p, units) => {
+  if (!p.baseUnits) return { verdict: "UNKNOWN", because: "the atlas has no unit count for the base" };
+  const coverage = units / p.baseUnits;
+  const verdict = coverage >= 0.95 && coverage <= 1.05 ? "PARALLEL"
+    : coverage < 0.95 ? "SELECTIVE" : "LARGER_THAN_ITS_BASE";
+  return {
+    verdict, units, base_units: p.baseUnits,
+    coverage: `${(100 * coverage).toFixed(0)}%`,
+    exact: units === p.baseUnits,
+    because: verdict === "PARALLEL"
+      ? "a unit for every unit of the base — it stands instead of the text, aligned"
+      : verdict === "SELECTIVE"
+      ? "units for a fraction of the base — it stands about the text, at chosen places"
+      : "more units than the base has, which neither shape explains",
+  };
+};
 
 const rows = [];
 for (const p of pairs) {
@@ -160,6 +195,7 @@ for (const p of pairs) {
     units: (C.sections || []).length,
     U: {
       relation: p.relation,
+      shape: shapeOf(p, (C.sections || []).length),
       relation_read_from: p.relationBecause,
       target: p.target,
       target_on_the_shelf: p.targetServes,
