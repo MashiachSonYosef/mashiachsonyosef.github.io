@@ -2828,6 +2828,13 @@
         paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "));
         clampHud(); return;
       }
+      // How many readings there are, on the label, because the row shows about
+      // three of them and scrolls the rest. Without the count a reader cannot
+      // tell a form carrying three routes from one carrying nineteen, and two
+      // looks at the same card from different scroll positions read as two
+      // different sets of routes. The number is what makes the row honest
+      // about being a window.
+      if (pool.length > 1) label.textContent += ` · ${pool.length}`;
       const remembered = picked.get(surface);
       let selected = (remembered && pool.find((r) => routeKey(r) === remembered.key)) || pool[0];
       const pills = document.createElement("div"); pills.className = "r-pills";
@@ -3113,6 +3120,21 @@
       renderDCard(); dSlot.replaceChildren(dCard);
       paintGloss();
       clampHud();
+      // The pressed pill is the reading printed under the word, so a card that
+      // opens with it scrolled out of sight is a card claiming a reading it is
+      // not showing. Bring it into the row — the row only, by setting scrollTop
+      // on the box itself: scrollIntoView is free to scroll the card and the
+      // page with it, and moving the page because a pill was low is a cure
+      // worse than the fault. After layout, because whether it is out of sight
+      // is a fact about the fitted card.
+      requestAnimationFrame(() => {
+        const pressed = pills.querySelector('button[aria-pressed="true"]');
+        if (!pressed) return;
+        const top = pressed.offsetTop - pills.offsetTop;
+        if (top < pills.scrollTop) pills.scrollTop = top;
+        else if (top + pressed.offsetHeight > pills.scrollTop + pills.clientHeight)
+          pills.scrollTop = top + pressed.offsetHeight - pills.clientHeight;
+      });
     };
 
     // --- row 4 · where the boundaries came from ------------------------
