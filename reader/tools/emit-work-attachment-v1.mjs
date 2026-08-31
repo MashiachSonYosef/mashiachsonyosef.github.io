@@ -1,7 +1,11 @@
 #!/usr/bin/env node
-// GUARDS: commentary-attachment-rule-v1-parallel-numbering-is-not-intent
+// GUARDS: work-attachment-rule-v1-parallel-numbering-is-not-intent
 //
-// What every commentary on the shelf stands in, recorded as U, X and V.
+// What every work that names another work stands in, recorded as U, X and V.
+//
+// The row is called a work, never a commentary. "-on-" is written the same by
+// a commentary and by a translation, and 18 of the 32 here are Targum — an
+// Aramaic translation is not a commentary because it shares a preposition.
 //
 // The owner's ruling, 2026-08-31, in his words: "commentary should auto open
 // their base work," and "you'd need to ensure the commentary edition matches
@@ -45,8 +49,8 @@
 // by id, the counts are measured, and a pair the shelf drops leaves the record
 // on the next run.
 //
-// Run: node tools/emit-commentary-attachment-v1.mjs [--zones data/zones]
-//        [--out data/commentary-attachment-v1.json]
+// Run: node tools/emit-work-attachment-v1.mjs [--zones data/zones]
+//        [--out data/work-attachment-v1.json]
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
@@ -56,9 +60,9 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
 const ZONES = arg("zones", join(K3, "data", "zones"));
-const OUT = arg("out", join(K3, "data", "commentary-attachment-v1.json"));
+const OUT = arg("out", join(K3, "data", "work-attachment-v1.json"));
 
-export const ATTACH_RULE_ID = "commentary-attachment-rule-v1-parallel-numbering-is-not-intent";
+export const ATTACH_RULE_ID = "work-attachment-rule-v1-parallel-numbering-is-not-intent";
 
 // the marker a commentary writes before quoting: dalet, gershayim or the
 // ASCII quote it is often typed as, then he — the abbreviation of
@@ -152,8 +156,8 @@ for (const p of pairs) {
   const testableMarks = marks.filter((m) => m.boundary_found && m.keys.length);
 
   const row = {
-    commentary: p.id,
-    commentary_units: (C.sections || []).length,
+    work: p.id,
+    units: (C.sections || []).length,
     U: {
       relation: p.relation,
       relation_read_from: p.relationBecause,
@@ -234,9 +238,9 @@ for (const p of pairs) {
 
 const served = rows.filter((r) => r.U.target_on_the_shelf);
 const record = {
-  schema: "commentary-attachment-v1",
+  schema: "work-attachment-v1",
   rule_id: ATTACH_RULE_ID,
-  emitted_by: "tools/emit-commentary-attachment-v1.mjs",
+  emitted_by: "tools/emit-work-attachment-v1.mjs",
   emitted_on: new Date().toISOString().slice(0, 10),
   derived_from: "the zones on disk — the pairs are found by id, the counts are measured, and nothing here is typed",
   ruling:
