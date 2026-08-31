@@ -202,6 +202,22 @@ const glossSource = (key, text) => {
   const m = STORE.index.m_sources[hits[0][3]];
   return { lic: licenseName(m.licensePosture), label: m.label || "", year: m.sourceYear || "" };
 };
+// A zone's own licenses, read from its own per-occurrence receipt. Each
+// rows-group's composite leads with its posture; the plain name comes from
+// the declarations record and the whole composite rides the hover, so the
+// machine register never prints. Shared, because every place that presents
+// a work owes the same answer — the door's cards, the door's demonstration,
+// and the reference pages that gather works under a traditional name.
+const posturesOf = (z) => {
+  const perOcc = String(((z.emitted_from || {}).license_receipts || {}).per_occurrence || "");
+  const out = [];
+  for (const m of perOcc.split(" \u2014 ")[0].matchAll(/[\d,]+ rows: ([^|]+?)(?= \| |$)/g)) {
+    const full = m[1].trim();
+    const name = licenseName(full.split(" \u00b7 ")[0].toLowerCase());
+    if (!out.some((x) => x.name === name)) out.push({ name, full });
+  }
+  return out;
+};
 const chipHtml = (src) => src
   ? `<span class="chip" title="${esc(src.label)}${src.year ? ` · ${esc(String(src.year))}` : ""}">${esc(src.lic)}</span>`
   : "";
@@ -578,6 +594,7 @@ for (const f of readdirSync(ZONES)
     bytes: bytes.length,
     sha256: sha256(bytes),
     heTokens: z.work_he_tokens || [],
+    postures: posturesOf(z),
     workEn: z.work || slug,
     // the force-read claim, by the same evidence law as everywhere: a
     // licensed record reading the title's own form as this English, or null
@@ -2069,12 +2086,26 @@ const REF_GROUPS_PATH = arg("reference-groups", "data/reference-groups-v1.json")
 if (existsSync(REF_GROUPS_PATH)) {
   const RG = JSON.parse(readFileSync(REF_GROUPS_PATH, "utf8"));
   for (const g of RG.groups || []) {
+    // A gathering page presents several works at once, and works do not
+    // share a license because a name gathers them. Each member carries its
+    // own, read from its own zone's receipts — the same answer the door's
+    // cards give. A member that does not serve presents no text and so owes
+    // no license; it says what it awaits instead.
     const rows = g.members.map((id) => {
       const addr = addressOf(id);
-      return ZONE_INFO.has(addr)
-        ? `<p><a href="/${addr}">${esc(plainId(id))}</a> — serving; every word opens its own record.</p>`
-        : `<p>${esc(plainId(id))} — not yet served; its card in <a href="/census/">the census</a> says what it awaits.</p>`;
+      const zi = ZONE_INFO.get(addr);
+      if (!zi) return `<p>${esc(plainId(id))} \u2014 not yet served; its card in <a href="/census/">the census</a> says what it awaits.</p>`;
+      const lic = (zi.postures || []).map((x) =>
+        `<span class="lic" title="${esc(x.full)}">${esc(x.name)}</span>`).join("");
+      return `<p><a href="/${addr}">${esc(plainId(id))}</a> \u2014 serving; every word opens its own record.${lic
+        ? ` <span class="lics">under ${lic}</span>` : ""}</p>`;
     }).join("\n");
+    // The group's own English name is typed in the reference record, and a
+    // typed English name waits on a source on record exactly like every
+    // other name on this site. The ruling honors the TRADITIONAL name; the
+    // English standing here until an attested one arrives is this record's,
+    // and says so rather than borrowing the ruling's authority.
+    const nameNote = `<p class="prov">This English name is typed in the reference record under the ruling below, and stands only until a source on record uses one \u2014 the same wait every other name on this site is under. The ruling honors the traditional name; the English here is this record\u2019s own.</p>`;
     const page = `<!doctype html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -2082,9 +2113,13 @@ if (existsSync(REF_GROUPS_PATH)) {
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d0a14;
   color:#b2a489;font:16px/1.6 Georgia,serif;padding:2rem}
   a{color:#eac86f} main{max-width:36rem} h1{font-size:1.3rem;letter-spacing:.08em;font-variant:small-caps;color:#eac86f}
-  .prov{font-size:.82em;color:#8b7f69}</style>
+  .prov{font-size:.82em;color:#8b7f69}
+  .lics{font-size:.82em;color:#8b7f69}
+  .lic{display:inline-block;margin-left:.35em;padding:0 .4em;border:1px solid #3a3348;
+    border-radius:.6em;font-size:.92em;white-space:nowrap}</style>
 </head>
 <body><main><h1>${esc(g.name_en)}</h1>
+${nameNote}
 <p>${esc(g.note)}</p>
 ${rows}
 <p class="prov">${esc(RG.ruling)} \u2014 ruled by ${esc(RG.ruled_by)}.</p>
