@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Withheld · fireandhail.com</title>
+<link rel="canonical" href="/">
+<script>
+// Two faces, both the record's: linen by day, the tent by night. The device
+// decides until the reader chooses; the choice stays on the device.
+(() => {
+  const root = document.documentElement;
+  let held = null;
+  try { held = localStorage.getItem("scheme"); } catch { /* still reads */ }
+  const sys = matchMedia("(prefers-color-scheme: light)");
+  const apply = () => { root.dataset.scheme = held === "day" || held === "night" ? held : (sys.matches ? "day" : "night"); };
+  apply();
+  if (sys.addEventListener) sys.addEventListener("change", apply);
+  window.__face = { set(v) { held = v; try { localStorage.setItem("scheme", v); } catch { /* still reads */ } apply(); } };
+})();
+</script>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d0a14;
+  color:#b2a489;font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
+  a{color:#eac86f} p{max-width:34rem} .prov{font-size:.82em;color:#8b7f69}
+  :root[data-scheme="day"] body{background:#f1e9d8;color:#5f5645}
+  :root[data-scheme="day"] a{color:#8a6b26} :root[data-scheme="day"] .prov{color:#7b7058}</style>
+</head>
+<body><p>This address is kept, and the work behind it is not being served.<br><br>
+Its stream reached the build gates carrying no transmission apparatus at all — zero ketiv/qere structure where the tradition attests it (measured 2026-08-30; Leviticus, Numbers and Ruth measured the same). A text with its apparatus silently flattened has already chosen between the forms its sources attest, which is exactly what this register exists to refuse.<br><br>Nothing is shown in the meantime, and the
+address returns here when the holding ends.<br><br>
+<span class="prov">Held by this lane, not yet by a record: work-records-v1.js · typed on 2026-08-30</span><br><br><a href="/">fireandhail.com</a></p>
+</body>
+</html>

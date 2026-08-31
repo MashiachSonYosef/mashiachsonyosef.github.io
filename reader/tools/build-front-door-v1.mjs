@@ -391,7 +391,11 @@ for (const b of BOOKS) {
     reading: titleReading(z.work_he_tokens, z.work || b.slug),
     units, onWord, onSection, heldLicence, noText, byCoordinate, noCloser, works: worksCount });
 }
-if (!books.length) throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
+// The curated tier can lawfully be empty — the owner's ruling, 2026-08-30:
+// no hand-done books at all. The refusal that matters is a shelf with no
+// zones behind it, judged by the zones directory itself.
+if (!books.length && !readdirSync(ZONES).some((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith("-commentary.bin")))
+  throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
 // Every place a book is referred to in English refers to it by the one name
 // the law allows to print: the ledger's English when a licensed record backs
 // it, the address read plainly when none does.
@@ -2099,8 +2103,13 @@ const HISTORY = arg("history", "data/address-history-v1.json");
 if (existsSync(HISTORY)) {
   const hist = JSON.parse(readFileSync(HISTORY, "utf8"));
   for (const row of hist.republished || []) {
-    const target = slugOfWork.get(row.to_work_id);
-    if (!target) throw new Error(`address history points at ${row.to_work_id}, which the plan does not publish — refusing a redirect to nowhere`);
+    // the plan's tier can be empty now; a redirect's target is wherever the
+    // work actually serves — the fleet shelf, judged by the zone on disk at
+    // the work's derived address
+    const derived = addressOf(row.to_work_id);
+    const target = slugOfWork.get(row.to_work_id)
+      || (existsSync(join(ZONES, `${derived}.bin`)) ? derived : null);
+    if (!target) throw new Error(`address history points at ${row.to_work_id}, which nothing publishes — refusing a redirect to nowhere`);
     const b = books.find((x) => x.slug === target);
     mkdirSync(join(OUT, row.from), { recursive: true });
     // A published address is a promise, and a withdrawal does not release it.

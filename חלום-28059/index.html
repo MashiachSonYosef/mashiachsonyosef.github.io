@@ -2606,9 +2606,15 @@
         if (h) {
           box.style.height = `${h}px`;
           const lh = parseFloat(getComputedStyle(box).lineHeight) || h;
+          // The license chip is a block line inside this box; its height is
+          // not a line of the reading, and a clamp that counted it as one
+          // would eat a text line the day a chip stands here after a paint.
+          // Normalization includes the chip — the owner's sizing rule.
+          const chipEl = box.querySelector(".g-lic");
+          const chipH = chipEl ? chipEl.getBoundingClientRect().height + (parseFloat(getComputedStyle(chipEl).marginTop) || 0) : 0;
           box.style.display = "-webkit-box";
           box.style.webkitBoxOrient = "vertical";
-          box.style.webkitLineClamp = String(Math.max(1, Math.round(h / lh)));
+          box.style.webkitLineClamp = String(Math.max(1, Math.round((h - chipH) / lh)));
         }
       }
       // The height alone was not the whole promise: a wider reading widens
@@ -2632,8 +2638,12 @@
       // lines; it never costs the reader the reading.
       if (box.style.height && box.scrollHeight > box.clientHeight + 1) {
         const lh = parseFloat(getComputedStyle(box).lineHeight) || box.scrollHeight;
-        const lines = Math.max(1, Math.ceil((box.scrollHeight - 1) / lh));
-        box.style.height = `${Math.ceil(lines * lh)}px`;
+        // the chip's line rides along whole when one is present — grown
+        // height owes the text its lines AND the chip its own row
+        const chipEl2 = box.querySelector(".g-lic");
+        const chipH2 = chipEl2 ? chipEl2.getBoundingClientRect().height + (parseFloat(getComputedStyle(chipEl2).marginTop) || 0) : 0;
+        const lines = Math.max(1, Math.ceil((box.scrollHeight - chipH2 - 1) / lh));
+        box.style.height = `${Math.ceil(lines * lh + chipH2)}px`;
         box.style.webkitLineClamp = String(lines);
       }
     };

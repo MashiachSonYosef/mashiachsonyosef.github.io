@@ -370,7 +370,10 @@ for (const [href, ...expected] of WALK) {
 }
 
 console.log("— the addresses on their own —");
-const LAST = plan.works[plan.works.length - 1].published_as;
+// the curated tier can be empty (owner's ruling, 2026-08-30); the probe
+// address comes from the shelf itself then — the last zone in sort order
+const addrPool = plan.works.length ? plan.works.map((w) => w.published_as) : zonesOnDisk();
+const LAST = addrPool[addrPool.length - 1];
 const A0 = `/${LAST}`;
 await p.goto(`${B}${A0}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });

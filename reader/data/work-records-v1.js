@@ -109,6 +109,24 @@ window.WORK_RECORDS_V1 = Object.freeze({
       "since": "2026-08-23",
       "reason": "Its transmission apparatus is not verified. The source-marked sites in this book are not yet carried as records, so the text cannot be shown without the reader quietly choosing for you between the forms its sources attest.",
       "ends_when": "the Q sites for this work are issued and the reader can present every attested form"
+    },
+    "tanakh/esther": {
+      "basis": "TYPED_AWAITING_HOLD_LEDGER",
+      "since": "2026-08-30",
+      "reason": "Its stream reached the build gates carrying no transmission apparatus at all — zero ketiv/qere structure where the tradition attests it (measured 2026-08-30; Leviticus, Numbers and Ruth measured the same). A text with its apparatus silently flattened has already chosen between the forms its sources attest, which is exactly what this register exists to refuse.",
+      "ends_when": "the work's stream is reissued with its ketiv/qere sites as structured records"
+    },
+    "tanakh/leviticus": {
+      "basis": "TYPED_AWAITING_HOLD_LEDGER",
+      "since": "2026-08-30",
+      "reason": "Its stream reached the build gates carrying no transmission apparatus at all — zero ketiv/qere structure where the tradition attests it. A flattened apparatus is a choice already made; this register refuses it.",
+      "ends_when": "the work's stream is reissued with its ketiv/qere sites as structured records"
+    },
+    "tanakh/numbers": {
+      "basis": "TYPED_AWAITING_HOLD_LEDGER",
+      "since": "2026-08-30",
+      "reason": "Its stream reached the build gates carrying no transmission apparatus at all — zero ketiv/qere structure where the tradition attests it. A flattened apparatus is a choice already made; this register refuses it.",
+      "ends_when": "the work's stream is reissued with its ketiv/qere sites as structured records"
     }
   },
   "commentary_packs_basis": {

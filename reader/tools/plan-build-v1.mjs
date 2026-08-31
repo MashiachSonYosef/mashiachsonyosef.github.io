@@ -183,10 +183,13 @@ const known = new Set(works.map((w) => w.work_id));
 // ruling, 2026-08-30: no hand-done books at all), a withheld work is no
 // longer necessarily a work this plan derives. It must still name a REAL
 // work: the atlas is the census that says so.
-const atlasKnown = new Set();
+const ATLAS_PATH = arg("atlas", "data/corpus-atlas-v1.json");
+const atlasKnown = new Map(); // id -> the atlas row (the census's own facts)
+let atlasSha = "";
 try {
-  const A = JSON.parse(readFileSync("data/corpus-atlas-v1.json", "utf8"));
-  for (const fam of Object.values(A.families)) for (const w of fam.works) atlasKnown.add(String(w.id));
+  const A = JSON.parse(readFileSync(ATLAS_PATH, "utf8"));
+  atlasSha = sha16(ATLAS_PATH);
+  for (const fam of Object.values(A.families)) for (const w of fam.works) atlasKnown.set(String(w.id), w);
 } catch { /* no atlas on this disk — the plan-known set alone judges */ }
 const orphanHolds = Object.keys(withheld).filter((id) => !known.has(id) && !atlasKnown.has(id));
 if (orphanHolds.length) {
@@ -198,9 +201,15 @@ if (orphanHolds.length) {
 // door keeps its address answering — the address law, nothing more
 for (const id of Object.keys(withheld)) {
   if (works.some((w) => w.work_id === id)) continue;
+  const at = atlasKnown.get(id) || {};
   works.push({ work_id: id, published_as: id.split("/").pop(),
     title_en: id.split("/").pop().replace(/[-_]+/g, " "),
-    basis: "WITHHELD_ADDRESS_ONLY", c0_first: null, c0_last: null, unit_count: null,
+    basis: "WITHHELD_ADDRESS_ONLY",
+    derived_from: atlasSha ? `${ATLAS_PATH} · ${atlasSha}` : "the withheld register alone",
+    // the atlas records first + row count; last is their arithmetic
+    c0_first: at.c0_first ?? null,
+    c0_last: (at.c0_first != null && at.c0_rows != null) ? at.c0_first + at.c0_rows - 1 : null,
+    unit_count: at.units ?? null,
     byline: "", coord_labels: "section,paragraph", family_en: "", license_links: "" });
 }
 for (const w of works) {

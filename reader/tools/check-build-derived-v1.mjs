@@ -61,7 +61,7 @@ check("  the plan tool ran to a plan", planCode === 0 || (plan.in_the_work_direc
   `${plan.works.length} works · ${plan.planned_from.ledgers.length} from a ledger`);
 for (const w of plan.works)
   check(`  ${w.work_id} carries a basis and its source`,
-    ["SEALED_Y_LEDGER", "TYPED_AWAITING_LEDGER"].includes(w.basis) && !!w.derived_from,
+    ["SEALED_Y_LEDGER", "TYPED_AWAITING_LEDGER", "WITHHELD_ADDRESS_ONLY"].includes(w.basis) && !!w.derived_from,
     `${w.basis} · ${w.derived_from}`);
 
 // ---- 1 · derivation against the zones' own receipts ------------------------
