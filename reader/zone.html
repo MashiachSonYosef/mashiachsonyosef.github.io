@@ -2470,15 +2470,19 @@
     // A source-marked branch says which half it is ON the card, in words —
     // the roles lived only in hover titles, and a phone has no hover. The
     // ketiv/qere words are the tradition's own names for the halves, not
-    // this file's coinage; what follows the dash is ours and says so by
-    // being plain English about the source.
+    // this file's coinage; what follows the dash is the plain English pair.
+    // The owner's ruling, 2026-08-31, in his words: "written read is good
+    // plain english with the slash seperator" — the meaning IS the
+    // opposition, so the two labels are one juxtaposition and not two
+    // sentences. They read nearly identically before, and the qere's said
+    // both "reads" and "as written" in the same breath.
     if (region && region.role === "KETIV") {
       const roleLine = document.createElement("p"); roleLine.className = "kq-role";
-      roleLine.textContent = "ketiv — the form the source writes, carried as written";
+      roleLine.textContent = "ketiv \u2014 written";
       head.append(roleLine);
     } else if (region && region.role === "QERE") {
       const roleLine = document.createElement("p"); roleLine.className = "kq-role";
-      roleLine.textContent = "qere — the form the source reads, carried as written";
+      roleLine.textContent = "qere \u2014 read";
       head.append(roleLine);
     }
     // And beside the branch selector, the notation's key — the marks teaching
