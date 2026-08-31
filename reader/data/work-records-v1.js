@@ -10,13 +10,19 @@
 //      keeps them out of the build script.
 //
 //   2. `typed_awaiting_ledger` — the full parameters of a work that is
-//      PUBLISHED but has NO Y ledger yet. Two works are in that state. Their
-//      c0 ranges, work ids and English titles used to be typed into build.sh,
-//      which hid what they were: copies of a record this lane does not yet
-//      hold. Here they are typed in the open, under a basis that says exactly
-//      that — and the day a work's ledger lands, its entry here must be
-//      DELETED. plan-build-v1 refuses to run while a work has both, so the
-//      two sources of one fact can never quietly drift apart.
+//      PUBLISHED but has NO Y ledger yet. NO WORK IS IN THAT STATE, and none
+//      may be: the owner ruled on 2026-08-30 that no hand-done book is
+//      published at all, the four entries that stood here were deleted, and
+//      typed_awaiting_ledger_emptied carries that ruling in his words. The
+//      register stays empty so the law it carries stays legible.
+//
+//      What it was for, kept because it says why the ruling exists: these
+//      works' c0 ranges, ids and English titles used to be typed into
+//      build.sh, which hid what they were — copies of a record this lane does
+//      not hold. Typed here in the open they at least said so. Not typed at
+//      all is better, and that is now the rule. plan-build-v1 still refuses
+//      to run while a work has both, so the two sources of one fact can never
+//      quietly drift apart.
 //
 //   `attachments` records the coordinate-attached commentary pair the same
 //   way, until the works' own ledgers carry attachment_y_node_id — the Y
