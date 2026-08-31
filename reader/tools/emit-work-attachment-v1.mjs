@@ -167,21 +167,100 @@ for (const f of bins) {
 // measurable — so the shape is read from coverage and never from the name.
 // Coverage gives the family; the name, where it carries a word for it, gives
 // which of U s parallel kinds. Neither is guessed.
-const shapeOf = (p, units) => {
+const shapeOf = (p, units, labelOverlap) => {
   if (!p.baseUnits) return { verdict: "UNKNOWN", because: "the atlas has no unit count for the base" };
   const coverage = units / p.baseUnits;
+  const pct = `${(100 * coverage).toFixed(0)}%`;
+
+  // Coverage is a ratio of two unit counts, and that means nothing unless the
+  // two works number the same way. The notes on Midrash Lekach Tov to Esther
+  // carry 254 units labelled by chapter and verse of Esther; the midrash they
+  // annotate carries 10, which is how many chapters Esther has. 254 over 10 is
+  // not 2540% of anything — it is verses over chapters. So the numbering is
+  // established first, by whether this work's own unit labels exist in the
+  // base's label space, and only a work that numbers the same way is asked
+  // what fraction of the base it covers.
+  if (labelOverlap === null) {
+    // The labels cannot be read, but an exact agreement between two counts
+    // derived independently — this work's own sections, and the atlas's figure
+    // for the base — is not a coincidence that happens to a work numbering by
+    // some other scheme. It is weaker than reading the labels and it is not
+    // nothing, so it is recorded as its own verdict rather than being thrown
+    // in with the genuinely unknown.
+    if (units === p.baseUnits)
+      return { verdict: "PARALLEL_BY_COUNT", units, base_units: p.baseUnits, coverage: pct, exact: true,
+        because: "the base is not on the shelf and its labels cannot be read, but this work carries "
+          + "exactly as many units as the atlas records for the base. Two counts derived apart from "
+          + "each other landing on the same number is evidence of the same numbering; it is not the "
+          + "same as having checked, and this verdict says which one it is." };
+    return { verdict: "SCHEME_UNVERIFIED", units, base_units: p.baseUnits, ratio_of_counts: pct,
+      because: "the base is not on the shelf, so its unit labels cannot be read, and the counts do not "
+        + "agree. The ratio of the two is recorded and is not a coverage figure: two works numbering "
+        + "differently produce a ratio that says nothing about how much of the base is covered." };
+  }
+  if (labelOverlap < 0.9)
+    return { verdict: "NUMBERS_DIFFERENTLY", units, base_units: p.baseUnits, ratio_of_counts: pct,
+      label_overlap: `${(100 * labelOverlap).toFixed(0)}%`,
+      because: "fewer than nine in ten of this work's unit labels stand in the base's label space, so "
+        + "the two number by different schemes and no ratio between their counts is a coverage figure" };
+
   const verdict = coverage >= 0.95 && coverage <= 1.05 ? "PARALLEL"
     : coverage < 0.95 ? "SELECTIVE" : "LARGER_THAN_ITS_BASE";
   return {
-    verdict, units, base_units: p.baseUnits,
-    coverage: `${(100 * coverage).toFixed(0)}%`,
-    exact: units === p.baseUnits,
+    verdict, units, base_units: p.baseUnits, coverage: pct, exact: units === p.baseUnits,
+    label_overlap: `${(100 * labelOverlap).toFixed(0)}%`,
     because: verdict === "PARALLEL"
-      ? "a unit for every unit of the base — it stands instead of the text, aligned"
+      ? "the two number the same way, and there is a unit for every unit of the base — it stands "
+        + "instead of the text, aligned"
       : verdict === "SELECTIVE"
-      ? "units for a fraction of the base — it stands about the text, at chosen places"
-      : "more units than the base has, which neither shape explains",
+      ? "the two number the same way, and this work carries units for a fraction of the base — it "
+        + "stands about the text, at chosen places"
+      : "more units than the base has, under the same numbering — a divergence between the two, "
+        + "not a shape",
   };
+};
+
+// What fraction of this work's own unit labels stand in the base's label
+// space. This, and not a count of rows, is what says whether two works number
+// the same way: Boaz writes ten times more per note than the Mishnah does, and
+// numbers by exactly the same chapter and mishnah. Verbosity is not grain.
+// null when the base is not on the shelf and its labels cannot be read.
+const labelOverlapFor = (p, C) => {
+  if (!p.targetServes) return null;
+  const B = load(`${p.target}.bin`);
+  const baseLabels = new Set((B.sections || []).map((s) => s.label));
+  const mine = (C.sections || []).map((s) => s.label);
+  if (!mine.length) return null;
+  return mine.filter((l) => baseLabels.has(l)).length / mine.length;
+};
+
+// A unit whose text the source opens with a round bracket is the source
+// saying something about that unit's standing, not about a word inside it.
+// Targum Jonathan brackets Joshua 21:36-37 — the Levitical cities of Reuben,
+// Bezer, Jahzah, Kedemoth and Mephaath — which are present in some Masoretic
+// manuscripts and absent from others, and it brackets Isaiah 50:10-11 the same
+// way. Our Joshua carries 656 units and the Targum 658: the divergence and the
+// editor's own mark of it are both in the data.
+//
+// This records where the mark is and says nothing about what it means. Which
+// tradition each side follows is an attestation nobody here has, and naming
+// the editions on both sides is the work that ruling calls for — not choosing
+// between them.
+const bracketedUnits = (zone) => {
+  const out = [];
+  const secs = zone.sections || [];
+  for (let i = 0; i < secs.length; i += 1) {
+    const ws = (secs[i].words || []).map((w) => String(w.s));
+    if (!ws.length || !ws[0].startsWith("(")) continue;
+    // the bracket may close in this unit or in a later one; walk until it does
+    let closesAt = null;
+    for (let j = i; j < Math.min(i + 8, secs.length); j += 1) {
+      const t = (secs[j].words || []).map((w) => String(w.s)).join(" ");
+      if (t.includes(")")) { closesAt = secs[j].label; break; }
+    }
+    out.push({ opens_at: secs[i].label, closes_at: closesAt, unclosed: closesAt === null });
+  }
+  return out;
 };
 
 const rows = [];
@@ -195,7 +274,8 @@ for (const p of pairs) {
     units: (C.sections || []).length,
     U: {
       relation: p.relation,
-      shape: shapeOf(p, (C.sections || []).length),
+      shape: shapeOf(p, (C.sections || []).length, labelOverlapFor(p, C)),
+      units_the_source_brackets: bracketedUnits(C),
       relation_read_from: p.relationBecause,
       target: p.target,
       target_on_the_shelf: p.targetServes,
@@ -297,6 +377,7 @@ const record = {
     U_attested: rows.length,
     V_granted: rows.filter((r) => r.V.granted).length,
     V_refused_for_want_of_intent: rows.filter((r) => r.V.reason === "NO_INTENT_EVIDENCE").length,
+    units_the_source_brackets: rows.reduce((n, r) => n + (r.U.units_the_source_brackets || []).length, 0),
     catchwords_tested: served.reduce((n, r) => n + (r.V.catchword_test?.tested || 0), 0),
     catchwords_confirming: served.reduce((n, r) => n + (r.V.catchword_test?.confirm_the_claimed_unit || 0), 0),
   },
