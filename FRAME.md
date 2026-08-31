@@ -1,4 +1,4 @@
-# THE FRAME · canonical review standard · v6.1 · 2026-08-31 — V attaches, U relates, Z dual
+# THE FRAME · canonical review standard · v7.0 · 2026-08-31 — the letters final, Q rules, and what this is not
 
 **The string (owner's canonical form, 2026-08-27):**
 `A N B C0 Y Q K W COMPspan COMPcell L R D M P S`
@@ -32,6 +32,11 @@ usage, a measured property of the corpus — it is not a justification but an
 invention wearing the format, and it is struck or referred to the owner.
 "The owner ruled" is not a citation; what the owner recognized the sources to
 require is.
+
+> **SUPERSEDED — historical record only.** The table below is the v1-era
+> layer sheet. Its LETTER DEFINITIONS are obsolete; the letters are defined
+> above. Its custody and need columns remain useful as the website lane's
+> annotation of what it holds. Read it as archaeology, never as law.
 
 | layer | the idea | current artifact | custody (website lane) | need (website lane) |
 |---|---|---|---|---|
@@ -142,6 +147,34 @@ a consonantal witness and a fully pointed one are indistinguishable in this
 model. K knows pointing is evidence ("weaker than the pointed surface") but
 nothing records WHO SUPPLIED IT, which matters because the pointing is often
 the only part of a modern edition still under copyright.
+
+
+## Q RULES (owner, 2026-08-31 — final)
+
+Q points. C0 holds. These are the rules Q carries per kind.
+
+**Shared across all four kinds**
+- Q never holds text. Every mark or branch Q names must be findable inside the carrier, IN ORDER. If it isn't, the build REFUSES rather than retyping the text.
+- A mark's card answers for the WORD IT ABBREVIATES, never for the glyph as a letter. Precedent already in build-zone: a token the ledger marks as a NUMBER carries no lexical key — it reuses a letter's identity to name a number and is not an occurrence of that letter, so the catalog is not asked about it. Same shape, same ruling.
+- A reading attaches to a WORD. A mark attaches to a POSITION. Nothing welds. Any token whose surface is a mark concatenated with Hebrew is refused. (91 live now: סויאמר, סזאת, סבניה.)
+- **Absence is not evidence.** A book with no Q sites is not a book without marks — it may be a book that arrived FLATTENED. Seven of ours did. A book known flattened must not present as complete.
+
+**Q:kq — written / read.** Source wrote both forms at one site: round ( ) around the written, square [ ] around the read. Order varies — genesis-14-2 is written-first, genesis-36-5 is read-first; the bracket identifies, the position does not. ONE C0, one word block, one card; both branches inside that carrier. Keys: one per branch, taken from inside the delimiters, delimiters stripped — two keys at one C0. The card answers for both readings; the lattice sits inside it, selecting a half underlines that half in the line and shows that half's English only, one English at a time. A branch may be MULTI-WORD — psalms-123-4 writes (לגאיונים), reads [לגאי יונים] — and then carries its words as separate keys in order, never one welded key. REFUSES: an unclosed delimiter (21 live: 13 written, 8 read, across 18 units) · a delimiter surviving into the key · a branch not found inside its own carrier · a site with one branch (a pair with one half is not a pair) · a multi-word branch collapsed into one key.
+
+**Q:petuchah — open section.** Source wrote {פ}, class mam-spi-pe, abbreviating פְּתוּחָה. C0: a POSITION, after the last word of the section that closes — not a word, not part of one. Lexical key: NONE; פ here names a word, it is not an occurrence of the letter pe. (2,373 bare ס/פ keys currently route to dictionary entries for the letters. All of them come out.) The card answers for the word — petuchah, "open" — and what it does: this section ends here, the next begins on a fresh line. DISPLAY OBLIGATION: if the renderer can't give the break its line, the card says so in plain English at the top. A petuchah drawn as nothing is a flattening. REFUSES: a bare פ carrying a key · a mark welded to a word · a mark given a word's C0 instead of its own position · a mark rendered identically to a setumah.
+
+**Q:setumah — closed section.** Source wrote {ס}, class mam-spi-samekh, abbreviating סְתוּמָה. Structurally identical to petuchah, two differences: the card answers for setumah, "closed" — this section ends, the next begins on the SAME LINE after a gap; and the display obligation is therefore different. Petuchah means a new line. Setumah means a visible gap without one. A renderer that draws both the same has ERASED A DISTINCTION THE SOURCE MADE, and must say which one it can't honor.
+
+**Q:invnun — inverted nun.** Source wrote ׆ — U+05C6, HEBREW PUNCTUATION NUN HAFUKHA, class mam-spi-invnun, named נוּן הֲפוּכָה. C0: a POSITION; it marks a passage, not a word. Lexical key: NONE — ׆ is a punctuation character, not the letter nun. The card answers for the mark's name and what the tradition says with it: this passage is marked as standing apart. PAIRING IS THE SOURCE'S BUSINESS, not a requirement — in Psalm 107 the marks stand singly, in Numbers 10:35–36 two bracket the passage. Q records whether a mark opens, closes, or stands alone; it does not demand a partner. REFUSES: a key for the letter nun · a claim of completeness the body can't support.
+
+## WHAT THIS DOCUMENT IS NOT (owner, 2026-08-31)
+
+The frame is the owner's, kept so the shape stays recitable; the lanes use
+the ledgers. **It is not a "program like an idiot" get-out-of-jail-free
+card.** A lane that ships something broken and cites a line here has
+complied with nothing — it has used a description of the sources as cover.
+The frame cannot make bad output good, and "the frame permits it" is no
+defense when the page is wrong.
 
 ## The Recitability Law (owner, 2026-08-27)
 
