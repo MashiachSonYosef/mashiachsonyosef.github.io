@@ -64,8 +64,17 @@ export const ADMITTED_LANGUAGES = ["Hebrew", "Aramaic", "Chaldee"];
 // Language words looked for in a source's own label. The list is deliberately
 // wider than what the store happens to carry, so a new source in a new
 // language is classified rather than waved through as "no language named".
+//
+// Syriac and Mandaic are named here even though both ARE Aramaic — Eastern
+// dialects of it, in their own scripts and their own literatures. The owner's
+// ruling names them out, and the reason the naming is load-bearing is that
+// "Aramaic" alone would otherwise admit them: a label reading "Syriac" is
+// struck because Syriac is not on the admitted list, and a label reading
+// "Syriac Aramaic" is struck because a named language outside the admitted
+// set beats a named language inside it. Without the words here, neither
+// happens and a Mandaic lexicon walks in through the no-language-named door.
 const LANGUAGE_WORDS = [
-  "Hebrew", "Aramaic", "Chaldee", "Syriac", "Samaritan",
+  "Hebrew", "Aramaic", "Chaldee", "Syriac", "Mandaic", "Samaritan",
   "Yiddish", "Ladino", "Judeo-Arabic", "Arabic", "Persian", "Turkish",
   "Greek", "Latin", "Akkadian", "Ugaritic", "Phoenician", "Coptic",
   "Amharic", "Russian", "Polish", "German", "English",
