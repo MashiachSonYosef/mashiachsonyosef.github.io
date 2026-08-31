@@ -66,9 +66,33 @@ if (!existsSync(ZONES)) { console.log("SKIPPED — no zones directory here"); pr
 const wLists = wListsUnder(DATA);
 
 console.log("— the W lists this disk holds —");
+// No W list is an absent input, not a defect. The suite's own law: a check
+// that could not reach its inputs did not pass and did not fail, and is
+// counted apart so an empty run cannot read as a clean one. This one used to
+// exit 1 instead, which put a red line in the report for a record that simply
+// is not kept on this disk — and a red line that means "nothing to read" is
+// worse than no line, because it teaches whoever reads the report to skip it.
+//
+// It may not go quiet either. A skip that does not say what went unchecked is
+// how a whole layer disappears without anyone noticing, so the skip names the
+// zones and sections that will now stand unproven.
+if (!wLists.size) {
+  const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin"));
+  let sections = 0;
+  for (const f of bins) {
+    try {
+      const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8"));
+      sections += (z.sections || []).length;
+    } catch { /* a bin this check cannot open is check-zone-store's business */ }
+  }
+  console.log(`SKIPPED — no sealed W list on this disk, so nothing can be checked against one. `
+    + `${bins.length} zones and ${sections.toLocaleString()} sections stand unproven at the W grain: `
+    + `whether each prints the W the record lists, in the record's own order, with the record's own `
+    + `byte-exact keys. The lists arrive with the corpus; this is not a defect in what is served.`);
+  process.exit(3);
+}
 check("  at least one sealed W list is here to check against", wLists.size > 0,
-  wLists.size ? [...wLists].map(([r, v]) => `${r} · ${v.words.length} W · ${v.file}`).join(" | ") : "none");
-if (!wLists.size) { console.log(`\n${bad} FAILED`); process.exit(1); }
+  [...wLists].map(([r, v]) => `${r} · ${v.words.length} W · ${v.file}`).join(" | "));
 
 // ---- and what each zone prints -------------------------------------------
 const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")).sort();
