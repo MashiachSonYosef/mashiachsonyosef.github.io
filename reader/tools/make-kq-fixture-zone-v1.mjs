@@ -17,18 +17,38 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { openRouteStore } from "./gloss-store-v1.mjs";
+import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
 const BUNDLE = arg("bundle", null);
 const OUT = arg("out", join(K3, "build", "kq-fixture", "kq-fixture-v1.bin"));
-if (!BUNDLE || !existsSync(join(BUNDLE, "candidate", "mam-reader-overlay-v1.jsonl"))) {
+// A fixture that carries only the pair proves only the pair. The layers
+// under a word — its component system and the catalog's readings — are
+// what the card is mostly made of, and a presentation proof without them
+// shows an empty card and calls it a rendering. Same store, same span
+// slice, same derivation as a served zone; the fixture stays scratch.
+const SPANS = arg("spans", null);
+const STORE_DIR = arg("store", join(K3, "data", "route-store"));
+// The bundle has carried its rows under two names and two shapes across
+// candidate generations. Both are read here, and a bundle that is PRESENT
+// but carries neither is a loud failure rather than a quiet skip — the
+// silent skip is how this tool sat broken against a renamed file while its
+// check reported nothing at all.
+const ROW_FILES = ["mam-presentation-records-candidate-v1.jsonl", "mam-reader-overlay-v1.jsonl"];
+const rowsPath = BUNDLE ? ROW_FILES.map((f) => join(BUNDLE, "candidate", f)).find(existsSync) : null;
+if (!BUNDLE || !existsSync(join(BUNDLE, "candidate"))) {
   console.log("the MAM presentation candidate bundle is not here — nothing to build a fixture from");
   process.exit(3);
 }
+if (!rowsPath) {
+  console.error(`REFUSED — ${BUNDLE}/candidate carries none of: ${ROW_FILES.join(", ")}`);
+  process.exit(2);
+}
 
-const rows = readFileSync(join(BUNDLE, "candidate", "mam-reader-overlay-v1.jsonl"), "utf8")
+const rows = readFileSync(rowsPath, "utf8")
   .split("\n").filter(Boolean).map((l) => JSON.parse(l));
 const seal = JSON.parse(readFileSync(join(BUNDLE, "candidate", "closed-world-seal-v1.json"), "utf8"));
 
@@ -40,15 +60,17 @@ const kOf = (s) => String(s).normalize("NFC").replace(/[֑-ׇ]/g, "");
 const sections = [];
 let siteCount = 0, pairCount = 0;
 for (const r of rows) {
-  const p = r.presentation.exact_mam_carrier;
+  const pres = r.presentation || r;
+  const p = pres.exact_mam_carrier;
   const carrier = p.exact_presentation_text;
   const word = { s: carrier };
-  if (r.presentation.branch_selectors && r.presentation.branch_selectors.length) {
+  const branchRows = pres.branch_selectors || pres.branches || [];
+  if (branchRows.length) {
     // the branches, in the carrier's own order, each with its exact printed
     // text and its own lexical key — and the pair the gate holds to
-    const branches = r.presentation.branch_selectors.map((b) => ({
-      s: b.exact_branch_presentation_text,
-      k: kOf(b.exact_lexical_surface_inside_source_delimiters),
+    const branches = branchRows.map((b) => ({
+      s: b.exact_branch_presentation_text || b.exact_presentation_text,
+      k: kOf(b.exact_lexical_surface_inside_source_delimiters || b.lexical_surface_inside_source_delimiters),
       role: b.role,
     }));
     // the carrier must be exactly the branches in order with the source's
@@ -72,6 +94,23 @@ for (const r of rows) {
   siteCount += 1;
   sections.push({ unit: r.unit_id, node: r.work_id, label: r.unit_id.split("-").slice(-2).join(":"), words: [word] });
 }
+
+// ---- the layers under the word, exactly as a served zone derives them ----
+const keysNeeded = new Set();
+for (const sec of sections) for (const w of sec.words) {
+  if (w.k) keysNeeded.add(w.k);
+  for (const b of (w.w || [])) if (b.k) keysNeeded.add(b.k);
+}
+const span = SPANS ? await readSpanSlice(SPANS, keysNeeded) : null;
+const cellSurfaces = new Set(keysNeeded);
+if (span) for (const [, sp] of span.spans) for (const c of cellsOf(sp.s)) cellSurfaces.add(c.surface);
+const store = openRouteStore(STORE_DIR);
+const { table: gloss } = store.tableFor([...cellSurfaces]);
+const spanRoles = [], spanRules = [], spanConf = [];
+const intern = (arr, v) => { let i = arr.indexOf(v); if (i < 0) { i = arr.length; arr.push(v); } return i; };
+const spans = {};
+if (span) for (const [k, sp] of span.spans)
+  spans[k] = [sp.s, sp.r.map((r) => intern(spanRoles, r)), intern(spanRules, sp.rule), intern(spanConf, sp.conf)];
 
 const zone = {
   schema_version: "KQ_FIXTURE_ZONE_V1",
@@ -100,8 +139,14 @@ const zone = {
       work_activation: "candidate only — no current effect",
     },
   },
-  counts: { sections: sections.length, words: siteCount, kq_pairs: pairCount },
-  gloss: {},
+  counts: { sections: sections.length, words: siteCount, kq_pairs: pairCount,
+    forms_with_a_component_system: Object.keys(spans).length,
+    cell_surfaces_read: Object.keys(gloss).length },
+  span_roles: spanRoles,
+  span_rules: spanRules,
+  span_conf: spanConf,
+  spans,
+  gloss,
   sections,
 };
 mkdirSync(dirname(OUT), { recursive: true });
