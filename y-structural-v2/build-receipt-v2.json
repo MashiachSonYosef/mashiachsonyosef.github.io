@@ -1,0 +1,64 @@
+{
+  "schema": "mishkan.moses.y_structural_ledger.build_receipt.v2",
+  "candidate_only": true,
+  "current_effect": "NONE",
+  "supersedes": "moses-y-structural-ledger-v1 (data replayed EXACT by construction's audit; v2 closes the five packaging blockers that audit named)",
+  "blockers_closed": {
+    "SOURCE_PACKAGE_CLOSURE": "contract-v2.json, validate-y-structural-v2.mjs, seal-y-structural-v2.mjs, and this receipt ship in-package",
+    "GZIP_BYTE_DERIVATION": {
+      "plaintext_sha256": "b6be570fa8cbc5d6405999f95b1abfd4bb01ee924fee18c84155c8a8502b15b7",
+      "plaintext_bytes": 120007402,
+      "gzip_rule": "zlib.gzipSync level 9, mtime 0, no original filename — byte-reproducible from the plaintext"
+    },
+    "BRIDGE_INPUT_PINNED": {
+      "path": "ledgers/work/c0/current-c0-location-source-bridge-2026-07-10.csv.gz",
+      "sha256": "7b42d387daf463ecad1f73db89d32566645c2c23785e89c9b5b8f084e75891d4",
+      "refuse_on_mismatch": true
+    },
+    "PENDING_COORDINATE_VARIANTS": {
+      "rule": "every row carries law_status; VARIANT_A/B rows are PENDING_LAW until the website lane lands them",
+      "pending_rows": 20355,
+      "landed_rows": 301994,
+      "pending_works": 170
+    },
+    "LIVE_Y_DENOMINATOR": {
+      "live_y_pointer": {
+        "path": "ledgers/work/y/y-current.json",
+        "sha256": "0e246510680d34ac3c8555a5583f664ef6704fba9997f03bc9eb031aa9588b8f",
+        "schema_version": "y-current-pointer-v11-control-v2",
+        "current_version": 11,
+        "accepted_work_identities": 3986,
+        "accepted_c0_rows": 97858697,
+        "active_accepted_work_roots": 3746,
+        "held_accepted_work_roots": 240
+      },
+      "this_ledger": {
+        "bridge_works": 4047,
+        "bridge_c0_rows": 109391214
+      },
+      "delta": {
+        "works": 61,
+        "c0_rows": 11532517
+      },
+      "explanation": "This ledger's denominator is the BRIDGE (every unit the bridge allocates), not Y-current's accepted identities. Y-current v11 accepts 3,986 work identities / 97,858,697 C0 rows; the bridge carries more because it includes units for works not in Y's accepted set. The delta is definitional, not a defect: STRUCTURE is derived per bridged unit; ACCEPTANCE is Y-current's own ruling. No row here claims acceptance, and this ledger changes no pointer.",
+      "contract": "consumers MUST join on Y-current's accepted set when acceptance matters; this ledger answers 'what structure does the bridge seal for this unit', never 'is this work accepted'"
+    }
+  },
+  "counts": {
+    "bridge_units": 789806,
+    "parsed_units": 322349,
+    "unparsed_units": 467457,
+    "works": 4047,
+    "fully_parsed_works": 3411,
+    "partial_works": 30,
+    "unparsed_works": 606,
+    "coordinate_collisions": 0,
+    "law_counts": {
+      "CHAPTER_SECTION": 92993,
+      "FLAT_UNIT": 209001,
+      "VARIANT_A_DOUBLED": 20276,
+      "VARIANT_B_WSR": 79,
+      "NONE": 467457
+    }
+  }
+}
