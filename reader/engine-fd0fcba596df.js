@@ -3199,6 +3199,7 @@
       tally[sc.shape] += 1; tally.total += 1;
       if (sc.shape === 2 && sc.quoted > 0 && sc.quoted !== sc.run) tally.quoted_differs += 1;
     };
+    let lastServedC0 = -Infinity;
     for (const sec of zone.sections || []) {
       const u = units[sec.unit];
       if (!u) continue;
@@ -3278,6 +3279,38 @@
       nh.append(r1, r2);
       frag.append(nh); openedNode = true; nodeHeads.push({ node: sec.node, el: nh });
     }
+    // A WORK SERVED IN PART SAYS SO WHERE THE PART IS MISSING.
+    // partial-serve-rule-v1. A licence covering a whole work does not stop us
+    // serving part of it — half Hebrew and half Yiddish, we take the Hebrew,
+    // and the Hebrew is worth having. That is only honest while we are not
+    // claiming to serve the whole thing, and a claim nobody makes is a claim
+    // nobody can rely on. Deleting the out-of-scope part quietly leaves a
+    // responsum that reads as complete and merely short a sentence, which is
+    // the flattening defect exactly: a book stripped of its section marks
+    // presents as a book that never had any. A petuchah drawn as nothing is
+    // a lie about the page, and so is an omission drawn as nothing.
+    // So it is drawn AT ITS OWN POSITION, not summarised at the end.
+    for (const om of ((zone.served_in_part || {}).omissions) || []) {
+      const at = Number(om.at_c0);
+      if (!Number.isFinite(at)) continue;
+      if (!(at <= Number(sec.c0_first) && at > lastServedC0)) continue;
+      const gapEl = document.createElement("div");
+      gapEl.className = "omission";
+      gapEl.setAttribute("role", "note");
+      const n = Number(om.words);
+      gapEl.append(Object.assign(document.createElement("span"),
+        { className: "om-mark", textContent: "\u2014\u2009\u2014\u2009\u2014" }));
+      gapEl.append(Object.assign(document.createElement("span"),
+        { className: "om-what",
+          textContent: Number.isFinite(n) && n > 0
+            ? `${n.toLocaleString()} words stood here and are not served: ${om.what}`
+            : `Text stood here and is not served: ${om.what}` }));
+      gapEl.append(Object.assign(document.createElement("span"),
+        { className: "om-why", textContent: om.why }));
+      frag.append(gapEl);
+    }
+    lastServedC0 = Number(sec.c0_last);
+
     const s = document.createElement("section"); s.className = "seg";
     s.id = `s${secIdx}`;
     (nodeSections[sec.node] = nodeSections[sec.node] || []).push({ label: sec.label || String(secIdx + 1), id: s.id });

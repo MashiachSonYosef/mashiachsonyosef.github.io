@@ -317,6 +317,15 @@
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
 
   section.seg { margin: 0 0 1.35rem; }
+  /* An omission is drawn as a hole in the page, because that is what it is.
+     Muted rather than loud: it is not an error and not a warning, it is a
+     statement that this work is served in part and this is where the part
+     is missing. */
+  .omission { margin: 1.1rem 0 1.35rem; padding: .7rem .9rem; display: grid; gap: .28rem;
+    border-inline-start: 3px solid var(--rule, #8b7f69); opacity: .82; }
+  .omission .om-mark { letter-spacing: .12em; opacity: .55; }
+  .omission .om-what { font-size: .92em; }
+  .omission .om-why { font-size: .84em; opacity: .75; font-style: italic; }
   .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; direction: ltr; }
   .vnum { font-size: 0.72rem; color: var(--gold); border: 1px solid var(--line);
     background: var(--panel); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }

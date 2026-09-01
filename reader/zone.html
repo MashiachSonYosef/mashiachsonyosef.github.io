@@ -339,6 +339,15 @@
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
 
   section.seg { margin: 0 0 1.35rem; }
+  /* An omission is drawn as a hole in the page, because that is what it is.
+     Muted rather than loud: it is not an error and not a warning, it is a
+     statement that this work is served in part and this is where the part
+     is missing. */
+  .omission { margin: 1.1rem 0 1.35rem; padding: .7rem .9rem; display: grid; gap: .28rem;
+    border-inline-start: 3px solid var(--rule, #8b7f69); opacity: .82; }
+  .omission .om-mark { letter-spacing: .12em; opacity: .55; }
+  .omission .om-what { font-size: .92em; }
+  .omission .om-why { font-size: .84em; opacity: .75; font-style: italic; }
   .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; direction: ltr; }
   .vnum { font-size: 0.72rem; color: var(--gold); border: 1px solid var(--line);
     background: var(--panel); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
@@ -4295,6 +4304,7 @@
       tally[sc.shape] += 1; tally.total += 1;
       if (sc.shape === 2 && sc.quoted > 0 && sc.quoted !== sc.run) tally.quoted_differs += 1;
     };
+    let lastServedC0 = -Infinity;
     for (const sec of zone.sections || []) {
       const u = units[sec.unit];
       if (!u) continue;
@@ -4374,6 +4384,38 @@
       nh.append(r1, r2);
       frag.append(nh); openedNode = true; nodeHeads.push({ node: sec.node, el: nh });
     }
+    // A WORK SERVED IN PART SAYS SO WHERE THE PART IS MISSING.
+    // partial-serve-rule-v1. A licence covering a whole work does not stop us
+    // serving part of it — half Hebrew and half Yiddish, we take the Hebrew,
+    // and the Hebrew is worth having. That is only honest while we are not
+    // claiming to serve the whole thing, and a claim nobody makes is a claim
+    // nobody can rely on. Deleting the out-of-scope part quietly leaves a
+    // responsum that reads as complete and merely short a sentence, which is
+    // the flattening defect exactly: a book stripped of its section marks
+    // presents as a book that never had any. A petuchah drawn as nothing is
+    // a lie about the page, and so is an omission drawn as nothing.
+    // So it is drawn AT ITS OWN POSITION, not summarised at the end.
+    for (const om of ((zone.served_in_part || {}).omissions) || []) {
+      const at = Number(om.at_c0);
+      if (!Number.isFinite(at)) continue;
+      if (!(at <= Number(sec.c0_first) && at > lastServedC0)) continue;
+      const gapEl = document.createElement("div");
+      gapEl.className = "omission";
+      gapEl.setAttribute("role", "note");
+      const n = Number(om.words);
+      gapEl.append(Object.assign(document.createElement("span"),
+        { className: "om-mark", textContent: "\u2014\u2009\u2014\u2009\u2014" }));
+      gapEl.append(Object.assign(document.createElement("span"),
+        { className: "om-what",
+          textContent: Number.isFinite(n) && n > 0
+            ? `${n.toLocaleString()} words stood here and are not served: ${om.what}`
+            : `Text stood here and is not served: ${om.what}` }));
+      gapEl.append(Object.assign(document.createElement("span"),
+        { className: "om-why", textContent: om.why }));
+      frag.append(gapEl);
+    }
+    lastServedC0 = Number(sec.c0_last);
+
     const s = document.createElement("section"); s.className = "seg";
     s.id = `s${secIdx}`;
     (nodeSections[sec.node] = nodeSections[sec.node] || []).push({ label: sec.label || String(secIdx + 1), id: s.id });
