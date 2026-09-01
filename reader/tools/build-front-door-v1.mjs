@@ -42,7 +42,7 @@
 //
 // Run: node tools/build-front-door-v1.mjs
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, unlinkSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
@@ -1935,6 +1935,69 @@ Served from the \`gh-pages\` branch.
 // answers ?b= for the checks, and with neither meta nor query it names no
 // book and says so.
 const ZONE_HTML = readFileSync(arg("reader", "zone.html"), "utf8");
+
+// THE ENGINE IS ONE FILE, NOT THREE THOUSAND COPIES OF ONE FILE.
+//
+// An address page is zone.html verbatim, and zone.html carries its whole
+// reader inline: 71,734 bytes of CSS in the head and 244,582 bytes of script
+// in the body. Emitted into every address that is 0.91 GB of the same bytes
+// written 3,074 times, and it took the published tree to 1.08 GB against
+// GitHub Pages' 1 GB limit. The site was over the line it is served from.
+//
+// The cut is made HERE and not in zone.html. zone.html stays the one
+// hand-written reader with everything inline, because it is the bare
+// instrument every check opens at ?b=, and moving its own blocks out would
+// change what those checks read and hard-wire the engine's directory into a
+// file that should not know it. The build knows the directory. So the build
+// does the replacement, and only for the pages it emits.
+//
+// The filenames carry the content hash, which the corpus lane asked for and
+// is right: the file is immutable, it can be cached forever, and a page that
+// asks for an engine that is no longer there gets a loud 404 instead of
+// quietly running a stale copy that still answers to its old name.
+//
+// The script tag stands exactly where the inline block stood — in the body,
+// with no defer and no async. An external script at that position executes
+// at that point in document order, which is what the inline block did. Adding
+// defer would move it after parsing and change the reader's behavior, so it
+// is not added.
+const engineBlocks = (() => {
+  // Every block of each kind, then the largest one. NOT a single regex with a
+  // minimum length: "at least 20,000 characters, lazily, up to </script>"
+  // starts at the FIRST script — the 865-byte theme setter — runs straight
+  // past its own closing tag to reach the minimum, and then stops at the next
+  // one. That captured 320,410 bytes spanning all three blocks, wrote the
+  // stylesheet into the .js file, and left the real engine inline. A pattern
+  // that can cross a closing tag is a pattern that will.
+  const all = (tag) => [...ZONE_HTML.matchAll(new RegExp(`<${tag}([^>]*)>([\\s\\S]*?)</${tag}>`, "g"))];
+  const largest = (tag) => all(tag).sort((a, b) => b[2].length - a[2].length)[0];
+  const style = largest("style"), script = largest("script");
+  if (!style || !script || style[2].length < 20000 || script[2].length < 20000)
+    throw new Error("zone.html no longer carries the inline engine blocks this build extracts — refusing to emit pages that would silently keep them inline");
+  // and they must be disjoint, which is the thing the old pattern got wrong
+  const sEnd = style.index + style[0].length, jEnd = script.index + script[0].length;
+  if (style.index < jEnd && script.index < sEnd)
+    throw new Error("the style and script blocks this build extracts overlap — refusing to emit");
+  return {
+    css: { whole: style[0], body: style[2], name: `engine-${sha256(Buffer.from(style[2])).slice(0, 12)}.css` },
+    js: { whole: script[0], body: script[2], name: `engine-${sha256(Buffer.from(script[2])).slice(0, 12)}.js` },
+  };
+})();
+
+// Written beside zone.html, which is the served engine directory. Older
+// engines are removed first: a hash-named file nothing references is a file
+// that will be served forever because nothing ever asks whether it is still
+// needed.
+{
+  const here = dirname(fileURLToPath(import.meta.url));
+  const engineDir = join(here, "..");
+  for (const f of readdirSync(engineDir))
+    if (/^engine-[0-9a-f]{12}\.(js|css)$/.test(f) && f !== engineBlocks.css.name && f !== engineBlocks.js.name)
+      unlinkSync(join(engineDir, f));
+  writeFileSync(join(engineDir, engineBlocks.css.name), engineBlocks.css.body);
+  writeFileSync(join(engineDir, engineBlocks.js.name), engineBlocks.js.body);
+}
+
 const readerPage = (b) => {
   const anchor = "<title>";
   if (!ZONE_HTML.includes(anchor))
@@ -1944,7 +2007,10 @@ const readerPage = (b) => {
     `<meta name="reader-home" content="/${ENGINE}/">\n` +
     `<meta name="site-name" content="${SITE_NAME}">\n` +
     `<link rel="canonical" href="/${b.slug}">\n`;
-  return ZONE_HTML.replace(anchor, metas + anchor);
+  return ZONE_HTML
+    .replace(anchor, metas + anchor)
+    .replace(engineBlocks.css.whole, `<link rel="stylesheet" href="/${ENGINE}/${engineBlocks.css.name}">`)
+    .replace(engineBlocks.js.whole, `<script src="/${ENGINE}/${engineBlocks.js.name}"></script>`);
 };
 
 // The only Hebrew this page may print is a title carried from a zone — the
