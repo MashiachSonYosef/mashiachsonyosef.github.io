@@ -192,7 +192,34 @@ let ATLAS_NAMES = [];
     ATLAS_NAMES.sort((a, b) => b.length - a.length);
   }
 }
+// ONE PAGE IS GOVERNED BY A DIFFERENT RULE, AND THIS IS A DELEGATION, NOT AN
+// EXEMPTION. /demonstrations/ is hand-authored — the owner suspended the serve
+// law for it, because the books carrying written/read, the section marks and
+// the inverted nun are all held and nobody holds the end-of-book masorah, so
+// a reader could otherwise see none of what the frame is for.
+//
+// An exemption would be a hole: this check would stop looking and nothing
+// would look instead. So it hands the page to the rule that DOES govern it —
+// poc-demonstration-rule-v1, enforced by check-poc-fenced-v1, under which every
+// glyph must appear on a list the record declares. What is checked here is
+// that the delegation is real: the record must exist and must name the page.
+// Delete the record and the page falls straight back under this rule and
+// fails, which is what makes the handover safe to write down.
+const POC_PAGE = "demonstrations/index.html";
+const POC_RECORD = join(K3, "data", "poc-demonstration-v1.json");
+const delegated = new Set();
+for (const f of SERVED) if (f.endsWith(POC_PAGE)) delegated.add(f);
+if (delegated.size) {
+  const held = existsSync(POC_RECORD);
+  check(`  ${[...delegated].join(", ")} is governed by poc-demonstration-rule-v1 instead`,
+    held,
+    held
+      ? "its record stands and check-poc-fenced-v1 holds it to a declared list of strings"
+      : "the record is gone, so nothing governs a hand-authored page — it must be removed or the record restored");
+}
+
 for (const f of SERVED) {
+  if (delegated.has(f)) continue;
   let src = readFileSync(join(K3, f), "utf8");
   const isDoor = f === "deploy-root/index.html" || f === "../index.html";
   const isEmitted = f.startsWith("deploy-root/") || f.startsWith("../");

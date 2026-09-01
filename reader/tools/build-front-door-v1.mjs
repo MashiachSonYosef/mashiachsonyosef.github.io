@@ -68,6 +68,9 @@ const TEXT_PIN_RULE = "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1";
 // deep-equal against the bindings record below holds the derivation to the
 // record. Renaming the folder is then one move and one record edit.
 const ENGINE = basename(join(dirname(fileURLToPath(import.meta.url)), ".."));
+// The door's own stylesheet, hoisted so the demonstrations page wears the
+// same face rather than a second one drifting beside it.
+const DOOR_CSS = "  /* colour-role-rule-v1 · the roles are the ledgers and the values are ours.\n     The reader paints the recorded contract — structure gold, base surface\n     purple — and the door had been wearing an invented blue-grey instead,\n     so the way in looked like a different building than the rooms. Same\n     tokens as zone.html, verbatim. */\n  :root { --bg:#0d0a14; --panel:#171021; --panel2:#120d1a; --line:#2b2039; --ink:#efe6cf;\n          --ink-strong:#f8f0da; --muted:#b2a489; --faint:#8b7f69;\n          --gold:#eac86f; --gold-dim:#a98c4b; --amber:#d9a441;\n          --sel:#82bdf4; --sel-dim:#47759c; --sel-ink:#081221;\n          --shani:#c65b42; --shesh:#ddcda9; --link:#ddcda9;\n          --chip-bg:rgba(216,199,164,.12); --chip-line:rgba(216,199,164,.3);\n          --hover-wash:rgba(224,182,79,.06); --shade:rgba(5,3,8,.55);\n          --sel-ink:#081221; --shadow-card:0 14px 40px rgba(0,0,0,.6); }\n  /* the day face — linen, warm and below paper white; same roles, valued\n     for light, chosen by the device until the reader presses the button */\n  :root[data-scheme=\"day\"] {\n    color-scheme: light;\n    --bg:#f1e9d8; --panel:#f8f2e5; --panel2:#ebe2cd; --line:#d5c8ab;\n    --ink:#2b2519; --ink-strong:#1c180f; --muted:#5f5645; --faint:#7b7058;\n    --gold:#8a6b26; --gold-dim:#b0955c; --amber:#8f6a1c;\n    --sel:#275fa6; --sel-dim:#a3bdd9; --sel-ink:#f5f9fe;\n    --shani:#9c3a26; --shesh:#6b5a35; --link:#6b5a35;\n    --chip-bg:rgba(107,90,53,.10); --chip-line:rgba(107,90,53,.32);\n    --hover-wash:rgba(138,107,38,.10); --shade:rgba(96,80,48,.35);\n    --shadow-card:0 14px 40px rgba(96,80,48,.30); }\n  * { box-sizing: border-box; }\n  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }\n  body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink);\n         font:16px/1.6 Georgia,\"Times New Roman\",serif; display:flex; align-items:center;\n         justify-content:center; padding:1.4rem 1rem; overflow-x:hidden; }\n  main { width:100%; max-width:40rem; }\n  h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--gold); }\n  p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }\n  /* The face speaks plainly; the audited panel stands whole behind one quiet\n     fold, its grains and receipts byte-identical for the count guard. What a\n     reader meets first is what they can read, not the machine room. */\n  .face-line { margin:.8rem 0 .5rem; color:var(--muted); font-size:.9rem; }\n  /* There was a block here that lifted the readable works to the top of the\n     page in a shape of their own. It was a proof-of-concept affordance: with\n     two books live, the door had to point somewhere. It is gone. The door\n     lists what the corpus holds, in one order, by one rule, and a work that\n     can be read is reached the same way as any other — through its family, or\n     by typing its name. Nothing is promoted by hand. */\n  .counts-fold { margin:.4rem 0 1.1rem; }\n  .counts-fold > summary { cursor:pointer; color:var(--faint); font-size:.78rem;\n    letter-spacing:.04em; list-style:none; }\n  .counts-fold > summary::-webkit-details-marker { display:none; }\n  .counts-fold > summary::before { content:\"▸\u2002\"; }\n  .counts-fold[open] > summary::before { content:\"▾\u2002\"; }\n  .countboard { margin:.8rem 0 1.2rem; padding:.75rem; border:1px solid var(--line);\n                border-radius:.65rem; background:var(--panel2); }\n  .countgrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.45rem; }\n  .count { margin:0; padding:.45rem .5rem; border-left:2px solid var(--gold-dim); }\n  .count .num { display:block; color:var(--ink-strong); font-size:1rem; font-variant-numeric:tabular-nums; }\n  .count .grain { display:block; color:var(--muted); font-size:.7rem; line-height:1.35; }\n  .count-detail, .count-grain, .count-audit { margin:.55rem 0 0; color:var(--faint); font-size:.68rem; line-height:1.45; }\n  .count-grain { color:var(--muted); }\n  /* no anchor falls back to the browser's default purple — invisible on\n     the night linen; the door's links wear the door's own gold */\n  a { color:var(--gold-dim); }\n  a:hover { color:var(--gold); }\n  .count-audit a { color:var(--gold-dim); }\n  @media (max-width:620px) { .countgrid { grid-template-columns:1fr; } }\n  .books { display:flex; flex-direction:column; gap:.55rem; }\n  .bookcard { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;\n           border:1px solid var(--line); border-radius:.7rem; background:var(--panel);\n           padding:.7rem .9rem .6rem; }\n  .bookcard:hover { border-color:var(--gold-dim); }\n  a.book { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;\n           text-decoration:none; color:var(--ink); align-self:stretch; }\n  /* Two ways in, and the Hebrew one comes first: the title opens the word's\n     own record — readings oldest source first — because the answer this\n     project gives to an unreadable word is never the force-read below it. */\n  a.titleway { text-decoration:none; display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }\n  a.titleway .g { font-size:.72rem; color:var(--muted); border-bottom:1px dotted var(--gold-dim); }\n  a.titleway:hover .g { color:var(--gold); }\n  a.titleway:hover .he { color:var(--shesh-bright, #eadbbd); }\n  /* The title is the book's own. The English beside it is not a translation of\n     it and must not be able to be read as one — it is how a reader who does not\n     read Hebrew finds and refers to the book. So each line says which of the\n     two it is before the thing itself. The labels are ours; the title is not. */\n  .bookcard .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }\n  .bookcard .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;\n                text-transform:uppercase; color:var(--faint); }\n  .bookcard .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }\n  .bookcard .he, a.sub-work .he { font-family:\"Frank Ruehl CLM\",\"David Libre\",\"SBL Hebrew\",Georgia,serif;\n    font-size:1.25rem; color:var(--shesh); }\n  .bookcard .he.none, a.sub-work .he.none { font-family:Georgia,serif; font-size:.85rem;\n    font-style:italic; color:var(--faint); }\n  .bookcard .chip { font-size:.62rem; letter-spacing:.06em; color:var(--muted);\n    border:1px solid var(--line); border-radius:.6rem; padding:.1rem .45rem; }\n  a.sub-work .he { font-size:1.05rem; margin-right:.5rem; }\n  .bookcard .of { margin-top:.25rem; color:var(--faint); font-size:.76rem; }\n  .bookcard .of.slots, a.sub-work .of.slots { margin-top:.2rem; font-style:italic; }\n  /* The commentary is not a third book. It arrives shut, and what is behind it\n     is one entry per book, each going to the book it belongs to — because that\n     is where a commentary is read. */\n  #find { margin:0 0 1rem; }\n  #find input { width:100%; padding:.6rem .9rem; border:1px solid var(--line); border-radius:.55rem;\n    background:var(--panel); color:var(--ink); font:inherit; font-size:.92rem; }\n  #find input::placeholder { color:var(--faint); }\n  #find input:focus { outline:none; border-color:var(--gold-dim); }\n  .workgroup { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); overflow:hidden; }\n  .workgroup .bookcard { border:none; border-radius:0; background:none; }\n  a.sub-work { display:block; padding:.6rem .9rem .6rem 1.7rem; border-top:1px solid var(--line);\n    text-decoration:none; color:var(--ink); }\n  a.sub-work:hover { background:var(--hover-wash); }\n  a.sub-work .en { display:block; font-size:.98rem; color:var(--gold-dim); }\n  a.sub-work .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }\n  /* A family is the outermost frame, and its head is the same register at\n     family grain: Hebrew name (an open slot until a ledger names one), the\n     force-read below, the sums of what it holds on the fold's face. Nested\n     folds: the family folds its groups; each group folds its record lines. */\n  section.family { }\n  /* the census banner: a quiet rule between the shelf and the records —\n     the shelf is books, the census is the bridge's ledger of the rest */\n  section.census-head { margin-top: 2.2rem; padding-top: 1rem;\n    border-top: 1px solid var(--line); }\n  section.census-head .of { letter-spacing: 0.04em; }\n  /* the reader, working: one derived verse with the machinery live */\n  .demo-he .fw { font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer;\n    font-family:\"Frank Ruehl CLM\",\"David Libre\",\"SBL Hebrew\",Georgia,serif; }\n  .demo-he .fw:hover { color:var(--gold); }\n  .demo-he .fw.inert { cursor:default; }\n  #demo { margin: 1rem 0 1.4rem; padding: .9rem 1rem 1rem; border: 1px solid var(--line);\n    border-radius: .6rem; background: var(--panel); }\n  #demo .demo-lab { margin: 0 0 .55rem; font-size: .7rem; letter-spacing: .12em;\n    text-transform: uppercase; color: var(--gold); }\n  #demo .d-verse { margin: 0; font-size: 1.35rem; line-height: 1.5; }\n  #demo .dw { display: inline-block; margin: 0 .18rem .4rem; text-align: center; vertical-align: top; }\n  #demo .dw .g { display: block; font-size: .6rem; line-height: 1.35; color: var(--muted);\n    max-width: 9em; direction: ltr; }\n  #demo .of { margin: .45rem 0 0; font-size: .78rem; color: var(--faint); }\n  /* The demonstrations. Deliberately unlike a served card: a dashed rule and\n     a plain warning, because the one thing this block must never do is pass\n     for text the chain carried. */\n  #poc { margin: 0 0 1.5rem; padding: .9rem 1rem 1rem; border: 1px dashed var(--line); border-radius: 4px; }\n  #poc .pc-warn { margin: 0 0 1rem; font-size: .8rem; color: var(--faint); line-height: 1.5; }\n  #poc .pc { margin: 0 0 1.1rem; padding: 0 0 1rem; border-bottom: 1px solid var(--line); }\n  #poc .pc:last-child { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }\n  #poc .pc-head { margin: 0; display: flex; gap: .5rem; align-items: baseline; flex-wrap: wrap; }\n  #poc .pc-kind { font-variant: small-caps; letter-spacing: .1em; font-size: .82rem; }\n  #poc .pc-letter { font-size: .7rem; border: 1px solid var(--line); border-radius: 3px; padding: 0 .3rem; color: var(--faint); }\n  #poc .pc-at { font-size: .74rem; color: var(--faint); }\n  #poc .pc-title { margin: .1rem 0 .5rem; font-size: .92rem; }\n  #poc .pc-row { margin: .3rem 0; display: flex; gap: .5rem; align-items: baseline; flex-wrap: wrap; }\n  #poc .pc-role { font-size: .72rem; color: var(--faint); min-width: 5.5rem; }\n  #poc .pc-he { font-size: 1.25rem; line-height: 1.9; }\n  #poc .pc-en { font-size: .8rem; color: var(--faint); }\n  #poc .pc-cell { display: inline-flex; gap: .35rem; align-items: baseline; }\n  #poc .pc-plus { color: var(--faint); }\n  #poc .pc-state { font-size: .74rem; letter-spacing: .08em; border: 1px solid var(--line); border-radius: 3px; padding: 0 .3rem; }\n  #poc .pc-says { margin: .5rem 0 .3rem; font-size: .8rem; line-height: 1.55; }\n  #poc .pc-flags { margin: .2rem 0; font-size: .72rem; color: var(--faint); }\n  #poc .pc-block { margin: .35rem 0 0; font-size: .76rem; color: var(--faint); }\n  #census-demo { margin: 0 0 1.4rem; padding: .9rem 1rem 1rem; border: 1px solid var(--line);\n    border-radius: .5rem; }\n  #census-demo .demo-lab { margin: 0 0 .55rem; font-size: .7rem; letter-spacing: .12em;\n    text-transform: uppercase; color: var(--faint); }\n  #census-demo .cd-line { margin: 0; display: flex; align-items: center; flex-wrap: wrap; row-gap: .35rem; }\n  #census-demo .cd-name { font-size: 1.05rem; font-variant: small-caps; letter-spacing: .12em;\n    color: var(--gold); text-decoration: none; }\n  #census-demo .cd-name:hover { text-decoration: underline; }\n  #census-demo .of { margin: .45rem 0 0; font-size: .78rem; color: var(--faint); }\n  details.fam > summary { list-style:none; cursor:pointer; padding:.3rem .15rem .45rem; }\n  details.fam > summary::-webkit-details-marker { display:none; }\n  details.fam > summary .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }\n  details.fam > summary .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;\n    text-transform:uppercase; color:var(--faint); }\n  details.fam > summary .en { font-size:1.15rem; font-variant:small-caps; letter-spacing:.14em; color:var(--gold);\n    overflow-wrap:anywhere; min-width:0; }\n  details.fam > summary .he.none { font-family:Georgia,serif; font-size:.85rem; font-style:italic; color:var(--faint); }\n  /* the name slot's absence, said in words — same voice as the title slot's */\n  .en.none { font-family:Georgia,serif; font-size:.8rem; font-style:italic; color:var(--faint);\n    font-variant:normal; letter-spacing:normal; }\n  details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }\n  details.fam > summary .fam-he .he { font-family:\"Frank Ruehl CLM\",\"David Libre\",\"SBL Hebrew\",Georgia,serif;\n    font-size:1.3rem; color:var(--shesh); }\n  details.fam > summary .fam-he .g { font-size:.7rem; color:var(--muted); }\n  /* the license rides beside every printed reading and every backed\n     force-read, in the same quiet chip the reader's card uses */\n  details.fam > summary .chip, .fam-he .g .chip, .demo-he .g .chip, #bkcard .chip, #census-demo .chip {\n    display:inline-block; margin-inline-start:.45rem; font-size:.6rem; letter-spacing:.06em;\n    font-variant:normal; font-style:normal; color:var(--muted);\n    border:1px solid var(--line); border-radius:.6rem; padding:.06rem .45rem; white-space:nowrap;\n    /* an attestor's full descriptor is a sentence; the chip shows its head\n       and carries the whole of it on hover — a chip that printed the whole\n       descriptor pushed the door sideways off a phone */\n    max-width:11em; overflow:hidden; text-overflow:ellipsis; vertical-align:bottom; }\n  details.fam > summary .of[title] { cursor:help; }\n  #wcard .w-open { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; margin:.1rem 0 .45rem;\n    padding-bottom:.4rem; border-bottom:1px solid var(--line); }\n  #wcard .w-open[hidden] { display:none; }\n  #wcard .w-open .lab { flex:0 0 auto; font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); }\n  #wcard .w-open .wo-link { font-size:.92rem; font-variant:small-caps; letter-spacing:.1em; color:var(--gold); }\n  .fam-he .fw { font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer; }\n  .fam-he .fw:hover { color:var(--gold); }\n  .fam-he .fw.inert { cursor:default; }\n  /* The word's own record, on this page — and it is the reader's card, not a\n     new one. The door had grown its own list-shaped thing for the same job the\n     HUD already does, which made the way in look like a different building\n     than the rooms for the second time. Every rule below is zone.html's, with\n     the same tokens: the head is the word, the reading stands under its own\n     label, the routes are pills with one lit, and the record beneath carries\n     the source and the license that never scroll away. */\n  #wcard { position:fixed; z-index:70; max-width:23rem; width:min(23rem,92vw); max-height:min(84vh,50rem);\n    left:50%; transform:translateX(-50%); bottom:1rem;\n    display:flex; flex-direction:column; overflow-y:auto; overflow-x:hidden;\n    background:var(--panel); border:1px solid #2c4a63; border-radius:.7rem;\n    padding:.85rem 1.05rem; box-shadow:var(--shadow-card); }\n  #wcard[hidden] { display:none; }\n  #wcard .head { display:flex; justify-content:space-between; align-items:baseline; gap:.6rem;\n    border-bottom:1px solid var(--line); padding-bottom:.4rem; margin-bottom:.3rem; flex:0 0 auto; }\n  #wcard .head b { font-size:1.55rem; color:var(--ink-strong);\n    font-family:\"Frank Ruehl CLM\",\"Frank Ruehl\",\"David Libre\",\"SBL Hebrew\",Georgia,serif; }\n  #wcard .head button { background:none; border:0; color:var(--link); font-size:1.15rem; cursor:pointer; }\n  #wcard p { margin:.45rem 0; }\n  #wcard .r-now { flex:0 0 auto; margin:.1rem 0 .35rem; padding-bottom:.35rem;\n    border-bottom:1px solid var(--line); direction:ltr; }\n  #wcard .r-now .k { display:block; color:var(--faint); font-size:.68rem;\n    letter-spacing:.08em; text-transform:uppercase; }\n  #wcard .r-now .v { display:block; color:var(--ink-strong); font-size:.94rem; line-height:1.3;\n    overflow-wrap:anywhere; max-height:3.9em; overflow-y:auto; overflow-x:hidden; }\n  #wcard .r-now .v.none { color:var(--faint); font-style:italic; }\n  #wcard .r-label { margin:.5rem 0 .3rem; color:var(--faint); font-size:.74rem;\n    letter-spacing:.06em; text-transform:uppercase; }\n  #wcard .r-pills { display:flex; flex-wrap:wrap; gap:.35rem; direction:ltr;\n    overflow-y:auto; overflow-x:hidden; min-height:0; max-height:34vh; }\n  #wcard .r-pills button { border:1px solid var(--line); background:var(--panel2); color:var(--muted);\n    border-radius:.9rem; padding:.22rem .7rem; font:inherit; font-size:.76rem; cursor:pointer;\n    max-width:100%; text-align:left; white-space:normal; overflow-wrap:anywhere; }\n  #wcard .r-pills button[aria-pressed=\"true\"] { background:var(--sel); border-color:var(--sel);\n    color:var(--sel-ink); font-weight:bold; }\n  #wcard .d-card { margin-top:.55rem; border-top:1px solid var(--line); padding-top:.45rem;\n    flex:0 0 auto; display:flex; flex-direction:column; overflow:hidden; max-height:32vh; }\n  #wcard .d-body { flex:1 1 auto; min-height:1.2rem; overflow-y:auto; color:var(--ink); font-size:.86rem; }\n  #wcard .d-foot { flex:0 0 auto; padding-top:.15rem; color:var(--muted); font-size:.78rem; }\n  #wcard .d-foot a { color:var(--link); }\n  #wcard .lic-chip { display:inline-block; margin-inline-start:.45rem; padding:.02rem .5rem;\n    border-radius:999px; background:var(--chip-bg); border:1px solid var(--chip-line);\n    color:var(--shesh); font-size:.72rem; }\n  #wcard .prov { color:var(--faint); font-size:.72rem; margin:.35rem 0 0; }\n  /* P — the sources carrying the same record as the selected reading. Same\n     rules as the reader's card: a corroboration is not a louder kind of\n     source, so it wears the same chip at a smaller weight. */\n  #wcard .d-also { margin:.3rem 0 0; padding-top:.3rem; border-top:1px dotted var(--line);\n    display:flex; flex-wrap:wrap; align-items:baseline; gap:.3rem .45rem; }\n  #wcard .d-also-lab { flex:1 0 100%; color:var(--faint); font-size:.66rem;\n    letter-spacing:.08em; text-transform:uppercase; }\n  #wcard .d-also-m { font:inherit; font-size:.74rem; color:var(--muted); cursor:pointer;\n    background:var(--panel2); border:1px solid var(--line); border-radius:.6rem;\n    padding:.16rem .55rem; text-align:left; max-width:100%; }\n  #wcard .d-also-m:hover { border-color:var(--sel-dim); color:var(--ink); }\n  #wcard .d-also-read { display:block; color:var(--faint); font-size:.68rem; }\n  #wcard .d-also-more { font:inherit; font-size:.72rem; color:var(--muted);\n    background:var(--panel2); border:1px solid var(--line); border-radius:.5rem;\n    padding:.16rem .4rem; cursor:pointer; max-width:100%; }\n  #wshade { position:fixed; inset:0; background:var(--shade); z-index:69; }\n  #wshade[hidden] { display:none; }\n  details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }\n  details.fam > summary > .row:first-child::before { content:\"\\u25b8\"; color:var(--gold-dim); font-size:.8rem; }\n  details.fam[open] > summary > .row:first-child::before { content:\"\\u25be\"; }\n  details.fam > summary:hover .en { color:var(--shesh); }\n  .fgroups { display:flex; flex-direction:column; gap:.55rem; }\n  .fgroups > .fold-line { display:block; margin:0; padding:.05rem .35rem; color:var(--faint); font-size:.76rem; }\n  .fgroups > .fold-line.slots { font-style:italic; font-size:.7rem; }\n  /* A work not yet built: its recorded id and its measured size, quiet and\n     unlinked — nothing links to nothing. A built work seated elsewhere links\n     to its own page and says where it reads. */\n  .atlas-row { display:flex; align-items:baseline; gap:.6rem; padding:.16rem .35rem;\n    font-size:.8rem; color:var(--faint); text-decoration:none; flex-wrap:wrap; min-width:0; }\n  .atlas-row .aw { color:var(--muted); unicode-bidi:plaintext; flex:1 1 auto; min-width:0;\n    overflow-wrap:anywhere;\n    font-family:\"Frank Ruehl CLM\",\"David Libre\",\"SBL Hebrew\",Georgia,serif; }\n  .atlas-row .au { font-size:.68rem; white-space:nowrap; }\n  .atlas-row button.aw { font:inherit; font-family:\"Frank Ruehl CLM\",\"David Libre\",\"SBL Hebrew\",Georgia,serif;\n    text-align:start; background:none; border:0; padding:0; cursor:pointer; }\n  .atlas-row button.aw:hover, .atlas-row button.aw:focus-visible { color:var(--gold); }\n  a.atlas-row.built .aw { color:var(--gold-dim); }\n  a.atlas-row.built:hover .aw { color:var(--gold); }\n  /* A built row is a book: the zone's own title words first (each opens its\n     record — the same global card as everywhere), then the name as the way\n     in, then the zone's counts. One law for the curated two and the fleet's\n     thousands alike. */\n  span.atlas-row.built { color:var(--faint); }\n  span.atlas-row.built .fam-he .he { font-family:\"Frank Ruehl CLM\",\"David Libre\",\"SBL Hebrew\",Georgia,serif;\n    font-size:.95rem; color:var(--ink); }\n  span.atlas-row.built .fam-he .fw { font:inherit; color:inherit; background:none; border:none;\n    padding:0; cursor:pointer; }\n  span.atlas-row.built .fam-he .fw:hover { color:var(--gold); }\n  span.atlas-row.built .fam-he .fw.inert { cursor:default; }\n  span.atlas-row.built a.aw { color:var(--gold-dim); text-decoration:none; }\n  span.atlas-row.built a.aw:hover { color:var(--gold); }\n  /* The book's own record, on this page — the masthead's frame at book\n     grain. What a ledger records stands as itself; what none records says\n     so; the force-read is the bridge id read plainly, and the family line\n     is the family ledger's own, its Hebrew word a way into the word's\n     record like anywhere else on the door. */\n  #bkcard { position:fixed; z-index:70; max-width:26rem; width:min(26rem,92vw); max-height:min(84vh,40rem);\n    left:50%; transform:translateX(-50%); bottom:1rem;\n    display:flex; flex-direction:column; overflow-y:auto; overflow-x:hidden;\n    background:var(--panel); border:1px solid var(--line); border-radius:.7rem;\n    padding:.85rem 1.05rem; box-shadow:var(--shadow-card); }\n  #bkcard[hidden] { display:none; }\n  #bkcard .head { display:flex; justify-content:space-between; align-items:baseline; gap:.6rem; }\n  #bkcard .head b { font-size:.9rem; color:var(--muted); font-weight:normal; overflow-wrap:anywhere; }\n  #bkcard .head button { background:none; border:0; color:var(--link); font-size:1.15rem; cursor:pointer; }\n  #bkcard .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; margin:.3rem 0; }\n  #bkcard .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;\n    text-transform:uppercase; color:var(--faint); }\n  #bkcard .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim);\n    overflow-wrap:anywhere; min-width:0; }\n  #bkcard .he.none { font-family:Georgia,serif; font-size:.85rem; font-style:italic; color:var(--faint); }\n  #bkcard .slot { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.1rem; }\n  #bkcard .att-line { font-size:.7rem; line-height:1.5; overflow-wrap:anywhere; }\n  #bkcard .att-line a { color:var(--link); }\n  #bkcard .att-held { color:var(--faint); font-style:italic; }\n  #bkcard .slot .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }\n  #bkcard .slot .fam-he .he { font-family:\"Frank Ruehl CLM\",\"David Libre\",\"SBL Hebrew\",Georgia,serif;\n    font-size:1.2rem; color:var(--shesh); }\n  #bkcard .slot .fam-he .g { font-size:.7rem; color:var(--muted); }\n  #bkcard .slot .of .en { font-size:.85rem; }\n  #bkcard .of { color:var(--faint); font-size:.76rem; }\n  #bkcard .prov { color:var(--faint); font-size:.72rem; margin:.35rem 0 0; }\n  /* One quiet fold per group. Its face is the summary line built above —\n     each folded thing named with its count — so collapsed is shorter, never\n     blinder. Closed is the resting state; the search box opens it when a\n     match would otherwise be out of sight. */\n  .workgroup details.fold { border-top:1px solid var(--line); }\n  .workgroup details.fold > summary { list-style:none; cursor:pointer;\n    padding:.4rem .9rem; color:var(--faint); font-size:.72rem; font-style:italic;\n    display:flex; align-items:baseline; gap:.45rem; }\n  .workgroup details.fold > summary::-webkit-details-marker { display:none; }\n  .workgroup details.fold > summary::before { content:\"\\u25b8\"; font-style:normal;\n    color:var(--gold-dim); transition:transform 140ms; }\n  .workgroup details.fold[open] > summary::before { content:\"\\u25be\"; }\n  .workgroup details.fold > summary:hover { color:var(--muted); }\n  .workgroup details.fold .fold-line { display:block; margin:0; padding:.05rem .9rem .4rem; }\n  a.sub-book { display:block; padding:.6rem .9rem .6rem 1.7rem; border-top:1px solid var(--line);\n    text-decoration:none; color:var(--ink); }\n  a.sub-book:hover { background:var(--hover-wash); }\n  a.sub-book .en { display:block; font-size:.98rem; color:var(--gold-dim); }\n  a.sub-book .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }\n  footer { margin-top:2.2rem; color:var(--faint); font-size:.78rem; }\n  footer .open-claim { margin-top:.9rem; padding-top:.7rem; border-top:1px solid var(--line); }\n  footer a { color:var(--gold-dim); }\n  /* the polish layer — same as the reader's: motion that acknowledges a\n     press, focus a keyboard can see, selection in the reader's own blue */\n  * { -webkit-tap-highlight-color: transparent; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }\n  ::selection { background: var(--sel-dim); color: var(--ink-strong); }\n  *::-webkit-scrollbar { width: 8px; height: 8px; }\n  *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }\n  *::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }\n  a, summary, button, input { transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease; }\n  :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }\n  @media (prefers-reduced-motion: reduce) { a, summary, button, input { transition: none; } }\n  .face { position:fixed; top:.9rem; right:.9rem; z-index:80; border:1px solid var(--line);\n    border-radius:999px; background:var(--panel); color:var(--muted); font:inherit;\n    font-size:.72rem; padding:.12rem .7rem; cursor:pointer; }\n  .face:hover { color:var(--gold); border-color:var(--gold-dim); }\n  /* the census stands at its own address; the door wears the way there in\n     the same corner the faces live in, one step down */\n  a.alt-face { top:3.1rem; text-decoration:none; }";
 // Where the site answers, read from the site's own declaration of it rather
 // than typed here. A published address used to be a string in this file, and
 // on the day the site moved it became a promise nobody had kept — the README
@@ -897,6 +900,46 @@ const demo = (() => {
   const zi = ZONE_INFO.get(first);
   return { slug: first, label: plainName(first), words, postures, zi };
 })();
+// THE DEMONSTRATIONS — hand-authored, fenced, never served.
+//
+// The owner suspended the serve law for this block and only this block. The
+// books carrying written/read, the section marks and the inverted nun are held
+// (markup bled into their text), and nobody holds the end-of-book masorah at
+// all. So the front page could show none of what the frame is for.
+//
+// What is NOT suspended is that a reader can tell the difference. Every
+// demonstration is fenced, labelled as typed, and refused a licence chip — a
+// licence chip over a typed string is the one lie this site cannot afford.
+// data/poc-demonstration-v1.json lists every Hebrew string it uses, and
+// check-poc-fenced-v1 refuses any glyph on this page that is neither carried
+// from a record nor on that list. A suspended rule with a fence around it is
+// still a rule; without the fence it is just absent.
+const POC = JSON.parse(readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "data", "poc-demonstration-v1.json"), "utf8"));
+const heSpan = (t) => `<span class="pc-he" lang="he" dir="rtl">${esc(t)}</span>`;
+const pocBody = (d) => {
+  if (d.branches) return d.branches.map((b) =>
+    `<p class="pc-row"><span class="pc-role">${esc(b.role)} ${esc(b.delimiter)}</span>${heSpan(b.surface)}<span class="pc-en">${esc(b.english)}</span></p>`).join("");
+  if (d.options) return d.options.map((o) =>
+    `<p class="pc-row"><span class="pc-role">option ${o.option}</span>${o.cells.map((c) =>
+      `<span class="pc-cell">${heSpan(c.surface)}<span class="pc-en">${esc(c.english)}</span></span>`).join('<span class="pc-plus">+</span>')}</p>`).join("");
+  if (d.measures) return d.measures.map((m) =>
+    `<p class="pc-row">${heSpan(m.label)}<span class="pc-en">${esc(m.english)}</span></p>`).join("")
+    + `<p class="pc-row"><span class="pc-role">state</span><span class="pc-state">${esc(d.the_state_shown_here)}</span><span class="pc-en">${esc(d.why_no_numbers_are_shown)}</span></p>`;
+  return `<p class="pc-row">${heSpan(d.the_source_wrote)}${d.expands_to ? `<span class="pc-plus">=</span>${heSpan(d.expands_to)}` : ""}</p>`;
+};
+const pocLink = `  <p class="poc-link"><a href="/demonstrations/">what each part of the frame looks like when it works</a> \u2014 hand-drawn mockups, not text from any book</p>`;
+const pocHtml = `  <section id="poc" aria-label="Demonstrations, hand-authored">
+    <p class="demo-lab">what each part of the frame looks like when it works</p>
+    <p class="pc-warn">Typed by hand. Not corpus text, not a reading, and carrying no licence — these show the shape of a card, not the content of a book. ${esc(POC.demonstrations.filter((d) => /^Nothing/.test(d.blocks_the_real_thing)).length)} of ${esc(POC.demonstrations.length)} work on this site today; each one says below what stands in the way of the rest.</p>
+${POC.demonstrations.map((d) => `    <article class="pc">
+      <p class="pc-head"><span class="pc-kind">${esc(d.kind)}</span><span class="pc-letter">${esc(d.letter)}</span><span class="pc-at">${esc(d.at)}</span></p>
+      <p class="pc-title">${esc(d.title)}</p>
+      ${pocBody(d)}
+      <p class="pc-says">${esc(d.the_card_says)}</p>
+      ${d.counts ? `<p class="pc-flags">counts ${esc(String(d.counts).split(" ")[0])} · ${esc(d.key || "")}</p>` : ""}
+      <p class="pc-block">${/^Nothing/.test(d.blocks_the_real_thing) ? "<b>live on this site</b> — " : "<b>not yet</b> — "}${esc(d.blocks_the_real_thing)}</p>
+    </article>`).join("\n")}
+  </section>`;
 const demoHtml = demo ? `  <section id="demo" aria-label="The reader, working">
     <p class="demo-lab">the reader, working — press any word</p>
     <p class="d-verse"><span class="demo-he"><span class="he" dir="rtl">${demo.words.map((w) => w.k
@@ -996,347 +1039,7 @@ const pageDoc = (page) => `<!doctype html>
 })();
 </script>
 <style>
-  /* colour-role-rule-v1 · the roles are the ledgers and the values are ours.
-     The reader paints the recorded contract — structure gold, base surface
-     purple — and the door had been wearing an invented blue-grey instead,
-     so the way in looked like a different building than the rooms. Same
-     tokens as zone.html, verbatim. */
-  :root { --bg:#0d0a14; --panel:#171021; --panel2:#120d1a; --line:#2b2039; --ink:#efe6cf;
-          --ink-strong:#f8f0da; --muted:#b2a489; --faint:#8b7f69;
-          --gold:#eac86f; --gold-dim:#a98c4b; --amber:#d9a441;
-          --sel:#82bdf4; --sel-dim:#47759c; --sel-ink:#081221;
-          --shani:#c65b42; --shesh:#ddcda9; --link:#ddcda9;
-          --chip-bg:rgba(216,199,164,.12); --chip-line:rgba(216,199,164,.3);
-          --hover-wash:rgba(224,182,79,.06); --shade:rgba(5,3,8,.55);
-          --sel-ink:#081221; --shadow-card:0 14px 40px rgba(0,0,0,.6); }
-  /* the day face — linen, warm and below paper white; same roles, valued
-     for light, chosen by the device until the reader presses the button */
-  :root[data-scheme="day"] {
-    color-scheme: light;
-    --bg:#f1e9d8; --panel:#f8f2e5; --panel2:#ebe2cd; --line:#d5c8ab;
-    --ink:#2b2519; --ink-strong:#1c180f; --muted:#5f5645; --faint:#7b7058;
-    --gold:#8a6b26; --gold-dim:#b0955c; --amber:#8f6a1c;
-    --sel:#275fa6; --sel-dim:#a3bdd9; --sel-ink:#f5f9fe;
-    --shani:#9c3a26; --shesh:#6b5a35; --link:#6b5a35;
-    --chip-bg:rgba(107,90,53,.10); --chip-line:rgba(107,90,53,.32);
-    --hover-wash:rgba(138,107,38,.10); --shade:rgba(96,80,48,.35);
-    --shadow-card:0 14px 40px rgba(96,80,48,.30); }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-  body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
-         font:16px/1.6 Georgia,"Times New Roman",serif; display:flex; align-items:center;
-         justify-content:center; padding:1.4rem 1rem; overflow-x:hidden; }
-  main { width:100%; max-width:40rem; }
-  h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--gold); }
-  p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }
-  /* The face speaks plainly; the audited panel stands whole behind one quiet
-     fold, its grains and receipts byte-identical for the count guard. What a
-     reader meets first is what they can read, not the machine room. */
-  .face-line { margin:.8rem 0 .5rem; color:var(--muted); font-size:.9rem; }
-  /* There was a block here that lifted the readable works to the top of the
-     page in a shape of their own. It was a proof-of-concept affordance: with
-     two books live, the door had to point somewhere. It is gone. The door
-     lists what the corpus holds, in one order, by one rule, and a work that
-     can be read is reached the same way as any other — through its family, or
-     by typing its name. Nothing is promoted by hand. */
-  .counts-fold { margin:.4rem 0 1.1rem; }
-  .counts-fold > summary { cursor:pointer; color:var(--faint); font-size:.78rem;
-    letter-spacing:.04em; list-style:none; }
-  .counts-fold > summary::-webkit-details-marker { display:none; }
-  .counts-fold > summary::before { content:"▸ "; }
-  .counts-fold[open] > summary::before { content:"▾ "; }
-  .countboard { margin:.8rem 0 1.2rem; padding:.75rem; border:1px solid var(--line);
-                border-radius:.65rem; background:var(--panel2); }
-  .countgrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.45rem; }
-  .count { margin:0; padding:.45rem .5rem; border-left:2px solid var(--gold-dim); }
-  .count .num { display:block; color:var(--ink-strong); font-size:1rem; font-variant-numeric:tabular-nums; }
-  .count .grain { display:block; color:var(--muted); font-size:.7rem; line-height:1.35; }
-  .count-detail, .count-grain, .count-audit { margin:.55rem 0 0; color:var(--faint); font-size:.68rem; line-height:1.45; }
-  .count-grain { color:var(--muted); }
-  /* no anchor falls back to the browser's default purple — invisible on
-     the night linen; the door's links wear the door's own gold */
-  a { color:var(--gold-dim); }
-  a:hover { color:var(--gold); }
-  .count-audit a { color:var(--gold-dim); }
-  @media (max-width:620px) { .countgrid { grid-template-columns:1fr; } }
-  .books { display:flex; flex-direction:column; gap:.55rem; }
-  .bookcard { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
-           border:1px solid var(--line); border-radius:.7rem; background:var(--panel);
-           padding:.7rem .9rem .6rem; }
-  .bookcard:hover { border-color:var(--gold-dim); }
-  a.book { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
-           text-decoration:none; color:var(--ink); align-self:stretch; }
-  /* Two ways in, and the Hebrew one comes first: the title opens the word's
-     own record — readings oldest source first — because the answer this
-     project gives to an unreadable word is never the force-read below it. */
-  a.titleway { text-decoration:none; display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
-  a.titleway .g { font-size:.72rem; color:var(--muted); border-bottom:1px dotted var(--gold-dim); }
-  a.titleway:hover .g { color:var(--gold); }
-  a.titleway:hover .he { color:var(--shesh-bright, #eadbbd); }
-  /* The title is the book's own. The English beside it is not a translation of
-     it and must not be able to be read as one — it is how a reader who does not
-     read Hebrew finds and refers to the book. So each line says which of the
-     two it is before the thing itself. The labels are ours; the title is not. */
-  .bookcard .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
-  .bookcard .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
-                text-transform:uppercase; color:var(--faint); }
-  .bookcard .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim); }
-  .bookcard .he, a.sub-work .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    font-size:1.25rem; color:var(--shesh); }
-  .bookcard .he.none, a.sub-work .he.none { font-family:Georgia,serif; font-size:.85rem;
-    font-style:italic; color:var(--faint); }
-  .bookcard .chip { font-size:.62rem; letter-spacing:.06em; color:var(--muted);
-    border:1px solid var(--line); border-radius:.6rem; padding:.1rem .45rem; }
-  a.sub-work .he { font-size:1.05rem; margin-right:.5rem; }
-  .bookcard .of { margin-top:.25rem; color:var(--faint); font-size:.76rem; }
-  .bookcard .of.slots, a.sub-work .of.slots { margin-top:.2rem; font-style:italic; }
-  /* The commentary is not a third book. It arrives shut, and what is behind it
-     is one entry per book, each going to the book it belongs to — because that
-     is where a commentary is read. */
-  #find { margin:0 0 1rem; }
-  #find input { width:100%; padding:.6rem .9rem; border:1px solid var(--line); border-radius:.55rem;
-    background:var(--panel); color:var(--ink); font:inherit; font-size:.92rem; }
-  #find input::placeholder { color:var(--faint); }
-  #find input:focus { outline:none; border-color:var(--gold-dim); }
-  .workgroup { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); overflow:hidden; }
-  .workgroup .bookcard { border:none; border-radius:0; background:none; }
-  a.sub-work { display:block; padding:.6rem .9rem .6rem 1.7rem; border-top:1px solid var(--line);
-    text-decoration:none; color:var(--ink); }
-  a.sub-work:hover { background:var(--hover-wash); }
-  a.sub-work .en { display:block; font-size:.98rem; color:var(--gold-dim); }
-  a.sub-work .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }
-  /* A family is the outermost frame, and its head is the same register at
-     family grain: Hebrew name (an open slot until a ledger names one), the
-     force-read below, the sums of what it holds on the fold's face. Nested
-     folds: the family folds its groups; each group folds its record lines. */
-  section.family { }
-  /* the census banner: a quiet rule between the shelf and the records —
-     the shelf is books, the census is the bridge's ledger of the rest */
-  section.census-head { margin-top: 2.2rem; padding-top: 1rem;
-    border-top: 1px solid var(--line); }
-  section.census-head .of { letter-spacing: 0.04em; }
-  /* the reader, working: one derived verse with the machinery live */
-  .demo-he .fw { font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer;
-    font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif; }
-  .demo-he .fw:hover { color:var(--gold); }
-  .demo-he .fw.inert { cursor:default; }
-  #demo { margin: 1rem 0 1.4rem; padding: .9rem 1rem 1rem; border: 1px solid var(--line);
-    border-radius: .6rem; background: var(--panel); }
-  #demo .demo-lab { margin: 0 0 .55rem; font-size: .7rem; letter-spacing: .12em;
-    text-transform: uppercase; color: var(--gold); }
-  #demo .d-verse { margin: 0; font-size: 1.35rem; line-height: 1.5; }
-  #demo .dw { display: inline-block; margin: 0 .18rem .4rem; text-align: center; vertical-align: top; }
-  #demo .dw .g { display: block; font-size: .6rem; line-height: 1.35; color: var(--muted);
-    max-width: 9em; direction: ltr; }
-  #demo .of { margin: .45rem 0 0; font-size: .78rem; color: var(--faint); }
-  #census-demo { margin: 0 0 1.4rem; padding: .9rem 1rem 1rem; border: 1px solid var(--line);
-    border-radius: .5rem; }
-  #census-demo .demo-lab { margin: 0 0 .55rem; font-size: .7rem; letter-spacing: .12em;
-    text-transform: uppercase; color: var(--faint); }
-  #census-demo .cd-line { margin: 0; display: flex; align-items: center; flex-wrap: wrap; row-gap: .35rem; }
-  #census-demo .cd-name { font-size: 1.05rem; font-variant: small-caps; letter-spacing: .12em;
-    color: var(--gold); text-decoration: none; }
-  #census-demo .cd-name:hover { text-decoration: underline; }
-  #census-demo .of { margin: .45rem 0 0; font-size: .78rem; color: var(--faint); }
-  details.fam > summary { list-style:none; cursor:pointer; padding:.3rem .15rem .45rem; }
-  details.fam > summary::-webkit-details-marker { display:none; }
-  details.fam > summary .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; }
-  details.fam > summary .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
-    text-transform:uppercase; color:var(--faint); }
-  details.fam > summary .en { font-size:1.15rem; font-variant:small-caps; letter-spacing:.14em; color:var(--gold);
-    overflow-wrap:anywhere; min-width:0; }
-  details.fam > summary .he.none { font-family:Georgia,serif; font-size:.85rem; font-style:italic; color:var(--faint); }
-  /* the name slot's absence, said in words — same voice as the title slot's */
-  .en.none { font-family:Georgia,serif; font-size:.8rem; font-style:italic; color:var(--faint);
-    font-variant:normal; letter-spacing:normal; }
-  details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
-  details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    font-size:1.3rem; color:var(--shesh); }
-  details.fam > summary .fam-he .g { font-size:.7rem; color:var(--muted); }
-  /* the license rides beside every printed reading and every backed
-     force-read, in the same quiet chip the reader's card uses */
-  details.fam > summary .chip, .fam-he .g .chip, .demo-he .g .chip, #bkcard .chip, #census-demo .chip {
-    display:inline-block; margin-inline-start:.45rem; font-size:.6rem; letter-spacing:.06em;
-    font-variant:normal; font-style:normal; color:var(--muted);
-    border:1px solid var(--line); border-radius:.6rem; padding:.06rem .45rem; white-space:nowrap;
-    /* an attestor's full descriptor is a sentence; the chip shows its head
-       and carries the whole of it on hover — a chip that printed the whole
-       descriptor pushed the door sideways off a phone */
-    max-width:11em; overflow:hidden; text-overflow:ellipsis; vertical-align:bottom; }
-  details.fam > summary .of[title] { cursor:help; }
-  #wcard .w-open { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; margin:.1rem 0 .45rem;
-    padding-bottom:.4rem; border-bottom:1px solid var(--line); }
-  #wcard .w-open[hidden] { display:none; }
-  #wcard .w-open .lab { flex:0 0 auto; font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); }
-  #wcard .w-open .wo-link { font-size:.92rem; font-variant:small-caps; letter-spacing:.1em; color:var(--gold); }
-  .fam-he .fw { font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer; }
-  .fam-he .fw:hover { color:var(--gold); }
-  .fam-he .fw.inert { cursor:default; }
-  /* The word's own record, on this page — and it is the reader's card, not a
-     new one. The door had grown its own list-shaped thing for the same job the
-     HUD already does, which made the way in look like a different building
-     than the rooms for the second time. Every rule below is zone.html's, with
-     the same tokens: the head is the word, the reading stands under its own
-     label, the routes are pills with one lit, and the record beneath carries
-     the source and the license that never scroll away. */
-  #wcard { position:fixed; z-index:70; max-width:23rem; width:min(23rem,92vw); max-height:min(84vh,50rem);
-    left:50%; transform:translateX(-50%); bottom:1rem;
-    display:flex; flex-direction:column; overflow-y:auto; overflow-x:hidden;
-    background:var(--panel); border:1px solid #2c4a63; border-radius:.7rem;
-    padding:.85rem 1.05rem; box-shadow:var(--shadow-card); }
-  #wcard[hidden] { display:none; }
-  #wcard .head { display:flex; justify-content:space-between; align-items:baseline; gap:.6rem;
-    border-bottom:1px solid var(--line); padding-bottom:.4rem; margin-bottom:.3rem; flex:0 0 auto; }
-  #wcard .head b { font-size:1.55rem; color:var(--ink-strong);
-    font-family:"Frank Ruehl CLM","Frank Ruehl","David Libre","SBL Hebrew",Georgia,serif; }
-  #wcard .head button { background:none; border:0; color:var(--link); font-size:1.15rem; cursor:pointer; }
-  #wcard p { margin:.45rem 0; }
-  #wcard .r-now { flex:0 0 auto; margin:.1rem 0 .35rem; padding-bottom:.35rem;
-    border-bottom:1px solid var(--line); direction:ltr; }
-  #wcard .r-now .k { display:block; color:var(--faint); font-size:.68rem;
-    letter-spacing:.08em; text-transform:uppercase; }
-  #wcard .r-now .v { display:block; color:var(--ink-strong); font-size:.94rem; line-height:1.3;
-    overflow-wrap:anywhere; max-height:3.9em; overflow-y:auto; overflow-x:hidden; }
-  #wcard .r-now .v.none { color:var(--faint); font-style:italic; }
-  #wcard .r-label { margin:.5rem 0 .3rem; color:var(--faint); font-size:.74rem;
-    letter-spacing:.06em; text-transform:uppercase; }
-  #wcard .r-pills { display:flex; flex-wrap:wrap; gap:.35rem; direction:ltr;
-    overflow-y:auto; overflow-x:hidden; min-height:0; max-height:34vh; }
-  #wcard .r-pills button { border:1px solid var(--line); background:var(--panel2); color:var(--muted);
-    border-radius:.9rem; padding:.22rem .7rem; font:inherit; font-size:.76rem; cursor:pointer;
-    max-width:100%; text-align:left; white-space:normal; overflow-wrap:anywhere; }
-  #wcard .r-pills button[aria-pressed="true"] { background:var(--sel); border-color:var(--sel);
-    color:var(--sel-ink); font-weight:bold; }
-  #wcard .d-card { margin-top:.55rem; border-top:1px solid var(--line); padding-top:.45rem;
-    flex:0 0 auto; display:flex; flex-direction:column; overflow:hidden; max-height:32vh; }
-  #wcard .d-body { flex:1 1 auto; min-height:1.2rem; overflow-y:auto; color:var(--ink); font-size:.86rem; }
-  #wcard .d-foot { flex:0 0 auto; padding-top:.15rem; color:var(--muted); font-size:.78rem; }
-  #wcard .d-foot a { color:var(--link); }
-  #wcard .lic-chip { display:inline-block; margin-inline-start:.45rem; padding:.02rem .5rem;
-    border-radius:999px; background:var(--chip-bg); border:1px solid var(--chip-line);
-    color:var(--shesh); font-size:.72rem; }
-  #wcard .prov { color:var(--faint); font-size:.72rem; margin:.35rem 0 0; }
-  /* P — the sources carrying the same record as the selected reading. Same
-     rules as the reader's card: a corroboration is not a louder kind of
-     source, so it wears the same chip at a smaller weight. */
-  #wcard .d-also { margin:.3rem 0 0; padding-top:.3rem; border-top:1px dotted var(--line);
-    display:flex; flex-wrap:wrap; align-items:baseline; gap:.3rem .45rem; }
-  #wcard .d-also-lab { flex:1 0 100%; color:var(--faint); font-size:.66rem;
-    letter-spacing:.08em; text-transform:uppercase; }
-  #wcard .d-also-m { font:inherit; font-size:.74rem; color:var(--muted); cursor:pointer;
-    background:var(--panel2); border:1px solid var(--line); border-radius:.6rem;
-    padding:.16rem .55rem; text-align:left; max-width:100%; }
-  #wcard .d-also-m:hover { border-color:var(--sel-dim); color:var(--ink); }
-  #wcard .d-also-read { display:block; color:var(--faint); font-size:.68rem; }
-  #wcard .d-also-more { font:inherit; font-size:.72rem; color:var(--muted);
-    background:var(--panel2); border:1px solid var(--line); border-radius:.5rem;
-    padding:.16rem .4rem; cursor:pointer; max-width:100%; }
-  #wshade { position:fixed; inset:0; background:var(--shade); z-index:69; }
-  #wshade[hidden] { display:none; }
-  details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }
-  details.fam > summary > .row:first-child::before { content:"\u25b8"; color:var(--gold-dim); font-size:.8rem; }
-  details.fam[open] > summary > .row:first-child::before { content:"\u25be"; }
-  details.fam > summary:hover .en { color:var(--shesh); }
-  .fgroups { display:flex; flex-direction:column; gap:.55rem; }
-  .fgroups > .fold-line { display:block; margin:0; padding:.05rem .35rem; color:var(--faint); font-size:.76rem; }
-  .fgroups > .fold-line.slots { font-style:italic; font-size:.7rem; }
-  /* A work not yet built: its recorded id and its measured size, quiet and
-     unlinked — nothing links to nothing. A built work seated elsewhere links
-     to its own page and says where it reads. */
-  .atlas-row { display:flex; align-items:baseline; gap:.6rem; padding:.16rem .35rem;
-    font-size:.8rem; color:var(--faint); text-decoration:none; flex-wrap:wrap; min-width:0; }
-  .atlas-row .aw { color:var(--muted); unicode-bidi:plaintext; flex:1 1 auto; min-width:0;
-    overflow-wrap:anywhere;
-    font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif; }
-  .atlas-row .au { font-size:.68rem; white-space:nowrap; }
-  .atlas-row button.aw { font:inherit; font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    text-align:start; background:none; border:0; padding:0; cursor:pointer; }
-  .atlas-row button.aw:hover, .atlas-row button.aw:focus-visible { color:var(--gold); }
-  a.atlas-row.built .aw { color:var(--gold-dim); }
-  a.atlas-row.built:hover .aw { color:var(--gold); }
-  /* A built row is a book: the zone's own title words first (each opens its
-     record — the same global card as everywhere), then the name as the way
-     in, then the zone's counts. One law for the curated two and the fleet's
-     thousands alike. */
-  span.atlas-row.built { color:var(--faint); }
-  span.atlas-row.built .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    font-size:.95rem; color:var(--ink); }
-  span.atlas-row.built .fam-he .fw { font:inherit; color:inherit; background:none; border:none;
-    padding:0; cursor:pointer; }
-  span.atlas-row.built .fam-he .fw:hover { color:var(--gold); }
-  span.atlas-row.built .fam-he .fw.inert { cursor:default; }
-  span.atlas-row.built a.aw { color:var(--gold-dim); text-decoration:none; }
-  span.atlas-row.built a.aw:hover { color:var(--gold); }
-  /* The book's own record, on this page — the masthead's frame at book
-     grain. What a ledger records stands as itself; what none records says
-     so; the force-read is the bridge id read plainly, and the family line
-     is the family ledger's own, its Hebrew word a way into the word's
-     record like anywhere else on the door. */
-  #bkcard { position:fixed; z-index:70; max-width:26rem; width:min(26rem,92vw); max-height:min(84vh,40rem);
-    left:50%; transform:translateX(-50%); bottom:1rem;
-    display:flex; flex-direction:column; overflow-y:auto; overflow-x:hidden;
-    background:var(--panel); border:1px solid var(--line); border-radius:.7rem;
-    padding:.85rem 1.05rem; box-shadow:var(--shadow-card); }
-  #bkcard[hidden] { display:none; }
-  #bkcard .head { display:flex; justify-content:space-between; align-items:baseline; gap:.6rem; }
-  #bkcard .head b { font-size:.9rem; color:var(--muted); font-weight:normal; overflow-wrap:anywhere; }
-  #bkcard .head button { background:none; border:0; color:var(--link); font-size:1.15rem; cursor:pointer; }
-  #bkcard .row { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; margin:.3rem 0; }
-  #bkcard .lab { flex:0 0 auto; min-width:7rem; font-size:.6rem; letter-spacing:.18em;
-    text-transform:uppercase; color:var(--faint); }
-  #bkcard .en { font-size:1.05rem; font-variant:small-caps; letter-spacing:.12em; color:var(--gold-dim);
-    overflow-wrap:anywhere; min-width:0; }
-  #bkcard .he.none { font-family:Georgia,serif; font-size:.85rem; font-style:italic; color:var(--faint); }
-  #bkcard .slot { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.1rem; }
-  #bkcard .att-line { font-size:.7rem; line-height:1.5; overflow-wrap:anywhere; }
-  #bkcard .att-line a { color:var(--link); }
-  #bkcard .att-held { color:var(--faint); font-style:italic; }
-  #bkcard .slot .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
-  #bkcard .slot .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    font-size:1.2rem; color:var(--shesh); }
-  #bkcard .slot .fam-he .g { font-size:.7rem; color:var(--muted); }
-  #bkcard .slot .of .en { font-size:.85rem; }
-  #bkcard .of { color:var(--faint); font-size:.76rem; }
-  #bkcard .prov { color:var(--faint); font-size:.72rem; margin:.35rem 0 0; }
-  /* One quiet fold per group. Its face is the summary line built above —
-     each folded thing named with its count — so collapsed is shorter, never
-     blinder. Closed is the resting state; the search box opens it when a
-     match would otherwise be out of sight. */
-  .workgroup details.fold { border-top:1px solid var(--line); }
-  .workgroup details.fold > summary { list-style:none; cursor:pointer;
-    padding:.4rem .9rem; color:var(--faint); font-size:.72rem; font-style:italic;
-    display:flex; align-items:baseline; gap:.45rem; }
-  .workgroup details.fold > summary::-webkit-details-marker { display:none; }
-  .workgroup details.fold > summary::before { content:"\u25b8"; font-style:normal;
-    color:var(--gold-dim); transition:transform 140ms; }
-  .workgroup details.fold[open] > summary::before { content:"\u25be"; }
-  .workgroup details.fold > summary:hover { color:var(--muted); }
-  .workgroup details.fold .fold-line { display:block; margin:0; padding:.05rem .9rem .4rem; }
-  a.sub-book { display:block; padding:.6rem .9rem .6rem 1.7rem; border-top:1px solid var(--line);
-    text-decoration:none; color:var(--ink); }
-  a.sub-book:hover { background:var(--hover-wash); }
-  a.sub-book .en { display:block; font-size:.98rem; color:var(--gold-dim); }
-  a.sub-book .of { display:block; margin-top:.2rem; color:var(--faint); font-size:.78rem; }
-  footer { margin-top:2.2rem; color:var(--faint); font-size:.78rem; }
-  footer .open-claim { margin-top:.9rem; padding-top:.7rem; border-top:1px solid var(--line); }
-  footer a { color:var(--gold-dim); }
-  /* the polish layer — same as the reader's: motion that acknowledges a
-     press, focus a keyboard can see, selection in the reader's own blue */
-  * { -webkit-tap-highlight-color: transparent; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
-  ::selection { background: var(--sel-dim); color: var(--ink-strong); }
-  *::-webkit-scrollbar { width: 8px; height: 8px; }
-  *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
-  *::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
-  a, summary, button, input { transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease; }
-  :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
-  @media (prefers-reduced-motion: reduce) { a, summary, button, input { transition: none; } }
-  .face { position:fixed; top:.9rem; right:.9rem; z-index:80; border:1px solid var(--line);
-    border-radius:999px; background:var(--panel); color:var(--muted); font:inherit;
-    font-size:.72rem; padding:.12rem .7rem; cursor:pointer; }
-  .face:hover { color:var(--gold); border-color:var(--gold-dim); }
-  /* the census stands at its own address; the door wears the way there in
-     the same corner the faces live in, one step down */
-  a.alt-face { top:3.1rem; text-decoration:none; }
+${DOOR_CSS}
 </style>
 </head>
 <body>
@@ -1359,32 +1062,9 @@ ${page.altLink}
   <h1>${page.h1}</h1>
   <p class="sub">${page.sub}</p>
   <p class="face-line">${n(ZONE_INFO.size)} book${ZONE_INFO.size === 1 ? "" : "s"} readable today · ${n(ATLAS.totals.works - ZONE_INFO.size)} more stand listed, each saying on its own card what it awaits</p>
-${page.counts ? `  <details class="counts-fold">
-  <summary>the counts, at their exact grains — audited on every build</summary>
-  <section class="countboard" aria-label="Audited corpus counts"
-    data-text-input-byte-rule="${TEXT_PIN_RULE}"
-    data-logical-atlas-sha256="${atlasPinned.actual.sha256}"
-    data-physical-handoff-sha256="${handoffPinned.actual.sha256}"
-    data-physical-atlas-sha256="${BINDINGS.inputs.physical_atlas.sha256}"
-    data-logical-overlay-sha256="${BINDINGS.inputs.logical_overlay.sha256}"
-    data-genesis-clean-zone-sha256="${GENESIS_V3.zone.sha256}"
-    data-genesis-clean-handoff-sha256="${GENESIS_V3.front_door_handoff.sha256}"
-    data-genesis-clean-validation-sha256="${GENESIS_V3.validation.sha256}"
-    data-genesis-clean-seal-sha256="${GENESIS_V3.closed_world_seal.sha256}"
-    data-rendered-zone-manifest-sha256="${renderedTally.zone_manifest_sha256}">
-    <div class="countgrid">
-      <p class="count" data-count="current-physical-c0"><span class="num">${n(physicalRows)}</span><span class="grain">current physical C0 rows</span></p>
-      <p class="count" data-count="named-shelf-c0"><span class="num">${n(namedShelfRows)}</span><span class="grain">physically backed C0 rows on named work/unit shelves</span></p>
-      <p class="count" data-count="rendered-compspan-records"><span class="num">${n(renderedTally.compspan_records)}</span><span class="grain">displayed word records in ${n(renderedTally.built_zones)} built books</span></p>
-    </div>
-    <p class="count-grain">The displayed figure is a snapshot at a different grain: it counts one record per word block actually carried by the built books’ own bytes, not rows of the sealed text store. It is recomputed from those books on every build.</p>
-    <p class="count-detail">Logical plan: ${n(logicalPlanRows)} C0 rows across ${n(ATLAS.totals.works)} works and ${n(ATLAS.totals.units)} units · logical-plan C0 rows not physical: ${n(logicalPlanNotPhysicalRows)} · physical C0 rows not yet mapped to a named shelf: ${n(physicalUnmappedRows)}</p>
-    <p class="count-audit"><a href="/front-door-counts-receipt-v1.json">Open the count receipt</a> · logical atlas ${atlasPinned.actual.sha256.slice(0, 12)} · physical handoff ${handoffPinned.actual.sha256.slice(0, 12)} · physical atlas ${BINDINGS.inputs.physical_atlas.sha256.slice(0, 12)} · logical overlay ${BINDINGS.inputs.logical_overlay.sha256.slice(0, 12)} · zone-successor seal ${GENESIS_V3.closed_world_seal.sha256.slice(0, 12)}</p>
-  </section>
-  </details>
-  <script id="front-door-counts-receipt" type="application/json">${JSON.stringify(countReceipt).replace(/</g, "\\u003c")}</script>` : ""}
+${page.counts ? `  <script id="front-door-counts-receipt" type="application/json">${JSON.stringify(countReceipt).replace(/</g, "\\u003c")}</script>` : ""}
 ${page.demo ? demoHtml : ""}
-${page.demo ? censusDemoHtml : ""}
+${pocLink}
   <form id="find" role="search" onsubmit="return go(event)">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
       placeholder="find a book"
@@ -1777,7 +1457,7 @@ ${page.sections.join("\n")}
   <!-- A book's own title is corpus text and is not printed here. This page
        carries no records, so it can cite nothing; it says only how each book is
        commonly named, and the title itself waits inside, where it opens. -->
-  <footer>A book's own title is printed where it can be opened — inside the reader, out of the ledger, with the records behind it. This page names a built book as it is commonly read, and names everything not yet built by its recorded id alone, exactly as the bridge carries it — some ids hold the work's own Hebrew title, and that is the record showing, not this page translating. The Hebrew of each built book carries its own license, named on the page it is read from and in anything exported from it.
+  <footer>Every record carried here keeps its own licence, shown beside it wherever it prints.
   <p class="open-claim">This site is noncommercial: nothing is sold here, no advertising runs here, and no payment is taken here — declared 2026-08-30, and standing as long as this page serves. Some of the dictionary records carried here were released under noncommercial terms, and this declaration is how those terms are honored. Every carried record keeps its own license, shown beside it wherever it prints. Everything this site adds of its own — its pages, its arrangement, its receipts, its words — is dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>: take it, reuse it, build on it, no permission needed. What each carried record allows is the record's own license to say.</p></footer>
 </main>
 </body>
@@ -2057,6 +1737,30 @@ mkdirSync(OUT, { recursive: true });
 writeFileSync(join(OUT, "index.html"), doc);
 mkdirSync(join(OUT, "census"), { recursive: true });
 writeFileSync(join(OUT, "census", "index.html"), censusPageDoc);
+// The demonstrations, at their own address.
+//
+// They were going to sit on the front door and the door refused to emit them:
+// "printed a character of the text beyond the carried titles." That refusal was
+// right and is the reason this page exists separately. On the door, a typed
+// string sits beside strings the chain carried and a reader cannot tell which
+// is which. Here, the page says what it is before it says anything else.
+const pocDoc = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demonstrations \u00b7 ${SITE_NAME}</title>
+<link rel="canonical" href="/demonstrations/">
+<meta name="robots" content="noindex">
+<style>${DOOR_CSS}</style>
+</head><body><main>
+  <p class="poc-back"><a href="/">${SITE_NAME}</a></p>
+  <h1>Demonstrations</h1>
+  <p class="sub">Drawings of what the reader does with each kind of mark. Nothing on this page came from a book.</p>
+${pocHtml}
+  <footer>Hand-authored on ${POC.authored_on} at the owner\u2019s instruction, recorded in data/poc-demonstration-v1.json with every string it uses listed. The serve law \u2014 that the pipeline decides and no work is hand-picked \u2014 is suspended for this page and nowhere else. check-poc-fenced-v1 refuses any character here that the record does not declare, so a suspended rule keeps a boundary instead of becoming an absent one.</footer>
+</main></body></html>`;
+mkdirSync(join(OUT, "demonstrations"), { recursive: true });
+writeFileSync(join(OUT, "demonstrations", "index.html"), pocDoc);
+
 writeFileSync(join(OUT, "README.md"), readme);
 writeFileSync(join(OUT, "front-door-counts-receipt-v1.json"), countReceiptJson);
 // One page, used at a withheld work's own address and at any historical address

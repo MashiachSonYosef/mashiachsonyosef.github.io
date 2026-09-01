@@ -153,6 +153,28 @@
   #demo .dw .g { display: block; font-size: .6rem; line-height: 1.35; color: var(--muted);
     max-width: 9em; direction: ltr; }
   #demo .of { margin: .45rem 0 0; font-size: .78rem; color: var(--faint); }
+  /* The demonstrations. Deliberately unlike a served card: a dashed rule and
+     a plain warning, because the one thing this block must never do is pass
+     for text the chain carried. */
+  #poc { margin: 0 0 1.5rem; padding: .9rem 1rem 1rem; border: 1px dashed var(--line); border-radius: 4px; }
+  #poc .pc-warn { margin: 0 0 1rem; font-size: .8rem; color: var(--faint); line-height: 1.5; }
+  #poc .pc { margin: 0 0 1.1rem; padding: 0 0 1rem; border-bottom: 1px solid var(--line); }
+  #poc .pc:last-child { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+  #poc .pc-head { margin: 0; display: flex; gap: .5rem; align-items: baseline; flex-wrap: wrap; }
+  #poc .pc-kind { font-variant: small-caps; letter-spacing: .1em; font-size: .82rem; }
+  #poc .pc-letter { font-size: .7rem; border: 1px solid var(--line); border-radius: 3px; padding: 0 .3rem; color: var(--faint); }
+  #poc .pc-at { font-size: .74rem; color: var(--faint); }
+  #poc .pc-title { margin: .1rem 0 .5rem; font-size: .92rem; }
+  #poc .pc-row { margin: .3rem 0; display: flex; gap: .5rem; align-items: baseline; flex-wrap: wrap; }
+  #poc .pc-role { font-size: .72rem; color: var(--faint); min-width: 5.5rem; }
+  #poc .pc-he { font-size: 1.25rem; line-height: 1.9; }
+  #poc .pc-en { font-size: .8rem; color: var(--faint); }
+  #poc .pc-cell { display: inline-flex; gap: .35rem; align-items: baseline; }
+  #poc .pc-plus { color: var(--faint); }
+  #poc .pc-state { font-size: .74rem; letter-spacing: .08em; border: 1px solid var(--line); border-radius: 3px; padding: 0 .3rem; }
+  #poc .pc-says { margin: .5rem 0 .3rem; font-size: .8rem; line-height: 1.55; }
+  #poc .pc-flags { margin: .2rem 0; font-size: .72rem; color: var(--faint); }
+  #poc .pc-block { margin: .35rem 0 0; font-size: .76rem; color: var(--faint); }
   #census-demo { margin: 0 0 1.4rem; padding: .9rem 1rem 1rem; border: 1px solid var(--line);
     border-radius: .5rem; }
   #census-demo .demo-lab { margin: 0 0 .55rem; font-size: .7rem; letter-spacing: .12em;
@@ -258,8 +280,8 @@
   #wshade { position:fixed; inset:0; background:var(--shade); z-index:69; }
   #wshade[hidden] { display:none; }
   details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }
-  details.fam > summary > .row:first-child::before { content:"▸"; color:var(--gold-dim); font-size:.8rem; }
-  details.fam[open] > summary > .row:first-child::before { content:"▾"; }
+  details.fam > summary > .row:first-child::before { content:"\u25b8"; color:var(--gold-dim); font-size:.8rem; }
+  details.fam[open] > summary > .row:first-child::before { content:"\u25be"; }
   details.fam > summary:hover .en { color:var(--shesh); }
   .fgroups { display:flex; flex-direction:column; gap:.55rem; }
   .fgroups > .fold-line { display:block; margin:0; padding:.05rem .35rem; color:var(--faint); font-size:.76rem; }
@@ -331,9 +353,9 @@
     padding:.4rem .9rem; color:var(--faint); font-size:.72rem; font-style:italic;
     display:flex; align-items:baseline; gap:.45rem; }
   .workgroup details.fold > summary::-webkit-details-marker { display:none; }
-  .workgroup details.fold > summary::before { content:"▸"; font-style:normal;
+  .workgroup details.fold > summary::before { content:"\u25b8"; font-style:normal;
     color:var(--gold-dim); transition:transform 140ms; }
-  .workgroup details.fold[open] > summary::before { content:"▾"; }
+  .workgroup details.fold[open] > summary::before { content:"\u25be"; }
   .workgroup details.fold > summary:hover { color:var(--muted); }
   .workgroup details.fold .fold-line { display:block; margin:0; padding:.05rem .9rem .4rem; }
   a.sub-book { display:block; padding:.6rem .9rem .6rem 1.7rem; border-top:1px solid var(--line);
@@ -385,7 +407,7 @@
   <p class="face-line">3,064 books readable today · 983 more stand listed, each saying on its own card what it awaits</p>
 
 
-
+  <p class="poc-link"><a href="/demonstrations/">what each part of the frame looks like when it works</a> — hand-drawn mockups, not text from any book</p>
   <form id="find" role="search" onsubmit="return go(event)">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
       placeholder="find a book"
@@ -1936,7 +1958,7 @@
   <!-- A book's own title is corpus text and is not printed here. This page
        carries no records, so it can cite nothing; it says only how each book is
        commonly named, and the title itself waits inside, where it opens. -->
-  <footer>A book's own title is printed where it can be opened — inside the reader, out of the ledger, with the records behind it. This page names a built book as it is commonly read, and names everything not yet built by its recorded id alone, exactly as the bridge carries it — some ids hold the work's own Hebrew title, and that is the record showing, not this page translating. The Hebrew of each built book carries its own license, named on the page it is read from and in anything exported from it.
+  <footer>Every record carried here keeps its own licence, shown beside it wherever it prints.
   <p class="open-claim">This site is noncommercial: nothing is sold here, no advertising runs here, and no payment is taken here — declared 2026-08-30, and standing as long as this page serves. Some of the dictionary records carried here were released under noncommercial terms, and this declaration is how those terms are honored. Every carried record keeps its own license, shown beside it wherever it prints. Everything this site adds of its own — its pages, its arrangement, its receipts, its words — is dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>: take it, reuse it, build on it, no permission needed. What each carried record allows is the record's own license to say.</p></footer>
 </main>
 </body>
