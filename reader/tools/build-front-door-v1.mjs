@@ -996,15 +996,19 @@ const hudHtml = (d) => {
     // first. Layer two — how that word divides — sits under it, which is the
     // double compspan with both layers visible at once.
     // THE FORMS BAND EXISTS ONLY WHEN THE C0 HOLDS MORE THAN ONE CANDIDATE.
-    // A maqaf word is one word: nothing competes for the site, so drawing a
-    // row of one pill would invent a choice the text does not offer. Its
-    // absence is the difference between the two cards, and it should be
-    // visible as an absence rather than argued in prose.
+    // A row of one pill would invent a choice the text does not offer.
     return `<div class="pc-hudpane" data-for="${esca(d.id)}" data-i="${i}"${i === 0 ? "" : " hidden"}>`
       + (d.picks.length < 2 ? "" : `<div class="band b-q"><p class="r-label">${esca(h.forms || "")} \u00b7 ${d.picks.length}</p>`
       + `<div class="s-pills">${d.picks.map((o, j) =>
           `<button type="button" class="pc-pick" data-for="${esca(d.id)}" data-i="${j}" aria-pressed="${i === j}" title="${esca(o.label)}">`
-          + (o.pill
+          + (o.pill_cells
+              // A LAYER-ONE PILL SHOWS THE WORDS IT PROPOSES. Where the mark
+              // has a naming convention the pill wears the name; where it has
+              // none, the honest pill is the words themselves, drawn the way
+              // the division pills below are drawn so that the two lattices
+              // read as the same kind of object one layer apart.
+              ? o.cells.map((x) => `<span lang="he" dir="rtl">${esca(x.surface)}</span>`).join(' <span class="pc-plus">+</span> ')
+              : o.pill
               // THE PILL CARRIES THE KEY. A sentence above the card explaining
               // that parens hold the written form and brackets the read one is
               // a sentence teaching what the pill can show: the pill IS the
