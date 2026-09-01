@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: implicit-maqaf-rule-v1-a-joiner-is-not-a-word-and-not-a-Q
+// GUARDS: implicit-maqaf-rule-v1-a-joiner-is-not-a-word-and-not-a-q-site
 //
 // MAM marks 103 places where the accents join two words that the consonantal
 // text writes apart. It marks them by INSERTING the joiner character itself,
