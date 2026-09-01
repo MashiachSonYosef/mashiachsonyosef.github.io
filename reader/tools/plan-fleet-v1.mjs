@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: -
+// no frame letter. This plans which works a run covers, not a fact about any of them.
+//
 // Synthesis lane · fleet-rule-v1-a-work-builds-the-day-its-shards-arrive-and-not-a-day-sooner
 //
 // The fleet plan: for every work the derived ranges record, what stands

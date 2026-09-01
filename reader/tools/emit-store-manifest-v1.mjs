@@ -1,3 +1,6 @@
+// LEDGER: -
+// no frame letter. This pins the bytes of what ships; the facts inside those bytes are M and R, and strike-language-v1 is their ledger.
+//
 // Synthesis lane · store-manifest-rule-v1-what-ships-is-pinned
 //
 // The route store ships as an index and 256 shards, and until now nothing

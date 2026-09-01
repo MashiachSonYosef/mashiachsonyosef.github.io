@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: Z C0
+// the catchword as quoted and where it lands, recorded per zone as it is built.
+//
 // Synthesis lane · zone-emit-rule-v8-single-pass-from-sealed-serve
 //
 // One pass, sources in and a zone out. The zone this replaces was built by

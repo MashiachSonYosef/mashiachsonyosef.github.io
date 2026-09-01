@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: -
+// no frame letter. This derives the build scaffold, not a fact about a work.
+//
 // Synthesis lane · plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis
 //
 // The build plan: every published work's parameters, derived rather than typed,

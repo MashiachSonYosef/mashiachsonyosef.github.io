@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 // GUARDS: apparatus-baseline-rule-v1-arithmetic-over-positions-cannot-see-a-label-that-is-gone
+// LEDGER: Q O
+// the source's own marks, per named stream. The census counts MAM's classes and records which copy of each stream it read them from.
+//
 //
 // What the source's own labels said, per book, written down so a later read
 // can be compared against it.

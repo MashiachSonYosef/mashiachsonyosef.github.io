@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 // GUARDS: language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a
+// LEDGER: M R
+// the source record and the readings hanging off it. This tool removes M records and the R routes they carry. It does not touch an A span or an N license: what it changes is WHICH sources are permitted to answer for an A.
+//
 //
 // The frame's first letter says what this project is made of: A is a
 // "licensable hebrew or aramaic span." Everything downstream — N, the
@@ -21,12 +24,39 @@
 // phrases in rabbinic Hebrew. It is not Lenin.
 //
 // The rule, declared before output:
-//   1. ADMITTED: a source whose own label names Hebrew, Aramaic, or Chaldee
-//      (the older name for Aramaic), and a source whose label names no
-//      language at all. The unnamed ones are the scholarly lexica — Jastrow,
-//      Davidson, ETCBC, STEP — every one of which declares Hebrew and/or
-//      Aramaic on its own title page; Davidson's is literally the Analytical
-//      Hebrew and Chaldee Lexicon.
+//   0. A LABEL IS A CLAIM; A PROVENANCE IS A FACT. The decision reads the
+//      source's key and license pointer FIRST, and the label only after. A
+//      pointer naming a struck language strikes the source however its label
+//      describes itself, because the pointer says which book was opened and
+//      the label says only what somebody called it. This rule is here
+//      because it was broken: twelve sources labeled "Harkavy 1925 exact
+//      Hebrew-English dictionary equivalents" pointed at
+//      source-cache/harkavy-yiddish-english-hebrew-1925 — Alexander
+//      Harkavy's Yiddish-English-Hebrew dictionary, whose headwords are
+//      Yiddish. The label-only rule admitted all twelve. They served 376
+//      readings on 252 keys standing at 75,506 tappable positions across
+//      2,427 books, among them RESH-YOD-ALEF-LAMED-YOD-SAMEKH-TAV as
+//      "realist, naturalist" — a Yiddish headword, in a Hebrew reader.
+//   1. ADMITTED: a source that NAMES Hebrew, Aramaic, or Chaldee (the older
+//      name for Aramaic) somewhere in its own record. Admission is
+//      affirmative. This project has one explicit subject — Hebrew, with
+//      Aramaic as its single concession — and a source that has not said it
+//      is answering about that subject has not qualified to answer for it.
+//   1a. SILENCE IS NOT A DECLARATION. A source naming no language at all is
+//      STRUCK. This rule replaces an earlier one of mine that admitted the
+//      silent on the reasoning that they were scholarly lexica declaring
+//      Hebrew on their own title pages. That reasoning was me vouching for a
+//      book the record does not describe, and it is the same shape of error
+//      as trusting a label over a provenance: an admission resting on what I
+//      believe rather than on what the source says. The owner's ruling is
+//      that coverage is not the goal — fifty books done right is the goal —
+//      so a source that will not name its subject is simply not needed.
+//      Twenty-seven were struck by this rule the day it was written:
+//      Davidson 1855, Jastrow, ETCBC BHSA and STEP TAHOT, 79,095 routes over
+//      12,847 keys. Every one of those four IS a Hebrew or Aramaic lexicon.
+//      They are struck for not saying so, and the way back is not an
+//      exception here — it is a label at the source that names what the
+//      title page names, after which they pass this gate unchanged.
 //   2. STRUCK: a source whose own label names a language outside that set.
 //   3. STRUCK: a source whose own label declares itself NON-Hebrew without
 //      naming which language it is. A source that cannot say it is not
@@ -45,6 +75,7 @@
 //
 // Run: node tools/strike-language-v1.mjs [--store data/route-store] [--dry]
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -87,9 +118,31 @@ const NOT_A_HEADWORD_LANGUAGE = new Set(["English"]);
 // in Hebrew script" without saying which. Rule 3.
 const UNNAMED_NON_HEBREW = /non-Hebrew-language|Hebrew-script-language/i;
 
-/** The decision for one source, with the evidence that produced it. */
-export const classify = (label) => {
-  const l = String(label || "");
+/**
+ * The decision for one source, with the evidence that produced it.
+ *
+ * Takes the whole source record when there is one, and falls back to a bare
+ * label string so an older caller still works. The record's key and license
+ * pointer are read BEFORE the label, per rule 0: they name the file the
+ * readings were cut out of, and that is not a matter of description.
+ */
+export const classify = (source) => {
+  const rec = (source && typeof source === "object") ? source : { label: source };
+  const l = String(rec.label || "");
+  // Word boundaries do not survive a path, where the language sits between
+  // hyphens and slashes. So the provenance is scanned with its separators
+  // turned into spaces, and the whole string is matched, not a \b form.
+  const provenance = [rec.key, rec.licensePointer, rec.licensePosture, rec.source_path]
+    .filter(Boolean).join(" ").replace(/[/_.\-]+/g, " ");
+  const inProvenance = LANGUAGE_WORDS
+    .filter((w) => !NOT_A_HEADWORD_LANGUAGE.has(w))
+    .filter((w) => new RegExp(`\\b${w.replace(/-/g, " ")}\\b`, "i").test(provenance));
+  const struckInProvenance = inProvenance.filter((w) => !ADMITTED_LANGUAGES.includes(w));
+  if (struckInProvenance.length)
+    return { admitted: false, reason: "PROVENANCE_NAMES_A_LANGUAGE_OUTSIDE_HEBREW_AND_ARAMAIC",
+      evidence: `${struckInProvenance.join(" + ")} in ${rec.licensePointer || rec.key}`,
+      languages_named: inProvenance,
+      note: "the label did not say so; the file the readings were cut out of did" };
   const named = LANGUAGE_WORDS.filter((w) => new RegExp(`\\b${w}\\b`, "i").test(l))
     .filter((w) => !NOT_A_HEADWORD_LANGUAGE.has(w));
   const unnamedNonHebrew = UNNAMED_NON_HEBREW.exec(l);
@@ -103,8 +156,19 @@ export const classify = (label) => {
   if (named.length)
     return { admitted: true, reason: "NAMES_AN_ADMITTED_LANGUAGE",
       evidence: named.join(" + "), languages_named: named };
-  return { admitted: true, reason: "NAMES_NO_LANGUAGE__SCHOLARLY_LEXICON_ADMITTED_ON_ITS_TITLE_PAGE",
-    evidence: "", languages_named: [] };
+  // Rule 1a. Nothing named, anywhere in the record — not in the label, not
+  // in the provenance. There is no claim here to admit.
+  const admittedInProvenance = inProvenance.filter((w) => ADMITTED_LANGUAGES.includes(w));
+  if (admittedInProvenance.length)
+    return { admitted: true, reason: "PROVENANCE_NAMES_AN_ADMITTED_LANGUAGE",
+      evidence: `${admittedInProvenance.join(" + ")} in ${rec.licensePointer || rec.key}`,
+      languages_named: admittedInProvenance };
+  return { admitted: false, reason: "NAMES_NO_LANGUAGE__SILENCE_IS_NOT_A_DECLARATION",
+    evidence: "the record names no language, in its label or its provenance",
+    languages_named: [],
+    note: "admission is affirmative: a source answers for a Hebrew or Aramaic span only if it says "
+      + "that is what it is answering about. If this source is a Hebrew or Aramaic lexicon, the fix "
+      + "is a label at the source naming what its own title page names, not an exception here." };
 };
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -112,7 +176,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const decisions = {};
   const struck = new Set();
   for (const [m, rec] of Object.entries(index.m_sources)) {
-    const d = classify(rec.label);
+    const d = classify({ ...rec, m_id: m });
     decisions[m] = { label: rec.label, ...d };
     if (!d.admitted) struck.add(m);
   }
@@ -163,6 +227,27 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
   for (const [name, body] of rewritten)
     writeFileSync(join(STORE, "shards", name), gzipSync(Buffer.from(JSON.stringify(body)), { level: 9 }));
+
+  // The store's identity is its bytes. The reader asks for a shard as
+  // shards/xx.bin?v=<store_version>, so that token is the ONLY thing standing
+  // between a returning reader and the copy already in their cache. Nothing
+  // in this tree used to write it: the version shipped with the store and no
+  // strike ever changed it, which means a strike rewrote the shelf and left
+  // every warm cache serving the struck readings under an unchanged URL. A
+  // strike that does not reach the reader is not a strike. So the version is
+  // recomputed here from the shard bytes that were just written, and the
+  // value it replaces is kept beside it — a store whose contents changed can
+  // no longer wear the name of the store it used to be.
+  const shardDigest = createHash("sha256");
+  for (const name of shardNames) shardDigest.update(readFileSync(join(STORE, "shards", name)));
+  const before = index.store_version || null;
+  index.store_version = shardDigest.digest("hex").slice(0, 12);
+  index.store_version_history = [
+    ...(index.store_version_history || []),
+    { was: before, now: index.store_version, why: ADMISSION_RULE_ID, on: record.ran_at },
+  ];
+  record.store_version = { was: before, now: index.store_version,
+    why: "the served shard URL carries this token; leaving it unchanged would let a warm cache keep serving struck readings" };
   index.m_sources = Object.fromEntries(Object.entries(index.m_sources).filter(([m]) => !struck.has(m)));
   index.language_admission = {
     rule_id: ADMISSION_RULE_ID,
@@ -174,5 +259,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   index.counts = { ...index.counts, keys: keysBefore - keysEmptied, routes: routesBefore - routesStruck };
   writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
   writeFileSync(join(K3, "data", "language-admission-v1.json"), JSON.stringify(record, null, 1));
+  console.log(`\n  store_version ${before} → ${index.store_version}  (the shard URL changes, so warm caches refetch)`);
   console.log(`\nstore rewritten · data/language-admission-v1.json written`);
+  console.log(`  repin with: node tools/emit-store-manifest-v1.mjs`);
 }

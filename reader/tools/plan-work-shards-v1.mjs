@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: -
+// no frame letter. This is a build receipt, not a fact about a work.
+//
 // plan-work-shards-v1 · everything one work needs, computed, never typed
 //
 // The gen-9 store is sharded on work boundaries, so serving one work needs a

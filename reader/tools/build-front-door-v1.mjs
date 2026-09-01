@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: N B Y
+// the license shown for each work, the groupings the door lists, and the addresses it links to.
+//
 // Synthesis lane · front-door-rule-v1-the-door-lists-what-the-zones-carry
 //
 // The site's front door, built from the zones rather than typed — both of its

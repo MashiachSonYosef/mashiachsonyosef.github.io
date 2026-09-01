@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 // GUARDS: work-attachment-rule-v1-parallel-numbering-is-not-intent
+// LEDGER: V U
+// what attaches to a location, and work-to-work relationals. Every row is a work naming a base and the relation it stands in to it.
+//
 //
 // What every work that names another work stands in, recorded as U, X and V.
 //

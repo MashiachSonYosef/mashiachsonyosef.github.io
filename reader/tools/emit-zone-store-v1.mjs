@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: O
+// the named stream: which zone bin is published, and its bytes.
+//
 // The store record: one pin per served bin, and where the shelf stands.
 // GUARDS: zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight
 //

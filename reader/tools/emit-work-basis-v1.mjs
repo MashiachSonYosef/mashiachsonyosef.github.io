@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: B Y V
+// the grouping a work belongs to, how you address a part of it, and the names its attachments are shown under.
+//
 // emit-work-basis-v1 · the build's basis and its holds, put where a page can read them
 //
 // Every published work already has a basis in the plan — SEALED_Y_LEDGER or

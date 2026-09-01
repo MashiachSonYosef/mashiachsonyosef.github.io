@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: B Y
+// the groupings the door lists and the addresses inside them.
+//
 // emit-corpus-atlas-v1 · the whole library, placed, before it is built
 //
 // The door's job grew: not only what the zones carry, but where everything

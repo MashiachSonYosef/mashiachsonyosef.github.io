@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: C0 Y
+// the address of a work's span and the measures of that address.
+//
 // Synthesis lane · derived-work-ranges-rule-v1-the-atlas-names-every-range-so-none-is-typed
 //
 // Every work's C0 range, derived from the corpus atlas rather than typed.

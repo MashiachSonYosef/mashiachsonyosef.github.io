@@ -1,3 +1,6 @@
+// LEDGER: N
+// the license for A, as each work declares it.
+//
 // Synthesis lane · licence-posture-name-rule-v1-the-record-names-the-licence
 //
 // One projection of tools/declarations-v1.json for the pages: per posture,

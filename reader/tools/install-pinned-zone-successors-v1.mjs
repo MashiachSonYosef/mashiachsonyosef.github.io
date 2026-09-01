@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: O
+// the named stream: which copy of a zone is the one published.
+//
 // Preserve admitted built-zone successors across the ordinary zone build.
 // The binding, not this tool or build.sh, names the work and exact bytes.
 

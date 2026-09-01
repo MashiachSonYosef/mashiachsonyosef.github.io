@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: -
+// no frame letter. A check reads the record and judges it; it is not the ledger for one. The file it writes is a run artifact, not a claim about a work.
+//
 // A mark that transmits an assertion opens the record of that assertion.
 // GUARDS: variant-site-rule-v1-the-mark-opens-a-record-or-the-zone-does-not-board
 //

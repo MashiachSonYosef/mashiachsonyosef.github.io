@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// LEDGER: -
+// no frame letter. This records the state of the working tree, not a fact about a work.
+//
 // emit-workspace-manifest-v1 · what this lane needs staged, written down where it survives
 //
 // The cloud container this lane runs in is reclaimed without warning, and
