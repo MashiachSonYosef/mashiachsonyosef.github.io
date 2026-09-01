@@ -1,11 +1,11 @@
 {
- "schema_version": 1,
+ "schema_version": 2,
  "rule_id": "poc-demonstration-rule-v1-hand-authored-never-served-always-fenced",
  "authored_on": "2026-09-01",
  "authored_by": "this lane, by hand, at the owner's instruction",
- "WHAT_THIS_IS": "A MOCKUP. Every Hebrew string below was typed by hand. None of it came from the corpus, none of it traces to a record, and none of it is a reading. It exists to show what each part of the frame LOOKS LIKE when it works, because the books that carry these marks are not published and one of them is not held at all.",
- "WHY_IT_BREAKS_THE_RULE": "The serve law says the pipeline decides and gates are the only judges, and this project does not ship proofs of concept. The owner set that rule and the owner suspended it here, for this block only, and said so plainly. What is not suspended is the requirement that a reader can tell the difference: every demonstration below is fenced, labelled, and refused a licence chip, because a licence chip on a typed string would be the one lie this site cannot afford.",
- "WHAT_WOULD_MAKE_EACH_ONE_REAL": "Named per demonstration in blocks_the_real_thing. Three are blocked by markup bleeding into the text of books we hold; one is blocked because nobody holds it.",
+ "WHAT_THIS_IS": "A MOCKUP. Every Hebrew string below was typed by hand from memory. None of it was copied from any text this project holds, none of it traces to a record, and none of it is a reading. It exists to show what each part of the frame LOOKS LIKE when it works, because the books that carry these marks are not published and one of them is not held at all.",
+ "WHY_FROM_MEMORY_IS_SAID_OUT_LOUD": "A mark shown alone is a glyph; a mark shown inside a passage is the mark doing its work, which is what was asked for. Passages mean real verses, and typing a real verse from memory is exactly the thing this project refuses everywhere else. It is permitted here and nowhere else, and the pointing and cantillation may differ from any given edition. Nothing on this page may be cited, quoted as our text, or compared against a manuscript. When these books build, these drawings come down.",
+ "WHY_IT_BREAKS_THE_RULE": "The serve law says the pipeline decides and gates are the only judges, and this project does not ship proofs of concept. The owner set that rule and the owner suspended it here, for this page only, and said so plainly. What is not suspended is that a reader can tell the difference: every demonstration is fenced, labelled as typed, and refused a licence chip, because a licence chip over a typed string would be the one lie this site cannot afford.",
  "demonstrations": [
   {
    "id": "kq",
@@ -13,12 +13,17 @@
    "kind": "ketiv / qere",
    "title": "written one way, read another",
    "at": "daniel 2:4",
-   "the_source_wrote": "both forms at one site: round brackets around the written, square around the read",
+   "passage": {
+    "before": "וַיְדַבְּרוּ הַכַּשְׂדִּים לַמֶּלֶךְ אֲרָמִית מַלְכָּא לְעָלְמִין חֱיִי אֱמַר חֶלְמָא",
+    "site": "לעבדיך",
+    "after": "וּפִשְׁרָא נְחַוֵּא",
+    "english": "Then the Chaldeans spoke to the king in Aramaic: O king, live forever — tell the dream to your servants, and we will declare the meaning."
+   },
    "branches": [
     { "role": "written", "delimiter": "( )", "surface": "לעבדיך", "english": "to your servants" },
-    { "role": "read", "delimiter": "[ ]", "surface": "לְעַבְדָ֖ךְ", "english": "to your servant" }
+    { "role": "read", "delimiter": "[ ]", "surface": "לְעַבְדָךְ", "english": "to your servant" }
    ],
-   "the_card_says": "One word block, one card, two branches. Selecting a half underlines that half in the line and shows that half's English only — one English at a time, and neither is chosen for the reader.",
+   "the_card_says": "One word block, one card, two branches. Selecting a half underlines that half in the line and shows that half's English only — one English at a time, and neither is chosen for the reader. The rest of the verse does not move.",
    "counts": "ON",
    "key": "keyed — one key per branch, delimiters stripped",
    "blocks_the_real_thing": "This site holds Daniel and cannot build it: 332 of its surfaces carry literal HTML markup where the text should be."
@@ -27,9 +32,14 @@
    "id": "petuchah",
    "letter": "Q",
    "kind": "petuchah",
-   "title": "an open section",
+   "title": "an open section — the next begins on a new line",
    "at": "amos 1:2",
-   "the_source_wrote": "{פ}",
+   "passage": {
+    "before": "וַיֹּאמַר יְהוָה מִצִּיּוֹן יִשְׁאָג וּמִירוּשָׁלִַם יִתֵּן קוֹלוֹ וְאָבְלוּ נְאוֹת הָרֹעִים וְיָבֵשׁ רֹאשׁ הַכַּרְמֶל",
+    "site": "{פ}",
+    "after": "",
+    "english": "And he said: the LORD roars from Zion and utters his voice from Jerusalem; the pastures of the shepherds mourn, and the top of Carmel withers."
+   },
    "expands_to": "פְּתוּחָה",
    "the_card_says": "The word — petuchah, open — and what it does: this section ends here, and the next begins on a fresh line. If the reader cannot give the break its line, the card says so in plain English rather than drawing nothing.",
    "counts": "OFF",
@@ -40,35 +50,50 @@
    "id": "setumah",
    "letter": "Q",
    "kind": "setumah",
-   "title": "a closed section",
-   "at": "exodus 11:8",
-   "the_source_wrote": "{ס}",
+   "title": "a closed section — the next begins after a gap, same line",
+   "at": "ecclesiastes 3:1",
+   "passage": {
+    "before": "לַכֹּל זְמָן וְעֵת לְכָל חֵפֶץ תַּחַת הַשָּׁמָיִם",
+    "site": "{ס}",
+    "after": "עֵת לָלֶדֶת וְעֵת לָמוּת",
+    "english": "To everything there is a season, and a time to every purpose under heaven. — A time to be born, and a time to die."
+   },
    "expands_to": "סְתוּמָה",
    "the_card_says": "The word — setumah, closed — and what it does: this section ends, and the next begins on the same line, after a gap. A reader that draws this the same as an open section has erased a distinction the scribe made, and has to say which one it cannot honor.",
    "counts": "OFF",
    "key": "unkeyed",
-   "blocks_the_real_thing": "Exodus is held: 74 surfaces carry literal markup."
+   "blocks_the_real_thing": "Ecclesiastes is held for the markup defect: 40 of its surfaces carry literal markup."
   },
   {
    "id": "invnun",
    "letter": "Q",
    "kind": "inverted nun",
-   "title": "a passage set apart",
+   "title": "two marks bracketing a passage set apart",
    "at": "numbers 10:35-36",
-   "the_source_wrote": "׆",
+   "passage": {
+    "before": "׆",
+    "site": "וַיְהִי בִּנְסֹעַ הָאָרֹן וַיֹּאמֶר מֹשֶׁה קוּמָה יְהוָה וְיָפֻצוּ אֹיְבֶיךָ וְיָנֻסוּ מְשַׂנְאֶיךָ מִפָּנֶיךָ וּבְנֻחֹה יֹאמַר שׁוּבָה יְהוָה רִבְבוֹת אַלְפֵי יִשְׂרָאֵל",
+    "after": "׆",
+    "english": "And when the ark set out, Moses said: Arise, O LORD, and let your enemies be scattered, and let those who hate you flee before you. And when it rested he said: Return, O LORD, to the ten thousands of the thousands of Israel."
+   },
    "expands_to": "נוּן הֲפוּכָה",
-   "the_card_says": "The mark's name, and what the tradition says with it: this passage stands apart. Whether it opens, closes, or stands alone is recorded — in Psalm 107 these stand singly, here two of them bracket the passage — and no partner is demanded.",
+   "the_card_says": "The mark's name, and what the tradition says with it: this passage stands apart. Whether a mark opens, closes, or stands alone is recorded — in Psalm 107 these stand singly, here two of them bracket the passage — and no partner is demanded.",
    "counts": "OFF",
    "key": "unkeyed — this is a punctuation character, not the letter nun",
-   "blocks_the_real_thing": "Seven of these are in the body. Numbers is one of the eight books that arrived flattened."
+   "blocks_the_real_thing": "Seven of these are in the body. Numbers is one of the eight books that arrived flattened, so the copy we hold has none of them."
   },
   {
    "id": "abbreviation",
    "letter": "COMPspan",
    "kind": "abbreviation",
    "title": "one word, or the words it stands for",
-   "at": "throughout rabbinic Hebrew",
-   "the_source_wrote": "הקב״ה",
+   "at": "a saying of Rabbi Yochanan",
+   "passage": {
+    "before": "בְּכָל מָקוֹם שֶׁאַתָּה מוֹצֵא גְּדֻלָּתוֹ שֶׁל",
+    "site": "הקב״ה",
+    "after": "שָׁם אַתָּה מוֹצֵא עַנְוְתָנוּתוֹ",
+    "english": "In every place where you find his greatness, there you find his humility."
+   },
    "options": [
     { "option": 1, "reading": "the abbreviation as written, defined as itself", "cells": [ { "surface": "הקב״ה", "english": "the Holy One, blessed be He" } ] },
     { "option": 2, "reading": "the words it stands for, each defined separately", "cells": [
@@ -76,7 +101,7 @@
       { "surface": "בָּרוּךְ", "english": "blessed" },
       { "surface": "הוּא", "english": "He" } ] }
    ],
-   "the_card_says": "An abbreviation is an ordinary COMPspan with two options, not a special case. Selecting the second does not change one letter of what is printed — the page still shows what the source wrote. The lattice chooses what gets DEFINED, never what gets DISPLAYED, exactly as with written/read.",
+   "the_card_says": "An abbreviation is an ordinary COMPspan with two options, not a special case. Selecting the second does not change one letter of what is printed — the line still reads as the source wrote it. The lattice chooses what gets DEFINED, never what gets DISPLAYED, exactly as with written/read.",
    "what_needs_attesting": "not the words — each is attested elsewhere in the corpus and the cell points at it — but the MAPPING, that these letters stand for those words.",
    "blocks_the_real_thing": "Nothing. This one works on the published site today; it is shown here beside the others so the set can be read together."
   },
@@ -84,9 +109,14 @@
    "id": "masorah",
    "letter": "Q",
    "kind": "masorah finalis",
-   "title": "the book's own count of itself",
-   "at": "the end of a book",
-   "the_source_wrote": "the scribes' bookkeeping, which states the total and the midpoint",
+   "title": "the book's own count of itself, at the end of the book",
+   "at": "the last line of a book",
+   "passage": {
+    "before": "",
+    "site": "סכום פסוקי הספר",
+    "after": "חצי הספר בפסוקים · חצי הספר בתיבות · חצי הספר באותיות",
+    "english": "The total of the verses of the book — the midpoint of the book by verses · by words · by letters."
+   },
    "measures": [
     { "label": "סכום פסוקי הספר", "english": "the verse total" },
     { "label": "חצי הספר בפסוקים", "english": "the midpoint, by verses" },
@@ -98,14 +128,21 @@
    "counts": "OFF — these are excluded from every count the book reports, or the total disagrees with the masorah's own figure and the fault is charged to the scribe",
    "key": "keyed, and the only OFF kind that is — these are ordinary Hebrew words meaning what they say",
    "the_state_shown_here": "NOT_HELD",
-   "why_no_numbers_are_shown": "Because the only honest states are NOT_HELD, HELD_UNCOUNTED, VERIFIED and CONTRADICTED, and HELD_UNCOUNTED may not be cited anywhere a reader can see. Printing a figure here would be citing an assumption. This is the only mark that makes a checkable claim, so recording it is not attesting it — the half has to be counted.",
+   "why_no_numbers_are_shown": "Because the honest states are NOT_HELD, HELD_UNCOUNTED, VERIFIED and CONTRADICTED, and HELD_UNCOUNTED may not be cited anywhere a reader can see. A figure typed here from memory would be citing an assumption twice over. This is the only mark that makes a checkable claim, so recording it is not attesting it — the half has to be counted.",
    "blocks_the_real_thing": "Nobody holds it. The end-of-book masorah is missing from every Tanakh stream either lane has."
   }
  ],
  "every_hebrew_string_in_this_record": [
-  "לעבדיך", "לְעַבְדָ֖ךְ", "{פ}", "פְּתוּחָה", "{ס}", "סְתוּמָה", "׆", "נוּן הֲפוּכָה",
-  "הקב״ה", "הַקָּדוֹשׁ", "בָּרוּךְ", "הוּא",
-  "סכום פסוקי הספר", "חצי הספר בפסוקים", "חצי הספר בתיבות", "חצי הספר באותיות"
+  "וַיְדַבְּרוּ הַכַּשְׂדִּים לַמֶּלֶךְ אֲרָמִית מַלְכָּא לְעָלְמִין חֱיִי אֱמַר חֶלְמָא",
+  "לעבדיך", "וּפִשְׁרָא נְחַוֵּא", "לְעַבְדָךְ",
+  "וַיֹּאמַר יְהוָה מִצִּיּוֹן יִשְׁאָג וּמִירוּשָׁלִַם יִתֵּן קוֹלוֹ וְאָבְלוּ נְאוֹת הָרֹעִים וְיָבֵשׁ רֹאשׁ הַכַּרְמֶל",
+  "{פ}", "פְּתוּחָה",
+  "לַכֹּל זְמָן וְעֵת לְכָל חֵפֶץ תַּחַת הַשָּׁמָיִם", "{ס}", "עֵת לָלֶדֶת וְעֵת לָמוּת", "סְתוּמָה",
+  "׆", "וַיְהִי בִּנְסֹעַ הָאָרֹן וַיֹּאמֶר מֹשֶׁה קוּמָה יְהוָה וְיָפֻצוּ אֹיְבֶיךָ וְיָנֻסוּ מְשַׂנְאֶיךָ מִפָּנֶיךָ וּבְנֻחֹה יֹאמַר שׁוּבָה יְהוָה רִבְבוֹת אַלְפֵי יִשְׂרָאֵל", "נוּן הֲפוּכָה",
+  "בְּכָל מָקוֹם שֶׁאַתָּה מוֹצֵא גְּדֻלָּתוֹ שֶׁל", "הקב״ה", "שָׁם אַתָּה מוֹצֵא עַנְוְתָנוּתוֹ",
+  "הַקָּדוֹשׁ", "בָּרוּךְ", "הוּא",
+  "סכום פסוקי הספר", "חצי הספר בפסוקים · חצי הספר בתיבות · חצי הספר באותיות",
+  "חצי הספר בפסוקים", "חצי הספר בתיבות", "חצי הספר באותיות"
  ],
- "the_fence": "The list above is exhaustive and is what the gate checks. Every Hebrew character the front door prints is either carried from a record or is one of these strings; a glyph that is neither fails check-poc-fenced-v1. That is what keeps a suspended rule from becoming an absent one."
+ "the_fence": "The list above is exhaustive and is what the gate checks. Every Hebrew character this page prints is one of these strings; a glyph that is not fails check-poc-fenced-v1. That is what keeps a suspended rule from becoming an absent one."
 }
