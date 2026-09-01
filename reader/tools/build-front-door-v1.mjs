@@ -940,7 +940,7 @@ const lineVariant = (site, mark) => {
 const c0Html = (d) => {
   const c = d.c0 || {};
   const variants = (d.picks && d.picks.length ? d.picks : [{ underline: null }])
-    .map((k, i) => `<span class="pc-site${d.hud ? " pc-pill" : ""}" data-i="${i}"${i === 0 ? "" : " hidden"}>${lineVariant(c.site, k.underline)}</span>`)
+    .map((k, i) => `<span class="pc-site" data-i="${i}"${i === 0 ? "" : " hidden"}>${lineVariant(c.site, k.underline)}</span>`)
     .join("");
   return `<p class="pc-verse" lang="he" dir="rtl" data-for="${esca(d.id)}">`
     + (c.before ? `<span class="pc-plain">${esca(c.before)}</span> ` : "")
@@ -976,7 +976,7 @@ const hudHtml = (d) => {
   const panes = d.picks.map((k, i) => {
     const c = k.card || {};
     return `<div class="pc-hudpane" data-for="${esca(d.id)}" data-i="${i}"${i === 0 ? "" : " hidden"}>`
-      + `<p class="pc-hudword" lang="he" dir="rtl">${esca(k.underline || k.cells[0].surface)}</p>`
+      + `<p class="pc-hudword" lang="he" dir="rtl">${esca(k.cells.length === 1 ? k.cells[0].surface : (k.underline || k.cells[0].surface))}</p>`
       + `<p class="pc-lrow pc-dm"><span class="pc-l">D</span>`
       + `<span class="pc-lval">${esca(c.D)}</span>`
       + `<span class="pc-m${c.M ? "" : " pc-empty"}" title="${esca(L.M || "")}">${esca(c.M || "M \u2014")}</span></p>`
