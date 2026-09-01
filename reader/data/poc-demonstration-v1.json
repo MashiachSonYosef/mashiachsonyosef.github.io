@@ -151,7 +151,7 @@
    },
    "picks": [
     {
-     "id": "whole",
+     "id": "one",
      "label": "one word",
      "pill_cells": true,
      "underline": "כָל־הָאָרֶץ",
@@ -212,48 +212,36 @@
      ]
     },
     {
-     "id": "kol",
-     "label": "the first word",
+     "id": "two",
+     "label": "two words",
      "pill_cells": true,
-     "underline": "כָל",
+     "underline": "כָל־הָאָרֶץ",
      "cells": [
       {
        "surface": "כָל",
        "english": "all"
-      }
-     ],
-     "card": {
-      "D": "all",
-      "R": [
-       "all"
-      ],
-      "M": null,
-      "P": null
-     }
-    },
-    {
-     "id": "haaretz",
-     "label": "the second word",
-     "pill_cells": true,
-     "underline": "הָאָרֶץ",
-     "cells": [
+      },
       {
        "surface": "הָאָרֶץ",
        "english": "the earth"
       }
      ],
      "card": {
-      "D": "the earth",
+      "D": "all + the earth",
       "R": [
-       "the earth"
+       "all + the earth"
       ],
       "M": null,
       "P": null
      },
      "divides": [
       {
-       "id": "undivided",
+       "id": "whole-words",
        "cells": [
+        {
+         "surface": "כָל",
+         "english": "all"
+        },
         {
          "surface": "הָאָרֶץ",
          "english": "the earth"
@@ -261,8 +249,12 @@
        ]
       },
       {
-       "id": "article",
+       "id": "atoms",
        "cells": [
+        {
+         "surface": "כָל",
+         "english": "all"
+        },
         {
          "surface": "הָ",
          "english": "the"
@@ -280,7 +272,7 @@
    "plainly": "One word of the book, counted once, though it is two words joined and read as one.",
    "hud": {
     "headings": {
-     "forms": "Addressable words",
+     "forms": "Word groupings",
      "divides": "Complete divisions",
      "routes": "Exact selectable routes"
     },
@@ -291,12 +283,11 @@
      "P": "which record answers for which reading"
     },
     "source_slot": "M and P stand empty: nothing was carried, this was typed",
-    "key": "The maqaf joins two words into one. Every part is read, and the site holds three words you can address: the joined one, and each half on its own."
+    "key": "The maqaf joins two words into one. Every part is read, and the site can be taken as the one word it makes or as the two it joins — the ink is the same either way."
    },
    "gloss_under_word": {
-    "whole": "all the earth",
-    "kol": "all",
-    "haaretz": "the earth"
+    "one": "all the earth",
+    "two": "all + the earth"
    }
   },
   {
@@ -314,7 +305,7 @@
    "picks": [
     {
      "id": "token",
-     "label": "as written",
+     "label": "one word",
      "pill_cells": true,
      "underline": "הקב״ה",
      "cells": [
@@ -382,36 +373,52 @@
      ]
     },
     {
-     "id": "qadosh",
-     "label": "the first word it stands for",
+     "id": "words",
+     "label": "three words",
      "pill_cells": true,
      "underline": "הקב״ה",
      "cells": [
       {
        "surface": "הַקָּדוֹשׁ",
        "english": "the Holy"
+      },
+      {
+       "surface": "בָּרוּךְ",
+       "english": "blessed"
+      },
+      {
+       "surface": "הוּא",
+       "english": "He"
       }
      ],
      "card": {
-      "D": "the Holy",
+      "D": "the Holy + blessed + He",
       "R": [
-       "the Holy"
+       "the Holy + blessed + He"
       ],
       "M": null,
       "P": null
      },
      "divides": [
       {
-       "id": "undivided",
+       "id": "whole-words",
        "cells": [
         {
          "surface": "הַקָּדוֹשׁ",
          "english": "the Holy"
+        },
+        {
+         "surface": "בָּרוּךְ",
+         "english": "blessed"
+        },
+        {
+         "surface": "הוּא",
+         "english": "He"
         }
        ]
       },
       {
-       "id": "article",
+       "id": "atoms",
        "cells": [
         {
          "surface": "הַ",
@@ -420,57 +427,25 @@
         {
          "surface": "קָּדוֹשׁ",
          "english": "Holy"
+        },
+        {
+         "surface": "בָּרוּךְ",
+         "english": "blessed"
+        },
+        {
+         "surface": "הוּא",
+         "english": "He"
         }
        ]
       }
      ]
-    },
-    {
-     "id": "barukh",
-     "label": "the second word it stands for",
-     "pill_cells": true,
-     "underline": "הקב״ה",
-     "cells": [
-      {
-       "surface": "בָּרוּךְ",
-       "english": "blessed"
-      }
-     ],
-     "card": {
-      "D": "blessed",
-      "R": [
-       "blessed"
-      ],
-      "M": null,
-      "P": null
-     }
-    },
-    {
-     "id": "hu",
-     "label": "the third word it stands for",
-     "pill_cells": true,
-     "underline": "הקב״ה",
-     "cells": [
-      {
-       "surface": "הוּא",
-       "english": "He"
-      }
-     ],
-     "card": {
-      "D": "He",
-      "R": [
-       "He"
-      ],
-      "M": null,
-      "P": null
-     }
     }
    ],
    "blocks_the_real_thing": "Nothing. This one works on the published site today.",
    "plainly": "One word of the book, counted once, though it stands for three.",
    "hud": {
     "headings": {
-     "forms": "Addressable words",
+     "forms": "Word groupings",
      "divides": "Complete divisions",
      "routes": "Exact selectable routes"
     },
@@ -481,13 +456,11 @@
      "P": "which record answers for which reading"
     },
     "source_slot": "M and P stand empty: nothing was carried, this was typed",
-    "key": "An abbreviation is one token standing for several words. All of them are read, and they share a single piece of ink — so whichever one you address, the same letters underline."
+    "key": "An abbreviation is one token standing for several words. All of them are read, and they share a single piece of ink — so the site can be taken as the token or as the words it stands for, and the same letters underline either way."
    },
    "gloss_under_word": {
     "token": "the Holy One, blessed be He",
-    "qadosh": "the Holy",
-    "barukh": "blessed",
-    "hu": "He"
+    "words": "the Holy + blessed + He"
    }
   },
   {
