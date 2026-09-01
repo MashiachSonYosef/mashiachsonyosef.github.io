@@ -28,6 +28,15 @@
 //   L5  the fence holds nowhere else. No other served page prints a string
 //       that appears only in this record.
 //
+// L5 constrains what a demonstration may typeset, and that is deliberate. This
+// check cannot tell a leak from a coincidence: a served page carrying a string
+// this record declares looks identical either way. So the record must stay
+// clear of ordinary words. The masorah demonstration first drew its card on
+// "the book", which 48 served pages print in their own titles, and L5 refused
+// it — correctly, because a declared common word would let a typed string
+// alias real corpus text anywhere on the site. It draws on "by verses"
+// instead, which the corpus does not use, and demonstrates the same prefix.
+//
 // Run: node tools/check-poc-fenced-v1.mjs [--out deploy-root]
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
