@@ -186,6 +186,303 @@
   #poc .pc-nested { margin: .5rem 0; padding: .5rem .7rem; border-inline-start: 2px solid var(--line); }
   #poc .pc-nestlab { margin: 0 0 .25rem; font-size: .7rem; letter-spacing: .08em; color: var(--faint); }
   #poc .pc-arrow { color: var(--faint); }
+  /* THE READER'S OWN CARD STYLES, lifted from zone.html verbatim so the
+     demonstration wears the card rather than a drawing of it. The one rule
+     changed is the positioning: in the reader the card floats over the page,
+     here it stands inside the demonstration it belongs to. */
+/* One register at every head: the same labelled two-row frame the masthead
+     uses, sized down to chapter grain. The label column, the quiet slot and
+     the force-read row match the masthead's forms so a reader learns the
+     frame once. */
+  /* The frame is the page's voice, not the corpus's text: labels, registers,
+     locators, and absence sentences never ride along in a copy. The same law
+     that keeps a reading out of a copied Hebrew verse keeps "commonly force
+     read as" out of a drag that crosses a section head — the browser already
+     treats unselectable as not-selected, and the copy rewrite follows it.
+     The title words inside the frame stay selectable; they are text. */
+  .nh-lab, .nh-en, .nh-he.unnamed, .nh-of, .vlabel, .t-lab, .t-note, .t-sug,
+  .sug-fold, .en-t, header.top .lic-chip, .vnum, .toc-note, #meta, .byline { user-select: none; -webkit-user-select: none; }
+.c-inline .lab .lic-chip { text-transform: none; letter-spacing: 0.02em; }
+/* The HUD floats. The Hebrew never moves — law of the house. */
+  /* A card that always carries a whole record needs room for one; 55vh put
+     the source and its license below the fold on a phone. */
+  /* overflow-y: auto, not hidden. Every band on this card has a floor, and on a
+     window short enough that the floors themselves do not fit, hidden would
+     have cut the bottom off — which is the source line, the license, the one
+     thing here that is not the reader's to lose. Scrolling puts it below the
+     fold; hiding loses it. At any ordinary height nothing scrolls, because
+     nothing has to. */
+  .pc-hudwrap { position: static;  max-width: 23rem; width: min(23rem, 92vw); max-height: min(84vh, 50rem);
+    display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;
+    background: var(--panel); border: 1px solid #2c4a63; border-radius: 0.7rem;
+    padding: 0.85rem 1.05rem; box-shadow: var(--shadow-card); }
+/* what scrolls, and what does not */
+  /* The card is a stack of bands, and each keeps its own share.
+     One region that scrolled as a whole meant whichever band came first could
+     spend the entire card: eight divisions took three rows of pills, the block
+     row took a fourth, and every selectable reading was below the fold on a
+     card that had just opened. A reader who cannot see one thing to press has
+     been handed a card that does nothing.
+     So each band is bounded and scrolls inside itself, and the readings — the
+     thing the reader came to press — take what is left and never less than two
+     rows. Nothing is dropped to achieve it: every division, every block and
+     every reading is in its band, whole and reachable. */
+  /* The rows region shrinks; what it must never do is shrink below the floors
+     of the bands inside it, because a band that overflows here is clipped at
+     this edge and its pills end up behind the record — present, on screen, and
+     dead to a finger. It is held off that by arithmetic rather than by a
+     keyword: the bands beside the readings are capped at a fixed height, the
+     record is capped at a fraction of the window, and the readings' floor is a
+     single row — so what is left for the readings is never less than the row
+     they are owed. (min-content is the wrong keyword here: a wrapping row's
+     min-content height is its height at its narrowest, which for two hundred
+     pills is enormous, and the card scrolled at every size.) */
+  .pc-hudwrap .rows { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;
+    overflow: hidden; }
+/* overflow: hidden on the band itself, so a band can never paint outside its
+     own share. Without it a pill box whose floor was taller than the band's
+     rendered straight over the record below and the reader pressed the record
+     instead of the reading — the pill was there, on screen, and dead. */
+  .pc-hudwrap .band { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+.pc-hudwrap .band > .r-label { flex: 0 0 auto; }
+/* overflow-x hidden as well as overflow-y auto: setting one axis to auto makes
+     the other auto too, and a horizontal scrollbar nobody asked for took nine
+     pixels off the height — so a box given exactly three rows had room to show
+     two and a sliver, and the sliver was a pill cut in half. */
+  .pc-hudwrap .band > .s-pills, .pc-hudwrap .band > .r-pills { overflow-y: auto; overflow-x: hidden; min-height: 0; }
+/* The structural bands do not shrink. Letting them was the same mistake in a
+     new place: a band whose height is decided by what its siblings weigh gets
+     squeezed to nothing by the one carrying two hundred readings, and a reader
+     could not press a division or a block at all. Their size is decided here
+     and nowhere else — a row and a half of pills, then they scroll. */
+  /* The floor goes on the box that holds the pressable things, not on the band
+     around it: a band held at a minimum whose pill box was still free to shrink
+     gave a row of half-cut pills and nothing to press. One whole row always
+     stands, a row and a half is the most either takes, and the rest scrolls. */
+  /* Every band takes exactly what it is given — no growing into slack, no
+     shrinking to make room. The heights are handed out above, in whole rows,
+     and a band that could still shrink afterwards undid that: a box given
+     three rows sat in a band nine pixels shorter and cut the third one in
+     half. */
+  .pc-hudwrap .b-cut, .pc-hudwrap .b-cell, .pc-hudwrap .b-read { flex: 0 0 auto; min-height: 0; }
+/* And the record yields before any of them does. It has a floor of its own —
+     the source line plus a line of the definition — so yielding never costs the
+     license, which is the one thing on this card that is not the reader's to
+     lose. Below that floor the provenance goes; the record does not. */
+  .pc-hudwrap .prov { flex: 0 1 auto; overflow: hidden; }
+/* The D is the foundational record and it is always on the card. How much of
+     the card it takes is not the part that is foundational.
+     The old cap was `max-height: 58%`, and it never bound anything: a
+     percentage height resolves against a container with a definite height, and
+     this card has only a maximum, so the cap computed to none and one long
+     record took 91% of the card — the readings, the divisions and the source
+     all pushed out by a single definition. So the bound is a length, which
+     always resolves; the record's text scrolls inside it; and the source line
+     is pinned under it rather than scrolling with it. The reader's law is that
+     a selected reading always shows one whole D with its M, and pinning the M
+     is how that holds however long the D runs. */
+  /* 0 0, not 0 1: a shrinkable D slot loses its share to whichever sibling has
+     the bigger content, and a form with two hundred readings has a rows region
+     thousands of pixels tall — it took nearly all the shrink and squeezed the
+     source line out of the bottom of a slot that was only 7% of the card. The
+     rows region is the one that scrolls, so it is the one that gives. */
+  /* No floor at all, and none is needed once the slot does not shrink: it takes
+     the smaller of what it holds and its cap, and inside it the source line is
+     the part that never gives. min-content was tried here and is a trap — a
+     block of text's min-content height is its height at its narrowest, so the
+     floor came out at 365px on a card capped at 221 and a min beats a max. The
+     same keyword had already lied once, in the rows region. */
+  /* 0 0, not 0 1. Shrink is handed out in proportion to how much content each
+     sibling has, and the rows region carries thousands of pixels of pills — so
+     when the card was short both it and the record were driven to their floors
+     together, and the record's floor cut the source line off. The rows region
+     scrolls inside itself; it is the one that can afford to give, so it gives
+     all of it. What bounds the record is its cap, not its neighbours. */
+  /* One arrangement at every height: the record and its source share one
+     scroll, and the source line sticks to the bottom of it. This used to be
+     the short-screen arrangement only, while taller screens got a flex
+     column that clipped — and a real phone's font metrics found the seam
+     between the two and lost the record entirely, foot standing on nothing.
+     The record's floor is three lines, not one: a floor of one line is
+     clipping wearing a scrollbar's clothes. */
+  .pc-hudwrap .d-slot { flex: 0 0 auto; max-height: max(32vh, 10rem); overflow-y: auto; }
+.pc-hudwrap .d-card { display: block; }
+.pc-hudwrap .d-body { min-height: 3.9rem; }
+.pc-hudwrap .d-foot { position: sticky; bottom: 0; background: var(--panel); padding-top: 0.15rem; }
+/* What is standing under the word right now. The card used to answer this
+     only by which pill was lit, and with two hundred pills in a scrolling row
+     the lit one is often not on screen — so the reader closed the card to find
+     out whether their choice held. It is the first thing under the handle and
+     it never scrolls. */
+  .pc-hudwrap .r-now { flex: 0 0 auto; margin: 0.1rem 0 0.35rem; padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--line); direction: ltr; }
+.pc-hudwrap .r-now .k { display: block; color: var(--faint); font-size: 0.68rem;
+    letter-spacing: 0.08em; text-transform: uppercase; }
+/* Bounded, like every other region on this card. One Strong's route runs to
+     four hundred and ninety-two characters, and printed whole it was most of a
+     phone — the divisions, the blocks and the record all pushed out of sight by
+     the line that was only supposed to say what had been chosen. Three lines,
+     then it scrolls. The whole of it is still on its pill and still in the
+     record underneath. */
+  .pc-hudwrap .r-now .v { display: block; color: var(--ink-strong); font-size: 0.94rem;
+    line-height: 1.3; overflow-wrap: anywhere;
+    max-height: 3.9em; overflow-y: auto; overflow-x: hidden; }
+.pc-hudwrap .r-now .v.none { color: var(--faint); font-style: italic; }
+.pc-hudwrap[hidden] { display: none; }
+/* The head is the handle. A card the reader can move is a card that stops
+     being in the way, and a card that is never re-anchored while it is open
+     stops moving on its own. It is sticky so the handle is reachable however
+     far the record below it has been scrolled. */
+  .pc-hudwrap .head { cursor: grab; touch-action: none; flex: 0 0 auto; }
+.pc-hudwrap .head:active { cursor: grabbing; }
+.pc-hudwrap.moved { box-shadow: 0 14px 40px rgba(0,0,0,.6), 0 0 0 1px var(--sel-dim); }
+.pc-hudwrap .head button { cursor: pointer; }
+.pc-hudwrap .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem;
+    flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
+/* which half of a source-marked pair the card is about, said in words —
+     hover titles do not exist on a phone */
+  .pc-hudwrap .head .kq-key { flex: 1 1 100%; margin: 0; color: var(--faint);
+    font-size: 0.68rem; direction: ltr; text-align: left; }
+.pc-hudwrap .head .kq-role { flex: 1 1 100%; margin: 0; color: var(--muted);
+    font-size: 0.74rem; font-style: italic; direction: ltr; text-align: left; }
+.pc-hudwrap .head b { font-size: 1.55rem; color: var(--ink-strong);
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+.pc-hudwrap .head button { background: none; border: 0; color: var(--link); font-size: 1.15rem; cursor: pointer; }
+.pc-hudwrap p { margin: 0.45rem 0; }
+.pc-hudwrap .att { color: var(--muted); font-size: 0.78rem; }
+.pc-hudwrap .att a { color: var(--link); }
+/* R pills — one route per pill, one selected at a time (the reader's law). */
+  .pc-hudwrap .r-label { margin: 0.5rem 0 0.3rem; color: var(--faint); font-size: 0.74rem;
+    letter-spacing: 0.06em; text-transform: uppercase; }
+/* Every R is here, so this row is the one thing on the card allowed to be
+     long. It scrolls on its own rather than pushing the D and M off the end. */
+  .pc-hudwrap .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
+/* A pill shows its whole reading. It used to clamp at two lines, which made
+     the card claim a reading it was not showing — the code beneath says R is
+     "never truncated away" and the clamp was quietly making that false. A long
+     reading now takes the room it needs; the row scrolls, so the D and the M
+     below it are still one flick away, and a reading that runs to a paragraph
+     looks like one, which is information about the record, not noise. */
+  .pc-hudwrap .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+    border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
+    max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
+.pc-hudwrap .r-pills button[aria-pressed="true"] { background: var(--sel); border-color: var(--sel);
+    color: var(--sel-ink); font-weight: bold; }
+.pc-hudwrap .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
+    font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
+.pc-hudwrap .r-overflow { margin-top: 0.45rem; }
+.pc-hudwrap .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--muted);
+    background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
+    padding: 0.3rem 0.5rem; cursor: pointer; }
+.pc-hudwrap .r-overflow select:hover { border-color: var(--gold-dim); }
+.pc-hudwrap .r-overflow select.on { color: var(--sel-ink); background: var(--sel); border-color: var(--sel); font-weight: bold; }
+.pc-hudwrap .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
+/* P — the sources that carry the same record. A corroboration is not a
+     louder kind of source, so it wears the same chip and the same weight as
+     the one above it, a size down, and reads as a list rather than a claim. */
+  .pc-hudwrap .d-also { margin: 0.3rem 0 0; padding-top: 0.3rem; border-top: 1px dotted var(--line);
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.45rem; }
+.pc-hudwrap .d-also-lab { flex: 1 0 100%; color: var(--faint); font-size: 0.66rem;
+    letter-spacing: 0.08em; text-transform: uppercase; }
+.pc-hudwrap .d-also-m { font: inherit; font-size: 0.74rem; color: var(--muted); cursor: pointer;
+    background: var(--panel2); border: 1px solid var(--line); border-radius: 0.6rem;
+    padding: 0.16rem 0.55rem; text-align: left; max-width: 100%; }
+.pc-hudwrap .d-also-m:hover { border-color: var(--sel-dim); color: var(--ink); }
+.pc-hudwrap .d-also-read { display: block; color: var(--faint); font-size: 0.68rem; }
+.pc-hudwrap .d-also-more { font: inherit; font-size: 0.72rem; color: var(--muted);
+    background: var(--panel2); border: 1px solid var(--line); border-radius: 0.5rem;
+    padding: 0.16rem 0.4rem; cursor: pointer; max-width: 100%; }
+.pc-hudwrap .d-cut { margin: 0 0 0.35rem; font-size: 0.72rem; color: var(--amber);
+    border-inline-start: 2px solid var(--amber); padding-inline-start: 0.5rem; }
+/* The D record, whole and never clipped. The sense the reader selected is
+     lit inside it, so a truncated pill still resolves to something readable. */
+  .pc-hudwrap .d-card .d-text { margin: 0.25rem 0; color: var(--muted); }
+.pc-hudwrap .d-card .d-sense.on { color: var(--ink-strong); font-weight: bold; }
+.pc-hudwrap .d-card .d-sep { color: var(--faint); }
+.pc-hudwrap .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
+    color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; padding: 0 0 0.05rem; text-align: left; }
+.pc-hudwrap .d-more:hover { color: var(--gold); }
+.pc-hudwrap .d-more[aria-expanded="true"] { color: var(--gold); }
+.pc-hudwrap .d-drawer { margin-top: 0.3rem; padding-inline-start: 0.6rem; border-inline-start: 1px solid var(--line); }
+.pc-hudwrap .d-drawer[hidden] { display: none; }
+/* Structure pills — how the form divides, and which block of it is open.
+     Quieter than a reading pill on purpose: the reading is the loud thing on
+     this card, and the structure is how you got to it. */
+  .pc-hudwrap .s-pills { display: flex; flex-wrap: wrap; gap: 0.32rem; direction: ltr; }
+/* the blocks of one division lay out in the word's own direction, so the
+     row reads as the form does and the word visibly reassembles */
+  .pc-hudwrap .s-pills[dir="rtl"] { direction: rtl; }
+.pc-hudwrap .s-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+    border-radius: 0.4rem; padding: 0.18rem 0.6rem; font: inherit; font-size: 0.9rem; cursor: pointer;
+    max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+.pc-hudwrap .s-pills button:hover { border-color: var(--gold-dim); color: var(--shesh); }
+.pc-hudwrap .s-pills button[aria-pressed="true"] { border-color: var(--shesh); color: var(--ink-strong);
+    background: var(--wash); }
+.pc-hudwrap .s-pills button .none { font: 0.62rem/1 Georgia, serif; color: var(--faint); margin-inline-start: 0.35rem; }
+.pc-hudwrap .b-q { flex: 0 0 auto; min-height: 0; }
+.pc-hudwrap .b-q .q-role { font: 0.6rem/1 Georgia, serif; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--faint); margin-inline-start: 0.4rem; }
+.pc-hudwrap .b-q button[aria-pressed="true"] .q-role { color: var(--muted); }
+.pc-hudwrap .prov { color: var(--faint); font-size: 0.72rem; margin: 0.35rem 0 0; }
+.lic-chip { display: inline-block; margin-inline-start: 0.45rem; padding: 0.02rem 0.5rem;
+    border-radius: 999px; background: var(--chip-bg); border: 1px solid var(--chip-line);
+    color: var(--shesh); font-size: 0.72rem; }
+.pc-hudwrap .c-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
+.pc-hudwrap .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+    border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
+    max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pc-hudwrap .c-pills button[aria-pressed="true"] { background: var(--sel); border-color: var(--sel);
+    color: var(--sel-ink); font-weight: bold; }
+.pc-hudwrap .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
+.pc-hudwrap .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+.pc-hudwrap .c-note { color: var(--faint); font-size: 0.72rem; margin: 0.2rem 0 0; }
+/* A commentary served from the chain is text, not decoration: its own words
+     carry their own routes, so they are word blocks like any others. */
+  .pc-hudwrap .c-he .wb { margin: 0 0.14rem 0.5rem; }
+.pc-hudwrap .c-he .w { font-size: 1.05rem; }
+.pc-hudwrap .c-he .g { font-size: 0.6rem; max-width: 8em; }
+.pc-hudwrap .c-back { background: none; border: 0; color: var(--link); font: inherit; font-size: 0.74rem;
+    cursor: pointer; padding: 0 0 0.25rem; letter-spacing: 0.04em; }
+.pc-hudwrap .c-back:hover { color: var(--gold); }
+.pc-hudwrap { max-height: 94vh; }
+.pc-hudwrap .prov { display: none; }
+.pc-hudwrap .r-now { margin: 0 0 0.2rem; padding-bottom: 0.2rem; }
+.pc-hudwrap .d-slot { max-height: max(26vh, 9rem); }
+.pc-hudwrap .r-label { margin: 0.15rem 0 0.1rem; font-size: 0.66rem; }
+.pc-hudwrap .head b { font-size: 1.15rem; }
+.pc-hudwrap .head { padding-bottom: 0.2rem; margin-bottom: 0.15rem; }
+.pc-hudwrap .d-slot { max-height: max(27vh, 8.75rem); }
+.pc-hudwrap .s-pills button, .pc-hudwrap .r-pills button { padding-top: 0.08rem; padding-bottom: 0.08rem; }
+.pc-hudwrap { max-width: 34rem; width: min(34rem, 92vw); }
+/* The record, whole, on request. The capped card is the resting state —
+     nothing rests open — but the record is entitled to say what it says, and
+     on a short screen the only honest way to read a long D is to let it
+     stand at its full height while it is wanted. The control sits in the
+     foot beside the M, where the record's own furniture lives. */
+  .pc-hudwrap .d-slot.whole { max-height: min(72vh, 36rem); overflow-y: auto; }
+.pc-hudwrap .d-slot.whole .d-body { max-height: none; overflow-y: visible; }
+.pc-hudwrap .d-grow { margin-left: auto; border: 1px solid var(--line); background: var(--panel2);
+    color: var(--muted); border-radius: 999px; font: inherit; font-size: 0.72rem;
+    padding: 0.02rem 0.55rem; cursor: pointer; white-space: nowrap; }
+.pc-hudwrap .d-foot { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; }
+.pc-hudwrap { box-shadow: var(--shadow-hud); }
+.pc-hudwrap .r-pills button[aria-pressed="true"], .pc-hudwrap .s-pills button[aria-pressed="true"] {
+    box-shadow: 0 0 0 1px var(--sel-dim); }
+  /* The reader's card is width: min(23rem, 92vw) because it FLOATS over the
+     page and answers to the window. Standing inside a column it has to answer
+     to the column instead, or it runs past the right edge and takes the close
+     button and the source line with it. */
+  .pc-hudwrap { margin: .5rem 0; width: 100%; max-width: 100%; }
+  .pc-hudwrap .head { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; }
+  .pc-hudwrap .kq-key { margin: 0 0 .4rem; }
+  .pc-hudwrap .head b { font-size: 1.2rem; }
+  .pc-hudwrap .pc-x { font: inherit; background: none; border: 0; color: var(--faint); cursor: pointer; }
+  .pc-hudwrap .pc-d { margin: .2rem 0; font-size: .9rem; }
+  .pc-hudwrap .pc-noprov { font-style: italic; color: var(--faint); font-size: .68rem; }
+  #poc .pc-open { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+  #poc .pc-open:hover { color: var(--gold); }
   #poc .pc-dm { align-items: baseline; }
   #poc .pc-m { font-size: .64rem; border: 1px solid var(--chip-line); border-radius: .5rem;
     padding: .02rem .35rem; color: var(--muted); }
