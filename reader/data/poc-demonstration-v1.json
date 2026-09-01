@@ -151,7 +151,7 @@
    },
    "picks": [
     {
-     "id": "one",
+     "id": "whole",
      "label": "one word",
      "pill_cells": true,
      "underline": "כָל־הָאָרֶץ",
@@ -168,34 +168,19 @@
       ],
       "M": null,
       "P": null
-     }
-    },
-    {
-     "id": "two",
-     "label": "two words",
-     "pill_cells": true,
-     "underline": "כָל־הָאָרֶץ",
-     "cells": [
-      {
-       "surface": "כָל",
-       "english": "all"
-      },
-      {
-       "surface": "הָאָרֶץ",
-       "english": "the earth"
-      }
-     ],
-     "card": {
-      "D": "all the earth",
-      "R": [
-       "all the earth"
-      ],
-      "M": null,
-      "P": null
      },
      "divides": [
       {
-       "id": "plain",
+       "id": "undivided",
+       "cells": [
+        {
+         "surface": "כָל־הָאָרֶץ",
+         "english": "all the earth"
+        }
+       ]
+      },
+      {
+       "id": "joint",
        "cells": [
         {
          "surface": "כָל",
@@ -208,12 +193,76 @@
        ]
       },
       {
-       "id": "article",
+       "id": "atoms",
        "cells": [
         {
          "surface": "כָל",
          "english": "all"
         },
+        {
+         "surface": "הָ",
+         "english": "the"
+        },
+        {
+         "surface": "אָרֶץ",
+         "english": "earth"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "kol",
+     "label": "the first word",
+     "pill_cells": true,
+     "underline": "כָל",
+     "cells": [
+      {
+       "surface": "כָל",
+       "english": "all"
+      }
+     ],
+     "card": {
+      "D": "all",
+      "R": [
+       "all"
+      ],
+      "M": null,
+      "P": null
+     }
+    },
+    {
+     "id": "haaretz",
+     "label": "the second word",
+     "pill_cells": true,
+     "underline": "הָאָרֶץ",
+     "cells": [
+      {
+       "surface": "הָאָרֶץ",
+       "english": "the earth"
+      }
+     ],
+     "card": {
+      "D": "the earth",
+      "R": [
+       "the earth"
+      ],
+      "M": null,
+      "P": null
+     },
+     "divides": [
+      {
+       "id": "undivided",
+       "cells": [
+        {
+         "surface": "הָאָרֶץ",
+         "english": "the earth"
+        }
+       ]
+      },
+      {
+       "id": "article",
+       "cells": [
         {
          "surface": "הָ",
          "english": "the"
@@ -242,18 +291,18 @@
      "P": "which record answers for which reading"
     },
     "source_slot": "M and P stand empty: nothing was carried, this was typed",
-    "key": "The maqaf joins two words into one. Every part is read and the word is defined once, where the ketiv and qere are two forms of which only one is read."
+    "key": "The maqaf joins two words into one. Every part is read, and the site holds three words you can address: the joined one, and each half on its own."
    },
    "gloss_under_word": {
-    "one": "all the earth",
-    "two": "all the earth"
+    "whole": "all the earth",
+    "kol": "all",
+    "haaretz": "the earth"
    }
   },
   {
    "id": "abbreviation",
    "letter": "COMPspan",
    "kind": "abbreviation",
-   "title": "one meaning, two surfaces — and only the ink can tell them apart",
    "at": "a saying of Rabbi Yochanan",
    "mode": "EMPHASIZES",
    "c0": {
@@ -264,8 +313,9 @@
    },
    "picks": [
     {
-     "id": "as-written",
+     "id": "token",
      "label": "as written",
+     "pill_cells": true,
      "underline": "הקב״ה",
      "cells": [
       {
@@ -275,46 +325,154 @@
      ],
      "card": {
       "D": "the Holy One, blessed be He",
-      "M": null,
       "R": [
        "the Holy One, blessed be He"
       ],
+      "M": null,
       "P": null
-     }
+     },
+     "divides": [
+      {
+       "id": "undivided",
+       "cells": [
+        {
+         "surface": "הקב״ה",
+         "english": "the Holy One, blessed be He"
+        }
+       ]
+      },
+      {
+       "id": "words",
+       "cells": [
+        {
+         "surface": "הַקָּדוֹשׁ",
+         "english": "the Holy"
+        },
+        {
+         "surface": "בָּרוּךְ",
+         "english": "blessed"
+        },
+        {
+         "surface": "הוּא",
+         "english": "He"
+        }
+       ]
+      },
+      {
+       "id": "atoms",
+       "cells": [
+        {
+         "surface": "הַ",
+         "english": "the"
+        },
+        {
+         "surface": "קָּדוֹשׁ",
+         "english": "Holy"
+        },
+        {
+         "surface": "בָּרוּךְ",
+         "english": "blessed"
+        },
+        {
+         "surface": "הוּא",
+         "english": "He"
+        }
+       ]
+      }
+     ]
     },
     {
-     "id": "expanded",
-     "label": "the words it stands for",
+     "id": "qadosh",
+     "label": "the first word it stands for",
+     "pill_cells": true,
      "underline": "הקב״ה",
      "cells": [
       {
        "surface": "הַקָּדוֹשׁ",
        "english": "the Holy"
+      }
+     ],
+     "card": {
+      "D": "the Holy",
+      "R": [
+       "the Holy"
+      ],
+      "M": null,
+      "P": null
+     },
+     "divides": [
+      {
+       "id": "undivided",
+       "cells": [
+        {
+         "surface": "הַקָּדוֹשׁ",
+         "english": "the Holy"
+        }
+       ]
       },
+      {
+       "id": "article",
+       "cells": [
+        {
+         "surface": "הַ",
+         "english": "the"
+        },
+        {
+         "surface": "קָּדוֹשׁ",
+         "english": "Holy"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "barukh",
+     "label": "the second word it stands for",
+     "pill_cells": true,
+     "underline": "הקב״ה",
+     "cells": [
       {
        "surface": "בָּרוּךְ",
        "english": "blessed"
-      },
+      }
+     ],
+     "card": {
+      "D": "blessed",
+      "R": [
+       "blessed"
+      ],
+      "M": null,
+      "P": null
+     }
+    },
+    {
+     "id": "hu",
+     "label": "the third word it stands for",
+     "pill_cells": true,
+     "underline": "הקב״ה",
+     "cells": [
       {
        "surface": "הוּא",
        "english": "He"
       }
      ],
      "card": {
-      "D": "the Holy + blessed + He",
-      "M": null,
+      "D": "He",
       "R": [
-       "the Holy + blessed + He"
+       "He"
       ],
+      "M": null,
       "P": null
      }
     }
    ],
    "blocks_the_real_thing": "Nothing. This one works on the published site today.",
-   "plainly": "A word of the book, counted once — however it is defined.",
+   "plainly": "One word of the book, counted once, though it stands for three.",
    "hud": {
     "headings": {
-     "forms": "Transmitted forms"
+     "forms": "Addressable words",
+     "divides": "Complete divisions",
+     "routes": "Exact selectable routes"
     },
     "letters": {
      "D": "the definition",
@@ -322,11 +480,14 @@
      "M": "the record it came from",
      "P": "which record answers for which reading"
     },
-    "source_slot": "M and P stand empty: nothing was carried, this was typed"
+    "source_slot": "M and P stand empty: nothing was carried, this was typed",
+    "key": "An abbreviation is one token standing for several words. All of them are read, and they share a single piece of ink — so whichever one you address, the same letters underline."
    },
    "gloss_under_word": {
-    "as-written": "the Holy One, blessed be He",
-    "expanded": "the Holy + blessed + He"
+    "token": "the Holy One, blessed be He",
+    "qadosh": "the Holy",
+    "barukh": "blessed",
+    "hu": "He"
    }
   },
   {
@@ -455,7 +616,9 @@
   "ל",
   "עבדיך",
   "לְ",
-  "עַבְדָךְ"
+  "עַבְדָךְ",
+  "הַ",
+  "קָּדוֹשׁ"
  ],
  "the_fence": "The list above is exhaustive and is what the gate checks. Every Hebrew character this page prints is one of these strings; a glyph that is not fails check-poc-fenced-v1."
 }
