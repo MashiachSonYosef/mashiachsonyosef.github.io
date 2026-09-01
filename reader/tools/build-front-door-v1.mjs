@@ -1056,9 +1056,22 @@ ${page.altLink}
   });
 }
 </script>
-<main>
+<main
+    data-text-input-byte-rule="${TEXT_PIN_RULE}"
+    data-logical-atlas-sha256="${atlasPinned.actual.sha256}"
+    data-physical-handoff-sha256="${handoffPinned.actual.sha256}"
+    data-physical-atlas-sha256="${BINDINGS.inputs.physical_atlas.sha256}"
+    data-logical-overlay-sha256="${BINDINGS.inputs.logical_overlay.sha256}"
+    data-genesis-clean-zone-sha256="${GENESIS_V3.zone.sha256}"
+    data-genesis-clean-handoff-sha256="${GENESIS_V3.front_door_handoff.sha256}"
+    data-genesis-clean-validation-sha256="${GENESIS_V3.validation.sha256}"
+    data-genesis-clean-seal-sha256="${GENESIS_V3.closed_world_seal.sha256}"
+    data-rendered-zone-manifest-sha256="${renderedTally.zone_manifest_sha256}">
   <!-- Built by tools/build-front-door-v1.mjs from pinned physical/logical
-       authorities and the zones. Every count below names its grain. -->
+       authorities and the zones. These attributes are the door naming what it
+       was built from; they carried on the counts block until that block came
+       off the page, and they are provenance rather than display, so they moved
+       here rather than going with it. -->
   <h1>${page.h1}</h1>
   <p class="sub">${page.sub}</p>
   <p class="face-line">${n(ZONE_INFO.size)} book${ZONE_INFO.size === 1 ? "" : "s"} readable today · ${n(ATLAS.totals.works - ZONE_INFO.size)} more stand listed, each saying on its own card what it awaits</p>
@@ -1457,7 +1470,7 @@ ${page.sections.join("\n")}
   <!-- A book's own title is corpus text and is not printed here. This page
        carries no records, so it can cite nothing; it says only how each book is
        commonly named, and the title itself waits inside, where it opens. -->
-  <footer>Every record carried here keeps its own licence, shown beside it wherever it prints.
+  <footer>Every record carried here keeps its own licence, shown beside it wherever it prints. The counts this build measured, at their exact grains, stand in <a href="/front-door-counts-receipt-v1.json">the count receipt</a> \u2014 recomputed from the books\u2019 own bytes every time, and no longer printed across the front page, where four figures in the billions told a reader nothing.
   <p class="open-claim">This site is noncommercial: nothing is sold here, no advertising runs here, and no payment is taken here — declared 2026-08-30, and standing as long as this page serves. Some of the dictionary records carried here were released under noncommercial terms, and this declaration is how those terms are honored. Every carried record keeps its own license, shown beside it wherever it prints. Everything this site adds of its own — its pages, its arrangement, its receipts, its words — is dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>: take it, reuse it, build on it, no permission needed. What each carried record allows is the record's own license to say.</p></footer>
 </main>
 </body>

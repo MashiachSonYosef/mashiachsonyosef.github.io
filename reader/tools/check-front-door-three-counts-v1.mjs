@@ -33,11 +33,23 @@ const readBytes = (path) => readFileSync(resolve(path));
 const readJson = (path) => JSON.parse(readBytes(path).toString("utf8"));
 const n = (value) => Number(value).toLocaleString("en-US");
 const text = (html) => html.replace(/<[^>]*>/g, " ").replace(/&middot;/g, "·").replace(/\s+/g, " ").trim();
+// A count block if the door prints one, and null if it does not.
+//
+// This used to assert the block's existence, which made it a check on the
+// door's SHAPE rather than on its truthfulness. The counts fold came off the
+// door — it was four figures in the billions that told a reader nothing — and
+// six suites failed for a page that had stopped making a claim rather than for
+// making a false one.
+//
+// The law was always "a count the door prints agrees with the receipt", and
+// that is what it is now. Print nothing and there is nothing to disagree with;
+// print a figure and it must be exact. The receipt is checked either way, and
+// it is still emitted on every build as data even though the fold is gone.
 const block = (html, key) => {
   const match = html.match(new RegExp(`<p class="count" data-count="${key}">([\\s\\S]*?)<\\/p>`));
-  assert(match, `missing count block ${key}`);
-  return text(match[1]);
+  return match ? text(match[1]) : null;
 };
+const printsCounts = (html) => block(html, "current-physical-c0") !== null;
 
 const htmlPath = arg("html", "../index.html");
 const readmePath = arg("readme", "../README.md");
@@ -228,14 +240,16 @@ check("receipt marks rendered coverage as a current-zone snapshot", () => {
   assert.equal(receipt.snapshot.zone_manifest_sha256, receipt.rendered.zone_manifest_sha256);
 });
 
-check("three primary DOM counts use their exact grains", () => {
+check("any primary count the door prints uses its exact grain", () => {
+  if (!printsCounts(html)) return;
   assert.equal(block(html, "current-physical-c0"), `${n(physical)} current physical C0 rows`);
   assert.equal(block(html, "named-shelf-c0"), `${n(mapped)} physically backed C0 rows on named work/unit shelves`);
   const rendered = block(html, "rendered-compspan-records");
   assert.equal(rendered, `${n(dynamicRendered)} displayed word records in ${n(receipt.rendered.built_zones)} built books`);
   assert(!/C0/i.test(rendered), "rendered count block calls COMPspan records C0");
 });
-check("secondary DOM disclosures are complete", () => {
+check("secondary disclosures are complete wherever the counts are shown", () => {
+  if (!printsCounts(html)) return;
   const page = text(html);
   assert(page.includes(`Logical plan: ${n(plan)} C0 rows`));
   assert(page.includes(`logical-plan C0 rows not physical: ${n(notPhysical)}`));
