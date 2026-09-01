@@ -129,6 +129,26 @@ const UNNAMED_NON_HEBREW = /non-Hebrew-language|Hebrew-script-language/i;
 export const classify = (source) => {
   const rec = (source && typeof source === "object") ? source : { label: source };
   const l = String(rec.label || "");
+
+  // A DECLARED languages field beats every other signal, in both directions.
+  // Reading a language out of prose is a heuristic; a field that names the
+  // languages is the source answering the question it was asked. This exists
+  // because Davidson was struck by rule 1a while its own acquisition manifest
+  // had carried languages ["Hebrew","English","Chaldee"] the whole time — the
+  // reviewed manifest this gate reads simply has no such field. So the way
+  // back for a struck-but-Hebrew source is to carry the field, which is a
+  // smaller and more honest edit than rewriting a prose label.
+  if (Array.isArray(rec.languages) && rec.languages.length) {
+    const declared = rec.languages.map(String);
+    const headword = declared.filter((w) => !NOT_A_HEADWORD_LANGUAGE.has(w));
+    const outside = headword.filter((w) => !ADMITTED_LANGUAGES.includes(w));
+    if (outside.length)
+      return { admitted: false, reason: "DECLARED_LANGUAGES_INCLUDE_ONE_OUTSIDE_HEBREW_AND_ARAMAIC",
+        evidence: outside.join(" + "), languages_named: declared };
+    if (headword.length)
+      return { admitted: true, reason: "DECLARED_LANGUAGES_ARE_ADMITTED",
+        evidence: headword.join(" + "), languages_named: declared };
+  }
   // Word boundaries do not survive a path, where the language sits between
   // hyphens and slashes. So the provenance is scanned with its separators
   // turned into spaces, and the whole string is matched, not a \b form.
@@ -199,13 +219,40 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     rewritten.set(name, out);
   }
 
+  // THE RECORD IS CUMULATIVE. Each run used to overwrite it, so after three
+  // rounds the file on the shelf said 27 struck when 49 were struck, and the
+  // 22 from the earlier rounds — every Harkavy source, every Kaikki Yiddish
+  // and Arabic one — had vanished from the only document a stranger can
+  // audit. A record that erases its own history is worse than no record: it
+  // reads as an answer. Prior rounds are carried forward, deduplicated by
+  // m_id, and each round keeps its own line.
+  const priorPath = join(K3, "data", "language-admission-v1.json");
+  let prior = null;
+  try { prior = JSON.parse(readFileSync(priorPath, "utf8")); } catch { prior = null; }
+  const priorStruck = (prior && prior.struck_sources) || [];
+  const priorRounds = (prior && prior.rounds) || (prior
+    ? [{ ran_at: prior.ran_at, struck: priorStruck.map((s) => s.m_id), counts: prior.counts }]
+    : []);
+
   const record = {
     rule_id: ADMISSION_RULE_ID,
     ran_at: new Date().toISOString(),
     admitted_languages: ADMITTED_LANGUAGES,
     basis: "the frame's definition of A: a licensable hebrew or aramaic span. A source that is not "
       + "answering about Hebrew or Aramaic is not a weak source for an A, it is not a source for one.",
-    struck_sources: [...struck].map((m) => ({ m_id: m, ...decisions[m] })),
+    struck_sources: (() => {
+      const byId = new Map(priorStruck.map((s) => [s.m_id, s]));
+      for (const m of struck) byId.set(m, { m_id: m, ...decisions[m] });
+      return [...byId.values()].sort((a, b) =>
+        Number(String(a.m_id).slice(1)) - Number(String(b.m_id).slice(1)));
+    })(),
+    // A run that strikes nothing is not a round. Appending one made the index
+    // report four rounds while the record it summarizes held three, because
+    // the record is only rewritten when it has changed and the index summary
+    // was built from the in-memory value.
+    rounds: struck.size
+      ? [...priorRounds, { ran_at: new Date().toISOString(), struck: [...struck] }]
+      : priorRounds,
     kept_sources: Object.entries(decisions).filter(([, d]) => d.admitted)
       .map(([m, d]) => ({ m_id: m, reason: d.reason, evidence: d.evidence, label: d.label })),
     counts: { sources_before: Object.keys(index.m_sources).length, sources_struck: struck.size,
@@ -223,7 +270,38 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (emptied.length) console.log(`  e.g. ${emptied.join(" ")}`);
 
   if (DRY) { console.log("\n--dry — nothing written"); process.exit(0); }
-  if (!struck.size) { console.log("\nalready struck — nothing to write"); process.exit(0); }
+
+  // A run with nothing new to strike still owes the record. The shards and
+  // the index are only rewritten when something is actually struck, but the
+  // audit file is repaired every run — otherwise a record that has drifted
+  // from what is struck stays drifted forever, because the only code that
+  // could fix it exits before reaching it.
+  if (!struck.size) {
+    let wrote = [];
+    const recordAgrees = prior && (prior.struck_sources || []).length === record.struck_sources.length;
+    if (!recordAgrees) { writeFileSync(priorPath, JSON.stringify(record, null, 1)); wrote.push(`record ${(priorStruck || []).length} -> ${record.struck_sources.length}`); }
+    // The index carries a summary OF the record, and a summary that disagrees
+    // with what it summarizes is the same lie in a smaller font. It is synced
+    // here even when nothing was struck, because the index is what the served
+    // page reads and the record is only what a person opens.
+    const cur = index.language_admission || {};
+    const want = record.struck_sources.map((s) => s.m_id);
+    // Compare every field the summary carries, not only the list length. A
+    // sync keyed on one field leaves the others stale: the round count sat at
+    // 4 in the index against 3 in the record because only struck_m_ids was
+    // being compared, and 49 equalled 49.
+    if ((cur.struck_m_ids || []).length !== want.length || cur.rounds !== record.rounds.length) {
+      index.language_admission = { ...cur, rule_id: ADMISSION_RULE_ID,
+        admitted_languages: ADMITTED_LANGUAGES, record: "data/language-admission-v1.json",
+        struck_m_ids: want, rounds: record.rounds.length, counts: cur.counts };
+      writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
+      wrote.push(`index summary ${(cur.struck_m_ids || []).length} -> ${want.length}`);
+    }
+    console.log(wrote.length
+      ? `\nnothing new to strike · repaired: ${wrote.join(" · ")} across ${record.rounds.length} round(s)`
+      : "\nalready struck — record and index agree, nothing to write");
+    process.exit(0);
+  }
 
   for (const [name, body] of rewritten)
     writeFileSync(join(STORE, "shards", name), gzipSync(Buffer.from(JSON.stringify(body)), { level: 9 }));
@@ -253,7 +331,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     rule_id: ADMISSION_RULE_ID,
     admitted_languages: ADMITTED_LANGUAGES,
     record: "data/language-admission-v1.json",
-    struck_m_ids: [...struck],
+    struck_m_ids: record.struck_sources.map((s) => s.m_id),
+    struck_this_round: [...struck],
+    rounds: record.rounds.length,
     counts: record.counts,
   };
   index.counts = { ...index.counts, keys: keysBefore - keysEmptied, routes: routesBefore - routesStruck };
