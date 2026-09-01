@@ -1424,7 +1424,30 @@
     placeHud();
 
     const span = spanOf(bin, region.k);
-    const comps = span ? span.comps : [region.k];
+    // A DIVISION WE HAVE NOT ESTABLISHED IS NOT OFFERED.
+    //
+    // The formulaic clitic pass splits any word beginning with a clitic
+    // letter, whether or not that is the right analysis, and stamps every
+    // result draft_candidate. It is wrong often and confidently: HE-VAV-ALEPH
+    // is the pronoun "he" and was being offered as HE + VAV-ALEPH, where the
+    // residue is not a word anybody uses. The corpus lane measured the same
+    // thing from the other side — a residue attested SOMEWHERE passes, because
+    // with a million keys almost any two letters are attested somewhere, so
+    // bare attestation is exactly as permissive as the pattern rule it was
+    // meant to replace. What separates a real clitic from a scar is how often
+    // the residue stands on its own: LAMED-ALEPH is commoner than VAV+LAMED-
+    // ALEPH, and VAV-ALEPH is 250x rarer than the word it was cut out of.
+    //
+    // That measurement is the corpus lane's to make and it has not landed. So
+    // the reader declines to assert a division it cannot support. This is not
+    // hiding a fact the source made — a petuchah drawn as nothing is a lie
+    // because the scribe put it there, whereas this boundary is our own guess.
+    // Declining to guess in front of a reader is the honest form.
+    //
+    // The bins keep their spans. Nothing is deleted, and the day a division
+    // arrives with evidence behind it, it is offered on the strength of that.
+    const established = span && span.conf !== "draft_candidate";
+    const comps = established ? span.comps : [region.k];
     const covers = cutsOf(comps);
 
     // What the reader chose, kept where they chose it. This lived inside the
