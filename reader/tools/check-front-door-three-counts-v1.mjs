@@ -263,8 +263,19 @@ check("embedded DOM receipt equals the emitted JSON receipt", () => {
 check("superseded rendered snapshots are forbidden from public output and generator", () => {
   const generator = readBytes("tools/build-front-door-v1.mjs").toString("utf8");
   const surface = `${html}\n${readme}\n${receiptBytes}\n${generator}`;
-  for (const stale of ["46,095", "46095", "46,097", "46097"])
-    assert(!surface.includes(stale), `superseded snapshot leaked: ${stale}`);
+  // A superseded count is a NUMBER STANDING ON ITS OWN. It is not a run of
+  // digits inside something else, and this surface carries 3,064 sha256
+  // digests — 196,096 hex characters — so a bare substring scan for a
+  // five-digit number is a scan that will eventually collide with a hash and
+  // fail a build for no reason. It did: a rebuild put
+  // 0acc902cacabef9e075c81e25017a99e31492fa0c0cc5f446095a87e745c4643 in the
+  // receipt, whose middle reads 46095, and the check called it a leaked
+  // snapshot. Requiring that no letter or digit sit on either side keeps the
+  // rule exactly as strict about a real count and blind to a hash.
+  for (const stale of ["46,095", "46095", "46,097", "46097"]) {
+    const standingAlone = new RegExp(`(?<![0-9A-Za-z])${stale.replace(",", ",")}(?![0-9A-Za-z])`);
+    assert(!standingAlone.test(surface), `superseded snapshot leaked: ${stale}`);
+  }
 });
 check("public outputs make no Genesis defect or cross-grain comparison claim", () => {
   const publicText = `${html}\n${readme}`;
