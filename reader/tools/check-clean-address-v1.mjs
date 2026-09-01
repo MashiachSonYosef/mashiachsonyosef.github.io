@@ -63,7 +63,14 @@ const srv = createServer(async (req, res) => {
     if (!extname(p)) {
       // Pages answers a directory with its index.html; so does this.
       if (p.endsWith("/")) file = join(file, "index.html");
-      else { res.writeHead(301, { Location: `${p}/${qs}` }); return res.end(); }
+      // The Location header is percent-encoded, because a header value may not
+      // carry a raw non-ASCII byte: Node throws ERR_INVALID_CHAR on writeHead,
+      // the throw lands in the catch below, and the reader is handed a 404
+      // wearing the 301's status text. Every Hebrew-named address on the shelf
+      // — most of them — redirected into that, and it read for weeks as the
+      // site failing to serve its own Hebrew slugs. Pages encodes the header;
+      // a stub that does not is testing itself.
+      else { res.writeHead(301, { Location: `${encodeURI(p)}/${qs}` }); return res.end(); }
     }
     const body = await readFile(file);
     // shards arrive gzipped and are unpacked by the page, not the transport
@@ -253,7 +260,17 @@ check("and every claim label carries its attestation, never a license",
 
 // A directory address answers with or without its closing slash — the slash
 // is the server's dress, not a second address.
-const sameAddr = (got, want) => got === want || got === `${want}/`;
+// The browser reports location.pathname percent-encoded, and most addresses on
+// this shelf are the works' own Hebrew opening words — so a raw comparison
+// asked whether "/%D7%AA..." equals "/תתחדש-4078" and was told no about a page
+// that had loaded correctly. Both sides are decoded before comparing: what is
+// being checked is which address the reader is standing at, not which bytes the
+// browser chose to spell it with.
+const decodeAddr = (s) => { try { return decodeURIComponent(String(s)); } catch { return String(s); } };
+const sameAddr = (got, want) => {
+  const g = decodeAddr(got), w = decodeAddr(want);
+  return g === w || g === `${w}/`;
+};
 
 
 // What the masthead should say is not typed here: it is read out of the zone
@@ -450,7 +467,13 @@ for (const slug of CARRIED) {
 }
 // and the book's own entry still opens the book, not a commentary
 {
-  const first = plan.works[0].published_as;
+  // The curated tier can be empty — the owner's ruling of 2026-08-30 — so the
+  // plan can carry no works at all while the shelf carries thousands. The
+  // address pool above already asks the shelf when the plan is empty; this
+  // asked plan.works[0] directly and crashed on undefined, taking the two
+  // assertions after it down with it. The shelf is the authority on what is
+  // published, here as everywhere else.
+  const first = (plan.works[0] && plan.works[0].published_as) || zonesOnDisk()[0];
   await p.goto(`${B}/${first}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
   await p.waitForTimeout(1200);
