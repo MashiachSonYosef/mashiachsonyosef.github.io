@@ -63,15 +63,45 @@ const HEB = /[֐-׿יִ-ﭏ]/;
 const declared = new Set(rec.every_hebrew_string_in_this_record || []);
 // what a declared string can be found as, after HTML escaping strips nothing
 // but the tags around it
-const runs = new Set();
-for (const m of body.replace(/<[^>]+>/g, "\n").matchAll(/[^\n]*[֐-׿יִ-ﭏ][^\n]*/g))
-  runs.add(m[0].trim());
-const undeclared = [...runs].filter((r) => !declared.has(r));
-check("L2  every Hebrew string the page prints is one the record declares",
-  undeclared.length === 0,
-  undeclared.length
-    ? `${undeclared.length} not on the list — ${undeclared.slice(0, 3).map((x) => JSON.stringify(x)).join(" · ")}`
-    : `${runs.size} run(s) on the page, every one declared`);
+// EVERY HEBREW CHARACTER THE PAGE PRINTS COMES FROM A DECLARED STRING.
+//
+// Two earlier versions tried to cut the page into "runs" and both were
+// wrong, in opposite directions. Breaking a run at every tag split a word in
+// half where an underline sat inside it, and reported each half as an
+// undeclared string that nobody typed. Breaking at none glued a Hebrew cell
+// to the English beside it and reported that. The page was right both times;
+// the idea of a run was wrong both times.
+//
+// There is no need for runs. The claim is about characters: strip the markup,
+// walk the text, and at every Hebrew character require that some declared
+// string starts there and covers it. Longest match first, so a short string
+// cannot shadow a longer one it sits inside. What survives uncovered is a
+// glyph on the page that the record does not account for, which is the only
+// thing this law was ever about.
+const HEBREW_CH = /[\u0590-\u05ff\ufb1d-\ufb4f]/;
+const flat = body.replace(/<[^>]+>/g, "");
+// Mark every position any declared string occupies, then require that every
+// Hebrew character sits inside one. Coverage rather than anchoring: a
+// declared string may begin with a character that is not Hebrew — the section
+// marks are a Hebrew letter inside braces — so a match anchored at the letter
+// would never find the string that contains it.
+const covered = new Uint8Array(flat.length);
+for (const str of declared) {
+  if (!str) continue;
+  for (let at = flat.indexOf(str); at !== -1; at = flat.indexOf(str, at + 1))
+    covered.fill(1, at, at + str.length);
+}
+const uncovered = [];
+for (let i = 0; i < flat.length; i += 1) {
+  if (covered[i] || !HEBREW_CH.test(flat[i])) continue;
+  const from = Math.max(0, i - 12);
+  uncovered.push(flat.slice(from, i + 12).replace(/\s+/g, " ").trim());
+}
+check("L2  every Hebrew character on the page comes from a declared string",
+  uncovered.length === 0,
+  uncovered.length
+    ? `${uncovered.length} not accounted for \u2014 ${[...new Set(uncovered)].slice(0, 3).map((x) => JSON.stringify(x)).join(" \u00b7 ")}`
+    : `every one covered by the ${declared.size} strings the record declares`);
 
 // L3 — it says what it is, up front
 const firstProse = body.replace(/<[^>]+>/g, "\n").split("\n").map((x) => x.trim()).filter(Boolean).slice(0, 6).join(" ");

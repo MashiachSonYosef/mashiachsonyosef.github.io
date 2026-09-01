@@ -1,11 +1,15 @@
 {
- "schema_version": 2,
+ "schema_version": 3,
  "rule_id": "poc-demonstration-rule-v1-hand-authored-never-served-always-fenced",
  "authored_on": "2026-09-01",
  "authored_by": "this lane, by hand, at the owner's instruction",
- "WHAT_THIS_IS": "A MOCKUP. Every Hebrew string below was typed by hand from memory. None of it was copied from any text this project holds, none of it traces to a record, and none of it is a reading. It exists to show what each part of the frame LOOKS LIKE when it works, because the books that carry these marks are not published and one of them is not held at all.",
- "WHY_FROM_MEMORY_IS_SAID_OUT_LOUD": "A mark shown alone is a glyph; a mark shown inside a passage is the mark doing its work, which is what was asked for. Passages mean real verses, and typing a real verse from memory is exactly the thing this project refuses everywhere else. It is permitted here and nowhere else, and the pointing and cantillation may differ from any given edition. Nothing on this page may be cited, quoted as our text, or compared against a manuscript. When these books build, these drawings come down.",
- "WHY_IT_BREAKS_THE_RULE": "The serve law says the pipeline decides and gates are the only judges, and this project does not ship proofs of concept. The owner set that rule and the owner suspended it here, for this page only, and said so plainly. What is not suspended is that a reader can tell the difference: every demonstration is fenced, labelled as typed, and refused a licence chip, because a licence chip over a typed string would be the one lie this site cannot afford.",
+ "WHAT_THIS_IS": "A MOCKUP. Every Hebrew string below was typed by hand from memory. None of it was copied from any text this project holds, none of it traces to a record, and none of it is a reading. It exists to show what each part of the frame LOOKS LIKE when it works, because the books that carry these marks are not published and two of them are not held at all.",
+ "WHY_FROM_MEMORY_IS_SAID_OUT_LOUD": "A mark shown alone is a glyph; a mark shown inside a passage is the mark doing its work. Passages mean real verses, and typing a real verse from memory is the thing this project refuses everywhere else. It is permitted here and nowhere else, the pointing and cantillation may differ from any edition, nothing here may be cited or compared against a manuscript, and when these books build these drawings come down.",
+ "THE_LAW_EVERY_CARD_OBEYS": "The C0 never moves. Whatever the reader selects, the ink stands exactly as the source wrote it. Selection governs what is DEFINED, never what is DISPLAYED.",
+ "TWO_KINDS_OF_SELECTION": {
+  "EXCLUDES": "The branches are different meanings and choosing one makes the other wrong here. One English at a time. Marked in the line by an underline under the half in focus, because both halves are ink the scribe wrote. Only written/read is this kind.",
+  "EMPHASIZES": "The parts are one reading assembled. Nothing is excluded, so every English shows at once, joined by a plus. Selection says which part is in focus. The abbreviation and the maqaf are this kind — and for the abbreviation there is nothing to underline, because the expansion is nowhere on the page."
+ },
  "demonstrations": [
   {
    "id": "kq",
@@ -13,20 +17,183 @@
    "kind": "ketiv / qere",
    "title": "written one way, read another",
    "at": "daniel 2:4",
-   "passage": {
+   "mode": "EXCLUDES",
+   "c0": {
     "before": "וַיְדַבְּרוּ הַכַּשְׂדִּים לַמֶּלֶךְ אֲרָמִית מַלְכָּא לְעָלְמִין חֱיִי אֱמַר חֶלְמָא",
-    "site": "לעבדיך",
+    "site": "(לעבדיך) [לְעַבְדָךְ]",
     "after": "וּפִשְׁרָא נְחַוֵּא",
-    "english": "Then the Chaldeans spoke to the king in Aramaic: O king, live forever — tell the dream to your servants, and we will declare the meaning."
+    "english": "Then the Chaldeans spoke to the king in Aramaic: O king, live forever — tell the dream to your servant, and we will declare the meaning."
    },
-   "branches": [
-    { "role": "written", "delimiter": "( )", "surface": "לעבדיך", "english": "to your servants" },
-    { "role": "read", "delimiter": "[ ]", "surface": "לְעַבְדָךְ", "english": "to your servant" }
+   "picks": [
+    {
+     "id": "k",
+     "label": "written",
+     "delimiter": "( )",
+     "underline": "(לעבדיך)",
+     "cells": [
+      {
+       "surface": "לעבדיך",
+       "english": "to your servants"
+      }
+     ]
+    },
+    {
+     "id": "q",
+     "label": "read",
+     "delimiter": "[ ]",
+     "underline": "[לְעַבְדָךְ]",
+     "cells": [
+      {
+       "surface": "לְעַבְדָךְ",
+       "english": "to your servant"
+      }
+     ]
+    }
    ],
-   "the_card_says": "One word block, one card, two branches. Selecting a half underlines that half in the line and shows that half's English only — one English at a time, and neither is chosen for the reader. The rest of the verse does not move.",
+   "in_the_card": "The English says which branch it belongs to, in words. The underline in the line points at the same half. Neither is enough alone: an underline without a label leaves the reader guessing which English they are reading.",
+   "the_card_says": "One word block, one card, two branches. The ink shows both because the scribe wrote both. Selecting a half underlines it where it already stands and shows that half's English only — one English at a time, and neither chosen for the reader.",
    "counts": "ON",
    "key": "keyed — one key per branch, delimiters stripped",
    "blocks_the_real_thing": "This site holds Daniel and cannot build it: 332 of its surfaces carry literal HTML markup where the text should be."
+  },
+  {
+   "id": "maqaf",
+   "letter": "W · COMPspan",
+   "kind": "maqaf",
+   "title": "two words joined into one unit, and a lattice over the lattice",
+   "at": "genesis 11:1",
+   "mode": "EMPHASIZES",
+   "c0": {
+    "before": "וַיְהִי",
+    "site": "כָל־הָאָרֶץ",
+    "after": "שָׂפָה אֶחָת וּדְבָרִים אֲחָדִים",
+    "english": "And the whole earth was of one language and one speech."
+   },
+   "picks": [
+    {
+     "id": "a",
+     "label": "first atom",
+     "underline": "כָל",
+     "cells": [
+      {
+       "surface": "כָל",
+       "english": "all",
+       "focus": true
+      },
+      {
+       "surface": "הָאָרֶץ",
+       "english": "the earth",
+       "focus": false
+      }
+     ]
+    },
+    {
+     "id": "b",
+     "label": "second atom",
+     "underline": "הָאָרֶץ",
+     "cells": [
+      {
+       "surface": "כָל",
+       "english": "all",
+       "focus": false
+      },
+      {
+       "surface": "הָאָרֶץ",
+       "english": "the earth",
+       "focus": true
+      }
+     ]
+    },
+    {
+     "id": "ab",
+     "label": "the whole unit",
+     "underline": "כָל־הָאָרֶץ",
+     "cells": [
+      {
+       "surface": "כָל",
+       "english": "all",
+       "focus": true
+      },
+      {
+       "surface": "הָאָרֶץ",
+       "english": "the earth",
+       "focus": true
+      }
+     ]
+    }
+   ],
+   "nested": {
+    "of": "הָאָרֶץ",
+    "into": [
+     {
+      "surface": "הָ",
+      "english": "the"
+     },
+     {
+      "surface": "אָרֶץ",
+      "english": "earth"
+     }
+    ],
+    "why": "An atom of a maqaf is a word, and a word carries prefixes. So the maqaf's lattice sits OVER an ordinary COMPspan rather than replacing it, and its atoms divide again underneath."
+   },
+   "in_the_card": "Both Englishes show whichever atom you press, joined by a plus, because a maqaf is not offering a choice of meaning — it says these words are read as one. The press moves the emphasis and the underline; it removes nothing.",
+   "the_card_says": "One C0 and more than one W. The W set is every contiguous interval of the atoms, which overlap and therefore partition nothing — that overlap is exactly why a reading line may join atoms only, and never an interval.",
+   "counts": "ON",
+   "key": "keyed, with the joiner kept in its original position",
+   "blocks_the_real_thing": "Live on the shelf and broken: 64,791 surfaces carry a maqaf and not one of their keys does, so every maqaf word is unkeyed, opens no card, and gets no definition. The frame's own rule says the key preserves it.",
+   "always_shows_both": false
+  },
+  {
+   "id": "abbreviation",
+   "letter": "COMPspan",
+   "kind": "abbreviation",
+   "title": "one meaning, two surfaces — and only the ink can tell them apart",
+   "at": "a saying of Rabbi Yochanan",
+   "mode": "EMPHASIZES",
+   "c0": {
+    "before": "בְּכָל מָקוֹם שֶׁאַתָּה מוֹצֵא גְּדֻלָּתוֹ שֶׁל",
+    "site": "הקב״ה",
+    "after": "שָׁם אַתָּה מוֹצֵא עַנְוְתָנוּתוֹ",
+    "english": "In every place where you find his greatness, there you find his humility."
+   },
+   "picks": [
+    {
+     "id": "as-written",
+     "label": "as written",
+     "underline": "הקב״ה",
+     "cells": [
+      {
+       "surface": "הקב״ה",
+       "english": "the Holy One, blessed be He"
+      }
+     ]
+    },
+    {
+     "id": "expanded",
+     "label": "the words it stands for",
+     "underline": "הקב״ה",
+     "cells": [
+      {
+       "surface": "הַקָּדוֹשׁ",
+       "english": "the Holy"
+      },
+      {
+       "surface": "בָּרוּךְ",
+       "english": "blessed"
+      },
+      {
+       "surface": "הוּא",
+       "english": "He"
+      }
+     ]
+    }
+   ],
+   "always_shows_both": true,
+   "in_the_card": "Both halves show whichever is selected — the abbreviation stays under the expansion and the expansion stays under the abbreviation. They cannot be separated anywhere except in the ink: no level above C0 is abbreviated-form-only, and none is expanded-form-only either. Hiding half would assert a separation that does not exist.",
+   "the_card_says": "An ordinary COMPspan with two alternatives, not a special case. Selecting the second changes not one letter of what is printed — the line still reads as the source wrote it. There is nothing to underline in the expansion, because those three words are nowhere on the page; the plus does that work instead, saying these glosses are one meaning assembled rather than three words defined.",
+   "counts": "ON",
+   "key": "keyed — as itself",
+   "blocks_the_real_thing": "Nothing. This one works on the published site today."
   },
   {
    "id": "petuchah",
@@ -34,7 +201,8 @@
    "kind": "petuchah",
    "title": "an open section — the next begins on a new line",
    "at": "amos 1:2",
-   "passage": {
+   "mode": null,
+   "c0": {
     "before": "וַיֹּאמַר יְהוָה מִצִּיּוֹן יִשְׁאָג וּמִירוּשָׁלִַם יִתֵּן קוֹלוֹ וְאָבְלוּ נְאוֹת הָרֹעִים וְיָבֵשׁ רֹאשׁ הַכַּרְמֶל",
     "site": "{פ}",
     "after": "",
@@ -43,7 +211,7 @@
    "expands_to": "פְּתוּחָה",
    "the_card_says": "The word — petuchah, open — and what it does: this section ends here, and the next begins on a fresh line. If the reader cannot give the break its line, the card says so in plain English rather than drawing nothing.",
    "counts": "OFF",
-   "key": "unkeyed — the letter here abbreviates a word and is not an occurrence of that letter",
+   "key": "unkeyed — the letter abbreviates a word and is not an occurrence of that letter",
    "blocks_the_real_thing": "Amos is held for the same markup defect. Eight books that do arrive clean arrived flattened, with the marks already gone."
   },
   {
@@ -52,7 +220,8 @@
    "kind": "setumah",
    "title": "a closed section — the next begins after a gap, same line",
    "at": "ecclesiastes 3:1",
-   "passage": {
+   "mode": null,
+   "c0": {
     "before": "לַכֹּל זְמָן וְעֵת לְכָל חֵפֶץ תַּחַת הַשָּׁמָיִם",
     "site": "{ס}",
     "after": "עֵת לָלֶדֶת וְעֵת לָמוּת",
@@ -62,7 +231,7 @@
    "the_card_says": "The word — setumah, closed — and what it does: this section ends, and the next begins on the same line, after a gap. A reader that draws this the same as an open section has erased a distinction the scribe made, and has to say which one it cannot honor.",
    "counts": "OFF",
    "key": "unkeyed",
-   "blocks_the_real_thing": "Ecclesiastes is held for the markup defect: 40 of its surfaces carry literal markup."
+   "blocks_the_real_thing": "Ecclesiastes is held: 40 of its surfaces carry literal markup."
   },
   {
    "id": "invnun",
@@ -70,40 +239,18 @@
    "kind": "inverted nun",
    "title": "two marks bracketing a passage set apart",
    "at": "numbers 10:35-36",
-   "passage": {
+   "mode": null,
+   "c0": {
     "before": "׆",
     "site": "וַיְהִי בִּנְסֹעַ הָאָרֹן וַיֹּאמֶר מֹשֶׁה קוּמָה יְהוָה וְיָפֻצוּ אֹיְבֶיךָ וְיָנֻסוּ מְשַׂנְאֶיךָ מִפָּנֶיךָ וּבְנֻחֹה יֹאמַר שׁוּבָה יְהוָה רִבְבוֹת אַלְפֵי יִשְׂרָאֵל",
     "after": "׆",
     "english": "And when the ark set out, Moses said: Arise, O LORD, and let your enemies be scattered, and let those who hate you flee before you. And when it rested he said: Return, O LORD, to the ten thousands of the thousands of Israel."
    },
    "expands_to": "נוּן הֲפוּכָה",
-   "the_card_says": "The mark's name, and what the tradition says with it: this passage stands apart. Whether a mark opens, closes, or stands alone is recorded — in Psalm 107 these stand singly, here two of them bracket the passage — and no partner is demanded.",
+   "the_card_says": "The mark's name, and what the tradition says with it: this passage stands apart. Whether a mark opens, closes, or stands alone is recorded — in Psalm 107 these stand singly, here two of them bracket the passage — and no partner is demanded. The tradition counts these two verses as a book of their own, which is the strongest form the claim takes.",
    "counts": "OFF",
-   "key": "unkeyed — this is a punctuation character, not the letter nun",
+   "key": "unkeyed — a punctuation character, not the letter nun",
    "blocks_the_real_thing": "Seven of these are in the body. Numbers is one of the eight books that arrived flattened, so the copy we hold has none of them."
-  },
-  {
-   "id": "abbreviation",
-   "letter": "COMPspan",
-   "kind": "abbreviation",
-   "title": "one word, or the words it stands for",
-   "at": "a saying of Rabbi Yochanan",
-   "passage": {
-    "before": "בְּכָל מָקוֹם שֶׁאַתָּה מוֹצֵא גְּדֻלָּתוֹ שֶׁל",
-    "site": "הקב״ה",
-    "after": "שָׁם אַתָּה מוֹצֵא עַנְוְתָנוּתוֹ",
-    "english": "In every place where you find his greatness, there you find his humility."
-   },
-   "options": [
-    { "option": 1, "reading": "the abbreviation as written, defined as itself", "cells": [ { "surface": "הקב״ה", "english": "the Holy One, blessed be He" } ] },
-    { "option": 2, "reading": "the words it stands for, each defined separately", "cells": [
-      { "surface": "הַקָּדוֹשׁ", "english": "the Holy" },
-      { "surface": "בָּרוּךְ", "english": "blessed" },
-      { "surface": "הוּא", "english": "He" } ] }
-   ],
-   "the_card_says": "An abbreviation is an ordinary COMPspan with two options, not a special case. Selecting the second does not change one letter of what is printed — the line still reads as the source wrote it. The lattice chooses what gets DEFINED, never what gets DISPLAYED, exactly as with written/read.",
-   "what_needs_attesting": "not the words — each is attested elsewhere in the corpus and the cell points at it — but the MAPPING, that these letters stand for those words.",
-   "blocks_the_real_thing": "Nothing. This one works on the published site today; it is shown here beside the others so the set can be read together."
   },
   {
    "id": "masorah",
@@ -111,38 +258,75 @@
    "kind": "masorah finalis",
    "title": "the book's own count of itself, at the end of the book",
    "at": "the last line of a book",
-   "passage": {
+   "mode": null,
+   "c0": {
     "before": "",
     "site": "סכום פסוקי הספר",
     "after": "חצי הספר בפסוקים · חצי הספר בתיבות · חצי הספר באותיות",
     "english": "The total of the verses of the book — the midpoint of the book by verses · by words · by letters."
    },
    "measures": [
-    { "label": "סכום פסוקי הספר", "english": "the verse total" },
-    { "label": "חצי הספר בפסוקים", "english": "the midpoint, by verses" },
-    { "label": "חצי הספר בתיבות", "english": "the midpoint, by words" },
-    { "label": "חצי הספר באותיות", "english": "the midpoint, by letters" }
+    {
+     "label": "סכום פסוקי הספר",
+     "english": "the verse total"
+    },
+    {
+     "label": "חצי הספר בפסוקים",
+     "english": "the midpoint, by verses"
+    },
+    {
+     "label": "חצי הספר בתיבות",
+     "english": "the midpoint, by words"
+    },
+    {
+     "label": "חצי הספר באותיות",
+     "english": "the midpoint, by letters"
+    }
    ],
-   "why_three_midpoints": "because they land in different places.",
-   "the_card_says": "That this is not a word of the book, and what the scribes recorded here — then the ordinary card beneath it. The banner stands above a normal card, never instead of one.",
-   "counts": "OFF — these are excluded from every count the book reports, or the total disagrees with the masorah's own figure and the fault is charged to the scribe",
-   "key": "keyed, and the only OFF kind that is — these are ordinary Hebrew words meaning what they say",
    "the_state_shown_here": "NOT_HELD",
-   "why_no_numbers_are_shown": "Because the honest states are NOT_HELD, HELD_UNCOUNTED, VERIFIED and CONTRADICTED, and HELD_UNCOUNTED may not be cited anywhere a reader can see. A figure typed here from memory would be citing an assumption twice over. This is the only mark that makes a checkable claim, so recording it is not attesting it — the half has to be counted.",
+   "why_no_numbers_are_shown": "The honest states are NOT_HELD, HELD_UNCOUNTED, VERIFIED and CONTRADICTED, and HELD_UNCOUNTED may not be cited anywhere a reader can see. A figure typed here from memory would be citing an assumption twice over. This is the only mark that makes a checkable claim, so recording it is not attesting it — the half has to be counted.",
+   "the_card_says": "That this is not a word of the book, and what the scribes recorded here — then the ordinary card beneath it. The banner stands above a normal card, never instead of one.",
+   "counts": "OFF",
+   "key": "keyed, and the only OFF kind that is — ordinary Hebrew words meaning what they say",
    "blocks_the_real_thing": "Nobody holds it. The end-of-book masorah is missing from every Tanakh stream either lane has."
   }
  ],
  "every_hebrew_string_in_this_record": [
   "וַיְדַבְּרוּ הַכַּשְׂדִּים לַמֶּלֶךְ אֲרָמִית מַלְכָּא לְעָלְמִין חֱיִי אֱמַר חֶלְמָא",
-  "לעבדיך", "וּפִשְׁרָא נְחַוֵּא", "לְעַבְדָךְ",
+  "(לעבדיך) [לְעַבְדָךְ]",
+  "(לעבדיך)",
+  "[לְעַבְדָךְ]",
+  "לעבדיך",
+  "לְעַבְדָךְ",
+  "וּפִשְׁרָא נְחַוֵּא",
+  "וַיְהִי",
+  "כָל־הָאָרֶץ",
+  "שָׂפָה אֶחָת וּדְבָרִים אֲחָדִים",
+  "כָל",
+  "הָאָרֶץ",
+  "הָ",
+  "אָרֶץ",
+  "בְּכָל מָקוֹם שֶׁאַתָּה מוֹצֵא גְּדֻלָּתוֹ שֶׁל",
+  "הקב״ה",
+  "שָׁם אַתָּה מוֹצֵא עַנְוְתָנוּתוֹ",
+  "הַקָּדוֹשׁ",
+  "בָּרוּךְ",
+  "הוּא",
   "וַיֹּאמַר יְהוָה מִצִּיּוֹן יִשְׁאָג וּמִירוּשָׁלִַם יִתֵּן קוֹלוֹ וְאָבְלוּ נְאוֹת הָרֹעִים וְיָבֵשׁ רֹאשׁ הַכַּרְמֶל",
-  "{פ}", "פְּתוּחָה",
-  "לַכֹּל זְמָן וְעֵת לְכָל חֵפֶץ תַּחַת הַשָּׁמָיִם", "{ס}", "עֵת לָלֶדֶת וְעֵת לָמוּת", "סְתוּמָה",
-  "׆", "וַיְהִי בִּנְסֹעַ הָאָרֹן וַיֹּאמֶר מֹשֶׁה קוּמָה יְהוָה וְיָפֻצוּ אֹיְבֶיךָ וְיָנֻסוּ מְשַׂנְאֶיךָ מִפָּנֶיךָ וּבְנֻחֹה יֹאמַר שׁוּבָה יְהוָה רִבְבוֹת אַלְפֵי יִשְׂרָאֵל", "נוּן הֲפוּכָה",
-  "בְּכָל מָקוֹם שֶׁאַתָּה מוֹצֵא גְּדֻלָּתוֹ שֶׁל", "הקב״ה", "שָׁם אַתָּה מוֹצֵא עַנְוְתָנוּתוֹ",
-  "הַקָּדוֹשׁ", "בָּרוּךְ", "הוּא",
-  "סכום פסוקי הספר", "חצי הספר בפסוקים · חצי הספר בתיבות · חצי הספר באותיות",
-  "חצי הספר בפסוקים", "חצי הספר בתיבות", "חצי הספר באותיות"
+  "{פ}",
+  "פְּתוּחָה",
+  "לַכֹּל זְמָן וְעֵת לְכָל חֵפֶץ תַּחַת הַשָּׁמָיִם",
+  "{ס}",
+  "עֵת לָלֶדֶת וְעֵת לָמוּת",
+  "סְתוּמָה",
+  "׆",
+  "וַיְהִי בִּנְסֹעַ הָאָרֹן וַיֹּאמֶר מֹשֶׁה קוּמָה יְהוָה וְיָפֻצוּ אֹיְבֶיךָ וְיָנֻסוּ מְשַׂנְאֶיךָ מִפָּנֶיךָ וּבְנֻחֹה יֹאמַר שׁוּבָה יְהוָה רִבְבוֹת אַלְפֵי יִשְׂרָאֵל",
+  "נוּן הֲפוּכָה",
+  "סכום פסוקי הספר",
+  "חצי הספר בפסוקים · חצי הספר בתיבות · חצי הספר באותיות",
+  "חצי הספר בפסוקים",
+  "חצי הספר בתיבות",
+  "חצי הספר באותיות"
  ],
- "the_fence": "The list above is exhaustive and is what the gate checks. Every Hebrew character this page prints is one of these strings; a glyph that is not fails check-poc-fenced-v1. That is what keeps a suspended rule from becoming an absent one."
+ "the_fence": "The list above is exhaustive and is what the gate checks. Every Hebrew character this page prints is one of these strings; a glyph that is not fails check-poc-fenced-v1."
 }

@@ -153,6 +153,24 @@
   #poc .pc-site { border-bottom: 2px solid var(--gold-dim); padding-bottom: .1rem; }
   #poc .pc-verse-en { margin: 0 0 .1rem; font-size: .8rem; color: var(--faint); line-height: 1.5; }
   #poc .pc-ref { margin: 0 0 .6rem; font-size: .72rem; color: var(--faint); }
+  #poc .pc-law { margin: 0 0 1.1rem; font-size: .78rem; color: var(--gold-dim); }
+  #poc .pc-mode { font-size: .62rem; letter-spacing: .1em; border: 1px solid var(--line); border-radius: 3px; padding: 0 .3rem; color: var(--faint); }
+  #poc .pc-under { border-bottom: 2px solid var(--gold); padding-bottom: .12rem; }
+  #poc .pc-btns { display: flex; gap: .4rem; flex-wrap: wrap; margin: .5rem 0 .4rem; }
+  #poc .pc-pick { font: inherit; font-size: .76rem; padding: .2rem .55rem; border-radius: 3px;
+    border: 1px solid var(--line); background: none; color: var(--muted); cursor: pointer; }
+  #poc .pc-pick[aria-pressed="true"] { border-color: var(--gold-dim); color: var(--gold); }
+  #poc .pc-delim { margin-inline-start: .3rem; color: var(--faint); }
+  #poc .pc-belongs { margin: .1rem 0 .35rem; font-size: .74rem; color: var(--faint); }
+  #poc .pc-cells { margin: .2rem 0; display: flex; gap: .45rem; align-items: baseline; flex-wrap: wrap; }
+  #poc .pc-other { margin: .4rem 0 0; padding-top: .35rem; border-top: 1px dotted var(--line);
+    display: flex; gap: .45rem; align-items: baseline; flex-wrap: wrap; opacity: .78; }
+  #poc .pc-otherlab { font-size: .7rem; color: var(--faint); margin-inline-end: .2rem; }
+  #poc .pc-incard { margin: .4rem 0 .2rem; font-size: .76rem; color: var(--faint); line-height: 1.5; }
+  #poc .pc-nested { margin: .5rem 0; padding: .5rem .7rem; border-inline-start: 2px solid var(--line); }
+  #poc .pc-nestlab { margin: 0 0 .25rem; font-size: .7rem; letter-spacing: .08em; color: var(--faint); }
+  #poc .pc-arrow { color: var(--faint); }
+  #poc .pc-cell.pc-dim { opacity: .45; }
   #poc .pc-row { margin: .3rem 0; display: flex; gap: .5rem; align-items: baseline; flex-wrap: wrap; }
   #poc .pc-role { font-size: .72rem; color: var(--faint); min-width: 5.5rem; }
   #poc .pc-he { font-size: 1.25rem; line-height: 1.9; }
@@ -376,62 +394,111 @@
   <h1>Demonstrations</h1>
   <p class="sub">Drawings of what the reader does with each kind of mark. Nothing on this page came from a book.</p>
   <section id="poc" aria-label="Demonstrations, hand-authored">
-    <p class="demo-lab">what each part of the frame looks like when it works</p>
-    <p class="pc-warn">Typed by hand, from memory — not copied from any text this project holds. Not corpus text, not a reading, and carrying no licence — these show the shape of a card, not the content of a book. 1 of 6 work on this site today; each one says below what stands in the way of the rest.</p>
-    <article class="pc">
-      <p class="pc-head"><span class="pc-kind">ketiv / qere</span><span class="pc-letter">Q</span><span class="pc-at">daniel 2:4</span></p>
+    <p class="pc-warn">Typed by hand, from memory — not copied from any text this project holds. Nothing here carries a licence, because nothing here has a record behind it. 1 of 7 work on the site today; each says below what stands in the way of the rest.</p>
+    <p class="pc-law">The C0 never moves. Whatever the reader selects, the ink stands exactly as the source wrote it. Selection governs what is DEFINED, never what is DISPLAYED.</p>
+    <article class="pc" data-id="kq">
+      <p class="pc-head"><span class="pc-kind">ketiv / qere</span><span class="pc-letter">Q</span><span class="pc-at">daniel 2:4</span><span class="pc-mode">EXCLUDES</span></p>
       <p class="pc-title">written one way, read another</p>
-      <p class="pc-verse" lang="he" dir="rtl"><span class="pc-plain">וַיְדַבְּרוּ הַכַּשְׂדִּים לַמֶּלֶךְ אֲרָמִית מַלְכָּא לְעָלְמִין חֱיִי אֱמַר חֶלְמָא</span> <span class="pc-site">לעבדיך</span> <span class="pc-plain">וּפִשְׁרָא נְחַוֵּא</span></p><p class="pc-verse-en">Then the Chaldeans spoke to the king in Aramaic: O king, live forever — tell the dream to your servants, and we will declare the meaning.</p><p class="pc-ref"></p>
-      <p class="pc-row"><span class="pc-role">written ( )</span><span class="pc-he" lang="he" dir="rtl">לעבדיך</span><span class="pc-en">to your servants</span></p><p class="pc-row"><span class="pc-role">read [ ]</span><span class="pc-he" lang="he" dir="rtl">לְעַבְדָךְ</span><span class="pc-en">to your servant</span></p>
-      <p class="pc-says">One word block, one card, two branches. Selecting a half underlines that half in the line and shows that half's English only — one English at a time, and neither is chosen for the reader. The rest of the verse does not move.</p>
+      <p class="pc-verse" lang="he" dir="rtl" data-for="kq"><span class="pc-plain">וַיְדַבְּרוּ הַכַּשְׂדִּים לַמֶּלֶךְ אֲרָמִית מַלְכָּא לְעָלְמִין חֱיִי אֱמַר חֶלְמָא</span> <span class="pc-site" data-i="0"><span class="pc-under">(לעבדיך)</span> [לְעַבְדָךְ]</span><span class="pc-site" data-i="1" hidden>(לעבדיך) <span class="pc-under">[לְעַבְדָךְ]</span></span> <span class="pc-plain">וּפִשְׁרָא נְחַוֵּא</span></p><p class="pc-verse-en">Then the Chaldeans spoke to the king in Aramaic: O king, live forever — tell the dream to your servant, and we will declare the meaning.</p>
+      <div class="pc-picks" data-mode="EXCLUDES" data-id="kq"><div class="pc-btns"><button type="button" class="pc-pick" data-for="kq" data-i="0" aria-pressed="true">written<span class="pc-delim">( )</span></button><button type="button" class="pc-pick" data-for="kq" data-i="1" aria-pressed="false">read<span class="pc-delim">[ ]</span></button></div><div class="pc-pane" data-for="kq" data-i="0"><p class="pc-belongs">this English is the <b>written</b> form only</p><p class="pc-cells"><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">לעבדיך</span><span class="pc-en">to your servants</span></span></p></div><div class="pc-pane" data-for="kq" data-i="1" hidden><p class="pc-belongs">this English is the <b>read</b> form only</p><p class="pc-cells"><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">לְעַבְדָךְ</span><span class="pc-en">to your servant</span></span></p></div></div><p class="pc-incard">The English says which branch it belongs to, in words. The underline in the line points at the same half. Neither is enough alone: an underline without a label leaves the reader guessing which English they are reading.</p>
+      
+      
+      
+      <p class="pc-says">One word block, one card, two branches. The ink shows both because the scribe wrote both. Selecting a half underlines it where it already stands and shows that half's English only — one English at a time, and neither chosen for the reader.</p>
       <p class="pc-flags">counts ON · keyed — one key per branch, delimiters stripped</p>
       <p class="pc-block"><b>not yet</b> — This site holds Daniel and cannot build it: 332 of its surfaces carry literal HTML markup where the text should be.</p>
     </article>
-    <article class="pc">
+    <article class="pc" data-id="maqaf">
+      <p class="pc-head"><span class="pc-kind">maqaf</span><span class="pc-letter">W · COMPspan</span><span class="pc-at">genesis 11:1</span><span class="pc-mode">EMPHASIZES</span></p>
+      <p class="pc-title">two words joined into one unit, and a lattice over the lattice</p>
+      <p class="pc-verse" lang="he" dir="rtl" data-for="maqaf"><span class="pc-plain">וַיְהִי</span> <span class="pc-site" data-i="0"><span class="pc-under">כָל</span>־הָאָרֶץ</span><span class="pc-site" data-i="1" hidden>כָל־<span class="pc-under">הָאָרֶץ</span></span><span class="pc-site" data-i="2" hidden><span class="pc-under">כָל־הָאָרֶץ</span></span> <span class="pc-plain">שָׂפָה אֶחָת וּדְבָרִים אֲחָדִים</span></p><p class="pc-verse-en">And the whole earth was of one language and one speech.</p>
+      <div class="pc-picks" data-mode="EMPHASIZES" data-id="maqaf"><div class="pc-btns"><button type="button" class="pc-pick" data-for="maqaf" data-i="0" aria-pressed="true">first atom</button><button type="button" class="pc-pick" data-for="maqaf" data-i="1" aria-pressed="false">second atom</button><button type="button" class="pc-pick" data-for="maqaf" data-i="2" aria-pressed="false">the whole unit</button></div><div class="pc-pane" data-for="maqaf" data-i="0"><p class="pc-belongs">in focus: <b>first atom</b> — nothing is excluded</p><p class="pc-cells"><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">כָל</span><span class="pc-en">all</span></span><span class="pc-plus">+</span><span class="pc-cell pc-dim"><span class="pc-he" lang="he" dir="rtl">הָאָרֶץ</span><span class="pc-en">the earth</span></span></p></div><div class="pc-pane" data-for="maqaf" data-i="1" hidden><p class="pc-belongs">in focus: <b>second atom</b> — nothing is excluded</p><p class="pc-cells"><span class="pc-cell pc-dim"><span class="pc-he" lang="he" dir="rtl">כָל</span><span class="pc-en">all</span></span><span class="pc-plus">+</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הָאָרֶץ</span><span class="pc-en">the earth</span></span></p></div><div class="pc-pane" data-for="maqaf" data-i="2" hidden><p class="pc-belongs">in focus: <b>the whole unit</b> — nothing is excluded</p><p class="pc-cells"><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">כָל</span><span class="pc-en">all</span></span><span class="pc-plus">+</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הָאָרֶץ</span><span class="pc-en">the earth</span></span></p></div></div><p class="pc-incard">Both Englishes show whichever atom you press, joined by a plus, because a maqaf is not offering a choice of meaning — it says these words are read as one. The press moves the emphasis and the underline; it removes nothing.</p>
+      <div class="pc-nested"><p class="pc-nestlab">and under one atom, an ordinary division</p><p class="pc-cells"><span class="pc-he" lang="he" dir="rtl">הָאָרֶץ</span><span class="pc-arrow">→</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הָ</span><span class="pc-en">the</span></span><span class="pc-plus">+</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">אָרֶץ</span><span class="pc-en">earth</span></span></p><p class="pc-incard">An atom of a maqaf is a word, and a word carries prefixes. So the maqaf's lattice sits OVER an ordinary COMPspan rather than replacing it, and its atoms divide again underneath.</p></div>
+      
+      
+      <p class="pc-says">One C0 and more than one W. The W set is every contiguous interval of the atoms, which overlap and therefore partition nothing — that overlap is exactly why a reading line may join atoms only, and never an interval.</p>
+      <p class="pc-flags">counts ON · keyed, with the joiner kept in its original position</p>
+      <p class="pc-block"><b>not yet</b> — Live on the shelf and broken: 64,791 surfaces carry a maqaf and not one of their keys does, so every maqaf word is unkeyed, opens no card, and gets no definition. The frame's own rule says the key preserves it.</p>
+    </article>
+    <article class="pc" data-id="abbreviation">
+      <p class="pc-head"><span class="pc-kind">abbreviation</span><span class="pc-letter">COMPspan</span><span class="pc-at">a saying of Rabbi Yochanan</span><span class="pc-mode">EMPHASIZES</span></p>
+      <p class="pc-title">one meaning, two surfaces — and only the ink can tell them apart</p>
+      <p class="pc-verse" lang="he" dir="rtl" data-for="abbreviation"><span class="pc-plain">בְּכָל מָקוֹם שֶׁאַתָּה מוֹצֵא גְּדֻלָּתוֹ שֶׁל</span> <span class="pc-site" data-i="0"><span class="pc-under">הקב״ה</span></span><span class="pc-site" data-i="1" hidden><span class="pc-under">הקב״ה</span></span> <span class="pc-plain">שָׁם אַתָּה מוֹצֵא עַנְוְתָנוּתוֹ</span></p><p class="pc-verse-en">In every place where you find his greatness, there you find his humility.</p>
+      <div class="pc-picks" data-both="1" data-mode="EMPHASIZES" data-id="abbreviation"><div class="pc-btns"><button type="button" class="pc-pick" data-for="abbreviation" data-i="0" aria-pressed="true">as written</button><button type="button" class="pc-pick" data-for="abbreviation" data-i="1" aria-pressed="false">the words it stands for</button></div><div class="pc-pane" data-for="abbreviation" data-i="0"><p class="pc-belongs">in focus: <b>as written</b> — nothing is excluded</p><p class="pc-cells"><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הקב״ה</span><span class="pc-en">the Holy One, blessed be He</span></span></p><p class="pc-other"><span class="pc-otherlab">and equally</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הַקָּדוֹשׁ</span><span class="pc-en">the Holy</span></span><span class="pc-plus">+</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">בָּרוּךְ</span><span class="pc-en">blessed</span></span><span class="pc-plus">+</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הוּא</span><span class="pc-en">He</span></span></p></div><div class="pc-pane" data-for="abbreviation" data-i="1" hidden><p class="pc-belongs">in focus: <b>the words it stands for</b> — nothing is excluded</p><p class="pc-cells"><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הַקָּדוֹשׁ</span><span class="pc-en">the Holy</span></span><span class="pc-plus">+</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">בָּרוּךְ</span><span class="pc-en">blessed</span></span><span class="pc-plus">+</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הוּא</span><span class="pc-en">He</span></span></p><p class="pc-other"><span class="pc-otherlab">and equally</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הקב״ה</span><span class="pc-en">the Holy One, blessed be He</span></span></p></div></div><p class="pc-incard">Both halves show whichever is selected — the abbreviation stays under the expansion and the expansion stays under the abbreviation. They cannot be separated anywhere except in the ink: no level above C0 is abbreviated-form-only, and none is expanded-form-only either. Hiding half would assert a separation that does not exist.</p>
+      
+      
+      
+      <p class="pc-says">An ordinary COMPspan with two alternatives, not a special case. Selecting the second changes not one letter of what is printed — the line still reads as the source wrote it. There is nothing to underline in the expansion, because those three words are nowhere on the page; the plus does that work instead, saying these glosses are one meaning assembled rather than three words defined.</p>
+      <p class="pc-flags">counts ON · keyed — as itself</p>
+      <p class="pc-block"><b>live on this site</b> — Nothing. This one works on the published site today.</p>
+    </article>
+    <article class="pc" data-id="petuchah">
       <p class="pc-head"><span class="pc-kind">petuchah</span><span class="pc-letter">Q</span><span class="pc-at">amos 1:2</span></p>
       <p class="pc-title">an open section — the next begins on a new line</p>
-      <p class="pc-verse" lang="he" dir="rtl"><span class="pc-plain">וַיֹּאמַר יְהוָה מִצִּיּוֹן יִשְׁאָג וּמִירוּשָׁלִַם יִתֵּן קוֹלוֹ וְאָבְלוּ נְאוֹת הָרֹעִים וְיָבֵשׁ רֹאשׁ הַכַּרְמֶל</span> <span class="pc-site">{פ}</span></p><p class="pc-verse-en">And he said: the LORD roars from Zion and utters his voice from Jerusalem; the pastures of the shepherds mourn, and the top of Carmel withers.</p><p class="pc-ref"></p>
+      <p class="pc-verse" lang="he" dir="rtl" data-for="petuchah"><span class="pc-plain">וַיֹּאמַר יְהוָה מִצִּיּוֹן יִשְׁאָג וּמִירוּשָׁלִַם יִתֵּן קוֹלוֹ וְאָבְלוּ נְאוֹת הָרֹעִים וְיָבֵשׁ רֹאשׁ הַכַּרְמֶל</span> <span class="pc-site" data-i="0">{פ}</span></p><p class="pc-verse-en">And he said: the LORD roars from Zion and utters his voice from Jerusalem; the pastures of the shepherds mourn, and the top of Carmel withers.</p>
+      
+      
       <p class="pc-row"><span class="pc-role">the mark</span><span class="pc-he" lang="he" dir="rtl">{פ}</span><span class="pc-plus">stands for</span><span class="pc-he" lang="he" dir="rtl">פְּתוּחָה</span></p>
+      
       <p class="pc-says">The word — petuchah, open — and what it does: this section ends here, and the next begins on a fresh line. If the reader cannot give the break its line, the card says so in plain English rather than drawing nothing.</p>
-      <p class="pc-flags">counts OFF · unkeyed — the letter here abbreviates a word and is not an occurrence of that letter</p>
+      <p class="pc-flags">counts OFF · unkeyed — the letter abbreviates a word and is not an occurrence of that letter</p>
       <p class="pc-block"><b>not yet</b> — Amos is held for the same markup defect. Eight books that do arrive clean arrived flattened, with the marks already gone.</p>
     </article>
-    <article class="pc">
+    <article class="pc" data-id="setumah">
       <p class="pc-head"><span class="pc-kind">setumah</span><span class="pc-letter">Q</span><span class="pc-at">ecclesiastes 3:1</span></p>
       <p class="pc-title">a closed section — the next begins after a gap, same line</p>
-      <p class="pc-verse" lang="he" dir="rtl"><span class="pc-plain">לַכֹּל זְמָן וְעֵת לְכָל חֵפֶץ תַּחַת הַשָּׁמָיִם</span> <span class="pc-site">{ס}</span> <span class="pc-plain">עֵת לָלֶדֶת וְעֵת לָמוּת</span></p><p class="pc-verse-en">To everything there is a season, and a time to every purpose under heaven. — A time to be born, and a time to die.</p><p class="pc-ref"></p>
+      <p class="pc-verse" lang="he" dir="rtl" data-for="setumah"><span class="pc-plain">לַכֹּל זְמָן וְעֵת לְכָל חֵפֶץ תַּחַת הַשָּׁמָיִם</span> <span class="pc-site" data-i="0">{ס}</span> <span class="pc-plain">עֵת לָלֶדֶת וְעֵת לָמוּת</span></p><p class="pc-verse-en">To everything there is a season, and a time to every purpose under heaven. — A time to be born, and a time to die.</p>
+      
+      
       <p class="pc-row"><span class="pc-role">the mark</span><span class="pc-he" lang="he" dir="rtl">{ס}</span><span class="pc-plus">stands for</span><span class="pc-he" lang="he" dir="rtl">סְתוּמָה</span></p>
+      
       <p class="pc-says">The word — setumah, closed — and what it does: this section ends, and the next begins on the same line, after a gap. A reader that draws this the same as an open section has erased a distinction the scribe made, and has to say which one it cannot honor.</p>
       <p class="pc-flags">counts OFF · unkeyed</p>
-      <p class="pc-block"><b>not yet</b> — Ecclesiastes is held for the markup defect: 40 of its surfaces carry literal markup.</p>
+      <p class="pc-block"><b>not yet</b> — Ecclesiastes is held: 40 of its surfaces carry literal markup.</p>
     </article>
-    <article class="pc">
+    <article class="pc" data-id="invnun">
       <p class="pc-head"><span class="pc-kind">inverted nun</span><span class="pc-letter">Q</span><span class="pc-at">numbers 10:35-36</span></p>
       <p class="pc-title">two marks bracketing a passage set apart</p>
-      <p class="pc-verse" lang="he" dir="rtl"><span class="pc-plain">׆</span> <span class="pc-site">וַיְהִי בִּנְסֹעַ הָאָרֹן וַיֹּאמֶר מֹשֶׁה קוּמָה יְהוָה וְיָפֻצוּ אֹיְבֶיךָ וְיָנֻסוּ מְשַׂנְאֶיךָ מִפָּנֶיךָ וּבְנֻחֹה יֹאמַר שׁוּבָה יְהוָה רִבְבוֹת אַלְפֵי יִשְׂרָאֵל</span> <span class="pc-plain">׆</span></p><p class="pc-verse-en">And when the ark set out, Moses said: Arise, O LORD, and let your enemies be scattered, and let those who hate you flee before you. And when it rested he said: Return, O LORD, to the ten thousands of the thousands of Israel.</p><p class="pc-ref"></p>
+      <p class="pc-verse" lang="he" dir="rtl" data-for="invnun"><span class="pc-plain">׆</span> <span class="pc-site" data-i="0">וַיְהִי בִּנְסֹעַ הָאָרֹן וַיֹּאמֶר מֹשֶׁה קוּמָה יְהוָה וְיָפֻצוּ אֹיְבֶיךָ וְיָנֻסוּ מְשַׂנְאֶיךָ מִפָּנֶיךָ וּבְנֻחֹה יֹאמַר שׁוּבָה יְהוָה רִבְבוֹת אַלְפֵי יִשְׂרָאֵל</span> <span class="pc-plain">׆</span></p><p class="pc-verse-en">And when the ark set out, Moses said: Arise, O LORD, and let your enemies be scattered, and let those who hate you flee before you. And when it rested he said: Return, O LORD, to the ten thousands of the thousands of Israel.</p>
+      
+      
       <p class="pc-row"><span class="pc-role">the mark</span><span class="pc-he" lang="he" dir="rtl">וַיְהִי בִּנְסֹעַ הָאָרֹן וַיֹּאמֶר מֹשֶׁה קוּמָה יְהוָה וְיָפֻצוּ אֹיְבֶיךָ וְיָנֻסוּ מְשַׂנְאֶיךָ מִפָּנֶיךָ וּבְנֻחֹה יֹאמַר שׁוּבָה יְהוָה רִבְבוֹת אַלְפֵי יִשְׂרָאֵל</span><span class="pc-plus">stands for</span><span class="pc-he" lang="he" dir="rtl">נוּן הֲפוּכָה</span></p>
-      <p class="pc-says">The mark's name, and what the tradition says with it: this passage stands apart. Whether a mark opens, closes, or stands alone is recorded — in Psalm 107 these stand singly, here two of them bracket the passage — and no partner is demanded.</p>
-      <p class="pc-flags">counts OFF · unkeyed — this is a punctuation character, not the letter nun</p>
+      
+      <p class="pc-says">The mark's name, and what the tradition says with it: this passage stands apart. Whether a mark opens, closes, or stands alone is recorded — in Psalm 107 these stand singly, here two of them bracket the passage — and no partner is demanded. The tradition counts these two verses as a book of their own, which is the strongest form the claim takes.</p>
+      <p class="pc-flags">counts OFF · unkeyed — a punctuation character, not the letter nun</p>
       <p class="pc-block"><b>not yet</b> — Seven of these are in the body. Numbers is one of the eight books that arrived flattened, so the copy we hold has none of them.</p>
     </article>
-    <article class="pc">
-      <p class="pc-head"><span class="pc-kind">abbreviation</span><span class="pc-letter">COMPspan</span><span class="pc-at">a saying of Rabbi Yochanan</span></p>
-      <p class="pc-title">one word, or the words it stands for</p>
-      <p class="pc-verse" lang="he" dir="rtl"><span class="pc-plain">בְּכָל מָקוֹם שֶׁאַתָּה מוֹצֵא גְּדֻלָּתוֹ שֶׁל</span> <span class="pc-site">הקב״ה</span> <span class="pc-plain">שָׁם אַתָּה מוֹצֵא עַנְוְתָנוּתוֹ</span></p><p class="pc-verse-en">In every place where you find his greatness, there you find his humility.</p><p class="pc-ref"></p>
-      <p class="pc-row"><span class="pc-role">option 1</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הקב״ה</span><span class="pc-en">the Holy One, blessed be He</span></span></p><p class="pc-row"><span class="pc-role">option 2</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הַקָּדוֹשׁ</span><span class="pc-en">the Holy</span></span><span class="pc-plus">+</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">בָּרוּךְ</span><span class="pc-en">blessed</span></span><span class="pc-plus">+</span><span class="pc-cell"><span class="pc-he" lang="he" dir="rtl">הוּא</span><span class="pc-en">He</span></span></p>
-      <p class="pc-says">An abbreviation is an ordinary COMPspan with two options, not a special case. Selecting the second does not change one letter of what is printed — the line still reads as the source wrote it. The lattice chooses what gets DEFINED, never what gets DISPLAYED, exactly as with written/read.</p>
-      
-      <p class="pc-block"><b>live on this site</b> — Nothing. This one works on the published site today; it is shown here beside the others so the set can be read together.</p>
-    </article>
-    <article class="pc">
+    <article class="pc" data-id="masorah">
       <p class="pc-head"><span class="pc-kind">masorah finalis</span><span class="pc-letter">Q</span><span class="pc-at">the last line of a book</span></p>
       <p class="pc-title">the book's own count of itself, at the end of the book</p>
-      <p class="pc-verse" lang="he" dir="rtl"><span class="pc-site">סכום פסוקי הספר</span> <span class="pc-plain">חצי הספר בפסוקים · חצי הספר בתיבות · חצי הספר באותיות</span></p><p class="pc-verse-en">The total of the verses of the book — the midpoint of the book by verses · by words · by letters.</p><p class="pc-ref"></p>
-      <p class="pc-row"><span class="pc-he" lang="he" dir="rtl">סכום פסוקי הספר</span><span class="pc-en">the verse total</span></p><p class="pc-row"><span class="pc-he" lang="he" dir="rtl">חצי הספר בפסוקים</span><span class="pc-en">the midpoint, by verses</span></p><p class="pc-row"><span class="pc-he" lang="he" dir="rtl">חצי הספר בתיבות</span><span class="pc-en">the midpoint, by words</span></p><p class="pc-row"><span class="pc-he" lang="he" dir="rtl">חצי הספר באותיות</span><span class="pc-en">the midpoint, by letters</span></p><p class="pc-row"><span class="pc-role">state</span><span class="pc-state">NOT_HELD</span><span class="pc-en">Because the honest states are NOT_HELD, HELD_UNCOUNTED, VERIFIED and CONTRADICTED, and HELD_UNCOUNTED may not be cited anywhere a reader can see. A figure typed here from memory would be citing an assumption twice over. This is the only mark that makes a checkable claim, so recording it is not attesting it — the half has to be counted.</span></p>
+      <p class="pc-verse" lang="he" dir="rtl" data-for="masorah"><span class="pc-site" data-i="0">סכום פסוקי הספר</span> <span class="pc-plain">חצי הספר בפסוקים · חצי הספר בתיבות · חצי הספר באותיות</span></p><p class="pc-verse-en">The total of the verses of the book — the midpoint of the book by verses · by words · by letters.</p>
+      
+      
+      
+      <p class="pc-row"><span class="pc-he" lang="he" dir="rtl">סכום פסוקי הספר</span><span class="pc-en">the verse total</span></p><p class="pc-row"><span class="pc-he" lang="he" dir="rtl">חצי הספר בפסוקים</span><span class="pc-en">the midpoint, by verses</span></p><p class="pc-row"><span class="pc-he" lang="he" dir="rtl">חצי הספר בתיבות</span><span class="pc-en">the midpoint, by words</span></p><p class="pc-row"><span class="pc-he" lang="he" dir="rtl">חצי הספר באותיות</span><span class="pc-en">the midpoint, by letters</span></p><p class="pc-row"><span class="pc-role">state</span><span class="pc-state">NOT_HELD</span></p><p class="pc-incard">The honest states are NOT_HELD, HELD_UNCOUNTED, VERIFIED and CONTRADICTED, and HELD_UNCOUNTED may not be cited anywhere a reader can see. A figure typed here from memory would be citing an assumption twice over. This is the only mark that makes a checkable claim, so recording it is not attesting it — the half has to be counted.</p>
       <p class="pc-says">That this is not a word of the book, and what the scribes recorded here — then the ordinary card beneath it. The banner stands above a normal card, never instead of one.</p>
-      <p class="pc-flags">counts OFF · keyed, and the only OFF kind that is — these are ordinary Hebrew words meaning what they say</p>
+      <p class="pc-flags">counts OFF · keyed, and the only OFF kind that is — ordinary Hebrew words meaning what they say</p>
       <p class="pc-block"><b>not yet</b> — Nobody holds it. The end-of-book masorah is missing from every Tanakh stream either lane has.</p>
     </article>
+    <script>
+    // Visibility only. No Hebrew reaches this script and nothing is cut at
+    // runtime — every variant of the line was rendered whole at build time.
+    (function () {
+      document.querySelectorAll(".pc-pick").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var id = btn.dataset.for, i = btn.dataset.i;
+          document.querySelectorAll('.pc-pick[data-for="' + id + '"]').forEach(function (b) {
+            b.setAttribute("aria-pressed", String(b.dataset.i === i));
+          });
+          document.querySelectorAll('.pc-pane[data-for="' + id + '"]').forEach(function (p) {
+            p.hidden = p.dataset.i !== i;
+          });
+          var line = document.querySelector('.pc-verse[data-for="' + id + '"]');
+          if (line) line.querySelectorAll(".pc-site").forEach(function (v) { v.hidden = v.dataset.i !== i; });
+        });
+      });
+    })();
+    </script>
   </section>
   <footer>Hand-authored on 2026-09-01 at the owner’s instruction, recorded in data/poc-demonstration-v1.json with every string it uses listed. The serve law — that the pipeline decides and no work is hand-picked — is suspended for this page and nowhere else. check-poc-fenced-v1 refuses any character here that the record does not declare, so a suspended rule keeps a boundary instead of becoming an absent one.</footer>
 </main></body></html>
