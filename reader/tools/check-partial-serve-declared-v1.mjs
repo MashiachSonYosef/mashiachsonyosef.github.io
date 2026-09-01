@@ -4,16 +4,36 @@
 // no frame letter. A check reads the record and judges it; it is not the
 // ledger for one.
 //
-// The owner's ruling: a licence covering a whole work does not stop us
-// serving part of it. Half Hebrew and half Yiddish, we take the Hebrew, and
-// the Hebrew is worth having even though the Yiddish that gave it context is
-// gone. No book is lost and nothing is mutilated, BECAUSE WE WERE NEVER
-// CLAIMING TO SERVE THE WHOLE THING.
+// A LICENSED PORTION WITHHELD. Not an out-of-scope language — that case was
+// ruled out of this mechanism, and the reason matters more than the rule.
 //
-// That last clause is the whole of this gate. The claim is what makes it
-// honest, and a claim nobody makes is a claim nobody can rely on. A responsum
-// served with its witness's Yiddish quietly deleted does not read as a
-// partial work — it reads as a complete one missing a sentence. That is the
+// This gate was first written for the wrong case. The owner ruled that a
+// licence covering a whole work does not stop us serving part of it: half
+// Hebrew and half Yiddish, take the Hebrew, and the Hebrew is worth having.
+// The reasoning was sound and the case was not, because word-level partial
+// serve turned out not to be implementable at all. Yiddish and Hebrew overlap
+// at the TOKEN level, not merely in script. DALET-YOD-NUN-YOD-NUN is Yiddish
+// "to serve" and also a real Aramaic word, judgments. ALEPH-YOD-NUN is
+// Yiddish "in" and Aramaic "there is not." The longest unverified run in 300
+// rows is three tokens, because the Yiddish never forms a run — it is
+// interleaved with words the base legitimately contains. Wordlists get the
+// recall wrong; orthography has no marker that is not ordinary Hebrew;
+// unverified runs fail because Yiddish borrows the token set. The
+// distinguishing information is syntax, and syntax lives in the passage, not
+// the word. The unit of language is the passage.
+//
+// So the owner ruled: remove the whole work. A work carrying material outside
+// the admitted languages is NOT SERVED, and is not served in part either.
+//
+// What survives is this mechanism pointed at the case it fits: a portion we
+// are not LICENSED to serve, where a licence drew the boundary rather than a
+// guess about language. L5 refuses the misuse outright, so the ruling cannot
+// be undone by declaring a language omission and serving the rest.
+//
+// The claim is what makes a partial serve honest, and a claim nobody makes is
+// a claim nobody can rely on. A work served with its withheld portion quietly
+// deleted does not read as a partial work — it reads as a complete one
+// missing a sentence. That is the
 // flattening defect exactly: a book that arrived without its section marks
 // presents as a book that never had any, and eight of them did. A petuchah
 // drawn as nothing is a lie about the page, and so is an omission drawn as
@@ -22,16 +42,17 @@
 // So a zone may serve less than the whole, and may not do it silently.
 //
 //   L1  a zone serving fewer words than it was sealed to hold declares it
-//   L2  every declaration names WHAT is out of scope and WHY, in words
+//   L2  every declaration names WHAT is withheld and WHY, in words
 //   L3  a zone that declares nothing serves everything — no silent shortfall
 //   L4  a gap in C0 is witnessed or declared, never merely absent
+//   L5  no omission is excused by a language — that work is removed, not cut
 //
 // Nothing on this shelf is partial today: 3,064 zones, every one serving
-// exactly its sealed count, nothing held, no C0 gap. The six responsa and
-// chasidut works the corpus lane found carrying Yiddish are not published
-// here yet, and they will be the first partial serves this site has had.
-// The gate is written first on purpose, the same way the weld gate and the
-// joiner gate were, so that the first one cannot arrive and pass unnoticed.
+// exactly its sealed count, nothing held, no C0 gap. The works carrying
+// Yiddish are not published here and now never will be — they are removed
+// whole, not cut. The gate is written first on purpose, the same way the weld
+// gate and the joiner gate were, so that the first genuinely licence-withheld
+// portion cannot arrive and pass unnoticed.
 //
 // THE SHAPE A DECLARATION TAKES. On the zone, a served_in_part record:
 //
@@ -40,8 +61,8 @@
 //     sealed_words: 4210,          what the whole work holds
 //     served_words: 3980,          what this zone carries
 //     omissions: [ { at_c0: 175939990, words: 230,
-//                    what: "the witness's testimony",
-//                    why:  "written in Yiddish, outside the admitted languages" } ]
+//                    what: "the editor's apparatus",
+//                    why:  "not covered by the licence this work is served under" } ]
 //   }
 //
 // at_c0 is what lets the reader draw the omission WHERE IT HAPPENED rather
@@ -70,7 +91,13 @@ if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); proce
 const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")).sort();
 if (!bins.length) { console.log("SKIPPED — no zones on this disk"); process.exit(3); }
 
-const silentShort = [], bareDeclaration = [], falseWhole = [], undeclaredGap = [];
+const silentShort = [], bareDeclaration = [], falseWhole = [], undeclaredGap = [], languageExcused = [];
+// The reasons an omission may not give. A work carrying material outside the
+// admitted languages is removed whole, so an omission blaming a language is a
+// work that should not be on the shelf at all — served with its problem cut
+// out and the remainder presented as fit to read. Matched as words, because
+// the reason is prose and prose is what a stranger would audit.
+const LANGUAGE_EXCUSE = /\b(yiddish|ladino|judeo-arabic|arabic|persian|turkish|syriac|mandaic|samaritan|greek|latin)\b|out of scope|outside the (admitted )?languages/i;
 let zonesRead = 0, partial = 0, omissions = 0, wordsOmitted = 0;
 
 for (const f of bins) {
@@ -96,6 +123,9 @@ for (const f of bins) {
       // L2 — what and why, both in words a stranger can read, and a position
       if (!o.what || !o.why || !Number.isFinite(Number(o.at_c0)))
         bareDeclaration.push(`${z.work} · an omission without ${!o.what ? "a what" : !o.why ? "a why" : "a position"}`);
+      // L5 — the ruling enforced rather than remembered
+      if (o.why && LANGUAGE_EXCUSE.test(String(o.why)))
+        languageExcused.push(`${z.work} · ${JSON.stringify(String(o.why).slice(0, 54))}`);
     }
   }
 
@@ -114,7 +144,7 @@ for (const f of bins) {
   }
 }
 
-console.log(`— ${zonesRead} zones · ${partial} served in part · ${omissions} omissions · ${wordsOmitted.toLocaleString()} words out of scope —\n`);
+console.log(`— ${zonesRead} zones · ${partial} served in part · ${omissions} omissions · ${wordsOmitted.toLocaleString()} words withheld —\n`);
 
 check("L1  a zone serving fewer words than it was sealed to hold declares it",
   silentShort.length === 0,
@@ -131,6 +161,12 @@ check("L3  a zone that declares nothing serves everything",
   falseWhole.length === 0,
   falseWhole.length ? falseWhole.slice(0, 3).join(" · ")
     : "no zone claims an omission its own counts deny");
+
+check("L5  no omission is excused by a language — that work is removed, not cut",
+  languageExcused.length === 0,
+  languageExcused.length
+    ? `${languageExcused.length} cut for a language — ${languageExcused.slice(0, 3).join(" · ")}`
+    : "no declaration blames a language for a hole");
 
 check("L4  a gap in C0 is witnessed or declared, never merely absent",
   undeclaredGap.length === 0,

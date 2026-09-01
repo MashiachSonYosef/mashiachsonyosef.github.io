@@ -4385,15 +4385,20 @@
       frag.append(nh); openedNode = true; nodeHeads.push({ node: sec.node, el: nh });
     }
     // A WORK SERVED IN PART SAYS SO WHERE THE PART IS MISSING.
-    // partial-serve-rule-v1. A licence covering a whole work does not stop us
-    // serving part of it — half Hebrew and half Yiddish, we take the Hebrew,
-    // and the Hebrew is worth having. That is only honest while we are not
-    // claiming to serve the whole thing, and a claim nobody makes is a claim
-    // nobody can rely on. Deleting the out-of-scope part quietly leaves a
-    // responsum that reads as complete and merely short a sentence, which is
-    // the flattening defect exactly: a book stripped of its section marks
-    // presents as a book that never had any. A petuchah drawn as nothing is
-    // a lie about the page, and so is an omission drawn as nothing.
+    // partial-serve-rule-v1. This draws a portion we are not LICENSED to
+    // serve — a boundary a licence drew, not one guessed at from language. A
+    // work carrying material outside the admitted languages is removed whole
+    // and never reaches here: word-level language surgery was tried and does
+    // not work, because Yiddish and Hebrew share actual tokens and the
+    // distinguishing information is syntax, which lives in the passage.
+    // What is drawn here is the case where the boundary is known.
+    // Serving part is only honest while we are not claiming to serve the
+    // whole, and a claim nobody makes is a claim nobody can rely on. Deleting
+    // the withheld part quietly leaves a work that reads as complete and
+    // merely short a sentence, which is the flattening defect exactly: a book
+    // stripped of its section marks presents as a book that never had any. A
+    // petuchah drawn as nothing is a lie about the page, and so is an
+    // omission drawn as nothing.
     // So it is drawn AT ITS OWN POSITION, not summarised at the end.
     for (const om of ((zone.served_in_part || {}).omissions) || []) {
       const at = Number(om.at_c0);
