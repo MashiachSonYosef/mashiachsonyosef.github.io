@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-01.
 
-**63 rules declared · 48 named by a check · 15 unguarded.**
+**64 rules declared · 49 named by a check · 15 unguarded.**
 **10 published artifacts · 10 with a build step · 0 without.**
 
 ## The rules
@@ -36,7 +36,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `frame-coverage-rule-v1-no-layer-is-on-one-work-and-off-another` | tools/check-frame-coverage-v1.mjs | check-frame-coverage-v1 |
 | `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-three-counts-v1, check-nothing-hard-wired-v1 |
 | `front-door-rule-v2` | zone.html | **UNGUARDED** |
-| `gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed` | tools/enrich-gloss-m-v1.mjs | check-english-license-v1 |
+| `gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed` | tools/enrich-gloss-m-v1.mjs | check-english-license-v1, check-every-reading-licensed-v1 |
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
 | `implicit-maqaf-rule-v1-a-joiner-is-not-a-word-and-not-a-q-site` | tools/check-implicit-maqaf-v1.mjs | check-implicit-maqaf-v1 |
 | `import-side-effect-rule-v1-a-check-that-rebuilds-its-own-baseline-cannot-fail` | tools/check-no-import-side-effects-v1.mjs | check-no-import-side-effects-v1 |
@@ -51,6 +51,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | **UNGUARDED** |
 | `nothing-welds-rule-v1-a-mark-is-a-position-and-a-reading-is-a-word` | tools/check-nothing-welded-v1.mjs | check-nothing-welded-v1 |
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | **UNGUARDED** |
+| `partial-serve-rule-v1-a-work-served-in-part-says-so-where-the-part-is-missing` | zone.html | check-partial-serve-declared-v1 |
 | `pass-through-rule-v1-a-sealed-layer-can-only-be-withheld-never-added` | tools/build-commentary-sidecar-v1.mjs | check-sealed-layers-v1 |
 | `pipeline-manifest-rule-v1-a-rule-with-no-guard-is-printed-as-having-none` | tools/pipeline-manifest-v1.mjs | **UNGUARDED** |
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
