@@ -116,10 +116,19 @@ const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
  *   <anything>--<slug>-<tail>             the family-prefixed form:
  *                                         tanakh-chizkuni--chizkuni-introduction-1
  *   <anything>--sefaria-<slug>-<tail>     the same, with the source named
+ *   <anything>-<slug>--<tail>             the slug-first form, the work's own
+ *                                         name before the double hyphen and
+ *                                         the locator after it:
+ *                                         midrash-sifra--ia-haisifradeverav00corc--page-00001
+ *                                         geonim-teshuvot-hageonim-coronel--teshuvot-hageonim-1
  *
  * What comes after the name is the tail. An id that names its work in none
  * of these ways is a stream id — a capture or repair stream's own numbering,
  * ap80-…-0000001 — and carries no locator of its own.
+ *
+ * The fourth form was added 2026-09-02: nine works (2,342 units, 2.2M rows)
+ * held as stream ids under the first three, and every one of their ids
+ * carries the work's name — before the double hyphen rather than after.
  */
 export const anchorUnitId = (unitId, slug) => {
   const s = escRe(slug);
@@ -127,8 +136,18 @@ export const anchorUnitId = (unitId, slug) => {
   if (m) return { tail: m[1], anchored: true };
   m = new RegExp(`^.*?--(?:sefaria-)?${s}(?:-(.*))?$`, "u").exec(unitId);
   if (m) return { tail: m[1] || "", anchored: true };
+  m = new RegExp(`^(?:.*-)?${s}--(.+)$`, "u").exec(unitId);
+  if (m) return { tail: m[1], anchored: true };
   return { tail: null, anchored: false };
 };
+
+/**
+ * A page-scan tail: ia-<scan>--page-<n>. The Internet Archive scan the
+ * capture read is named in the tail, and the page is the unit's own place in
+ * it. The page number is the ordinal; the scan is a witness, kept on the
+ * zone's numbering record so a reader can see which scan the pages are of.
+ */
+const PAGE_SCAN = /^ia-([^-]+)--page-0*(\d+)$/u;
 
 /**
  * A tail read plainly. A hyphen between two numbers is the chain's own
@@ -156,6 +175,8 @@ export const parseUnitId = (unitId, slug) => {
   if (f) return { kind: "ordinal", chapter: Number(f[1]), section: 1, label: String(Number(f[1])), flat: true };
   const a = anchorUnitId(unitId, slug);
   if (!a.anchored) return { kind: "stream", flat: true };
+  const pg = PAGE_SCAN.exec(a.tail);
+  if (pg) return { kind: "ordinal", chapter: Number(pg[2]), section: 1, label: String(Number(pg[2])), flat: true, scan: pg[1] };
   const nn = /^(\d+)-(\d+)$/u.exec(a.tail);
   if (nn) return { kind: "nested", chapter: Number(nn[1]), section: Number(nn[2]), label: `${nn[1]}:${nn[2]}` };
   const n = /^(\d+)$/u.exec(a.tail);
@@ -227,9 +248,11 @@ export const parseWorkCoordinates = (unitIds, slug) => {
   const coords = new Map();
   // What the ids witness that the named shape does not build: their own
   // ordinals and their own nesting. Recorded so the zone can say it.
-  const witnessed = { ordinal_units: 0, ordinal_gaps: [], ordinal_starts_at: null, nested_units: 0, nested_chapters: new Set() };
+  const witnessed = { ordinal_units: 0, ordinal_gaps: [], ordinal_starts_at: null, nested_units: 0, nested_chapters: new Set(), scans: new Set() };
   let prevOrd = null;
   per.forEach(([u, p], i) => {
+    // a page-scan id names the scan its pages are of, whatever the shape
+    if (p.scan) witnessed.scans.add(p.scan);
     if (shape === "CHAPTER_SECTION") coords.set(u, { chapter: p.chapter, section: p.section, label: p.label });
     else if (shape === "SEALED_UNIT_SEQUENCE") coords.set(u, { chapter: p.chapter, section: 1, label: p.label, flat: true });
     else {
@@ -248,6 +271,7 @@ export const parseWorkCoordinates = (unitIds, slug) => {
     }
   });
   witnessed.nested_chapters = witnessed.nested_chapters.size;
+  witnessed.scans = [...witnessed.scans].sort();
   return { shape, coords, witnessed };
 };
 

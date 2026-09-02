@@ -133,12 +133,17 @@ const namedWitness = namedShape && witnessed && (witnessed.ordinal_gaps.length |
       ...(witnessed.nested_units ? { ids_carrying_chapter_and_section: witnessed.nested_units, chapters_they_witness: witnessed.nested_chapters, note_on_nesting: "the ids carry a chapter:section nesting this shape does not build nodes from; it prints as each unit's locator and awaits the Y ledger for structure" } : {}),
     }
   : null;
-const numbering = (numberingGaps.length || numberingStartsAt !== null || namedWitness)
+// A page-scan id (ia-<scan>--page-<n>) makes the page the ordinal and names
+// the scan the pages are of; the scan is recorded as the ids' witness so a
+// reader can see whose pages these are, whatever shape the work took.
+const scanWitness = witnessed && witnessed.scans && witnessed.scans.length ? witnessed.scans : null;
+const numbering = (numberingGaps.length || numberingStartsAt !== null || namedWitness || scanWitness)
   ? {
       rule_id: "numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault",
       ...(numberingStartsAt !== null ? { starts_at: numberingStartsAt } : {}),
       gaps: numberingGaps,
       ...(namedWitness ? { witnessed_by_the_ids: namedWitness } : {}),
+      ...(scanWitness ? { pages_of_scan: scanWitness, note_on_pages: "each ordinal is a page of the named scan, read from the sealed id; a page the ids skip is a gap above, never filled" } : {}),
       note:
         "the sealed unit ids witness these ordinals and no others; the shelf reads them as sealed — nothing renumbered, no ordinal invented to fill a gap, and a duplicate ordinal would have refused the work",
     }
