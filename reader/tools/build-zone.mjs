@@ -376,7 +376,12 @@ const coverTotal = span ? [...span.spans.values()].reduce((n, sp) => n + 2 ** (s
 // attribution, discharged by the credit inside the binding), the credit
 // leads the byline — printing it is what honors the condition, so it stands
 // first on every page of the work, in the record's own words.
-const credit = serve.provenance.credit || null;
+// serve-from-body writes the credit inside provenance.rights (the v3
+// binding's row); an older serve wrote it at the top. Both are read: a
+// credit that rode the serve and not the zone left Leviticus, Numbers and
+// Ruth serving with the display condition undischarged on the page
+// (2026-09-02), which the licence does not allow.
+const credit = serve.provenance.credit || (serve.provenance.rights && serve.provenance.rights.credit) || null;
 const baseByline = serve.provenance.body_oracle
   ? `served from the verified rebuilt body, every shard re-hashed against the July manifest; rights per the canonical rights resolution, riding on every occurrence`
   : `served from the sealed terminal reader artifacts; rights ride per occurrence`;
