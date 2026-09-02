@@ -132,7 +132,7 @@ const zoneNames = new Set();          // the shelf's own addresses
 const oweWord = (s) => owedWords.set(s, (owedWords.get(s) || 0) + 1);
 const zonesDir = join(K3, "data", "zones");
 if (existsSync(zonesDir)) {
-  for (const zf of readdirSync(zonesDir).filter((x) => x.endsWith(".bin") && !x.endsWith("-commentary.bin"))) {
+  for (const zf of readdirSync(zonesDir).filter((x) => x.endsWith(".bin") && !x.endsWith(".commentary.bin"))) {
     try {
       const z = JSON.parse(gunzipSync(readFileSync(join(zonesDir, zf))).toString("utf8"));
       zoneNames.add(zf.replace(/\.bin$/, ""));
@@ -150,7 +150,7 @@ if (existsSync(zonesDir)) {
   // key, like every other data word. A hand-swapped verse is a word the
   // data does not owe, and fails here.
   const firstZone = readdirSync(zonesDir)
-    .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith("-commentary.bin"))
+    .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))
     .sort()[0];
   if (firstZone) {
     try {

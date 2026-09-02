@@ -99,11 +99,11 @@ const PUBLISHED = [
   ...(plan ? plan.attachments.filter((a) => a.pair.every((id) => served.some((x) => x.work_id === id)))
     .flatMap((a) => a.pair.map((id) => {
       const w = served.find((x) => x.work_id === id);
-      return { what: `data/zones/${w.published_as}-commentary.bin`, note: `attached by ${a.by}` };
+      return { what: `data/zones/${w.published_as}.commentary.bin`, note: `attached by ${a.by}` };
     })) : []),
   ...(plan ? plan.commentary_packs.map((c) => {
     const w = served.find((x) => x.work_id === c.work_id);
-    return w ? { what: `data/zones/${w.published_as}-commentary.bin`, note: "from the pack and its map" } : null;
+    return w ? { what: `data/zones/${w.published_as}.commentary.bin`, note: "from the pack and its map" } : null;
   }).filter(Boolean) : []),
   { what: "data/route-store", note: "index + 256 shards" },
   // One map per pack, named for the work it attaches to. There is no row here

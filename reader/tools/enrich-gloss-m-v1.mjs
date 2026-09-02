@@ -71,7 +71,7 @@ const glossSource = (key, text) => {
 };
 
 const bins = readdirSync(ZONES)
-  .filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith("-commentary.bin"))
+  .filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin"))
   .sort();
 let zones = 0, keys = 0, chipped = 0, drifted = 0;
 const driftZones = [];

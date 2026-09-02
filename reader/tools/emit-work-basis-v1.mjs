@@ -81,7 +81,7 @@ for (const f of readdirSync(DATA).filter((f) => f.endsWith(".csv")).sort()) {
 import { existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 const entryRights = (slug) => {
-  const p = join(arg("zones", "data/zones"), `${slug}-commentary.bin`);
+  const p = join(arg("zones", "data/zones"), `${slug}.commentary.bin`);
   if (!existsSync(p)) return null;
   const bin = JSON.parse(gunzipSync(readFileSync(p)).toString("utf8"));
   let printed = 0, withoutOwn = 0;

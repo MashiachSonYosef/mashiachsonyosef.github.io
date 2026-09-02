@@ -34,7 +34,7 @@ if (!SRC) { console.error("NO_SOURCE_NAMED — pass --from <published slug>: a f
 const base = load(join(ZONES, `${SRC}.bin`));
 // the sidecar is the named source's own, by the sidecar naming rule —
 // a typed filename here outlived its address once already
-const com = load(join(ZONES, `${SRC}-commentary.bin`));
+const com = load(join(ZONES, `${SRC}.commentary.bin`));
 
 const ids = Object.keys(com.units || {});
 let hung = 0, units = 0, doubled = 0;
@@ -65,7 +65,7 @@ ids.forEach((id, n) => {
 });
 com.fixture = {
   rule_id: "fixture-rule-v1-a-real-zone-with-its-own-commentary-hung-at-words",
-  made_from: `data/zones/${SRC}-commentary.bin`,
+  made_from: `data/zones/${SRC}.commentary.bin`,
   hung_at_word_positions: AT,
   second_unit_at_first_position: "the neighbouring section's entry, so one word carries two units",
   entries_hung: hung,
@@ -76,5 +76,5 @@ com.fixture = {
 base.work = `${base.work} (fixture)`;
 
 save(join(ZONES, "fixture.bin"), base);
-save(join(ZONES, "fixture-commentary.bin"), com);
-console.log(`fixture.bin + fixture-commentary.bin — ${hung.toLocaleString()} entries hung at ${AT.join(", ")} across ${units.toLocaleString()} units`);
+save(join(ZONES, "fixture.commentary.bin"), com);
+console.log(`fixture.bin + fixture.commentary.bin — ${hung.toLocaleString()} entries hung at ${AT.join(", ")} across ${units.toLocaleString()} units`);

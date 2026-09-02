@@ -21,7 +21,7 @@ const check = (name, ok, detail) => {
   ok ? pass++ : fail++;
 };
 
-const bins = readdirSync(ZONES).filter((f) => f.endsWith("-commentary.bin")).sort();
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".commentary.bin")).sort();
 if (!bins.length) { console.log("SKIPPED — no commentary bins in " + ZONES); process.exit(3); }
 
 for (const f of bins) {

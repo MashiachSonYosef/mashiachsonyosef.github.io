@@ -173,7 +173,7 @@ const l1 = l1Why.length === 0;
 
 // ── the shelf ─────────────────────────────────────────────────────────────
 if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); process.exit(3); }
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.endsWith("-commentary.bin")).sort();
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.endsWith(".commentary.bin")).sort();
 if (!bins.length) { console.log("SKIPPED — no zones on this disk"); process.exit(3); }
 
 // ── what is in custody ────────────────────────────────────────────────────

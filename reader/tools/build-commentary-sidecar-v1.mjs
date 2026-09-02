@@ -31,7 +31,7 @@
 //   --verify compare against an existing sidecar and print the differences
 //            rather than writing
 //
-// Run: node tools/build-commentary-sidecar-v1.mjs --verify data/zones/genesis-commentary.bin
+// Run: node tools/build-commentary-sidecar-v1.mjs --verify data/zones/genesis.commentary.bin
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -60,7 +60,7 @@ const ZONE = arg("zone", null);
 if (!ZONE) { console.error("NO_ZONE_NAMED — pass --zone: the work a sidecar sits on is never assumed"); process.exit(2); }
 const slug = String(ZONE).split("/").pop().replace(/\.bin$/u, "");
 const MAP = arg("map", `data/attachment-map-${slug}.js`);
-const OUT = arg("out", `data/zones/${slug}-commentary.bin`);
+const OUT = arg("out", `data/zones/${slug}.commentary.bin`);
 const VERIFY = arg("verify", null);
 
 const sha = (s) => createHash("sha256").update(s).digest("hex");

@@ -52,7 +52,7 @@ if (!binPath) {
     console.log("SKIPPED — no served work carries a commentary sidecar, so check-attachment-grain-v1 has nothing to check");
     process.exit(3);
   }
-  binPath = `data/zones/${carried[0]}-commentary.bin`;
+  binPath = `data/zones/${carried[0]}.commentary.bin`;
 }
 
 const fails = [];

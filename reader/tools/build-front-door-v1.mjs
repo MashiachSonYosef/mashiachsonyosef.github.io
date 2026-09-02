@@ -377,7 +377,7 @@ for (const b of BOOKS) {
   // any closer. An earlier version of this took whichever grain it met first
   // and printed that one, which named half of what was there.
   let onWord = 0, onSection = 0, heldLicence = 0, noText = 0, byCoordinate = 0, noCloser = 0, worksCount = 0;
-  const side = `${b.slug}-commentary.bin`;
+  const side = `${b.slug}.commentary.bin`;
   if (has(side)) {
     const c = read(join(ZONES, side));
     const seen = new Set();
@@ -416,7 +416,7 @@ for (const b of BOOKS) {
 // The curated tier can lawfully be empty — the owner's ruling, 2026-08-30:
 // no hand-done books at all. The refusal that matters is a shelf with no
 // zones behind it, judged by the zones directory itself.
-if (!books.length && !readdirSync(ZONES).some((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith("-commentary.bin")))
+if (!books.length && !readdirSync(ZONES).some((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin")))
   throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
 // Every place a book is referred to in English refers to it by the one name
 // the law allows to print: the ledger's English when a licensed record backs
@@ -584,7 +584,7 @@ const awaitingRows = poolOf(LEDGER.awaiting.members.filter((m) => ATLAS.families
 // derives from its own receipts, the curated two included among the rest.
 const ZONE_INFO = new Map();
 for (const f of readdirSync(ZONES)
-  .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith("-commentary.bin"))
+  .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))
   .sort()) {
   const bytes = readFileSync(join(ZONES, f));
   const z = JSON.parse(gunzipSync(bytes).toString("utf8"));
@@ -2064,7 +2064,7 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
   const covered = new Set([...books.map((b) => b.slug), ...withheldBooks.map((b) => b.slug)]);
   let fleetPages = 0;
   for (const f of readdirSync(ZONES)) {
-    if (!f.endsWith(".bin") || f.startsWith("fixture-") || f.endsWith("-commentary.bin")) continue;
+    if (!f.endsWith(".bin") || f.startsWith("fixture-") || f.endsWith(".commentary.bin")) continue;
     const slug = f.replace(/\.bin$/, "");
     if (covered.has(slug)) continue;
     const page = readerPage({ slug });

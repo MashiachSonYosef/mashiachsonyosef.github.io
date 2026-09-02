@@ -32,7 +32,7 @@
 //     --serve targum.ndjson --work targum/targum-jonathan-on-i-kings \
 //     --title "Targum Jonathan on I Kings" --family "Targum Jonathan" \
 //     --bridge bridge.csv.gz --store data/route-store \
-//     --stamp 2026-08-15 --out data/zones/1kings-commentary.bin
+//     --stamp 2026-08-15 --out data/zones/1kings.commentary.bin
 
 import { writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";

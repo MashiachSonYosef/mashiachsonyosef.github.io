@@ -23,12 +23,19 @@ const PORT = process.env.SERVE_PORT || "8899";
 const BASE = process.env.SERVE_BASE || `http://127.0.0.1:${PORT}`;
 
 /** Every zone on disk that is a work: not a commentary sidecar, not a route
- *  shard, not a test instrument. Sorted, so a run is reproducible. */
+ *  shard, not a test instrument. Sorted, so a run is reproducible.
+ *
+ *  A sidecar is <slug>.commentary.bin — a dot, not a hyphen. It was
+ *  <slug>-commentary.bin until 2026-09-02, when the fleet served a work whose
+ *  own slug ends in "-commentary" (an introduction to a Mishnah commentary)
+ *  and every tool that knew a sidecar by that suffix passed the work over as
+ *  one. A slug is derived from the work id and never carries a dot, so a name
+ *  with one cannot be a work's, and the collision cannot recur. */
 export function zonesOnDisk(dir = ZONES) {
   if (!existsSync(dir)) return [];
   return readdirSync(dir)
     .filter((f) => f.endsWith(".bin"))
-    .filter((f) => !f.endsWith("-commentary.bin"))
+    .filter((f) => !f.endsWith(".commentary.bin"))
     .filter((f) => !/^[0-9a-f]{2}\.bin$/.test(f))   // route-store shards
     .filter((f) => f !== "w-top.bin")
     .filter((f) => !f.startsWith("fixture-"))       // instruments, not works
@@ -39,7 +46,7 @@ export function zonesOnDisk(dir = ZONES) {
 /** Zones that also carry a commentary sidecar. A check about commentary has
  *  nothing to look at without one, and should say so rather than pass. */
 export function zonesWithCommentary(dir = ZONES) {
-  return zonesOnDisk(dir).filter((z) => existsSync(join(dir, `${z}-commentary.bin`)));
+  return zonesOnDisk(dir).filter((z) => existsSync(join(dir, `${z}.commentary.bin`)));
 }
 
 /** The URL a check should open by default. Argv still wins, so a run can

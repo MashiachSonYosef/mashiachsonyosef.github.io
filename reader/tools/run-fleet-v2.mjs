@@ -85,7 +85,7 @@ const covered = (lo, hi) => {
 
 // ---- what already serves, from the zones on disk --------------------------
 const serving = new Map(); // work_id -> slug
-for (const f of readdirSync(join(K3, "data", "zones")).filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith("-commentary.bin"))) {
+for (const f of readdirSync(join(K3, "data", "zones")).filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))) {
   try {
     const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", f))).toString("utf8"));
     const m = String((z.work_receipts || {}).b_n || "").match(/work_id=([^\s·]+)/);

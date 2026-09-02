@@ -29,7 +29,7 @@ Every one of those is now a script with its rule declared at the top of it.
 | 3 | `tools/extract-y-nodes.mjs` | the Y navigation ledger | a work's title words, verbatim |
 | 3b | `tools/span-slice-v1.mjs` | the COMPspan template | each form's component list, for the forms one book contains |
 | 4 | `tools/build-zone.mjs` | 1 + 2 + 3 + 3b + the identity bridge | `<book>.bin` |
-| 5 | `tools/build-commentary-zone.mjs` | two serves + the bridge | `<book>-commentary.bin` |
+| 5 | `tools/build-commentary-zone.mjs` | two serves + the bridge | `<book>.commentary.bin` |
 | 6 | `tools/verify-zone.mjs` | the built site | pass/fail against the rendered DOM |
 
 Rules that used to be implicit now live in one file each, quoted from the

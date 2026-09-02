@@ -4,7 +4,7 @@
 // no frame letter. A check reads the record and judges it; it is not the
 // ledger for one.
 //
-// A commentary zone is a sidecar, <slug>-commentary.bin, that rides beside the
+// A commentary zone is a sidecar, <slug>.commentary.bin, that rides beside the
 // book zone <slug>.bin and hangs a second work of the sealed chain under the
 // book's sections. tools/build-commentary-zone.mjs declares how the two are
 // joined, before any output:
@@ -113,7 +113,7 @@ const coordOf = (unitId, slug) => {
 // ── the shelf ─────────────────────────────────────────────────────────────
 if (!existsSync(ZONES)) { console.log(`\nSKIPPED — no zones at ${ZONES}`); process.exit(bad ? 1 : 3); }
 const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")).sort();
-const sidecars = bins.filter((f) => f.endsWith("-commentary.bin"));
+const sidecars = bins.filter((f) => f.endsWith(".commentary.bin"));
 // A fixture is a test instrument, never served; it copies a real sidecar and
 // hangs entries at word positions on purpose. It is set aside, not judged.
 const instruments = sidecars.filter((f) => f.startsWith("fixture-"));

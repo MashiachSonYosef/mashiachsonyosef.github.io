@@ -33,7 +33,7 @@
 // build with the template rather than a receipt over a subset.
 //
 // Run:
-//   node tools/carry-span-receipt-v1.mjs --zone data/zones/1kings-commentary.bin \
+//   node tools/carry-span-receipt-v1.mjs --zone data/zones/1kings.commentary.bin \
 //     --from data/zones/targum-1kings.bin --stamp 2026-08-21
 
 import { readFileSync, writeFileSync } from "node:fs";

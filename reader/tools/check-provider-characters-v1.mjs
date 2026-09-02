@@ -97,7 +97,7 @@ const ZONES = join(K3, "data", "zones");
 // check to break because it is the way nobody notices.
 const books = existsSync(ZONES)
   ? readdirSync(ZONES).filter((f) => f.endsWith(".bin")
-      && !f.endsWith("-commentary.bin")
+      && !f.endsWith(".commentary.bin")
       && !f.startsWith("fixture-")
       && !/^[0-9a-f]{2}\.bin$/.test(f)
       && f !== "w-top.bin")

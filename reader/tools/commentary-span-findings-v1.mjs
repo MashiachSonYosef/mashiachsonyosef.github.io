@@ -52,7 +52,7 @@ if (!slug) {
   process.exit(3);
 }
 const zone = load(`data/zones/${slug}.bin`);
-const cm = load(`data/zones/${slug}-commentary.bin`);
+const cm = load(`data/zones/${slug}.commentary.bin`);
 const sec = zone.sections[0];
 
 const POINTS = /[̀-֑ͯ-ׇ]/g;
@@ -144,6 +144,6 @@ for (const r of rows) {
 }
 
 writeFileSync("commentary-span-findings-v1.csv", out.join("\n") + "\n");
-console.log(`${rows.length} attachments read from data/zones/${slug}-commentary.bin`);
+console.log(`${rows.length} attachments read from data/zones/${slug}.commentary.bin`);
 for (const [k, n] of Object.entries(tally).sort()) console.log(`  ${k}  ${n}`);
 console.log(`\ncommentary-span-findings-v1.csv  ${out.length - 1} rows`);

@@ -54,9 +54,17 @@
     ZSTORE = await fetch(`${ROOT}data/zone-store-v1.json`, { cache: "no-cache" })
       .then((r) => (r.ok ? r.json() : null));
   } catch { ZSTORE = null; }
-  const binUrl = (name) => (ZSTORE && ZSTORE.base
-    ? `${String(ZSTORE.base).replace(/\/$/, "")}/${name}.bin`
-    : `${ROOT}data/zones/${name}.bin`);
+  // Across the border an object is named by its seal as well as its name:
+  // <base>/<name>.<first twelve hex of its sha256>.bin. A repinned bin is a
+  // new object at a new address, so no cache between here and the shelf can
+  // hand this page an old body under a new pin, and an object once written
+  // is never rewritten. Beside the door the bin keeps its plain name.
+  const binUrl = (name) => {
+    if (!(ZSTORE && ZSTORE.base)) return `${ROOT}data/zones/${name}.bin`;
+    const pin = ZSTORE.pins && ZSTORE.pins[`${name}.bin`];
+    const seal = pin && pin.sha256 ? `.${String(pin.sha256).slice(0, 12)}` : "";
+    return `${String(ZSTORE.base).replace(/\/$/, "")}/${name}${seal}.bin`;
+  };
   const hexOf = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
   const fetchBin = async (name) => {
     const res = await fetch(binUrl(name));
@@ -366,6 +374,10 @@
   // for a book of the Tanakh, "section · paragraph" for a work numbered that
   // way. These name the structure; they translate nothing.
   const COORD = zone.emitted_from.coordinate_labels || { major: "section", minor: "paragraph" };
+  // In the named sequence a node's number is its place in the chain's order
+  // and its name is the sealed id's own tail. The number is an address, not
+  // a chapter, and the page must not call it one; the name is the locator.
+  const NAMED_SHAPE = String(zone.emitted_from.coordinate_shape || "").startsWith("SEALED_UNIT_SEQUENCE_NAMED");
   const MAJOR = COORD.major, MINOR = COORD.minor;
   const MAJOR_C = MAJOR.charAt(0).toUpperCase() + MAJOR.slice(1);
   // U+05BE HEBREW PUNCTUATION MAQAF, named by its codepoint and kept as a
@@ -2091,7 +2103,7 @@
   // Absent sidecar, absent anchors, absent section = no commentary shown and
   // nothing implied.
   let commentaryStore = null;
-  const commentaryReady = fetchBin(`${BOOK}-commentary`)
+  const commentaryReady = fetchBin(`${BOOK}.commentary`)
     .then((s) => {
       commentaryStore = s;
       // the sidecar as it arrived, so a check can ask the corpus what it
@@ -2900,7 +2912,8 @@
         tocBody.append(partDiv);
       }
       const a = document.createElement("a"); a.href = `#n${i}`;
-      a.textContent = String(n.num || i + 1);
+      // a named sequence's cell is its locator, not its position
+      a.textContent = NAMED_SHAPE && n.name_en ? n.name_en : String(n.num || i + 1);
       // the name and the size live on hover and in the label, where they can
       // be read as sentences — the cell itself stays a coordinate
       const named = [n.name_he, n.sections ? `${n.sections} sections` : ""].filter(Boolean).join(" · ");
@@ -3293,8 +3306,10 @@
           { className: "nh-he unnamed", textContent: "no name is on record" }));
       }
       const r2 = document.createElement("div"); r2.className = "nh-row";
+      // a named sequence's node carries the sealed id's own words, which is a
+      // record and not a reading anybody forces
       r2.append(Object.assign(document.createElement("span"),
-        { className: "nh-lab", textContent: "commonly force read as" }));
+        { className: "nh-lab", textContent: NAMED_SHAPE ? "recorded as" : "commonly force read as" }));
       r2.append(Object.assign(document.createElement("span"),
         { className: "nh-en", textContent: n.name_en || `${MAJOR_C} ${n.num || sec.node + 1}` }));
       if (n.sections) r2.append(Object.assign(document.createElement("span"),
@@ -3347,7 +3362,10 @@
     const row = document.createElement("div"); row.className = "seg-row";
     const v = document.createElement("span"); v.className = "vnum"; v.textContent = sec.label || "";
     const parts = String(sec.label || "").split(":");
-    v.title = parts.length === 2 ? `${MAJOR_C} ${parts[0]}, ${MINOR} ${parts[1]}` : `${MAJOR_C} ${parts[0]}`;
+    // a named locator's numbers are the sealed tail's own, not this node's
+    // chapter and section, so it is read as it stands
+    v.title = NAMED_SHAPE ? String(sec.label || "")
+      : parts.length === 2 ? `${MAJOR_C} ${parts[0]}, ${MINOR} ${parts[1]}` : `${MAJOR_C} ${parts[0]}`;
     row.append(v);
     // The ledger's own mark for this section, where the ledger gives one —
     // the same layer the chapter head carries, at section grain. A canonical
@@ -3360,7 +3378,7 @@
     // scrolling past four hundred of them
     if (openedNode) {
       const vl = document.createElement("span"); vl.className = "vlabel";
-      vl.textContent = (parts.length === 2 ? `${MAJOR} · ${MINOR}` : MINOR) +
+      vl.textContent = (NAMED_SHAPE ? "locator" : parts.length === 2 ? `${MAJOR} · ${MINOR}` : MINOR) +
         (wordAnchored ? " · a C in the line opens its commentary there" : "");
       row.append(vl); openedNode = false;
     }
@@ -4355,7 +4373,7 @@
     if (!heads.length) return;
     atNode = currentIndex();
     const n = nodes[heads[atNode].node] || {};
-    navChapter.textContent = `Chapter ${n.num || heads[atNode].node + 1}`;
+    navChapter.textContent = NAMED_SHAPE && n.name_en ? n.name_en : `Chapter ${n.num || heads[atNode].node + 1}`;
     navPrev.disabled = atNode === 0;
     navNext.disabled = atNode >= heads.length - 1;
     nav.hidden = window.scrollY < 200 || !hud.hidden;

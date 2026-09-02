@@ -66,7 +66,7 @@ if (!chosen) {
 }
 const PACK = join(K3, chosen.pack);
 const slug = String(chosen.work_id || "").split("/").pop();
-const SIDE = join(K3, "data", "zones", `${slug}-commentary.bin`);
+const SIDE = join(K3, "data", "zones", `${slug}.commentary.bin`);
 if (!existsSync(PACK) || !existsSync(SIDE)) {
   console.log(`SKIPPED — ${chosen.pack} is named by the record and its sidecar is not built`);
   process.exit(3);

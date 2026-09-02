@@ -157,7 +157,7 @@ while IFS=$'\t' read -r kind BASE COMM BY; do
     --serve "$SERVES/${PUB[$COMM]}.ndjson" --work "$COMM" \
     --title "${TITLE[$COMM]}" --family "${FAMILY[$COMM]}" --published-as "${PUB[$COMM]}" \
     --bridge "$BRIDGE" --store data/route-store --stamp "$STAMP" \
-    ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out "data/zones/${PUB[$BASE]}-commentary.bin"
+    ${SPAN_ARG[@]+"${SPAN_ARG[@]}"} --out "data/zones/${PUB[$BASE]}.commentary.bin"
 done < "$PLAN"
 
 # A pack fetched from outside the corpus has no C0 identity, so it attaches by
@@ -194,8 +194,8 @@ mkdir -p "site/$ENGINE/data/zones"
 rm -f "site/$ENGINE/data/zones"/*.bin
 for W in "${WORKS[@]}"; do
   cp "data/zones/${PUB[$W]}.bin" "site/$ENGINE/data/zones/"
-  [ -f "data/zones/${PUB[$W]}-commentary.bin" ] \
-    && cp "data/zones/${PUB[$W]}-commentary.bin" "site/$ENGINE/data/zones/"
+  [ -f "data/zones/${PUB[$W]}.commentary.bin" ] \
+    && cp "data/zones/${PUB[$W]}.commentary.bin" "site/$ENGINE/data/zones/"
 done
 rm -rf "site/$ENGINE/data/route-store" && cp -r data/route-store "site/$ENGINE/data/route-store"
 

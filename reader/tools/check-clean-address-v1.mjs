@@ -213,7 +213,7 @@ check("the site's own name carries no Hebrew that nothing recorded",
     const { gunzipSync } = await import("node:zlib");
     const zdir = join(K3, "data", "zones");
     const firstZone = readdirSync(zdir)
-      .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith("-commentary.bin"))
+      .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))
       .sort()[0];
     if (firstZone) {
       const z = JSON.parse(gunzipSync(readFileSync(join(zdir, firstZone))).toString("utf8"));
