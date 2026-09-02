@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-02.
 
-**68 rules declared · 67 named by a check · 1 unguarded.**
+**68 rules declared · 68 named by a check · 0 unguarded.**
 **10 published artifacts · 10 with a build step · 0 without.**
 
 ## The rules
@@ -42,7 +42,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
 | `implicit-maqaf-rule-v1-a-joiner-is-not-a-word-and-not-a-q-site` | tools/check-implicit-maqaf-v1.mjs | check-implicit-maqaf-v1 |
 | `import-side-effect-rule-v1-a-check-that-rebuilds-its-own-baseline-cannot-fail` | tools/check-no-import-side-effects-v1.mjs | check-no-import-side-effects-v1 |
-| `kq-rule-v1-both-halves-as-written` | tools/make-kq-fixture-zone-v1.mjs | check-kq-carried-v1, check-kq-presentation-v1 |
+| `kq-rule-v1-both-halves-as-written` | tools/make-kq-fixture-zone-v1.mjs, tools/zone-lib-v1.mjs | check-kq-carried-v1, check-kq-presentation-v1 |
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
 | `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/emit-language-sweep-record-v1.mjs, tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
 | `ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for` | tools/emit-ledger-index-v1.mjs | check-ledger-declared-v1 |
@@ -69,7 +69,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | check-span-receipt-carried-identical-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
-| `struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms` | tools/emit-struck-ranks-v1.mjs | **UNGUARDED** |
+| `struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms` | tools/emit-struck-ranks-v1.mjs | check-route-store-exact-k-v1 |
 | `suggested-title-rule-v1-a-guess-is-authored-by-name-and-witnessed-by-nothing` | tools/check-suggested-title-v1.mjs | check-suggested-title-v1 |
 | `title-from-c0-rule-v1-the-title-is-the-works-own-opening-words` | tools/build-zone.mjs | check-title-from-c0-v1 |
 | `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-opens-title-v1 |

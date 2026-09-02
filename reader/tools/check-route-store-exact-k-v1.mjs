@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// GUARDS: struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms
 // GUARDS: route-store-rule-v1-catalog-compact-top5
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
