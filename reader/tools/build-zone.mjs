@@ -536,7 +536,9 @@ const zone = {
     },
   },
   counts: {
-    words: serve.rows,
+    // words are positions, what the sections carry: a kq site is one word
+    // over two sealed rows, so this is the rows walked less the kq sites
+    words: sections.reduce((n, s) => n + s.words.length, 0),
     sections: sections.length,
     held: serve.held,
     // rows walked and words held differ by the kq sites: two sealed rows,

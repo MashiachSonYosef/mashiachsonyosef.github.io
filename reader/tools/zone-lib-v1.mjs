@@ -335,7 +335,9 @@ export const kqPairAt = (rows, i, opts = {}) => {
   if (!q || !k || !q.visible_in_hebrew_reader || !k.visible_in_hebrew_reader) return null;
   const qs = String(q.exact_surface_form || ""), ks = String(k.exact_surface_form || "");
   if (!(KQ_KETIV.test(ks) && !KQ_VOWEL.test(ks) && (ks.match(KQ_LETTER) || []).length >= 2)) return null;
-  if (KQ_QERE.test(qs)) return "BRACKETED_QERE";
+  // a qere is vocalized: a bracketed bare word in an unvocalized stream is an
+  // editorial mark (Tosefta Kilayim carries 47 of them), not a qere
+  if (KQ_QERE.test(qs) && KQ_VOWEL.test(qs)) return "BRACKETED_QERE";
   if (opts.vocalizedStream && KQ_VOCALIZED_WORD.test(qs) && KQ_VOWEL.test(qs)) return "BARE_KETIV_THEN_VOCALIZED_QERE";
   return null;
 };
