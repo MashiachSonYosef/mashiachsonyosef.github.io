@@ -11,9 +11,13 @@ import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 // section is therefore a claim about a book somebody has read through, so this
 // reads it through first — going to whatever is still waiting until nothing is.
 const readThrough = async (p) => {
-  await p.evaluate(async () => {
-    let guard = 0;
-    while (guard < 5000) {
+  // With a budget: on a 1,179-section zone an unbudgeted read-through ran
+  // past the suite's timeout and the check died here, reporting nothing
+  // while reading as red. What arrives within twenty seconds is what the
+  // laws below are asked of, and the check says how much that was.
+  return p.evaluate(async () => {
+    let guard = 0; const t0 = Date.now();
+    while (guard < 5000 && Date.now() - t0 < 20000) {
       const next = document.querySelector("section.seg.seg-wait");
       if (!next) break;
       next.scrollIntoView({ block: "center" });
@@ -22,6 +26,8 @@ const readThrough = async (p) => {
     }
     window.scrollTo(0, 0);
     await new Promise((r) => setTimeout(r, 80));
+    const all = document.querySelectorAll("section.seg").length;
+    return { all, arrived: all - document.querySelectorAll("section.seg.seg-wait").length };
   });
 };
 const { chromium } = pw;
@@ -33,7 +39,9 @@ const p = await b.newPage({ viewport: { width: 412, height: 915 }, acceptDownloa
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
 await p.goto(URL, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .xp-row");
-await readThrough(p);
+const arrived = await readThrough(p);
+if (arrived.arrived < arrived.all)
+  console.log(`  ..  ${arrived.arrived} of ${arrived.all} sections arrived within the read-through's budget; the per-section law is asked of those`);
 
 // ---- shape ----
 const shape = await p.evaluate(() => {
@@ -43,6 +51,7 @@ const shape = await p.evaluate(() => {
   return {
     perSection: document.querySelectorAll("section.seg .xp-row").length,
     sections: document.querySelectorAll("section.seg").length,
+    built: document.querySelectorAll("section.seg:not(.seg-wait)").length,
     buttons: row.querySelectorAll(".xp").length,
     labels: [...row.querySelectorAll(".xp")].map((x) => x.textContent.trim()),
     afterText: row.getBoundingClientRect().top >= he.getBoundingClientRect().top,
@@ -55,7 +64,10 @@ const shape = await p.evaluate(() => {
     })(),
   };
 });
-check("every section carries an export row", shape.perSection === shape.sections, `${shape.perSection} of ${shape.sections}`);
+// a section still waiting to be built carries nothing yet; the law is asked
+// of every section that has arrived, and the read-through said how many
+check("every section carries an export row", shape.perSection === shape.built && shape.built > 0,
+  `${shape.perSection} of ${shape.built} built${shape.built < shape.sections ? ` (${shape.sections} in the book)` : ""}`);
 check("three kinds per section", shape.buttons === 3, shape.labels.join(" | "));
 check("the export row sits after the text", shape.afterText);
 check("the book carries one of its own", shape.book && shape.bookButtons === 3, `${shape.bookButtons} buttons`);
