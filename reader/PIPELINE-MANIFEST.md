@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-02.
 
-**67 rules declared · 65 named by a check · 2 unguarded.**
+**67 rules declared · 66 named by a check · 1 unguarded.**
 **10 published artifacts · 10 with a build step · 0 without.**
 
 ## The rules
@@ -44,7 +44,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `import-side-effect-rule-v1-a-check-that-rebuilds-its-own-baseline-cannot-fail` | tools/check-no-import-side-effects-v1.mjs | check-no-import-side-effects-v1 |
 | `kq-rule-v1-both-halves-as-written` | tools/make-kq-fixture-zone-v1.mjs | check-kq-carried-v1, check-kq-presentation-v1 |
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
-| `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
+| `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/emit-language-sweep-record-v1.mjs, tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
 | `ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for` | tools/emit-ledger-index-v1.mjs | check-ledger-declared-v1 |
 | `licence-name-rule-v1-the-record-names-the-licence` | tools/check-licence-names-v1.mjs | check-licence-names-v1 |
 | `licence-posture-name-rule-v1-the-record-names-the-licence` | tools/emit-license-postures-v1.mjs | check-posture-names-from-record-v1 |
@@ -79,7 +79,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `work-attachment-rule-v1-parallel-numbering-is-not-intent` | tools/emit-work-attachment-v1.mjs | check-work-attachment-v1 |
 | `work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands` | tools/check-build-derived-v1.mjs | check-build-derived-v1 |
 | `zone-commentary-rule-v2-everything-recorded-stands-somewhere` | tools/build-commentary-sidecar-v1.mjs | check-nothing-dropped-v1 |
-| `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | **UNGUARDED** |
+| `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | check-commentary-section-aligned-v1 |
 | `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs | **UNGUARDED** |
 | `zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-page-agrees-with-store-v1 |
 | `zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight` | tools/emit-zone-shipment-v1.mjs, tools/emit-zone-store-v1.mjs, tools/move-shelf-v1.sh, tools/pull-zones-from-store-v1.mjs, zone.html | check-zone-store-crossing-v1, check-zone-store-reachable-v1, check-zone-store-v1 |
@@ -104,7 +104,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 18 of the 54 tools that are not checks.
+`build.sh` calls 18 of the 55 tools that are not checks.
 
 Not called by any build stage:
 
@@ -114,6 +114,7 @@ Not called by any build stage:
 - `tools/declaration-v1.mjs`
 - `tools/emit-apparatus-baseline-v1.mjs`
 - `tools/emit-corpus-atlas-v1.mjs`
+- `tools/emit-language-sweep-record-v1.mjs`
 - `tools/emit-ledger-index-v1.mjs`
 - `tools/emit-work-attachment-v1.mjs`
 - `tools/emit-workspace-manifest-v1.mjs`
