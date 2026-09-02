@@ -36,7 +36,7 @@ import { glossMFor, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
 import { K_RULE_ID, K_RULE_TEXT, exactK } from "./k-normalization-v1.mjs";
 import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import {
-  readServe, readBridge, parseWorkCoordinates, wordsOf, isVocalizedStream, regionsOf, licensePosture, require_, sha256File,
+  readServe, readBridge, parseWorkCoordinates, wordsOf, regionsOf, licensePosture, require_, sha256File,
 } from "./zone-lib-v1.mjs";
 
 const arg = (flag, fallback = null) => {
@@ -162,16 +162,12 @@ const sections = [];
 const keysNeeded = new Set();
 let verified = 0, drifted = 0, glossedWords = 0;
 const perChapter = new Map();
-// The kq convention is the stream's: a vocalized stream may write a qere
-// without brackets after a bare ketiv, and only such a stream is read that
-// way (isVocalizedStream in zone-lib-v1). Decided once for the work.
-const kqOpts = { vocalizedStream: isVocalizedStream([...serve.units.values()].flatMap((x) => x.rows)) };
 
 for (const unit of servedUnits) {
   const u = serve.units.get(unit);
   const c = coords.get(unit);
   const sealed = bridge.units.get(unit);
-  const words = wordsOf(u.rows, kqOpts);
+  const words = wordsOf(u.rows);
   words.forEach((w) => regionsOf(w).forEach((g) => keysNeeded.add(g.k)));
 
   const sec = { unit, node: chapterIndex.get(c.chapter), label: c.label, c0_first: u.first, c0_last: u.last, words };

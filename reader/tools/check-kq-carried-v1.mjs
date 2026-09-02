@@ -63,13 +63,14 @@ for (const slug of zones) {
   // As written, under the stream's own convention (kq.convention, named by
   // the builder): the ketiv in parentheses (the MAM presentation bundle) or
   // bare and unvocalized (the sealed body stream, genesis-8-17); the qere in
-  // square brackets, or, where the stream writes no brackets, vocalized
-  // after its bare ketiv (ruth-3-3). What is refused is a half missing, a
-  // ketiv retyped with vowels it never had, or a qere with none.
+  // square brackets and vocalized. (An unbracketed convention was tried on
+  // 2026-09-02 and withdrawn the same day: such streams flatten the Masorah's
+  // annotation words to bare tokens.) What is refused is a half missing, a
+  // ketiv retyped with vowels it never had, or a qere unbracketed or bare.
   const KETIV_BARE = /^[\u05D0-\u05EA\u05BE\u05F3\u05F4]+$/u, VOWEL = /[\u0591-\u05C7]/u;
   const broken = pairs.filter((p) => !p || !p.q || !p.k
     || !(/\(.+\)/.test(p.k) || KETIV_BARE.test(p.k))
-    || !(p.convention === "BARE_KETIV_THEN_VOCALIZED_QERE" ? VOWEL.test(p.q) && !/[[\]()]/.test(p.q) : /\[.+\]/.test(p.q)));
+    || !(/\[.+\]/.test(p.q) && VOWEL.test(p.q)));
   const findings = pairs.filter((p) => p && p.finding).length;
   check(`${slug}: every pair carries both halves as written (${pairs.length} pair${pairs.length === 1 ? "" : "s"})`,
     broken.length === 0, broken.length ? `${broken.length} selected, unbracketed, or a half not as written` : `whole${findings ? ` · ${findings} carry a finding the zone prints` : ""}`);
