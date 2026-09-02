@@ -39,9 +39,12 @@ else
       const needTitle = !pick.has("titled"), needBare = !pick.has("untitled");
       const needFlat = !pick.has("flat"), needNested = !pick.has("nested"), needNamed = !pick.has("named");
       const needHe = !pick.has("hebrew-id"), needLat = !pick.has("latin-id");
-      if (!(needTitle || needBare || needFlat || needNested || needNamed || needHe || needLat)) break;
+      const needKq = !pick.has("kq");
+      if (!(needTitle || needBare || needFlat || needNested || needNamed || needHe || needLat || needKq)) break;
       const zz = JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.bin`)).toString("utf8"));
       const shape = String((zz.emitted_from || {}).coordinate_shape || "");
+      // a zone carrying ketiv-qere sites: the pair's presentation is a shape of its own
+      if (needKq && Number((zz.counts || {}).kq_sites) > 0) pick.set("kq", z);
       // three shapes, each its own slot: the named sequence shares a prefix
       // with the plain one and must not be allowed to fill its slot instead
       if (needNamed && shape.startsWith("SEALED_UNIT_SEQUENCE_NAMED")) pick.set("named", z);
