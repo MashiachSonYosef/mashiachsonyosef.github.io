@@ -248,7 +248,14 @@ for (const sh of shards) {
       location: { local_unit_id: unit },
       token_ordinal_in_unit: ordinal,
       exact_surface_form: f[col.hebrew],
-      visible_in_hebrew_reader: rights.reader_display_axis === "ALLOW",
+      // A display conditioned on attribution is discharged by the credit
+      // the v3 binding carries: the row shows, and the credit rides to the
+      // page (build-zone: credit_discharged_in_display). Without the credit
+      // the serve refused above; with it, dark rows would misread the
+      // licence as a hold — found 2026-09-02 when Ruth built with every
+      // one of its 1,132 words held.
+      visible_in_hebrew_reader: rights.reader_display_axis === "ALLOW"
+        || (rights.reader_display_axis === "ALLOW_WITH_ATTRIBUTION" && !!(rightsProvenance && rightsProvenance.credit)),
       reader_display_axis: rights.reader_display_axis,
       public_distribution_axis: rights.public_distribution_axis,
       attribution_required: rights.attribution_required,

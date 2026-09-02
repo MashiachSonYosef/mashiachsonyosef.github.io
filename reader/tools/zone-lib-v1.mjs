@@ -301,8 +301,91 @@ export const MAQAF = "\u05be";
  * belongs to the next occurrence; the maqaf still prints, and it does not
  * open, because it is not a W.
  */
-export const wordsOf = (rows) =>
-  rows.map((r) => {
+// A ketiv-qere site, as the sealed stream writes it: the ketiv bare and
+// unvocalized on one row, the qere vocalized in square brackets on the next,
+// in the same unit (genesis-8-17: the ketiv, then the qere in brackets). One occurrence, one
+// word of the book, counted once — the owner's ruling of 2026-09-02 (one
+// occurrence, one C0). The store still seals two rows for it, so until the
+// corpus lane reseals the site as one row this pairs the two here, says so
+// on the word (kq.rows), and counts the position. Both halves ride as
+// written: the ketiv's letters and the qere's letters each keyed, roles
+// named, under kq-rule-v1-both-halves-as-written. Nothing is chosen between
+// them; the page underlines the one the English follows.
+//
+// Two streams, two conventions, each read as its own and named on the word:
+//   BRACKETED_QERE      the qere in square brackets after a bare ketiv
+//                       (the MAM-derived books: genesis-8-17)
+//   BARE_KETIV_THEN_VOCALIZED_QERE
+//                       no brackets: in a stream where every word is
+//                       vocalized, a row with no vowel or accent at all is
+//                       the ketiv, and the vocalized row after it is the
+//                       qere (ruth-3-3, the ketiv then its qere). Read only
+//                       where the caller says the stream is vocalized
+//                       (opts.vocalizedStream), never in a plain stream.
+// Codepoints are escaped: a tool may not type a character of the text.
+const KQ_VOWEL = /[\u0591-\u05C7]/u;                       // any vowel, accent or point
+const KQ_LETTERS = "\u05D0-\u05EA";                          // alef..tav
+const KQ_KEPT = "\u05BE\u05F3\u05F4";                        // maqaf, geresh, gershayim
+const KQ_QERE = new RegExp("^\\[[" + KQ_LETTERS + "\u0591-\u05C7" + KQ_KEPT + "]+\\]$", "u");
+const KQ_KETIV = new RegExp("^[" + KQ_LETTERS + KQ_KEPT + "]+$", "u");
+const KQ_VOCALIZED_WORD = new RegExp("^[" + KQ_LETTERS + "\u0591-\u05C7" + KQ_KEPT + "]+$", "u");
+const KQ_LETTER = new RegExp("[" + KQ_LETTERS + "]", "gu");
+export const kqPairAt = (rows, i, opts = {}) => {
+  const q = rows[i + 1], k = rows[i];
+  if (!q || !k || !q.visible_in_hebrew_reader || !k.visible_in_hebrew_reader) return null;
+  const qs = String(q.exact_surface_form || ""), ks = String(k.exact_surface_form || "");
+  if (!(KQ_KETIV.test(ks) && !KQ_VOWEL.test(ks) && (ks.match(KQ_LETTER) || []).length >= 2)) return null;
+  if (KQ_QERE.test(qs)) return "BRACKETED_QERE";
+  if (opts.vocalizedStream && KQ_VOCALIZED_WORD.test(qs) && KQ_VOWEL.test(qs)) return "BARE_KETIV_THEN_VOCALIZED_QERE";
+  return null;
+};
+
+/** Whether a stream vocalizes its words: nine in ten visible Hebrew rows carry a vowel or accent. */
+export const isVocalizedStream = (rows) => {
+  let seen = 0, vowelled = 0;
+  for (const r of rows) {
+    if (!r.visible_in_hebrew_reader) continue;
+    const s = String(r.exact_surface_form || "");
+    if (!KQ_LETTER.test(s)) continue;
+    KQ_LETTER.lastIndex = 0;
+    seen += 1;
+    if (KQ_VOWEL.test(s)) vowelled += 1;
+  }
+  return seen >= 20 && vowelled / seen >= 0.9;
+};
+
+export const wordsOf = (rows, opts = {}) => {
+  const out = [];
+  for (let i = 0; i < rows.length; i += 1) {
+    const convention = kqPairAt(rows, i, opts);
+    if (convention) {
+      const ks = rows[i].exact_surface_form, qs = rows[i + 1].exact_surface_form;
+      const kq = { k: ks, q: qs, order: "KETIV_THEN_QERE", rows: 2, convention };
+      // A stream that writes no brackets cannot tell a ketiv written and not
+      // read (ruth-3-12) from a pair: the bare row is followed by an ordinary
+      // word either way. Where the two share few letters the pairing is
+      // doubtful and says so on the word — a finding the zone prints, never
+      // a silent choice. The bracketed reissue, or one C0 per site, settles it.
+      if (convention === "BARE_KETIV_THEN_VOCALIZED_QERE") {
+        const kk = exactK(ks), qk = exactK(qs);
+        const shared = [...new Set(kk)].filter((ch) => qk.includes(ch)).length;
+        if (shared / Math.max(kk.length, qk.length, 1) < 0.4)
+          kq.finding = "the ketiv and the vocalized word after it share few letters; in a stream without brackets this may be a ketiv written and not read rather than a pair";
+      }
+      out.push({
+        s: ks + " " + qs,
+        w: [{ s: ks, k: exactK(ks), role: "KETIV" }, { s: qs, k: exactK(qs), role: "QERE" }],
+        kq,
+      });
+      i += 1;
+      continue;
+    }
+    out.push(wordOf(rows[i]));
+  }
+  return out;
+};
+
+const wordOf = (r) => {
     const surface = r.exact_surface_form;
     const w = { s: surface };
     if (!r.visible_in_hebrew_reader) { w.held = true; return w; }
@@ -333,7 +416,7 @@ export const wordsOf = (rows) =>
         });
     w.w = cells;
     return w;
-  });
+};
 
 /** Every W an occurrence contains, whether it carries one or several. */
 export const regionsOf = (word) => (word.w ? word.w : word.k ? [{ s: word.s, k: word.k }] : []);

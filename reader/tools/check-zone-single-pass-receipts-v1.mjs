@@ -118,7 +118,7 @@ check("L0  the builder still declares the rule and the single-pass promise",
 // a single pass writes, and anything after it in a file was appended later.
 const TOP_KEYS = ["schema_version", "rule_id", "work", "work_he", "work_he_tokens", "byline", "work_receipts", "route", "emitted_from", "counts", "nodes", "span_roles", "span_rules", "span_conf", "spans", "gloss", "gloss_m", "sections"];
 const LAST_KEY = "sections";
-const EMITTED_KEYS = ["walk", "title_from_c0", "identity_oracle", "license_receipts", "gloss_layer", "span_layer", "y_ledger", "license_links", "coordinate_basis", "numbering", "coordinate_labels", "coordinate_shape", "build", "post_build"];
+const EMITTED_KEYS = ["kq_policy", "kq_none_attested", "walk", "title_from_c0", "identity_oracle", "license_receipts", "gloss_layer", "span_layer", "y_ledger", "license_links", "coordinate_basis", "numbering", "coordinate_labels", "coordinate_shape", "build", "post_build"];
 const GLOSS_LAYER_KEYS = ["source", "key_rule", "rule", "gloss_table_sha256", "distinct_forms_glossed", "distinct_forms_bare", "grain", "store_inputs", "store_version", "m_layer"];
 // A zone built before the builder wrote gloss_m carries it from the
 // enrichment under a TYPED exemption: emitted_from.post_build names this rule,
@@ -208,7 +208,12 @@ for (const f of bins) {
   }
   const oracleHash = bo ? bo.manifest_sha256 : so ? so.pointer_sha256 : null;
   if (walk.pointer && oracleHash && walk.pointer.sha256 !== oracleHash) dis.push("walk.pointer hash is not the oracle's");
-  if (counts.words !== walk.ids_walked) dis.push(`counts.words ${counts.words} vs ids_walked ${walk.ids_walked}`);
+  // rows walked and words held differ by the kq sites the builder paired
+  // (two sealed rows, one word); a zone that names its rows walked is held
+  // to that, and its words plus its kq sites must be that number
+  const rowsWalked = counts.c0_rows_walked ?? counts.words;
+  if (rowsWalked !== walk.ids_walked) dis.push(`counts.c0_rows_walked ${rowsWalked} vs ids_walked ${walk.ids_walked}`);
+  if (counts.c0_rows_walked !== undefined && counts.words + (counts.kq_sites || 0) !== counts.c0_rows_walked) dis.push(`counts.words ${counts.words} + kq_sites ${counts.kq_sites || 0} vs c0_rows_walked ${counts.c0_rows_walked}`);
   if (counts.sealed_expected_words !== io.sealed_c0_rows) dis.push("counts.sealed_expected_words vs identity_oracle.sealed_c0_rows");
   if (counts.sections !== (z.sections || []).length) dis.push(`counts.sections ${counts.sections} vs ${(z.sections || []).length} sections`);
   if ((e.license_receipts || {}).attribution !== z.byline) dis.push("license_receipts.attribution is not the byline");

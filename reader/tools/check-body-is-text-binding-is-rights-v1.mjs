@@ -287,7 +287,9 @@ for (const f of bins) {
   if (rights) profilesSeen.set(rights.rights_profile_id, (profilesSeen.get(rights.rights_profile_id) || 0) + 1);
 
   // L4 — one row, one posture, over exactly the rows served
-  const c = z.counts || {}, io = ef.identity_oracle || {}, words = c.words, held = Number(c.held) || 0;
+  // the rows the binding covers are the rows walked: a zone that paired kq
+  // sites (two rows, one word) names them in counts.c0_rows_walked
+  const c = z.counts || {}, io = ef.identity_oracle || {}, words = c.c0_rows_walked ?? c.words, held = Number(c.held) || 0;
   const groups = parsePosture((ef.license_receipts || {}).per_occurrence);
   const sc = rights && rights.binding_scope && typeof rights.binding_scope === "object" ? rights.binding_scope : null;
   const why4 = [];

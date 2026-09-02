@@ -182,7 +182,9 @@ for (const f of bins) {
   // L5 — the rows the walk served are the words the zone carries, and the
   // identity oracle allocated that many
   const io = (z.emitted_from || {}).identity_oracle || {};
-  const ids = walk.ids_walked, words = c.words, held = Number(c.held) || 0;
+  // the rows walked: a zone that paired kq sites (two rows, one word) names
+  // them in counts.c0_rows_walked; otherwise its words are its rows
+  const ids = walk.ids_walked, words = c.c0_rows_walked ?? c.words, held = Number(c.held) || 0;
   const agree = Number.isInteger(ids) && ids === words
     && (io.sealed_c0_rows === undefined || io.sealed_c0_rows === ids)
     && (c.sealed_expected_words === undefined || c.sealed_expected_words === ids)
