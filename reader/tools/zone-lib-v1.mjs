@@ -170,9 +170,13 @@ export const parseUnitId = (unitId, slug) => {
  *
  * This is the per-unit form, kept for the callers that align two works by
  * label (a commentary on its base). It accepts the nested and ordinal kinds
- * and refuses the rest, exactly as it always did — a named tail cannot align
- * anything by itself, so a caller that needs one goes through
- * parseWorkCoordinates, which decides the shape for the whole work.
+ * and refuses the rest. It is wider than it was by exactly the anchoring: a
+ * family-prefixed nested id and a bare ordinal after the work's name now
+ * parse where the old two-regex form refused them, so a commentary whose
+ * ids are prefixed aligns to its base by the same label it always would
+ * have carried. A named tail cannot align anything by itself, so a caller
+ * that needs one goes through parseWorkCoordinates, which decides the shape
+ * for the whole work.
  */
 export const parseCoordinates = (unitId, slug) => {
   const p = parseUnitId(unitId, slug);
@@ -207,21 +211,44 @@ export const parseCoordinates = (unitId, slug) => {
  */
 export const parseWorkCoordinates = (unitIds, slug) => {
   const per = unitIds.map((u) => [u, parseUnitId(u, slug)]);
+  // A stream id names no locator, and a locator this parse would give it
+  // would be its place in the order — an ordinal the sealed id does not
+  // carry. That is the one thing this parse may not do. Twenty-eight works
+  // carry such ids, eight of them with page numbers the position would
+  // silently renumber across witnessed gaps; they stay held, by name, until
+  // an anchor is written for the form their ids take.
+  const stream = per.find(([, p]) => p.kind === "stream");
+  require_(!stream, "UNIT_ID_UNPARSED",
+    `${stream && stream[0]} does not name its work in any form this parse reads (plain, prefixed, or sefaria-prefixed), so no locator can be read from it and none is invented`);
   const kinds = new Set(per.map(([, p]) => p.kind));
   const shape = kinds.size === 1 && kinds.has("nested") ? "CHAPTER_SECTION"
     : kinds.size === 1 && kinds.has("ordinal") ? "SEALED_UNIT_SEQUENCE"
       : "SEALED_UNIT_SEQUENCE_NAMED";
   const coords = new Map();
+  // What the ids witness that the named shape does not build: their own
+  // ordinals and their own nesting. Recorded so the zone can say it.
+  const witnessed = { ordinal_units: 0, ordinal_gaps: [], ordinal_starts_at: null, nested_units: 0, nested_chapters: new Set() };
+  let prevOrd = null;
   per.forEach(([u, p], i) => {
     if (shape === "CHAPTER_SECTION") coords.set(u, { chapter: p.chapter, section: p.section, label: p.label });
     else if (shape === "SEALED_UNIT_SEQUENCE") coords.set(u, { chapter: p.chapter, section: 1, label: p.label, flat: true });
     else {
       const ord = i + 1;
-      const label = p.kind === "named" ? readTailPlainly(p.tail) : p.kind === "stream" ? String(ord) : p.label;
+      // an id whose tail is empty names the work and nothing under it: the
+      // unit is the whole work, and its locator is the work's own name
+      const label = p.kind === "named" ? (p.tail ? readTailPlainly(p.tail) : readTailPlainly(slug)) : p.label;
       coords.set(u, { chapter: ord, section: 1, label, flat: true, named: true });
+      if (p.kind === "ordinal") {
+        witnessed.ordinal_units += 1;
+        if (prevOrd === null) { if (p.chapter !== 1) witnessed.ordinal_starts_at = p.chapter; }
+        else if (p.chapter > prevOrd + 1) witnessed.ordinal_gaps.push({ after: prevOrd, next: p.chapter });
+        prevOrd = p.chapter;
+      }
+      if (p.kind === "nested") { witnessed.nested_units += 1; witnessed.nested_chapters.add(p.chapter); }
     }
   });
-  return { shape, coords };
+  witnessed.nested_chapters = witnessed.nested_chapters.size;
+  return { shape, coords, witnessed };
 };
 
 // U+05BE HEBREW PUNCTUATION MAQAF, named by its codepoint. A tool in this

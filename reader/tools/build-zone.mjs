@@ -84,7 +84,7 @@ require_(unserved.length === 0, "BRIDGE_UNIT_NOT_SERVED", `${unserved.length}, f
 // a name — an introduction, a gate, a parashah — was refused as unparsed,
 // and 647 works holding 75 million of the bridge's 109 million rows stood
 // held for the shape of their ids alone.
-const { shape: coordShape, coords } = parseWorkCoordinates(servedUnits, slug);
+const { shape: coordShape, coords, witnessed } = parseWorkCoordinates(servedUnits, slug);
 // A zone speaks one coordinate language. The work-level parse guarantees it;
 // this holds the guarantee where the zone is written, so a later change to
 // the parse cannot quietly ship a zone that mixes them.
@@ -119,11 +119,25 @@ const numberingGaps = [];
 for (let i = 1; i < chapters.length; i += 1)
   if (chapters[i] !== chapters[i - 1] + 1) numberingGaps.push({ after: chapters[i - 1], next: chapters[i] });
 const numberingStartsAt = chapters.length && chapters[0] !== 1 ? chapters[0] : null;
-const numbering = (numberingGaps.length || numberingStartsAt !== null)
+// In the named shape the chapters are positions and are contiguous by
+// construction, so the gate above can see nothing. What the ids themselves
+// witness — their own ordinals skipping, their own chapter:section nesting —
+// is recorded here from the parse, so a skip the chain sealed is on the
+// zone's receipts and not absorbed by the way the zone is addressed.
+const namedWitness = namedShape && witnessed && (witnessed.ordinal_gaps.length || witnessed.ordinal_starts_at !== null || witnessed.nested_units)
+  ? {
+      shape: "SEALED_UNIT_SEQUENCE_NAMED",
+      addressed_by: "position in the chain's order; the locator is the id's own tail",
+      ...(witnessed.ordinal_units ? { ids_carrying_an_ordinal: witnessed.ordinal_units, ordinal_gaps: witnessed.ordinal_gaps, ...(witnessed.ordinal_starts_at !== null ? { ordinal_starts_at: witnessed.ordinal_starts_at } : {}) } : {}),
+      ...(witnessed.nested_units ? { ids_carrying_chapter_and_section: witnessed.nested_units, chapters_they_witness: witnessed.nested_chapters, note_on_nesting: "the ids carry a chapter:section nesting this shape does not build nodes from; it prints as each unit's locator and awaits the Y ledger for structure" } : {}),
+    }
+  : null;
+const numbering = (numberingGaps.length || numberingStartsAt !== null || namedWitness)
   ? {
       rule_id: "numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault",
       ...(numberingStartsAt !== null ? { starts_at: numberingStartsAt } : {}),
       gaps: numberingGaps,
+      ...(namedWitness ? { witnessed_by_the_ids: namedWitness } : {}),
       note:
         "the sealed unit ids witness these ordinals and no others; the shelf reads them as sealed — nothing renumbered, no ordinal invented to fill a gap, and a duplicate ordinal would have refused the work",
     }
@@ -359,7 +373,7 @@ const zone = {
   ...(workHeTokens ? { work_he_tokens: workHeTokens } : {}),
   byline: bylineOut,
   work_receipts: {
-    b_n: `${bridge.b_id} / ${bridge.n_id} · work_id=${workId} · ${bridge.units.size.toLocaleString()} sealed units, ${chapters.length} chapters`,
+    b_n: `${bridge.b_id} / ${bridge.n_id} · work_id=${workId} · ${bridge.units.size.toLocaleString()} sealed units, ${flatShape ? `each its own section${namedShape && witnessed && witnessed.nested_units ? ` (${witnessed.nested_units} ids witness ${witnessed.nested_chapters} chapters this shape does not build)` : ""}` : `${chapters.length} chapters`}`,
   },
   route: serve.provenance.route || "TERMINAL_READER_WALK__SEALED_CHAIN",
   emitted_from: {
@@ -460,14 +474,14 @@ const zone = {
       ? "each sealed unit is one section in the chain's own order; its ordinal is its place in that order and its locator is its sealed id's tail read plainly; nothing is renumbered and no hierarchy is built from the names"
       : flatShape
         ? "each sealed unit is one section and its ordinal is the one its own id carries; nothing is renumbered"
-        : `chapter and section numbers are read from the sealed unit id (${slug}-<chapter>-<section>); nothing is renumbered`,
+        : "chapter and section numbers are read from the sealed unit id's own <chapter>-<section> tail, after the work's name in whichever form the id gives it; nothing is renumbered",
     ...(numbering ? { numbering } : {}),
     // Plain English for the two levels of the coordinate, so a page can say
     // "Chapter 7, verse 14" instead of a generic "section, paragraph". These
     // name the structure; they are not translations of anything in the text.
     coordinate_labels: { major: coordLabels[0], minor: coordLabels[1] },
     coordinate_shape: namedShape
-      ? "SEALED_UNIT_SEQUENCE_NAMED — one sealed unit is one top-level section in the chain's order; its locator is the sealed id's own tail read plainly; no hierarchy is built from the names"
+      ? "SEALED_UNIT_SEQUENCE_NAMED — one sealed unit is one top-level section in the chain's order; its locator is the sealed id's own tail read plainly, capture placeholders included; no hierarchy is built from the names"
       : flatShape
         ? "SEALED_UNIT_SEQUENCE — one sealed unit is one top-level section; the chain records no nesting and none is invented"
         : "CHAPTER_SECTION — nested coordinates from the sealed unit id",

@@ -37,12 +37,15 @@ else
     pick.set("smallest", sizes.reduce((a, c) => (c[1] < a[1] ? c : a))[0]);
     for (const z of all) {
       const needTitle = !pick.has("titled"), needBare = !pick.has("untitled");
-      const needFlat = !pick.has("flat"), needNested = !pick.has("nested");
+      const needFlat = !pick.has("flat"), needNested = !pick.has("nested"), needNamed = !pick.has("named");
       const needHe = !pick.has("hebrew-id"), needLat = !pick.has("latin-id");
-      if (!(needTitle || needBare || needFlat || needNested || needHe || needLat)) break;
+      if (!(needTitle || needBare || needFlat || needNested || needNamed || needHe || needLat)) break;
       const zz = JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.bin`)).toString("utf8"));
       const shape = String((zz.emitted_from || {}).coordinate_shape || "");
-      if (needFlat && shape.startsWith("SEALED_UNIT_SEQUENCE")) pick.set("flat", z);
+      // three shapes, each its own slot: the named sequence shares a prefix
+      // with the plain one and must not be allowed to fill its slot instead
+      if (needNamed && shape.startsWith("SEALED_UNIT_SEQUENCE_NAMED")) pick.set("named", z);
+      else if (needFlat && shape.startsWith("SEALED_UNIT_SEQUENCE")) pick.set("flat", z);
       if (needNested && shape.startsWith("CHAPTER_SECTION")) pick.set("nested", z);
       if (needTitle && (zz.work_he_tokens || []).some((t) => t.k)) pick.set("titled", z);
       if (needBare && !(zz.work_he_tokens || []).length) pick.set("untitled", z);
