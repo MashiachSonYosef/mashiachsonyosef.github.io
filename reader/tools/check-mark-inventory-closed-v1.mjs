@@ -28,7 +28,9 @@
 //   L3  every mark a provider uses in route text is in that provider's list
 //   L4  no provider and no mark is named that the store no longer carries
 //   L5  what the inventory states (codepoint, counts, labels, examples) is
-//       what the shards hold
+//       what the shards hold, and it states each thing once: a provider or a
+//       mark record that repeats is a second statement about one slot and
+//       fails here, so no copy goes unjudged
 //   L6  the inventory makes no claim of meaning: every record carries the
 //       counting fields of MARK_INVENTORY_V1 and nothing else
 //
@@ -89,19 +91,30 @@ const few = (list, n = 4) => list.slice(0, n).join(" · ") + (list.length > n ? 
 
 // ── what the inventory says ───────────────────────────────────────────────
 const invProviders = Array.isArray(inv.providers) ? inv.providers : [];
-// provider id -> { p, marks: Map(mark -> entry), examples: Map(mark -> Map(example -> seen)) }
+// provider id -> { p, marks: Map(mark -> entry), examples: Map(mark -> Map(example -> seen)), listed }
 const named = new Map();
+// A record that repeats is two statements about one slot. Folding them into
+// a Map would keep only the last and judge that one alone, so a false first
+// copy would pass. Every repeat is kept here and L5 fails on it.
+const repeated = [];
+let markRecords = 0;
 for (const p of invProviders) {
+  const id = String(p.provider);
+  if (named.has(id)) { repeated.push(`provider ${id} listed twice`); continue; }
   const marks = new Map();
   const examples = new Map();
+  let listed = 0;
   for (const m of Array.isArray(p.marks) ? p.marks : []) {
+    listed += 1;
+    markRecords += 1;
     const mark = String(m.mark);
+    if (marks.has(mark)) { repeated.push(`${id} ${show(mark)} listed twice`); continue; }
     marks.set(mark, m);
     const ex = new Map();
     for (const e of Array.isArray(m.examples) ? m.examples : []) ex.set(String(e), false);
     examples.set(mark, ex);
   }
-  named.set(String(p.provider), { p, marks, examples });
+  named.set(id, { p, marks, examples, listed });
 }
 
 // ── what the shards hold ──────────────────────────────────────────────────
@@ -159,7 +172,7 @@ for (const f of shardFiles) {
 
 const slotsOnDisk = [...seen.values()].reduce((a, b) => a + b.marks.size, 0);
 const slotsNamed = [...named.values()].reduce((a, b) => a + b.marks.size, 0);
-console.log(`— ${shardFiles.length} shards · ${totalRoutes.toLocaleString()} routes over ${totalKeys.toLocaleString()} keys · ${seen.size} providers on disk, ${named.size} named · ${slotsOnDisk} slots on disk, ${slotsNamed} named —\n`);
+console.log(`— ${shardFiles.length} shards · ${totalRoutes.toLocaleString()} routes over ${totalKeys.toLocaleString()} keys · ${seen.size} providers on disk, ${invProviders.length} provider records · ${slotsOnDisk} slots on disk, ${slotsNamed} named in ${markRecords} mark records —\n`);
 if (index.counts && (index.counts.routes !== totalRoutes || index.counts.keys !== totalKeys)) {
   console.log(`  note: the index counts ${index.counts.routes} routes over ${index.counts.keys} keys; the walk found ${totalRoutes} over ${totalKeys}. The walk is what this check judges against.\n`);
 }
@@ -218,13 +231,16 @@ check("L4  no provider and no mark is named that the store no longer carries",
 // L5 — what it states is what is there.
 const wrong = [];
 const say = (s) => { if (wrong.length < 40) wrong.push(s); else wrong.push(null); };
+// A repeated record first. Two records for one slot cannot both be what the
+// shards hold, and one of them was never judged below.
+for (const r of repeated) say(r);
 const labels = index.m_sources || {};
 for (const [id, nm] of named) {
   const b = seen.get(id);
   const p = nm.p;
   const expectLabel = (labels[id] && labels[id].label) || null;
   if ((p.label ?? null) !== expectLabel) say(`${id} label ${JSON.stringify(p.label)}`);
-  if (p.mark_count !== nm.marks.size) say(`${id} mark_count ${p.mark_count} but lists ${nm.marks.size}`);
+  if (p.mark_count !== nm.listed) say(`${id} mark_count ${p.mark_count} but lists ${nm.listed}`);
   if (!b) continue;
   if (p.routes !== b.routes) say(`${id} routes ${p.routes} vs ${b.routes}`);
   const r = p.route_region_in_definition || {};

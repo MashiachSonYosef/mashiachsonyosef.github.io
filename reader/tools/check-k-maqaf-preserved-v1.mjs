@@ -195,7 +195,9 @@ for (const f of bins) {
   const gloss = z.gloss || {};
   const from = z.emitted_from || {};
   const keyRule = String((from.gloss_layer || {}).key_rule || "");
-  if (keyRule.startsWith(RULE_ID) || JSON.stringify(from).includes(RULE_ID)) zonesNaming += 1;
+  // the field the law names, and only that field: an id mentioned in some
+  // other note of emitted_from is not the gloss layer naming its key rule
+  if (keyRule.startsWith(RULE_ID)) zonesNaming += 1;
   else keep(l9Samples, work);
 
   for (const sec of z.sections || []) {

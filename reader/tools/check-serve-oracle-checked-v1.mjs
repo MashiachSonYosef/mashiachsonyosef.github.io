@@ -55,8 +55,16 @@
 //                                                   [--serves build]
 //                                                   [--walker tools/mishkan-serve-v1.mjs]
 //                                                   [--receipt data/serve-rebuild-receipt-2026-08-22.json]
-import { readFileSync, readdirSync, existsSync, statSync, openSync, readSync, closeSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync, statSync, openSync, readSync, closeSync, createReadStream } from "node:fs";
+import { createInterface } from "node:readline";
 import { gunzipSync } from "node:zlib";
+
+// Row lines of an NDJSON file, counted a line at a time. Line 1 is provenance.
+const countRows = async (p) => {
+  let n = 0;
+  for await (const line of createInterface({ input: createReadStream(p, { encoding: "utf8" }), crlfDelay: Infinity })) if (line) n += 1;
+  return n - 1;
+};
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -123,13 +131,18 @@ for (const f of bins) {
   const name = String(z.work || slug);
   const walk = (z.emitted_from || {}).walk || null;
   const route = String(z.route || (walk && walk.route) || "(none)");
+  // a walk that names the walk's route under z.route's body route is a
+  // costume too; both fields are read, not the first that answers
+  const walkRoute = String((walk && walk.route) || "");
   routesSeen.set(route, (routesSeen.get(route) || 0) + 1);
   const c = z.counts || {};
   shelf.set(slug, { route, words: c.words });
 
   const so = walk && walk.sealed_oracle ? walk.sealed_oracle : null;
   const bo = walk && walk.body_oracle ? walk.body_oracle : null;
-  const claimsRoute = route === ROUTE || !!(walk && walk.walker_rule === RULE);
+  // build-zone spreads a serve's provenance into walk, so the rule may arrive
+  // under walker_rule (the walker's field) or rule (serve-from-body's field)
+  const claimsRoute = route === ROUTE || walkRoute === ROUTE || !!(walk && (walk.walker_rule === RULE || walk.rule === RULE));
 
   // L2 — each route's receipts are its own
   const why = [];
@@ -224,7 +237,9 @@ for (const p of ndjsons) {
   const rel = relative(K3, p);
   routeServes.push(rel);
   const so = prov.sealed_oracle || null, rep = so && so.report && typeof so.report === "object" ? so.report : null;
-  const rows = readFileSync(p, "utf8").split("\n").filter(Boolean).length - 1;
+  // streamed: a serve output can run past what one string may hold, and a
+  // check that dies on a big file reports nothing while looking red
+  const rows = await countRows(p);
   const why = [];
   if (prov.walker_rule !== RULE) why.push("names another rule");
   if (!so) why.push("no sealed oracle");

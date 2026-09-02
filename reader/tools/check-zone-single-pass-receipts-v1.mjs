@@ -217,10 +217,12 @@ for (const f of bins) {
   if (movedSince.length) {
     const namesVersion = gl.store_version && gl.store_version === storeVersion;
     const la = gl.language_admission;
-    const namesStrike = la && admission && la.rule_id === admission.rule_id
-      && [...(la.struck_m_ids || [])].sort().join(",") === struckNow;
-    if (!namesVersion && !namesStrike)
-      l5.push(`${name}: emitted ${emitted}, store moved ${movedSince.map((m) => `${m.on} to ${m.now}`).join(", ")}, and the zone names neither`);
+    const zoneStruck = la ? [...(la.struck_m_ids || [])].sort() : [];
+    const namesStrike = la && admission && la.rule_id === admission.rule_id && zoneStruck.join(",") === struckNow;
+    if (!namesVersion && !namesStrike) {
+      const behind = admission ? (admission.struck_m_ids || []).filter((m) => !zoneStruck.includes(m)).length : 0;
+      l5.push(`${name}: emitted ${emitted}, store moved ${movedSince.map((m) => m.on).join(", ")} to ${storeVersion}; the zone names ${la ? `${zoneStruck.length} struck sources, the store has struck ${(admission || {}).struck_m_ids ? admission.struck_m_ids.length : "?"} (${behind} it does not name)` : "no store version and no admission record"}`);
+    }
   }
 
   // L6 · evidence of patching ---------------------------------------------
@@ -306,13 +308,15 @@ const absent = [];
 if (!serveCandidates.length) absent.push(`a serve NDJSON (none under ${SERVE_DIR})`);
 if (!BRIDGE || !existsSync(BRIDGE)) absent.push(`the bridge${BRIDGE ? ` at ${BRIDGE}` : ` ${bridgeName || ""} (not resolved from ${basename(MANIFEST)})`}`);
 if (spansName && (!SPANS || !existsSync(SPANS))) absent.push(`the spans template${SPANS ? ` at ${SPANS}` : ` ${spansName} (not resolved from ${basename(MANIFEST)})`}`);
-const serveWork = serveCandidates.length ? workIdFor(serveCandidates[0]) : "";
-if (serveCandidates.length && !serveWork) absent.push(`the work id for ${basename(serveCandidates[0])} (not in ${basename(LEDGER)})`);
+// The smallest serve whose work the fleet ledger names; a probe file with no
+// work behind it cannot be built and is not chosen.
+const servePath = serveCandidates.find((p) => workIdFor(p)) || "";
+const serveWork = servePath ? workIdFor(servePath) : "";
+if (serveCandidates.length && !servePath) absent.push(`a serve whose work ${basename(LEDGER)} names (${serveCandidates.map((p) => basename(p)).slice(0, 3).join(", ")} are not)`);
 
 if (absent.length) {
   console.log(`\n  --  L7 SKIPPED — the rebuild half needs ${absent.join("; ")}. Pass --serve, --bridge, --spans (or --workspace) to run it.`);
 } else {
-  const servePath = serveCandidates[0];
   const bridgeHash = sha(readFileSync(BRIDGE));
   const bridgeIsTheShelfs = bridgeHashes.has(bridgeHash);
   mkdirSync(SCRATCH, { recursive: true });
@@ -323,7 +327,10 @@ if (absent.length) {
   const runs = outs.map((out) => spawnSync("node", args(out), { cwd: K3, encoding: "utf8", timeout: 75_000 }));
   const refused = runs.find((r) => r.status !== 0);
   if (refused) {
-    const why = String(refused.stderr || refused.stdout || "").split("\n").find((l) => /\w/.test(l)) || `exit ${refused.status}`;
+    // the builder's refusals are thrown as "CODE — detail"; quote that line,
+    // not the stack frame node prints above it
+    const said = String(refused.stderr || refused.stdout || "").split("\n");
+    const why = (said.find((l) => /^\w*Error: /.test(l)) || said.find((l) => /\b[A-Z][A-Z_]{4,}\b/.test(l)) || said.find((l) => /\w/.test(l)) || `exit ${refused.status}`).replace(/^\w*Error: /, "");
     console.log(`\n  --  L7 unmeasured — the builder refused ${serveWork} from ${basename(servePath)}: ${why.slice(0, 160)}`);
     console.log("      a refusal is the builder's own gate speaking, not a verdict on determinism; point --serve at a work that builds");
   } else {

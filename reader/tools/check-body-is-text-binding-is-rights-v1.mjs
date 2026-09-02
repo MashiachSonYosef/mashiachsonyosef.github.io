@@ -39,17 +39,31 @@
 //       to what they say, and the shards each zone names are exactly the
 //       manifest's shards for its range, with the manifest's own hashes
 //   L6  the license each zone shows is the one the binding gave: the row for
-//       the work, its profile, and every field carried, equal to the record
+//       the work, its profile, and every field carried, equal to the record.
+//       A zone that cites a binding by a hash no file in custody carries is
+//       held to nothing, and rights held to nothing are a posture no binding
+//       on disk gave: with a binding in custody, that zone fails this law
 //   L7  every serve output on disk that rides this route names a binding
 //       source or is branded an instrument, and carries one rights record
-//       over all its rows, each visible exactly when the axis says ALLOW
+//       over all its rows, each visible exactly when the axis says ALLOW;
+//       and where it names a binding, that binding is in custody and its
+//       rows agree with the profile it cites
 //
 // L5 needs the body manifest and L6 needs the binding, and neither is on
 // every disk. Where one is absent its law is reported in its place as not
-// judged. Where the binding is absent altogether the run's verdict cannot be
+// judged. Where no binding is in custody at all the run's verdict cannot be
 // a pass: L6 is the half of the rule that says whose rights these are, and a
 // shelf whose rights were checked against nothing was not checked. The check
-// then exits 3 after printing what the other laws found.
+// then exits 3 after printing what the other laws found. Where a binding IS
+// in custody, every zone and every serve on this route must join it: one
+// that cites a binding by another hash is not set aside, it is red, because
+// its rights were taken from no record this disk can open. The treatment is
+// the same for one zone and for the whole shelf.
+//
+// Custody is two directories, because the tool serves from one at a time:
+// --binding (v2, the canonical current) and --binding-v3 (v2 with the credit
+// inside the row). Every file found is keyed by its own sha256, and a zone
+// joins the file it names by hash, never a neighbor.
 //
 // What this check does NOT prove. It does not re-hash a shard: the body's own
 // verification against the July manifest is the tool's claim and the corpus
@@ -63,8 +77,9 @@
 //
 // Run: node tools/check-body-is-text-binding-is-rights-v1.mjs [--zones data/zones]
 //        [--tool tools/serve-from-body-v1.mjs] [--binding build/rights-binding]
-//        [--body ../../body] [--serves build]
-import { readFileSync, readdirSync, existsSync, statSync, openSync, readSync, closeSync } from "node:fs";
+//        [--binding-v3 build/rights-binding-v3] [--body ../../body] [--serves build]
+import { readFileSync, readdirSync, existsSync, statSync, openSync, readSync, closeSync, createReadStream } from "node:fs";
+import { createInterface } from "node:readline";
 import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { dirname, join, relative, basename } from "node:path";
@@ -76,6 +91,7 @@ const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 
 const ZONES = arg("zones", join(K3, "data", "zones"));
 const TOOL = arg("tool", join(K3, "tools", "serve-from-body-v1.mjs"));
 const BINDING = arg("binding", join(K3, "build", "rights-binding"));
+const BINDING_V3 = arg("binding-v3", join(K3, "build", "rights-binding-v3"));
 const BODY = arg("body", join(K3, "..", "..", "body"));
 const SERVES = arg("serves", join(K3, "build"));
 
@@ -161,24 +177,33 @@ const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.endsWith(
 if (!bins.length) { console.log("SKIPPED — no zones on this disk"); process.exit(3); }
 
 // ── what is in custody ────────────────────────────────────────────────────
-// Every binding file the dir carries, keyed by its own sha256, so a zone is
-// joined to the binding it cites and never to a neighbor of it.
+// Every binding file either dir carries, keyed by its own sha256, so a zone is
+// joined to the binding it cites and never to a neighbor of it. The same file
+// under two names is one file in custody.
 const bindingsBySha = new Map(), profilesBySha = new Map(), custodyNote = [];
-if (existsSync(BINDING)) {
+const bindingDirs = [...new Set([BINDING, BINDING_V3])];
+for (const dir of bindingDirs) {
+  if (!existsSync(dir)) continue;
   for (const v of ["v2", "v3"]) {
-    const bp = join(BINDING, `representation-rights-bindings-${v}.csv`), pp = join(BINDING, `rights-profiles-${v}.csv`);
+    const bp = join(dir, `representation-rights-bindings-${v}.csv`), pp = join(dir, `rights-profiles-${v}.csv`);
     if (existsSync(bp)) {
       const h = sha(bp);
-      bindingsBySha.set(h, { version: v, byWork: new Map(readCsv(bp).map((r) => [r.work_id, r])) });
-      custodyNote.push(`bindings ${v} ${h.slice(0, 12)}`);
+      if (!bindingsBySha.has(h)) {
+        bindingsBySha.set(h, { version: v, byWork: new Map(readCsv(bp).map((r) => [r.work_id, r])) });
+        custodyNote.push(`bindings ${v} ${h.slice(0, 12)}`);
+      }
     }
     if (existsSync(pp)) {
       const h = sha(pp);
-      if (!profilesBySha.has(h)) profilesBySha.set(h, { version: v, byId: new Map(readCsv(pp).map((r) => [r.rights_profile_id, r])) });
-      custodyNote.push(`profiles ${v} ${h.slice(0, 12)}`);
+      if (!profilesBySha.has(h)) {
+        profilesBySha.set(h, { version: v, byId: new Map(readCsv(pp).map((r) => [r.rights_profile_id, r])) });
+        custodyNote.push(`profiles ${v} ${h.slice(0, 12)}`);
+      }
     }
   }
 }
+const bindingInCustody = bindingsBySha.size > 0 && profilesBySha.size > 0;
+const custodyWhere = bindingDirs.map((d) => relative(K3, d)).join(" or ");
 const manifestPath = join(BODY, MANIFEST);
 let manifestSha = null, manifestShards = null;
 if (existsSync(manifestPath)) {
@@ -197,7 +222,7 @@ if (existsSync(manifestPath)) {
 const oracleBad = [], rightsBad = [], postureBad = [], bodyBad = [], joinBad = [];
 const bodyOther = new Map(); // manifest sha cited -> zones, when not the one in custody
 const bindingUncited = new Map(); // bindings/profiles sha cited but not in custody -> zones
-let zonesRead = 0, instruments = 0, onRoute = 0, otherRoute = 0, joined = 0, bodyJudged = 0, creditsSeen = 0;
+let zonesRead = 0, instruments = 0, onRoute = 0, otherRoute = 0, joined = 0, unjoined = 0, bodyJudged = 0, creditsSeen = 0;
 const profilesSeen = new Map();
 const zoneOf = (f) => JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8"));
 
@@ -302,13 +327,18 @@ for (const f of bins) {
     }
   }
 
-  // L6 — the license shown is the one the binding gave
-  if (rights && bindingsBySha.size) {
+  // L6 — the license shown is the one the binding gave. With a binding in
+  // custody, a zone that names one by a hash no file here carries is not set
+  // aside: its rights were joined to nothing, and that is the guess the rule
+  // refuses. It fails the law by name.
+  if (rights && bindingInCustody) {
     const b = bindingsBySha.get(String(rights.bindings_sha256)), p = profilesBySha.get(String(rights.profiles_sha256));
     if (!b || !p) {
+      unjoined += 1;
       const k = `${!b ? `bindings ${String(rights.bindings_sha256).slice(0, 12)}` : ""}${!b && !p ? " + " : ""}${!p ? `profiles ${String(rights.profiles_sha256).slice(0, 12)}` : ""}`;
       if (!bindingUncited.has(k)) bindingUncited.set(k, []);
       push(bindingUncited.get(k), name, 3);
+      push(joinBad, `${name} · cites ${k}, which no file in custody hashes to, so its rights (${rights.rights_profile_id}) came from no binding on this disk`);
     } else {
       joined += 1;
       const m = String((z.work_receipts || {}).b_n || "").match(/work_id=(\S+)/);
@@ -407,7 +437,12 @@ for (const p of ndjsons) {
   // every row: one posture, visible exactly when the axis says ALLOW
   const keys = new Map();
   let rows = 0, visOff = 0, malformed = 0;
-  for (const line of readFileSync(p, "utf8").split("\n").slice(1)) {
+  // streamed a line at a time: the fleet writes serve outputs past what one
+  // string may hold, and a check that dies on one reports nothing while its
+  // exit reads as red
+  let onLine1 = true;
+  for await (const line of createInterface({ input: createReadStream(p, { encoding: "utf8" }), crlfDelay: Infinity })) {
+    if (onLine1) { onLine1 = false; continue; }
     if (!line) continue;
     let row;
     try { row = JSON.parse(line); } catch { malformed += 1; continue; }
@@ -423,10 +458,16 @@ for (const p of ndjsons) {
   if (visOff) why.push(`${visOff} row(s) visible against their display axis`);
   const sc = r && r.binding_scope && typeof r.binding_scope === "object" ? r.binding_scope : null;
   if (sc && sc.rows !== rows) why.push(`binding covers ${sc.rows} rows, the file holds ${rows}`);
-  // and, where the binding it cites is in custody, the same join as L6
-  if (r && !prov.fixture && bindingsBySha.size) {
-    const p2 = profilesBySha.get(String(r.profiles_sha256));
+  // and, with a binding in custody, the same join as L6: the binding and
+  // catalog it names must be files here, the profile must be in that catalog,
+  // and every row must wear that profile's posture. A serve that names a
+  // binding this disk cannot open is rights from nothing, not rights unjudged.
+  if (r && !prov.fixture && bindingInCustody) {
+    const b2 = bindingsBySha.get(String(r.bindings_sha256)), p2 = profilesBySha.get(String(r.profiles_sha256));
+    if (!b2) why.push(`cites bindings ${String(r.bindings_sha256).slice(0, 12)}, which no file in custody hashes to`);
+    if (!p2) why.push(`cites profiles ${String(r.profiles_sha256).slice(0, 12)}, which no file in custody hashes to`);
     const prof = p2 ? p2.byId.get(r.rights_profile_id) : null;
+    if (p2 && !prof) why.push(`the catalog it cites carries no profile ${r.rights_profile_id}`);
     if (prof && keys.size === 1) {
       const g = [...keys.keys()][0].split(" · ");
       const off = POSTURE_COLS.map((k, i) => (g[i] !== prof[k] ? k : null)).filter(Boolean);
@@ -437,26 +478,28 @@ for (const p of ndjsons) {
 }
 
 // ── verdicts ──────────────────────────────────────────────────────────────
-const bindingInCustody = bindingsBySha.size > 0 && profilesBySha.size > 0;
+// L6 is judged whenever a binding is in custody: a zone that joined is held
+// to its row, a zone that could not join is red. Only a disk with no binding
+// at all leaves L6 unjudged, and that run cannot pass.
 const l2 = oracleBad.length === 0, l3 = rightsBad.length === 0, l4 = postureBad.length === 0;
 const l5 = bodyBad.length === 0 && bodyOther.size === 0, l6 = joinBad.length === 0, l7 = serveBad.length === 0;
 const nothingOnRoute = onRoute === 0 && serveOnRoute === 0;
-const joinedNothing = joined === 0;
-const anyBad = !l1 || !l3 || !l7 || (onRoute > 0 && !(l2 && l4 && (manifestShards === null || l5) && (joinedNothing || l6)));
+const l6Unjudged = !bindingInCustody;
+const anyBad = !l1 || !l3 || !l7 || (onRoute > 0 && !(l2 && l4 && (manifestShards === null || l5) && (l6Unjudged || l6)));
 
 // The suite reads the first line of a skip. Say it first, and say what was
 // looked for, so a shelf checked against nothing cannot read as a clean one.
 if (!anyBad && nothingOnRoute) {
   console.log(`SKIPPED — no zone in ${relative(K3, ZONES)} and no serve output under ${relative(K3, SERVES)} rides route ${ROUTE}; `
     + `${zonesRead} zones read, ${otherRoute} on another route, so the body and binding laws had nothing to judge`);
-} else if (!anyBad && joinedNothing) {
-  console.log(`SKIPPED — ${bindingInCustody ? "the binding in custody is not the one the zones cite" : `no binding at ${relative(K3, BINDING)}`}; `
-    + `L6, the law that says whose rights these are, judged nothing (${onRoute} zone(s) on this route${bindingUncited.size ? `, citing ${[...bindingUncited.keys()].join(", ")}` : ""})`);
+} else if (!anyBad && l6Unjudged) {
+  console.log(`SKIPPED — no binding at ${custodyWhere}; `
+    + `L6, the law that says whose rights these are, judged nothing (${onRoute} zone(s) on this route)`);
 }
 
 console.log(`— ${zonesRead} zones · ${onRoute} on this route · ${otherRoute} on another route`
   + `${instruments ? ` · ${instruments} test instrument(s) set aside` : ""}`
-  + ` · binding ${bindingInCustody ? `in custody (${custodyNote.join(", ")})` : `not in custody at ${relative(K3, BINDING)}`}`
+  + ` · binding ${bindingInCustody ? `in custody (${custodyNote.join(", ")})` : `not in custody at ${custodyWhere}`}`
   + ` · body manifest ${manifestSha ? `in custody (${manifestSha.slice(0, 12)}, ${manifestShards.length} shards)` : `not on this disk at ${relative(K3, BODY)}`}`
   + ` · ${serveFiles} serve output(s) on disk, ${serveOnRoute} on this route —\n`);
 
@@ -490,14 +533,12 @@ if (onRoute === 0) {
   }
 
   if (!bindingInCustody) {
-    console.log(`  --  L6 not judged: no binding at ${relative(K3, BINDING)}`);
-  } else if (joinedNothing) {
-    console.log(`  --  L6 not judged: the binding in custody is not the one the zones cite (${[...bindingUncited.keys()].join(", ")})`);
+    console.log(`  --  L6 not judged: no binding at ${custodyWhere}`);
   } else {
-    check("L6  the license each zone shows is the one the binding gave", l6,
-      joinBad.length ? `${joinBad.length} differ — ${named(joinBad)}`
-        : `${joined} zones joined to their binding row and profile: resolved, same profile, same scope, same authority, all ${POSTURE_COLS.length} fields shown as the catalog carries them`
-          + (bindingUncited.size ? ` · ${[...bindingUncited.values()].reduce((n, zs) => n + zs.length, 0)}+ cite a binding not in custody and went unjoined` : ""));
+    check("L6  the license each zone shows is the one the binding gave, and every zone names a binding in custody", l6,
+      joinBad.length
+        ? `${joinBad.length} differ (${joined} joined, ${unjoined} cite a binding no file in custody hashes to${bindingUncited.size ? `: ${[...bindingUncited.keys()].join(", ")}` : ""}) — ${named(joinBad)}`
+        : `${joined} zones, every one joined to its binding row and profile: resolved, same profile, same scope, same authority, all ${POSTURE_COLS.length} fields shown as the catalog carries them`);
   }
 }
 
@@ -506,7 +547,8 @@ if (serveOnRoute === 0) {
 } else {
   check("L7  every serve output on this route names a binding or is branded an instrument, and carries one rights record over all its rows", l7,
     serveBad.length ? `${serveBad.length} fail — ${named(serveBad)}`
-      : `${serveOnRoute} serve output(s)${serveInstruments ? `, ${serveInstruments} branded an instrument` : ""}, each one rights record, every row visible exactly as its axis says`);
+      : `${serveOnRoute} serve output(s)${serveInstruments ? `, ${serveInstruments} branded an instrument` : ""}, each one rights record, every row visible exactly as its axis says`
+        + (bindingInCustody ? `, and each binding named is in custody with rows in the posture of the profile cited` : ""));
 }
 
 console.log("\n  what this does not say: that a shard hashes today to what the manifest says,");
@@ -515,7 +557,7 @@ console.log("  were made, and this check holds every zone to the hashes those re
 console.log("  It also does not say the license is visible on the page; that needs a browser.");
 
 if (bad) { console.log(`\n${bad} FAILED`); process.exit(1); }
-if (nothingOnRoute || joinedNothing) {
+if (nothingOnRoute || l6Unjudged) {
   console.log("\nSKIPPED — the laws with evidence held, and the binding law had nothing on this disk to judge");
   process.exit(3);
 }

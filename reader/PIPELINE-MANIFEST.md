@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-02.
 
-**67 rules declared · 66 named by a check · 1 unguarded.**
+**67 rules declared · 67 named by a check · 0 unguarded.**
 **10 published artifacts · 10 with a build step · 0 without.**
 
 ## The rules
@@ -18,7 +18,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 |---|---|---|
 | `apparatus-baseline-rule-v1-arithmetic-over-positions-cannot-see-a-label-that-is-gone` | tools/emit-apparatus-baseline-v1.mjs | check-apparatus-not-stripped-v1 |
 | `attachment-authorship-rule-v1-the-placement-is-ours-and-says-so` | tools/generate-attachment-map-v2.mjs, zone.html | check-whose-claim-v1 |
-| `check-variant-class-one-rule-v1` | tools/check-variant-class-one-rule-v1.mjs | check-variant-class-one-rule-v1 |
+| `check-variant-class-one-rule-v1` | tools/run-all-checks.sh | check-variant-class-one-rule-v1 |
 | `colour-role-rule-v1-the-roles-are-the-ledgers-and-the-values-are-ours` | zone.html, tools/build-front-door-v1.mjs | check-colour-roles-v1 |
 | `commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press` | zone.html | check-commentary-in-line-v1 |
 | `commentary-order-rule-v2-oldest-first-on-the-earliest-date-recorded` | zone.html | check-commentary-in-line-v1 |
@@ -80,7 +80,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands` | tools/check-build-derived-v1.mjs | check-build-derived-v1 |
 | `zone-commentary-rule-v2-everything-recorded-stands-somewhere` | tools/build-commentary-sidecar-v1.mjs | check-nothing-dropped-v1 |
 | `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | check-commentary-section-aligned-v1 |
-| `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs | **UNGUARDED** |
+| `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs | check-zone-single-pass-receipts-v1 |
 | `zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-page-agrees-with-store-v1 |
 | `zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight` | tools/emit-zone-shipment-v1.mjs, tools/emit-zone-store-v1.mjs, tools/move-shelf-v1.sh, tools/pull-zones-from-store-v1.mjs, zone.html | check-zone-store-crossing-v1, check-zone-store-reachable-v1, check-zone-store-v1 |
 

@@ -46,12 +46,25 @@
 //       token is marked pressed
 //
 // L1 to L3 read the page and the shelf off disk. L4 to L7 open a page in a
-// browser. The zone handed to this run is used when its title can open; a
-// zone with no Hebrew title has no door of this kind, so the page half then
-// moves to the nearest zone whose title does open, and says so. When the
-// handed zone's title carries a single reading, the order law is asked again
-// on a zone whose title carries several, because an order over one thing is
-// not an order.
+// browser. The zone handed to this run is used when its title opens at its
+// first token; otherwise the page half moves to the nearest zone whose title
+// does, and says so. When no title on the shelf opens at its first token, the
+// page half still runs, on the first title that can open at all, so that L4
+// to L7 judge the press missing rather than not being asked. When the zone's
+// title carries a single reading, the order law is asked again on a zone
+// whose title carries several, because an order over one thing is not an
+// order.
+//
+// WHERE THE BROWSER LOOKS. A url may be handed as the first bare argument.
+// With no --page and no --serve-root, the url's host is asked; if it answers,
+// the browser judges what that server serves, and the run says so, because a
+// live server is not necessarily serving the file L1 quoted. If it does not
+// answer, the reader directory is served here. With --page or --serve-root,
+// the run never asks the url's host: it serves the named root itself, so a
+// fixture pointed at by a flag is what the browser sees, whatever else is
+// listening. When --zones is given, the served root answers data/zones/ from
+// that directory, so the shelf the disk half read is the shelf the page
+// loads.
 //
 // What this does NOT prove: that the readings shown are right, that the title
 // key was attached lawfully (title-key-rule-v1 has its own check), or that the
@@ -60,27 +73,47 @@
 // for the rest.
 //
 // Run: node tools/check-front-door-opens-title-v1.mjs [zone-url]
-//        [--zones data/zones] [--page zone.html]
+//        [--zones data/zones] [--page <serve-root>/zone.html]
 //        [--store data/route-store/index.json] [--serve-root .]
-import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
-import { dirname, join, extname, normalize } from "node:path";
+import { dirname, join, extname, normalize, resolve, relative, isAbsolute, basename, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl, zonesOnDisk, zoneIdOf } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
-const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
-const ZONES = arg("zones", join(K3, "data", "zones"));
-const PAGE = arg("page", join(K3, "zone.html"));
+// A flag with nothing after it is a flag with no value, not a value of
+// undefined: it falls to the default rather than throwing in resolve().
+const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); const v = i > -1 ? process.argv[i + 1] : undefined; return v && !v.startsWith("--") ? v : d; };
+// The one bare argument, if any, is the url. A flag's value is not a url, so
+// the walk steps over every --flag and the value after it.
+const FLAGS = new Set(["zones", "page", "store", "serve-root"]);
+const positional = (() => {
+  const a = process.argv.slice(2);
+  for (let i = 0; i < a.length; i += 1) {
+    if (a[i].startsWith("--")) { if (FLAGS.has(a[i].slice(2))) i += 1; continue; }
+    return a[i];
+  }
+  return null;
+})();
+const ZONES_GIVEN = arg("zones", null);
+const ZONES = ZONES_GIVEN ? resolve(ZONES_GIVEN) : join(K3, "data", "zones");
 const STORE = arg("store", join(K3, "data", "route-store", "index.json"));
-// The directory served when the url's host does not answer. The suite serves
-// the reader directory at its root, so that is the default here too.
-const SERVE_ROOT = arg("serve-root", K3);
+// The page and the root it is served from are one decision. Naming a root
+// serves that root's zone.html; naming a page serves the page's own
+// directory; naming neither serves the reader directory, which is what the
+// suite serves at its root too.
+const PAGE_GIVEN = arg("page", null);
+const ROOT_GIVEN = arg("serve-root", null);
+const SERVE_ROOT = ROOT_GIVEN ? resolve(ROOT_GIVEN) : PAGE_GIVEN ? dirname(resolve(PAGE_GIVEN)) : K3;
+const PAGE = PAGE_GIVEN ? resolve(PAGE_GIVEN) : join(SERVE_ROOT, "zone.html");
+// A flag that names where the page lives pins the browser to it.
+const PINNED = !!(PAGE_GIVEN || ROOT_GIVEN);
 
 const RULE = "front-door-rule-v2";
 const PRESS = 'QUERY.get("t") === "open"';
@@ -171,28 +204,44 @@ if (!openable.length) {
   process.exit(bad ? 1 : 0);
 }
 
-const handed = defaultZoneUrl(process.argv[2], ZONES);
-const handedUrl = new URL(handed);
+const handed = defaultZoneUrl(positional, ZONES);
+let handedUrl;
+try { handedUrl = new URL(handed); } catch { console.log(`SKIPPED — ${JSON.stringify(handed)} is not a url this check can open`); process.exit(3); }
 const handedSlug = zoneIdOf(handed);
+// The zone the page half runs on: the handed one when its title opens at its
+// first token; else the nearest that does, preferring one with several dated
+// readings; else, when no title on the shelf opens at its first token, the
+// first that can open at all, so the browser laws judge the press missing
+// instead of going unasked.
 let slug = handedSlug;
 if (!opensFirst(slug)) {
-  const next = openable.find(severalYears) || openable.find(opensFirst);
-  console.log(`  --  ${slug || "(no zone in the url)"} carries no title that opens; the page half runs on ${next}`);
+  const next = openable.find(severalYears) || openable.find(opensFirst) || openable[0];
+  const why = titles.has(slug) ? "carries a title that opens only past its first token" : "carries no title that opens";
+  console.log(`  --  ${slug || "(no zone in the url)"} ${why}; the page half runs on ${next}${opensFirst(next) ? "" : ", whose title does not open at its first token either — no title on this shelf does"}`);
   slug = next;
 }
+const tok0 = titles.get(slug)[0] || {};
 
-// The server. If the url's host answers it is used; if not, one is started
-// here on the reader directory and stopped when the run ends, so a silent
-// port reads as nothing more than a silent port.
+// The server. With --page or --serve-root the named root is served here, and
+// the url's host is not asked, so the flag governs what the browser sees.
+// Without them, the url's host is used if it answers; if not, the reader
+// directory is served here. Either way a server started here is stopped when
+// the run ends, so a silent port reads as nothing more than a silent port.
 const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json", ".js": "text/javascript", ".css": "text/css" };
+const underRoot = (() => { const r = relative(SERVE_ROOT, PAGE); return r && !r.startsWith("..") && !isAbsolute(r); })();
+const pagePath = underRoot ? `/${relative(SERVE_ROOT, PAGE).split(sep).join("/")}` : handedUrl.pathname;
 let srv = null;
 let base = `${handedUrl.origin}${handedUrl.pathname}`;
-const answers = await fetch(base, { signal: AbortSignal.timeout(2000) }).then((r) => r.ok).catch(() => false);
-if (!answers) {
+const answers = PINNED ? false : await fetch(base, { signal: AbortSignal.timeout(2000) }).then((r) => r.ok).catch(() => false);
+if (answers) {
+  console.log(`  --  ${handedUrl.origin} answers; the browser judges what that server serves at ${handedUrl.pathname}, which is not necessarily ${PAGE}`);
+} else {
   srv = createServer(async (req, res) => {
     const p = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "");
     try {
       let file = join(SERVE_ROOT, p);
+      // the shelf the disk half read is the shelf the page loads
+      if (ZONES_GIVEN && /^[/\\]data[/\\]zones[/\\][^/\\]+\.bin$/.test(p)) file = join(ZONES, basename(p));
       if (!extname(p)) file = join(file, "index.html");
       const body = await readFile(file);
       res.writeHead(200, { "content-type": TYPES[extname(file)] || "application/octet-stream" });
@@ -200,8 +249,10 @@ if (!answers) {
     } catch { res.writeHead(404); res.end("no"); }
   });
   await new Promise((r) => srv.listen(0, "127.0.0.1", r));
-  base = `http://127.0.0.1:${srv.address().port}${handedUrl.pathname}`;
-  console.log(`  --  ${handedUrl.origin} did not answer; serving ${SERVE_ROOT} at ${base}`);
+  base = `http://127.0.0.1:${srv.address().port}${pagePath}`;
+  const reason = PINNED ? `--${ROOT_GIVEN ? "serve-root" : "page"} given, so ${handedUrl.origin} was not asked` : `${handedUrl.origin} did not answer`;
+  console.log(`  --  ${reason}; serving ${SERVE_ROOT} at ${base}${ZONES_GIVEN ? ` with data/zones/ answered from ${ZONES}` : ""}`);
+  if (!underRoot) console.log(`  --  note: ${PAGE} is not under ${SERVE_ROOT}; L1 quoted that file, the browser judges ${pagePath} under the root`);
 }
 
 const { chromium } = await loadPlaywright();
@@ -259,10 +310,13 @@ const orderOf = (pills) => {
     const a = seq[i - 1], b = seq[i];
     if (b.tier < a.tier || (b.tier === a.tier && b.yr < a.yr)) breaks.push(`${a.title} stands before ${b.title}`);
   }
-  return { seq, breaks };
+  // An order read off nothing is no order: if no pill's hover text yields a
+  // year, every reading fell into the undated tier and any sequence would
+  // have passed. The law needs at least one year actually read.
+  const dated = seq.filter((r) => Number.isFinite(r.yr)).length;
+  return { seq, breaks, dated };
 };
 
-const tok0 = titles.get(slug)[0];
 const got = await arrive(slug, true);
 
 // L4 — the card is open.
@@ -271,12 +325,12 @@ check("L4  with ?t=open the card is open once the page has settled",
   got.open ? `open on ${slug}` : `shut on ${slug} · ${got.drawn} title token(s) drawn${got.drawn ? "" : " — nothing to press"}`);
 
 // L5 — and open on the title's first token, which the bin names.
-const onTitle = got.open && got.activeIndex === 0 && got.head === String(tok0.s).trim();
+const onTitle = got.open && got.activeIndex === 0 && got.head === String(tok0.s ?? "").trim();
 check("L5  it is open on the title's first token",
   onTitle,
   onTitle
     ? `token 0 is marked pressed and the card head reads ${got.head}`
-    : `pressed token index ${got.activeIndex} (${got.activeAnywhere} marked anywhere) · head ${JSON.stringify(got.head)} · bin says ${JSON.stringify(tok0.s)} · page draws ${JSON.stringify(got.firstText)}`);
+    : `pressed token index ${got.activeIndex} (${got.activeAnywhere} marked anywhere) · head ${JSON.stringify(got.head)} · bin says ${JSON.stringify(tok0.s ?? null)}${tok0.k ? "" : " with no key"} · page draws ${JSON.stringify(got.firstText)}`);
 
 // L6 — the readings stand oldest source first. Asked of the handed zone when
 // its title carries several readings; otherwise of a zone whose title does.
@@ -289,21 +343,32 @@ if (got.pills.length < 2) {
     ordered = { slug: richer, pills: again.pills, label: again.readLabel, note: again.note };
   }
 }
-const { seq, breaks } = orderOf(ordered.pills);
+const { seq, breaks, dated } = orderOf(ordered.pills);
 const lead = seq.slice(0, 3).map((r) => r.title).join(" | ");
+// and the year the page leads with is a year the store itself holds for that
+// zone, so hover text that stopped carrying years, or carries invented ones,
+// cannot pass as an order
+const storeYears = yearsFor(((titles.get(ordered.slug) || [])[0] || {}).k);
+const leadYear = seq.length ? seq[0].yr : Infinity;
+const leadKnown = Number.isFinite(leadYear) ? storeYears.has(leadYear) : storeYears.size === 0;
 check("L6  the readings on the card stand oldest source first",
-  seq.length > 1 && breaks.length === 0,
+  seq.length > 1 && breaks.length === 0 && dated > 0 && leadKnown,
   seq.length > 1
-    ? (breaks.length ? `${breaks.length} out of order — ${breaks.slice(0, 2).join(" · ")}` : `${seq.length} readings on ${ordered.slug} · leads ${lead}`)
+    ? (breaks.length ? `${breaks.length} out of order — ${breaks.slice(0, 2).join(" · ")}`
+      : dated === 0 ? `${seq.length} readings on ${ordered.slug} and no pill carries a year in its hover text — an order was not read`
+      : !leadKnown ? `${ordered.slug} leads with ${leadYear}, a year its store holds no reading under (store years: ${[...storeYears].sort().join(", ") || "none"})`
+      : `${seq.length} readings on ${ordered.slug}, ${dated} dated · leads ${lead}`)
     : `${seq.length} reading(s) on ${ordered.slug} — ${ordered.label || "no readings row"} ${ordered.note ? "· " + ordered.note : ""}— an order over one thing was not shown`);
 
 // L7 — the negative: the same zone, no ?t=open, and the card stays shut.
 const plain = await arrive(slug, false);
 check("L7  without ?t=open the card stays shut and no title token is pressed",
   !plain.open && plain.activeAnywhere === 0 && plain.drawn > 0,
-  !plain.open && plain.activeAnywhere === 0
+  !plain.open && plain.activeAnywhere === 0 && plain.drawn > 0
     ? `${plain.drawn} title token(s) drawn, none pressed, card shut`
-    : `card ${plain.open ? "open" : "shut"} · ${plain.activeAnywhere} token(s) marked pressed on a plain load`);
+    : plain.drawn === 0 && !plain.open && plain.activeAnywhere === 0
+      ? `no title token drawn on ${slug} — a card that stays shut over nothing shows nothing`
+      : `card ${plain.open ? "open" : "shut"} · ${plain.activeAnywhere} token(s) marked pressed on a plain load`);
 
 await browser.close();
 if (srv) srv.close();

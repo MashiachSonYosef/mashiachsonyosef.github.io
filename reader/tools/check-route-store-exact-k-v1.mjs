@@ -41,11 +41,20 @@
 //   L3   every key sits in the one shard its sha256 names, so the browser's
 //        recomputed hash finds it
 //   L4   rows under a key never descend in rank
-//   L5   the ranks under a key run 1..n with none missing and none repeated
+//   L5   the ranks under a key run 1..n with none missing and none repeated.
+//        The index accounts for two kinds of deviation in its counts, a hole
+//        where a licence struck a route and a repeat where one route was
+//        divided on a declared mark, but it marks neither on the row. A hole
+//        the store cannot tie to a strike is a reading gone with no licence
+//        the reader can see, and a repeat it cannot tie to a division is a
+//        doubled row. So the law is the plain one, and a store that keeps
+//        the factory's numbering must show its work on the row to pass it.
 //   L6   the top-5 flag does not gate: keys ship more than five routes where
 //        they have them
 //   L7   every row's M id resolves in index.m_sources, the full M record the
-//        rule says ships with the route
+//        rule says ships with the route, and is not an id the index says a
+//        licence struck. Nothing but a licence removes a reading; a reading
+//        still shipped on a struck id is the licence contradicted.
 //   L8   every row carries its route text, its definition text, and a
 //        positive integer rank; no text is empty
 //   L9   the index counts of keys, routes and shards are what the shards hold
@@ -55,7 +64,10 @@
 // complete was shipped; that needs the sealed input packages, which are the
 // corpus lane's and are read by check-nothing-invented-v1 where they are
 // mounted. It does not prove a route text is verbatim from its source. It
-// does not prove the shards are the bytes the manifest pins; that is
+// does not prove which routes a licence struck: the language admission
+// record names struck sources, not struck routes, so a hole in a key's ranks
+// cannot be matched to a strike from what ships. It does not prove the
+// shards are the bytes the manifest pins; that is
 // check-store-pinned-v1. It does not prove the page reads the store the way
 // the store is laid out; that is check-page-agrees-with-store-v1.
 //
@@ -118,8 +130,8 @@ check("L1   the index declares the layout this check reads, and a rank that orde
 
 // ── the shards, read once ─────────────────────────────────────────────────
 let keys = 0, rows = 0, bytesOnDisk = 0;
-const marked = [], misplaced = [], descending = [], notOneToN = [], unresolved = new Map(), hollow = [];
-let holes = 0, repeats = 0, noRankOne = 0, overFive = 0, maxRows = 0, struckSeen = 0;
+const marked = [], misplaced = [], descending = [], notOneToN = [], unresolved = new Map(), onStruck = new Map(), hollow = [];
+let holes = 0, repeats = 0, repeatsAcrossRecords = 0, noRankOne = 0, overFive = 0, maxRows = 0, struckSeen = 0;
 
 for (const f of bins) {
   const name = f.slice(0, 2);
@@ -152,7 +164,8 @@ for (const f of bins) {
       // L7 — the M record is held
       const m = String(r?.[3] ?? "");
       if (!mSources[m]) unresolved.set(m || "(empty)", (unresolved.get(m || "(empty)") || 0) + 1);
-      if (struck.has(m)) struckSeen += 1;
+      // L7 — and the record is not one a licence struck
+      if (struck.has(m)) { struckSeen += 1; onStruck.set(m, (onStruck.get(m) || 0) + 1); }
       // L4 — order
       if (rankOk) { if (rank < prev) desc = true; prev = rank; seen.add(rank); }
     }
@@ -166,7 +179,19 @@ for (const f of bins) {
       let hole = false;
       for (let i = 1; i <= top; i += 1) if (!seen.has(i)) { hole = true; break; }
       if (hole) holes += 1;
-      if (seen.size !== n) repeats += 1;
+      if (seen.size !== n) {
+        repeats += 1;
+        // A divided route's pieces stand on the route's one record. A rank
+        // shared by rows on two records is no division; it is two routes
+        // given one rank.
+        const recordsAtRank = new Map();
+        for (const r of list) {
+          if (!Array.isArray(r) || !Number.isInteger(r[0])) continue;
+          if (!recordsAtRank.has(r[0])) recordsAtRank.set(r[0], new Set());
+          recordsAtRank.get(r[0]).add(String(r[3] ?? ""));
+        }
+        if ([...recordsAtRank.values()].some((s) => s.size > 1)) repeatsAcrossRecords += 1;
+      }
       if (!seen.has(1)) noRankOne += 1;
       keep(notOneToN, `${where} ranks ${ranks.slice(0, 8).join(",")}${n > 8 ? ",…" : ""}`);
     }
@@ -190,29 +215,37 @@ check("L4   rows under a key never descend in rank",
   descending.length ? `${descending.length} key(s) descend — ${named(descending)}`
     : "every list is in rank order");
 
-// L5 is not a law. The ranks are the factory's own: a hole is where a license
-// struck a route — "nothing but a licence removes a reading", and forty-nine
-// sources were struck — and a repeat is where one route was divided on a
-// declared mark into pieces that keep their route's rank. Both are the store
-// carrying its history honestly. What the rule requires is order, which L4
-// holds; this line reports the shape so a stranger can see the strike in it.
-console.log(`  --   ranks under a key: ${notOneToN.length.toLocaleString()} key(s) are not 1..n (${holes.toLocaleString()} with a hole from a struck route, ${repeats.toLocaleString()} with a rank shared by the pieces of a divided route, ${noRankOne.toLocaleString()} without rank 1) — the factory's numbering, kept as issued`);
-check("L5   a key's ranks are the factory's own and are never renumbered by this store",
-  true,
+// L5 — the plain law. The index says in its counts that a licence struck
+// routes and that routes were divided into pieces, and both would leave the
+// factory's numbering with holes and repeats. But the row carries no mark
+// saying which hole is a strike and which repeat is a division, and the
+// admission record names struck sources, not struck routes. A hole the store
+// cannot tie to a strike is a reading gone with no licence a reader can see,
+// so the check does not presume one. The detail shows the shape, and names
+// the repeats that no division could explain: a rank shared by rows on two
+// different M records, when a divided route's pieces all stand on its one.
+const accounted = [
+  Number.isFinite(Number(((index.language_admission || {}).counts || {}).routes_struck)) ? `${Number(index.language_admission.counts.routes_struck).toLocaleString()} routes struck by licence` : null,
+  Number.isFinite(Number(counts.routes_separated_on_a_declared_mark)) ? `${Number(counts.routes_separated_on_a_declared_mark).toLocaleString()} routes divided into ${Number(counts.pieces_those_routes_divided_into || 0).toLocaleString()} pieces` : null,
+].filter(Boolean);
+check("L5   the ranks under a key run 1..n with none missing and none repeated",
+  notOneToN.length === 0,
   notOneToN.length
-    ? `${notOneToN.length.toLocaleString()} key(s) are not 1..n: ${holes.toLocaleString()} have a hole, ${repeats.toLocaleString()} repeat a rank, ${noRankOne.toLocaleString()} lack rank 1 — ${named(notOneToN)}`
-    : "every key numbers its routes 1..n");
+    ? `${notOneToN.length.toLocaleString()} key(s) are not 1..n: ${holes.toLocaleString()} have a hole, ${repeats.toLocaleString()} repeat a rank (${repeatsAcrossRecords.toLocaleString()} across two M records, which no division explains), ${noRankOne.toLocaleString()} lack rank 1 — ${named(notOneToN)}${accounted.length ? `; the index counts ${accounted.join(" and ")} but marks neither on the row, so a hole cannot be told from a lost route nor a repeat from a doubled one` : ""}`
+    : `${keys.toLocaleString()} keys, every one numbers its routes 1..n`);
 
 check("L6   the top-5 flag does not gate: keys ship more than five routes where they have them",
   overFive > 0,
   overFive ? `${overFive.toLocaleString()} keys ship more than five routes; the widest ships ${maxRows}`
     : `no key ships more than five routes (widest ${maxRows}); this is the capped store the rule forbids`);
 
-check("L7   every row's M id resolves in index.m_sources",
-  unresolved.size === 0,
-  unresolved.size
-    ? [...unresolved.entries()].slice(0, 4).map(([m, c]) => `${m} x${c.toLocaleString()}`).join(" · ")
-    : `${rows.toLocaleString()} routes, every one on a record the index holds${struckSeen ? ` (${struckSeen} on a struck id the index still holds)` : ""}`);
+check("L7   every row's M id resolves in index.m_sources and is not an id a licence struck",
+  unresolved.size === 0 && struckSeen === 0,
+  [
+    unresolved.size ? `unresolved: ${[...unresolved.entries()].slice(0, 4).map(([m, c]) => `${m} x${c.toLocaleString()}`).join(" · ")}` : null,
+    struckSeen ? `${struckSeen.toLocaleString()} row(s) still shipped on a struck id: ${[...onStruck.entries()].slice(0, 4).map(([m, c]) => `${m} x${c.toLocaleString()}`).join(" · ")}` : null,
+  ].filter(Boolean).join("; ")
+    || `${rows.toLocaleString()} routes, every one on a record the index holds and none on the ${struck.size} struck ids`);
 
 check("L8   every row carries its route text, its definition text, and a positive integer rank",
   hollow.length === 0,

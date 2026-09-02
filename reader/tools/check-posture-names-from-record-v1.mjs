@@ -25,6 +25,9 @@
 //
 // The laws this check enforces, each read off the two files and nothing else:
 //
+//   L0  the record declares at least one posture, so the laws below judge
+//       something; a record stripped of every licence is a broken record,
+//       and a projection of it is not a clean pass but an empty one
 //   L1  every posture the projection emits is one the declarations declare
 //   L2  every posture the declarations declare is emitted, so none is dropped
 //   L3  every emitted name is the declared name, character for character
@@ -87,6 +90,15 @@ const declaredKeys = Object.keys(declared);
 const emittedKeys = Object.keys(emitted);
 
 console.log(`— ${declaredKeys.length} postures declared · ${emittedKeys.length} emitted · schema ${proj.schema_version || "(none)"} —\n`);
+
+// L0 — the floor. Every law below compares two sets; two empty sets agree on
+// everything and prove nothing. A record that declares no posture at all
+// would have every served work named by its key and refused export, so it
+// is reported as broken rather than let through as trivially consistent.
+check("L0  the record declares at least one posture, so the laws below judge something",
+  declaredKeys.length > 0,
+  declaredKeys.length ? `${declaredKeys.length} declared — ${declaredKeys.slice(0, 4).join(", ")}${declaredKeys.length > 4 ? ", ..." : ""}`
+    : "export_postures is empty, so every comparison below would pass on nothing");
 
 // L1 — an emitted posture the record never declared is an invented license.
 const invented = emittedKeys.filter((k) => !Object.prototype.hasOwnProperty.call(declared, k));
@@ -182,7 +194,13 @@ const declArg = derivedIsDecl ? derivedFrom : relative(K3, resolve(DECL));
 const run = spawnSync(process.execPath, [EMITTER, "--declarations", declArg, "--out", outPath], { cwd: K3, encoding: "utf8" });
 let identical = false, byteDetail = "";
 if (run.status !== 0) {
-  byteDetail = `emitter exited ${run.status}: ${String(run.stderr || run.stdout || "").trim().split("\n").slice(-1)[0].slice(0, 160)}`;
+  // An uncaught throw prints a stack and ends with Node's version banner; the
+  // line worth quoting is the one that carries the thrown message.
+  const lines = String(run.stderr || run.stdout || "").split("\n").map((s) => s.trim()).filter(Boolean);
+  const said = lines.find((l) => /\bError: /.test(l))
+    || lines.find((l) => !/^Node\.js v\d/.test(l) && !/^at /.test(l))
+    || "(no output)";
+  byteDetail = `emitter exited ${run.status}: ${said.slice(0, 160)}`;
 } else if (!existsSync(outPath)) {
   byteDetail = `emitter wrote nothing at ${outPath}`;
 } else {
