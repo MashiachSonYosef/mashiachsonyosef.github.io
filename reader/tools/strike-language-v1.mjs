@@ -297,6 +297,21 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
       wrote.push(`index summary ${(cur.struck_m_ids || []).length} -> ${want.length}`);
     }
+    // The same repair for the counts: the index once said the shards weighed
+    // 14,641,140 bytes when 12,898,585 were on disk, because the strike that
+    // shrank them updated keys and routes and not the weight. The weight is
+    // read off the disk here every run, so the index cannot describe a store
+    // that is not the one shipped.
+    {
+      let onDisk = 0;
+      for (const name of shardNames) onDisk += readFileSync(join(STORE, "shards", name)).length;
+      const c = index.counts || {};
+      if (c.shard_bytes_total !== onDisk || c.shards !== shardNames.length) {
+        index.counts = { ...c, shards: shardNames.length, shard_bytes_total: onDisk };
+        writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
+        wrote.push(`index counts: shard bytes ${c.shard_bytes_total} -> ${onDisk}`);
+      }
+    }
     console.log(wrote.length
       ? `\nnothing new to strike · repaired: ${wrote.join(" · ")} across ${record.rounds.length} round(s)`
       : "\nalready struck — record and index agree, nothing to write");
@@ -317,7 +332,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   // value it replaces is kept beside it — a store whose contents changed can
   // no longer wear the name of the store it used to be.
   const shardDigest = createHash("sha256");
-  for (const name of shardNames) shardDigest.update(readFileSync(join(STORE, "shards", name)));
+  let shardBytes = 0;
+  for (const name of shardNames) { const b = readFileSync(join(STORE, "shards", name)); shardDigest.update(b); shardBytes += b.length; }
   const before = index.store_version || null;
   index.store_version = shardDigest.digest("hex").slice(0, 12);
   index.store_version_history = [
@@ -336,7 +352,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     rounds: record.rounds.length,
     counts: record.counts,
   };
-  index.counts = { ...index.counts, keys: keysBefore - keysEmptied, routes: routesBefore - routesStruck };
+  // The counts describe the shards as shipped, so they are read off the
+  // shards just written — a strike that shrank the shelf and left the index
+  // saying the old weight described a store that was no longer there.
+  index.counts = { ...index.counts, keys: keysBefore - keysEmptied, routes: routesBefore - routesStruck, shards: shardNames.length, shard_bytes_total: shardBytes };
   writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
   writeFileSync(join(K3, "data", "language-admission-v1.json"), JSON.stringify(record, null, 1));
   console.log(`\n  store_version ${before} → ${index.store_version}  (the shard URL changes, so warm caches refetch)`);
