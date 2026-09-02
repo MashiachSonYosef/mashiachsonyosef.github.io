@@ -106,18 +106,122 @@ export const readBridge = (path, workId) => {
  * `slug` is the work's own id tail, so the parse is anchored, not sniffed:
  * tanakh/i-kings -> i-kings -> i-kings-7-14 -> chapter 7, section 14.
  */
-export const parseCoordinates = (unitId, slug) => {
-  const m = new RegExp(`^${slug.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&")}-(\\d+)-(\\d+)$`, "u").exec(unitId);
-  if (m) return { chapter: Number(m[1]), section: Number(m[2]), label: `${m[1]}:${m[2]}` };
-  // The second sealed shape: a flat sequence — `…--unit-00027` — where the
-  // chain records no chapter/section nesting at all, only the unit's ordinal
-  // (the Ben-Yehuda shelf and kin, 209k units in the bridge). One sealed unit
-  // is one top-level section; no structure the chain did not seal is
-  // invented around it, so the locator is the bare ordinal.
+const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
+
+/**
+ * A sealed unit id names its work in one of three ways, and the parse anchors
+ * on that name rather than sniffing the id:
+ *
+ *   <slug>-<tail>                         the plain form: i-kings-7-14
+ *   <anything>--<slug>-<tail>             the family-prefixed form:
+ *                                         tanakh-chizkuni--chizkuni-introduction-1
+ *   <anything>--sefaria-<slug>-<tail>     the same, with the source named
+ *
+ * What comes after the name is the tail. An id that names its work in none
+ * of these ways is a stream id — a capture or repair stream's own numbering,
+ * ap80-…-0000001 — and carries no locator of its own.
+ */
+export const anchorUnitId = (unitId, slug) => {
+  const s = escRe(slug);
+  let m = new RegExp(`^${s}-(.*)$`, "u").exec(unitId);
+  if (m) return { tail: m[1], anchored: true };
+  m = new RegExp(`^.*?--(?:sefaria-)?${s}(?:-(.*))?$`, "u").exec(unitId);
+  if (m) return { tail: m[1] || "", anchored: true };
+  return { tail: null, anchored: false };
+};
+
+/**
+ * A tail read plainly. A hyphen between two numbers is the chain's own
+ * nesting and prints as ":"; every other hyphen is a space. Nothing is
+ * translated: "gate-of-prayer-introduction-1" is the sealed id's own words,
+ * printed the way the door already prints a recorded work id — hyphens as
+ * spaces — so that an access aid can name a place without borrowing a word
+ * it has no D+M for.
+ */
+export const readTailPlainly = (tail) => tail.replace(/(\d)-(?=\d)/gu, "$1:").replace(/-/gu, " ").trim();
+
+/**
+ * What one sealed unit id says about its own place. Four kinds:
+ *   nested   <chapter>-<section>, in the plain or the prefixed form
+ *   ordinal  …--unit-<n>, or a bare <n> after the work's name
+ *   named    any other tail: a path of names and numbers the chain sealed
+ *   stream   an id that does not name its work at all
+ * The first two are exactly what this parse always accepted, and their
+ * results are byte-identical to before.
+ */
+export const parseUnitId = (unitId, slug) => {
+  const m = new RegExp(`^${escRe(slug)}-(\\d+)-(\\d+)$`, "u").exec(unitId);
+  if (m) return { kind: "nested", chapter: Number(m[1]), section: Number(m[2]), label: `${m[1]}:${m[2]}` };
   const f = /--unit-0*(\d+)$/u.exec(unitId);
-  require_(f, "UNIT_ID_UNPARSED",
+  if (f) return { kind: "ordinal", chapter: Number(f[1]), section: 1, label: String(Number(f[1])), flat: true };
+  const a = anchorUnitId(unitId, slug);
+  if (!a.anchored) return { kind: "stream", flat: true };
+  const nn = /^(\d+)-(\d+)$/u.exec(a.tail);
+  if (nn) return { kind: "nested", chapter: Number(nn[1]), section: Number(nn[2]), label: `${nn[1]}:${nn[2]}` };
+  const n = /^(\d+)$/u.exec(a.tail);
+  if (n) return { kind: "ordinal", chapter: Number(n[1]), section: 1, label: String(Number(n[1])), flat: true };
+  return { kind: "named", tail: a.tail, flat: true };
+};
+
+/**
+ * Coordinates come from the sealed unit id and nothing else. A unit id is a
+ * locator — the plain location label an access aid may render — so the page
+ * may print "7:14" in English without borrowing a word it has no D+M for.
+ *
+ * This is the per-unit form, kept for the callers that align two works by
+ * label (a commentary on its base). It accepts the nested and ordinal kinds
+ * and refuses the rest, exactly as it always did — a named tail cannot align
+ * anything by itself, so a caller that needs one goes through
+ * parseWorkCoordinates, which decides the shape for the whole work.
+ */
+export const parseCoordinates = (unitId, slug) => {
+  const p = parseUnitId(unitId, slug);
+  if (p.kind === "nested") return { chapter: p.chapter, section: p.section, label: p.label };
+  if (p.kind === "ordinal") return { chapter: p.chapter, section: 1, label: p.label, flat: true };
+  require_(false, "UNIT_ID_UNPARSED",
     `${unitId} reads as neither ${slug}-<chapter>-<section> nor …--unit-<ordinal>`);
-  return { chapter: Number(f[1]), section: 1, label: String(Number(f[1])), flat: true };
+  return null;
+};
+
+/**
+ * The whole work's coordinates, in served (c0) order. A zone speaks one
+ * coordinate language, decided for the work and not per unit:
+ *
+ *   CHAPTER_SECTION           every unit is nested: chapter and section are
+ *                             the id's own numbers.
+ *   SEALED_UNIT_SEQUENCE      every unit carries its ordinal in its id (the
+ *                             Ben-Yehuda shelf and kin): one sealed unit is
+ *                             one top-level section, and the locator is the
+ *                             bare ordinal.
+ *   SEALED_UNIT_SEQUENCE_NAMED  anything else. One sealed unit is still one
+ *                             top-level section; its ordinal is its place in
+ *                             the chain's own order, which the chain sealed;
+ *                             its locator is its tail read plainly — the
+ *                             sealed id's own words — or its place, for a
+ *                             stream id that has no tail. No hierarchy is
+ *                             built from the names: the chain sealed them as
+ *                             a label, and a label is what they print as.
+ *
+ * Nothing is renumbered and no ordinal is invented: the order is the c0
+ * order, which is the only sequence the chain records for every unit.
+ */
+export const parseWorkCoordinates = (unitIds, slug) => {
+  const per = unitIds.map((u) => [u, parseUnitId(u, slug)]);
+  const kinds = new Set(per.map(([, p]) => p.kind));
+  const shape = kinds.size === 1 && kinds.has("nested") ? "CHAPTER_SECTION"
+    : kinds.size === 1 && kinds.has("ordinal") ? "SEALED_UNIT_SEQUENCE"
+      : "SEALED_UNIT_SEQUENCE_NAMED";
+  const coords = new Map();
+  per.forEach(([u, p], i) => {
+    if (shape === "CHAPTER_SECTION") coords.set(u, { chapter: p.chapter, section: p.section, label: p.label });
+    else if (shape === "SEALED_UNIT_SEQUENCE") coords.set(u, { chapter: p.chapter, section: 1, label: p.label, flat: true });
+    else {
+      const ord = i + 1;
+      const label = p.kind === "named" ? readTailPlainly(p.tail) : p.kind === "stream" ? String(ord) : p.label;
+      coords.set(u, { chapter: ord, section: 1, label, flat: true, named: true });
+    }
+  });
+  return { shape, coords };
 };
 
 // U+05BE HEBREW PUNCTUATION MAQAF, named by its codepoint. A tool in this

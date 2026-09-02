@@ -35,7 +35,7 @@ import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1
 import { K_RULE_ID, K_RULE_TEXT, exactK } from "./k-normalization-v1.mjs";
 import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import {
-  readServe, readBridge, parseCoordinates, wordsOf, regionsOf, licensePosture, require_, sha256File,
+  readServe, readBridge, parseWorkCoordinates, wordsOf, regionsOf, licensePosture, require_, sha256File,
 } from "./zone-lib-v1.mjs";
 
 const arg = (flag, fallback = null) => {
@@ -76,12 +76,22 @@ const unserved = [...bridge.units.keys()].filter((u) => !serve.units.has(u));
 require_(unserved.length === 0, "BRIDGE_UNIT_NOT_SERVED", `${unserved.length}, first ${unserved[0]}`);
 
 // ---- 3. coordinates from the sealed unit id ------------------------------
-const coords = new Map(servedUnits.map((u) => [u, parseCoordinates(u, slug)]));
-// A zone speaks one coordinate language. A work whose sealed unit ids mix
-// nested and flat shapes is refused with the count, never guessed at.
+// The shape is decided for the whole work, never per unit: nested only when
+// every sealed id is nested, an ordinal sequence only when every id carries
+// its own ordinal, and otherwise a sealed sequence in the chain's order with
+// each id's tail as its locator. The three shapes and what each one claims
+// are stated on parseWorkCoordinates. Before this, a work whose ids carried
+// a name — an introduction, a gate, a parashah — was refused as unparsed,
+// and 647 works holding 75 million of the bridge's 109 million rows stood
+// held for the shape of their ids alone.
+const { shape: coordShape, coords } = parseWorkCoordinates(servedUnits, slug);
+// A zone speaks one coordinate language. The work-level parse guarantees it;
+// this holds the guarantee where the zone is written, so a later change to
+// the parse cannot quietly ship a zone that mixes them.
 const flatUnits = [...coords.values()].filter((c) => c.flat).length;
 require_(flatUnits === 0 || flatUnits === coords.size, "COORDINATE_SHAPES_MIXED", `${flatUnits}/${coords.size} units are flat-sequence`);
 const flatShape = flatUnits > 0;
+const namedShape = coordShape === "SEALED_UNIT_SEQUENCE_NAMED";
 
 // ---- 3a. numbering: a witnessed gap is a fact, a collision is a fault ----
 // This gate used to refuse any chapter sequence that was not exactly 1..N.
@@ -280,8 +290,12 @@ for (const sec of sections) for (const w of sec.words) {
 // the text. A chapter the ledger does not carry gets a locator and no title —
 // never a title assembled here.
 let titledChapters = 0;
+// In a named sequence every ordinal is one sealed unit, and that unit's own
+// locator — its id's tail read plainly — is a better name for the node than
+// "Section 37". It is still a locator: the sealed id's words, not a title.
+const namedLocator = namedShape ? new Map([...coords.values()].map((c) => [c.chapter, c.label])) : null;
 const nodes = chapters.map((num) => {
-  const node = { num, name_en: `${coordLabels[0].charAt(0).toUpperCase()}${coordLabels[0].slice(1)} ${num}`, sections: perChapter.get(num) || 0 };
+  const node = { num, name_en: namedLocator && namedLocator.get(num) ? namedLocator.get(num) : `${coordLabels[0].charAt(0).toUpperCase()}${coordLabels[0].slice(1)} ${num}`, sections: perChapter.get(num) || 0 };
   const yc = y && y.chapters[String(num)];
   if (yc) {
     titledChapters += 1;
@@ -442,16 +456,21 @@ const zone = {
             "chapters carry English locators built from the sealed unit id (a location label, an access aid), and no title. A title is corpus text; this page does not print one in either language until the words have their own definition and source records.",
         },
     license_links: links ? JSON.parse(readFileSync(links, "utf8")) : [],
-    coordinate_basis:
-      `chapter and section numbers are read from the sealed unit id (${slug}-<chapter>-<section>); nothing is renumbered`,
+    coordinate_basis: namedShape
+      ? "each sealed unit is one section in the chain's own order; its ordinal is its place in that order and its locator is its sealed id's tail read plainly; nothing is renumbered and no hierarchy is built from the names"
+      : flatShape
+        ? "each sealed unit is one section and its ordinal is the one its own id carries; nothing is renumbered"
+        : `chapter and section numbers are read from the sealed unit id (${slug}-<chapter>-<section>); nothing is renumbered`,
     ...(numbering ? { numbering } : {}),
     // Plain English for the two levels of the coordinate, so a page can say
     // "Chapter 7, verse 14" instead of a generic "section, paragraph". These
     // name the structure; they are not translations of anything in the text.
     coordinate_labels: { major: coordLabels[0], minor: coordLabels[1] },
-    coordinate_shape: flatShape
-      ? "SEALED_UNIT_SEQUENCE — one sealed unit is one top-level section; the chain records no nesting and none is invented"
-      : "CHAPTER_SECTION — nested coordinates from the sealed unit id",
+    coordinate_shape: namedShape
+      ? "SEALED_UNIT_SEQUENCE_NAMED — one sealed unit is one top-level section in the chain's order; its locator is the sealed id's own tail read plainly; no hierarchy is built from the names"
+      : flatShape
+        ? "SEALED_UNIT_SEQUENCE — one sealed unit is one top-level section; the chain records no nesting and none is invented"
+        : "CHAPTER_SECTION — nested coordinates from the sealed unit id",
     build: {
       builder: "tools/build-zone.mjs",
       single_pass: true,
