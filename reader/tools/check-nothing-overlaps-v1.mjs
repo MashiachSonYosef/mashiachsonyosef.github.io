@@ -96,7 +96,7 @@ for (const vp of VIEWPORTS) {
     await p.waitForTimeout(80);
 
     // ---- 3 · the card opens under the word ---------------------------
-    let below = 0, covering = 0, n = 0, example = null;
+    let below = 0, covering = 0, n = 0, example = null, lineOnly = 0;
     for (let i = 0; i < Math.min(wbs.length, 10); i += 1) {
       try {
         await wbs[i].click();
@@ -122,18 +122,33 @@ for (const vp of VIEWPORTS) {
         // measured a clicked word's neighbour — the card was judged against
         // a word it never belonged to (found 2026-08-30, when the first word
         // of the shelf's first book went bare and the two lists diverged)
+        // The card clears the whole block — the Hebrew line and the reading
+        // painted under it — wherever the window allows. Where it cannot (a
+        // small phone, a block grown tall by a ruled reading, so that no
+        // card of the page's floor height fits beneath the block even with
+        // the block brought to the top), the page's last resort clears the
+        // Hebrew line and stands over the reader's own ruled reading, which
+        // the card carries whole. That case is counted apart and printed; a
+        // card over the Hebrew line itself is never allowed.
         const o = await wbs[i].evaluate((el) => {
           const wb = el.getBoundingClientRect();
+          const line = (el.querySelector(".w") || el).getBoundingClientRect();
           const h = document.getElementById("hud").getBoundingClientRect();
+          const FLOOR = 200, pad = 8;
+          const blockClearable = wb.bottom - Math.max(0, wb.top - pad) + pad + FLOOR + pad <= innerHeight;
           return {
             below: h.top >= wb.bottom - 0.5,
-            covers: h.top < wb.bottom - 0.5 && h.bottom > wb.top + 0.5,
+            belowLine: h.top >= line.bottom - 0.5,
+            blockClearable,
+            covers: h.top < line.bottom - 0.5 && h.bottom > line.top + 0.5,
             wordOnScreen: wb.top >= -1 && wb.bottom <= innerHeight + 1,
-            word: [Math.round(wb.top), Math.round(wb.bottom)], card: [Math.round(h.top), Math.round(h.bottom)],
+            word: [Math.round(wb.top), Math.round(wb.bottom)], line: [Math.round(line.top), Math.round(line.bottom)], card: [Math.round(h.top), Math.round(h.bottom)],
           };
         });
         n += 1;
-        if (o.below) below += 1; else if (!example) example = o;
+        if (o.below) below += 1;
+        else if (!o.blockClearable && o.belowLine) { below += 1; lineOnly += 1; }
+        else if (!example) example = o;
         if (o.covers) covering += 1;
         if (!o.wordOnScreen && !example) example = o;
       } catch { /* a word with no card is not this check's business */ }
@@ -141,8 +156,8 @@ for (const vp of VIEWPORTS) {
       await p.waitForTimeout(50);
     }
     check("  the card opens under the word it belongs to", below === n,
-      example ? `word ${example.word}, card ${example.card}` : `${below} of ${n}`);
-    check("  and never over it", covering === 0, `${covering} covering`);
+      example ? `word block ${example.word.join("..")}, Hebrew line ${example.line.join("..")}, card ${example.card.join("..")}` : `${below} of ${n}${lineOnly ? ` · ${lineOnly} under the Hebrew line only, the block too tall to clear in this window` : ""}`);
+    check("  and never over it", covering === 0, `${covering} covering the Hebrew line`);
     await p.close();
   }
 }
