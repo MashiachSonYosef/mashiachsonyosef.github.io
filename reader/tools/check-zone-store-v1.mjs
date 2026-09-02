@@ -60,6 +60,15 @@ let tamper = false;
 const srv = createServer((req, res) => {
   const p = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "").replace(/\\/g, "/");
   try {
+    // This half proves the seal on the local bins. With the shelf moved, the
+    // reader would fetch across the border and never touch the tampered
+    // file, so the record is served here with the shelf beside the door;
+    // the border crossing has its own check, check-zone-store-reachable-v1.
+    if (p === "/data/zone-store-v1.json") {
+      res.writeHead(200, { "content-type": TYPES[".json"] });
+      res.end(JSON.stringify({ ...store, base: null }));
+      return;
+    }
     let body = readFileSync(join(K3, p));
     if (tamper && p === `/data/zones/${SLUG}.bin`) {
       // one byte altered deep in the gzip body: same length, different text

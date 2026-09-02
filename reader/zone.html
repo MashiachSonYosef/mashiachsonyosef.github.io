@@ -1159,9 +1159,17 @@
     ZSTORE = await fetch(`${ROOT}data/zone-store-v1.json`, { cache: "no-cache" })
       .then((r) => (r.ok ? r.json() : null));
   } catch { ZSTORE = null; }
-  const binUrl = (name) => (ZSTORE && ZSTORE.base
-    ? `${String(ZSTORE.base).replace(/\/$/, "")}/${name}.bin`
-    : `${ROOT}data/zones/${name}.bin`);
+  // Across the border an object is named by its seal as well as its name:
+  // <base>/<name>.<first twelve hex of its sha256>.bin. A repinned bin is a
+  // new object at a new address, so no cache between here and the shelf can
+  // hand this page an old body under a new pin, and an object once written
+  // is never rewritten. Beside the door the bin keeps its plain name.
+  const binUrl = (name) => {
+    if (!(ZSTORE && ZSTORE.base)) return `${ROOT}data/zones/${name}.bin`;
+    const pin = ZSTORE.pins && ZSTORE.pins[`${name}.bin`];
+    const seal = pin && pin.sha256 ? `.${String(pin.sha256).slice(0, 12)}` : "";
+    return `${String(ZSTORE.base).replace(/\/$/, "")}/${name}${seal}.bin`;
+  };
   const hexOf = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
   const fetchBin = async (name) => {
     const res = await fetch(binUrl(name));

@@ -31,6 +31,18 @@ const ZONES = join(K3, "data", "zones");
 const OUT = join(K3, "data", "zone-store-v1.json");
 
 const prior = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : {};
+// The ruled value, passed by name and never inferred. `--base <https url>`
+// moves the shelf; `--base none` brings it back beside the door; no flag
+// carries the standing ruling forward. Anything that is not an https host
+// is refused here rather than written and refused by the check later.
+const baseArg = (() => {
+  const i = process.argv.indexOf("--base");
+  if (i < 0) return undefined;
+  const v = String(process.argv[i + 1] || "");
+  if (v === "none") return null;
+  if (!/^https:\/\/[^\s/]+(\/[^\s]*)?$/.test(v)) { console.error(`BASE_NOT_HTTPS: ${JSON.stringify(v)}`); process.exit(1); }
+  return v.replace(/\/$/, "");
+})();
 // Where the seals live, derived from the remote this tree actually pushes to
 // rather than typed or guessed from the address the page is served at. The
 // reader used to read it off its own hostname, which held only while the site
@@ -51,7 +63,7 @@ const record = {
   rule: "zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight",
   note: "repository is derived from this tree's own remote; the pins are read off the served bins at emit time. base names the host the bins serve from; null means beside the door. Moving the shelf is the owner's ruling, made here and nowhere else.",
   repository,
-  base: prior.base ?? null,
+  base: baseArg === undefined ? (prior.base ?? null) : baseArg,
   pins,
 };
 writeFileSync(OUT, JSON.stringify(record, null, 1) + "\n");
