@@ -116,7 +116,17 @@ const commentaryHere = zonesWithCommentary().length > 0;
 for (const face of ["night", "day"]) {
 const CONTRACT = { ...contract.roles, base_surface: contract.faces[face].base_surface, commentary_surface: contract.faces[face].commentary_surface };
 await p.evaluate((f) => window.__face.set(f), face);
-await p.waitForTimeout(150);
+// The page turns its face over a 0.12s transition, and a fixed 150ms wait
+// sampled the pressed button mid-turn when the machine was busy: a suite run
+// over 3,390 zones read the night blue on the day ground and called the
+// selection illegible. What is judged is the face as painted, so the read
+// waits until two frames 100ms apart paint the same colours, up to 3s.
+await p.waitForFunction(() => new Promise((resolve) => {
+  const paint = () => [document.body, document.querySelector(".mode-btn.on"), document.querySelector(".vnum")]
+    .map((e) => (e ? getComputedStyle(e).backgroundColor + "/" + getComputedStyle(e).color : "")).join("|");
+  const a = paint();
+  setTimeout(() => resolve(paint() === a), 100);
+}), null, { timeout: 3000, polling: 50 }).catch(() => console.log("  note: the face did not settle within 3s; measuring as painted now"));
 console.log(`— the ${face} face, as the page paints it —`);
 console.log(`  contract: ${Object.entries(CONTRACT).map(([k, v]) => `${k}=${v}`).join(" · ")}`);
 

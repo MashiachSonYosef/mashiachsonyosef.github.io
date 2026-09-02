@@ -173,17 +173,23 @@ const bins = existsSync(ZONES)
 // sections stands against one — it is asked for V and never asked for a frame
 // of its own, because it has none: it is the commentary layer of the work its
 // unit ids name.
-const works = [], cars = [];
+// The sidecars are read first, so every work's probes can see all of them;
+// then each work is read, probed, and dropped. This used to hold every whole
+// zone in one array, and at 3,390 zones that is more than one heap holds: the
+// check died mid-run, reporting nothing while reading as red. A sidecar is
+// found by the name the convention guarantees (<slug>.commentary.bin) and
+// then held to its shape (units and no sections) before it counts as one.
+const cars = [];
+for (const f of bins.filter((x) => x.endsWith(".commentary.bin"))) {
+  const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8"));
+  if (!(Array.isArray(z.sections) && z.sections.length) && z.units) cars.push(z);
+}
+let worksRead = 0;
+const table = [];
 for (const f of bins) {
   const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8"));
-  if (Array.isArray(z.sections) && z.sections.length) works.push({ f, z });
-  else if (z.units) cars.push(z);
-}
-check("  there are published works to measure", works.length > 0,
-  `${works.length} of ${bins.length} files carry sections · ${cars.length} carry commentary against them`);
-
-const table = [];
-for (const { f, z } of works) {
+  if (!(Array.isArray(z.sections) && z.sections.length)) continue;
+  worksRead += 1;
   const keys = new Set();
   for (const s of z.sections || []) for (const w of s.words || []) {
     if (w.w) w.w.forEach((r) => r.k && keys.add(r.k)); else if (w.k) keys.add(w.k);
@@ -222,6 +228,8 @@ for (const { f, z } of works) {
   for (const l of frame) layers[l] = PROBE[l] ? PROBE[l](ctx) : null;
   table.push({ file: f, work: z.work || f, layers, licences: [...licences] });
 }
+check("  there are published works to measure", worksRead > 0,
+  `${worksRead} of ${bins.length} files carry sections · ${cars.length} carry commentary against them`);
 
 console.log("\n— every published work, layer by layer —");
 const pad = Math.max(...table.map((t) => String(t.work).length), 8);

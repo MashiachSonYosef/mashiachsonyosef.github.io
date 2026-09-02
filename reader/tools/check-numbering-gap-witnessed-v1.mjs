@@ -44,7 +44,7 @@
 //       chapters do not make
 //   L3  a start-offset is declared exactly: starts_at is the first chapter
 //       when that chapter is not 1, and absent when it is
-//   L4  contiguous numbering from 1 declares nothing: no numbering record on
+//   L4  contiguous numbering from 1 declares no gap and no start: no gap or start-offset on
 //       a zone whose chapters run 1..N without a skip
 //   L5  a declaration is typed: it names this rule id, gaps is an array of
 //       integer pairs with next > after + 1, starts_at is an integer if given
@@ -171,8 +171,12 @@ for (const slug of slugs) {
   if (declaredStart !== startsAt)
     add(startWrong, `${slug} (first chapter ${chapters.length ? chapters[0] : "none"}, declared ${declaredStart === null ? "nothing" : declaredStart})`);
 
-  // L4 — silence where there is nothing to say
-  if (num && !witnessed.length && startsAt === null) add(spurious, slug);
+  // L4 — silence where there is nothing to say. A record that names a gap or
+  // a start the ids do not witness is the fault; a record that names none
+  // and carries only what the ids witness (the named shape writes one, so
+  // the reader can see its ordinals were read, not built) says nothing false.
+  if (num && !witnessed.length && startsAt === null
+      && ((Array.isArray(num.gaps) && num.gaps.length) || num.starts_at !== undefined)) add(spurious, slug);
 
   // L6 — the nodes are the witnessed chapters and nothing else
   const nodes = z.nodes || [];
@@ -213,7 +217,7 @@ check("L3  a start-offset is declared exactly when the first chapter is not 1",
   startWrong.n === 0,
   said(startWrong, startsWitnessed ? `${startsWitnessed} zone(s) start past 1 and say so` : "every zone starts at 1 and none says otherwise"));
 
-check("L4  contiguous numbering from 1 declares nothing",
+check("L4  contiguous numbering from 1 declares no gap and no start",
   spurious.n === 0,
   said(spurious, `${zonesRead - declared} zone(s) run 1..N unbroken and carry no record`));
 

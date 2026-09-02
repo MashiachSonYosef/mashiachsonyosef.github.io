@@ -23,6 +23,7 @@ import { createServer } from "node:http";
 import { join, dirname, extname, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -33,10 +34,17 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 const TABLE = JSON.parse(readFileSync(join(K3, "data", "work-attribution-display-v3.json"), "utf8"));
 const rows = TABLE.rows || [];
 const ready = (v) => String(v).startsWith("READY");
-// the cases, picked by rule: the first row of each kind in table order
-const caseRR = rows.find((r) => ready(r.display_state) && ready(r.distribution_state) && r.license_link);
-const caseRH = rows.find((r) => ready(r.display_state) && !ready(r.distribution_state));
-const caseHH = rows.find((r) => !ready(r.display_state));
+// the cases, picked by rule: the first row of each kind in table order.
+// The card this drives is the door's card for a work that is NOT a book yet:
+// a served work stands on the door as a link to its own page and opens no
+// card there. On 2026-09-02 the fleet served 326 more works and the first
+// ready row in table order became one of them, so the rule picks among rows
+// whose work has no zone on the shelf — the same rows the door offers a card.
+const served = new Set(zonesOnDisk(join(K3, "data", "zones")));
+const unserved = (r) => !served.has(String(r.work_id || "").split("/").pop());
+const caseRR = rows.find((r) => unserved(r) && ready(r.display_state) && ready(r.distribution_state) && r.license_link);
+const caseRH = rows.find((r) => unserved(r) && ready(r.display_state) && !ready(r.distribution_state));
+const caseHH = rows.find((r) => unserved(r) && !ready(r.display_state));
 check("the table offers all three kinds to drive", !!(caseRR && caseRH && caseHH),
   [caseRR, caseRH, caseHH].map((c) => c ? c.work_id : "MISSING").join(" · "));
 

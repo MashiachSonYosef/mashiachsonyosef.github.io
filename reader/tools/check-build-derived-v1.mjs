@@ -71,7 +71,14 @@ const zoneOf = new Map();
 for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin"))) {
   const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8"));
   if ((z.emitted_from || {}).test_instrument) continue;
-  if (Array.isArray(z.sections) && z.sections.length) zoneOf.set(f.replace(/\.bin$/, ""), z);
+  // Only what the comparison below reads is kept. This map used to hold every
+  // whole zone, and at 3,390 zones that is more than one heap holds: the check
+  // died mid-run, and a check that dies reports nothing while reading as red.
+  if (Array.isArray(z.sections) && z.sections.length) zoneOf.set(f.replace(/\.bin$/, ""), {
+    emitted_from: { identity_oracle: (z.emitted_from || {}).identity_oracle },
+    work_receipts: z.work_receipts, work: z.work, work_he: z.work_he,
+    counts: { sections: (z.counts || {}).sections }, nodes: new Array((z.nodes || []).length),
+  });
 }
 // A work the record holds has no zone on purpose. This loop used to demand one
 // from every work the plan named, so withdrawing three works turned three
