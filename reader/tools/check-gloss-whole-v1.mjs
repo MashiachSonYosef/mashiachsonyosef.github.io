@@ -23,18 +23,30 @@ await p.waitForSelector("section.seg .he-text .wb .g:not(.bare)");
 // page not moving is a claim about a page that has finished arriving, so this
 // reads it through first — otherwise a section settling two screens down is
 // mistaken for the word under test having moved something.
-await p.evaluate(async () => {
-  let guard = 0;
-  while (guard < 5000) {
+//
+// The read-through has a budget. On a 1,179-section zone it ran past the
+// suite's own timeout and the check died at the next step, reporting nothing
+// while reading as red. The laws below need the page settled where the word
+// under test stands, and hold whatever arrives later: the height may only
+// grow downward, and the width must not move at all. So the read-through
+// stops after twenty seconds and says how far it got.
+const readThrough = await p.evaluate(async () => {
+  let guard = 0; const t0 = Date.now();
+  while (guard < 5000 && Date.now() - t0 < 20000) {
     const next = document.querySelector("section.seg.seg-wait");
     if (!next) break;
     next.scrollIntoView({ block: "center" });
     await new Promise((r) => setTimeout(r, 8));
     guard += 1;
   }
+  const waiting = document.querySelectorAll("section.seg.seg-wait").length;
+  const all = document.querySelectorAll("section.seg").length;
   window.scrollTo(0, 0);
   await new Promise((r) => setTimeout(r, 80));
+  return { arrived: all - waiting, all };
 });
+if (readThrough.arrived < readThrough.all)
+  console.log(`  ..  ${readThrough.arrived} of ${readThrough.all} sections arrived within the read-through's budget; the laws below hold for what arrives later`);
 
 const clip = () => p.evaluate(() => {
   const gs = [...document.querySelectorAll("section.seg .he-text .wb .g")].slice(0, 4000);
@@ -71,14 +83,27 @@ const before = await p.evaluate(() => ({
 let grew = 0, ruledIx = -1;
 // Only a word that carries a reading has a record to open — a bare word is
 // the store's honest silence, and waiting for its pills declares it broken.
-const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
-for (let i = 0; i < Math.min(wbs.length, 10); i++) {
-  await wbs[i].click();
+// The word blocks that carry a reading, found from the reading up: on a
+// 15,000-word page a :has() query never came back, and the check died at it.
+// No element handle is held across the loop either: the page keeps building
+// sections as they come into reach, and a handle taken before that is a
+// handle to a node that may be gone. Each press finds its word afresh.
+const glossedCount = await p.evaluate(() => document.querySelectorAll("section.seg .he-text .wb .g:not(.bare)").length);
+const pressGlossed = (i) => p.evaluate((ix) => {
+  const g = document.querySelectorAll("section.seg .he-text .wb .g:not(.bare)")[ix];
+  const wb = g && g.closest(".wb");
+  if (!wb) return false;
+  wb.scrollIntoView({ block: "center" });
+  wb.click();
+  return true;
+}, i);
+for (let i = 0; i < Math.min(glossedCount, 10); i++) {
+  if (!(await pressGlossed(i))) break;
   await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
   await p.waitForTimeout(250);
   grew = await p.evaluate((i) => {
     const bs = [...document.querySelectorAll("#hud .r-pills button")];
-    const g = [...document.querySelectorAll("section.seg .he-text .wb:has(.g:not(.bare))")][i].querySelector(".g");
+    const g = [...document.querySelectorAll("section.seg .he-text .wb .g:not(.bare)")].map((el) => el.closest(".wb"))[i].querySelector(".g");
     const now = g.textContent.trim().length;
     const longest = Math.max(...bs.map((b) => b.textContent.trim().length));
     return longest - now;
@@ -92,7 +117,7 @@ for (let i = 0; i < Math.min(wbs.length, 10); i++) {
 console.log(`  ..  worst case found: a reading ${grew} characters longer than the one painted`);
 await p.waitForTimeout(400);
 const after = await p.evaluate((i) => {
-  const wb = [...document.querySelectorAll("section.seg .he-text .wb:has(.g:not(.bare))")][i];
+  const wb = [...document.querySelectorAll("section.seg .he-text .wb .g:not(.bare)")].map((el) => el.closest(".wb"))[i];
   const g = wb ? wb.querySelector(".g") : null;
   return {
     docWidth: document.documentElement.scrollWidth,
@@ -125,7 +150,7 @@ await p.keyboard.press("Escape");
 // take no taps, and it must die with the card.
 {
   const t = await p.evaluate(async () => {
-    const wb = document.querySelector("section.seg .he-text .wb:has(.g:not(.bare))");
+    const wb = (document.querySelector("section.seg .he-text .wb .g:not(.bare)") || {}).closest?.(".wb");
     wb.click();
     await new Promise((r) => setTimeout(r, 900));
     const svg = document.getElementById("tether");
