@@ -384,7 +384,9 @@ const coverTotal = span ? [...span.spans.values()].reduce((n, sp) => n + 2 ** (s
 const credit = serve.provenance.credit || (serve.provenance.rights && serve.provenance.rights.credit) || null;
 const baseByline = serve.provenance.body_oracle
   ? `served from the verified rebuilt body, every shard re-hashed against the July manifest; rights per the canonical rights resolution, riding on every occurrence`
-  : `served from the sealed terminal reader artifacts; rights ride per occurrence`;
+  : serve.provenance.edition
+    ? `an edition served from the edition door's built stream ${serve.provenance.edition.edition_o_id}; its rights are the door's own row, riding on every occurrence`
+    : `served from the sealed terminal reader artifacts; rights ride per occurrence`;
 const bylineOut = byline || (credit ? `${credit.line} · ${baseByline}` : baseByline);
 
 const zone = {
@@ -414,18 +416,29 @@ const zone = {
       // a body serve cites the July manifest the rebuilt shards were re-hashed
       // against on this side. Each route's receipts are its own — a body
       // serve wearing a walk's oracle line would be a costume.
+      // A third route since 2026-09-02: an edition served from the edition
+      // door's built stream (tokens + unit map + receipt). Its oracle is the
+      // receipt's own surface hash; its identity is the edition's position
+      // space, carried in an edition bridge of the bridge's own layout.
       note: serve.provenance.sealed_oracle
         ? `served by the website-lane resident reader over the sealed artifacts (verify-once); ` +
           `${serve.provenance.sealed_oracle.report.field_exact}/${serve.provenance.sealed_oracle.report.sampled} sampled ids field-exact against the sealed CLI oracle` +
           (serve.held ? `; ${serve.held} rows the chain marks SCRIPT-UNRESOLVED render held (dimmed) exactly as the chain rules them` : "")
-        : `served from the rebuilt canonical body, ${serve.provenance.body_oracle.shards_verified}` +
-          (serve.held ? `; ${serve.held} rows held by their own rights record` : ""),
+        : serve.provenance.edition
+          ? `served from the edition door's built stream ${serve.provenance.edition.edition_o_id} (${serve.provenance.edition.kind}), ${Number(serve.provenance.edition.built_rows).toLocaleString()} rows, surface sha256 ${String(serve.provenance.edition.surface_sha256).slice(0, 12)}…, unit map ${serve.provenance.identity.units} units` +
+            (serve.held ? `; ${serve.held} rows held by their own rights record` : "")
+          : `served from the rebuilt canonical body, ${serve.provenance.body_oracle.shards_verified}` +
+            (serve.held ? `; ${serve.held} rows held by their own rights record` : ""),
       module: serve.provenance.sealed_oracle
         ? { path: "tools/mishkan-serve-v1.mjs over sealed codec + indexes", sha256: sha256File(fileURLToPath(new URL("./mishkan-serve-v1.mjs", import.meta.url))) }
-        : { path: "tools/serve-from-body-v1.mjs over the verified body", sha256: sha256File(fileURLToPath(new URL("./serve-from-body-v1.mjs", import.meta.url))) },
+        : serve.provenance.edition
+          ? { path: "tools/serve-edition-v1.mjs over the edition door's built stream", sha256: (() => { try { return sha256File(fileURLToPath(new URL("./serve-edition-v1.mjs", import.meta.url))); } catch { return null; } })() }
+          : { path: "tools/serve-from-body-v1.mjs over the verified body", sha256: sha256File(fileURLToPath(new URL("./serve-from-body-v1.mjs", import.meta.url))) },
       pointer: serve.provenance.sealed_oracle
         ? { path: "gen-8 pointer copy", sha256: serve.provenance.sealed_oracle.pointer_sha256 }
-        : { path: "July store manifest, every shard re-hashed against it", sha256: serve.provenance.body_oracle.manifest_sha256 },
+        : serve.provenance.edition
+          ? { path: "the edition's receipt: surface token stream sha256", sha256: serve.provenance.edition.surface_sha256 }
+          : { path: "July store manifest, every shard re-hashed against it", sha256: serve.provenance.body_oracle.manifest_sha256 },
     },
     ...(titleFromC0 ? { title_from_c0: titleFromC0 } : {}),
     identity_oracle: {
