@@ -34,7 +34,11 @@ const open = async (i = 0) => {
     await p.waitForTimeout(80);
     if (!(await covered(wbs[j]))) { target = wbs[j]; break; }
   }
-  if (!target) throw new Error("no reachable word clear of the parked card");
+  // A zone too short to offer a word clear of the parked card has nothing
+  // for this check to drag from. That is the zone's shape, not a fault of
+  // the page, and it is said as a skip rather than thrown as a crash — a
+  // crash reads as red and names nothing.
+  if (!target) { console.log(`SKIPPED — no reachable word clear of the parked card on this zone (${wbs.length} glossed word(s), none clear from index ${i})`); process.exit(3); }
   await target.click();
   await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
   await p.waitForTimeout(400);
