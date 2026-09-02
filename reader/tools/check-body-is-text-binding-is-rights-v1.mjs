@@ -442,7 +442,9 @@ for (const p of ndjsons) {
   const bo = prov.body_oracle && typeof prov.body_oracle === "object" ? prov.body_oracle : null;
   if (!(bo && SHA256.test(String(bo.manifest_sha256 || "")) && Array.isArray(bo.shards_read) && bo.shards_read.length && bo.shards_read.every((s) => SHA256.test(String(s.sha256 || "")))))
     why.push("no body oracle of the right shape");
-  // every row: one posture, visible exactly when the axis says ALLOW
+  // every row: one posture, visible exactly when the axis says ALLOW, or
+  // says ALLOW_WITH_ATTRIBUTION and the credit rides in the rights record
+  const creditRides = !!(r && r.credit && typeof r.credit.line === "string" && r.credit.line.trim());
   const keys = new Map();
   let rows = 0, visOff = 0, malformed = 0;
   // streamed a line at a time: the fleet writes serve outputs past what one
@@ -459,7 +461,7 @@ for (const p of ndjsons) {
     const key = [ra.normalized_license_class, ra.license_version, row.reader_display_axis, row.public_distribution_axis, row.attribution_required,
       row.noncommercial_required, row.share_alike_required, row.no_derivatives_required, ra.terminal_resolution_state].join(" · ");
     keys.set(key, (keys.get(key) || 0) + 1);
-    if (row.visible_in_hebrew_reader !== (row.reader_display_axis === "ALLOW")) visOff += 1;
+    if (row.visible_in_hebrew_reader !== (row.reader_display_axis === "ALLOW" || (row.reader_display_axis === "ALLOW_WITH_ATTRIBUTION" && creditRides))) visOff += 1;
   }
   if (malformed) why.push(`${malformed} row(s) do not parse`);
   if (keys.size !== 1) why.push(`${keys.size} rights records across ${rows} rows`);
