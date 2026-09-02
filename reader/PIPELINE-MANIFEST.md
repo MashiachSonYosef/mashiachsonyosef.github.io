@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-02.
 
-**67 rules declared · 67 named by a check · 0 unguarded.**
+**68 rules declared · 67 named by a check · 1 unguarded.**
 **10 published artifacts · 10 with a build step · 0 without.**
 
 ## The rules
@@ -38,7 +38,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `frame-coverage-rule-v1-no-layer-is-on-one-work-and-off-another` | tools/check-frame-coverage-v1.mjs | check-frame-coverage-v1 |
 | `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-three-counts-v1, check-nothing-hard-wired-v1 |
 | `front-door-rule-v2` | zone.html | check-front-door-opens-title-v1 |
-| `gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed` | tools/enrich-gloss-m-v1.mjs | check-english-license-v1, check-every-reading-licensed-v1 |
+| `gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed` | tools/enrich-gloss-m-v1.mjs, tools/gloss-m-v1.mjs | check-english-license-v1, check-every-reading-licensed-v1 |
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
 | `implicit-maqaf-rule-v1-a-joiner-is-not-a-word-and-not-a-q-site` | tools/check-implicit-maqaf-v1.mjs | check-implicit-maqaf-v1 |
 | `import-side-effect-rule-v1-a-check-that-rebuilds-its-own-baseline-cannot-fail` | tools/check-no-import-side-effects-v1.mjs | check-no-import-side-effects-v1 |
@@ -69,6 +69,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | check-span-receipt-carried-identical-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
+| `struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms` | tools/emit-struck-ranks-v1.mjs | **UNGUARDED** |
 | `suggested-title-rule-v1-a-guess-is-authored-by-name-and-witnessed-by-nothing` | tools/check-suggested-title-v1.mjs | check-suggested-title-v1 |
 | `title-from-c0-rule-v1-the-title-is-the-works-own-opening-words` | tools/build-zone.mjs | check-title-from-c0-v1 |
 | `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-opens-title-v1 |
@@ -104,7 +105,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 18 of the 55 tools that are not checks.
+`build.sh` calls 18 of the 57 tools that are not checks.
 
 Not called by any build stage:
 
@@ -116,11 +117,13 @@ Not called by any build stage:
 - `tools/emit-corpus-atlas-v1.mjs`
 - `tools/emit-language-sweep-record-v1.mjs`
 - `tools/emit-ledger-index-v1.mjs`
+- `tools/emit-struck-ranks-v1.mjs`
 - `tools/emit-work-attachment-v1.mjs`
 - `tools/emit-workspace-manifest-v1.mjs`
 - `tools/emit-zone-shipment-v1.mjs`
 - `tools/emit-zone-store-v1.mjs`
 - `tools/enrich-gloss-m-v1.mjs`
+- `tools/gloss-m-v1.mjs`
 - `tools/gloss-store-v1.mjs`
 - `tools/group-variant-sites-v1.mjs`
 - `tools/k-normalization-v1.mjs`

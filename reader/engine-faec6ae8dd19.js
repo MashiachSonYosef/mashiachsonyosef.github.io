@@ -1211,7 +1211,24 @@
     // only if the word cannot be brought up far enough and the card cannot
     // usefully shrink does it go above, and then it is the lesser harm
     else if (rect.top - pad - h >= pad) top = rect.top - pad - h;
-    else top = Math.max(pad, window.innerHeight - h - pad);
+    else {
+      // Neither fits: a small phone and a block grown tall by a ruled
+      // reading (360x640, a 118-character ruling, caught 2026-09-02). The
+      // block is the Hebrew line and, under it, the reading the reader
+      // ruled — which the card carries whole in its own readings band. So
+      // the last resort clears the Hebrew line and lets the card stand over
+      // the reader's own reading, shrunk to the room under that line; it
+      // never stands over the word. Over the word was what this branch did.
+      const line = (anchorBlock.querySelector && anchorBlock.querySelector(".w")) || anchorBlock;
+      const lr = line.getBoundingClientRect();
+      const roomUnderLine = window.innerHeight - pad - lr.bottom - pad;
+      if (roomUnderLine >= FLOOR) {
+        hud.style.maxHeight = `${Math.floor(roomUnderLine)}px`;
+        fitBands();
+        h = hud.offsetHeight || 0;
+        top = lr.bottom + pad;
+      } else top = Math.max(pad, window.innerHeight - h - pad);
+    }
     // A card grows when the reader switches reading or opens the records
     // drawer, and the placement above was computed for the height it had a
     // moment ago. Clamp unconditionally so no part of it is ever unreachable.
