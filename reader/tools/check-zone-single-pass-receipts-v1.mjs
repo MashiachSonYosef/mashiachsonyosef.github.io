@@ -37,8 +37,13 @@
 //       the store has not moved since the zone was emitted, or the zone names
 //       the move (a store_version, or the admission record whose struck set
 //       is the store's current struck set)
-//   L6  no zone carries evidence of in-place patching: no field the builder
-//       does not write, nothing appended after the builder's last key
+//   L6  no zone carries evidence of in-place patching it does not type: no
+//       field the builder does not write, nothing appended after the
+//       builder's last key — except what a TYPED exemption on the zone names
+//       (emitted_from.post_build: rule, tool, fields written, store version
+//       read, expiry), which is counted and printed, never faulted. Since
+//       2026-09-02 the builder writes gloss_m in its own pass; the exemption
+//       covers the zones built before that and expires with each rebuild.
 //   L7  the same inputs give the same bytes: the builder run twice on one
 //       serve, one bridge, one store, one spans template writes one hash.
 //       Needs the serve NDJSON, the bridge and the spans template, which the
@@ -111,10 +116,17 @@ check("L0  the builder still declares the rule and the single-pass promise",
 // field sets below are its and not this file's. The top-level keys are
 // listed in the order the builder emits them; the last one is the last thing
 // a single pass writes, and anything after it in a file was appended later.
-const TOP_KEYS = ["schema_version", "rule_id", "work", "work_he", "work_he_tokens", "byline", "work_receipts", "route", "emitted_from", "counts", "nodes", "span_roles", "span_rules", "span_conf", "spans", "gloss", "sections"];
+const TOP_KEYS = ["schema_version", "rule_id", "work", "work_he", "work_he_tokens", "byline", "work_receipts", "route", "emitted_from", "counts", "nodes", "span_roles", "span_rules", "span_conf", "spans", "gloss", "gloss_m", "sections"];
 const LAST_KEY = "sections";
-const EMITTED_KEYS = ["walk", "title_from_c0", "identity_oracle", "license_receipts", "gloss_layer", "span_layer", "y_ledger", "license_links", "coordinate_basis", "numbering", "coordinate_labels", "coordinate_shape", "build"];
-const GLOSS_LAYER_KEYS = ["source", "key_rule", "rule", "gloss_table_sha256", "distinct_forms_glossed", "distinct_forms_bare", "grain", "store_inputs"];
+const EMITTED_KEYS = ["walk", "title_from_c0", "identity_oracle", "license_receipts", "gloss_layer", "span_layer", "y_ledger", "license_links", "coordinate_basis", "numbering", "coordinate_labels", "coordinate_shape", "build", "post_build"];
+const GLOSS_LAYER_KEYS = ["source", "key_rule", "rule", "gloss_table_sha256", "distinct_forms_glossed", "distinct_forms_bare", "grain", "store_inputs", "store_version", "m_layer"];
+// A zone built before the builder wrote gloss_m carries it from the
+// enrichment under a TYPED exemption: emitted_from.post_build names this rule,
+// the tool, every field it wrote, the store version it read, and when the
+// exemption expires (the zone's rebuild). A mark the exemption names is
+// counted and printed, not faulted; an anonymous mark is still a fault. The
+// rule does not bend; the pipeline does, and says so on the zone.
+const EXEMPTION_RULE = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
 const SPAN_LAYER_KEYS = ["rule", "source", "rows_scanned", "forms_with_a_component_system", "component_count_histogram", "derived_cells", "derived_complete_covers", "derivation", "cross_check", "provenance_fields", "roles", "status"];
 // The tools in this tree that write into an existing zone, by the field each
 // leaves behind. Named so a red line says who to look at, not only that
@@ -147,6 +159,8 @@ let zonesRead = 0, otherRule = 0, unreadable = 0;
 const l1 = [], l2 = [], l3 = [], l4 = [], l5 = [];
 const l6 = new Map();          // mark -> count
 let l6Zones = 0;
+const l6ExemptMarks = new Map(); // mark -> count, under a typed exemption
+let l6Exempt = 0;
 const bridgeNames = new Map(), bridgeHashes = new Map(), spansNames = new Map(), moduleHashes = new Map(), stamps = new Map();
 const inc = (m, k) => m.set(k, (m.get(k) || 0) + 1);
 let oldestStamp = null, newestStamp = null;
@@ -235,7 +249,19 @@ for (const f of bins) {
   for (const k of Object.keys(gl)) if (!GLOSS_LAYER_KEYS.includes(k)) marks.push(`gloss_layer.${k}`);
   for (const k of Object.keys(sl)) if (!SPAN_LAYER_KEYS.includes(k)) marks.push(`span_layer.${k}`);
   if (build.note && !/no zone is ever patched in place/.test(String(build.note))) marks.push("build.note rewritten");
-  if (marks.length) { l6Zones += 1; for (const m of marks) inc(l6, m); }
+  // the typed exemption: the marks it names are its, the rest are faults
+  const pb = e.post_build && typeof e.post_build === "object" ? e.post_build : null;
+  const exemptionTyped = !!(pb && pb.rule_id === EXEMPTION_RULE && typeof pb.by === "string" && Array.isArray(pb.wrote) && pb.wrote.length && typeof pb.expires === "string" && pb.expires);
+  const exempt = new Set(exemptionTyped ? pb.wrote : []);
+  const faults = marks.filter((m) => {
+    if (m === "emitted_from.post_build") return !exemptionTyped;
+    if (exempt.has(m)) return false;
+    const appended = /^\(appended after \w+: (.*)\)$/.exec(m);
+    if (appended) return !appended[1].split(",").every((k) => exempt.has(k));
+    return true;
+  });
+  if (exemptionTyped) { l6Exempt += 1; for (const m of marks.filter((x) => !faults.includes(x))) inc(l6ExemptMarks, m); }
+  if (faults.length) { l6Zones += 1; for (const m of faults) inc(l6, m); }
 
   // shelf-wide facts, for the summary and for L7's inputs
   inc(bridgeNames, io.bridge); inc(bridgeHashes, io.bridge_sha256);
@@ -274,11 +300,14 @@ check("L5  the readings stand on the store version now on disk, and the zone say
     : storeMoves.length ? `the store moved after every build (${storeMoves.map((m) => m.on).join(", ")}) and every zone names the admission record whose struck set is the store's`
       : "the store has not moved since the zones were emitted");
 
-check("L6  no zone carries evidence of in-place patching",
+const exemptLine = l6Exempt
+  ? ` · ${l6Exempt} zone(s) under a typed exemption for ${[...l6ExemptMarks.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([m, n]) => `${m} x${n}`).join(", ")} — expires with each zone's rebuild`
+  : "";
+check("L6  no zone carries evidence of in-place patching it does not type",
   l6Zones === 0,
   l6Zones
-    ? `${l6Zones}/${zonesRead} zones — ${[...l6.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5).map(([m, n]) => `${m} x${n}${PATCH_MARKS[m.replace(/^emitted_from\./, "")] ? ` (written by ${PATCH_MARKS[m.replace(/^emitted_from\./, "")]})` : ""}`).join(" · ")}`
-    : "no field the builder does not write, nothing appended after its last key");
+    ? `${l6Zones}/${zonesRead} zones — ${[...l6.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5).map(([m, n]) => `${m} x${n}${PATCH_MARKS[m.replace(/^emitted_from\./, "")] ? ` (written by ${PATCH_MARKS[m.replace(/^emitted_from\./, "")]})` : ""}`).join(" · ")}${exemptLine}`
+    : `no field the builder does not write, nothing appended after its last key${exemptLine}`);
 
 // ── L7 · the same inputs give the same bytes ─────────────────────────────
 // A serve NDJSON, the bridge and the spans template. The fleet writes each

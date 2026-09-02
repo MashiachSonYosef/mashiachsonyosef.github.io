@@ -79,6 +79,7 @@ import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { recordStruckRanks } from "./emit-struck-ranks-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -206,6 +207,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const emptied = [];
   const shardNames = readdirSync(join(STORE, "shards")).filter((f) => f.endsWith(".bin")).sort();
   const rewritten = new Map();
+  // Every rank the strike takes is typed as it goes — key, rank, and the
+  // record it stood on — so the hole it leaves can be told from a hole by
+  // bug. The hole itself stays: renumbering would rewrite every citation.
+  const struckRanks = { keys: {}, rows: 0, keys_touched: 0, on_struck_records: 0, on_other_records: 0 };
   for (const name of shardNames) {
     const body = JSON.parse(gunzipSync(readFileSync(join(STORE, "shards", name))).toString("utf8"));
     const out = {};
@@ -213,11 +218,16 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       keysBefore += 1; routesBefore += rows.length;
       const kept = rows.filter((r) => !struck.has(r[3]));
       routesStruck += rows.length - kept.length;
+      for (const r of rows) if (struck.has(r[3])) {
+        (struckRanks.keys[k] ||= []).push([r[0], String(r[3])]);
+        struckRanks.rows += 1; struckRanks.on_struck_records += 1;
+      }
       if (kept.length) out[k] = kept;
       else { keysEmptied += 1; if (emptied.length < 12) emptied.push(k); }
     }
     rewritten.set(name, out);
   }
+  struckRanks.keys_touched = Object.keys(struckRanks.keys).length;
 
   // THE RECORD IS CUMULATIVE. Each run used to overwrite it, so after three
   // rounds the file on the shelf said 27 struck when 49 were struck, and the
@@ -320,6 +330,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
   for (const [name, body] of rewritten)
     writeFileSync(join(STORE, "shards", name), gzipSync(Buffer.from(JSON.stringify(body)), { level: 9 }));
+  recordStruckRanks(STORE, struckRanks, {
+    how: "written by the strike as it struck",
+    before_store_version: index.store_version || null,
+    admission_rule: ADMISSION_RULE_ID, struck_m_ids: [...struck],
+    rows: struckRanks.rows, keys: struckRanks.keys_touched, on: new Date().toISOString().slice(0, 10),
+  });
 
   // The store's identity is its bytes. The reader asks for a shard as
   // shards/xx.bin?v=<store_version>, so that token is the ONLY thing standing

@@ -41,14 +41,16 @@
 //   L3   every key sits in the one shard its sha256 names, so the browser's
 //        recomputed hash finds it
 //   L4   rows under a key never descend in rank
-//   L5   the ranks under a key run 1..n with none missing and none repeated.
-//        The index accounts for two kinds of deviation in its counts, a hole
-//        where a licence struck a route and a repeat where one route was
-//        divided on a declared mark, but it marks neither on the row. A hole
-//        the store cannot tie to a strike is a reading gone with no licence
-//        the reader can see, and a repeat it cannot tie to a division is a
-//        doubled row. So the law is the plain one, and a store that keeps
-//        the factory's numbering must show its work on the row to pass it.
+//   L5   every hole in a key's ranks is a typed strike, and no rank is shared
+//        by two M records. A licence strike leaves holes and the holes stay
+//        (renumbering rewrites every citation into the store); the strike
+//        writes each rank it took, with the record it stood on, beside the
+//        store (struck-ranks-v1.json.gz, tools/emit-struck-ranks-v1.mjs). A
+//        hole that record names is a hole by strike; a hole it does not name
+//        is a reading gone with no licence the reader can see, and alarms. A
+//        repeat on one record is a route divided on a declared mark; a rank
+//        shared by two records is two routes given one rank, and alarms.
+//        L5b prints the plain 1..n shape beside it, informational.
 //   L6   the top-5 flag does not gate: keys ship more than five routes where
 //        they have them
 //   L7   every row's M id resolves in index.m_sources, the full M record the
@@ -79,6 +81,7 @@ import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { readStruckRanks } from "./emit-struck-ranks-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -132,6 +135,10 @@ check("L1   the index declares the layout this check reads, and a rank that orde
 let keys = 0, rows = 0, bytesOnDisk = 0;
 const marked = [], misplaced = [], descending = [], notOneToN = [], unresolved = new Map(), onStruck = new Map(), hollow = [];
 let holes = 0, repeats = 0, repeatsAcrossRecords = 0, noRankOne = 0, overFive = 0, maxRows = 0, struckSeen = 0;
+// The typed record of what the licence strike took, rank by rank, written by
+// the strike (tools/emit-struck-ranks-v1.mjs). Without it every hole is untyped.
+const struckRanks = readStruckRanks(STORE);
+let holesByBug = 0; const holesUntyped = [];
 
 for (const f of bins) {
   const name = f.slice(0, 2);
@@ -176,9 +183,14 @@ for (const f of bins) {
     for (let i = 0; i < n; i += 1) if (ranks[i] !== i + 1) { exact = false; break; }
     if (!exact) {
       const top = Math.max(0, ...ranks.filter(Number.isInteger));
-      let hole = false;
-      for (let i = 1; i <= top; i += 1) if (!seen.has(i)) { hole = true; break; }
+      // A hole is by strike when the struck-rank record names that rank on
+      // this key; any other hole is a reading gone with no licence to show
+      // for it, and that is the hole this law alarms on.
+      const struckHere = new Set((struckRanks && struckRanks.keys[K] || []).map((x) => x[0]));
+      let hole = false, holeByBug = false;
+      for (let i = 1; i <= top; i += 1) if (!seen.has(i)) { hole = true; if (!struckHere.has(i)) holeByBug = true; }
       if (hole) holes += 1;
+      if (holeByBug) { holesByBug += 1; keep(holesUntyped, `${where} ranks ${ranks.slice(0, 8).join(",")}`); }
       if (seen.size !== n) {
         repeats += 1;
         // A divided route's pieces stand on the route's one record. A rank
@@ -228,8 +240,20 @@ const accounted = [
   Number.isFinite(Number(((index.language_admission || {}).counts || {}).routes_struck)) ? `${Number(index.language_admission.counts.routes_struck).toLocaleString()} routes struck by licence` : null,
   Number.isFinite(Number(counts.routes_separated_on_a_declared_mark)) ? `${Number(counts.routes_separated_on_a_declared_mark).toLocaleString()} routes divided into ${Number(counts.pieces_those_routes_divided_into || 0).toLocaleString()} pieces` : null,
 ].filter(Boolean);
-check("L5   the ranks under a key run 1..n with none missing and none repeated",
-  notOneToN.length === 0,
+// Since 2026-09-02 the strike shows its work: tools/emit-struck-ranks-v1.mjs
+// writes every (key, rank, record) a strike removed beside the store, and a
+// hole that record names is a hole by strike — kept, never renumbered, the
+// corpus lane's ruling. A hole it does not name is a hole by bug and alarms.
+const typedHoles = struckRanks ? `${struckRanks.counts.ranks.toLocaleString()} struck ranks typed over ${struckRanks.counts.keys.toLocaleString()} keys` : "no struck-rank record beside the store";
+check("L5   every hole in a key's ranks is a typed strike, and no rank is shared by two M records",
+  holesByBug === 0 && repeatsAcrossRecords === 0,
+  holesByBug || repeatsAcrossRecords
+    ? `${holesByBug.toLocaleString()} key(s) have a hole no strike typed (${typedHoles}) — ${holesUntyped.slice(0, 3).join(" · ")}; ${repeatsAcrossRecords.toLocaleString()} share a rank across two M records, which no division explains`
+    : notOneToN.length
+      ? `${notOneToN.length.toLocaleString()} key(s) are not 1..n and every one is accounted for: ${holes.toLocaleString()} carry holes by strike (${typedHoles}), ${repeats.toLocaleString()} repeat a rank on one record (division) — ${accounted.join("; ")}`
+      : `${keys.toLocaleString()} keys, every one numbers its routes 1..n`);
+check("L5b  (the plain shape, informational) the ranks under a key run 1..n with none missing and none repeated",
+  true,
   notOneToN.length
     ? `${notOneToN.length.toLocaleString()} key(s) are not 1..n: ${holes.toLocaleString()} have a hole, ${repeats.toLocaleString()} repeat a rank (${repeatsAcrossRecords.toLocaleString()} across two M records, which no division explains), ${noRankOne.toLocaleString()} lack rank 1 — ${named(notOneToN)}${accounted.length ? `; the index counts ${accounted.join(" and ")} but marks neither on the row, so a hole cannot be told from a lost route nor a repeat from a doubled one` : ""}`
     : `${keys.toLocaleString()} keys, every one numbers its routes 1..n`);

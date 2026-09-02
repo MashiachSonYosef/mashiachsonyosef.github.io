@@ -32,6 +32,7 @@ import { createHash } from "node:crypto";
 import { gzipSync } from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
+import { glossMFor, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
 import { K_RULE_ID, K_RULE_TEXT, exactK } from "./k-normalization-v1.mjs";
 import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import {
@@ -286,6 +287,11 @@ if (span) for (const [, sp] of span.spans) for (const c of cellsOf(sp.s)) cellSu
 // Title tokens are words too, so their keys are asked for alongside the text's.
 if (y) for (const c of Object.values(y.chapters)) for (const t of c.name_tokens) if (t.k) { keysNeeded.add(t.k); cellSurfaces.add(t.k); }
 const { table: gloss, counts: glossCounts, sha256: glossSha } = store.tableFor([...cellSurfaces]);
+// The M of every reading, derived in this same pass from the same store —
+// a build input, never a patch. Before 2026-09-02 an enrichment wrote it
+// into the zone after the build, and the single-pass rule was right to
+// refuse that.
+const { gloss_m: glossM, drift: glossMDrift } = glossMFor(store, gloss);
 let glossedRegions = 0, regionCount = 0, spannedRegions = 0, splitWords = 0;
 for (const sec of sections) for (const w of sec.words) {
   const regions = regionsOf(w);
@@ -428,6 +434,8 @@ const zone = {
         ? "cell surface — every contiguous block of every form's component system is asked of the catalog, not only the whole form"
         : "whole form",
       store_inputs: store.index.inputs,
+      store_version: store.index.store_version || null,
+      m_layer: `${GLOSS_M_RULE_ID}: gloss_m written in this pass by tools/gloss-m-v1.mjs over the same store — ${Object.keys(glossM).length} readings carry their M, ${glossMDrift} stand on no admitted route`,
     },
     span_layer: span
       ? {
@@ -511,6 +519,7 @@ const zone = {
   span_conf: spanConf,
   spans,
   gloss,
+  gloss_m: glossM,
   sections,
 };
 
