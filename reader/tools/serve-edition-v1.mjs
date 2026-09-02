@@ -78,13 +78,13 @@ const workId = doorRow.work_id;
 if (!/^[a-z0-9_-]+\/[^\s]+$/u.test(workId)) die("DOOR_WORK_ID_SHAPE", workId);
 
 // ── the three built files ─────────────────────────────────────────────────
-const base = ["whole", "assembled"].map((k) => join(BUILT, `${EDITION}-${k}`)).find((p) => existsSync(`${p}.json`));
+const base = ["whole", "assembled"].map((k) => join(BUILT, `${EDITION}-${k}`)).find((p) => existsSync(p + ".json"));
 if (!base) die("EDITION_FILES_MISSING", `${BUILT}/${EDITION}-{whole,assembled}.json`);
-const receipt = JSON.parse(readFileSync(`${base}.json`, "utf8"));
+const receipt = JSON.parse(readFileSync(base + ".json", "utf8"));
 if (receipt.edition_o_id !== EDITION || receipt.work_id !== workId) die("RECEIPT_DISAGREES_WITH_DOOR", `${receipt.edition_o_id} ${receipt.work_id} vs ${EDITION} ${workId}`);
-const tokensGz = readFileSync(`${base}.tokens.csv.gz`);
+const tokensGz = readFileSync(base + ".tokens.csv.gz");
 const tokens = csv(gunzipSync(tokensGz).toString("utf8")).slice(1).filter((r) => r.length >= 2 && r[0] !== "");
-const unitsGz = readFileSync(`${base}.units.csv.gz`);
+const unitsGz = readFileSync(base + ".units.csv.gz");
 const units = csv(gunzipSync(unitsGz).toString("utf8")).slice(1).filter((r) => r.length >= 3 && r[0] !== "")
   .map((r) => ({ unit_id: r[0], start: Number(r[1]), rows: Number(r[2]) }));
 
@@ -162,7 +162,7 @@ const provenance = {
     edition_o_id: EDITION, work_id: workId, kind: receipt.kind, edition_key: receipt.edition_key,
     built_rows: tokens.length, member_files: receipt.member_files,
     surface_sha256: surfaceSha, normalized_sha256: normalizedSha,
-    stream_files: { tokens: `${EDITION}-${base.endsWith("whole") ? "whole" : "assembled"}.tokens.csv.gz`, tokens_gz_sha256: sha256(tokensGz), units_gz_sha256: sha256(unitsGz), receipt_sha256: sha256(readFileSync(`${base}.json`)) },
+    stream_files: { tokens: `${EDITION}-${base.endsWith("whole") ? "whole" : "assembled"}.tokens.csv.gz`, tokens_gz_sha256: sha256(tokensGz), units_gz_sha256: sha256(unitsGz), receipt_sha256: sha256(readFileSync(base + ".json")) },
     verified: "surfaces and keys re-hashed here, one per line, equal to the receipt; the unit map covers the stream contiguously",
     countersign: "the shipped stream hashes to its receipt (a self-consistency countersign); re-derivation from raw responses awaits their custody",
   },

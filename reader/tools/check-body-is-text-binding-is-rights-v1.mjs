@@ -34,7 +34,9 @@
 //       an instrument
 //   L4  one binding row, one posture, over exactly the rows served: the
 //       rights do not vary with the text, and the held count follows the
-//       display axis the record carries and nothing else
+//       display axis the record carries and nothing else: ALLOW holds no
+//       row, ALLOW_WITH_ATTRIBUTION holds none once the credit rides in the
+//       binding row and every row while it does not, any other axis holds all
 //   L5  the body the zones cite is the body in custody: the manifest hashes
 //       to what they say, and the shards each zone names are exactly the
 //       manifest's shards for its range, with the manifest's own hashes
@@ -303,9 +305,13 @@ for (const f of bins) {
     if (groups[0].rows !== words) why4.push(`the receipt covers ${groups[0].rows} rows, the zone carries ${words}`);
     if (groups[0].tokens.length !== POSTURE_COLS.length) why4.push(`the receipt carries ${groups[0].tokens.length} fields, not ${POSTURE_COLS.length}`);
     else {
+      // held follows the display axis: ALLOW holds nothing; ALLOW_WITH_ATTRIBUTION
+      // holds nothing once the credit rides in the binding row (L3/L6 judge the
+      // credit itself), and everything when it does not; every other axis holds all
       const axis = groups[0].tokens[2];
-      const expectHeld = axis === "ALLOW" ? 0 : words;
-      if (held !== expectHeld) why4.push(`display axis ${axis} yet ${held} of ${words} rows held`);
+      const creditRides = !!(rights && rights.credit && typeof rights.credit.line === "string" && rights.credit.line.trim());
+      const expectHeld = axis === "ALLOW" || (axis === "ALLOW_WITH_ATTRIBUTION" && creditRides) ? 0 : words;
+      if (held !== expectHeld) why4.push(`display axis ${axis}${axis === "ALLOW_WITH_ATTRIBUTION" ? (creditRides ? " with the credit in hand" : " with no credit in hand") : ""} yet ${held} of ${words} rows held`);
     }
   }
   if (why4.length) push(postureBad, `${name} · ${why4.join("; ")}`);
