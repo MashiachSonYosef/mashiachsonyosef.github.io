@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-02.
 
-**68 rules declared · 68 named by a check · 0 unguarded.**
+**69 rules declared · 68 named by a check · 1 unguarded.**
 **10 published artifacts · 10 with a build step · 0 without.**
 
 ## The rules
@@ -29,6 +29,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `dibbur-hamatchil-rule-v2-the-window-is-the-verse` | tools/generate-attachment-map-v2.mjs | check-nothing-hard-wired-v1 |
 | `division-evidence-rule-v1-a-division-we-have-not-established-is-not-offered` | tools/check-division-established-v1.mjs | check-division-established-v1 |
 | `doc-currency-rule-v1-an-undated-document-names-only-what-is-here` | tools/check-docs-name-what-is-here-v1.mjs | check-docs-name-what-is-here-v1 |
+| `edition-serve-rule-v1-the-edition-is-the-text-the-door-is-the-rights` | tools/serve-edition-v1.mjs | **UNGUARDED** |
 | `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | check-k-maqaf-preserved-v1 |
 | `export-custody-rule-v1-what-leaves-carries-its-own-way-back` | zone.html | check-licence-leaves-v1 |
 | `export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work` | zone.html | check-citations-v1, check-export-v1 |
@@ -105,7 +106,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 18 of the 57 tools that are not checks.
+`build.sh` calls 18 of the 58 tools that are not checks.
 
 Not called by any build stage:
 
@@ -141,6 +142,7 @@ Not called by any build stage:
 - `tools/respan-zone-v1.mjs`
 - `tools/run-fleet-v2.mjs`
 - `tools/sense-split-v1.mjs`
+- `tools/serve-edition-v1.mjs`
 - `tools/serve-from-body-v1.mjs`
 - `tools/span-slice-v1.mjs`
 - `tools/strike-language-v1.mjs`
