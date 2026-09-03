@@ -65,6 +65,23 @@ for (let i = 1; i < bl.length; i += 1) {
 // every last segment's claim count, for the address rule below
 const LAST_SEG_COUNT = new Map();
 for (const w of works.keys()) { const l = w.split("/").pop(); LAST_SEG_COUNT.set(l, (LAST_SEG_COUNT.get(l) || 0) + 1); }
+// --only <file|a,b,c>: run the pipeline over the works named and merge their
+// verdicts into the ledger already on disk, so a ruling that re-judges a few
+// works re-judges exactly those and the rest keep the receipts they have. The
+// address rule above is still derived from the whole bridge. Absent, the
+// fleet runs over every work as before.
+const ONLY = (() => {
+  const v = arg("only", null);
+  if (!v) return null;
+  const list = existsSync(v) ? readFileSync(v, "utf8").split(/\r?\n/) : v.split(",");
+  return new Set(list.map((x) => x.trim()).filter(Boolean));
+})();
+if (ONLY) {
+  for (const w of [...works.keys()]) if (!ONLY.has(w)) works.delete(w);
+  const missing = [...ONLY].filter((w) => !works.has(w));
+  if (missing.length) console.error(`--only names ${missing.length} work(s) the bridge does not carry: ${missing.slice(0, 5).join(", ")}`);
+  console.error(`--only: ${works.size} work(s) re-judged; the rest keep their ledger rows`);
+}
 
 // ---- what the body covers, from its manifest ------------------------------
 const man = readFileSync(join(BODY, "c0-active-rebuild-partial-manifest.csv"), "utf8").trim().split("\n");
@@ -210,6 +227,22 @@ await Promise.all(Array.from({ length: Math.max(1, JOBS) }, async () => {
 const order = new Map([...works.keys()].map((w, i) => [w, i]));
 ledger.sort((a, b) => order.get(a.work) - order.get(b.work));
 
+// a partial run merges into the ledger on disk: the re-judged works take their
+// new rows, every other work keeps its row, and the tally is re-counted over
+// the whole. The merge is said out loud in the ledger's own header.
+let merged = null;
+if (ONLY) {
+  const prior = JSON.parse(readFileSync(join(K3, "build", "fleet-ledger-v2.json"), "utf8"));
+  const fresh = new Map(ledger.map((e) => [e.work, e]));
+  const kept = prior.ledger.filter((e) => !fresh.has(e.work));
+  ledger.splice(0, ledger.length, ...kept, ...ledger.filter(() => true));
+  const priorOrder = new Map(prior.ledger.map((e, i) => [e.work, i]));
+  ledger.sort((a, b) => (priorOrder.get(a.work) ?? 1e9) - (priorOrder.get(b.work) ?? 1e9));
+  tally.clear();
+  for (const e of ledger) tally.set(e.verdict, (tally.get(e.verdict) || 0) + 1);
+  merged = { re_judged: fresh.size, kept: kept.length, prior_ran_at: prior.ran_at, only: [...fresh.keys()] };
+}
+
 const out = {
   rule: "fleet-rule-v1-a-work-builds-the-day-its-shards-arrive-and-not-a-day-sooner",
   ran_at: new Date().toISOString(),
@@ -218,7 +251,8 @@ const out = {
     body_manifest_sha256: createHash("sha256").update(readFileSync(join(BODY, "c0-active-rebuild-partial-manifest.csv"))).digest("hex"),
     binding: BINDING ? "in custody" : "not in custody",
   },
-  works: works.size,
+  works: merged ? ledger.length : works.size,
+  partial_run: merged,
   verdicts: Object.fromEntries([...tally.entries()].sort((a, b) => b[1] - a[1])),
   ledger,
 };

@@ -61,6 +61,9 @@ const csvSplit = (line) => {
   outF.push(cur);
   return outF;
 };
+// the serving rulings record, for the profiles it retires
+const RULINGS_PATH = new URL("../data/serving-rulings-v1.json", import.meta.url);
+const retiredProfiles = () => { try { return JSON.parse(readFileSync(RULINGS_PATH, "utf8")).retired_rights_profiles || []; } catch { return []; } };
 const readCsv = (path) => {
   const lines = readFileSync(path, "utf8").trim().split("\n");
   const col = csvSplit(lines[0]);
@@ -99,6 +102,14 @@ if (arg("binding")) {
       `the canonical rights resolution holds ${WORK} fail-closed: rights_state=${b.rights_state}`);
   const p = readCsv(profsPath).find((r) => r.rights_profile_id === b.rights_profile_id);
   if (!p) die("RIGHTS_PROFILE_MISSING", b.rights_profile_id);
+  // THE RIGHTS ARE THE SOURCE'S OWN ATTESTATION (owner, 2026-09-03). A profile
+  // the catalog reasons its way to, such as public domain proved from a
+  // publication year, is a decision of ours and not the provider's word; the
+  // serving rulings record lists such profiles as retired, and a binding under
+  // one is a hold until the source attests. Read from the record, never typed.
+  const retired = retiredProfiles().find((r) => r.rights_profile_id === b.rights_profile_id);
+  if (retired) die("RIGHTS_PROFILE_RETIRED",
+    `${WORK}: profile ${retired.rights_profile_id} (${retired.normalized_license_id}) is retired under ${retired.ruling}: ${retired.why}; the work holds until its source attests its rights`);
   // A display conditioned on attribution is dischargeable only with the
   // attribution in hand. This machine holds no attribution string for any
   // work — the licensor identity lives in the N ledger, corpus-side — so a

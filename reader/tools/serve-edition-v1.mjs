@@ -122,6 +122,10 @@ if (cls === "PUBLIC-DOMAIN") cls = "PUBLIC_DOMAIN";
 const profile = profiles.find((p) => p.normalized_license_class === cls && p.license_version === version)
   || profiles.find((p) => p.normalized_license_class === cls && p.license_version === "UNSPECIFIED");
 if (!profile) die("RIGHTS_FAMILY_NOT_IN_CATALOG", `${EDITION}: family ${JSON.stringify(family)} (class ${cls}, version ${version}) has no profile in ${PROFILES}; fail-closed, nothing serves`);
+// THE RIGHTS ARE THE SOURCE'S OWN ATTESTATION (owner, 2026-09-03): a profile the
+// serving rulings record lists as retired is a hold, read from the record.
+const retiredProfile = (() => { try { return (JSON.parse(readFileSync(new URL("../data/serving-rulings-v1.json", import.meta.url), "utf8")).retired_rights_profiles || []).find((r) => r.rights_profile_id === profile.rights_profile_id); } catch { return null; } })();
+if (retiredProfile) die("RIGHTS_PROFILE_RETIRED", `${EDITION}: profile ${retiredProfile.rights_profile_id} is retired under ${retiredProfile.ruling}: ${retiredProfile.why}`);
 if (profile.reader_display_state === "HOLD" || profile.rights_state !== "RESOLVED") die("RIGHTS_HOLD_UNRESOLVED", `${EDITION}: profile ${profile.rights_profile_id} holds (${profile.reader_display_state}, ${profile.rights_state})`);
 // a display conditioned on attribution needs the credit in hand; the door
 // names a licensor, and "(registry-mapped)" is a pointer at a registry, not

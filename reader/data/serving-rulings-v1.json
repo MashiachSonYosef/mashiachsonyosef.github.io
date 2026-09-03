@@ -32,7 +32,10 @@
       "id": "presentation-classes",
       "whose": "owner, 2026-09-02",
       "plainly": "The presentation is set by the C0's own language. Hebrew or Aramaic: the full apparatus (cards, keys, lattices, divisions, readings). Any other language: the work presents without the apparatus, a licensed book on a shelf, readable and not interactive. Mixed works: Hebrew spans get the apparatus, foreign spans sit plain at their place.",
-      "classes": { "HUD_FULL": "Hebrew or Aramaic C0", "PLAIN_TEXT": "any other-language C0" },
+      "classes": {
+        "HUD_FULL": "Hebrew or Aramaic C0",
+        "PLAIN_TEXT": "any other-language C0"
+      },
       "site_reads_it_as": "a zone declares its presentation class from its text's language; the page draws cards only under HUD_FULL"
     },
     {
@@ -45,7 +48,11 @@
       "id": "nd-display-verbatim-only",
       "whose": "owner, 2026-09-02",
       "plainly": "Be careful with CC-ND: no exporting it. An ND edition displays verbatim and never exports as an adaptation: no tokenized stream in shipped cargo, no derived artifact distributed.",
-      "export_classes": { "EXPORTABLE": "keys, splits and derived layers may leave", "EXPORTABLE_SA": "may leave under share-alike, carrying the SA tag", "DISPLAY_VERBATIM_ONLY": "ND: the verbatim copy with attribution, and the c0-export below, nothing else" },
+      "export_classes": {
+        "EXPORTABLE": "keys, splits and derived layers may leave",
+        "EXPORTABLE_SA": "may leave under share-alike, carrying the SA tag",
+        "DISPLAY_VERBATIM_ONLY": "ND: the verbatim copy with attribution, and the c0-export below, nothing else"
+      },
       "site_reads_it_as": "the export gate reads the zone's export class; under DISPLAY_VERBATIM_ONLY the reader's export offers the verbatim text with attribution and licence notice, and no key, split, lattice or reading"
     },
     {
@@ -98,6 +105,22 @@
       "whose": "owner, 2026-09-02, stated; the corpus lane's store still seals two rows (technical frame L4 counts them as one position)",
       "plainly": "One occurrence, one C0. A ketiv-qere site is one word of the book, counted once, whose ink carries both forms in the source's order, with a Q pointer at the site. Two identifiers for one occurrence is a tokenizer's artifact, not a model of the text.",
       "site_reads_it_as": "the zone holds a kq site as one word at one position under kq-rule-v1-both-halves-as-written; where the store still seals two rows the builder pairs them and says so"
+    },
+    {
+      "id": "a-rights-profile-is-the-sources-own-attestation",
+      "whose": "owner, 2026-09-03, stated: \"the point isnt to be right, the point is to 1. be honest, 2. not add personality/decisions\" and \"honest means adhering to THEIR license or attestation\"; asked whether public domain by source year counts as their attestation: \"we should retire it. technically books can be rearranged and count as new\"",
+      "plainly": "The rights the site acts on are the source's own attestation of its rights, carried verbatim. A right the site reasons its way to, such as public domain inferred from a publication year, is the site's decision and not the source's word, and a decision is the one thing the site does not add. A profile built on such reasoning is retired: a binding under it is a hold until the source attests, and nothing serves on it.",
+      "site_reads_it_as": "the serve tools refuse a binding whose profile is listed under retired_rights_profiles below (RIGHTS_PROFILE_RETIRED); the fleet holds those works at the rights stage; no zone on the shelf may be bound under a retired profile; the corpus lane is asked to retire the profile in N and to re-resolve each work from what its provider actually attests"
+    }
+  ],
+  "retired_rights_profiles": [
+    {
+      "rights_profile_id": "RIGHTS-0AF532159E1509348E8FF060",
+      "normalized_license_id": "LIC-PUBLIC-DOMAIN-SOURCE-YEAR",
+      "license_version": "SOURCE_YEAR_PROOF",
+      "retired_on": "2026-09-03",
+      "ruling": "a-rights-profile-is-the-sources-own-attestation",
+      "why": "public domain proved from a source publication year is the site's inference, not the provider's attestation; an edition can be rearranged and count as new, so the year of a print proves nothing about the text in hand"
     }
   ]
 }
