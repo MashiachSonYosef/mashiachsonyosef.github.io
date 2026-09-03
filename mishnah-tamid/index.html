@@ -24,7 +24,7 @@
   window.__face = { set(v) { held = v; try { localStorage.setItem("scheme", v); } catch { /* still reads */ } apply(); } };
 })();
 </script>
-<link rel="stylesheet" href="/reader/engine-4036dd2c2632.css">
+<link rel="stylesheet" href="/reader/engine-e273cb1a1f1c.css">
 </head>
 <body>
 <header class="top">
@@ -47,6 +47,13 @@
        the hold ledgers; nothing here is typed into this file, and nothing
        here is an alarm — a slot is named quietly and fills when its record
        lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
   <p id="basisLine" hidden></p>
   <p id="holdsLine" hidden></p>
   <p id="rightsLine" hidden></p>
@@ -60,6 +67,11 @@
     <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
     <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
     <button type="button" class="mode-btn" id="layerC" hidden></button>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
   </div>
 </header>
 <div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
@@ -72,6 +84,6 @@
 <main id="text"></main>
 <div id="hud" hidden></div>
 <footer id="prov"></footer>
-<script src="/reader/engine-faec6ae8dd19.js"></script>
+<script src="/reader/engine-3d9d4e617632.js"></script>
 </body>
 </html>
