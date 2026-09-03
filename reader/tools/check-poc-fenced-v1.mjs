@@ -27,6 +27,19 @@
 //       it.
 //   L5  the fence holds nowhere else. No other served page prints a string
 //       that appears only in this record.
+//   L6  a demonstration whose Hebrew is CARRIED from a record (the record
+//       says so, names the ledger and two 64-hex hashes, and lists its
+//       strings apart) wears the credit its source requires, verbatim, and
+//       is the only place on the page a licence may be named; every other
+//       demonstration is typed and wears none.
+//
+// The carried exception, 2026-09-03. The owner asked for the maqaf
+// demonstration cut from a real verse of Ruth. Its Hebrew comes from the
+// corpus lane's candidate split stream, countersigned by this lane, so a
+// record does stand behind it, and the licence of that record must be shown.
+// L4 keeps its rule for typed strings; L6 holds the carried one to the
+// opposite duty. L5 checks the typed list only: a carried string is corpus
+// text and may lawfully appear wherever its work is served.
 //
 // L5 constrains what a demonstration may typeset, and that is deliberate. This
 // check cannot tell a leak from a coincidence: a served page carrying a string
@@ -62,14 +75,22 @@ const body = html.slice(html.indexOf("<body"));
 // L1 — the record admits what it is
 check("L1  the record says in its own words that it is hand-typed",
   /typed by hand/i.test(String(rec.WHAT_THIS_IS || "")) && Array.isArray(rec.every_hebrew_string_in_this_record),
-  `${(rec.demonstrations || []).length} demonstrations · ${(rec.every_hebrew_string_in_this_record || []).length} strings declared`);
+  `${(rec.demonstrations || []).length} demonstrations · ${(rec.every_hebrew_string_in_this_record || []).length} typed strings declared` + ((rec.every_hebrew_string_carried_from_a_record || []).length ? ` · ${(rec.every_hebrew_string_carried_from_a_record || []).length} carried strings listed apart` : ""));
 
 // L2 — every glyph on the page is a declared one.
 // Hebrew runs are pulled out of the rendered body and matched against the
 // declared list. A run is a maximal stretch of Hebrew-block characters plus
 // the spaces and braces that belong inside a declared string.
 const HEB = /[֐-׿יִ-ﭏ]/;
-const declared = new Set(rec.every_hebrew_string_in_this_record || []);
+const typed = new Set(rec.every_hebrew_string_in_this_record || []);
+const carriedStrings = new Set(rec.every_hebrew_string_carried_from_a_record || []);
+const declared = new Set([...typed, ...carriedStrings]);
+// the carried demonstrations, as the record and the page each name them
+const carriedDemos = (rec.demonstrations || []).filter((d) => d && d.carried_from);
+const articles = [...body.matchAll(/<article class="pc" data-id="([^"]*)"([^>]*)>([\s\S]*?)<\/article>/g)]
+  .map((m) => ({ id: m[1], carried: /data-carried="1"/.test(m[2]), html: m[3] }));
+const typedBody = articles.filter((a) => !a.carried).map((a) => a.html).join("\n")
+  + body.replace(/<article class="pc"[\s\S]*?<\/article>/g, "");
 // what a declared string can be found as, after HTML escaping strips nothing
 // but the tags around it
 // EVERY HEBREW CHARACTER THE PAGE PRINTS COMES FROM A DECLARED STRING.
@@ -118,11 +139,33 @@ check("L3  the page says what it is before it says anything else",
   /came from a book|typed by hand|not corpus text/i.test(firstProse),
   /came from a book/i.test(firstProse) ? "\"Nothing on this page came from a book.\"" : firstProse.slice(0, 70));
 
-// L4 — no licence chip anywhere on it
-const chip = /class="[^"]*\bchip\b[^"]*"/.test(body) || /CC BY|Public Domain|CC0/i.test(body.replace(/<[^>]+>/g, " "));
-check("L4  no demonstration wears a licence",
+// L4 — no licence chip on any typed demonstration, nor anywhere outside the articles
+const chip = /class="[^"]*\bchip\b[^"]*"/.test(body) || /CC[ -]BY|Public Domain|CC0/i.test(typedBody.replace(/<[^>]+>/g, " "));
+check("L4  no typed demonstration wears a licence",
   chip === false,
-  chip ? "a licence appears on a typed string — the one lie this site cannot afford" : "nothing here claims a record behind it");
+  chip ? "a licence appears on a typed string — the one lie this site cannot afford" : `${articles.filter((a) => !a.carried).length} typed demonstrations claim no record behind them`);
+
+// L6 — the carried demonstration wears its credit, and is the only one that may
+const HEX64 = /^[0-9a-f]{64}$/;
+const why6 = [];
+for (const d of carriedDemos) {
+  const cf = d.carried_from, a = articles.find((x) => x.id === d.id);
+  if (!a) { why6.push(`${d.id}: no article on the page`); continue; }
+  if (!a.carried) why6.push(`${d.id}: the record says carried, the article does not`);
+  if (!(cf.ledger && cf.credit && cf.credit.line && cf.credit.licence)) why6.push(`${d.id}: the record names no ledger or no credit`);
+  if (!(HEX64.test(String(cf.surface_sha256)) && HEX64.test(String(cf.normalized_sha256)))) why6.push(`${d.id}: the stream is not named by two 64-hex hashes`);
+  const flatA = a.html.replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ");
+  if (cf.credit && cf.credit.line && !flatA.includes(String(cf.credit.line).replace(/\s+/g, " "))) why6.push(`${d.id}: the credit line is not printed verbatim`);
+  if (cf.ledger && !flatA.includes(cf.ledger)) why6.push(`${d.id}: the ledger is not named on the page`);
+  // every Hebrew token on the carried article is inside a carried string
+  const hebrewOfIt = flatA.split(/\s+/).filter((t) => /[\u0590-\u05ff\ufb1d-\ufb4f]/.test(t));
+  const stray = hebrewOfIt.filter((h) => ![...carriedStrings].some((c) => c.includes(h)));
+  if (stray.length) why6.push(`${d.id}: Hebrew on it outside the carried list — ${stray.slice(0, 2).join(" · ")}`);
+}
+for (const a of articles.filter((x) => x.carried)) if (!carriedDemos.some((d) => d.id === a.id)) why6.push(`${a.id}: the article says carried, the record does not`);
+check("L6  a carried demonstration wears its source's credit verbatim, and only it may",
+  why6.length === 0,
+  why6.length ? why6.slice(0, 3).join(" · ") : (carriedDemos.length ? `${carriedDemos.map((d) => `${d.id} from ${d.carried_from.ledger}`).join(", ")}` : "none carried; every demonstration is typed"));
 
 // L5 — and the fence holds nowhere else
 const others = [];
@@ -131,10 +174,10 @@ if (existsSync(OUT)) for (const d of readdirSync(OUT, { withFileTypes: true })) 
   const f = join(OUT, d.name, "index.html");
   if (!existsSync(f)) continue;
   const t = readFileSync(f, "utf8");
-  for (const s of declared) if (s.length > 3 && t.includes(s)) { others.push(`${d.name} prints ${JSON.stringify(s)}`); break; }
+  for (const s of typed) if (s.length > 3 && t.includes(s)) { others.push(`${d.name} prints ${JSON.stringify(s)}`); break; }
   if (others.length > 4) break;
 }
-check("L5  no other page prints a string that exists only in this record",
+check("L5  no other page prints a typed string that exists only in this record",
   others.length === 0,
   others.length ? others.slice(0, 3).join(" · ") : "the suspension reaches one page and no further");
 

@@ -193,6 +193,7 @@
      once. hidden has to win where it is set. */
   .pc-hudwrap .pc-divcells[hidden], .pc-hudwrap .pc-hudpane[hidden] { display: none; }
   .pc-hudwrap .pc-divcells { margin: .3rem 0 0; display: flex; gap: .4rem; align-items: baseline; flex-wrap: wrap; }
+  .pc-hudwrap .s-pills[dir="rtl"], .pc-hudwrap .pc-divcells[dir="rtl"], #poc .pc-cells[dir="rtl"], #poc .pc-other[dir="rtl"] { direction: rtl; }
   .pc-hudwrap .pc-div { font: inherit; font-size: .82rem; }
   /* THE READER'S OWN CARD STYLES, lifted from zone.html verbatim so the
      demonstration wears the card rather than a drawing of it. The one rule
@@ -487,6 +488,13 @@
   .pc-hudwrap .pc-noprov { font-style: italic; color: var(--faint); font-size: .68rem; }
   #poc .pc-open { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
   #poc .pc-open:hover { color: var(--gold); }
+  #poc .pc-sitewords { border-bottom: 0; padding-bottom: 0; }
+  #poc .pc-word { border-bottom: 2px solid var(--gold-dim); padding-bottom: .1rem; }
+  #poc .pc-word + .pc-word { border-inline-start: 1px solid var(--gold); }
+  #poc .pc-word:hover { border-bottom-color: var(--gold); }
+  #poc .pc-carried { margin: .15rem 0; font-size: .72rem; color: var(--muted); line-height: 1.5; overflow-wrap: anywhere; }
+  #poc .pc-credit { color: var(--faint); }
+  #poc .pc-credit a { color: var(--link); }
   #poc .pc-dm { align-items: baseline; }
   #poc .pc-m { font-size: .64rem; border: 1px solid var(--chip-line); border-radius: .5rem;
     padding: .02rem .35rem; color: var(--muted); }
@@ -761,7 +769,7 @@
   <p class="face-line">3,441 books readable today · 606 more stand listed, each saying on its own card what it awaits</p>
 
 
-  <p class="poc-link"><a href="/demonstrations/">what each part of the frame looks like when it works</a> — hand-drawn mockups, not text from any book</p>
+  <p class="poc-link"><a href="/demonstrations/">what each part of the frame looks like when it works</a> — hand-drawn mockups, not text from any book, but for one verse of Ruth cut from the corpus lane's record</p>
   <form id="find" role="search" onsubmit="return go(event)">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
       placeholder="find a book"
