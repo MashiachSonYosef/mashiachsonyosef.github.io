@@ -185,10 +185,22 @@ for (const f of bins) {
     if (!(Array.isArray(bo.shards_read) && bo.shards_read.length && bo.shards_read.every((s) => s.file && isHex(s.sha256)))) missing.push("serve: body_oracle.shards_read[].sha256");
   } else if (so) {
     if (!isHex(so.pointer_sha256)) missing.push("serve: sealed_oracle.pointer_sha256");
+  } else if (walk.stream_oracle) {
+    // the stream route (2026-09-03): the reseal receipt's surface hash,
+    // reproduced by the serve, or the July manifest for an unsplit work
+    const st = walk.stream_oracle;
+    if (st.kind === "SUCCESSOR_STREAM") {
+      if (!isHex(st.surface_sha256) || st.surface_sha256_reproduced !== true) missing.push("serve: stream_oracle.surface_sha256 reproduced");
+      if (!isHex(st.stream_gz_sha256)) missing.push("serve: stream_oracle.stream_gz_sha256");
+    } else if (st.kind === "VERIFIED_BODY_UNCHANGED") {
+      if (!isHex(st.manifest_sha256)) missing.push("serve: stream_oracle.manifest_sha256");
+      if (!(Array.isArray(st.shards_read) && st.shards_read.length && st.shards_read.every((x) => x.file && isHex(x.sha256)))) missing.push("serve: stream_oracle.shards_read");
+    } else missing.push(`serve: stream_oracle of unknown kind ${st.kind}`);
+    if (!(walk.identity && walk.identity.predecessor_bridge && isHex(walk.identity.predecessor_bridge.bridge_sha256))) missing.push("serve: identity.predecessor_bridge.bridge_sha256");
   } else if (walk.edition) {
     // the edition route (2026-09-02): the receipt's surface hash is the oracle
     if (!isHex(walk.edition.surface_sha256) || !isHex(walk.edition.normalized_sha256)) missing.push("serve: edition.surface_sha256 / normalized_sha256");
-  } else missing.push("serve: no oracle (body_oracle, sealed_oracle or edition)");
+  } else missing.push("serve: no oracle (body_oracle, sealed_oracle, stream_oracle or edition)");
   if (!(io.bridge && isHex(io.bridge_sha256))) missing.push("bridge: identity_oracle.bridge_sha256");
   if (!(Array.isArray(gl.store_inputs) && gl.store_inputs.length && gl.store_inputs.every((i) => i.file && isHex(i.sha256)))) missing.push("store: gloss_layer.store_inputs[].sha256");
   if (!isHex(gl.gloss_table_sha256)) missing.push("store: gloss_layer.gloss_table_sha256");

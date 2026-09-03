@@ -33,7 +33,7 @@ import { gzipSync } from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
 import { glossMFor, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
-import { K_RULE_ID, K_RULE_TEXT, exactK } from "./k-normalization-v1.mjs";
+import { K_RULE_ID, K_RULE_TEXT, exactK } from "./k-normalization-v2.mjs";
 import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import {
   readServe, readBridge, parseWorkCoordinates, wordsOf, regionsOf, licensePosture, require_, sha256File,
@@ -378,7 +378,12 @@ const coverTotal = span ? [...span.spans.values()].reduce((n, sp) => n + 2 ** (s
 // Ruth serving with the display condition undischarged on the page
 // (2026-09-02), which the licence does not allow.
 const credit = serve.provenance.credit || (serve.provenance.rights && serve.provenance.rights.credit) || null;
-const baseByline = serve.provenance.body_oracle
+const so = serve.provenance.stream_oracle || null;
+const baseByline = so
+  ? (so.kind === "SUCCESSOR_STREAM"
+      ? `served from the corpus lane's successor stream under bridge-v2, its surface hash reproduced against the reseal receipt; every maqaf compound is its words; rights per the canonical rights resolution, riding on every occurrence`
+      : `served from the verified rebuilt body under bridge-v2, every shard re-hashed against the July manifest; rights per the canonical rights resolution, riding on every occurrence`)
+  : serve.provenance.body_oracle
   ? `served from the verified rebuilt body, every shard re-hashed against the July manifest; rights per the canonical rights resolution, riding on every occurrence`
   : serve.provenance.edition
     ? `an edition served from the edition door's built stream ${serve.provenance.edition.edition_o_id}; its rights are the door's own row, riding on every occurrence`
@@ -416,7 +421,18 @@ const zone = {
       // door's built stream (tokens + unit map + receipt). Its oracle is the
       // receipt's own surface hash; its identity is the edition's position
       // space, carried in an edition bridge of the bridge's own layout.
-      note: serve.provenance.sealed_oracle
+      // A fourth route since 2026-09-03: the corpus lane's successor stream
+      // under bridge-v2 (the maqaf split promoted on the website lane's
+      // countersign). Its oracle is the reseal receipt's surface hash,
+      // reproduced by the serve; a work the reseal skipped rides the July
+      // body unchanged, re-identified by bridge-v2, and cites the manifest.
+      note: so
+        ? (so.kind === "SUCCESSOR_STREAM"
+            ? `served from the corpus lane's successor stream ${so.stream} under bridge-v2: ${Number(so.rows_after).toLocaleString()} rows (${Number(so.rows_before).toLocaleString()} before the split, ${Number(so.maqaf_sites_split).toLocaleString()} maqaf sites split), surface hash reproduced against ${so.receipt}` +
+              (serve.held ? `; ${serve.held} rows held by their own rights record` : "")
+            : `served from the rebuilt canonical body under bridge-v2, ${so.shards_verified}; the reseal skipped this work for carrying no maqaf and the bridge carries every unit at its row count` +
+              (serve.held ? `; ${serve.held} rows held by their own rights record` : ""))
+        : serve.provenance.sealed_oracle
         ? `served by the website-lane resident reader over the sealed artifacts (verify-once); ` +
           `${serve.provenance.sealed_oracle.report.field_exact}/${serve.provenance.sealed_oracle.report.sampled} sampled ids field-exact against the sealed CLI oracle` +
           (serve.held ? `; ${serve.held} rows the chain marks SCRIPT-UNRESOLVED render held (dimmed) exactly as the chain rules them` : "")
@@ -425,12 +441,18 @@ const zone = {
             (serve.held ? `; ${serve.held} rows held by their own rights record` : "")
           : `served from the rebuilt canonical body, ${serve.provenance.body_oracle.shards_verified}` +
             (serve.held ? `; ${serve.held} rows held by their own rights record` : ""),
-      module: serve.provenance.sealed_oracle
+      module: so
+        ? { path: "tools/serve-from-stream-v2.mjs over the successor stream or the verified body, under bridge-v2", sha256: sha256File(fileURLToPath(new URL("./serve-from-stream-v2.mjs", import.meta.url))) }
+        : serve.provenance.sealed_oracle
         ? { path: "tools/mishkan-serve-v1.mjs over sealed codec + indexes", sha256: sha256File(fileURLToPath(new URL("./mishkan-serve-v1.mjs", import.meta.url))) }
         : serve.provenance.edition
           ? { path: "tools/serve-edition-v1.mjs over the edition door's built stream", sha256: (() => { try { return sha256File(fileURLToPath(new URL("./serve-edition-v1.mjs", import.meta.url))); } catch { return null; } })() }
           : { path: "tools/serve-from-body-v1.mjs over the verified body", sha256: sha256File(fileURLToPath(new URL("./serve-from-body-v1.mjs", import.meta.url))) },
-      pointer: serve.provenance.sealed_oracle
+      pointer: so
+        ? (so.kind === "SUCCESSOR_STREAM"
+            ? { path: `the reseal receipt ${so.receipt}: surface token stream sha256, reproduced by the serve`, sha256: so.surface_sha256 }
+            : { path: "July store manifest, every shard re-hashed against it", sha256: so.manifest_sha256 })
+        : serve.provenance.sealed_oracle
         ? { path: "gen-8 pointer copy", sha256: serve.provenance.sealed_oracle.pointer_sha256 }
         : serve.provenance.edition
           ? { path: "the edition's receipt: surface token stream sha256", sha256: serve.provenance.edition.surface_sha256 }

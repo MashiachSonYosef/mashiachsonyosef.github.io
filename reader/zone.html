@@ -2545,6 +2545,18 @@
     // record's to say, not this page's to guess. Two such sites stood in the
     // live zones as typography to guess at; under the variant-site rule they
     // are carried as records the reader opens, and this is where they open.
+    // RULE 2 (owner, 2026-09-02): a maqaf compound is one C0 per word, each
+    // its own card, and the joiner rides as ink on the word before. The card
+    // says so in plain English, in one line, on both words of the pair; it
+    // groups nothing over them, because the count says two.
+    const mq = word.presentation_join && String(word.presentation_join.why || "").startsWith("maqaf-rule-v2");
+    if (mq || word.after_maqaf) {
+      const mqLine = document.createElement("p"); mqLine.className = "kq-role";
+      mqLine.textContent = mq
+        ? "joined by a maqaf to the next word \u2014 one breath, two words, two cards"
+        : "joined by a maqaf to the word before \u2014 one breath, two words, two cards";
+      head.append(mqLine);
+    }
     if (word.vs && word.vs.said) {
       const vsLine = document.createElement("p"); vsLine.className = "kq-role";
       vsLine.textContent = `variant site — ${word.vs.said}`;

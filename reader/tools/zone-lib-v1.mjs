@@ -10,7 +10,7 @@ import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { createInterface } from "node:readline";
 import { createReadStream } from "node:fs";
-import { exactK } from "./k-normalization-v1.mjs";
+import { exactK, joinsNext, joinsPrev } from "./k-normalization-v2.mjs";
 
 export const sha256File = (p) => createHash("sha256").update(readFileSync(p)).digest("hex");
 
@@ -340,9 +340,34 @@ export const kqPairAt = (rows, i) => {
   return null;
 };
 
+// A ketiv-qere site the corpus lane's kq reseal sealed as ONE row, in the
+// form "(ketiv) [qere]" (12 Tanakh works, consumed into their maqaf streams):
+// one word of the book, both halves as written, the site pointed at. Both
+// halves are keyed here by the site's own rule; the stream's key column is
+// the corpus lane's and is not read.
+const KQ_ONE_ROW = /^\(([^()\[\]\s]+)\) \[([^()\[\]\s]+)\]$/u;
+export const kqOneRow = (r) => {
+  if (!r || !r.visible_in_hebrew_reader) return null;
+  const m = String(r.exact_surface_form || "").match(KQ_ONE_ROW);
+  if (!m) return null;
+  if (!KQ_VOWEL.test(m[2])) return null;   // a qere is vocalized; a bare bracket is an editorial mark
+  return { k: m[1], q: m[2] };
+};
+
 export const wordsOf = (rows) => {
   const out = [];
   for (let i = 0; i < rows.length; i += 1) {
+    const one = kqOneRow(rows[i]);
+    if (one) {
+      const ks = `(${one.k})`, qs = `[${one.q}]`;
+      out.push({
+        s: rows[i].exact_surface_form,
+        w: [{ s: ks, k: exactK(one.k), role: "KETIV" }, { s: qs, k: exactK(one.q), role: "QERE" }],
+        kq: { k: one.k, q: one.q, order: "KETIV_THEN_QERE", rows: 1, convention: "ONE_ROW_PARENS_KETIV_BRACKETS_QERE" },
+        ...(joinsNext(one.q) ? { presentation_join: MAQAF_JOIN } : {}),
+      });
+      continue;
+    }
     const convention = kqPairAt(rows, i);
     if (convention) {
       const ks = rows[i].exact_surface_form, qs = rows[i + 1].exact_surface_form;
@@ -357,13 +382,35 @@ export const wordsOf = (rows) => {
     }
     out.push(wordOf(rows[i]));
   }
+  // the word after a maqaf-joined word knows it, so its own card can say so
+  for (let i = 1; i < out.length; i += 1) {
+    const prev = out[i - 1].presentation_join;
+    if (!(prev && prev.why && prev.why.startsWith("maqaf-rule-v2"))) continue;
+    out[i].after_maqaf = true;
+    // the reader groups a joined run in one wrapper: the word after a joiner
+    // says it joins the previous, the maqaf word already says it joins the
+    // next, and a middle word of a chain says both
+    out[i].presentation_join = { ...(out[i].presentation_join || {}), join_previous_without_separator: true, why: (out[i].presentation_join || {}).why || MAQAF_JOIN.why };
+  }
   return out;
 };
 
+// RULE 2 (owner, 2026-09-02): a maqaf compound is one C0 per word. The corpus
+// lane's reseal wrote each word as its own row with the joiner riding on the
+// word before; the site prints the two adjacent, no separator, because the
+// ink is continuous, and gives each its own card. The join is a presentation
+// fact carried on the word, in the shape the reader already draws.
+const MAQAF_JOIN = Object.freeze({
+  join_next_without_separator: true,
+  separator_between_group_records: "",
+  why: "maqaf-rule-v2-one-c0-per-word: the joiner rides on this word and the next word follows it without a space, as the ink is written",
+});
 const wordOf = (r) => {
     const surface = r.exact_surface_form;
     const w = { s: surface };
     if (!r.visible_in_hebrew_reader) { w.held = true; return w; }
+    if (joinsNext(surface)) w.presentation_join = MAQAF_JOIN;
+    if (joinsPrev(surface)) w.edge_maqaf = "LEADING";
     const k = exactK(surface);
     if (!k) return w;
     if (!k.includes(MAQAF)) { w.k = k; return w; }

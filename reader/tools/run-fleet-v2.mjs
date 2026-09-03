@@ -45,6 +45,18 @@ const BODY = arg("body") || (() => { throw new Error("MISSING_ARG --body"); })()
 const BRIDGE = arg("bridge") || (() => { throw new Error("MISSING_ARG --bridge"); })();
 const BINDING = arg("binding", null);
 const SPANS = arg("spans", null);
+// --streams <dir> --predecessor-bridge <csv.gz>: the bridge-v2 posture
+// (2026-09-03). --bridge is then bridge-v2, the identity every zone carries;
+// the text comes from the corpus lane's successor stream where the reseal
+// wrote one and from the July body unchanged where it did not, through
+// tools/serve-from-stream-v2.mjs; the predecessor bridge names the July
+// body's ranges for the text stage and the binding's scope.
+const STREAMS = arg("streams", null);
+const PRED_BRIDGE = arg("predecessor-bridge", null);
+if (STREAMS && !PRED_BRIDGE) throw new Error("MISSING_ARG --predecessor-bridge (required with --streams)");
+if (STREAMS && !existsSync(join(STREAMS, "stream-index.json"))) throw new Error(`STREAMS_INDEX_MISSING ${STREAMS}/stream-index.json`);
+const streamIndex = STREAMS ? JSON.parse(readFileSync(join(STREAMS, "stream-index.json"), "utf8")) : {};
+const streamFor = (work) => { const stem = `${work.replace(/\//gu, "-")}-maqaf-split-v1`; const base = join(STREAMS, streamIndex[stem] || stem); return existsSync(`${base}.tokens.csv.gz`) && existsSync(`${base}.json`) ? base : null; };
 
 // ---- every work, from the bridge and nowhere else -------------------------
 const bridgeText = gunzipSync(readFileSync(BRIDGE)).toString("utf8");
@@ -81,6 +93,21 @@ if (ONLY) {
   const missing = [...ONLY].filter((w) => !works.has(w));
   if (missing.length) console.error(`--only names ${missing.length} work(s) the bridge does not carry: ${missing.slice(0, 5).join(", ")}`);
   console.error(`--only: ${works.size} work(s) re-judged; the rest keep their ledger rows`);
+}
+
+// under the v2 posture the July body is asked only for works the reseal
+// skipped, and at their predecessor ranges
+const predRange = new Map();
+if (PRED_BRIDGE) {
+  const t = gunzipSync(readFileSync(PRED_BRIDGE)).toString("utf8").split("\n");
+  const pc = Object.fromEntries(t[0].split(",").map((h, i) => [h.trim(), i]));
+  for (let i = 1; i < t.length; i += 1) {
+    if (!t[i]) continue;
+    const f = t[i].split(",");
+    const w = f[pc.work_id]; const e = predRange.get(w) || { min: Infinity, max: -Infinity };
+    e.min = Math.min(e.min, Number(f[pc.min_c0_numeric_id])); e.max = Math.max(e.max, Number(f[pc.max_c0_numeric_id]));
+    predRange.set(w, e);
+  }
 }
 
 // ---- what the body covers, from its manifest ------------------------------
@@ -165,7 +192,15 @@ const runWork = async (work, e) => {
     mark(work, e, "SERVING", "ZONE", `serving as ${serving.get(work)}; the standing zone is this pipeline's sealed output and faces the full suite on every deploy`);
     return;
   }
-  if (!covered(e.min, e.max)) { mark(work, e, "HOLD", "TEXT", "the verified body does not cover this work's c0 range"); return; }
+  if (STREAMS) {
+    // text stage under bridge-v2: a successor stream in custody is the text;
+    // without one the July body must cover the predecessor range
+    if (!streamFor(work)) {
+      const pr = predRange.get(work);
+      if (!pr) { mark(work, e, "HOLD", "TEXT", "no successor stream and the predecessor bridge does not carry the work"); return; }
+      if (!covered(pr.min, pr.max)) { mark(work, e, "HOLD", "TEXT", "no successor stream, and the verified body does not cover this work's predecessor c0 range"); return; }
+    }
+  } else if (!covered(e.min, e.max)) { mark(work, e, "HOLD", "TEXT", "the verified body does not cover this work's c0 range"); return; }
   if (!BINDING) { mark(work, e, "HOLD", "RIGHTS", RIGHTS_REASON); return; }
   if (!has("build-zones")) { mark(work, e, "READY_TO_BUILD", "RIGHTS", null); return; }
   // The address is the work id's last segment — the published rule since the
@@ -179,8 +214,11 @@ const runWork = async (work, e) => {
   const slug = (LAST_SEG_COUNT.get(last) > 1) ? segs.slice(1).join("-") : last;
   const serveOut = join(K3, "build", "fleet", `${slug}.ndjson`);
   try {
-    await run("node", [join(HERE, "serve-from-body-v1.mjs"), "--work", work, "--body", BODY,
-      "--bridge", BRIDGE, "--binding", BINDING, "--out", serveOut]);
+    await run("node", STREAMS
+      ? [join(HERE, "serve-from-stream-v2.mjs"), "--work", work, "--bridge-v2", BRIDGE, "--bridge", PRED_BRIDGE,
+        "--streams", STREAMS, "--body", BODY, "--binding", BINDING, "--out", serveOut]
+      : [join(HERE, "serve-from-body-v1.mjs"), "--work", work, "--body", BODY,
+        "--bridge", BRIDGE, "--binding", BINDING, "--out", serveOut]);
   } catch (err) {
     const reason = firstLine(err);
     // a refusal the rights record made is the RIGHTS stage speaking, even
@@ -250,6 +288,7 @@ const out = {
     bridge_sha256: createHash("sha256").update(readFileSync(BRIDGE)).digest("hex"),
     body_manifest_sha256: createHash("sha256").update(readFileSync(join(BODY, "c0-active-rebuild-partial-manifest.csv"))).digest("hex"),
     binding: BINDING ? "in custody" : "not in custody",
+    ...(STREAMS ? { posture: "BRIDGE_V2_SUCCESSOR_STREAMS", predecessor_bridge_sha256: createHash("sha256").update(readFileSync(PRED_BRIDGE)).digest("hex"), streams: STREAMS } : {}),
   },
   works: merged ? ledger.length : works.size,
   partial_run: merged,
