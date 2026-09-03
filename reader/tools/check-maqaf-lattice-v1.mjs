@@ -17,7 +17,8 @@
 //
 // Laws, each one refusable on its own:
 //
-//   L1  key normalization retains U+05BE in its original positions
+//   L1  key normalization retains U+05BE in its original positions inside a
+//       compound, and a boundary joiner (rule 2) is not in the key
 //   L2  the atoms joined by U+05BE reconstitute the occurrence surface exactly
 //   L3  an interval spanning r atoms carries exactly r-1 U+05BE, surface and key
 //   L4  the W set is exactly the lattice: every contiguous interval, once each
@@ -136,7 +137,13 @@ for (const w of words) {
     }
   }
 
-  if (!surface.includes(MAQAF)) {
+  // RULE 2 (owner, 2026-09-02; the split promoted 2026-09-03): a compound the
+  // reseal split is one word per row, the joiner riding as ink at the row's
+  // boundary. Such a word is a plain word with a plain key here; the lattice
+  // laws below hold only a compound still sealed in one row (an unsplit
+  // edge work). check-maqaf-pair-drawn-v1 holds the split pairs on the page.
+  const innerMaqaf = surface.replace(/^[\u0591-\u05c7]*\u05be+|\u05be+[\u0591-\u05c7]*$/gu, "").includes(MAQAF);
+  if (!innerMaqaf) {
     plainW += regions ? regions.length : (w.k ? 1 : 0);
     // ---- L1 : a plain key keeps whatever the source wrote -------------
     if (w.k && marks(w.k) !== 0) {
@@ -261,7 +268,8 @@ if (url) {
   })));
 
   for (const d of drawn) {
-    if (!d.surface.includes("\u05be")) continue;
+    // rule 2: a joiner at the boundary is a plain word on the page too
+    if (!d.surface.replace(/^[\u0591-\u05c7]*\u05be+|\u05be+[\u0591-\u05c7]*$/gu, "").includes("\u05be")) continue;
     const n = d.surface.split("\u05be").length;
     // ---- L7 : one clickable atom per printed piece ---------------------
     if (d.atomEls !== n) {
@@ -288,6 +296,7 @@ if (url) {
   const multi = await page.$$(".wb.multi");
   for (const wb of multi) {
     const surface = (await wb.$eval(".w", (e) => e.textContent)) || "";
+    if (!surface.replace(/^[\u0591-\u05c7]*\u05be+|\u05be+[\u0591-\u05c7]*$/gu, "").includes("\u05be")) continue;
     const atoms = surface.split("\u05be");
     const pieces = await wb.$$(".wr");
     for (let i = 0; i < pieces.length && i < atoms.length; i += 1) {
