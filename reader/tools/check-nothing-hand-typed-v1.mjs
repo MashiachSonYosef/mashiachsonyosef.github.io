@@ -96,31 +96,39 @@ const glyphsInLiterals = (src, isJson) => {
 // anything left is a typed character. zone.html carries none at all: its text
 // arrives from data at runtime, and the scrub removes nothing from it.
 const SERVED = ["zone.html"];
-{
-  // Every address page the door emits, found by walking, never by naming —
-  // a stub added for a new work or a republished address joins the scan the
-  // moment it exists.
-  const dr = join(K3, "deploy-root");
-  if (existsSync(dr)) {
-    if (existsSync(join(dr, "index.html"))) SERVED.push("deploy-root/index.html");
-    for (const d of readdirSync(dr, { withFileTypes: true })) {
-      if (d.isDirectory() && existsSync(join(dr, d.name, "index.html")))
-        SERVED.push(`deploy-root/${d.name}/index.html`);
-    }
+// AN ADDRESS CAN BE NESTED, AND THE WALK HAS TO GO THERE. This walk stopped
+// one directory down, which was true of every address the door emitted while
+// every address was a work's own slug. It stopped being true the day the
+// eight rule demonstrations went to /demonstrations/<rule>/, and eight served
+// pages were scanned by nothing while this check reported a clean shelf. So
+// the walk descends: any index.html under a base, to a bounded depth, joins
+// the scan the moment it exists. The bound is not for correctness — nothing
+// the door writes goes deeper — it is so a stray checkout inside the tree
+// cannot turn this check into a filesystem crawl. What it skips it skips by
+// name, and only what is not an address: version control, dependencies, and
+// the reader's own data, build and tool directories.
+const SKIP_DIR = new Set([".git", ".github", "node_modules", "data", "build", "tools", "ledgers", "moses-ledgers"]);
+const walkAddresses = (base, prefix, depth) => {
+  if (depth < 0 || !existsSync(base)) return;
+  if (existsSync(join(base, "index.html"))) SERVED.push(`${prefix}index.html`);
+  let entries = []; try { entries = readdirSync(base, { withFileTypes: true }); } catch { return; }
+  for (const d of entries) {
+    if (!d.isDirectory() || d.name.startsWith(".") || SKIP_DIR.has(d.name)) continue;
+    walkAddresses(join(base, d.name), `${prefix}${d.name}/`, depth - 1);
   }
-}
+};
+// what the build writes here, and the publication itself: the door and every
+// address page at the repository root, present on every checkout and scanned
+// whether or not a build has run. Before this walk a fresh checkout scanned
+// exactly one file, and the pages people actually read were scanned by nothing.
+walkAddresses(join(K3, "deploy-root"), "deploy-root/", 3);
 {
-  // The publication itself: the door and every address page at the repository
-  // root — what is actually served, present on every checkout, scanned
-  // whether or not a build has run here. Before this walk, a fresh checkout
-  // scanned exactly one file, and the pages people actually read were
-  // scanned by nothing.
   const root = join(K3, "..");
+  const mine = basename(K3);
   if (existsSync(join(root, "index.html"))) SERVED.push("../index.html");
   for (const d of readdirSync(root, { withFileTypes: true })) {
-    if (d.isDirectory() && !d.name.startsWith(".") && d.name !== basename(K3)
-        && existsSync(join(root, d.name, "index.html")))
-      SERVED.push(`../${d.name}/index.html`);
+    if (!d.isDirectory() || d.name.startsWith(".") || d.name === mine || SKIP_DIR.has(d.name)) continue;
+    walkAddresses(join(root, d.name), `../${d.name}/`, 2);
   }
 }
 // The count and a few names, not the whole shelf. This line used to print
@@ -197,22 +205,20 @@ let ATLAS_NAMES = [];
     ATLAS_NAMES.sort((a, b) => b.length - a.length);
   }
 }
-// ONE PAGE IS GOVERNED BY A DIFFERENT RULE, AND THIS IS A DELEGATION, NOT AN
-// THE DEMONSTRATIONS ARE NO LONGER HAND-AUTHORED (2026-09-03). The exemption
-// this block used to record is gone with the page it covered. /demonstrations/
-// was a drawing of the reader's card with typed Hebrew in it, suspended from
-// the serve law and fenced by a list of declared strings. It is now an index
-// that prints no Hebrew at all, linking to eight pages that ARE the reader,
-// each opening a zone the ordinary builder built. So the index needs no
-// exemption from this check — it has nothing to exempt — and the passages are
-// governed where they belong, in
-// rule-demonstration-rule-v1 (check-demonstrations-v1), which holds every
-// one of them to naming what it carried and hashing what it carried it from.
+// THE DEMONSTRATIONS ARE NO LONGER EXEMPT FROM ANYTHING (2026-09-03).
+// /demonstrations/ was a drawing of the reader's card with typed Hebrew in it,
+// suspended from the serve law and fenced by a list of declared strings. It is
+// now an index that prints no Hebrew at all, linking to eight pages that ARE
+// the reader — the same generator as every work's address page, whose text
+// arrives from a zone at runtime. So they are scanned like every other served
+// page, with no exemption and nothing handed over: an exemption that is not
+// needed is a hole waiting for the day it is, and this one was already
+// covering a stale copy of the drawn page still standing at the site root.
 //
-// What is checked here is that the handover is real: the record must exist and
-// must name every page under /demonstrations/. Delete the record and those
-// pages fall straight back under this rule, which is what makes the handover
-// safe to write down.
+// One law remains here, and it is about the record rather than the pages: a
+// page under /demonstrations/<name>/ must be a rule the record names. A page
+// that answers there and is in no record is a leftover, which is exactly what
+// the deleted drawing became.
 const DEMO_DIR = "demonstrations/";
 const DEMO_RECORD = join(K3, "data", "rule-demonstrations-v1.json");
 const demoPages = new Set();
@@ -224,20 +230,18 @@ if (demoPages.size) {
     const rest = f.slice(f.indexOf(DEMO_DIR) + DEMO_DIR.length).replace(/\/?index\.html$/u, "");
     return rest !== "" && !ids.includes(rest);
   });
-  check(`  ${demoPages.size} page(s) under /demonstrations/ are governed by rule-demonstration-rule-v1 instead`,
+  check(`  every page under /demonstrations/ is a rule the record names`,
     held && unnamed.length === 0,
     !held
-      ? "the record is gone, so nothing governs them — they must be removed or the record restored"
+      ? "the record is gone, so nothing names them — they must be removed or the record restored"
       : unnamed.length
         ? `${unnamed.length} page(s) the record does not name: ${unnamed.slice(0, 3).join(", ")}`
-        : `the record names all ${ids.length} rules and check-demonstrations-v1 holds each to its source`);
+        : `${demoPages.size} pages · the record names all ${ids.length} rules, and check-demonstrations-v1 holds each to its source`);
 }
 
-
+let pagesClean = 0;
+const typedPages = [];
 for (const f of SERVED) {
-  // the demonstration pages are the reader itself, governed by
-  // rule-demonstration-rule-v1 and handed over above
-  if (demoPages.has(f)) continue;
   let src = readFileSync(join(K3, f), "utf8");
   const isDoor = f === "deploy-root/index.html" || f === "../index.html";
   const isEmitted = f.startsWith("deploy-root/") || f.startsWith("../");
@@ -294,9 +298,18 @@ for (const f of SERVED) {
     if (isCorpusScript(cp)) hits.push(`line ${src.slice(0, i).split("\n").length}`);
     if (hits.length > 5) break;
   }
-  check(`  ${f} types no character of the text, anywhere`, hits.length === 0,
-    hits.length ? `${hits.length}${hits.length > 5 ? "+" : ""} at ${hits.slice(0, 3).join(", ")}` : "clean");
+  // One law over the whole shelf, and the names of the pages that break it.
+  // This printed one line per file, which on a shelf of thousands is most of a
+  // megabyte of "clean" in every suite log — a reader who has to scroll past
+  // it to find a failure is being told less, not more. The failures are named
+  // in the detail; the passes are a count.
+  if (hits.length) typedPages.push(`${f}: ${hits.length}${hits.length > 5 ? "+" : ""} at ${hits.slice(0, 3).join(", ")}`);
+  else pagesClean += 1;
 }
+check(`  no served page types a character of the text, anywhere`, typedPages.length === 0,
+  typedPages.length
+    ? `${typedPages.length} of ${(typedPages.length + pagesClean).toLocaleString()} — ${typedPages.slice(0, 3).join(" · ")}`
+    : `${pagesClean.toLocaleString()} pages clean`);
 
 // ---- tools: none in anything that can become output -------------------
 const TOOLS = join(K3, "tools");
