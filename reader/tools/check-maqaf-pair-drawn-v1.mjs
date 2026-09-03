@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf
+// GUARDS: exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf, maqaf-rule-v2-one-c0-per-word
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
 // ledger for one.
@@ -45,9 +45,9 @@ if (!slug || !existsSync(binPath)) { console.log(`SKIPPED — no zone file for $
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const few = (l, n = 3) => l.slice(0, n).join(" · ");
-const esc = (s) => String(s).replace(/[֐-׿]/gu, (c) => "\\u" + c.charCodeAt(0).toString(16));
-const MAQAF = "־";
-const joinsNext = (s) => /־[֑-ׇ]*$/u.test(String(s || ""));
+const esc = (s) => String(s).replace(/[\u0590-\u05ff]/gu, (c) => "\\u" + c.charCodeAt(0).toString(16));
+const MAQAF = "\u05be";
+const joinsNext = (s) => /\u05be[\u0591-\u05c7]*$/u.test(String(s || ""));
 
 const zone = JSON.parse(gunzipSync(readFileSync(binPath)).toString("utf8"));
 const words = (zone.sections || []).flatMap((s) => (s.words || []));

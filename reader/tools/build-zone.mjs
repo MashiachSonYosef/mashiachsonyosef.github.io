@@ -168,6 +168,22 @@ for (const unit of servedUnits) {
   const c = coords.get(unit);
   const sealed = bridge.units.get(unit);
   const words = wordsOf(u.rows);
+  // A DEMONSTRATION MAY TYPE A MARK ITS SOURCE DOES NOT WRITE, and the word
+  // says so rather than the page saying it once in small print. The positions
+  // come from the demonstration's own oracle, never from a guess about shape.
+  {
+    const tr = ((serve.provenance.demonstration_oracle || {}).typed_rows) || null;
+    // one word per row is the only shape in which a row index names a word;
+    // a passage that paired rows into one word would need the pairing named
+    if (tr && words.length === u.rows.length) tr.forEach((i) => { if (words[i]) words[i].typed_here = true; });
+    const ov = ((serve.provenance.demonstration_oracle || {}).overlays) || null;
+    if (ov && words.length === u.rows.length) for (const o of ov) {
+      for (let i = o.start_row; i < o.start_row + o.rows; i += 1) {
+        if (!words[i]) continue;
+        words[i].overlay = { kind: o.kind, at: i - o.start_row, of: o.rows, ...(o.why ? { why: o.why } : {}) };
+      }
+    }
+  }
   words.forEach((w) => regionsOf(w).forEach((g) => keysNeeded.add(g.k)));
 
   const sec = { unit, node: chapterIndex.get(c.chapter), label: c.label, c0_first: u.first, c0_last: u.last, words };
@@ -213,7 +229,7 @@ for (const unit of servedUnits) {
   const standing = JSON.parse(readFileSync(LEDGER_VS, "utf8")).standing || {};
   let unreviewed = 0, example = null;
   for (const sec of sections) (sec.words || []).forEach((w, j) => {
-    if (w.kq || w.vs) return;
+    if (w.kq || w.vs || w.mark) return;   // a typed mark is a mark, not an apparatus site
     if (!RAW_VS.test(w.s || "")) return;
     const st = standing[slug];
     if (st && st[sec.unit]) return;
@@ -379,7 +395,19 @@ const coverTotal = span ? [...span.spans.values()].reduce((n, sp) => n + 2 ** (s
 // (2026-09-02), which the licence does not allow.
 const credit = serve.provenance.credit || (serve.provenance.rights && serve.provenance.rights.credit) || null;
 const so = serve.provenance.stream_oracle || null;
-const baseByline = so
+// A DEMONSTRATION PASSAGE. Not a work: a short run of rows, built by this
+// same builder so the reader draws it with the reader's own card, and
+// branded an instrument so no gate can mistake it for a served work. Its
+// oracle says which of two things it is — a passage CARRIED from a real
+// source (the body, a corpus lane stream), named and hashed, or one TYPED
+// because the source we hold carries no instance of the mark at all. Both
+// are lawful here and neither is lawful anywhere else.
+const dem = serve.provenance.demonstration_oracle || null;
+const baseByline = dem
+  ? (dem.carried
+      ? `a demonstration passage, carried from ${dem.carried.work_id} ${dem.carried.unit_id} and printed as that source wrote it; this is an instrument, never a served work`
+      : `a demonstration passage, typed because the sources this project holds carry no instance of this mark; this is an instrument, never a served work`)
+  : so
   ? (so.kind === "SUCCESSOR_STREAM"
       ? `served from the corpus lane's successor stream under bridge-v2, its surface hash reproduced against the reseal receipt; every maqaf compound is its words; rights per the canonical rights resolution, riding on every occurrence`
       : `served from the verified rebuilt body under bridge-v2, every shard re-hashed against the July manifest; rights per the canonical rights resolution, riding on every occurrence`)
@@ -402,6 +430,13 @@ const zone = {
   },
   route: serve.provenance.route || "TERMINAL_READER_WALK__SEALED_CHAIN",
   emitted_from: {
+    // AN INSTRUMENT SAYS SO IN ITS OWN FILE. A serve that declares itself a
+    // test instrument (a demonstration built from declared input, never a
+    // work) carries that declaration into the zone, where nine checks
+    // already read it and pass the file over rather than judging it as a
+    // served work. The brand comes from the serve, not from a flag here:
+    // the builder writes what its input says, in the same single pass.
+    ...(serve.provenance.test_instrument ? { test_instrument: serve.provenance.test_instrument } : {}),
     // A ketiv-qere site rides whole: both halves as the stream wrote them,
     // one word, counted once (kqPairAt in zone-lib-v1). The stream seals the
     // site as two rows; the zone says how many rows it walked and how many
@@ -410,6 +445,7 @@ const zone = {
     ...(kqSites ? {} : { kq_none_attested: { by: "tools/build-zone.mjs, this pass: no unit of the serve carries a bare ketiv row followed by a bracketed qere row", rows_scanned: serve.rows } }),
     walk: {
       ...serve.provenance,
+      test_instrument: undefined,
       ids_walked: serve.rows,
       found_exact: serve.rows - serve.held,
       // Which oracle vouched for the text names the route's whole story. A
@@ -426,7 +462,9 @@ const zone = {
       // countersign). Its oracle is the reseal receipt's surface hash,
       // reproduced by the serve; a work the reseal skipped rides the July
       // body unchanged, re-identified by bridge-v2, and cites the manifest.
-      note: so
+      note: dem
+        ? `${dem.carried ? `carried from ${dem.carried.work_id} ${dem.carried.unit_id}, c0 ${dem.carried.first_c0}-${dem.carried.last_c0}, as ${dem.carried.source} wrote it` : `typed: ${dem.typed.why}`}; it demonstrates ${dem.rule} and nothing is served from it`
+        : so
         ? (so.kind === "SUCCESSOR_STREAM"
             ? `served from the corpus lane's successor stream ${so.stream} under bridge-v2: ${Number(so.rows_after).toLocaleString()} rows (${Number(so.rows_before).toLocaleString()} before the split, ${Number(so.maqaf_sites_split).toLocaleString()} maqaf sites split), surface hash reproduced against ${so.receipt}` +
               (serve.held ? `; ${serve.held} rows held by their own rights record` : "")
@@ -441,14 +479,18 @@ const zone = {
             (serve.held ? `; ${serve.held} rows held by their own rights record` : "")
           : `served from the rebuilt canonical body, ${serve.provenance.body_oracle.shards_verified}` +
             (serve.held ? `; ${serve.held} rows held by their own rights record` : ""),
-      module: so
+      module: dem
+        ? { path: "tools/build-demonstrations-v1.mjs over the demonstration record", sha256: (() => { try { return sha256File(fileURLToPath(new URL("./build-demonstrations-v1.mjs", import.meta.url))); } catch { return "0".repeat(64); } })() }
+        : so
         ? { path: "tools/serve-from-stream-v2.mjs over the successor stream or the verified body, under bridge-v2", sha256: sha256File(fileURLToPath(new URL("./serve-from-stream-v2.mjs", import.meta.url))) }
         : serve.provenance.sealed_oracle
         ? { path: "tools/mishkan-serve-v1.mjs over sealed codec + indexes", sha256: sha256File(fileURLToPath(new URL("./mishkan-serve-v1.mjs", import.meta.url))) }
         : serve.provenance.edition
           ? { path: "tools/serve-edition-v1.mjs over the edition door's built stream", sha256: (() => { try { return sha256File(fileURLToPath(new URL("./serve-edition-v1.mjs", import.meta.url))); } catch { return null; } })() }
           : { path: "tools/serve-from-body-v1.mjs over the verified body", sha256: sha256File(fileURLToPath(new URL("./serve-from-body-v1.mjs", import.meta.url))) },
-      pointer: so
+      pointer: dem
+        ? { path: dem.carried ? `the source the passage was carried from: ${dem.carried.source}` : "nothing: the passage is typed and points at no record", sha256: (dem.carried && dem.carried.sha256) || "0".repeat(64) }
+        : so
         ? (so.kind === "SUCCESSOR_STREAM"
             ? { path: `the reseal receipt ${so.receipt}: surface token stream sha256, reproduced by the serve`, sha256: so.surface_sha256 }
             : { path: "July store manifest, every shard re-hashed against it", sha256: so.manifest_sha256 })

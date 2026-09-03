@@ -197,6 +197,16 @@
   /* a credit line can carry an unbreakable witness id longer than a phone is wide; it wraps rather than widening the page */
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); overflow-wrap: anywhere; }
   #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; max-width: 62rem; }
+  .wb.ov .w { background: var(--chip-bg); }
+  .wb.ov-first .w { border-start-start-radius: 0.25rem; border-end-start-radius: 0.25rem; padding-inline-start: 0.15rem; }
+  .wb.ov-last .w { border-start-end-radius: 0.25rem; border-end-end-radius: 0.25rem; padding-inline-end: 0.15rem; }
+  .wb.typed-here .w { border-bottom: 1px dashed var(--shani); }
+  .wb.mark .w { color: var(--muted); font-size: 0.8em; letter-spacing: 0.06em; }
+  .wb.mark-off { display: none; }
+  body.marks-on .wb.mark-off { display: inline-flex; }
+  body.marks-on .wb.mark-off .w { color: var(--amber); }
+  #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--gold-dim); line-height: 1.55; }
+  #demoLine .demo-credit { color: var(--faint); overflow-wrap: anywhere; }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
   .receipts-btn { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--link); font: inherit; font-size: 0.8rem; cursor: pointer; padding: 0; }
@@ -1079,6 +1089,13 @@
        the hold ledgers; nothing here is typed into this file, and nothing
        here is an alarm — a slot is named quietly and fills when its record
        lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
   <p id="basisLine" hidden></p>
   <p id="holdsLine" hidden></p>
   <p id="rightsLine" hidden></p>
@@ -1092,6 +1109,11 @@
     <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
     <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
     <button type="button" class="mode-btn" id="layerC" hidden></button>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
   </div>
 </header>
 <div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
@@ -1353,6 +1375,24 @@
     heT.textContent = "no name is on record";
     if (y.status) heT.title = y.status;
   }
+  // A DEMONSTRATION IS NOT A BOOK, AND ITS MASTHEAD SAYS SO. The catalog has
+  // no entry for a passage and never will; letting the masthead ask for one
+  // prints "no name is on record" over something that was never named. The
+  // zone's own title is the demonstration's name, and the label above it says
+  // what kind of thing this is.
+  {
+    const ti = (zone.emitted_from || {}).test_instrument;
+    const dm = ((zone.emitted_from || {}).walk || {}).demonstration_oracle;
+    if (ti && dm) {
+      const heRow = heT.closest(".t-row"), enLab = document.getElementById("enLab");
+      if (heRow) heRow.style.display = "none";
+      if (enLab) enLab.textContent = "a demonstration of";
+      enT.textContent = zone.work;
+      enT.classList.remove("unnamed");
+      enT.removeAttribute("title");
+      for (const n of document.querySelectorAll("#workTitle .t-note, #workTitle .t-sug")) n.remove();
+    }
+  }
   document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · ${SITE}`;
   document.getElementById("byline").textContent = zone.byline || "";
   const ac = zone.emitted_from.acquisition, wk = zone.emitted_from.walk, oc = zone.emitted_from.identity_oracle;
@@ -1421,6 +1461,36 @@
   // of "no name is on record", and it fills when its record lands.
   // Every value is read from data/work-basis-v1.json, derived from the plan
   // and the hold ledgers; nothing on these lines is typed into this page.
+  // the demonstration banner, read from the zone's own receipts; the rule's
+  // plain English rides in as a meta from the door, so the record says it
+  // once and the page never re-words it
+  {
+    const ti = (zone.emitted_from || {}).test_instrument;
+    const dm = ((zone.emitted_from || {}).walk || {}).demonstration_oracle;
+    if (ti && dm) {
+      const el = document.getElementById("demoLine");
+      const plain = META("reader-demonstration");
+      const lead = document.createElement("b");
+      const someTyped = Array.isArray(dm.typed_rows) && dm.typed_rows.length;
+      lead.textContent = dm.carried
+        ? (someTyped ? "A demonstration, carried, with the mark typed" : "A demonstration, carried")
+        : "A demonstration, typed";
+      el.append(lead, " \u2014 ");
+      el.append(plain ? `${plain} ` : "");
+      el.append(dm.carried
+        ? `The ink of this passage is ${dm.carried.work_id} ${dm.carried.unit_id} as its source wrote it${dm.carried.credit && dm.carried.credit.line ? "" : ""}. `
+        : `No source this project holds carries this mark, so the ink here was typed: ${(dm.typed || {}).why || ""}. `);
+      if (someTyped) el.append(`${dm.typed_rows.length === 1 ? "One word of it was" : `${dm.typed_rows.length} words of it were`} typed and marked as typed: ${dm.typed_rows_why || "no source this project holds writes the mark here"}. `);
+      if (!dm.carried && (dm.typed || {}).where_the_wire_goes) el.append(`When the record lands it arrives at ${dm.typed.where_the_wire_goes}, and this passage is replaced by the book. `);
+      el.append("Nothing on this page is served as a work.");
+      if (dm.carried && dm.carried.credit && dm.carried.credit.line) {
+        const cr = document.createElement("span"); cr.className = "demo-credit";
+        cr.textContent = ` ${dm.carried.credit.line}`;
+        el.append(cr);
+      }
+      el.hidden = false;
+    }
+  }
   (async () => {
     let wb = null;
     try { wb = await fetch(`${ROOT}data/work-basis-v1.json`).then((r) => (r.ok ? r.json() : null)); } catch { wb = null; }
@@ -2549,6 +2619,32 @@
     // its own card, and the joiner rides as ink on the word before. The card
     // says so in plain English, in one line, on both words of the pair; it
     // groups nothing over them, because the count says two.
+    if (word.overlay) {
+      const oLine = document.createElement("p"); oLine.className = "kq-role";
+      oLine.textContent = `the opening words this comment is about \u2014 word ${word.overlay.at + 1} of ${word.overlay.of}`;
+      head.append(oLine);
+      const oKey = document.createElement("p"); oKey.className = "kq-key";
+      oKey.textContent = word.overlay.why || "The printers set this run apart. It is recorded as a run over the words, not as anything inside them: the ink is exactly what the source wrote, and the record says which words it covers.";
+      head.append(oKey);
+    }
+    if (word.typed_here) {
+      const tLine = document.createElement("p"); tLine.className = "kq-role";
+      tLine.textContent = "typed here, not carried";
+      head.append(tLine);
+      const tKey = document.createElement("p"); tKey.className = "kq-key";
+      tKey.textContent = "Every other word of this passage is the source's own ink. This one is not: no source this project holds writes this mark here, so it was typed to show the rule, and it is marked as typed wherever it appears.";
+      head.append(tKey);
+    }
+    if (word.mark) {
+      const mLine = document.createElement("p"); mLine.className = "kq-role";
+      mLine.textContent = word.mark.says;
+      head.append(mLine);
+      const mKey = document.createElement("p"); mKey.className = "kq-key";
+      mKey.textContent = word.mark.toggleable
+        ? "It carries no reading, because there is nothing to look up: it is a mark, not a word. Marks like this can be turned off at the top of the page."
+        : "It carries no reading, because there is nothing to look up: it is a mark, not a word. This one cannot be turned off \u2014 it says something about the passage itself, not about the bookkeeping of the page.";
+      head.append(mKey);
+    }
     const pjm = word.presentation_join && String(word.presentation_join.why || "").startsWith("maqaf-rule-v2") ? word.presentation_join : null;
     const mqNext = !!(pjm && pjm.join_next_without_separator);
     const mqPrev = !!((pjm && pjm.join_previous_without_separator) || word.after_maqaf);
@@ -2572,6 +2668,10 @@
     if (opts.back) hud.replaceChildren(backButton(opts.back), head, status);
     else hud.replaceChildren(head, status);
     placeHud();
+
+    // a mark asks the catalog nothing: the card is its head, and the head has
+    // already said what the mark is
+    if (word.mark && !(region && region.k)) { status.remove(); placeHud(); return; }
 
     const span = spanOf(bin, region.k);
     // A DIVISION WE HAVE NOT ESTABLISHED IS NOT OFFERED.
@@ -3468,6 +3568,28 @@
   const wordBlock = (word, table) => {
     const wb = document.createElement("span");
     wb.className = word.held ? "wb held" : "wb";
+    // A MARK IS NOT A WORD OF THE BOOK, and the page says so in how it draws
+    // it. The type comes from the zone (tools/zone-lib-v1.mjs markOf), which
+    // reads the frame's own list of mark kinds; this file only obeys it. The
+    // scribes' section marks may be turned off by a reader, because they are
+    // bookkeeping about the page; the inverted nunim may not, because they
+    // speak about the text — the owner's rules 4, 5 and 6.
+    if (word.typed_here) wb.classList.add("typed-here");
+    // AN OVERLAY OVER THE INK. The eighth rule: a commentary's opening
+    // quotation was set apart by its printers, and the record carries that as
+    // a run over the words rather than as markup inside them. The page draws
+    // the run and says what it is; the ink underneath is untouched.
+    if (word.overlay) {
+      wb.classList.add("ov");
+      wb.dataset.ov = word.overlay.kind;
+      if (word.overlay.at === 0) wb.classList.add("ov-first");
+      if (word.overlay.at === word.overlay.of - 1) wb.classList.add("ov-last");
+    }
+    if (word.mark) {
+      wb.classList.add("mark");
+      wb.dataset.mark = word.mark.kind;
+      if (word.mark.toggleable) wb.classList.add("mark-off");
+    }
     const w = document.createElement("span");
     w.className = "w"; w.lang = "he"; w.dir = "rtl";
     // The block is the occurrence. What is clickable inside it is whatever the
@@ -3631,7 +3753,11 @@
   const wireWord = (built, word, bin, unitId, wordPos, opts = {}) => {
     // held by the chain's script rule, or normalizing to nothing at all: no
     // key, no catalog question, no tap
-    if (word.held || (!word.w && !word.k)) { built.wb.style.cursor = "default"; return built.wb; }
+    // A MARK OPENS THOUGH IT HAS NO KEY. The frame gives a section mark its
+    // own C0 and its own card (rules 4 and 5); what it does not give it is a
+    // reading, because a mark is not a word and there is nothing to look up.
+    // So it is pressable, its card says what it is, and it stops there.
+    if (word.held || (!word.w && !word.k && !word.mark)) { built.wb.style.cursor = "default"; return built.wb; }
     // Atoms only. built.regionEls are the printed pieces, one per atom, so the
     // list laid against them must be the atoms too — pairing them with the full
     // lattice made the second half of a maqaf'd word open the whole chain.
@@ -3695,6 +3821,19 @@
     document.body.classList.toggle("pick-en", layer === "en");
   };
   pick("he");
+  // the marks switch: it reveals the scribes' section marks, which the frame
+  // holds off by default, and it never touches a mark rule 6 protects
+  const marksSwitch = () => {
+    const btn = document.getElementById("marksToggle");
+    const n = document.querySelectorAll(".wb.mark[data-mark]").length;
+    const off = document.querySelectorAll(".wb.mark-off").length;
+    if (!off) { btn.hidden = true; return; }
+    const say = (on) => { btn.textContent = `${on ? "hide" : "show"} the scribes\u2019 section marks (${off})`; btn.setAttribute("aria-pressed", String(on)); };
+    btn.hidden = false;
+    say(document.body.classList.contains("marks-on"));
+    btn.onclick = () => { const on = document.body.classList.toggle("marks-on"); say(on); };
+    if (n > off) btn.title = `${n - off} further mark${n - off === 1 ? "" : "s"} on this page cannot be hidden: they speak about the text, not about the page`;
+  };
   const setMode = (m) => {
     closeHud();
     // a box fixed at one reader's size is not the other reader's box
@@ -3936,9 +4075,11 @@
         enT.title = "every witness and license behind this reading — press to see them all";
         enT.addEventListener("click", () => opens.click());
       }
+    } else if ((zone.emitted_from || {}).test_instrument) {
+      // a demonstration has no catalog entry and is not owed one
     } else {
       const note = document.createElement("span"); note.className = "t-note";
-      note.textContent = " — its catalog entry read as plain words; a proper name will show once a source on record uses one";
+      note.textContent = " \u2014 its catalog entry read as plain words; a proper name will show once a source on record uses one";
       // The owner's rule, universal: nothing shows on anyone's say-so — this
       // line stands on the catalog record itself, and says so. The record's
       // name and fingerprint come from this book's own receipts.
@@ -5445,6 +5586,9 @@
   let atNode = 0;
   // A book this long runs to millions of pixels; smooth scrolling across
   // that distance stalls, so only short hops animate.
+  // the marks switch counts what the page drew, so it runs once the sections
+  // are in the document
+  marksSwitch();
   if (openAt && byLabel.has(openAt)) {
     const target = document.getElementById(byLabel.get(openAt));
     if (target) {

@@ -123,7 +123,12 @@ const SERVED = ["zone.html"];
       SERVED.push(`../${d.name}/index.html`);
   }
 }
-check("there are served files to read", SERVED.length > 0, SERVED.join(" ") || "none found");
+// The count and a few names, not the whole shelf. This line used to print
+// every served path, which on a four-thousand-work shelf is sixty kilobytes of
+// one line in every suite log — enough to push the laws below it out of a
+// reader's view, which is the opposite of what a check is for.
+check("there are served files to read", SERVED.length > 0,
+  SERVED.length ? `${SERVED.length.toLocaleString()} files · ${SERVED.slice(0, 3).join(" ")}${SERVED.length > 3 ? " …" : ""}` : "none found");
 const { gunzipSync } = await import("node:zlib");
 const carriedTitles = [];
 const owedWords = new Map();          // surface → how many places the data owes it
@@ -193,33 +198,46 @@ let ATLAS_NAMES = [];
   }
 }
 // ONE PAGE IS GOVERNED BY A DIFFERENT RULE, AND THIS IS A DELEGATION, NOT AN
-// EXEMPTION. /demonstrations/ is hand-authored — the owner suspended the serve
-// law for it, because the books carrying written/read, the section marks and
-// the inverted nun are all held and nobody holds the end-of-book masorah, so
-// a reader could otherwise see none of what the frame is for.
+// THE DEMONSTRATIONS ARE NO LONGER HAND-AUTHORED (2026-09-03). The exemption
+// this block used to record is gone with the page it covered. /demonstrations/
+// was a drawing of the reader's card with typed Hebrew in it, suspended from
+// the serve law and fenced by a list of declared strings. It is now an index
+// that prints no Hebrew at all, linking to eight pages that ARE the reader,
+// each opening a zone the ordinary builder built. So the index needs no
+// exemption from this check — it has nothing to exempt — and the passages are
+// governed where they belong, in
+// rule-demonstration-rule-v1 (check-demonstrations-v1), which holds every
+// one of them to naming what it carried and hashing what it carried it from.
 //
-// An exemption would be a hole: this check would stop looking and nothing
-// would look instead. So it hands the page to the rule that DOES govern it —
-// poc-demonstration-rule-v1, enforced by check-poc-fenced-v1, under which every
-// glyph must appear on a list the record declares. What is checked here is
-// that the delegation is real: the record must exist and must name the page.
-// Delete the record and the page falls straight back under this rule and
-// fails, which is what makes the handover safe to write down.
-const POC_PAGE = "demonstrations/index.html";
-const POC_RECORD = join(K3, "data", "poc-demonstration-v1.json");
-const delegated = new Set();
-for (const f of SERVED) if (f.endsWith(POC_PAGE)) delegated.add(f);
-if (delegated.size) {
-  const held = existsSync(POC_RECORD);
-  check(`  ${[...delegated].join(", ")} is governed by poc-demonstration-rule-v1 instead`,
-    held,
-    held
-      ? "its record stands and check-poc-fenced-v1 holds it to a declared list of strings"
-      : "the record is gone, so nothing governs a hand-authored page — it must be removed or the record restored");
+// What is checked here is that the handover is real: the record must exist and
+// must name every page under /demonstrations/. Delete the record and those
+// pages fall straight back under this rule, which is what makes the handover
+// safe to write down.
+const DEMO_DIR = "demonstrations/";
+const DEMO_RECORD = join(K3, "data", "rule-demonstrations-v1.json");
+const demoPages = new Set();
+for (const f of SERVED) if (f.includes(DEMO_DIR)) demoPages.add(f);
+if (demoPages.size) {
+  const held = existsSync(DEMO_RECORD);
+  const ids = held ? (JSON.parse(readFileSync(DEMO_RECORD, "utf8")).rules || []).map((r) => r.id) : [];
+  const unnamed = [...demoPages].filter((f) => {
+    const rest = f.slice(f.indexOf(DEMO_DIR) + DEMO_DIR.length).replace(/\/?index\.html$/u, "");
+    return rest !== "" && !ids.includes(rest);
+  });
+  check(`  ${demoPages.size} page(s) under /demonstrations/ are governed by rule-demonstration-rule-v1 instead`,
+    held && unnamed.length === 0,
+    !held
+      ? "the record is gone, so nothing governs them — they must be removed or the record restored"
+      : unnamed.length
+        ? `${unnamed.length} page(s) the record does not name: ${unnamed.slice(0, 3).join(", ")}`
+        : `the record names all ${ids.length} rules and check-demonstrations-v1 holds each to its source`);
 }
 
+
 for (const f of SERVED) {
-  if (delegated.has(f)) continue;
+  // the demonstration pages are the reader itself, governed by
+  // rule-demonstration-rule-v1 and handed over above
+  if (demoPages.has(f)) continue;
   let src = readFileSync(join(K3, f), "utf8");
   const isDoor = f === "deploy-root/index.html" || f === "../index.html";
   const isEmitted = f.startsWith("deploy-root/") || f.startsWith("../");

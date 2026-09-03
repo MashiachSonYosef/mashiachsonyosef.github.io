@@ -297,7 +297,7 @@ export const MAQAF = "\u05be";
  *
  * The regions are cut from the printed surface, not rebuilt from the key, so
  * a region's `s` is always a substring of what the page shows. An edge maqaf
- * (`לחם־`, three occurrences in this work) yields one region and a maqaf that
+ * (`\u05dc\u05d7\u05dd\u05be`, three occurrences in this work) yields one region and a maqaf that
  * belongs to the next occurrence; the maqaf still prints, and it does not
  * open, because it is not a W.
  */
@@ -405,10 +405,49 @@ const MAQAF_JOIN = Object.freeze({
   separator_between_group_records: "",
   why: "maqaf-rule-v2-one-c0-per-word: the joiner rides on this word and the next word follows it without a space, as the ink is written",
 });
+// THE SOURCE'S OWN MARKS, TYPED AS THE FRAME NAMES THEM.
+//
+// The frame's Q letter points at a mark, and names its kinds: kq, petuchah,
+// setumah, inverted nun, masorah. Three of them are a glyph in the ink and can
+// be recognised here, once, so that every gate and every card downstream reads
+// one classification rather than each guessing from the shape.
+//
+//   * a lone samekh wrapped in brackets is a CLOSED section (setumah): the
+//     section ends here and the next begins on the same line
+//   * a lone pe is an OPEN section (petuchah): the next begins on a new line
+//   * U+05C6, the inverted nun, brackets a passage the tradition reads as
+//     standing apart
+//
+// A mark is NOT a word of the book. The owner's rules 4 and 5: one C0, off by
+// default, keyless — it marks structure, so it opens no reading and the
+// catalog is never asked to answer for it. Rule 6 parts company on one point
+// and the type carries that too: the section marks are scribal bookkeeping
+// and a reader may turn them off; the inverted nunim speak about the text and
+// may never be hidden.
+const MARK_BRACKETS = { "(": ")", "{": "}", "[": "]" };
+const MARK_LETTERS = { "\u05e1": "SETUMAH", "\u05e4": "PETUCHAH" };
+const INVERTED_NUN = "\u05c6";
+export const markOf = (surface) => {
+  const t = String(surface || "").trim();
+  if (t.includes(INVERTED_NUN) && [...t].every((c) => c === INVERTED_NUN || /\s/u.test(c)))
+    return { kind: "INVERTED_NUN", glyph: INVERTED_NUN, toggleable: false,
+      says: "a scribal bracket, not a word of the book: the passage between these two marks is set apart by the scribes themselves" };
+  if (t.length === 3 && MARK_BRACKETS[t[0]] === t[2] && MARK_LETTERS[t[1]])
+    return { kind: MARK_LETTERS[t[1]], glyph: t[1], bracket: t[0], toggleable: true,
+      says: MARK_LETTERS[t[1]] === "SETUMAH"
+        ? "a closed section: not a word of the book, but the scribes' mark that a section ends here and the next begins on the same line"
+        : "an open section: not a word of the book, but the scribes' mark that a section ends here and the next begins on a new line" };
+  return null;
+};
+
 const wordOf = (r) => {
     const surface = r.exact_surface_form;
     const w = { s: surface };
     if (!r.visible_in_hebrew_reader) { w.held = true; return w; }
+    // a mark is keyless by rule: it marks structure, so no reading is asked
+    // for it and none is served
+    const mk = markOf(surface);
+    if (mk) { w.mark = mk; return w; }
     if (joinsNext(surface)) w.presentation_join = MAQAF_JOIN;
     if (joinsPrev(surface)) w.edge_maqaf = "LEADING";
     const k = exactK(surface);
@@ -426,7 +465,7 @@ const wordOf = (r) => {
     // contiguous joined interval, the whole included. The atoms tile the
     // printed surface; the joined intervals open from the maqaf marks that
     // make them. The body route used to emit only the atoms, which left the
-    // whole of בן־יהודה unreachable — the lattice gate caught it the first
+    // whole of \u05d1\u05df\u05be\u05d9\u05d4\u05d5\u05d3\u05d4 unreachable — the lattice gate caught it the first
     // time a maqaf-carrying shelf faced it.
     const atoms = regions.filter((x) => x.k);
     const cells = [...atoms];

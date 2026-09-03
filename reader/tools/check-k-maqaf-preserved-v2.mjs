@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf
+// GUARDS: exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf, maqaf-rule-v2-one-c0-per-word, exact-k-rule-frame-38-rule-7-maqaf-preserved
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
 // ledger for one.
@@ -31,6 +31,9 @@
 //   L7  an abbreviation mark written as an ASCII quote between two letters
 //       survives in the key as the Hebrew mark; none is lost
 //   L8  every zone names this rule as the rule its keys were made under
+//   L9  the rule this one replaced still holds where it still runs: its file
+//       still declares it, its function still keeps a boundary maqaf as that
+//       rule says, and the lanes importing it are exactly the ones named here
 //
 // What this check does NOT prove: that the page draws the two words of a
 // compound without a space (a browser check's question); that the catalog's
@@ -49,28 +52,28 @@ const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); const v = i > 
 const ZONES = arg("zones", join(K3, "data", "zones"));
 const RULE_FILE = arg("rule", join(HERE, "k-normalization-v2.mjs"));
 const RULE_ID = "exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf";
-const MAQAF = "־", GERSHAYIM = "״", GERESH = "׳";
-const LETTER = /[א-ת]/u;
-const REMOVED = /[֑-ֽֿ-ׇ‎‏‪-‮⁦-⁩͏]/u;
-const ASCII_ABBR = /[א-ת][֑-ׇ]*["'][֑-ׇ]*[א-ת]/u;
-const TYPO_ABBR = /[א-ת][֑-ׇ]*[“”‘’][֑-ׇ]*[א-ת]/u;
+const MAQAF = "\u05be", GERSHAYIM = "\u05f4", GERESH = "\u05f3";
+const LETTER = /[\u05d0-\u05ea]/u;
+const REMOVED = /[\u0591-\u05bd\u05bf-\u05c7‎‏‪-‮⁦-⁩͏]/u;
+const ASCII_ABBR = /[\u05d0-\u05ea][\u0591-\u05c7]*["'][\u0591-\u05c7]*[\u05d0-\u05ea]/u;
+const TYPO_ABBR = /[\u05d0-\u05ea][\u0591-\u05c7]*[“”‘’][\u0591-\u05c7]*[\u05d0-\u05ea]/u;
 
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const few = (l, n = 3) => l.slice(0, n).join(" · ");
-const esc = (s) => String(s).replace(/[֐-׿]/gu, (c) => "\\u" + c.charCodeAt(0).toString(16));
+const esc = (s) => String(s).replace(/[\u0590-\u05ff]/gu, (c) => "\\u" + c.charCodeAt(0).toString(16));
 
 if (!existsSync(RULE_FILE)) { console.log(`SKIPPED — no rule file at ${RULE_FILE}`); process.exit(3); }
 const rule = await import(pathToFileURL(RULE_FILE).href);
 const src = readFileSync(RULE_FILE, "utf8");
 // L1: the cases that decide the rule, each written as escapes
 const cases = [
-  ["הקב\"ה", "הקב״ה"],   // ASCII quote among letters -> gershayim
-  ["ר'ב", "ר׳ב"],                            // ASCII apostrophe among letters -> geresh
-  ["אֶל־", "אל"],                       // boundary maqaf leaves the key
-  ["עַל־כֵן", "על־כן"], // internal maqaf stays
-  ["בִ֔י", "בי"],                       // accents and points removed
-  ["ר'", "ר"],                                              // a quote not among letters is not a mark
+  ["\u05d4\u05e7\u05d1\"\u05d4", "\u05d4\u05e7\u05d1\u05f4\u05d4"],   // ASCII quote among letters -> gershayim
+  ["\u05e8'\u05d1", "\u05e8\u05f3\u05d1"],                            // ASCII apostrophe among letters -> geresh
+  ["\u05d0\u05b6\u05dc\u05be", "\u05d0\u05dc"],                       // boundary maqaf leaves the key
+  ["\u05e2\u05b7\u05dc\u05be\u05db\u05b5\u05df", "\u05e2\u05dc\u05be\u05db\u05df"], // internal maqaf stays
+  ["\u05d1\u05b4\u0594\u05d9", "\u05d1\u05d9"],                       // accents and points removed
+  ["\u05e8'", "\u05e8"],                                              // a quote not among letters is not a mark
 ];
 const l1 = cases.filter(([s, k]) => rule.exactK(s) !== k).map(([s, k]) => `${esc(s)} -> ${esc(rule.exactK(s))}, expected ${esc(k)}`);
 check("L1  the declaring file declares the rule and its function keeps it on the deciding cases",
@@ -82,12 +85,17 @@ const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWit
 let zones = 0, words = 0, trailing = 0, internal = 0, ascii = 0, typo = 0;
 const l2 = [], l3 = [], l4 = [], l5 = [], l6 = [], l7 = [], l8 = [];
 const unsplitByZone = new Map();
+// the rule this one replaced, gathered in the same pass rather than a second
+// walk over the shelf; L9 judges it after L8
+const V1_RULE = "exact-k-rule-frame-38-rule-7-maqaf-preserved";
+const namedV1 = [];
 for (const f of bins) {
   let z; try { z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8")); } catch { continue; }
   zones += 1;
   const name = f.replace(/\.bin$/u, "");
   const keyRule = String(((z.emitted_from || {}).gloss_layer || {}).key_rule || "");
   if (!keyRule.startsWith(RULE_ID)) l8.push(`${name}: ${keyRule.slice(0, 50) || "no key rule named"}`);
+  if (keyRule.startsWith(V1_RULE)) namedV1.push(name);
   for (const sec of z.sections || []) for (const w of sec.words || []) {
     if (w.held) continue;
     words += 1;
@@ -106,7 +114,7 @@ for (const f of bins) {
       // L3
       if (k && (k.startsWith(MAQAF) || k.endsWith(MAQAF))) l3.push(`${name} ${esc(k)}`);
       // L4: internal maqaf
-      const inner = [...bare].slice(1, -1).includes(MAQAF) && !rule.joinsNext(s) && !rule.joinsPrev(s) ? true : /[א-ת]־[א-ת]/u.test(rule.exactK(s) + "") && !rule.joinsNext(s);
+      const inner = [...bare].slice(1, -1).includes(MAQAF) && !rule.joinsNext(s) && !rule.joinsPrev(s) ? true : /[\u05d0-\u05ea]\u05be[\u05d0-\u05ea]/u.test(rule.exactK(s) + "") && !rule.joinsNext(s);
       if (inner) {
         internal += 1; unsplitByZone.set(name, (unsplitByZone.get(name) || 0) + 1);
         const whole = rule.exactK(s);
@@ -132,6 +140,57 @@ check("L6  every key is what the declared function makes of its surface", l6.len
 check("L7  an abbreviation mark written as an ASCII quote survives in the key as the Hebrew mark", l7.length === 0,
   l7.length ? `${l7.length} of ${ascii.toLocaleString()} lost — ${few(l7)}` : `${ascii.toLocaleString()} carried${typo ? ` · ${typo} typographic quotes among letters reported, not remapped` : ""}`);
 check("L8  every zone names this rule as the rule its keys were made under", l8.length === 0, l8.length ? `${l8.length} — ${few(l8)}` : `${zones} zones`);
+
+// L9: THE REPLACED RULE, STILL HELD WHERE IT IS STILL IN FORCE. v1's law was
+// that a maqaf survives in the key wherever it is written. Under the owner's
+// rule 2 that is wrong at a word's boundary, so the reader lane keys by v2.
+// v1 is NOT thereby dead: six lanes still import tools/k-normalization-v1.mjs
+// and their keys are the store's keys, which the shelf rebuild has not
+// reached. A rule in force with no check is the thing the manifest exists to
+// print, so this law holds v1 to v1 where v1 still runs:
+//
+//   the declaring file still declares that rule, its function still keeps a
+//   boundary maqaf as v1 says it must, and the lanes importing it are exactly
+//   the six named here — a seventh, or a drift in the function, turns this red
+//
+// It says nothing about the shelf: L8 counts the zones whose keys were made
+// under v1, and while the rebuild is unfinished that count is the shelf's age,
+// not a second fault. The list here shrinks to nothing when the store is
+// rebuilt; then v1's file goes and this law goes with it.
+const V1_FILE = "k-normalization-v1.mjs";
+// Five, not six. tools/gloss-store-v1.mjs names v1 in its rule text but keys
+// nothing itself — it is handed a key by whoever calls it — so it is not a
+// lane running the rule, and a check that counted it would be counting a
+// comment. build-commentary-zone.mjs takes only the rule's name and words,
+// which is still naming v1 as the rule its keys were made under, so it counts.
+const STILL_ON_V1 = ["build-commentary-sidecar-v1.mjs", "build-commentary-zone.mjs", "check-family-ledger-v1.mjs",
+  "check-title-from-c0-v1.mjs", "name-the-titles-v1.mjs"];
+const l9 = [];
+if (!existsSync(join(HERE, V1_FILE))) {
+  if (STILL_ON_V1.length) l9.push(`${V1_FILE} is gone while ${STILL_ON_V1.length} lanes are named as keying by it`);
+} else {
+  const v1 = await import(pathToFileURL(join(HERE, V1_FILE)).href);
+  if (v1.K_RULE_ID !== V1_RULE) l9.push(`${V1_FILE} declares ${v1.K_RULE_ID}, not the rule this one replaced`);
+  // v1's own law, on the case v2 reverses: the joiner stays in the key
+  const V1_CASES = [
+    ["\u05d0\u05b6\u05dc\u05be", "\u05d0\u05dc\u05be"],                                 // boundary maqaf kept — v2 drops it
+    ["\u05e2\u05b7\u05dc\u05be\u05db\u05b5\u05df", "\u05e2\u05dc\u05be\u05db\u05df"],   // internal maqaf kept — both agree
+    ["\u05d4\u05e7\u05d1\"\u05d4", "\u05d4\u05e7\u05d1\u05d4"],                         // ASCII quote dropped — v2 keeps it as a mark
+  ];
+  for (const [s, k] of V1_CASES) if (v1.exactK(s) !== k) l9.push(`${V1_FILE}: ${esc(s)} -> ${esc(v1.exactK(s))}, its own rule says ${esc(k)}`);
+}
+const importers = [];
+for (const f of readdirSync(HERE).filter((x) => x.endsWith(".mjs") && x !== V1_FILE).sort()) {
+  let body = ""; try { body = readFileSync(join(HERE, f), "utf8"); } catch { continue; }
+  // both forms reach it: the static import and the awaited one. Matching only
+  // the static form missed name-the-titles-v1.mjs, which imports it by path.
+  if (/(?:from|import\()\s*[^\n]{0,40}k-normalization-v1\.mjs/u.test(body)) importers.push(f);
+}
+for (const f of importers) if (!STILL_ON_V1.includes(f)) l9.push(`${f} keys by the replaced rule and is not among the lanes named here`);
+for (const f of STILL_ON_V1) if (!importers.includes(f)) l9.push(`${f} is named as still keying by it and no longer does`);
+check("L9  the replaced rule still holds where it still runs, and the lanes running it are the ones named", l9.length === 0,
+  l9.length ? `${l9.length} — ${few(l9)}` : `${importers.length} lanes still key by it, all named, all awaiting the store rebuild · ${namedV1.length.toLocaleString()} zones on the shelf were keyed by it, which is L8's count`);
+
 console.log("\n  what this does not say: that the page draws a joined pair without a space, or that the");
 console.log("  catalog's own keys obey the rule; and it leaves typographic quotes among letters reported, not judged.");
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

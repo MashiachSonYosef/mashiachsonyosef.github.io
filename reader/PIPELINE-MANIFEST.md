@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-03.
 
-**69 rules declared · 69 named by a check · 0 unguarded.**
+**72 rules declared · 72 named by a check · 0 unguarded.**
 **10 published artifacts · 10 with a build step · 0 without.**
 
 ## The rules
@@ -30,7 +30,8 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `division-evidence-rule-v1-a-division-we-have-not-established-is-not-offered` | tools/check-division-established-v1.mjs | check-division-established-v1 |
 | `doc-currency-rule-v1-an-undated-document-names-only-what-is-here` | tools/check-docs-name-what-is-here-v1.mjs | check-docs-name-what-is-here-v1 |
 | `edition-serve-rule-v1-the-edition-is-the-text-the-door-is-the-rights` | tools/serve-edition-v1.mjs | check-edition-serve-v1 |
-| `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | check-k-maqaf-preserved-v1 |
+| `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | check-k-maqaf-preserved-v2 |
+| `exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf` | tools/k-normalization-v2.mjs | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1 |
 | `export-custody-rule-v1-what-leaves-carries-its-own-way-back` | zone.html | check-licence-leaves-v1 |
 | `export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work` | zone.html | check-citations-v1, check-export-v1 |
 | `family-ledger-rule-v1-values-are-ruled-works-are-not` | tools/check-family-ledger-v1.mjs | check-family-ledger-v1 |
@@ -50,6 +51,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `licence-name-rule-v1-the-record-names-the-licence` | tools/check-licence-names-v1.mjs | check-licence-names-v1 |
 | `licence-posture-name-rule-v1-the-record-names-the-licence` | tools/emit-license-postures-v1.mjs | check-posture-names-from-record-v1 |
 | `licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs` | zone.html | check-licence-leaves-v1 |
+| `maqaf-rule-v2-one-c0-per-word` | tools/zone-lib-v1.mjs, zone.html | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1 |
 | `mark-inventory-rule-v1-closed-set-over-route-text` | tools/mark-inventory-v1.mjs | check-mark-inventory-closed-v1 |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | check-serve-oracle-checked-v1 |
 | `nothing-welds-rule-v1-a-mark-is-a-position-and-a-reading-is-a-word` | tools/check-nothing-welded-v1.mjs | check-nothing-welded-v1 |
@@ -58,15 +60,16 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `pass-through-rule-v1-a-sealed-layer-can-only-be-withheld-never-added` | tools/build-commentary-sidecar-v1.mjs | check-sealed-layers-v1 |
 | `pipeline-manifest-rule-v1-a-rule-with-no-guard-is-printed-as-having-none` | tools/pipeline-manifest-v1.mjs | check-manifest-prints-unguarded-v1 |
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
-| `poc-demonstration-rule-v1-hand-authored-never-served-always-fenced` | tools/check-poc-fenced-v1.mjs | check-poc-fenced-v1, check-nothing-hand-typed-v1 |
 | `provider-declaration-rule-v1-closed-set-ship-whole-by-default` | tools/declaration-v1.mjs, tools/declarations-v1.json | check-citations-v1, check-cut-readings-v1, check-licence-leaves-v1, check-provider-characters-v1 |
 | `regloss-rule-v1-project-the-store-over-a-zones-own-keys` | tools/regloss-zone.mjs | check-page-agrees-with-store-v1 |
 | `respan-rule-v1-project-the-compspan-template-over-a-zones-own-keys` | tools/respan-zone-v1.mjs | check-respan-projection-v1 |
 | `route-store-rule-v1-catalog-compact-top5` | tools/build-route-store.mjs | check-route-store-exact-k-v1 |
 | `route-store-rule-v3-declared-reading` | tools/check-nothing-invented-v1.mjs | check-nothing-invented-v1 |
+| `rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one` | tools/build-demonstrations-v1.mjs | check-demonstrations-v1, check-nothing-hand-typed-v1 |
 | `script-admission-rule-v1-a-published-word-is-written-in-hebrew-script` | tools/check-script-admitted-v1.mjs | check-script-admitted-v1 |
 | `sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates` | tools/sense-split-v1.mjs, tools/gloss-store-v1.mjs, zone.html | check-provider-characters-v1, check-sense-split-v1 |
 | `serve-from-body-rule-v1-the-verified-body-is-the-text-the-binding-is-the-rights` | tools/serve-from-body-v1.mjs | check-body-is-text-binding-is-rights-v1 |
+| `serve-from-stream-rule-v2-the-successor-stream-is-the-text-bridge-v2-is-its-identity-the-binding-is-the-rights` | tools/serve-from-stream-v2.mjs | check-stream-is-text-v1 |
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | check-span-receipt-carried-identical-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
@@ -106,10 +109,11 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 18 of the 58 tools that are not checks.
+`build.sh` calls 18 of the 62 tools that are not checks.
 
 Not called by any build stage:
 
+- `tools/build-demonstrations-v1.mjs`
 - `tools/build-gloss-table.mjs`
 - `tools/carry-span-receipt-v1.mjs`
 - `tools/commentary-span-findings-v1.mjs`
@@ -128,6 +132,7 @@ Not called by any build stage:
 - `tools/gloss-store-v1.mjs`
 - `tools/group-variant-sites-v1.mjs`
 - `tools/k-normalization-v1.mjs`
+- `tools/k-normalization-v2.mjs`
 - `tools/make-fixture-zone-v1.mjs`
 - `tools/make-kq-fixture-zone-v1.mjs`
 - `tools/mam-apparatus-census-v1.mjs`
@@ -140,10 +145,12 @@ Not called by any build stage:
 - `tools/redrive-zone-gloss-v1.mjs`
 - `tools/regloss-zone.mjs`
 - `tools/respan-zone-v1.mjs`
+- `tools/rights-join-v1.mjs`
 - `tools/run-fleet-v2.mjs`
 - `tools/sense-split-v1.mjs`
 - `tools/serve-edition-v1.mjs`
 - `tools/serve-from-body-v1.mjs`
+- `tools/serve-from-stream-v2.mjs`
 - `tools/span-slice-v1.mjs`
 - `tools/strike-language-v1.mjs`
 - `tools/w-list-v1.mjs`

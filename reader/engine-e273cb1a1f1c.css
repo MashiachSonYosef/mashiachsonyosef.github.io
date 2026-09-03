@@ -175,6 +175,16 @@
   /* a credit line can carry an unbreakable witness id longer than a phone is wide; it wraps rather than widening the page */
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); overflow-wrap: anywhere; }
   #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; max-width: 62rem; }
+  .wb.ov .w { background: var(--chip-bg); }
+  .wb.ov-first .w { border-start-start-radius: 0.25rem; border-end-start-radius: 0.25rem; padding-inline-start: 0.15rem; }
+  .wb.ov-last .w { border-start-end-radius: 0.25rem; border-end-end-radius: 0.25rem; padding-inline-end: 0.15rem; }
+  .wb.typed-here .w { border-bottom: 1px dashed var(--shani); }
+  .wb.mark .w { color: var(--muted); font-size: 0.8em; letter-spacing: 0.06em; }
+  .wb.mark-off { display: none; }
+  body.marks-on .wb.mark-off { display: inline-flex; }
+  body.marks-on .wb.mark-off .w { color: var(--amber); }
+  #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--gold-dim); line-height: 1.55; }
+  #demoLine .demo-credit { color: var(--faint); overflow-wrap: anywhere; }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
   .receipts-btn { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--link); font: inherit; font-size: 0.8rem; cursor: pointer; padding: 0; }

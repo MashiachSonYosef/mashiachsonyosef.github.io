@@ -118,7 +118,7 @@ check("L0  the builder still declares the rule and the single-pass promise",
 // a single pass writes, and anything after it in a file was appended later.
 const TOP_KEYS = ["schema_version", "rule_id", "work", "work_he", "work_he_tokens", "byline", "work_receipts", "route", "emitted_from", "counts", "nodes", "span_roles", "span_rules", "span_conf", "spans", "gloss", "gloss_m", "sections"];
 const LAST_KEY = "sections";
-const EMITTED_KEYS = ["kq_policy", "kq_none_attested", "walk", "title_from_c0", "identity_oracle", "license_receipts", "gloss_layer", "span_layer", "y_ledger", "license_links", "coordinate_basis", "numbering", "coordinate_labels", "coordinate_shape", "build", "post_build"];
+const EMITTED_KEYS = ["test_instrument", "kq_policy", "kq_none_attested", "walk", "title_from_c0", "identity_oracle", "license_receipts", "gloss_layer", "span_layer", "y_ledger", "license_links", "coordinate_basis", "numbering", "coordinate_labels", "coordinate_shape", "build", "post_build"];
 const GLOSS_LAYER_KEYS = ["source", "key_rule", "rule", "gloss_table_sha256", "distinct_forms_glossed", "distinct_forms_bare", "grain", "store_inputs", "store_version", "m_layer"];
 // A zone built before the builder wrote gloss_m carries it from the
 // enrichment under a TYPED exemption: emitted_from.post_build names this rule,
