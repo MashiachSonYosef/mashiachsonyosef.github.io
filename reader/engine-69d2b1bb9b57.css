@@ -729,6 +729,13 @@
   #hud .s-pills { display: flex; flex-wrap: wrap; gap: 0.32rem; direction: ltr; }
   /* the blocks of one division lay out in the word's own direction, so the
      row reads as the form does and the word visibly reassembles */
+  /* parts-direction-rule-v1-the-first-part-of-a-hebrew-row-is-the-rightmost.
+     Wherever the page draws a form's parts in a row, the part the record puts
+     FIRST is the part furthest RIGHT. Setting direction here is the whole of
+     it, and forgetting it once already shipped a card whose two rows drew the
+     same division in opposite directions, so that a pair read backwards.
+     check-parts-read-right-to-left-v1 measures where the parts landed, in
+     pixels, rather than trusting this attribute. */
   #hud .s-pills[dir="rtl"] { direction: rtl; }
   #hud .s-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 0.4rem; padding: 0.18rem 0.6rem; font: inherit; font-size: 0.9rem; cursor: pointer;

@@ -36,6 +36,12 @@ import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 
 const URL_ARG = process.argv[2];
 if (!URL_ARG || !/^https?:/u.test(URL_ARG)) { console.log("SKIPPED — needs a served zone url"); process.exit(3); }
+// The rows this judges are rare on the shelf — a component system the corpus
+// lane has established, rather than one the clitic pass proposed — so pressing
+// the first words of a page usually finds none. `--press <letters>` points the
+// check at one form by its bare letters, which is how a known instance is
+// pinned into the suite instead of hoping the sweep lands on it.
+const PRESS_KEY = (() => { const i = process.argv.indexOf("--press"); return i > -1 ? process.argv[i + 1] : null; })();
 
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
@@ -89,13 +95,29 @@ const SCAN = () => page.evaluate(() => {
   return out;
 });
 
+if (PRESS_KEY) {
+  const found = await page.evaluate((k) => {
+    const bare = (s) => [...String(s)].filter((c) => c >= "\u05d0" && c <= "\u05ea").join("");
+    const ws = [...document.querySelectorAll("section.seg .he-text .wb .w, section.seg .he-text .wb .wr")];
+    return ws.findIndex((w) => bare(w.textContent || "") === k);
+  }, PRESS_KEY);
+  if (found < 0) { console.log(`SKIPPED — this page does not draw the form asked for with --press`); await b.close(); process.exit(3); }
+  const t = page.locator("section.seg .he-text .wb .w, section.seg .he-text .wb .wr").nth(found);
+  await t.scrollIntoViewIfNeeded();
+  await t.click();
+  await page.waitForTimeout(900);
+}
+
 const rows = [], seen = new Set();
 const keep = (found) => { for (const r of found) { const k = `${r.where}|${r.texts.join("|")}`; if (!seen.has(k)) { seen.add(k); rows.push(r); } } };
 keep(await SCAN());
 
 // what a reader can press: a word of the text, and anything a card offers as a
 // further choice once it is open
-const PRESSABLE = "section.seg .he-text .wb .w, section.seg .he-text .wb.mark, .pc-open, [data-open], .pc-pick, .pc-div";
+// The rows that matter are two presses deep: press a word, then press one of
+// the divisions it offers, and only then does the Block row exist. So the
+// card's own pills are pressable too.
+const PRESSABLE = "section.seg .he-text .wb .w, section.seg .he-text .wb.mark, #hud .s-pills button, .pc-open, [data-open], .pc-pick, .pc-div";
 for (let round = 0; round < 6; round += 1) {
   const n = await page.locator(PRESSABLE).count();
   if (!n) break;

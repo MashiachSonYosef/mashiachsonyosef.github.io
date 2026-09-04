@@ -1820,7 +1820,11 @@
       if (covers.length < 2) return;
       const label = document.createElement("p"); label.className = "r-label";
       label.textContent = `Complete divisions · ${covers.length}`;
-      const pills = document.createElement("div"); pills.className = "s-pills";
+      // parts-direction-rule-v1: this row draws the same form as the Block row
+      // below it, and that one sets its direction. Leaving it off here made one
+      // card draw the same division two ways — blocks right to left, divisions
+      // left to right — which reads as the parts being swapped.
+      const pills = document.createElement("div"); pills.className = "s-pills"; pills.dir = "rtl";
       covers.forEach((c) => {
         const btn = document.createElement("button"); btn.type = "button";
         btn.lang = "he"; btn.dir = "rtl"; btn.textContent = joinCut(c);
