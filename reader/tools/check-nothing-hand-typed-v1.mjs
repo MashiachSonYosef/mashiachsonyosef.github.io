@@ -144,8 +144,23 @@ const owedKeys = new Set();           // route keys the tokens carry
 const zoneNames = new Set();          // the shelf's own addresses
 const oweWord = (s) => owedWords.set(s, (owedWords.get(s) || 0) + 1);
 const zonesDir = join(K3, "data", "zones");
+// count-gate-rule-v1 · what the data owes the door is what the door may
+// SERVE, not everything on the shelf. The two were the same number for as
+// long as the shelf was the authority, and this check quietly leaned on
+// that: it asserted both that no word on the door comes from nowhere (the
+// law) and that every title in the data reaches the door (an accident of
+// there being no gate). A withheld book prints no title, so the second half
+// now fails on a door that is behaving correctly. Reading the same receipt
+// the door reads keeps BOTH halves at full strength — a typed word still
+// owes zero, and a laundered duplicate is still one over — while letting the
+// shelf and the served set differ, which from here on they will.
+const gateFile = join(K3, "data", "count-gate-receipt-v1.json");
+const servedSlugs = existsSync(gateFile)
+  ? new Set(JSON.parse(readFileSync(gateFile, "utf8")).passed || [])
+  : null;                       // no receipt: judge the whole shelf, as before
+const doorServes = (slug) => servedSlugs === null || servedSlugs.has(slug);
 if (existsSync(zonesDir)) {
-  for (const zf of readdirSync(zonesDir).filter((x) => x.endsWith(".bin") && !x.endsWith(".commentary.bin"))) {
+  for (const zf of readdirSync(zonesDir).filter((x) => x.endsWith(".bin") && !x.endsWith(".commentary.bin") && doorServes(x.replace(/\.bin$/, "")))) {
     try {
       const z = JSON.parse(gunzipSync(readFileSync(join(zonesDir, zf))).toString("utf8"));
       zoneNames.add(zf.replace(/\.bin$/, ""));
@@ -163,7 +178,7 @@ if (existsSync(zonesDir)) {
   // key, like every other data word. A hand-swapped verse is a word the
   // data does not owe, and fails here.
   const firstZone = readdirSync(zonesDir)
-    .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))
+    .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin") && doorServes(x.replace(/\.bin$/, "")))
     .sort()[0];
   if (firstZone) {
     try {

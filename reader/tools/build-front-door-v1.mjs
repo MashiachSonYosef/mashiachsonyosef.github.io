@@ -55,11 +55,56 @@ const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ?
 const ZONES = arg("zones", "data/zones");
 const OUT = arg("out", "deploy-root");
 const PLAN = arg("plan", "build/build-plan-v1.json");
+const GATE = arg("count-gate", "data/count-gate-receipt-v1.json");
+
+// count-gate-rule-v1 · THE DOOR SERVES WHAT THE GATE PASSED, NOT WHAT THE
+// SHELF HOLDS.
+//
+// For a year the shelf was the authority: a zone existed, so a book was
+// served, and the only question was whether the build had run. That is a door
+// that reports on itself. It cannot tell a book that is right from a book
+// that is merely finished, because nothing it consults was written by anybody
+// else.
+//
+// The masorah finalis was. It is the one claim in the corpus a machine can
+// test, and the count gate tests it. A book on that receipt is a book whose
+// own arithmetic equals the arithmetic the scribes published for it. A book
+// absent from it is not a book we have shown ourselves able to count — which
+// is not the same as a book we know to be wrong, and is the same reason it
+// may not be served either way.
+//
+// No receipt is a refusal, never a pass. A door that serves everything
+// because the gate did not run is the failure this replaces.
+const gateReceipt = (() => {
+  if (!existsSync(GATE)) throw new Error(`no count-gate receipt at ${GATE} — refusing to write a door that serves ungated books; run tools/check-bookword-count-v1.mjs --write`);
+  return JSON.parse(readFileSync(GATE, "utf8"));
+})();
+const GATE_PASSED = new Set(gateReceipt.passed || []);
+const gated = (slug) => GATE_PASSED.has(slug);
+// The shelf's zones, after the gate. Everywhere the door asks what it may
+// serve, it asks here — one listing, so a book cannot be counted in a tally
+// it is withheld from, or given a page the shelf never lists.
+const shelfZoneFiles = () => readdirSync(ZONES)
+  .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))
+  .filter((x) => gated(x.replace(/\.bin$/, "")))
+  .sort();
 
 const read = (f) => JSON.parse(gunzipSync(readFileSync(f)).toString("utf8"));
 const has = (f) => existsSync(join(ZONES, f));
 const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const n = (x) => Number(x).toLocaleString("en-US");
+
+// O · the shelf says why it is short, in its own words rather than by looking
+// empty. A door that serves nothing and explains nothing is indistinguishable
+// from a door that is broken, and a reader deserves to know which. The numbers
+// come off the gate's receipt, so this line cannot go stale while the shelf
+// changes under it.
+const gateNotice = (() => {
+  const withheld = (gateReceipt.not_proved || {}).count || 0;
+  if (!withheld) return "";
+  const held = gateReceipt.targets_held || 0;
+  return `  <p class="face-line gate-notice">${n(withheld)} built book${withheld === 1 ? " is" : "s are"} withheld, and not because anything is known to be wrong with ${withheld === 1 ? "it" : "them"}. The scribes published a count for a book — its verses, its words, its letters — and a book is served here when our count equals theirs. ${held ? `This project holds ${n(held)} such count${held === 1 ? "" : "s"} so far` : "This project holds none of those counts yet"}, so nothing can be shown to be counted right, and unproved is not served. What the frame does with a book it cannot vouch for is say so.</p>`;
+})();
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const TEXT_PIN_RULE = "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1";
 // The engine directory's name is read from where this tool stands, never
@@ -583,9 +628,7 @@ const awaitingRows = poolOf(LEDGER.awaiting.members.filter((m) => ATLAS.families
 // from it. One law, no tiers: a zone on the shelf is a book, and its card
 // derives from its own receipts, the curated two included among the rest.
 const ZONE_INFO = new Map();
-for (const f of readdirSync(ZONES)
-  .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))
-  .sort()) {
+for (const f of shelfZoneFiles()) {
   const bytes = readFileSync(join(ZONES, f));
   const z = JSON.parse(gunzipSync(bytes).toString("utf8"));
   const words = (z.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
@@ -1057,6 +1100,7 @@ ${page.altLink}
   <h1>${page.h1}</h1>
   <p class="sub">${page.sub}</p>
   <p class="face-line">${n(ZONE_INFO.size)} book${ZONE_INFO.size === 1 ? "" : "s"} readable today · ${n(ATLAS.totals.works - ZONE_INFO.size)} more stand listed, each saying on its own card what it awaits</p>
+${gateNotice}
 ${page.counts ? `  <script id="front-door-counts-receipt" type="application/json">${JSON.stringify(countReceipt).replace(/</g, "\\u003c")}</script>` : ""}
 ${page.demo ? demoHtml : ""}
 ${pocLink}
@@ -1788,6 +1832,11 @@ writeFileSync(join(OUT, "census", "index.html"), censusPageDoc);
 ${RD.rules.map(rulePage).join("\n")}
   <footer>${esc(RD.the_fence)} Recorded in data/rule-demonstrations-v1.json; the passages are built into zones by tools/build-demonstrations-v1.mjs and opened by the reader itself, so what answers a press here is the card that answers on every book.</footer>
 </main></body></html>`;
+  // Its own directory, made here rather than assumed: every other page in
+  // this builder makes the folder it writes into, and this one relied on a
+  // previous build having left one behind. That held until the first build
+  // into a clean tree, which is exactly the build that has to work.
+  mkdirSync(join(OUT, "demonstrations"), { recursive: true });
   writeFileSync(join(OUT, "demonstrations", "index.html"), idx);
   let rdPages = 0;
   for (const r of RD.rules) {
@@ -1875,8 +1924,7 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
 {
   const covered = new Set([...books.map((b) => b.slug), ...withheldBooks.map((b) => b.slug)]);
   let fleetPages = 0;
-  for (const f of readdirSync(ZONES)) {
-    if (!f.endsWith(".bin") || f.startsWith("fixture-") || f.endsWith(".commentary.bin")) continue;
+  for (const f of shelfZoneFiles()) {
     const slug = f.replace(/\.bin$/, "");
     if (covered.has(slug)) continue;
     const page = readerPage({ slug });
