@@ -452,8 +452,27 @@
      maqaf itself prints without opening, because it is not a W. */
   .mq-open { cursor: pointer; }
   .mq-open:hover, .mq-open.on { color: var(--sel); }
-  .wjoin { white-space: nowrap; }
-  .wjoin .wb { margin-inline: 0; }
+  /* RULE 2 ON THE PAGE: A JOINED RUN IS ONE BREATH.
+     A maqaf joins its words into one breath and one accent, so they are drawn
+     touching — no space anywhere inside the run — with one rule under the whole
+     compound and a tick at each C0 boundary. The tick is what a gap used to be:
+     a reader still sees where one word ends and the next begins, without the
+     compound being pulled apart into separate words on the line.
+     The gap was not a margin. Every word block is a column — ink over reading —
+     and shrinks to the WIDER of the two, so a fifteen-pixel word under a sixty-
+     pixel reading sat centred in a sixty-pixel block and the ink of its
+     neighbours stood twenty pixels away. Inside a run the readings therefore
+     come out of the ink row and print once, under the run, joined as the reader
+     joins the parts of any one form. Each word keeps its own reading element,
+     hidden, because the export reads it there and a ruling repaints it there. */
+  .wjoin { white-space: nowrap; display: inline-flex; flex-direction: column;
+    align-items: center; vertical-align: top; margin: 0 0.16rem 0.55rem; }
+  .wjoin .wj-ink { display: inline-flex; align-items: flex-start;
+    border-bottom: 1px solid var(--gold-dim); }
+  .wjoin .wb { margin: 0; }
+  .wjoin .wb > .g { display: none; }
+  .wjoin .wj-ink > .wb + .wb { border-inline-start: 1px solid var(--gold-dim); }
+  .wjoin > .g { display: block; text-align: center; }
   .q-mark { font-size: 0.62em; vertical-align: super; color: var(--muted);
     margin-inline-start: 0.1em; cursor: help; }
   .wb.has-q .w { border-bottom: 1px dotted var(--muted); }
@@ -2830,6 +2849,11 @@
         box.style.height = `${Math.ceil(lines * lh + chipH2)}px`;
         box.style.webkitLineClamp = String(lines);
       }
+      // A word inside a maqaf run does not print its own reading — the run
+      // prints them once, together. So a ruling repaints the word's hidden
+      // element as it always did, and the run's line is made again from it.
+      const run = box.closest && box.closest(".wjoin");
+      if (run) refreshJoinGloss(run);
     };
 
     const paintGloss = () => {
@@ -3555,23 +3579,63 @@
   // A record the corpus says is one word prints as one word. The separator is
   // whatever that record names — usually nothing at all — and this file never
   // supplies one of its own.
+  // THE RUN'S ONE READING LINE. Inside a joined run every word keeps its own
+  // reading element — the export reads it there, and a ruling repaints it
+  // there — but it is not drawn there, because a reading is wider than a word
+  // and would push the breath apart. The run prints them once, in the order
+  // the words stand, joined the way this reader joins the parts of any single
+  // form. Nothing is composed here: each part is the word's own line, and the
+  // licences ride with them, one chip per distinct witness.
+  const refreshJoinGloss = (run) => {
+    if (!run || !run.__ink) return;
+    const wbs = [...run.__ink.querySelectorAll(":scope > .wb")];
+    const parts = [], chips = new Map();
+    for (const wb of wbs) {
+      const g = wb.querySelector(":scope > .g");
+      if (!g) continue;
+      const c = g.cloneNode(true);
+      c.querySelectorAll(".g-lic").forEach((x) => x.remove());
+      const t = (c.textContent || "").trim();
+      if (t && t !== "\u2014") parts.push(t);
+      const lic = g.querySelector(".g-lic");
+      if (lic) chips.set(`${lic.textContent}|${lic.title}`, lic);
+    }
+    let line = run.__gloss;
+    if (!line) {
+      line = document.createElement("span");
+      line.className = "g";
+      run.append(line);
+      run.__gloss = line;
+    }
+    const text = parts.join(" + ");
+    line.replaceChildren();
+    if (text) { line.textContent = text; line.title = text; line.classList.remove("bare"); }
+    else { line.textContent = " "; line.classList.add("bare"); }
+    for (const lic of chips.values()) line.append(lic.cloneNode(true));
+  };
+
   const appendWord = (host, built, word) => {
     const pj = word && word.presentation_join;
     const joinNext = !!(pj && pj.join_next_without_separator);
     const joinPrev = !!(pj && pj.join_previous_without_separator);
-    if (joinPrev && host.__wjoin) host.__wjoin.append(built.wb);
+    if (joinPrev && host.__wjoin) host.__wjoin.__ink.append(built.wb);
     else if (joinNext) {
       const wrap = document.createElement("span");
       wrap.className = "wjoin";
-      wrap.append(built.wb);
+      const ink = document.createElement("span");
+      ink.className = "wj-ink";
+      ink.append(built.wb);
+      wrap.append(ink);
+      wrap.__ink = ink;
       host.append(wrap);
       host.__wjoin = wrap;
     } else host.append(built.wb);
     if (joinNext) {
       const sep = String((pj && pj.separator_between_group_records) || "");
-      if (sep) (host.__wjoin || host).append(document.createTextNode(sep));
+      if (sep) ((host.__wjoin && host.__wjoin.__ink) || host).append(document.createTextNode(sep));
       return;
     }
+    if (host.__wjoin) refreshJoinGloss(host.__wjoin);
     host.__wjoin = null;
     host.append(document.createTextNode(" "));
   };

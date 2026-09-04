@@ -81,12 +81,12 @@ const page = await b.newPage({ viewport: { width: 412, height: 915 } });
 const errs = []; page.on("pageerror", (e) => errs.push(e.message));
 await page.goto(URL_ARG, { waitUntil: "networkidle" });
 await page.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
-const drawn = await page.evaluate((n) => [...document.querySelectorAll("section.seg .he-text .wjoin")].slice(0, n).map((j) => ({
+const drawn = await page.evaluate((n) => [...document.querySelectorAll("section.seg .he-text .wjoin")].slice(0, n).map((jw) => { const j = jw.querySelector(".wj-ink") || jw; return ({
   n: j.querySelectorAll(":scope > .wb").length,
   text: [...j.querySelectorAll(":scope > .wb > .w")].map((w) => w.textContent).join(""),
   between: [...j.childNodes].filter((c) => c.nodeType === 3 && c.textContent.trim() === "").length,
   pieces: j.querySelectorAll(".wr, .mq").length,
-})), expected.length);
+}); }), expected.length);
 // L2
 const l2 = [];
 expected.forEach((e, i) => {
@@ -103,7 +103,7 @@ check("L4  no word of a split pair is drawn as pieces", l4 === 0, l4 ? `${l4} ru
 // L3
 const l3 = [];
 if (expected.length) {
-  const first = page.locator("section.seg .he-text .wjoin").first();
+  const first = page.locator("section.seg .he-text .wjoin .wj-ink").first();
   await first.scrollIntoViewIfNeeded();
   await first.locator(":scope > .wb > .w").first().click();
   await page.waitForTimeout(600);
