@@ -191,11 +191,15 @@ check("L3  nothing served carries a book that did not pass", l3.length === 0,
 // demonstrations' own text; they stay.
 const l4 = [];
 {
-  const git = spawnSync("git", ["ls-files", "data/zones"], { cwd: K3, encoding: "utf8" });
+  // -z, because git QUOTES a path with a byte outside ASCII: most of this
+  // shelf's slugs are Hebrew, and the readable form wraps them in quotes and
+  // octal escapes, so a name test against ".bin" missed 2,932 of 3,441 zones
+  // and this guard reported a tenth of the breach it was written to find. A
+  // check that under-counts silently is the failure it is meant to prevent.
+  const git = spawnSync("git", ["ls-files", "-z", "data/zones"], { cwd: K3, encoding: "utf8" });
   if (git.status === 0) {
     const ok = new Set(passed);
-    for (const line of git.stdout.split("\n")) {
-      const f = line.trim();
+    for (const f of git.stdout.split("\0")) {
       if (!f.endsWith(".bin") || f.includes("fixture-")) continue;
       const slug = f.replace(/^.*\//, "").replace(/\.(commentary\.)?bin$/, "");
       if (!ok.has(slug)) l4.push(slug);
