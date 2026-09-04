@@ -74,6 +74,12 @@ const cases = [
   ["\u05e2\u05b7\u05dc\u05be\u05db\u05b5\u05df", "\u05e2\u05dc\u05be\u05db\u05df"], // internal maqaf stays
   ["\u05d1\u05b4\u0594\u05d9", "\u05d1\u05d9"],                       // accents and points removed
   ["\u05e8'", "\u05e8"],                                              // a quote not among letters is not a mark
+  // the owner's ruling of 2026-09-04: a maqaf is never stripped to form a key,
+  // and an ASCII hyphen between Hebrew letters IS a maqaf. Dropped as
+  // non-lexical it welded the two words into a string no source wrote, which
+  // is the form the ruling forbids.
+  ["\u05e2\u05dc-\u05db\u05df", "\u05e2\u05dc\u05be\u05db\u05df"],   // hyphen between letters -> maqaf, boundary kept
+  ["\u05d0\u05dc-", "\u05d0\u05dc"],                              // a hyphen at the boundary rides as ink, like a maqaf
 ];
 const l1 = cases.filter(([s, k]) => rule.exactK(s) !== k).map(([s, k]) => `${esc(s)} -> ${esc(rule.exactK(s))}, expected ${esc(k)}`);
 check("L1  the declaring file declares the rule and its function keeps it on the deciding cases",

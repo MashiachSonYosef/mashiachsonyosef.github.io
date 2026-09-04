@@ -16,6 +16,16 @@
 //      named by the rule; a typographic quote (U+201D and kin) is not
 //      remapped here and is reported, not guessed.
 //
+//   1b. AN ASCII HYPHEN IS A MAQAF (owner, 2026-09-04: "a maqaf is never
+//      stripped to form a key... maqaf, ASCII hyphen, or space"). The same
+//      ruling that banned welding two words into one key names the hyphen as
+//      a boundary the corpus writes, and the corpus lane's compound inventory
+//      counts 3,234 rows carrying one. Left as ASCII the hyphen is not lexical
+//      and was DROPPED, so a compound written with it keyed welded — the exact
+//      form the ruling forbids: al-ken written with a hyphen keyed as one run
+//      of five letters, a string no source wrote. It normalizes to U+05BE
+//      first, and the maqaf law below then governs it like any other.
+//
 //   2. THE MAQAF UNDER RULE 2 (owner, 2026-09-02: a maqaf compound is two
 //      C0s, "keys clean per part"; the corpus lane's split reseal attaches
 //      the maqaf to the preceding part). A row that ends with a maqaf is one
@@ -47,6 +57,8 @@ export const normalizeAsciiAbbreviation = (surface) => {
   const letterAfter = (i) => { for (let j = i + 1; j < cs.length; j += 1) { const c = cs[j]; if (isHebrewLetter(c.codePointAt(0))) return true; if (!HEBREW_MARK.test(c)) return false; } return false; };
   for (let i = 0; i < cs.length; i += 1) {
     if ((cs[i] === '"' || cs[i] === "'") && letterBefore(i) && letterAfter(i)) cs[i] = cs[i] === '"' ? GERSHAYIM : GERESH;
+    // ruling 1b: the hyphen is a boundary, and a boundary is never dissolved
+    else if (cs[i] === "-" && letterBefore(i) && letterAfter(i)) cs[i] = MAQAF;
   }
   return cs.join("");
 };
@@ -65,9 +77,16 @@ export const exactK = (surface) => {
 };
 
 /** Whether a surface carries the joiner at its end: it joins the next row. */
-export const joinsNext = (surface) => /\u05be[\u0591-\u05c7]*$/u.test(String(surface ?? "").normalize("NFC"));
+// Ruling 1b reaches the page as well as the key. A surface whose joiner is
+// written as an ASCII hyphen joins the next word exactly as a maqaf does, so
+// the run draws as one breath rather than as two spaced words. The hyphen
+// must follow a Hebrew letter to count: a trailing hyphen after anything
+// else is punctuation this rule has no business reading.
+const JOINS_NEXT = /(?:\u05be[\u0591-\u05c7]*|[\u05d0-\u05ea][\u0591-\u05c7]*-[\u0591-\u05c7]*)$/u;
+export const joinsNext = (surface) => JOINS_NEXT.test(String(surface ?? "").normalize("NFC"));
 /** Whether a surface carries the joiner at its start: a degenerate edge site. */
-export const joinsPrev = (surface) => /^[\u0591-\u05c7]*\u05be/u.test(String(surface ?? "").normalize("NFC"));
+const JOINS_PREV = /^[\u0591-\u05c7]*(?:\u05be|-[\u0591-\u05c7]*[\u05d0-\u05ea])/u;
+export const joinsPrev = (surface) => JOINS_PREV.test(String(surface ?? "").normalize("NFC"));
 
 export const K_RULE_ID = "exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf";
 export const K_RULE_TEXT =
