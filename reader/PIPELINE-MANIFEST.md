@@ -22,7 +22,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `commentary-order-rule-v2-oldest-first-on-the-earliest-date-recorded` | zone.html | check-commentary-in-line-v1 |
 | `commentary-scope-rule-v2` | zone.html | check-commentary-in-line-v1 |
 | `commentary-words-rule-v1-separate-at-the-spaces-the-author-typed` | tools/build-commentary-sidecar-v1.mjs | check-commentary-in-line-v1 |
-| `count-gate-rule-v1-a-book-is-served-when-our-count-equals-the-count-the-scribes-published` | tools/build-front-door-v1.mjs | check-bookword-count-v1, check-nothing-hand-typed-v1 |
+| `count-gate-rule-v1-a-book-is-served-when-our-count-equals-the-count-the-scribes-published` | tools/build-front-door-v1.mjs, tools/zones-on-disk-v1.mjs | check-bookword-count-v1, check-clean-address-v1, check-nothing-hand-typed-v1 |
 | `demo-verse-rule-v1` | tools/build-front-door-v1.mjs | check-clean-address-v1, check-nothing-hand-typed-v1 |
 | `derived-work-ranges-rule-v1-the-atlas-names-every-range-so-none-is-typed` | tools/emit-derived-work-ranges-v1.mjs | check-derived-ranges-v1 |
 | `dibbur-hamatchil-rule-v2-the-window-is-the-verse` | tools/generate-attachment-map-v2.mjs | check-nothing-hard-wired-v1 |

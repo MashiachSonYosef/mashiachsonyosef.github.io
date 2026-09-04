@@ -122,9 +122,15 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
   // is the shelf itself: a zone on disk is a finished book, and the door is
   // built from exactly that directory, so this check and the page it checks
   // derive the same list from the same place.
-  const { zonesOnDisk } = await import("./zones-on-disk-v1.mjs");
+  // count-gate-rule-v1 · what the door must link to is what the door may
+  // SERVE, which since the gate is a smaller list than the shelf. This
+  // assertion runs both ways — no way off that is not a finished book, and
+  // no finished book the door fails to offer — so reading the shelf here
+  // demanded that the door publish books the gate withheld. That is the
+  // guard being wrong, not the door.
+  const { zonesServed } = await import("./zones-on-disk-v1.mjs");
   const FINISHED = [...new Set([
-    ...zonesOnDisk().map((slug) => `/${slug}`),
+    ...zonesServed().map((slug) => `/${slug}`),
     ...plan.works.map((w) => `/${w.published_as}`),
   ])];
   // The door also points at its own counts receipt — a record of the door,

@@ -15,7 +15,7 @@
 // the corpus moves. A slug typed into a check is a claim about the future,
 // and this file is how that claim stops being made.
 
-import { readdirSync, existsSync } from "node:fs";
+import { readdirSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const ZONES = process.env.ZONES_DIR || "data/zones";
@@ -41,6 +41,29 @@ export function zonesOnDisk(dir = ZONES) {
     .filter((f) => !f.startsWith("fixture-"))       // instruments, not works
     .map((f) => f.replace(/\.bin$/, ""))
     .sort();
+}
+
+/** Every zone the door may SERVE — the shelf, after the count gate.
+ *
+ *  These were one list for as long as the shelf was the publishing
+ *  authority: a zone existed, so a book was served, and a check that wanted
+ *  to know what the door offers could ask the directory. count-gate-rule-v1
+ *  separates them. A book is served when its own count equals the count the
+ *  scribes published for it, so the shelf is now what we have and this is
+ *  what we can stand behind, and the two differ by however much we have not
+ *  yet proved.
+ *
+ *  A check that asks "what does the door offer" wants this one. A check that
+ *  asks "what did the builder produce" still wants zonesOnDisk. Getting that
+ *  backwards is how a guard comes to demand that the door publish a book the
+ *  gate withheld — which is the guard failing, not the door.
+ *
+ *  No receipt is a refusal, never a pass: same law as the door's. */
+export function zonesServed(dir = ZONES) {
+  const receipt = join(dir, "..", "count-gate-receipt-v1.json");
+  if (!existsSync(receipt)) return [];
+  const passed = new Set(JSON.parse(readFileSync(receipt, "utf8")).passed || []);
+  return zonesOnDisk(dir).filter((z) => passed.has(z));
 }
 
 /** Zones that also carry a commentary sidecar. A check about commentary has

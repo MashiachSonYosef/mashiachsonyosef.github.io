@@ -58,6 +58,7 @@
 //      [--receipt data/count-gate-receipt-v1.json] [--out deploy-root]
 //      [--write] to rewrite the receipt
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -176,6 +177,33 @@ if (existsSync(OUT)) {
 }
 check("L3  nothing served carries a book that did not pass", l3.length === 0,
   l3.length ? `${n(l3.length)} served without a passing count — ${few(l3)}` : (existsSync(OUT) ? "no unproved book is served" : "nothing built yet"));
+
+// ---- L4: withholding the address is not withholding the book -------------
+// The door is not the only way in. This site is published as a whole tree,
+// so a zone file that is committed is a zone file anybody can open at
+// zone.html?b=<slug> whether or not a single page links to it. Taking the
+// address away and leaving the data is a door that says nothing is served
+// while everything still is, which is worse than serving it openly.
+//
+// So the gate governs what is PUBLISHED, not what is linked: a book it did
+// not pass keeps its bin on disk, where the builder needs it, and out of the
+// tree, where a reader would find it. The fixtures are not books and are the
+// demonstrations' own text; they stay.
+const l4 = [];
+{
+  const git = spawnSync("git", ["ls-files", "data/zones"], { cwd: K3, encoding: "utf8" });
+  if (git.status === 0) {
+    const ok = new Set(passed);
+    for (const line of git.stdout.split("\n")) {
+      const f = line.trim();
+      if (!f.endsWith(".bin") || f.includes("fixture-")) continue;
+      const slug = f.replace(/^.*\//, "").replace(/\.(commentary\.)?bin$/, "");
+      if (!ok.has(slug)) l4.push(slug);
+    }
+  }
+}
+check("L4  no book the gate withheld is published as data", l4.length === 0,
+  l4.length ? `${n(l4.length)} zone file(s) still committed — ${few(l4)} · they are readable at zone.html?b= whatever the door links` : "the withheld books are on disk and out of the published tree");
 
 console.log("\n  what this does not say: anything about the five rules that move no count.");
 console.log("  A number is blind to italics, to shirah layout, and to the scribal letters.");
