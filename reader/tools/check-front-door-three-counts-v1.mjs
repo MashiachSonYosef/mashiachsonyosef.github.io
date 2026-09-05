@@ -12,7 +12,7 @@ import { resolve } from "node:path";
 import assert from "node:assert/strict";
 import { basename, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { zonesOnDisk, zonesServed } from "./zones-on-disk-v1.mjs";
 
 const arg = (name, fallback) => {
   const i = process.argv.indexOf(`--${name}`);
@@ -226,9 +226,15 @@ check("rendered count is dynamically derived from pinned built zones", () => {
   // is recomputed from the zones on disk on every build and is never held to
   // a typed figure. The set the receipt pins is exactly the set the
   // directory carries — no more, no less.
-  const onDisk = zonesOnDisk().map((slug) => `data/zones/${slug}.bin`).sort();
+  // count-gate-rule-v1 · the receipt pins what the door RENDERED, and since
+  // the gate that is the served set rather than the shelf. The two were one
+  // list while a zone existing was the whole condition of being published;
+  // holding the receipt to the directory now demands the door render books
+  // the gate withheld, which is this assertion asking for the fault it was
+  // written to catch.
+  const servedSet = zonesServed().map((slug) => `data/zones/${slug}.bin`).sort();
   const pinnedPaths = receipt.rendered.zones.map((zone) => zone.path).sort();
-  assert.deepEqual(pinnedPaths, onDisk, "the receipt's served set is not the set on disk");
+  assert.deepEqual(pinnedPaths, servedSet, "the receipt's served set is not the set the gate passed");
   assert.equal(receipt.rendered.built_zones, receipt.rendered.zones.length);
   assert.equal(receipt.rendered.compspan_records, dynamicRendered);
   assert.equal(receipt.rendered.zone_manifest_sha256, sha256(Buffer.from(JSON.stringify(recomputedZones))));

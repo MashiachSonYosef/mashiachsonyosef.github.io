@@ -23,7 +23,7 @@ import { join, dirname, extname, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { zonesOnDisk, zonesWithCommentary } from "./zones-on-disk-v1.mjs";
+import { zonesOnDisk, zonesServed, zonesWithCommentary } from "./zones-on-disk-v1.mjs";
 import { basename } from "node:path";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -128,7 +128,6 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
   // no finished book the door fails to offer — so reading the shelf here
   // demanded that the door publish books the gate withheld. That is the
   // guard being wrong, not the door.
-  const { zonesServed } = await import("./zones-on-disk-v1.mjs");
   const FINISHED = [...new Set([
     ...zonesServed().map((slug) => `/${slug}`),
     ...plan.works.map((w) => `/${w.published_as}`),
@@ -401,15 +400,32 @@ for (const [href, ...expected] of WALK) {
 
 console.log("— the addresses on their own —");
 // the curated tier can be empty (owner's ruling, 2026-08-30); the probe
-// address comes from the shelf itself then — the last zone in sort order
-const addrPool = plan.works.length ? plan.works.map((w) => w.published_as) : zonesOnDisk();
+// address comes from the shelf itself then — the last SERVED zone in sort
+// order. count-gate-rule-v1: a withheld book has no address page to land
+// on, so probing the shelf here opened a page that is deliberately not
+// there and waited twenty-five seconds for a reader to appear in it. That
+// is not a failing site, it is a probe aimed at nothing.
+// Whichever pool it comes from, the probe must be a book that is actually
+// SERVED: a withheld work still answers at its address, with the page that
+// says it is withheld, and that page has no reader in it to wait for.
+const servedNow = new Set(zonesServed());
+const addrPool = (plan.works.length ? plan.works.map((w) => w.published_as) : zonesServed())
+  .filter((slug) => servedNow.has(slug));
 const LAST = addrPool[addrPool.length - 1];
+if (!LAST) {
+  // Said out loud rather than passed over: no book is through the gate, so
+  // there is no book address to type. The redirect law below still runs —
+  // a published address stays a promise whether or not anything is served.
+  check("  no book is through the count gate, so there is no book address to type",
+    true, "the address laws below still run");
+} else {
 const A0 = `/${LAST}`;
 await p.goto(`${B}${A0}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
 const typed = await p.evaluate(() => ({ addr: location.pathname, secs: document.querySelectorAll("section.seg").length }));
 check("a clean address typed in lands on the reader and stays",
   sameAddr(typed.addr, A0) && typed.secs === sectionsOf(LAST), `${typed.addr} · ${typed.secs} of ${sectionsOf(LAST)} sections`);
+}
 
 // A published address is a promise: every republished address in the history
 // record still answers, as a redirect to where its work now lives.
@@ -486,12 +502,21 @@ for (const slug of CARRIED) {
   // asked plan.works[0] directly and crashed on undefined, taking the two
   // assertions after it down with it. The shelf is the authority on what is
   // published, here as everywhere else.
-  const first = (plan.works[0] && plan.works[0].published_as) || zonesOnDisk()[0];
+  // count-gate-rule-v1 · and it has to be a book that is SERVED. The shelf
+  // stopped being the authority on what is published the day a book had to
+  // prove its count first; a withheld work still answers at its address with
+  // the page that says so, and waiting for a reader inside that page waits
+  // twenty-five seconds for something that is deliberately absent.
+  const first = addrPool[0];
+  if (!first) {
+    check("  no book is through the count gate, so no book entry to open", true, "nothing served");
+  } else {
   await p.goto(`${B}/${first}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
   await p.waitForTimeout(1200);
   const shut = await p.evaluate(() => document.querySelectorAll("section.seg .c-mark-slot:not(.c-choose)").length);
   check("  while the book's own entry opens the book with nothing pressed", shut === 0, `${shut} open`);
+  }
 }
 
 // Nothing rewrites the bar, on anyone's say-so: the clean= parameter of the
