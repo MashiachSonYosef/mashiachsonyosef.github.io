@@ -566,6 +566,26 @@
   /* the name slot's absence, said in words — same voice as the title slot's */
   .en.none { font-family:Georgia,serif; font-size:.8rem; font-style:italic; color:var(--faint);
     font-variant:normal; letter-spacing:normal; }
+    /* THE DOOR INVERTS THE READER, deliberately. Inside a book the Hebrew is
+     the text and the English hangs under it; on the door a reader is
+     looking for a book by the name they know, and the word records are
+     extra rather than the point. So the English leads and the Hebrew
+     stands small beside it — still the work's own name, still pressable,
+     still wearing the licence of whatever record reads it. Owner's
+     ruling, 2026-09-06. */
+  /* the hover, in the page's colours: linen or panel by the reader's face,
+     a gold-dim edge, rounded like every other card here, and narrow
+     enough to read as a sentence rather than a banner */
+  .tip { position:fixed; z-index:60; max-width:26rem; padding:.45rem .6rem;
+    background:var(--panel); color:var(--ink); border:1px solid var(--gold-dim);
+    border-radius:.5rem; box-shadow:var(--shadow-card); font-size:.76rem;
+    line-height:1.45; pointer-events:none; }
+  .tip[hidden] { display:none; }
+  details.fam > summary .row.he-row { margin-top:.1rem; }
+  details.fam > summary .row.he-row .fam-he .he { font-size:1rem; }
+  details.fam > summary .row.he-row .fam-he .g { font-size:.62rem; }
+  .atlas-row .fam-he { margin-inline-start:.45rem; }
+  .atlas-row .fam-he .he { font-size:.92rem; color:var(--muted); }
   .trow .fam-he, details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   .trow .fam-he .he, details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.3rem; color:var(--shesh); }
@@ -841,8 +861,8 @@
     <section class="family">
       <details class="fam" open>
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#tanakh"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="תנ״ך" title="open this word’s own record — readings oldest source first">תנ״ך</button></span><span class="g">bible (n, wikt, en 1)<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">commonly force read as</span><span class="en">Tanakh</span><span class="chip" title="DBnary English Wiktionary source-explicit Hebrew translations and English glosses · 2026 — attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: DBnary English Wiktionary source-explicit Hebrew translations and English glosses</span><span class="of">82 works · 80 built · 69,413 units</span></span>
+        <span class="row"><span class="en">Tanakh</span><span class="chip" title="commonly force read as — DBnary English Wiktionary source-explicit Hebrew translations and English glosses · 2026 attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: DBnary English Wiktionary source-explicit Hebrew translations and English glosses</span><span class="of">82 works · 80 built · 69,413 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#tanakh"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="תנ״ך" title="open this word’s own record — readings oldest source first">תנ״ך</button></span><span class="g">bible (n, wikt, en 1)<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The Hebrew Bible: Torah, Nevi'im, Ketuvim — and, as the bridge currently files them, the commentaries and Torah targums riding under its value.</span>
@@ -857,11 +877,11 @@
       <span class="atlas-row built stamped"><a class="aw" href="/ezra" title="open this book">ezra</a><span class="au">280 verses · 3,754 words read · 15,762 letters · 467 scribal marks</span></span>
     <div class="workgroup">
     <div class="bookcard">
-      <span class="row trow"><span class="lab">book title</span><span class="fam-he"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="בראשית" data-book="/genesis" data-bookname="Genesis" data-bookatt="attested: Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles" data-bookatttitle="Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles · 2023 — attests this usage; a name is an identification, not licensed expression (FRAME v2.7)" title="open this word’s own record, and the book it titles">בראשית</button></span><span class="g">at first</span></span></span>
       <a class="book" href="/genesis">
-      <span class="row"><span class="lab">commonly force read as</span><span class="en">Genesis</span><span class="chip" title="Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles · 2023 — attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles</span></span>
+      <span class="row"><span class="en">Genesis</span><span class="chip" title="Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles · 2023 — attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles</span></span>
       <span class="of">1,533 verses · 20,613 words read · 78,063 letters · 1,717 scribal marks, each at its own position</span>
       </a>
+      <span class="row trow he-row"><span class="fam-he"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="בראשית" data-book="/genesis" data-bookname="Genesis" data-bookatt="attested: Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles" data-bookatttitle="Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles · 2023 — attests this usage; a name is an identification, not licensed expression (FRAME v2.7)" title="open this word’s own record, and the book it titles">בראשית</button></span><span class="g">at first</span></span></span>
 
     </div>
       <details class="fold">
@@ -909,8 +929,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#targum"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="תרגום" title="open this word’s own record — readings oldest source first">תרגום</button></span><span class="g">translation<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="targum">targum</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">37 works · 21 built · 23,024 units</span></span>
+        <span class="row"><span class="en" title="targum">targum</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">37 works · 21 built · 23,024 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#targum"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="תרגום" title="open this word’s own record — readings oldest source first">תרגום</button></span><span class="g">translation<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The Aramaic renderings of the books of the Tanakh.</span>
@@ -922,8 +942,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#mishnah"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="משנה" title="open this word’s own record — readings oldest source first">משנה</button></span><span class="g">double<span class="chip" title="Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · 1890">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">commonly force read as</span><span class="en">Mishnah</span><span class="chip" title="PanLex 2024 exact same-meaning Hebrew-English lexical expression · 2024 — attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: PanLex 2024 exact same-meaning Hebrew-English lexical expression</span><span class="of">68 works · 43 built · 4,186 units</span></span>
+        <span class="row"><span class="en">Mishnah</span><span class="chip" title="commonly force read as — PanLex 2024 exact same-meaning Hebrew-English lexical expression · 2024 attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: PanLex 2024 exact same-meaning Hebrew-English lexical expression</span><span class="of">68 works · 43 built · 4,186 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#mishnah"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="משנה" title="open this word’s own record — readings oldest source first">משנה</button></span><span class="g">double<span class="chip" title="Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · 1890">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The six orders of the Mishnah, tractate by tractate.</span>
@@ -935,8 +955,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#tosefta"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="תוספתא" title="open this word’s own record — readings oldest source first">תוספתא</button></span><span class="g">tosefta<span class="chip" title="Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles · 2019">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">commonly force read as</span><span class="en">Tosefta</span><span class="chip" title="PanLex 2024 exact same-meaning Hebrew-English lexical expression · 2024 — attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: PanLex 2024 exact same-meaning Hebrew-English lexical expression</span><span class="of">94 works · 58 built · 4,278 units</span></span>
+        <span class="row"><span class="en">Tosefta</span><span class="chip" title="commonly force read as — PanLex 2024 exact same-meaning Hebrew-English lexical expression · 2024 attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: PanLex 2024 exact same-meaning Hebrew-English lexical expression</span><span class="of">94 works · 58 built · 4,278 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#tosefta"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="תוספתא" title="open this word’s own record — readings oldest source first">תוספתא</button></span><span class="g">tosefta<span class="chip" title="Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles · 2019">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The Tosefta's tractates, the Mishnah's companion corpus.</span>
@@ -948,8 +968,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#talmud"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="תלמוד" title="open this word’s own record — readings oldest source first">תלמוד</button></span><span class="g">the collection of ancient rabbinic writings on Jewish law and tradition (the Mishna and the Gemara) that constitute the basis of religious authority in Orthodox Judaism<span class="chip" title="Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · 2007">WordNet Licences</span></span></span></span>
-        <span class="row"><span class="lab">commonly force read as</span><span class="en">Talmud</span><span class="chip" title="Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles · 2019 — attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles</span><span class="of">42 works · 38 built · 3,693 units</span></span>
+        <span class="row"><span class="en">Talmud</span><span class="chip" title="commonly force read as — Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles · 2019 attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles</span><span class="of">42 works · 38 built · 3,693 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#talmud"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="תלמוד" title="open this word’s own record — readings oldest source first">תלמוד</button></span><span class="g">the collection of ancient rabbinic writings on Jewish law and tradition (the Mishna and the Gemara) that constitute the basis of religious authority in Orthodox Judaism<span class="chip" title="Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · 2007">WordNet Licences</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The Talmud and its commentaries — at present the bridge carries the Jerusalem Talmud's tractates and commentaries on them.</span>
@@ -961,8 +981,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#midrash"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="מדרש" title="open this word’s own record — readings oldest source first">מדרש</button></span><span class="g">study<span class="chip" title="Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · 1906">CC BY 4.0</span></span></span></span>
-        <span class="row"><span class="lab">commonly force read as</span><span class="en">Midrash</span><span class="chip" title="PanLex 2024 exact same-meaning Hebrew-English lexical expression · 2024 — attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: PanLex 2024 exact same-meaning Hebrew-English lexical expression</span><span class="of">125 works · 18 built · 93,547 units</span></span>
+        <span class="row"><span class="en">Midrash</span><span class="chip" title="commonly force read as — PanLex 2024 exact same-meaning Hebrew-English lexical expression · 2024 attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: PanLex 2024 exact same-meaning Hebrew-English lexical expression</span><span class="of">125 works · 18 built · 93,547 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#midrash"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="מדרש" title="open this word’s own record — readings oldest source first">מדרש</button></span><span class="g">study<span class="chip" title="Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · 1906">CC BY 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">Midrash aggadah and midrash halakhah, with their commentaries.</span>
@@ -974,8 +994,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#halakhah"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="הלכה" title="open this word’s own record — readings oldest source first">הלכה</button></span><span class="g">(all) along<span class="chip" title="Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · 1890">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="halakhah · halakhah_expansion · kabbalah_hebrew_thought">halakhah · halakhah expansion · kabbalah hebrew thought</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">108 works · 28 built · 29,883 units</span></span>
+        <span class="row"><span class="en" title="halakhah · halakhah_expansion · kabbalah_hebrew_thought">halakhah · halakhah expansion · kabbalah hebrew thought</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">108 works · 28 built · 29,883 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#halakhah"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="הלכה" title="open this word’s own record — readings oldest source first">הלכה</button></span><span class="g">(all) along<span class="chip" title="Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · 1890">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The codes and their expansions: Shulchan Arukh, Arukh HaShulchan, the halakhic literature around them.</span>
@@ -987,8 +1007,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#responsa"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="שו״ת" title="open this word’s own record — readings oldest source first">שו״ת</button></span><span class="g">questions and answers.<span class="chip" title="Kethoneth Yoseph 1887 source-image-reviewed exact Hebrew abbreviation definitions · 1887">Public Domain</span></span></span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="responsa · geonim · responsa_geonim_bounded · sherira_hai_gaon_stream">responsa · geonim · responsa geonim bounded · sherira hai gaon stream</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">94 works · 91 built · 27,226 units</span></span>
+        <span class="row"><span class="en" title="responsa · geonim · responsa_geonim_bounded · sherira_hai_gaon_stream">responsa · geonim · responsa geonim bounded · sherira hai gaon stream</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">94 works · 91 built · 27,226 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#responsa"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="שו״ת" title="open this word’s own record — readings oldest source first">שו״ת</button></span><span class="g">questions and answers.<span class="chip" title="Kethoneth Yoseph 1887 source-image-reviewed exact Hebrew abbreviation definitions · 1887">Public Domain</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">Questions asked and answered, from the Geonim to the moderns.</span>
@@ -1000,8 +1020,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#liturgy"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="תפילה" title="open this word’s own record — readings oldest source first">תפילה</button></span><span class="g">prayer<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="liturgy · liturgy_prayer">liturgy · liturgy prayer</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">38 works · 17 built · 91,014 units</span></span>
+        <span class="row"><span class="en" title="liturgy · liturgy_prayer">liturgy · liturgy prayer</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">38 works · 17 built · 91,014 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#liturgy"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="תפילה" title="open this word’s own record — readings oldest source first">תפילה</button></span><span class="g">prayer<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">Siddurim, machzorim, piyyutim, and the prayers around them.</span>
@@ -1013,8 +1033,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#kabbalah"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="קבלה" title="open this word’s own record — readings oldest source first">קבלה</button></span><span class="g">the act of receiving<span class="chip" title="Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · 2007">WordNet Licences</span></span></span></span>
-        <span class="row"><span class="lab">commonly force read as</span><span class="en">Kabbalah</span><span class="chip" title="DBnary English Wiktionary source-explicit Hebrew translations and English glosses · 2026 — attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: DBnary English Wiktionary source-explicit Hebrew translations and English glosses</span><span class="of">53 works · 2 built · 69,704 units</span></span>
+        <span class="row"><span class="en">Kabbalah</span><span class="chip" title="commonly force read as — DBnary English Wiktionary source-explicit Hebrew translations and English glosses · 2026 attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested: DBnary English Wiktionary source-explicit Hebrew translations and English glosses</span><span class="of">53 works · 2 built · 69,704 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#kabbalah"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="קבלה" title="open this word’s own record — readings oldest source first">קבלה</button></span><span class="g">the act of receiving<span class="chip" title="Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · 2007">WordNet Licences</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The mystical literature: Zohar and its commentaries, the Ari's writings, Hekhalot, and the kabbalists after them.</span>
@@ -1026,8 +1046,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#chasidut"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="חסידות" title="open this word’s own record — readings oldest source first">חסידות</button></span><span class="g">hassidism (n)<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="chasidut · tanya">chasidut · tanya</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">84 works · 36 built · 64,604 units</span></span>
+        <span class="row"><span class="en" title="chasidut · tanya">chasidut · tanya</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">84 works · 36 built · 64,604 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#chasidut"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="חסידות" title="open this word’s own record — readings oldest source first">חסידות</button></span><span class="g">hassidism (n)<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The chasidic masters, the Baal Shem Tov's school onward.</span>
@@ -1039,8 +1059,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#mussar"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="מוסר" title="open this word’s own record — readings oldest source first">מוסר</button></span><span class="g">bond<span class="chip" title="Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · 1890">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="mussar · musar">mussar · musar</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">39 works · 16 built · 28,751 units</span></span>
+        <span class="row"><span class="en" title="mussar · musar">mussar · musar</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">39 works · 16 built · 28,751 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#mussar"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="מוסר" title="open this word’s own record — readings oldest source first">מוסר</button></span><span class="g">bond<span class="chip" title="Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · 1890">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The literature of self-examination, medieval and modern.</span>
@@ -1052,8 +1072,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#jewish-thought"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="מחשבת" title="open this word’s own record — readings oldest source first">מחשבת</button> <button type="button" class="fw" data-k="ישראל" title="open this word’s own record — readings oldest source first">ישראל</button></span><span class="g">cunning (work)<span class="chip" title="Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · 1890">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="jewish-thought · rav-kook · orot_work · shemona_kevatzim">jewish thought · rav kook · orot work · shemona kevatzim</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">41 works · 36 built · 4,758 units</span></span>
+        <span class="row"><span class="en" title="jewish-thought · rav-kook · orot_work · shemona_kevatzim">jewish thought · rav kook · orot work · shemona kevatzim</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">41 works · 36 built · 4,758 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#jewish-thought"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="מחשבת" title="open this word’s own record — readings oldest source first">מחשבת</button> <button type="button" class="fw" data-k="ישראל" title="open this word’s own record — readings oldest source first">ישראל</button></span><span class="g">cunning (work)<span class="chip" title="Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · 1890">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">Machshavah from the rishonim to Rav Kook: philosophy, theology, and the essays between them.</span>
@@ -1065,8 +1085,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#grammar-masorah"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="דקדוק" title="open this word’s own record — readings oldest source first">דקדוק</button> <span class="fw inert">ומסורה</span></span><span class="g">grammar (n)<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="masorah_grammar · masorah_grammar_review · grammar_masorah_completion_major|masorah_grammar_stream">masorah grammar · masorah grammar review</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">6 works · 1 built · 2,154 units</span></span>
+        <span class="row"><span class="en" title="masorah_grammar · masorah_grammar_review · grammar_masorah_completion_major|masorah_grammar_stream">masorah grammar · masorah grammar review</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">6 works · 1 built · 2,154 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#grammar-masorah"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="דקדוק" title="open this word’s own record — readings oldest source first">דקדוק</button> <span class="fw inert">ומסורה</span></span><span class="g">grammar (n)<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The grammarians and the Masorah: dictionaries, grammars, and the accents.</span>
@@ -1078,8 +1098,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#second-temple"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="בית" title="open this word’s own record — readings oldest source first">בית</button> <button type="button" class="fw" data-k="שני" title="open this word’s own record — readings oldest source first">שני</button></span><span class="g">place<span class="chip" title="Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · 1890">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="second-temple · second_temple_review">second temple · second temple review</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">22 works · 11 built · 7,704 units</span></span>
+        <span class="row"><span class="en" title="second-temple · second_temple_review">second temple · second temple review</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">22 works · 11 built · 7,704 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#second-temple"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="בית" title="open this word’s own record — readings oldest source first">בית</button> <button type="button" class="fw" data-k="שני" title="open this word’s own record — readings oldest source first">שני</button></span><span class="g">place<span class="chip" title="Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · 1890">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">Philo, Josephus, Maccabees, Ben Sira, Jubilees — the literature of the Second Temple era.</span>
@@ -1091,8 +1111,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="he none">no name is on record</span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="medieval_hebrew">medieval hebrew</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">700 works · 700 built · 14,028 units</span></span>
+        <span class="row"><span class="en" title="medieval_hebrew">medieval hebrew</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">700 works · 700 built · 14,028 units</span></span>
+        <span class="row he-row"><span class="he none">no name is on record</span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The Kuzari in Ibn Tibbon's Hebrew, the poetry of Shmuel HaNagid, Ibn Ezra, Yehuda Halevi — medieval Hebrew letters.</span>
@@ -1104,8 +1124,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="fam-he" data-named-by="family-ledger-v1#modern-hebrew"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="ספרות" title="open this word’s own record — readings oldest source first">ספרות</button> <button type="button" class="fw" data-k="עברית" title="open this word’s own record — readings oldest source first">עברית</button></span><span class="g">literature<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="hebrew_thought · hebrew_literature">hebrew thought · hebrew literature</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">2,319 works · 2,266 built · 218,756 units</span></span>
+        <span class="row"><span class="en" title="hebrew_thought · hebrew_literature">hebrew thought · hebrew literature</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">2,319 works · 2,266 built · 218,756 units</span></span>
+        <span class="row he-row"><span class="fam-he" data-named-by="family-ledger-v1#modern-hebrew"><span class="he" lang="he" dir="rtl"><button type="button" class="fw" data-k="ספרות" title="open this word’s own record — readings oldest source first">ספרות</button> <button type="button" class="fw" data-k="עברית" title="open this word’s own record — readings oldest source first">עברית</button></span><span class="g">literature<span class="chip" title="ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · 2019">CC BY-SA 4.0</span></span></span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">The Ben-Yehuda Project's modern corpus: Ahad Ha'am, Frishman, Berdichevsky — essays, journalism, and fiction.</span>
@@ -1117,8 +1137,8 @@
     <section class="family">
       <details class="fam">
       <summary>
-        <span class="row"><span class="lab">family</span><span class="he none">no name is on record</span></span>
-        <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="chida_ben_ish_chai_stream">chida ben ish chai stream</span><span class="of" title="its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">1 work · 2,133 units</span></span>
+        <span class="row"><span class="en" title="chida_ben_ish_chai_stream">chida ben ish chai stream</span><span class="of" title="listed in the catalog as — its catalog entry read as plain words — a proper name will show once a source on record uses one; the entry stands on the door's pinned catalog record, fingerprinted in the counts receipt">awaiting a named source</span><span class="of">1 work · 2,133 units</span></span>
+        <span class="row he-row"><span class="he none">no name is on record</span></span>
       </summary>
       <div class="fgroups">
       <span class="of fold-line">Bibliography and reference: the Chida's Shem HaGedolim.</span>
@@ -1563,6 +1583,45 @@
       w.getAttribute("data-book"), w.getAttribute("data-bookname"),
       w.getAttribute("data-bookatt"), w.getAttribute("data-bookatttitle"));
   }, true);
+  // THE HOVER SPEAKS IN THE PAGE'S OWN VOICE. What a chip or a name says on
+  // hover is the browser's tooltip: a white box with square corners and a
+  // system font, in a page that allows neither. It is also the only place a
+  // reader meets a witness's terms without pressing anything, so it is not
+  // decoration to leave to the platform. The title is taken off the element,
+  // kept on it under another name so nothing is lost, and drawn in the linen
+  // and the gold the rest of the page is drawn in.
+  var tip = document.createElement("div");
+  tip.className = "tip"; tip.hidden = true; document.body.appendChild(tip);
+  function tipFor(el) {
+    var t = el.getAttribute("title");
+    if (t) { el.setAttribute("data-tip", t); el.removeAttribute("title"); }
+    return el.getAttribute("data-tip");
+  }
+  function showTip(el) {
+    var t = tipFor(el);
+    if (!t) return;
+    tip.textContent = t; tip.hidden = false;
+    var r = el.getBoundingClientRect(), tr = tip.getBoundingClientRect();
+    var x = Math.min(Math.max(8, r.left), window.innerWidth - tr.width - 8);
+    var y = r.bottom + 8 + tr.height > window.innerHeight ? r.top - tr.height - 8 : r.bottom + 8;
+    tip.style.left = Math.round(x) + "px"; tip.style.top = Math.round(Math.max(8, y)) + "px";
+  }
+  function hideTip() { tip.hidden = true; }
+  document.addEventListener("mouseover", function (e) {
+    var el = e.target.closest ? e.target.closest("[title],[data-tip]") : null;
+    if (el) showTip(el); else hideTip();
+  });
+  document.addEventListener("mouseout", function (e) {
+    if (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest("[data-tip]")) hideTip();
+  });
+  document.addEventListener("scroll", hideTip, true);
+  window.addEventListener("blur", hideTip);
+  // a keyboard reader gets it too, on focus, and loses it on escape
+  document.addEventListener("focusin", function (e) {
+    var el = e.target.closest ? e.target.closest("[title],[data-tip]") : null;
+    if (el) showTip(el);
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") hideTip(); });
   applyRulings();
   function go(e) {
     e.preventDefault();

@@ -566,6 +566,26 @@
   /* the name slot's absence, said in words — same voice as the title slot's */
   .en.none { font-family:Georgia,serif; font-size:.8rem; font-style:italic; color:var(--faint);
     font-variant:normal; letter-spacing:normal; }
+    /* THE DOOR INVERTS THE READER, deliberately. Inside a book the Hebrew is
+     the text and the English hangs under it; on the door a reader is
+     looking for a book by the name they know, and the word records are
+     extra rather than the point. So the English leads and the Hebrew
+     stands small beside it — still the work's own name, still pressable,
+     still wearing the licence of whatever record reads it. Owner's
+     ruling, 2026-09-06. */
+  /* the hover, in the page's colours: linen or panel by the reader's face,
+     a gold-dim edge, rounded like every other card here, and narrow
+     enough to read as a sentence rather than a banner */
+  .tip { position:fixed; z-index:60; max-width:26rem; padding:.45rem .6rem;
+    background:var(--panel); color:var(--ink); border:1px solid var(--gold-dim);
+    border-radius:.5rem; box-shadow:var(--shadow-card); font-size:.76rem;
+    line-height:1.45; pointer-events:none; }
+  .tip[hidden] { display:none; }
+  details.fam > summary .row.he-row { margin-top:.1rem; }
+  details.fam > summary .row.he-row .fam-he .he { font-size:1rem; }
+  details.fam > summary .row.he-row .fam-he .g { font-size:.62rem; }
+  .atlas-row .fam-he { margin-inline-start:.45rem; }
+  .atlas-row .fam-he .he { font-size:.92rem; color:var(--muted); }
   .trow .fam-he, details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   .trow .fam-he .he, details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.3rem; color:var(--shesh); }
@@ -5475,6 +5495,45 @@
       w.getAttribute("data-book"), w.getAttribute("data-bookname"),
       w.getAttribute("data-bookatt"), w.getAttribute("data-bookatttitle"));
   }, true);
+  // THE HOVER SPEAKS IN THE PAGE'S OWN VOICE. What a chip or a name says on
+  // hover is the browser's tooltip: a white box with square corners and a
+  // system font, in a page that allows neither. It is also the only place a
+  // reader meets a witness's terms without pressing anything, so it is not
+  // decoration to leave to the platform. The title is taken off the element,
+  // kept on it under another name so nothing is lost, and drawn in the linen
+  // and the gold the rest of the page is drawn in.
+  var tip = document.createElement("div");
+  tip.className = "tip"; tip.hidden = true; document.body.appendChild(tip);
+  function tipFor(el) {
+    var t = el.getAttribute("title");
+    if (t) { el.setAttribute("data-tip", t); el.removeAttribute("title"); }
+    return el.getAttribute("data-tip");
+  }
+  function showTip(el) {
+    var t = tipFor(el);
+    if (!t) return;
+    tip.textContent = t; tip.hidden = false;
+    var r = el.getBoundingClientRect(), tr = tip.getBoundingClientRect();
+    var x = Math.min(Math.max(8, r.left), window.innerWidth - tr.width - 8);
+    var y = r.bottom + 8 + tr.height > window.innerHeight ? r.top - tr.height - 8 : r.bottom + 8;
+    tip.style.left = Math.round(x) + "px"; tip.style.top = Math.round(Math.max(8, y)) + "px";
+  }
+  function hideTip() { tip.hidden = true; }
+  document.addEventListener("mouseover", function (e) {
+    var el = e.target.closest ? e.target.closest("[title],[data-tip]") : null;
+    if (el) showTip(el); else hideTip();
+  });
+  document.addEventListener("mouseout", function (e) {
+    if (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest("[data-tip]")) hideTip();
+  });
+  document.addEventListener("scroll", hideTip, true);
+  window.addEventListener("blur", hideTip);
+  // a keyboard reader gets it too, on focus, and loses it on escape
+  document.addEventListener("focusin", function (e) {
+    var el = e.target.closest ? e.target.closest("[title],[data-tip]") : null;
+    if (el) showTip(el);
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") hideTip(); });
   applyRulings();
   function go(e) {
     e.preventDefault();

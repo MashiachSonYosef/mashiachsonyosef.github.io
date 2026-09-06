@@ -550,6 +550,26 @@
   /* the name slot's absence, said in words — same voice as the title slot's */
   .en.none { font-family:Georgia,serif; font-size:.8rem; font-style:italic; color:var(--faint);
     font-variant:normal; letter-spacing:normal; }
+    /* THE DOOR INVERTS THE READER, deliberately. Inside a book the Hebrew is
+     the text and the English hangs under it; on the door a reader is
+     looking for a book by the name they know, and the word records are
+     extra rather than the point. So the English leads and the Hebrew
+     stands small beside it — still the work's own name, still pressable,
+     still wearing the licence of whatever record reads it. Owner's
+     ruling, 2026-09-06. */
+  /* the hover, in the page's colours: linen or panel by the reader's face,
+     a gold-dim edge, rounded like every other card here, and narrow
+     enough to read as a sentence rather than a banner */
+  .tip { position:fixed; z-index:60; max-width:26rem; padding:.45rem .6rem;
+    background:var(--panel); color:var(--ink); border:1px solid var(--gold-dim);
+    border-radius:.5rem; box-shadow:var(--shadow-card); font-size:.76rem;
+    line-height:1.45; pointer-events:none; }
+  .tip[hidden] { display:none; }
+  details.fam > summary .row.he-row { margin-top:.1rem; }
+  details.fam > summary .row.he-row .fam-he .he { font-size:1rem; }
+  details.fam > summary .row.he-row .fam-he .g { font-size:.62rem; }
+  .atlas-row .fam-he { margin-inline-start:.45rem; }
+  .atlas-row .fam-he .he { font-size:.92rem; color:var(--muted); }
   .trow .fam-he, details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   .trow .fam-he .he, details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.3rem; color:var(--shesh); }

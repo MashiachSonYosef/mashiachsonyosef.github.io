@@ -197,8 +197,19 @@ const framed = await p.evaluate(() => {
   return {
     inSiteName: document.querySelectorAll("h1 [lang='he']").length,
     hebrews: [...document.querySelectorAll('[lang="he"]')].map((e) => ({ t: e.textContent.trim(), lab: labOf(e) })),
-    commons: [...document.querySelectorAll(".family summary .en")].map((e) => ({ t: e.textContent.trim(), lab: labOf(e),
-      chip: (e.parentElement.querySelector(".chip") || {}).textContent || "" })),
+    // The register used to be a label printed in front of the name — six or
+    // seven words ahead of one. It is now carried by the mark that already
+    // proves it: an "attested:" chip whose hover opens with the claim
+    // register, or an "awaiting a named source" note whose hover opens with
+    // the catalog register. Read where it is said, not where it used to be.
+    commons: [...document.querySelectorAll(".family summary .en")].map((e) => {
+      const row = e.closest(".row") || e.parentElement;
+      const chip = row.querySelector(".chip"), of = row.querySelector(".of");
+      return { t: e.textContent.trim(), lab: labOf(e),
+        chip: chip ? chip.textContent : "",
+        register: /^commonly force read as\b/i.test(chip?.title || "") ? "claim"
+          : /^listed in the catalog as\b/i.test(of?.title || "") ? "catalog" : "" };
+    }),
     unnamed: [...document.querySelectorAll(".bookcard .he.none")].map((e) => e.textContent.trim()),
   };
 });
@@ -251,9 +262,9 @@ check("the site's own name carries no Hebrew that nothing recorded",
 // of the Hebrew above it, and the awaiting shelf's head is the bridge's own
 // recorded value. Both say so; what is refused is English with no register.
 check("and the English beside it says what register it stands in",
-  framed.commons.length > 0 &&
-    framed.commons.every((x) => /^commonly force read as$/i.test(x.lab) || /^listed in the catalog as$/i.test(x.lab)),
-  framed.commons.map((x) => `${x.t} under "${x.lab}"`).join(" · ").slice(0, 200));
+  framed.commons.length > 0 && framed.commons.every((x) => x.register === "claim" || x.register === "catalog"),
+  framed.commons.filter((x) => !x.register).map((x) => `${x.t} says no register`).join(" · ").slice(0, 200)
+    || `${framed.commons.length} names, each saying whether it is a claim or the catalog's own value`);
 // The owner's ruling on the name slot: it never dresses a record as prose.
 // A slot under either register prints plain Latin text or says the absence
 // in words — never a bridge id from another script read as if it were a
@@ -277,8 +288,8 @@ check("and the English beside it says what register it stands in",
 // an uncopyrightable fact, so the chip beside a claim label says WHO ATTESTS
 // the usage. A license name here was the category error the ruling retired.
 check("and every claim label carries its attestation, never a license",
-  framed.commons.filter((x) => /^commonly force read as$/i.test(x.lab)).every((x) => /^attested: .+/.test(x.chip || "")),
-  framed.commons.filter((x) => /^commonly force read as$/i.test(x.lab)).map((x) => `${x.t}: ${x.chip || "NO ATTESTATION"}`).join(" · ").slice(0, 200) || "no claim labels on this door");
+  framed.commons.filter((x) => x.register === "claim").every((x) => /^attested: .+/.test(x.chip || "")),
+  framed.commons.filter((x) => x.register === "claim").map((x) => `${x.t}: ${x.chip || "NO ATTESTATION"}`).join(" · ").slice(0, 200) || "no claim labels on this door");
 
 // A directory address answers with or without its closing slash — the slash
 // is the server's dress, not a second address.
