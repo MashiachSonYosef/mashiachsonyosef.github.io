@@ -1248,11 +1248,15 @@ ${page.altLink}
        here rather than going with it. -->
   <h1>${page.h1}</h1>
   <p class="sub">${page.sub}</p>
-  <p class="face-line">${n(ZONE_INFO.size)} book${ZONE_INFO.size === 1 ? "" : "s"} readable today · ${n(ATLAS.totals.works - ZONE_INFO.size)} more stand listed, each saying on its own card what it awaits</p>
-${gateNotice}
+  <!-- The door names itself and offers the books. Two lines stood here — how
+       many are readable against how many are listed, and the gate's figures
+       for served, refused and awaiting the stamp — and the owner struck both
+       (2026-09-06). Neither is lost: the census carries every listed work and
+       what each awaits, at its own address in the corner, and the gate's
+       receipt carries every refusal line by line. A front door says what this
+       is and shows what is here; the accounting stands where it is read. -->
 ${page.counts ? `  <script id="front-door-counts-receipt" type="application/json">${JSON.stringify(countReceipt).replace(/</g, "\\u003c")}</script>` : ""}
 ${page.demo ? demoHtml : ""}
-${pocLink}
   <form id="find" role="search" onsubmit="return go(event)">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
       placeholder="find a book"
@@ -1650,7 +1654,7 @@ ${sectionStamp}
   <!-- A book's own title is corpus text and is not printed here. This page
        carries no records, so it can cite nothing; it says only how each book is
        commonly named, and the title itself waits inside, where it opens. -->
-  <footer>Every record carried here keeps its own licence, shown beside it wherever it prints. The counts this build measured, at their exact grains, stand in <a href="/front-door-counts-receipt-v1.json">the count receipt</a> \u2014 recomputed from the books\u2019 own bytes every time, and no longer printed across the front page, where four figures in the billions told a reader nothing.
+  <footer><a href="/demonstrations/">the rules of the frame, each shown on a passage this reader opens</a> \u00b7 Every record carried here keeps its own licence, shown beside it wherever it prints. The counts this build measured, at their exact grains, stand in <a href="/front-door-counts-receipt-v1.json">the count receipt</a> \u2014 recomputed from the books\u2019 own bytes every time, and no longer printed across the front page, where four figures in the billions told a reader nothing.
   <p class="open-claim">This site is noncommercial: nothing is sold here, no advertising runs here, and no payment is taken here — declared 2026-08-30, and standing as long as this page serves. Some of the dictionary records carried here were released under noncommercial terms, and this declaration is how those terms are honored. Every carried record keeps its own license, shown beside it wherever it prints. Everything this site adds of its own — its pages, its arrangement, its receipts, its words — is dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>: take it, reuse it, build on it, no permission needed. What each carried record allows is the record's own license to say.</p></footer>
 </main>
 </body>
