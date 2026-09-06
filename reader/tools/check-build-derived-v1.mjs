@@ -97,8 +97,13 @@ for (const w of plan.works) {
   const wr = typeof z.work_receipts === "string" ? z.work_receipts : ((z.work_receipts || {}).b_n || "");
   const rows = [];
   if (oracle.first_c0_numeric_id !== undefined) {
-    rows.push(["c0 range", `${w.c0_first}-${w.c0_last}`, `${oracle.first_c0_numeric_id}-${oracle.last_c0_numeric_id}`,
-      w.c0_first === oracle.first_c0_numeric_id && w.c0_last === oracle.last_c0_numeric_id]);
+    // a zone whose identity is positional (the restore route, until the
+    // corpus lane's registry assigns the sealed ids) carries no sealed range
+    // to agree with: the plan's range is the ledger's and the zone says whose
+    // its ids are; the row prints both and does not call that a disagreement
+    const positional = ((((z.emitted_from || {}).walk || {}).identity || {}).tier === "PROTOTYPE_POSITIONAL");
+    rows.push(["c0 range", `${w.c0_first}-${w.c0_last}`, positional ? `${oracle.first_c0_numeric_id}-${oracle.last_c0_numeric_id} (positional; the sealed range awaits the registry)` : `${oracle.first_c0_numeric_id}-${oracle.last_c0_numeric_id}`,
+      positional || (w.c0_first === oracle.first_c0_numeric_id && w.c0_last === oracle.last_c0_numeric_id)]);
     rows.push(["unit count", w.unit_count, oracle.sealed_units, w.unit_count === oracle.sealed_units]);
   } else {
     rows.push(["unit count", w.unit_count, (z.counts || {}).sections, w.unit_count === (z.counts || {}).sections]);

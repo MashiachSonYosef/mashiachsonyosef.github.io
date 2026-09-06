@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // GUARDS: rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one
+// LEDGER: C0
 //
 // EIGHT RULES, EIGHT PASSAGES, ONE READER.
 //

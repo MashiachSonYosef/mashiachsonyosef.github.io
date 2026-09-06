@@ -109,7 +109,7 @@ for (const f of zones) {
     if (rr.source !== "MAM_RESTORE_V5_RIGHTS_RECORD" || !HEX.test(String(rr.record_sha256))) l4.push(`${slug}: the serve does not name the rights record and its hash`);
   }
 }
-if (rights && /\b[A-Za-z]:[\\/](?![\\/])|\/home\/|Users[\\/]/u.test(JSON.stringify(rights))) l4.push("the rights record carries a local path");
+if (rights && /\b[A-Za-z]:[\\/](?![\\/])|\/(?:home|root|tmp|mnt|Users)\/|Users[\\/]/u.test(JSON.stringify(rights))) l4.push("the rights record carries a local path");
 if (!seen) { console.log("SKIPPED — no zone on disk rides the restore route; nothing to hold to its claims"); process.exit(3); }
 check(`L1  the oracle: every restore-route zone names a reproduced surface hash, the restore file's hash, and positional identity`, l1.length === 0, l1.length ? `${l1.length} — ${few(l1)}` : `${num(seen)} zones`);
 check(`L2  the cut: no maqaf inside a word, every joiner has a partner, every site's regions are its own surface`, l2.length === 0, l2.length ? `${l2.length} — ${few(l2)}` : "every compound cut, every site whole");

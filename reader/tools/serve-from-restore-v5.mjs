@@ -3,6 +3,7 @@
 // restore v5 of the Miqra according to the Masorah edition
 //
 // RULE: serve-from-restore-rule-v1-the-restore-is-the-text-the-split-is-this-lanes-the-rights-are-the-records
+// LEDGER: C0
 //
 // 2026-09-06. The corpus lane restored the edition's apparatus from the
 // Sefaria BSON dump — every ketiv-qere site as (ketiv) [qere], every
@@ -108,7 +109,7 @@ const visible = rights.reader_display_axis === "ALLOW" || (rights.reader_display
 const LETTER = /[\u05d0-\u05ea]/u;
 const KIND_OF = { OTIYOT_GEDOLOT: "LARGE", OTIYOT_KETANOT: "SMALL", OTIYOT_TELUYOT: "SUSPENDED", OTIYOT_MENUKADOT: "DOTTED" };
 const MARK_OF_FLAG = (r) => r.sof_pasuq === "1" ? "SOF_PASUQ" : r.paseq === "1" ? "PASEQ" : r.spi === "samekh" ? "SETUMAH" : r.spi === "pe" ? "PETUCHAH"
-  : r.gap === "1" ? "BRICK_GAP" : r.inverted_nun === "1" ? "INVERTED_NUN" : null;
+  : r.gap === "1" ? "BRICK_GAP" : (r.inverted_nun === "1" || r.spi === "invnun") ? "INVERTED_NUN" : null;
 const KQ_GROUP = /\(([^()]*)\)|\[([^\[\]]*)\]/gu;
 // the letter marks of a row, as (kind, 1-based letter index over the row)
 const letterMarksOf = (r) => {
@@ -196,6 +197,10 @@ rows.forEach((r, i) => {
     stats.on_rows += 1;
     if (r.surface.includes(MAQAF)) { stats.maqaf_rows += 1; const cut = cutAtMaqaf(r.surface, `row ${i + 1} (${r.ref})`); stats.pieces_from_maqaf += cut.length; pieces.push(...cut); }
     else pieces.push({ surface: r.surface });
+    // the source marks some words it prints in one form as a ketiv-qere of
+    // spelling (the restore's kq_trivial on a row with no site); the flag
+    // rides to the row's pieces so the card can say the source marks it
+    if (r.kq_trivial === "1") { stats.kq_trivial_rows = (stats.kq_trivial_rows || 0) + 1; for (const p of pieces) p.kq_trivial = true; }
   }
   // every row's pieces rejoin to the row, byte for byte, before anything else
   const rejoined = pieces.map((p) => p.surface).join("");
@@ -276,7 +281,7 @@ const provenance = {
     surface_sha256: surfaceSha, surface_sha256_reproduced: true,
     rows_restore: rows.length, rows_served: total,
     maqaf_rows_cut: stats.maqaf_rows, pieces_from_maqaf: stats.pieces_from_maqaf, kq_sites: stats.kq_rows, off_rows: stats.off_rows,
-    marks: stats.marks, inkoff_keys_dropped: stats.inkoff_keys_dropped, letter_marks: stats.letter_marks, implicit_maqaf_rows: stats.implicit_maqaf, shirah_rows: stats.shirah_rows,
+    marks: stats.marks, inkoff_keys_dropped: stats.inkoff_keys_dropped, letter_marks: stats.letter_marks, implicit_maqaf_rows: stats.implicit_maqaf, shirah_rows: stats.shirah_rows, kq_trivial_rows: stats.kq_trivial_rows || 0,
     reversibility: "every row's pieces rejoin byte-equal to the row: the joiner rides on the piece before it, a ketiv-qere site is cut around and never through",
     boundary_law: receipt.boundary_law, key_law: receipt.key_law,
     restore_reversibility_gate: receipt.reversibility_gate,
@@ -322,6 +327,7 @@ for (const unit of unitOrder) {
       ...(p.letter_marks ? { letter_marks: p.letter_marks } : {}),
       ...(p.maqaf_implicit ? { maqaf_implicit: true } : {}),
       ...(p.shirah ? { shirah: true } : {}),
+      ...(p.kq_trivial ? { kq_trivial: true } : {}),
       restore_row: p.restore_row,
     }));
   }

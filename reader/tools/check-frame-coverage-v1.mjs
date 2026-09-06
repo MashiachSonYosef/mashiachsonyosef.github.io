@@ -34,6 +34,7 @@
 //
 // Run: node tools/check-frame-coverage-v1.mjs
 
+import { zonesServed } from "./zones-on-disk-v1.mjs";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
@@ -163,10 +164,17 @@ const NOT_VISIBLE = {
 // receipt — "not a work · carries no licence identity and is never served"
 // — so asking whether it carries a B identity is asking the wrong question
 // of the wrong thing, and answering "no" reads as a gap in the frame.
+// PUBLISHED means served (2026-09-06): the door serves what the gate's
+// receipt names, and a zone on disk the gate withholds is not a published
+// work whose layers a reader can meet. So the table is the served set, with
+// each served work's commentary sidecar beside it; with no receipt on disk
+// the whole shelf is measured, as before.
+const servedNow = zonesServed(ZONES);
 const bins = existsSync(ZONES)
   ? readdirSync(ZONES).filter((f) => f.endsWith(".bin"))
       .filter((f) => !f.startsWith("fixture-"))
       .filter((f) => !/^[0-9a-f]{2}\.bin$/.test(f) && f !== "w-top.bin")
+      .filter((f) => !servedNow.length || servedNow.includes(f.replace(/\.(commentary\.)?bin$/u, "")))
       .sort()
   : [];
 // A file with sections is a work a reader opens. A file with units and no

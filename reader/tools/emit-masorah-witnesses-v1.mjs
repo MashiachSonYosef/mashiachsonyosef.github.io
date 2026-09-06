@@ -2,6 +2,7 @@
 // Synthesis lane · the witnesses a count is stamped beside
 //
 // RULE: count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one
+// LEDGER: Y
 //
 // The owner's ruling (2026-09-05): the count is our stamp of proof, not a
 // gate. Every book page carries its own count on every axis, and beside it
@@ -147,7 +148,7 @@ const record = {
   books, sections,
 };
 const text = JSON.stringify(record, null, 2) + "\n";
-if (/\b[A-Za-z]:[\\/](?![\\/])|\/home\/|Users[\\/]/u.test(text)) die("PATH_IN_RECORD", "a local path reached the record; refusing to write it");
+if (/\b[A-Za-z]:[\\/](?![\\/])|\/(?:home|root|tmp|mnt|Users)\/|Users[\\/]/u.test(text)) die("PATH_IN_RECORD", "a local path reached the record; refusing to write it");
 writeFileSync(OUT, text);
 const nRows = Object.values(books).reduce((n, b) => n + b.rows.length, 0);
 console.log(`${OUT}: ${Object.keys(books).length} books, ${nRows} witness rows · ${Object.keys(sections).length} sections, ${Object.values(sections).reduce((n, s) => n + s.rows.length, 0)} rows`);

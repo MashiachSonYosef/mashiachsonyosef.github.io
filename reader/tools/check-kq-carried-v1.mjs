@@ -47,8 +47,11 @@ const textOfWord = (w) => (w.w ? w.w.map((r) => r.t || "").join("") : (w.t || ""
 // two-row form the law below reads.
 const oneRowAsWritten = (w) => {
   const s = String(w.s || ""), kq = w.kq;
-  const k = kq.k == null ? null : (s.includes(`(${kq.k})`) ? `(${kq.k})` : "");
-  const q = kq.q == null ? null : (s.includes(`[${kq.q}]`) ? `[${kq.q}]` : "");
+  // the record names each branch bare; the source may write the site's joiner
+  // inside the bracket, so the wrapped form may carry a trailing maqaf
+  const wrapped = (open, text, close) => [`${open}${text}${close}`, `${open}${text}\u05be${close}`].find((f) => s.includes(f)) || "";
+  const k = kq.k == null ? null : wrapped("(", kq.k, ")");
+  const q = kq.q == null ? null : wrapped("[", kq.q, "]");
   // a single-branch site the record names as such is whole when the branch
   // it does carry stands as written; a missing half the record does not
   // explain is a selection

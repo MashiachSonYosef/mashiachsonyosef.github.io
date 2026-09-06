@@ -77,7 +77,7 @@ const core = (s) => stripPoints(s).replace(/[\u05c0\u05c3()\[\]]/gu, "");
 const PREFIX = /^[\u05d1\u05db\u05dc\u05d5\u05d4\u05de\u05e9]$/u;
 const SECTION_GROUP = /\{[\u05e1\u05e4]\}|\([\u05e1\u05e4]\)/u;
 const MARK_ALONE = /^(\{[\u05e1\u05e4]\}|\([\u05e1\u05e4]\)|[\u05c6\u05c0\u05c3\u25af\u2014])$/u;
-const hasLetters = (s) => LETTER.test(String(s ?? ""));
+const hasLetters = (s) => LETTER.test(String(s ?? "").normalize("NFC"));
 const keysOf = (w) => (w.w ? w.w.map((r) => r.k).filter(Boolean) : w.k ? [w.k] : []);
 const regionsOf = (w) => (w.w ? w.w : w.k ? [{ s: w.s, k: w.k }] : []);
 
@@ -125,9 +125,12 @@ const judge = (z) => {
   let rows = 0;
   for (const sec of (z.sections || [])) {
     const words = sec.words || [];
+    let lastOn = -1;
+    words.forEach((w, i) => { if (!w.mark && !w.held) lastOn = i; });
     words.forEach((w, i) => {
       rows += 1;
-      const ctx = { lastInUnit: i === words.length - 1 };
+      // a joiner needs a word after it; a closing mark (sof pasuq) is neither
+      const ctx = { lastInUnit: i === lastOn };
       for (const [name, fn] of Object.entries(LINES)) {
         const why = fn(w, ctx);
         if (!why) continue;
@@ -143,8 +146,9 @@ const judge = (z) => {
 const zones = existsSync(ZONES)
   ? readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin") && !/^[0-9a-f]{2}\.bin$/u.test(f) && f !== "w-top.bin").sort()
   : [];
+const LINES_VERSION = sha(readFileSync(fileURLToPath(import.meta.url))).slice(0, 16);
 let cache = {};
-try { if (existsSync(CACHE)) cache = JSON.parse(readFileSync(CACHE, "utf8")).by_sha256 || {}; } catch { cache = {}; }
+try { const c = JSON.parse(readFileSync(CACHE, "utf8")); if (c.lines_version === LINES_VERSION) cache = c.by_sha256 || {}; } catch { cache = {}; }
 const verdicts = new Map();
 let judgedNow = 0, fromCache = 0, unreadable = 0;
 for (const f of zones) {
@@ -159,7 +163,7 @@ for (const f of zones) {
   cache[h] = v; verdicts.set(slug, { ...v, sha256: h }); judgedNow += 1;
 }
 mkdirSync(dirname(CACHE), { recursive: true });
-writeFileSync(CACHE, JSON.stringify({ schema_version: "REFUSALS_CACHE_V1", rule_id: RULE, note: "a verdict is a function of the zone's bytes; keyed by sha256, a rebuilt zone is judged again", by_sha256: cache }));
+writeFileSync(CACHE, JSON.stringify({ schema_version: "REFUSALS_CACHE_V1", rule_id: RULE, lines_version: LINES_VERSION, note: "a verdict is a function of the zone's bytes and of the lines; keyed by the zone's sha256 under this file's own hash, a rebuilt zone or a changed line is judged again", by_sha256: cache }));
 
 const passed = [...verdicts.entries()].filter(([, v]) => v.verdict === "PASS").map(([s]) => s).sort();
 // THE LAUNCH OF THE COUNTED WORKS (owner, 2026-09-06): what the door serves
@@ -195,6 +199,7 @@ const receipt = {
   lines: Object.keys(LINES),
   zones_on_the_shelf: zones.length,
   served,
+  served_sha256: Object.fromEntries(served.map((s) => [s, verdicts.get(s).sha256])),
   passed,
   stamped,
   not_yet_stamped: { count: notStamped.length, says: "built before the count was stamped beside its witnesses; not refused by any line; served after its rebuild under the one pipeline" },

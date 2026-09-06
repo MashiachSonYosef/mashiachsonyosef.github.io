@@ -2,6 +2,7 @@
 // Synthesis lane · the counted works, built through the one pipeline
 //
 // RULE: serve-from-restore-rule-v1-the-restore-is-the-text-the-split-is-this-lanes-the-rights-are-the-records
+// LEDGER: C0
 //
 // One loop over the thirty-nine files of the corpus lane's restore v5 —
 // twenty-four books of the Tanakh. For each: the serve (tools/serve-from-

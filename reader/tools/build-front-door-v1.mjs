@@ -89,7 +89,15 @@ const gateReceipt = (() => {
   return JSON.parse(readFileSync(GATE, "utf8"));
 })();
 const GATE_PASSED = new Set(gateReceipt.served || []);
+const GATE_SHA = gateReceipt.served_sha256 || {};
 const gated = (slug) => GATE_PASSED.has(slug);
+// the receipt names the bytes it judged; a zone rebuilt since the gate ran
+// is not the zone the gate served, and the door refuses rather than serve it
+// on an old verdict
+const assertJudgedBytes = (slug, bytes) => {
+  const judged = GATE_SHA[slug];
+  if (judged && judged !== sha256(bytes)) throw new Error(`${slug}: the zone on the shelf is not the bytes the gate judged (${judged.slice(0, 12)}… judged, ${sha256(bytes).slice(0, 12)}… on disk); run tools/check-c0-refusals-v1.mjs --write`);
+};
 // The shelf's zones, after the gate. Everywhere the door asks what it may
 // serve, it asks here — one listing, so a book cannot be counted in a tally
 // it is withheld from, or given a page the shelf never lists.
@@ -109,13 +117,16 @@ const n = (x) => Number(x).toLocaleString("en-US");
 // come off the gate's receipt, so this line cannot go stale while the shelf
 // changes under it.
 const gateNotice = (() => {
-  const refused = Object.keys(gateReceipt.refused || {}).length;
+  const refusedAll = Object.entries(gateReceipt.refused || {});
+  const unreadable = refusedAll.filter(([, v]) => v.hits && v.hits["zone.unreadable"]).length;
+  const refused = refusedAll.length - unreadable;
   const waiting = (gateReceipt.not_yet_stamped || {}).count || 0;
   const served = (gateReceipt.served || []).length;
   if (!refused && !waiting) return "";
   const parts = [];
   if (refused) parts.push(`${n(refused)} ${refused === 1 ? "is" : "are"} refused by a line of the frame's C0 letter — a position the frame will not call a word or a mark, named line by line in the gate's receipt`);
-  if (waiting) parts.push(`${n(waiting)} ${waiting === 1 ? "is" : "are"} refused by no line and not yet served: built before the count was stamped, ${waiting === 1 ? "it waits" : "they wait"} for the rebuild under the one pipeline that stamps ${waiting === 1 ? "it" : "them"}`);
+  if (waiting) parts.push(`${n(waiting)} ${waiting === 1 ? "is" : "are"} refused by no line but built before the count was stamped, and ${waiting === 1 ? "waits" : "wait"} for the rebuild under the one pipeline that stamps ${waiting === 1 ? "it" : "them"}`);
+  if (unreadable) parts.push(`${n(unreadable)} could not be opened and ${unreadable === 1 ? "is" : "are"} named as such in the receipt`);
   return `  <p class="face-line gate-notice">${n(served)} book${served === 1 ? "" : "s"} served: the counted works, each with its count stamped beside the figures other men reached for it, on its own page. Of the books built and not served, ${parts.join("; ")}. What the frame does with a book it cannot vouch for is say so.</p>`;
 })();
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -133,6 +144,8 @@ const DOOR_CSS = "  /* colour-role-rule-v1 · the roles are the ledgers and the 
 // exact, scarlet differing, the linen of the page where nobody published a
 // figure; the colour reinforces the number and the glyph, never carries it.
 const STAMP_CSS = `
+  :root { --wash-active: rgba(234,200,111,.16); }
+  :root[data-scheme="day"] { --wash-active: rgba(138,107,38,.14); }
   .bookcard .stamp, .atlas-row .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; flex-basis:100%; }
   .atlas-row.stamped { flex-wrap:wrap; }
   .bookcard .srow, .atlas-row .srow { display:flex; gap:.5rem; align-items:baseline; flex-wrap:wrap; color:var(--faint); line-height:1.35; }
@@ -425,8 +438,12 @@ let cleanGenesisZonesSeen = 0;
 let genesisPinState = { state: "ABSENT", says: "no Genesis zone on the shelf; the pin stands as recorded history" };
 for (const b of BOOKS) {
   if (!has(b.zone)) continue;
+  // the plan's tier is not a way around the gate: a planned work with a zone
+  // on the shelf is served only when the gate serves it
+  if (!gated(b.zone.replace(/\.bin$/u, ""))) continue;
   const zonePath = join(ZONES, b.zone);
   const zoneBytes = readFileSync(zonePath);
+  assertJudgedBytes(b.zone.replace(/\.bin$/u, ""), zoneBytes);
   const z = JSON.parse(gunzipSync(zoneBytes).toString("utf8"));
   const sections = (z.sections || []).length;
   const words = (z.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
@@ -586,11 +603,18 @@ ${b.stamp ? stampRows(b.stamp) : ""}
 // THE STAMP ON THE CARD. The same rows the book's own page carries: one per
 // witness, the difference with its sign, gold exact and scarlet differing;
 // a measure nobody published a figure for says so in the page's own linen.
+// A WITNESS NAMED IN HEBREW. The witness record carries a few names as the
+// source writes them (a siman HaKtav quotes an author by). The door may print
+// no Hebrew it cannot vouch for beyond the carried titles, so a Hebrew run in
+// a witness's name is marked here and given in full on the book's own page,
+// where the stamp stands beside the text it counts. Nothing is transliterated.
+const HEB_RUN = /[\u0590-\u05FF](?:[\u0590-\u05FF\s'"]*[\u0590-\u05FF])?/gu;
+const plainWitness = (w) => String(w ?? "").replace(HEB_RUN, "[a Hebrew name, given on the book's page]");
 const STAMP_AX = { verses: "verses", words: "words · read", words_written: "words · written", letters: "letters · written", letters_read: "letters · read" };
 const STAMP_CLS = { COUNTED_THIS_TEXT: "counted this text", THE_MASORAH: "the masorah", LATER_AUTHORITY: "later authority", TALMUD_GEONIM: "Talmud, Geonim", HELD_EDITION: "held edition", NO_WITNESS: "no witness" };
 const stampDelta = (d) => (d == null ? "—" : `${d < 0 ? "−" : "+"}${n(Math.abs(d))}`);
 const stampGlyph = (v) => (v === "EXACT" ? "●" : v === "DIFFERS" ? "○" : "·");
-const stampRows = (st) => `      <span class="stamp" title="the count of this book on every named axis, beside the figures other men reached for it; the difference is ours less theirs">${(st.rows || []).map((r) => `<span class="srow ${esc(String(r.verdict || "").toLowerCase())}"><span class="cls">${esc(STAMP_CLS[r.class] || String(r.class || "").toLowerCase())}</span><span class="wit">${esc(r.witness || "nobody published a figure on this axis")}</span><span class="ax">${esc(STAMP_AX[r.axis] || r.axis)}</span><span class="num">${r.theirs == null ? "—" : n(r.theirs)}</span><span class="num">${n(r.ours)}</span><span class="num delta">${stampDelta(r.delta)}</span><span class="glyph">${stampGlyph(r.verdict)}</span>${r.layer ? `<span class="why">${esc(r.layer)}</span>` : ""}</span>`).join("")}</span>`;
+const stampRows = (st) => `      <span class="stamp" title="the count of this book on every named axis, beside the figures other men reached for it; the difference is ours less theirs">${(st.rows || []).map((r) => `<span class="srow ${esc(String(r.verdict || "").toLowerCase())}"><span class="cls">${esc(STAMP_CLS[r.class] || String(r.class || "").toLowerCase())}</span><span class="wit">${esc(plainWitness(r.witness || "nobody published a figure on this axis"))}</span><span class="ax">${esc(STAMP_AX[r.axis] || r.axis)}</span><span class="num">${r.theirs == null ? "—" : n(r.theirs)}</span><span class="num">${n(r.ours)}</span><span class="num delta">${stampDelta(r.delta)}</span><span class="glyph">${stampGlyph(r.verdict)}</span>${r.layer ? `<span class="why">${esc(plainWitness(r.layer))}</span>` : ""}</span>`).join("")}</span>`;
 
 // A commentary entry is its own way in, so it opens one. ?c=open tells the
 // reader to press the first mark the book carries and the first work behind it
@@ -701,6 +725,7 @@ const awaitingRows = poolOf(LEDGER.awaiting.members.filter((m) => ATLAS.families
 const ZONE_INFO = new Map();
 for (const f of shelfZoneFiles()) {
   const bytes = readFileSync(join(ZONES, f));
+  assertJudgedBytes(f.replace(/\.bin$/u, ""), bytes);
   const z = JSON.parse(gunzipSync(bytes).toString("utf8"));
   const words = (z.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
   const wr = typeof z.work_receipts === "string" ? z.work_receipts : ((z.work_receipts || {}).b_n || "");
@@ -752,10 +777,10 @@ const sectionStamp = (() => {
     const ours = {};
     for (const b of inSet) for (const [k, v] of Object.entries(stampOf.get(b).ours)) if (typeof v === "number") ours[k] = (ours[k] || 0) + v;
     const rows = (sec.rows || []).map((r) => {
-      const o = ours[r.axis]; if (!Number.isInteger(o)) return "";
+      const o = ours[r.axis]; if (!Number.isInteger(o) || !Number.isInteger(r.figure)) return "";
       const d = o - r.figure, v = d === 0 ? "exact" : "differs";
       i += 1;
-      return `<tr class="${v}" style="animation-delay:${Math.min(i, 14) * 70}ms"><td class="wit"><span class="cls">${esc(CLS[r.class] || String(r.class).toLowerCase())}</span>${esc(r.witness)}</td><td>${esc(AX[r.axis] || r.axis)}</td><td class="num">${n(r.figure)}</td><td class="num">${n(o)}</td><td class="num delta">${d < 0 ? "−" : "+"}${n(Math.abs(d))}</td><td class="glyph">${d === 0 ? "●" : "○"}</td><td>${r.layer ? esc(r.layer) : ""}</td></tr>`;
+      return `<tr class="${v}" style="animation-delay:${Math.min(i, 14) * 70}ms"><td class="wit"><span class="cls">${esc(CLS[r.class] || String(r.class).toLowerCase())}</span>${esc(plainWitness(r.witness))}</td><td>${esc(AX[r.axis] || r.axis)}</td><td class="num">${n(r.figure)}</td><td class="num">${n(o)}</td><td class="num delta">${d < 0 ? "−" : "+"}${n(Math.abs(d))}</td><td class="glyph">${d === 0 ? "●" : "○"}</td><td>${r.layer ? esc(plainWitness(r.layer)) : ""}</td></tr>`;
     }).join("");
     blocks.push(`${head.replace("</span></p>", ` · ${n(ours.words)} words read · ${n(ours.words_written)} written · ${n(ours.letters)} letters · ${n(ours.verses)} verses · ${n(ours.c0_off)} scribal marks</span></p>`)}<table>${rows}</table>`);
   }

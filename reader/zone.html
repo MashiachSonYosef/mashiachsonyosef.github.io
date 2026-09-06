@@ -216,7 +216,7 @@
   .lm-large { font-size: 1.45em; line-height: 0.9; }
   .lm-small { font-size: 0.68em; }
   .lm-suspended { vertical-align: 0.5em; font-size: 0.82em; }
-  .lm-dotted { text-decoration: underline dotted var(--gold-dim); text-underline-offset: 0.12em; }
+  .lm-dotted { color: var(--ink-strong); }
   /* THE STAMP. The count of this book on every named axis, and beside it the
      figures other men reached for the same book: a row per witness, the
      difference shown with its sign. Gold is exact, scarlet differs, the linen
@@ -1505,7 +1505,8 @@
   // a figure for is a row in the page's own linen that says so.
   {
     const st = zone.count_stamp, el = document.getElementById("stamp");
-    if (st && el && Array.isArray(st.rows)) {
+    const instrument = !!((zone.emitted_from || {}).test_instrument);
+    if (st && el && Array.isArray(st.rows) && !instrument) {
       const AX = { verses: "verses", words: "words · read", words_written: "words · written", letters: "letters · written", letters_read: "letters · read" };
       const CLS = { COUNTED_THIS_TEXT: "counted this text", THE_MASORAH: "the masorah", LATER_AUTHORITY: "later authority", TALMUD_GEONIM: "Talmud, Geonim", HELD_EDITION: "held edition", NO_WITNESS: "no witness" };
       const n = (x) => Number(x).toLocaleString();
@@ -1544,7 +1545,9 @@
   }
   const renderedWordTotal = (zone.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
   const receiptsText =
-    `${renderedWordTotal.toLocaleString()} words · ${zone.counts.sections.toLocaleString()} sections · ` +
+    `${pageMeasure.c0_off
+      ? `${renderedWordTotal.toLocaleString()} positions, ${pageMeasure.words.toLocaleString()} words on the read axis and ${pageMeasure.c0_off.toLocaleString()} scribal marks among them`
+      : `${renderedWordTotal.toLocaleString()} words`} · ${zone.counts.sections.toLocaleString()} sections · ` +
     `${renderedWordTotal !== zone.counts.words
       ? `the artifact\u2019s counts field says ${zone.counts.words.toLocaleString()} \u2014 it counts the chain\u2019s c0 rows where the words stand at W grain; its word-grain receipts await the corpus-side rebuild \u00b7 `
       : ""}` +
@@ -1584,7 +1587,7 @@
     // plain name; a zone that carries no marks reads as it always did.
     const unitName = ((zone.emitted_from || {}).coordinate_labels || {}).minor || "section";
     const nSec = zone.counts.sections;
-    if (pageMeasure.c0_off || (wk && wk.restore_oracle)) {
+    if (wk && wk.restore_oracle) {
       meta.append(`${pageMeasure.words.toLocaleString()} words on the read axis in ${nSec.toLocaleString()} ${unitName}${nSec === 1 ? "" : "s"}, with ${pageMeasure.c0_off.toLocaleString()} scribal mark${pageMeasure.c0_off === 1 ? "" : "s"} each at its own position`
         + (wk && wk.restore_oracle ? `, served from the ${wk.restore_oracle.edition} edition as the corpus lane restored it. ` : `. `));
     } else {
@@ -2809,6 +2812,13 @@
       lKey.textContent = "A mark on the letter, not on the word: the scribes wrote the letter apart from its neighbours, and the page draws it as they drew it. The word keeps its place in the count and its key.";
       head.append(lKey);
     }
+    // the source's own flag on a word it prints in one form while marking it
+    // a ketiv-qere of spelling; nothing is chosen and no second form is shown
+    if (word.kq_trivial) {
+      const tLine = document.createElement("p"); tLine.className = "kq-key";
+      tLine.textContent = "The source marks this word as a ketiv-qere of spelling and prints it in one form; the page prints that form and chooses nothing.";
+      head.append(tLine);
+    }
     // RULE 2's spaced joiner: the source wrote this maqaf set off by spaces,
     // and the owner's rule reads it as a maqaf all the same
     if (word.maqaf_implicit) {
@@ -3785,6 +3795,35 @@
     host.append(document.createTextNode(" "));
   };
 
+  // RULE 12, wherever a word's text is appended: the letters are counted
+  // alef through tav across the whole surface (as the record counts them),
+  // and a marked letter is wrapped with the points that ride on it. `state`
+  // carries the running letter index so a site cut into carrier text and
+  // regions still counts its letters in one sequence.
+  const appendLettered = (el, text, marked, state) => {
+    if (!marked || !marked.size) { el.append(document.createTextNode(text)); return; }
+    let run = null;
+    const flush = () => { if (run) { el.append(run); run = null; } };
+    for (const c of [...String(text || "")]) {
+      const cp = c.codePointAt(0);
+      const isLetter = cp >= 0x05d0 && cp <= 0x05ea;
+      const isPoint = cp >= 0x0591 && cp <= 0x05c7 && cp !== 0x05be && cp !== 0x05c0 && cp !== 0x05c3 && cp !== 0x05c6;
+      if (isLetter) {
+        flush(); state.li += 1;
+        const kind = marked.get(state.li);
+        if (kind) { run = document.createElement("span"); run.className = `lm lm-${kind}`; run.title = `letter ${state.li}, written ${kind === "dotted" ? "with a dot above" : kind === "suspended" ? "suspended above the line" : kind} by the scribes`; run.textContent = c; }
+        else el.append(document.createTextNode(c));
+      } else if (isPoint && run) run.textContent += c;
+      else { flush(); el.append(document.createTextNode(c)); }
+    }
+    flush();
+  };
+  const markedLettersOf = (word) => {
+    const m = new Map();
+    for (const lm of (word.letter_marks || [])) for (const at of (lm.letters || [])) m.set(at, String(lm.kind || "").toLowerCase());
+    return m;
+  };
+
   const wordBlock = (word, table) => {
     const wb = document.createElement("span");
     wb.className = word.held ? "wb held" : "wb";
@@ -3835,18 +3874,20 @@
       // separators between the branches are cut out of the carrier itself,
       // never typed here.
       wb.classList.add("multi", "kq");
+      const lmMarked = markedLettersOf(word), lmState = { li: 0 };
       let rest = word.s;
       regions.forEach((r, i) => {
         const at = rest.indexOf(r.s);
-        if (at > 0) w.append(document.createTextNode(rest.slice(0, at)));
+        if (at > 0) appendLettered(w, rest.slice(0, at), lmMarked, lmState);
         rest = rest.slice(at + r.s.length);
-        const seg = document.createElement("span"); seg.className = "wr"; seg.textContent = r.s;
+        const seg = document.createElement("span"); seg.className = "wr";
+        appendLettered(seg, r.s, lmMarked, lmState);
         seg.title = r.role === "KETIV"
           ? "ketiv \u2014 the form the source writes; opens its own record"
           : "qere \u2014 the form the source reads; opens its own record";
         w.append(seg); regionEls.push(seg);
       });
-      if (rest) w.append(document.createTextNode(rest));
+      if (rest) appendLettered(w, rest, lmMarked, lmState);
     } else if (regions) {
       wb.classList.add("multi");
       // Split on the mark and keep it, so the character redrawn between the
@@ -3865,29 +3906,8 @@
         w.append(seg); regionEls.push(seg);
       });
     } else if (Array.isArray(word.letter_marks) && word.letter_marks.length) {
-      // RULE 12: the mark is on the letter. Each letter of the surface, with
-      // the points that ride on it, is its own run; a letter the scribes wrote
-      // large, small, suspended or dotted is wrapped and drawn so. The letters
-      // are counted alef through tav, as the record counts them; nothing else
-      // in the surface is a letter and nothing is retyped.
-      const marked = new Map();
-      for (const lm of word.letter_marks) for (const at of (lm.letters || [])) marked.set(at, String(lm.kind || "").toLowerCase());
-      const cps = [...String(word.s || "")];
-      let li = 0, run = null;
-      const flush = () => { if (run) { w.append(run); run = null; } };
-      for (const c of cps) {
-        const cp = c.codePointAt(0);
-        const isLetter = cp >= 0x05d0 && cp <= 0x05ea;
-        const isPoint = cp >= 0x0591 && cp <= 0x05c7 && cp !== 0x05be && cp !== 0x05c0 && cp !== 0x05c3 && cp !== 0x05c6;
-        if (isLetter) {
-          flush(); li += 1;
-          const kind = marked.get(li);
-          if (kind) { run = document.createElement("span"); run.className = `lm lm-${kind}`; run.title = `letter ${li}, written ${kind === "dotted" ? "with a dot above" : kind} by the scribes`; run.textContent = c; }
-          else w.append(document.createTextNode(c));
-        } else if (isPoint && run) run.textContent += c;
-        else { flush(); w.append(document.createTextNode(c)); }
-      }
-      flush();
+      // RULE 12: the mark is on the letter; the word keeps its count and key
+      appendLettered(w, word.s, markedLettersOf(word), { li: 0 });
     } else w.textContent = word.s;
     // A variant-site record marks its word. The mark the source wrote is in
     // the carrier already; this class only says a record stands behind it,
@@ -4069,13 +4089,17 @@
   // holds off by default, and it never touches a mark rule 6 protects
   const marksSwitch = () => {
     const btn = document.getElementById("marksToggle");
-    const n = document.querySelectorAll(".wb.mark[data-mark]").length;
-    const off = document.querySelectorAll(".wb.mark-off").length;
+    // counted from the zone's own words, every section of it: the page draws
+    // sections as the reader reaches them, and a count taken from the DOM
+    // named only the marks already drawn (2026-09-06)
+    const allMarks = (zone.sections || []).flatMap((s) => (s.words || []).filter((w) => w.mark));
+    const n = allMarks.length;
+    const off = allMarks.filter((w) => w.mark.toggleable).length;
     if (!off) { btn.hidden = true; return; }
     // named by kind, in plain words, so a reader knows what the switch hides:
     // section marks, verse ends, paseqs \u2014 whichever this text carries
     const NAMES = { SETUMAH: "section marks", PETUCHAH: "section marks", SOF_PASUQ: "verse ends", PASEQ: "paseqs" };
-    const kinds = [...new Set([...document.querySelectorAll(".wb.mark-off[data-mark]")].map((e) => NAMES[e.dataset.mark] || String(e.dataset.mark).toLowerCase()))];
+    const kinds = [...new Set(allMarks.filter((w) => w.mark.toggleable).map((w) => NAMES[w.mark.kind] || String(w.mark.kind).toLowerCase()))];
     const say = (on) => { btn.textContent = `${on ? "hide" : "show"} the scribes\u2019 marks (${off}${kinds.length ? `: ${kinds.join(", ")}` : ""})`; btn.setAttribute("aria-pressed", String(on)); };
     btn.hidden = false;
     say(document.body.classList.contains("marks-on"));

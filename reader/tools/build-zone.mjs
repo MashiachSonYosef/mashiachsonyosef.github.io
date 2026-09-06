@@ -213,6 +213,10 @@ const COUNT_STAMP_RULE = "count-stamp-rule-v1-the-count-is-stamped-beside-the-wi
 const witnesses = witnessesPath ? JSON.parse(readFileSync(witnessesPath, "utf8")) : null;
 if (witnesses) require_(witnesses.schema_version === "MASORAH_WITNESSES_V1", "WITNESSES_SCHEMA", witnesses.schema_version);
 const countStamp = (() => {
+  // a demonstration is an instrument, never a served work: it carries no
+  // count stamp, because the count of a passage beside no witness is not a
+  // claim about any book
+  if (serve.provenance.test_instrument) return null;
   const entry = witnesses && witnesses.books && witnesses.books[slug];
   const rows = [];
   const measured = new Set();
@@ -605,7 +609,10 @@ const zone = {
           },
           roles: spanRoles,
         }
-      : { status: "no span slice supplied — this zone offers whole forms only" },
+      : ro
+        ? { status: "no span slice supplied — this zone offers whole forms only",
+            awaits: "the corpus lane's lattice v10: the component system (COMPspan) of every word of the restore, keyed by position — the word-level HUD lands with it; the text, the marks and the count are served now (owner, 2026-09-05)" }
+        : { status: "no span slice supplied — this zone offers whole forms only" },
     y_ledger: y
       ? {
           status: `current — ${y.fixture_id} (${y.fixture_generated_on}), ${Object.keys(y.chapters).length} chapter nodes`,
@@ -675,7 +682,7 @@ const zone = {
     marks: measure.marks,
     bookwords: { rule_id: MEASURE_RULE_ID, verses: measure.verses, words: measure.words, words_written: measure.words_written, letters: measure.letters, letters_read: measure.letters_read },
   },
-  count_stamp: countStamp,
+  ...(countStamp ? { count_stamp: countStamp } : {}),
   nodes,
   span_roles: spanRoles,
   span_rules: spanRules,
@@ -701,5 +708,5 @@ console.log(
   `${(body.length / 1024).toFixed(1)} KB gz · zone sha256 ${createHash("sha256").update(body).digest("hex").slice(0, 16)}…\n` +
   `  measure: ${measure.verses.toLocaleString()} verses · ${measure.words.toLocaleString()} words read / ${measure.words_written.toLocaleString()} written · ` +
   `${measure.letters.toLocaleString()} letters written / ${measure.letters_read.toLocaleString()} read · ${measure.c0_on.toLocaleString()} on, ${measure.c0_off.toLocaleString()} off` +
-  (countStamp.witnesses ? ` · stamp: ${countStamp.rows.filter((r) => r.verdict === "EXACT").length} exact, ${countStamp.rows.filter((r) => r.verdict === "DIFFERS").length} differ, ${countStamp.rows.filter((r) => r.verdict === "NO_WITNESS").length} unwitnessed` : " · no witness record supplied"),
+  (countStamp && countStamp.witnesses ? ` · stamp: ${countStamp.rows.filter((r) => r.verdict === "EXACT").length} exact, ${countStamp.rows.filter((r) => r.verdict === "DIFFERS").length} differ, ${countStamp.rows.filter((r) => r.verdict === "NO_WITNESS").length} unwitnessed` : countStamp ? " · no witness record supplied" : " · an instrument: not stamped"),
 );

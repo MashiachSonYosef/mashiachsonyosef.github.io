@@ -3,6 +3,7 @@
 // according to the Masorah edition — one record for thirty-nine files
 //
 // RULE: mam-restore-v5-rights-rule-v1-one-record-for-the-edition-the-credit-on-every-page
+// LEDGER: M
 //
 // The corpus lane's restore v5 carries its rights as facts in two places:
 // the representations register (licence id LIC-CC-BY-SA-UNVERSIONED, raw
@@ -81,8 +82,11 @@ for (const r of reps.sort((a, b) => a.work_id.localeCompare(b.work_id))) {
   } else {
     composedN += 1;
     const title = /Title: ([^|]+) \|/u.exec((b || {}).credit_line || "")?.[1]?.trim() || titleOf(slug);
+    const why = !b ? "the July binding carries no row for this book, so no witness id is in custody"
+      : !String(b.credit_line || "").trim() ? `the July binding's row for this book carries no attribution record (${b.attribution_state}), so no witness id is in custody`
+        : "the July binding bound another Sefaria version of this book, so its witness ids are not this edition's and are not carried";
     credit = { line: `Provider metadata: Sefaria | Title: ${title} | Version: ${EDITION} | Source: ${MAM_URL} | License: CC-BY-SA`,
-      basis: `composed from the restore receipt's own facts (provider, title, version, source, licence)${b ? ": the July binding bound another version of this book, so its witness ids are not carried" : ": the July binding carries no row for this book, so no witness id is in custody"}; printing it is what discharges the display condition` };
+      basis: `composed from the restore receipt's own facts (provider, title, version, source, licence): ${why}; printing it is what discharges the display condition` };
   }
   works[r.work_id] = {
     title: /Title: ([^|]+) \|/u.exec(credit.line)?.[1]?.trim() || titleOf(slug),
@@ -110,14 +114,21 @@ const record = {
   },
   licence: {
     normalized_license_class: "CC-BY-SA", license_version: "UNSPECIFIED", terminal_resolution_state: "RESOLVED",
-    reader_display_axis: "ALLOW_WITH_ATTRIBUTION", public_distribution_axis: "ALLOW_WITH_ATTRIBUTION_AND_SHAREALIKE",
+    reader_display_axis: "ALLOW_WITH_ATTRIBUTION", public_distribution_axis: "HOLD_EXACT_DEED_AND_ATTRIBUTION",
     attribution_required: "TRUE", noncommercial_required: "FALSE_OR_NOT_ESTABLISHED", share_alike_required: "TRUE", no_derivatives_required: "FALSE_OR_NOT_ESTABLISHED",
-    note: "the version is not stated by the provider's record and is not guessed here; the deed links on the page name the family and the reader is sent to the licensor's own text",
+    note: "the version is not stated by the provider's record and is not guessed here; the page displays the text with the credit and the deed family named, and public distribution (the export) is HELD until the exact deed can be named — the same hold the July binding placed on it",
+    evidence_for_cc_by_sa: [
+      "the audited credit lines of the July binding, read from Sefaria's own version record for this edition, end 'License: CC-BY-SA' (33 books)",
+      "the corpus lane's restore receipts state licence CC-BY-SA for all 39 files, extracted from the same Sefaria record",
+      "the representations register states LIC-CC-BY-SA-UNVERSIONED / CC-BY-SA for all 39",
+      "the edition is Hebrew Wikisource's, whose text is published under CC BY-SA",
+    ],
+    reconciliation_with_the_july_binding: "the July binding classed these representations under its CC-BY-NC profile while its own audited credit lines read CC-BY-SA; no source this project holds asserts a noncommercial term for this edition, and the credit line the binding audited is carried here as evidence. The July binding's public-distribution HOLD is kept; its display condition (attribution) is discharged by the credit on every page.",
   },
   credits: { carried_from_the_july_binding: carriedN, composed_from_the_receipt: composedN },
   works,
 };
 const text = JSON.stringify(record, null, 2) + "\n";
-if (/\b[A-Za-z]:[\\/](?![\\/])|\/home\/|Users[\\/]/u.test(text)) die("PATH_IN_RECORD", "a local path reached the record; refusing to write it");
+if (/\b[A-Za-z]:[\\/](?![\\/])|\/(?:home|root|tmp|mnt|Users)\/|Users[\\/]/u.test(text)) die("PATH_IN_RECORD", "a local path reached the record; refusing to write it");
 writeFileSync(OUT, text);
 console.log(`${OUT}: ${Object.keys(works).length} works · credit carried ${carriedN}, composed ${composedN} · edition source ${MAM_URL.slice(0, 40)}…`);

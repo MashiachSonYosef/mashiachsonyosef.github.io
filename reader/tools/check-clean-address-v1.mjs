@@ -217,7 +217,11 @@ check("the site's own name carries no Hebrew that nothing recorded",
     const { readdirSync } = await import("node:fs");
     const { gunzipSync } = await import("node:zlib");
     const zdir = join(K3, "data", "zones");
-    const firstZone = readdirSync(zdir)
+    // the door's working verse comes from the first zone the door SERVES
+    // (the gate's served set), not the first bin on disk: a withheld zone
+    // lends the door no verse (2026-09-06)
+    const servedFirst = zonesServed()[0];
+    const firstZone = servedFirst ? `${servedFirst}.bin` : readdirSync(zdir)
       .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))
       .sort()[0];
     if (firstZone) {

@@ -400,11 +400,19 @@ export const kqSiteOf = (surface, declared = null) => {
 // on the region so the page prints the carrier whole, a branch of several
 // words gives each word a bare region and the brackets print as carrier text.
 const rawPiecesOf = (text) => String(text ?? "").split(/\s+/u).flatMap((t) => t.split(MAQAF)).filter(Boolean);
+const bareText = (t) => String(t ?? "").replace(/^\u05be+|\u05be+$/gu, "");
 const kqWord = (r, site) => {
   const s = String(r.exact_surface_form);
+  // A branch of one word keeps its brackets on the region so the page prints
+  // the carrier whole — unless the source wrote the joiner inside the
+  // bracket ([qere־]): the joiner is the site's, not the word's, and a region
+  // carrying a maqaf reads to the page as a joined interval rather than a
+  // word, which left the qere half of 54 sites without a card (2026-09-06).
+  // Such a branch gives the bare word as its region and the bracket and the
+  // joiner print as carrier text, exactly as a branch of several words does.
   const regionsOfBranch = (text, role, wrapped) => {
     const ps = rawPiecesOf(text);
-    if (ps.length === 1) return [{ s: wrapped, k: exactK(ps[0]), role }];
+    if (ps.length === 1 && ps[0] === text) return [{ s: wrapped, k: exactK(ps[0]), role }];
     return ps.map((p) => ({ s: p, k: exactK(p), role }));
   };
   const w = [];
@@ -415,8 +423,10 @@ const kqWord = (r, site) => {
   const word = {
     s,
     w,
+    // each branch named bare: a joiner at a branch's edge is the site's, and
+    // the surface above carries it as written
     kq: {
-      k: site.ketiv, q: site.qere, order: site.order, rows: 1, convention: "ONE_ROW_PARENS_KETIV_BRACKETS_QERE",
+      k: site.ketiv === null ? null : bareText(site.ketiv), q: site.qere === null ? null : bareText(site.qere), order: site.order, rows: 1, convention: "ONE_ROW_PARENS_KETIV_BRACKETS_QERE",
       words_read: site.qere === null ? 0 : piecesOf(site.qere).length,
       words_written: site.ketiv === null ? 0 : piecesOf(site.ketiv).length,
       ...(r.kq && r.kq.trivial ? { trivial: true } : {}),
@@ -556,6 +566,11 @@ const carried = (r, w) => {
   if (Array.isArray(r.letter_marks) && r.letter_marks.length) w.letter_marks = r.letter_marks;
   if (r.maqaf_implicit) w.maqaf_implicit = true;
   if (r.shirah) w.shirah = true;
+  // the source's own flag on a word it prints in one form while marking it a
+  // ketiv-qere of spelling (the restore's kq_trivial); the word is one C0
+  // with one surface, and the flag rides so the card can say the source
+  // marks it
+  if (r.kq_trivial) w.kq_trivial = true;
   return w;
 };
 

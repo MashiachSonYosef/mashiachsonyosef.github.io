@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-06.
 
-**81 rules declared · 80 named by a check · 1 unguarded.**
+**80 rules declared · 80 named by a check · 0 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -70,7 +70,6 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1 |
 | `regloss-rule-v1-project-the-store-over-a-zones-own-keys` | tools/regloss-zone.mjs | check-page-agrees-with-store-v1 |
 | `respan-rule-v1-project-the-compspan-template-over-a-zones-own-keys` | tools/respan-zone-v1.mjs | check-respan-projection-v1 |
-| `restore-rule-v1` | tools/build-front-door-v1.mjs | **UNGUARDED** |
 | `route-store-rule-v1-catalog-compact-top5` | tools/build-route-store.mjs | check-route-store-exact-k-v1 |
 | `route-store-rule-v3-declared-reading` | tools/check-nothing-invented-v1.mjs | check-nothing-invented-v1 |
 | `rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one` | tools/build-demonstrations-v1.mjs | check-demonstrations-v1 |
