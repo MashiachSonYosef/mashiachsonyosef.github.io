@@ -41,6 +41,14 @@
      fold, its grains and receipts byte-identical for the count guard. What a
      reader meets first is what they can read, not the machine room. */
   .face-line { margin:.8rem 0 .5rem; color:var(--muted); font-size:.9rem; }
+  /* The gate says the shelf's state as figures, not as a paragraph. Each
+     carries its full sentence in the hover, and the receipt carries all of
+     it; the door prints the number and the word. */
+  .gate-notice { display:flex; flex-wrap:wrap; gap:.15rem .9rem; align-items:baseline; margin:.5rem 0 .7rem; }
+  .gate-notice .gc { font-variant-numeric:tabular-nums; color:var(--ink); white-space:nowrap;
+    font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.86rem; cursor:help; }
+  .gate-notice .gl { font-family:Georgia,"Times New Roman",serif; font-variant:small-caps;
+    letter-spacing:.08em; color:var(--faint); font-size:.76rem; margin-inline-start:.15rem; }
   /* There was a block here that lifted the readable works to the top of the
      page in a shape of their own. It was a proof-of-concept affordance: with
      two books live, the door had to point somewhere. It is gone. The door
@@ -627,8 +635,8 @@
   #wshade { position:fixed; inset:0; background:var(--shade); z-index:69; }
   #wshade[hidden] { display:none; }
   details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }
-  details.fam > summary > .row:first-child::before { content:"\u25b8"; color:var(--gold-dim); font-size:.8rem; }
-  details.fam[open] > summary > .row:first-child::before { content:"\u25be"; }
+  details.fam > summary > .row:first-child::before { content:"\25B8"; color:var(--gold-dim); font-size:.8rem; }
+  details.fam[open] > summary > .row:first-child::before { content:"\25BE"; }
   details.fam > summary:hover .en { color:var(--shesh); }
   .fgroups { display:flex; flex-direction:column; gap:.55rem; }
   .fgroups > .fold-line { display:block; margin:0; padding:.05rem .35rem; color:var(--faint); font-size:.76rem; }
@@ -700,9 +708,9 @@
     padding:.4rem .9rem; color:var(--faint); font-size:.72rem; font-style:italic;
     display:flex; align-items:baseline; gap:.45rem; }
   .workgroup details.fold > summary::-webkit-details-marker { display:none; }
-  .workgroup details.fold > summary::before { content:"\u25b8"; font-style:normal;
+  .workgroup details.fold > summary::before { content:"\25B8"; font-style:normal;
     color:var(--gold-dim); transition:transform 140ms; }
-  .workgroup details.fold[open] > summary::before { content:"\u25be"; }
+  .workgroup details.fold[open] > summary::before { content:"\25BE"; }
   .workgroup details.fold > summary:hover { color:var(--muted); }
   .workgroup details.fold .fold-line { display:block; margin:0; padding:.05rem .9rem .4rem; }
   a.sub-book { display:block; padding:.6rem .9rem .6rem 1.7rem; border-top:1px solid var(--line);
