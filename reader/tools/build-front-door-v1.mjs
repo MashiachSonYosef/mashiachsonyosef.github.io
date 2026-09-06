@@ -1661,7 +1661,15 @@ const doc = pageDoc({
   h1: SITE_NAME,
   sub: "A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the license it was released under.",
   counts: true,
-  demo: true,
+  // THE READER PANEL IS OFF. It printed the opening words of whichever book
+  // sorts first, each with its gloss and its licence, as a live sample of the
+  // reader — and the owner, looking at his own door, could not tell what it
+  // was (2026-09-06). A panel that has to be explained is not a demonstration,
+  // it is a delay: it stood between a reader and the books, and the page that
+  // shows the frame working properly, with a caption per rule, is linked two
+  // lines below it. The builder still derives it, so turning this back on is
+  // one word.
+  demo: false,
   altLink: `<a class="face alt-face" href="/census/" title="every work the bridge records that does not serve yet — nothing hidden, nothing promised">the census</a>`,
   sections: sectionsHtml,
 });
