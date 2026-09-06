@@ -569,6 +569,11 @@
   .trow .fam-he, details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   .trow .fam-he .he, details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.3rem; color:var(--shesh); }
+    /* a gloss the reader ruled, marked as theirs rather than the catalogue's
+     first answer — the same underline the book pages use for a chosen
+     reading, so one gesture reads the same everywhere on the site */
+  .g.ruled { text-decoration:underline; text-decoration-color:var(--sel-dim);
+    text-decoration-thickness:1px; text-underline-offset:.18em; }
   .trow .fam-he .g, details.fam > summary .fam-he .g { font-size:.7rem; color:var(--muted); }
   /* the license rides beside every printed reading and every backed
      force-read, in the same quiet chip the reader's card uses */
@@ -1327,6 +1332,64 @@
     e.stopPropagation();
     openBook(w);
   }, true);
+  // A PRESS ON THE DOOR RULES THE FORM, the same as it does inside a book.
+  // It did not: the card repainted its own body and the gloss on the page
+  // behind it never moved, so a reader who chose a reading watched the card
+  // close and the old word come back. The reader's choice is the law of the
+  // page — that is the rule everywhere else here — and a door that offers a
+  // choice it then discards is offering nothing.
+  //
+  // What is kept is the reading and the record under it, never one without the
+  // other: the page's own law is that a reading and its terms are shown
+  // together or not at all, so a ruling carries its witness, its year and its
+  // licence and repaints all three. It is kept per reader, in this browser,
+  // and it is a display order and not a claim about the text — the catalogue's
+  // own order stands underneath it, unchanged, for anyone who has ruled
+  // nothing.
+  var RULED_KEY = "fh.door.ruled";
+  var RULED = (function () {
+    try { return JSON.parse(localStorage.getItem(RULED_KEY) || "{}") || {}; } catch (e) { return {}; }
+  })();
+  function glossesFor(key) {
+    var out = [];
+    var btns = document.querySelectorAll('.fw[data-k]');
+    for (var i = 0; i < btns.length; i++) {
+      if (btns[i].getAttribute("data-k") !== key) continue;
+      var host = btns[i].closest(".fam-he");
+      var g = host && host.querySelector(".g");
+      if (g) out.push(g);
+    }
+    return out;
+  }
+  function paintGloss(key, r) {
+    var gs = glossesFor(key);
+    for (var i = 0; i < gs.length; i++) {
+      gs[i].replaceChildren(r.text);
+      if (r.lic) {
+        var chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = r.lic;
+        chip.title = (r.m || "") + (r.year ? " · " + r.year : "");
+        gs[i].append(chip);
+      }
+      gs[i].title = r.text + (r.m ? " — " + r.m : "");
+      gs[i].classList.add("ruled");
+    }
+    return gs.length;
+  }
+  function rule(key, row) {
+    var m = (storeIndex && storeIndex.m_sources ? storeIndex.m_sources : {})[row[3]] || {};
+    var r = { text: row[1], lic: licName(m.licensePosture), m: m.label || row[3],
+              year: row[4] && row[4] !== "S_NO_SOURCE_YEAR" ? row[4] : "" };
+    RULED[key] = r;
+    try { localStorage.setItem(RULED_KEY, JSON.stringify(RULED)); } catch (e) { /* a reader who blocks storage still rules this page, just not the next one */ }
+    paintGloss(key, r);
+  }
+  // and on arrival, every ruling this reader has already made
+  function applyRulings() {
+    for (var key in RULED) if (Object.prototype.hasOwnProperty.call(RULED, key)) paintGloss(key, RULED[key]);
+  }
+
   // One selected reading at a time, and the record under it is the record of
   // that reading — the reader's law, the reader's card. A pill press moves the
   // selection and repaints the record; nothing else on the door moves.
@@ -1477,10 +1540,14 @@
           b.type = "button"; b.textContent = r[1];
           b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
           b.title = (r[4] && r[4] !== "S_NO_SOURCE_YEAR" ? r[4] + " · " : "") + (m.label || r[3]);
-          b.addEventListener("click", function () { paint(rows, i); });
+          b.addEventListener("click", function () { paint(rows, i); rule(key, rows[i]); });
           pills.append(b);
         });
-        paint(rows, 0);
+        // the reading this reader ruled opens selected, so the card agrees with
+        // the page instead of arguing with it
+        var start = 0;
+        if (RULED[key]) for (var q = 0; q < rows.length; q++) if (rows[q][1] === RULED[key].text) { start = q; break; }
+        paint(rows, start);
         wcard.querySelector(".prov").textContent =
           rows.length + " reading" + (rows.length === 1 ? "" : "s") + " · oldest source first · " +
           (idx.rule_id || "the route store");
@@ -1496,6 +1563,7 @@
       w.getAttribute("data-book"), w.getAttribute("data-bookname"),
       w.getAttribute("data-bookatt"), w.getAttribute("data-bookatttitle"));
   }, true);
+  applyRulings();
   function go(e) {
     e.preventDefault();
     var live = groups.filter(function (g) { return !g.el.hidden; });
