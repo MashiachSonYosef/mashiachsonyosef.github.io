@@ -1199,6 +1199,11 @@
          text carries one, and never governs a mark that speaks about the
          text, which rule 6 forbids anyone to hide. -->
     <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+    <button type="button" class="mode-btn ord" id="pairToggle" hidden></button>
   </div>
 </header>
 <div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
@@ -1815,6 +1820,82 @@
       const g = table ? table[s] : null;
       return g ? spanJoin(g) : "—";
     }).join(" + ");
+  };
+
+  /* ── THE ORDER TOGGLES ────────────────────────────────────────────────────
+     Where the ink offers more than one reading at one position, the reader
+     sets which one leads and the page says whose order it is. Nothing is
+     added and nothing is dropped: a toggle is an ORDER, never a selection,
+     and the Hebrew on the page never moves — C0 never changes.
+
+     Precedence, and it does not bend: a reading the reader has RULED on a
+     form wins, because a ruling is a decision about that form; then the
+     toggle; then the order the record itself arrived in. Where the side the
+     reader asked for has no reading at all, the page shows the side that
+     does and says so on the card, rather than printing nothing — we would be
+     withholding a reading we hold, and the page already falls back this way
+     where the catalogue cannot read a ketiv.
+
+     One class is live: the pair. The others the owner has drawn — the
+     abbreviation, the joined span, the affix, and the sorters that rank the
+     definitions by era, by pointing and by which source names this verse —
+     read fields no record on this side carries yet; they arrive with the
+     corpus lane's word layer, and this switch is the frame they plug into. */
+  const ORDER_KEY = "fh.order.kq";
+  const KQ_ORDERS = ["KETIV", "QERE", "SOURCE"];
+  const KQ_SAYS = { KETIV: "ketiv first", QERE: "qere first", SOURCE: "as the source sets them" };
+  let kqOrder = (() => { try { return KQ_ORDERS.includes(localStorage.getItem(ORDER_KEY)) ? localStorage.getItem(ORDER_KEY) : "KETIV"; } catch { return "KETIV"; } })();
+  const KQ_STANDS = [];
+  /** Which branch of a pair backs the English, and what it fell back from. */
+  const kqPick = (regions, parts, table) => {
+    const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—";
+    const ruledIdx = regions.findIndex((r) => ruledLine(r.k, table) !== null);
+    if (ruledIdx >= 0) return { i: ruledIdx, fellFrom: null };
+    const wanted = kqOrder === "QERE" ? regions.findIndex((r) => r.role !== "KETIV")
+      : kqOrder === "SOURCE" ? 0
+      : regions.findIndex((r) => r.role === "KETIV");
+    if (usable(wanted)) return { i: wanted, fellFrom: null };
+    const alt = regions.findIndex((r, i) => i !== wanted && usable(i));
+    if (alt < 0) return { i: -1, fellFrom: null };
+    const named = (r) => (r && r.role === "KETIV" ? "the ketiv" : r ? "the qere" : "the half you asked for");
+    return { i: alt, fellFrom: named(regions[wanted]) };
+  };
+  /** The witness chip that rides a reading. Built in one place because the
+      order toggle repaints readings, and a reading whose chip stayed behind
+      would be wearing another witness's terms. */
+  const licChipFor = (ks) => {
+    if (!ks || !ks.length || !zone.gloss_m) return null;
+    const ms = ks.map((k) => zone.gloss_m[k]).filter(Boolean);
+    if (ms.length !== ks.length) return null;
+    const uniq = [...new Map(ms.map((m) => [`${m.lic} ${m.m}`, m])).values()];
+    const chip = document.createElement("span"); chip.className = "g-lic";
+    if (uniq.length === 1) {
+      chip.textContent = uniq[0].lic;
+      chip.title = `${uniq[0].m}${uniq[0].y ? ` · ${uniq[0].y}` : ""} — the oldest witness carrying this reading; every other witness is on the word’s own card`;
+    } else {
+      chip.textContent = `${uniq.length} licenses`;
+      chip.title = uniq.map((m) => `${m.lic} — ${m.m}${m.y ? ` · ${m.y}` : ""}`).join("\n");
+    }
+    return chip;
+  };
+  /** Repaint every pair on the page under the order now set. */
+  const paintPairs = () => {
+    for (const s of KQ_STANDS) {
+      const { i, fellFrom } = kqPick(s.regions, s.parts, s.table);
+      const line = i >= 0 && s.parts[i] !== "—" ? s.parts[i] : "";
+      s.ge.replaceChildren(line || " ");
+      s.ge.classList.toggle("bare", !line);
+      s.ge.title = line;
+      const ruled = s.regions.findIndex((r) => ruledLine(r.k, s.table) !== null) >= 0;
+      if (line && !ruled && s.table === zone.gloss) {
+        const chip = licChipFor([s.regions[i].k]);
+        if (chip) s.ge.append(chip);
+      }
+      s.regionEls.forEach((el, j) => el.classList.toggle("backs-en", !!line && j === i));
+      s.ge.classList.toggle("backs-en", !!line && i >= 0);
+      s.fellFrom = fellFrom;
+      s.shown = i;
+    }
   };
 
   // ---- the exporter ---------------------------------------------------
@@ -3971,13 +4052,7 @@
     // law applied to the pair. A ketiv the catalog cannot read falls back to
     // the qere, marked as such by the mark itself.
     let kqShown = -1;
-    if (word.kq && regions) {
-      const ruledIdx = regions.findIndex((r) => ruledLine(r.k, table) !== null);
-      const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—";
-      const qereIdx = regions.findIndex((r) => r.role !== "KETIV");
-      const ketivIdx = regions.findIndex((r) => r.role === "KETIV");
-      kqShown = ruledIdx >= 0 ? ruledIdx : usable(ketivIdx) ? ketivIdx : usable(qereIdx) ? qereIdx : -1;
-    }
+    if (word.kq && regions) kqShown = kqPick(regions, parts, table).i;
     const line = heldJoint != null ? (wasRuled = true, heldJoint)
       : word.kq && regions ? (kqShown >= 0 && parts[kqShown] !== "—" ? parts[kqShown] : "")
       : (parts.filter((p) => p !== "—").length ? parts.join(" + ") : "");
@@ -3998,21 +4073,16 @@
       const ks = word.kq && regions ? (kqShown >= 0 ? [regions[kqShown].k] : [])
         : regions ? regions.filter((r, i) => parts[i] !== "—" && ruledLine(r.k, table) == null).map((r) => r.k)
         : word.k ? [word.k] : [];
-      const ms = ks.map((k) => zone.gloss_m[k]).filter(Boolean);
-      if (ks.length && ms.length === ks.length) {
-        const uniq = [...new Map(ms.map((m) => [`${m.lic} ${m.m}`, m])).values()];
-        const chip = document.createElement("span"); chip.className = "g-lic";
-        if (uniq.length === 1) {
-          chip.textContent = uniq[0].lic;
-          chip.title = `${uniq[0].m}${uniq[0].y ? ` · ${uniq[0].y}` : ""} — the oldest witness carrying this reading; every other witness is on the word's own card`;
-        } else {
-          chip.textContent = `${uniq.length} licenses`;
-          chip.title = uniq.map((m) => `${m.lic} — ${m.m}${m.y ? ` · ${m.y}` : ""}`).join("\n");
-        }
-        ge.append(chip);
-      }
+      const chip = licChipFor(ks);
+      if (chip) ge.append(chip);
     }
     wb.append(ge);
+    // A pair goes on the pairs ledger, so the order toggle can repaint it
+    // without rebuilding the page. What is kept is what a repaint reads: the
+    // branches, their readings, and the elements the provenance mark moves
+    // between. Sections drawn later join it as they are built, already
+    // wearing the order the reader set.
+    if (word.kq && regions) KQ_STANDS.push({ ge, regionEls, parts, regions, table });
     // every place this form stands goes on the ledger, so a ruling made at
     // any one of them can be painted at all of them. A pair's stand carries
     // its branch elements too, so a ruling can move the provenance mark to
@@ -4122,6 +4192,34 @@
     say(document.body.classList.contains("marks-on"));
     btn.onclick = () => { const on = document.body.classList.toggle("marks-on"); say(on); };
     if (n > off) btn.title = `${n - off} further mark${n - off === 1 ? "" : "s"} on this page cannot be hidden: they speak about the text, not about the page`;
+  };
+  /* The pair switch. Appears only where the book writes pairs, the same rule
+     the marks switch follows, and counts them from the zone rather than from
+     the sections drawn so far. Three positions, cycled: what stands today
+     (the ketiv, the owner's ruling and the antiquity law), the qere, and the
+     order the edition itself wrote them in — which is not uniform, so this is
+     a third position and not a synonym for either. */
+  const pairSwitch = () => {
+    const btn = document.getElementById("pairToggle");
+    if (!btn) return;
+    const pairs = (zone.sections || []).flatMap((s) => (s.words || []).filter((w) => w.kq));
+    if (!pairs.length) { btn.hidden = true; return; }
+    const srcFirst = pairs.filter((w) => (w.kq.order || "").startsWith("KETIV")).length;
+    const say = () => {
+      btn.textContent = `pairs · ${KQ_SAYS[kqOrder]}`;
+      btn.dataset.n = String(pairs.length);
+      btn.title = `${pairs.length} place${pairs.length === 1 ? "" : "s"} in this book are written one way and read another. `
+        + `The edition writes the ketiv first at ${srcFirst} of them and the qere first at ${pairs.length - srcFirst}. `
+        + `Both halves always print and both always open; this only sets which one backs the English. `
+        + `A reading you have ruled on a form beats this switch.`;
+    };
+    btn.hidden = false;
+    say();
+    btn.onclick = () => {
+      kqOrder = KQ_ORDERS[(KQ_ORDERS.indexOf(kqOrder) + 1) % KQ_ORDERS.length];
+      try { localStorage.setItem(ORDER_KEY, kqOrder); } catch { /* a reader who blocks storage still gets the toggle, just not the memory of it */ }
+      say(); paintPairs();
+    };
   };
   const setMode = (m) => {
     closeHud();
@@ -5891,6 +5989,7 @@
   // the marks switch counts what the page drew, so it runs once the sections
   // are in the document
   marksSwitch();
+  pairSwitch();
   if (openAt && byLabel.has(openAt)) {
     const target = document.getElementById(byLabel.get(openAt));
     if (target) {
