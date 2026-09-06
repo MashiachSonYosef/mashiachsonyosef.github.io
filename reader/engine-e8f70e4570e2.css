@@ -495,6 +495,12 @@
   .wjoin .wb > .g { display: none; }
   .wjoin .wj-ink > .wb + .wb { border-inline-start: 1px solid var(--gold-dim); }
   .wjoin > .g { display: block; text-align: center; }
+  /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
+     body.en .w order 2). A run's ink wrapper carries no order of its own, so
+     a joined word printed its reading BELOW its ink while every word beside
+     it printed above, and the eye met the readings out of the order the
+     corpus emitted them in. The wrapper takes the swap too. */
+  body.en .wjoin .wj-ink { order: 3; }
   .q-mark { font-size: 0.62em; vertical-align: super; color: var(--muted);
     margin-inline-start: 0.1em; cursor: help; }
   .wb.has-q .w { border-bottom: 1px dotted var(--muted); }
@@ -1081,7 +1087,10 @@
     border: 1px solid var(--line); border-radius: 0.6em; font-size: 0.8em;
     color: var(--muted); white-space: nowrap; }
   /* the chip shows in both readers — the owner chose the demonstration look, 2026-08-30 */
-  body.pick-he .wb .g { user-select: none; -webkit-user-select: none; }
+  /* A reading is a reading wherever the run drew it. A joined word prints one
+     shared reading on the run itself, outside any .wb, so this rule never
+     reached it and a Hebrew copy across a maqaf compound carried English. */
+  body.pick-he .wb .g, body.pick-he .wjoin > .g { user-select: none; -webkit-user-select: none; }
   body.pick-he .wb .w { user-select: text; -webkit-user-select: text; }
   body.pick-en .wb .g { user-select: text; -webkit-user-select: text; }
   body.pick-en .wb .w { user-select: none; -webkit-user-select: none; }

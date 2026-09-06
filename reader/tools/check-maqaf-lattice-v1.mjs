@@ -86,11 +86,20 @@ const marks = (t) => (String(t || "").match(/\u05be/g) || []).length;
 let maqafOccurrences = 0;
 let latticeW = 0;
 let plainW = 0;
+// What counts.occurrences_holding_more_than_one_w declares is the number the
+// builder kept: occurrences that carry a W set. Until the counted works landed,
+// the only way to carry one was a compound still sealed in one row, so counting
+// the maqafim gave the same figure and the two were never told apart. The
+// restore splits those compounds, and gives the W set a second lawful owner —
+// the ketiv/qere site, whose W set is one W per branch. Count what the builder
+// counts, so the law is read over the same quantity the number names.
+let wSetOccurrences = 0;
 const byAtomCount = new Map();
 
 for (const w of words) {
   const surface = String(w.s || "");
   const regions = Array.isArray(w.w) ? w.w : null;
+  if (regions) wSetOccurrences += 1;
 
   // ---- L6 : a Q is a pointer and nothing else --------------------------
   if (w.q) {
@@ -142,6 +151,20 @@ for (const w of words) {
   // boundary. Such a word is a plain word with a plain key here; the lattice
   // laws below hold only a compound still sealed in one row (an unsplit
   // edge work). check-maqaf-pair-drawn-v1 holds the split pairs on the page.
+  // A ketiv/qere site is not a compound. Its W set is one W per branch, and
+  // the branches are alternatives: they are not intervals of one surface, they
+  // do not overlap, and no lattice runs between them. A joiner inside the
+  // brackets is a boundary joiner, because the restore splits compounds inside
+  // them too. The site's own laws are kq-carried's, kq-presentation's and
+  // variant-site's; what is held here is only that each branch can be opened.
+  if (w.kq) {
+    if (regions) {
+      plainW += regions.length;
+      for (const r of regions) if (!r.k && !r.role) refuse("L5", `${w.unit} "${surface}"`, "a branch of a pair carries no key and no role; it opens nothing");
+    }
+    continue;
+  }
+
   const innerMaqaf = surface.replace(/^[\u0591-\u05c7]*\u05be+|\u05be+[\u0591-\u05c7]*$/gu, "").includes(MAQAF);
   if (!innerMaqaf) {
     plainW += regions ? regions.length : (w.k ? 1 : 0);
@@ -225,10 +248,15 @@ for (const w of words) {
 // What the bin says about itself, checked against what it holds.
 // ---------------------------------------------------------------------------
 const c = zone.counts || {};
+// The number names occurrences that HOLD a W set, which is what the builder
+// kept, and is read here over the same quantity. Reading it as "occurrences
+// written with a maqaf" was true only while a sealed compound was the one way
+// to hold a set; it stopped being true when the restore split the compounds
+// and the pair became the other way.
 if (c.occurrences_holding_more_than_one_w != null &&
-    c.occurrences_holding_more_than_one_w !== maqafOccurrences) {
+    c.occurrences_holding_more_than_one_w !== wSetOccurrences) {
   refuse("L4", "counts", `counts say ${c.occurrences_holding_more_than_one_w} occurrences hold ` +
-    `more than one W; ${maqafOccurrences} are written with a maqaf`);
+    `more than one W; ${wSetOccurrences} carry a W set (${maqafOccurrences} of them written with a maqaf)`);
 }
 if (c.w_regions != null && c.w_regions !== latticeW + plainW) {
   refuse("L4", "counts", `counts say ${c.w_regions} W regions; the sections hold ${latticeW + plainW}`);
@@ -265,9 +293,15 @@ if (url) {
     atomEls: wb.querySelectorAll(".wr").length,
     markEls: wb.querySelectorAll(".mq").length,
     reading: wb.querySelector(".g")?.textContent.trim() || "",
+    // a pair's block wears .multi too, and it is not a chain: the page draws
+    // one region per branch and no joiner mark of its own
+    kq: wb.classList.contains("kq"),
   })));
 
   for (const d of drawn) {
+    // a ketiv/qere site is not a compound \u2014 its regions are alternatives, and
+    // the lattice laws below describe intervals of one surface
+    if (d.kq) continue;
     // rule 2: a joiner at the boundary is a plain word on the page too
     if (!d.surface.replace(/^[\u0591-\u05c7]*\u05be+|\u05be+[\u0591-\u05c7]*$/gu, "").includes("\u05be")) continue;
     const n = d.surface.split("\u05be").length;
@@ -293,7 +327,7 @@ if (url) {
   // list that held the intervals too, so pressing the second half of a maqaf'd
   // word opened the whole chain — a different word, a different key, a
   // different licence, and nothing on screen saying so.
-  const multi = await page.$$(".wb.multi");
+  const multi = await page.$$(".wb.multi:not(.kq)");
   for (const wb of multi) {
     const surface = (await wb.$eval(".w", (e) => e.textContent)) || "";
     if (!surface.replace(/^[\u0591-\u05c7]*\u05be+|\u05be+[\u0591-\u05c7]*$/gu, "").includes("\u05be")) continue;

@@ -29,7 +29,7 @@
 //
 // Run: node tools/check-nothing-unlanded-v1.mjs [remote] [branch]
 
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync, existsSync, readdirSync, statSync, mkdtempSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { basename, dirname, join, relative } from "node:path";
@@ -97,8 +97,37 @@ const here = walk(K3).sort();
 const isSource = (p) => /^tools\//.test(p) || /^(zone|dictionary|orot)\.html$/.test(p)
   || p === "build.sh" || /\.md$/.test(p) || /^synthesis\//.test(p);
 
+// ---- what this tree has already said it does not publish ------------------
+// Not everything on disk is owed to the branch. The whole shelf of zone bins
+// lives here and only the books the gate serves are published, force-added on
+// purpose — refusals-gate-rule-v1, written out in .gitignore. Counting the
+// rest as unlanded printed three and a half thousand files of debt that no
+// upload could ever discharge, and buried the two dozen that were real.
+//
+// So the tree's own ignore rules are asked, of git, with the index consulted:
+// a path that was force-added is TRACKED, and git does not call a tracked path
+// ignored, so every book the gate serves is still owed and still named. Two
+// limits keep the teeth: the exemption is for build outputs only, never for a
+// source — a tool lost with the machine is the exact loss this check exists to
+// commemorate — and where git cannot answer, nothing is excused.
+const ignored = new Set();
+try {
+  const r = spawnSync("git", ["check-ignore", "--stdin", "-z"],
+    { cwd: K3, input: here.join("\0"), encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
+  if (r.status === 0 || r.status === 1)
+    for (const p of String(r.stdout || "").split("\0")) if (p && !isSource(p)) ignored.add(p);
+  else console.log(`  --  git could not say what is ignored (status ${r.status}); nothing is excused`);
+} catch { console.log("  --  git could not be run; nothing is excused"); }
+if (ignored.size) {
+  const byDir = new Map();
+  for (const p of ignored) { const d = p.split("/").slice(0, 2).join("/"); byDir.set(d, (byDir.get(d) || 0) + 1); }
+  console.log(`\n  ${ignored.size} build output(s) this tree does not publish, by its own .gitignore, are not counted as owed:`);
+  for (const [d, n] of [...byDir.entries()].sort((a, b) => b[1] - a[1])) console.log(`     ${String(n).padStart(6)}  ${d}/`);
+}
+
 const missing = [], differs = [], same = [];
 for (const p of here) {
+  if (ignored.has(p)) continue;
   const mine = readFileSync(join(K3, p));
   const theirs = onBranch.has(p) ? branchBody(p) : null;
   if (!theirs) missing.push(p);

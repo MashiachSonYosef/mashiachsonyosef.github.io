@@ -67,7 +67,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `pipeline-manifest-rule-v1-a-rule-with-no-guard-is-printed-as-having-none` | tools/pipeline-manifest-v1.mjs | check-manifest-prints-unguarded-v1 |
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
 | `provider-declaration-rule-v1-closed-set-ship-whole-by-default` | tools/declaration-v1.mjs, tools/declarations-v1.json | check-citations-v1, check-cut-readings-v1, check-licence-leaves-v1, check-provider-characters-v1 |
-| `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1 |
+| `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1, check-nothing-unlanded-v1 |
 | `regloss-rule-v1-project-the-store-over-a-zones-own-keys` | tools/regloss-zone.mjs | check-page-agrees-with-store-v1 |
 | `respan-rule-v1-project-the-compspan-template-over-a-zones-own-keys` | tools/respan-zone-v1.mjs | check-respan-projection-v1 |
 | `route-store-rule-v1-catalog-compact-top5` | tools/build-route-store.mjs | check-route-store-exact-k-v1 |
@@ -84,7 +84,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms` | tools/emit-struck-ranks-v1.mjs | check-route-store-exact-k-v1 |
 | `suggested-title-rule-v1-a-guess-is-authored-by-name-and-witnessed-by-nothing` | tools/check-suggested-title-v1.mjs | check-suggested-title-v1 |
 | `title-from-c0-rule-v1-the-title-is-the-works-own-opening-words` | tools/build-zone.mjs | check-title-from-c0-v1 |
-| `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, tools/run-restore-v5-fleet-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-opens-title-v1 |
+| `title-key-rule-v1-only-what-the-store-already-attests` | tools/build-zone.mjs, tools/name-the-titles-v1.mjs, tools/run-restore-v5-fleet-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-opens-title-v1 |
 | `variant-site-grouping-v1-one-alignment-rule-per-encoding-class` | tools/group-variant-sites-v1.mjs | check-variant-class-one-rule-v1 |
 | `variant-site-rule-v1-the-mark-opens-a-record-or-the-zone-does-not-board` | zone.html | check-variant-site-v1 |
 | `w-grain-rule-v1-a-component-system-is-drawn-on-a` | tools/check-w-grain-v1.mjs | check-w-grain-v1 |
@@ -93,7 +93,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands` | tools/check-build-derived-v1.mjs | check-build-derived-v1 |
 | `zone-commentary-rule-v2-everything-recorded-stands-somewhere` | tools/build-commentary-sidecar-v1.mjs | check-nothing-dropped-v1 |
 | `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | check-commentary-section-aligned-v1 |
-| `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs | check-zone-single-pass-receipts-v1 |
+| `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs, tools/run-restore-v5-fleet-v1.mjs | check-zone-single-pass-receipts-v1 |
 | `zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-page-agrees-with-store-v1 |
 | `zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight` | tools/emit-zone-shipment-v1.mjs, tools/emit-zone-store-v1.mjs, tools/move-shelf-v1.sh, tools/pull-zones-from-store-v1.mjs, zone.html | check-zone-store-crossing-v1, check-zone-store-reachable-v1, check-zone-store-v1 |
 

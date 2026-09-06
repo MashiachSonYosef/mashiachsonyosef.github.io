@@ -40,19 +40,51 @@ for (const vp of VIEWPORTS) {
     console.log(`— ${vp.name}, ${vp.width}×${vp.height}, the ${reader} reader —`);
 
     // ---- 1 · nothing sticks out sideways ------------------------------
+    // A box reaching past the window edge is a fault where the reader meets
+    // it there. The count strip hands its table of figures to a scroller of
+    // its own: on a narrow phone the table is wider than the strip, the strip
+    // clips it, the page itself does not move, and the columns are reached by
+    // dragging the strip. That is a responsive pattern, not the fault this law
+    // was written for, and forcing the table to fit would mean wrapping the
+    // figures or hiding witnesses from phone readers.
+    //
+    // The exemption is exact, because this assertion is the only one that
+    // catches the original fault: the body carries overflow-x hidden, so the
+    // document never grows and the line above never fires. So a box is
+    // excused only when a real scroller CLIPS it — computed overflow-x auto
+    // or scroll, scrollable right now, itself wholly inside the window — and
+    // only when nothing between the box and that scroller escapes its clip.
+    // A box that is fixed or absolutely positioned is not clipped by a static
+    // ancestor, so the walk refuses at one. overflow hidden is not a scroller
+    // but a place the reader can never reach, and stays a fault.
     const wide = await p.evaluate(() => {
-      const out = [];
+      const heldByAScroller = (e) => {
+        for (let a = e; a && a !== document.body; a = a.parentElement) {
+          const cs = getComputedStyle(a);
+          if (a !== e && (cs.position === "fixed" || cs.position === "absolute")) return false;
+          if (a === e) continue;
+          const ox = cs.overflowX;
+          if (ox !== "auto" && ox !== "scroll") continue;
+          if (a.scrollWidth <= a.clientWidth + 1) return false;
+          const ar = a.getBoundingClientRect();
+          return ar.right <= innerWidth + 1 && ar.left >= -1;
+        }
+        return false;
+      };
+      const out = [], held = [];
       for (const e of document.querySelectorAll("body *")) {
         const r = e.getBoundingClientRect();
         if (r.right > innerWidth + 1 || r.left < -1) {
-          out.push(`${(e.className || e.tagName).toString().slice(0, 20)} to ${Math.round(r.right)}`);
+          const name = `${(e.className || e.tagName).toString().slice(0, 20)} to ${Math.round(r.right)}`;
+          (heldByAScroller(e) ? held : out).push(name);
         }
       }
-      return { doc: document.documentElement.scrollWidth, win: innerWidth, n: out.length, first: out.slice(0, 2) };
+      return { doc: document.documentElement.scrollWidth, win: innerWidth, n: out.length, first: out.slice(0, 2), held: held.length };
     });
     check("  the page does not scroll sideways", wide.doc <= wide.win + 1,
       `${wide.doc}px of page in a ${wide.win}px window`);
-    check("  and nothing sticks out past the window", wide.n === 0, wide.first.join(", ") || "nothing does");
+    check("  and nothing sticks out past the window", wide.n === 0,
+      wide.first.join(", ") || `nothing does${wide.held ? ` · ${wide.held} box(es) held inside a scroller of their own` : ""}`);
 
     // ---- 2 · a chosen reading never prints over the Hebrew ------------
     // a word that carries a reading — a bare word opens no pills to measure

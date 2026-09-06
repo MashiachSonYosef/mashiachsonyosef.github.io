@@ -333,6 +333,41 @@ if (process.argv.includes("--title-from-c0")) {
   }
 }
 
+// A title claimed from the work's own opening occurrences arrives already
+// keyed, because those tokens ARE text words and keep their text keys. A title
+// that arrives from a record as a string does not, and a masthead the reader
+// cannot press is the one string on the page with nothing behind it. So the
+// key is attached here — and only where the route store already answers for
+// the form, which is the whole of the rule: a name the catalogue has never
+// seen keeps no key and opens nothing, which is the honest answer rather than
+// an empty card.
+//
+// This ran as a patch over the finished bin until 2026-09-06, and that broke
+// zone-emit-rule-v8: the file that reached the shelf was not an output of this
+// builder, and check-zone-single-pass-receipts-v1 said so, on genesis, in the
+// launch's own suite. It belongs in the one pass, and here it is.
+// GUARDS: title-key-rule-v1-only-what-the-store-already-attests
+let titleKeys = null;
+if (workHe && !workHeTokens) {
+  const named = [], refused = [];
+  workHeTokens = String(workHe).split(/\s+/).filter(Boolean).map((s) => {
+    const k = exactK(s);
+    if (k && store.routesFor(k)) { named.push(s); return { s, k }; }
+    refused.push(s);
+    return { s };
+  });
+  titleKeys = {
+    rule_id: "title-key-rule-v1-only-what-the-store-already-attests",
+    key_rule: K_RULE_ID,
+    stamp,
+    named: named.length,
+    refused: refused.length,
+    named_forms: named,
+    refused_forms: refused,
+    note: "the title's surface is the record's, verbatim; its key is this project's own normaliser's, kept only where the route store already answers for the form",
+  };
+}
+
 // ---- 5. the component system, for exactly the forms this zone contains ----
 // A W's COMPspan is determinable without any definition work: it is the
 // attested component list, and the cells and the complete covers both follow
@@ -558,6 +593,7 @@ const zone = {
           : { path: "July store manifest, every shard re-hashed against it", sha256: serve.provenance.body_oracle.manifest_sha256 },
     },
     ...(titleFromC0 ? { title_from_c0: titleFromC0 } : {}),
+    ...(titleKeys ? { title_keys: titleKeys } : {}),
     identity_oracle: {
       bridge: bridgePath.split("/").pop(),
       bridge_sha256: bridge.sha256,

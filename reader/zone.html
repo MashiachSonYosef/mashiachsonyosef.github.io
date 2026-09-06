@@ -517,6 +517,12 @@
   .wjoin .wb > .g { display: none; }
   .wjoin .wj-ink > .wb + .wb { border-inline-start: 1px solid var(--gold-dim); }
   .wjoin > .g { display: block; text-align: center; }
+  /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
+     body.en .w order 2). A run's ink wrapper carries no order of its own, so
+     a joined word printed its reading BELOW its ink while every word beside
+     it printed above, and the eye met the readings out of the order the
+     corpus emitted them in. The wrapper takes the swap too. */
+  body.en .wjoin .wj-ink { order: 3; }
   .q-mark { font-size: 0.62em; vertical-align: super; color: var(--muted);
     margin-inline-start: 0.1em; cursor: help; }
   .wb.has-q .w { border-bottom: 1px dotted var(--muted); }
@@ -1103,7 +1109,10 @@
     border: 1px solid var(--line); border-radius: 0.6em; font-size: 0.8em;
     color: var(--muted); white-space: nowrap; }
   /* the chip shows in both readers — the owner chose the demonstration look, 2026-08-30 */
-  body.pick-he .wb .g { user-select: none; -webkit-user-select: none; }
+  /* A reading is a reading wherever the run drew it. A joined word prints one
+     shared reading on the run itself, outside any .wb, so this rule never
+     reached it and a Hebrew copy across a maqaf compound carried English. */
+  body.pick-he .wb .g, body.pick-he .wjoin > .g { user-select: none; -webkit-user-select: none; }
   body.pick-he .wb .w { user-select: text; -webkit-user-select: text; }
   body.pick-en .wb .g { user-select: text; -webkit-user-select: text; }
   body.pick-en .wb .w { user-select: none; -webkit-user-select: none; }
@@ -4149,6 +4158,13 @@
   const LINE_HOSTS = ".he-text, .c-inline, .title-row, .c-he";
   const nearestBlock = (node) => {
     let el = node.nodeType === 1 ? node : node.parentElement;
+    // A word a joiner holds together is ONE word. The page prints its pieces
+    // touching, with no separator between them, and each piece is its own
+    // block — so the whitespace rewrite below read them as two words and put
+    // a space inside the word, and a maqaf compound left the page broken in
+    // half. The run is the block; the pieces are inside it.
+    const run = el && el.closest ? el.closest(".wj-ink") : null;
+    if (run) return run;
     for (; el && el !== document.body; el = el.parentElement) {
       const d = getComputedStyle(el).display;
       if (d !== "inline" && d !== "contents") return el;
@@ -4173,6 +4189,12 @@
       // not part of a Hebrew verse
       const cs = getComputedStyle(host);
       if ((cs.userSelect || cs.webkitUserSelect) === "none") continue;
+      // And what the page is not DRAWING is not in the copy either. A joined
+      // run keeps a hidden reading on each of its pieces (the export reads
+      // them, and a ruling repaints them) and a scribal mark stands undrawn
+      // until the reader switches the marks on. Both sat inside the range and
+      // rode into the clipboard, so the copy said more than the page showed.
+      if (!host.getClientRects().length) continue;
       let t = n.data;
       if (n === range.endContainer && range.endContainer.nodeType === 3) t = t.slice(0, range.endOffset);
       if (n === range.startContainer && range.startContainer.nodeType === 3) t = t.slice(range.startOffset);
@@ -4210,7 +4232,7 @@
   // choice standing.
   document.addEventListener("pointerdown", (e) => {
     if (!e.target.closest) return;
-    if (e.target.closest(".wb .g")) pick("en");
+    if (e.target.closest(".wb .g, .wjoin > .g")) pick("en");
     else if (e.target.closest(".wb .w")) pick("he");
   }, true);
 

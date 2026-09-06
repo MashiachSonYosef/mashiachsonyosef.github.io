@@ -45,11 +45,20 @@ const grab = async (nth) => {
   return { note, text: fs.readFileSync(await dl.path(), "utf8") };
 };
 
-// How many licence links the served work's own rights record holds. Asked of
-// the zone rather than assumed, because whether a link must appear in the file
-// is a fact about the work and not about this check.
-const linkCount = await p.evaluate(() =>
-  ((window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.license_links) || []).length);
+// Every licence link the served work's own rights record holds — label and
+// url both, not a count. Asked of the zone rather than assumed, because
+// whether a link must appear in the file, and which link worded how, is a
+// fact about the work and not about this check.
+//
+// This asked only for the count, and then tested the file for the literal
+// "Hebrew text [H] · License family" — a string no rights record on this shelf
+// has ever produced, so the assertion could not pass and, worse, could not
+// have caught a file that dropped its links altogether. It went unseen until
+// the counted works became the first served books whose record holds links at
+// all. Ask the record what it holds; hold the file to that.
+const licenceLinks = await p.evaluate(() =>
+  ((window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.license_links) || [])
+    .map((l) => ({ label: String(l.label || ""), url: String(l.url || "") })));
 
 // The custody the zone itself holds, asked of the zone so the file is
 // compared to the record and never to a string typed here.
@@ -89,15 +98,26 @@ for (const [nth, kind] of [[1, "hebrew"], [2, "english"], [3, "both"]]) {
   const obliged = nc || /\b(BY|SA|ND)\b|ATTRIBUTION|SHARE[- ]?ALIKE|NO[- ]?DERIV/i.test(declared);
   const hasFamily = /Hebrew text \[H\] · license: \S/.test(text);
   const hasNC = nc ? /Noncommercial use only/.test(text) : true;
-  const hasLink = /Hebrew text \[H\] · License family/.test(text);
+  // Every "Hebrew text [H] · …" line that is not the licence or the
+  // attribution is a link line, printed as the page prints it: the record's
+  // label, and its url after an em dash where the record carries one.
+  const printedLinks = text.split("\n")
+    .filter((l) => /^Hebrew text \[H\] · /.test(l) && !/^Hebrew text \[H\] · (license|attribution):/.test(l));
+  const missingLinks = licenceLinks
+    .map((l) => `Hebrew text [H] · ${l.label}${l.url ? ` — ${l.url}` : ""}`)
+    .filter((want) => !printedLinks.includes(want));
   const hasEntry = /^- \[H\] \S/m.test(text);
   check(`${kind} export names the Hebrew's licence`, hasFamily, text.split("\n").find(l => /Hebrew text .*· license/.test(l)) || "absent");
   check(`${kind} export carries the noncommercial obligation`, hasNC);
   // A link is carried when the zone records one. A work whose rights record
   // names no link cannot print one, and printing one anyway is the defect.
   check(`${kind} export carries every licence link the record holds`,
-    linkCount === 0 ? !hasLink : hasLink,
-    linkCount === 0 ? "the record holds none, and none is printed" : `${linkCount} recorded`);
+    missingLinks.length === 0 && printedLinks.length === licenceLinks.length,
+    licenceLinks.length === 0
+      ? (printedLinks.length ? `the record holds none and the file prints ${printedLinks.length}` : "the record holds none, and none is printed")
+      : missingLinks.length ? `dropped: ${missingLinks.join(" · ").slice(0, 160)}`
+      : printedLinks.length !== licenceLinks.length ? `${printedLinks.length} printed for ${licenceLinks.length} recorded — one is not the record's`
+      : `${licenceLinks.length} recorded, all printed whole`);
   check(`${kind} export gives the Hebrew a citation entry of its own`, hasEntry,
     text.split("\n").find(l => /^- \[H\]/.test(l))?.slice(0, 60) || "absent");
   if (kind !== "hebrew") {

@@ -3,6 +3,8 @@
 //
 // RULE: count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one
 // LEDGER: Y
+// what has been counted and by whom: the record it writes holds each witness's
+// own published figure, per book and per section, with the axis it counted on.
 //
 // The owner's ruling (2026-09-05): the count is our stamp of proof, not a
 // gate. Every book page carries its own count on every axis, and beside it

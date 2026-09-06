@@ -118,7 +118,7 @@ check("L0  the builder still declares the rule and the single-pass promise",
 // a single pass writes, and anything after it in a file was appended later.
 const TOP_KEYS = ["schema_version", "rule_id", "work", "work_he", "work_he_tokens", "byline", "work_receipts", "route", "emitted_from", "counts", "count_stamp", "nodes", "span_roles", "span_rules", "span_conf", "spans", "gloss", "gloss_m", "sections"];
 const LAST_KEY = "sections";
-const EMITTED_KEYS = ["test_instrument", "kq_policy", "kq_none_attested", "walk", "title_from_c0", "identity_oracle", "license_receipts", "gloss_layer", "span_layer", "y_ledger", "license_links", "coordinate_basis", "numbering", "coordinate_labels", "coordinate_shape", "build", "post_build"];
+const EMITTED_KEYS = ["test_instrument", "kq_policy", "kq_none_attested", "walk", "title_from_c0", "title_keys", "identity_oracle", "license_receipts", "gloss_layer", "span_layer", "y_ledger", "license_links", "coordinate_basis", "numbering", "coordinate_labels", "coordinate_shape", "build", "post_build"];
 const GLOSS_LAYER_KEYS = ["source", "key_rule", "rule", "gloss_table_sha256", "distinct_forms_glossed", "distinct_forms_bare", "grain", "store_inputs", "store_version", "m_layer"];
 // A zone built before the builder wrote gloss_m carries it from the
 // enrichment under a TYPED exemption: emitted_from.post_build names this rule,
@@ -127,7 +127,7 @@ const GLOSS_LAYER_KEYS = ["source", "key_rule", "rule", "gloss_table_sha256", "d
 // counted and printed, not faulted; an anonymous mark is still a fault. The
 // rule does not bend; the pipeline does, and says so on the zone.
 const EXEMPTION_RULE = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
-const SPAN_LAYER_KEYS = ["rule", "source", "rows_scanned", "forms_with_a_component_system", "component_count_histogram", "derived_cells", "derived_complete_covers", "derivation", "cross_check", "provenance_fields", "roles", "status"];
+const SPAN_LAYER_KEYS = ["rule", "source", "rows_scanned", "forms_with_a_component_system", "component_count_histogram", "derived_cells", "derived_complete_covers", "derivation", "cross_check", "provenance_fields", "roles", "status", "awaits"];
 // The tools in this tree that write into an existing zone, by the field each
 // leaves behind. Named so a red line says who to look at, not only that
 // something is there.
@@ -140,6 +140,19 @@ const PATCH_MARKS = {
 };
 for (const k of TOP_KEYS) if (!new RegExp(`\\b${k}\\b`).test(builderSrc))
   console.log(`  --  the builder no longer names "${k}"; the field lists here need re-reading against it`);
+// And the drift the other way, which is the one that bit. The loop above only
+// notices a field the builder STOPS writing. When the builder LEARNED to write
+// span_layer.awaits and emitted_from.title_keys, these lists did not, and every
+// counted book read as carrying a field its builder does not write — a patch
+// mark on thirty-nine clean zones, which is the opposite of this gate's job.
+// So the builder is asked. A nested field this file does not list, whose name
+// the builder writes as a key of its own, is drift in the list and is said out
+// loud; a field the builder never writes as a key is still a patch mark and
+// still faults. No patch tool's mark survives that test — language_admission,
+// reprojected, projected_by and receipt_carried are written by their tools and
+// by no builder — so the tooth is where it was.
+const builderWritesKey = (f) => new RegExp(`\\b${f}\\s*:`).test(builderSrc);
+const drifted = new Set();
 
 // ── the store on disk ─────────────────────────────────────────────────────
 if (!existsSync(STORE_INDEX)) { console.log(`SKIPPED — no route store index at ${STORE_INDEX}`); process.exit(3); }
@@ -275,9 +288,10 @@ for (const f of bins) {
   const lastAt = topKeys.indexOf(LAST_KEY);
   for (const k of topKeys) if (!TOP_KEYS.includes(k)) marks.push(k);
   if (lastAt > -1 && lastAt !== topKeys.length - 1) marks.push(`(appended after ${LAST_KEY}: ${topKeys.slice(lastAt + 1).join(",")})`);
-  for (const k of Object.keys(e)) if (!EMITTED_KEYS.includes(k)) marks.push(`emitted_from.${k}`);
-  for (const k of Object.keys(gl)) if (!GLOSS_LAYER_KEYS.includes(k)) marks.push(`gloss_layer.${k}`);
-  for (const k of Object.keys(sl)) if (!SPAN_LAYER_KEYS.includes(k)) marks.push(`span_layer.${k}`);
+  for (const [box, keys, name] of [[e, EMITTED_KEYS, "emitted_from"], [gl, GLOSS_LAYER_KEYS, "gloss_layer"], [sl, SPAN_LAYER_KEYS, "span_layer"]])
+    for (const k of Object.keys(box)) if (!keys.includes(k)) {
+      if (builderWritesKey(k)) drifted.add(`${name}.${k}`); else marks.push(`${name}.${k}`);
+    }
   if (build.note && !/no zone is ever patched in place/.test(String(build.note))) marks.push("build.note rewritten");
   // the typed exemption: the marks it names are its, the rest are faults
   const pb = e.post_build && typeof e.post_build === "object" ? e.post_build : null;
@@ -330,6 +344,10 @@ check("L5  the readings stand on the store version now on disk, and the zone say
     : storeMoves.length ? `the store moved after every build (${storeMoves.map((m) => m.on).join(", ")}) and every zone names the admission record whose struck set is the store's`
       : "the store has not moved since the zones were emitted");
 
+// Said before the verdict, because it is about this file and not about the
+// zones: the builder writes these and the lists above had not learned them.
+for (const d of [...drifted].sort())
+  console.log(`  --  the builder writes ${d} and this file's field list does not name it; the list needs re-reading against the builder, and until it is these zones are read as clean`);
 const exemptLine = l6Exempt
   ? ` · ${l6Exempt} zone(s) under a typed exemption for ${[...l6ExemptMarks.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([m, n]) => `${m} x${n}`).join(", ")} — expires with each zone's rebuild`
   : "";

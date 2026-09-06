@@ -3,6 +3,8 @@
 //
 // RULE: serve-from-restore-rule-v1-the-restore-is-the-text-the-split-is-this-lanes-the-rights-are-the-records
 // LEDGER: C0
+// the ledger it writes says, book by book, how many rows of the restore became
+// how many positions, and names verbatim whatever refused instead.
 //
 // One loop over the thirty-nine files of the corpus lane's restore v5 —
 // twenty-four books of the Tanakh. For each: the serve (tools/serve-from-
@@ -74,14 +76,11 @@ for (const slug of slugs) {
     entry.zone = lines[0].split(": ").slice(1).join(": ");
     entry.measure = (lines.find((l) => l.includes("measure:")) || "").trim();
     entry.title_he_from = p && p.title_he && p.title_he !== "-" ? `the plan (${p.basis})` : "none — no promoted record names this book in Hebrew";
-    // A title is corpus text and opens like any word of it — but only where
-    // the store already answers for the form (title-key-rule-v1). The plan's
-    // Hebrew title arrives as a string; the same step every titled zone goes
-    // through attaches the key, or refuses, and says which in the zone.
-    if (p && p.title_he && p.title_he !== "-") {
-      const s3 = run([join(HERE, "name-the-titles-v1.mjs"), "--zone", out, "--out", out, "--stamp", STAMP]);
-      entry.title_keys = s3.trim().split("\n")[0].split(": ").slice(1).join(": ");
-    }
+    // The title's key is attached inside build-zone, in its one pass, under
+    // title-key-rule-v1. This loop ran name-the-titles-v1 over the finished
+    // bin for one day and that was a patch: the file on the shelf was not an
+    // output of the builder, which zone-emit-rule-v8 forbids and the receipts
+    // check caught. Nothing is written here after the builder writes.
     built += 1;
     console.log(`  built    ${slug.padEnd(16)} ${entry.zone}`);
     console.log(`           ${entry.measure}`);

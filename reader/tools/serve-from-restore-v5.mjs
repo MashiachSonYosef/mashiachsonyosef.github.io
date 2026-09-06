@@ -4,6 +4,8 @@
 //
 // RULE: serve-from-restore-rule-v1-the-restore-is-the-text-the-split-is-this-lanes-the-rights-are-the-records
 // LEDGER: C0
+// the ink at its position: every row this writes is one position of the text —
+// a word, a piece of a word the joiner holds, or a scribal mark standing alone.
 //
 // 2026-09-06. The corpus lane restored the edition's apparatus from the
 // Sefaria BSON dump — every ketiv-qere site as (ketiv) [qere], every

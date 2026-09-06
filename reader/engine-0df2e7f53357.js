@@ -2945,6 +2945,13 @@
   const LINE_HOSTS = ".he-text, .c-inline, .title-row, .c-he";
   const nearestBlock = (node) => {
     let el = node.nodeType === 1 ? node : node.parentElement;
+    // A word a joiner holds together is ONE word. The page prints its pieces
+    // touching, with no separator between them, and each piece is its own
+    // block — so the whitespace rewrite below read them as two words and put
+    // a space inside the word, and a maqaf compound left the page broken in
+    // half. The run is the block; the pieces are inside it.
+    const run = el && el.closest ? el.closest(".wj-ink") : null;
+    if (run) return run;
     for (; el && el !== document.body; el = el.parentElement) {
       const d = getComputedStyle(el).display;
       if (d !== "inline" && d !== "contents") return el;
@@ -2969,6 +2976,12 @@
       // not part of a Hebrew verse
       const cs = getComputedStyle(host);
       if ((cs.userSelect || cs.webkitUserSelect) === "none") continue;
+      // And what the page is not DRAWING is not in the copy either. A joined
+      // run keeps a hidden reading on each of its pieces (the export reads
+      // them, and a ruling repaints them) and a scribal mark stands undrawn
+      // until the reader switches the marks on. Both sat inside the range and
+      // rode into the clipboard, so the copy said more than the page showed.
+      if (!host.getClientRects().length) continue;
       let t = n.data;
       if (n === range.endContainer && range.endContainer.nodeType === 3) t = t.slice(0, range.endOffset);
       if (n === range.startContainer && range.startContainer.nodeType === 3) t = t.slice(range.startOffset);
@@ -3006,7 +3019,7 @@
   // choice standing.
   document.addEventListener("pointerdown", (e) => {
     if (!e.target.closest) return;
-    if (e.target.closest(".wb .g")) pick("en");
+    if (e.target.closest(".wb .g, .wjoin > .g")) pick("en");
     else if (e.target.closest(".wb .w")) pick("he");
   }, true);
 

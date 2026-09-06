@@ -96,14 +96,21 @@ const showing = async (nth = 0) => p.evaluate((i) => {
   const s = document.querySelectorAll("section.seg")[i];
   // the license chip inside a gloss is frame, not text — it never rides a
   // copy, so the "shown" measure strips it too
-  const sel = (q) => [...s.querySelectorAll(q)].map((x) => {
+  // "Showing" is what the page DRAWS. A joined word keeps a hidden reading on
+  // each of its pieces and prints one shared reading on the run; a scribal
+  // mark stands undrawn until the reader switches the marks on. Counting
+  // either as shown measures the page against something no reader sees, and
+  // then the copy is held to that. Elements with no client rects are not on
+  // the page.
+  const sel = (q) => [...s.querySelectorAll(q)].filter((x) => x.getClientRects().length).map((x) => {
     const c = x.cloneNode(true);
     c.querySelectorAll(".g-lic").forEach((e) => e.remove());
     return c.textContent;
   }).join(" ");
   return {
     he: sel(".he-text .wb .w"),
-    en: sel(".he-text .wb .g"),
+    // a run prints its reading on the run itself, outside any .wb
+    en: sel(".he-text .wb .g, .he-text .wjoin > .g"),
     bar: s.querySelector(".c-bar")?.innerText.replace(/\s+/g, " ").trim() || "",
     label: s.querySelector(".vnum")?.textContent || "",
   };
@@ -236,7 +243,15 @@ const showing = async (nth = 0) => p.evaluate((i) => {
   const dragFrom = async (sel) => {
     await clearClip();
     const el = await dragSec.$(sel);
-    await el.scrollIntoViewIfNeeded();
+    // scrollIntoViewIfNeeded parks the anchor at the BOTTOM of the window when
+    // the page is scrolled past it. Then no word of the verse lies below the
+    // anchor, the endpoint search finds nothing, and the gesture falls back
+    // onto whatever the ninth word's coordinates now hold — which on a counted
+    // book is a point on the page's own fixed nav. The verse is brought to the
+    // top instead, so the words it must reach are under the finger.
+    await el.evaluate((e) => e.scrollIntoView({ block: "start" }));
+    await p.evaluate(() => window.scrollBy(0, -120));
+    await p.waitForTimeout(200);
     const bb = await el.boundingBox();
     // The drag ends ON the paragraph's own last word, not at a corner of its
     // box: a pixel corner is a bet about line metrics, and a font swap in
@@ -310,7 +325,7 @@ for (const [mode, btn, agree] of [["the Hebrew reader", "#modeHe", false], ["the
   await p.click(btn); await p.waitForTimeout(300);
   const o = await p.evaluate((ix) => {
     const s = document.querySelectorAll("section.seg")[ix];
-    const els = [...s.querySelectorAll(".he-text .wb .g")];
+    const els = [...s.querySelectorAll(".he-text .wb .g, .he-text .wjoin > .g")].filter((x) => x.getClientRects().length);
     const doc = els.map((e) => e.textContent.trim());
     const eye = els.map((e) => { const r = e.getBoundingClientRect(); return { t: e.textContent.trim(), y: Math.round(r.y / 14), x: r.x }; })
       .sort((a, b) => a.y - b.y || a.x - b.x).map((z) => z.t);

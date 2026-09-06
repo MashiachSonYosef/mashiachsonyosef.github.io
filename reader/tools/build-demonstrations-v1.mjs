@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // GUARDS: rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one
 // LEDGER: C0
+// the ink at its position: the zones it writes are real positions of real
+// works, one passage per rule, so a rule is shown on ink and never on a drawing.
 //
 // EIGHT RULES, EIGHT PASSAGES, ONE READER.
 //

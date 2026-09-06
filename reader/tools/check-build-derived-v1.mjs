@@ -74,8 +74,16 @@ for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin"))) {
   // Only what the comparison below reads is kept. This map used to hold every
   // whole zone, and at 3,390 zones that is more than one heap holds: the check
   // died mid-run, and a check that dies reports nothing while reading as red.
+  // The identity tier rides along because the c0-range row below reads it to
+  // tell a positional prototype from a sealed range. Trimming took the whole
+  // walk receipt out and left that clause reading an absent key, so every zone
+  // tested as sealed and the counted books failed a row written to exempt
+  // them. It is one short string per zone, not the receipt.
   if (Array.isArray(z.sections) && z.sections.length) zoneOf.set(f.replace(/\.bin$/, ""), {
-    emitted_from: { identity_oracle: (z.emitted_from || {}).identity_oracle },
+    emitted_from: {
+      identity_oracle: (z.emitted_from || {}).identity_oracle,
+      walk: { identity: { tier: ((((z.emitted_from || {}).walk || {}).identity || {}).tier) } },
+    },
     work_receipts: z.work_receipts, work: z.work, work_he: z.work_he,
     counts: { sections: (z.counts || {}).sections }, nodes: new Array((z.nodes || []).length),
   });

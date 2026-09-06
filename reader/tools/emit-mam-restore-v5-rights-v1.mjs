@@ -4,6 +4,8 @@
 //
 // RULE: mam-restore-v5-rights-rule-v1-one-record-for-the-edition-the-credit-on-every-page
 // LEDGER: M
+// the sources and what they permit: the record it writes is one row per book,
+// the licence class and the credit line as the registers themselves state them.
 //
 // The corpus lane's restore v5 carries its rights as facts in two places:
 // the representations register (licence id LIC-CC-BY-SA-UNVERSIONED, raw
