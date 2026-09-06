@@ -584,8 +584,31 @@
   details.fam > summary .row .fam-he { margin-inline-start:.6rem; }
   details.fam > summary .row .fam-he .he { font-size:1rem; }
   details.fam > summary .row .fam-he .g { font-size:.62rem; }
-  .atlas-row .fam-he { margin-inline-start:.45rem; }
-  .atlas-row .fam-he .he { font-size:.92rem; color:var(--muted); }
+  /* The two columns. A shelf's heading and a book's row are the same
+     shape: what a reader is looking for on the left, the work's own
+     Hebrew on the right. On a phone the columns stack, because two
+     columns across 412 pixels is two columns of nothing. */
+  .colheads { display:grid; grid-template-columns:1fr 1fr; gap:0 1rem;
+    margin:.2rem 0 .5rem; padding-bottom:.3rem; border-bottom:1px solid var(--line); }
+  .colheads .ch { font-size:.6rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--faint); }
+  details.fam > summary .row:first-child, .atlas-row.built {
+    display:grid; grid-template-columns:1fr 1fr; gap:0 1rem; align-items:baseline; }
+  .col-en, .col-he { min-width:0; display:flex; flex-wrap:wrap; align-items:baseline;
+    gap:.1rem .5rem; }
+  /* placed, not left to source order: the Hebrew column carries right-to-left
+     text and the grid was seating it first. Naming the track is the one
+     way this cannot drift. */
+  .col-en { grid-column:1; }
+  .col-he { grid-column:2; }
+  .atlas-row .fam-he { margin-inline-start:0; }
+  @media (max-width:640px) {
+    .colheads { display:none; }
+    details.fam > summary .row:first-child, .atlas-row.built { display:flex; flex-wrap:wrap; }
+    .col-en, .col-he { display:contents; }
+    .atlas-row .fam-he { margin-inline-start:.45rem; }
+  }
+    .atlas-row .fam-he .he { font-size:.92rem; color:var(--muted); }
   .trow .fam-he, details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   .trow .fam-he .he, details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.3rem; color:var(--shesh); }
