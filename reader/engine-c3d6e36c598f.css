@@ -183,6 +183,42 @@
   .wb.mark-off { display: none; }
   body.marks-on .wb.mark-off { display: inline-flex; }
   body.marks-on .wb.mark-off .w { color: var(--amber); }
+  /* RULE 10 ON THE PAGE: a brick gap is the space the scribes leave inside a
+     song line. The zone carries the restore's stand-in glyph; the page draws
+     the space, not the glyph, and rules a faint line under it so the gap is
+     seen as a gap and not as a missing word. RULE 12: a letter the scribes
+     wrote large, small, suspended or dotted is drawn so; the mark is on the
+     letter and the word keeps its count and its key. */
+  .wb.mark[data-mark="BRICK_GAP"] .w { color: transparent; min-width: 2.4em; border-bottom: 1px dotted var(--gold-dim); }
+  .wb.mark[data-mark="EMPTY_VERSE"] .w { font-size: 1em; color: var(--muted); letter-spacing: 0; }
+  .lm-large { font-size: 1.45em; line-height: 0.9; }
+  .lm-small { font-size: 0.68em; }
+  .lm-suspended { vertical-align: 0.5em; font-size: 0.82em; }
+  .lm-dotted { text-decoration: underline dotted var(--gold-dim); text-underline-offset: 0.12em; }
+  /* THE STAMP. The count of this book on every named axis, and beside it the
+     figures other men reached for the same book: a row per witness, the
+     difference shown with its sign. Gold is exact, scarlet differs, the linen
+     of the page where nobody published a figure. The colour reinforces the
+     number and the glyph and never carries the meaning alone. The rows light
+     once, top to bottom, and hold still for a reader who asked for still. */
+  #stamp { margin: 0.6rem 0 0; max-width: 62rem; border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim); padding: 0.35rem 0 0.4rem; font-size: 0.8rem; overflow-x: auto; }
+  #stamp .stamp-head { font-variant: small-caps; letter-spacing: 0.12em; color: var(--gold); font-size: 0.8rem; margin: 0 0 0.3rem; }
+  #stamp .stamp-head .ours { color: var(--ink); letter-spacing: 0.02em; font-variant: normal; font-variant-numeric: tabular-nums; }
+  #stamp table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  #stamp td { padding: 0.1rem 0.7rem 0.1rem 0; vertical-align: baseline; white-space: nowrap; line-height: 1.45; }
+  #stamp td.wit { white-space: normal; color: var(--muted); max-width: 26rem; }
+  #stamp td.ax { color: var(--muted); }
+  #stamp td.num { text-align: right; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.82rem; color: var(--ink); }
+  #stamp td.why { color: var(--faint); font-style: italic; white-space: normal; max-width: 16rem; }
+  #stamp .cls { font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin-inline-end: 0.45rem; }
+  #stamp tr.exact td.delta, #stamp tr.exact td.glyph { color: var(--gold); font-weight: 600; }
+  #stamp tr.differs td.delta, #stamp tr.differs td.glyph { color: var(--shani); font-weight: 600; }
+  #stamp tr.no_witness td { color: var(--faint); }
+  #stamp tr { animation: stamp-flash 1100ms ease-out both; }
+  @keyframes stamp-flash { 0% { background: var(--wash-active); } 100% { background: transparent; } }
+  @media (prefers-reduced-motion: reduce) { #stamp tr { animation: none; } }
+  #stamp .stamp-note { color: var(--faint); font-style: italic; margin: 0.3rem 0 0; }
+  #stamp .stamp-warn { color: var(--shani); margin: 0.3rem 0 0; }
   #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--gold-dim); line-height: 1.55; }
   #demoLine .demo-credit { color: var(--faint); overflow-wrap: anywhere; }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }

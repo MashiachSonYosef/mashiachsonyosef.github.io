@@ -746,6 +746,32 @@
   /* the census stands at its own address; the door wears the way there in
      the same corner the faces live in, one step down */
   a.alt-face { top:3.1rem; text-decoration:none; }
+  .bookcard .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; }
+  .bookcard .srow { display:flex; gap:.5rem; align-items:baseline; flex-wrap:wrap; color:var(--faint); line-height:1.35; }
+  .bookcard .srow .cls { font-size:.56rem; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); min-width:6.5rem; }
+  .bookcard .srow .wit { color:var(--muted); max-width:22rem; }
+  .bookcard .srow .ax { color:var(--muted); }
+  .bookcard .srow .num { font-family:ui-monospace,Menlo,Consolas,monospace; color:var(--ink); }
+  .bookcard .srow .why { font-style:italic; }
+  .bookcard .srow.exact .delta, .bookcard .srow.exact .glyph { color:var(--gold); font-weight:600; }
+  .bookcard .srow.differs .delta, .bookcard .srow.differs .glyph { color:var(--shani); font-weight:600; }
+  .bookcard .srow.no_witness { color:var(--faint); }
+  #sectstamp { margin:.6rem 0 .4rem; padding:.35rem 0 .4rem; border-top:1px solid var(--gold-dim); border-bottom:1px solid var(--gold-dim); font-size:.78rem; overflow-x:auto; }
+  #sectstamp .sh { font-variant:small-caps; letter-spacing:.12em; color:var(--gold); margin:0 0 .25rem; }
+  #sectstamp .sh .ours { color:var(--ink); font-variant:normal; letter-spacing:.02em; font-variant-numeric:tabular-nums; }
+  #sectstamp table { border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  #sectstamp td { padding:.08rem .7rem .08rem 0; vertical-align:baseline; white-space:nowrap; color:var(--muted); }
+  #sectstamp td.wit { white-space:normal; max-width:26rem; }
+  #sectstamp td.num { text-align:right; font-family:ui-monospace,Menlo,Consolas,monospace; color:var(--ink); }
+  #sectstamp .cls { font-size:.56rem; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-right:.4rem; }
+  #sectstamp tr.exact td.delta, #sectstamp tr.exact td.glyph { color:var(--gold); font-weight:600; }
+  #sectstamp tr.differs td.delta, #sectstamp tr.differs td.glyph { color:var(--shani); font-weight:600; }
+  #sectstamp tr.no_witness td { color:var(--faint); }
+  #sectstamp tr { animation: stamp-flash 1100ms ease-out both; }
+  @keyframes stamp-flash { 0% { background: var(--wash-active, rgba(234,200,111,.16)); } 100% { background: transparent; } }
+  @media (prefers-reduced-motion: reduce) { #sectstamp tr { animation: none; } }
+  #sectstamp .waits { color:var(--faint); font-style:italic; margin:.25rem 0 0; }
+
 </style>
 </head>
 <body>
@@ -772,7 +798,7 @@
     data-genesis-clean-handoff-sha256="da929ac0b827e391ecd23a560c9b294303d42208789bdd764a3d3a6c1ce5706c"
     data-genesis-clean-validation-sha256="2d55fd74d8ee04845f4b3a5ef9d77db152046ca3af7d30914efba9805778fea1"
     data-genesis-clean-seal-sha256="f9086f08929b156e478ffa4679f358fa0ec19a50415b65f19d0f9970cb135b97"
-    data-rendered-zone-manifest-sha256="4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945">
+    data-rendered-zone-manifest-sha256="b867d23ec15a4eee5359bcd6d2cae54b542f219540d672afccd8b525e674f00f">
   <!-- Built by tools/build-front-door-v1.mjs from pinned physical/logical
        authorities and the zones. These attributes are the door naming what it
        was built from; they carried on the counts block until that block came
@@ -780,8 +806,9 @@
        here rather than going with it. -->
   <h1>the census</h1>
   <p class="sub">Every work the bridge records that does not serve yet. Nothing here is hidden and nothing is promised: each row carries its recorded id, its measured size, and — on its card — what it awaits. The same records, the same cards, the same laws as the door.</p>
-  <p class="face-line">0 books readable today · 4,047 more stand listed, each saying on its own card what it awaits</p>
-  <p class="face-line gate-notice">3,441 built books are withheld, and not because anything is known to be wrong with them. The scribes published a count for a book — its verses, its words, its letters — and a book is served here when our count equals theirs. This project holds 1 such count so far, so nothing can be shown to be counted right, and unproved is not served. What the frame does with a book it cannot vouch for is say so.</p>
+  <p class="face-line">39 books readable today · 4,008 more stand listed, each saying on its own card what it awaits</p>
+  <p class="face-line gate-notice">39 books served: the counted works, each with its count stamped beside the figures other men reached for it, on its own page. Of the books built and not served, 2,182 are refused by a line of the frame's C0 letter — a position the frame will not call a word or a mark, named line by line in the gate's receipt; 1,259 are refused by no line and not yet served: built before the count was stamped, they wait for the rebuild under the one pipeline that stamps them. What the frame does with a book it cannot vouch for is say so.</p>
+  <div id="sectstamp" title="the served books' own counts summed per section, beside the figures other men reached for the section; the difference is ours less theirs"><p class="sh">Torah · <span class="ours">1 of 5 books served</span></p><p class="waits">the section's count is summed when every book of it is served and stamped; 4 still wait</p><p class="sh">Neviim · <span class="ours">0 of 21 books served</span></p><p class="waits">the section's count is summed when every book of it is served and stamped; 21 still wait</p><p class="sh">Ketuvim · <span class="ours">0 of 13 books served</span></p><p class="waits">the section's count is summed when every book of it is served and stamped; 13 still wait</p><p class="sh">the whole Tanakh · <span class="ours">1 of 39 books served</span></p><p class="waits">the section's count is summed when every book of it is served and stamped; 38 still wait</p></div>
 
 
   <p class="poc-link"><a href="/demonstrations/">what each part of the frame looks like when it works</a> — the eight rules of the frame, each on a passage the reader itself opens</p>
@@ -793,54 +820,15 @@
   </form>
   <nav class="books">
     <section class="family census-head">
-      <p class="of">The state of the library: of the 0 books serving, 0 carry witnessed Hebrew titles — their own opening words, claimed from their own records — and 0 read plainly by their recorded ids. The editorial and machine-pointer title registers are built and empty: nothing on this site is guessed.</p>
+      <p class="of">The state of the library: of the 39 books serving, 0 carry witnessed Hebrew titles — their own opening words, claimed from their own records — and 39 read plainly by their recorded ids. The editorial and machine-pointer title registers are built and empty: nothing on this site is guessed.</p>
     </section>
     <section class="family">
       <details class="fam">
       <summary>
         <span class="row"><span class="lab">listed in the catalog as</span><span class="en" title="tanakh">tanakh</span></span>
-        <span class="row"><span class="of">82 works not yet served · 69,413 units — every row says on its own card what it awaits</span></span>
+        <span class="row"><span class="of">43 works not yet served · 46,209 units — every row says on its own card what it awaits</span></span>
       </summary>
       <div class="fgroups">
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/amos" data-u="146" data-cr="1799" data-cf="69769182" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">amos</button><span class="au">146 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/daniel" data-u="357" data-cr="5449" data-cf="69770981" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">daniel</button><span class="au">357 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/deuteronomy" data-u="956" data-cr="12588" data-cf="69776430" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">deuteronomy</button><span class="au">956 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/ecclesiastes" data-u="222" data-cr="2572" data-cf="69789018" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">ecclesiastes</button><span class="au">222 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/esther" data-u="167" data-cr="2654" data-cf="69791590" data-st="PLANNED" data-fam="tanakh" title="open this book&#8217;s own record">esther</button><span class="au">167 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/exodus" data-u="1210" data-cr="14474" data-cf="69794244" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">exodus</button><span class="au">1,210 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/ezekiel" data-u="1273" data-cr="16669" data-cf="69808718" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">ezekiel</button><span class="au">1,273 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/ezra" data-u="280" data-cr="3513" data-cf="69825387" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">ezra</button><span class="au">280 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/genesis" data-u="1533" data-cr="17807" data-cf="69828900" data-st="PLANNED" data-fam="tanakh" title="open this book&#8217;s own record">genesis</button><span class="au">1,533 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/habakkuk" data-u="56" data-cr="615" data-cf="69846707" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">habakkuk</button><span class="au">56 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/haggai" data-u="38" data-cr="499" data-cf="69847322" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">haggai</button><span class="au">38 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/hosea" data-u="197" data-cr="2130" data-cf="69847821" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">hosea</button><span class="au">197 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/i-chronicles" data-u="943" data-cr="9584" data-cf="69849951" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">i-chronicles</button><span class="au">943 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/i-kings" data-u="817" data-cr="11368" data-cf="69859535" data-st="PLANNED" data-fam="tanakh" title="open this book&#8217;s own record">i-kings</button><span class="au">817 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/i-samuel" data-u="811" data-cr="11594" data-cf="69870903" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">i-samuel</button><span class="au">811 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/ii-chronicles" data-u="822" data-cr="11581" data-cf="70056028" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">ii-chronicles</button><span class="au">822 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/ii-kings" data-u="719" data-cr="10462" data-cf="70067609" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">ii-kings</button><span class="au">719 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/ii-samuel" data-u="695" data-cr="9506" data-cf="70078071" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">ii-samuel</button><span class="au">695 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/isaiah" data-u="1291" data-cr="15396" data-cf="70087577" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">isaiah</button><span class="au">1,291 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/jeremiah" data-u="1364" data-cr="18791" data-cf="70102973" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">jeremiah</button><span class="au">1,364 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/job" data-u="1070" data-cr="7191" data-cf="70121764" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">job</button><span class="au">1,070 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/joel" data-u="73" data-cr="860" data-cf="70128955" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">joel</button><span class="au">73 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/jonah" data-u="48" data-cr="587" data-cf="70129815" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">jonah</button><span class="au">48 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/joshua" data-u="656" data-cr="8555" data-cf="70130402" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">joshua</button><span class="au">656 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/judges" data-u="618" data-cr="8483" data-cf="70138957" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">judges</button><span class="au">618 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/lamentations" data-u="154" data-cr="1536" data-cf="70147440" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">lamentations</button><span class="au">154 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/leviticus" data-u="859" data-cr="10205" data-cf="70148976" data-st="PLANNED" data-fam="tanakh" title="open this book&#8217;s own record">leviticus</button><span class="au">859 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/malachi" data-u="55" data-cr="787" data-cf="70159181" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">malachi</button><span class="au">55 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/micah" data-u="105" data-cr="1266" data-cf="70159968" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">micah</button><span class="au">105 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/nahum" data-u="47" data-cr="525" data-cf="70161234" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">nahum</button><span class="au">47 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/nehemiah" data-u="405" data-cr="4784" data-cf="70161759" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">nehemiah</button><span class="au">405 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/numbers" data-u="1288" data-cr="14323" data-cf="70166543" data-st="PLANNED" data-fam="tanakh" title="open this book&#8217;s own record">numbers</button><span class="au">1,288 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/obadiah" data-u="21" data-cr="247" data-cf="70180866" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">obadiah</button><span class="au">21 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/proverbs" data-u="915" data-cr="6129" data-cf="70181113" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">proverbs</button><span class="au">915 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/psalms" data-u="2527" data-cr="17430" data-cf="70187242" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">psalms</button><span class="au">2,527 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/ruth" data-u="85" data-cr="1132" data-cf="70326655" data-st="PLANNED" data-fam="tanakh" title="open this book&#8217;s own record">ruth</button><span class="au">85 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/song-of-songs" data-u="117" data-cr="1161" data-cf="70327787" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">song-of-songs</button><span class="au">117 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/zechariah" data-u="211" data-cr="2768" data-cf="70328948" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">zechariah</button><span class="au">211 units</span></span>
-      <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/zephaniah" data-u="53" data-cr="670" data-cf="70331716" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">zephaniah</button><span class="au">53 units</span></span>
       <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/aderet-eliyahu-rabbi-yosef-chaim" data-u="58" data-cr="274810" data-cf="148041864" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">aderet-eliyahu-rabbi-yosef-chaim</button><span class="au">58 units</span></span>
       <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/ahavat-yehonatan" data-u="59" data-cr="190748" data-cf="148316674" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">ahavat-yehonatan</button><span class="au">59 units</span></span>
       <span class="atlas-row" data-p="tanakh"><button type="button" class="aw" dir="auto" data-w="tanakh/avi-ezer" data-u="623" data-cr="39613" data-cf="148507422" data-st="AWAITING_SHARDS" data-fam="tanakh" title="open this book&#8217;s own record">avi-ezer</button><span class="au">623 units</span></span>

@@ -9,16 +9,18 @@ reader/build/
 reader/site/
 reader/deploy-root/
 
-# count-gate-rule-v1 · a book is PUBLISHED when the count gate passed it.
+# refusals-gate-rule-v1 · a book is PUBLISHED when the gate serves it: no
+# line of the frame's C0 letter refuses a position of it, and its count is
+# stamped beside the witnesses on its own page (count-stamp-rule-v1).
 #
 # This site is served as a whole tree, so a committed zone file is a readable
 # book whether or not any page links to it. Withholding an address and
 # leaving the data is a door that says nothing is served while everything
 # still is. So the safe state is the default: zone data is not published, and
-# a book that passes the gate is added on purpose (git add -f), which is the
-# one place publishing should ever be a decision somebody makes.
+# a book the gate serves is added on purpose (git add -f), which is the one
+# place publishing should ever be a decision somebody makes.
 #
 # The bins stay on disk — the builder reads them — they are simply not in the
-# tree. check-bookword-count-v1 L4 holds the line from the other side.
+# tree. check-c0-refusals-v1 L4 holds the line from the other side.
 reader/data/zones/*.bin
 !reader/data/zones/fixture-*.bin

@@ -340,34 +340,108 @@ export const kqPairAt = (rows, i) => {
   return null;
 };
 
-// A ketiv-qere site the corpus lane's kq reseal sealed as ONE row, in the
-// form "(ketiv) [qere]" (12 Tanakh works, consumed into their maqaf streams):
-// one word of the book, both halves as written, the site pointed at. Both
-// halves are keyed here by the site's own rule; the stream's key column is
-// the corpus lane's and is not read.
-const KQ_ONE_ROW = /^\(([^()\[\]\s]+)\) \[([^()\[\]\s]+)\]$/u;
-export const kqOneRow = (r) => {
-  if (!r || !r.visible_in_hebrew_reader) return null;
-  const m = String(r.exact_surface_form || "").match(KQ_ONE_ROW);
-  if (!m) return null;
-  if (!KQ_VOWEL.test(m[2])) return null;   // a qere is vocalized; a bare bracket is an editorial mark
-  return { k: m[1], q: m[2] };
+// A ketiv-qere site sealed as ONE row, in the source's own notation (the
+// corpus lane's kq reseal, and every book of the restore v5): the ketiv in
+// parentheses, the qere in square brackets, in either order the source
+// writes them; a branch one word or several; a maqaf that joins the site to
+// its neighbour riding at the site's edge, inside the bracket or after it.
+// One word of the book — RULE 1 (owner): one C0, both readings, the reading
+// selected above it and never here. Both branches are keyed by the site's
+// own rule; a stream's key column is the corpus lane's and is not read.
+//
+// Two forms need a declaration to be read as a site, because the surface
+// alone is ambiguous: a lone parenthesised run is an apparatus site under
+// the variant-sites law unless the serve declares it a ketiv the tradition
+// does not read, and a lone bracketed word is the two-row convention's qere
+// unless the serve declares it a qere with no ketiv. The restore v5 declares
+// every site it carries (ketiv, qere, order), and the builder holds the
+// declaration to the surface: a declared site the surface does not write
+// refuses the build.
+const KQ_GROUP = /\(([^()]*)\)|\[([^\[\]]*)\]/gu;
+const KQ_KETIV_TEXT = new RegExp("^[" + KQ_LETTERS + KQ_KEPT + " ]+$", "u");
+const nfc = (s) => String(s ?? "").normalize("NFC");
+const piecesOf = (text) => nfc(text).split(/\s+/u).flatMap((t) => t.split(MAQAF)).filter(Boolean);
+// The surface is sliced RAW: a canonical reordering of a word's points is
+// the same text and different bytes, and the ink on the page must be the
+// bytes the source wrote (five sites of Genesis reorder under NFC). Only the
+// comparisons normalize.
+export const kqSiteOf = (surface, declared = null) => {
+  const s = String(surface ?? "");
+  const groups = [...s.matchAll(KQ_GROUP)];
+  if (!groups.length) return null;
+  const first = groups[0].index, last = groups[groups.length - 1].index + groups[groups.length - 1][0].length;
+  // nothing but a joiner may stand outside the groups, and nothing but
+  // spaces and joiners between them: a word glued to the site is not a site
+  if (!/^\u05be*$/u.test(s.slice(0, first)) || !/^\u05be*$/u.test(s.slice(last))) return null;
+  for (let i = 1; i < groups.length; i += 1) {
+    const between = s.slice(groups[i - 1].index + groups[i - 1][0].length, groups[i].index);
+    if (!/^[\s\u05be]*$/u.test(between)) return null;
+  }
+  let ketiv = null, qere = null;
+  const order = [];
+  for (const g of groups) {
+    if (g[1] !== undefined) { if (ketiv !== null) return null; ketiv = g[1]; order.push("K"); }
+    else { if (qere !== null) return null; qere = g[2]; order.push("Q"); }
+  }
+  // a ketiv is bare letters; a qere is vocalized — a bare bracketed word in
+  // an unvocalized stream is an editorial mark (Tosefta Kilayim carries 47)
+  if (ketiv !== null && !(KQ_KETIV_TEXT.test(ketiv) && !KQ_VOWEL.test(ketiv))) return null;
+  if (qere !== null && !KQ_VOWEL.test(qere)) return null;
+  if ((ketiv === null || qere === null) && !declared) return null;
+  const shape = order.join("");
+  return {
+    ketiv, qere,
+    order: shape === "KQ" ? "KETIV_THEN_QERE" : shape === "QK" ? "QERE_THEN_KETIV" : shape === "K" ? "KETIV_ONLY" : "QERE_ONLY",
+    joins_next: /\u05be[\u0591-\u05c7]*[\])]?$/u.test(s),
+  };
+};
+// The word a site becomes: every word of every branch its own region, in the
+// source's order, keyed on its own; a branch of one word keeps its brackets
+// on the region so the page prints the carrier whole, a branch of several
+// words gives each word a bare region and the brackets print as carrier text.
+const rawPiecesOf = (text) => String(text ?? "").split(/\s+/u).flatMap((t) => t.split(MAQAF)).filter(Boolean);
+const kqWord = (r, site) => {
+  const s = String(r.exact_surface_form);
+  const regionsOfBranch = (text, role, wrapped) => {
+    const ps = rawPiecesOf(text);
+    if (ps.length === 1) return [{ s: wrapped, k: exactK(ps[0]), role }];
+    return ps.map((p) => ({ s: p, k: exactK(p), role }));
+  };
+  const w = [];
+  for (const g of s.matchAll(KQ_GROUP)) {
+    if (g[1] !== undefined) w.push(...regionsOfBranch(g[1], "KETIV", g[0]));
+    else w.push(...regionsOfBranch(g[2], "QERE", g[0]));
+  }
+  const word = {
+    s,
+    w,
+    kq: {
+      k: site.ketiv, q: site.qere, order: site.order, rows: 1, convention: "ONE_ROW_PARENS_KETIV_BRACKETS_QERE",
+      words_read: site.qere === null ? 0 : piecesOf(site.qere).length,
+      words_written: site.ketiv === null ? 0 : piecesOf(site.ketiv).length,
+      ...(r.kq && r.kq.trivial ? { trivial: true } : {}),
+    },
+    ...(site.joins_next ? { presentation_join: MAQAF_JOIN } : {}),
+  };
+  return carried(r, word);
 };
 
 export const wordsOf = (rows) => {
   const out = [];
   for (let i = 0; i < rows.length; i += 1) {
-    const one = kqOneRow(rows[i]);
-    if (one) {
-      const ks = `(${one.k})`, qs = `[${one.q}]`;
-      out.push({
-        s: rows[i].exact_surface_form,
-        w: [{ s: ks, k: exactK(one.k), role: "KETIV" }, { s: qs, k: exactK(one.q), role: "QERE" }],
-        kq: { k: one.k, q: one.q, order: "KETIV_THEN_QERE", rows: 1, convention: "ONE_ROW_PARENS_KETIV_BRACKETS_QERE" },
-        ...(joinsNext(one.q) ? { presentation_join: MAQAF_JOIN } : {}),
-      });
-      continue;
+    const r = rows[i];
+    const declared = r.kq || null;
+    const site = r.visible_in_hebrew_reader ? kqSiteOf(r.exact_surface_form, declared) : null;
+    if (declared) {
+      require_(site, "KQ_DECLARED_NOT_READ", `${r.c0_numeric_id}: the serve declares a ketiv-qere site and the surface ${JSON.stringify(String(r.exact_surface_form).slice(0, 40))} does not write one`);
+      // a declaration names each branch bare; a joiner at a branch's edge is
+      // the site's (it joins the site to the next word), so edges are
+      // stripped before the declaration is held to the surface
+      const bare = (t) => nfc(t ?? "").replace(/^\u05be+|\u05be+$/gu, "");
+      require_(bare(declared.ketiv) === bare(site.ketiv) && bare(declared.qere) === bare(site.qere),
+        "KQ_DECLARATION_DISAGREES", `${r.c0_numeric_id}: the declared ketiv or qere is not what the surface writes`);
     }
+    if (site) { out.push(kqWord(r, site)); continue; }
     const convention = kqPairAt(rows, i);
     if (convention) {
       const ks = rows[i].exact_surface_form, qs = rows[i + 1].exact_surface_form;
@@ -382,10 +456,15 @@ export const wordsOf = (rows) => {
     }
     out.push(wordOf(rows[i]));
   }
-  // the word after a maqaf-joined word knows it, so its own card can say so
+  // the word after a maqaf-joined word knows it, so its own card can say so.
+  // Only a word whose ink carries the joiner joins the next: the flag this
+  // loop writes on the follower names the SAME rule, and reading the rule's
+  // name alone made every word to the end of the verse "after a maqaf"
+  // (2026-09-06, found on Genesis 1:5 — thirteen thousand followers for
+  // three thousand joiners).
   for (let i = 1; i < out.length; i += 1) {
     const prev = out[i - 1].presentation_join;
-    if (!(prev && prev.why && prev.why.startsWith("maqaf-rule-v2"))) continue;
+    if (!(prev && prev.join_next_without_separator && prev.why && prev.why.startsWith("maqaf-rule-v2"))) continue;
     out[i].after_maqaf = true;
     // the reader groups a joined run in one wrapper: the word after a joiner
     // says it joins the previous, the maqaf word already says it joins the
@@ -427,6 +506,20 @@ const MAQAF_JOIN = Object.freeze({
 const MARK_BRACKETS = { "(": ")", "{": "}", "[": "]" };
 const MARK_LETTERS = { "\u05e1": "SETUMAH", "\u05e4": "PETUCHAH" };
 const INVERTED_NUN = "\u05c6";
+// The marks the owner's rules 10 and 11 give their own INKOFF C0 (2026-09-05:
+// every scribal mark that belongs to no word is its own position, whether or
+// not the source spaced it). The corpus lane's restore v5 writes each one as
+// its own row; the builder types it here, once, and the page obeys the type.
+//   U+05C3 SOF PASUQ      the verse-end mark
+//   U+05C0 PASEQ          the bar between two words
+//   U+25AF               the restore's stand-in for a brick gap in a song line
+//                        (the source wrote a run of eight non-breaking spaces)
+//   U+2014 EM DASH        what the edition prints where a numbered verse is
+//                        not written (Joshua 21:36-37)
+// Sof pasuq and paseq are bookkeeping about the page and a reader may turn
+// them off, as with the section marks; a gap and a dash are the shape of
+// the text itself and stay.
+const SOF_PASUQ = "\u05c3", PASEQ = "\u05c0", BRICK_GAP = "\u25af", EMPTY_VERSE_DASH = "\u2014";
 export const markOf = (surface) => {
   const t = String(surface || "").trim();
   if (t.includes(INVERTED_NUN) && [...t].every((c) => c === INVERTED_NUN || /\s/u.test(c)))
@@ -437,7 +530,33 @@ export const markOf = (surface) => {
       says: MARK_LETTERS[t[1]] === "SETUMAH"
         ? "a closed section: not a word of the book, but the scribes' mark that a section ends here and the next begins on the same line"
         : "an open section: not a word of the book, but the scribes' mark that a section ends here and the next begins on a new line" };
+  if (t === SOF_PASUQ)
+    return { kind: "SOF_PASUQ", glyph: t, toggleable: true,
+      says: "the end of a verse: not a word of the book, but the scribes' mark that the verse closes here" };
+  if (t === PASEQ)
+    return { kind: "PASEQ", glyph: t, toggleable: true,
+      says: "a paseq: not a word of the book, but the scribes' bar standing between two words" };
+  if (t === BRICK_GAP)
+    return { kind: "BRICK_GAP", glyph: t, toggleable: false, stands_for: "the run of eight non-breaking spaces the source wrote inside this line of the song",
+      says: "a gap in a song line: not a word of the book, but the space the scribes leave inside a line where the song is written brick over brick" };
+  if (t === EMPTY_VERSE_DASH)
+    return { kind: "EMPTY_VERSE", glyph: t, toggleable: false,
+      says: "a dash where the verse stands empty: the numbering counts a verse this edition does not write, and the edition prints a dash in its place" };
   return null;
+};
+export const MARK_KINDS = Object.freeze(["SETUMAH", "PETUCHAH", "INVERTED_NUN", "SOF_PASUQ", "PASEQ", "BRICK_GAP", "EMPTY_VERSE"]);
+
+// What a serve row may carry beside its surface, and the word keeps: the
+// scribes' marks on a letter (rule 12 \u2014 an overlay on the letter, the word
+// keeps its C0 and its key), a joiner the source spaced out and the owner's
+// rule 2 reads as a maqaf all the same, and a row's place in a song passage.
+// None of these is typed here; each is a fact the serve carried from the
+// corpus lane's restore, and the word repeats it so the page can say it.
+const carried = (r, w) => {
+  if (Array.isArray(r.letter_marks) && r.letter_marks.length) w.letter_marks = r.letter_marks;
+  if (r.maqaf_implicit) w.maqaf_implicit = true;
+  if (r.shirah) w.shirah = true;
+  return w;
 };
 
 const wordOf = (r) => {
@@ -447,12 +566,12 @@ const wordOf = (r) => {
     // a mark is keyless by rule: it marks structure, so no reading is asked
     // for it and none is served
     const mk = markOf(surface);
-    if (mk) { w.mark = mk; return w; }
+    if (mk) { w.mark = mk; return carried(r, w); }
     if (joinsNext(surface)) w.presentation_join = MAQAF_JOIN;
     if (joinsPrev(surface)) w.edge_maqaf = "LEADING";
     const k = exactK(surface);
-    if (!k) return w;
-    if (!k.includes(MAQAF)) { w.k = k; return w; }
+    if (!k) return carried(r, w);
+    if (!k.includes(MAQAF)) { w.k = k; return carried(r, w); }
     const pieces = surface.split(MAQAF);
     const regions = pieces.map((p) => ({ s: p, k: exactK(p) }));
     require_(
@@ -476,7 +595,7 @@ const wordOf = (r) => {
           k: atoms.slice(i, i + len).map((a) => a.k).join(MAQAF),
         });
     w.w = cells;
-    return w;
+    return carried(r, w);
 };
 
 /** Every W an occurrence contains, whether it carries one or several. */

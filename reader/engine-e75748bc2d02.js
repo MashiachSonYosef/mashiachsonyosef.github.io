@@ -276,13 +276,85 @@
   // along. So the proof moves down to join them and stops standing between the
   // reader and the text. Nothing is dropped — the same sentence is one press
   // away, and the footer block is unchanged.
+  // THE MEASURE, ON THE PAGE. The same measure the builder stamped with
+  // (tools/bookword-measure-v1.mjs), applied here to the sections this page
+  // draws: a position that is a mark is not a word; a ketiv-qere site counts
+  // the words of its qere on the read axis and of its ketiv on the written;
+  // every maqaf piece is a word. Codepoints are escaped: this file types no
+  // character of the text.
+  const MEASURE = (() => {
+    const MQ = "\u05be", LET = /[\u05d0-\u05ea]/g, PAREN = /\([^()]*\)/g, BRACK = /\[[^\[\]]*\]/g;
+    const nfc = (s) => String(s || "").normalize("NFC");
+    const letters = (s) => (nfc(s).match(LET) || []).length;
+    const pieces = (s) => nfc(s).split(/\s+/).flatMap((t) => t.split(MQ)).filter(Boolean);
+    const branch = (s, which) => (which === "read" ? nfc(s).replace(PAREN, "").replace(/[\[\]]/g, "") : nfc(s).replace(BRACK, "").replace(/[()]/g, ""));
+    return (sections) => {
+      const m = { verses: 0, words: 0, words_written: 0, letters: 0, letters_read: 0, c0_on: 0, c0_off: 0, held: 0 };
+      for (const sec of sections) {
+        m.verses += 1;
+        for (const w of (sec.words || [])) {
+          if (w.held) { m.held += 1; continue; }
+          if (w.mark) { m.c0_off += 1; continue; }
+          m.c0_on += 1;
+          if (w.kq) { const r = branch(w.s, "read"), k = branch(w.s, "written"); m.words += pieces(r).length; m.words_written += pieces(k).length; m.letters += letters(k); m.letters_read += letters(r); }
+          else { const n = pieces(w.s).length; m.words += n; m.words_written += n; m.letters += letters(w.s); m.letters_read += letters(w.s); }
+        }
+      }
+      return m;
+    };
+  })();
+  const pageMeasure = MEASURE(zone.sections || []);
+  // THE STAMP STRIP. One row per witness the zone was stamped beside; the
+  // difference is ours less theirs, sign always; a measure nobody published
+  // a figure for is a row in the page's own linen that says so.
+  {
+    const st = zone.count_stamp, el = document.getElementById("stamp");
+    if (st && el && Array.isArray(st.rows)) {
+      const AX = { verses: "verses", words: "words · read", words_written: "words · written", letters: "letters · written", letters_read: "letters · read" };
+      const CLS = { COUNTED_THIS_TEXT: "counted this text", THE_MASORAH: "the masorah", LATER_AUTHORITY: "later authority", TALMUD_GEONIM: "Talmud, Geonim", HELD_EDITION: "held edition", NO_WITNESS: "no witness" };
+      const n = (x) => Number(x).toLocaleString();
+      const head = document.createElement("p"); head.className = "stamp-head";
+      head.append("the count · ");
+      const ours = document.createElement("span"); ours.className = "ours";
+      ours.textContent = `${n(st.ours.words)} words read · ${n(st.ours.words_written)} written · ${n(st.ours.letters)} letters · ${n(st.ours.verses)} verses · ${n(st.ours.c0_off)} scribal marks`;
+      head.append(ours);
+      el.append(head);
+      const table = document.createElement("table");
+      st.rows.forEach((r, i) => {
+        const tr = document.createElement("tr"); tr.className = String(r.verdict || "").toLowerCase();
+        tr.style.animationDelay = `${Math.min(i, 14) * 70}ms`;
+        const td = (cls, text, title) => { const c = document.createElement("td"); c.className = cls; c.textContent = text; if (title) c.title = title; tr.append(c); return c; };
+        const wit = td("wit", "", r.note || "");
+        const chip = document.createElement("span"); chip.className = "cls"; chip.textContent = CLS[r.class] || String(r.class || "").toLowerCase();
+        wit.append(chip, r.witness || "nobody published a figure on this axis");
+        td("ax", AX[r.axis] || r.axis);
+        td("num theirs", r.theirs == null ? "—" : n(r.theirs), "theirs");
+        td("num ours", n(r.ours), "ours");
+        td("num delta", r.delta == null ? "—" : (r.delta > 0 ? "+" : r.delta < 0 ? "−" : "+") + n(Math.abs(r.delta)), "ours less theirs");
+        td("glyph", r.verdict === "EXACT" ? "●" : r.verdict === "DIFFERS" ? "○" : "·", r.verdict === "EXACT" ? "exact" : r.verdict === "DIFFERS" ? "differs" : "no witness");
+        td("why", r.layer || (r.verdict === "NO_WITNESS" ? "none published" : ""));
+        table.append(tr);
+      });
+      el.append(table);
+      const same = ["verses", "words", "words_written", "letters", "letters_read", "c0_off"].every((k) => pageMeasure[k] === st.ours[k]);
+      const note = document.createElement("p");
+      note.className = same ? "stamp-note" : "stamp-warn";
+      note.textContent = same
+        ? `ours is this page measured as drawn, and it agrees with the stamp the builder wrote; theirs is each witness's own figure on the axis named; the difference is ours less theirs. Nothing is adjusted and nothing is withheld for differing.`
+        : `the page's own measure of the sections it draws (${n(pageMeasure.words)} words read, ${n(pageMeasure.letters)} letters, ${n(pageMeasure.verses)} verses) does not agree with the stamp the builder wrote (${n(st.ours.words)}, ${n(st.ours.letters)}, ${n(st.ours.verses)}); the stamp stands on the builder's measure and this line says the page could not reproduce it.`;
+      el.append(note);
+      el.hidden = false;
+    }
+  }
   const renderedWordTotal = (zone.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
   const receiptsText =
     `${renderedWordTotal.toLocaleString()} words · ${zone.counts.sections.toLocaleString()} sections · ` +
     `${renderedWordTotal !== zone.counts.words
       ? `the artifact\u2019s counts field says ${zone.counts.words.toLocaleString()} \u2014 it counts the chain\u2019s c0 rows where the words stand at W grain; its word-grain receipts await the corpus-side rebuild \u00b7 `
       : ""}` +
-    (wk ? (/RESIDENT_SERVE/.test(wk.route || "")
+    (wk ? (wk.restore_oracle
+      ? `served from the corpus lane's restore of the ${wk.restore_oracle.edition} edition: ${Number(wk.restore_oracle.rows_restore).toLocaleString()} restore rows became ${Number(wk.restore_oracle.rows_served).toLocaleString()} positions, the restore's own surface hash reproduced from its bytes; ${pageMeasure.c0_off.toLocaleString()} of the positions are the scribes' marks and none of them is a word; identity is positional until the corpus lane's registry assigns the sealed ids · rights ride per occurrence from the edition's own licence record · `
+      : /RESIDENT_SERVE/.test(wk.route || "")
       ? `served id-by-id from the seal-verified terminal reader artifacts (${(wk.found_exact ?? wk.ids_walked).toLocaleString()} of ${wk.ids_walked.toLocaleString()} ids FOUND_EXACT${wk.found_exact !== undefined && wk.found_exact !== wk.ids_walked ? `, the rest held from the Hebrew reader by the chain\u2019s own rights and script axes` : ""}; the installed sealed reader re-answered ${wk.sealed_oracle.report.sampled} sampled ids ${wk.sealed_oracle.report.field_exact}/${wk.sealed_oracle.report.sampled} field-exact) · rights ride per occurrence from the chain · `
       : `walked word-by-word through the installed sealed terminal reader (${(wk.found_exact ?? wk.ids_walked).toLocaleString()} of ${wk.ids_walked.toLocaleString()} ids FOUND_EXACT) · rights ride per occurrence from the chain · `) : `Hebrew text: ${ac.hebrew_version}${ac.hebrew_source ? ` via ${ac.hebrew_source}` : ""}, license ${ac.hebrew_license_seen} (seen live on every payload) · `) +
     `${zone.counts.verified_units} of ${zone.counts.sections} sections verified word-for-word in count against the sealed corpus allocation` +
@@ -311,7 +383,17 @@
     // the words stand at W grain), the receipts drawer says so; the masthead
     // never asserts a number the page does not show.
     const renderedWords = (zone.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
-    meta.append(`${renderedWords.toLocaleString()} words in ${zone.counts.sections.toLocaleString()} ${zone.counts.sections === 1 ? "section" : "sections"}, served from the sealed chain. `);
+    // A mark is a position and not a word, so the line says words and marks
+    // apart, on the axis the words are counted on, in the coordinate's own
+    // plain name; a zone that carries no marks reads as it always did.
+    const unitName = ((zone.emitted_from || {}).coordinate_labels || {}).minor || "section";
+    const nSec = zone.counts.sections;
+    if (pageMeasure.c0_off || (wk && wk.restore_oracle)) {
+      meta.append(`${pageMeasure.words.toLocaleString()} words on the read axis in ${nSec.toLocaleString()} ${unitName}${nSec === 1 ? "" : "s"}, with ${pageMeasure.c0_off.toLocaleString()} scribal mark${pageMeasure.c0_off === 1 ? "" : "s"} each at its own position`
+        + (wk && wk.restore_oracle ? `, served from the ${wk.restore_oracle.edition} edition as the corpus lane restored it. ` : `. `));
+    } else {
+      meta.append(`${renderedWords.toLocaleString()} words in ${nSec.toLocaleString()} ${nSec === 1 ? "section" : "sections"}, served from the sealed chain. `);
+    }
     const more = document.createElement("button");
     more.type = "button"; more.className = "receipts-btn";
     more.textContent = "receipts";
@@ -1517,6 +1599,27 @@
         : "It carries no reading, because there is nothing to look up: it is a mark, not a word. This one cannot be turned off \u2014 it says something about the passage itself, not about the bookkeeping of the page.";
       head.append(mKey);
     }
+    // RULE 12 on the card: the scribes' mark on a letter, named by the letter's
+    // place in the word; the word keeps its count and its key
+    if (Array.isArray(word.letter_marks) && word.letter_marks.length) {
+      const HOW = { LARGE: "large", SMALL: "small", SUSPENDED: "suspended above the line", DOTTED: "with a dot above" };
+      for (const lm of word.letter_marks) {
+        const ls = lm.letters || [];
+        const lLine = document.createElement("p"); lLine.className = "kq-role";
+        lLine.textContent = `letter${ls.length === 1 ? "" : "s"} ${ls.join(", ")} of this word written ${HOW[lm.kind] || String(lm.kind || "").toLowerCase()} by the scribes`;
+        head.append(lLine);
+      }
+      const lKey = document.createElement("p"); lKey.className = "kq-key";
+      lKey.textContent = "A mark on the letter, not on the word: the scribes wrote the letter apart from its neighbours, and the page draws it as they drew it. The word keeps its place in the count and its key.";
+      head.append(lKey);
+    }
+    // RULE 2's spaced joiner: the source wrote this maqaf set off by spaces,
+    // and the owner's rule reads it as a maqaf all the same
+    if (word.maqaf_implicit) {
+      const iLine = document.createElement("p"); iLine.className = "kq-key";
+      iLine.textContent = "The source writes this joiner spaced out from the words on either side; it is read as a maqaf all the same (rule 2), and the two words stand as their own cards, joined.";
+      head.append(iLine);
+    }
     const pjm = word.presentation_join && String(word.presentation_join.why || "").startsWith("maqaf-rule-v2") ? word.presentation_join : null;
     const mqNext = !!(pjm && pjm.join_next_without_separator);
     const mqPrev = !!((pjm && pjm.join_previous_without_separator) || word.after_maqaf);
@@ -2565,6 +2668,30 @@
         const seg = document.createElement("span"); seg.className = "wr"; seg.textContent = piece;
         w.append(seg); regionEls.push(seg);
       });
+    } else if (Array.isArray(word.letter_marks) && word.letter_marks.length) {
+      // RULE 12: the mark is on the letter. Each letter of the surface, with
+      // the points that ride on it, is its own run; a letter the scribes wrote
+      // large, small, suspended or dotted is wrapped and drawn so. The letters
+      // are counted alef through tav, as the record counts them; nothing else
+      // in the surface is a letter and nothing is retyped.
+      const marked = new Map();
+      for (const lm of word.letter_marks) for (const at of (lm.letters || [])) marked.set(at, String(lm.kind || "").toLowerCase());
+      const cps = [...String(word.s || "")];
+      let li = 0, run = null;
+      const flush = () => { if (run) { w.append(run); run = null; } };
+      for (const c of cps) {
+        const cp = c.codePointAt(0);
+        const isLetter = cp >= 0x05d0 && cp <= 0x05ea;
+        const isPoint = cp >= 0x0591 && cp <= 0x05c7 && cp !== 0x05be && cp !== 0x05c0 && cp !== 0x05c3 && cp !== 0x05c6;
+        if (isLetter) {
+          flush(); li += 1;
+          const kind = marked.get(li);
+          if (kind) { run = document.createElement("span"); run.className = `lm lm-${kind}`; run.title = `letter ${li}, written ${kind === "dotted" ? "with a dot above" : kind} by the scribes`; run.textContent = c; }
+          else w.append(document.createTextNode(c));
+        } else if (isPoint && run) run.textContent += c;
+        else { flush(); w.append(document.createTextNode(c)); }
+      }
+      flush();
     } else w.textContent = word.s;
     // A variant-site record marks its word. The mark the source wrote is in
     // the carrier already; this class only says a record stands behind it,
@@ -2749,7 +2876,11 @@
     const n = document.querySelectorAll(".wb.mark[data-mark]").length;
     const off = document.querySelectorAll(".wb.mark-off").length;
     if (!off) { btn.hidden = true; return; }
-    const say = (on) => { btn.textContent = `${on ? "hide" : "show"} the scribes\u2019 section marks (${off})`; btn.setAttribute("aria-pressed", String(on)); };
+    // named by kind, in plain words, so a reader knows what the switch hides:
+    // section marks, verse ends, paseqs \u2014 whichever this text carries
+    const NAMES = { SETUMAH: "section marks", PETUCHAH: "section marks", SOF_PASUQ: "verse ends", PASEQ: "paseqs" };
+    const kinds = [...new Set([...document.querySelectorAll(".wb.mark-off[data-mark]")].map((e) => NAMES[e.dataset.mark] || String(e.dataset.mark).toLowerCase()))];
+    const say = (on) => { btn.textContent = `${on ? "hide" : "show"} the scribes\u2019 marks (${off}${kinds.length ? `: ${kinds.join(", ")}` : ""})`; btn.setAttribute("aria-pressed", String(on)); };
     btn.hidden = false;
     say(document.body.classList.contains("marks-on"));
     btn.onclick = () => { const on = document.body.classList.toggle("marks-on"); say(on); };

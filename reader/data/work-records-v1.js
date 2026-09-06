@@ -97,44 +97,8 @@ window.WORK_RECORDS_V1 = Object.freeze({
     "the_reason_below_is_ours": "each reason is a sentence this lane wrote, not a status a ledger issued. A ledger row's reason is its status string, verbatim. Until these are ledger rows, the reader is being told why a work is held by us and not by the record, and that is the whole of what is still owed here.",
     "dies_when": "a hold ledger carries the work — delete the entry the same day"
   },
-  "withheld": {
-    "tanakh/genesis": {
-      "basis": "TYPED_AWAITING_HOLD_LEDGER",
-      "since": "2026-08-23",
-      "reason": "Its transmission apparatus is not verified. The source-marked sites in this book are not yet carried as records, so the text cannot be shown without the reader quietly choosing for you between the forms its sources attest.",
-      "ends_when": "the Q sites for this work are issued and the reader can present every attested form"
-    },
-    "tanakh/i-kings": {
-      "basis": "TYPED_AWAITING_HOLD_LEDGER",
-      "since": "2026-08-23",
-      "reason": "Its transmission apparatus is not verified. The source-marked sites in this book are not yet carried as records, so the text cannot be shown without the reader quietly choosing for you between the forms its sources attest.",
-      "ends_when": "the Q sites for this work are issued and the reader can present every attested form"
-    },
-    "tanakh/ruth": {
-      "basis": "TYPED_AWAITING_HOLD_LEDGER",
-      "since": "2026-08-23",
-      "reason": "Its transmission apparatus is not verified. The source-marked sites in this book are not yet carried as records, so the text cannot be shown without the reader quietly choosing for you between the forms its sources attest.",
-      "ends_when": "the Q sites for this work are issued and the reader can present every attested form"
-    },
-    "tanakh/esther": {
-      "basis": "TYPED_AWAITING_HOLD_LEDGER",
-      "since": "2026-08-30",
-      "reason": "Its stream reached the build gates carrying no transmission apparatus at all — zero ketiv/qere structure where the tradition attests it (measured 2026-08-30; Leviticus, Numbers and Ruth measured the same). A text with its apparatus silently flattened has already chosen between the forms its sources attest, which is exactly what this register exists to refuse.",
-      "ends_when": "the work's stream is reissued with its ketiv/qere sites as structured records"
-    },
-    "tanakh/leviticus": {
-      "basis": "TYPED_AWAITING_HOLD_LEDGER",
-      "since": "2026-08-30",
-      "reason": "Its stream reached the build gates carrying no transmission apparatus at all — zero ketiv/qere structure where the tradition attests it. A flattened apparatus is a choice already made; this register refuses it.",
-      "ends_when": "the work's stream is reissued with its ketiv/qere sites as structured records"
-    },
-    "tanakh/numbers": {
-      "basis": "TYPED_AWAITING_HOLD_LEDGER",
-      "since": "2026-08-30",
-      "reason": "Its stream reached the build gates carrying no transmission apparatus at all — zero ketiv/qere structure where the tradition attests it. A flattened apparatus is a choice already made; this register refuses it.",
-      "ends_when": "the work's stream is reissued with its ketiv/qere sites as structured records"
-    }
-  },
+  "withheld": {},
+  "withheld_emptied": "2026-09-06: the six entries that stood here (Genesis, I Kings, Ruth, Esther, Leviticus, Numbers) are deleted the day their hold ended — each was held until its ketiv/qere sites were carried as records, and the corpus lane's restore v5 of the Miqra according to the Masorah edition carries every site as (ketiv) [qere], every scribal mark at its own position; the six serve under serve-from-restore-rule-v1 with the count stamped beside the witnesses",
   "commentary_packs_basis": {
     "what_a_pack_is": "a body of commentary fetched from outside the corpus, carrying no C0 identity, which therefore attaches by a map rather than by coordinate. Every claim such a map makes is a suggestion and says so.",
     "why_the_list_is_empty": "the one pack this lane ever held was a proof of concept over a single verse. It was withdrawn on 2026-08-24 along with its four generations of attachment map. The stages that serve packs remain, and refuse rather than guess when no pack is named."

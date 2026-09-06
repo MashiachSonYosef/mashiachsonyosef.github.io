@@ -116,7 +116,7 @@ check("L0  the builder still declares the rule and the single-pass promise",
 // field sets below are its and not this file's. The top-level keys are
 // listed in the order the builder emits them; the last one is the last thing
 // a single pass writes, and anything after it in a file was appended later.
-const TOP_KEYS = ["schema_version", "rule_id", "work", "work_he", "work_he_tokens", "byline", "work_receipts", "route", "emitted_from", "counts", "nodes", "span_roles", "span_rules", "span_conf", "spans", "gloss", "gloss_m", "sections"];
+const TOP_KEYS = ["schema_version", "rule_id", "work", "work_he", "work_he_tokens", "byline", "work_receipts", "route", "emitted_from", "counts", "count_stamp", "nodes", "span_roles", "span_rules", "span_conf", "spans", "gloss", "gloss_m", "sections"];
 const LAST_KEY = "sections";
 const EMITTED_KEYS = ["test_instrument", "kq_policy", "kq_none_attested", "walk", "title_from_c0", "identity_oracle", "license_receipts", "gloss_layer", "span_layer", "y_ledger", "license_links", "coordinate_basis", "numbering", "coordinate_labels", "coordinate_shape", "build", "post_build"];
 const GLOSS_LAYER_KEYS = ["source", "key_rule", "rule", "gloss_table_sha256", "distinct_forms_glossed", "distinct_forms_bare", "grain", "store_inputs", "store_version", "m_layer"];
@@ -200,7 +200,14 @@ for (const f of bins) {
   } else if (walk.edition) {
     // the edition route (2026-09-02): the receipt's surface hash is the oracle
     if (!isHex(walk.edition.surface_sha256) || !isHex(walk.edition.normalized_sha256)) missing.push("serve: edition.surface_sha256 / normalized_sha256");
-  } else missing.push("serve: no oracle (body_oracle, sealed_oracle, stream_oracle or edition)");
+  } else if (walk.restore_oracle) {
+    // the restore route (2026-09-06): the restore receipt's surface hash,
+    // reproduced by the serve from the bytes, and the restore file's own hash
+    const ro = walk.restore_oracle;
+    if (!isHex(ro.surface_sha256) || ro.surface_sha256_reproduced !== true) missing.push("serve: restore_oracle.surface_sha256 reproduced");
+    if (!isHex(ro.restore_gz_sha256)) missing.push("serve: restore_oracle.restore_gz_sha256");
+    if (!(walk.identity && walk.identity.tier === "PROTOTYPE_POSITIONAL")) missing.push("serve: identity.tier (positional ids must say so)");
+  } else missing.push("serve: no oracle (body_oracle, sealed_oracle, stream_oracle, edition or restore_oracle)");
   if (!(io.bridge && isHex(io.bridge_sha256))) missing.push("bridge: identity_oracle.bridge_sha256");
   if (!(Array.isArray(gl.store_inputs) && gl.store_inputs.length && gl.store_inputs.every((i) => i.file && isHex(i.sha256)))) missing.push("store: gloss_layer.store_inputs[].sha256");
   if (!isHex(gl.gloss_table_sha256)) missing.push("store: gloss_layer.gloss_table_sha256");
@@ -228,7 +235,10 @@ for (const f of bins) {
   // to that, and its words plus its kq sites must be that number
   const rowsWalked = counts.c0_rows_walked ?? counts.words;
   if (rowsWalked !== walk.ids_walked) dis.push(`counts.c0_rows_walked ${rowsWalked} vs ids_walked ${walk.ids_walked}`);
-  if (counts.c0_rows_walked !== undefined && counts.words + (counts.kq_sites || 0) !== counts.c0_rows_walked) dis.push(`counts.words ${counts.words} + kq_sites ${counts.kq_sites || 0} vs c0_rows_walked ${counts.c0_rows_walked}`);
+  // a site the stream sealed as one row (the restore's (ketiv) [qere]) walks
+  // one row for its one word; only a two-row site adds a row to the words
+  const twoRowSites = (z.sections || []).reduce((n, s) => n + (s.words || []).filter((w) => w.kq && Number(w.kq.rows) === 2).length, 0);
+  if (counts.c0_rows_walked !== undefined && counts.words + twoRowSites !== counts.c0_rows_walked) dis.push(`counts.words ${counts.words} + two-row kq sites ${twoRowSites} vs c0_rows_walked ${counts.c0_rows_walked}`);
   if (counts.sealed_expected_words !== io.sealed_c0_rows) dis.push("counts.sealed_expected_words vs identity_oracle.sealed_c0_rows");
   if (counts.sections !== (z.sections || []).length) dis.push(`counts.sections ${counts.sections} vs ${(z.sections || []).length} sections`);
   if ((e.license_receipts || {}).attribution !== z.byline) dis.push("license_receipts.attribution is not the byline");

@@ -154,9 +154,9 @@ const zonesDir = join(K3, "data", "zones");
 // the door reads keeps BOTH halves at full strength — a typed word still
 // owes zero, and a laundered duplicate is still one over — while letting the
 // shelf and the served set differ, which from here on they will.
-const gateFile = join(K3, "data", "count-gate-receipt-v1.json");
+const gateFile = join(K3, "data", "serve-gate-receipt-v1.json");
 const servedSlugs = existsSync(gateFile)
-  ? new Set(JSON.parse(readFileSync(gateFile, "utf8")).passed || [])
+  ? new Set(JSON.parse(readFileSync(gateFile, "utf8")).served || [])
   : null;                       // no receipt: judge the whole shelf, as before
 const doorServes = (slug) => servedSlugs === null || servedSlugs.has(slug);
 if (existsSync(zonesDir)) {

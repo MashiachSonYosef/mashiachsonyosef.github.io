@@ -34,6 +34,7 @@ import { fileURLToPath } from "node:url";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
 import { glossMFor, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
 import { K_RULE_ID, K_RULE_TEXT, exactK } from "./k-normalization-v2.mjs";
+import { measureZone, MEASURE_RULE_ID, MEASURE_AXES } from "./bookword-measure-v1.mjs";
 import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import {
   readServe, readBridge, parseWorkCoordinates, wordsOf, regionsOf, licensePosture, require_, sha256File,
@@ -56,6 +57,7 @@ const stamp = arg("--stamp");
 const links = arg("--license-links");
 const yPath = arg("--y");
 const spansPath = arg("--spans");
+const witnessesPath = arg("--count-witnesses");
 for (const [flag, v] of [["--serve", servePath], ["--bridge", bridgePath], ["--work", workId], ["--title", title], ["--out", outPath], ["--stamp", stamp]])
   require_(v, "MISSING_ARG", flag);
 
@@ -197,6 +199,42 @@ for (const unit of servedUnits) {
   sections.push(sec);
   perChapter.set(c.chapter, (perChapter.get(c.chapter) || 0) + 1);
 }
+
+// ---- 4a0. the measure, and the stamp ---------------------------------------
+// THE COUNT IS OUR STAMP OF PROOF, NOT A GATE (owner, 2026-09-05). Every book
+// is measured on every named axis (tools/bookword-measure-v1.mjs — the same
+// measure the recount check applies to the built bytes), and where a record
+// holds the figures other men reached for this book, each figure is stamped
+// beside ours with its difference, sign and all. A difference withholds
+// nothing: it is shown as a difference, in the witness's own name.
+const measure = measureZone({ sections });
+for (const sec of sections) if (sec.words.some((w) => w.shirah)) sec.shirah = true;
+const COUNT_STAMP_RULE = "count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one";
+const witnesses = witnessesPath ? JSON.parse(readFileSync(witnessesPath, "utf8")) : null;
+if (witnesses) require_(witnesses.schema_version === "MASORAH_WITNESSES_V1", "WITNESSES_SCHEMA", witnesses.schema_version);
+const countStamp = (() => {
+  const entry = witnesses && witnesses.books && witnesses.books[slug];
+  const rows = [];
+  const measured = new Set();
+  for (const r of (entry ? entry.rows : [])) {
+    const ours = measure[r.axis];
+    require_(Number.isInteger(ours), "WITNESS_AXIS_UNKNOWN", `${slug}: ${r.axis}`);
+    const delta = ours - r.figure;
+    rows.push({ measure: r.measure, axis: r.axis, witness: r.witness, class: r.class, theirs: r.figure, ours, delta, verdict: delta === 0 ? "EXACT" : "DIFFERS",
+      ...(r.layer ? { layer: r.layer } : {}), ...(r.group_note ? { note: r.group_note } : {}), source: r.source });
+    measured.add(r.measure);
+  }
+  for (const m of ["verses", "words", "letters"]) if (!measured.has(m)) rows.push({ measure: m, axis: m, witness: null, class: "NO_WITNESS", theirs: null, ours: measure[m], delta: null, verdict: "NO_WITNESS" });
+  return {
+    rule_id: COUNT_STAMP_RULE,
+    measured_by: MEASURE_RULE_ID,
+    axes: MEASURE_AXES,
+    ours: { verses: measure.verses, words: measure.words, words_written: measure.words_written, letters: measure.letters, letters_read: measure.letters_read, c0_on: measure.c0_on, c0_off: measure.c0_off, kq_sites: measure.kq_sites, marks: measure.marks },
+    witnesses: witnesses ? { record: witnessesPath.split("/").pop(), sha256: sha256File(witnessesPath), section: entry ? entry.section : null, rows_held: entry ? entry.rows.length : 0 } : null,
+    rows,
+    says: "ours is the zone measured as built; theirs is the figure the witness published, on the axis named; the difference is ours less theirs. Nothing is adjusted and nothing is withheld for differing.",
+  };
+})();
 
 // ---- 4a. the surfaces are text, not markup -------------------------------
 // The capture leak: some source streams carry literal <b>/<br>/<small> tags
@@ -395,6 +433,12 @@ const coverTotal = span ? [...span.spans.values()].reduce((n, sp) => n + 2 ** (s
 // (2026-09-02), which the licence does not allow.
 const credit = serve.provenance.credit || (serve.provenance.rights && serve.provenance.rights.credit) || null;
 const so = serve.provenance.stream_oracle || null;
+// A fifth route since 2026-09-06: the corpus lane's restore v5 of the Miqra
+// according to the Masorah edition, served by tools/serve-from-restore-v5.mjs
+// with the maqaf split at that layer and identity positional until the
+// corpus lane's registry assigns the sealed ids. Its oracle is the restore
+// receipt's surface hash, reproduced by the serve from the bytes.
+const ro = serve.provenance.restore_oracle || null;
 // A DEMONSTRATION PASSAGE. Not a work: a short run of rows, built by this
 // same builder so the reader draws it with the reader's own card, and
 // branded an instrument so no gate can mistake it for a served work. Its
@@ -407,6 +451,8 @@ const baseByline = dem
   ? (dem.carried
       ? `a demonstration passage, carried from ${dem.carried.work_id} ${dem.carried.unit_id} and printed as that source wrote it; this is an instrument, never a served work`
       : `a demonstration passage, typed because the sources this project holds carry no instance of this mark; this is an instrument, never a served work`)
+  : ro
+  ? `served from the corpus lane's restore of the ${ro.edition} edition: every scribal mark its own position, every ketiv-qere site whole with both readings, every maqaf compound its words, the count stamped beside the witnesses; rights per the edition's own licence, riding on every occurrence`
   : so
   ? (so.kind === "SUCCESSOR_STREAM"
       ? `served from the corpus lane's successor stream under bridge-v2, its surface hash reproduced against the reseal receipt; every maqaf compound is its words; rights per the canonical rights resolution, riding on every occurrence`
@@ -464,6 +510,9 @@ const zone = {
       // body unchanged, re-identified by bridge-v2, and cites the manifest.
       note: dem
         ? `${dem.carried ? `carried from ${dem.carried.work_id} ${dem.carried.unit_id}, c0 ${dem.carried.first_c0}-${dem.carried.last_c0}, as ${dem.carried.source} wrote it` : `typed: ${dem.typed.why}`}; it demonstrates ${dem.rule} and nothing is served from it`
+        : ro
+        ? `served from the corpus lane's restore ${ro.restore} of the ${ro.edition} edition: ${Number(ro.rows_restore).toLocaleString()} restore rows became ${Number(ro.rows_served).toLocaleString()} positions (${Number(ro.maqaf_rows_cut).toLocaleString()} rows cut at a maqaf into ${Number(ro.pieces_from_maqaf).toLocaleString()} words, ${Number(ro.kq_sites).toLocaleString()} ketiv-qere sites kept whole, ${Number(ro.off_rows).toLocaleString()} scribal marks each its own position), surface hash reproduced against ${ro.receipt}; identity is positional until the corpus lane's registry assigns the sealed ids` +
+          (serve.held ? `; ${serve.held} rows held by their own rights record` : "")
         : so
         ? (so.kind === "SUCCESSOR_STREAM"
             ? `served from the corpus lane's successor stream ${so.stream} under bridge-v2: ${Number(so.rows_after).toLocaleString()} rows (${Number(so.rows_before).toLocaleString()} before the split, ${Number(so.maqaf_sites_split).toLocaleString()} maqaf sites split), surface hash reproduced against ${so.receipt}` +
@@ -481,6 +530,8 @@ const zone = {
             (serve.held ? `; ${serve.held} rows held by their own rights record` : ""),
       module: dem
         ? { path: "tools/build-demonstrations-v1.mjs over the demonstration record", sha256: (() => { try { return sha256File(fileURLToPath(new URL("./build-demonstrations-v1.mjs", import.meta.url))); } catch { return "0".repeat(64); } })() }
+        : ro
+        ? { path: "tools/serve-from-restore-v5.mjs over the corpus lane's restore v5, the maqaf split at that layer, identity positional", sha256: sha256File(fileURLToPath(new URL("./serve-from-restore-v5.mjs", import.meta.url))) }
         : so
         ? { path: "tools/serve-from-stream-v2.mjs over the successor stream or the verified body, under bridge-v2", sha256: sha256File(fileURLToPath(new URL("./serve-from-stream-v2.mjs", import.meta.url))) }
         : serve.provenance.sealed_oracle
@@ -490,6 +541,8 @@ const zone = {
           : { path: "tools/serve-from-body-v1.mjs over the verified body", sha256: sha256File(fileURLToPath(new URL("./serve-from-body-v1.mjs", import.meta.url))) },
       pointer: dem
         ? { path: dem.carried ? `the source the passage was carried from: ${dem.carried.source}` : "nothing: the passage is typed and points at no record", sha256: (dem.carried && dem.carried.sha256) || "0".repeat(64) }
+        : ro
+        ? { path: `the restore receipt ${ro.receipt}: sha256 over the restore's row surfaces, reproduced by the serve from the bytes`, sha256: ro.surface_sha256 }
         : so
         ? (so.kind === "SUCCESSOR_STREAM"
             ? { path: `the reseal receipt ${so.receipt}: surface token stream sha256, reproduced by the serve`, sha256: so.surface_sha256 }
@@ -614,7 +667,15 @@ const zone = {
     w_regions: regionCount,
     w_regions_with_a_component_system: spannedRegions,
     w_regions_glossed: glossedRegions,
+    // the measure on named axes (tools/bookword-measure-v1.mjs): positions
+    // that are words against positions that are the scribes' marks, and the
+    // book's words and letters on the read and the written branch
+    c0_on: measure.c0_on,
+    c0_off: measure.c0_off,
+    marks: measure.marks,
+    bookwords: { rule_id: MEASURE_RULE_ID, verses: measure.verses, words: measure.words, words_written: measure.words_written, letters: measure.letters, letters_read: measure.letters_read },
   },
+  count_stamp: countStamp,
   nodes,
   span_roles: spanRoles,
   span_rules: spanRules,
@@ -637,5 +698,8 @@ console.log(
   `${glossCounts.glossed.toLocaleString()} of ${cellSurfaces.size.toLocaleString()} cell surfaces read ` +
   `(${glossCounts.no_exact_route.toLocaleString()} have no exact route, ${glossCounts.no_displayable_route} none displayable)\n` +
   `  ${glossedWords.toLocaleString()} occurrences carry a reading · ` +
-  `${(body.length / 1024).toFixed(1)} KB gz · zone sha256 ${createHash("sha256").update(body).digest("hex").slice(0, 16)}…`,
+  `${(body.length / 1024).toFixed(1)} KB gz · zone sha256 ${createHash("sha256").update(body).digest("hex").slice(0, 16)}…\n` +
+  `  measure: ${measure.verses.toLocaleString()} verses · ${measure.words.toLocaleString()} words read / ${measure.words_written.toLocaleString()} written · ` +
+  `${measure.letters.toLocaleString()} letters written / ${measure.letters_read.toLocaleString()} read · ${measure.c0_on.toLocaleString()} on, ${measure.c0_off.toLocaleString()} off` +
+  (countStamp.witnesses ? ` · stamp: ${countStamp.rows.filter((r) => r.verdict === "EXACT").length} exact, ${countStamp.rows.filter((r) => r.verdict === "DIFFERS").length} differ, ${countStamp.rows.filter((r) => r.verdict === "NO_WITNESS").length} unwitnessed` : " · no witness record supplied"),
 );

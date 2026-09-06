@@ -43,15 +43,17 @@ export function zonesOnDisk(dir = ZONES) {
     .sort();
 }
 
-/** Every zone the door may SERVE — the shelf, after the count gate.
+/** Every zone the door may SERVE — the shelf, after the gate.
  *
  *  These were one list for as long as the shelf was the publishing
  *  authority: a zone existed, so a book was served, and a check that wanted
- *  to know what the door offers could ask the directory. count-gate-rule-v1
- *  separates them. A book is served when its own count equals the count the
- *  scribes published for it, so the shelf is now what we have and this is
- *  what we can stand behind, and the two differ by however much we have not
- *  yet proved.
+ *  to know what the door offers could ask the directory. The gate separates
+ *  them. Since 2026-09-06 the gate is the frame's own REFUSALS
+ *  (refusals-gate-rule-v1, tools/check-c0-refusals-v1.mjs): a book is
+ *  served when no line of the C0 letter refuses a position of it, as built;
+ *  the count is not a gate but a stamp on the book's own page. So the shelf
+ *  is what we have and this is what we can stand behind, and the two differ
+ *  by every book a line refused.
  *
  *  A check that asks "what does the door offer" wants this one. A check that
  *  asks "what did the builder produce" still wants zonesOnDisk. Getting that
@@ -59,11 +61,14 @@ export function zonesOnDisk(dir = ZONES) {
  *  gate withheld — which is the guard failing, not the door.
  *
  *  No receipt is a refusal, never a pass: same law as the door's. */
+export const SERVE_GATE_RECEIPT = "serve-gate-receipt-v1.json";
 export function zonesServed(dir = ZONES) {
-  const receipt = join(dir, "..", "count-gate-receipt-v1.json");
+  const receipt = join(dir, "..", SERVE_GATE_RECEIPT);
   if (!existsSync(receipt)) return [];
-  const passed = new Set(JSON.parse(readFileSync(receipt, "utf8")).passed || []);
-  return zonesOnDisk(dir).filter((z) => passed.has(z));
+  // `served` is what the door offers: the books no line refused AND whose
+  // count is stamped beside its witnesses — the counted works, this launch
+  const served = new Set(JSON.parse(readFileSync(receipt, "utf8")).served || []);
+  return zonesOnDisk(dir).filter((z) => served.has(z));
 }
 
 /** Zones that also carry a commentary sidecar. A check about commentary has

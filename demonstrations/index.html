@@ -729,7 +729,33 @@
   .face:hover { color:var(--gold); border-color:var(--gold-dim); }
   /* the census stands at its own address; the door wears the way there in
      the same corner the faces live in, one step down */
-  a.alt-face { top:3.1rem; text-decoration:none; }</style>
+  a.alt-face { top:3.1rem; text-decoration:none; }
+  .bookcard .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; }
+  .bookcard .srow { display:flex; gap:.5rem; align-items:baseline; flex-wrap:wrap; color:var(--faint); line-height:1.35; }
+  .bookcard .srow .cls { font-size:.56rem; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); min-width:6.5rem; }
+  .bookcard .srow .wit { color:var(--muted); max-width:22rem; }
+  .bookcard .srow .ax { color:var(--muted); }
+  .bookcard .srow .num { font-family:ui-monospace,Menlo,Consolas,monospace; color:var(--ink); }
+  .bookcard .srow .why { font-style:italic; }
+  .bookcard .srow.exact .delta, .bookcard .srow.exact .glyph { color:var(--gold); font-weight:600; }
+  .bookcard .srow.differs .delta, .bookcard .srow.differs .glyph { color:var(--shani); font-weight:600; }
+  .bookcard .srow.no_witness { color:var(--faint); }
+  #sectstamp { margin:.6rem 0 .4rem; padding:.35rem 0 .4rem; border-top:1px solid var(--gold-dim); border-bottom:1px solid var(--gold-dim); font-size:.78rem; overflow-x:auto; }
+  #sectstamp .sh { font-variant:small-caps; letter-spacing:.12em; color:var(--gold); margin:0 0 .25rem; }
+  #sectstamp .sh .ours { color:var(--ink); font-variant:normal; letter-spacing:.02em; font-variant-numeric:tabular-nums; }
+  #sectstamp table { border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  #sectstamp td { padding:.08rem .7rem .08rem 0; vertical-align:baseline; white-space:nowrap; color:var(--muted); }
+  #sectstamp td.wit { white-space:normal; max-width:26rem; }
+  #sectstamp td.num { text-align:right; font-family:ui-monospace,Menlo,Consolas,monospace; color:var(--ink); }
+  #sectstamp .cls { font-size:.56rem; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-right:.4rem; }
+  #sectstamp tr.exact td.delta, #sectstamp tr.exact td.glyph { color:var(--gold); font-weight:600; }
+  #sectstamp tr.differs td.delta, #sectstamp tr.differs td.glyph { color:var(--shani); font-weight:600; }
+  #sectstamp tr.no_witness td { color:var(--faint); }
+  #sectstamp tr { animation: stamp-flash 1100ms ease-out both; }
+  @keyframes stamp-flash { 0% { background: var(--wash-active, rgba(234,200,111,.16)); } 100% { background: transparent; } }
+  @media (prefers-reduced-motion: reduce) { #sectstamp tr { animation: none; } }
+  #sectstamp .waits { color:var(--faint); font-style:italic; margin:.25rem 0 0; }
+</style>
 </head><body><main>
   <p class="poc-back"><a href="/">fireandhail.com</a></p>
   <h1>The eight rules</h1>

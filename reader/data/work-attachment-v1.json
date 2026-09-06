@@ -2,7 +2,7 @@
  "schema": "work-attachment-v1",
  "rule_id": "work-attachment-rule-v1-parallel-numbering-is-not-intent",
  "emitted_by": "tools/emit-work-attachment-v1.mjs",
- "emitted_on": "2026-09-03",
+ "emitted_on": "2026-09-06",
  "derived_from": "the zones on disk — the pairs are found by id, the counts are measured, and nothing here is typed",
  "ruling": "A commentary attaches at unit grain only when its intent is shown: its own catchwords, quoted from the passage it means, found in the passage the attachment claims. Numbering that runs parallel is not intent — it is proportional pointing, and it renumbers with the edition. A commentary with no intent evidence still stands as its own work and opens beside its base at work grain, on the strength of its own name.",
  "ruled_by": "the owner, 2026-08-31, in his words: \"commentary should auto open their base work\" and \"you'd need to ensure the commentary edition matches the original by intent, not proportionally (e.g. not same edition, but correctly pointed for each edition)\"",
@@ -12,11 +12,11 @@
    "UNDETERMINED": 20,
    "translation-of": 18
   },
-  "base_on_the_shelf": 7,
-  "base_missing": 31,
+  "base_on_the_shelf": 26,
+  "base_missing": 12,
   "U_attested": 38,
   "V_granted": 0,
-  "V_refused_for_want_of_intent": 7,
+  "V_refused_for_want_of_intent": 26,
   "units_the_source_brackets": 4,
   "catchwords_tested": 13,
   "catchwords_confirming": 0
@@ -803,18 +803,19 @@
    "U": {
     "relation": "UNDETERMINED",
     "shape": {
-     "verdict": "SCHEME_UNVERIFIED",
+     "verdict": "NUMBERS_DIFFERENTLY",
      "units": 345,
      "base_units": 211,
      "ratio_of_counts": "164%",
-     "because": "the base is not on the shelf, so its unit labels cannot be read, and the counts do not agree. The ratio of the two is recorded and is not a coverage figure: two works numbering differently produce a ratio that says nothing about how much of the base is covered."
+     "label_overlap": "0%",
+     "because": "fewer than nine in ten of this work's unit labels stand in the base's label space, so the two number by different schemes and no ratio between their counts is a coverage figure"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the name gives the target and not the kind: \"-on-\" is written the same by a commentary, a translation and a set of notes. U's relation awaits something that says which.",
     "target": "zechariah",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -824,8 +825,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 345,
+     "base_units": 211,
+     "units_whose_number_exists_in_the_base": 0,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -865,19 +881,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 146,
      "base_units": 146,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "amos",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -887,8 +904,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 146,
+     "base_units": 146,
+     "units_whose_number_exists_in_the_base": 146,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -897,19 +929,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 956,
      "base_units": 956,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "deuteronomy",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -919,8 +952,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 956,
+     "base_units": 956,
+     "units_whose_number_exists_in_the_base": 956,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -929,19 +977,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 1273,
      "base_units": 1273,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "ezekiel",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -951,8 +1000,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 1273,
+     "base_units": 1273,
+     "units_whose_number_exists_in_the_base": 1273,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -961,19 +1025,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 56,
      "base_units": 56,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "habakkuk",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -983,8 +1048,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 56,
+     "base_units": 56,
+     "units_whose_number_exists_in_the_base": 56,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -993,19 +1073,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 38,
      "base_units": 38,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "haggai",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1015,8 +1096,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 38,
+     "base_units": 38,
+     "units_whose_number_exists_in_the_base": 38,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1025,19 +1121,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 197,
      "base_units": 197,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "hosea",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1047,8 +1144,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 197,
+     "base_units": 197,
+     "units_whose_number_exists_in_the_base": 197,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1057,19 +1169,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 817,
      "base_units": 817,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "i-kings",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1079,8 +1192,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 817,
+     "base_units": 817,
+     "units_whose_number_exists_in_the_base": 817,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1089,19 +1217,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 695,
      "base_units": 695,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "ii-samuel",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1111,8 +1240,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 695,
+     "base_units": 695,
+     "units_whose_number_exists_in_the_base": 695,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1121,12 +1265,13 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 1291,
      "base_units": 1291,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [
      {
@@ -1142,9 +1287,9 @@
     ],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "isaiah",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1154,8 +1299,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 1291,
+     "base_units": 1291,
+     "units_whose_number_exists_in_the_base": 1291,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1164,19 +1324,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 73,
      "base_units": 73,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "joel",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1186,8 +1347,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 73,
+     "base_units": 73,
+     "units_whose_number_exists_in_the_base": 73,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1196,19 +1372,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 48,
      "base_units": 48,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "jonah",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1218,8 +1395,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 48,
+     "base_units": 48,
+     "units_whose_number_exists_in_the_base": 48,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1228,11 +1420,13 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "SCHEME_UNVERIFIED",
+     "verdict": "PARALLEL",
      "units": 658,
      "base_units": 656,
-     "ratio_of_counts": "100%",
-     "because": "the base is not on the shelf, so its unit labels cannot be read, and the counts do not agree. The ratio of the two is recorded and is not a coverage figure: two works numbering differently produce a ratio that says nothing about how much of the base is covered."
+     "coverage": "100%",
+     "exact": false,
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [
      {
@@ -1243,9 +1437,9 @@
     ],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "joshua",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1255,8 +1449,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 658,
+     "base_units": 658,
+     "units_whose_number_exists_in_the_base": 658,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1265,19 +1474,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 618,
      "base_units": 618,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "judges",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1287,8 +1497,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 618,
+     "base_units": 618,
+     "units_whose_number_exists_in_the_base": 618,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1297,19 +1522,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 55,
      "base_units": 55,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "malachi",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1319,8 +1545,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 55,
+     "base_units": 55,
+     "units_whose_number_exists_in_the_base": 55,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1329,19 +1570,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 105,
      "base_units": 105,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "micah",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1351,8 +1593,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 105,
+     "base_units": 105,
+     "units_whose_number_exists_in_the_base": 105,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1361,19 +1618,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 47,
      "base_units": 47,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "nahum",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1383,8 +1641,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 47,
+     "base_units": 47,
+     "units_whose_number_exists_in_the_base": 47,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1393,19 +1666,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 21,
      "base_units": 21,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "obadiah",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1415,8 +1689,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 21,
+     "base_units": 21,
+     "units_whose_number_exists_in_the_base": 21,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   },
   {
@@ -1425,19 +1714,20 @@
    "U": {
     "relation": "translation-of",
     "shape": {
-     "verdict": "PARALLEL_BY_COUNT",
+     "verdict": "PARALLEL",
      "units": 53,
      "base_units": 53,
      "coverage": "100%",
      "exact": true,
-     "because": "the base is not on the shelf and its labels cannot be read, but this work carries exactly as many units as the atlas records for the base. Two counts derived apart from each other landing on the same number is evidence of the same numbering; it is not the same as having checked, and this verdict says which one it is."
+     "label_overlap": "100%",
+     "because": "the two number the same way, and there is a unit for every unit of the base — it stands instead of the text, aligned"
     },
     "units_the_source_brackets": [],
     "relation_read_from": "the work's own name begins with targum, the Aramaic translation of a book",
     "target": "zephaniah",
-    "target_on_the_shelf": false,
-    "may_open_together": false,
-    "withheld_reason": "the base work is not on the shelf, so there is nothing to open beside it"
+    "target_on_the_shelf": true,
+    "may_open_together": true,
+    "withheld_reason": null
    },
    "X": {
     "attests": "U",
@@ -1447,8 +1737,23 @@
    },
    "V": {
     "granted": false,
-    "reason": "BASE_NOT_ON_THE_SHELF",
-    "note": "no base to test intent against; the question is not reached"
+    "reason": "NO_INTENT_EVIDENCE",
+    "numbering_only": {
+     "commentary_units": 53,
+     "base_units": 53,
+     "units_whose_number_exists_in_the_base": 53,
+     "weight": "none — this is the proportional pointing the ruling refuses. Two schemes agreeing about numbers says nothing about which passage is meant, and renumbers with the edition."
+    },
+    "catchword_test": {
+     "markers_found": 0,
+     "boundary_not_found": 0,
+     "tested": 0,
+     "confirm_the_claimed_unit": 0,
+     "contradict_it": 0,
+     "land_here_and_elsewhere": 0,
+     "land_nowhere": 0
+    },
+    "witnesses": []
    }
   }
  ]

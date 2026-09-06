@@ -82,6 +82,11 @@ const genesisZonePath = genesisV3.zone.module_path;
 const genesisZoneHere = existsSync(resolve(genesisZonePath));
 const genesisZoneBytes = genesisZoneHere ? readBytes(genesisZonePath) : null;
 const genesisZone = genesisZoneHere ? JSON.parse(gunzipSync(genesisZoneBytes).toString("utf8")) : null;
+// Since 2026-09-06 the shelf's Genesis may be the restore-v5 build (serve-
+// from-restore-rule-v1), a different artifact from the pinned clean v3 zone.
+// The pin then stands as recorded history; the byte law is for the pinned
+// bytes, and the receipt must say the pin is superseded rather than pretend.
+const genesisSuperseded = !!(genesisZone && ((genesisZone.emitted_from || {}).walk || {}).restore_oracle);
 
 let passed = 0;
 const check = (name, fn) => {
@@ -136,7 +141,11 @@ check("clean Genesis v3 authority chain carries exact pins", () => {
     assert(Number.isSafeInteger(pin.bytes) && pin.bytes > 0);
     assert.match(pin.sha256, /^[0-9a-f]{64}$/);
   }
-  if (genesisZoneHere) {
+  if (genesisZoneHere && genesisSuperseded) {
+    const st = (receipt.inputs || {}).genesis_v3_pin_state || {};
+    assert.equal(st.state, "SUPERSEDED", "the shelf's Genesis rides the restore route, and the receipt must record the pin as superseded");
+    assert.equal(st.shelf_zone && st.shelf_zone.sha256, sha256(genesisZoneBytes), "the receipt names the shelf zone it superseded the pin with");
+  } else if (genesisZoneHere) {
     assert.equal(genesisZoneBytes.length, genesisV3.zone.bytes);
     assert.equal(sha256(genesisZoneBytes), genesisV3.zone.sha256);
   } else {
@@ -147,9 +156,10 @@ check("clean Genesis v3 authority chain carries exact pins", () => {
   }
 });
 check("clean Genesis zone is one rendered record per canonical COMPspan", () => {
-  if (!genesisZoneHere) {
-    // Withheld: nothing to count. The pins above still had to hold shape,
-    // and the served-set law below still refuses a receipt that serves it.
+  if (!genesisZoneHere || genesisSuperseded) {
+    // Withheld, or superseded by the restore build: nothing of the v3 grain
+    // to count. The pins above still had to hold shape; the restore build is
+    // measured by check-bookword-count-v1 on its own named axes.
     return;
   }
   const counts = genesisV3.counts;
