@@ -596,9 +596,10 @@ const bookCard = (b) => `    <div class="bookcard">
         : `${plainName(b.slug)
           ? `<span class="en">${esc(plainName(b.slug))}</span>`
           : `<span class="en none" title="${esc(b.slug)}">${NO_PLAIN_NAME}</span>`}<span class="of" title="${esc(AWAITS_M)}">awaiting a named source</span>`}</span>
-      ${b.stamp
-        ? `<span class="of">${n(b.stamp.ours.verses)} verses · ${n(b.stamp.ours.words)} words read · ${n(b.stamp.ours.letters)} letters · ${n(b.stamp.ours.c0_off)} scribal marks, each at its own position</span>`
-        : `<span class="of">${n(b.sections)} sections · ${n(b.words)} displayed word records</span>`}
+      <!-- The card carries no counts. The owner struck them from the book
+           rows on 2026-09-06 and the card is the same row wearing a
+           frame: a count is proof about a book and it stands on that
+           book's own page, beside the figures other men reached. -->
       </a>
       <span class="row trow he-row">${b.he
         ? (titleWords(b)
@@ -848,7 +849,7 @@ const atlasRow = (w) => {
     // stands on that book's own page, where all thirty-nine carry it beside
     // the figures other men reached. The door still marks which books are
     // stamped, because that is a fact about the row.
-    return `      <span class="atlas-row built${zi.stamp ? " stamped" : ""}"><a class="aw" href="/${name}" title="open this book">${label}</a>${he}<span class="au">${au}</span></span>`;
+    return `      <span class="atlas-row built${zi.stamp ? " stamped" : ""}"><a class="aw" href="/${name}" title="open this book">${label}</a>${he}</span>`;
   }
   return `      <span class="atlas-row" data-p="${esc(pre)}"><button type="button" class="aw" dir="auto" data-w="${esc(w.id)}" data-u="${w.units}" data-cr="${w.c0_rows}" data-cf="${w.c0_first}" data-st="${esc(st)}"${famAttr} title="open this book&#8217;s own record">${esc(name)}</button><span class="au">${n(w.units)} unit${w.units === 1 ? "" : "s"}</span></span>`;
 };
@@ -928,8 +929,14 @@ const familySection = (fam) => {
           ? `<span class="en" title="${esc(fam.members.join(" · "))}">${esc(readable.join(" · "))}</span><span class="of" title="${esc(waits)}">awaiting a named source</span>`
           : `<span class="en none" title="${esc(fam.members.join(" · "))}">${NO_PLAIN_NAME}</span><span class="of" title="${esc(waits)}">awaiting a named source</span>`;
       })();
-  const foldLines = [`      <span class="of fold-line">${esc(lf.what)}</span>`];
-  foldLines.push(`      <span class="of slots fold-line">the bridge records ${fam.members.length === 1 ? "this shelf as" : "these as"}: ${esc(fam.members.join(" · "))} — folded here by ${esc(LEDGER.schema_version)}, which dies the day the corpus rules the column</span>`);
+  // Two lines stood at the head of every shelf and the owner struck both
+  // (2026-09-06): the family's own description of itself, and the ledger's
+  // housekeeping note naming which record folded the shelf and when that
+  // record dies. Neither told a reader looking for a book anything they
+  // could use, and the second was the pipeline talking to itself in public.
+  // The family ledger still says both, and still says them where they are
+  // read — in the record, not on the door.
+  const foldLines = [];
   // The home page rests fully collapsed into the grouping: every family
   // folded to its two-row head, the built ones included — a tap opens a
   // shelf, the search box opens whatever matches. Nothing rests open.
@@ -946,7 +953,7 @@ const familySection = (fam) => {
   return `    <section class="family">
       <details class="fam"${shelfRows.length ? " open" : ""}>
       <summary>
-        <span class="row">${enCell}<span class="of">${esc(bits.join(" · "))}</span></span>
+        <span class="row">${enCell}</span>
         <span class="row he-row">${famHeadHe(lf)}</span>
       </summary>
       <div class="fgroups">
