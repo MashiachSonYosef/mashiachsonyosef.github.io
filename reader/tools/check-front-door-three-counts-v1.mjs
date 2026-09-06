@@ -344,14 +344,37 @@ check("C0 and COMPspan grains are never given the same label", () => {
 check("existing shelf fold and live-search hooks remain", () => {
   assert(html.includes('<form id="find" role="search"'));
   assert(html.includes('oninput="sift()"'));
-  const details = [...html.matchAll(/<details class="fam"([^>]*)>/g)];
+  // The class attribute is read whole: a shelf may wear a second class (the
+  // fold that gathers the corpuses holding nothing readable wears one), and a
+  // regex demanding class="fam" exactly walked straight past it.
+  const details = [...html.matchAll(/<details class="fam([^"]*)"([^>]*)>/g)];
   const inner = [...html.matchAll(/<details class="fold"([^>]*)>/g)];
   // How many folds the door carries is the records' business — the ledger's
   // shelves, the works seated or grouped. A count typed here went stale the
-  // day a work was withheld. What holds between builds: shelves exist, and
-  // nothing rests open.
+  // day a work was withheld.
+  //
+  // What rests open is not a matter of taste, and this line used to forbid it
+  // outright. The harm it was written against is real: a door of eighteen
+  // shelves that all unroll is a wall, not an offer. But the harm is the
+  // UNROLLING OF NOTHING, and the rule named the wrong half of it. On
+  // 2026-09-06 seventeen of the eighteen shelves held no book a reader could
+  // open; the owner had them gathered into one fold that opens closed, and the
+  // one shelf that holds books opens, because a door whose books are behind a
+  // press is offering a press.
+  //
+  // So: a shelf that rests open must have something readable in it. A shelf
+  // holding nothing must stay shut, and so must the fold that gathers them.
+  // The tooth is kept and pointed at the fault rather than at the shape.
   assert(details.length > 0, "the door carries no family shelf at all");
-  assert(details.every((match) => !/\bopen\b/.test(match[1])), "a shelf rests open");
+  const opensWithNothing = details.filter((m) => {
+    if (!/\bopen\b/.test(m[2])) return false;
+    if (/waiting-fams/.test(m[1])) return true;   // the gather-fold never rests open
+    const from = m.index + m[0].length;
+    const nextShelf = html.indexOf('<details class="fam', from);
+    const body = html.slice(from, nextShelf > -1 ? nextShelf : undefined);
+    return !/class="atlas-row built/.test(body);  // nothing a reader can open
+  });
+  assert(opensWithNothing.length === 0, `a shelf rests open with nothing readable in it (${opensWithNothing.length})`);
   assert(inner.every((match) => !/\bopen\b/.test(match[1])), "a commentary fold rests open");
 });
 check("the door links every zone the receipt serves", () => {
