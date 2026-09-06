@@ -325,7 +325,7 @@
         const tr = document.createElement("tr"); tr.className = String(r.verdict || "").toLowerCase();
         tr.style.animationDelay = `${Math.min(i, 14) * 70}ms`;
         const td = (cls, text, title) => { const c = document.createElement("td"); c.className = cls; c.textContent = text; if (title) c.title = title; tr.append(c); return c; };
-        const wit = td("wit", "", r.note || "");
+        const wit = td("wit", "", [r.witness || "", r.note || ""].filter(Boolean).join(" \u2014 "));
         const chip = document.createElement("span"); chip.className = "cls"; chip.textContent = CLS[r.class] || String(r.class || "").toLowerCase();
         wit.append(chip, r.witness || "nobody published a figure on this axis");
         td("ax", AX[r.axis] || r.axis);

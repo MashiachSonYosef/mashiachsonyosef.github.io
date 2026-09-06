@@ -84,7 +84,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms` | tools/emit-struck-ranks-v1.mjs | check-route-store-exact-k-v1 |
 | `suggested-title-rule-v1-a-guess-is-authored-by-name-and-witnessed-by-nothing` | tools/check-suggested-title-v1.mjs | check-suggested-title-v1 |
 | `title-from-c0-rule-v1-the-title-is-the-works-own-opening-words` | tools/build-zone.mjs | check-title-from-c0-v1 |
-| `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-opens-title-v1 |
+| `title-key-rule-v1-only-what-the-store-already-attests` | tools/name-the-titles-v1.mjs, tools/run-restore-v5-fleet-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-opens-title-v1 |
 | `variant-site-grouping-v1-one-alignment-rule-per-encoding-class` | tools/group-variant-sites-v1.mjs | check-variant-class-one-rule-v1 |
 | `variant-site-rule-v1-the-mark-opens-a-record-or-the-zone-does-not-board` | zone.html | check-variant-site-v1 |
 | `w-grain-rule-v1-a-component-system-is-drawn-on-a` | tools/check-w-grain-v1.mjs | check-w-grain-v1 |

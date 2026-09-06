@@ -217,6 +217,14 @@
   #stamp tr { animation: stamp-flash 1100ms ease-out both; }
   @keyframes stamp-flash { 0% { background: var(--wash-active); } 100% { background: transparent; } }
   @media (prefers-reduced-motion: reduce) { #stamp tr { animation: none; } }
+  /* On a narrow screen the strip stays a strip: one line per witness, the
+     witness's name cut with an ellipsis (the whole of it rides in the hover
+     and in the receipts), the layer note folded away. */
+  @media (max-width: 600px) {
+    #stamp td.wit { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 9.5rem; }
+    #stamp td.why { display: none; }
+    #stamp td { padding-right: 0.45rem; }
+  }
   #stamp .stamp-note { color: var(--faint); font-style: italic; margin: 0.3rem 0 0; }
   #stamp .stamp-warn { color: var(--shani); margin: 0.3rem 0 0; }
   #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--gold-dim); line-height: 1.55; }

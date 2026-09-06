@@ -48,7 +48,13 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 
 const site = join(K3, "..");
 
-const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json" };
+// Pages serves the engine's stylesheet as text/css and its script as
+// JavaScript; a stub that hands the stylesheet over as an octet stream is
+// refused by the browser under strict MIME checking, and the page this check
+// then measures is the unstyled one — the home link was reported out of its
+// corner on a page no reader ever sees (2026-09-06). The harness has to be
+// the faithful part or the check is testing the harness.
+const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8" };
 const srv = createServer(async (req, res) => {
   const p = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "");
   // the publication is served, the repository's plumbing is not
