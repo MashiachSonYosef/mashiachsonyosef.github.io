@@ -5354,19 +5354,29 @@
     }
     return out;
   }
+  // THE LICENCE HAS A CELL OF ITS OWN NOW, and a ruling belongs in it. This
+  // used to append a chip inside the reading, which was right while the
+  // licence rode beside the gloss; once the licence became the fourth column
+  // a ruled row printed two — one in its column and one under the reading.
+  // The law is unchanged: the reading and its terms move together or not at
+  // all. Only where the terms are written changed.
+  function licCellFor(g) {
+    var cell = g.closest(".col-he");
+    return cell && cell.parentElement ? cell.parentElement.querySelector(".col-lic") : null;
+  }
   function paintGloss(key, r) {
     var gs = glossesFor(key);
     for (var i = 0; i < gs.length; i++) {
       gs[i].replaceChildren(r.text);
-      if (r.lic) {
-        var chip = document.createElement("span");
-        chip.className = "chip";
-        chip.textContent = r.lic;
-        chip.title = (r.m || "") + (r.year ? " · " + r.year : "");
-        gs[i].append(chip);
-      }
       gs[i].title = r.text + (r.m ? " — " + r.m : "");
       gs[i].classList.add("ruled");
+      var cell = licCellFor(gs[i]);
+      if (cell && r.lic) {
+        var chip = cell.querySelector(".chip");
+        if (!chip) { chip = document.createElement("span"); chip.className = "chip"; cell.append(chip); }
+        chip.textContent = r.lic;
+        chip.title = (r.m || "") + (r.year ? " · " + r.year : "");
+      }
     }
     return gs.length;
   }

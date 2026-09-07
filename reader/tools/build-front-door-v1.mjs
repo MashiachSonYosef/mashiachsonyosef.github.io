@@ -845,8 +845,16 @@ const atlasRow = (w) => {
     const heKey = (zi.heTokens || []).map((t) => t.k).filter(Boolean)[0] || null;
     const heGloss = heKey ? (STORE.glossFor(heKey).text || "") : "";
     const lic = heGloss ? chipHtml(glossSource(heKey, heGloss)) : "";
+    // THE READING RIDES UNDER THE NAME, on a book's row as on a shelf's head.
+    // The shelf head had it and the books under it did not, so the one Hebrew
+    // on the page that said what it meant was the one nobody came for. It is
+    // the store's oldest displayable reading, keyed off the title's first
+    // keyed token, and it is the selectable one: it wears the same .g inside
+    // the same .fam-he the door's card machinery repaints, so a reader who
+    // rules a different reading on this word sees the row follow, here and on
+    // every later visit. The licence in the fourth cell is that reading's own.
     const he = zi.heTokens.some((t) => t.k)
-      ? `<span class="fam-he"><span class="he" lang="he" dir="rtl">${tw}</span></span>`
+      ? `<span class="fam-he"><span class="he" lang="he" dir="rtl">${tw}</span>${heGloss ? `<span class="g">${esc(heGloss)}</span>` : ""}</span>`
       : "";
     // the name slot's law, everywhere: plain letters, or the absence said
     // in words with the recorded id riding on the hover — never a raw id
@@ -877,6 +885,16 @@ const seatedRow = (b) => {
 const rowsHtml = (rows) => rows.map((r) => {
   if (!r.book) return atlasRow(r.atlas);
   if (seated.has(r.book.slug)) return seatedRow(r.book);
+  // GENESIS GOES THROUGH THE SAME PIPELINE AS THE OTHER THIRTY-EIGHT. It was
+  // pinned before there was a fleet, so it kept a bordered card of its own
+  // while every book beside it was a row — and a card that renders by a
+  // different path is a path nothing else proves. A served book with no
+  // commentary of its own has nothing a row cannot say, so it is a row: same
+  // builder, same four cells, same measurements. A book that DOES carry
+  // commentary still gets the card, because the card is where its commentary
+  // entries hang; that is a real difference, not a legacy one.
+  const carries = r.book.units || (commentaryOf.get(r.book.slug) || []).length;
+  if (!carries && ZONE_INFO.has(addressOf(r.atlas.id))) return atlasRow(r.atlas);
   return groupFor(r.book);
 });
 // A family's name is words of the ledger, and a word answers for itself:
@@ -1610,19 +1628,29 @@ ${page.sections.join("\n")}
     }
     return out;
   }
+  // THE LICENCE HAS A CELL OF ITS OWN NOW, and a ruling belongs in it. This
+  // used to append a chip inside the reading, which was right while the
+  // licence rode beside the gloss; once the licence became the fourth column
+  // a ruled row printed two — one in its column and one under the reading.
+  // The law is unchanged: the reading and its terms move together or not at
+  // all. Only where the terms are written changed.
+  function licCellFor(g) {
+    var cell = g.closest(".col-he");
+    return cell && cell.parentElement ? cell.parentElement.querySelector(".col-lic") : null;
+  }
   function paintGloss(key, r) {
     var gs = glossesFor(key);
     for (var i = 0; i < gs.length; i++) {
       gs[i].replaceChildren(r.text);
-      if (r.lic) {
-        var chip = document.createElement("span");
-        chip.className = "chip";
-        chip.textContent = r.lic;
-        chip.title = (r.m || "") + (r.year ? " \u00b7 " + r.year : "");
-        gs[i].append(chip);
-      }
       gs[i].title = r.text + (r.m ? " \u2014 " + r.m : "");
       gs[i].classList.add("ruled");
+      var cell = licCellFor(gs[i]);
+      if (cell && r.lic) {
+        var chip = cell.querySelector(".chip");
+        if (!chip) { chip = document.createElement("span"); chip.className = "chip"; cell.append(chip); }
+        chip.textContent = r.lic;
+        chip.title = (r.m || "") + (r.year ? " \u00b7 " + r.year : "");
+      }
     }
     return gs.length;
   }
