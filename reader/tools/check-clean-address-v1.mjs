@@ -244,6 +244,29 @@ check("the site's own name carries no Hebrew that nothing recorded",
   const carried = new Set(zonesOnDisk().map((slug) => titleOf(slug)[0]).filter(Boolean));
   const L = JSON.parse(readFileSync(join(K3, "data", "family-ledger-v1.json"), "utf8"));
   for (const lf of L.families || []) if (lf.he) { carried.add(lf.he); for (const t of lf.he_tokens || []) carried.add(t.s); }
+  // A GATHERED BOOK'S NAME IS A THIRD CATEGORY, and the narrowest of the three.
+  // The corpus lane's grouping ledger (2026-09-07) names the twenty-four books
+  // the tradition counts over the thirty-nine files this edition ships, and
+  // four of those names are not any file's title \u2014 no file is called "the
+  // Twelve". The door may print such a name only where EVERY word of it is a
+  // form the route store already carries, and that is re-derived here from
+  // the ledger and the store rather than trusted from the door: a name whose
+  // words the store does not attest is still a stray, and this check still
+  // says so. The door refuses its own build in the same case.
+  {
+    const gp = join(K3, "data", "book-grouping-v1.json");
+    if (existsSync(gp)) {
+      const { exactK } = await import("./k-normalization-v2.mjs");
+      const { openRouteStore } = await import("./gloss-store-v1.mjs");
+      const store = existsSync(join(K3, "data", "route-store", "index.json")) ? openRouteStore(join(K3, "data", "route-store")) : null;
+      if (store) for (const g of JSON.parse(readFileSync(gp, "utf8")).groups || []) {
+        if ((g.files || []).length < 2) continue;
+        const toks = String(g.hebrew_name || "").split(/\s+/u).filter(Boolean);
+        const keyed = toks.map((t) => exactK(t)).map((k) => (k && store.routesFor(k) ? k : null));
+        if (toks.length && keyed.every(Boolean)) { for (const t of toks) carried.add(t); carried.add(g.hebrew_name); }
+      }
+    }
+  }
   // demo-verse-rule-v1, re-derived: the door's working verse is the first
   // ten words of the first section of the first zone in shelf order — each
   // word a recorded surface, carried like a title's own words

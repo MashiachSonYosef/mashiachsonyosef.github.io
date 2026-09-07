@@ -601,6 +601,7 @@
   /* placed, not left to source order: the Hebrew column carries right-to-left
      text and the grid was seating it first. Naming the track is the one
      way this cannot drift. */
+  .pair { display:contents; }
   .col-en { grid-column:1; }
   /* A book sits under its corpus, and the eye should be able to see that
      without reading anything: the name is indented, and only the name, so
@@ -609,6 +610,25 @@
   .col-att { grid-column:2; }
   .col-he { grid-column:3; }
   .col-lic { grid-column:4; }
+  /* THE FILING SWITCH. Two shapes of one shelf, and the reader says which.
+     Neither is default-by-nature: the page opens on the thirty-nine because
+     those are the addresses that serve, and remembers whichever the reader
+     last chose. The switch never touches [hidden] — that flag is the search
+     box's, and one flag written by two hands is a row that disappears for a
+     reason nobody can name. */
+  .filing-pick { display:flex; gap:.4rem; margin:.1rem 0 .55rem; }
+  .filing-pick .fp { font:inherit; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); background:none; border:1px solid var(--line); border-radius:999px;
+    padding:.2rem .6rem; cursor:pointer; }
+  .filing-pick .fp:hover { color:var(--muted); border-color:var(--gold-dim); }
+  .filing-pick .fp.on { color:var(--gold); border-color:var(--gold-dim); background:var(--hover-wash); }
+  .filing-24 { display:none; }
+  body[data-filing="24"] .filing-39 { display:none; }
+  body[data-filing="24"] .filing-24 { display:block; }
+  /* a gathered book names itself and then every file it is shipped in */
+  .atlas-row.g24 .col-en .g24-name { color:var(--gold); }
+  .atlas-row.g24 .col-en .aw { font-size:.82rem; color:var(--muted); }
+  .atlas-row.g24 .col-en .aw:hover { color:var(--gold); }
   .col-att, .col-lic { min-width:0; display:flex; flex-wrap:wrap; align-items:baseline;
     gap:.1rem .4rem; }
   /* a chip that rides beside a reading is spaced off it; a chip that IS
@@ -629,13 +649,18 @@
      every row, whether or not a cell has anything in it. */
   @media (max-width:640px) {
     .colheads { display:none; }
+    /* TWO COLUMNS THAT DO NOT SHARE ROWS. The wrappers stop being invisible
+       here and become the columns themselves: the name with its
+       attestation under it, the Hebrew with its reading and then the
+       licence that reading is released under, each stack finding its own
+       height. Under one grid both stacks were forced onto shared rows, so
+       a licence sat wherever the taller of the two names ended — lined up
+       with the other licences and floating away from its own reading. */
     details.fam > summary .row:first-child, .atlas-row.built, .bookcard .row {
-      grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.15rem .7rem;
-      align-items:start; }
-    .col-en  { grid-column:1; grid-row:1; }
-    .col-he  { grid-column:2; grid-row:1; }
-    .col-att { grid-column:1; grid-row:2; }
-    .col-lic { grid-column:2; grid-row:2; }
+      display:flex; align-items:flex-start; gap:0 .7rem; }
+    .pair { display:flex; flex-direction:column; align-items:flex-start;
+      gap:.1rem; flex:1 1 0; min-width:0; }
+    .col-en, .col-he, .col-att, .col-lic { grid-column:auto; grid-row:auto; max-width:100%; }
     /* the attestation sits under the name, so it carries the name’s
        indent with it or the nesting reads as broken */
     .atlas-row.built .col-att { padding-inline-start:1.9rem; }
@@ -660,6 +685,18 @@
        and carries the whole of it on hover — a chip that printed the whole
        descriptor pushed the door sideways off a phone */
     max-width:11em; overflow:hidden; text-overflow:ellipsis; vertical-align:bottom; }
+  /* EXCEPT IN ITS OWN COLUMN. The attestation has a track of its own now, and
+     it was still being cut at eleven characters with the rest of that track
+     empty beside it — the ellipsis was solving a problem the columns had
+     already solved. In its cell it wraps to the width it was given. The
+     licence chip keeps the short form: it rides beside readings elsewhere on
+     this page, where there is no column to fill. */
+  .col-att .chip, details.fam > summary .col-att .chip { max-width:100%; white-space:normal; overflow:visible; text-overflow:clip; }
+  /* WHAT IS NOT HERE DOES NOT SHOUT. The count of corpuses with nothing
+     readable in them was the largest, brightest thing on the page — gold
+     small-caps at 1.15rem, counting what a reader cannot open. It reads in
+     the register of an absence now, the same faint the empty slots use. */
+  details.fam.waiting-fams > summary .en { font-size:.72rem; font-variant:normal; letter-spacing:.1em; color:var(--faint); }
   details.fam > summary .of[title] { cursor:help; }
   #wcard .w-open { display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; margin:.1rem 0 .45rem;
     padding-bottom:.4rem; border-bottom:1px solid var(--line); }
@@ -737,8 +774,8 @@
      on a wide screen, and a third row below them on a phone. Put on the
      name cell instead it is simply the first thing in that cell, at every
      width, and the four tracks stay four. */
-  details.fam > summary > .row:first-child > .col-en::before { content:"\25B8"; color:var(--gold-dim); font-size:.8rem; }
-  details.fam[open] > summary > .row:first-child > .col-en::before { content:"\25BE"; }
+  details.fam > summary > .row:first-child .col-en::before { content:"\25B8"; color:var(--gold-dim); font-size:.8rem; }
+  details.fam[open] > summary > .row:first-child .col-en::before { content:"\25BE"; }
   details.fam > summary:hover .en { color:var(--shesh); }
   .fgroups { display:flex; flex-direction:column; gap:.55rem; }
   .fgroups > .fold-line { display:block; margin:0; padding:.05rem .35rem; color:var(--faint); font-size:.76rem; }
@@ -5159,6 +5196,33 @@
     t = t.replace(/\b(iii)\b/g, "3").replace(/\b(ii)\b/g, "2").replace(/\b(i)\b/g, "1");
     return t.replace(/[^a-z0-9\u0590-\u05FF]+/g, "");
   };
+  // THE FILING THE READER COUNTS IN, remembered on this device. The shelf ships
+  // both shapes; this only says which one is shown, and it says it on the body
+  // so the search box's own [hidden] flag stays the search box's alone.
+  var FILING_KEY = "fh.door.filing";
+  (function () {
+    var picks = [].slice.call(document.querySelectorAll(".filing-pick .fp"));
+    if (!picks.length) return;
+    function show(v) {
+      if (v === "24") document.body.setAttribute("data-filing", "24");
+      else document.body.removeAttribute("data-filing");
+      picks.forEach(function (b) {
+        var on = b.getAttribute("data-filing") === (v === "24" ? "24" : "39");
+        b.classList.toggle("on", on);
+        b.setAttribute("aria-pressed", String(on));
+      });
+    }
+    var held = null;
+    try { held = localStorage.getItem(FILING_KEY); } catch (e) { /* a device that remembers nothing still reads */ }
+    if (held === "24") show("24");
+    picks.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var v = b.getAttribute("data-filing");
+        show(v);
+        try { localStorage.setItem(FILING_KEY, v); } catch (e) { /* the choice still stands on this page */ }
+      });
+    });
+  })();
   var atlasRows = [].slice.call(document.querySelectorAll(".atlas-row")).map(function (r) {
     var aw = r.querySelector(".aw");
     return { el: r, key: norm((r.getAttribute("data-p") || "") + " " + (aw ? aw.textContent : "") + " " + (r.getAttribute("href") || "")) };

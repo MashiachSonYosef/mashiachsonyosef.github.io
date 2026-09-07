@@ -142,6 +142,7 @@ const carriedTitles = [];
 const owedWords = new Map();          // surface → how many places the data owes it
 const owedKeys = new Set();           // route keys the tokens carry
 const zoneNames = new Set();          // the shelf's own addresses
+const TITLE_TOKENS = new Map();       // slug → the title tokens the zone claims
 const oweWord = (s) => owedWords.set(s, (owedWords.get(s) || 0) + 1);
 const zonesDir = join(K3, "data", "zones");
 // count-gate-rule-v1 · what the data owes the door is what the door may
@@ -165,10 +166,13 @@ if (existsSync(zonesDir)) {
       const z = JSON.parse(gunzipSync(readFileSync(join(zonesDir, zf))).toString("utf8"));
       zoneNames.add(zf.replace(/\.bin$/, ""));
       if (z.work_he) carriedTitles.push(z.work_he);
-      if (Array.isArray(z.work_he_tokens)) for (const t of z.work_he_tokens) {
-        oweWord(t.s);
-        if (t.k) owedKeys.add(t.k);
-        if (Array.isArray(t.w)) for (const c of t.w) if (c.k) owedKeys.add(c.k);
+      if (Array.isArray(z.work_he_tokens)) {
+        TITLE_TOKENS.set(zf.replace(/\.bin$/, ""), z.work_he_tokens);
+        for (const t of z.work_he_tokens) {
+          oweWord(t.s);
+          if (t.k) owedKeys.add(t.k);
+          if (Array.isArray(t.w)) for (const c of t.w) if (c.k) owedKeys.add(c.k);
+        }
       }
     } catch { /* a bin the walk cannot read is someone else's problem, not a licence to skip the scan */ }
   }
@@ -226,6 +230,41 @@ let ATLAS_NAMES = [];
   if (existsSync(lp)) {
     const L = JSON.parse(readFileSync(lp, "utf8"));
     for (const lf of L.families || []) if (lf.he) for (const t of lf.he_tokens || []) { ATLAS_NAMES.push(t.s); oweWord(t.s); if (t.k) owedKeys.add(t.k); }
+  }
+  // TWO FILINGS PRINT TWO SHELVES, and a title printed in both is owed twice.
+  // The door ships the thirty-nine files and the same books filed as the
+  // twenty-four the tradition counts, and a reader switches between them; both
+  // are in the page, one is shown. So a book that stands alone in its group
+  // prints its title in BOTH shelves and the data owes it twice, a book
+  // gathered with others prints only in the thirty-nine and is owed once, and
+  // a gathered book's own name prints only in the twenty-four and is owed
+  // once \u2014 and only where the route store attests every word of it, which is
+  // the same narrowing the door applies and this file re-derives rather than
+  // trusts. The teeth do not move: a word the data does not owe is still a
+  // word from nowhere, and one occurrence over is still one over.
+  {
+    const gp = join(K3, "data", "book-grouping-v1.json");
+    if (existsSync(gp) && TITLE_TOKENS.size) {
+      const G = JSON.parse(readFileSync(gp, "utf8"));
+      const covered = (G.groups || []).every((g) => (g.files || []).every((f) => TITLE_TOKENS.has(f) || !doorServes(f)));
+      const allServed = (G.groups || []).flatMap((g) => g.files || []).every((f) => TITLE_TOKENS.has(f));
+      if (covered && allServed) {
+        const { exactK } = await import("./k-normalization-v2.mjs");
+        const { openRouteStore } = await import("./gloss-store-v1.mjs");
+        const store = existsSync(join(K3, "data", "route-store", "index.json")) ? openRouteStore(join(K3, "data", "route-store")) : null;
+        for (const g of G.groups || []) {
+          if ((g.files || []).length === 1) {
+            // stands alone in the twenty-four: the same row is printed twice
+            for (const t of TITLE_TOKENS.get(g.files[0]) || []) oweWord(t.s);
+            continue;
+          }
+          if (!store) continue;
+          const toks = String(g.hebrew_name || "").split(/\s+/u).filter(Boolean);
+          const keys = toks.map((t) => { const k = exactK(t); return k && store.routesFor(k) ? k : null; });
+          if (toks.length && keys.every(Boolean)) toks.forEach((t, i) => { oweWord(t); owedKeys.add(keys[i]); });
+        }
+      }
+    }
     ATLAS_NAMES.sort((a, b) => b.length - a.length);
   }
 }
