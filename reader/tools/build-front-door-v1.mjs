@@ -326,25 +326,56 @@ const licenseName = (posture) => {
   if (!p) return "License unrecorded";
   return POSTURE_NAMES[p] || p;
 };
+// HOW OPEN A LICENCE IS, READ OFF THE RECORD THAT DECLARES IT. The owner's
+// ordering, 2026-09-07: full license first, then merely attested, then none.
+// "Full" is not this file's opinion — the declarations record gives every
+// posture its own export flag, its obligations and whether attribution is
+// required or a courtesy, so the order falls out of what each licence itself
+// says it demands. A posture the record does not declare sorts last, which is
+// the visible cue that a declaration is missing.
+const POSTURE_ROW = JSON.parse(readFileSync("tools/declarations-v1.json", "utf8")).export_postures;
+const licenceRank = (posture) => {
+  const row = POSTURE_ROW[String(posture || "")];
+  if (!row) return [3, 9, 9];
+  return [row.export ? 0 : 1, (row.obligations || []).length, row.attribution === "courtesy" ? 0 : 1];
+};
+// A NAME IS ATTESTED WHEN A RECORD READS IT, and the reading is found the same
+// way every other reading on this page is found: through the store's own pack
+// and sense split, case-insensitively. This used to compare the whole unsplit
+// route text to the title with === , which asked a stricter question than the
+// column's own head does — "who attests that name" — and answered no wherever
+// the store happened to write the name in lower case or inside a multi-sense
+// pack. Eighteen of the thirty-nine books showed a chip; thirty-two of them
+// have a record reading the name. Nehemiah was one of the fourteen: the store
+// reads it "nehemiah", the zone titles it "Nehemiah", and a case-sensitive
+// equals called that nobody. The word was never unattested — twenty-one routes
+// carry it, with their sources and their licences. Only the test was wrong.
 const titleReading = (tokens, en) => {
   const key = (tokens || []).map((t) => t.k).filter(Boolean)[0];
   if (!key) return null;
   const routes = STORE.routesFor(key);
   if (!routes) return null;
-  // Exact sense match only — a plain ";"-split cannot create a false exact
-  // equal (a fragment cut inside brackets keeps its bracket and matches
-  // nothing), so the store's own depth rule is not re-implemented here.
+  const want = String(en || "").trim().toLowerCase();
+  if (!want) return null;
   const hits = routes.filter((row) => {
-    const senses = String(row[1] || "").split(";").map((x) => x.trim());
-    return row[1] === en || senses.includes(en);
-  }).filter((row) => STORE.index.m_sources[row[3]]);
+    if (!STORE.index.m_sources[row[3]]) return false;
+    return STORE.packSplit(row[1]).some((pack) => {
+      const r = readingSplit(pack);
+      return !r.damaged && r.readings.some((x) => String(x).trim().toLowerCase() === want);
+    });
+  });
   if (!hits.length) return null;
+  // fullest licence first, and among equals the oldest source — the same
+  // antiquity rule the rest of the page reads by
   hits.sort((a, c) => {
+    const ra = licenceRank((STORE.index.m_sources[a[3]] || {}).licensePosture);
+    const rc = licenceRank((STORE.index.m_sources[c[3]] || {}).licensePosture);
+    for (let i = 0; i < ra.length; i += 1) if (ra[i] !== rc[i]) return ra[i] - rc[i];
     const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
     return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
   });
   const m = STORE.index.m_sources[hits[0][3]];
-  return { lic: licenseName(m.licensePosture), label: m.label || "", year: m.sourceYear || "" };
+  return { lic: licenseName(m.licensePosture), label: m.label || "", year: m.sourceYear || "", attests: hits.length };
 };
 // The M behind one printed reading: the oldest licensed route whose own text
 // divides — under the store's own pack and reading rules — to that exact
@@ -1487,7 +1518,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <!-- THE TWO CONTROLS SIT IN THE PAGE, not over it. They were fixed to the
        viewport's top right corner, which meant they crossed whatever happened
        to scroll under them: at 320px forty-six elements shared their band,
-       including the site's own name, and on a phone the licence chips and
+       including the site's own name, and on a phone the license chips and
        Hebrew of the rows passed beneath them all the way down. A control that
        covers the thing it is offered beside is not offered, it is in the way.
        In flow they cross nothing, and a book page's own way home already
@@ -2054,10 +2085,10 @@ ${page.sections.join("\n")}
        does not lecture a reader who came for a book.
        AND THE DECLARATION SAYS ITS JOB IN ITS OWN LENGTH. Every operative
        clause stands \u2014 the noncommercial terms and the date they were
-       declared, that this is how the NC records here are honoured, that a
-       carried record keeps its own licence, and that what this site adds is
+       declared, that this is how the NC records here are honored, that a
+       carried record keeps its own license, and that what this site adds is
        CC0. What went was the second telling of each. -->
-  <footer><p class="open-claim">Noncommercial: nothing sold, no advertising, no payment taken — declared 2026-08-30, standing as long as this page serves. That is how the records here released on noncommercial terms are honoured. Each carried record keeps its own licence, shown beside it wherever it prints. What this site adds — its pages, arrangement, receipts and words — is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>.</p></footer>
+  <footer><p class="open-claim">Noncommercial: nothing sold, no advertising, no payment taken — declared 2026-08-30, standing as long as this page serves. That is how the records here released on noncommercial terms are honored. Each carried record keeps its own license, shown beside it wherever it prints. What this site adds — its pages, arrangement, receipts and words — is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>.</p></footer>
 </main>
 </body>
 </html>
