@@ -177,9 +177,18 @@ if (existsSync(zonesDir)) {
   // first zone in shelf order — each owed on the door once, its key an owed
   // key, like every other data word. A hand-swapped verse is a word the
   // data does not owe, and fails here.
-  const firstZone = readdirSync(zonesDir)
+  // THE DEMO VERSE IS OWED ONLY WHERE THE DOOR PRINTS ONE. The door used to
+  // carry a live sample — the opening words of whichever book sorts first,
+  // each with its gloss — and those ten words are corpus text, so this file
+  // owed them. The owner had the panel switched off on 2026-09-06 (he could
+  // not tell what it was), and this clause went on owing words no page prints,
+  // which reads as ten words missing from a door that is correct. What is
+  // owed is read from the door itself rather than assumed.
+  const doorSrcPath = join(K3, "..", "index.html");
+  const doorHasDemo = existsSync(doorSrcPath) && /id="demo"/.test(readFileSync(doorSrcPath, "utf8"));
+  const firstZone = doorHasDemo ? readdirSync(zonesDir)
     .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin") && doorServes(x.replace(/\.bin$/, "")))
-    .sort()[0];
+    .sort()[0] : null;
   if (firstZone) {
     try {
       const z = JSON.parse(gunzipSync(readFileSync(join(zonesDir, firstZone))).toString("utf8"));

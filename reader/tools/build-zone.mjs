@@ -50,6 +50,11 @@ const storeDir = arg("--store", "data/route-store");
 const workId = arg("--work");
 const title = arg("--title");
 const titleHe = arg("--title-he", "");
+// Where a Hebrew title came from, carried onto the zone so the name on the
+// page can be traced to the record that gave it. A name with no record
+// behind it is the one string on a page that nothing stands under, which
+// is the fault this whole lane is built against.
+const titleHeFrom = arg("--title-he-from", "");
 const byline = arg("--byline", "");
 const coordLabels = arg("--coord-labels", "section,paragraph").split(",").map((x) => x.trim());
 const outPath = arg("--out");
@@ -594,6 +599,7 @@ const zone = {
     },
     ...(titleFromC0 ? { title_from_c0: titleFromC0 } : {}),
     ...(titleKeys ? { title_keys: titleKeys } : {}),
+    ...(titleHe && titleHeFrom ? { title_he_from: titleHeFrom } : {}),
     identity_oracle: {
       bridge: bridgePath.split("/").pop(),
       bridge_sha256: bridge.sha256,

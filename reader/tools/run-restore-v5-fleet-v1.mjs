@@ -48,6 +48,12 @@ const plan = existsSync(PLAN) ? JSON.parse(readFileSync(PLAN, "utf8")) : { works
 const planOf = (workId) => (plan.works || []).find((w) => w.work_id === workId) || null;
 const titleOf = (slug) => slug.split("-").map((w) => (/^i+$/u.test(w) ? w.toUpperCase() : w === "of" ? w : w.charAt(0).toUpperCase() + w.slice(1))).join(" ");
 
+// the corpus lane's count cards, read once: they carry each book's own Hebrew
+// name beside the counts this lane holds itself to
+const cardsDoc = JSON.parse(readFileSync(CARDS, "utf8"));
+const cards = new Map((cardsDoc.books || []).map((b) => [b.book, b]));
+const cardsEdition = cardsDoc.edition || "the corpus lane's count cards";
+
 const slugs = readdirSync(RDIR).filter((f) => f.endsWith(".csv.gz")).map((f) => f.replace(/\.csv\.gz$/u, "")).sort().filter((s) => !ONLY || ONLY.has(s));
 if (!slugs.length) die("NO_RESTORES", RDIR);
 const ledger = { schema_version: "RESTORE_V5_FLEET_LEDGER_V1", rule_id: "serve-from-restore-rule-v1-the-restore-is-the-text-the-split-is-this-lanes-the-rights-are-the-records", ran_on: STAMP, works: [] };
@@ -69,13 +75,25 @@ for (const slug of slugs) {
     "--coord-labels", (p && p.coord_labels) || "chapter,verse",
     "--license-links", (p && p.license_links && p.license_links !== "-") ? join(K3, p.license_links) : LINKS,
     "--count-witnesses", WITNESSES, "--out", out, "--stamp", STAMP];
-  if (p && p.title_he && p.title_he !== "-") zoneArgs.push("--title-he", p.title_he);
+  // THE BOOK'S OWN NAME, FROM THE LANE THAT COUNTED IT. Only genesis carried a
+  // Hebrew title, because only genesis had a plan row naming one — and the
+  // owner asked whether we really do not have the rest. We do: the corpus
+  // lane's count cards name all thirty-nine, in the edition's own Hebrew,
+  // and this loop already reads that file. A name read from a record is a
+  // name with something behind it; the plan still wins where it speaks,
+  // because a promoted record outranks a build input.
+  const cardHe = (cards.get(slug) || {}).he || "";
+  const titleHe = (p && p.title_he && p.title_he !== "-") ? p.title_he : cardHe;
+  const titleHeFrom = (p && p.title_he && p.title_he !== "-")
+    ? `the build plan (${p.basis || "promoted"})`
+    : cardHe ? `${CARDS.split("/").pop()} · ${cardsEdition}` : "";
+  if (titleHe) zoneArgs.push("--title-he", titleHe, "--title-he-from", titleHeFrom);
   try {
     const s2 = run(zoneArgs);
     const lines = s2.trim().split("\n");
     entry.zone = lines[0].split(": ").slice(1).join(": ");
     entry.measure = (lines.find((l) => l.includes("measure:")) || "").trim();
-    entry.title_he_from = p && p.title_he && p.title_he !== "-" ? `the plan (${p.basis})` : "none — no promoted record names this book in Hebrew";
+    entry.title_he_from = titleHeFrom || "none — no record on this disk names this book in Hebrew";
     // The title's key is attached inside build-zone, in its one pass, under
     // title-key-rule-v1. This loop ran name-the-titles-v1 over the finished
     // bin for one day and that was a patch: the file on the shelf was not an
