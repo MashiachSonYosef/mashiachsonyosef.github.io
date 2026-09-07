@@ -149,13 +149,16 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
     const censusFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "census", "index.html");
     check("the census stands at its own address", existsSync(censusFile), censusFile);
     FINISHED.push("/census/");
-    // And at the demonstrations, which is a page and not a book: hand-drawn
-    // mockups of what each mark does, standing apart from the shelf precisely
-    // so nothing on it can be mistaken for a work. The door links to it, so
-    // the door's links must be allowed to land there.
+    // The demonstrations were a page and not a book: one passage per rule,
+    // standing apart from the shelf so nothing on it could be mistaken for a
+    // work. The owner retired the PAGE on 2026-09-06, the day all thirty-nine
+    // books went live — every rule it showed is now visible on real text a
+    // reader can open, and he only wants the live ones. The zones and the
+    // builder stay on disk and stay guarded; what is gone is the publishing
+    // of them. So the door may still link there and need not: the address is
+    // required to be a lawful destination only while the page is built.
     const pocFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "demonstrations", "index.html");
-    check("the demonstrations stand at their own address", existsSync(pocFile), pocFile);
-    FINISHED.push("/demonstrations/");
+    if (existsSync(pocFile)) FINISHED.push("/demonstrations/");
   // and the reference pages: each group in the typed reference record
   // (data/reference-groups-v1.json, the owner's naming ruling) is a
   // published address the door points at

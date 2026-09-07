@@ -1165,9 +1165,24 @@ const demo = (() => {
 // mark. This file turns that into one index and eight reader pages; it
 // invents no sentence of its own about any rule.
 const RD_PATH = join(dirname(fileURLToPath(import.meta.url)), "..", "data", "rule-demonstrations-v1.json");
-const RD = existsSync(RD_PATH) ? JSON.parse(readFileSync(RD_PATH, "utf8")) : null;
+// THE DEMONSTRATIONS PAGE IS RETIRED. It showed one rule per passage, apart
+// from the shelf so nothing on it could be mistaken for a work — and it was
+// the right thing while nothing was readable. On 2026-09-06 all thirty-nine
+// books went live and every rule it demonstrated is now visible on real text
+// a reader can open at its own address, so the owner retired the page: he is
+// going through the live books one by one and only wants those.
+//
+// What is retired is the PUBLISHING. The record, the builder, the eight zones
+// and every guard that holds them stay on disk and stay green, because they
+// hold the builder honest whether or not a page is served from them. Turning
+// the page back on is this one word.
+const RD_PUBLISH = false;
+const RD = RD_PUBLISH && existsSync(RD_PATH) ? JSON.parse(readFileSync(RD_PATH, "utf8")) : null;
 
-const pocLink = `  <p class="poc-link"><a href="/demonstrations/">what each part of the frame looks like when it works</a> \u2014 the eight rules of the frame, each on a passage the reader itself opens</p>`;
+// The line that pointed at the demonstrations. The page is retired, so the
+// line is dead; it is kept as one string rather than deleted so that turning
+// RD_PUBLISH back on restores the door's way in with it.
+const pocLink = RD ? `  <p class="poc-link"><a href="/demonstrations/">what each part of the frame looks like when it works</a></p>` : "";
 
 const demoHtml = demo ? `  <section id="demo" aria-label="The reader, working">
     <p class="demo-lab">the reader, working — press any word</p>
@@ -1847,7 +1862,7 @@ ${page.sections.join("\n")}
   <!-- A book's own title is corpus text and is not printed here. This page
        carries no records, so it can cite nothing; it says only how each book is
        commonly named, and the title itself waits inside, where it opens. -->
-  <footer><a href="/demonstrations/">the rules of the frame, each shown on a passage this reader opens</a> \u00b7 Every record carried here keeps its own licence, shown beside it wherever it prints. The counts this build measured, at their exact grains, stand in <a href="/front-door-counts-receipt-v1.json">the count receipt</a> \u2014 recomputed from the books\u2019 own bytes every time, and no longer printed across the front page, where four figures in the billions told a reader nothing.
+  <footer>Every record carried here keeps its own licence, shown beside it wherever it prints. The counts this build measured, at their exact grains, stand in <a href="/front-door-counts-receipt-v1.json">the count receipt</a> \u2014 recomputed from the books\u2019 own bytes every time, and no longer printed across the front page, where four figures in the billions told a reader nothing.
   <p class="open-claim">This site is noncommercial: nothing is sold here, no advertising runs here, and no payment is taken here — declared 2026-08-30, and standing as long as this page serves. Some of the dictionary records carried here were released under noncommercial terms, and this declaration is how those terms are honored. Every carried record keeps its own license, shown beside it wherever it prints. Everything this site adds of its own — its pages, its arrangement, its receipts, its words — is dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>: take it, reuse it, build on it, no permission needed. What each carried record allows is the record's own license to say.</p></footer>
 </main>
 </body>
@@ -2147,7 +2162,7 @@ writeFileSync(join(OUT, "census", "index.html"), censusPageDoc);
 // right and is the reason this page exists separately. On the door, a typed
 // string sits beside strings the chain carried and a reader cannot tell which
 // is which. Here, the page says what it is before it says anything else.
-{
+if (RD) {
   // The index says the eight rules and links each to its passage. It prints
   // no Hebrew at all: every character of every passage is in the zone the
   // link opens, where the reader's own card answers for it.
