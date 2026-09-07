@@ -605,19 +605,40 @@
   /* A book sits under its corpus, and the eye should be able to see that
      without reading anything: the name is indented, and only the name, so
      the other three columns stay in the lines the heads named. */
-  .atlas-row.built .col-en { padding-inline-start:1.15rem; }
+  .atlas-row.built .col-en { padding-inline-start:1.9rem; }
   .col-att { grid-column:2; }
   .col-he { grid-column:3; }
   .col-lic { grid-column:4; }
   .col-att, .col-lic { min-width:0; display:flex; flex-wrap:wrap; align-items:baseline;
     gap:.1rem .4rem; }
+  /* a chip that rides beside a reading is spaced off it; a chip that IS
+     the whole cell must start where its column starts, or the column is
+     strict everywhere except to the eye */
+  .col-att > .chip:first-child, .col-lic > .chip:first-child { margin-inline-start:0; }
   .atlas-row .fam-he { margin-inline-start:0; }
+  /* THE PHONE KEEPS ITS COLUMNS. This block used to dissolve the four
+     cells into one wrapping flex line, and the result was that every
+     row broke in a different place: a book with no attestation put its
+     name, Hebrew and licence on one line, and the book under it put
+     three on the first line and the licence alone on the second.
+     Nothing lined up with anything. So the narrow screen folds the
+     four tracks into two rather than abandoning them: the name and
+     the work’s own Hebrew on the first line, and under each the
+     chip that answers for it — who attests the name, what the
+     reading is released under. Same four cells, same two columns,
+     every row, whether or not a cell has anything in it. */
   @media (max-width:640px) {
     .colheads { display:none; }
     details.fam > summary .row:first-child, .atlas-row.built, .bookcard .row {
-      display:flex; flex-wrap:wrap; }
-    .col-en, .col-att, .col-he, .col-lic { display:contents; }
-    .atlas-row .fam-he { margin-inline-start:.45rem; }
+      grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.15rem .7rem;
+      align-items:start; }
+    .col-en  { grid-column:1; grid-row:1; }
+    .col-he  { grid-column:2; grid-row:1; }
+    .col-att { grid-column:1; grid-row:2; }
+    .col-lic { grid-column:2; grid-row:2; }
+    /* the attestation sits under the name, so it carries the name’s
+       indent with it or the nesting reads as broken */
+    .atlas-row.built .col-att { padding-inline-start:1.9rem; }
   }
     .atlas-row .fam-he .he { font-size:.92rem; color:var(--muted); }
   .col-he .fam-he, details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
@@ -710,8 +731,14 @@
   #wshade { position:fixed; inset:0; background:var(--shade); z-index:69; }
   #wshade[hidden] { display:none; }
   details.fam > summary .of { color:var(--faint); font-size:.74rem; font-variant:normal; letter-spacing:normal; }
-  details.fam > summary > .row:first-child::before { content:"\25B8"; color:var(--gold-dim); font-size:.8rem; }
-  details.fam[open] > summary > .row:first-child::before { content:"\25BE"; }
+  /* THE FOLD ARROW IS PART OF THE NAME, not a fifth column. It used to hang
+     off the row itself, and a row is a grid — so the arrow became a grid
+     item and got auto-placed: a whole row of its own above the four cells
+     on a wide screen, and a third row below them on a phone. Put on the
+     name cell instead it is simply the first thing in that cell, at every
+     width, and the four tracks stay four. */
+  details.fam > summary > .row:first-child > .col-en::before { content:"\25B8"; color:var(--gold-dim); font-size:.8rem; }
+  details.fam[open] > summary > .row:first-child > .col-en::before { content:"\25BE"; }
   details.fam > summary:hover .en { color:var(--shesh); }
   .fgroups { display:flex; flex-direction:column; gap:.55rem; }
   .fgroups > .fold-line { display:block; margin:0; padding:.05rem .35rem; color:var(--faint); font-size:.76rem; }
