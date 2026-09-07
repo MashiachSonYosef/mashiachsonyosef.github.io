@@ -576,7 +576,7 @@
   /* the hover, in the page's colours: linen or panel by the reader's face,
      a gold-dim edge, rounded like every other card here, and narrow
      enough to read as a sentence rather than a banner */
-  .tip { position:fixed; z-index:60; max-width:26rem; padding:.45rem .6rem;
+  .tip { position:fixed; z-index:60; max-width:min(26rem, calc(100vw - 1.4rem)); padding:.45rem .6rem;
     background:var(--panel); color:var(--ink); border:1px solid var(--gold-dim);
     border-radius:.5rem; box-shadow:var(--shadow-card); font-size:.76rem;
     line-height:1.45; pointer-events:none; }
@@ -601,6 +601,19 @@
   /* placed, not left to source order: the Hebrew column carries right-to-left
      text and the grid was seating it first. Naming the track is the one
      way this cannot drift. */
+  /* A ROW IS ONE THING, AND NOW IT LOOKS LIKE ONE. The owner drew a box
+     round the shelf head and round a book row, 2026-09-07. Four cells with
+     independent stacks read as four columns of loose parts until something
+     says where one book ends and the next begins — especially on a phone,
+     where a wrapped attestation can be taller than the name beside it. The
+     hairline is the page’s own line colour and the ground is untouched, so
+     the shelf gains a grid and not a stack of cards. */
+  .atlas-row.built, details.fam > summary .row:first-child {
+    border:1px solid var(--line); border-radius:.55rem; padding:.4rem .6rem; }
+  .atlas-row.built + .atlas-row.built { margin-top:.3rem; }
+  .atlas-row.g24 { border-color:var(--gold-dim); }
+  /* the head of a shelf is the frame round its books, not another book */
+  details.fam > summary .row:first-child { border-color:var(--gold-dim); background:var(--hover-wash); }
   .pair { display:contents; }
   .col-en { grid-column:1; }
   /* A book sits under its corpus, and the eye should be able to see that
@@ -627,6 +640,11 @@
   body[data-filing="24"] .filing-24 { display:block; }
   /* a gathered book names itself and then every file it is shipped in */
   .atlas-row.g24 .col-en .g24-name { color:var(--gold); }
+  .atlas-row.g24 .col-en { align-items:flex-start; }
+  .atlas-row.g24 .g24-name { flex:0 0 100%; }
+  .atlas-row.g24 .g24-files { display:flex; flex-wrap:wrap; gap:.05rem .6rem; margin-top:.2rem;
+    padding:.25rem .55rem; border:1px solid var(--line); border-radius:.5rem;
+    background:var(--hover-wash); max-width:100%; min-width:0; }
   .atlas-row.g24 .col-en .aw { font-size:.82rem; color:var(--muted); }
   .atlas-row.g24 .col-en .aw:hover { color:var(--gold); }
   .col-att, .col-lic { min-width:0; display:flex; flex-wrap:wrap; align-items:baseline;
@@ -870,13 +888,14 @@
   a, summary, button, input { transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease; }
   :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
   @media (prefers-reduced-motion: reduce) { a, summary, button, input { transition: none; } }
-  .face { position:fixed; top:.9rem; right:.9rem; z-index:80; border:1px solid var(--line);
+  .topbar { display:flex; justify-content:flex-end; gap:.4rem; margin:0 0 .5rem; }
+  .face { border:1px solid var(--line);
     border-radius:999px; background:var(--panel); color:var(--muted); font:inherit;
     font-size:.72rem; padding:.12rem .7rem; cursor:pointer; }
   .face:hover { color:var(--gold); border-color:var(--gold-dim); }
   /* the census stands at its own address; the door wears the way there in
      the same corner the faces live in, one step down */
-  a.alt-face { top:3.1rem; text-decoration:none; }
+  a.alt-face { text-decoration:none; }
   :root { --wash-active: rgba(234,200,111,.16); }
   :root[data-scheme="day"] { --wash-active: rgba(138,107,38,.14); }
   .bookcard .stamp, .atlas-row .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; flex-basis:100%; }
@@ -909,18 +928,19 @@
 </style>
 </head>
 <body>
-<button id="face" class="face" type="button" title="the other face of the page">day</button>
-<a class="face alt-face" href="/" title="back to the shelf">the door</a>
 <script>
-{
+// The button it names now stands inside the page rather than fixed over it,
+// so this waits for the page instead of assuming the button is already there.
+document.addEventListener("DOMContentLoaded", () => {
   const face = document.getElementById("face");
+  if (!face) return;
   const nameOther = () => { face.textContent = document.documentElement.dataset.scheme === "day" ? "night" : "day"; };
   nameOther();
   face.addEventListener("click", () => {
     window.__face.set(document.documentElement.dataset.scheme === "day" ? "night" : "day");
     nameOther();
   });
-}
+});
 </script>
 <main
     data-text-input-byte-rule="EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1"
@@ -938,6 +958,15 @@
        was built from; they carried on the counts block until that block came
        off the page, and they are provenance rather than display, so they moved
        here rather than going with it. -->
+  <!-- THE TWO CONTROLS SIT IN THE PAGE, not over it. They were fixed to the
+       viewport's top right corner, which meant they crossed whatever happened
+       to scroll under them: at 320px forty-six elements shared their band,
+       including the site's own name, and on a phone the licence chips and
+       Hebrew of the rows passed beneath them all the way down. A control that
+       covers the thing it is offered beside is not offered, it is in the way.
+       In flow they cross nothing, and a book page's own way home already
+       works this way — so the two faces of the site now agree. -->
+  <div class="topbar"><button id="face" class="face" type="button" title="the other face of the page">day</button><a class="face alt-face" href="/" title="back to the shelf">the door</a></div>
   <h1>the census</h1>
   <p class="sub">Every work the bridge records that does not serve yet. Nothing here is hidden and nothing is promised: each row carries its recorded id, its measured size, and — on its card — what it awaits. The same records, the same cards, the same laws as the door.</p>
   <!-- The door names itself and offers the books. Two lines stood here — how
@@ -5649,7 +5678,11 @@
     if (!t) return;
     tip.textContent = t; tip.hidden = false;
     var r = el.getBoundingClientRect(), tr = tip.getBoundingClientRect();
-    var x = Math.min(Math.max(8, r.left), window.innerWidth - tr.width - 8);
+    // the right-edge clamp can go negative when the box is wider than the
+    // screen, and a Math.min then chooses the negative and puts the note off
+    // the left edge — which is how a phone got a hover it could only read
+    // half of. Eight pixels is the floor, both sides.
+    var x = Math.max(8, Math.min(Math.max(8, r.left), window.innerWidth - tr.width - 8));
     var y = r.bottom + 8 + tr.height > window.innerHeight ? r.top - tr.height - 8 : r.bottom + 8;
     tip.style.left = Math.round(x) + "px"; tip.style.top = Math.round(Math.max(8, y)) + "px";
   }

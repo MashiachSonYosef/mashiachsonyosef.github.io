@@ -2698,6 +2698,36 @@
     // the word sits high enough for the card to open beneath it. The word moves
     // with the page, which is a thing a reader can follow; the card appearing
     // over the text is not.
+    // FIT FIRST, MOVE ONLY IF IT STILL WILL NOT FIT. The card gives up height
+    // rather than position — it says so below and it meant it — but it was
+    // measuring the room only AFTER deciding to scroll, so a card asking for
+    // four fifths of the screen (709px of a 900px phone) made the word's foot
+    // have to be inside the top fifth, and nearly every press moved the page.
+    // Measured: pressing a word scrolled the document 346px, so every word on
+    // screen jumped that far from the finger that pressed it. Nothing was
+    // reflowing — the card is fixed and the document did not change height —
+    // the page was simply being moved out from under the reader to make room.
+    // So the card is capped to the room already beneath the word first. When
+    // that room can hold it, the page does not move at all; when it cannot,
+    // the scroll below runs exactly as it did, and is now the rare case it
+    // was written for. The owner, 2026-09-07: opening a hud moves the Hebrew
+    // under it, very confusing.
+    const FLOOR = 200;
+    const roomNow = window.innerHeight - pad - rect.bottom - pad;
+    // set whether or not the card looks like it needs it: at this moment the
+    // card is a shell whose readings have not rendered, so asking "is it taller
+    // than the room" reads 29px and takes no cap, and the grown card then goes
+    // past the room it was never measured against. The block below already
+    // learned this on 2026-08-30; this one inherited the lesson by making the
+    // same mistake first.
+    if (roomNow >= FLOOR) {
+      hud.style.maxHeight = `${Math.floor(roomNow)}px`;
+      // the same law as below: a card that cannot hold a row of every band at
+      // that height does not hold them at that height, and takes the scroll
+      // instead of standing there with dead controls in it
+      if (fitBands() === false) { hud.style.maxHeight = ""; fitBands(); }
+      h = hud.offsetHeight || 0;
+    }
     const want = window.innerHeight - pad - h - pad;   // where the word's foot has to be
     if (rect.bottom > want) {
       const by = Math.min(rect.bottom - want, Math.max(0, rect.top - pad));
@@ -2712,7 +2742,6 @@
     // things in less room. A card that has to shrink past what it can usefully
     // hold is the only case that still goes above.
     const room = window.innerHeight - pad - rect.bottom - pad;
-    const FLOOR = 200;
     // The budget is set whether or not the card currently needs it: a card
     // is measured here before its readings render, so "h > room" read a
     // 29px shell, took no cap, and the full card later grew to the
