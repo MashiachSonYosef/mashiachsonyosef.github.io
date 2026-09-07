@@ -266,7 +266,24 @@
     }
   }
   document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · ${SITE}`;
-  document.getElementById("byline").textContent = zone.byline || "";
+  // THE CREDIT, FOLDED, WITH ITS TERMS STILL IN THE OPEN. The full byline is
+  // unchanged and one press away; the summary carries the two facts a licence
+  // actually requires a reader to be able to see — which edition this is, and
+  // what it is released under — and both are read from the zone's own
+  // structured fields, never parsed back out of the credit sentence.
+  {
+    const bl = document.getElementById("byline"), fold = document.getElementById("bylineFold"),
+          sum = document.getElementById("bylineSum");
+    bl.textContent = zone.byline || "";
+    if (zone.byline) {
+      const ro = ((zone.emitted_from || {}).walk || {}).restore_oracle || null;
+      const lic = ((((zone.emitted_from || {}).walk || {}).rights) || {}).raw_license || "";
+      sum.replaceChildren("source");
+      if (ro && ro.edition) sum.append(` \u00b7 ${ro.edition}`);
+      if (lic) { const c = document.createElement("span"); c.className = "lic"; c.textContent = lic; sum.append(" \u00b7 ", c); }
+      fold.hidden = false;
+    }
+  }
   const ac = zone.emitted_from.acquisition, wk = zone.emitted_from.walk, oc = zone.emitted_from.identity_oracle;
   // What this is, in one line. Everything the zone can prove about itself used
   // to print here, because when this page was first written there was nowhere
@@ -307,6 +324,7 @@
   // THE STAMP STRIP. One row per witness the zone was stamped beside; the
   // difference is ours less theirs, sign always; a measure nobody published
   // a figure for is a row in the page's own linen that says so.
+  let deskShown = false;
   {
     const st = zone.count_stamp, el = document.getElementById("stamp");
     const instrument = !!((zone.emitted_from || {}).test_instrument);
@@ -314,12 +332,42 @@
       const AX = { verses: "verses", words: "words · read", words_written: "words · written", letters: "letters · written", letters_read: "letters · read" };
       const CLS = { COUNTED_THIS_TEXT: "counted this text", THE_MASORAH: "the masorah", LATER_AUTHORITY: "later authority", TALMUD_GEONIM: "Talmud, Geonim", HELD_EDITION: "held edition", NO_WITNESS: "no witness" };
       const n = (x) => Number(x).toLocaleString();
-      const head = document.createElement("p"); head.className = "stamp-head";
-      head.append("the count · ");
-      const ours = document.createElement("span"); ours.className = "ours";
-      ours.textContent = `${n(st.ours.words)} words read · ${n(st.ours.words_written)} written · ${n(st.ours.letters)} letters · ${n(st.ours.verses)} verses · ${n(st.ours.c0_off)} scribal marks`;
-      head.append(ours);
-      el.append(head);
+      // THE DESK: five figures, each under the axis it is counted on and over
+      // what the witnesses say about that axis \u2014 one mark per witness row in
+      // the stamp's own order, gold where a witness agrees, the signed
+      // difference in scarlet where one does not. Nobody is ranked and nobody
+      // is summarised away; the table below is still the whole comparison,
+      // witness by witness, and an axis no witness published says so.
+      const DESK = [
+        ["verses", "verses", st.ours.verses],
+        ["words", "words \u00b7 read", st.ours.words],
+        ["words_written", "words \u00b7 written", st.ours.words_written],
+        ["letters", "letters", st.ours.letters],
+        [null, "scribal marks", st.ours.c0_off],
+      ];
+      const desk = document.createElement("div"); desk.className = "desk";
+      for (const [axis, label, value] of DESK) {
+        const cell = document.createElement("span"); cell.className = "cell";
+        const k = document.createElement("span"); k.className = "k"; k.textContent = label;
+        const v = document.createElement("span"); v.className = "v"; v.textContent = n(value);
+        const d = document.createElement("span"); d.className = "d";
+        const mine = axis ? st.rows.filter((r) => r.axis === axis) : [];
+        if (!mine.length) {
+          const q = document.createElement("span");
+          q.textContent = "\u00b7"; q.title = "nobody published a figure on this axis";
+          d.append(q);
+        } else for (const r of mine) {
+          const m = document.createElement("span");
+          const ex = r.verdict === "EXACT", df = r.verdict === "DIFFERS";
+          m.className = ex ? "exact" : df ? "differs" : "";
+          m.textContent = ex ? "\u25CF" : df ? (r.delta > 0 ? "+" : "\u2212") + n(Math.abs(r.delta)) : "\u00b7";
+          m.title = `${r.witness || "nobody published a figure on this axis"}${r.theirs == null ? "" : ` \u2014 ${n(r.theirs)}`}`;
+          d.append(m);
+        }
+        cell.append(k, v, d);
+        desk.append(cell);
+      }
+      el.append(desk);
       const table = document.createElement("table");
       st.rows.forEach((r, i) => {
         const tr = document.createElement("tr"); tr.className = String(r.verdict || "").toLowerCase();
@@ -341,10 +389,11 @@
       const note = document.createElement("p");
       note.className = same ? "stamp-note" : "stamp-warn";
       note.textContent = same
-        ? `ours is this page measured as drawn, and it agrees with the stamp the builder wrote; theirs is each witness's own figure on the axis named; the difference is ours less theirs. Nothing is adjusted and nothing is withheld for differing.`
+        ? `ours, this page measured as drawn \u00b7 theirs, each witness's own figure \u00b7 the difference is ours less theirs, and nothing is adjusted to close one.`
         : `the page's own measure of the sections it draws (${n(pageMeasure.words)} words read, ${n(pageMeasure.letters)} letters, ${n(pageMeasure.verses)} verses) does not agree with the stamp the builder wrote (${n(st.ours.words)}, ${n(st.ours.letters)}, ${n(st.ours.verses)}); the stamp stands on the builder's measure and this line says the page could not reproduce it.`;
       el.append(note);
       el.hidden = false;
+      deskShown = true;
     }
   }
   const renderedWordTotal = (zone.sections || []).reduce((t, s) => t + (s.words || []).length, 0);
@@ -391,7 +440,14 @@
     // plain name; a zone that carries no marks reads as it always did.
     const unitName = ((zone.emitted_from || {}).coordinate_labels || {}).minor || "section";
     const nSec = zone.counts.sections;
-    if (wk && wk.restore_oracle) {
+    // A SENTENCE ONLY WHERE THERE IS NO DESK. Where the count stamp stands, the
+    // desk above already prints every figure this line used to spell out, and
+    // the edition it was served from is on the source fold's own summary. A
+    // zone with no stamp (nothing has counted it beside a witness yet) still
+    // says its measure here, because otherwise it would say it nowhere.
+    if (deskShown) {
+      /* the desk said it */
+    } else if (wk && wk.restore_oracle) {
       meta.append(`${pageMeasure.words.toLocaleString()} words on the read axis in ${nSec.toLocaleString()} ${unitName}${nSec === 1 ? "" : "s"}, with ${pageMeasure.c0_off.toLocaleString()} scribal mark${pageMeasure.c0_off === 1 ? "" : "s"} each at its own position`
         + (wk && wk.restore_oracle ? `, served from the ${wk.restore_oracle.edition} edition as the corpus lane restored it. ` : `. `));
     } else {

@@ -174,6 +174,20 @@
   header.top h1 .en-t { color: var(--gold); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
   /* a credit line can carry an unbreakable witness id longer than a phone is wide; it wraps rather than widening the page */
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); overflow-wrap: anywhere; }
+  /* THE SOURCE FOLDS, AND ITS TERMS DO NOT. The credit is a document id, an
+     OID, a percent-encoded URL and a licence — nine lines on a phone, standing
+     between the reader and the book. It folds; the summary keeps the edition
+     and the licence in the open, so what the licence requires shown is shown
+     whether or not anyone presses anything, and the full credit is one press
+     away and unchanged. */
+  .byline-fold { margin: 0.5rem 0 0; max-width: 62rem; }
+  .byline-fold > summary { list-style: none; cursor: pointer; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .byline-fold > summary::-webkit-details-marker { display: none; }
+  .byline-fold > summary::before { content: "\25B8 "; color: var(--gold-dim); }
+  .byline-fold[open] > summary::before { content: "\25BE "; }
+  .byline-fold > summary .lic { color: var(--gold); }
+  .byline-fold > summary:hover { color: var(--muted); }
   #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; max-width: 62rem; }
   .wb.ov .w { background: var(--chip-bg); }
   .wb.ov-first .w { border-start-start-radius: 0.25rem; border-end-start-radius: 0.25rem; padding-inline-start: 0.15rem; }
@@ -202,8 +216,25 @@
      number and the glyph and never carries the meaning alone. The rows light
      once, top to bottom, and hold still for a reader who asked for still. */
   #stamp { margin: 0.6rem 0 0; max-width: 62rem; border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim); padding: 0.35rem 0 0.4rem; font-size: 0.8rem; overflow-x: auto; }
-  #stamp .stamp-head { font-variant: small-caps; letter-spacing: 0.12em; color: var(--gold); font-size: 0.8rem; margin: 0 0 0.3rem; }
-  #stamp .stamp-head .ours { color: var(--ink); letter-spacing: 0.02em; font-variant: normal; font-variant-numeric: tabular-nums; }
+  /* THE DESK. The count used to be a sentence, and a sentence is the one shape
+     a number cannot be read in at a glance. Five figures, each under its axis,
+     each over what the witnesses say about that axis: a mark per witness in
+     the stamp's own order, gold where they agree and scarlet with the signed
+     difference where they do not. No witness is put ahead of another and none
+     is summarised away; the table underneath is still the whole comparison,
+     witness by witness. Owner, 2026-09-07: more space, fewer words. */
+  #stamp .desk { display: grid; grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+    gap: 0.5rem 1.2rem; margin: 0.15rem 0 0.7rem; }
+  #stamp .desk .cell { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+  #stamp .desk .k { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+  #stamp .desk .v { font-family: ui-monospace, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums;
+    font-size: 1.45rem; line-height: 1.1; color: var(--ink-strong); }
+  #stamp .desk .d { font-family: ui-monospace, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums;
+    font-size: 0.7rem; color: var(--faint); display: flex; gap: 0.45rem; flex-wrap: wrap; }
+  #stamp .desk .d .exact { color: var(--gold); }
+  #stamp .desk .d .differs { color: var(--shani); font-weight: 600; }
+  @media (max-width: 560px) { #stamp .desk { grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr)); }
+    #stamp .desk .v { font-size: 1.2rem; } }
   #stamp table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
   #stamp td { padding: 0.1rem 0.7rem 0.1rem 0; vertical-align: baseline; white-space: nowrap; line-height: 1.45; }
   #stamp td.wit { white-space: normal; color: var(--muted); max-width: 26rem; }
