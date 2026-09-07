@@ -138,9 +138,18 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
     ...zonesServed().map((slug) => `/${slug}`),
     ...plan.works.map((w) => `/${w.published_as}`),
   ])];
-  // The door also points at its own counts receipt — a record of the door,
-  // not a way out of it. It is the one non-book destination allowed.
-  FINISHED.push("/front-door-counts-receipt-v1.json");
+  // The door MAY point at its own counts receipt — a record of the door, not a
+  // way out of it: the one non-book destination allowed. ALLOWED, and since
+  // 2026-09-07 not required. The owner struck the count paragraph from the
+  // door that day ("id leave count info for book pages"): a figure about a
+  // book belongs beside that book, where the stamp prints it against every
+  // witness who published one. Nothing on the page links the receipt now. The
+  // receipt is still built, still recomputed from the books' own bytes, still
+  // embedded in the page's own DOM and still held there, byte for byte, by
+  // check-front-door-three-counts-v1 — so this assertion demanding the link
+  // would only be demanding the paragraph back.
+  const NOT_REQUIRED = ["/front-door-counts-receipt-v1.json"];
+  FINISHED.push(...NOT_REQUIRED);
   // And at the census — the register of every work the bridge records that
   // does not serve yet, standing at its own address since 2026-08-30 (the
   // owner's ask: not forgotten at the bottom of the home page). It is the
@@ -176,9 +185,14 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
   // the license text the declaration stands under
   const stray = splash.links.filter((h) => !FINISHED.includes(dest(h))
     && !/^https:\/\/creativecommons\.org\/publicdomain\//.test(String(h)));
+  const linked = splash.links.map(dest);
+  const missing = FINISHED.filter((f) => !NOT_REQUIRED.includes(f) && !linked.includes(f));
   check("every way off it lands on a finished book",
-    stray.length === 0 && FINISHED.every((f) => splash.links.map(dest).includes(f)),
-    `${splash.links.length} links · ${splash.links.join(" ")}${stray.length ? ` · stray: ${stray.join(" ")}` : ""}`);
+    stray.length === 0 && missing.length === 0,
+    // both directions, and each says which way it broke — this printed
+    // fifty-nine links and no verdict, so a page that had simply stopped
+    // linking one thing read as a page full of strays
+    `${splash.links.length} links${stray.length ? ` · stray: ${stray.join(" ")}` : ""}${missing.length ? ` · finished but unlinked: ${missing.join(" ")}` : ""}${stray.length || missing.length ? "" : ` · ${splash.links.join(" ")}`}`);
   // The door is built from the zones, so what it offers is what is there. A
   // commentary the zones carry and the door does not mention is the fault this
   // whole generator exists to make impossible — and a commentary named on the

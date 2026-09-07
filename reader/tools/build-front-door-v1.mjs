@@ -987,9 +987,9 @@ const familySection = (fam) => {
   // shelf, the search box opens whatever matches. Nothing rests open.
   const shelfBody = shelfRows.length
     ? rowsHtml(shelfRows).join("\n")
-    : `      <span class="of fold-line">nothing on this shelf serves yet — its ${n(s.works)} work${s.works === 1 ? " stands" : "s stand"} in the census below, each saying what it awaits</span>`;
+    : `      <span class="of fold-line">${n(s.works)} work${s.works === 1 ? "" : "s"} in <a href="/census/">the census</a></span>`;
   const censusNote = shelfRows.length && censusCount
-    ? `\n      <span class="of fold-line">${n(censusCount)} more work${censusCount === 1 ? "" : "s"} of this family stand${censusCount === 1 ? "s" : ""} in <a href="/census/">the census</a>, each saying what it awaits</span>`
+    ? `\n      <span class="of fold-line">${n(censusCount)} more in <a href="/census/">the census</a></span>`
     : "";
   // A family holding something a reader can open arrives open. The door exists
   // to offer books; a shelf that has them and shows a closed fold is offering
@@ -1278,7 +1278,7 @@ const waiting = families.filter((f) => !familyHasABook(f));
 const waitingWorks = waiting.reduce((t, f) => t + sums(f.rows).works, 0);
 const waitingFold = waiting.length
   ? `    <details class="fam waiting-fams">
-      <summary><span class="row"><span class="lab">corpuses with nothing readable yet</span><span class="en">${n(waiting.length)} groups \u00b7 ${n(waitingWorks)} works listed</span></span></summary>
+      <summary><span class="row"><span class="lab">corpuses with nothing readable yet</span><span class="en">${n(waiting.length)} groups \u00b7 ${n(waitingWorks)} works</span></span></summary>
 ${waiting.map(familySection).join("\n")}
     </details>`
   : "";
@@ -1890,8 +1890,18 @@ ${page.sections.join("\n")}
   <!-- A book's own title is corpus text and is not printed here. This page
        carries no records, so it can cite nothing; it says only how each book is
        commonly named, and the title itself waits inside, where it opens. -->
-  <footer>Every record carried here keeps its own licence, shown beside it wherever it prints. The counts this build measured, at their exact grains, stand in <a href="/front-door-counts-receipt-v1.json">the count receipt</a> \u2014 recomputed from the books\u2019 own bytes every time, and no longer printed across the front page, where four figures in the billions told a reader nothing.
-  <p class="open-claim">This site is noncommercial: nothing is sold here, no advertising runs here, and no payment is taken here — declared 2026-08-30, and standing as long as this page serves. Some of the dictionary records carried here were released under noncommercial terms, and this declaration is how those terms are honored. Every carried record keeps its own license, shown beside it wherever it prints. Everything this site adds of its own — its pages, its arrangement, its receipts, its words — is dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>: take it, reuse it, build on it, no permission needed. What each carried record allows is the record's own license to say.</p></footer>
+  <!-- THE COUNTS LEFT THE DOOR. The owner, 2026-09-07: leave count info for
+       book pages. A figure about a book belongs beside that book, where the
+       stamp already prints it against every witness who published one. The
+       receipt is still built, still recomputed from the books\u2019 own bytes,
+       and still embedded above for anything that reads this page; it just
+       does not lecture a reader who came for a book.
+       AND THE DECLARATION SAYS ITS JOB IN ITS OWN LENGTH. Every operative
+       clause stands \u2014 the noncommercial terms and the date they were
+       declared, that this is how the NC records here are honoured, that a
+       carried record keeps its own licence, and that what this site adds is
+       CC0. What went was the second telling of each. -->
+  <footer><p class="open-claim">Noncommercial: nothing sold, no advertising, no payment taken — declared 2026-08-30, standing as long as this page serves. That is how the records here released on noncommercial terms are honoured. Each carried record keeps its own licence, shown beside it wherever it prints. What this site adds — its pages, arrangement, receipts and words — is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>.</p></footer>
 </main>
 </body>
 </html>
