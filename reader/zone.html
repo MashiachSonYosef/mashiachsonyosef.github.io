@@ -609,7 +609,23 @@
   .wb.active .g { color: var(--sel); }
 
   /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
-  body.en .he-text { direction: ltr; text-align: left; }
+  /* THE HEBREW IS NEVER REORDERED, IN EITHER READER. This line set the corpus
+     text left-to-right in the English reader, so every word of the verse was
+     drawn in the reverse of the order it is read in — Genesis 1:1 ran
+     bereshit, bara, elohim from the LEFT. It was not a maqaf problem or a
+     gloss problem: the whole text was being served out of order, in the mode
+     a reader who cannot read Hebrew is most likely to be in, and least able
+     to catch it.
+     The owner's ruling, 2026-09-08: "i'd rather the english be offset, such
+     as within a single c0 or maqaf it's over the wrong hebrew, than serve
+     incorrect hebrew. the one thing you can't do is rearrange words we are
+     attempting to define by license."
+     So the ink keeps its direction and the English pays the cost: in this
+     reader the readings sit above their own words, and the sentence they
+     make runs right to left with the text. The law was already written —
+     parts-direction-rule-v1, the first part of a Hebrew row is the rightmost
+     — and its guard passed throughout, because it only ever looked at the
+     Hebrew reader. The rule was right; nothing was watching the other mode. */
   /* In the English reader the gloss is the text, not a label on it. It clamped
      at two lines for the same reason the Hebrew-side one clipped at one, and
      it comes off for the same reason: there is no longer a tail to hide. */

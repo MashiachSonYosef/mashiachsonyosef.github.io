@@ -31,6 +31,11 @@
 // the span checks judge that), or that a row of ENGLISH readings runs
 // left-to-right, which is correct and is left alone.
 //
+// It DOES now judge every reading mode the page offers, not only the one it
+// opens in. That exemption above is about a row of English readings and was
+// never meant to cover a row of Hebrew; for as long as this check existed it
+// covered it anyway, because nothing here ever pressed the English reader.
+//
 // Run: node tools/check-parts-read-right-to-left-v1.mjs <served zone url>
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 
@@ -112,6 +117,26 @@ const rows = [], seen = new Set();
 const keep = (found) => { for (const r of found) { const k = `${r.where}|${r.texts.join("|")}`; if (!seen.has(k)) { seen.add(k); rows.push(r); } } };
 keep(await SCAN());
 
+// AND IN THE OTHER READER. This check passed for as long as it has existed
+// while the English reader laid the whole corpus text out left to right —
+// Genesis 1:1 drawn bereshit, bara, elohim from the LEFT — because it only
+// ever looked at the reader the page opens in. Its own closing note said it
+// judged nothing about "a row of English readings, which runs left to right
+// and is meant to", and that exemption quietly covered the Hebrew row too.
+// A law about how Hebrew is laid out is a law in every mode the page has, so
+// the scan runs again in each of them. The mode this leaves the page in does
+// not matter: every row either mode has drawn is kept and judged together.
+const MODES = await page.evaluate(() => [...document.querySelectorAll(".mode-btn")].map((b) => b.textContent.trim()));
+for (const mode of MODES) {
+  const switched = await page.evaluate((m) => {
+    const btn = [...document.querySelectorAll(".mode-btn")].find((b) => b.textContent.trim() === m);
+    if (!btn) return false; btn.click(); return true;
+  }, mode);
+  if (!switched) continue;
+  await page.waitForTimeout(600);
+  keep(await SCAN());
+}
+
 // what a reader can press: a word of the text, and anything a card offers as a
 // further choice once it is open
 // The rows that matter are two presses deep: press a word, then press one of
@@ -159,6 +184,39 @@ for (const r of rows) {
   byParent.get(k).add(r.rtl ? "rtl" : "ltr");
 }
 const l3 = [...byParent.entries()].filter(([, s]) => s.size > 1).map(([k]) => `${k} holds rows running both ways`);
+// L4 · THE TEXT'S OWN LINE. Everything above judges a ROW — a container whose
+// children sit on one visual line — and the verse does not qualify: on a phone
+// it wraps, so max(top)-min(top) exceeds the tolerance and the whole line is
+// skipped. That is how the English reader laid the entire corpus out left to
+// right, in front of this check, and passed it. So the words of the text are
+// judged directly: grouped by the line they landed on, and within each line
+// the word the record puts first must be the word furthest right.
+const lineOrder = await page.evaluate(() => {
+  const bad = [];
+  for (const sec of document.querySelectorAll("section.seg .he-text")) {
+    const wbs = [...sec.querySelectorAll(":scope > .wb, :scope > .wjoin")].filter((e) => e.getClientRects().length);
+    const lines = new Map();
+    wbs.forEach((e, i) => {
+      const r = e.getBoundingClientRect();
+      const key = Math.round(r.top / 6);
+      if (!lines.has(key)) lines.set(key, []);
+      lines.get(key).push({ i, x: Math.round(r.left) });
+    });
+    for (const [, ws] of lines) {
+      if (ws.length < 2) continue;
+      // corpus order is document order; on a Hebrew line each next word must
+      // stand to the LEFT of the one before it
+      for (let k = 1; k < ws.length; k += 1) {
+        if (ws[k].x > ws[k - 1].x) { bad.push(`word ${ws[k - 1].i} at ${ws[k - 1].x} is left of word ${ws[k].i} at ${ws[k].x}`); break; }
+      }
+    }
+  }
+  return bad;
+});
+check("L4  the words of the text run right to left on every line they land on",
+  lineOrder.length === 0,
+  lineOrder.length ? `${lineOrder.length} line(s) laid out left to right \u2014 ${few(lineOrder, 2)}` : "every line leads from the right");
+
 check("L3  rows beside each other do not run in opposite directions", l3.length === 0,
   l3.length ? few(l3) : `${byParent.size} container(s), each consistent`);
 
