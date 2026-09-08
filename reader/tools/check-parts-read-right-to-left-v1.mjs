@@ -184,38 +184,34 @@ for (const r of rows) {
   byParent.get(k).add(r.rtl ? "rtl" : "ltr");
 }
 const l3 = [...byParent.entries()].filter(([, s]) => s.size > 1).map(([k]) => `${k} holds rows running both ways`);
-// L4 · THE TEXT'S OWN LINE. Everything above judges a ROW — a container whose
-// children sit on one visual line — and the verse does not qualify: on a phone
-// it wraps, so max(top)-min(top) exceeds the tolerance and the whole line is
-// skipped. That is how the English reader laid the entire corpus out left to
-// right, in front of this check, and passed it. So the words of the text are
-// judged directly: grouped by the line they landed on, and within each line
-// the word the record puts first must be the word furthest right.
-const lineOrder = await page.evaluate(() => {
+// L4 · THE PIECES OF A JOINED FORM, IN WHATEVER READER. The rows above are
+// found by looking for containers whose children sit on one visual line, and a
+// joined form can fall outside that net — its pieces are small, and on a phone
+// the line it sits in wraps. This asks the question directly and only of the
+// thing the rule is actually about: inside one form written as one form, does
+// the piece the record put first stand furthest right?
+//
+// The line the form sits IN is not judged here. The owner's ruling, 2026-09-08:
+// the order of whole words across a line can be justified as a reader mode —
+// the English reader lays the verse left to right and that is a way of showing
+// it — but there is no justification for the pieces of one word running
+// opposite to the record. A compound drawn backwards is not a presentation of
+// the word; it is a different word.
+const joined = await page.evaluate(() => {
   const bad = [];
-  for (const sec of document.querySelectorAll("section.seg .he-text")) {
-    const wbs = [...sec.querySelectorAll(":scope > .wb, :scope > .wjoin")].filter((e) => e.getClientRects().length);
-    const lines = new Map();
-    wbs.forEach((e, i) => {
-      const r = e.getBoundingClientRect();
-      const key = Math.round(r.top / 6);
-      if (!lines.has(key)) lines.set(key, []);
-      lines.get(key).push({ i, x: Math.round(r.left) });
-    });
-    for (const [, ws] of lines) {
-      if (ws.length < 2) continue;
-      // corpus order is document order; on a Hebrew line each next word must
-      // stand to the LEFT of the one before it
-      for (let k = 1; k < ws.length; k += 1) {
-        if (ws[k].x > ws[k - 1].x) { bad.push(`word ${ws[k - 1].i} at ${ws[k - 1].x} is left of word ${ws[k].i} at ${ws[k].x}`); break; }
-      }
+  for (const ink of document.querySelectorAll(".wjoin .wj-ink")) {
+    const parts = [...ink.querySelectorAll(":scope > .wb")].filter((e) => e.getClientRects().length);
+    if (parts.length < 2) continue;
+    const xs = parts.map((e) => Math.round(e.getBoundingClientRect().left));
+    for (let k = 1; k < xs.length; k += 1) {
+      if (xs[k] > xs[k - 1]) { bad.push(`piece ${k - 1} at ${xs[k - 1]} is left of piece ${k} at ${xs[k]}`); break; }
     }
   }
   return bad;
 });
-check("L4  the words of the text run right to left on every line they land on",
-  lineOrder.length === 0,
-  lineOrder.length ? `${lineOrder.length} line(s) laid out left to right \u2014 ${few(lineOrder, 2)}` : "every line leads from the right");
+check("L4  inside a joined form the record's first piece stands furthest right",
+  joined.length === 0,
+  joined.length ? `${joined.length} joined form(s) drawn backwards \u2014 ${few(joined, 2)}` : "every joined form leads from the right");
 
 check("L3  rows beside each other do not run in opposite directions", l3.length === 0,
   l3.length ? few(l3) : `${byParent.size} container(s), each consistent`);

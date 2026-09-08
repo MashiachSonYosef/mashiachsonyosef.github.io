@@ -543,7 +543,14 @@
   .wjoin { white-space: nowrap; display: inline-flex; flex-direction: column;
     align-items: center; vertical-align: top; margin: 0 0.16rem 0.55rem; }
   .wjoin .wj-ink { display: inline-flex; align-items: flex-start;
-    border-bottom: 1px solid var(--gold-dim); }
+    border-bottom: 1px solid var(--gold-dim);
+    /* THE PIECES NEVER TURN AROUND. This row inherited its direction from
+       whatever container it landed in, so in the English reader a maqaf
+       compound drew its second piece first — the record's own order,
+       reversed, inside a single form. parts-direction-rule-v1 already says
+       the first part of a Hebrew row is the rightmost; it says nothing about
+       which reader is open, and neither does this. */
+    direction: rtl; }
   .wjoin .wb { margin: 0; }
   .wjoin .wb > .g { display: none; }
   .wjoin .wj-ink > .wb + .wb { border-inline-start: 1px solid var(--gold-dim); }
@@ -609,23 +616,17 @@
   .wb.active .g { color: var(--sel); }
 
   /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
-  /* THE HEBREW IS NEVER REORDERED, IN EITHER READER. This line set the corpus
-     text left-to-right in the English reader, so every word of the verse was
-     drawn in the reverse of the order it is read in — Genesis 1:1 ran
-     bereshit, bara, elohim from the LEFT. It was not a maqaf problem or a
-     gloss problem: the whole text was being served out of order, in the mode
-     a reader who cannot read Hebrew is most likely to be in, and least able
-     to catch it.
-     The owner's ruling, 2026-09-08: "i'd rather the english be offset, such
-     as within a single c0 or maqaf it's over the wrong hebrew, than serve
-     incorrect hebrew. the one thing you can't do is rearrange words we are
-     attempting to define by license."
-     So the ink keeps its direction and the English pays the cost: in this
-     reader the readings sit above their own words, and the sentence they
-     make runs right to left with the text. The law was already written —
-     parts-direction-rule-v1, the first part of a Hebrew row is the rightmost
-     — and its guard passed throughout, because it only ever looked at the
-     Hebrew reader. The rule was right; nothing was watching the other mode. */
+  /* THE LINE'S DIRECTION IS A READER MODE. THE PIECES OF A WORD ARE NOT.
+     The owner, 2026-09-08: "i think entire word order can be justified, but i
+     dont think theres a justification for maqaf order going opposite."
+     So this stands: in the English reader the verse is laid out left to right,
+     word after word, because that mode exists for a reader who reads English
+     and the order of whole words is a way of presenting them. What may never
+     follow the mode is the order of the parts INSIDE one word — a maqaf
+     compound is one form the record wrote in one order, and drawing its pieces
+     backwards is not presentation, it is a different word. The rule for that
+     is below, on .wj-ink, and it does not ask what mode the page is in. */
+  body.en .he-text { direction: ltr; text-align: left; }
   /* In the English reader the gloss is the text, not a label on it. It clamped
      at two lines for the same reason the Hebrew-side one clipped at one, and
      it comes off for the same reason: there is no longer a tail to hide. */
