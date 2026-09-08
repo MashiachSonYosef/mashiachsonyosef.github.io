@@ -829,6 +829,17 @@
      reading now takes the room it needs; the row scrolls, so the D and the M
      below it are still one flick away, and a reading that runs to a paragraph
      looks like one, which is information about the record, not noise. */
+  /* the order row: seven positions, three answerable today. A dead one is
+     dimmed and struck, never hidden — the question stands even where the
+     evidence has not arrived. */
+  #hud .def-order { display: flex; flex-wrap: wrap; gap: 0.28rem; margin: 0 0 0.4rem; }
+  #hud .def-order .dfp { font: inherit; font-size: 0.58rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--faint); background: none;
+    border: 1px solid var(--line); border-radius: 999px; padding: 0.14rem 0.5rem; cursor: pointer; }
+  #hud .def-order .dfp:hover:not(:disabled) { color: var(--muted); border-color: var(--gold-dim); }
+  #hud .def-order .dfp.on { color: var(--gold); border-color: var(--gold-dim); background: var(--hover-wash); }
+  #hud .def-order .dfp.waiting { opacity: 0.45; cursor: not-allowed;
+    text-decoration: line-through; text-decoration-thickness: 1px; }
   #hud .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
@@ -1435,6 +1446,36 @@
   // as a dual, and a posture the record does not declare is named by its key,
   // verbatim — the visible cue that a declaration is missing.
   let POSTURES = null;
+  // THE SEVEN POSITIONS, in the reader's own card. The same list the door
+  // carries, kept under the same remembered key, so a reader who chose an
+  // order on the way in still has it inside the book. Three answer from what
+  // is on this disk; four are listed dead with what they wait on, because a
+  // toggle that drops the questions it cannot answer teaches that they were
+  // never asked.
+  let CORPUS_REC = null;
+  const CORPUS_OF = (m) => (CORPUS_REC && CORPUS_REC.witnesses && CORPUS_REC.witnesses[m] || {}).corpus || null;
+  const DEF_KEY = "fh.def.order";
+  const DEF_POS = [
+    { id: "corpus", lab: "corpus", live: true,
+      say: "Lexicons of the text\u2019s own era answer first \u2014 the corpus lane\u2019s classification of each source, not ours." },
+    { id: "masoretic", lab: "masoretic", live: false,
+      say: "Readings whose source points the word the way this text points it. Waiting on the lattice: the pointed headwords are in it, and it is not on this shelf yet." },
+    { id: "cites", lab: "cites here", live: false,
+      say: "Readings whose source cites this verse. Waiting on the lattice, and on its citations being the verses themselves rather than a count of them." },
+    { id: "characters", lab: "characters", live: true,
+      say: "Letters match exactly, pointing ignored \u2014 how every key on this shelf is made, so this is the catalogue\u2019s own order, undisturbed." },
+    { id: "vowels-differ", lab: "vowels differ", live: false,
+      say: "Readings whose source points the word differently while the letters agree. Waiting on the same lattice." },
+    { id: "outside-era", lab: "outside the era", live: false,
+      say: "Lexicons explicitly NOT of the text\u2019s era first, to watch the sense move. Nothing this shelf cites is classified that way yet \u2014 unknown is not later, and ranking on unknown is the claim this project refuses." },
+    { id: "oldest", lab: "oldest first", live: true,
+      say: "The oldest source answers first, antiquity ahead of everything. The order this reader has always used." },
+  ];
+  let defOrder = (() => {
+    let held = null;
+    try { held = localStorage.getItem(DEF_KEY); } catch { /* a device that remembers nothing still reads */ }
+    return DEF_POS.some((p) => p.id === held && p.live) ? held : "oldest";
+  })();
   const licenseName = (posture) => {
     const p = String(posture || "");
     if (!p) return "License unrecorded";
@@ -1443,7 +1484,7 @@
   };
   let zone, index;
   try {
-    [zone, index, POSTURES] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -1455,6 +1496,11 @@
       // the page — the chips fall back to keys verbatim and every export is
       // refused, which is the record's own default for the undeclared.
       fetch(`${ROOT}data/license-postures-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // The corpus lane's classification of every witness — which body of
+      // Hebrew a source describes. The definition-order toggle's "corpus"
+      // position reads it; its absence costs that one position and nothing
+      // else, so the page does not wait on it and does not fail without it.
+      fetch(`${ROOT}data/source-corpus-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
     ]);
     // The zone as it arrived, by the same rule the commentary sidecar is
     // exposed under: a check should be able to ask the record what it says
@@ -2935,7 +2981,26 @@
       });
     });
     const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
-    return [...groups.values()].sort((a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger);
+    // WHICH READING ANSWERS FIRST. Every position is a stable re-order of the
+    // same pool; nothing is filtered. A reader who asks for the era's own
+    // lexicons still sees every reading the catalogue holds, in a different
+    // order — hiding one because it sorted late would be the page deciding
+    // what may be weighed.
+    return sortPool([...groups.values()]);
+  };
+  const oldestFirst = (a, b) => {
+    const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
+    return tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger;
+  };
+  const sortPool = (list) => {
+    if (defOrder === "characters") return list.sort((a, b) => a.ledger - b.ledger || oldestFirst(a, b));
+    if (defOrder === "corpus") {
+      // a group can rest on several records; it counts as the era's own if any
+      // witness under it is classified so
+      const era = (r) => (r.records.some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
+      return list.sort((a, b) => era(a) - era(b) || oldestFirst(a, b));
+    }
+    return list.sort(oldestFirst);
   };
 
   /**
@@ -3466,6 +3531,12 @@
       if (pool.length > 1) label.textContent += ` · ${pool.length}`;
       const remembered = picked.get(surface);
       let selected = (remembered && pool.find((r) => routeKey(r) === remembered.key)) || pool[0];
+      // The row of positions, above the readings it orders. A dead position is
+      // a real control that says why it is dead, so the reader can see the
+      // question was asked and what the answer waits on.
+      const ord = document.createElement("div"); ord.className = "def-order";
+      ord.setAttribute("role", "group");
+      ord.setAttribute("aria-label", "which reading answers first");
       const pills = document.createElement("div"); pills.className = "r-pills";
       const dCard = document.createElement("div"); dCard.className = "d-card";
       // A selected reading always shows at least one whole D with its M.
@@ -3743,8 +3814,34 @@
       // M, and a reading the catalog attests is a reading the reader can see
       // and press. A form carrying hundreds gets a taller row, which is the
       // honest cost of carrying hundreds.
-      pool.forEach((r) => pills.append(makePill(r)));
-      readRow.append(pills);
+      // Drawn once per position: pressing one re-sorts the same pool and
+      // redraws it. Nothing is added or removed, so the reading standing under
+      // the word is still in the list — it moved, it did not change.
+      const drawPills = () => {
+        pills.replaceChildren();
+        sortPool(pool).forEach((r) => pills.append(makePill(r)));
+      };
+      DEF_POS.forEach((pos) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "dfp" + (pos.live ? "" : " waiting") + (pos.id === defOrder ? " on" : "");
+        btn.textContent = pos.lab;
+        btn.title = pos.say;
+        btn.setAttribute("aria-pressed", String(pos.id === defOrder));
+        if (!pos.live) { btn.disabled = true; btn.setAttribute("aria-disabled", "true"); }
+        else btn.addEventListener("click", () => {
+          defOrder = pos.id;
+          try { localStorage.setItem(DEF_KEY, pos.id); } catch { /* the choice still stands on this page */ }
+          [...ord.children].forEach((x) => {
+            const on = x.textContent === pos.lab;
+            x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on));
+          });
+          drawPills(); fitBands(); clampHud();
+        });
+        ord.append(btn);
+      });
+      drawPills();
+      readRow.append(ord, pills);
       selectedRecordRef.m = index.m_sources[selected.records[0][3]] || null;
       renderDCard(); dSlot.replaceChildren(dCard);
       paintGloss();

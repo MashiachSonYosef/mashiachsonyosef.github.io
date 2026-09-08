@@ -807,6 +807,17 @@
      reading now takes the room it needs; the row scrolls, so the D and the M
      below it are still one flick away, and a reading that runs to a paragraph
      looks like one, which is information about the record, not noise. */
+  /* the order row: seven positions, three answerable today. A dead one is
+     dimmed and struck, never hidden — the question stands even where the
+     evidence has not arrived. */
+  #hud .def-order { display: flex; flex-wrap: wrap; gap: 0.28rem; margin: 0 0 0.4rem; }
+  #hud .def-order .dfp { font: inherit; font-size: 0.58rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--faint); background: none;
+    border: 1px solid var(--line); border-radius: 999px; padding: 0.14rem 0.5rem; cursor: pointer; }
+  #hud .def-order .dfp:hover:not(:disabled) { color: var(--muted); border-color: var(--gold-dim); }
+  #hud .def-order .dfp.on { color: var(--gold); border-color: var(--gold-dim); background: var(--hover-wash); }
+  #hud .def-order .dfp.waiting { opacity: 0.45; cursor: not-allowed;
+    text-decoration: line-through; text-decoration-thickness: 1px; }
   #hud .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
