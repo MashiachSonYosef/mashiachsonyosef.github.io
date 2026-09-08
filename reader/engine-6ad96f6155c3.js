@@ -178,6 +178,9 @@
     { id: "oldest", lab: "oldest first", live: true,
       say: "The oldest source answers first, antiquity ahead of everything. The order this reader has always used." },
   ];
+  // the open card's own redraw, handed up so the page-level switch can reach
+  // it; null while no card is open, which is most of the time
+  let redrawReadings = null;
   let defOrder = (() => {
     let held = null;
     try { held = localStorage.getItem(DEF_KEY); } catch { /* a device that remembers nothing still reads */ }
@@ -2238,12 +2241,6 @@
       if (pool.length > 1) label.textContent += ` · ${pool.length}`;
       const remembered = picked.get(surface);
       let selected = (remembered && pool.find((r) => routeKey(r) === remembered.key)) || pool[0];
-      // The row of positions, above the readings it orders. A dead position is
-      // a real control that says why it is dead, so the reader can see the
-      // question was asked and what the answer waits on.
-      const ord = document.createElement("div"); ord.className = "def-order";
-      ord.setAttribute("role", "group");
-      ord.setAttribute("aria-label", "which reading answers first");
       const pills = document.createElement("div"); pills.className = "r-pills";
       const dCard = document.createElement("div"); dCard.className = "d-card";
       // A selected reading always shows at least one whole D with its M.
@@ -2528,27 +2525,11 @@
         pills.replaceChildren();
         sortPool(pool).forEach((r) => pills.append(makePill(r)));
       };
-      DEF_POS.forEach((pos) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "dfp" + (pos.live ? "" : " waiting") + (pos.id === defOrder ? " on" : "");
-        btn.textContent = pos.lab;
-        btn.title = pos.say;
-        btn.setAttribute("aria-pressed", String(pos.id === defOrder));
-        if (!pos.live) { btn.disabled = true; btn.setAttribute("aria-disabled", "true"); }
-        else btn.addEventListener("click", () => {
-          defOrder = pos.id;
-          try { localStorage.setItem(DEF_KEY, pos.id); } catch { /* the choice still stands on this page */ }
-          [...ord.children].forEach((x) => {
-            const on = x.textContent === pos.lab;
-            x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on));
-          });
-          drawPills(); fitBands(); clampHud();
-        });
-        ord.append(btn);
-      });
+      // the page's own switch redraws whatever card is open, so a change of
+      // order reaches the reading standing under the word without closing it
+      redrawReadings = () => { drawPills(); fitBands(); clampHud(); };
       drawPills();
-      readRow.append(ord, pills);
+      readRow.append(pills);
       selectedRecordRef.m = index.m_sources[selected.records[0][3]] || null;
       renderDCard(); dSlot.replaceChildren(dCard);
       paintGloss();
@@ -3123,7 +3104,11 @@
     // HUD still contains it answers no about a tap that came from inside it.
     if (!e.target.isConnected) return;
     if (justDragged) { justDragged = false; return; }
-    if (hud.contains(e.target) || e.target.closest(".wb")) return;
+    // The order switch is outside the card and governs what is inside it, so
+    // pressing it is not a press away from the card — it is a press ON the
+    // card, made from where the control lives. Closing on it would mean the
+    // reader could only change the order with nothing open to see it change.
+    if (hud.contains(e.target) || e.target.closest(".wb") || e.target.closest("#defRow")) return;
     closeHud();
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeHud(); });
@@ -3167,6 +3152,39 @@
      (the ketiv, the owner's ruling and the antiquity law), the qere, and the
      order the edition itself wrote them in — which is not uniform, so this is
      a third position and not a synonym for either. */
+  // WHICH READING ANSWERS FIRST, set for the whole book. The positions the
+  // evidence on this disk can answer come first and are pressable; the ones
+  // still waiting follow them, dimmed, with what they wait on written on
+  // them. They are moved rather than struck: a struck control reads as
+  // something withdrawn, and none of these was withdrawn — they were asked
+  // for and the records have not arrived. (Owner, 2026-09-08: "id just
+  // rearrange them rather than cross out".)
+  const defSwitch = () => {
+    const row = document.getElementById("defRow");
+    if (!row) return;
+    const order = [...DEF_POS].sort((a, b) => (a.live === b.live ? 0 : a.live ? -1 : 1));
+    row.replaceChildren();
+    for (const pos of order) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "dfp" + (pos.live ? "" : " waiting") + (pos.id === defOrder ? " on" : "");
+      btn.textContent = pos.lab;
+      btn.title = pos.say;
+      btn.setAttribute("aria-pressed", String(pos.id === defOrder));
+      if (!pos.live) { btn.disabled = true; btn.setAttribute("aria-disabled", "true"); }
+      else btn.addEventListener("click", () => {
+        defOrder = pos.id;
+        try { localStorage.setItem(DEF_KEY, pos.id); } catch { /* the choice still stands on this page */ }
+        for (const x of row.children) {
+          const on = x.textContent === pos.lab;
+          x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on));
+        }
+        // the word standing open re-answers in the new order without closing
+        if (redrawReadings) redrawReadings();
+      });
+      row.append(btn);
+    }
+  };
   const pairSwitch = () => {
     const btn = document.getElementById("pairToggle");
     if (!btn) return;
@@ -4958,6 +4976,7 @@
   // are in the document
   marksSwitch();
   pairSwitch();
+  defSwitch();
   if (openAt && byLabel.has(openAt)) {
     const target = document.getElementById(byLabel.get(openAt));
     if (target) {
