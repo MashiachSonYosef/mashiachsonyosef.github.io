@@ -1252,6 +1252,17 @@
             used += more; take[i] += 1;
           }
         };
+        // A DIVISION BAND IS A SELECTOR, and a share of one row is not a small
+        // one, it is unusable: a sliver of the first row with the rest behind
+        // a strip a single pill high. So a structural band takes a SECOND row
+        // before the readings band takes its share — but out of the room, not
+        // beyond it. Taking it unconditionally was tried and measured: the
+        // readings band fell to 63px with 310 readings and nothing pressable
+        // in it, the record and its source went off the card, and cards spilled
+        // a hundred pixels past their own edges. A selector that fits is worth
+        // nothing if it costs the reading it selects for.
+        bands.forEach((x, i) => { if (x.box !== read) grow(i, 2); });
+        bands.forEach((x, i) => { if (x.box === read) grow(i, 2); });
         bands.forEach((x, i) => { if (x.box !== read) grow(i, cap); });
         bands.forEach((x, i) => { if (x.box === read) grow(i, x.rows.length); });
         bands.forEach((x, i) => {
@@ -1346,9 +1357,13 @@
   };
 
   const placeInBounds = () => {
-    // If the bands cannot all be served at the height the card was given, the
-    // height goes back — a card that grew after it was placed is better tall
-    // and clamped than short with dead controls in it.
+    // MEASURED, NOT ARGUED: keeping the card on its cap and letting the region
+    // scroll stops the page moving, and it also starves the record — the guard
+    // caught cards spilling a hundred pixels and the source falling off them.
+    // The record and its source outrank a still page: a reader can follow a
+    // page that moved, and cannot read a licence that is not there. So the
+    // height still goes back when the bands cannot be served, and the scrolling
+    // region stands as what catches the overflow that remains.
     if (fitBands() === false && !hudMoved && hud.style.maxHeight) {
       hud.style.maxHeight = "";
       fitBands();

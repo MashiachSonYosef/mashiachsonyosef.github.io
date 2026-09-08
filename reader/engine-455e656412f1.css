@@ -647,7 +647,16 @@
      min-content height is its height at its narrowest, which for two hundred
      pills is enormous, and the card scrolled at every size.) */
   #hud .rows { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;
-    overflow: hidden; }
+    overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; }
+  /* THE BANDS' REGION SCROLLS, THE PAGE DOES NOT. When the room under a word
+     could not seat every band, the card used to give its height back — grow
+     tall, come off its cap — and the placement answered by scrolling the
+     document to make room, so the word moved out from under the finger that
+     pressed it. And when it did fit, a division band squeezed to a single row
+     was a selector too small to select with. Both were the same mistake: the
+     card treating its own height as the only thing that could give. It can
+     scroll. One region, one gesture, in place. The record and its source are
+     siblings of this region, not inside it, so they never scroll away. */
   /* overflow: hidden on the band itself, so a band can never paint outside its
      own share. Without it a pill box whose floor was taller than the band's
      rendered straight over the record below and the reader pressed the record
