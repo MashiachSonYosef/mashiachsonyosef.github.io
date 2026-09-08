@@ -2787,20 +2787,29 @@
   // and would push the breath apart. The run prints them once, in the order
   // the words stand, joined the way this reader joins the parts of any single
   // form. Nothing is composed here: each part is the word's own line, and the
-  // licences ride with them, one chip per distinct witness.
+  // licences ride with them.
+  // EACH CHIP STANDS UNDER ITS OWN PIECE. The line used to print the readings
+  // joined and then stack every witness's chip beneath the pair, which said
+  // two licenses govern this line and left no way to tell which governs
+  // which. There is no welded card here to license: a maqaf occurrence is two
+  // C0s, and this line is the two cards' own readings shown side by side, so
+  // each reading is drawn in its own cell with its own chip under it and the
+  // joiner between the cells belongs to neither.
   const refreshJoinGloss = (run) => {
     if (!run || !run.__ink) return;
     const wbs = [...run.__ink.querySelectorAll(":scope > .wb")];
-    const parts = [], chips = new Map();
+    const parts = [];
     for (const wb of wbs) {
       const g = wb.querySelector(":scope > .g");
       if (!g) continue;
       const c = g.cloneNode(true);
       c.querySelectorAll(".g-lic").forEach((x) => x.remove());
       const t = (c.textContent || "").trim();
-      if (t && t !== "\u2014") parts.push(t);
       const lic = g.querySelector(".g-lic");
-      if (lic) chips.set(`${lic.textContent}|${lic.title}`, lic);
+      const said = t && t !== "\u2014" ? t : "";
+      // a chip may never be dropped for want of a reading beside it
+      if (!said && !lic) continue;
+      parts.push({ t: said, lic });
     }
     let line = run.__gloss;
     if (!line) {
@@ -2809,11 +2818,31 @@
       run.append(line);
       run.__gloss = line;
     }
-    const text = parts.join(" + ");
+    const text = parts.map((p) => p.t || "\u2014").join(" + ");
     line.replaceChildren();
-    if (text) { line.textContent = text; line.title = text; line.classList.remove("bare"); }
-    else { line.textContent = " "; line.classList.add("bare"); }
-    for (const lic of chips.values()) line.append(lic.cloneNode(true));
+    if (!parts.some((p) => p.t)) {
+      line.textContent = " ";
+      line.classList.add("bare");
+      return;
+    }
+    line.title = text;
+    line.classList.remove("bare");
+    parts.forEach((part, i) => {
+      const cell = document.createElement("span");
+      cell.className = "g-part";
+      // The joiner opens the piece it joins to, rather than standing between
+      // the cells: a narrow column wraps this line, and a joiner of its own
+      // is left stranded at the end of a row with nothing after it.
+      if (i) {
+        const j = document.createElement("span");
+        j.className = "g-join";
+        j.textContent = "+ ";
+        cell.append(j);
+      }
+      cell.append(document.createTextNode(part.t || "\u2014"));
+      if (part.lic) cell.append(part.lic.cloneNode(true));
+      line.append(cell);
+    });
   };
 
   const appendWord = (host, built, word) => {
