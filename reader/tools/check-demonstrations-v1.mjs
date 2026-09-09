@@ -225,8 +225,23 @@ else {
       catch { l8.push(`${a.book} will not open`); continue; }
       const sec = (z.sections || []).find((x) => String(x.label || x.ref || "") === String(a.label));
       if (!sec) { l8.push(`${a.book} has no ${a.label}`); continue; }
-      const found = (sec.words || []).some((w) => (w.letter_marks || []).some((lm) => lm.kind === k.kind)
-        || (w.mark && w.mark.kind === k.kind));
+      // A KIND SAYS HOW IT IS FOUND. Most are a mark, and the default looks
+      // for one. An absence cannot be looked for that way — "this word has no
+      // card" is a fact about the gloss table, not a mark in the text — so a
+      // kind may name its own test. A test this file does not know is a
+      // refusal, never a pass: an unrecognised name must not read as found.
+      const test = k.test || "mark";
+      let found;
+      if (test === "mark") {
+        found = (sec.words || []).some((w) => (w.letter_marks || []).some((lm) => lm.kind === k.kind)
+          || (w.mark && w.mark.kind === k.kind));
+      } else if (test === "no_gloss") {
+        const gl = z.gloss || {};
+        found = (sec.words || []).some((w) => w.k && gl[w.k] === undefined);
+      } else {
+        l8.push(`${a.book} ${a.label}: ${k.kind} names a test this check does not know (${test})`);
+        continue;
+      }
       checked8 += 1;
       if (!found) l8.push(`${a.book} ${a.label} carries no ${k.kind}`);
     }
