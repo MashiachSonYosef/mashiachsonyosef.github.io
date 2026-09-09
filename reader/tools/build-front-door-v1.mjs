@@ -2619,14 +2619,23 @@ const benchHtml = `<!doctype html>
   .tg-badge { margin-left:auto; font-size:.78em; color:var(--muted); border:1px solid var(--line); border-radius:.6em; padding:0 .45em; }
   .tg-say { margin:.2em 0 .5em; }
   .tg-from { margin:.15em 0; font-size:.86em; color:var(--muted); }
+  .tg-try { margin:1.4em 0; }
+  .tg-trylab { margin:0 0 .5em; }
+  .tg-frame { display:block; width:100%; height:70vh; min-height:460px; border:1px solid var(--line);
+    border-radius:.5em; background:var(--panel2); }
   .tg-k { color:var(--faint); }
 </style></head><body><main>
   <h1>The order switch</h1>
   <p>A reading is not wrong for being late, and this site does not rank one licensed witness above another on its own authority. So the order the readings come in is the reader\u2019s, and these are the positions it can be put in. Press one at the top of any book and the card you have open re-sorts under you.</p>
   <p>Each position below says what it is, whether it can be answered from what is on this disk today, and which record answers it. A position that cannot be answered yet is still listed, dimmed, with what it waits on written on it: a switch that quietly drops the questions it cannot handle teaches a reader those questions were never asked.</p>
   <p>All seven are positions of one kind \u2014 they order the readings, they do not admit or refuse any. So exactly one of them is in force at a time and none of them has an off. A switch that admitted or refused rather than ordered would be a different kind of thing, and would have to say so here.</p>
+  <section class="tg-try">
+    <p class="tg-trylab">The reader, opened at the beginning of Genesis. Its switch is at the top of the frame: press a word to open its card, then press a position and watch the readings re-sort under you.</p>
+    <iframe class="tg-frame" src="/genesis/" title="the reader, opened at the beginning of Genesis" loading="lazy"></iframe>
+    <p class="tg-from">Not a specimen and not a copy \u2014 that frame holds the same page served at <a href="/genesis/">/genesis/</a>, with the same card, the same store and the same switch. This page types no Hebrew of its own: every character in the frame comes out of the zone, which is the only place characters of the text are allowed to come from.</p>
+  </section>
 ${DEF_POSITIONS.map(posSection).join("\n")}
-  <p><a href="/amos/">open a book and try them</a></p>
+  <p><a href="/genesis/">open it full size</a></p>
   <footer>This page is emitted from the same list the switch itself is built from, so it cannot describe a position the reader does not get. Recorded in tools/build-front-door-v1.mjs as DEF_POSITIONS.</footer>
 </main></body></html>`;
 mkdirSync(join(OUT, "toggles"), { recursive: true });
