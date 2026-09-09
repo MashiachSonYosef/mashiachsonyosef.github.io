@@ -73,9 +73,24 @@ if (rec.schema_version !== "RULE_DEMONSTRATIONS_V1") why1.push(`schema ${rec.sch
 if (rec.rule_id !== RULE) why1.push("the record names another rule");
 if (!rec.the_law_every_card_obeys || !rec.the_fence || !rec.the_tiers) why1.push("the record states no law, no fence or no tiers");
 for (const r of rec.rules || []) {
-  for (const need of ["id", "n", "name_en", "letter", "the_c0_law", "plainly", "tier", "rows"])
+  const standsOnBooks = (r.kinds || []).length > 0;
+  for (const need of ["id", "n", "name_en", "letter", "the_c0_law", "plainly", "tier", standsOnBooks ? "kinds" : "rows"])
     if (r[need] === undefined) why1.push(`${r.id || "?"}: no ${need}`);
-  if (!(r.rows || []).length) why1.push(`${r.id}: no rows`);
+  // TWO SHAPES OF DEMONSTRATION, AND A RULE IS ONE OR THE OTHER.
+  //
+  // The first eight were written when no book was readable: each carries its
+  // own short passage, typed as `rows` and built into a fixture zone. A rule
+  // written now stands on the books themselves — it carries `kinds`, and each
+  // kind carries the addresses where it fires. That is the stronger shape,
+  // because the addresses are checkable against the served corpus and a typed
+  // passage is only checkable against itself. Neither shape excuses the other:
+  // a rule with neither is incomplete.
+  if (!standsOnBooks && !(r.rows || []).length) why1.push(`${r.id}: no rows and no kinds`);
+  if (standsOnBooks) for (const k of r.kinds) {
+    if (!k.kind) why1.push(`${r.id}: a kind with no name`);
+    if (!k.drawn) why1.push(`${r.id}/${k.kind}: does not say what the page draws`);
+    if (!(k.at || []).length) why1.push(`${r.id}/${k.kind}: names no address where it fires`);
+  }
   if (!rec.the_tiers[r.tier]) why1.push(`${r.id}: tier ${r.tier} is not one the record declares`);
 }
 check("L1  the record declares the rule and its tiers, and every entry is complete", why1.length === 0,
@@ -83,7 +98,9 @@ check("L1  the record declares the rule and its tiers, and every entry is comple
 
 // L2
 const onDisk = existsSync(ZONES) ? readdirSync(ZONES).filter((f) => /^fixture-rule-.+\.bin$/u.test(f)).map((f) => f.replace(/^fixture-rule-|\.bin$/gu, "")) : [];
-const inRecord = (rec.rules || []).map((r) => r.id);
+// a rule that stands on the books owes no fixture zone; it owes real addresses,
+// and L2b below opens each one and looks for the mark
+const inRecord = (rec.rules || []).filter((r) => !(r.kinds || []).length).map((r) => r.id);
 const noZone = inRecord.filter((id) => !onDisk.includes(id));
 const noRule = onDisk.filter((id) => !inRecord.includes(id));
 check("L2  every rule has a zone and every demonstration zone answers to a rule", noZone.length + noRule.length === 0,
@@ -170,6 +187,15 @@ else {
   const html = readFileSync(idx, "utf8");
   const l6 = [];
   for (const r of rec.rules || []) {
+    // A RULE STANDING ON THE BOOKS IS LINKED TO THE BOOKS. It owes no page of
+    // its own; what it owes is that every address it names is reachable and
+    // really carries the mark, which L8 below opens the corpus and checks.
+    if ((r.kinds || []).length) {
+      for (const k of r.kinds) for (const a of (k.at || [])) {
+        if (!html.includes(`/${a.book}/?at=`)) l6.push(`${r.id}/${k.kind}: ${a.book} ${a.label} is not linked from the index`);
+      }
+      continue;
+    }
     if (!html.includes(`/demonstrations/${r.id}/`)) l6.push(`${r.id} is not linked from the index`);
     const page = join(OUT, "demonstrations", r.id, "index.html");
     if (!zones.has(r.id)) continue;
@@ -180,6 +206,34 @@ else {
   }
   check("L6  the pages are the reader: an index that names every rule, one page per zone", l6.length === 0,
     l6.length ? `${l6.length} — ${few(l6)}` : `1 index · ${zones.size} pages, each opening its own zone`);
+  // L8  EVERY ADDRESS A RULE NAMES REALLY CARRIES THE MARK.
+  //
+  // This is the law the first eight demonstrations could never have: their
+  // passages were typed, so nothing outside the record could confirm them. A
+  // rule that stands on the books names real addresses, and those are
+  // checkable — open the book, find the section, look for the marker. A
+  // demonstration that points at a verse which does not carry the mark is
+  // worse than no demonstration, because it teaches the wrong site.
+  const l8 = [];
+  let checked8 = 0;
+  for (const r of rec.rules || []) {
+    for (const k of (r.kinds || [])) for (const a of (k.at || [])) {
+      const bin = join(ZONES, `${a.book}.bin`);
+      if (!existsSync(bin)) { l8.push(`${a.book} is not on the shelf`); continue; }
+      let z;
+      try { z = JSON.parse(gunzipSync(readFileSync(bin)).toString("utf8")); }
+      catch { l8.push(`${a.book} will not open`); continue; }
+      const sec = (z.sections || []).find((x) => String(x.label || x.ref || "") === String(a.label));
+      if (!sec) { l8.push(`${a.book} has no ${a.label}`); continue; }
+      const found = (sec.words || []).some((w) => (w.letter_marks || []).some((lm) => lm.kind === k.kind)
+        || (w.mark && w.mark.kind === k.kind));
+      checked8 += 1;
+      if (!found) l8.push(`${a.book} ${a.label} carries no ${k.kind}`);
+    }
+  }
+  check("L8  every address a rule names really carries the mark it claims", l8.length === 0,
+    l8.length ? `${l8.length} — ${few(l8)}` : `${checked8} address(es) opened and confirmed in the corpus`);
+
   const body = html.slice(html.indexOf("<body"));
   const heb = [...body.replace(/<[^>]+>/gu, " ")].filter((c) => HEBREW.test(c));
   check("L7  the index prints no Hebrew: every passage is in the zone its link opens", heb.length === 0,

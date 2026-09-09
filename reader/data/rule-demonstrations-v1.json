@@ -3,7 +3,7 @@
  "rule_id": "rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one",
  "authored_on": "2026-09-03",
  "built_on": "2026-09-03",
- "what": "Eight rules of the frame, each on one short passage, opened by the reader itself. For a year these were drawings: a page that imitated the reader's card with typed Hebrew inside it, which demonstrates a drawing. Each of these is a real zone, built by the builder every served book goes through and opened by the same reader with the same card, and branded an instrument so that no gate can mistake it for a work.",
+ "what": "The rules of the frame, each on one short passage, opened by the reader itself. For a year these were drawings: a page that imitated the reader's card with typed Hebrew inside it, which demonstrates a drawing. Each of these is a real zone, built by the builder every served book goes through and opened by the same reader with the same card, and branded an instrument so that no gate can mistake it for a work.",
  "the_law_every_card_obeys": "The C0 never moves. Whatever a reader selects, the ink stands exactly as the source wrote it. Selection governs what is defined, never what is displayed.",
  "the_tiers": {
   "CARRIED_FROM_A_NAMED_SOURCE": "the ink of the passage was carried from a source this project holds, named and hashed here; the source's own credit rides on the page",
@@ -671,6 +671,116 @@
     }
    ],
    "probe_notes": "Matnot Kehunah on Ruth Rabbah, one comment. Row 0 is an editorial siglum standing outside the quotation, so the overlay starts at row 1 and runs 5 rows: an offset the record has to carry, not a constant. The markup was removed from the ink and nothing else was changed."
+  },
+  {
+   "id": "letter-marks",
+   "n": 12,
+   "name_en": "letter marks",
+   "title_en": "A letter written large, small, dotted or above the line",
+   "letter": "C0 · an overlay on a letter, not a word of the book",
+   "the_c0_law": "The mark is a pointer, never a character. It names a letter by its position and says how the scribes wrote it; it supplies no glyph, changes no surface, and leaves the word's key exactly what it would be without it.",
+   "plainly": "In four places the scribes wrote a letter differently from its neighbours — larger, smaller, with a dot above it, or lifted above the line — and every copy since has kept the difference. The record says which letter, counted alef through tav with the points not counted, and what was done to it. The page draws the letter with every point that rides on it, so a mark and its vowel move together instead of the vowel being left behind at normal size beside an enlarged consonant.",
+   "press": "the marked letter",
+   "tier": "CARRIED_FROM_A_NAMED_SOURCE",
+   "not_demonstrated_until": "2026-09-09 — the eight demonstrations were built before the letter marks were served, so this rule ran on 71 sites of the corpus with no demonstration and no guard naming it.",
+   "kinds": [
+    {
+     "kind": "LARGE",
+     "drawn": "font-size 1.45em, line-height 0.9",
+     "sites": 27,
+     "books": 17,
+     "at": [
+      {
+       "book": "leviticus",
+       "label": "11:42",
+       "letter": 3,
+       "note": "where rule 12 meets rule 2 — the source marks the fifth letter counting through the maqaf, and the split re-bases it onto the third letter of the second piece"
+      },
+      {
+       "book": "deuteronomy",
+       "label": "6:4",
+       "letter": 3,
+       "note": "the opening word of the Shema, its last letter written large"
+      },
+      {
+       "book": "daniel",
+       "label": "6:20",
+       "letter": 5,
+       "note": "a large and a small letter standing in one verse"
+      }
+     ]
+    },
+    {
+     "kind": "SMALL",
+     "drawn": "font-size 0.68em",
+     "sites": 23,
+     "books": 12,
+     "at": [
+      {
+       "book": "deuteronomy",
+       "label": "32:18",
+       "letter": 3
+      },
+      {
+       "book": "esther",
+       "label": "9:7",
+       "letter": 6
+      },
+      {
+       "book": "daniel",
+       "label": "6:20",
+       "letter": 3,
+       "note": "the same verse as the large one above"
+      }
+     ]
+    },
+    {
+     "kind": "DOTTED",
+     "drawn": "drawn in the strong ink; the dots are the source's own characters",
+     "sites": 17,
+     "books": 7,
+     "at": [
+      {
+       "book": "deuteronomy",
+       "label": "29:28",
+       "letter": "1,2,3 and 1–7",
+       "note": "the most heavily dotted verse in the corpus"
+      }
+     ]
+    },
+    {
+     "kind": "SUSPENDED",
+     "drawn": "vertical-align 0.5em, font-size 0.82em",
+     "sites": 4,
+     "books": 3,
+     "at": [
+      {
+       "book": "judges",
+       "label": "18:30",
+       "letter": 2,
+       "note": "the suspended letter in the name"
+      },
+      {
+       "book": "job",
+       "label": "38:13",
+       "letter": 3
+      },
+      {
+       "book": "job",
+       "label": "38:15",
+       "letter": 4
+      }
+     ]
+    }
+   ],
+   "carried_from": {
+    "source": "the corpus lane's restore, scribal_detail column",
+    "vocabulary": "OTIYOT_GEDOLOT, OTIYOT_KETANOT, OTIYOT_MENUKADOT, OTIYOT_TELUYOT — the source's own terms, mapped one to one",
+    "receipt_note": "tools/serve-from-restore-v5.mjs refuses the whole build on a scribal token it cannot name (LETTER_MARK_UNREAD), so a mark this project does not understand stops the line rather than being dropped"
+   },
+   "may_not_be_hidden": "The marks switch hides 1,717 things — verse ends, paseqs, section marks — and no letter mark is among them. Measured: pressing it leaves the letter drawn. The same reasoning as rule 6: bookkeeping about the page may be hidden, something written in the ink may not.",
+   "probe_notes": "Every address here was read out of the zone bins rather than recalled. The counts are over the thirty-nine files this edition ships.",
+   "where_two_rules_meet": "The source names a letter by counting through a maqaf, and rule 2 cuts that occurrence into two C0s. So the index must be re-based onto the piece that holds the letter, or the mark lands on the wrong glyph. Leviticus 11:42 is the case: the fifth letter of the joined run is the third letter of the second piece."
   }
  ]
 }

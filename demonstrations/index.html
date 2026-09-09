@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The order switch · fireandhail.com</title>
-<link rel="canonical" href="/toggles/">
+<title>The rules of the frame · fireandhail.com</title>
+<link rel="canonical" href="/demonstrations/">
+<meta name="robots" content="noindex">
 <style>  /* colour-role-rule-v1 · the roles are the ledgers and the values are ours.
      The reader paints the recorded contract — structure gold, base surface
      purple — and the door had been wearing an invented blue-grey instead,
@@ -925,64 +926,127 @@
   .rd-hide { margin:.9em 0 0; padding-top:.6em; border-top:1px solid var(--line);
              color:var(--muted); font-size:.9em; }
 
-  .tg { border:1px solid var(--line); border-radius:.5em; padding:.7em .9em; margin:.7em 0; background:var(--panel2); }
-  .tg-wait { opacity:.62; }
-  .tg-head { margin:0 0 .35em; display:flex; align-items:baseline; gap:.55em; }
-  .tg-n { color:var(--faint); font-size:.85em; }
-  .tg-lab { color:var(--gold); font-weight:600; }
-  .tg-badge { margin-left:auto; font-size:.78em; color:var(--muted); border:1px solid var(--line); border-radius:.6em; padding:0 .45em; }
-  .tg-say { margin:.2em 0 .5em; }
-  .tg-from { margin:.15em 0; font-size:.86em; color:var(--muted); }
-  .tg-try { margin:1.4em 0; }
-  .tg-trylab { margin:0 0 .5em; }
-  .tg-frame { display:block; width:100%; height:70vh; min-height:460px; border:1px solid var(--line);
-    border-radius:.5em; background:var(--panel2); }
-  .tg-k { color:var(--faint); }
-</style></head><body><main>
-  <h1>The order switch</h1>
-  <p>A reading is not wrong for being late, and this site does not rank one licensed witness above another on its own authority. So the order the readings come in is the reader’s, and these are the positions it can be put in. Press one at the top of any book and the card you have open re-sorts under you.</p>
-  <p>Each position below says what it is, whether it can be answered from what is on this disk today, and which record answers it. A position that cannot be answered yet is still listed, dimmed, with what it waits on written on it: a switch that quietly drops the questions it cannot handle teaches a reader those questions were never asked.</p>
-  <p>All seven are positions of one kind — they order the readings, they do not admit or refuse any. So exactly one of them is in force at a time and none of them has an off. A switch that admitted or refused rather than ordered would be a different kind of thing, and would have to say so here.</p>
-  <section class="tg-try">
-    <p class="tg-trylab">The reader, opened at the beginning of Genesis. Its switch is at the top of the frame: press a word to open its card, then press a position and watch the readings re-sort under you.</p>
-    <iframe class="tg-frame" src="/genesis/" title="the reader, opened at the beginning of Genesis" loading="lazy"></iframe>
-    <p class="tg-from">Not a specimen and not a copy — that frame holds the same page served at <a href="/genesis/">/genesis/</a>, with the same card, the same store and the same switch. This page types no Hebrew of its own: every character in the frame comes out of the zone, which is the only place characters of the text are allowed to come from.</p>
-  </section>
-    <article class="tg">
-      <p class="tg-head"><span class="tg-n">1</span><span class="tg-lab">corpus</span><span class="tg-badge">live</span></p>
-      <p class="tg-say">Lexicons of the text’s own era answer first — the corpus lane’s classification of each source, not ours. The rest keep their own order under them.</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> data/source-corpus-v1.json · declared_corpus</p>
+  :root { --wash-active: rgba(234,200,111,.16); }
+  :root[data-scheme="day"] { --wash-active: rgba(138,107,38,.14); }
+  .bookcard .stamp, .atlas-row .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; flex-basis:100%; }
+  .atlas-row.stamped { flex-wrap:wrap; }
+  .bookcard .srow, .atlas-row .srow { display:flex; gap:.5rem; align-items:baseline; flex-wrap:wrap; color:var(--faint); line-height:1.35; }
+  .bookcard .srow .cls, .atlas-row .srow .cls { font-size:.56rem; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); min-width:6.5rem; }
+  .bookcard .srow .wit, .atlas-row .srow .wit { color:var(--muted); max-width:22rem; }
+  .bookcard .srow .ax, .atlas-row .srow .ax { color:var(--muted); }
+  .bookcard .srow .num, .atlas-row .srow .num { font-family:ui-monospace,Menlo,Consolas,monospace; color:var(--ink); }
+  .bookcard .srow .why, .atlas-row .srow .why { font-style:italic; }
+  .bookcard .srow.exact .delta, .bookcard .srow.exact .glyph, .atlas-row .srow.exact .delta, .atlas-row .srow.exact .glyph { color:var(--gold); font-weight:600; }
+  .bookcard .srow.differs .delta, .bookcard .srow.differs .glyph, .atlas-row .srow.differs .delta, .atlas-row .srow.differs .glyph { color:var(--shani); font-weight:600; }
+  .bookcard .srow.no_witness, .atlas-row .srow.no_witness { color:var(--faint); }
+  #sectstamp { margin:.6rem 0 .4rem; padding:.35rem 0 .4rem; border-top:1px solid var(--gold-dim); border-bottom:1px solid var(--gold-dim); font-size:.78rem; overflow-x:auto; }
+  #sectstamp .sh { font-variant:small-caps; letter-spacing:.12em; color:var(--gold); margin:0 0 .25rem; }
+  #sectstamp .sh .ours { color:var(--ink); font-variant:normal; letter-spacing:.02em; font-variant-numeric:tabular-nums; }
+  #sectstamp table { border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  #sectstamp td { padding:.08rem .7rem .08rem 0; vertical-align:baseline; white-space:nowrap; color:var(--muted); }
+  #sectstamp td.wit { white-space:normal; max-width:26rem; }
+  #sectstamp td.num { text-align:right; font-family:ui-monospace,Menlo,Consolas,monospace; color:var(--ink); }
+  #sectstamp .cls { font-size:.56rem; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-right:.4rem; }
+  #sectstamp tr.exact td.delta, #sectstamp tr.exact td.glyph { color:var(--gold); font-weight:600; }
+  #sectstamp tr.differs td.delta, #sectstamp tr.differs td.glyph { color:var(--shani); font-weight:600; }
+  #sectstamp tr.no_witness td { color:var(--faint); }
+  #sectstamp tr { animation: stamp-flash 1100ms ease-out both; }
+  @keyframes stamp-flash { 0% { background: var(--wash-active, rgba(234,200,111,.16)); } 100% { background: transparent; } }
+  @media (prefers-reduced-motion: reduce) { #sectstamp tr { animation: none; } }
+  #sectstamp .waits { color:var(--faint); font-style:italic; margin:.25rem 0 0; }
+</style>
+</head><body><main>
+  <p class="poc-back"><a href="/">fireandhail.com</a></p>
+  <h1>The rules of the frame</h1>
+  <p class="sub">The rules of the frame, each on one short passage, opened by the reader itself. For a year these were drawings: a page that imitated the reader's card with typed Hebrew inside it, which demonstrates a drawing. Each of these is a real zone, built by the builder every served book goes through and opened by the same reader with the same card, and branded an instrument so that no gate can mistake it for a work.</p>
+  <p class="pc-law">The C0 never moves. Whatever a reader selects, the ink stands exactly as the source wrote it. Selection governs what is defined, never what is displayed.</p>
+    <article class="rd" data-id="kq">
+      <p class="rd-head"><span class="rd-n">1</span><span class="rd-kind">qere and ketiv</span><span class="rd-letter">C0 · one for the site</span><span class="rd-tier rd-carried">carried</span></p>
+      <p class="rd-law">One occurrence, one C0. The complex is the word; the breakdown happens a layer down.</p>
+      <p class="rd-plain">Where the reading differed from the letters the scribes had received, they changed nothing: the written form was kept and the read form recorded beside it. The site is one word of the book, counted once, and its ink carries both forms in the source's own order.</p>
+      <p class="rd-src">The passage is tanakh/nahum tanakh-nahum-kq-1, printed as moses-ledgers/kq-reseal-v1/streams/tanakh-nahum-kq-resealed-v1.tokens.csv.gz wrote it.</p>
+      
+      
+      <p class="rd-open"><a href="/demonstrations/kq/">open the passage and press either half</a></p>
     </article>
-    <article class="tg tg-wait">
-      <p class="tg-head"><span class="tg-n">2</span><span class="tg-lab">masoretic</span><span class="tg-badge">waiting</span></p>
-      <p class="tg-say">Readings whose source points the word the way this text points it. Waiting on the lattice: the pointed headwords are in it, and it is not on this shelf yet.</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> the lattice · the match grade — not on this disk</p>
+    <article class="rd" data-id="maqaf">
+      <p class="rd-head"><span class="rd-n">2</span><span class="rd-kind">maqaf</span><span class="rd-letter">C0 · one per word</span><span class="rd-tier rd-carried">carried</span></p>
+      <p class="rd-law">Two words, two C0s, two cards. Nothing is grouped over them: the count follows the word, not the typography.</p>
+      <p class="rd-plain">A maqaf joins words into one breath and one accent. Each word it joins is its own word of the book with its own card, and the joiner rides as ink on the word before it, which is the word that gave up its accent.</p>
+      <p class="rd-src">The passage is tanakh/ruth ruth-1-16, printed as moses-ledgers/maqaf-reseal-v1/streams/tanakh-ruth-maqaf-split-v1.tokens.csv.gz wrote it.</p>
+      
+      
+      <p class="rd-open"><a href="/demonstrations/maqaf/">open the passage and press either word of a joined pair</a></p>
     </article>
-    <article class="tg tg-wait">
-      <p class="tg-head"><span class="tg-n">3</span><span class="tg-lab">cites here</span><span class="tg-badge">waiting</span></p>
-      <p class="tg-say">Readings whose source cites this verse. Waiting on the lattice, and on its citations being the verses themselves rather than a count of them.</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> the lattice · names_this_verse — not on this disk</p>
+    <article class="rd" data-id="abbreviation">
+      <p class="rd-head"><span class="rd-n">3</span><span class="rd-kind">abbreviation</span><span class="rd-letter">C0 · one, on</span><span class="rd-tier rd-carried">carried</span></p>
+      <p class="rd-law">One C0 for the abbreviated form, always on. The words it stands for get no C0 at all.</p>
+      <p class="rd-plain">An abbreviation is one token standing for several words. All of them are read, but their letters are not in the ink, so the token is the word of the book and the words it stands for are a grouping of their own. The mark between the letters is part of the key, whichever character the source wrote it with.</p>
+      <p class="rd-src">The passage is chasidut/maor-vashemesh maor-vashemesh-bo-bo-15, printed as the verified July body, shard cleanroom-c0-ledger-map-rebuilt-active-000000000000000003740849-000000000000000003840848.csv.gz wrote it.</p>
+      
+      
+      <p class="rd-open"><a href="/demonstrations/abbreviation/">open the passage and press an abbreviated word</a></p>
     </article>
-    <article class="tg">
-      <p class="tg-head"><span class="tg-n">4</span><span class="tg-lab">characters</span><span class="tg-badge">live</span></p>
-      <p class="tg-say">Letters match exactly, pointing ignored — which is how every key on this shelf is made, so this is the catalogue’s own order, undisturbed.</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> data/route-store · the key itself</p>
+    <article class="rd" data-id="setumah">
+      <p class="rd-head"><span class="rd-n">4</span><span class="rd-kind">setumah</span><span class="rd-letter">C0 · one, off</span><span class="rd-tier rd-carried">carried</span></p>
+      <p class="rd-law">One C0, off by default, keyless. It marks structure, not a word.</p>
+      <p class="rd-plain">A closed section mark is the scribes' bookkeeping: it says a section ends here and the next begins on the same line. It is not a word of the book and it opens no reading, so it is off until a reader turns the marks on.</p>
+      <p class="rd-src">The passage is tanakh/exodus exodus-20-13, printed as cleanroom-c0-ledger-map-rebuilt-active-000000000000000069794244-000000000000000069808717.csv.gz wrote it.</p>
+      
+      
+      <p class="rd-open"><a href="/demonstrations/setumah/">open the passage and press the mark itself</a></p>
     </article>
-    <article class="tg tg-wait">
-      <p class="tg-head"><span class="tg-n">5</span><span class="tg-lab">vowels differ</span><span class="tg-badge">waiting</span></p>
-      <p class="tg-say">Readings whose source points the word differently while the letters agree — the masoretic position turned over. Waiting on the same lattice.</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> the lattice · VOWEL_MISMATCH — not on this disk</p>
+    <article class="rd" data-id="petuchah">
+      <p class="rd-head"><span class="rd-n">5</span><span class="rd-kind">petuchah</span><span class="rd-letter">C0 · one, off</span><span class="rd-tier rd-carried">carried</span></p>
+      <p class="rd-law">One C0, off by default, keyless. Its own kind, beside the closed section.</p>
+      <p class="rd-plain">An open section mark says a section ends here and the next begins on a new line. Like the closed section it is the scribes' bookkeeping rather than a word of the book, and it is off until a reader turns the marks on.</p>
+      <p class="rd-src">The passage is tanakh/genesis genesis-35-22, printed as cleanroom-c0-ledger-map-rebuilt-active-000000000000000069828900-000000000000000069846706.csv.gz wrote it.</p>
+      
+      
+      <p class="rd-open"><a href="/demonstrations/petuchah/">open the passage and press the mark itself</a></p>
     </article>
-    <article class="tg tg-wait">
-      <p class="tg-head"><span class="tg-n">6</span><span class="tg-lab">outside the era</span><span class="tg-badge">waiting</span></p>
-      <p class="tg-say">Lexicons explicitly NOT of the text’s own era first, to let a reader watch the sense move. Nothing this shelf cites is classified that way yet — unknown is not the same as later, and ranking on unknown would be the claim this project refuses.</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> data/source-corpus-v1.json · declared_corpus, inverted</p>
+    <article class="rd" data-id="invnun">
+      <p class="rd-head"><span class="rd-n">6</span><span class="rd-kind">inverted nun</span><span class="rd-letter">C0 · one per word, every one carded</span><span class="rd-tier rd-part-typed">carried, mark typed</span></p>
+      <p class="rd-law">Every word inside gets its own C0 and its own card. The brackets are pressable and are never toggleable.</p>
+      <p class="rd-plain">Two inverted letters stand around a short passage, and the tradition reads them as a statement about the passage itself rather than as bookkeeping. So the words inside are ordinary words with ordinary cards, the brackets can be pressed to say what they are, and no toggle may hide them: they speak about the text.</p>
+      <p class="rd-src">The passage is tanakh/numbers numbers-10-35+numbers-10-36, printed as cleanroom-c0-ledger-map-rebuilt-active-000000000000000070166543-000000000000000070180865.csv.gz wrote it. The mark itself is typed, and the page says so on the word it is typed on: the two inverted nunim are absent from every source this project holds: the probe byte-scanned all 4,646 shards of the verified body and every reseal stream and found no U+05C6. The words between them are the body's own ink; the brackets are typed so the rule can be shown at all.</p>
+      
+      
+      <p class="rd-open"><a href="/demonstrations/invnun/">open the passage and press a bracket, then a word inside</a></p>
     </article>
-    <article class="tg">
-      <p class="tg-head"><span class="tg-n">7</span><span class="tg-lab">oldest first</span><span class="tg-badge">live</span></p>
-      <p class="tg-say">The oldest source answers first. The order this page has always used, and the one it returns to.</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> data/route-store · the row’s source year</p>
+    <article class="rd" data-id="masorah">
+      <p class="rd-head"><span class="rd-n">7</span><span class="rd-kind">half of the book</span><span class="rd-letter">C0 · one, off</span><span class="rd-tier rd-carried">carried</span></p>
+      <p class="rd-law">Included, with its own C0, behind the toggle the section marks share.</p>
+      <p class="rd-plain">The scribes counted, and wrote their counting down: the middle of a book by verses or by words, and the tallies at its end. Those notes are text about the book rather than the book, so they are carried, they are pressable, and they sit behind the same toggle as the section marks.</p>
+      <p class="rd-src">The passage is tanakh/haktav-vehakabalah tanakh-haktav-vehakabalah--haktav-vehakabalah-postscript, printed as cleanroom-c0-ledger-map-rebuilt-active-000000000000000149689492-000000000000000149718405.csv.gz wrote it.</p>
+      
+      
+      <p class="rd-open"><a href="/demonstrations/masorah/">open the passage and press the note</a></p>
     </article>
-  <p><a href="/genesis/">open it full size</a></p>
-  <footer>This page is emitted from the same list the switch itself is built from, so it cannot describe a position the reader does not get. Recorded in tools/build-front-door-v1.mjs as DEF_POSITIONS.</footer>
+    <article class="rd" data-id="dibbur">
+      <p class="rd-head"><span class="rd-n">8</span><span class="rd-kind">dibbur hamatchil</span><span class="rd-letter">W · a run, not a C0</span><span class="rd-tier rd-carried">carried</span></p>
+      <p class="rd-law">No C0 of its own. The words are ordinary words; what is recorded is that a run of them is set apart.</p>
+      <p class="rd-plain">A commentary opens by quoting the words it is about, and the printers set that quotation apart. Stripping the setting apart as though it were transport loses a distinction the source drew, so it is recorded as an overlay over the run before anything is stripped: the ink stays what it was and the run says what it is.</p>
+      <p class="rd-src">The passage is midrash/matnot-kehunah-on-ruth-rabbah matnot-kehunah-on-ruth-rabbah-petichta-petichta-1-6, printed as the verified July body wrote it.</p>
+      
+      
+      <p class="rd-open"><a href="/demonstrations/dibbur/">open the passage and press a word of the opening run</a></p>
+    </article>
+    <article class="rd" data-id="letter-marks">
+      <p class="rd-head"><span class="rd-n">12</span><span class="rd-kind">letter marks</span><span class="rd-letter">C0 · an overlay on a letter, not a word of the book</span><span class="rd-tier rd-carried">carried</span></p>
+      <p class="rd-law">The mark is a pointer, never a character. It names a letter by its position and says how the scribes wrote it; it supplies no glyph, changes no surface, and leaves the word's key exactly what it would be without it.</p>
+      <p class="rd-plain">In four places the scribes wrote a letter differently from its neighbours — larger, smaller, with a dot above it, or lifted above the line — and every copy since has kept the difference. The record says which letter, counted alef through tav with the points not counted, and what was done to it. The page draws the letter with every point that rides on it, so a mark and its vowel move together instead of the vowel being left behind at normal size beside an enlarged consonant.</p>
+      <p class="rd-src">Carried from the corpus lane's restore, scribal_detail column, in the source's own vocabulary: OTIYOT_GEDOLOT, OTIYOT_KETANOT, OTIYOT_MENUKADOT, OTIYOT_TELUYOT — the source's own terms, mapped one to one. tools/serve-from-restore-v5.mjs refuses the whole build on a scribal token it cannot name (LETTER_MARK_UNREAD), so a mark this project does not understand stops the line rather than being dropped.</p>
+      <p class="rd-kindline"><span class="rd-kv">large</span><span class="rd-kdrawn">font-size 1.45em, line-height 0.9</span><span class="rd-kn">27 sites in 17 books</span></p>
+      <p class="rd-kat"><a href="/leviticus/?at=11%3A42">leviticus 11:42</a> <span class="rd-note">— where rule 12 meets rule 2 — the source marks the fifth letter counting through the maqaf, and the split re-bases it onto the third letter of the second piece</span><br><a href="/deuteronomy/?at=6%3A4">deuteronomy 6:4</a> <span class="rd-note">— the opening word of the Shema, its last letter written large</span><br><a href="/daniel/?at=6%3A20">daniel 6:20</a> <span class="rd-note">— a large and a small letter standing in one verse</span></p>
+      <p class="rd-kindline"><span class="rd-kv">small</span><span class="rd-kdrawn">font-size 0.68em</span><span class="rd-kn">23 sites in 12 books</span></p>
+      <p class="rd-kat"><a href="/deuteronomy/?at=32%3A18">deuteronomy 32:18</a><br><a href="/esther/?at=9%3A7">esther 9:7</a><br><a href="/daniel/?at=6%3A20">daniel 6:20</a> <span class="rd-note">— the same verse as the large one above</span></p>
+      <p class="rd-kindline"><span class="rd-kv">dotted</span><span class="rd-kdrawn">drawn in the strong ink; the dots are the source's own characters</span><span class="rd-kn">17 sites in 7 books</span></p>
+      <p class="rd-kat"><a href="/deuteronomy/?at=29%3A28">deuteronomy 29:28</a> <span class="rd-note">— the most heavily dotted verse in the corpus</span></p>
+      <p class="rd-kindline"><span class="rd-kv">suspended</span><span class="rd-kdrawn">vertical-align 0.5em, font-size 0.82em</span><span class="rd-kn">4 sites in 3 books</span></p>
+      <p class="rd-kat"><a href="/judges/?at=18%3A30">judges 18:30</a> <span class="rd-note">— the suspended letter in the name</span><br><a href="/job/?at=38%3A13">job 38:13</a><br><a href="/job/?at=38%3A15">job 38:15</a></p>
+      <p class="rd-hide">The source names a letter by counting through a maqaf, and rule 2 cuts that occurrence into two C0s. So the index must be re-based onto the piece that holds the letter, or the mark lands on the wrong glyph. Leviticus 11:42 is the case: the fifth letter of the joined run is the third letter of the second piece.</p>
+      <p class="rd-hide">The marks switch hides 1,717 things — verse ends, paseqs, section marks — and no letter mark is among them. Measured: pressing it leaves the letter drawn. The same reasoning as rule 6: bookkeeping about the page may be hidden, something written in the ink may not.</p>
+    </article>
+  <footer>Every rule below is one of three things and says which on its face: carried whole, with its source named and hashed; carried with one mark typed into it because no source we hold writes that mark there, with the typed positions named in the record and drawn as typed on the word; or typed outright, with the reason and the wire named. No demonstration is a work: each is branded an instrument in its own file, none is listed on the door among the books, none is built by the fleet, and none is served as a work anywhere. Recorded in data/rule-demonstrations-v1.json; the passages are built into zones by tools/build-demonstrations-v1.mjs and opened by the reader itself, so what answers a press here is the card that answers on every book.</footer>
 </main></body></html>
