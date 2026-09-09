@@ -293,7 +293,7 @@ const GROUP_X = (GROUP_X_RAW
   : null;
 const GROUP_X_SAYS = GROUP_X
   ? `${GROUP_X.witnesses.length} witness${GROUP_X.witnesses.length === 1 ? "" : "es"} on this shelf state the count \u2014 ${GROUP_X.witnesses.map((w) => `${w.work} \u00b7 ${w.at}`).join("; ")}. Not claimed: ${GROUP_X.not_claimed}`
-  : "";
+  : "No witness on this shelf is cited for this grouping. It is offered as a way to arrange what is served, not as a claim about where the books divide.";
 // A GATHERED NAME IS THE LEDGER'S WORD, AND ONLY WHERE THE STORE ATTESTS IT.
 // The five gathered books are named in the ledger's own Hebrew, and four of
 // those names are not any file's title \u2014 no file is called "the Twelve".
@@ -1174,10 +1174,22 @@ const familySection = (fam) => {
   // is data/grouping-attestation-v1.json. It cites addresses and copies no
   // words: the witness's text stays in the zone that holds it.
   //
-  // The gate is the record's existence, not a flag. Take the attestation away
-  // and the filing stops printing, because then nobody is saying it again.
-  const filed24 = !!GROUP_X
-    && !!(GROUPING && GROUPING_FILES.size && [...GROUPING_FILES].every((f) => shelfSlugs.has(f)));
+  // AND THE ATTESTATION IS NOT A GATE ON THE VIEW (owner, 2026-09-09: "the
+  // entire point of the toggles is to be able to keep exploring").
+  //
+  // For a few hours this file made the filing conditional on the attestation,
+  // which was a category error worth recording rather than quietly undoing. A
+  // second filing asserts nothing. It rearranges rows already served, and the
+  // reader picks it up or does not — the grouping ledger's own law says so:
+  // "Neither count is part of the text \u2014 pick the one you read in." The
+  // attestation standard governs what a witness SAID, and a control says
+  // nothing.
+  //
+  // What did need a witness is the SENTENCE the chip states. So the witness
+  // rides the chip, and the view stands either way. A gate here would have
+  // read, in effect, "no toggle without a witness", and almost no toggle will
+  // ever have one.
+  const filed24 = !!(GROUPING && GROUPING_FILES.size && [...GROUPING_FILES].every((f) => shelfSlugs.has(f)));
   const rows24 = filed24
     ? [...GROUPING.groups].sort((x, y) => x.book24.localeCompare(y.book24)).map((g) => (g.files.length > 1
         ? group24Row(g)
