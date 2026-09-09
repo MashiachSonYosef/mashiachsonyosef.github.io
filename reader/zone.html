@@ -837,7 +837,15 @@
     text-transform: uppercase; color: var(--faint); background: none;
     border: 1px solid var(--line); border-radius: 999px; padding: 0.14rem 0.5rem; cursor: pointer; }
   #hud .def-order, #modeRow .def-order .dfp:hover:not(:disabled) { color: var(--muted); border-color: var(--gold-dim); }
-  #hud .def-order, #modeRow .def-order .dfp.on { color: var(--gold); border-color: var(--gold-dim); background: var(--hover-wash); }
+  /* THE POSITION IN FORCE IS A READER'S SELECTION, so it wears the role the
+     contract gives a reader's selection. It wore gold until 2026-09-09,
+     which is the structure role \u2014 the colour of the frame, not of a choice
+     the reader made. Nothing new is invented here: colour-role-rule-v1
+     declares structure gold, reader_selection electric blue, commentary
+     attachment crimson, and this only moves a control into the role it
+     already belonged to. It is also the one cold thing on a warm page,
+     which is the half of the name that had nowhere to stand. */
+  #hud .def-order, #modeRow .def-order .dfp.on { color: var(--sel); border-color: var(--sel-dim); background: var(--hover-wash); }
   #hud .def-order .dfp.waiting, #modeRow .def-order .dfp.waiting {
     opacity: 0.4; cursor: default; }
   #hud .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
@@ -1180,6 +1188,17 @@
      one stands in its own cell with its own chip under it. The cells and the
      joiner between them align at the top, which puts every reading on one
      line and every chip on the line below its own reading. */
+  /* FIRE HAS NO EDGES; HAIL DOES. The Hebrew stands free on the ground with
+     no box, no rule and no chip \u2014 it is the thing itself. Every English
+     reading is a bounded object, because that is what it is: one witness's
+     word, under a licence, from a year, replaceable by a better one. The
+     frame already said so \u2014 R pills, D cards, M with its terms \u2014 and the
+     line under the word was the one place English was drawn without an edge.
+     It also fixes a plain legibility fault: where a reading runs long, as
+     Uzziah's does at Amos 1:1, nothing said where one word's English stopped
+     and its neighbour's began. (Moses, 2026-09-09.) */
+  .wb > .g:not(.bare), .wjoin > .g:not(.bare) {
+    border: 1px solid var(--line); border-radius: 0.45em; padding: 0.1em 0.4em; }
   .g .g-part { display: inline-block; vertical-align: top; text-align: center; }
   .g .g-part + .g-part { margin-left: 0.3em; }
   .g .g-join { color: var(--muted); }

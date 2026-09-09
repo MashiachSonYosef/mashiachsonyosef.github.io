@@ -755,7 +755,17 @@
     color:var(--faint); background:none; border:1px solid var(--line); border-radius:999px;
     padding:.16rem .55rem; cursor:pointer; }
   .def-order .dfp:hover:not(:disabled) { color:var(--muted); border-color:var(--gold-dim); }
-  .def-order .dfp.on { color:var(--gold); border-color:var(--gold-dim); background:var(--hover-wash); }
+  .def-order 
+  /* THE POSITION IN FORCE IS A READER'S SELECTION, so it wears the role the
+     contract gives a reader's selection. It wore gold until 2026-09-09,
+     which is the structure role — the colour of the frame, not of a choice
+     the reader made. Nothing new is invented here: colour-role-rule-v1
+     declares structure gold, reader_selection electric blue, commentary
+     attachment crimson, and this only moves a control into the role it
+     already belonged to. It is also the one cold thing on a warm page,
+     which is the half of the name that had nowhere to stand. */
+
+  .dfp.on { color:var(--sel); border-color:var(--sel-dim); background:var(--hover-wash); }
   .def-order .dfp.waiting { opacity:.45; cursor:not-allowed;
     text-decoration-thickness:1px; }
   #wcard .r-pills { display:flex; flex-wrap:wrap; gap:.35rem; direction:ltr;
@@ -926,6 +936,9 @@
   .rd-hide { margin:.9em 0 0; padding-top:.6em; border-top:1px solid var(--line);
              color:var(--muted); font-size:.9em; }
 
+  .cc-sw { display:inline-block; width:1.1em; height:1.1em; border-radius:.25em;
+           border:1px solid var(--line); vertical-align:-.15em; }
+
   :root { --wash-active: rgba(234,200,111,.16); }
   :root[data-scheme="day"] { --wash-active: rgba(138,107,38,.14); }
   .bookcard .stamp, .atlas-row .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; flex-basis:100%; }
@@ -1047,6 +1060,18 @@
       <p class="rd-kat"><a href="/judges/?at=18%3A30">judges 18:30</a> <span class="rd-note">— the suspended letter in the name</span><br><a href="/job/?at=38%3A13">job 38:13</a><br><a href="/job/?at=38%3A15">job 38:15</a></p>
       <p class="rd-hide">The source names a letter by counting through a maqaf, and rule 2 cuts that occurrence into two C0s. So the index must be re-based onto the piece that holds the letter, or the mark lands on the wrong glyph. Leviticus 11:42 is the case: the fifth letter of the joined run is the third letter of the second piece.</p>
       <p class="rd-hide">The marks switch hides 1,717 things — verse ends, paseqs, section marks — and no letter mark is among them. Measured: pressing it leaves the letter drawn. The same reasoning as rule 6: bookkeeping about the page may be hidden, something written in the ink may not.</p>
+    </article>
+  <article class="rd" data-id="colour-roles">
+      <p class="rd-head"><span class="rd-n">·</span><span class="rd-kind">the colour roles</span><span class="rd-letter">are the ledgers and the values are ours</span><span class="rd-tier rd-carried">carried</span></p>
+      <p class="rd-law">Exodus names tekhelet, argaman, tola'at shani and shesh, and never says what any of them looked like. A role is recorded; a hex value is a tradition, and the values are the page's own. Linen is not glare: the day ground sits below paper white and its ink is warm, not black.</p>
+      <p class="rd-plain">Two faces, both the record's: Two faces, both the record's: the courtyard hangings are linen in daylight, and the tent is dark under its coverings. The device's preference decides until the reader chooses; the choice is kept on the device and nowhere else.</p>
+      <p class="rd-kindline"><span class="cc-sw" style="background:var(--gold)"></span><span class="rd-kv">structure</span><span class="rd-kdrawn">gold</span><span class="rd-kn">--gold</span></p>
+      <p class="rd-kat">verse numbers, the frame of a card, the marks of the page itself</p>
+      <p class="rd-kindline"><span class="cc-sw" style="background:var(--sel)"></span><span class="rd-kv">reader selection</span><span class="rd-kdrawn">electric blue</span><span class="rd-kn">--sel</span></p>
+      <p class="rd-kat">the order position in force, and whatever the reader has chosen</p>
+      <p class="rd-kindline"><span class="cc-sw" style="background:var(--shani)"></span><span class="rd-kv">commentary attachment</span><span class="rd-kdrawn">crimson</span><span class="rd-kn">--shani</span></p>
+      <p class="rd-kat">where a commentary attaches to a place in the text</p>
+      <p class="rd-hide">TYPED_IN_THE_OPEN · decided 2026-08-24 · dies when a sealed presentation ledger arrives carrying its own colour contract. The swatches above are painted with the page's own tokens, so they cannot drift from what a reader is shown — if the record and the stylesheet ever disagree, these squares show the stylesheet.</p>
     </article>
   <footer>Every rule below is one of three things and says which on its face: carried whole, with its source named and hashed; carried with one mark typed into it because no source we hold writes that mark there, with the typed positions named in the record and drawn as typed on the word; or typed outright, with the reason and the wire named. No demonstration is a work: each is branded an instrument in its own file, none is listed on the door among the books, none is built by the fleet, and none is served as a work anywhere. Recorded in data/rule-demonstrations-v1.json; the passages are built into zones by tools/build-demonstrations-v1.mjs and opened by the reader itself, so what answers a press here is the card that answers on every book.</footer>
 </main></body></html>
