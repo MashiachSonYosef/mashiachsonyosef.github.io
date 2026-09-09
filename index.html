@@ -772,7 +772,7 @@
     padding:.16rem .55rem; cursor:pointer; }
   .def-order .dfp:hover:not(:disabled) { color:var(--muted); border-color:var(--gold-dim); }
   .def-order .dfp.on { color:var(--gold); border-color:var(--gold-dim); background:var(--hover-wash); }
-  .def-order .dfp.waiting { opacity:.45; cursor:not-allowed; text-decoration:line-through;
+  .def-order .dfp.waiting { opacity:.45; cursor:not-allowed;
     text-decoration-thickness:1px; }
   #wcard .r-pills { display:flex; flex-wrap:wrap; gap:.35rem; direction:ltr;
     overflow-y:auto; overflow-x:hidden; min-height:4.6rem; max-height:34vh; }
@@ -925,6 +925,12 @@
   /* the census stands at its own address; the door wears the way there in
      the same corner the faces live in, one step down */
   a.alt-face { text-decoration:none; }
+  /* the way to the bench. One quiet line above the footer: the order
+     switch governs every card on the site, and a reader who wants to know
+     what it is should not have to find a book first. */
+  .poc-link { margin:1.2em 0 .4em; font-size:.9em; }
+  .poc-link a { color:var(--muted); }
+
   :root { --wash-active: rgba(234,200,111,.16); }
   :root[data-scheme="day"] { --wash-active: rgba(138,107,38,.14); }
   .bookcard .stamp, .atlas-row .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; flex-basis:100%; }
@@ -1413,22 +1419,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // it starts as binary — it gives us a starting point and a way to remember.)
   var CORPUS = {"M14":"BIBLICAL","M4":"BIBLICAL","M25":"UNDECLARED","M3":"BIBLICAL","M21":"UNDECLARED","M11":"UNDECLARED","M9":"BIBLICAL","M6":"UNDECLARED","M20":"BIBLICAL","M18":"BIBLICAL","M13":"UNDECLARED","M5":"BIBLICAL","M17":"BIBLICAL","M15":"UNDECLARED","M1":"UNDECLARED","M42":"UNDECLARED","M46":"BIBLICAL","M23":"BIBLICAL","M50":"UNDECLARED","M37":"UNDECLARED","M32":"UNDECLARED","M10":"UNDECLARED","M43":"UNDECLARED","M22":"UNDECLARED","M69":"UNDECLARED","M41":"UNDECLARED","M28":"UNDECLARED","M74":"UNDECLARED","M19":"BIBLICAL","M36":"UNDECLARED","M29":"UNDECLARED","M60":"ARAMAIC","M38":"UNDECLARED","M59":"UNDECLARED","M53":"UNDECLARED","M48":"UNDECLARED","M62":"UNDECLARED","M54":"UNDECLARED","M96":"UNDECLARED","M80":"UNDECLARED","M64":"UNDECLARED","M34":"UNDECLARED","M55":"UNDECLARED","M45":"BIBLICAL","M58":"UNDECLARED","M27":"UNDECLARED","M92":"UNDECLARED","M116":"UNDECLARED","M85":"UNDECLARED","M72":"ARAMAIC","M95":"UNDECLARED","M102":"UNDECLARED","M57":"UNDECLARED","M7":"BIBLICAL","M79":"UNDECLARED","M90":"UNDECLARED","M98":"UNDECLARED","M44":"UNDECLARED","M71":"UNDECLARED","M105":"UNDECLARED","M86":"UNDECLARED","M123":"UNDECLARED","M111":"UNDECLARED","M33":"BIBLICAL","M68":"UNDECLARED","M61":"UNDECLARED","M128":"UNDECLARED","M135":"UNDECLARED","M93":"UNDECLARED","M97":"BIBLICAL","M129":"UNDECLARED","M87":"UNDECLARED","M2":"UNDECLARED","M133":"UNDECLARED","M152":"UNDECLARED","M76":"UNDECLARED","M162":"UNDECLARED","M149":"UNDECLARED","M151":"UNDECLARED","M110":"UNDECLARED","M137":"UNDECLARED","M150":"UNDECLARED","M130":"UNDECLARED","M155":"UNDECLARED","M138":"UNDECLARED","M73":"UNDECLARED","M154":"UNDECLARED","M177":"ARAMAIC","M148":"UNDECLARED","M165":"UNDECLARED","M132":"UNDECLARED","M94":"UNDECLARED","M174":"UNDECLARED","M160":"UNDECLARED","M142":"UNDECLARED","M157":"UNDECLARED","M163":"UNDECLARED","M161":"UNDECLARED","M139":"UNDECLARED","M81":"UNDECLARED","M164":"UNDECLARED","M183":"UNDECLARED","M171":"UNDECLARED","M144":"UNDECLARED","M173":"UNDECLARED","M179":"UNDECLARED","M145":"UNDECLARED","M169":"UNDECLARED","M187":"UNDECLARED","M167":"UNDECLARED","M170":"UNDECLARED","M189":"UNDECLARED","M188":"UNDECLARED","M180":"UNDECLARED","M182":"UNDECLARED","M195":"UNDECLARED","M191":"UNDECLARED","M192":"UNDECLARED","M185":"UNDECLARED"};
   var DEF_KEY = "fh.def.order";
-  var DEF_POS = [
-    { id: "corpus", lab: "corpus", live: true,
-      say: "Lexicons of the text’s own era answer first — the corpus lane’s classification of each source, not ours. The rest keep their own order under them." },
-    { id: "masoretic", lab: "masoretic", live: false,
-      say: "Readings whose source points the word the way this text points it. Waiting on the lattice: the pointed headwords are in it, and it is not on this shelf yet." },
-    { id: "cites", lab: "cites here", live: false,
-      say: "Readings whose source cites this verse. Waiting on the lattice, and on its citations being the verses themselves rather than a count of them." },
-    { id: "characters", lab: "characters", live: true,
-      say: "Letters match exactly, pointing ignored — which is how every key on this shelf is made, so this is the catalogue’s own order, undisturbed." },
-    { id: "vowels-differ", lab: "vowels differ", live: false,
-      say: "Readings whose source points the word differently while the letters agree — the masoretic position turned over. Waiting on the same lattice." },
-    { id: "outside-era", lab: "outside the era", live: false,
-      say: "Lexicons explicitly NOT of the text’s own era first, to let a reader watch the sense move. Nothing this shelf cites is classified that way yet — unknown is not the same as later, and ranking on unknown would be the claim this project refuses." },
-    { id: "oldest", lab: "oldest first", live: true,
-      say: "The oldest source answers first. The order this page has always used, and the one it returns to." }
-  ];
+  var DEF_POS = [{"id":"corpus","lab":"corpus","live":true,"kind":"order","shown":true,"from":"data/source-corpus-v1.json · declared_corpus","say":"Lexicons of the text’s own era answer first — the corpus lane’s classification of each source, not ours. The rest keep their own order under them."},{"id":"masoretic","lab":"masoretic","live":false,"kind":"order","shown":true,"from":"the lattice · the match grade — not on this disk","say":"Readings whose source points the word the way this text points it. Waiting on the lattice: the pointed headwords are in it, and it is not on this shelf yet."},{"id":"cites","lab":"cites here","live":false,"kind":"order","shown":true,"from":"the lattice · names_this_verse — not on this disk","say":"Readings whose source cites this verse. Waiting on the lattice, and on its citations being the verses themselves rather than a count of them."},{"id":"characters","lab":"characters","live":true,"kind":"order","shown":true,"from":"data/route-store · the key itself","say":"Letters match exactly, pointing ignored — which is how every key on this shelf is made, so this is the catalogue’s own order, undisturbed."},{"id":"vowels-differ","lab":"vowels differ","live":false,"kind":"order","shown":true,"from":"the lattice · VOWEL_MISMATCH — not on this disk","say":"Readings whose source points the word differently while the letters agree — the masoretic position turned over. Waiting on the same lattice."},{"id":"outside-era","lab":"outside the era","live":false,"kind":"order","shown":true,"from":"data/source-corpus-v1.json · declared_corpus, inverted","say":"Lexicons explicitly NOT of the text’s own era first, to let a reader watch the sense move. Nothing this shelf cites is classified that way yet — unknown is not the same as later, and ranking on unknown would be the claim this project refuses."},{"id":"oldest","lab":"oldest first","live":true,"kind":"order","shown":true,"from":"data/route-store · the row’s source year","say":"The oldest source answers first. The order this page has always used, and the one it returns to."}];
   var defOrder = (function () {
     var held = null;
     try { held = localStorage.getItem(DEF_KEY); } catch (e) { /* a device that remembers nothing still reads */ }
@@ -1451,7 +1442,12 @@ document.addEventListener("DOMContentLoaded", () => {
     var row = wcard.querySelector(".def-order");
     if (!row) return;
     row.replaceChildren();
-    DEF_POS.forEach(function (pos) {
+    // THE ONES THAT CAN ANSWER COME FIRST (owner, 2026-09-08: rearrange them
+    // rather than cross them out). A struck control reads as withdrawn, and
+    // none of these was withdrawn — they were asked for and their records
+    // have not arrived. The book page was corrected that day; this row is the
+    // same switch and was left behind, so it is corrected here too.
+    DEF_POS.slice().sort(function (a, c) { return (a.live ? 0 : 1) - (c.live ? 0 : 1); }).forEach(function (pos) {
       var b = document.createElement("button");
       b.type = "button";
       b.className = "dfp" + (pos.live ? "" : " waiting") + (pos.id === defOrder ? " on" : "");
@@ -1922,6 +1918,7 @@ document.addEventListener("DOMContentLoaded", () => {
        declared, that this is how the NC records here are honored, that a
        carried record keeps its own license, and that what this site adds is
        CC0. What went was the second telling of each. -->
+  <p class="poc-link"><a href="/toggles/">what the order switch is, and what each position answers from</a></p>
   <footer><p class="open-claim">Noncommercial: nothing sold, no advertising, no payment taken — declared 2026-08-30, standing as long as this page serves. That is how the records here released on noncommercial terms are honored. Each carried record keeps its own license, shown beside it wherever it prints. What this site adds — its pages, arrangement, receipts and words — is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>.</p></footer>
 </main>
 </body>

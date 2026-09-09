@@ -168,6 +168,17 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
     // required to be a lawful destination only while the page is built.
     const pocFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "demonstrations", "index.html");
     if (existsSync(pocFile)) FINISHED.push("/demonstrations/");
+    // And the order switch's own page, standing since 2026-09-09. The switch
+    // governs every card the site serves, and a reader who wants to know what
+    // it is should not have to open a book to find out — so it is the door's
+    // third page, beside the census, and the way there must exist and land.
+    // It is not a book and never will be: it prints no Hebrew at all, because
+    // every position on it is a claim about the ORDER readings come in, and an
+    // order is shown by pressing a word in a real book rather than by a
+    // specimen typed onto a page about the switch.
+    const benchFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "toggles", "index.html");
+    check("the order switch stands at its own address", existsSync(benchFile), benchFile);
+    FINISHED.push("/toggles/");
   // and the reference pages: each group in the typed reference record
   // (data/reference-groups-v1.json, the owner's naming ruling) is a
   // published address the door points at
