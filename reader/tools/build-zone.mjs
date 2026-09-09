@@ -27,7 +27,7 @@
 // sections" — built from the sealed unit id, which is a location label and
 // not a translated word. No Hebrew numeral is invented to fill the gap.
 
-import { writeFileSync, readFileSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync } from "node:zlib";
 import { fileURLToPath } from "node:url";
@@ -389,12 +389,32 @@ if (span) for (const [, sp] of span.spans) for (const c of cellsOf(sp.s)) cellSu
 // ---- 5b. the gloss table -------------------------------------------------
 // Title tokens are words too, so their keys are asked for alongside the text's.
 if (y) for (const c of Object.values(y.chapters)) for (const t of c.name_tokens) if (t.k) { keysNeeded.add(t.k); cellSurfaces.add(t.k); }
-const { table: gloss, counts: glossCounts, sha256: glossSha } = store.tableFor([...cellSurfaces]);
+// THE READER'S ORDERS, DERIVED IN THIS PASS. The default column is rule 4's
+// and is unchanged. The others are the reader's positions, carried as deltas
+// beside it — see tableFor. The corpus column needs the corpus lane's own
+// classification of each witness; where that record is absent the column is
+// not written at all, so a position with no record is a position that is
+// visibly not live rather than one quietly equal to the default.
+const CORPUS_PATH = fileURLToPath(new URL("../data/source-corpus-v1.json", import.meta.url));
+const corpusWitnesses = existsSync(CORPUS_PATH)
+  ? (JSON.parse(readFileSync(CORPUS_PATH, "utf8")).witnesses || {})
+  : null;
+const corpusOf = corpusWitnesses ? (mId) => (corpusWitnesses[mId] || {}).corpus || null : null;
+const { table: gloss, deltas: glossDeltas, counts: glossCounts, sha256: glossSha } = store.tableFor([...cellSurfaces], { corpusOf });
 // The M of every reading, derived in this same pass from the same store —
 // a build input, never a patch. Before 2026-09-02 an enrichment wrote it
 // into the zone after the build, and the single-pass rule was right to
 // refuse that.
 const { gloss_m: glossM, drift: glossMDrift } = glossMFor(store, gloss);
+// Each order's own witnesses, for exactly the keys that order reads
+// differently. A reading that changed carries a different M and a different
+// licence with it, and a licence left behind on a changed reading would be
+// the one thing this project may never print.
+const glossMDeltas = {};
+for (const [order, tbl] of Object.entries(glossDeltas || {})) {
+  if (!Object.keys(tbl).length) continue;
+  glossMDeltas[order] = glossMFor(store, tbl).gloss_m;
+}
 let glossedRegions = 0, regionCount = 0, spannedRegions = 0, splitWords = 0, kqSites = 0, kqFindings = 0;
 const kqConventions = new Set();
 for (const sec of sections) for (const w of sec.words) {
@@ -732,6 +752,8 @@ const zone = {
   spans,
   gloss,
   gloss_m: glossM,
+  gloss_orders: glossDeltas,
+  gloss_m_orders: glossMDeltas,
   sections,
 };
 

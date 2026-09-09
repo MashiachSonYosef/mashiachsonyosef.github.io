@@ -93,9 +93,31 @@ export const openRouteStore = (storeDir) => {
     return out.map((x) => x.trim()).filter(Boolean);
   };
 
+  /** THE ORDERS A READER MAY PUT THE POOL IN.
+   *
+   *  Rule 4 above is one of them and stays the default, because it is the one
+   *  every published zone was built under. The others are the reader's own
+   *  positions, and they are computed HERE rather than in the page for the
+   *  same reason rule 4 is: an order that lives in a browser cannot be
+   *  reviewed, diffed or rerun, and an order chosen at read time can fail its
+   *  fetch and leave the page showing one thing while it claims another.
+   *
+   *    oldest      antiquity tier, then year, then the catalog's rank — rule 4.
+   *    characters  the catalog's own rank alone, undisturbed. This is the
+   *                order the shelf's keys are made in, so it disturbs nothing.
+   *    corpus      witnesses the corpus lane declared BIBLICAL first; everything
+   *                else keeps its own order under them. Note what this does NOT
+   *                do: it does not rank UNDECLARED below anything. Unknown is
+   *                not the same as later, and ordering on unknown would be the
+   *                claim this project refuses — so undeclared and declared-other
+   *                share one bucket and are separated only by the rule above.
+   */
+  const ORDERS = ["oldest", "characters", "corpus"];
+
   /** Rules 2–5. The ordered reading pool for one K; [] when nothing displays. */
-  const readingPool = (routes) => {
+  const readingPool = (routes, order = "oldest", corpusOf = null) => {
     const groups = new Map();
+    let arrived = 0;
     (routes || []).forEach((row) => {
       const [rank, routeText, , mId, year] = row;
       if (!index.m_sources[mId]) return; // rule 5
@@ -113,18 +135,30 @@ export const openRouteStore = (storeDir) => {
         r.readings.forEach((reading) => {
           const key = reading.toLowerCase();
           const g = groups.get(key);
-          if (!g) groups.set(key, { text: reading, year: yr, ledger: Number(rank) });
+          // The corpus rank merges the same way year and rank do: a reading
+          // carried by any BIBLICAL witness is a BIBLICAL-carried reading,
+          // whatever else also carries it.
+          const cr = corpusOf && corpusOf(mId) === "BIBLICAL" ? 0 : 1;
+          if (!g) groups.set(key, { text: reading, year: yr, ledger: Number(rank), corpus: cr, at: arrived += 1 });
           else {
             g.year = Math.min(g.year, yr);
             g.ledger = Math.min(g.ledger, Number(rank));
+            g.corpus = Math.min(g.corpus, cr);
           }
         });
       });
     });
     const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
-    return [...groups.values()].sort(
-      (a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger,
-    );
+    const byOldest = (a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger;
+    // Every order ends in the same tie-break, so two readings the order cannot
+    // separate come out in the order rule 4 gives them rather than in whatever
+    // order the shards happened to be read in.
+    const cmp = order === "characters"
+      ? (a, b) => a.ledger - b.ledger || byOldest(a, b) || a.at - b.at
+      : order === "corpus"
+        ? (a, b) => a.corpus - b.corpus || byOldest(a, b)
+        : byOldest;
+    return [...groups.values()].sort(cmp);
   };
 
   /**
@@ -133,17 +167,36 @@ export const openRouteStore = (storeDir) => {
    * a form the catalog never carries, and a form whose every route is
    * unlicensed to display.
    */
-  const glossFor = (k) => {
+  const glossFor = (k, order = "oldest", corpusOf = null) => {
     const routes = routesFor(k);
     if (!routes) return { text: null, reason: "NO_EXACT_ROUTE" };
-    const pool = readingPool(routes);
+    const pool = readingPool(routes, order, corpusOf);
     if (!pool.length) return { text: null, reason: "NO_DISPLAYABLE_ROUTE" };
     return { text: pool[0].text, reason: null, pool_size: pool.length };
   };
 
-  /** Build the K -> sense table for exactly the forms a zone contains. */
-  const tableFor = (keys) => {
+  /** Build the K -> sense table for exactly the forms a zone contains.
+   *
+   *  `table` is the default order and is what it has always been, byte for
+   *  byte, so every zone already published and every guard over them is
+   *  unaffected. `deltas` carries the other orders — and carries only the
+   *  keys where an order DISAGREES with the default. Three full columns would
+   *  have tripled the table to say the same thing three times: measured on
+   *  Genesis, most keys have one reading, and most of the rest are read the
+   *  same way by every order. A key absent from a delta is not a gap and not
+   *  a fallback; it is the positive fact that this order agrees here.
+   *
+   *  A caller with no corpus record gets no corpus column at all rather than
+   *  a corpus column that quietly equals the default — a position whose
+   *  record is missing is a position that is not live, and it must be
+   *  possible to tell those apart from outside.
+   */
+  const tableFor = (keys, opts = {}) => {
+    const corpusOf = opts.corpusOf || null;
+    const orders = ORDERS.filter((o) => o !== "oldest" && (o !== "corpus" || corpusOf));
     const table = {};
+    const deltas = {};
+    for (const o of orders) deltas[o] = {};
     const counts = { keys_asked: 0, glossed: 0, no_exact_route: 0, no_displayable_route: 0 };
     for (const k of [...new Set(keys)].sort()) {
       counts.keys_asked += 1;
@@ -154,13 +207,18 @@ export const openRouteStore = (storeDir) => {
       }
       table[k] = g.text;
       counts.glossed += 1;
+      if (g.pool_size > 1) for (const o of orders) {
+        const alt = glossFor(k, o, corpusOf);
+        if (alt.text !== null && alt.text !== g.text) deltas[o][k] = alt.text;
+      }
     }
     const body = JSON.stringify(table);
-    return { table, counts, sha256: createHash("sha256").update(body).digest("hex") };
+    for (const o of orders) counts[`differs_${o}`] = Object.keys(deltas[o]).length;
+    return { table, deltas, counts, sha256: createHash("sha256").update(body).digest("hex") };
   };
 
   // packSplit rides on the store so a consumer that must ask "which licensed
   // route carries this exact reading" divides the route text under the
   // store's own depth rule instead of re-implementing it.
-  return { index, routesFor, readingPool, glossFor, tableFor, packSplit };
+  return { index, routesFor, readingPool, glossFor, tableFor, packSplit, ORDERS };
 };

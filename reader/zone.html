@@ -2026,6 +2026,15 @@
   const KQ_SAYS = { KETIV: "ketiv first", QERE: "qere first", SOURCE: "as the source sets them" };
   let kqOrder = (() => { try { return KQ_ORDERS.includes(localStorage.getItem(ORDER_KEY)) ? localStorage.getItem(ORDER_KEY) : "KETIV"; } catch { return "KETIV"; } })();
   const KQ_STANDS = [];
+  // AND THE SAME LEDGER FOR ORDINARY WORDS. The pairs ledger exists so the
+  // order toggle can repaint a pair without rebuilding the page; every other
+  // word needs the same thing for the same reason, now that an order changes
+  // which reading stands under it and not only which reading leads its card.
+  // What is kept is the least a repaint needs: the element and the keys whose
+  // readings compose its line. A word whose line came from a ruling is not
+  // enrolled — a ruling is the reader's own decision about that word and
+  // outranks the order they put the rest of the book in.
+  const GLOSS_STANDS = [];
   /** Which branch of a pair backs the English, and what it fell back from. */
   const kqPick = (regions, parts, table) => {
     const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—";
@@ -4358,6 +4367,9 @@
       const chip = licChipFor(ks);
       if (chip) ge.append(chip);
     }
+    if (table === zone.gloss && !wasRuled && !word.kq) {
+      GLOSS_STANDS.push({ ge, ks: regions ? regions.map((r) => r.k) : (word.k ? [word.k] : []) });
+    }
     wb.append(ge);
     // A pair goes on the pairs ledger, so the order toggle can repaint it
     // without rebuilding the page. What is kept is what a repaint reads: the
@@ -4492,6 +4504,74 @@
   // something withdrawn, and none of these was withdrawn — they were asked
   // for and the records have not arrived. (Owner, 2026-09-08: "id just
   // rearrange them rather than cross out".)
+  // THE ORDER'S COLUMN, SWAPPED INTO THE TABLE THE PAGE DRAWS FROM.
+  //
+  // The zone carries the default column whole and the other orders as deltas
+  // beside it — only the keys where an order disagrees. So the swap is: put
+  // every moved key back to its default, then lay this order's disagreements
+  // over the top. The table object itself is never replaced, because half a
+  // dozen places in this file ask `table === zone.gloss` to decide whether a
+  // line is the baked reading (and so whether a licence chip rides it), and a
+  // fresh object would answer no and quietly strip every chip on the page.
+  //
+  // A key an order does not mention is not a gap and not a fallback: it is
+  // the positive fact that this order reads that word the same way. An order
+  // with no column at all is a position that is not live, and none of those
+  // reach here.
+  let GLOSS_BASE = null, GLOSS_M_BASE = null;
+  const applyGlossOrder = (order) => {
+    if (!zone || !zone.gloss) return;
+    const cols = zone.gloss_orders || {}, mcols = zone.gloss_m_orders || {};
+    if (!GLOSS_BASE) {
+      GLOSS_BASE = {}; GLOSS_M_BASE = {};
+      const moved = new Set();
+      for (const o in cols) for (const k in cols[o]) moved.add(k);
+      for (const k of moved) {
+        GLOSS_BASE[k] = zone.gloss[k];
+        GLOSS_M_BASE[k] = zone.gloss_m ? zone.gloss_m[k] : undefined;
+      }
+    }
+    for (const k in GLOSS_BASE) {
+      zone.gloss[k] = GLOSS_BASE[k];
+      if (zone.gloss_m) {
+        if (GLOSS_M_BASE[k] === undefined) delete zone.gloss_m[k];
+        else zone.gloss_m[k] = GLOSS_M_BASE[k];
+      }
+    }
+    const col = cols[order], mcol = mcols[order];
+    if (col) for (const k in col) {
+      zone.gloss[k] = col[k];
+      // the reading moved, so its witness and its licence move with it — a
+      // licence left standing on a reading it does not carry is the one thing
+      // this page may never print, so an absent M deletes rather than keeps
+      if (zone.gloss_m) {
+        if (mcol && mcol[k]) zone.gloss_m[k] = mcol[k];
+        else delete zone.gloss_m[k];
+      }
+    }
+  };
+
+  /** Redraw every enrolled word's line under the table as it now stands. */
+  const repaintGlossOrder = () => {
+    const runs = new Set();
+    for (const st of GLOSS_STANDS) {
+      const parts = st.ks.map((k) => { const g = zone.gloss[k]; return g ? spanJoin(g) : "\u2014"; });
+      const line = parts.filter((x) => x !== "\u2014").length ? parts.join(" + ") : "";
+      st.ge.replaceChildren();
+      if (line) { st.ge.textContent = line; st.ge.title = line; st.ge.classList.remove("bare"); }
+      else { st.ge.textContent = " "; st.ge.classList.add("bare"); }
+      if (line && zone.gloss_m) {
+        const chip = licChipFor(st.ks.filter((k, i) => parts[i] !== "\u2014"));
+        if (chip) st.ge.append(chip);
+      }
+      const run = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
+      if (run) runs.add(run);
+    }
+    // a joined run prints its pieces once, together, so it is made again from
+    // the pieces this repaint just changed
+    for (const r of runs) refreshJoinGloss(r);
+  };
+
   const defSwitch = () => {
     const row = document.getElementById("defRow");
     if (!row) return;
@@ -4512,7 +4592,13 @@
           const on = x.textContent === pos.lab;
           x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on));
         }
-        // the word standing open re-answers in the new order without closing
+        // THE LINE MOVES, NOT ONLY THE CARD. The owner pressed every position
+        // and read the same sentence each time (2026-09-09): the switch had
+        // only ever reached the card's reading list, while the line under each
+        // word came from the zone's baked column and never moved. It moves now.
+        applyGlossOrder(defOrder);
+        repaintGlossOrder();
+        // and the word standing open re-answers without closing
         if (redrawReadings) redrawReadings();
       });
       row.append(btn);
@@ -6309,6 +6395,10 @@
   // are in the document
   marksSwitch();
   pairSwitch();
+  // the reader's order is in force before the first word is drawn, and any
+  // section already drawn is brought to it
+  applyGlossOrder(defOrder);
+  repaintGlossOrder();
   defSwitch();
   if (openAt && byLabel.has(openAt)) {
     const target = document.getElementById(byLabel.get(openAt));
