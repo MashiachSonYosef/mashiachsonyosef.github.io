@@ -274,6 +274,26 @@ const GROUPING_PATH = arg("grouping", "data/book-grouping-v1.json");
 const GROUPING = existsSync(GROUPING_PATH) ? JSON.parse(readFileSync(GROUPING_PATH, "utf8")) : null;
 const GROUPING_SHA = GROUPING ? createHash("sha256").update(readFileSync(GROUPING_PATH)).digest("hex") : "";
 const GROUPING_FILES = new Set(GROUPING ? GROUPING.groups.flatMap((g) => g.files) : []);
+// X — the attestation for the B grouping. The frame's X is "attestations for
+// B, Y, V and U", and the twenty-four filing is a B claim this edition does
+// not itself perform, so it may not print on the edition's authority. The
+// record names witnesses on this shelf and is bound to the ledger's own sha:
+// if the ledger is re-issued, the binding no longer matches and the door
+// stops printing the filing rather than carrying an attestation of something
+// else forward.
+const GROUP_X_PATH = arg("grouping-attestation", "data/grouping-attestation-v1.json");
+const GROUP_X_RAW = existsSync(GROUP_X_PATH) ? JSON.parse(readFileSync(GROUP_X_PATH, "utf8")) : null;
+const GROUP_X = (GROUP_X_RAW
+  && GROUP_X_RAW.binds_to
+  && GROUP_X_RAW.binds_to.grouping_ledger_sha256 === GROUPING_SHA
+  && GROUP_X_RAW.attests
+  && GROUP_X_RAW.attests.books_24
+  && (GROUP_X_RAW.attests.books_24.witnesses || []).length)
+  ? GROUP_X_RAW.attests.books_24
+  : null;
+const GROUP_X_SAYS = GROUP_X
+  ? `${GROUP_X.witnesses.length} witness${GROUP_X.witnesses.length === 1 ? "" : "es"} on this shelf state the count \u2014 ${GROUP_X.witnesses.map((w) => `${w.work} \u00b7 ${w.at}`).join("; ")}. Not claimed: ${GROUP_X.not_claimed}`
+  : "";
 // A GATHERED NAME IS THE LEDGER'S WORD, AND ONLY WHERE THE STORE ATTESTS IT.
 // The five gathered books are named in the ledger's own Hebrew, and four of
 // those names are not any file's title \u2014 no file is called "the Twelve".
@@ -1025,8 +1045,11 @@ const famHeadHe = (lf) => {
 // a link, because the tradition's book is not an address here — this edition
 // ships it as two files or as twelve, and those are the addresses. So the name
 // cell carries the book and then every file it is shipped in, each opening
-// its own page. The attestation cell says who says the filing: the corpus
-// lane's ledger, with its law on the hover. The Hebrew is the ledger's own,
+// its own page. The attestation cell says who says the filing \u2014 and until
+// 2026-09-09 it said the corpus lane's ledger, which is where the filing was
+// recorded and not who attests it. A record of a claim is not a witness to
+// it. The hover now names the witnesses on this shelf that state the count,
+// then the ledger's law, then the ledger and its hash. The Hebrew is the ledger's own,
 // keyed by the same rule every title on this site is keyed by, and only what
 // the store already attests becomes a control; the licence cell carries the
 // licence of whatever reading answers that Hebrew.
@@ -1054,7 +1077,7 @@ const group24Row = (g) => {
   // not one, which is the whole difference the twenty-four filing makes.
   const ways = `<span class="g24-files">${g.files.map((f) => `<a class="aw" href="/${f}" title="open this book">${esc(bookName(f) || f)}</a>`).join("")}</span>`;
   return `      <span class="atlas-row built g24"><span class="pair pair-l"><span class="col-en"><span class="g24-name">${esc(g.book24.replace(/-/gu, " "))}</span>${ways}</span>` +
-    `<span class="col-att"><span class="chip" title="${esc(GROUPING.law)} \u2014 ${GROUPING_PATH.split("/").pop()} ${GROUPING_SHA.slice(0, 12)}\u2026">filed as one of the ${GROUPING.books_24}</span></span></span><span class="pair pair-r">` +
+    `<span class="col-att"><span class="chip" title="${esc(GROUP_X_SAYS)} \u2014 ${GROUPING.law} \u2014 ${GROUPING_PATH.split("/").pop()} ${GROUPING_SHA.slice(0, 12)}\u2026">filed as one of the ${GROUPING.books_24}</span></span></span><span class="pair pair-r">` +
     `<span class="col-he">${named
       ? `<span class="fam-he"><span class="he" lang="he" dir="rtl">${words}</span>${gloss ? `<span class="g">${esc(gloss)}</span>` : ""}</span>`
       : `<span class="he none" title="the ledger names this book in Hebrew; no record on this shelf attests every word of that name">no name is on record</span>`}</span>` +
@@ -1136,7 +1159,25 @@ const familySection = (fam) => {
   // hidden property \u2014 hidden belongs to the search box, and two mechanisms
   // writing one flag is how a row vanishes for a reason nobody can name.
   const shelfSlugs = new Set(shelfRows.map((r) => addressOf(r.atlas.id)));
-  const filed24 = !!(GROUPING && GROUPING_FILES.size && [...GROUPING_FILES].every((f) => shelfSlugs.has(f)));
+  // THE TWENTY-FOUR FILING PRINTS ONLY WHERE A WITNESS ATTESTS IT, 2026-09-09.
+  //
+  // Every reading on this page carries the witness that published it, and
+  // every book name is either attested or blank. The twenty-four was the one
+  // claim here standing on nobody: the grouping ledger's law says "the
+  // tradition counts 24" and names no one — no attestation, no witness, no
+  // citation in the record. X is the frame's letter for precisely that
+  // (attestations for B, Y, V and U), and this claim had none.
+  //
+  // It has one now, from this shelf rather than from memory: every one of the
+  // 3,488 zones was read and searched for the phrase, and Sefer Mitzvot Gadol
+  // states the count and names it as Torah, Prophets and Writings. The record
+  // is data/grouping-attestation-v1.json. It cites addresses and copies no
+  // words: the witness's text stays in the zone that holds it.
+  //
+  // The gate is the record's existence, not a flag. Take the attestation away
+  // and the filing stops printing, because then nobody is saying it again.
+  const filed24 = !!GROUP_X
+    && !!(GROUPING && GROUPING_FILES.size && [...GROUPING_FILES].every((f) => shelfSlugs.has(f)));
   const rows24 = filed24
     ? [...GROUPING.groups].sort((x, y) => x.book24.localeCompare(y.book24)).map((g) => (g.files.length > 1
         ? group24Row(g)
