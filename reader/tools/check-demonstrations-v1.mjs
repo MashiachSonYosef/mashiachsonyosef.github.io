@@ -238,6 +238,28 @@ else {
       } else if (test === "no_gloss") {
         const gl = z.gloss || {};
         found = (sec.words || []).some((w) => w.k && gl[w.k] === undefined);
+      } else if (test === "kq") {
+        found = (sec.words || []).some((w) => w.kq);
+      } else if (test === "kq_one_sided") {
+        found = (sec.words || []).some((w) => w.kq && (w.w || []).length === 1);
+      } else if (test === "kq_multi_branch") {
+        found = (sec.words || []).some((w) => w.kq && (w.w || []).length > 2);
+      } else if (test === "kq_maqaf") {
+        found = (sec.words || []).some((w) => w.kq && w.presentation_join
+          && (w.presentation_join.join_next_without_separator || w.presentation_join.join_previous_without_separator));
+      } else if (test === "maqaf_one_carded") {
+        const gl = z.gloss || {};
+        const ws = sec.words || [];
+        found = ws.some((w, i) => {
+          if (!(w.presentation_join && w.presentation_join.join_next_without_separator)) return false;
+          const nx = ws[i + 1];
+          if (!nx || !w.k || !nx.k) return false;
+          return (gl[w.k] === undefined) !== (gl[nx.k] === undefined);
+        });
+      } else if (test === "exists") {
+        // the demonstration is the verse itself — that it is served at this
+        // address, with words, is the whole claim
+        found = (sec.words || []).some((w) => w.k);
       } else {
         l8.push(`${a.book} ${a.label}: ${k.kind} names a test this check does not know (${test})`);
         continue;

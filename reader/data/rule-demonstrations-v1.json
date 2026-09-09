@@ -74,6 +74,53 @@
    "probe_notes": "What the page does here was measured rather than designed for this entry — it already behaved this way and nothing recorded it, which is why nothing checked it."
   },
   {
+   "id": "language",
+   "n": 0,
+   "name_en": "the language underneath",
+   "title_en": "Where the verse changes language, and where the catalog does not notice",
+   "letter": "M · a source admits Hebrew and Aramaic, and says which",
+   "the_c0_law": "The text is what it is. A catalog answers about a FORM, not about a sentence — so a form that is a name in this verse and a common noun elsewhere gets the reading the catalog carries, and the order is the reader's.",
+   "plainly": "Two verses show the whole problem. At Daniel 2:4 the text changes language mid-verse and says so in its own words — three words of Hebrew, then the word Aramaic, then Aramaic to the end of the chapter. At Genesis 31:47 Laban and Jacob name the same heap in two languages, and the catalog answers the Aramaic from Hebrew. Nothing here is a fault in the readings: each is attested and licensed, and each is answering about the form rather than the sentence. It is the clearest argument on the site for the order being the reader's.",
+   "press": "the fourth word of Daniel 2:4, then each word of Genesis 31:47",
+   "tier": "CARRIED_FROM_A_NAMED_SOURCE",
+   "kinds": [
+    {
+     "kind": "MID_VERSE_SWITCH",
+     "test": "exists",
+     "drawn": "no boundary is drawn: the words simply continue, and the text names the language itself",
+     "sites": 1,
+     "books": 1,
+     "at": [
+      {
+       "book": "daniel",
+       "label": "2:4",
+       "note": "the fourth word is the word Aramaic, and the language changes on it"
+      }
+     ]
+    },
+    {
+     "kind": "TWO_LANGUAGES_IN_A_VERSE",
+     "test": "exists",
+     "drawn": "every word carries whatever reading the catalog holds for its form",
+     "sites": 1,
+     "books": 1,
+     "at": [
+      {
+       "book": "genesis",
+       "label": "31:47",
+       "note": "the opening verb reads as the name of a book, the name Laban reads as a common noun, and the Aramaic reads from Hebrew — three different ways for a form to outrun its sentence"
+      }
+     ]
+    }
+   ],
+   "carried_from": {
+    "source": "the served store",
+    "vocabulary": "the readings as the catalog carries them",
+    "receipt_note": "what each card says here was read off the built zone, not recalled"
+   },
+   "may_not_be_hidden": "Nothing here is hidden or corrected. The site does not overrule a licensed reading; it lets a reader put the pool in another order."
+  },
+  {
    "id": "kq",
    "n": 1,
    "name_en": "qere and ketiv",
@@ -163,6 +210,105 @@
    "probe_notes": "SOURCE: R2 object moses-ledgers/kq-reseal-v1/streams/tanakh-nahum-kq-resealed-v1.tokens.csv.gz (sha256 0fdc43845e2e32b5bc18fb02001b1746436dab0ba26d92ed3cf5d2ee39325937), receipt tanakh-nahum-kq-resealed-v1.json (sha256 cdcfd86d3c05503b240eb930bc3dd8f46fc44bb51c36162ed1520ca33ece2793). Downloaded to /tmp/kqprobe/, nothing written into the repo. Nahum is the SMALLEST work under moses-ledgers/kq-reseal-v1/streams/ (5831 B gz, 524 token rows).\nRECEIPT CHECK — the normalized hash REPRODUCES, the surface hash DOES NOT. Recomputing sha256 over the surface column joined with \\n plus a trailing \\n gives 1e9dbba8505bf7e6581179d45fd5baad1798f69c6a15ee060763f0671ce17cc1, but the receipt's surface_token_stream_sha256 is b7f20263954d777a7059269e823ed9bade2fa267afdf01a1fb52549a44b9e8e6. The same recipe over the normalized_key column DOES match normalized_token_stream_sha256 (ea53d538153e416057c9c508ccc5563146397680854c98460456e33fa26a0879) exactly, so the join recipe itself is right and the surface digest is the odd one out. I also tried: no trailing newline, CRLF, CSV-escaped fields, header line included, raw gz bytes, raw decompressed text, NFC and NFD normalization, a space join, and the 525-row pre-merge shape with the kq row split back into (ketiv) and [qere] — none reproduce the receipt's surface hash. This is SYSTEMIC, not a Nahum quirk: I spot-checked tanakh-joel and tanakh-amos from the same prefix and both show the same pattern (normalized matches, surface does not). The builder must NOT treat surface_token_stream_sha256 in kq-reseal-v1 receipts as a verifiable seal until the lane says how it was computed; the normalized hash is trustworthy today.\nROWS: the stream carries no c0 column and no unit map, so the c0 values here are the 0-based row offsets I took from the token stream (body rows 156..177 inclusive, header excluded), and unit_id is a name of my own choosing. They are contiguous and ascending but they are NOT July-body c0 ids; the builder must renumber against whatever c0 spine it serves.\nKQ SITE: 0-based row index 7 in rows (stream body offset 163) is the one-row ketiv-qere site — the only one in this run, and the only merged site in the whole work (receipt kq_sites_merged=1, rows_before=525, rows_after=524). Its hebrew field is the one-row form \"(ketiv) [qere]\".\n  ketiv (inside parentheses): \\u05dc\\u05e2\\u05d1\\u05d5\\u05e8\n  qere  (inside brackets):    \\u05dc\\u05b7\\u05e2\\u05b2\\u05d1\\u05c7\\u05e8\\u05be\n  VOCALIZATION SITS ON THE QERE, as expected: the ketiv is 5 bare consonants with 0 marks from the Hebrew points/accents range U+0591-U+05C7; the qere carries 4 marks from that same range: patah U+05B7, hataf patah U+05B2, qamats qatan U+05C7, and a trailing maqaf U+05BE. One C0 for the site, both forms in the ink, as the source wrote them.\n  The normalized_key for that row is the two branch keys joined by | (\"לעבור|לעברבך\"), per the receipt's key_law; I did not carry keys into rows, but the builder will need them.\nMARKUP: rejected the region around body offsets 146-147, which carry literal HTML (\"&nbsp;<span\" and \"class=\\\"mam-spi-pe\\\">{פ}</span><br>\") — Sefaria MAM paragraph markers leaked into the surface column as two token rows. My run starts at 156, clear of them. These are the ONLY two markup-bearing rows in Nahum, but the builder should expect them in every work in this lane.\nOTHER BRACKET ROWS: body offsets 214 (\"[bahalikhatam]\") and 344 (\"[vekhashlu]\") are qere-only rows — square brackets, no parenthesized ketiv, single-branch key. They are NOT the one-row merged form and the receipt does not count them as merged sites; a frame rule keyed on \"(\" + \"[\" will skip them, which is probably right, but the builder should decide deliberately what those bracket-only rows mean."
   },
   {
+   "id": "kq-shapes",
+   "n": 1,
+   "name_en": "the rare shapes of qere and ketiv",
+   "title_en": "One branch, three branches, and a pair inside a maqaf",
+   "letter": "C0 · one occurrence, more than one way in",
+   "the_c0_law": "A pair is one site of the text with more than one record behind it. Choosing a branch changes what the card is about and moves no character of the line.",
+   "plainly": "Most pairs have two branches and both are written. These are the ones that are not. Sometimes only one side exists at all — the scribes wrote something they did not read, or read something they did not write — and the card still has to explain both halves of a pair one of which is absent. Sometimes one written word answers to two read words, or the reverse, so the branches are not the same length. And where a pair sits inside a maqaf, rule 1 and rule 2 both fire on one occurrence.",
+   "press": "either half",
+   "tier": "CARRIED_FROM_A_NAMED_SOURCE",
+   "kinds": [
+    {
+     "kind": "ONE_SIDED",
+     "test": "kq_one_sided",
+     "drawn": "the one branch that exists, with the card naming which side is missing",
+     "sites": 17,
+     "books": 6,
+     "at": [
+      {
+       "book": "ezekiel",
+       "label": "48:16",
+       "note": "written and not read"
+      },
+      {
+       "book": "ii-kings",
+       "label": "19:31",
+       "note": "read and nothing written"
+      },
+      {
+       "book": "ii-kings",
+       "label": "5:18"
+      }
+     ]
+    },
+    {
+     "kind": "MULTI_BRANCH",
+     "test": "kq_multi_branch",
+     "drawn": "three branches where one written word answers two read words, or the reverse",
+     "sites": 36,
+     "books": 18,
+     "at": [
+      {
+       "book": "deuteronomy",
+       "label": "33:2",
+       "note": "one written word, two read"
+      },
+      {
+       "book": "exodus",
+       "label": "4:2"
+      },
+      {
+       "book": "ezekiel",
+       "label": "8:6"
+      }
+     ]
+    },
+    {
+     "kind": "PAIR_IN_A_MAQAF",
+     "test": "kq_maqaf",
+     "drawn": "both rules on one occurrence: the pair opens its branches and the joiner still rides the piece before",
+     "sites": 191,
+     "books": 29,
+     "at": [
+      {
+       "book": "amos",
+       "label": "8:4"
+      },
+      {
+       "book": "daniel",
+       "label": "2:38"
+      },
+      {
+       "book": "daniel",
+       "label": "3:18"
+      }
+     ]
+    },
+    {
+     "kind": "PAIR_WITH_A_LETTER_MARK",
+     "test": "kq",
+     "drawn": "rule 1 and rule 12 on one word",
+     "sites": 1,
+     "books": 1,
+     "at": [
+      {
+       "book": "job",
+       "label": "7:5",
+       "note": "the only place in the corpus where a pair also carries a marked letter"
+      }
+     ]
+    }
+   ],
+   "carried_from": {
+    "source": "the corpus lane's restore",
+    "vocabulary": "the kq, ketiv and qere columns",
+    "receipt_note": "the shapes were counted over all thirty-nine files, not sampled"
+   },
+   "may_not_be_hidden": "A pair is the text, not a note about it."
+  },
+  {
    "id": "maqaf",
    "n": 2,
    "name_en": "maqaf",
@@ -250,6 +396,46 @@
     }
    },
    "probe_notes": "the corpus lane's split reseal, countersigned by the website lane 2026-09-03: the successor ink rejoins byte-equal to the 1,132 predecessor rows and both hashes reproduce. Rows 3,4,5 are the three words of one maqaf compound; rows 8,9 are a two-word compound."
+  },
+  {
+   "id": "maqaf-and-the-catalog",
+   "n": 2,
+   "name_en": "a maqaf pair the catalog answers unevenly",
+   "title_en": "Two pieces, one card",
+   "letter": "C0 · two occurrences that read as one breath",
+   "the_c0_law": "A maqaf occurrence is two C0s, each counted, each with its own card. Nothing about the join changes what either piece is.",
+   "plainly": "Because the pieces are separate, the catalog can answer for one and not the other — and it does, at a hundred and seven places. The run then prints one reading line with a gap in it, which is honest: the piece with no reading has none, and the page does not borrow its neighbour's.",
+   "press": "each half in turn",
+   "tier": "CARRIED_FROM_A_NAMED_SOURCE",
+   "kinds": [
+    {
+     "kind": "ONE_PIECE_CARDED",
+     "test": "maqaf_one_carded",
+     "drawn": "the run's line carries the reading that exists and leaves the other empty",
+     "sites": 107,
+     "books": 20,
+     "at": [
+      {
+       "book": "daniel",
+       "label": "1:8"
+      },
+      {
+       "book": "daniel",
+       "label": "1:16"
+      },
+      {
+       "book": "daniel",
+       "label": "4:11"
+      }
+     ]
+    }
+   ],
+   "carried_from": {
+    "source": "the served store against the corpus lane's restore",
+    "vocabulary": "a key absent from the zone's gloss table",
+    "receipt_note": "42,325 pairs have a card on both pieces; these are the rest"
+   },
+   "may_not_be_hidden": "The gap is the catalog's, and hiding it would make the page claim a reading it does not have."
   },
   {
    "id": "abbreviation",
@@ -732,6 +918,94 @@
     }
    ],
    "probe_notes": "Matnot Kehunah on Ruth Rabbah, one comment. Row 0 is an editorial siglum standing outside the quotation, so the overlay starts at row 1 and runs 5 rows: an offset the record has to carry, not a constant. The markup was removed from the ink and nothing else was changed."
+  },
+  {
+   "id": "shirah",
+   "n": 10,
+   "name_en": "the brick gap of a song",
+   "title_en": "A song is set as brickwork, and the gaps are the setting",
+   "letter": "C0 · a gap is its own row, and it is not a word",
+   "the_c0_law": "The scribes set the songs differently from prose — brick over brick, half-brick over half-brick — and the space is part of how the passage was written. It gets its own record and is counted as a mark, never as a word.",
+   "plainly": "In the songs the layout carries meaning, so the gaps are transmitted rather than styled. Each is a row of its own, so the words on either side keep their own addresses and the setting can be drawn or dropped without moving a letter of the text.",
+   "press": "a word beside a gap",
+   "tier": "CARRIED_FROM_A_NAMED_SOURCE",
+   "kinds": [
+    {
+     "kind": "BRICK_GAP",
+     "drawn": "a gap glyph standing in the line, taking no key and no card",
+     "sites": 328,
+     "books": 8,
+     "at": [
+      {
+       "book": "deuteronomy",
+       "label": "32:1",
+       "note": "the opening of Haazinu, the most heavily set song in the Torah"
+      },
+      {
+       "book": "deuteronomy",
+       "label": "32:2"
+      }
+     ]
+    }
+   ],
+   "carried_from": {
+    "source": "the corpus lane's restore",
+    "vocabulary": "the gap column of the restore rows",
+    "receipt_note": "counted over the thirty-nine files this edition ships"
+   },
+   "may_not_be_hidden": "The gap speaks about the text rather than about the page, so it stands with rule 6 rather than with the section marks."
+  },
+  {
+   "id": "paseq-sof-pasuq",
+   "n": 11,
+   "name_en": "paseq and sof pasuq",
+   "title_en": "The stroke that separates and the mark that closes",
+   "letter": "C0 · each is its own INKOFF row",
+   "the_c0_law": "Neither is a word and neither carries a key. Each is a record of what the scribes put between or after words, counted on the written axis and never on the read one.",
+   "plainly": "The sof pasuq closes a verse and the paseq stands upright between two words the scribes wished to keep apart. They are the most common marks in the corpus by a wide margin, which is exactly why they are worth a demonstration: a rule that fires twenty-three thousand times is one nobody looks at.",
+   "press": "the word before the mark",
+   "tier": "CARRIED_FROM_A_NAMED_SOURCE",
+   "kinds": [
+    {
+     "kind": "PASEQ",
+     "drawn": "the upright stroke, standing in the line as its own row",
+     "sites": 2293,
+     "books": 37,
+     "at": [
+      {
+       "book": "amos",
+       "label": "1:1"
+      },
+      {
+       "book": "amos",
+       "label": "8:9"
+      }
+     ]
+    },
+    {
+     "kind": "SOF_PASUQ",
+     "drawn": "the closing mark at the end of the verse, its own row",
+     "sites": 23211,
+     "books": 39,
+     "at": [
+      {
+       "book": "amos",
+       "label": "1:2"
+      },
+      {
+       "book": "genesis",
+       "label": "1:1",
+       "note": "the first verse of the corpus closes with one"
+      }
+     ]
+    }
+   ],
+   "carried_from": {
+    "source": "the corpus lane's restore",
+    "vocabulary": "the paseq and sof_pasuq columns",
+    "receipt_note": "every mark is its own row; none is counted as a word"
+   },
+   "may_not_be_hidden": "These two the marks switch does hide — they are bookkeeping about the page. The switch names them: 1,717 things, verse ends and paseqs among them."
   },
   {
    "id": "letter-marks",
