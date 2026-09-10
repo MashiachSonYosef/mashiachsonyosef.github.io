@@ -2344,8 +2344,44 @@ const doc = pageDoc({
   // lines below it. The builder still derives it, so turning this back on is
   // one word.
   demo: false,
-  altLink: `<a class="face alt-face" href="/census/" title="every work the bridge records that does not serve yet — nothing hidden, nothing promised">the census</a>`,
+  altLink: `<a class="face alt-face" href="/census/" title="every work the bridge records that does not serve yet — nothing hidden, nothing promised">the census</a>`
+    + `<a class="face alt-face" href="/opensourcing/" title="a page held open for a question this project has not answered yet">opensourcing</a>`,
   sections: sectionsHtml,
+});
+
+// OPENSOURCING — A PAGE HELD OPEN, AND HELD EMPTY ON PURPOSE.
+//
+// The owner asked for a tab to fill in later. The whole of the difficulty is
+// that the subject is licensing, and a placeholder about licensing is the one
+// kind of placeholder that can do damage by existing: a page headed
+// "opensourcing" reads, to anyone who lands on it, as a statement that this
+// project IS open source. That is not decided. So this page says the question
+// is open, in those words, and says nothing else.
+//
+// What it must not do, and does not:
+//   - name a license, or any candidate license
+//   - say the code or the data "will be" released
+//   - say anything about the corpus's own licences, which are the sources'
+//     to state and are already stated on every reading that carries one
+//
+// What it does do is separate the questions, because they have different
+// answers and collapsing them is how a project accidentally promises the one
+// it does not own.
+const openSourcingSections = `    <section class="family">
+      <p class="of">This page is a placeholder, opened on 2026-09-10 so that a question this project has not answered stands in the open rather than off the page.</p>
+      <p class="of"><strong>It is not a blank page, because the question is not blank.</strong> Part of it is already answered in the footer below, and writing "nothing is decided" over the top of a footer that decides something is how a page ends up contradicting itself. So this says what is settled, what is not, and what was never this project's to settle.</p>
+      <p class="of"><strong>Settled, and already printed on every page of this site.</strong> What the site adds — its pages, arrangement, receipts and words — is CC0 1.0. That is in the footer under this paragraph and has been for longer than this page has existed. It covers the writing and the records. It does not mention code.</p>
+      <p class="of"><strong>Open.</strong> The engine: the reader, the builders, the checks. No license has been chosen for it, none is named on this page, and nothing here should be read as a release of it. When there is an answer it will be written here as a dated record like every other record this project keeps, and it will say who decided it.</p>
+      <p class="of"><strong>Not this project's to decide.</strong> The corpus. Every reading on this site already carries the license it came under, shown beside it wherever it prints, and those terms are the sources' own. Nothing decided about the engine can widen them. That is the reason these are three questions and not one.</p>
+    </section>`;
+const openSourcingDoc = pageDoc({
+  title: `opensourcing · ${SITE_NAME}`,
+  h1: "opensourcing",
+  sub: "What is settled, what is open, and what was never this project's to settle. The open part is the engine, and nothing here is a commitment about it.",
+  counts: false,
+  demo: false,
+  altLink: `<a class="face alt-face" href="/" title="back to the shelf">the door</a>`,
+  sections: [openSourcingSections],
 });
 const censusPageDoc = pageDoc({
   title: `the census · ${SITE_NAME}`,
@@ -2622,6 +2658,8 @@ mkdirSync(OUT, { recursive: true });
 writeFileSync(join(OUT, "index.html"), doc);
 mkdirSync(join(OUT, "census"), { recursive: true });
 writeFileSync(join(OUT, "census", "index.html"), censusPageDoc);
+mkdirSync(join(OUT, "opensourcing"), { recursive: true });
+writeFileSync(join(OUT, "opensourcing", "index.html"), openSourcingDoc);
 // The demonstrations, at their own address.
 //
 // They were going to sit on the front door and the door refused to emit them:
