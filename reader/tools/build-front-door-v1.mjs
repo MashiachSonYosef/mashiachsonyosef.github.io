@@ -2697,9 +2697,9 @@ ${CC ? `  <article class="rd" data-id="color-channels">
       <p class="rd-head"><span class="rd-n">\u00b7</span><span class="rd-kind">the color channels</span><span class="rd-letter">${esc(CC.channels.rule)}</span><span class="rd-tier rd-carried">ruled</span></p>
       <p class="rd-law">${esc(CC.who_decided_what.the_ledger)}</p>
       <p class="rd-plain">${esc(CC.who_decided_what.the_owner)}</p>
-      ${Object.entries(CC.channels).filter(([k]) => k !== "rule").map(([ch, d]) => `<p class="rd-kindline"><span class="cc-sw" style="background:var(${CC_TOKEN[ch] || "--ink"})"></span><span class="rd-kv">${esc(d.material)}</span><span class="rd-kdrawn">${esc(d.final ? "a final color" : "in process, never where a reader's eye comes to rest")}</span><span class="rd-kn">${esc(CC_TOKEN[ch] || "")}</span></p>
+      ${Object.entries(CC.channels).filter(([k]) => k !== "rule").map(([ch, d]) => `<p class="rd-kindline"><span class="cc-sw" style="background:var(${CC_TOKEN[ch] || "--ink"})"></span><span class="rd-kv">${esc(d.material)}</span><span class="rd-kdrawn">${esc(d.reads_as || (d.final ? "a final color" : "in process, never where a reader's eye comes to rest"))}</span><span class="rd-kn">${esc(CC_TOKEN[ch] || "")}</span></p>
       <p class="rd-kat">${esc(CC_WEARS[ch] || d.carries)}</p>`).join("\n      ")}
-      <p class="rd-plain">Two faces, both the record's: ${esc(CC.faces.rule)}</p>
+      <p class="rd-plain">${esc(CC.faces.rule)}</p>
       <p class="rd-hide">${esc(CC.basis)} \u00b7 decided ${esc(CC.decided_on)} \u00b7 supersedes ${esc(CC.supersedes)}. ${esc(CC.who_decided_what.this_page)} The swatches above are painted with the page's own tokens, so they cannot drift from what a reader is shown \u2014 if the record and the stylesheet ever disagree, these squares show the stylesheet.</p>
     </article>` : ""}
   <footer>${esc(RD.the_fence)} Recorded in data/rule-demonstrations-v1.json; the passages are built into zones by tools/build-demonstrations-v1.mjs and opened by the reader itself, so what answers a press here is the card that answers on every book.</footer>
