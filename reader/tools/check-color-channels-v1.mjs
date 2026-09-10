@@ -89,7 +89,9 @@ const FAMILY = {
   "gold, at its amber value": { hue: [35, 60], minSat: 0.25, light: [0.26, 0.85] },
   "tola'at shani": { hue: [-15, 25], minSat: 0.20, light: [0.25, 0.75] },
   "tekhelet": { hue: [185, 235], minSat: 0.25, light: [0.30, 0.85] },
-  "argaman": { hue: [250, 320], minSat: 0.15, light: [0.30, 0.85] },
+  // the field ink is argaman too, brought down to a neutral, so the box has
+  // to reach the light end where the night face writes
+  "argaman": { hue: [250, 320], minSat: 0.15, light: [0.30, 0.92] },
   // the grounds, which are surfaces and not channels
   "purple": { hue: [250, 320], minSat: 0.05, light: [0.01, 0.30] },
   "brown": { hue: [15, 50], minSat: 0.05, light: [0.01, 0.30] },
@@ -133,7 +135,7 @@ const SAMPLE = {
   text_as_written: ["section.seg .he-text .wb:not(.active):not(.chosen) .w", "color"],
   reading_as_shown: ["section.seg .he-text .g:not(.bare)", "color"],
   our_own_voice: ["header.top p#meta", "color"],
-  structure: [".vnum", "color"],
+  structure: [".vnum", "borderColor"],
   reader_selection: [".mode-btn.on", "color"],
 };
 const FINAL = ["text_as_written", "reading_as_shown", "our_own_voice"];
@@ -193,11 +195,19 @@ for (const [key, name] of [["base_surface", contract.faces[face].base_surface], 
 // WHO IS SPEAKING — the three final channels must be mutually far apart, so a
 // reader can always tell the corpus from a dictionary from us. This is the
 // assertion v2 added in exchange for the one it repealed.
+// Two inks are distinguishable if they are far apart on the wheel OR if one is
+// saturated and the other is not. The second clause is not a loophole, it is
+// the design: our own voice is the page's field, argaman held down to a
+// neutral, and a reader tells it from a channel precisely BECAUSE it is not
+// insisting on a color. Hue alone called a grey and a blue confusable at 46
+// degrees, which no eye ever would.
 for (let i = 0; i < FINAL.length; i += 1) for (let j = i + 1; j < FINAL.length; j += 1) {
   const a = rgb(painted[FINAL[i]]), c = rgb(painted[FINAL[j]]);
   const d = a && c ? apartOn(a, c) : 0;
-  check(`  ${FINAL[i].replace(/_/gu, " ")} and ${FINAL[j].replace(/_/gu, " ")} cannot be confused (>= 45°)`,
-    d >= 45, `${d.toFixed(0)}° apart · ${painted[FINAL[i]]} vs ${painted[FINAL[j]]}`);
+  const ds = a && c ? Math.abs(hsl(a).s - hsl(c).s) : 0;
+  check(`  ${FINAL[i].replace(/_/gu, " ")} and ${FINAL[j].replace(/_/gu, " ")} cannot be confused`,
+    d >= 45 || ds >= 0.30,
+    `${d.toFixed(0)} degrees apart, saturation differs by ${ds.toFixed(2)} \u00b7 ${painted[FINAL[i]]} vs ${painted[FINAL[j]]}`);
 }
 
 // Legibility is attested, not assumed: WCAG relative-luminance ratios measured
@@ -216,7 +226,11 @@ for (let i = 0; i < FINAL.length; i += 1) for (let j = i + 1; j < FINAL.length; 
     // the normal-text floor rather than the large-text one
     ["our own voice on the ground", painted.our_own_voice, 4.5],
     ["the selection on the ground", painted.reader_selection, 4.5],
-    ["structure on the ground", painted.structure, 4],
+    // structure is line work now, so it is held to the floor a rule has to
+    // clear to be seen (3:1) rather than the one a paragraph has to clear to
+    // be read. It got brighter when it stopped being text, and this is the
+    // number that says brighter was allowed.
+    ["structure, as a rule on the ground", painted.structure, 3],
   ]) {
     const c = rgb(colour);
     const r2 = c && ground ? ratio(c, ground) : 0;
@@ -262,6 +276,30 @@ if (commentaryHere) {
   });
   check("no gold is laid down as a ground \u2014 it is thread, and thread has no surface",
     golden.length === 0, golden.length ? `${golden.length} filled: ${golden.slice(0, 4).map((x) => x.where + " " + x.bg).join(" · ")}` : "checked every element on the page");
+
+  // AND GOLD IS NEVER INK AT REST. Ruled 2026-09-10 with the field: gold is
+  // rules, borders and boxes, and the only glyph it may reach is one the
+  // reader is holding, which it leaves with them. So nothing on a page at rest
+  // should be readable in gold. Anything the reader has hold of is skipped,
+  // because that is exactly the case the rule allows.
+  const restInks = await p.evaluate(() => {
+    const out = [];
+    for (const e of document.querySelectorAll("body *")) {
+      if (e.closest('.active, .chosen, [aria-pressed="true"], [aria-expanded="true"], .on, .at, .armed')) continue;
+      if (![...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())) continue;
+      const c = getComputedStyle(e).color;
+      const m = String(c).match(/(\d+(?:\.\d+)?)/gu);
+      if (!m || m.length < 3) continue;
+      out.push({ c, r: +m[0], g: +m[1], b: +m[2], where: e.tagName.toLowerCase() + (typeof e.className === "string" && e.className.trim() ? "." + e.className.trim().split(/\s+/u).join(".") : "") });
+    }
+    return out;
+  });
+  const goldInk = restInks.filter((x) => {
+    const { h, s: sat, l } = hsl([x.r, x.g, x.b]);
+    return h >= 30 && h <= 62 && sat >= 0.45 && l >= 0.20 && l <= 0.80;
+  });
+  check("no glyph is left gold at rest, so gold reaches a word only under the reader's hand",
+    goldInk.length === 0, goldInk.length ? `${goldInk.length} in gold: ${goldInk.slice(0, 4).map((x) => x.where + " " + x.c).join(" / ")}` : "checked every text-bearing element at rest");
 }
 
 // the face button turns the page and names where it turns to
