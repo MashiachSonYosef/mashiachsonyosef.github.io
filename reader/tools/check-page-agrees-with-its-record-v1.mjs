@@ -32,6 +32,13 @@
 //       contradict. This is the shape of the original bug: a hardcoded
 //       "Two faces" welded to a record that says "One face".
 //
+// THE RULE THIS GUARDS, named here rather than only read at run time. The
+// manifest credits a guard by finding the rule id in its source, so a check
+// that only loads the record at run time guards it in fact and not on the
+// record, and can be deleted without the manifest noticing it is gone:
+//
+//   color-channel-rule-v2-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours
+//
 // Run: node tools/check-page-agrees-with-its-record-v1.mjs [base-url]
 import { readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";

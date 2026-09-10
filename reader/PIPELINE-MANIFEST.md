@@ -18,7 +18,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `attachment-authorship-rule-v1-the-placement-is-ours-and-says-so` | tools/generate-attachment-map-v2.mjs, zone.html | check-whose-claim-v1 |
 | `bookword-measure-rule-v1-every-count-names-its-axis` | tools/bookword-measure-v1.mjs, tools/serve-from-restore-v5.mjs | check-bookword-count-v1 |
 | `check-variant-class-one-rule-v1` | tools/run-all-checks.sh | check-variant-class-one-rule-v1 |
-| `color-channel-rule-v2-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours` | tools/build-front-door-v1.mjs, zone.html | check-color-channels-v1 |
+| `color-channel-rule-v2-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours` | tools/build-front-door-v1.mjs, zone.html | check-color-channels-v1, check-page-agrees-with-its-record-v1 |
 | `colour-role-rule-v1` | zone.html | check-color-channels-v1 |
 | `commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press` | zone.html | check-commentary-in-line-v1 |
 | `commentary-order-rule-v2-oldest-first-on-the-earliest-date-recorded` | zone.html | check-commentary-in-line-v1 |
