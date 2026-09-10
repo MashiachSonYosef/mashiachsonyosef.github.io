@@ -126,14 +126,20 @@ const inFamily = (colour, name) => {
   const ok = hueOk && s >= f.minSat && l >= f.light[0] && l <= f.light[1];
   return { ok, why: `hue ${h.toFixed(0)}° sat ${s.toFixed(2)} light ${l.toFixed(2)}` };
 };
+const alphaOf = (c) => { const m = String(c).match(/[\d.]+/gu); return m && m.length > 3 ? Number(m[3]) : 1; };
 // shortest way round the wheel
 const apartOn = (a, c) => { const d = Math.abs(hsl(a).h - hsl(c).h) % 360; return Math.min(d, 360 - d); };
 
 // One representative of each channel, taken off the live page. A channel with
 // no bearer on this zone is said to be absent, never scored as a fault.
 const SAMPLE = {
-  text_as_written: ["section.seg .he-text .wb:not(.active):not(.chosen) .w", "color"],
-  reading_as_shown: ["section.seg .he-text .g:not(.bare)", "color"],
+  text_as_written: ["section.seg .he-text .wb:not(.active):not(.chosen) .w", "backgroundColor"],
+  reading_as_shown: ["section.seg .he-text .g:not(.bare)", "backgroundColor"],
+  // the inks, kept beside the washes: every glyph is argaman now, and what
+  // has to be proved is that each one still reads on the ground its own
+  // channel puts behind it
+  text_ink: ["section.seg .he-text .wb:not(.active):not(.chosen) .w", "color"],
+  reading_ink: ["section.seg .he-text .g:not(.bare)", "color"],
   our_own_voice: ["header.top p#meta", "color"],
   structure: [".vnum", "borderColor"],
   reader_selection: [".mode-btn.on", "color"],
@@ -219,9 +225,32 @@ for (let i = 0; i < FINAL.length; i += 1) for (let j = i + 1; j < FINAL.length; 
   };
   const ratio = (a, c) => { const [x, y] = [lum(a), lum(c)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
   const ground = rgb(painted.base_surface);
+  // A WASH IS SEE-THROUGH, so what a reader's eye meets is the wash laid over
+  // the ground. Composite it, then ask the two questions this design owes:
+  // can the reader SEE the channel, and can they still READ the ink on it.
+  // An opaque reading of a 14% wash would answer neither.
+  const over = (fg, bg) => {
+    const f = rgb(fg), b = rgb(bg), a = alphaOf(fg);
+    if (!f || !b) return null;
+    return [0, 1, 2].map((i) => Math.round(f[i] * a + b[i] * (1 - a)));
+  };
+  for (const [what, wash, ink] of [
+    ["the corpus", painted.text_as_written, painted.text_ink],
+    ["a reading", painted.reading_as_shown, painted.reading_ink],
+  ]) {
+    const laid = over(wash, painted.base_surface);
+    if (!laid || !rgb(ink)) { check(`  ${what} carries a channel behind it`, false, `wash ${wash}, ink ${ink}`); continue; }
+    // seen: the wash has to be separable from the bare ground, or it is a
+    // channel nobody can perceive and the page is lying about marking anything
+    const seen = ratio(laid, ground);
+    check(`  ${what}'s channel is visible behind it (>= 1.12:1 against the bare ground)`,
+      seen >= 1.12, `${seen.toFixed(2)}:1 \u00b7 wash ${wash} lays down rgb(${laid.join(", ")})`);
+    // read: the ink has to survive the ground its own channel puts under it
+    const legible = ratio(rgb(ink), laid);
+    check(`  ${what} still reads on top of its own channel (>= 4.5:1)`,
+      legible >= 4.5, `${legible.toFixed(1)}:1 \u00b7 ${ink} on rgb(${laid.join(", ")})`);
+  }
   for (const [what, colour, floor] of [
-    ["the corpus's own ink on the ground", painted.text_as_written, 4.5],
-    ["a reading on the ground", painted.reading_as_shown, 4.5],
     // our own voice runs small and italic in several places, so it is held to
     // the normal-text floor rather than the large-text one
     ["our own voice on the ground", painted.our_own_voice, 4.5],
@@ -333,8 +362,22 @@ if (commentaryHere) {
   await p.waitForTimeout(400);
   const released = await inkOf(first);
   check("and it returns to its own channel when the reader lets go", released === atRest, `${held} → ${released} (at rest it was ${atRest})`);
-  const r = inFamily(atRest, (channels.text_as_written || {}).material);
-  check("so the color it settles at is the corpus's, never gold", r.ok, `${atRest} · ${r.why}`);
+  // What it settles at is argaman, because every glyph on this page is. This
+  // assertion used to read "the corpus's own color" and meant shani, back when
+  // the ink carried the channel; the ink carries nothing now, so what has to
+  // be true is narrower and stricter: it settles at the page's one ink, and
+  // the channel it belongs to comes back behind it.
+  const r = inFamily(atRest, "argaman");
+  check("so the color it settles at is the page's one ink, never gold", r.ok, `${atRest} · ${r.why}`);
+  const washBack = await p.evaluate((q) => {
+    const e = document.querySelector(q);
+    // the wash rides the glyph, not the block around it — same element inkOf reads
+    const t = e && (e.querySelector(".w") || e);
+    return t ? getComputedStyle(t).backgroundColor : null;
+  }, first);
+  const washOk = !!washBack && alphaOf(washBack) > 0.02;
+  check("and the channel comes back behind it, having been lifted while held",
+    washOk, `${washBack} behind the released word`);
 }
 
 await p.close(); await b.close();

@@ -87,7 +87,13 @@
        which is where the two dyes sat in the first place. They are held
        apart from the field, and from each other, by the check and not by
        eye: far in hue, or far in chroma, and never neither. */
+    /* shani and tekhelet are no longer inks. Every glyph on this page is
+       argaman; the channel is carried behind the letters or around them,
+       never in them. These stay named because a wash and a halo are mixed
+       from them, and because the check still measures them. */
     --shani: #d69a9f; --shani-dim: #9c6a70;
+    --wash-shani: rgba(214, 154, 159, 0.10);
+    --halo-shani: rgba(214, 154, 159, 0.85);
     /* tekhelet — the reading as shown: the English a dictionary this project
        holds a license to offers for a word. Someone else's words about the
        corpus, and never the corpus.
@@ -96,6 +102,8 @@
        in. That day is 2026-09-10 and the decision is the owner's, recorded in
        data/color-contract-v1.json. It was not decided here. */
     --tekhelet: #8ea6d7; --tekhelet-dim: #62709c;
+    --wash-tekhelet: rgba(142, 166, 215, 0.11);
+    --halo-tekhelet: rgba(142, 166, 215, 0.85);
     /* argaman — this project's own voice: rule statements, counting notes,
        captions, obligation lines, what a demonstration says about itself.
        Plain English that is ours and is licensed by nobody. Argaman is also
@@ -139,9 +147,13 @@
        with the tent's own ink on top of it */
     --sel: #8d5e0c; --sel-dim: #b8871a;
     --shani: #7a2e3b; --shani-dim: #a8797f;
+    --wash-shani: rgba(122, 46, 59, 0.085);
+    --halo-shani: rgba(122, 46, 59, 0.75);
     /* tekhelet the reading, argaman our own voice — both taken down for
        daylight, both above the AAA floor on linen */
     --tekhelet: #264282; --tekhelet-dim: #7f8ba8;
+    --wash-tekhelet: rgba(38, 66, 130, 0.075);
+    --halo-tekhelet: rgba(38, 66, 130, 0.75);
     --argaman: #6b3f8f; --argaman-dim: #8f7aa8;
     /* the scripture's own ink, darkened to the AAA floor the contrast judge
        holds body text to — still warm, never black; linen is not glare and
@@ -261,8 +273,29 @@
      in tekhelet, because a dictionary said it and not the source; this
      project speaks in argaman, and is the only voice licensed by nobody.
      This began as a URL parameter tried on one book. It is the page now. */
-  .wb .w { color: var(--shani); }
-  .wb > .g, .wjoin > .g { color: var(--tekhelet); border-color: var(--tekhelet-dim); }
+  /* ALL THE TEXT IS ARGAMAN, FULL STOP. Ruled 2026-09-10. The ink carries no
+     information at all now: every glyph on the page is the one purple Exodus
+     names, and what tells a reader whose words these are sits behind the
+     letters, not in them. Two ways to carry it, and the page ships one:
+
+       WASH   a faint ground the width of the word, in the channel's color.
+              Costs no legibility, because the ink never moves.
+       HALO   the same color as a soft edge around each glyph.
+              Reads as illumination, and is a real risk on pointed Hebrew,
+              where the niqqud are small enough for an edge to close them up.
+
+     The wash is the default. The halo answers to data-accent="halo" so both
+     can be looked at on the same text before one of them is kept. */
+  .wb .w { color: var(--argaman); border-radius: 0.5em; padding: 0.02em 0.3em;
+    background: var(--wash-shani); }
+  .wb > .g, .wjoin > .g { color: var(--argaman); border-color: var(--gold-dim);
+    background: var(--wash-tekhelet); }
+
+  :root[data-accent="halo"] .wb .w { background: none; padding: 0;
+    text-shadow: 0 0 2.5px var(--halo-shani), 0 0 1px var(--halo-shani); }
+  :root[data-accent="halo"] .wb > .g,
+  :root[data-accent="halo"] .wjoin > .g { background: none;
+    text-shadow: 0 0 2px var(--halo-tekhelet); }
   .lm-large { font-size: 1.45em; line-height: 0.9; }
   .lm-small { font-size: 0.68em; }
   .lm-suspended { vertical-align: 0.5em; font-size: 0.82em; }
@@ -524,7 +557,7 @@
      is where the line wraps, not what the line says. */
   .wb.held { opacity: 0.45; cursor: default; max-width: 100%; }
   .wb.held .w { overflow-wrap: anywhere; word-break: break-word; }
-  .wb.active .w { color: var(--sel); border-bottom: 1px solid var(--sel); }
+  .wb.active .w { color: var(--sel); border-bottom: 1px solid var(--sel); background: none; }
   /* A word the reader has ruled on keeps a mark after the card closes. Without
      it, closing the card left nothing to say which word had just been changed,
      and the reader had to hold that in their head. It is a tint rather than a

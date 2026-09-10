@@ -33,7 +33,8 @@
           --ink-strong:#f3edfb; --muted:#a89ab9; --faint:#7d7291;
           --gold:#f7d47e; --gold-dim:#c2a256; --amber:#f0bb52;
           --sel:#ffd980; --sel-dim:#c9a34a;
-          --shani:#d69a9f; --shani-dim:#9c6a70; --shesh:#ddcda9; --shesh-bright:#eee0c2;
+          --shani:#d69a9f; --shani-dim:#9c6a70;
+          --wash-shani:rgba(214,154,159,.10); --wash-tekhelet:rgba(142,166,215,.11); --shesh:#ddcda9; --shesh-bright:#eee0c2;
           --tekhelet:#8ea6d7; --tekhelet-dim:#62709c;
           --argaman:#c9a4e8; --argaman-dim:#9385ab; --link:#c9a4e8;
           --chip-bg:rgba(216,199,164,.12); --chip-line:rgba(216,199,164,.3);
@@ -50,7 +51,8 @@
     --ink:#2b2338; --ink-strong:#191223; --muted:#5c5270; --faint:#7b7290;
     --gold:#96700f; --gold-dim:#9a7a28; --amber:#96700f;
     --sel:#8d5e0c; --sel-dim:#b8871a;
-    --shani:#7a2e3b; --shani-dim:#a8797f; --shesh:#6b5a35; --shesh-bright:#4f421d;
+    --shani:#7a2e3b; --shani-dim:#a8797f;
+    --wash-shani:rgba(122,46,59,.085); --wash-tekhelet:rgba(38,66,130,.075); --shesh:#6b5a35; --shesh-bright:#4f421d;
     --tekhelet:#264282; --tekhelet-dim:#7f8ba8;
     --argaman:#6b3f8f; --argaman-dim:#8f7aa8; --link:#6b3f8f;
     --chip-bg:rgba(107,90,53,.10); --chip-line:rgba(107,90,53,.32);
@@ -115,9 +117,9 @@
      own record — readings oldest source first — because the answer this
      project gives to an unreadable word is never the force-read below it. */
   a.titleway { text-decoration:none; display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
-  a.titleway .g { font-size:.72rem; color:var(--tekhelet); border-bottom:1px dotted var(--gold-dim); }
-  a.titleway:hover .g { color:var(--tekhelet); }
-  a.titleway:hover .he { color:var(--shani); }
+  a.titleway .g { font-size:.72rem; color:var(--argaman); border-bottom:1px dotted var(--gold-dim); }
+  a.titleway:hover .g { color:var(--argaman); }
+  a.titleway:hover .he { color:var(--argaman); }
   /* The title is the book's own. The English beside it is not a translation of
      it and must not be able to be read as one — it is how a reader who does not
      read Hebrew finds and refers to the book. So each line says which of the
@@ -129,7 +131,7 @@
   /* the door's Hebrew is the corpus's own letters and wears the corpus's own
      channel, so a book name reads the same here as it does inside the book */
   .bookcard .he, a.sub-work .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    font-size:1.25rem; color:var(--shani); }
+    font-size:1.25rem; color:var(--argaman); }
   .bookcard .he.none, a.sub-work .he.none { font-family:Georgia,serif; font-size:.85rem;
     font-style:italic; color:var(--argaman); }
   .bookcard .chip { font-size:.62rem; letter-spacing:.06em; color:var(--muted);
@@ -180,7 +182,7 @@
     text-transform: uppercase; color: var(--ink-strong); }
   #demo .d-verse { margin: 0; font-size: 1.35rem; line-height: 1.5; }
   #demo .dw { display: inline-block; margin: 0 .18rem .4rem; text-align: center; vertical-align: top; }
-  #demo .dw .g { display: block; font-size: .6rem; line-height: 1.35; color:var(--tekhelet);
+  #demo .dw .g { display: block; font-size: .6rem; line-height: 1.35; color:var(--argaman);
     max-width: 9em; direction: ltr; }
   #demo .of { margin: .45rem 0 0; font-size: .78rem; color: var(--faint); }
   /* The demonstrations. Deliberately unlike a served card: a dashed rule and
@@ -705,16 +707,16 @@
        indent with it or the nesting reads as broken */
     .atlas-row.built .col-att { padding-inline-start:1.9rem; }
   }
-    .atlas-row .fam-he .he { font-size:.92rem; color:var(--shani); }
+    .atlas-row .fam-he .he { font-size:.92rem; color:var(--argaman); }
   .col-he .fam-he, details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   .col-he .fam-he .he, details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    font-size:1.3rem; color:var(--shani); }
+    font-size:1.3rem; color:var(--argaman); }
     /* a gloss the reader ruled, marked as theirs rather than the catalogue's
      first answer — the same underline the book pages use for a chosen
      reading, so one gesture reads the same everywhere on the site */
   .g.ruled { text-decoration:underline; text-decoration-color:var(--sel-dim);
     text-decoration-thickness:1px; text-underline-offset:.18em; }
-  .col-he .fam-he .g, details.fam > summary .fam-he .g { font-size:.7rem; color:var(--tekhelet); }
+  .col-he .fam-he .g, details.fam > summary .fam-he .g { font-size:.7rem; color:var(--argaman); }
   /* the license rides beside every printed reading and every backed
      force-read, in the same quiet chip the reader's card uses */
   details.fam > summary .chip, .col-att .chip, .col-lic .chip, .fam-he .g .chip, .demo-he .g .chip, #bkcard .chip, #census-demo .chip {
@@ -874,7 +876,7 @@
      thousands alike. */
   span.atlas-row.built { color:var(--faint); }
   span.atlas-row.built .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    font-size:.95rem; color:var(--shani); }
+    font-size:.95rem; color:var(--argaman); }
   span.atlas-row.built .fam-he .fw { font:inherit; color:inherit; background:none; border:none;
     padding:0; cursor:pointer; }
   span.atlas-row.built .fam-he .fw:hover { color:var(--ink-strong); }
@@ -907,8 +909,8 @@
   #bkcard .att-held { color:var(--faint); font-style:italic; }
   #bkcard .slot .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   #bkcard .slot .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    font-size:1.2rem; color:var(--shani); }
-  #bkcard .slot .fam-he .g { font-size:.7rem; color:var(--tekhelet); }
+    font-size:1.2rem; color:var(--argaman); }
+  #bkcard .slot .fam-he .g { font-size:.7rem; color:var(--argaman); }
   #bkcard .slot .of .en { font-size:.85rem; }
   #bkcard .of { color:var(--faint); font-size:.76rem; }
   #bkcard .prov { color:var(--faint); font-size:.72rem; margin:.35rem 0 0; }
@@ -977,9 +979,13 @@
      dictionary's reading of it. "none" is this project saying the record
      holds nothing here, which is our own voice and not an absence of one. */
   .fam-he .he, .col-he .he, #bkcard .slot .fam-he .he,
-  .bookcard .he, a.sub-work .he, span.atlas-row .fam-he .he { color:var(--shani); }
-  .he.none, .en.none, .fam-he .he.none, #bkcard .he.none { color:var(--argaman); font-style:italic; }
-  span.g, a.titleway .g, .bookcard .g, .atlas-row .g { color:var(--tekhelet); }
+  .bookcard .he, a.sub-work .he, span.atlas-row .fam-he .he,
+  .pc-hudwrap .head b { color:var(--argaman); background:var(--wash-shani);
+    border-radius:.5em; padding:.02em .3em; }
+  .he.none, .en.none, .fam-he .he.none, #bkcard .he.none { color:var(--argaman);
+    background:none; padding:0; font-style:italic; }
+  span.g, a.titleway .g, .bookcard .g, .atlas-row .g { color:var(--argaman);
+    background:var(--wash-tekhelet); border-radius:.5em; padding:.02em .3em; }
 
   .bookcard .stamp, .atlas-row .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; flex-basis:100%; }
   .atlas-row.stamped { flex-wrap:wrap; }
