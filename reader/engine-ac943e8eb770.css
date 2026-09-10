@@ -28,6 +28,20 @@
     --wash-tekhelet: rgba(38, 66, 130, 0.075);
     --halo-tekhelet: rgba(38, 66, 130, 0.75);
     --argaman: #6b3f8f; --argaman-dim: #8f7aa8;
+    /* A link is the page offering a reader somewhere to go, which is the page
+       speaking, so it is argaman like the rest of our voice.
+       It had been declared in the night block and nowhere else, so deleting
+       that block left nine rules calling var(--link) with nothing behind it.
+       What that cost, measured rather than assumed: nothing visible. Setting
+       the token to a test color on five served pages moved 0 of 163 links,
+       because every link at rest is painted by a more specific rule. The
+       orphan was real and its effect was nil.
+       Not measured, and the reason this is still worth a value rather than a
+       deletion: three of the nine are hover and HUD states — #toc a:hover,
+       #hud .att a, #hud .c-back — which a snapshot of a page at rest does not
+       reach. A token that governs nothing today is also a rule that will
+       silently do nothing the day someone leans on it. */
+    --link: var(--argaman);
     /* the scripture's own ink, darkened to the AAA floor the contrast judge
        holds body text to — still warm, never black; linen is not glare and
        ink is not tar, but thin niqqud marks need 7:1 to stay marks */
@@ -128,10 +142,13 @@
   .wb.ov-first .w { border-start-start-radius: 0.25rem; border-end-start-radius: 0.25rem; padding-inline-start: 0.15rem; }
   .wb.ov-last .w { border-start-end-radius: 0.25rem; border-end-end-radius: 0.25rem; padding-inline-end: 0.15rem; }
   .wb.typed-here .w { border-bottom: 1px dashed var(--argaman); }
-  .wb.mark .w { color: var(--shani-dim); font-size: 0.8em; letter-spacing: 0.06em; }
+  /* a mark is corpus, so it wears the corpus channel like any other word —
+     the one ink and the wash behind it — and is told apart by being smaller
+     and letter-spaced, not by being painted a second color */
+  .wb.mark .w { font-size: 0.8em; letter-spacing: 0.06em; }
   .wb.mark-off { display: none; }
   body.marks-on .wb.mark-off { display: inline-flex; }
-  body.marks-on .wb.mark-off .w { color: var(--shani); }
+  body.marks-on .wb.mark-off .w { color: var(--muted); }
   /* RULE 10 ON THE PAGE: a brick gap is the space the scribes leave inside a
      song line. The zone carries the restore's stand-in glyph; the page draws
      the space, not the glyph, and rules a faint line under it so the gap is

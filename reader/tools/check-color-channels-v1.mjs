@@ -353,6 +353,36 @@ if (commentaryHere) {
   });
   check("no glyph is left gold at rest, so gold reaches a word only under the reader's hand",
     goldInk.length === 0, goldInk.length ? `${goldInk.length} in gold: ${goldInk.slice(0, 4).map((x) => x.where + " " + x.c).join(" / ")}` : "checked every text-bearing element at rest");
+
+  // EVERY TOKEN A RULE ASKS FOR IS DECLARED. On 2026-09-10 the night block was
+  // deleted and --link went with it, because it had been declared there and
+  // nowhere else. Nine rules went on asking for it. CSS does not error on that:
+  // an undefined custom property makes the declaration invalid at computed-value
+  // time, and for an inherited property like color that means INHERIT — so every
+  // link on the reader quietly took the color of whatever sat around it and no
+  // check saw anything, because every color on the page was still a legal color.
+  // Deleting a block of tokens is a normal thing to do and this is the trap it
+  // sets, so the trap is what gets checked.
+  const orphans = await p.evaluate(() => {
+    const declared = new Set();
+    const used = new Map();
+    for (const sheet of document.styleSheets) {
+      let rules; try { rules = sheet.cssRules; } catch { continue; }
+      for (const r of rules) {
+        if (!r.style) continue;
+        for (const prop of r.style) if (prop.startsWith("--")) declared.add(prop);
+        const txt = r.style.cssText || "";
+        for (const m of txt.matchAll(/var\(\s*(--[\w-]+)\s*(,)?/gu)) {
+          // a var() with a fallback cannot be orphaned — it says what to do
+          if (!m[2] && !used.has(m[1])) used.set(m[1], r.selectorText || "(a rule)");
+        }
+      }
+    }
+    return [...used.entries()].filter(([t]) => !declared.has(t)).map(([t, where]) => `${t} (first asked for by ${where})`);
+  });
+  check("every token a rule asks for is declared somewhere, or carries a fallback",
+    orphans.length === 0,
+    orphans.length ? `${orphans.length} orphaned: ${orphans.slice(0, 4).join(" \u00b7 ")}` : "no rule asks for a token nothing declares");
 }
 
 // THE SECOND FACE IS GONE, AND HAS TO BE GONE EVERYWHERE. A half-removed face
