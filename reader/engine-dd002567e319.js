@@ -170,7 +170,7 @@
     { id: "cites", lab: "cites here", live: false,
       say: "Readings whose source cites this verse. Waiting on the lattice, and on its citations being the verses themselves rather than a count of them." },
     { id: "characters", lab: "characters", live: true,
-      say: "Letters match exactly, pointing ignored \u2014 how every key on this shelf is made, so this is the catalogue\u2019s own order, undisturbed." },
+      say: "Letters match exactly, pointing ignored \u2014 how every key on this shelf is made, so this is the catalog\u2019s own order, undisturbed." },
     { id: "vowels-differ", lab: "vowels differ", live: false,
       say: "Readings whose source points the word differently while the letters agree. Waiting on the same lattice." },
     { id: "outside-era", lab: "outside the era", live: false,
@@ -305,7 +305,7 @@
   }
   document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · ${SITE}`;
   // THE CREDIT, FOLDED, WITH ITS TERMS STILL IN THE OPEN. The full byline is
-  // unchanged and one press away; the summary carries the two facts a licence
+  // unchanged and one press away; the summary carries the two facts a license
   // actually requires a reader to be able to see — which edition this is, and
   // what it is released under — and both are read from the zone's own
   // structured fields, never parsed back out of the credit sentence.
@@ -443,7 +443,7 @@
       ? `the artifact\u2019s counts field says ${zone.counts.words.toLocaleString()} \u2014 it counts the chain\u2019s c0 rows where the words stand at W grain; its word-grain receipts await the corpus-side rebuild \u00b7 `
       : ""}` +
     (wk ? (wk.restore_oracle
-      ? `served from the corpus lane's restore of the ${wk.restore_oracle.edition} edition: ${Number(wk.restore_oracle.rows_restore).toLocaleString()} restore rows became ${Number(wk.restore_oracle.rows_served).toLocaleString()} positions, the restore's own surface hash reproduced from its bytes; ${pageMeasure.c0_off.toLocaleString()} of the positions are the scribes' marks and none of them is a word; identity is positional until the corpus lane's registry assigns the sealed ids · rights ride per occurrence from the edition's own licence record · `
+      ? `served from the corpus lane's restore of the ${wk.restore_oracle.edition} edition: ${Number(wk.restore_oracle.rows_restore).toLocaleString()} restore rows became ${Number(wk.restore_oracle.rows_served).toLocaleString()} positions, the restore's own surface hash reproduced from its bytes; ${pageMeasure.c0_off.toLocaleString()} of the positions are the scribes' marks and none of them is a word; identity is positional until the corpus lane's registry assigns the sealed ids · rights ride per occurrence from the edition's own license record · `
       : /RESIDENT_SERVE/.test(wk.route || "")
       ? `served id-by-id from the seal-verified terminal reader artifacts (${(wk.found_exact ?? wk.ids_walked).toLocaleString()} of ${wk.ids_walked.toLocaleString()} ids FOUND_EXACT${wk.found_exact !== undefined && wk.found_exact !== wk.ids_walked ? `, the rest held from the Hebrew reader by the chain\u2019s own rights and script axes` : ""}; the installed sealed reader re-answered ${wk.sealed_oracle.report.sampled} sampled ids ${wk.sealed_oracle.report.field_exact}/${wk.sealed_oracle.report.sampled} field-exact) · rights ride per occurrence from the chain · `
       : `walked word-by-word through the installed sealed terminal reader (${(wk.found_exact ?? wk.ids_walked).toLocaleString()} of ${wk.ids_walked.toLocaleString()} ids FOUND_EXACT) · rights ride per occurrence from the chain · `) : `Hebrew text: ${ac.hebrew_version}${ac.hebrew_source ? ` via ${ac.hebrew_source}` : ""}, license ${ac.hebrew_license_seen} (seen live on every payload) · `) +
@@ -562,9 +562,9 @@
         + ` \u2014 each fills when its exact work id, body, and attachment are proven (${entry.holds_source}).`);
       holdsEl.hidden = false;
     }
-    if (entry.entries_without_own_licence > 0) {
+    if (entry.entries_without_own_license > 0) {
       const el = document.getElementById("rightsLine");
-      el.append(`${Number(entry.entries_without_own_licence).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} printed commentary entries await their own license receipts from the commentary build \u2014 the work-level license shown for them is real, and the per-entry grain fills when that build runs.`);
+      el.append(`${Number(entry.entries_without_own_license).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} printed commentary entries await their own license receipts from the commentary build \u2014 the work-level license shown for them is real, and the per-entry grain fills when that build runs.`);
       el.hidden = false;
     }
   })();
@@ -710,7 +710,7 @@
      reader asked for has no reading at all, the page shows the side that
      does and says so on the card, rather than printing nothing — we would be
      withholding a reading we hold, and the page already falls back this way
-     where the catalogue cannot read a ketiv.
+     where the catalog cannot read a ketiv.
 
      One class is live: the pair. The others the owner has drawn — the
      abbreviation, the joined span, the affix, and the sorters that rank the
@@ -793,7 +793,7 @@
   // license. A refused reading never removes a Hebrew word; it removes the
   // English beside it, and says so where it stood.
   //
-  // licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs
+  // license-wording-rule-v1-the-summary-is-ours-and-the-license-governs
   //
   // Every obligation line this reader prints is plain English written here. A
   // license is a document; a one-sentence summary of it is not that document
@@ -805,7 +805,7 @@
   // released under. The license governs. The sentence only makes the chip
   // readable.
   const LICENCE_RULES = {
-    rule: "licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs",
+    rule: "license-wording-rule-v1-the-summary-is-ours-and-the-license-governs",
     whose: "The obligation lines below are plain English written in this reader. They are summaries, not license text, and no license is quoted here. The license named beside each one is what governs, and the record it was released under is linked.",
     by: "Attribution required.",
     nc: "Noncommercial use only — this text may not be used commercially.",
@@ -1349,7 +1349,7 @@
     if (owedShort() && prov && prov.offsetHeight) { prov.hidden = true; handOut(); }
     // The record's floor, held against the laid-out foot. The stylesheet caps
     // the slot at a length written for a one-row source line, but the M is as
-    // tall as its own chips: a licence whose names wrap takes three rows of
+    // tall as its own chips: a license whose names wrap takes three rows of
     // foot, and under the cap the record stood fourteen pixels tall above
     // it — the source standing on a sliver. Only the laid-out card knows the
     // foot's real height, so the floor binds here: a line of record above
@@ -1408,7 +1408,7 @@
     // scroll stops the page moving, and it also starves the record — the guard
     // caught cards spilling a hundred pixels and the source falling off them.
     // The record and its source outrank a still page: a reader can follow a
-    // page that moved, and cannot read a licence that is not there. So the
+    // page that moved, and cannot read a license that is not there. So the
     // height still goes back when the bands cannot be served, and the scrolling
     // region stands as what catches the overflow that remains.
     if (fitBands() === false && !hudMoved && hud.style.maxHeight) {
@@ -1702,7 +1702,7 @@
     const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
     // WHICH READING ANSWERS FIRST. Every position is a stable re-order of the
     // same pool; nothing is filtered. A reader who asks for the era's own
-    // lexicons still sees every reading the catalogue holds, in a different
+    // lexicons still sees every reading the catalog holds, in a different
     // order — hiding one because it sorted late would be the page deciding
     // what may be weighed.
     return sortPool([...groups.values()]);
@@ -2128,7 +2128,7 @@
     //
     // The row draws only when every form the source attests has been issued as
     // semantic W/K. Anything else — a held site, a partly issued one, a field
-    // this file does not recognise — draws nothing and says why. Showing one
+    // this file does not recognize — draws nothing and says why. Showing one
     // branch of an unissued pair would be this page deciding which form the
     // text is, and that is not its decision.
     const qFlag = word && word.q;
@@ -2796,7 +2796,7 @@
   // and would push the breath apart. The run prints them once, in the order
   // the words stand, joined the way this reader joins the parts of any single
   // form. Nothing is composed here: each part is the word's own line, and the
-  // licences ride with them.
+  // licenses ride with them.
   // EACH CHIP STANDS UNDER ITS OWN PIECE. The line used to print the readings
   // joined and then stack every witness's chip beneath the pair, which said
   // two licenses govern this line and left no way to tell which governs
@@ -3207,7 +3207,7 @@
   // every moved key back to its default, then lay this order's disagreements
   // over the top. The table object itself is never replaced, because half a
   // dozen places in this file ask `table === zone.gloss` to decide whether a
-  // line is the baked reading (and so whether a licence chip rides it), and a
+  // line is the baked reading (and so whether a license chip rides it), and a
   // fresh object would answer no and quietly strip every chip on the page.
   //
   // A key an order does not mention is not a gap and not a fallback: it is
@@ -3237,8 +3237,8 @@
     const col = cols[order], mcol = mcols[order];
     if (col) for (const k in col) {
       zone.gloss[k] = col[k];
-      // the reading moved, so its witness and its licence move with it — a
-      // licence left standing on a reading it does not carry is the one thing
+      // the reading moved, so its witness and its license move with it — a
+      // license left standing on a reading it does not carry is the one thing
       // this page may never print, so an absent M deletes rather than keeps
       if (zone.gloss_m) {
         if (mcol && mcol[k]) zone.gloss_m[k] = mcol[k];
@@ -3779,6 +3779,16 @@
   // one work can hand a reader to another at the same place without either of
   // them claiming anything about the other.
   const openAt = (QUERY.get("at") || "").trim();
+  // A PALETTE TO LOOK AT, NOT A CONTROL TO ADD. The owner asked whether the
+  // two halves of the name could be tried without repainting the site: the
+  // Hebrew in tola'at shani, the English in tekhelet — the crimson and the
+  // blue Exodus names and never describes. It rides a query parameter rather
+  // than the mode row, so it is a link somebody follows on purpose and the
+  // page every other reader gets is untouched. Nothing is stored; close the
+  // tab and it is gone. The values are the contract's own two roles, not new
+  // ones: a fourth role is the ledger's to declare and not this file's.
+  const paletteAsked = (QUERY.get("palette") || "").trim().toLowerCase();
+  if (paletteAsked === "tabernacle") document.documentElement.dataset.palette = "tabernacle";
   const byLabel = new Map();
   let curPart = null, curNode = -1, openedNode = false;
   const sectionEls = [];
@@ -3823,7 +3833,7 @@
         } else {
           // Not "held". Nobody is holding it. The record has no body.
           p.append(`Not here — the record carries its reference and no text for it, so there is nothing to print. `
-            + `Nothing is being withheld${e.licence_says ? `, and its license is recorded as ${e.licence_says}` : ""}. `
+            + `Nothing is being withheld${e.license_says ? `, and its license is recorded as ${e.license_says}` : ""}. `
             + `Everything else the record carries about it stands above.`);
         }
       } else if (!(e.words || []).length) { p.dir = "auto"; p.append(e.text || ""); }
@@ -4099,7 +4109,7 @@
     }
     // A WORK SERVED IN PART SAYS SO WHERE THE PART IS MISSING.
     // partial-serve-rule-v1. This draws a portion we are not LICENSED to
-    // serve — a boundary a licence drew, not one guessed at from language. A
+    // serve — a boundary a license drew, not one guessed at from language. A
     // work carrying material outside the admitted languages is removed whole
     // and never reaches here: word-level language surgery was tried and does
     // not work, because Yiddish and Hebrew share actual tokens and the
@@ -4895,7 +4905,7 @@
     if (ci) main.prepend(ci);
   }
   // The census, on the page's own face. Shapes 1 to 3 are drawn; 4 and 5 are
-  // declared and not yet drawn; 6 is anything the reader does not recognise.
+  // declared and not yet drawn; 6 is anything the reader does not recognize.
   // A number in the last three is a book asking for a rule, not a bug to find.
   {
     const t = scopeCensus();
