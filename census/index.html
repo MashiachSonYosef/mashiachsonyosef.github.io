@@ -120,6 +120,21 @@
     font-style:italic; color:var(--argaman); }
   .bookcard .chip { font-size:.62rem; letter-spacing:.06em; color:var(--muted);
     border:1px solid var(--line); border-radius:.6rem; padding:.1rem .45rem; }
+  /* the N chip: where the TEXT came from, as against the M chip beside it,
+     which says who attests the NAME. It is the page speaking about
+     provenance, so it is argaman on a gold rule and wears no channel wash. */
+  .n-row { display:block; margin-top:.35rem; }
+  /* over-qualified deliberately: the group summary sets .chip at a higher
+     specificity than a bare class, and this is the third rule in this file to
+     lose that race quietly */
+  details.fam > summary .n-row span.n-chip { display:inline-block; font-size:.66rem; letter-spacing:.04em;
+    color:var(--argaman); background:none; border:1px solid var(--gold-dim);
+    border-radius:.6rem; padding:.12rem .5rem;
+    /* it wraps rather than ellipsising: a provenance line cut to "Miqra
+       accord\u2026" names an edition without naming it, which is worse than
+       printing nothing at all */
+    white-space:normal; overflow:visible; text-overflow:clip;
+    max-width:100%; overflow-wrap:anywhere; }
   a.sub-work .he { font-size:1.05rem; margin-right:.5rem; }
   .bookcard .of { margin-top:.25rem; color:var(--faint); font-size:.76rem; }
   .bookcard .of.slots, a.sub-work .of.slots { margin-top:.2rem; font-style:italic; }
@@ -616,8 +631,13 @@
      where a wrapped attestation can be taller than the name beside it. The
      hairline is the page’s own line color and the ground is untouched, so
      the shelf gains a grid and not a stack of cards. */
+  /* THE CARD IS THE READING. A whole card on the door is one book's reading,
+     so the card carries tekhelet and the Hebrew keeps its own red inside it.
+     The door only: inside a book a reading is one word wide, and there the
+     wash belongs on the word. */
   .atlas-row.built, details.fam > summary .row:first-child {
-    border:1px solid var(--line); border-radius:.55rem; padding:.4rem .6rem; }
+    border:1px solid var(--line); border-radius:.55rem; padding:.4rem .6rem;
+    background:var(--wash-tekhelet); }
   .atlas-row.built + .atlas-row.built { margin-top:.3rem; }
   .atlas-row.g24 { border-color:var(--muted); }
   /* the head of a shelf is the frame round its books, not another book */
@@ -968,8 +988,9 @@
     border-radius:.5em; padding:.02em .3em; }
   .he.none, .en.none, .fam-he .he.none, #bkcard .he.none { color:var(--argaman);
     background:none; padding:0; font-style:italic; }
-  span.g, a.titleway .g, .bookcard .g, .atlas-row .g { color:var(--argaman);
-    background:var(--wash-tekhelet); border-radius:.5em; padding:.02em .3em; }
+  span.g, a.titleway .g, .bookcard .g, .atlas-row .g { color:var(--argaman); }
+  /* a reading already standing on a tekhelet card is not washed a second time */
+  .atlas-row.built .g, details.fam > summary .row:first-child .g { background:none; padding:0; }
 
   .bookcard .stamp, .atlas-row .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; flex-basis:100%; }
   .atlas-row.stamped { flex-wrap:wrap; }
