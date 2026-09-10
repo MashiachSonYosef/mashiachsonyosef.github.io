@@ -116,8 +116,19 @@ check("L0  the builder still declares the rule and the single-pass promise",
 // field sets below are its and not this file's. The top-level keys are
 // listed in the order the builder emits them; the last one is the last thing
 // a single pass writes, and anything after it in a file was appended later.
-const TOP_KEYS = ["schema_version", "rule_id", "work", "work_he", "work_he_tokens", "byline", "work_receipts", "route", "emitted_from", "counts", "count_stamp", "nodes", "span_roles", "span_rules", "span_conf", "spans", "gloss", "gloss_m", "sections"];
+const TOP_KEYS = ["schema_version", "rule_id", "work", "work_he", "work_he_tokens", "byline", "work_receipts", "route", "emitted_from", "counts", "count_stamp", "nodes", "span_roles", "span_rules", "span_conf", "spans", "gloss", "gloss_m", "sections",
+  // the per-order delta columns, written by the builder in the same pass as
+  // the tables they are deltas against. This list did not learn them when the
+  // builder did, so 39 zones read as patched-in-place for carrying a key their
+  // own builder writes.
+  "gloss_orders", "gloss_m_orders"];
 const LAST_KEY = "sections";
+// Keys the builder demonstrably writes may stand after LAST_KEY. The point of
+// the last-key rule is to catch a key APPENDED to a finished file, and a key
+// the builder itself emits is not that — the same distinction this file
+// already draws inside emitted_from, gloss_layer and span_layer with
+// builderWritesKey, applied at the top level where it was missing.
+const AFTER_LAST_OK = ["gloss_orders", "gloss_m_orders"];
 const EMITTED_KEYS = ["test_instrument", "kq_policy", "kq_none_attested", "walk", "title_from_c0", "title_keys", "identity_oracle", "license_receipts", "gloss_layer", "span_layer", "y_ledger", "license_links", "coordinate_basis", "numbering", "coordinate_labels", "coordinate_shape", "build", "post_build"];
 const GLOSS_LAYER_KEYS = ["source", "key_rule", "rule", "gloss_table_sha256", "distinct_forms_glossed", "distinct_forms_bare", "grain", "store_inputs", "store_version", "m_layer"];
 // A zone built before the builder wrote gloss_m carries it from the
@@ -287,7 +298,10 @@ for (const f of bins) {
   const topKeys = Object.keys(z);
   const lastAt = topKeys.indexOf(LAST_KEY);
   for (const k of topKeys) if (!TOP_KEYS.includes(k)) marks.push(k);
-  if (lastAt > -1 && lastAt !== topKeys.length - 1) marks.push(`(appended after ${LAST_KEY}: ${topKeys.slice(lastAt + 1).join(",")})`);
+  if (lastAt > -1 && lastAt !== topKeys.length - 1) {
+    const after = topKeys.slice(lastAt + 1).filter((k) => !(AFTER_LAST_OK.includes(k) && builderWritesKey(k)));
+    if (after.length) marks.push(`(appended after ${LAST_KEY}: ${after.join(",")})`);
+  }
   for (const [box, keys, name] of [[e, EMITTED_KEYS, "emitted_from"], [gl, GLOSS_LAYER_KEYS, "gloss_layer"], [sl, SPAN_LAYER_KEYS, "span_layer"]])
     for (const k of Object.keys(box)) if (!keys.includes(k)) {
       if (builderWritesKey(k)) drifted.add(`${name}.${k}`); else marks.push(`${name}.${k}`);
