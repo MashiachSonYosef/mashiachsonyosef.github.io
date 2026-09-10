@@ -72,19 +72,34 @@
        of parts and chapters. Never a state. */
     --gold: #eac86f; --gold-dim: #a98c4b; --amber: #d9a441;
     /* reader_selection — and only that: what this reader has opened, chosen,
-       pressed or armed. Nothing wears it at rest. */
-    /* deepened from a pastel sky toward dyed thread — the same family the
-       ledger names, valued to look dipped rather than emitted; the contrast
-       judge holds it at 7:1 on the tent's ground */
-    --sel: #5f9fe8; --sel-dim: #3a6a9a; --sel-ink: #081221;
+       pressed or armed. Nothing wears it at rest.
+       Ruled 2026-09-10: gold is not a final color, it is the in-process one —
+       huds, boxes, the frame — the way the gold in the tabernacle was worked
+       into the blue that is actually shown. A selection is the most in-process
+       thing on the page, so it belongs to gold, at its amber value. It had been
+       blue, and blue is now the reading, which would have left the page saying
+       "selected" and "English" in one color. Held apart from structure by value
+       and by fill: structure is gold as ink, selection is amber as a ground. */
+    --sel: #e2a63c; --sel-dim: #8a6524;
     /* commentary_attachment — a commentary's mark, and by the same token what
        the page will not vouch for: a placement that is ours, a reach it is
        told is only suggested. It never marks something as wrong. */
     --shani: #c65b42; --shani-dim: #8a3d2c;
-    /* argaman is the base surface above; tekhelet has no role in the contract
-       and is kept named, and unused, so the day it appears is a decision
-       somebody made and not a color that crept in. */
-    --argaman: #6b3f6e; --tekhelet: #2b4a6f;
+    /* tekhelet — the reading as shown: the English a dictionary this project
+       holds a license to offers for a word. Someone else's words about the
+       corpus, and never the corpus.
+       This token sat here named and unused, on the rule that the day it
+       appeared would be a decision somebody made and not a color that crept
+       in. That day is 2026-09-10 and the decision is the owner's, recorded in
+       data/color-contract-v1.json. It was not decided here. */
+    --tekhelet: #7fb0e8; --tekhelet-dim: #3f6a9a;
+    /* argaman — this project's own voice: rule statements, counting notes,
+       captions, obligation lines, what a demonstration says about itself.
+       Plain English that is ours and is licensed by nobody. Argaman is also
+       the night ground, so the two must not be one value: the ground is
+       purple at its darkest, the voice is argaman at a value that reads on
+       it. Same material, two jobs. */
+    --argaman: #b98ede; --argaman-dim: #6b3f6e;
     --link: var(--shesh);
     /* no anchor ever wears the browser's default purple — every link is
        the page's own linen, both faces */
@@ -92,8 +107,6 @@
     --c-word: #c8bda0; --en-word: #b3a077;
     --hover-ink: #ffe08a; --hover-line: #6a5a33;
     --chip-bg: rgba(216, 199, 164, 0.12); --chip-line: rgba(216, 199, 164, 0.3);
-    --wash-open: rgba(85, 150, 228, 0.15); --wash-chosen: rgba(85, 150, 228, 0.07);
-    --wash-active: rgba(85, 150, 228, 0.18); --wash-copen: rgba(85, 150, 228, 0.12);
     --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.5);
     --shadow-card: 0 14px 40px rgba(0, 0, 0, 0.6);
     --shadow-hud: 0 18px 48px rgba(4, 2, 8, 0.55), 0 2px 8px rgba(4, 2, 8, 0.35);
@@ -111,16 +124,20 @@
     --ink: #2b2519; --ink-strong: #1c180f; --muted: #5f5645; --faint: #7b7058;
     --shesh: #6b5a35; --shesh-bright: #4f421d;
     --gold: #8a6b26; --gold-dim: #b0955c; --amber: #8f6a1c;
-    --sel: #275fa6; --sel-dim: #a3bdd9; --sel-ink: #f5f9fe;
+    /* selection is amber on this face too — gold's in-process value, filled,
+       with the tent's own ink on top of it */
+    --sel: #8d5e0c; --sel-dim: #d8bd85;
     --shani: #9c3a26; --shani-dim: #bd8672;
+    /* tekhelet the reading, argaman our own voice — both taken down for
+       daylight, both above the AAA floor on linen */
+    --tekhelet: #275fa6; --tekhelet-dim: #a3bdd9;
+    --argaman: #6b3f8f; --argaman-dim: #b39ac9;
     /* the scripture's own ink, darkened to the AAA floor the contrast judge
        holds body text to — still warm, never black; linen is not glare and
        ink is not tar, but thin niqqud marks need 7:1 to stay marks */
     --c-word: #453b25; --en-word: #6f6042;
     --hover-ink: #6b4f0e; --hover-line: #bda15c;
     --chip-bg: rgba(107, 90, 53, 0.10); --chip-line: rgba(107, 90, 53, 0.32);
-    --wash-open: rgba(39, 95, 166, 0.14); --wash-chosen: rgba(39, 95, 166, 0.08);
-    --wash-active: rgba(39, 95, 166, 0.20); --wash-copen: rgba(39, 95, 166, 0.12);
     --shadow-pop: 0 8px 24px rgba(96, 80, 48, 0.28);
     --shadow-card: 0 14px 40px rgba(96, 80, 48, 0.30);
     --shadow-hud: 0 18px 48px rgba(96, 80, 48, 0.32), 0 2px 8px rgba(96, 80, 48, 0.20);
@@ -171,7 +188,7 @@
   header.top h1 .he-t .title-row .wb { margin-bottom: 0; }
   header.top h1 .he-t .title-row .w { font-size: 2.1rem; }
   header.top h1 .he-t .title-row .g { font-size: 0.62rem; max-width: 12em; }
-  header.top h1 .t-note { font-size: 0.6rem; letter-spacing: 0.06em; color: var(--muted);
+  header.top h1 .t-note { font-size: 0.6rem; letter-spacing: 0.06em; color: var(--argaman);
     font-variant: normal; text-transform: none; }
   /* The third register: a machine's guess, named by its author. The chip is
      an attribution, never a license, and dresses differently — dashed where
@@ -210,15 +227,15 @@
   .byline-fold[open] > summary::before { content: "\25BE "; }
   .byline-fold > summary .lic { color: var(--gold); }
   .byline-fold > summary:hover { color: var(--muted); }
-  #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; max-width: 62rem; }
+  #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--argaman); font-style: italic; max-width: 62rem; }
   .wb.ov .w { background: var(--chip-bg); }
   .wb.ov-first .w { border-start-start-radius: 0.25rem; border-end-start-radius: 0.25rem; padding-inline-start: 0.15rem; }
   .wb.ov-last .w { border-start-end-radius: 0.25rem; border-end-end-radius: 0.25rem; padding-inline-end: 0.15rem; }
-  .wb.typed-here .w { border-bottom: 1px dashed var(--shani); }
-  .wb.mark .w { color: var(--muted); font-size: 0.8em; letter-spacing: 0.06em; }
+  .wb.typed-here .w { border-bottom: 1px dashed var(--argaman); }
+  .wb.mark .w { color: var(--shani-dim); font-size: 0.8em; letter-spacing: 0.06em; }
   .wb.mark-off { display: none; }
   body.marks-on .wb.mark-off { display: inline-flex; }
-  body.marks-on .wb.mark-off .w { color: var(--amber); }
+  body.marks-on .wb.mark-off .w { color: var(--shani); }
   /* RULE 10 ON THE PAGE: a brick gap is the space the scribes leave inside a
      song line. The zone carries the restore's stand-in glyph; the page draws
      the space, not the glyph, and rules a faint line under it so the gap is
@@ -226,16 +243,19 @@
      wrote large, small, suspended or dotted is drawn so; the mark is on the
      letter and the word keeps its count and its key. */
   .wb.mark[data-mark="BRICK_GAP"] .w { color: transparent; min-width: 2.4em; border-bottom: 1px dotted var(--gold-dim); }
-  .wb.mark[data-mark="EMPTY_VERSE"] .w { font-size: 1em; color: var(--muted); letter-spacing: 0; }
-  /* the two halves of the name, tried on real text — see the note beside
-     paletteAsked. Only the ink moves: no ground, no frame, no chip. */
-  :root[data-palette="tabernacle"] .wb .w { color: var(--shani); }
-  :root[data-palette="tabernacle"] .wb > .g,
-  :root[data-palette="tabernacle"] .wjoin > .g { color: var(--sel); border-color: var(--sel-dim); }
+  .wb.mark[data-mark="EMPTY_VERSE"] .w { font-size: 1em; color: var(--shani-dim); letter-spacing: 0; }
+  /* THE CHANNELS ON THE PAGE · color-channel-rule-v2, ruled 2026-09-10.
+     A channel says who is speaking, and that is the whole of it. The corpus
+     speaks in tola'at shani; the reading offered for one of its words speaks
+     in tekhelet, because a dictionary said it and not the source; this
+     project speaks in argaman, and is the only voice licensed by nobody.
+     This began as a URL parameter tried on one book. It is the page now. */
+  .wb .w { color: var(--shani); }
+  .wb > .g, .wjoin > .g { color: var(--tekhelet); border-color: var(--tekhelet-dim); }
   .lm-large { font-size: 1.45em; line-height: 0.9; }
   .lm-small { font-size: 0.68em; }
   .lm-suspended { vertical-align: 0.5em; font-size: 0.82em; }
-  .lm-dotted { color: var(--ink-strong); }
+  .lm-dotted { color: var(--shani); }
   /* THE STAMP. The count of this book on every named axis, and beside it the
      figures other men reached for the same book: a row per witness, the
      difference shown with its sign. Gold is exact, scarlet differs, the linen
@@ -259,7 +279,7 @@
   #stamp .desk .d { font-family: ui-monospace, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums;
     font-size: 0.7rem; color: var(--faint); display: flex; gap: 0.45rem; flex-wrap: wrap; }
   #stamp .desk .d .exact { color: var(--gold); }
-  #stamp .desk .d .differs { color: var(--shani); font-weight: 600; }
+  #stamp .desk .d .differs { color: var(--argaman); font-weight: 600; }
   @media (max-width: 560px) { #stamp .desk { grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr)); }
     #stamp .desk .v { font-size: 1.2rem; } }
   #stamp table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
@@ -267,13 +287,13 @@
   #stamp td.wit { white-space: normal; color: var(--muted); max-width: 26rem; }
   #stamp td.ax { color: var(--muted); }
   #stamp td.num { text-align: right; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.82rem; color: var(--ink); }
-  #stamp td.why { color: var(--faint); font-style: italic; white-space: normal; max-width: 16rem; }
+  #stamp td.why { color: var(--argaman-dim); font-style: italic; white-space: normal; max-width: 16rem; }
   #stamp .cls { font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin-inline-end: 0.45rem; }
   #stamp tr.exact td.delta, #stamp tr.exact td.glyph { color: var(--gold); font-weight: 600; }
-  #stamp tr.differs td.delta, #stamp tr.differs td.glyph { color: var(--shani); font-weight: 600; }
-  #stamp tr.no_witness td { color: var(--faint); }
+  #stamp tr.differs td.delta, #stamp tr.differs td.glyph { color: var(--argaman); font-weight: 600; }
+  #stamp tr.no_witness td { color: var(--argaman-dim); }
   #stamp tr { animation: stamp-flash 1100ms ease-out both; }
-  @keyframes stamp-flash { 0% { background: var(--wash-active); } 100% { background: transparent; } }
+  @keyframes stamp-flash { 0% { box-shadow: inset 0 0 0 1px var(--sel-dim); } 100% { box-shadow: inset 0 0 0 1px transparent; } }
   @media (prefers-reduced-motion: reduce) { #stamp tr { animation: none; } }
   /* On a narrow screen the strip stays a strip: one line per witness, the
      witness's name cut with an ellipsis (the whole of it rides in the hover
@@ -283,21 +303,21 @@
     #stamp td.why { display: none; }
     #stamp td { padding-right: 0.45rem; }
   }
-  #stamp .stamp-note { color: var(--faint); font-style: italic; margin: 0.3rem 0 0; }
-  #stamp .stamp-warn { color: var(--shani); margin: 0.3rem 0 0; }
-  #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--gold-dim); line-height: 1.55; }
+  #stamp .stamp-note { color: var(--argaman); font-style: italic; margin: 0.3rem 0 0; }
+  #stamp .stamp-warn { color: var(--argaman); margin: 0.3rem 0 0; }
+  #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--argaman); line-height: 1.55; }
   #demoLine .demo-credit { color: var(--faint); overflow-wrap: anywhere; }
-  header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
+  header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--argaman); max-width: 60rem; }
   .receipts-btn { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--link); font: inherit; font-size: 0.8rem; cursor: pointer; padding: 0; }
   .receipts-btn:hover { color: var(--gold); }
-  .receipts-full { display: block; margin-top: 0.4rem; color: var(--faint); }
+  .receipts-full { display: block; margin-top: 0.4rem; color: var(--argaman-dim); }
   .receipts-full[hidden] { display: none; }
   /* A work the ledger has not named in Hebrew keeps its English locator, but
      the locator does not get to look like a title. */
-  header.top h1 .he-t.unnamed { color: var(--muted); font-size: 0.92rem; font-style: italic; }
+  header.top h1 .he-t.unnamed { color: var(--argaman); font-size: 0.92rem; font-style: italic; }
   /* the name slot's absence, same voice as the title slot's */
-  header.top h1 .en-t.unnamed { color: var(--muted); font-size: 0.92rem; font-style: italic;
+  header.top h1 .en-t.unnamed { color: var(--argaman); font-size: 0.92rem; font-style: italic;
     font-variant: normal; letter-spacing: normal; }
   a { color: var(--link); }
   header.top a { color: var(--link); text-decoration: none; border-bottom: 1px solid var(--chip-line); }
@@ -339,14 +359,14 @@
     text-decoration: none; font: 0.92rem/1 Georgia, serif; color: var(--gold);
     font-variant-numeric: tabular-nums; transition: border-color 120ms, background 120ms; }
   #toc .chs a:hover { border-color: var(--gold); background: var(--wash); }
-  #toc .chs a.on { border-color: var(--sel); background: var(--sel); color: var(--sel-ink); font-weight: bold; }
+  #toc .chs a.on { border-color: var(--sel); color: var(--sel); font-weight: bold; }
   /* the sections of one chapter, opened in place under the grid */
   #secPanel { margin-top: 0.7rem; border: 1px solid var(--line); border-radius: 0.5rem;
     background: var(--panel2); padding: 0.6rem 0.7rem; }
   #secPanel[hidden] { display: none; }
   #secPanel .sp-head { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.5rem;
     font-size: 0.74rem; letter-spacing: 0.14em; font-variant: small-caps; color: var(--faint); }
-  #secPanel .sp-he { font-variant: normal; letter-spacing: 0; font-size: 1rem; color: var(--gold); }
+  #secPanel .sp-he { font-variant: normal; letter-spacing: 0; font-size: 1rem; color: var(--shani); }
   #secPanel .sp-x { margin-inline-start: auto; background: none; border: 0; color: var(--muted);
     font-size: 1.05rem; line-height: 1; cursor: pointer; padding: 0 0.2rem; }
   #secPanel .sp-grid { display: grid; gap: 0.26rem;
@@ -373,7 +393,7 @@
   #navPrev, #navNext { font-size: 1rem; padding: 0.14rem 0.55rem; }
   @media (max-width: 520px) { #nav { left: 0.9rem; right: 0.9rem; justify-content: center; } }
 
-  #toc .toc-note { margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--faint); }
+  #toc .toc-note { margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--argaman-dim); }
   #toc .part { margin: 0 0 0.65rem; }
   #toc .part b { display: block; color: var(--gold); font-variant: small-caps; letter-spacing: 0.1em;
     font-weight: normal; font-size: 0.92rem; margin-bottom: 0.15rem; }
@@ -384,14 +404,14 @@
   main { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 5rem; }
 
   .part-head { margin: 3rem 0 0.4rem; padding-top: 1.6rem; border-top: 1px double var(--gold-dim); }
-  .part-head .he { direction: rtl; text-align: right; font-size: 1.05rem; color: var(--gold); letter-spacing: 0.04em; }
+  .part-head .he { direction: rtl; text-align: right; font-size: 1.05rem; color: var(--shani); letter-spacing: 0.04em; }
   .part-head .en { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--faint); text-align: left; }
   /* Titles are corpus words: same word blocks as the text, sized as a title.
      Gold on the Hebrew per the Y ledger's own color contract (structure). */
   .title-row { direction: rtl; text-align: right; }
   body.en .title-row { direction: ltr; text-align: left; }
-  .part-head .title-row .w { font-size: 1.05rem; color: var(--gold); letter-spacing: 0.04em; }
-  .node-head .title-row .w { font-size: 1.55rem; color: var(--gold); }
+  .part-head .title-row .w { font-size: 1.05rem; color: var(--shani); letter-spacing: 0.04em; }
+  .node-head .title-row .w { font-size: 1.55rem; color: var(--shani); }
   .title-row .wb { margin-bottom: 0.35rem; }
   .title-row .g { font-size: 0.62rem; max-width: 9em; }
   .node-head .title-row .g { font-size: 0.68rem; }
@@ -402,7 +422,7 @@
     color: var(--faint); margin-inline-start: 0.4rem; }
 
   .node-head { margin: 1.9rem 0 0.9rem; }
-  .node-head .he { direction: rtl; text-align: right; font-size: 1.55rem; color: var(--ink-strong);
+  .node-head .he { direction: rtl; text-align: right; font-size: 1.55rem; color: var(--shani);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   .node-head .en { font-size: 0.82rem; font-variant: small-caps; letter-spacing: 0.16em; color: var(--gold); margin-top: 0.1rem; }
   /* One register at every head: the same labelled two-row frame the masthead
@@ -423,7 +443,7 @@
     text-transform: uppercase; color: var(--faint); }
   .nh-en { font-size: 0.88rem; font-variant: small-caps; letter-spacing: 0.14em; color: var(--gold); }
   .nh-of { font-size: 0.74rem; color: var(--faint); }
-  .nh-he.unnamed { font-family: Georgia, serif; font-size: 0.8rem; font-style: italic; color: var(--faint); }
+  .nh-he.unnamed { font-family: Georgia, serif; font-size: 0.8rem; font-style: italic; color: var(--argaman-dim); }
   .nh-row .title-row { margin: 0; }
   /* the ledger's mark for a section, riding beside the coordinate pill */
   .seg-row .v-he { font-size: 0.85rem; color: var(--shesh);
@@ -437,13 +457,13 @@
   .omission { margin: 1.1rem 0 1.35rem; padding: .7rem .9rem; display: grid; gap: .28rem;
     border-inline-start: 3px solid var(--rule, #8b7f69); opacity: .82; }
   .omission .om-mark { letter-spacing: .12em; opacity: .55; }
-  .omission .om-what { font-size: .92em; }
-  .omission .om-why { font-size: .84em; opacity: .75; font-style: italic; }
+  .omission .om-what { font-size: .92em; color: var(--argaman); }
+  .omission .om-why { font-size: .84em; opacity: .75; font-style: italic; color: var(--argaman-dim); }
   .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; direction: ltr; }
   .vnum { font-size: 0.72rem; color: var(--gold); border: 1px solid var(--line);
     background: var(--panel); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
-  .vnum.at { background: var(--sel); color: var(--sel-ink); border-color: var(--sel); font-weight: bold; }
-  .drift-chip { font-size: 0.68rem; color: var(--amber); border: 1px dashed #6b5320; border-radius: 0.5rem;
+  .vnum.at { color: var(--sel); border-color: var(--sel); font-weight: bold; }
+  .drift-chip { font-size: 0.68rem; color: var(--argaman); border: 1px dashed var(--argaman-dim); border-radius: 0.5rem;
     padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
   .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
@@ -464,12 +484,12 @@
   /* Where the attachment came from, said in place. The card used to carry
      this; the commentary reads here now, so the basis reads here too. */
   .c-inline .c-att { display: block; direction: ltr; text-align: left; font-size: 0.64rem;
-    color: var(--faint); margin-top: 0.15rem; }
+    color: var(--argaman-dim); margin-top: 0.15rem; }
   /* Held: in the record, not printed here. It is not an error and not a gap —
      it is the page saying what it is holding and why, in the place the text
      would have stood. */
   .c-inline.c-held { direction: ltr; text-align: left; font-size: 0.74rem;
-    color: var(--muted); font-style: italic; }
+    color: var(--argaman); font-style: italic; }
   body.en .c-inline { direction: ltr; text-align: left; }
   body.en .c-inline .g { font-size: 0.86rem; max-width: 11em; }
   body.en .c-inline .w { font-size: 0.92rem; }
@@ -501,7 +521,7 @@
   /* A word with its commentary standing open beneath it. */
   /* Opening a commentary on a word is something the reader did, so the word
      wears the selection, not the structure. */
-  .wb.c-open { background: var(--wash-open); border-radius: 0.25rem;
+  .wb.c-open { box-shadow: inset 0 0 0 1px var(--sel-dim); border-radius: 0.25rem;
     box-shadow: inset 0 -2px 0 var(--sel-dim); }
   .wb.c-open .w { color: var(--sel); }
   /* A word the reader has ruled on keeps a mark after the card closes. That is
@@ -523,10 +543,10 @@
      is answered by the difference in strength instead: the live word is more
      than twice the tint of a word already ruled on, and carries the reading
      color and underline on its own letters besides. */
-  .wb.chosen { background: var(--wash-chosen); border-radius: 0.25rem; }
-  .wb.chosen.active { background: var(--wash-active); }
+  .wb.chosen { box-shadow: inset 0 -2px 0 -1px var(--sel-dim); border-radius: 0.25rem; }
+  .wb.chosen.active { box-shadow: inset 0 0 0 1px var(--sel); }
   /* a word that is both ruled on and standing open keeps the open edge */
-  .wb.chosen.c-open { background: var(--wash-copen); }
+  .wb.chosen.c-open { box-shadow: inset 0 0 0 1px var(--sel), inset 0 -4px 0 -2px var(--sel); }
   /* An occurrence written with a maqaf is one block and more than one W. The
      block never splits; the W inside it light and open one at a time, and the
      maqaf itself prints without opening, because it is not a W. */
@@ -592,7 +612,7 @@
     text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   .wb.kq .g.backs-en { text-decoration: underline; text-decoration-color: var(--sel);
     text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
-  .mq { color: var(--faint); }
+  .mq { color: var(--shani-dim); }
   /* The reading under a word is shown whole. It used to run one line and end in
      an ellipsis, which was the honest thing to do when the average reading was
      45 characters and the tail ran to 435 — the page could not have carried
@@ -608,7 +628,7 @@
      word and up against the word beside it, which reads as a gap in the wrong
      place. It belongs under the word it is a reading of. */
   .g { display: block; order: 2; direction: ltr; text-align: center;
-    font: 0.66rem/1.25 Georgia, serif; color: var(--muted);
+    font: 0.66rem/1.25 Georgia, serif; color: var(--tekhelet);
     letter-spacing: 0.02em; margin-top: 0.06rem; max-width: 11em;
     white-space: normal; overflow-wrap: anywhere; overflow: hidden; }
   /* 4 · A word the store has no reading for still holds the line the reading
@@ -642,7 +662,7 @@
      Hebrew beneath. Nothing on this page may move while the reader is reading,
      so the box cannot grow; what it can do is stop at its own edge. The whole
      reading is on the card and on the line's own title. */
-  body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--ink); margin-top: 0; max-width: 12em;
+  body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--tekhelet); margin-top: 0; max-width: 12em;
     white-space: normal; display: block; overflow: hidden; }
   body.en .w { order: 2; font-size: 1.02rem; color: var(--en-word); margin-top: 0.04rem; }
   body.en .wb.active .g { color: var(--sel); }
@@ -654,7 +674,7 @@
   .mode-dir { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--faint); }
   .mode-btn { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
-  .mode-btn.on { background: var(--sel); color: var(--sel-ink); border-color: var(--sel); font-weight: bold; }
+  .mode-btn.on { color: var(--sel); border-color: var(--sel); font-weight: bold; }
 
   /* The HUD floats. The Hebrew never moves — law of the house. */
   /* A card that always carries a whole record needs room for one; 55vh put
@@ -667,7 +687,7 @@
      nothing has to. */
   #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: min(84vh, 50rem);
     display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;
-    background: var(--panel); border: 1px solid #2c4a63; border-radius: 0.7rem;
+    background: var(--panel); border: 1px solid var(--sel-dim); border-radius: 0.7rem;
     padding: 0.85rem 1.05rem; box-shadow: var(--shadow-card); }
   /* what scrolls, and what does not */
   /* The card is a stack of bands, and each keeps its own share.
@@ -787,10 +807,10 @@
      the line that was only supposed to say what had been chosen. Three lines,
      then it scrolls. The whole of it is still on its pill and still in the
      record underneath. */
-  #hud .r-now .v { display: block; color: var(--ink-strong); font-size: 0.94rem;
+  #hud .r-now .v { display: block; color: var(--tekhelet); font-size: 0.94rem;
     line-height: 1.3; overflow-wrap: anywhere;
     max-height: 3.9em; overflow-y: auto; overflow-x: hidden; }
-  #hud .r-now .v.none { color: var(--faint); font-style: italic; }
+  #hud .r-now .v.none { color: var(--argaman-dim); font-style: italic; }
   #hud[hidden] { display: none; }
   /* The tether: while a card is open, four faint lines in the reader's own
      color run from its corners back to the word it opened from, so the page
@@ -816,7 +836,7 @@
     font-size: 0.68rem; direction: ltr; text-align: left; }
   #hud .head .kq-role { flex: 1 1 100%; margin: 0; color: var(--muted);
     font-size: 0.74rem; font-style: italic; direction: ltr; text-align: left; }
-  #hud .head b { font-size: 1.55rem; color: var(--ink-strong);
+  #hud .head b { font-size: 1.55rem; color: var(--shani);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   #hud .head button { background: none; border: 0; color: var(--link); font-size: 1.15rem; cursor: pointer; }
   #hud p { margin: 0.45rem 0; }
@@ -841,7 +861,7 @@
   #hud .def-order .dfp, #modeRow .def-order .dfp { font: inherit; font-size: 0.58rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--faint); background: none;
     border: 1px solid var(--line); border-radius: 999px; padding: 0.14rem 0.5rem; cursor: pointer; }
-  #hud .def-order, #modeRow .def-order .dfp:hover:not(:disabled) { color: var(--muted); border-color: var(--gold-dim); }
+  #hud .def-order .dfp:hover:not(:disabled), #modeRow .def-order .dfp:hover:not(:disabled) { color: var(--muted); border-color: var(--gold-dim); }
   /* THE POSITION IN FORCE IS A READER'S SELECTION, so it wears the role the
      contract gives a reader's selection. It wore gold until 2026-09-09,
      which is the structure role \u2014 the color of the frame, not of a choice
@@ -850,22 +870,22 @@
      attachment crimson, and this only moves a control into the role it
      already belonged to. It is also the one cold thing on a warm page,
      which is the half of the name that had nowhere to stand. */
-  #hud .def-order, #modeRow .def-order .dfp.on { color: var(--sel); border-color: var(--sel-dim); background: var(--hover-wash); }
+  #hud .def-order .dfp.on, #modeRow .def-order .dfp.on { color: var(--sel); border-color: var(--sel-dim); }
   #hud .def-order .dfp.waiting, #modeRow .def-order .dfp.waiting {
     opacity: 0.4; cursor: default; }
-  #hud .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+  #hud .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--tekhelet);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
-  #hud .r-pills button[aria-pressed="true"] { background: var(--sel); border-color: var(--sel);
-    color: var(--sel-ink); font-weight: bold; }
+  #hud .r-pills button[aria-pressed="true"] { border-color: var(--sel);
+    color: var(--sel); font-weight: bold; }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
   #hud .r-overflow { margin-top: 0.45rem; }
-  #hud .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--muted);
+  #hud .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--tekhelet);
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
   #hud .r-overflow select:hover { border-color: var(--gold-dim); }
-  #hud .r-overflow select.on { color: var(--sel-ink); background: var(--sel); border-color: var(--sel); font-weight: bold; }
+  #hud .r-overflow select.on { color: var(--sel); border-color: var(--sel); font-weight: bold; }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   /* P — the sources that carry the same record. A corroboration is not a
      louder kind of source, so it wears the same chip and the same weight as
@@ -878,16 +898,16 @@
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.6rem;
     padding: 0.16rem 0.55rem; text-align: left; max-width: 100%; }
   #hud .d-also-m:hover { border-color: var(--sel-dim); color: var(--ink); }
-  #hud .d-also-read { display: block; color: var(--faint); font-size: 0.68rem; }
+  #hud .d-also-read { display: block; color: var(--argaman-dim); font-size: 0.68rem; }
   #hud .d-also-more { font: inherit; font-size: 0.72rem; color: var(--muted);
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.5rem;
     padding: 0.16rem 0.4rem; cursor: pointer; max-width: 100%; }
-  #hud .d-cut { margin: 0 0 0.35rem; font-size: 0.72rem; color: var(--amber);
-    border-inline-start: 2px solid var(--amber); padding-inline-start: 0.5rem; }
+  #hud .d-cut { margin: 0 0 0.35rem; font-size: 0.72rem; color: var(--argaman);
+    border-inline-start: 2px solid var(--argaman-dim); padding-inline-start: 0.5rem; }
   /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
-  #hud .d-card .d-text { margin: 0.25rem 0; color: var(--muted); }
-  #hud .d-card .d-sense.on { color: var(--ink-strong); font-weight: bold; }
+  #hud .d-card .d-text { margin: 0.25rem 0; color: var(--tekhelet); }
+  #hud .d-card .d-sense.on { color: var(--tekhelet); font-weight: bold; }
   #hud .d-card .d-sep { color: var(--faint); }
   #hud .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; padding: 0 0 0.05rem; text-align: left; }
@@ -944,11 +964,11 @@
   .c-mark { display: inline-flex; align-items: center; gap: 0.35rem; vertical-align: middle;
     direction: ltr; margin: 0; padding: 0.1rem 0.5rem;
     border: 1px solid var(--shani-dim); border-radius: 999px; background: var(--surface-c);
-    color: var(--shani); font: 0.68rem/1.4 Inter, system-ui, sans-serif;
+    color: var(--gold); font: 0.68rem/1.4 Inter, system-ui, sans-serif;
     letter-spacing: 0.04em; cursor: pointer; }
-  .c-mark:hover { color: var(--shani); border-color: var(--shani); }
-  .c-mark[aria-expanded="true"] { background: var(--sel); border-color: var(--sel);
-    color: var(--sel-ink); font-weight: bold; }
+  .c-mark:hover { color: var(--gold); border-color: var(--gold-dim); }
+  .c-mark[aria-expanded="true"] { border-color: var(--sel);
+    color: var(--sel); font-weight: bold; }
   .c-mark .c-glyph { font-variant: small-caps; letter-spacing: 0.08em; }
   /* Bounded, like the card's regions. A Rashi runs to a page and it was taking
      one — the verse it belongs to disappeared above it. It gets a share and
@@ -978,40 +998,40 @@
   .c-head-he.title-row { display: flex; gap: 0.1rem; }
   /* Same voice as the masthead's unnamed title: dimmed, italic, plainly a
      statement about the record rather than a name. */
-  .c-head-he.unnamed { color: var(--muted); font-style: italic; font-family: Georgia, serif; font-size: 0.8rem; }
+  .c-head-he.unnamed { color: var(--argaman); font-style: italic; font-family: Georgia, serif; font-size: 0.8rem; }
   .c-head-en { color: var(--shesh); font-size: 0.94rem; }
   .c-head-on { color: var(--muted); font-size: 0.82rem; }
   /* Said once, in English, before the names — because "what is this thing"
      comes before "what is it called". */
-  .c-how-said { flex: 1 1 14rem; font-size: 0.78rem; line-height: 1.45; color: var(--muted); }
+  .c-how-said { flex: 1 1 14rem; font-size: 0.78rem; line-height: 1.45; color: var(--argaman); }
   /* Scarlet marks what the page will not vouch for. 180 of the 181 placements
      on this book's first verse are ours, so coloring the whole sentence
      scarlet colored the page — and a mark that is everywhere marks nothing.
      It sits on the tail instead: the clause that actually makes the claim,
      five words long, in the one place a reader looks to see whose it is. */
   .c-how-whose { display: block; margin-top: 0.2rem; font-size: 0.62rem;
-    letter-spacing: 0.04em; color: var(--faint); }
-  .c-how-whose.c-suggested { color: var(--shani); }
+    letter-spacing: 0.04em; color: var(--argaman-dim); }
+  .c-how-whose.c-suggested { color: var(--argaman); }
   .c-how-basis { display: block; margin-top: 0.15rem; font-size: 0.6rem;
-    letter-spacing: 0.06em; color: var(--faint); }
+    letter-spacing: 0.06em; color: var(--argaman-dim); }
   .c-mark-body { display: block; }
-  .c-mark-text { display: block; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
+  .c-mark-text { display: block; font-size: 1.05rem; line-height: 1.9; color: var(--shani);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif;
     text-align: right; }
   /* Once the words open, they are blocks and carry their own line height. */
   .c-mark-text.c-worded { line-height: 1.35; }
   .c-mark-text.c-worded .wb { margin-bottom: 0.3rem; }
-  .c-mark-slot .c-att { display: block; color: var(--faint); font-size: 0.68rem; margin-top: 0.4rem; }
+  .c-mark-slot .c-att { display: block; color: var(--argaman-dim); font-size: 0.68rem; margin-top: 0.4rem; }
   /* Scarlet, by the rule at the top of this file: the page is refusing to draw
      a shape it has not been given, and says so where the shape would have
      been. It is not saying the commentary is wrong. */
-  .c-mark-slot .c-undeclared { color: var(--shani); border-inline-start: 2px solid var(--shani);
+  .c-mark-slot .c-undeclared { color: var(--argaman); border-inline-start: 2px solid var(--argaman-dim);
     padding-inline-start: 0.5rem; }
-  .c-mark-slot .c-two-counts { color: var(--shesh); border-inline-start: 2px solid var(--gold-dim);
+  .c-mark-slot .c-two-counts { color: var(--argaman); border-inline-start: 2px solid var(--argaman-dim);
     padding-inline-start: 0.5rem; }
   /* Same rule where the commentary reads in line: the sentence stays linen and
      the tail carries the color. */
-  .c-att .c-how-whose.c-suggested { color: var(--shani); }
+  .c-att .c-how-whose.c-suggested { color: var(--argaman); }
   /* The chooser: everything attached to this line, named by its work and by
      the word it sits on, because a line's handle covers words and this is the
      reader deciding between them. */
@@ -1024,7 +1044,7 @@
   .c-more { font: inherit; font-size: 0.72rem; color: var(--faint); background: none;
     border: 0; border-bottom: 1px dotted var(--gold-dim); cursor: pointer; padding: 0 0 1px; }
   .c-more:hover { color: var(--shesh); }
-  .c-choice .c-on { color: var(--gold-dim); font-size: 0.95rem;
+  .c-choice .c-on { color: var(--shani); font-size: 0.95rem;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   .c-more { display: block; width: 100%; color: var(--faint); font-size: 0.68rem; }
   .c-shut { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
@@ -1037,9 +1057,9 @@
     text-align: left; direction: ltr; background: none; border: 0; color: var(--muted);
     font: inherit; padding: 0.7rem 0.9rem; cursor: pointer; }
   #cIndex .ci-head:hover { color: var(--shesh); }
-  #cIndex .ci-head b { color: var(--shani); font-size: 0.95rem; letter-spacing: 0.04em; }
+  #cIndex .ci-head b { color: var(--gold); font-size: 0.95rem; letter-spacing: 0.04em; }
   #cIndex .ci-head[aria-expanded="true"] b { color: var(--sel); }
-  #cIndex .ci-sum { color: var(--faint); font-size: 0.72rem; margin: 0 0 0.55rem;
+  #cIndex .ci-sum { color: var(--argaman-dim); font-size: 0.72rem; margin: 0 0 0.55rem;
     padding: 0 0.9rem; line-height: 1.5; }
   #cIndex .ci-body[hidden] { display: none; }
   #cIndex .ci-bar { display: flex; gap: 0.5rem; align-items: center; padding: 0 0.9rem 0.5rem; }
@@ -1047,7 +1067,7 @@
     color: var(--ink); background: var(--panel); border: 1px solid var(--line);
     border-radius: 0.45rem; padding: 0.35rem 0.6rem; }
   #cIndex input[type="search"]:focus { outline: none; border-color: var(--gold-dim); }
-  #cIndex .ci-count { color: var(--faint); font-size: 0.72rem; white-space: nowrap; }
+  #cIndex .ci-count { color: var(--argaman-dim); font-size: 0.72rem; white-space: nowrap; }
   #cIndex .ci-list { max-height: min(24rem, 50vh); overflow-y: auto; overflow-x: hidden;
     padding: 0 0.9rem 0.8rem; display: flex; flex-direction: column; gap: 0.3rem; }
   #cIndex .ci-hit { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.45rem;
@@ -1057,21 +1077,21 @@
   #cIndex .ci-hit:hover { border-color: var(--gold-dim); color: var(--shesh); }
   #cIndex .ci-where { color: var(--gold-dim); }
   #cIndex .ci-what { flex: 1 1 auto; }
-  #cIndex .ci-more { color: var(--faint); font-size: 0.72rem; margin: 0.3rem 0 0; }
+  #cIndex .ci-more { color: var(--argaman-dim); font-size: 0.72rem; margin: 0.3rem 0 0; }
   /* A commentary answering another sits under it, indented, and is the one
      case where two stand open at once. */
   .c-counter-row { display: block; margin-top: 0.5rem; }
   .c-counter-mark { font-size: 0.66rem; }
   .c-mark-slot.c-counter { margin-inline-start: 1.1rem; border-inline-start: 2px solid var(--shesh); }
-  .c-noen { color: var(--amber); }
+  .c-noen { color: var(--argaman); }
   #hud .c-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
   #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  #hud .c-pills button[aria-pressed="true"] { background: var(--sel); border-color: var(--sel);
-    color: var(--sel-ink); font-weight: bold; }
+  #hud .c-pills button[aria-pressed="true"] { border-color: var(--sel);
+    color: var(--sel); font-weight: bold; }
   #hud .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
-  #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
+  #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--shani);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   #hud .c-note { color: var(--faint); font-size: 0.72rem; margin: 0.2rem 0 0; }
   /* A commentary served from the chain is text, not decoration: its own words
@@ -1164,7 +1184,7 @@
     font-family: inherit; font-size: 0.78rem; letter-spacing: 0.04em; cursor: pointer;
     direction: ltr; text-align: left; }
   .c-bar:hover { border-color: var(--shani-dim); color: var(--shesh); }
-  .c-bar[aria-expanded="true"] { background: var(--sel); color: var(--sel-ink); border-color: var(--sel); }
+  .c-bar[aria-expanded="true"] { color: var(--sel); border-color: var(--sel); }
   .c-bar .c-glyph { font-variant: small-caps; letter-spacing: 0.12em; font-size: 0.7rem;
     border: 1px solid currentColor; border-radius: 0.35rem; padding: 0 0.32rem; opacity: 0.75; }
   .c-bar .c-name { flex: 1 1 auto; }
@@ -1206,7 +1226,7 @@
     border: 1px solid var(--line); border-radius: 0.45em; padding: 0.1em 0.4em; }
   .g .g-part { display: inline-block; vertical-align: top; text-align: center; }
   .g .g-part + .g-part { margin-left: 0.3em; }
-  .g .g-join { color: var(--muted); }
+  .g .g-join { color: var(--tekhelet-dim); }
   /* the chip shows in both readers — the owner chose the demonstration look, 2026-08-30 */
   /* A reading is a reading wherever the run drew it. A joined word prints one
      shared reading on the run itself, outside any .wb, so this rule never
@@ -1226,11 +1246,11 @@
     background: var(--panel2); border-radius: 0.5rem; padding: 0.12rem 0.5rem;
     letter-spacing: 0.04em; cursor: pointer; font-family: inherit; }
   .xp:hover { border-color: var(--gold-dim); color: var(--shesh); }
-  .xp.armed { background: var(--sel); color: var(--sel-ink); border-color: var(--sel); font-weight: bold; }
+  .xp.armed { color: var(--sel); border-color: var(--sel); font-weight: bold; }
   .xp.busy { opacity: 0.6; cursor: progress; }
-  .xp-note { font-size: 0.66rem; color: var(--faint); direction: ltr; flex: 1 1 100%; margin: 0.1rem 0 0; }
+  .xp-note { font-size: 0.66rem; color: var(--argaman-dim); direction: ltr; flex: 1 1 100%; margin: 0.1rem 0 0; }
   .xp-note b { color: var(--shesh); font-weight: normal; }
-  .xp-note .held { color: var(--amber); }
+  .xp-note .held { color: var(--argaman); }
   .xp-lab { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--faint); margin-inline-end: 0.15rem; }
   #bookExport { max-width: 48rem; margin: 2.2rem auto 0; padding: 0 1.5rem; direction: ltr; }
@@ -5107,16 +5127,13 @@
   // one work can hand a reader to another at the same place without either of
   // them claiming anything about the other.
   const openAt = (QUERY.get("at") || "").trim();
-  // A PALETTE TO LOOK AT, NOT A CONTROL TO ADD. The owner asked whether the
-  // two halves of the name could be tried without repainting the site: the
-  // Hebrew in tola'at shani, the English in tekhelet — the crimson and the
-  // blue Exodus names and never describes. It rides a query parameter rather
-  // than the mode row, so it is a link somebody follows on purpose and the
-  // page every other reader gets is untouched. Nothing is stored; close the
-  // tab and it is gone. The values are the contract's own two roles, not new
-  // ones: a fourth role is the ledger's to declare and not this file's.
-  const paletteAsked = (QUERY.get("palette") || "").trim().toLowerCase();
-  if (paletteAsked === "tabernacle") document.documentElement.dataset.palette = "tabernacle";
+  // ?palette=tabernacle used to live here, as a link somebody followed on
+  // purpose so the page every other reader got stayed untouched. The owner
+  // looked at it and ruled it in on 2026-09-10, so there is nothing left to
+  // ask for: the channels are painted in the stylesheet above and the
+  // parameter is gone rather than kept as a no-op somebody would later have
+  // to explain. An old link carrying it still opens the book, and now the
+  // book it opens is the one the link was asking to see.
   const byLabel = new Map();
   let curPart = null, curNode = -1, openedNode = false;
   const sectionEls = [];

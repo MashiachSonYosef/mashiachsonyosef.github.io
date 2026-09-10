@@ -3779,16 +3779,13 @@
   // one work can hand a reader to another at the same place without either of
   // them claiming anything about the other.
   const openAt = (QUERY.get("at") || "").trim();
-  // A PALETTE TO LOOK AT, NOT A CONTROL TO ADD. The owner asked whether the
-  // two halves of the name could be tried without repainting the site: the
-  // Hebrew in tola'at shani, the English in tekhelet — the crimson and the
-  // blue Exodus names and never describes. It rides a query parameter rather
-  // than the mode row, so it is a link somebody follows on purpose and the
-  // page every other reader gets is untouched. Nothing is stored; close the
-  // tab and it is gone. The values are the contract's own two roles, not new
-  // ones: a fourth role is the ledger's to declare and not this file's.
-  const paletteAsked = (QUERY.get("palette") || "").trim().toLowerCase();
-  if (paletteAsked === "tabernacle") document.documentElement.dataset.palette = "tabernacle";
+  // ?palette=tabernacle used to live here, as a link somebody followed on
+  // purpose so the page every other reader got stayed untouched. The owner
+  // looked at it and ruled it in on 2026-09-10, so there is nothing left to
+  // ask for: the channels are painted in the stylesheet above and the
+  // parameter is gone rather than kept as a no-op somebody would later have
+  // to explain. An old link carrying it still opens the book, and now the
+  // book it opens is the one the link was asking to see.
   const byLabel = new Map();
   let curPart = null, curNode = -1, openedNode = false;
   const sectionEls = [];
