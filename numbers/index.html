@@ -13,18 +13,16 @@
 // daylight, the tent dark under its coverings by night. The device's own
 // preference decides until the reader chooses; a choice is the device's to
 // remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
 (() => {
-  const root = document.documentElement;
-  let held = null;
-  try { held = localStorage.getItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
-  const sys = matchMedia("(prefers-color-scheme: light)");
-  const apply = () => { root.dataset.scheme = held === "day" || held === "night" ? held : (sys.matches ? "day" : "night"); };
-  apply();
-  if (sys.addEventListener) sys.addEventListener("change", apply);
-  window.__face = { set(v) { held = v; try { localStorage.setItem("scheme", v); } catch { /* still reads */ } apply(); } };
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
-<link rel="stylesheet" href="/reader/engine-cf7e3df6fd2a.css">
+<link rel="stylesheet" href="/reader/engine-01c030a71571.css">
 </head>
 <body>
 <header class="top">
@@ -33,7 +31,7 @@
        books, which put two different jobs in one line and made the way home
        the least noticeable thing in it. A book offers its own text; the door
        offers the books. -->
-  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a><button id="face" class="face" type="button" title="the other face of the page">day</button></nav>
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
   <h1 id="workTitle">
     <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
     <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
@@ -106,6 +104,6 @@
 <main id="text"></main>
 <div id="hud" hidden></div>
 <footer id="prov"></footer>
-<script src="/reader/engine-cb7e4dc55ce4.js"></script>
+<script src="/reader/engine-e67446e68304.js"></script>
 </body>
 </html>

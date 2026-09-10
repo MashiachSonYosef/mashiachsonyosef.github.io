@@ -69,10 +69,17 @@ const channels = contract.channels || {};
     const m = readFileSync(LEDGER, "utf8").match(/"color_contract":(\{[^}]*\})/);
     if (m) {
       const old = JSON.parse(m[1]);
+      // The fixture's two surfaces described the tent's dark face, which this
+      // edition dropped on 2026-09-10. They cannot be carried forward against
+      // a face that does not exist, and quietly dropping the comparison would
+      // read as though it still passed. So the surviving half is asserted, and
+      // the other half is stated as retired rather than deleted.
       check("the fixture's structure role is carried forward unchanged",
-        old.structure === (channels.structure || {}).material &&
-        old.base_surface === contract.faces.night.base_surface &&
-        old.commentary_surface === contract.faces.night.commentary_surface);
+        old.structure === (channels.structure || {}).material,
+        `fixture ${old.structure} vs contract ${(channels.structure || {}).material}`);
+      const retired = [old.base_surface, old.commentary_surface].filter(Boolean);
+      console.log(`  --    the fixture's surfaces (${retired.join(", ")}) described the dark face, `
+        + `dropped ${contract.faces.dropped_on}; there is no face left to carry them onto`);
     }
   }
 }
@@ -126,6 +133,18 @@ const inFamily = (colour, name) => {
   const ok = hueOk && s >= f.minSat && l >= f.light[0] && l <= f.light[1];
   return { ok, why: `hue ${h.toFixed(0)}° sat ${s.toFixed(2)} light ${l.toFixed(2)}` };
 };
+// CIE L*, because a ground has to be judged by how big a STEP it makes and a
+// contrast ratio cannot say that. A ratio is built for reading text off a
+// background, and it compresses hard at the dark end: the same ratio is a
+// different amount of visible change on linen than it is on the tent's ground,
+// which is exactly what left the two faces not matching when they were tuned
+// to the same ratio. L* is perceptually even, so one number means one thing on
+// both faces. About 1 unit is a just-noticeable difference.
+const Lstar = (c) => {
+  const lin = (v) => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; };
+  const y = 0.2126 * lin(c[0]) + 0.7152 * lin(c[1]) + 0.0722 * lin(c[2]);
+  return y > 0.008856 ? 116 * Math.cbrt(y) - 16 : 903.3 * y;
+};
 const alphaOf = (c) => { const m = String(c).match(/[\d.]+/gu); return m && m.length > 3 ? Number(m[3]) : 1; };
 // shortest way round the wheel
 const apartOn = (a, c) => { const d = Math.abs(hsl(a).h - hsl(c).h) % 360; return Math.min(d, 360 - d); };
@@ -155,8 +174,10 @@ await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(2600);
 
 const commentaryHere = zonesWithCommentary().length > 0;
-for (const face of ["night", "day"]) {
-await p.evaluate((f) => window.__face.set(f), face);
+// ONE FACE since 2026-09-10. The loop is kept at one pass rather than
+// unrolled, so that a second face costs one line here if one is ever
+// wanted again, and so every message below still says which face it read.
+for (const face of ["day"]) {
 // The page turns its face over a 0.12s transition, and a fixed wait sampled
 // the pressed button mid-turn when the machine was busy. What is judged is
 // the face as painted, so the read waits until two frames 100ms apart paint
@@ -242,9 +263,12 @@ for (let i = 0; i < FINAL.length; i += 1) for (let j = i + 1; j < FINAL.length; 
     if (!laid || !rgb(ink)) { check(`  ${what} carries a channel behind it`, false, `wash ${wash}, ink ${ink}`); continue; }
     // seen: the wash has to be separable from the bare ground, or it is a
     // channel nobody can perceive and the page is lying about marking anything
-    const seen = ratio(laid, ground);
-    check(`  ${what}'s channel is visible behind it (>= 1.12:1 against the bare ground)`,
-      seen >= 1.12, `${seen.toFixed(2)}:1 \u00b7 wash ${wash} lays down rgb(${laid.join(", ")})`);
+    // 3 L* is three times a just-noticeable difference. It is a floor and not
+    // a target: both faces are tuned to about 4.5 and 5.1, which is where the
+    // day face already sat when it was called right.
+    const step = Math.abs(Lstar(laid) - Lstar(ground));
+    check(`  ${what}'s channel is visible behind it (>= 3.0 L* against the bare ground)`,
+      step >= 3.0, `${step.toFixed(2)} L* \u00b7 wash ${wash} lays down rgb(${laid.join(", ")})`);
     // read: the ink has to survive the ground its own channel puts under it
     const legible = ratio(rgb(ink), laid);
     check(`  ${what} still reads on top of its own channel (>= 4.5:1)`,
@@ -331,15 +355,26 @@ if (commentaryHere) {
     goldInk.length === 0, goldInk.length ? `${goldInk.length} in gold: ${goldInk.slice(0, 4).map((x) => x.where + " " + x.c).join(" / ")}` : "checked every text-bearing element at rest");
 }
 
-// the face button turns the page and names where it turns to
+// THE SECOND FACE IS GONE, AND HAS TO BE GONE EVERYWHERE. A half-removed face
+// is worse than either state: a stray data-scheme rule or a leftover button
+// would paint some elements from a palette nothing else uses. So what is
+// checked is the absence, not the toggle.
 {
-  const before = await p.evaluate(() => document.documentElement.dataset.scheme);
-  const label = await p.evaluate(() => document.getElementById("face")?.textContent);
-  await p.click("#face");
-  await p.waitForTimeout(120);
-  const after = await p.evaluate(() => document.documentElement.dataset.scheme);
-  check("the face button turns the page to the face it names",
-    !!label && after === label && after !== before, `${before} → pressed "${label}" → ${after}`);
+  const left = await p.evaluate(() => ({
+    button: !!document.getElementById("face"),
+    attr: document.documentElement.dataset.scheme || null,
+    api: typeof window.__face !== "undefined",
+    kept: (() => { try { return localStorage.getItem("scheme"); } catch { return null; } })(),
+  }));
+  check("no face button survives the second face",
+    !left.button && !left.api, `button ${left.button}, window.__face ${left.api}`);
+  check("nothing paints from a face the page no longer has",
+    !left.attr, left.attr ? `data-scheme="${left.attr}" is still on the root` : "no data-scheme on the root");
+  check("and a device that remembered a face has been let go of it",
+    !left.kept, left.kept ? `localStorage still holds scheme="${left.kept}"` : "nothing kept");
+  const sheet = await p.evaluate(() => [...document.querySelectorAll("style")].map((e) => e.textContent).join("\n"));
+  const strays = (sheet.match(/\[data-scheme[^\]]*\]/gu) || []).length;
+  check("and no rule is still written for one", strays === 0, `${strays} data-scheme rules in the stylesheet`);
 }
 
 // THE FAULT V1 EXISTED FOR, ASSERTED THE WAY V2 STATES IT. Structure and

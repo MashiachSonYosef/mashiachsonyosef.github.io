@@ -9,151 +9,22 @@
 // daylight, the tent dark under its coverings by night. The device's own
 // preference decides until the reader chooses; a choice is the device's to
 // remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
 (() => {
-  const root = document.documentElement;
-  let held = null;
-  try { held = localStorage.getItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
-  const sys = matchMedia("(prefers-color-scheme: light)");
-  const apply = () => { root.dataset.scheme = held === "day" || held === "night" ? held : (sys.matches ? "day" : "night"); };
-  apply();
-  if (sys.addEventListener) sys.addEventListener("change", apply);
-  window.__face = { set(v) { held = v; try { localStorage.setItem("scheme", v); } catch { /* still reads */ } apply(); } };
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
 <style>
+  /* ONE FACE. The tent's dark face was dropped on 2026-09-10 at the
+     owner's word. What is left is the courtyard: linen hangings in
+     daylight, which is the face the channels were tuned on and the one
+     that was called right. color-scheme is stated so a device set to
+     dark does not hand its own dark chrome to a light page. */
   :root {
-    color-scheme: dark;
-    /* colour-role-rule-v1-the-roles-are-the-ledgers-and-the-values-are-ours
-       ===================================================================
-
-       There is a color contract, and it is recorded. Y-GENESIS-NAVIGATION-V1
-       carries it, generated 2026-07-18, status PASS:
-
-         structure             gold
-         reader_selection      electric blue
-         commentary_attachment crimson
-         base_surface          purple
-         commentary_surface    brown
-
-       This page had been painting three of those five and inventing its own
-       scheme over the top of them. Gold was on structure, which the contract
-       says — and also on every selection the reader made, which the contract
-       gives to blue. So one color was doing two jobs and the second job had
-       no color at all: nothing on the page looked different because you had
-       chosen it, and gold, spread across both, stopped meaning either. The two
-       surfaces were not painted at all, so a commentary and the text it is
-       about sat on the same ground with nothing but a border between them.
-
-       Meanwhile a note here assigned the Tabernacle materials to roles by
-       itself — tekhelet to structure, most of all — which is the same fault
-       this project exists to catch: deciding a thing the record had already
-       decided, and then citing the decision as though it came from somewhere.
-
-       So: the five roles below are the ledger's, named as it names them. The
-       hex values are this page's, and always were. Exodus lists tekhelet,
-       argaman, tola'at shani and shesh over and over and never once says what
-       any of them looked like; every color ever put to them is a tradition,
-       and the traditions disagree. No reader should come away thinking a hex
-       code is attested — only that a role is.
-
-       Where the two speak of the same thing they agree by name: the contract's
-       purple is argaman, its crimson is tola'at shani, and the linen the whole
-       page is written in is shesh. */
-    --bg: #0d0a14; --panel: #171021; --panel2: #120d1a;
-    --nav-veil: rgba(21, 18, 13, 0.94);
-    /* THE LINE REGISTER IS GOLD. Every rule and every box edge on the page
-       comes off this token, so this is where "bright gold for all the lines
-       and boxes" actually lands. It is held at the 3:1 a rule must clear to
-       be seen, which is a floor for being visible and not for being read. */
-    --line: #8a6c2c; --wash: #1c1428;
-    /* the commentary's own surface, so a comment is never mistaken for text */
-    --surface-c: #17100a; --panel-c: #201709; --line-c: #332513;
-    /* shesh — the reading surface, and the neutrals taken down from it, so a
-       reading is the same cloth as the word it belongs to, only dimmer */
-    /* THE FIELD IS ARGAMAN. Ruled 2026-09-10: the page's own ink is this
-       project's own voice, so the default is argaman held down to a neutral —
-       a light violet-grey that reads as ink and identifies as purple only
-       when something red or blue is put beside it. Everything unmarked on
-       this page is us. Red and blue are departures from us, and that is the
-       whole of the safety rail: what nobody stands behind wears no color. */
-    --ink: #ded6ea; --ink-strong: #f3edfb; --muted: #a89ab9; --faint: #7d7291;
-    --shesh: #ddcda9; --shesh-bright: #eee0c2;
-    /* structure — the spine the ledger records. It is LINE WORK now and not
-       ink: rules, borders, boxes, the frame around a thing. It got brighter
-       the moment it stopped having to behave as text, because a hairline has
-       to be seen and a paragraph has to be read, and those want opposite
-       things. Never a state, and never ink at rest — gold may only reach a
-       glyph under the reader's own hand, and leaves with it. */
-    --gold: #f7d47e; --gold-dim: #c2a256; --amber: #f0bb52;
-    /* reader_selection — and only that: what this reader has opened, chosen,
-       pressed or armed. Nothing wears it at rest.
-       Ruled 2026-09-10: gold is not a final color, it is the in-process one —
-       huds, boxes, the frame — the way the gold in the tabernacle was worked
-       into the blue that is actually shown. A selection is the most in-process
-       thing on the page, so it belongs to gold, at its amber value. It had been
-       blue, and blue is now the reading, which would have left the page saying
-       "selected" and "English" in one color. Held apart from structure by value
-       and by fill: structure is gold as ink, selection is amber as a ground. */
-    --sel: #ffd980; --sel-dim: #c9a34a;
-    /* commentary_attachment — a commentary's mark, and by the same token what
-       the page will not vouch for: a placement that is ours, a reach it is
-       told is only suggested. It never marks something as wrong. */
-    /* AN ACCENT IS THE FIELD INFLECTED, NOT A SECOND FIELD. These began as
-       two independent hues at full chroma sitting on top of the purple,
-       which reads as filled in rather than as an accent on it — a hundred
-       percent of the content colored is not an accent, it is another field.
-       So both were pulled back toward the field: the chroma down by about a
-       third, and the hue rotated toward argaman's own angle until each
-       reads as the page's own ink leaning red or leaning blue. Tola'at
-       shani sits on the red side of purple and tekhelet on the blue side,
-       which is where the two dyes sat in the first place. They are held
-       apart from the field, and from each other, by the check and not by
-       eye: far in hue, or far in chroma, and never neither. */
-    /* shani and tekhelet are no longer inks. Every glyph on this page is
-       argaman; the channel is carried behind the letters or around them,
-       never in them. These stay named because a wash and a halo are mixed
-       from them, and because the check still measures them. */
-    --shani: #d69a9f; --shani-dim: #9c6a70;
-    --wash-shani: rgba(214, 154, 159, 0.10);
-    --halo-shani: rgba(214, 154, 159, 0.85);
-    /* tekhelet — the reading as shown: the English a dictionary this project
-       holds a license to offers for a word. Someone else's words about the
-       corpus, and never the corpus.
-       This token sat here named and unused, on the rule that the day it
-       appeared would be a decision somebody made and not a color that crept
-       in. That day is 2026-09-10 and the decision is the owner's, recorded in
-       data/color-contract-v1.json. It was not decided here. */
-    --tekhelet: #8ea6d7; --tekhelet-dim: #62709c;
-    --wash-tekhelet: rgba(142, 166, 215, 0.11);
-    --halo-tekhelet: rgba(142, 166, 215, 0.85);
-    /* argaman — this project's own voice: rule statements, counting notes,
-       captions, obligation lines, what a demonstration says about itself.
-       Plain English that is ours and is licensed by nobody. Argaman is also
-       the night ground, so the two must not be one value: the ground is
-       purple at its darkest, the voice is argaman at a value that reads on
-       it. Same material, two jobs. */
-    --argaman: #c9a4e8; --argaman-dim: #9385ab;
-    --link: var(--shesh);
-    /* no anchor ever wears the browser's default purple — every link is
-       the page's own linen, both faces */
-    /* the working tones and washes, named so the day face can revalue them */
-    --c-word: #c8bda0; --en-word: #b3a077;
-    --hover-ink: #ffe08a; --hover-line: #6a5a33;
-    /* the third weight of gold: bright for the frame, --line for a box, and
-       this for the smallest chips, so a page of readings reads as ruled and
-       not as a grid of equal rectangles */
-    /* the chip's rule is gold at its faintest; its ground is NOT, because
-       gold has no ground. The wash under a chip is the field's own ink. */
-    --chip-bg: rgba(222, 214, 234, 0.06); --chip-line: rgba(247, 212, 126, 0.26);
-    --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.5);
-    --shadow-card: 0 14px 40px rgba(0, 0, 0, 0.6);
-    --shadow-hud: 0 18px 48px rgba(4, 2, 8, 0.55), 0 2px 8px rgba(4, 2, 8, 0.35);
-  }
-  /* The day face — the courtyard: linen hangings in daylight. The same five
-     roles, valued for light, and linen is not glare: the ground sits well
-     below paper white and the ink is warm, not black. Chosen by the device's
-     preference until the reader presses the face button in the header. */
-  :root[data-scheme="day"] {
     color-scheme: light;
     --bg: #f1e9d8; --panel: #f8f2e5; --panel2: #ebe2cd;
     --nav-veil: rgba(248, 242, 229, 0.94);
@@ -1339,7 +1210,7 @@
        books, which put two different jobs in one line and made the way home
        the least noticeable thing in it. A book offers its own text; the door
        offers the books. -->
-  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a><button id="face" class="face" type="button" title="the other face of the page">day</button></nav>
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
   <h1 id="workTitle">
     <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
     <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
@@ -1441,16 +1312,6 @@
   // project's working name. Typed in one place, shown in two.
   const SITE = META("site-name") || "The Tabernacle";
   { const h = document.querySelector("#home a.home"); if (h) h.textContent = SITE; }
-  // the face button carries the name of the face it would turn to
-  {
-    const face = document.getElementById("face");
-    const nameOther = () => { face.textContent = document.documentElement.dataset.scheme === "day" ? "night" : "day"; };
-    nameOther();
-    face.addEventListener("click", () => {
-      window.__face.set(document.documentElement.dataset.scheme === "day" ? "night" : "day");
-      nameOther();
-    });
-  }
   const unpack = async (res) =>
     JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
   // The door keeps the seals; the shelf keeps the weight. A zone bin may be

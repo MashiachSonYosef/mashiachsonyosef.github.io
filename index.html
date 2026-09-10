@@ -6,17 +6,13 @@
 <title>fireandhail.com</title>
 <meta name="description" content="A Hebrew reader built on a sealed chain: every reading traceable to the record that carries it, and every record to the license it was released under.">
 <script>
-// Two faces, both the record's: linen by day, the tent by night. The device
-// decides until the reader chooses; the choice stays on the device.
+// One face since 2026-09-10, so there is nothing to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet, not by a second palette. Anything a device kept from the
+// two-faced version is let go of once, so no reader holds a preference for a
+// face that no longer exists.
 (() => {
-  const root = document.documentElement;
-  let held = null;
-  try { held = localStorage.getItem("scheme"); } catch { /* still reads */ }
-  const sys = matchMedia("(prefers-color-scheme: light)");
-  const apply = () => { root.dataset.scheme = held === "day" || held === "night" ? held : (sys.matches ? "day" : "night"); };
-  apply();
-  if (sys.addEventListener) sys.addEventListener("change", apply);
-  window.__face = { set(v) { held = v; try { localStorage.setItem("scheme", v); } catch { /* still reads */ } apply(); } };
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
 <style>
@@ -29,23 +25,11 @@
      here — so the way in was painting with a smaller vocabulary than the
      rooms, and the invented blue-grey it claimed to have dropped was still
      hard-wired into two card borders. */
-  :root { --bg:#0d0a14; --panel:#171021; --panel2:#120d1a; --line:#8a6c2c; --ink:#ded6ea;
-          --ink-strong:#f3edfb; --muted:#a89ab9; --faint:#7d7291;
-          --gold:#f7d47e; --gold-dim:#c2a256; --amber:#f0bb52;
-          --sel:#ffd980; --sel-dim:#c9a34a;
-          --shani:#d69a9f; --shani-dim:#9c6a70;
-          --wash-shani:rgba(214,154,159,.10); --wash-tekhelet:rgba(142,166,215,.11); --shesh:#ddcda9; --shesh-bright:#eee0c2;
-          --tekhelet:#8ea6d7; --tekhelet-dim:#62709c;
-          --argaman:#c9a4e8; --argaman-dim:#9385ab; --link:#c9a4e8;
-          --chip-bg:rgba(216,199,164,.12); --chip-line:rgba(216,199,164,.3);
-          --hover-wash:rgba(224,182,79,.06); --shade:rgba(5,3,8,.55);
-          --shadow-card:0 14px 40px rgba(0,0,0,.6); }
-  /* the day face — linen, warm and below paper white; the same five channels,
-     valued for light, chosen by the device until the reader presses the
-     button. The amber runs darker here than the gold does, which is not a
-     drift: a selection is normal-size text and has to clear 4.5:1 on linen,
-     where the frame sits at display sizes and clears 4. */
-  :root[data-scheme="day"] {
+  /* ONE FACE. The tent's dark face was dropped on 2026-09-10 at the owner's
+     word; what is left is the courtyard, linen in daylight, which is the
+     face the channels were tuned on. color-scheme is stated so a device
+     set to dark does not hand its own chrome to a light page. */
+  :root {
     color-scheme: light;
     --bg:#f1e9d8; --panel:#f8f2e5; --panel2:#ebe2cd; --line:#8a6a18;
     --ink:#2b2338; --ink-strong:#191223; --muted:#5c5270; --faint:#7b7290;
@@ -1020,16 +1004,7 @@
 <script>
 // The button it names now stands inside the page rather than fixed over it,
 // so this waits for the page instead of assuming the button is already there.
-document.addEventListener("DOMContentLoaded", () => {
-  const face = document.getElementById("face");
-  if (!face) return;
-  const nameOther = () => { face.textContent = document.documentElement.dataset.scheme === "day" ? "night" : "day"; };
-  nameOther();
-  face.addEventListener("click", () => {
-    window.__face.set(document.documentElement.dataset.scheme === "day" ? "night" : "day");
-    nameOther();
-  });
-});
+
 </script>
 <main
     data-text-input-byte-rule="EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1"
@@ -1055,7 +1030,7 @@ document.addEventListener("DOMContentLoaded", () => {
        covers the thing it is offered beside is not offered, it is in the way.
        In flow they cross nothing, and a book page's own way home already
        works this way — so the two faces of the site now agree. -->
-  <div class="topbar"><button id="face" class="face" type="button" title="the other face of the page">day</button><a class="face alt-face" href="/census/" title="every work the bridge records that does not serve yet — nothing hidden, nothing promised">the census</a></div>
+  <div class="topbar"><a class="face alt-face" href="/census/" title="every work the bridge records that does not serve yet — nothing hidden, nothing promised">the census</a></div>
   <h1>fireandhail.com</h1>
   <p class="sub">A Hebrew reader on a sealed chain. Every reading traces to the record that carries it, and every record to the license it was released under.</p>
   <!-- The door names itself and offers the books. Two lines stood here — how

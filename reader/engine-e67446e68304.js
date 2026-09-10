@@ -27,16 +27,6 @@
   // project's working name. Typed in one place, shown in two.
   const SITE = META("site-name") || "The Tabernacle";
   { const h = document.querySelector("#home a.home"); if (h) h.textContent = SITE; }
-  // the face button carries the name of the face it would turn to
-  {
-    const face = document.getElementById("face");
-    const nameOther = () => { face.textContent = document.documentElement.dataset.scheme === "day" ? "night" : "day"; };
-    nameOther();
-    face.addEventListener("click", () => {
-      window.__face.set(document.documentElement.dataset.scheme === "day" ? "night" : "day");
-      nameOther();
-    });
-  }
   const unpack = async (res) =>
     JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
   // The door keeps the seals; the shelf keeps the weight. A zone bin may be
