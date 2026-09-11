@@ -777,7 +777,8 @@
      the line that was only supposed to say what had been chosen. Three lines,
      then it scrolls. The whole of it is still on its pill and still in the
      record underneath. */
-  #hud .r-now .v { display: block; color: var(--tekhelet); font-size: 0.94rem;
+  #hud .r-now .v { display: block; color: var(--ink); background: var(--wash-tekhelet);
+    padding: 0.15rem 0.45rem; border-radius: 0.4em; font-size: 0.94rem;
     line-height: 1.3; overflow-wrap: anywhere;
     max-height: 3.9em; overflow-y: auto; overflow-x: hidden; }
   #hud .r-now .v.none { color: var(--argaman); font-style: italic; }
@@ -801,8 +802,10 @@
     pointer-events: none; z-index: 69; }
   #tether .line { fill: none; stroke-width: 1.5; stroke-linecap: round; }
   #tether .glow { fill: none; stroke-width: 7; stroke-linecap: round; opacity: 0.13; }
+  /* the thread is line work, so it is gold; only the pin carries the word's
+     color — one dot, not a second colored line on a screen that has enough */
   #tether .pin { fill: var(--shani); }
-  #tether stop.from { stop-color: var(--shani); }
+  #tether stop.from { stop-color: var(--gold-dim); }
   #tether stop.to { stop-color: var(--gold); }
   /* The head is the handle. A card the reader can move is a card that stops
      being in the way, and a card that is never re-anchored while it is open
@@ -820,7 +823,15 @@
     font-size: 0.68rem; direction: ltr; text-align: left; }
   #hud .head .kq-role { flex: 1 1 100%; margin: 0; color: var(--muted);
     font-size: 0.74rem; font-style: italic; direction: ltr; text-align: left; }
-  #hud .head b { font-size: 1.55rem; color: var(--shani);
+  /* THE CARD KEEPS THE PAGE'S RULE: one ink, channels as washes, gold for
+     lines. It had kept the older design — shani ink on the head, tekhelet ink
+     on every reading, amber on the pressed pill — and with the thread and the
+     held washes beside it the owner called the palette overcrowded
+     (2026-09-11). So the Hebrew head sits on the shani wash, a reading sits on
+     the tekhelet wash, the pressed pill is that wash deepened, and nothing on
+     the card is ink in a channel color. */
+  #hud .head b { font-size: 1.55rem; color: var(--ink); background: var(--wash-shani);
+    padding: 0.04em 0.3em; border-radius: 0.4em;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   #hud .head button { background: none; border: 0; color: var(--link); font-size: 1.15rem; cursor: pointer; }
   #hud p { margin: 0.45rem 0; }
@@ -857,19 +868,19 @@
   #hud .def-order .dfp.on, #modeRow .def-order .dfp.on { color: var(--sel); border-color: var(--sel-dim); }
   #hud .def-order .dfp.waiting, #modeRow .def-order .dfp.waiting {
     opacity: 0.4; cursor: default; }
-  #hud .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--tekhelet);
+  #hud .r-pills button { border: 1px solid var(--chip-line); background: var(--wash-tekhelet); color: var(--ink);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
-  #hud .r-pills button[aria-pressed="true"] { border-color: var(--sel);
-    color: var(--sel); font-weight: bold; }
+  #hud .r-pills button[aria-pressed="true"] { border-color: var(--line);
+    background: var(--held-tekhelet); font-weight: bold; }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
   #hud .r-overflow { margin-top: 0.45rem; }
-  #hud .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--tekhelet);
+  #hud .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--ink);
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
   #hud .r-overflow select:hover { border-color: var(--muted); }
-  #hud .r-overflow select.on { color: var(--sel); border-color: var(--sel); font-weight: bold; }
+  #hud .r-overflow select.on { background: var(--held-tekhelet); font-weight: bold; }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   /* P — the sources that carry the same record. A corroboration is not a
      louder kind of source, so it wears the same chip and the same weight as
@@ -890,8 +901,9 @@
     border-inline-start: 2px solid var(--argaman-dim); padding-inline-start: 0.5rem; }
   /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
-  #hud .d-card .d-text { margin: 0.25rem 0; color: var(--tekhelet); }
-  #hud .d-card .d-sense.on { color: var(--tekhelet); font-weight: bold; }
+  #hud .d-card .d-text { margin: 0.25rem 0; color: var(--ink); background: var(--wash-tekhelet);
+    padding: 0.2rem 0.45rem; border-radius: 0.4em; }
+  #hud .d-card .d-sense.on { background: var(--held-tekhelet); border-radius: 0.3em; font-weight: bold; }
   #hud .d-card .d-sep { color: var(--faint); }
   #hud .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; padding: 0 0 0.05rem; text-align: left; }
@@ -1072,10 +1084,11 @@
   #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  #hud .c-pills button[aria-pressed="true"] { border-color: var(--sel);
-    color: var(--sel); font-weight: bold; }
+  #hud .c-pills button[aria-pressed="true"] { border-color: var(--line);
+    background: var(--held-tekhelet); font-weight: bold; }
   #hud .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
-  #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--shani);
+  #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink);
+    background: var(--wash-shani); padding: 0.1rem 0.4rem; border-radius: 0.4em;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   #hud .c-note { color: var(--faint); font-size: 0.72rem; margin: 0.2rem 0 0; }
   /* A commentary served from the chain is text, not decoration: its own words
