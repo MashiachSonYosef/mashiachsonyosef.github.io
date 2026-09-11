@@ -108,6 +108,9 @@ const out = {
       source: span.source,
       rows_scanned: span.scanned,
       forms_with_a_component_system: span.spans.size,
+      // keys the template answers twice, differently: no system is recorded
+      // for them and the page says so, rather than this tool picking a row
+      held_for_a_double_answer: span.held || [],
       component_count_histogram: spanHistogram,
       derived_cells: cellTotal,
       derived_complete_covers: coverTotal,
@@ -138,6 +141,8 @@ writeFileSync(outPath, gzipSync(Buffer.from(body, "utf8"), { level: 9 }));
 const sha = createHash("sha256").update(body).digest("hex");
 console.log(`${outPath} · ${span.spans.size.toLocaleString()} forms carry a component system · sha256 ${sha}`);
 console.log(`  asked about ${keys.size.toLocaleString()} of this zone's own keys · ${span.scanned.toLocaleString()} template rows scanned`);
+if (span.held && span.held.length)
+  console.log(`  ${span.held.length} key(s) the template answers twice, differently, held with no system: ${span.held.join(" ")}`);
 console.log(`  ${spanned.toLocaleString()} of ${regions.toLocaleString()} occurrences gained one · components: ${JSON.stringify(spanHistogram)}`);
 console.log(`  derived: ${cellTotal.toLocaleString()} contiguous cells · ${coverTotal.toLocaleString()} complete covers`);
 console.log(`  the gloss layer is now owed a re-projection at cell grain — run tools/regloss-zone.mjs`);

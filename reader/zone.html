@@ -3469,7 +3469,14 @@
         const w = host.getBoundingClientRect().width;
         if (w) host.style.width = `${w}px`;
       }
+      // The license chip stays with a reading that has not changed: an open
+      // that paints the same words back was dropping the chip with them, and
+      // the reading and its license are never to separate (owner, 2026-08-30).
+      // A reading that DID change gets no chip here — absent over wrong.
+      const chip = box.querySelector(".g-lic");
+      const was = (chip ? box.textContent.replace(chip.textContent, "") : box.textContent).trim();
       box.textContent = line; box.title = line; box.classList.remove("bare");
+      if (chip && was === String(line).trim()) box.append(chip);
       // Shown whole outranks held still. The clamp above was settled for
       // the line that painted first, and a ruled compspan reading joins its
       // cells with " + " — longer than the gloss it replaced, and clipped
@@ -3505,6 +3512,12 @@
       // else on the page is owed a repaint.
       if (!ruled) {
         holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine);
+        // on a pair, the provenance mark follows the half that is open: the
+        // English now reads from it, and both ends of the claim wear the mark
+        if (opts.kqEls && regionIndex >= 0) {
+          opts.kqEls.forEach((el, j) => el.classList.toggle("backs-en", j === regionIndex));
+          glossEl.classList.add("backs-en");
+        }
         return;
       }
       // A ruling is the form's, not the tapped occurrence's, so it is
@@ -4551,9 +4564,14 @@
       target.addEventListener("click", (ev) => {
         ev.stopPropagation();
         built.regionEls.forEach((r) => r.classList.remove("on"));
+        // a pair's halves are alternatives: the line under a pair carries ONE
+        // reading, never the two joined, and the half you open is the half it
+        // reads from (owner, 2026-09-11: "a single showing definition with the
+        // underline pointing to which variation is currently being served")
         openHud(target, regions[i], unitId, wordPos, {
           ...opts, bin, word, regionIndex: i,
-          glossParts: built.regionEls.length ? built.glossParts : null,
+          glossParts: built.regionEls.length && !word.kq ? built.glossParts : null,
+          kqEls: word.kq && built.regionEls.length ? built.regionEls : null,
           mark: () => { if (built.regionEls.length) target.classList.add("on"); built.wb.classList.add("active"); },
         });
       });

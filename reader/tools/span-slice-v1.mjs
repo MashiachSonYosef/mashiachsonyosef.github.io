@@ -51,6 +51,7 @@ export const readSpanSlice = async (path, keys) => {
   });
   let hi = null;
   const spans = new Map();
+  const held = new Set();     // keys the template answers twice, differently
   let scanned = 0;
   for await (const line of rl) {
     if (!line) continue;
@@ -65,7 +66,19 @@ export const readSpanSlice = async (path, keys) => {
     const f = line.split(",");
     const k = f[hi.normalized_key];
     if (!keys.has(k)) continue;
-    if (spans.has(k)) throw new Error(`SPAN_DUPLICATE_KEY: ${k} appears twice in ${path}`);
+    if (spans.has(k) || held.has(k)) {
+      // The template answers this key twice. Two identical answers are one
+      // answer; two different answers are none — the key is HELD, the zone
+      // says no system is recorded for it, and the receipt names it. It used
+      // to throw here, which left a whole book without a component layer for
+      // one key the template could not make up its mind about (II Chronicles
+      // and Zechariah, 2026-09-11, over one form the source aligns two ways).
+      const prev = spans.get(k);
+      const same = !!prev && prev.s.join(" + ") === f[hi.component_surfaces] && prev.r.join(" + ") === f[hi.component_roles]
+        && prev.rule === f[hi.split_rule] && prev.conf === f[hi.split_confidence];
+      if (!same) { spans.delete(k); held.add(k); }
+      continue;
+    }
     const n = Number(f[hi.component_count]);
     const s = f[hi.component_surfaces].split(" + ");
     const r = f[hi.component_roles].split(" + ");
@@ -78,6 +91,7 @@ export const readSpanSlice = async (path, keys) => {
   return {
     spans,
     scanned,
+    held: [...held].sort(),
     source: { path: path.split("/").pop(), bytes: statSync(path).size, sha256: await sha256Stream(path) },
   };
 };
