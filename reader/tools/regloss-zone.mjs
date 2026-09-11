@@ -49,6 +49,10 @@ const keys = new Set();
 const addWord = (w) => {
   if (w.w) w.w.forEach((r) => { if (r.k) keys.add(r.k); });
   else if (w.k) keys.add(w.k);
+  // a word that carries a headword (the look-up-by toggle, projected by
+  // project-toggle-headword-v1) is asked for under that key too, so the line
+  // can read under the headword without a fetch
+  if (w.h) keys.add(w.h);
 };
 for (const sec of zone.sections || []) (sec.words || []).forEach(addWord);
 for (const n of zone.nodes || []) {

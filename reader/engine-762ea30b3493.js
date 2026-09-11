@@ -176,6 +176,47 @@
     try { held = localStorage.getItem(DEF_KEY); } catch { /* a device that remembers nothing still reads */ }
     return DEF_POS.some((p) => p.id === held && p.live) ? held : "oldest";
   })();
+  // LOOK UP BY · the form or the headword. A word that carries h (the
+  // headword's key, projected from Moses's ledger by project-toggle-headword-v1
+  // where MACULA and TAHOT agree) can answer under it instead of under the
+  // form it is written in. The line reads under the headword only when the
+  // zone's gloss has an answer there — the store was re-projected over those
+  // keys — and falls back to the form otherwise, so the toggle never empties
+  // a line that had a reading.
+  const LOOKUP_KEY = "fh.lookup";
+  let lookup = (() => { try { return localStorage.getItem(LOOKUP_KEY) === "headword" ? "headword" : "form"; } catch { return "form"; } })();
+  const lookupKey = (word, k, table) => (lookup === "headword" && word && word.h && table && table[word.h] ? word.h : k);
+  // THE TOGGLES, as a registry: the rail draws itself from this list. Each
+  // entry says what it is, its positions, what makes it live on this zone,
+  // and — when it is not — what it waits on. A row that cannot answer is
+  // drawn dead with its reason, never dropped. `now` is the summary word.
+  const TOGGLES = [
+    { id: "order", lab: "reads first", why: "which dictionary answers first, when several can",
+      live: () => true, now: () => (DEF_POS.find((p) => p.id === defOrder) || {}).lab },
+    { id: "pairs", lab: "pairs", why: "places where the scribes kept one form and read another: which half the English reads from",
+      live: () => (zone.sections || []).some((s) => (s.words || []).some((w) => w.kq)),
+      waits: "no ketiv-qere site in this book",
+      now: () => ({ KETIV: "written", QERE: "read", SOURCE: "as the source" })[kqOrder] },
+    { id: "lookup", lab: "look up by", why: "the word as written, or the dictionary headword it belongs to",
+      positions: [{ id: "form", lab: "the form" }, { id: "headword", lab: "the headword" }],
+      live: () => !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.headword),
+      waits: "Moses’s headword ledger, projected over this book (tools/project-toggle-headword-v1.mjs)",
+      get: () => lookup,
+      set: (id) => { lookup = id; try { localStorage.setItem(LOOKUP_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); },
+      now: () => (lookup === "headword" ? "the headword" : "the form") },
+    { id: "maqaf", lab: "joined words", why: "a word written with a maqaf: read its pieces, the phrase, or the welded form",
+      positions: [{ id: "pieces", lab: "each piece" }, { id: "phrase", lab: "the phrase" }, { id: "welded", lab: "welded" }],
+      live: () => false, waits: "a ruling — suppress “welded” where nothing matches the vowels (1,041 of 1,311)? — then the maqaf ledger projected", now: () => "each piece" },
+    { id: "licence", lab: "license", why: "prefer readings released under one license — never a source the site refuses",
+      positions: [{ id: "any", lab: "any" }, { id: "pd", lab: "public domain" }, { id: "by", lab: "CC BY" }, { id: "by-sa", lab: "CC BY-SA" }],
+      live: () => false, waits: "a ruling — sort or filter, 17 strings or four classes — and the Jastrow-not-served ruling written above it", now: () => "any license" },
+    { id: "names", lab: "names", why: "a name’s card can say what it means or how it sounds",
+      positions: [{ id: "meaning", lab: "as meaning" }, { id: "sound", lab: "as sound" }],
+      live: () => false, waits: "a ruling on the three clauses of the transliteration rule", now: () => "as meaning" },
+    { id: "edition", lab: "edition", why: "the text is MAM; the other great codex differs at about a thousand spellings and three verse runs",
+      positions: [{ id: "mam", lab: "MAM" }, { id: "diff", lab: "mark where Leningrad differs" }],
+      live: () => false, waits: "the editions-diff recount — single-counted today", now: () => "MAM" },
+  ];
   const licenseName = (posture) => {
     const p = String(posture || "");
     if (!p) return "License unrecorded";
@@ -1811,6 +1852,14 @@
     const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Close");
     x.addEventListener("click", closeHud);
     head.append(b, x);
+    // LOOK UP BY THE HEADWORD: the card says which key it answered under, so
+    // a reading found under the dictionary entry is never mistaken for one
+    // found under the form as written
+    if (region && region.form_k) {
+      const hLine = document.createElement("p"); hLine.className = "kq-role";
+      hLine.textContent = `looked up by its headword${region.hp ? ` ${region.hp}` : ""} — the form as written is keyed ${region.form_k}`;
+      head.append(hLine);
+    }
     // A source-marked branch says which half it is ON the card, in words —
     // the roles lived only in hover titles, and a phone has no hover. The
     // ketiv/qere words are the tradition's own names for the halves, not
@@ -3109,7 +3158,9 @@
       // in a section built after the ruling was made
       const held = ruledLine(r.k, table);
       if (held !== null) { wasRuled = true; return held; }
-      const g = table ? table[r.k] : null;
+      // one region only: a headword is projected onto a position, and a
+      // position with two forms on it keeps its forms
+      const g = table ? table[regions && regions.length > 1 ? r.k : lookupKey(word, r.k, table)] : null;
       return g ? spanJoin(g) : "—";
     });
     // a ruling made on a joined interval spoke for the whole line
@@ -3150,7 +3201,8 @@
       if (chip) ge.append(chip);
     }
     if (table === zone.gloss && !wasRuled && !word.kq) {
-      GLOSS_STANDS.push({ ge, ks: regions ? regions.map((r) => r.k) : (word.k ? [word.k] : []) });
+      GLOSS_STANDS.push({ ge, ks: regions ? regions.map((r) => r.k) : (word.k ? [word.k] : []),
+        word: regions && regions.length > 1 ? null : word });
     }
     wb.append(ge);
     // A pair goes on the pairs ledger, so the order toggle can repaint it
@@ -3199,7 +3251,11 @@
         // reading, never the two joined, and the half you open is the half it
         // reads from (owner, 2026-09-11: "a single showing definition with the
         // underline pointing to which variation is currently being served")
-        openHud(target, regions[i], unitId, wordPos, {
+        // under "look up by: the headword" a one-form word opens under its
+        // headword's key and says so on the card; the form key rides along
+        const hk = regions.length === 1 && bin && bin.gloss ? lookupKey(word, regions[i].k, bin.gloss) : regions[i].k;
+        const region = hk !== regions[i].k ? { ...regions[i], k: hk, form_k: regions[i].k, hp: word.hp } : regions[i];
+        openHud(target, region, unitId, wordPos, {
           ...opts, bin, word, regionIndex: i,
           glossParts: built.regionEls.length && !word.kq ? built.glossParts : null,
           kqEls: word.kq && built.regionEls.length ? built.regionEls : null,
@@ -3240,7 +3296,7 @@
     // pressing it is not a press away from the card — it is a press ON the
     // card, made from where the control lives. Closing on it would mean the
     // reader could only change the order with nothing open to see it change.
-    if (hud.contains(e.target) || e.target.closest(".wb") || e.target.closest("#defRow")) return;
+    if (hud.contains(e.target) || e.target.closest(".wb") || e.target.closest("#rail")) return;
     closeHud();
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeHud(); });
@@ -3342,7 +3398,7 @@
   const repaintGlossOrder = () => {
     const runs = new Set();
     for (const st of GLOSS_STANDS) {
-      const parts = st.ks.map((k) => { const g = zone.gloss[k]; return g ? spanJoin(g) : "\u2014"; });
+      const parts = st.ks.map((k) => { const g = zone.gloss[lookupKey(st.word, k, zone.gloss)]; return g ? spanJoin(g) : "\u2014"; });
       const line = parts.filter((x) => x !== "\u2014").length ? parts.join(" + ") : "";
       st.ge.replaceChildren();
       if (line) { st.ge.textContent = line; st.ge.title = line; st.ge.classList.remove("bare"); }
@@ -3387,31 +3443,77 @@
         repaintGlossOrder();
         // and the word standing open re-answers without closing
         if (redrawReadings) redrawReadings();
+        railSay();
       });
       row.append(btn);
     }
+    if (!row.classList.contains("def-order")) row.className = "def-order";
+  };
+  // the rail's one-line summary: the word each toggle is standing at
+  const railSay = () => {
+    const now = document.getElementById("railNow");
+    if (!now) return;
+    now.replaceChildren();
+    TOGGLES.forEach((t, i) => {
+      if (i) now.append(Object.assign(document.createElement("i"), { textContent: "·" }));
+      const b = document.createElement("b"); b.textContent = t.now() || t.lab;
+      if (!t.live()) b.style.color = "var(--faint)";
+      now.append(b);
+    });
+  };
+  // one segmented row of positions, the position in force in amber
+  const segRow = (t, positions, current, onPick) => {
+    const seg = document.createElement("span"); seg.className = "def-order"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
+    const alive = t.live();
+    for (const pos of positions) {
+      const btn = document.createElement("button"); btn.type = "button";
+      btn.className = "dfp" + (alive ? "" : " waiting") + (alive && pos.id === current ? " on" : "");
+      btn.textContent = pos.lab;
+      btn.setAttribute("aria-pressed", String(alive && pos.id === current));
+      if (!alive) { btn.disabled = true; btn.setAttribute("aria-disabled", "true"); btn.title = t.waits || ""; }
+      else btn.addEventListener("click", () => {
+        onPick(pos.id);
+        for (const x of seg.children) { const on = x.textContent === pos.lab; x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on)); }
+        railSay();
+      });
+      seg.append(btn);
+    }
+    return seg;
   };
   const pairSwitch = () => {
-    const btn = document.getElementById("pairToggle");
-    if (!btn) return;
+    const host = document.getElementById("pairRow");
+    if (!host) return;
+    const t = TOGGLES.find((x) => x.id === "pairs");
     const pairs = (zone.sections || []).flatMap((s) => (s.words || []).filter((w) => w.kq));
-    if (!pairs.length) { btn.hidden = true; return; }
     const srcFirst = pairs.filter((w) => (w.kq.order || "").startsWith("KETIV")).length;
-    const say = () => {
-      btn.textContent = `pairs · ${KQ_SAYS[kqOrder]}`;
-      btn.dataset.n = String(pairs.length);
-      btn.title = `${pairs.length} place${pairs.length === 1 ? "" : "s"} in this book are written one way and read another. `
-        + `The edition writes the ketiv first at ${srcFirst} of them and the qere first at ${pairs.length - srcFirst}. `
-        + `Both halves always print and both always open; this only sets which one backs the English. `
-        + `A reading you have ruled on a form beats this switch.`;
-    };
-    btn.hidden = false;
-    say();
-    btn.onclick = () => {
-      kqOrder = KQ_ORDERS[(KQ_ORDERS.indexOf(kqOrder) + 1) % KQ_ORDERS.length];
+    const positions = [{ id: "KETIV", lab: "written (ketiv)" }, { id: "QERE", lab: "read (qere)" }, { id: "SOURCE", lab: "as the source sets them" }];
+    host.replaceChildren(segRow(t, positions, kqOrder, (id) => {
+      kqOrder = id;
       try { localStorage.setItem(ORDER_KEY, kqOrder); } catch { /* a reader who blocks storage still gets the toggle, just not the memory of it */ }
-      say(); paintPairs();
-    };
+      paintPairs();
+    }));
+    const why = host.parentElement && host.parentElement.querySelector(".why");
+    if (why && pairs.length) why.textContent = `${pairs.length} place${pairs.length === 1 ? "" : "s"} in this book are written one way and read another; the edition writes the ketiv first at ${srcFirst}. Both halves always print and both always open; this only sets which one backs the English. A reading you have ruled on beats this switch.`;
+  };
+  // THE RAIL draws itself from the registry: a row per toggle, the two rows
+  // that have their own switches hosting them, every other row a segment
+  const railSwitch = () => {
+    const rows = document.getElementById("railRows");
+    if (!rows) return;
+    rows.replaceChildren();
+    for (const t of TOGGLES) {
+      const row = document.createElement("div"); row.className = "row" + (t.live() ? "" : " dead"); row.dataset.toggle = t.id;
+      const lab = document.createElement("span"); lab.className = "lab"; lab.textContent = t.lab;
+      const host = document.createElement("span");
+      if (t.id === "order") host.id = "defRow";
+      else if (t.id === "pairs") host.id = "pairRow";
+      else host.append(segRow(t, t.positions || [], t.get ? t.get() : null, (id) => { if (t.set) t.set(id); }));
+      const why = document.createElement("span"); why.className = "why";
+      why.textContent = t.live() ? t.why : `${t.why} — waiting on ${t.waits}`;
+      row.append(lab, host, why);
+      rows.append(row);
+    }
+    railSay();
   };
   const setMode = (m) => {
     closeHud();
@@ -5188,6 +5290,7 @@
   // the marks switch counts what the page drew, so it runs once the sections
   // are in the document
   marksSwitch();
+  railSwitch();
   pairSwitch();
   // the reader's order is in force before the first word is drawn, and any
   // section already drawn is brought to it

@@ -644,6 +644,22 @@
   body.en .wb.active .g { background: none; }
 
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
+  /* the rail: the page's toggles as one control block (see the header) */
+  .rail { max-width: 62rem; margin: 0.6rem 0 0.2rem; border: 1px solid var(--line); border-radius: 0.6rem;
+    background: var(--panel); padding: 0.45rem 0.7rem; }
+  .rail > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.6rem; }
+  .rail > summary::-webkit-details-marker { display: none; }
+  .rail .k { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+  .rail .now { font-size: 0.8rem; color: var(--ink); }
+  .rail .now b { font-weight: 600; color: var(--ink); }
+  .rail .now i { color: var(--faint); font-style: normal; padding: 0 0.2rem; }
+  .rail .row { display: grid; grid-template-columns: 6.2rem 1fr; gap: 0.35rem 0.6rem; align-items: baseline;
+    padding: 0.42rem 0 0; margin-top: 0.42rem; border-top: 1px dotted var(--chip-line); }
+  .rail .row .lab { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .rail .row .why { grid-column: 2; font-size: 0.66rem; color: var(--faint); font-style: italic; margin-top: -0.1rem; }
+  .rail .row .def-order { margin: 0; }
+  .rail .row.dead .lab { color: var(--faint); }
+  @media (max-width: 30rem) { .rail .row { grid-template-columns: 1fr; } .rail .row .why { grid-column: 1; } }
   /* Which way the words run, and nothing else. The two readers differ in the
      direction of the flow, so that is what is said under them. */
   .mode-pick { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
@@ -869,11 +885,11 @@
   /* the order row: seven positions, three answerable today. A dead one is
      dimmed and struck, never hidden — the question stands even where the
      evidence has not arrived. */
-  #hud .def-order, #modeRow .def-order { display: flex; flex-wrap: wrap; gap: 0.28rem; margin: 0 0 0.4rem; }
-  #hud .def-order .dfp, #modeRow .def-order .dfp { font: inherit; font-size: 0.58rem; letter-spacing: 0.1em;
+  #hud .def-order, #modeRow .def-order, .rail .def-order { display: flex; flex-wrap: wrap; gap: 0.28rem; margin: 0 0 0.4rem; }
+  #hud .def-order .dfp, #modeRow .def-order .dfp, .rail .def-order .dfp { font: inherit; font-size: 0.58rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--faint); background: none;
     border: 1px solid var(--line); border-radius: 999px; padding: 0.14rem 0.5rem; cursor: pointer; }
-  #hud .def-order .dfp:hover:not(:disabled), #modeRow .def-order .dfp:hover:not(:disabled) { color: var(--muted); border-color: var(--muted); }
+  #hud .def-order .dfp:hover:not(:disabled), #modeRow .def-order .dfp:hover:not(:disabled), .rail .def-order .dfp:hover:not(:disabled) { color: var(--muted); border-color: var(--muted); }
   /* THE POSITION IN FORCE IS A READER'S SELECTION, so it wears the role the
      contract gives a reader's selection. It wore gold until 2026-09-09,
      which is the structure role \u2014 the color of the frame, not of a choice
@@ -882,8 +898,8 @@
      attachment crimson, and this only moves a control into the role it
      already belonged to. It is also the one cold thing on a warm page,
      which is the half of the name that had nowhere to stand. */
-  #hud .def-order .dfp.on, #modeRow .def-order .dfp.on { color: var(--sel); border-color: var(--sel-dim); }
-  #hud .def-order .dfp.waiting, #modeRow .def-order .dfp.waiting {
+  #hud .def-order .dfp.on, #modeRow .def-order .dfp.on, .rail .def-order .dfp.on { color: var(--sel); border-color: var(--sel-dim); }
+  #hud .def-order .dfp.waiting, #modeRow .def-order .dfp.waiting, .rail .def-order .dfp.waiting {
     opacity: 0.4; cursor: default; }
   #hud .r-pills button { border: 1px solid var(--chip-line); background: none; color: var(--tekhelet-ink);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;

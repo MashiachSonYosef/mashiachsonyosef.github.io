@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-11.
 
-**82 rules declared · 82 named by a check · 0 unguarded.**
+**83 rules declared · 83 named by a check · 0 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -87,6 +87,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `suggested-title-rule-v1-a-guess-is-authored-by-name-and-witnessed-by-nothing` | tools/check-suggested-title-v1.mjs | check-suggested-title-v1 |
 | `title-from-c0-rule-v1-the-title-is-the-works-own-opening-words` | tools/build-zone.mjs | check-title-from-c0-v1 |
 | `title-key-rule-v1-only-what-the-store-already-attests` | tools/build-zone.mjs, tools/name-the-titles-v1.mjs, tools/run-restore-v5-fleet-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-opens-title-v1 |
+| `toggle-projection-rule-v1-a-toggle-is-a-ledger-projected-over-a-zones-own-positions` | tools/project-toggle-headword-v1.mjs | check-toggle-projection-v1 |
 | `variant-site-grouping-v1-one-alignment-rule-per-encoding-class` | tools/group-variant-sites-v1.mjs | check-variant-class-one-rule-v1 |
 | `variant-site-rule-v1-the-mark-opens-a-record-or-the-zone-does-not-board` | zone.html | check-variant-site-v1 |
 | `w-grain-rule-v1-a-component-system-is-drawn-on-a` | tools/check-w-grain-v1.mjs | check-w-grain-v1 |
@@ -115,7 +116,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 18 of the 68 tools that are not checks.
+`build.sh` calls 18 of the 69 tools that are not checks.
 
 Not called by any build stage:
 
@@ -151,6 +152,7 @@ Not called by any build stage:
 - `tools/plan-work-shards-v1.mjs`
 - `tools/planned-packs-v1.mjs`
 - `tools/playwright-v1.mjs`
+- `tools/project-toggle-headword-v1.mjs`
 - `tools/pull-zones-from-store-v1.mjs`
 - `tools/redrive-zone-gloss-v1.mjs`
 - `tools/regloss-zone.mjs`

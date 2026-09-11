@@ -22,7 +22,7 @@
   try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
-<link rel="stylesheet" href="/reader/engine-f45ca73e4368.css">
+<link rel="stylesheet" href="/reader/engine-a895de726837.css">
 </head>
 <body>
 <header class="top">
@@ -87,12 +87,17 @@
          which leads. An order, never a selection: both halves stay printed
          and both stay open. The owner's design of 2026-09-06; the other
          classes he drew wait on the corpus lane's word layer. -->
-    <button type="button" class="mode-btn ord" id="pairToggle" hidden></button>
-    <!-- Which reading answers first. A page-level control, beside the other
-         things a reader sets for the whole book, rather than a row inside
-         the card it governs: the choice outlives any one word. -->
-    <span id="defRow" class="def-order" role="group" aria-label="which reading answers first"></span>
   </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
 </header>
 <div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
 <div id="nav" hidden>
@@ -104,6 +109,6 @@
 <main id="text"></main>
 <div id="hud" hidden></div>
 <footer id="prov"></footer>
-<script src="/reader/engine-f8e6bae96055.js"></script>
+<script src="/reader/engine-762ea30b3493.js"></script>
 </body>
 </html>
