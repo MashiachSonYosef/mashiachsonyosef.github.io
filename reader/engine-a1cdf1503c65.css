@@ -211,7 +211,7 @@
      The one ink of the page — argaman — stays on everything that is ours. */
   .wb .w { color: var(--shani-ink); border-radius: 0.5em; padding: 0.02em 0.3em;
     background: none; }
-  .wb > .g, .wjoin > .g { color: var(--tekhelet-ink); border-color: var(--gold-dim);
+  .wb > .g, .wjoin > .g { color: var(--tekhelet-ink); border-color: transparent;
     background: none; }
 
   :root[data-accent="halo"] .wb .w { background: none; padding: 0;
@@ -480,14 +480,14 @@
      is where the line wraps, not what the line says. */
   .wb.held { opacity: 0.45; cursor: default; max-width: 100%; }
   .wb.held .w { overflow-wrap: anywhere; word-break: break-word; }
-  /* THE HELD WORD LIFTS. Nothing is filled and nothing changes color: the
-     word rises a little off the page toward the reader — a touch larger, a
-     soft shadow beneath it — and the card pops out from under it. The owner
-     asked for the card to feel as if it "pops out at you"; this is the word
-     doing the popping, and the card following. A mark lifts the same way. */
-  .wb .w { transition: transform 0.16s cubic-bezier(0.2, 0.8, 0.2, 1), text-shadow 0.16s ease-out; }
-  .wb.active .w { background: none; transform: translateY(-1px) scale(1.08);
-    text-shadow: 0 3px 8px rgba(122, 46, 59, 0.22); position: relative; z-index: 2; }
+  /* THE HELD WORD IS BOXED IN GOLD, THE WHOLE BLOCK — Hebrew and reading
+     together — and the card is that box projected forward: two gold lines
+     run from the box's far corners to the card's near corners, so the card
+     reads as the selection brought up close (owner, 2026-09-11, drawn on a
+     screenshot: "a big gold box around the entire selected"). Nothing is
+     filled and nothing changes color; the outline costs no layout. */
+  .wb.active { outline: 1.5px solid var(--gold); outline-offset: 3px; border-radius: 0.4rem; }
+  .wb.active .w { background: none; }
   .wb.mark.active .w { background: none; border-color: var(--gold); }
   /* A word the reader has ruled on keeps a mark after the card closes. Without
      it, closing the card left nothing to say which word had just been changed,
@@ -613,9 +613,8 @@
      line stops being a line. Nothing is printed in the space; it is kept. */
   .g.bare { min-height: 1.25em; }
   body.en .g.bare { min-height: 1.3em; }
-  /* the held word's reading keeps its gold hairline, a shade firmer — never a
-     box in a second color among the gold ones (owner, 2026-09-11) */
-  .wb.active .g { background: none; border-color: var(--gold); }
+  /* the held word's reading is inside the block's box and wears none of its own */
+  .wb.active .g { background: none; }
 
   /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
   /* THE LINE'S DIRECTION IS A READER MODE. THE PIECES OF A WORD ARE NOT.
@@ -642,7 +641,7 @@
   body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--tekhelet); margin-top: 0; max-width: 12em;
     white-space: normal; display: block; overflow: hidden; }
   body.en .w { order: 2; font-size: 1.02rem; color: var(--en-word); margin-top: 0.04rem; }
-  body.en .wb.active .g { background: none; border-color: var(--gold); }
+  body.en .wb.active .g { background: none; }
 
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
   /* Which way the words run, and nothing else. The two readers differ in the
@@ -807,16 +806,14 @@
      made the block look held rather than the word (owner, 2026-09-11). */
   #tether { position: fixed; inset: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 69; }
-  #tether .line { fill: none; stroke-width: 1.5; stroke-linecap: round; }
-  #tether .glow { fill: none; stroke-width: 7; stroke-linecap: round; opacity: 0.13; }
-  /* THE POP. When a card opens it is drawn out of the word: the thread draws
-     itself from the pin to the card's edge, and the card grows from the point
-     where the thread meets it — a little scaled down and tilted back, then
-     upright — so the card reads as something that came out of the page at
-     that word, not something that appeared over it. Both take a fifth of a
-     second; a drag, a scroll or a re-anchor moves them with no animation. */
-  #tether .line, #tether .glow { transition: stroke-dashoffset 0.22s cubic-bezier(0.2, 0.8, 0.2, 1); }
-  #tether .pin { transform-box: fill-box; transform-origin: center; transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  #tether .line { fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-linecap: round; }
+  /* THE POP. When a card opens it is drawn out of the held box: the two
+     lines draw themselves from the box's corners to the card's corners, and
+     the card grows from the middle of the edge they land on — a little
+     scaled down and tilted back, then upright — so the card reads as the
+     selection brought forward, not something that appeared over it. A fifth
+     of a second; a drag, a scroll or a re-anchor moves them with no animation. */
+  #tether .line { transition: stroke-dashoffset 0.22s cubic-bezier(0.2, 0.8, 0.2, 1); }
   @keyframes hud-pop {
     from { opacity: 0; transform: perspective(900px) rotateX(-7deg) scale(0.93) translateY(6px); }
     to { opacity: 1; transform: none; }
@@ -825,13 +822,8 @@
     animation: hud-pop 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
   @media (prefers-reduced-motion: reduce) {
     #hud.pop { animation: none; }
-    #tether .line, #tether .glow, #tether .pin, .wb .w { transition: none; }
+    #tether .line { transition: none; }
   }
-  /* the thread is line work, so it is gold; only the pin carries the word's
-     color — one dot, not a second colored line on a screen that has enough */
-  #tether .pin { fill: var(--shani); }
-  #tether stop.from { stop-color: var(--gold-dim); }
-  #tether stop.to { stop-color: var(--gold); }
   /* The head is the handle. A card the reader can move is a card that stops
      being in the way, and a card that is never re-anchored while it is open
      stops moving on its own. It is sticky so the handle is reachable however
@@ -855,7 +847,7 @@
      (2026-09-11). So the Hebrew head sits on the shani wash, a reading sits on
      the tekhelet wash, the pressed pill is that wash deepened, and nothing on
      the card is ink in a channel color. */
-  #hud .head b { font-size: 1.55rem; color: var(--gold); background: none;
+  #hud .head b { font-size: 1.55rem; color: var(--shani-ink); background: none;
     padding: 0.04em 0.3em; border-radius: 0.4em;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   #hud .head button { background: none; border: 0; color: var(--link); font-size: 1.15rem; cursor: pointer; }
@@ -1245,8 +1237,11 @@
      It also fixes a plain legibility fault: where a reading runs long, as
      Uzziah's does at Amos 1:1, nothing said where one word's English stopped
      and its neighbour's began. (Moses, 2026-09-09.) */
+  /* the reading wears no box (owner, 2026-09-11: "your boxes are getting
+     further and further from usable"); the border is kept transparent so the
+     line's metrics do not move the day one is wanted back */
   .wb > .g:not(.bare), .wjoin > .g:not(.bare) {
-    border: 1px solid var(--line); border-radius: 0.45em; padding: 0.1em 0.4em; }
+    border: 1px solid transparent; border-radius: 0.45em; padding: 0.1em 0.4em; }
   .g .g-part { display: inline-block; vertical-align: top; text-align: center; }
   .g .g-part + .g-part { margin-left: 0.3em; }
   .g .g-join { color: var(--tekhelet-dim); }

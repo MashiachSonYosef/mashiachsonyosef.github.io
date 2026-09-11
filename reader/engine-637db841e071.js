@@ -1445,111 +1445,69 @@
   const SVGNS = "http://www.w3.org/2000/svg";
   const tether = document.createElementNS(SVGNS, "svg");
   tether.id = "tether"; tether.setAttribute("aria-hidden", "true");
-  const tetherDefs = document.createElementNS(SVGNS, "defs"); tether.append(tetherDefs);
-  const THREADS = 4;
-  const threads = Array.from({ length: THREADS }, (_, i) => {
-    const grad = document.createElementNS(SVGNS, "linearGradient");
-    grad.id = `thread-g${i}`; grad.setAttribute("gradientUnits", "userSpaceOnUse");
-    const from = document.createElementNS(SVGNS, "stop"); from.setAttribute("offset", "0"); from.setAttribute("class", "from");
-    const to = document.createElementNS(SVGNS, "stop"); to.setAttribute("offset", "1"); to.setAttribute("class", "to");
-    grad.append(from, to); tetherDefs.append(grad);
-    const g = document.createElementNS(SVGNS, "g"); g.style.display = "none";
-    const glow = document.createElementNS(SVGNS, "path"); glow.setAttribute("class", "glow"); glow.setAttribute("stroke", `url(#thread-g${i})`);
-    const line = document.createElementNS(SVGNS, "path"); line.setAttribute("class", "line"); line.setAttribute("stroke", `url(#thread-g${i})`);
-    const pin = document.createElementNS(SVGNS, "circle"); pin.setAttribute("class", "pin"); pin.setAttribute("r", "2.2");
-    g.append(glow, line, pin); tether.append(g);
-    return { g, glow, line, pin, grad };
+  const tetherLines = [0, 1].map(() => {
+    const l = document.createElementNS(SVGNS, "path"); l.setAttribute("class", "line"); tether.append(l); return l;
   });
   tether.style.display = "none";
   document.body.append(tether);
   let tetherKey = "";
-  // the geometry of one thread: where it leaves the tile, how it bends, where
-  // it meets the card — or null when the card sits over the word
-  const threadFor = (heEl, h) => {
-    const a = heEl.getBoundingClientRect();
-    if (!a.width || !a.height) return null;
-    const r = Math.min(parseFloat(getComputedStyle(heEl).borderTopLeftRadius) || 0, a.width / 2, a.height / 2);
-    const cx = (h.left + h.right) / 2, cy = (h.top + h.bottom) / 2;
-    // the corner of the tile that faces the card
-    const sx = cx >= (a.left + a.right) / 2 ? 1 : -1;
-    const sy = h.top >= a.bottom ? 1 : h.bottom <= a.top ? -1 : (cy >= (a.top + a.bottom) / 2 ? 1 : -1);
-    // the corner of the ARC, not of the box: a rounded tile turns r(1 - 1/sqrt2)
-    // inside its box corner, and that is where the thread is pinned, 1.5px out
-    const k = r * (1 - Math.SQRT1_2), off = 1.5;
-    const px = (sx > 0 ? a.right - k : a.left + k) + sx * off;
-    const py = (sy > 0 ? a.bottom - k : a.top + k) + sy * off;
-    // the nearest point on the card's edge
-    const qx = Math.max(h.left, Math.min(px, h.right)), qy = Math.max(h.top, Math.min(py, h.bottom));
-    if (qx === px && qy === py) return null;
-    // it leaves the corner and enters the card square to the edge it meets;
-    // the bend is along whichever axis carries the distance
-    const dx = qx - px, dy = qy - py;
-    const alongY = (qy === h.top || qy === h.bottom) && (qx !== h.left && qx !== h.right) ? true
-      : (qx === h.left || qx === h.right) && (qy !== h.top && qy !== h.bottom) ? false
-      : Math.abs(dy) >= Math.abs(dx);
-    const c1 = alongY ? [px, py + dy / 2] : [px + dx / 2, py];
-    const c2 = alongY ? [qx, qy - dy / 2] : [qx - dx / 2, qy];
-    return [px, py, c1[0], c1[1], c2[0], c2[1], qx, qy];
+  // THE FRUSTUM. The held block wears a gold box (outline, 3px out, 1.5px
+  // wide); the card is that box projected forward. Two lines run from the
+  // box's corners FARTHEST from the card to the card's corners NEAREST the
+  // box — the card below the word takes the box's top corners to its own top
+  // corners, and so on for each side — so the pair fans out from the box and
+  // lands on the card, and the card reads as the selection brought up close.
+  // When the card sits over the block there is nothing to draw.
+  const OUT = 4.5;   // outline-offset + outline-width
+  const frustumFor = (a, h) => {
+    const L = a.left - OUT, R = a.right + OUT, T = a.top - OUT, B = a.bottom + OUT;
+    if (h.top >= B - 1) return { lines: [[L, T, h.left, h.top], [R, T, h.right, h.top]], at: [(h.left + h.right) / 2, h.top] };
+    if (h.bottom <= T + 1) return { lines: [[L, B, h.left, h.bottom], [R, B, h.right, h.bottom]], at: [(h.left + h.right) / 2, h.bottom] };
+    if (h.left >= R - 1) return { lines: [[L, T, h.left, h.top], [L, B, h.left, h.bottom]], at: [h.left, (h.top + h.bottom) / 2] };
+    if (h.right <= L + 1) return { lines: [[R, T, h.right, h.top], [R, B, h.right, h.bottom]], at: [h.right, (h.top + h.bottom) / 2] };
+    return null;
   };
   const drawTether = () => {
-    let anchors = [...document.querySelectorAll(".wb.active")];
-    if (activeEl && activeEl.isConnected && !anchors.includes(activeEl)) anchors.unshift(activeEl);
-    if (!anchors.length && hudAnchor && hudAnchor.isConnected) anchors = [hudAnchor];
-    if (hud.hidden || !anchors.length) {
+    let blocks = [...document.querySelectorAll(".wb.active")];
+    const own = activeEl && activeEl.isConnected ? (activeEl.closest(".wb") || activeEl) : null;
+    if (own && !blocks.includes(own)) blocks.unshift(own);
+    if (!blocks.length && hudAnchor && hudAnchor.isConnected) blocks = [hudAnchor.closest(".wb") || hudAnchor];
+    if (hud.hidden || !blocks.length) {
       if (tetherKey) { tether.style.display = "none"; tetherKey = ""; }
       return;
     }
-    // the corner tracked is the Hebrew word's own — the reader asked the
-    // tether to hold the Hebrew, not the block around it (owner, 2026-08-30)
+    // one box for everything held: a ketiv-qere site holds two blocks at once
+    const rs = blocks.map((el) => el.getBoundingClientRect()).filter((r) => r.width && r.height);
+    if (!rs.length) return;
+    const a = { left: Math.min(...rs.map((r) => r.left)), top: Math.min(...rs.map((r) => r.top)),
+      right: Math.max(...rs.map((r) => r.right)), bottom: Math.max(...rs.map((r) => r.bottom)) };
     const h = hud.getBoundingClientRect();
-    // one thread per tile: a ketiv-qere half and its block resolve to one
-    const tiles = [];
-    for (const an of anchors) {
-      const heEl = (an.querySelector && (an.querySelector(".w") || an.closest(".wb")?.querySelector(".w"))) || an;
-      if (!tiles.includes(heEl)) tiles.push(heEl);
-    }
-    const geo = tiles.slice(0, THREADS).map((heEl) => threadFor(heEl, h));
-    const key = geo.map((t) => (t ? t.map(Math.round).join(",") : "-")).join(";");
+    const f = frustumFor(a, h);
+    const key = f ? f.lines.map((l) => l.map(Math.round).join(",")).join(";") : "-";
     if (key === tetherKey) return;
-    // the first frame a thread is shown is the pop: it draws itself and the
-    // card grows from where it lands. Every later frame is a plain move.
+    // the first frame the lines are shown is the pop: they draw themselves and
+    // the card grows from the edge they land on. Every later frame is a move.
     const appearing = !tetherKey;
     tetherKey = key;
-    tether.style.display = "";
-    threads.forEach((t, i) => {
-      const p = geo[i];
-      if (!p) { t.g.style.display = "none"; return; }
-      const [px, py, c1x, c1y, c2x, c2y, qx, qy] = p;
-      const d = `M ${px} ${py} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${qx} ${qy}`;
-      t.line.setAttribute("d", d); t.glow.setAttribute("d", d);
-      t.pin.setAttribute("cx", px); t.pin.setAttribute("cy", py);
-      t.grad.setAttribute("x1", px); t.grad.setAttribute("y1", py);
-      t.grad.setAttribute("x2", qx); t.grad.setAttribute("y2", qy);
-      t.g.style.display = "";
+    tether.style.display = f ? "" : "none";
+    if (!f) return;
+    tetherLines.forEach((l, i) => {
+      const [x1, y1, x2, y2] = f.lines[i];
+      l.setAttribute("d", `M ${x1} ${y1} L ${x2} ${y2}`);
       if (appearing) {
-        const len = t.line.getTotalLength();
-        for (const el of [t.line, t.glow]) {
-          el.style.transition = "none";
-          el.style.strokeDasharray = `${len}`; el.style.strokeDashoffset = `${len}`;
-        }
-        t.pin.style.transition = "none"; t.pin.style.transform = "scale(0)";
-        // eslint-disable-next-line no-unused-expressions
-        t.line.getBoundingClientRect();
-        for (const el of [t.line, t.glow]) { el.style.transition = ""; el.style.strokeDashoffset = "0"; }
-        t.pin.style.transition = ""; t.pin.style.transform = "";
-        if (i === 0) {
-          const h = hud.getBoundingClientRect();
-          hud.style.setProperty("--pop-x", `${Math.round(qx - h.left)}px`);
-          hud.style.setProperty("--pop-y", `${Math.round(qy - h.top)}px`);
-          hud.classList.remove("pop");
-          // eslint-disable-next-line no-unused-expressions
-          hud.offsetWidth;
-          hud.classList.add("pop");
-        }
-      } else {
-        for (const el of [t.line, t.glow]) { el.style.strokeDasharray = ""; el.style.strokeDashoffset = ""; }
-      }
+        const len = l.getTotalLength();
+        l.style.transition = "none"; l.style.strokeDasharray = `${len}`; l.style.strokeDashoffset = `${len}`;
+        l.getBoundingClientRect();
+        l.style.transition = ""; l.style.strokeDashoffset = "0";
+      } else { l.style.strokeDasharray = ""; l.style.strokeDashoffset = ""; }
     });
+    if (appearing) {
+      hud.style.setProperty("--pop-x", `${Math.round(f.at[0] - h.left)}px`);
+      hud.style.setProperty("--pop-y", `${Math.round(f.at[1] - h.top)}px`);
+      hud.classList.remove("pop");
+      hud.offsetWidth;
+      hud.classList.add("pop");
+    }
   };
   (function tetherLoop() { drawTether(); requestAnimationFrame(tetherLoop); })();
   const placeHud = (el) => {

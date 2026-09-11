@@ -448,16 +448,19 @@ if (commentaryHere) {
   check("and no rule is still written for one", strays === 0, `${strays} data-scheme rules in the stylesheet`);
 }
 
-// THE FAULT V1 EXISTED FOR, ASSERTED THE WAY THE OWNER RULED IT ON 2026-09-11
-// (mockup 4): a held word LIFTS. It keeps its ink and its channel, nothing is
-// filled behind it, it rises a little toward the reader, and it settles back
-// when the reader lets go. Nothing a reader sees settle is gold, and nothing
-// held is gold or amber either.
+// THE FAULT V1 EXISTED FOR, ASSERTED THE WAY THE OWNER RULED IT ON 2026-09-11:
+// a held word is BOXED IN GOLD, the whole block, and nothing else changes. It
+// keeps its ink and its channel, nothing is filled behind it, and the box goes
+// when the reader lets go. Gold is the frame, and a selection is the frame
+// drawn around one word — so gold is exactly what a held word wears, and the
+// only thing it wears. Nothing held is amber.
 {
   const first = "section.seg .he-text .wb";
   const faceOf = (sel) => p.evaluate((s) => {
     const e = document.querySelector(s); const w = e && (e.querySelector(".w") || e);
-    return w ? { ink: getComputedStyle(w).color, wash: getComputedStyle(w).backgroundColor, lift: getComputedStyle(w).transform } : null;
+    const box = e ? getComputedStyle(e) : null;
+    return w ? { ink: getComputedStyle(w).color, wash: getComputedStyle(w).backgroundColor,
+      box: box && box.outlineStyle !== "none" && parseFloat(box.outlineWidth) > 0 ? box.outlineColor : "none" } : null;
   }, sel);
   const atRest = await faceOf(first);
   await p.evaluate((s) => document.querySelector(s + " .w")?.click(), first);
@@ -465,8 +468,9 @@ if (commentaryHere) {
   const held = await faceOf(first);
   const triplet = (c) => (rgb(c) || []).join(",");
   check("a word keeps its ink when the reader takes hold of it", !!atRest && !!held && atRest.ink === held.ink, `${atRest && atRest.ink} → ${held && held.ink}`);
-  check("and lifts toward the reader rather than being filled", !!held && held.lift !== "none" && alphaOf(held.wash) < 0.02,
-    `transform ${held && held.lift} · ground ${held && held.wash}`);
+  const boxed = !!held && held.box !== "none" ? inFamily(held.box, "gold") : { ok: false, why: "no outline" };
+  check("and is boxed in gold, the whole block, rather than being filled", boxed.ok && !!held && alphaOf(held.wash) < 0.02,
+    `outline ${held && held.box} · ${boxed.why} · ground ${held && held.wash}`);
   const selInk = await p.evaluate(() => { const e = document.querySelector(".mode-btn.on"); return e ? getComputedStyle(e).color : null; });
   check("and nothing about the held word is the amber the page keeps for its own controls",
     !!held && held.ink !== selInk && triplet(held.wash) !== triplet(selInk || ""), `held ${held && held.ink} on ${held && held.wash}; amber is ${selInk}`);
@@ -474,8 +478,8 @@ if (commentaryHere) {
   await p.keyboard.press("Escape");
   await p.waitForTimeout(500);
   const released = await faceOf(first);
-  check("and settles back when the reader lets go", !!released && released.lift === "none" && released.ink === atRest.ink,
-    `transform ${released && released.lift} · ink ${released && released.ink}`);
+  check("and the box goes when the reader lets go", !!released && released.box === "none" && released.ink === atRest.ink,
+    `outline ${released && released.box} · ink ${released && released.ink}`);
   const mat = (channels.text_as_written || {}).material || "tola'at shani";
   const r = inFamily(atRest.ink, mat);
   check(`so the color it settles at is its own channel, ${mat}, never gold`, r.ok, `${atRest.ink} · ${r.why}`);
