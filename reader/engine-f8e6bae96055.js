@@ -3019,7 +3019,6 @@
       // the empty verse prints its reason on the line, so a reader is not left
       // wondering whether the page broke. The words are the builder's own
       // sentence for the mark, cut at its colon; nothing here is typed.
-      if (word.mark.kind === "EMPTY_VERSE") wb.dataset.reason = String(word.mark.says || "").split(":")[0];
     }
     const w = document.createElement("span");
     w.className = "w"; w.lang = "he"; w.dir = "rtl";

@@ -186,13 +186,13 @@
      (owner, 2026-09-11: "let someone click it to find out"). */
   .wb.mark[data-mark="INVERTED_NUN"] .w { font-size: 1.05em; padding: 0 0.35em; letter-spacing: 0; }
   .wb.mark[data-mark="INVERTED_NUN"] .g { display: none; }
-  /* RULE 4: the empty verse is one row — the edition's dash in its tile, a rule
-     across the line, and the reason in the page's own voice at the end */
+  /* RULE 4: the empty verse is one row — the edition's own dash in its tile and
+     a rule across the line. Nothing in English stands on the line: the dash is
+     what the edition prints, and what it means waits on the card (owner,
+     2026-09-11: "if its empty we can make it empty"). */
   .wb.mark[data-mark="EMPTY_VERSE"] { display: flex; flex-direction: row; align-items: center; width: 100%; gap: 0.6rem; }
   .wb.mark[data-mark="EMPTY_VERSE"] .w { font-size: 1em; letter-spacing: 0; order: 1; padding: 0 0.45em; }
   .wb.mark[data-mark="EMPTY_VERSE"]::before { content: ""; order: 2; flex: 1 1 auto; border-top: 1px solid var(--gold); }
-  .wb.mark[data-mark="EMPTY_VERSE"]::after { content: attr(data-reason); order: 3; font: italic 0.72rem/1.3 Georgia, serif;
-    color: var(--muted); direction: ltr; white-space: nowrap; }
   .wb.mark[data-mark="EMPTY_VERSE"] .g { display: none; }
   /* THE CHANNELS ON THE PAGE · color-channel-rule-v2, ruled 2026-09-10.
      A channel says who is speaking, and that is the whole of it. The corpus
@@ -573,7 +573,7 @@
      An underline in the selection role, not a new color: it marks provenance
      of the gloss, never a choice about the text — both halves keep printing
      exactly as the source wrote them, and text-decoration moves no glyph. */
-  .wb.kq .wr.backs-en { text-decoration: underline; text-decoration-color: var(--sel);
+  .wb.kq .wr.backs-en { text-decoration: underline; text-decoration-color: var(--tekhelet-ink);
     text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   /* ...and the same mark on the English it backs: two underlines in the same
      color, stacked, are the two ends of one claim — this reading, that half.
@@ -585,7 +585,7 @@
      because the mark is the text's own apparatus, not a reader's act. */
   .wb.vs .w { text-decoration: underline dotted; text-decoration-color: var(--muted);
     text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
-  .wb.kq .g.backs-en { text-decoration: underline; text-decoration-color: var(--sel);
+  .wb.kq .g.backs-en { text-decoration: underline; text-decoration-color: var(--tekhelet-ink);
     text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   .mq { color: var(--shani-dim); }
   /* The reading under a word is shown whole. It used to run one line and end in
