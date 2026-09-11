@@ -407,33 +407,42 @@ if (commentaryHere) {
   check("and no rule is still written for one", strays === 0, `${strays} data-scheme rules in the stylesheet`);
 }
 
-// THE FAULT V1 EXISTED FOR, ASSERTED THE WAY V2 STATES IT. Structure and
-// selection are one family now, so hue cannot tell them apart. What tells them
-// apart is that a selection comes and goes: a word wears the corpus's own ink,
-// wears the selection while the reader is holding it, and returns to the
-// corpus's ink when the reader lets go. Nothing a reader sees settle is gold.
+// THE FAULT V1 EXISTED FOR, ASSERTED THE WAY THE OWNER RULED IT ON 2026-09-11:
+// "move away from gold as the highlighting itself and move toward just a more
+// opaque red and blue". A held word changes nothing about its ink — the one
+// ink is the one ink — and deepens its own wash: same color under the letters,
+// more of it. So a selection is told from rest by weight, not by hue, and it
+// comes and goes: the wash returns to its resting weight when the reader lets
+// go. Nothing a reader sees settle is gold, and nothing held is gold either.
 {
   const first = "section.seg .he-text .wb";
-  const inkOf = (sel) => p.evaluate((s) => { const e = document.querySelector(s); return e ? getComputedStyle(e.querySelector(".w") || e).color : null; }, sel);
-  const atRest = await inkOf(first);
+  const faceOf = (sel) => p.evaluate((s) => { const e = document.querySelector(s); const w = e && (e.querySelector(".w") || e); return w ? { ink: getComputedStyle(w).color, wash: getComputedStyle(w).backgroundColor } : null; }, sel);
+  const atRest = await faceOf(first);
   await p.evaluate((s) => document.querySelector(s + " .w")?.click(), first);
   await p.waitForTimeout(400);
-  const held = await inkOf(first);
+  const held = await faceOf(first);
+  const triplet = (c) => rgb(c).slice(0, 3).join(",");
+  check("a word keeps its ink when the reader takes hold of it", !!atRest && !!held && atRest.ink === held.ink, `${atRest && atRest.ink} → ${held && held.ink}`);
+  check("and deepens its own wash — the same color under the letters, more of it",
+    !!atRest && !!held && triplet(atRest.wash) === triplet(held.wash) && alphaOf(held.wash) > alphaOf(atRest.wash),
+    `${atRest && atRest.wash} → ${held && held.wash}`);
   const selInk = await p.evaluate(() => { const e = document.querySelector(".mode-btn.on"); return e ? getComputedStyle(e).color : null; });
-  check("a word changes color when the reader takes hold of it", !!atRest && !!held && atRest !== held, `${atRest} → ${held}`);
-  check("and what it changes to is the selection color", held === selInk, `${held} vs the selection's ${selInk}`);
+  check("and nothing about the held word is the amber the page keeps for its own controls",
+    !!held && held.ink !== selInk && triplet(held.wash) !== triplet(selInk || ""), `held ${held && held.ink} on ${held && held.wash}; amber is ${selInk}`);
+  const inkOf = async (sel) => (await faceOf(sel) || {}).ink;
   // let go: press Escape, which the reader binds to closing the card
   await p.keyboard.press("Escape");
   await p.waitForTimeout(400);
-  const released = await inkOf(first);
-  check("and it returns to its own channel when the reader lets go", released === atRest, `${held} → ${released} (at rest it was ${atRest})`);
+  const released = await faceOf(first);
+  check("and its wash returns to its resting weight when the reader lets go", !!released && released.wash === atRest.wash && released.ink === atRest.ink,
+    `${held && held.wash} → ${released && released.wash} (at rest it was ${atRest && atRest.wash})`);
   // What it settles at is argaman, because every glyph on this page is. This
   // assertion used to read "the corpus's own color" and meant shani, back when
   // the ink carried the channel; the ink carries nothing now, so what has to
   // be true is narrower and stricter: it settles at the page's one ink, and
   // the channel it belongs to comes back behind it.
-  const r = inFamily(atRest, "argaman");
-  check("so the color it settles at is the page's one ink, never gold", r.ok, `${atRest} · ${r.why}`);
+  const r = inFamily(atRest.ink, "argaman");
+  check("so the color it settles at is the page's one ink, never gold", r.ok, `${atRest.ink} · ${r.why}`);
   const washBack = await p.evaluate((q) => {
     const e = document.querySelector(q);
     // the wash rides the glyph, not the block around it — same element inkOf reads

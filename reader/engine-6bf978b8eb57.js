@@ -1436,42 +1436,93 @@
     hud.style.left = `${Math.max(pad, Math.min(left, window.innerWidth - w - pad))}px`;
   };
   const clampHud = placeInBounds;
-  // The tether tracks the card's four corners back to the word it opened
-  // from — the owner's own mechanic, carried in: a card should say where
-  // you were working without the reader hunting for the lit word. Driven
-  // per frame so drag, scroll, clamp and growth all keep it true; the
-  // change-detection key makes an idle frame cost one string compare.
+  // The thread runs from each held word to the card — the owner's own
+  // mechanic, carried in: a card should say where you were working without
+  // the reader hunting for the lit word. One thread per held word, because a
+  // ketiv-qere site holds two at once. Driven per frame so drag, scroll,
+  // clamp and growth all keep it true; the change-detection key makes an
+  // idle frame cost one string compare.
   const SVGNS = "http://www.w3.org/2000/svg";
   const tether = document.createElementNS(SVGNS, "svg");
   tether.id = "tether"; tether.setAttribute("aria-hidden", "true");
-  const tetherLines = [0, 1, 2, 3].map(() => {
-    const l = document.createElementNS(SVGNS, "line"); tether.append(l); return l;
+  const tetherDefs = document.createElementNS(SVGNS, "defs"); tether.append(tetherDefs);
+  const THREADS = 4;
+  const threads = Array.from({ length: THREADS }, (_, i) => {
+    const grad = document.createElementNS(SVGNS, "linearGradient");
+    grad.id = `thread-g${i}`; grad.setAttribute("gradientUnits", "userSpaceOnUse");
+    const from = document.createElementNS(SVGNS, "stop"); from.setAttribute("offset", "0"); from.setAttribute("class", "from");
+    const to = document.createElementNS(SVGNS, "stop"); to.setAttribute("offset", "1"); to.setAttribute("class", "to");
+    grad.append(from, to); tetherDefs.append(grad);
+    const g = document.createElementNS(SVGNS, "g"); g.style.display = "none";
+    const glow = document.createElementNS(SVGNS, "path"); glow.setAttribute("class", "glow"); glow.setAttribute("stroke", `url(#thread-g${i})`);
+    const line = document.createElementNS(SVGNS, "path"); line.setAttribute("class", "line"); line.setAttribute("stroke", `url(#thread-g${i})`);
+    const pin = document.createElementNS(SVGNS, "circle"); pin.setAttribute("class", "pin"); pin.setAttribute("r", "2.2");
+    g.append(glow, line, pin); tether.append(g);
+    return { g, glow, line, pin, grad };
   });
   tether.style.display = "none";
   document.body.append(tether);
   let tetherKey = "";
+  // the geometry of one thread: where it leaves the tile, how it bends, where
+  // it meets the card — or null when the card sits over the word
+  const threadFor = (heEl, h) => {
+    const a = heEl.getBoundingClientRect();
+    if (!a.width || !a.height) return null;
+    const r = Math.min(parseFloat(getComputedStyle(heEl).borderTopLeftRadius) || 0, a.width / 2, a.height / 2);
+    const cx = (h.left + h.right) / 2, cy = (h.top + h.bottom) / 2;
+    // the corner of the tile that faces the card
+    const sx = cx >= (a.left + a.right) / 2 ? 1 : -1;
+    const sy = h.top >= a.bottom ? 1 : h.bottom <= a.top ? -1 : (cy >= (a.top + a.bottom) / 2 ? 1 : -1);
+    // the corner of the ARC, not of the box: a rounded tile turns r(1 - 1/sqrt2)
+    // inside its box corner, and that is where the thread is pinned, 1.5px out
+    const k = r * (1 - Math.SQRT1_2), off = 1.5;
+    const px = (sx > 0 ? a.right - k : a.left + k) + sx * off;
+    const py = (sy > 0 ? a.bottom - k : a.top + k) + sy * off;
+    // the nearest point on the card's edge
+    const qx = Math.max(h.left, Math.min(px, h.right)), qy = Math.max(h.top, Math.min(py, h.bottom));
+    if (qx === px && qy === py) return null;
+    // it leaves the corner and enters the card square to the edge it meets;
+    // the bend is along whichever axis carries the distance
+    const dx = qx - px, dy = qy - py;
+    const alongY = (qy === h.top || qy === h.bottom) && (qx !== h.left && qx !== h.right) ? true
+      : (qx === h.left || qx === h.right) && (qy !== h.top && qy !== h.bottom) ? false
+      : Math.abs(dy) >= Math.abs(dx);
+    const c1 = alongY ? [px, py + dy / 2] : [px + dx / 2, py];
+    const c2 = alongY ? [qx, qy - dy / 2] : [qx - dx / 2, qy];
+    return [px, py, c1[0], c1[1], c2[0], c2[1], qx, qy];
+  };
   const drawTether = () => {
-    const anchor = activeEl && activeEl.isConnected ? activeEl : hudAnchor;
-    if (hud.hidden || !anchor || !anchor.isConnected) {
+    let anchors = [...document.querySelectorAll(".wb.active")];
+    if (activeEl && activeEl.isConnected && !anchors.includes(activeEl)) anchors.unshift(activeEl);
+    if (!anchors.length && hudAnchor && hudAnchor.isConnected) anchors = [hudAnchor];
+    if (hud.hidden || !anchors.length) {
       if (tetherKey) { tether.style.display = "none"; tetherKey = ""; }
       return;
     }
-    // the corners tracked are the Hebrew word's own — the reader asked the
+    // the corner tracked is the Hebrew word's own — the reader asked the
     // tether to hold the Hebrew, not the block around it (owner, 2026-08-30)
-    const heEl = (anchor.querySelector && (anchor.querySelector(".w") || anchor.closest(".wb")?.querySelector(".w"))) || anchor;
-    const a = heEl.getBoundingClientRect(), h = hud.getBoundingClientRect();
-    const pts = [
-      [a.left, a.top, h.left, h.top], [a.right, a.top, h.right, h.top],
-      [a.left, a.bottom, h.left, h.bottom], [a.right, a.bottom, h.right, h.bottom],
-    ];
-    const key = pts.map((p) => p.map(Math.round).join(",")).join(";");
+    const h = hud.getBoundingClientRect();
+    // one thread per tile: a ketiv-qere half and its block resolve to one
+    const tiles = [];
+    for (const an of anchors) {
+      const heEl = (an.querySelector && (an.querySelector(".w") || an.closest(".wb")?.querySelector(".w"))) || an;
+      if (!tiles.includes(heEl)) tiles.push(heEl);
+    }
+    const geo = tiles.slice(0, THREADS).map((heEl) => threadFor(heEl, h));
+    const key = geo.map((t) => (t ? t.map(Math.round).join(",") : "-")).join(";");
     if (key === tetherKey) return;
     tetherKey = key;
     tether.style.display = "";
-    pts.forEach(([x1, y1, x2, y2], i) => {
-      const l = tetherLines[i];
-      l.setAttribute("x1", x1); l.setAttribute("y1", y1);
-      l.setAttribute("x2", x2); l.setAttribute("y2", y2);
+    threads.forEach((t, i) => {
+      const p = geo[i];
+      if (!p) { t.g.style.display = "none"; return; }
+      const [px, py, c1x, c1y, c2x, c2y, qx, qy] = p;
+      const d = `M ${px} ${py} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${qx} ${qy}`;
+      t.line.setAttribute("d", d); t.glow.setAttribute("d", d);
+      t.pin.setAttribute("cx", px); t.pin.setAttribute("cy", py);
+      t.grad.setAttribute("x1", px); t.grad.setAttribute("y1", py);
+      t.grad.setAttribute("x2", qx); t.grad.setAttribute("y2", qy);
+      t.g.style.display = "";
     });
   };
   (function tetherLoop() { drawTether(); requestAnimationFrame(tetherLoop); })();
@@ -1768,6 +1819,11 @@
         b.append(seg);
       });
     } else b.textContent = word.s;
+    // a mark's head is drawn as the page draws it — the brick gap is a ruled
+    // span on the line, so it is a ruled span here, not the restore's stand-in
+    // box (owner, 2026-09-11: "on the hud shows an actual box, but on the
+    // reader it doesn't")
+    if (word.mark) b.dataset.mark = word.mark.kind;
     const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Close");
     x.addEventListener("click", closeHud);
     head.append(b, x);
@@ -2966,7 +3022,7 @@
       // the empty verse prints its reason on the line, so a reader is not left
       // wondering whether the page broke. The words are the builder's own
       // sentence for the mark, cut at its colon; nothing here is typed.
-      if (word.mark.kind === "EMPTY_VERSE" || word.mark.kind === "INVERTED_NUN") wb.dataset.reason = String(word.mark.says || "").split(":")[0];
+      if (word.mark.kind === "EMPTY_VERSE") wb.dataset.reason = String(word.mark.says || "").split(":")[0];
     }
     const w = document.createElement("span");
     w.className = "w"; w.lang = "he"; w.dir = "rtl";

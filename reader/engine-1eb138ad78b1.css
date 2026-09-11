@@ -21,6 +21,11 @@
     --sel: #8d5e0c; --sel-dim: #b8871a;
     --shani: #7a2e3b; --shani-dim: #a8797f;
     --wash-shani: rgba(122, 46, 59, 0.085);
+    /* the held word: its own wash, more opaque — never a third color (owner,
+       2026-09-11: "move away from gold as the highlighting itself and move
+       toward just a more opaque red and blue") */
+    --held-shani: rgba(122, 46, 59, 0.24);
+    --held-tekhelet: rgba(38, 66, 130, 0.30);
     --halo-shani: rgba(122, 46, 59, 0.75);
     /* tekhelet the reading, argaman our own voice — both taken down for
        daylight, both above the AAA floor on linen */
@@ -171,15 +176,12 @@
   .wb.mark[data-mark="BRICK_GAP"] .w::before { left: 0; } .wb.mark[data-mark="BRICK_GAP"] .w::after { right: 0; }
   .wb.mark[data-mark="BRICK_GAP"] .g { display: none; }
   /* RULE 6: the inverted nun stands at the words' own size in its own outlined
-     tile, like the ink it is; it had been a hairline a reader had to hunt for */
+     tile, like the ink it is; it had been a hairline a reader had to hunt for.
+     Nothing in English stands under it: a runner is a licensed reading, and
+     this page has none for a scribal mark, so the sentence waits on the card
+     (owner, 2026-09-11: "let someone click it to find out"). */
   .wb.mark[data-mark="INVERTED_NUN"] .w { font-size: 1.05em; padding: 0 0.35em; letter-spacing: 0; }
-  /* its runner is the builder's own sentence for the mark, cut at its colon,
-     set where a reading would sit so a reader with no Hebrew knows what the
-     glyph is without opening it — the page's voice, so no channel wash */
   .wb.mark[data-mark="INVERTED_NUN"] .g { display: none; }
-  .wb.mark[data-mark="INVERTED_NUN"]::after { content: attr(data-reason); font: italic 0.6rem/1.2 Georgia, serif;
-    color: var(--muted); direction: ltr; text-align: center; max-width: 8em; margin-top: 0.18rem;
-    border: 1px solid var(--gold-dim); border-radius: 0.45em; padding: 0.06em 0.35em; }
   /* RULE 4: the empty verse is one row — the edition's dash in its tile, a rule
      across the line, and the reason in the page's own voice at the end */
   .wb.mark[data-mark="EMPTY_VERSE"] { display: flex; flex-direction: row; align-items: center; width: 100%; gap: 0.6rem; }
@@ -478,7 +480,10 @@
      is where the line wraps, not what the line says. */
   .wb.held { opacity: 0.45; cursor: default; max-width: 100%; }
   .wb.held .w { overflow-wrap: anywhere; word-break: break-word; }
-  .wb.active .w { color: var(--sel); border-bottom: 1px solid var(--sel); background: none; }
+  /* the held word keeps its ink and deepens its own wash; a mark, which has no
+     wash, takes the corpus color on its outline instead */
+  .wb.active .w { background: var(--held-shani); }
+  .wb.mark.active .w { background: none; border-color: var(--shani); }
   /* A word the reader has ruled on keeps a mark after the card closes. Without
      it, closing the card left nothing to say which word had just been changed,
      and the reader had to hold that in their head. It is a tint rather than a
@@ -486,9 +491,8 @@
   /* A word with its commentary standing open beneath it. */
   /* Opening a commentary on a word is something the reader did, so the word
      wears the selection, not the structure. */
-  .wb.c-open { box-shadow: inset 0 0 0 1px var(--sel-dim); border-radius: 0.25rem;
-    box-shadow: inset 0 -2px 0 var(--sel-dim); }
-  .wb.c-open .w { color: var(--sel); }
+  .wb.c-open { border-radius: 0.25rem; box-shadow: inset 0 -2px 0 var(--sel-dim); }
+  .wb.c-open .w { background: var(--held-shani); }
   /* A word the reader has ruled on keeps a mark after the card closes. That is
      the point of it: the page holds the list of what has been worked so the
      reader does not have to. But it kept that mark as the same filled blue box
@@ -558,7 +562,8 @@
   .wb.multi.active .w { color: inherit; border-bottom: 1px dashed transparent; }
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
   .wr:hover { color: var(--hover-ink); border-bottom-color: var(--hover-line); }
-  .wr.on { color: var(--sel); border-bottom: 1px solid var(--sel); }
+  /* the open half of a pair deepens its wash, as a held word does; no amber */
+  .wr.on { background: var(--held-shani); border-bottom-color: transparent; }
   /* The half of a source-marked pair that the shown English is reading from.
      An underline in the selection role, not a new color: it marks provenance
      of the gloss, never a choice about the text — both halves keep printing
@@ -603,7 +608,7 @@
      line stops being a line. Nothing is printed in the space; it is kept. */
   .g.bare { min-height: 1.25em; }
   body.en .g.bare { min-height: 1.3em; }
-  .wb.active .g { color: var(--sel); }
+  .wb.active .g { background: var(--held-tekhelet); }
 
   /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
   /* THE LINE'S DIRECTION IS A READER MODE. THE PIECES OF A WORD ARE NOT.
@@ -630,7 +635,7 @@
   body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--tekhelet); margin-top: 0; max-width: 12em;
     white-space: normal; display: block; overflow: hidden; }
   body.en .w { order: 2; font-size: 1.02rem; color: var(--en-word); margin-top: 0.04rem; }
-  body.en .wb.active .g { color: var(--sel); }
+  body.en .wb.active .g { background: var(--held-tekhelet); }
 
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
   /* Which way the words run, and nothing else. The two readers differ in the
@@ -777,14 +782,28 @@
     max-height: 3.9em; overflow-y: auto; overflow-x: hidden; }
   #hud .r-now .v.none { color: var(--argaman); font-style: italic; }
   #hud[hidden] { display: none; }
-  /* The tether: while a card is open, four faint lines in the reader's own
-     color run from its corners back to the word it opened from, so the page
-     says plainly where you were working. An overlay — it moves no text,
-     takes no taps, and dies with the card. */
+  /* the brick gap's head on the card is the ruled span the line draws, not the
+     restore's stand-in box */
+  #hud .head b[data-mark="BRICK_GAP"] { color: transparent; display: inline-block; width: 4em;
+    position: relative; border-bottom: 1px solid var(--gold); }
+  #hud .head b[data-mark="BRICK_GAP"]::before, #hud .head b[data-mark="BRICK_GAP"]::after {
+    content: ""; position: absolute; bottom: -1px; width: 1px; height: 6px; background: var(--gold); }
+  #hud .head b[data-mark="BRICK_GAP"]::before { left: 0; } #hud .head b[data-mark="BRICK_GAP"]::after { right: 0; }
+  /* THE THREAD. While a card is open, one line runs from each held word to
+     the card: it leaves the Hebrew tile's own rounded corner, a pixel off the
+     arc, and arrives at the nearest point of the card's edge. It leaves in the
+     word's color and arrives in the frame's — a gradient along its length —
+     so both ends say whose they are. A soft glow under the line; a pin where
+     it leaves. An overlay: it moves no text, takes no taps, dies with the card.
+     It replaced four dashed lines hung off the block around the Hebrew, which
+     made the block look held rather than the word (owner, 2026-09-11). */
   #tether { position: fixed; inset: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 69; }
-  #tether line { stroke: var(--sel); stroke-width: 1; opacity: 0.28;
-    stroke-dasharray: 5 4; }
+  #tether .line { fill: none; stroke-width: 1.5; stroke-linecap: round; }
+  #tether .glow { fill: none; stroke-width: 7; stroke-linecap: round; opacity: 0.13; }
+  #tether .pin { fill: var(--shani); }
+  #tether stop.from { stop-color: var(--shani); }
+  #tether stop.to { stop-color: var(--gold); }
   /* The head is the handle. A card the reader can move is a card that stops
      being in the way, and a card that is never re-anchored while it is open
      stops moving on its own. It is sticky so the handle is reachable however
