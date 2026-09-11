@@ -145,6 +145,29 @@ const Lstar = (c) => {
   const y = 0.2126 * lin(c[0]) + 0.7152 * lin(c[1]) + 0.0722 * lin(c[2]);
   return y > 0.008856 ? 116 * Math.cbrt(y) - 16 : 903.3 * y;
 };
+const inFamilyAsWash = (colour, name) => {
+  const c = rgb(colour); if (!c) return { ok: false, why: "unreadable" };
+  const { h, s, l } = hsl(c);
+  const f = FAMILY[name]; if (!f) return { ok: false, why: `no measurement declared for "${name}"` };
+  const lo = f.hue[0], hi = f.hue[1];
+  const hueOk = lo < 0 ? (h >= 360 + lo || h <= hi) : (h >= lo && h <= hi);
+  const ok = hueOk && s >= 0.12 && l >= 0.78 && l <= 0.96;
+  return { ok, why: `hue ${h.toFixed(0)}° sat ${s.toFixed(2)} light ${l.toFixed(2)} (a tint: hue in the family, light 0.78–0.96)` };
+};
+// CIE Lab and the plain CIE76 distance, because on 2026-09-11 the washes
+// stopped being a darker linen and became a colored one: a pale blue and a
+// pale rose at nearly the ground's own lightness. L* alone called that step
+// invisible while every eye on the page saw it at once. A step is a step in
+// COLOR; lightness is one of its three axes. About 2.3 ΔE is a just-noticeable
+// difference.
+const Lab = (c) => {
+  const lin = (v) => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; };
+  const R = lin(c[0]), G = lin(c[1]), B = lin(c[2]);
+  const X = (0.4124 * R + 0.3576 * G + 0.1805 * B) / 0.95047, Y = 0.2126 * R + 0.7152 * G + 0.0722 * B, Z = (0.0193 * R + 0.1192 * G + 0.9505 * B) / 1.08883;
+  const f = (t) => (t > 0.008856 ? Math.cbrt(t) : 7.787 * t + 16 / 116);
+  return [116 * f(Y) - 16, 500 * (f(X) - f(Y)), 200 * (f(Y) - f(Z))];
+};
+const deltaE = (a, b) => { const p = Lab(a), q = Lab(b); return Math.hypot(p[0] - q[0], p[1] - q[1], p[2] - q[2]); };
 const alphaOf = (c) => { const m = String(c).match(/[\d.]+/gu); return m && m.length > 3 ? Number(m[3]) : 1; };
 // shortest way round the wheel
 const apartOn = (a, c) => { const d = Math.abs(hsl(a).h - hsl(c).h) % 360; return Math.min(d, 360 - d); };
@@ -205,8 +228,13 @@ for (const [key, decl] of Object.entries(channels)) {
   if (key === "rule") continue;
   const got = painted[key];
   if (!got) { check(`  ${key.replace(/_/gu, " ")} is painted at all`, false, "nothing on this page carries it"); continue; }
-  const r = inFamily(got, decl.material);
-  check(`  ${key.replace(/_/gu, " ")} is ${decl.material}`, r.ok, `${got} · ${r.why}`);
+  // a channel borne as a WASH is its material at a tint: the same hue, held
+  // pale so the one ink reads over it. It is judged on hue and on being a
+  // tint, not on the value box a glyph in that material would have to sit in
+  // (2026-09-11: the washes became opaque tints, because a translucent blue
+  // over warm linen composites to grey and nobody could name it)
+  const r = decl.borne_as === "wash" ? inFamilyAsWash(got, decl.material) : inFamily(got, decl.material);
+  check(`  ${key.replace(/_/gu, " ")} is ${decl.material}${decl.borne_as === "wash" ? ", as a tint" : ""}`, r.ok, `${got} · ${r.why}`);
 }
 // the two grounds
 for (const [key, name] of [["base_surface", contract.faces[face].base_surface], ["commentary_surface", contract.faces[face].commentary_surface]]) {
@@ -232,9 +260,12 @@ for (let i = 0; i < FINAL.length; i += 1) for (let j = i + 1; j < FINAL.length; 
   const a = rgb(painted[FINAL[i]]), c = rgb(painted[FINAL[j]]);
   const d = a && c ? apartOn(a, c) : 0;
   const ds = a && c ? Math.abs(hsl(a).s - hsl(c).s) : 0;
+  // a ground and an ink cannot be confused either: a pale tint and a dark
+  // glyph are told apart by lightness before hue is even asked
+  const dl = a && c ? Math.abs(hsl(a).l - hsl(c).l) : 0;
   check(`  ${FINAL[i].replace(/_/gu, " ")} and ${FINAL[j].replace(/_/gu, " ")} cannot be confused`,
-    d >= 45 || ds >= 0.30,
-    `${d.toFixed(0)} degrees apart, saturation differs by ${ds.toFixed(2)} \u00b7 ${painted[FINAL[i]]} vs ${painted[FINAL[j]]}`);
+    d >= 45 || ds >= 0.30 || dl >= 0.30,
+    `${d.toFixed(0)} degrees apart, saturation differs by ${ds.toFixed(2)}, lightness by ${dl.toFixed(2)} \u00b7 ${painted[FINAL[i]]} vs ${painted[FINAL[j]]}`);
 }
 
 // Legibility is attested, not assumed: WCAG relative-luminance ratios measured
@@ -262,13 +293,13 @@ for (let i = 0; i < FINAL.length; i += 1) for (let j = i + 1; j < FINAL.length; 
     const laid = over(wash, painted.base_surface);
     if (!laid || !rgb(ink)) { check(`  ${what} carries a channel behind it`, false, `wash ${wash}, ink ${ink}`); continue; }
     // seen: the wash has to be separable from the bare ground, or it is a
-    // channel nobody can perceive and the page is lying about marking anything
-    // 3 L* is three times a just-noticeable difference. It is a floor and not
-    // a target: both faces are tuned to about 4.5 and 5.1, which is where the
-    // day face already sat when it was called right.
-    const step = Math.abs(Lstar(laid) - Lstar(ground));
-    check(`  ${what}'s channel is visible behind it (>= 3.0 L* against the bare ground)`,
-      step >= 3.0, `${step.toFixed(2)} L* \u00b7 wash ${wash} lays down rgb(${laid.join(", ")})`);
+    // channel nobody can perceive and the page is lying about marking anything.
+    // 6 \u0394E is about two and a half just-noticeable differences. It is a floor
+    // and not a target: the tints sit at about 8 (rose) and 17 (blue), which is
+    // where the page was when the blue finally read as blue.
+    const step = deltaE(laid, ground);
+    check(`  ${what}'s channel is visible behind it (>= 6.0 \u0394E against the bare ground)`,
+      step >= 6.0, `${step.toFixed(2)} \u0394E (${Math.abs(Lstar(laid) - Lstar(ground)).toFixed(1)} of it in L*) \u00b7 wash ${wash} lays down rgb(${laid.join(", ")})`);
     // read: the ink has to survive the ground its own channel puts under it
     const legible = ratio(rgb(ink), laid);
     check(`  ${what} still reads on top of its own channel (>= 4.5:1)`,
@@ -423,9 +454,13 @@ if (commentaryHere) {
   const held = await faceOf(first);
   const triplet = (c) => rgb(c).slice(0, 3).join(",");
   check("a word keeps its ink when the reader takes hold of it", !!atRest && !!held && atRest.ink === held.ink, `${atRest && atRest.ink} → ${held && held.ink}`);
+  // "more of it": the same hue, deeper — a tint held is a darker tint of the
+  // same family, not a different color and not a translucent layer stacked
+  const sameHue = !!atRest && !!held && rgb(atRest.wash) && rgb(held.wash) && apartOn(rgb(atRest.wash), rgb(held.wash)) <= 20;
+  const deeper = !!atRest && !!held && rgb(atRest.wash) && rgb(held.wash) && Lstar(rgb(held.wash)) <= Lstar(rgb(atRest.wash)) - 3;
   check("and deepens its own wash — the same color under the letters, more of it",
-    !!atRest && !!held && triplet(atRest.wash) === triplet(held.wash) && alphaOf(held.wash) > alphaOf(atRest.wash),
-    `${atRest && atRest.wash} → ${held && held.wash}`);
+    sameHue && deeper,
+    `${atRest && atRest.wash} → ${held && held.wash}${sameHue && deeper ? "" : sameHue ? " (not deeper)" : " (a different hue)"}`);
   const selInk = await p.evaluate(() => { const e = document.querySelector(".mode-btn.on"); return e ? getComputedStyle(e).color : null; });
   check("and nothing about the held word is the amber the page keeps for its own controls",
     !!held && held.ink !== selInk && triplet(held.wash) !== triplet(selInk || ""), `held ${held && held.ink} on ${held && held.wash}; amber is ${selInk}`);
