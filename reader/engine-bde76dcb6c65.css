@@ -145,7 +145,13 @@
   /* a mark is corpus, so it wears the corpus channel like any other word —
      the one ink and the wash behind it — and is told apart by being smaller
      and letter-spaced, not by being painted a second color */
-  .wb.mark .w { font-size: 0.8em; letter-spacing: 0.06em; }
+  /* INK THAT IS NOT A WORD. A wash means "counts as a word"; a mark is ink that
+     does not, so it wears no wash and a gold outline — gold being the frame,
+     and this being a thing the frame holds rather than a thing the text says.
+     The glyph itself is the page's neutral ink, never gold: gold reaches no
+     glyph at rest. Approved 2026-09-11 on the demonstration sheet. */
+  .wb.mark .w { font-size: 0.8em; letter-spacing: 0.06em; background: none;
+    border: 1px solid var(--gold-dim); color: var(--muted); }
   .wb.mark-off { display: none; }
   body.marks-on .wb.mark-off { display: inline-flex; }
   body.marks-on .wb.mark-off .w { color: var(--muted); }
@@ -155,8 +161,33 @@
      seen as a gap and not as a missing word. RULE 12: a letter the scribes
      wrote large, small, suspended or dotted is drawn so; the mark is on the
      letter and the word keeps its count and its key. */
-  .wb.mark[data-mark="BRICK_GAP"] .w { color: transparent; min-width: 2.4em; border-bottom: 1px dotted var(--gold-dim); }
-  .wb.mark[data-mark="EMPTY_VERSE"] .w { font-size: 1em; color: var(--shani-dim); letter-spacing: 0; }
+  /* RULE 10: a brick gap is a ruled span the width the scribe left — a hairline
+     and two ticks — so it reads as space and never as a word with no text. It
+     prints nothing under itself; the sentence lives in its card. */
+  .wb.mark[data-mark="BRICK_GAP"] .w { color: transparent; min-width: 2.6em; background: none;
+    border: 0; border-bottom: 1px solid var(--gold); border-radius: 0; position: relative; padding: 0 0.2em; }
+  .wb.mark[data-mark="BRICK_GAP"] .w::before, .wb.mark[data-mark="BRICK_GAP"] .w::after {
+    content: ""; position: absolute; bottom: -1px; width: 1px; height: 6px; background: var(--gold); }
+  .wb.mark[data-mark="BRICK_GAP"] .w::before { left: 0; } .wb.mark[data-mark="BRICK_GAP"] .w::after { right: 0; }
+  .wb.mark[data-mark="BRICK_GAP"] .g { display: none; }
+  /* RULE 6: the inverted nun stands at the words' own size in its own outlined
+     tile, like the ink it is; it had been a hairline a reader had to hunt for */
+  .wb.mark[data-mark="INVERTED_NUN"] .w { font-size: 1.05em; padding: 0 0.35em; letter-spacing: 0; }
+  /* its runner is the builder's own sentence for the mark, cut at its colon,
+     set where a reading would sit so a reader with no Hebrew knows what the
+     glyph is without opening it — the page's voice, so no channel wash */
+  .wb.mark[data-mark="INVERTED_NUN"] .g { display: none; }
+  .wb.mark[data-mark="INVERTED_NUN"]::after { content: attr(data-reason); font: italic 0.6rem/1.2 Georgia, serif;
+    color: var(--muted); direction: ltr; text-align: center; max-width: 8em; margin-top: 0.18rem;
+    border: 1px solid var(--gold-dim); border-radius: 0.45em; padding: 0.06em 0.35em; }
+  /* RULE 4: the empty verse is one row — the edition's dash in its tile, a rule
+     across the line, and the reason in the page's own voice at the end */
+  .wb.mark[data-mark="EMPTY_VERSE"] { display: flex; flex-direction: row; align-items: center; width: 100%; gap: 0.6rem; }
+  .wb.mark[data-mark="EMPTY_VERSE"] .w { font-size: 1em; letter-spacing: 0; order: 1; padding: 0 0.45em; }
+  .wb.mark[data-mark="EMPTY_VERSE"]::before { content: ""; order: 2; flex: 1 1 auto; border-top: 1px solid var(--gold); }
+  .wb.mark[data-mark="EMPTY_VERSE"]::after { content: attr(data-reason); order: 3; font: italic 0.72rem/1.3 Georgia, serif;
+    color: var(--muted); direction: ltr; white-space: nowrap; }
+  .wb.mark[data-mark="EMPTY_VERSE"] .g { display: none; }
   /* THE CHANNELS ON THE PAGE · color-channel-rule-v2, ruled 2026-09-10.
      A channel says who is speaking, and that is the whole of it. The corpus
      speaks in tola'at shani; the reading offered for one of its words speaks

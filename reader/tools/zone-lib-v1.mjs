@@ -532,9 +532,13 @@ const INVERTED_NUN = "\u05c6";
 const SOF_PASUQ = "\u05c3", PASEQ = "\u05c0", BRICK_GAP = "\u25af", EMPTY_VERSE_DASH = "\u2014";
 export const markOf = (surface) => {
   const t = String(surface || "").trim();
+  // The sentence is what is true of every inverted nun. Numbers 10:35-36 sets a
+  // PAIR around a passage; Psalm 107 sets ONE at the head of each of seven
+  // verses, bracketing nothing. A surface cannot tell which, so this does not
+  // say; the card reads the neighbouring positions and adds the clause.
   if (t.includes(INVERTED_NUN) && [...t].every((c) => c === INVERTED_NUN || /\s/u.test(c)))
     return { kind: "INVERTED_NUN", glyph: INVERTED_NUN, toggleable: false,
-      says: "a scribal bracket, not a word of the book: the passage between these two marks is set apart by the scribes themselves" };
+      says: "an inverted nun, not a word of the book: a bracket the scribes set to mark a passage apart" };
   if (t.length === 3 && MARK_BRACKETS[t[0]] === t[2] && MARK_LETTERS[t[1]])
     return { kind: MARK_LETTERS[t[1]], glyph: t[1], bracket: t[0], toggleable: true,
       says: MARK_LETTERS[t[1]] === "SETUMAH"

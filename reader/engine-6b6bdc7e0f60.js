@@ -1834,6 +1834,40 @@
       const mLine = document.createElement("p"); mLine.className = "kq-role";
       mLine.textContent = word.mark.says;
       head.append(mLine);
+      // RULE 6 on the card. The builder's sentence says what is true of every
+      // inverted nun; whether THIS one is half of a pair or one of a run is the
+      // passage's to say, and the page reads it off the positions rather than
+      // guessing: Numbers 10:35-36 sets a pair around two verses, Psalm 107 sets
+      // one at the head of each of seven verses and brackets nothing.
+      if (word.mark.kind === "INVERTED_NUN" && el) {
+        const seg = el.closest("section.seg");
+        const nunAt = (sec, where) => {
+          if (!sec) return false;
+          // skip the scribes' bookkeeping — verse ends, paseqs, section marks, all
+          // of them toggleable and all of them class mark-off — because the
+          // closing nun of Numbers 10:36 stands AFTER the sof pasuq and BEFORE
+          // the petuchah, and a check that skipped only the first of those
+          // landed on the second and called the pair two loners
+          const words = [...sec.querySelectorAll(".wb")].filter((x) => !x.classList.contains("mark-off"));
+          const pick = where === "head" ? words[0] : words[words.length - 1];
+          return !!(pick && pick.dataset.mark === "INVERTED_NUN");
+        };
+        // the next VERSE, not the next sibling: an export row and other furniture
+        // stand between sections in the DOM, and a sibling walk that stops at
+        // them called the opening nun of Numbers 10:35 "alone"
+        const segs = seg ? [...seg.parentElement.querySelectorAll(":scope > section.seg")] : [];
+        const i = segs.indexOf(seg);
+        const prev = i > 0 ? segs[i - 1] : null, next = i >= 0 && i + 1 < segs.length ? segs[i + 1] : null;
+        const atHead = nunAt(seg, "head") && el === [...seg.querySelectorAll(".wb")][0];
+        let clause = "";
+        if (atHead && nunAt(next, "tail")) clause = "This one opens a passage: its pair closes it at the end of the next verse.";
+        else if (!atHead && nunAt(seg, "tail") && nunAt(prev, "head")) clause = "This one closes a passage: its pair opened it at the head of the verse before.";
+        else if (atHead && (nunAt(prev, "head") || nunAt(next, "head"))) clause = "This one is one of a run: the scribes set a single mark at the head of each of these verses, bracketing nothing between them.";
+        else clause = "This one stands alone.";
+        const pLine = document.createElement("p"); pLine.className = "kq-key";
+        pLine.textContent = clause;
+        head.append(pLine);
+      }
       const mKey = document.createElement("p"); mKey.className = "kq-key";
       mKey.textContent = word.mark.toggleable
         ? "It carries no reading, because there is nothing to look up: it is a mark, not a word. Marks like this can be turned off at the top of the page."
@@ -2929,6 +2963,10 @@
       wb.classList.add("mark");
       wb.dataset.mark = word.mark.kind;
       if (word.mark.toggleable) wb.classList.add("mark-off");
+      // the empty verse prints its reason on the line, so a reader is not left
+      // wondering whether the page broke. The words are the builder's own
+      // sentence for the mark, cut at its colon; nothing here is typed.
+      if (word.mark.kind === "EMPTY_VERSE" || word.mark.kind === "INVERTED_NUN") wb.dataset.reason = String(word.mark.says || "").split(":")[0];
     }
     const w = document.createElement("span");
     w.className = "w"; w.lang = "he"; w.dir = "rtl";
