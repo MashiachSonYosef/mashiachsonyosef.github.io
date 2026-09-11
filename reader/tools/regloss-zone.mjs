@@ -101,6 +101,24 @@ zone.emitted_from.gloss_layer = {
   },
 };
 
+// TYPED on the zone: a post-build write is named under the single-pass
+// exemption — who wrote it, which field, why, and when it expires — so the
+// receipts check counts it rather than faulting it as anonymous patching.
+// Merged, not replaced: the enrichment and the respan lane type theirs too.
+{
+  const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
+  const ef = zone.emitted_from;
+  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
+  const me = "tools/regloss-zone.mjs";
+  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
+  for (const f of ["gloss_layer.reprojected"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = me; }
+  const why = "the gloss layer is a projection of the route store over this zone's own keys, re-run here at cell grain after the component layer was projected";
+  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
+  const exp = "with this zone's rebuild by a build-zone run that writes its gloss layer in its single pass";
+  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
+  pb.on = stamp;
+  ef.post_build = pb;
+}
 const body = gzipSync(Buffer.from(JSON.stringify(zone)), { level: 9 });
 writeFileSync(outPath, body);
 console.log(
