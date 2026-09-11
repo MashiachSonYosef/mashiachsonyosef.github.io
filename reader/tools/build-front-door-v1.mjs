@@ -2718,7 +2718,28 @@ if (RD) {
         : `<p class="rd-open"><a href="/demonstrations/${esc(r.id)}/">open the passage and press ${esc(r.press || "a word")}</a></p>`}
     </article>`;
   };
-  const idx = `<!doctype html>
+  // THE COLOR CHANNELS LEAVE THE DEMONSTRATIONS PAGE. The owner approved the
+// palette and it is in use, so it is no longer a design awaiting a decision
+// and has no business on a page whose job is to put undecided designs in
+// front of him. It keeps a page of its own at /palette/, because the record
+// still has to be printed somewhere a reader can check it against the page,
+// and check-page-agrees-with-its-record-v1 reads it there now.
+const ccArticle = CC ? `  <article class="rd" data-id="color-channels">
+      <p class="rd-head"><span class="rd-n">\u00b7</span><span class="rd-kind">the color channels</span><span class="rd-letter">${esc(CC.channels.rule)}</span><span class="rd-tier rd-carried">ruled</span></p>
+      <p class="rd-law">${esc(CC.who_decided_what.the_ledger)}</p>
+      <p class="rd-plain">${esc(CC.who_decided_what.the_owner)}</p>
+      ${Object.entries(CC.channels).filter(([k]) => k !== "rule").map(([ch, d]) => `<p class="rd-kindline"><span class="cc-sw" style="background:var(${CC_TOKEN[ch] || "--ink"})"></span><span class="rd-kv">${esc(d.material)}</span><span class="rd-kdrawn">${esc(d.reads_as || (d.final ? "a final color" : "in process, never where a reader's eye comes to rest"))}</span><span class="rd-kn">${esc(CC_TOKEN[ch] || "")}</span></p>
+      <p class="rd-kat">${esc(CC_WEARS[ch] || d.carries)}</p>`).join("\n      ")}
+      <p class="rd-plain">${esc(CC.faces.rule)}</p>
+      <p class="rd-hide">${esc(CC.basis)} \u00b7 decided ${esc(CC.decided_on)} \u00b7 supersedes ${esc(CC.supersedes)}. ${esc(CC.who_decided_what.this_page)} The swatches above are painted with the page's own tokens, so they cannot drift from what a reader is shown \u2014 if the record and the stylesheet ever disagree, these squares show the stylesheet.</p>
+    </article>` : "";
+// A DEMONSTRATION THE OWNER HAS APPROVED FOLDS AWAY. The page is an approval
+// queue: what is decided collapses to one line with its date, so what is
+// still open is what stands open. `approved` is a date on the rule's record.
+const fold = (r, html) => r.approved
+  ? `    <details class="rd-fold"><summary style="cursor:pointer;color:var(--muted);font-size:.85rem;padding:.35rem 0">${esc(r.n)} \u00b7 ${esc(r.name_en)} \u00b7 approved ${esc(r.approved)}</summary>\n${html}\n    </details>`
+  : html;
+const idx = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The rules of the frame \u00b7 ${SITE_NAME}</title>
@@ -2730,16 +2751,8 @@ if (RD) {
   <h1>The rules of the frame</h1>
   <p class="sub">${esc(RD.what)}</p>
   <p class="pc-law">${esc(RD.the_law_every_card_obeys)}</p>
-${RD.rules.map(rulePage).join("\n")}
-${CC ? `  <article class="rd" data-id="color-channels">
-      <p class="rd-head"><span class="rd-n">\u00b7</span><span class="rd-kind">the color channels</span><span class="rd-letter">${esc(CC.channels.rule)}</span><span class="rd-tier rd-carried">ruled</span></p>
-      <p class="rd-law">${esc(CC.who_decided_what.the_ledger)}</p>
-      <p class="rd-plain">${esc(CC.who_decided_what.the_owner)}</p>
-      ${Object.entries(CC.channels).filter(([k]) => k !== "rule").map(([ch, d]) => `<p class="rd-kindline"><span class="cc-sw" style="background:var(${CC_TOKEN[ch] || "--ink"})"></span><span class="rd-kv">${esc(d.material)}</span><span class="rd-kdrawn">${esc(d.reads_as || (d.final ? "a final color" : "in process, never where a reader's eye comes to rest"))}</span><span class="rd-kn">${esc(CC_TOKEN[ch] || "")}</span></p>
-      <p class="rd-kat">${esc(CC_WEARS[ch] || d.carries)}</p>`).join("\n      ")}
-      <p class="rd-plain">${esc(CC.faces.rule)}</p>
-      <p class="rd-hide">${esc(CC.basis)} \u00b7 decided ${esc(CC.decided_on)} \u00b7 supersedes ${esc(CC.supersedes)}. ${esc(CC.who_decided_what.this_page)} The swatches above are painted with the page's own tokens, so they cannot drift from what a reader is shown \u2014 if the record and the stylesheet ever disagree, these squares show the stylesheet.</p>
-    </article>` : ""}
+${RD.rules.map((r) => fold(r, rulePage(r))).join("\n")}
+
   <footer>${esc(RD.the_fence)} Recorded in data/rule-demonstrations-v1.json; the passages are built into zones by tools/build-demonstrations-v1.mjs and opened by the reader itself, so what answers a press here is the card that answers on every book.</footer>
 </main></body></html>`;
   // Its own directory, made here rather than assumed: every other page in
@@ -2748,6 +2761,17 @@ ${CC ? `  <article class="rd" data-id="color-channels">
   // into a clean tree, which is exactly the build that has to work.
   mkdirSync(join(OUT, "demonstrations"), { recursive: true });
   writeFileSync(join(OUT, "demonstrations", "index.html"), idx);
+  if (ccArticle) {
+    const head = idx.split("<body>")[0];
+    const pal = `${head}<body><main>
+  <p class="poc-back"><a href="/">${SITE_NAME}</a></p>
+  <h1>The color channels</h1>
+  <p class="sub">Approved and in use. This page prints the record so it can be checked against what the page paints; it is not a design awaiting a decision.</p>
+${ccArticle}
+</main></body></html>`;
+    mkdirSync(join(OUT, "palette"), { recursive: true });
+    writeFileSync(join(OUT, "palette", "index.html"), pal);
+  }
   let rdPages = 0;
   for (const r of RD.rules) {
     const slug = `fixture-rule-${r.id}`;

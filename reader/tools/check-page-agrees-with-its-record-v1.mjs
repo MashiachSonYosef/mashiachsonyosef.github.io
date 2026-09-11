@@ -66,7 +66,9 @@ const has = (hay, needle) => flat(hay).includes(flat(needle));
 const pw = await loadPlaywright();
 const b = await pw.chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 1180, height: 900 } });
-await p.goto(`${BASE}/demonstrations/`, { waitUntil: "networkidle" });
+// the record is printed at /palette/ since 2026-09-11; it left the demonstrations
+// page when the owner approved it, because that page is an approval queue
+await p.goto(`${BASE}/palette/`, { waitUntil: "networkidle" });
 await p.waitForTimeout(1500);
 const text = await p.evaluate(() => document.body.innerText);
 await b.close();
