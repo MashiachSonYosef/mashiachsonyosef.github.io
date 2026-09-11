@@ -1511,6 +1511,9 @@
     const geo = tiles.slice(0, THREADS).map((heEl) => threadFor(heEl, h));
     const key = geo.map((t) => (t ? t.map(Math.round).join(",") : "-")).join(";");
     if (key === tetherKey) return;
+    // the first frame a thread is shown is the pop: it draws itself and the
+    // card grows from where it lands. Every later frame is a plain move.
+    const appearing = !tetherKey;
     tetherKey = key;
     tether.style.display = "";
     threads.forEach((t, i) => {
@@ -1523,6 +1526,29 @@
       t.grad.setAttribute("x1", px); t.grad.setAttribute("y1", py);
       t.grad.setAttribute("x2", qx); t.grad.setAttribute("y2", qy);
       t.g.style.display = "";
+      if (appearing) {
+        const len = t.line.getTotalLength();
+        for (const el of [t.line, t.glow]) {
+          el.style.transition = "none";
+          el.style.strokeDasharray = `${len}`; el.style.strokeDashoffset = `${len}`;
+        }
+        t.pin.style.transition = "none"; t.pin.style.transform = "scale(0)";
+        // eslint-disable-next-line no-unused-expressions
+        t.line.getBoundingClientRect();
+        for (const el of [t.line, t.glow]) { el.style.transition = ""; el.style.strokeDashoffset = "0"; }
+        t.pin.style.transition = ""; t.pin.style.transform = "";
+        if (i === 0) {
+          const h = hud.getBoundingClientRect();
+          hud.style.setProperty("--pop-x", `${Math.round(qx - h.left)}px`);
+          hud.style.setProperty("--pop-y", `${Math.round(qy - h.top)}px`);
+          hud.classList.remove("pop");
+          // eslint-disable-next-line no-unused-expressions
+          hud.offsetWidth;
+          hud.classList.add("pop");
+        }
+      } else {
+        for (const el of [t.line, t.glow]) { el.style.strokeDasharray = ""; el.style.strokeDashoffset = ""; }
+      }
     });
   };
   (function tetherLoop() { drawTether(); requestAnimationFrame(tetherLoop); })();

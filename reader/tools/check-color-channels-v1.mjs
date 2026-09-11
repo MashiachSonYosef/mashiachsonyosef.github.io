@@ -175,8 +175,10 @@ const apartOn = (a, c) => { const d = Math.abs(hsl(a).h - hsl(c).h) % 360; retur
 // One representative of each channel, taken off the live page. A channel with
 // no bearer on this zone is said to be absent, never scored as a fault.
 const SAMPLE = {
-  text_as_written: ["section.seg .he-text .wb:not(.active):not(.chosen) .w", "backgroundColor"],
-  reading_as_shown: ["section.seg .he-text .g:not(.bare)", "backgroundColor"],
+  // a channel is sampled the way the record says it is borne: a wash off the
+  // ground behind the glyph, an ink off the glyph itself
+  text_as_written: ["section.seg .he-text .wb:not(.active):not(.chosen) .w", (channels.text_as_written || {}).borne_as === "wash" ? "backgroundColor" : "color"],
+  reading_as_shown: ["section.seg .he-text .g:not(.bare)", (channels.reading_as_shown || {}).borne_as === "wash" ? "backgroundColor" : "color"],
   // the inks, kept beside the washes: every glyph is argaman now, and what
   // has to be proved is that each one still reads on the ground its own
   // channel puts behind it
@@ -286,10 +288,18 @@ for (let i = 0; i < FINAL.length; i += 1) for (let j = i + 1; j < FINAL.length; 
     if (!f || !b) return null;
     return [0, 1, 2].map((i) => Math.round(f[i] * a + b[i] * (1 - a)));
   };
-  for (const [what, wash, ink] of [
-    ["the corpus", painted.text_as_written, painted.text_ink],
-    ["a reading", painted.reading_as_shown, painted.reading_ink],
+  for (const [what, key, wash, ink] of [
+    ["the corpus", "text_as_written", painted.text_as_written, painted.text_ink],
+    ["a reading", "reading_as_shown", painted.reading_as_shown, painted.reading_ink],
   ]) {
+    if ((channels[key] || {}).borne_as !== "wash") {
+      // borne as ink: nothing is laid behind it, so what has to be true is
+      // that the ink reads on the bare ground and IS the channel's material
+      const legible = ratio(rgb(ink), ground);
+      check(`  ${what} is written in its channel and reads on the bare ground (>= 4.5:1)`,
+        !!rgb(ink) && legible >= 4.5, `${legible.toFixed(1)}:1 · ${ink} on rgb(${ground.join(", ")})`);
+      continue;
+    }
     const laid = over(wash, painted.base_surface);
     if (!laid || !rgb(ink)) { check(`  ${what} carries a channel behind it`, false, `wash ${wash}, ink ${ink}`); continue; }
     // seen: the wash has to be separable from the bare ground, or it is a
@@ -438,55 +448,37 @@ if (commentaryHere) {
   check("and no rule is still written for one", strays === 0, `${strays} data-scheme rules in the stylesheet`);
 }
 
-// THE FAULT V1 EXISTED FOR, ASSERTED THE WAY THE OWNER RULED IT ON 2026-09-11:
-// "move away from gold as the highlighting itself and move toward just a more
-// opaque red and blue". A held word changes nothing about its ink — the one
-// ink is the one ink — and deepens its own wash: same color under the letters,
-// more of it. So a selection is told from rest by weight, not by hue, and it
-// comes and goes: the wash returns to its resting weight when the reader lets
-// go. Nothing a reader sees settle is gold, and nothing held is gold either.
+// THE FAULT V1 EXISTED FOR, ASSERTED THE WAY THE OWNER RULED IT ON 2026-09-11
+// (mockup 4): a held word LIFTS. It keeps its ink and its channel, nothing is
+// filled behind it, it rises a little toward the reader, and it settles back
+// when the reader lets go. Nothing a reader sees settle is gold, and nothing
+// held is gold or amber either.
 {
   const first = "section.seg .he-text .wb";
-  const faceOf = (sel) => p.evaluate((s) => { const e = document.querySelector(s); const w = e && (e.querySelector(".w") || e); return w ? { ink: getComputedStyle(w).color, wash: getComputedStyle(w).backgroundColor } : null; }, sel);
+  const faceOf = (sel) => p.evaluate((s) => {
+    const e = document.querySelector(s); const w = e && (e.querySelector(".w") || e);
+    return w ? { ink: getComputedStyle(w).color, wash: getComputedStyle(w).backgroundColor, lift: getComputedStyle(w).transform } : null;
+  }, sel);
   const atRest = await faceOf(first);
   await p.evaluate((s) => document.querySelector(s + " .w")?.click(), first);
-  await p.waitForTimeout(400);
+  await p.waitForTimeout(500);
   const held = await faceOf(first);
-  const triplet = (c) => rgb(c).slice(0, 3).join(",");
+  const triplet = (c) => (rgb(c) || []).join(",");
   check("a word keeps its ink when the reader takes hold of it", !!atRest && !!held && atRest.ink === held.ink, `${atRest && atRest.ink} → ${held && held.ink}`);
-  // "more of it": the same hue, deeper — a tint held is a darker tint of the
-  // same family, not a different color and not a translucent layer stacked
-  const sameHue = !!atRest && !!held && rgb(atRest.wash) && rgb(held.wash) && apartOn(rgb(atRest.wash), rgb(held.wash)) <= 20;
-  const deeper = !!atRest && !!held && rgb(atRest.wash) && rgb(held.wash) && Lstar(rgb(held.wash)) <= Lstar(rgb(atRest.wash)) - 3;
-  check("and deepens its own wash — the same color under the letters, more of it",
-    sameHue && deeper,
-    `${atRest && atRest.wash} → ${held && held.wash}${sameHue && deeper ? "" : sameHue ? " (not deeper)" : " (a different hue)"}`);
+  check("and lifts toward the reader rather than being filled", !!held && held.lift !== "none" && alphaOf(held.wash) < 0.02,
+    `transform ${held && held.lift} · ground ${held && held.wash}`);
   const selInk = await p.evaluate(() => { const e = document.querySelector(".mode-btn.on"); return e ? getComputedStyle(e).color : null; });
   check("and nothing about the held word is the amber the page keeps for its own controls",
     !!held && held.ink !== selInk && triplet(held.wash) !== triplet(selInk || ""), `held ${held && held.ink} on ${held && held.wash}; amber is ${selInk}`);
-  const inkOf = async (sel) => (await faceOf(sel) || {}).ink;
   // let go: press Escape, which the reader binds to closing the card
   await p.keyboard.press("Escape");
-  await p.waitForTimeout(400);
+  await p.waitForTimeout(500);
   const released = await faceOf(first);
-  check("and its wash returns to its resting weight when the reader lets go", !!released && released.wash === atRest.wash && released.ink === atRest.ink,
-    `${held && held.wash} → ${released && released.wash} (at rest it was ${atRest && atRest.wash})`);
-  // What it settles at is argaman, because every glyph on this page is. This
-  // assertion used to read "the corpus's own color" and meant shani, back when
-  // the ink carried the channel; the ink carries nothing now, so what has to
-  // be true is narrower and stricter: it settles at the page's one ink, and
-  // the channel it belongs to comes back behind it.
-  const r = inFamily(atRest.ink, "argaman");
-  check("so the color it settles at is the page's one ink, never gold", r.ok, `${atRest.ink} · ${r.why}`);
-  const washBack = await p.evaluate((q) => {
-    const e = document.querySelector(q);
-    // the wash rides the glyph, not the block around it — same element inkOf reads
-    const t = e && (e.querySelector(".w") || e);
-    return t ? getComputedStyle(t).backgroundColor : null;
-  }, first);
-  const washOk = !!washBack && alphaOf(washBack) > 0.02;
-  check("and the channel comes back behind it, having been lifted while held",
-    washOk, `${washBack} behind the released word`);
+  check("and settles back when the reader lets go", !!released && released.lift === "none" && released.ink === atRest.ink,
+    `transform ${released && released.lift} · ink ${released && released.ink}`);
+  const mat = (channels.text_as_written || {}).material || "tola'at shani";
+  const r = inFamily(atRest.ink, mat);
+  check(`so the color it settles at is its own channel, ${mat}, never gold`, r.ok, `${atRest.ink} · ${r.why}`);
 }
 
 await p.close(); await b.close();

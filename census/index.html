@@ -36,7 +36,7 @@
     --gold:#96700f; --gold-dim:#9a7a28; --amber:#96700f;
     --sel:#8d5e0c; --sel-dim:#b8871a;
     --shani:#7a2e3b; --shani-dim:#a8797f;
-    --wash-shani:#eedcd6; --wash-tekhelet:#dfe4f1; --shesh:#6b5a35; --shesh-bright:#4f421d;
+    --wash-shani:#eedcd6; --shani-ink:#8b5560; --tekhelet-ink:#34649a; --wash-tekhelet:#dfe4f1; --shesh:#6b5a35; --shesh-bright:#4f421d;
     --tekhelet:#264282; --tekhelet-dim:#7f8ba8;
     --argaman:#6b3f8f; --argaman-dim:#8f7aa8; --link:#6b3f8f;
     --chip-bg:rgba(107,90,53,.10); --chip-line:rgba(107,90,53,.32);
@@ -102,7 +102,7 @@
      project gives to an unreadable word is never the force-read below it. */
   a.titleway { text-decoration:none; display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   a.titleway .g { font-size:.72rem; color:var(--argaman); border-bottom:1px dotted var(--gold-dim); }
-  a.titleway:hover .g { color:var(--argaman); }
+  a.titleway:hover .g { color:var(--tekhelet-ink); }
   a.titleway:hover .he { color:var(--argaman); }
   /* The title is the book's own. The English beside it is not a translation of
      it and must not be able to be read as one — it is how a reader who does not
@@ -984,11 +984,11 @@
      holds nothing here, which is our own voice and not an absence of one. */
   .fam-he .he, .col-he .he, #bkcard .slot .fam-he .he,
   .bookcard .he, a.sub-work .he, span.atlas-row .fam-he .he,
-  .pc-hudwrap .head b { color:var(--argaman); background:var(--wash-shani);
+  .pc-hudwrap .head b { color:var(--shani-ink); background:none;
     border-radius:.5em; padding:.02em .3em; }
   .he.none, .en.none, .fam-he .he.none, #bkcard .he.none { color:var(--argaman);
     background:none; padding:0; font-style:italic; }
-  span.g, a.titleway .g, .bookcard .g, .atlas-row .g { color:var(--argaman); }
+  span.g, a.titleway .g, .bookcard .g, .atlas-row .g { color:var(--tekhelet-ink); }
   /* a reading already standing on a tekhelet card is not washed a second time */
   .atlas-row.built .g, details.fam > summary .row:first-child .g { background:none; padding:0; }
 

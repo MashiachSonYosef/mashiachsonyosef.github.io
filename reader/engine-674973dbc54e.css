@@ -20,6 +20,10 @@
        with the tent's own ink on top of it */
     --sel: #8d5e0c; --sel-dim: #b8871a;
     --shani: #7a2e3b; --shani-dim: #a8797f;
+    /* the inks the channels are written in, held muted: the corpus a quiet
+       rose-red, the reading a quiet blue (owner, 2026-09-11: mockup 4, "i
+       still might make that red like a little more muted somehow") */
+    --shani-ink: #8b5560; --tekhelet-ink: #34649a;
     --wash-shani: #eedcd6;
     /* the held word: its own wash, more opaque — never a third color (owner,
        2026-09-11: "move away from gold as the highlighting itself and move
@@ -196,23 +200,19 @@
      in tekhelet, because a dictionary said it and not the source; this
      project speaks in argaman, and is the only voice licensed by nobody.
      This began as a URL parameter tried on one book. It is the page now. */
-  /* ALL THE TEXT IS ARGAMAN, FULL STOP. Ruled 2026-09-10. The ink carries no
-     information at all now: every glyph on the page is the one purple Exodus
-     names, and what tells a reader whose words these are sits behind the
-     letters, not in them. Two ways to carry it, and the page ships one:
-
-       WASH   a faint ground the width of the word, in the channel's color.
-              Costs no legibility, because the ink never moves.
-       HALO   the same color as a soft edge around each glyph.
-              Reads as illumination, and is a real risk on pointed Hebrew,
-              where the niqqud are small enough for an edge to close them up.
-
-     The wash is the default. The halo answers to data-accent="halo" so both
-     can be looked at on the same text before one of them is kept. */
-  .wb .w { color: var(--argaman); border-radius: 0.5em; padding: 0.02em 0.3em;
-    background: var(--wash-shani); }
-  .wb > .g, .wjoin > .g { color: var(--argaman); border-color: var(--gold-dim);
-    background: var(--wash-tekhelet); }
+  /* THE INK CARRIES THE CHANNEL, MUTED. Ruled 2026-09-11 off six mockups on
+     the real page: the Hebrew is written in a quiet rose-red and its reading
+     in a quiet blue, with nothing behind either of them — no wash, no box on
+     the Hebrew, and only the gold hairline around the reading so it stays a
+     label and not a second line of text. The washes of 2026-09-10 were right
+     about one thing and it is kept: what says who is speaking must be
+     nameable at a glance. They were wrong about the cost: a page of filled
+     tiles is a page of tiles, and this is a page of words.
+     The one ink of the page — argaman — stays on everything that is ours. */
+  .wb .w { color: var(--shani-ink); border-radius: 0.5em; padding: 0.02em 0.3em;
+    background: none; }
+  .wb > .g, .wjoin > .g { color: var(--tekhelet-ink); border-color: var(--gold-dim);
+    background: none; }
 
   :root[data-accent="halo"] .wb .w { background: none; padding: 0;
     text-shadow: 0 0 2.5px var(--halo-shani), 0 0 1px var(--halo-shani); }
@@ -480,10 +480,15 @@
      is where the line wraps, not what the line says. */
   .wb.held { opacity: 0.45; cursor: default; max-width: 100%; }
   .wb.held .w { overflow-wrap: anywhere; word-break: break-word; }
-  /* the held word keeps its ink and deepens its own wash; a mark, which has no
-     wash, takes the corpus color on its outline instead */
-  .wb.active .w { background: var(--held-shani); }
-  .wb.mark.active .w { background: none; border-color: var(--shani); }
+  /* THE HELD WORD LIFTS. Nothing is filled and nothing changes color: the
+     word rises a little off the page toward the reader — a touch larger, a
+     soft shadow beneath it — and the card pops out from under it. The owner
+     asked for the card to feel as if it "pops out at you"; this is the word
+     doing the popping, and the card following. A mark lifts the same way. */
+  .wb .w { transition: transform 0.16s cubic-bezier(0.2, 0.8, 0.2, 1), text-shadow 0.16s ease-out; }
+  .wb.active .w { background: none; transform: translateY(-1px) scale(1.08);
+    text-shadow: 0 3px 8px rgba(122, 46, 59, 0.22); position: relative; z-index: 2; }
+  .wb.mark.active .w { background: none; border-color: var(--gold); }
   /* A word the reader has ruled on keeps a mark after the card closes. Without
      it, closing the card left nothing to say which word had just been changed,
      and the reader had to hold that in their head. It is a tint rather than a
@@ -492,7 +497,7 @@
   /* Opening a commentary on a word is something the reader did, so the word
      wears the selection, not the structure. */
   .wb.c-open { border-radius: 0.25rem; box-shadow: inset 0 -2px 0 var(--sel-dim); }
-  .wb.c-open .w { background: var(--held-shani); }
+  .wb.c-open .w { text-decoration: underline dotted; text-underline-offset: 0.18em; text-decoration-color: var(--gold-dim); }
   /* A word the reader has ruled on keeps a mark after the card closes. That is
      the point of it: the page holds the list of what has been worked so the
      reader does not have to. But it kept that mark as the same filled blue box
@@ -562,8 +567,8 @@
   .wb.multi.active .w { color: inherit; border-bottom: 1px dashed transparent; }
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
   .wr:hover { color: var(--hover-ink); border-bottom-color: var(--hover-line); }
-  /* the open half of a pair deepens its wash, as a held word does; no amber */
-  .wr.on { background: var(--held-shani); border-bottom-color: transparent; }
+  /* the open half of a pair is underlined in its own ink; no fill, no amber */
+  .wr.on { border-bottom: 1px solid var(--shani-ink); }
   /* The half of a source-marked pair that the shown English is reading from.
      An underline in the selection role, not a new color: it marks provenance
      of the gloss, never a choice about the text — both halves keep printing
@@ -608,7 +613,9 @@
      line stops being a line. Nothing is printed in the space; it is kept. */
   .g.bare { min-height: 1.25em; }
   body.en .g.bare { min-height: 1.3em; }
-  .wb.active .g { background: var(--held-tekhelet); }
+  /* the held word's reading keeps its gold hairline, a shade firmer — never a
+     box in a second color among the gold ones (owner, 2026-09-11) */
+  .wb.active .g { background: none; border-color: var(--gold); }
 
   /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
   /* THE LINE'S DIRECTION IS A READER MODE. THE PIECES OF A WORD ARE NOT.
@@ -635,7 +642,7 @@
   body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--tekhelet); margin-top: 0; max-width: 12em;
     white-space: normal; display: block; overflow: hidden; }
   body.en .w { order: 2; font-size: 1.02rem; color: var(--en-word); margin-top: 0.04rem; }
-  body.en .wb.active .g { background: var(--held-tekhelet); }
+  body.en .wb.active .g { background: none; border-color: var(--gold); }
 
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
   /* Which way the words run, and nothing else. The two readers differ in the
@@ -777,7 +784,7 @@
      the line that was only supposed to say what had been chosen. Three lines,
      then it scrolls. The whole of it is still on its pill and still in the
      record underneath. */
-  #hud .r-now .v { display: block; color: var(--ink); background: var(--wash-tekhelet);
+  #hud .r-now .v { display: block; color: var(--tekhelet-ink); background: none;
     padding: 0.15rem 0.45rem; border-radius: 0.4em; font-size: 0.94rem;
     line-height: 1.3; overflow-wrap: anywhere;
     max-height: 3.9em; overflow-y: auto; overflow-x: hidden; }
@@ -802,6 +809,24 @@
     pointer-events: none; z-index: 69; }
   #tether .line { fill: none; stroke-width: 1.5; stroke-linecap: round; }
   #tether .glow { fill: none; stroke-width: 7; stroke-linecap: round; opacity: 0.13; }
+  /* THE POP. When a card opens it is drawn out of the word: the thread draws
+     itself from the pin to the card's edge, and the card grows from the point
+     where the thread meets it — a little scaled down and tilted back, then
+     upright — so the card reads as something that came out of the page at
+     that word, not something that appeared over it. Both take a fifth of a
+     second; a drag, a scroll or a re-anchor moves them with no animation. */
+  #tether .line, #tether .glow { transition: stroke-dashoffset 0.22s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  #tether .pin { transform-box: fill-box; transform-origin: center; transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  @keyframes hud-pop {
+    from { opacity: 0; transform: perspective(900px) rotateX(-7deg) scale(0.93) translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+  #hud.pop { transform-origin: var(--pop-x, 50%) var(--pop-y, 0%);
+    animation: hud-pop 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  @media (prefers-reduced-motion: reduce) {
+    #hud.pop { animation: none; }
+    #tether .line, #tether .glow, #tether .pin, .wb .w { transition: none; }
+  }
   /* the thread is line work, so it is gold; only the pin carries the word's
      color — one dot, not a second colored line on a screen that has enough */
   #tether .pin { fill: var(--shani); }
@@ -830,7 +855,7 @@
      (2026-09-11). So the Hebrew head sits on the shani wash, a reading sits on
      the tekhelet wash, the pressed pill is that wash deepened, and nothing on
      the card is ink in a channel color. */
-  #hud .head b { font-size: 1.55rem; color: var(--ink); background: var(--wash-shani);
+  #hud .head b { font-size: 1.55rem; color: var(--gold); background: none;
     padding: 0.04em 0.3em; border-radius: 0.4em;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   #hud .head button { background: none; border: 0; color: var(--link); font-size: 1.15rem; cursor: pointer; }
@@ -868,19 +893,21 @@
   #hud .def-order .dfp.on, #modeRow .def-order .dfp.on { color: var(--sel); border-color: var(--sel-dim); }
   #hud .def-order .dfp.waiting, #modeRow .def-order .dfp.waiting {
     opacity: 0.4; cursor: default; }
-  #hud .r-pills button { border: 1px solid var(--chip-line); background: var(--wash-tekhelet); color: var(--ink);
+  #hud .r-pills button { border: 1px solid var(--chip-line); background: none; color: var(--tekhelet-ink);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
-  #hud .r-pills button[aria-pressed="true"] { border-color: var(--line);
-    background: var(--held-tekhelet); font-weight: bold; }
+  /* the pressed pill is the reading's own ink, filled, with the linen showing
+     through as its letters — pressed, not a box in a second color */
+  #hud .r-pills button[aria-pressed="true"] { border-color: var(--tekhelet-ink);
+    background: var(--tekhelet-ink); color: var(--bg); font-weight: bold; }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
   #hud .r-overflow { margin-top: 0.45rem; }
-  #hud .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--ink);
+  #hud .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--tekhelet-ink);
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
   #hud .r-overflow select:hover { border-color: var(--muted); }
-  #hud .r-overflow select.on { background: var(--held-tekhelet); font-weight: bold; }
+  #hud .r-overflow select.on { background: var(--tekhelet-ink); color: var(--bg); font-weight: bold; }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   /* P — the sources that carry the same record. A corroboration is not a
      louder kind of source, so it wears the same chip and the same weight as
@@ -901,9 +928,8 @@
     border-inline-start: 2px solid var(--argaman-dim); padding-inline-start: 0.5rem; }
   /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
-  #hud .d-card .d-text { margin: 0.25rem 0; color: var(--ink); background: var(--wash-tekhelet);
-    padding: 0.2rem 0.45rem; border-radius: 0.4em; }
-  #hud .d-card .d-sense.on { background: var(--held-tekhelet); border-radius: 0.3em; font-weight: bold; }
+  #hud .d-card .d-text { margin: 0.25rem 0; color: var(--tekhelet-ink); }
+  #hud .d-card .d-sense.on { font-weight: bold; }
   #hud .d-card .d-sep { color: var(--faint); }
   #hud .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; padding: 0 0 0.05rem; text-align: left; }
@@ -1084,11 +1110,11 @@
   #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  #hud .c-pills button[aria-pressed="true"] { border-color: var(--line);
-    background: var(--held-tekhelet); font-weight: bold; }
+  #hud .c-pills button[aria-pressed="true"] { border-color: var(--tekhelet-ink);
+    background: var(--tekhelet-ink); color: var(--bg); font-weight: bold; }
   #hud .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
-  #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink);
-    background: var(--wash-shani); padding: 0.1rem 0.4rem; border-radius: 0.4em;
+  #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--shani-ink);
+    padding: 0.1rem 0.4rem; border-radius: 0.4em;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   #hud .c-note { color: var(--faint); font-size: 0.72rem; margin: 0.2rem 0 0; }
   /* A commentary served from the chain is text, not decoration: its own words
