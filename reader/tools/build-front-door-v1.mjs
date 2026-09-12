@@ -103,7 +103,7 @@ const assertJudgedBytes = (slug, bytes) => {
 // serve, it asks here — one listing, so a book cannot be counted in a tally
 // it is withheld from, or given a page the shelf never lists.
 const shelfZoneFiles = () => readdirSync(ZONES)
-  .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))
+  .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin") && !x.endsWith(".hoh.bin"))
   .filter((x) => gated(x.replace(/\.bin$/, "")))
   .sort();
 
@@ -639,7 +639,7 @@ for (const b of BOOKS) {
         // commentary there, by coordinate; for Genesis it is where a segment
         // stands when nothing places it closer. Saying "on the section" for
         // both would flatten a proof and a shrug into one number.
-        else if (e.basis === "SEALED_UNIT_COORDINATE_IDENTITY") byCoordinate += 1;
+        else if (e.basis === "SEALED_UNIT_COORDINATE_IDENTITY" || e.basis === "SEALED_UNIT_COORDINATE_PREFIX") byCoordinate += 1;
         else noCloser += 1;
       }
     }
@@ -663,7 +663,7 @@ for (const b of BOOKS) {
 // The curated tier can lawfully be empty — the owner's ruling, 2026-08-30:
 // no hand-done books at all. The refusal that matters is a shelf with no
 // zones behind it, judged by the zones directory itself.
-if (!books.length && !readdirSync(ZONES).some((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin")))
+if (!books.length && !readdirSync(ZONES).some((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin") && !f.endsWith(".hoh.bin")))
   throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
 // Every place a book is referred to in English refers to it by the one name
 // the law allows to print: the ledger's English when a licensed record backs

@@ -445,6 +445,29 @@
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   .c-inline .g { font-size: 0.6rem; max-width: 8em; }
   .c-inline[hidden] { display: none; }
+  /* Hebrew on Hebrew: a dictionary's entry on the card, laid out like the
+     verse — a run of blocks, Hebrew over its English; a quoted line in a gold
+     box, because gold is line work and a quotation is a line drawn around
+     somebody else's words */
+  .hoh-slot:empty { display: none; }
+  .hoh { margin: 0.4rem 0 0; padding: 0.45rem 0.6rem 0.3rem; background: var(--surface-c);
+    border: 1px solid var(--line-c); border-radius: 0.6rem; max-height: 42vh; overflow: auto; }
+  .hoh .r-label { margin: 0 0 0.3rem; }
+  .hoh-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem; }
+  .hoh-hw { font-size: 1.3rem; line-height: 1.3; color: var(--shani-ink); }
+  .hoh-head .lic-chip.on { color: var(--sel); border-color: var(--sel-dim); }
+  .hoh-held, .hoh-silent, .hoh-src { font-size: 0.72rem; line-height: 1.45; color: var(--muted); margin: 0.35rem 0 0; direction: ltr; text-align: left; }
+  .hoh-silent .hoh-hw { font-size: 1.05rem; }
+  .hoh-run { position: relative; margin: 0.8rem 0 0.2rem; padding: 0.5rem 0.5rem 0.15rem; text-align: right; }
+  .hoh-quote { border: 1px solid var(--gold); border-radius: 0.6rem; }
+  .hoh-prose { border-inline-end: 2px solid var(--shani-dim); }
+  .hoh-ref { position: absolute; top: -0.55rem; left: 0.5rem; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); background: var(--surface-c); padding: 0 0.3rem; direction: ltr; }
+  .hoh-run .wb { margin: 0 0.14rem 0.45rem; }
+  .hoh-run .w { font-size: 1.05rem; }
+  .hoh-run .g { font-size: 0.58rem; max-width: 8em; }
+  .hoh-src { border-top: 1px solid var(--line-c); padding-top: 0.35rem; }
+  body.en .hoh-run { direction: ltr; text-align: left; }
   .c-inline .lab { display: block; direction: ltr; text-align: left; font-size: 0.62rem;
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.1rem; }
   .c-inline .lab .lic-chip { text-transform: none; letter-spacing: 0.02em; }

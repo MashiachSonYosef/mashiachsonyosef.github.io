@@ -36,6 +36,7 @@ export function zonesOnDisk(dir = ZONES) {
   return readdirSync(dir)
     .filter((f) => f.endsWith(".bin"))
     .filter((f) => !f.endsWith(".commentary.bin"))
+    .filter((f) => !f.endsWith(".hoh.bin"))         // a dictionary sidecar, <slug>.hoh.bin, same law
     .filter((f) => !/^[0-9a-f]{2}\.bin$/.test(f))   // route-store shards
     .filter((f) => f !== "w-top.bin")
     .filter((f) => !f.startsWith("fixture-"))       // instruments, not works
@@ -75,6 +76,15 @@ export function zonesServed(dir = ZONES) {
  *  nothing to look at without one, and should say so rather than pass. */
 export function zonesWithCommentary(dir = ZONES) {
   return zonesOnDisk(dir).filter((z) => existsSync(join(dir, `${z}.commentary.bin`)));
+}
+
+/** Zones that also carry a Hebrew-on-Hebrew sidecar (<slug>.hoh.bin), fixtures
+ *  included — a fixture is the only place one may stand until a delivery
+ *  lands, and the check that presses the panel needs to find it. */
+export function zonesWithHoh(dir = ZONES) {
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir).filter((f) => f.endsWith(".hoh.bin")).map((f) => f.replace(/\.hoh\.bin$/, "")).sort()
+    .filter((z) => existsSync(join(dir, `${z}.bin`)));
 }
 
 /** The URL a check should open by default. Argv still wins, so a run can

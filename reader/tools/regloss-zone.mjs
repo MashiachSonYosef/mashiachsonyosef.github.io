@@ -30,6 +30,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
+import { glossMFor, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
 import { cellsOf } from "./span-slice-v1.mjs";
 import { require_ } from "./zone-lib-v1.mjs";
 
@@ -83,8 +84,16 @@ for (const u of Object.values(zone.units || {}))
   for (const e of [...(u.section || []), ...Object.values(u.words || {}).flat()])
     (e.words || []).forEach(countWord);
 
+// The M rides with the gloss it licenses, derived over the same store in the
+// same pass (gloss-m-rule-v1: a reading shown is a reading licensed). Until
+// 2026-09-12 this tool moved the gloss and left gloss_m behind, so every key
+// the re-projection added — the headword keys of the look-up-by toggle —
+// carried a reading and no license record: 77,342 of them across the shelf.
+const { gloss_m: glossM, drift: glossMDrift } = glossMFor(store, gloss);
+const mBefore = Object.keys(zone.gloss_m || {}).length;
 const previous = (zone.emitted_from || {}).gloss_layer || {};
 zone.gloss = gloss;
+zone.gloss_m = glossM;
 zone.counts.glossed_words = glossedWords;
 zone.emitted_from.gloss_layer = {
   ...previous,
@@ -102,6 +111,7 @@ zone.emitted_from.gloss_layer = {
     forms_whose_first_reading_moved: changed,
     words_carrying_a_reading: `${before.words ?? "?"} → ${glossedWords}`,
     why: "the route store moved; a zone that does not move with it prints one reading and offers another",
+    m_layer: `${GLOSS_M_RULE_ID}: gloss_m re-derived over the same store for every key of the re-projected table — ${Object.keys(glossM).length} readings carry their M (was ${mBefore}), ${glossMDrift} readings no route stands on and shown without a chip`,
   },
 };
 
@@ -115,7 +125,7 @@ zone.emitted_from.gloss_layer = {
   const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
   const me = "tools/regloss-zone.mjs";
   pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-  for (const f of ["gloss_layer.reprojected"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = me; }
+  for (const f of ["gloss_layer.reprojected", "gloss_m"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = me; }
   const why = "the gloss layer is a projection of the route store over this zone's own keys, re-run here at cell grain after the component layer was projected";
   pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
   const exp = "with this zone's rebuild by a build-zone run that writes its gloss layer in its single pass";

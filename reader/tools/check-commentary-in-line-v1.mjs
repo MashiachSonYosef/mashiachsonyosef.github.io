@@ -5,49 +5,78 @@
 // card — a whole Rashi in the same box as the readings and the record. It is
 // the section's other text, so it belongs in the section.
 //
-// One handle per line, not per word: three words on a line share a single
-// generic handle under them, and which of them the reader wants is settled
-// after the press, not before it. Choosing one opens it under the words it
-// covers, which pushes the words it does not cover onto the next line — and
-// pushes the handles with them, because handles belong to lines and the lines
-// have just changed.
+// Two grains of attachment, and this check drives both where the shelf
+// carries them:
 //
-// The word-anchored map is a Genesis shape and 1 Kings carries none, so this
-// runs against data/zones/fixture*.bin — a copy of 1 Kings with its own
-// section commentary also hung at word positions. The fixture is a test
-// instrument, never served and never deployed; ?b=1kings below is the real
-// zone, and checks the section-level line is untouched by any of this.
+//   at a WORD — one handle per line, not per word: three words on a line
+//   share a single generic handle under them, and which of them the reader
+//   wants is settled after the press, not before it. Choosing one opens it
+//   under the words it covers, which pushes the words it does not cover onto
+//   the next line — and pushes the handles with them, because handles belong
+//   to lines and the lines have just changed. The word-anchored map is a
+//   Genesis shape; it runs against a fixture (data/zones/fixture-*.bin with
+//   a sidecar hung at word positions), a test instrument never served.
+//
+//   at a SECTION — the whole work stands under the whole section
+//   (zone-commentary-rule-v3-two-zones-one-coordinate): a bar under the
+//   section number, the width of the column, naming the work; the press
+//   opens the commentary's own text as blocks, each opening the same card
+//   the verse's words do. This runs against the real shelf.
+//
+// Each part says SKIPPED, by name, when the shelf carries nothing of that
+// grain, rather than failing every assertion against a page with nothing on
+// it or — worse — passing over nothing.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
-// The instrument this check drives, named once from what is on disk rather
-// than typed into the goto below. A fixture is still a fixture; which one
-// exists is the directory's to say.
-const FIXTURE_ZONE = (await import("node:fs")).readdirSync("data/zones")
-  .filter((f) => f.startsWith("fixture-") && f.endsWith(".bin"))
-  .map((f) => f.replace(/\.bin$/, ""))[0] || "fixture";
+import { defaultZoneUrl, zonesWithCommentary } from "./zones-on-disk-v1.mjs";
+import { readdirSync, readFileSync, existsSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
 const SKIP_LABEL = "check-commentary-in-line-v1";
 // A check about commentary needs a work that carries some. When none is
 // served, that is a fact about the corpus and not a defect in the reader, so
 // this says so and stops rather than failing every assertion against a page
 // with nothing on it.
-{
-  const { zonesWithCommentary } = await import("./zones-on-disk-v1.mjs");
-  if (!zonesWithCommentary().length) {
-    console.log(`SKIPPED — no served work carries a commentary sidecar, so ${SKIP_LABEL} has nothing to open`);
-    process.exit(3);
-  }
+const WITH_COMMENTARY = zonesWithCommentary();
+if (!WITH_COMMENTARY.length) {
+  console.log(`SKIPPED — no served work carries a commentary sidecar, so ${SKIP_LABEL} has nothing to open`);
+  process.exit(3);
 }
+// What each sidecar carries, asked of the file: entries at word positions,
+// entries on whole sections, or both.
+const sidecarOf = (slug) => {
+  const p = `data/zones/${slug}.commentary.bin`;
+  if (!existsSync(p)) return null;
+  try { return JSON.parse(gunzipSync(readFileSync(p)).toString("utf8")); } catch { return null; }
+};
+const grains = (store) => {
+  const units = Object.values((store && store.units) || {});
+  return {
+    word: units.some((u) => u && u.words && Object.keys(u.words).length),
+    section: units.some((u) => u && Array.isArray(u.section) && u.section.length),
+  };
+};
+// The instrument the word-anchored part drives, named from what is on disk
+// rather than typed into the goto below. A fixture is still a fixture; which
+// one exists, and whether it carries word-anchored commentary, is the
+// directory's to say.
+const FIXTURE_ZONE = readdirSync("data/zones")
+  .filter((f) => f.startsWith("fixture-") && f.endsWith(".bin") && !f.endsWith(".commentary.bin"))
+  .map((f) => f.replace(/\.bin$/, ""))
+  .find((z) => grains(sidecarOf(z)).word) || null;
+const WORD_ZONE = WITH_COMMENTARY.find((z) => grains(sidecarOf(z)).word) || null;
+const SECTION_ZONE = WITH_COMMENTARY.find((z) => grains(sidecarOf(z)).section) || null;
 
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const BASE = (defaultZoneUrl()).split("?")[0];
-const BOOKS_ON_DISK = zonesOnDisk();
 
 const b = await chromium.launch(launchOptions());
 
-for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the English reader"]]) {
+// ---- at a word: the handle, the chooser, the panel, on the fixture --------
+if (!FIXTURE_ZONE) {
+  console.log("SKIPPED (at a word) — no fixture on disk carries word-anchored commentary, so the in-line handle has nothing to open; the section grain below is judged on the real shelf");
+} else for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the English reader"]]) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await p.goto(`${BASE}?b=${FIXTURE_ZONE}${mode}`, { waitUntil: "networkidle" });
@@ -95,14 +124,15 @@ for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the Engli
   const where = await p.evaluate(() => {
     const para = document.querySelector("section.seg .he-text");
     const pill = para.querySelector(".c-mark");
+    if (!pill) return null;
     const pr = pill.getBoundingClientRect(), cr = para.getBoundingClientRect();
     return { fromLeft: Math.round(pr.left - cr.left), fromRight: Math.round(cr.right - pr.right),
       dir: getComputedStyle(para).direction, pillDir: getComputedStyle(pill).direction };
   });
   check("  it sits under the start of the line, not its end",
-    where.dir === "rtl" ? where.fromRight < 12 : where.fromLeft < 12,
-    `${where.dir} · ${where.fromLeft}px from the left, ${where.fromRight}px from the right`);
-  check("  and its own text still reads left to right", where.pillDir === "ltr");
+    !!where && (where.dir === "rtl" ? where.fromRight < 12 : where.fromLeft < 12),
+    where ? `${where.dir} · ${where.fromLeft}px from the left, ${where.fromRight}px from the right` : "no handle");
+  check("  and its own text still reads left to right", !!where && where.pillDir === "ltr");
   check("  it counts everything attached to that line, not to one word",
     shut.names.some((n) => new RegExp(`^C${shut.units}\\b`).test(n)), shut.names.join(" | "));
   // The handle says what it is and how much of it there is. Which works, which
@@ -112,6 +142,7 @@ for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the Engli
     shut.names.every((n) => /^C\d*\s*Commentary$/.test(n)), shut.names.slice(0, 2).join(" | "));
   check("  the old chip that opened the card is gone", shut.chips === 0);
   check("  nothing is open until it is pressed", shut.open === 0);
+  if (!shut.handles) { await p.close(); continue; }
 
   // the press offers what is on the line; the choice opens under its own word
   await p.click("section.seg .c-mark");
@@ -214,25 +245,107 @@ for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the Engli
   await p.close();
 }
 
-// ---- and the section-level line, on the real zone, is untouched -------
-{
+// ---- at a section: the bar, the line, and its words, on the real shelf --
+//
+// The verse's words carry readings and open a card. So must a commentary's:
+// the whole project is that no English is forced anywhere, and a commentary
+// printed as one unreadable run of Hebrew forces the reader either to know it
+// already or to go somewhere else. The same block, the same card, the same
+// store, the same licence per reading.
+if (!SECTION_ZONE) {
+  console.log("SKIPPED (at a section) — no served work carries section-level commentary");
+} else for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the English reader"]]) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=${zonesOnDisk()[0]}`, { waitUntil: "networkidle" });
+  await p.goto(`${BASE}?b=${SECTION_ZONE}${mode}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .c-bar");
+  await p.waitForTimeout(500);
+  console.log(`— ${SECTION_ZONE}, section-level commentary, ${reader} —`);
+  const refused = await p.evaluate(() => window.__commentaryRefused || null);
+  check("  the sidecar passed its seal", !refused, refused || "");
+  const shut = await p.evaluate(() => {
+    const s = document.querySelector("section.seg");
+    return { marks: s.querySelectorAll(".c-mark").length, bars: s.querySelectorAll(".c-bar").length,
+      expanded: s.querySelector(".c-bar").getAttribute("aria-expanded"),
+      name: s.querySelector(".c-bar .c-name")?.textContent.replace(/\s+/g, " ").trim() || "",
+      shown: [...s.querySelectorAll(".c-inline")].filter((x) => !x.hidden).length };
+  });
+  check("  a section-only zone grows no in-line handles", shut.marks === 0, `${shut.marks} handles`);
+  check("  the section carries one bar, naming the work", shut.bars === 1 && shut.name.length > 3, `${shut.bars} bar(s) · "${shut.name}"`);
+  check("  nothing is open until it is pressed", shut.expanded !== "true" && shut.shown === 0);
+
   await p.click("section.seg .c-bar");
-  await p.waitForTimeout(400);
-  const sec = await p.evaluate(() => {
+  await p.waitForTimeout(500);
+  const open = await p.evaluate(() => {
     const s = document.querySelector("section.seg");
     const inl = s.querySelector(".c-inline");
     const bar = s.querySelector(".c-bar").getBoundingClientRect();
-    return { marks: s.querySelectorAll(".c-mark").length,
+    const unit = s.dataset.unit || s.id || null;
+    const store = window.__commentaryStore || {};
+    // the entry this line prints, as the sidecar recorded it
+    const secEntries = Object.entries(store.units || {}).map(([k, u]) => [k, (u && u.section) || []]);
+    const mine = unit ? (store.units || {})[unit] : null;
+    const first = (mine && mine.section && mine.section[0]) || (secEntries.find(([, l]) => l.length) || [null, [null]])[1][0];
+    const wbs = inl ? [...inl.querySelectorAll(".wb")] : [];
+    return {
       shown: !!inl && !inl.hidden, belowBar: !!inl && inl.getBoundingClientRect().top >= bar.top,
-      licence: !!inl?.querySelector(".lic-chip") };
+      fullWidth: !!inl && Math.round(inl.getBoundingClientRect().width) >= Math.round(s.querySelector(".he-text").getBoundingClientRect().width) - 4,
+      lab: (inl?.querySelector(".lab")?.textContent || "").replace(/\s+/g, " ").trim(),
+      licence: inl?.querySelector(".lic-chip")?.textContent || "",
+      att: (inl?.querySelector(".c-att")?.textContent || "").replace(/\s+/g, " ").trim(),
+      basis: inl?.querySelector(".c-how-basis")?.textContent || "",
+      marked: s.querySelectorAll(".he-text .wb.c-open").length, verseWords: s.querySelectorAll(".he-text .wb").length,
+      blocks: wbs.length, recorded: first ? (first.words || []).length : null,
+      withReading: wbs.filter((w) => (w.querySelector(".g")?.textContent || "").trim()).length,
+      rejoins: !!first && wbs.map((w) => w.querySelector(".w").textContent).join("") === String(first.text || "").replace(/\s+/gu, ""),
+      dir: inl ? getComputedStyle(inl).direction : "-",
+      onCard: !document.getElementById("hud").hidden,
+    };
   });
-  console.log("— the real zone, section-level commentary —");
-  check("  a section-only zone grows no in-line handles", sec.marks === 0, `${sec.marks} handles`);
-  check("  its own line still opens under itself, with its licence", sec.shown && sec.belowBar && sec.licence);
+  check("  its line opens under itself, the width of the column", open.shown && open.belowBar && open.fullWidth);
+  check("  it opens in the section, not on the card", !open.onCard);
+  check("  it names the work, the coordinate, and its licence",
+    /\d+:\d+/.test(open.lab) && open.lab.length > 8 && open.licence.length > 2, `${open.lab.slice(0, 60)} · ${open.licence}`);
+  check("  and says what a commentary is, and whose the attachment is",
+    /a work of its own/i.test(open.att) && /ours/i.test(open.att) && /^SEALED_UNIT_COORDINATE_/.test(open.basis), open.basis);
+  check("  every word of the section carries the mark while it stands open", open.marked === open.verseWords && open.marked > 0,
+    `${open.marked} of ${open.verseWords}`);
+  check("  every word of it is a block", open.recorded !== null && open.blocks === open.recorded,
+    `${open.blocks} blocks, the sidecar records ${open.recorded ?? "?"}`);
+  check("  and the blocks put the commentary back together", open.rejoins);
+  check("  most of them carry a reading", open.withReading > open.blocks / 2, `${open.withReading} of ${open.blocks}`);
+  check(`  it reads ${mode ? "left to right in the English reader" : "right to left in the Hebrew reader"}`,
+    open.dir === (mode ? "ltr" : "rtl"), open.dir);
+
+  // a commentary's word opens the same card the verse's words do
+  const pressed = await p.evaluate(() => {
+    const w = [...document.querySelectorAll("section.seg .c-inline .wb")]
+      .find((x) => (x.querySelector(".g")?.textContent || "").trim());
+    if (!w) return null;
+    (w.querySelector(".w span") || w.querySelector(".w")).click();
+    return w.querySelector(".w").textContent.trim();
+  });
+  await p.waitForTimeout(600);
+  const card = await p.evaluate(() => {
+    const h = document.querySelector("#hud");
+    if (!h || h.hidden) return { open: false };
+    return { open: true, pills: h.querySelectorAll(".r-pills button, .r-pills .r-pill").length,
+      text: (h.textContent || "").replace(/\s+/g, " ").slice(0, 60) };
+  });
+  check("  pressing one of its words opens the card", card.open, `${pressed} · ${card.text}`);
+  check("  and the card offers its routes", card.pills > 0, `${card.pills} on offer`);
+
+  // closing the bar takes the line and the mark away again
+  await p.evaluate(() => { const h = document.querySelector("#hud"); if (h) h.hidden = true; });
+  await p.click("section.seg .c-bar");
+  await p.waitForTimeout(400);
+  const closed = await p.evaluate(() => {
+    const s = document.querySelector("section.seg");
+    return { shown: [...s.querySelectorAll(".c-inline")].filter((x) => !x.hidden).length,
+      marked: s.querySelectorAll(".he-text .wb.c-open").length };
+  });
+  check("  pressing the bar again closes it and takes the mark off", closed.shown === 0 && closed.marked === 0,
+    `${closed.shown} open, ${closed.marked} marked`);
   await p.close();
 }
 
@@ -251,10 +364,13 @@ for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the Engli
 // given the reader, and it must stop the build rather than be drawn wrong
 // across everything. The reader refuses it visibly either way; this makes sure
 // nobody ships past the refusal.
-// The books come from the directory. This read ["genesis", "1kings"] — two
-// works withdrawn from the site on 2026-08-23 — so it opened the withheld
-// page twice and asserted about a reader that was never loaded.
-for (const book of BOOKS_ON_DISK) {
+// The books come from the directory: every work that carries a sidecar. This
+// read ["genesis", "1kings"] once — two works withdrawn from the site on
+// 2026-08-23 — so it opened the withheld page twice and asserted about a
+// reader that was never loaded; and later it read every zone on the shelf,
+// which is three and a half thousand pages to open for the twenty-eight that
+// carry anything.
+for (const book of WITH_COMMENTARY) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await p.goto(`${BASE}?b=${book}`, { waitUntil: "networkidle" });
@@ -288,10 +404,10 @@ for (const book of BOOKS_ON_DISK) {
 
 // ---- and the span the chain recorded for it ---------------------------
 //
-// The chain records how many words each commentary covers. That number is the
-// corpus's own measurement of its own claim, and the reader draws it: the
-// panel opens after the last word of the span, everything the span covers
-// stays above it, and the rest of the verse goes below.
+// The chain records how many words each word-anchored commentary covers. That
+// number is the corpus's own measurement of its own claim, and the reader
+// draws it: the panel opens after the last word of the span, everything the
+// span covers stays above it, and the rest of the verse goes below.
 //
 // The commentary's own opening quotation is checked against that span but
 // never substituted for it. In Genesis the two agree on 180 of 181; the one
@@ -299,10 +415,13 @@ for (const book of BOOKS_ON_DISK) {
 // abbreviation that a verse word ending in the same letter absorbed. Where
 // they differ the panel prints both numbers. This makes sure it does, and that
 // the mark did not quietly follow the quotation instead.
-{
+if (!WORD_ZONE) {
+  console.log("SKIPPED (the span the chain recorded) — no served work carries word-anchored commentary");
+  console.log("SKIPPED (what stands on a word, in the chain's order) — no served work carries word-anchored commentary");
+} else {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=${zonesOnDisk()[0]}`, { waitUntil: "networkidle" });
+  await p.goto(`${BASE}?b=${WORD_ZONE}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .c-mark");
   await p.waitForTimeout(700);
   console.log("— a commentary covers the span the chain recorded —");
@@ -381,227 +500,219 @@ for (const book of BOOKS_ON_DISK) {
   });
   check("  the store was reachable to check the chain's own numbers against", reachable > 0, `${reachable} attachments`);
   await p.close();
-}
 
-// ---- a commentary is a work, so its own words open ---------------------
-//
-// The verse's words carry readings and open a card. So must a commentary's:
-// the whole project is that no English is forced anywhere, and a commentary
-// printed as one unreadable run of Hebrew forces the reader either to know it
-// already or to go somewhere else. The same block, the same card, the same
-// store, the same licence per reading.
-{
-  const p = await b.newPage({ viewport: { width: 412, height: 915 } });
-  p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=${zonesOnDisk()[0]}`, { waitUntil: "networkidle" });
-  await p.waitForSelector("section.seg .c-mark");
-  await p.waitForTimeout(800);
-  console.log("— a commentary's own words open —");
-  await p.evaluate(() => document.querySelector("section.seg .c-mark").click());
-  await p.waitForTimeout(400);
-  await p.evaluate(() => document.querySelectorAll("section.seg .c-choice")[1].click());
-  await p.waitForTimeout(700);
+  // ---- a word-anchored commentary is a work, so its own words open ------
+  {
+    const p2 = await b.newPage({ viewport: { width: 412, height: 915 } });
+    p2.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+    await p2.goto(`${BASE}?b=${WORD_ZONE}`, { waitUntil: "networkidle" });
+    await p2.waitForSelector("section.seg .c-mark");
+    await p2.waitForTimeout(800);
+    console.log("— a commentary's own words open —");
+    await p2.evaluate(() => document.querySelector("section.seg .c-mark").click());
+    await p2.waitForTimeout(400);
+    await p2.evaluate(() => document.querySelectorAll("section.seg .c-choice")[1].click());
+    await p2.waitForTimeout(700);
 
-  const r = await p.evaluate(() => {
-    const pan = document.querySelector("section.seg .c-mark-slot:not(.c-choose)");
-    const unit = pan.dataset.unit || "";
-    const wbs = [...pan.querySelectorAll(".c-mark-text .wb")];
-    let recorded = null;
-    const units = (window.__commentaryStore || {}).units || {};
-    for (const u of Object.values(units))
-      for (const list of Object.values(u.words || {}))
-        for (const e of list)
-          if (e.ref === unit) recorded = { words: (e.words || []).length, text: e.text };
-    return { ref: unit.slice(0, 30), blocks: wbs.length, recorded,
-      withReading: wbs.filter((w) => (w.querySelector(".g")?.textContent || "").trim()).length,
-      rejoins: wbs.map((w) => w.querySelector(".w").textContent).join("") ===
-        String(recorded ? recorded.text : "").replace(/\s+/gu, "") };
-  });
-  // What it is, before anything else. The card used to open with a reference
-  // and a licence chip and nothing that said what the reader was looking at.
-  const head = await p.evaluate(() => {
-    const l = document.querySelector("section.seg .c-mark-slot:not(.c-choose) .lab");
-    const rows = [...l.querySelectorAll(".c-head-row")].map((x) => ({
-      lab: (x.querySelector(".c-head-lab")?.textContent || "").trim(),
-      said: x.textContent.replace(/\s+/g, " ").trim() }));
-    const he = [...l.querySelectorAll(".c-head-he .wb")];
-    return { rows,
-      titleBlocks: he.length,
-      titleOpens: he.filter((w) => (w.querySelector(".g")?.textContent || "").trim()).length,
-      on: rows.find((x) => /comments on/i.test(x.lab))?.said || "" };
-  });
-  // What a commentary is comes before what it is called, and what it is called
-  // comes before where it sits. A reader met a reference and a licence chip and
-  // was expected to already know the rest.
-  check("  it says what a commentary is before it says anything else",
-    head.rows.length >= 4 && /what this is/i.test(head.rows[0].lab) &&
-    /a work of its own/i.test(head.rows[0].said),
-    head.rows.map((x) => x.lab).join(" · "));
-  check("  and it prints the chain's own reason under that sentence",
-    /[A-Z_]{6,}/.test(head.rows[0].said), (head.rows[0].said.match(/[A-Z_]{6,}/) || ["none"])[0]);
-  check("  its own title is drawn like every other title, and opens",
-    head.titleBlocks > 0 && head.titleOpens > 0,
-    `${head.titleOpens} of ${head.titleBlocks} blocks carry a reading`);
-  // The coordinate is the sidecar's, not this file's: a typed "Genesis 1:1"
-  // here would fail the day a pack for any other coordinate lands. What holds
-  // for every pack: a coordinate is said, and the grain is named.
-  check("  and it says what it comments on, in plain English",
-    /\d+:\d+/.test(head.on) && /word|section/.test(head.on), head.on);
-
-  check("  every word of it is a block", r.recorded && r.blocks === r.recorded.words,
-    `${r.ref} · ${r.blocks} blocks, the sidecar records ${r.recorded ? r.recorded.words : "?"}`);
-  check("  and the blocks put the commentary back together", r.rejoins);
-  check("  most of them carry a reading", r.withReading > r.blocks / 2, `${r.withReading} of ${r.blocks}`);
-
-  const pressed = await p.evaluate(() => {
-    const w = [...document.querySelectorAll(".c-mark-text .wb")]
-      .find((x) => (x.querySelector(".g")?.textContent || "").trim());
-    if (!w) return null;
-    (w.querySelector(".w span") || w.querySelector(".w")).click();
-    return w.querySelector(".w").textContent.trim();
-  });
-  await p.waitForTimeout(600);
-  const card = await p.evaluate(() => {
-    const h = document.querySelector("#hud");
-    if (!h || h.hidden) return { open: false };
-    return { open: true, pills: h.querySelectorAll(".r-pills button, .r-pills .r-pill").length,
-      text: (h.textContent || "").replace(/\s+/g, " ").slice(0, 60) };
-  });
-  check("  pressing one opens the card", card.open, `${pressed} · ${card.text}`);
-  check("  and the card offers its routes", card.pills > 0, `${card.pills} on offer`);
-
-  const ans = await p.evaluate(() => {
-    const h = document.querySelector("#hud"); if (h) h.hidden = true;
-    const btn = document.querySelector(".c-counter-mark");
-    if (!btn) return { none: true };
-    btn.click();
-    return { none: false, label: btn.textContent.trim() };
-  });
-  await p.waitForTimeout(700);
-  if (!ans.none) {
-    const under = await p.evaluate(() => {
-      const u = document.querySelector(".c-mark-slot.c-counter");
-      if (!u) return null;
-      const wbs = [...u.querySelectorAll(".c-mark-text .wb")];
-      return { blocks: wbs.length, lic: !!u.querySelector(".lic-chip"),
-        withReading: wbs.filter((w) => (w.querySelector(".g")?.textContent || "").trim()).length };
+    const r = await p2.evaluate(() => {
+      const pan = document.querySelector("section.seg .c-mark-slot:not(.c-choose)");
+      const unit = pan.dataset.unit || "";
+      const wbs = [...pan.querySelectorAll(".c-mark-text .wb")];
+      let recorded = null;
+      const units = (window.__commentaryStore || {}).units || {};
+      for (const u of Object.values(units))
+        for (const list of Object.values(u.words || {}))
+          for (const e of list)
+            if (e.ref === unit) recorded = { words: (e.words || []).length, text: e.text };
+      return { ref: unit.slice(0, 30), blocks: wbs.length, recorded,
+        withReading: wbs.filter((w) => (w.querySelector(".g")?.textContent || "").trim()).length,
+        rejoins: wbs.map((w) => w.querySelector(".w").textContent).join("") ===
+          String(recorded ? recorded.text : "").replace(/\s+/gu, "") };
     });
-    check("  a commentary answering it opens under it, worded too",
-      under && under.blocks > 0 && under.lic,
-      `${ans.label} · ${under ? `${under.withReading} of ${under.blocks} carry a reading` : "did not open"}`);
+    // What it is, before anything else. The card used to open with a reference
+    // and a licence chip and nothing that said what the reader was looking at.
+    const head = await p2.evaluate(() => {
+      const l = document.querySelector("section.seg .c-mark-slot:not(.c-choose) .lab");
+      const rows = [...l.querySelectorAll(".c-head-row")].map((x) => ({
+        lab: (x.querySelector(".c-head-lab")?.textContent || "").trim(),
+        said: x.textContent.replace(/\s+/g, " ").trim() }));
+      const he = [...l.querySelectorAll(".c-head-he .wb")];
+      return { rows,
+        titleBlocks: he.length,
+        titleOpens: he.filter((w) => (w.querySelector(".g")?.textContent || "").trim()).length,
+        on: rows.find((x) => /comments on/i.test(x.lab))?.said || "" };
+    });
+    // What a commentary is comes before what it is called, and what it is called
+    // comes before where it sits. A reader met a reference and a licence chip and
+    // was expected to already know the rest.
+    check("  it says what a commentary is before it says anything else",
+      head.rows.length >= 4 && /what this is/i.test(head.rows[0].lab) &&
+      /a work of its own/i.test(head.rows[0].said),
+      head.rows.map((x) => x.lab).join(" · "));
+    check("  and it prints the chain's own reason under that sentence",
+      /[A-Z_]{6,}/.test(head.rows[0].said), (head.rows[0].said.match(/[A-Z_]{6,}/) || ["none"])[0]);
+    check("  its own title is drawn like every other title, and opens",
+      head.titleBlocks > 0 && head.titleOpens > 0,
+      `${head.titleOpens} of ${head.titleBlocks} blocks carry a reading`);
+    // The coordinate is the sidecar's, not this file's: a typed "Genesis 1:1"
+    // here would fail the day a pack for any other coordinate lands. What holds
+    // for every pack: a coordinate is said, and the grain is named.
+    check("  and it says what it comments on, in plain English",
+      /\d+:\d+/.test(head.on) && /word|section/.test(head.on), head.on);
+
+    check("  every word of it is a block", r.recorded && r.blocks === r.recorded.words,
+      `${r.ref} · ${r.blocks} blocks, the sidecar records ${r.recorded ? r.recorded.words : "?"}`);
+    check("  and the blocks put the commentary back together", r.rejoins);
+    check("  most of them carry a reading", r.withReading > r.blocks / 2, `${r.withReading} of ${r.blocks}`);
+
+    const pressed = await p2.evaluate(() => {
+      const w = [...document.querySelectorAll(".c-mark-text .wb")]
+        .find((x) => (x.querySelector(".g")?.textContent || "").trim());
+      if (!w) return null;
+      (w.querySelector(".w span") || w.querySelector(".w")).click();
+      return w.querySelector(".w").textContent.trim();
+    });
+    await p2.waitForTimeout(600);
+    const card = await p2.evaluate(() => {
+      const h = document.querySelector("#hud");
+      if (!h || h.hidden) return { open: false };
+      return { open: true, pills: h.querySelectorAll(".r-pills button, .r-pills .r-pill").length,
+        text: (h.textContent || "").replace(/\s+/g, " ").slice(0, 60) };
+    });
+    check("  pressing one opens the card", card.open, `${pressed} · ${card.text}`);
+    check("  and the card offers its routes", card.pills > 0, `${card.pills} on offer`);
+
+    const ans = await p2.evaluate(() => {
+      const h = document.querySelector("#hud"); if (h) h.hidden = true;
+      const btn = document.querySelector(".c-counter-mark");
+      if (!btn) return { none: true };
+      btn.click();
+      return { none: false, label: btn.textContent.trim() };
+    });
+    await p2.waitForTimeout(700);
+    if (!ans.none) {
+      const under = await p2.evaluate(() => {
+        const u = document.querySelector(".c-mark-slot.c-counter");
+        if (!u) return null;
+        const wbs = [...u.querySelectorAll(".c-mark-text .wb")];
+        return { blocks: wbs.length, lic: !!u.querySelector(".lic-chip"),
+          withReading: wbs.filter((w) => (w.querySelector(".g")?.textContent || "").trim()).length };
+      });
+      check("  a commentary answering it opens under it, worded too",
+        under && under.blocks > 0 && under.lic,
+        `${ans.label} · ${under ? `${under.withReading} of ${under.blocks} carry a reading` : "did not open"}`);
+    }
+
+    // the reader it was opened in is the reader it reads in
+    await p2.evaluate(() => {
+      const h = document.querySelector("#hud"); if (h) h.hidden = true;
+      const btn = [...document.querySelectorAll("button")].find((x) => /english reader/i.test(x.textContent || ""));
+      if (btn) btn.click();
+    });
+    await p2.waitForTimeout(600);
+    const dir = await p2.evaluate(() => {
+      const t = document.querySelector(".c-mark-text");
+      const cs = t ? getComputedStyle(t) : null;
+      const bare = [...document.querySelectorAll(".c-mark-text .g.bare")];
+      return { en: document.body.classList.contains("en"),
+        direction: cs ? cs.direction : "-", align: cs ? cs.textAlign : "-",
+        glossAlign: (() => { const g = document.querySelector(".c-mark-text .g"); return g ? getComputedStyle(g).textAlign : "-"; })(),
+        bare: bare.length,
+        // The bug was that a word the store answers nothing for lost the row its
+        // reading would have stood on, so its Hebrew climbed into the reading's
+        // line. The test is therefore against the shortest real reading — one
+        // line of it — and not against the tallest: a reading long enough to
+        // wrap is meant to be taller, and always was.
+        spread: (() => {
+          const gs = [...document.querySelectorAll(".c-mark-text .g")];
+          const h = (g) => Math.round(g.getBoundingClientRect().height);
+          const real = gs.filter((g) => !g.classList.contains("bare")).map(h);
+          const bareH = gs.filter((g) => g.classList.contains("bare")).map(h);
+          if (!real.length || !bareH.length) return { oneLine: 0, shortestBare: 0, kept: false };
+          const oneLine = Math.min(...real);
+          const shortestBare = Math.min(...bareH);
+          return { oneLine, shortestBare, kept: shortestBare >= oneLine };
+        })() };
+    });
+    check("  in the English reader the commentary runs left to right too",
+      dir.en && dir.direction === "ltr" && dir.align === "left",
+      `body.en=${dir.en} · ${dir.direction}/${dir.align}`);
+    check("  a reading stands centred under its own word", dir.glossAlign === "center", dir.glossAlign);
+    check("  and a word with no reading still holds the line one would stand on",
+      dir.spread.kept,
+      `${dir.bare} words carry no reading · their line is ${dir.spread.shortestBare}px ` +
+      `against ${dir.spread.oneLine}px for one line of a reading`);
+    await p2.close();
   }
 
-  // the reader it was opened in is the reader it reads in
-  await p.evaluate(() => {
-    const h = document.querySelector("#hud"); if (h) h.hidden = true;
-    const btn = [...document.querySelectorAll("button")].find((x) => /english reader/i.test(x.textContent || ""));
-    if (btn) btn.click();
-  });
-  await p.waitForTimeout(600);
-  const dir = await p.evaluate(() => {
-    const t = document.querySelector(".c-mark-text");
-    const cs = t ? getComputedStyle(t) : null;
-    const bare = [...document.querySelectorAll(".c-mark-text .g.bare")];
-    const row = [...document.querySelectorAll(".c-mark-text .wb")].slice(0, 8)
-      .map((w) => Math.round(w.querySelector(".w").getBoundingClientRect().top));
-    return { en: document.body.classList.contains("en"),
-      direction: cs ? cs.direction : "-", align: cs ? cs.textAlign : "-",
-      glossAlign: (() => { const g = document.querySelector(".c-mark-text .g"); return g ? getComputedStyle(g).textAlign : "-"; })(),
-      bare: bare.length,
-      // The bug was that a word the store answers nothing for lost the row its
-      // reading would have stood on, so its Hebrew climbed into the reading's
-      // line. The test is therefore against the shortest real reading — one
-      // line of it — and not against the tallest: a reading long enough to
-      // wrap is meant to be taller, and always was.
-      spread: (() => {
-        const gs = [...document.querySelectorAll(".c-mark-text .g")];
-        const h = (g) => Math.round(g.getBoundingClientRect().height);
-        const real = gs.filter((g) => !g.classList.contains("bare")).map(h);
-        const bareH = gs.filter((g) => g.classList.contains("bare")).map(h);
-        if (!real.length || !bareH.length) return { oneLine: 0, shortestBare: 0, kept: false };
-        const oneLine = Math.min(...real);
-        const shortestBare = Math.min(...bareH);
-        return { oneLine, shortestBare, kept: shortestBare >= oneLine };
-      })() };
-  });
-  check("  in the English reader the commentary runs left to right too",
-    dir.en && dir.direction === "ltr" && dir.align === "left",
-    `body.en=${dir.en} · ${dir.direction}/${dir.align}`);
-  check("  a reading stands centred under its own word", dir.glossAlign === "center", dir.glossAlign);
-  check("  and a word with no reading still holds the line one would stand on",
-    dir.spread.kept,
-    `${dir.bare} words carry no reading · their line is ${dir.spread.shortestBare}px ` +
-    `against ${dir.spread.oneLine}px for one line of a reading`);
-  await p.close();
-}
+  // ---- and what stands on a word is offered in the chain's own order ----
+  //
+  // A word of Genesis 1:1 carries a hundred and six commentaries from fifty-one
+  // works. Offered in the order the map happened to build them, that is a wall
+  // with no way in: the reader meets fifty-one names and nothing to navigate by.
+  // This page orders them by work, oldest first, on the composition dates the
+  // chain records. The dates are the chain's; the decision to sort on them is
+  // this page's, and an earlier wording of this comment credited the chain with
+  // both. It is not a ranking — the page has no opinion about which commentary
+  // is right — and it is not handed down: it is the one way in available that
+  // does not require an opinion, and it is ours.
+  {
+    const p3 = await b.newPage({ viewport: { width: 412, height: 915 } });
+    p3.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+    await p3.goto(`${BASE}?b=${WORD_ZONE}`, { waitUntil: "networkidle" });
+    await p3.waitForSelector("section.seg .c-mark");
+    await p3.waitForTimeout(800);
+    console.log("— what stands on a word, in the order the chain records —");
+    await p3.evaluate(() => document.querySelector("section.seg .c-mark").click());
+    await p3.waitForTimeout(450);
 
-// ---- and what stands on a word is offered in the chain's own order ------
-//
-// A word of Genesis 1:1 carries a hundred and six commentaries from fifty-one
-// works. Offered in the order the map happened to build them, that is a wall
-// with no way in: the reader meets fifty-one names and nothing to navigate by.
-// This page orders them by work, oldest first, on the composition dates the
-// chain records. The dates are the chain's; the decision to sort on them is
-// this page's, and an earlier wording of this comment credited the chain with
-// both. It is not a ranking — the page has no opinion about which commentary
-// is right — and it is not handed down: it is the one way in available that
-// does not require an opinion, and it is ours.
-{
-  const p = await b.newPage({ viewport: { width: 412, height: 915 } });
-  p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=${zonesOnDisk()[0]}`, { waitUntil: "networkidle" });
-  await p.waitForSelector("section.seg .c-mark");
-  await p.waitForTimeout(800);
-  console.log("— what stands on a word, in the order the chain records —");
-  await p.evaluate(() => document.querySelector("section.seg .c-mark").click());
-  await p.waitForTimeout(450);
+    const shown = await p3.evaluate(() => [...document.querySelectorAll(".c-choice")]
+      .map((x) => x.textContent.replace(/\s+/g, " ").trim()));
+    const truth = await p3.evaluate(() => {
+      // Whichever unit the store actually carries words for. This named
+      // "genesis-1-1", so on any other work it read undefined.words and threw —
+      // and a check that throws reports nothing, which reads like green.
+      const units = (window.__commentaryStore || {}).units || {};
+      const uk = Object.keys(units).find((k) => units[k] && units[k].words && Object.keys(units[k].words).length);
+      const w0 = (uk ? units[uk].words["0"] : null) || [];
+      const byWork = new Map();
+      for (const e of w0) {
+        const y = (e.years && e.years.length && Number.isFinite(Number(e.years[0]))) ? Number(e.years[0]) : Infinity;
+        const k = e.family_en || e.ref;
+        byWork.set(k, Math.min(byWork.has(k) ? byWork.get(k) : Infinity, y));
+      }
+      return { works: [...byWork].sort((a, b) => a[1] - b[1]).map((x) => x[0]), units: w0.length };
+    });
+    const firstWord = shown.filter((t) => truth.works.some((w) => t.endsWith(w) || t.includes(` ${w} ·`)));
+    check("  the first work offered is the oldest the chain records",
+      firstWord.length > 0 && firstWord[0].includes(truth.works[0]),
+      `offered "${firstWord[0]}" · chain's oldest is ${truth.works[0]}`);
+    const pos = (name) => firstWord.findIndex((t) => t.includes(name));
+    check("  and every work sits where its date puts it",
+      truth.works.slice(0, 12).every((w, i) => (firstWord[i] || "").includes(w)),
+      firstWord.slice(0, 4).join(" | "));
+    check("  Ramban stands within reach of Rashi rather than sixty places away",
+      pos("Ramban") > 0 && pos("Ramban") < 12,
+      `Rashi at ${pos("Rashi") + 1}, Ramban at ${pos("Ramban") + 1} of ${truth.works.length} works`);
 
-  const shown = await p.evaluate(() => [...document.querySelectorAll(".c-choice")]
-    .map((x) => x.textContent.replace(/\s+/g, " ").trim()));
-  const truth = await p.evaluate(() => {
-    // Whichever unit the store actually carries words for. This named
-    // "genesis-1-1", so on any other work it read undefined.words and threw —
-    // and a check that throws reports nothing, which reads like green.
-    const units = (window.__commentaryStore || {}).units || {};
-    const uk = Object.keys(units).find((k) => units[k] && units[k].words && Object.keys(units[k].words).length);
-    const w0 = (uk ? units[uk].words["0"] : null) || [];
-    const byWork = new Map();
-    for (const e of w0) {
-      const y = (e.years && e.years.length && Number.isFinite(Number(e.years[0]))) ? Number(e.years[0]) : Infinity;
-      const k = e.family_en || e.ref;
-      byWork.set(k, Math.min(byWork.has(k) ? byWork.get(k) : Infinity, y));
-    }
-    return { works: [...byWork].sort((a, b) => a[1] - b[1]).map((x) => x[0]), units: w0.length };
-  });
-  const firstWord = shown.filter((t) => truth.works.some((w) => t.endsWith(w) || t.includes(` ${w} ·`)));
-  check("  the first work offered is the oldest the chain records",
-    firstWord.length > 0 && firstWord[0].includes(truth.works[0]),
-    `offered "${firstWord[0]}" · chain's oldest is ${truth.works[0]}`);
-  const pos = (name) => firstWord.findIndex((t) => t.includes(name));
-  check("  and every work sits where its date puts it",
-    truth.works.slice(0, 12).every((w, i) => (firstWord[i] || "").includes(w)),
-    firstWord.slice(0, 4).join(" | "));
-  check("  Ramban stands within reach of Rashi rather than sixty places away",
-    pos("Ramban") > 0 && pos("Ramban") < 12,
-    `Rashi at ${pos("Rashi") + 1}, Ramban at ${pos("Ramban") + 1} of ${truth.works.length} works`);
-
-  const more = await p.evaluate(() => {
-    const b2 = document.querySelector(".c-more"); if (!b2) return null;
-    const said = b2.textContent; b2.click(); return said;
-  });
-  await p.waitForTimeout(500);
-  const after = await p.evaluate(() => ({
-    choices: document.querySelectorAll(".c-choice").length,
-    left: document.querySelectorAll(".c-more").length }));
-  check("  and the rest are reached, not withheld",
-    more !== null && after.left === 0 && after.choices > 12,
-    `"${more}" -> ${after.choices} works offered, ${after.left} still behind a press`);
-  // Twelve is this page's number. Nothing records it and nothing measured it,
-  // so the press that holds the rest has to say both things: how many are
-  // behind it, and that the twelve in front of it is a choice somebody made.
-  check("  and the twelve in front of the press is named as this page's choice",
-    more !== null && /\b12\b/.test(more) && /this page chose/.test(more), `"${more}"`);
-  await p.close();
+    const more = await p3.evaluate(() => {
+      const b2 = document.querySelector(".c-more"); if (!b2) return null;
+      const said = b2.textContent; b2.click(); return said;
+    });
+    await p3.waitForTimeout(500);
+    const after = await p3.evaluate(() => ({
+      choices: document.querySelectorAll(".c-choice").length,
+      left: document.querySelectorAll(".c-more").length }));
+    check("  and the rest are reached, not withheld",
+      more !== null && after.left === 0 && after.choices > 12,
+      `"${more}" -> ${after.choices} works offered, ${after.left} still behind a press`);
+    // Twelve is this page's number. Nothing records it and nothing measured it,
+    // so the press that holds the rest has to say both things: how many are
+    // behind it, and that the twelve in front of it is a choice somebody made.
+    check("  and the twelve in front of the press is named as this page's choice",
+      more !== null && /\b12\b/.test(more) && /this page chose/.test(more), `"${more}"`);
+    await p3.close();
+  }
 }
 
 await b.close();

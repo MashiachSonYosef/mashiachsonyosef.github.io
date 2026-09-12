@@ -161,7 +161,7 @@ const servedSlugs = existsSync(gateFile)
   : null;                       // no receipt: judge the whole shelf, as before
 const doorServes = (slug) => servedSlugs === null || servedSlugs.has(slug);
 if (existsSync(zonesDir)) {
-  for (const zf of readdirSync(zonesDir).filter((x) => x.endsWith(".bin") && !x.endsWith(".commentary.bin") && doorServes(x.replace(/\.bin$/, "")))) {
+  for (const zf of readdirSync(zonesDir).filter((x) => x.endsWith(".bin") && !x.endsWith(".commentary.bin") && !x.endsWith(".hoh.bin") && doorServes(x.replace(/\.bin$/, "")))) {
     try {
       const z = JSON.parse(gunzipSync(readFileSync(join(zonesDir, zf))).toString("utf8"));
       zoneNames.add(zf.replace(/\.bin$/, ""));

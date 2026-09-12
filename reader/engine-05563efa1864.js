@@ -2304,7 +2304,11 @@
       }
     }
     const dSlot = document.createElement("div"); dSlot.className = "d-slot";
-    hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, prov);
+    // what a dictionary says about this word in Hebrew, under the record and
+    // above the provenance — drawn only when a sidecar rides beside this book
+    const hohSlot = document.createElement("div"); hohSlot.className = "hoh-slot";
+    hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, hohSlot, prov);
+    renderHoh(hohSlot, region, opts.word || word);
 
     // --- row 1 · how the form divides ---------------------------------
     const renderCuts = () => {
@@ -2735,6 +2739,98 @@
         console.error(e.message);
       }
     });
+  // hoh-sidecar-rule-v1 · Hebrew on Hebrew. A dictionary that defines this
+  // book's words in Hebrew rides beside the book the way a commentary does,
+  // as <slug>.hoh.bin, and the card a word opens shows what it says — laid
+  // out like the verse, Hebrew on top and its English underneath, every word
+  // of the entry opening the same card. Absent sidecar = no panel and nothing
+  // implied; a sidecar that failed its seal is not shown and not silent.
+  let hohStore = null;
+  const hohReady = fetchBin(`${BOOK}.hoh`)
+    .then((s) => { hohStore = s; window.__hohStore = s; })
+    .catch((e) => {
+      if (String((e && e.message) || "").startsWith("REFUSED")) {
+        window.__hohRefused = e.message;
+        console.error(e.message);
+      }
+    });
+  // The panel on the card. It asks under the word's headword first (the
+  // look-up-by projection, h) and its form second, because a dictionary is
+  // keyed by headwords and the form is what the page happens to hold.
+  //
+  // Where the sidecar carries no entry the panel does not vanish: a reader
+  // who knows the dictionary exists is owed the reason, and the reasons are
+  // different things — past the floor of the served volumes, or simply not
+  // in what was delivered. Where the entry is HELD the headword and the
+  // volume print and the definition does not, with the reason; the record
+  // says a reader is owed that by name rather than by a gap.
+  const renderHoh = (slot, region, word) => {
+    slot.replaceChildren();
+    if (!hohStore || !hohStore.entries) return;
+    const src = hohStore.source || {};
+    const author = (src.work && src.work.author) || "a dictionary";
+    const h = (word && word.h) || null;
+    const formK = region.form_k || region.k || null;
+    const key = h && hohStore.entries[h] ? h : formK && hohStore.entries[formK] ? formK : null;
+    const panel = document.createElement("div"); panel.className = "hoh";
+    const lab = document.createElement("p"); lab.className = "r-label";
+    lab.textContent = `${author} · defines this word in Hebrew`;
+    panel.append(lab);
+    const chip = (text, cls = "") => Object.assign(document.createElement("span"), { className: `lic-chip${cls ? ` ${cls}` : ""}`, textContent: text });
+    const heWord = (text) => Object.assign(document.createElement("span"), { className: "hoh-hw", lang: "he", dir: "rtl", textContent: text });
+    const floor = src.floor || {};
+    const pastTheFloor = (k) => !!k && ((floor.letters_past_the_floor || []).includes(k[0]) ||
+      (floor.ends_at_headword_key && k[0] === floor.ends_at_headword_key[0] && k > floor.ends_at_headword_key));
+    if (!key) {
+      const ask = h || formK;
+      const p = document.createElement("p"); p.className = "hoh-silent";
+      if (ask && (word && word.hp)) p.append(heWord(word.hp), " ");
+      p.append(ask && pastTheFloor(ask)
+        ? `no entry — this headword begins past the last one the served volumes reach (volumes ${(src.served_volumes || []).join(", ")}), so it stands in a volume that is not served`
+        : `no entry in what was delivered from volumes ${(src.served_volumes || []).join(", ")}`);
+      panel.append(p);
+      slot.append(panel);
+      return;
+    }
+    const e = hohStore.entries[key];
+    const head = document.createElement("div"); head.className = "hoh-head";
+    head.append(heWord(e.headword), chip(`vol. ${e.volume}`));
+    if (e.served) head.append(chip(src.ruling ? `served · owner's ruling of ${src.ruling.on}` : "served", "on"));
+    else head.append(chip("held", "held"));
+    if (h && key === h && h !== formK) head.append(chip("under its headword"));
+    panel.append(head);
+    if (!e.served) {
+      const why = document.createElement("p"); why.className = "hoh-held";
+      const reasons = (e.held || []).map((r) => r === "ASTERISK_PENDING_READ"
+        ? "its author marked it with an asterisk — a word he coined or reconstructed — and no coinage is served until that read is done"
+        : r === "VOLUME_NOT_DECLARED"
+          ? `volume ${e.volume} is not declared served`
+          : `held: ${r}`);
+      why.textContent = `Held — ${reasons.join("; ")}. The headword prints; the definition does not.`;
+      panel.append(why);
+    }
+    for (const st of e.strata || []) {
+      const run = document.createElement("p");
+      run.className = st.kind === "quote" ? "hoh-run hoh-quote" : "hoh-run hoh-prose";
+      run.lang = "he"; run.dir = "rtl";
+      const ref = document.createElement("span"); ref.className = "hoh-ref";
+      ref.textContent = st.kind === "quote" ? `quotes ${st.ref || "a source"}` : "his own words";
+      run.append(ref);
+      (st.words || []).forEach((w) => {
+        const b = wordBlock(w, hohStore.gloss);
+        wireWord(b, w, hohStore, null, null);
+        appendWord(run, b, w);
+      });
+      panel.append(run);
+    }
+    const foot = document.createElement("p"); foot.className = "hoh-src";
+    foot.append(`${author}, `);
+    foot.append(Object.assign(document.createElement("i"), { textContent: (src.work && src.work.title) || "" }));
+    foot.append(`, vol. ${e.volume}`);
+    foot.append(" ", chip(e.served ? "no license declared · served by the owner's ruling" : "no license declared", ""));
+    panel.append(foot);
+    slot.append(panel);
+  };
   // commentary-order-rule-v2-oldest-first-on-the-earliest-date-recorded
   //
   // A word of Genesis 1:1 carries a hundred and six commentaries. They arrive
@@ -2858,6 +2954,14 @@
     SEALED_UNIT_COORDINATE_IDENTITY: {
       said: "A work of its own, not part of this book. The chain gives this section and a section of that work the same number; this reader reads one number as one place.",
       whose: "the numbers are the chain's · reading them as an attachment is ours · nothing inside the section was placed",
+    },
+    // the work numbers its comments one level finer than the book numbers
+    // its sections: zechariah-1-1 receives ibn-ezra-on-zechariah-1-1-1, -2, -3.
+    // The base coordinate is the work's own prefix; the last number is the
+    // work's own order. Read as the same claim as above, one level down.
+    SEALED_UNIT_COORDINATE_PREFIX: {
+      said: "A work of its own, not part of this book. The chain numbers its comments one level finer than this book's sections, and the first two numbers are this section's; this reader reads that as one place, in the work's own order.",
+      whose: "the numbers are the chain's · reading the prefix as an attachment is ours · nothing inside the section was placed",
     },
     EXPLICIT_VISIBLE_HEADWORD: {
       said: "A work of its own, not part of this book. The chain puts it on this verse; a record showing its opening word puts it on these words.",
@@ -3949,6 +4053,7 @@
     } catch { return null; }
   })();
   await commentaryReady;
+  await hohReady;
   const LEDGER_NAMES = await ledgerNamesReady;
   const NAV_LABELS = await navLabelsReady;
   // Say what the commentary is and where it came from — inside the receipts,
@@ -3965,6 +4070,13 @@
       ` · ${cc.attached_sections.toLocaleString()} of ${cc.base_sections.toLocaleString()} sections carry ` +
       `${w0.title || "a commentary"} (${w0.license || "license unrecorded"}), served from the same sealed chain and ` +
       `attached by the coordinates both works already carry`;
+  }
+  if (hohStore && hohStore.counts) {
+    const hc = hohStore.counts, hs = hohStore.source || {};
+    const full = document.querySelector("#meta .receipts-full");
+    if (full) full.textContent +=
+      ` · ${(hs.work && hs.work.author) || "a dictionary"} defines ${hc.served.toLocaleString()} of this book's headwords in Hebrew` +
+      ` (${hc.held_by_volume + hc.held_by_asterisk} held: ${hc.held_by_volume} by volume, ${hc.held_by_asterisk} by asterisk), served from volumes ${(hs.served_volumes || []).join(", ")} by the owner's ruling${hs.ruling ? ` of ${hs.ruling.on}` : ""}`;
   }
   const main = document.getElementById("text");
   const frag = document.createDocumentFragment();

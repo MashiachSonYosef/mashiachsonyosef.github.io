@@ -118,7 +118,12 @@ check("L0  the declaring tool still declares the rule and gathers keys from word
 
 // ── the zones ─────────────────────────────────────────────────────────────
 if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); process.exit(3); }
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")).sort();
+// A sidecar (<slug>.commentary.bin, <slug>.hoh.bin) carries no sections of its
+// own: its spans are the work zone's own table restricted to the forms it
+// attached, and that zone is judged here under its own name. Asking the
+// sidecar the same question read every one of its keys as a key it does not
+// hold (2026-09-12: 49,375 of them, all the targums' words).
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.endsWith(".commentary.bin") && !f.endsWith(".hoh.bin")).sort();
 if (!bins.length) { console.log("SKIPPED — no zones on this disk"); process.exit(3); }
 
 const readZone = (f) => { try { return JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8")); } catch { return null; } };

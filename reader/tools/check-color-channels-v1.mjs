@@ -194,7 +194,9 @@ const BASE = (process.argv[2] || "http://127.0.0.1:8899/zone.html").split("?")[0
 const b = await pw.chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-await p.goto(`${BASE}?b=${zonesOnDisk()[0]}&c=open`, { waitUntil: "networkidle" });
+// a work that carries a commentary, when one does, so the commentary surface
+// is on the page to be read; the first work on the shelf otherwise
+await p.goto(`${BASE}?b=${zonesWithCommentary()[0] || zonesOnDisk()[0]}&c=open`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(2600);
 
@@ -221,7 +223,8 @@ const painted = await p.evaluate((sample) => {
   const out = {};
   for (const [k, [sel, prop]] of Object.entries(sample)) out[k] = cs(sel, prop);
   out.base_surface = cs("body", "backgroundColor");
-  out.commentary_surface = cs("section.seg .c-mark-slot:not(.c-choose)", "backgroundColor") || cs("#cIndex", "backgroundColor");
+  // a word's commentary opens in a slot, a section's in its own line; either is the surface
+  out.commentary_surface = cs("section.seg .c-mark-slot:not(.c-choose)", "backgroundColor") || cs("section.seg .c-inline:not([hidden])", "backgroundColor") || cs("#cIndex", "backgroundColor");
   return out;
 }, SAMPLE);
 
