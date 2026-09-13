@@ -1549,7 +1549,17 @@
     return stands <= rowsEl.clientHeight + 1;
   };
 
-  const placeInBounds = () => {
+  // AT THE END OF THE PLACEMENT, AND THE END MEANS THE END. The snap below was
+  // written to run "at the end of the placement" and was hung on the animation
+  // loop instead, which is a frame later — correct, and late enough that the
+  // card is on screen cut before it is on screen whole. It showed the day the
+  // count became a handle: the text rose 247px, the first verse came to the
+  // fold, its card opened tighter, and a check reading the card 90ms after the
+  // press caught five pills sliced by the readings band. So the placement now
+  // ends by snapping, in the same call, and the loop keeps its own pass for
+  // what happens after — a window resized, a band re-wrapped under a drag.
+  const placeInBounds = (...a) => { placeInBoundsOnly(...a); snapBandsNow(); };
+  const placeInBoundsOnly = () => {
     // MEASURED, NOT ARGUED: keeping the card on its cap and letting the region
     // scroll stops the page moving, and it also starves the record — the guard
     // caught cards spilling a hundred pixels and the source falling off them.
@@ -1613,16 +1623,18 @@
   // every frame on a form with three hundred readings, which is a cost the
   // reader pays for nothing.
   const snapKeys = new WeakMap();
-  const snapBands = () => {
-    if (hud.hidden) return;
-    for (const q of [".b-cut .s-pills", ".b-cell .s-pills", ".b-read .r-pills"]) {
-      const box = hud.querySelector(q);
-      if (!box || !box.children.length || !box.style.height) continue;
-      const r0 = box.getBoundingClientRect();
-      const key = `${Math.round(r0.width)}x${box.clientHeight}:${box.children.length}`;
-      if (snapKeys.get(box) === key) continue;
-      snapKeys.set(box, key);
-      for (let pass = 0; pass < 4; pass += 1) {
+  // THE SNAP, ON ITS OWN, so the placement can run it before it hands the card
+  // over rather than a frame later. A band is assigned a whole number of rows
+  // measured BEFORE the assignment, and assigning it re-wraps the pills, so
+  // the number that was whole stops being whole: a 233px band over 34px rows
+  // cuts its seventh row by five pixels. Correcting that on the next animation
+  // frame is correct and late — the card is already on screen, and a check
+  // that looks at the card ninety milliseconds after it opens sees the cut.
+  // Run at the end of the placement it is the same arithmetic, one frame
+  // earlier, and the reader never sees the intermediate card.
+  const snapBox = (box) => {
+    if (!box || !box.children.length || !box.style.height) return;
+    for (let pass = 0; pass < 4; pass += 1) {
         const r = box.getBoundingClientRect();
         const cut = [...box.children].some((c) => {
           const cr = c.getBoundingClientRect();
@@ -1634,11 +1646,29 @@
         const fits = rows.filter((row) => row.bottom <= box.clientHeight + 0.5);
         const to = Math.ceil((fits.length ? fits[fits.length - 1] : rows[0]).bottom);
         if (to >= box.clientHeight) break;
-        box.style.height = `${to}px`; box.style.maxHeight = `${to}px`;
-        snapKeys.set(box, `${Math.round(box.getBoundingClientRect().width)}x${box.clientHeight}:${box.children.length}`);
-      }
+      box.style.height = `${to}px`; box.style.maxHeight = `${to}px`;
     }
   };
+  // THE CACHE IS THE LOOP'S, NOT THE SNAP'S. snapBox writes no key: the early
+  // pass below runs while the card is still being placed, and a band that is
+  // not cut YET — its pills have not re-wrapped to the width the clamp will
+  // leave them — would otherwise stamp "settled" on a box that is about to
+  // move, and the loop would never look at it again. Writing the key here,
+  // after the loop has examined the settled layout, is what makes the pass
+  // idle-cheap without making it blind.
+  const keyOf = (box) => `${Math.round(box.getBoundingClientRect().width)}x${box.clientHeight}:${box.children.length}`;
+  const BAND_Q = [".b-cut .s-pills", ".b-cell .s-pills", ".b-read .r-pills"];
+  const snapBands = () => {
+    if (hud.hidden) return;
+    for (const q of BAND_Q) {
+      const box = hud.querySelector(q);
+      if (!box || !box.children.length || !box.style.height) continue;
+      if (snapKeys.get(box) === keyOf(box)) continue;
+      snapBox(box);
+      snapKeys.set(box, keyOf(box));
+    }
+  };
+  const snapBandsNow = () => { for (const q of BAND_Q) snapBox(hud.querySelector(q)); };
   const clampHud = placeInBounds;
   // The thread runs from each held word to the card — the owner's own
   // mechanic, carried in: a card should say where you were working without
