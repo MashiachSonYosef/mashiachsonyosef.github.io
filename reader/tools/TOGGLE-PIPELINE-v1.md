@@ -83,12 +83,31 @@ flag, and the Leningrad difference per position. It is projected by
 ## What is live, and what is left (2026-09-13)
 
 Live: **reads first** (all seven positions), **pairs**, **look up by**,
-**license**, **names**, **edition**. One row is not:
+**license**, **names**, **edition**, and **the parts of a word nobody
+defines**. One row is not:
 
-1. **joined words** — `maqaf-v1.json` + `maqaf-compounds-v1.jsonl.gz`, and the
-   lattice's own `pieces`, which v12 carries and this lane does not project.
+1. **joined words** — `maqaf-v1.json` + `maqaf-compounds-v1.jsonl.gz`.
    A RULING FIRST, and it is the owner's: suppress WELDED where nothing
    matches the vowels (1,041 of 1,311)? The rail says so on its own face.
+
+   This is NOT the same question as the parts band below it, and the two were
+   confused once, which is why v12's `pieces` sat unprojected for a day.
+   Joined words are about where one C0 ends and the next begins. Pieces are
+   about what is inside one C0 — prefix, core, suffix. Nothing about the
+   welded ruling touches them.
+
+**The parts band**, live since 2026-09-13 (`project-lattice-v12-v1.mjs`,
+`check-lattice-projection-v1` L8, `renderParts` in `zone.html`): where the
+catalog answers a word neither under its form nor under its headword, the
+card shows the word's own pieces, each with its role and with BOTH witnesses'
+English — TAHOT's for this position, MACULA's for the headword — named and
+licensed. **The LINE never changes**: a bare word stays bare, because a
+definition composed here out of pieces would supply the displayed answer for
+a key no source answered, which the folded-edge rule forbids and which the
+frame's own ruling calls a finding, not an error. 96 words of the 39 books
+carry 227 pieces; 92 of the 96 have both witnesses on every piece; the other
+38 bare words the lattice has no pieces for carry nothing and are counted as
+carrying nothing.
 
 Two rulings stand behind live rows and are still owed:
 

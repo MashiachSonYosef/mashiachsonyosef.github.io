@@ -23,7 +23,10 @@
 //   A2  the census adds up: word + section + no-text equals what is recorded
 //   A3  a word span reads as a run of the section's own words
 //   A4  the page draws no word-level mark for an entry without word evidence
-//   A5  an entry carries the presentation V chose for it
+//   A5  an entry carries the presentation V chose for it, on a sidecar whose
+//       own receipt names a V-derived pack among its sources. A sidecar built
+//       from two zones of this shelf never had V upstream; the gap is stated
+//       in the notes as a delivery owed, not charged to the builder
 //   A6  an entry V scoped to a range is not carried as an attachment
 //   A7  a Targum carries a presentation that allows it to run as parallel text
 //
@@ -104,29 +107,76 @@ for (const [unitId, unit] of Object.entries(units)) {
 // scroll track and that a phone shows both members over-under and hides
 // neither.
 //
-// None of that reaches here. The V ledger has the columns; the pack derived
-// from it carries none of them, and the pack's own stated purpose is a
-// "Phone-sized presentation proof". So the reader has never been told how V
-// wants any of this drawn, and invents a single presentation for everything.
+// None of that reached the pack this check was written against. The V ledger
+// had the columns; the pack derived from it carried none of them, and the
+// pack's own stated purpose was a "Phone-sized presentation proof". So the
+// reader had never been told how V wants any of this drawn, and invented a
+// single presentation for everything. That was a dropped field, and a fault.
+//
+// TWO ROADS, AND ONLY ONE OF THEM EVER HELD V. Since 2026-09-12 the sidecars
+// on this shelf are built by build-commentary-sidecar-v2 under
+// zone-commentary-rule-v3-two-zones-one-coordinate: a base zone and a work
+// zone, both already served by the one pipeline, attached by the coordinates
+// their sealed unit ids already carry. V is not an input to that road and
+// never was. Charging it with losing a field it was never handed would read
+// as the same defect as the real one and hide the real one behind
+// twenty-eight copies of itself.
+//
+// So the road decides. A sidecar whose own receipt names a V-derived pack
+// must carry what V named, on every entry, or the field was dropped. A
+// sidecar whose receipt names two zones is held to what it did claim — and
+// the gap is stated, in this run's notes and in the lane's owed list, as a
+// delivery this lane is waiting on rather than a builder's fault.
+//
+// Neither road may claim V without carrying it: a sidecar that names a V pack
+// among its sources and carries none of the fields still fails A5.
 //
 // This does not fail once per entry — the defect is one dropped field, not six
 // hundred bad rows, and six hundred findings would bury it.
 const PRESENTATION_FIELDS = ["presentation_default", "presentation_allowed_modes", "hud_link_policy"];
+// What a source name looks like when it IS the V lane's: its own directory,
+// its pointer, or a pack derived from it. Narrow on purpose — a loose pattern
+// here would read a book slug that happens to start with v as a V delivery
+// and demand columns nobody sent.
+const V_ROAD = /(^|[/\\])v([/\\]|$)|v-lane|presentation-pack|attachment-pack/i;
 {
   const all = [];
   for (const unit of Object.values(units)) {
     for (const list of Object.values(unit.words || {})) all.push(...list);
     all.push(...(unit.section || []));
   }
+  // What this sidecar says it was built from. The two-zones road names a base
+  // zone and work zones and nothing else; anything else in sources is read as
+  // a pack, and a pack is where V's columns would have come from.
+  const src = (side.emitted_from || {}).sources || {};
+  const srcNames = [
+    ...(src.base ? [String(src.base.path || "")] : []),
+    ...((src.works || []).map((w) => String(w.path || w.slug || ""))),
+    ...Object.entries(src).filter(([k]) => k !== "base" && k !== "works")
+      .map(([k, v]) => `${k}:${typeof v === "string" ? v : JSON.stringify(v)}`),
+  ];
+  const twoZones = side.rule_id === "zone-commentary-rule-v3-two-zones-one-coordinate"
+    && srcNames.length > 0
+    && srcNames.every((s) => /(^|\/)data\/zones\//.test(s));
+  const claimsV = srcNames.some((s) => V_ROAD.test(s));
   for (const f of PRESENTATION_FIELDS) {
     const carried = all.filter((e) => e[f] !== undefined && e[f] !== null).length;
-    if (all.length && carried === 0) {
+    if (!all.length) continue;
+    if (carried === 0 && twoZones && !claimsV) continue;   // noted below, not charged here
+    if (carried === 0) {
       refuse("A5", `every entry · ${all.length}`,
         `no entry carries "${f}" — V names it per row and nothing downstream keeps it, ` +
         `so the reader cannot draw what V chose`);
-    } else if (all.length && carried < all.length) {
+    } else if (carried < all.length) {
       refuse("A5", `${all.length - carried} of ${all.length} entries`, `carry no "${f}"`);
     }
+  }
+  if (twoZones && !claimsV && all.length && PRESENTATION_FIELDS.every((f) => all.every((e) => e[f] == null))) {
+    notes.push(`V's presentation is not here and was never handed over on this road : ` +
+      `this sidecar is built under ${side.rule_id} from ${srcNames.length} zone(s) of this shelf, ` +
+      `and V is not among them. What is owed is a V delivery to this lane naming, per link, ` +
+      `${PRESENTATION_FIELDS.join(", ")} — until it lands the reader draws one presentation for ` +
+      `everything, and this page says so rather than inventing a policy`);
   }
   const ranged = all.filter((e) => /RANGE_NOTICE_ONLY/.test(String(e.hud_link_policy || "")));
   const rangedDrawn = ranged.filter((e) => e.v_words !== undefined && e.v_words !== null);

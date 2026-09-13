@@ -450,6 +450,22 @@
      box, because gold is line work and a quotation is a line drawn around
      somebody else's words */
   .hoh-slot:empty { display: none; }
+  /* the parts of a word nothing defines: blocks like any other, Hebrew over
+     its English, two witnesses stacked where they differ */
+  .parts-slot:empty { display: none; }
+  .parts { margin: 0.4rem 0 0; padding: 0.45rem 0.6rem 0.35rem; background: var(--surface-c);
+    border: 1px solid var(--line-c); border-radius: 0.6rem; }
+  .parts .r-label { margin: 0 0 0.2rem; }
+  .parts-say, .parts-src { font-size: 0.7rem; line-height: 1.45; color: var(--muted); margin: 0.2rem 0 0; direction: ltr; text-align: left; }
+  .parts-src { border-top: 1px solid var(--line-c); padding-top: 0.35rem; margin-top: 0.45rem; }
+  .parts-run { display: flex; flex-wrap: wrap; flex-direction: row-reverse; justify-content: flex-start;
+    gap: 0.1rem 0.5rem; margin: 0.5rem 0 0.1rem; }
+  .pb { display: inline-flex; flex-direction: column; align-items: center; gap: 0.08rem; margin-bottom: 0.4rem; }
+  .pw { font-size: 1.15rem; line-height: 1.3; color: var(--shani-ink); }
+  .prole { font-size: 0.52rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--faint); direction: ltr; }
+  .pen { font-size: 0.62rem; line-height: 1.25; color: var(--tekhelet-ink); direction: ltr; text-align: center; max-width: 8em; }
+  .pwit { font-style: normal; font-size: 0.52rem; letter-spacing: 0.08em; color: var(--faint); margin-inline-end: 0.2rem; }
+  body.en .parts-run { direction: ltr; flex-direction: row; }
   /* the edition mark: a word the Leningrad codex spells otherwise wears a
      dotted gold rule while the toggle asks for it — gold is line work */
   body.ed-mark .wb[data-ld] .w { text-decoration: underline dotted var(--gold); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }

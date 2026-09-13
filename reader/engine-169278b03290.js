@@ -2506,7 +2506,10 @@
     // what a dictionary says about this word in Hebrew, under the record and
     // above the provenance — drawn only when a sidecar rides beside this book
     const hohSlot = document.createElement("div"); hohSlot.className = "hoh-slot";
-    hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, hohSlot, prov);
+    // and, for a word the catalog answers nothing for, what its parts are
+    const partsSlot = document.createElement("div"); partsSlot.className = "parts-slot";
+    hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, partsSlot, hohSlot, prov);
+    renderParts(partsSlot, bin === zone ? (opts.word || word) : null);
     renderHoh(hohSlot, region, opts.word || word);
 
     // --- row 1 · how the form divides ---------------------------------
@@ -3397,6 +3400,67 @@
       if (first) return { text: first[0], m: { lic: licenseName(first[2]), m: first[1], y: first[3] }, why: pos.id };
     }
     return null;
+  };
+  // THE PARTS OF A WORD NOBODY DEFINES.
+  //
+  // 1,642 words on this shelf have no English under their form and none under
+  // their headword. The frame's ruling is that such a word "sits at its place
+  // with no key, in quote form: a finding, not an error", and the line obeys
+  // it: the word stays bare, because a definition composed here out of its
+  // pieces would be this page supplying the displayed answer for a key no
+  // source answered.
+  //
+  // What the card can do is say WHY, with what is known. The corpus lane's
+  // lattice carries each word's own pieces — prefix, core, suffix — with an
+  // English from TAHOT and one from MACULA, and 1,400 of the bare words have
+  // them. So the card shows the parts AS PARTS, each with its role and both
+  // witnesses, and never joins them into a reading. The two differ at 44% of
+  // all pieces, so neither is chosen; where they agree the reading prints
+  // once. A reader who wants the whole word still has the finding: nothing
+  // defines it.
+  const renderParts = (slot, word) => {
+    slot.replaceChildren();
+    const pc = word && word.pc;
+    if (!pc || !pc.length) return;
+    const wit = ((zone.emitted_from.toggles || {}).lattice || {}).pieces || {};
+    const box = document.createElement("div"); box.className = "parts";
+    const lab = document.createElement("p"); lab.className = "r-label"; lab.textContent = "Parts of this word";
+    const say = document.createElement("p"); say.className = "parts-say";
+    say.textContent = "No source in the catalog defines this whole word. These are its parts, as the two witnesses give them — not a reading of the word, which nothing here supplies.";
+    box.append(lab, say);
+    const run = document.createElement("p"); run.className = "parts-run"; run.lang = "he"; run.dir = "rtl";
+    const ROLE = { prefix: "prefix", core: "core", suffix: "suffix", between_cores: "between" };
+    for (const p of pc) {
+      const b = document.createElement("span"); b.className = "pb";
+      b.append(Object.assign(document.createElement("span"), { className: "pw", lang: "he", dir: "rtl", textContent: p.s || "" }));
+      b.append(Object.assign(document.createElement("span"), { className: "prole", textContent: ROLE[p.r] || p.r || "" }));
+      const both = p.t && p.m && p.t !== p.m;
+      const one = (text, tag) => {
+        const e = document.createElement("span"); e.className = "pen"; e.dir = "ltr";
+        if (tag) e.append(Object.assign(document.createElement("i"), { className: "pwit", textContent: tag }));
+        e.append(text);
+        return e;
+      };
+      if (both) { b.append(one(p.t, "T"), one(p.m, "M")); }
+      else if (p.t || p.m) b.append(one(p.t || p.m, ""));
+      run.append(b);
+    }
+    box.append(run);
+    const foot = document.createElement("p"); foot.className = "parts-src";
+    const names = [wit.witnesses && wit.witnesses.english_tahot, wit.witnesses && wit.witnesses.english_macula].filter(Boolean);
+    foot.append(names.length ? names.map((w) => w.label).join("  ·  ") : "the corpus lane\u2019s two witnesses");
+    const licKey = names.length ? names[0].licence : null;
+    if (licKey) {
+      const chip = document.createElement("span"); chip.className = "lic-chip";
+      chip.textContent = licenseName(licKey);
+      chip.title = (POSTURES && POSTURES.postures && POSTURES.postures[licKey] && (POSTURES.postures[licKey].obligations || []).join(" ")) || "";
+      foot.append(" ", chip);
+    }
+    if (names.length === 2 && names[0].licence !== names[1].licence) {
+      foot.append(" ", Object.assign(document.createElement("span"), { className: "lic-chip", textContent: licenseName(names[1].licence) }));
+    }
+    box.append(foot);
+    slot.append(box);
   };
   const wordBlock = (word, table) => {
     const wb = document.createElement("span");

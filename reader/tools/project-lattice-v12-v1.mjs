@@ -38,8 +38,31 @@
 //      mismatch) and which cards cite this verse. Keyed by the pointed
 //      surface, because the grade is a fact about the pointing and repeats
 //      wherever the pointing does.
-//   5. Nothing is taken from the lattice that the owner has not ruled on:
-//      pieces (joined words) ride in no field until the welded-form ruling.
+//   5. THE PARTS OF A WORD NOBODY DEFINES. v12 carries, per position, the
+//      word's own pieces — prefix, core, suffix — each with its role and with
+//      an English from TAHOT and from MACULA. They are taken for ONE case and
+//      counted for the rest: a word the catalog answers nothing for.
+//
+//      The frame's ruling stands and is not touched: "a word with no
+//      admissible definition sits at its place with no key, in quote form: a
+//      finding, not an error" (serving-rulings-v1, m-is-the-fortress). So the
+//      LINE never changes — a bare word stays bare, because a definition
+//      composed here out of pieces would be this lane supplying the displayed
+//      answer for a key no source answered, which is the folded edge rule 5
+//      and rule 9 of the frame forbid. What the CARD may do is show the
+//      reader what the two witnesses say about each PIECE, as pieces, named
+//      and licensed. That is not a definition of the word; it is the reason
+//      the word has none, made legible.
+//
+//      1,642 words on the 39 books have no English under their form, and 134
+//      of those have none under their headword either. 96 of the 134 have
+//      pieces the lattice can name; 92 of the 96 have both witnesses on every
+//      piece. The other 38 carry nothing and are counted as carrying nothing.
+//
+//      The witnesses differ at 205,953 of 466,981 pieces — TAHOT gives the
+//      English this position reads, MACULA the headword's — so BOTH ride and
+//      neither is chosen. The maqaf toggle is a different question and still
+//      waits on the welded-form ruling; nothing here touches it.
 //
 // Run: node tools/project-lattice-v12-v1.mjs --zone data/zones/genesis.bin
 //        --lattice <dir with positions-<book>-v12.jsonl.gz, routes-<book>-v12.jsonl.gz, lattice-<book>-v12.json>
@@ -85,6 +108,25 @@ for (const [k, want] of [["positions", latticeReceipt.files.positions.sha256], [
 const store = openRouteStore(arg("--store", join(zonePath.replace(/data\/zones\/.*$/u, ""), "data", "route-store")));
 const labelToM = new Map(Object.entries(store.index.m_sources || {}).map(([id, m]) => [m.label, id]));
 
+// THE TWO WITNESSES BEHIND A PIECE, and the licence they are served under.
+// The lattice names them "TAHOT" and "MACULA" and carries no M id, so the
+// identification below is OURS: these are the store's own sources of that
+// data, and the tool refuses rather than guesses if the store stops carrying
+// them or stops declaring them under one posture. The card prints the
+// licence from data/license-postures-v1.json, never from this file.
+const PIECE_WITNESSES = {
+  english_tahot: "STEP Bible Translators Amalgamated Hebrew OT aligned component translation",
+  english_macula: "MACULA exact Hebrew morph surfaces with Cherith English definitions",
+};
+const pieceWitness = {};
+for (const [field, label] of Object.entries(PIECE_WITNESSES)) {
+  const id = labelToM.get(label);
+  if (!id) { console.error(`PIECE_WITNESS_NOT_IN_STORE ${field}: ${label}`); process.exit(1); }
+  const posture = store.index.m_sources[id].licensePosture;
+  if (posture !== "cc_by_4_0") { console.error(`PIECE_WITNESS_POSTURE_MOVED ${field}: ${label} is ${posture}, not cc_by_4_0`); process.exit(1); }
+  pieceWitness[field] = { m: id, label, licence: posture };
+}
+
 // ---- the zone's own keys, so only their routes are kept ------------------
 const keysOf = (w) => (w.w ? w.w.map((r) => r.k).filter(Boolean) : w.k ? [w.k] : []);
 const wanted = new Set();
@@ -122,7 +164,9 @@ await readLines(files.positions, (line) => {
 // ---- rule 2 · the join, verse by verse, proved by the key ------------------
 const stats = { verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
   hg: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
-  ld: 0, grades: 0, verses_held_j_not_sound: 0, held_examples: [] };
+  ld: 0, grades: 0, verses_held_j_not_sound: 0,
+  bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
+  held_examples: [] };
 const grades = {};          // pointed surface -> { k, g, n }
 const wordsTouched = [];    // for the recount
 for (const sec of zone.sections || []) {
@@ -234,6 +278,19 @@ for (const sec of zone.sections || []) {
     // rule 3 · ld, where the Leningrad codex differs
     const ln = p.leningrad;
     if (ln && ln.differs === true) { w.ld = { kind: ln.kind || null, mam: ln.letters_mam || null, other: ln.letters_macula || ln.letters_tahot || null }; stats.ld += 1; }
+    // rule 5 · the parts, for a word the catalog answers nothing for
+    delete w.pc;
+    const g = zone.gloss || {};
+    const answered = keysOf(w).some((k) => g[k]) || !!(w.h && g[w.h]);
+    if (answered) stats.pc_skipped_word_has_an_english += 1;
+    else {
+      stats.bare += 1;
+      const pcs = (p.pieces || []).filter((x) => x && (x.english_tahot || x.english_macula));
+      if (!pcs.length) { stats.bare_without_pieces += 1; return; }
+      w.pc = pcs.map((x) => ({ r: x.role, s: x.hebrew, ...(x.english_tahot ? { t: x.english_tahot } : {}), ...(x.english_macula ? { m: x.english_macula } : {}) }));
+      stats.pc += 1; stats.pc_pieces += w.pc.length;
+      if (w.pc.every((x) => x.t && x.m)) stats.pc_both_witnesses += 1;
+    }
     wordsTouched.push(w);
   });
 }
@@ -270,9 +327,14 @@ ef.toggles.lattice = {
   join: "verse by verse, ON positions only (kind, not rule); the n-th ON word takes the n-th ON row, proved by key at every position AND by j being distinct and ascending across the verse's rows (j is the position identity — i repeats across the parts of a maqaf compound); a verse that does not prove is held whole",
   projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs",
   counts: { ...stats },
-  what_the_word_carries: "hg: the headword's first reading under lemma-sort v3, with hm (source, licence key, year) — only where h is the lattice's lemma and the stack is in routes; ld: the Leningrad difference where the codex spells the word otherwise",
+  what_the_word_carries: "hg: the headword's first reading under lemma-sort v3, with hm (source, licence key, year) — only where h is the lattice's lemma and the stack is in routes; ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
+  pieces: {
+    rule: "a word with no English under its form or its headword carries its pieces, so the card can show the reader what the two witnesses say about each part. The LINE is untouched: a bare word stays bare, because composing a definition out of pieces would supply the displayed answer for a key no source answered (the frame's folded-edge rule, and its ruling that a word with no admissible definition is a finding, not an error).",
+    witnesses: pieceWitness,
+    both_witnesses_ride: "TAHOT gives the English this position reads and MACULA the headword's; they differ at 205,953 of 466,981 pieces over the 39 books, so both are carried and neither is chosen",
+  },
   what_the_sidecar_carries: "per key the cards' fingerprints in lattice order with transliteration flags; per pointed surface the tier of each card and which cite this verse",
-  rulings_owed: "pieces (joined words) are in the lattice and are not projected until the welded-form ruling; licence_class puts cc0 in class 0 as the corpus lane's reading, and the page derives its own classes from the posture keys",
+  rulings_owed: "the welded-form ruling is still owed and is a separate question from these affix pieces: it governs the maqaf toggle, which nothing here touches; licence_class puts cc0 in class 0 as the corpus lane's reading, and the page derives its own classes from the posture keys",
 };
 {
   const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
@@ -290,5 +352,6 @@ writeFileSync(outPath, gzipSync(Buffer.from(JSON.stringify(zone), "utf8"), { lev
 const s = stats;
 console.log(`${outPath} · ${s.hg.toLocaleString()} of ${s.words_on.toLocaleString()} words carry the headword's lemma-sorted reading · ${s.ld} differ in Leningrad · verses ${s.verses_joined} joined, ${s.verses_held} held, ${s.verses_absent_from_lattice} absent`);
 console.log(`  ${sidecarPath} · ${Object.keys(sideRoutes).length.toLocaleString()} keys, ${routeCards.toLocaleString()} cards (${trCards} transliterations) · ${Object.keys(grades).length.toLocaleString()} pointed surfaces graded · ${(statSync(sidecarPath).size / 1024).toFixed(0)} KB`);
+console.log(`  parts: ${s.pc} of ${s.bare} words with no English of their own carry their pieces (${s.pc_pieces} pieces, ${s.pc_both_witnesses} with both witnesses) · ${s.bare_without_pieces} bare words the lattice has no pieces for · ${s.pc_skipped_word_has_an_english.toLocaleString()} words answered by the catalog and not carried`);
 console.log(`  hg skipped: ${s.hg_skipped_no_h} no headword · ${s.hg_skipped_witnesses_differ} witnesses differ · ${s.hg_skipped_lemma_differs_from_h} lemma is not h · ${s.hg_skipped_same_as_form} headword is the form · ${s.hg_skipped_lemma_not_in_routes} stack has no cards in this book`);
 if (s.held_examples.length) console.log(`  held: ${s.held_examples.join(" | ")}`);

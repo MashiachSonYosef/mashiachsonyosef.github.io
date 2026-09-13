@@ -25,6 +25,10 @@
 //       by hash, as the receipt records them
 //   L7  the reader's positions read the layer, so a projected zone is drawn
 //       live and an unprojected one dead
+//   L8  the parts ride ONLY on a word the catalog answers nothing for, every
+//       piece names a role and at least one witness, the witnesses named on
+//       the receipt are in the store under the posture it records, and the
+//       line of such a word is still bare — the frame's finding stands
 //
 // Run: node tools/check-lattice-projection-v1.mjs [--zones data/zones]
 import { readFileSync, readdirSync, existsSync } from "node:fs";
@@ -50,7 +54,7 @@ const few = (arr, n = 3) => arr.filter(Boolean).slice(0, n).join(" · ");
   const src = readFileSync(PROJECTOR, "utf8");
   const gone = [];
   if (!src.includes(LATTICE_RULE_ID)) gone.push("the rule id");
-  for (const [name, re] of [["the store clause", /The store stays the store/u], ["the join clause", /proved by the key/u], ["the pieces clause", /pieces \(joined words\) ride in no field/u]])
+  for (const [name, re] of [["the store clause", /The store stays the store/u], ["the join clause", /proved by the key/u], ["the parts clause", /a bare word stays bare/u], ["the maqaf clause", /maqaf toggle is a different question/u]])
     if (!re.test(src)) gone.push(name);
   check("L1  the projector still declares the rule this check enforces", gone.length === 0, gone.length ? `${gone.join(", ")} gone from ${PROJECTOR.split("/").pop()}` : "quoted from the rule declared before output");
 }
@@ -69,8 +73,9 @@ for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin") && !x.endsWi
 if (!layered.length) { console.log("\nSKIPPED — no zone on this shelf carries the lattice layer"); process.exit(bad ? 1 : 3); }
 console.log(`\n— ${layered.length} zones carry the lattice layer —`);
 
-const l2 = [], l3 = [], l4 = [], l5 = [], l6 = [];
-let hgAll = 0, ldAll = 0, surfacesAll = 0, joinRows = 0, joinHits = 0;
+const l2 = [], l3 = [], l4 = [], l5 = [], l6 = [], l8 = [];
+let hgAll = 0, ldAll = 0, surfacesAll = 0, joinRows = 0, joinHits = 0, pcAll = 0, pcPieces = 0, bareAll = 0;
+const ROLES = new Set(["prefix", "core", "suffix", "between_cores"]);
 for (const { slug, z, t } of layered) {
   // L2
   const sp = join(ZONES, `${slug}.lattice.bin`);
@@ -91,6 +96,39 @@ for (const { slug, z, t } of layered) {
   if (hgNoM) note(l3, `${slug}: ${hgNoM} words carry hg without its M`);
   if (t.counts.hg !== hg || t.counts.ld !== ld) note(l3, `${slug}: receipt says hg ${t.counts.hg} / ld ${t.counts.ld}, the zone carries ${hg} / ${ld}`);
   hgAll += hg; ldAll += ld;
+  // L8 — the parts, and the finding they stand on
+  {
+    const wit = (t.pieces || {}).witnesses || {};
+    if (!t.pieces || !Object.keys(wit).length) note(l8, `${slug}: the receipt records no piece witnesses`);
+    for (const [field, w] of Object.entries(wit)) {
+      const src = Object.values(store.index.m_sources || {}).find((m) => m.label === w.label);
+      if (!src) note(l8, `${slug}: ${field} names ${String(w.label).slice(0, 40)}…, which the store does not carry`);
+      else if (src.licensePosture !== w.licence) note(l8, `${slug}: ${field} says ${w.licence}, the store says ${src.licensePosture}`);
+    }
+    let pc = 0, pieces = 0, bare = 0;
+    for (const sec of z.sections || []) for (const w of sec.words || []) {
+      if (w.mark) continue;
+      const ks = w.w ? w.w.map((r) => r.k).filter(Boolean) : w.k ? [w.k] : [];
+      if (!ks.length) continue;
+      const answered = ks.some((k) => z.gloss[k]) || !!(w.h && z.gloss[w.h]);
+      if (!answered) bare += 1;
+      if (!w.pc) continue;
+      pc += 1; pieces += w.pc.length;
+      // the whole of the rule, on the file: only on a word nothing answers,
+      // every piece with a role and a witness, and the line still bare
+      if (answered) note(l8, `${slug}: ${sec.label} carries parts on a word the catalog answers`);
+      if (!w.pc.length) note(l8, `${slug}: ${sec.label} carries an empty parts list`);
+      for (const x of w.pc) {
+        if (!ROLES.has(x.r)) note(l8, `${slug}: ${sec.label} has a piece with role ${JSON.stringify(x.r)}`);
+        if (!x.s) note(l8, `${slug}: ${sec.label} has a piece with no Hebrew`);
+        if (!x.t && !x.m) note(l8, `${slug}: ${sec.label} has a piece no witness answers for`);
+      }
+    }
+    const c = t.counts || {};
+    if (c.pc !== pc || c.pc_pieces !== pieces) note(l8, `${slug}: receipt says ${c.pc} words / ${c.pc_pieces} pieces, the zone carries ${pc} / ${pieces}`);
+    if (c.bare !== bare) note(l8, `${slug}: receipt says ${c.bare} bare words, the zone carries ${bare}`);
+    pcAll += pc; pcPieces += pieces; bareAll += bare;
+  }
   // L4
   const routes = s.routes || {}, grades = s.grades || {};
   let badLen = 0, badFirst = 0;
@@ -139,9 +177,17 @@ check("L3  hg stands only on a word with a headword, with its M; the counts are 
 check("L4  every graded surface grades its key's cards in the lattice's order; every first-under names a card", !l4.length, l4.length ? few(l4) : `${surfacesAll.toLocaleString()} pointed surfaces graded`);
 check("L5  the fingerprints join the store", !l5.length && joinHits > 0, l5.length ? few(l5) : `${joinHits.toLocaleString()} of ${joinRows.toLocaleString()} store rows find their lattice card (${(100 * joinHits / Math.max(1, joinRows)).toFixed(1)}%); the rest sort after the graded ones, never dropped`);
 check("L6  the sidecar's sources are the sealed lattice files, by hash, as the receipt records them", !l6.length, l6.length ? few(l6) : "positions and routes sha256 agree on every layered zone");
+check("L8  the parts ride only on a word nothing answers, each piece named and witnessed", !l8.length,
+  l8.length ? `${l8.filter(Boolean).length}: ${few(l8)}`
+    : `${pcAll.toLocaleString()} of ${bareAll.toLocaleString()} words with no English of their own carry ${pcPieces.toLocaleString()} pieces; every other word carries none`);
 const reader = existsSync(join(K3, "zone.html")) ? readFileSync(join(K3, "zone.html"), "utf8") : "";
 check("L7  the reader's positions read the layer", /needs: "lattice"/u.test(reader) && /emitted_from\.toggles\.lattice/u.test(reader) && /const latticeReady = /u.test(reader),
   "zone.html: DEF_POS needs the lattice, liveness reads emitted_from.toggles.lattice, the sidecar is fetched on demand");
+// and the parts are drawn as parts: the card renders them, and no code path
+// joins them into the line — the reading a bare word shows is still nothing
+check("  and it draws the parts without ever joining them into a reading",
+  /const renderParts = /u.test(reader) && /not a reading of the word/u.test(reader) && !/\.pc\b[^\n]*join\(/u.test(reader),
+  "zone.html: renderParts draws each piece with its role and both witnesses; nothing joins pc into a line");
 
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);

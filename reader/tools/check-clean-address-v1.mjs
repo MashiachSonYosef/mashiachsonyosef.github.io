@@ -23,7 +23,7 @@ import { join, dirname, extname, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { zonesOnDisk, zonesServed, zonesWithCommentary } from "./zones-on-disk-v1.mjs";
+import { zonesOnDisk, zonesServed, zonesServedWithCommentary } from "./zones-on-disk-v1.mjs";
 import { basename } from "node:path";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -96,6 +96,11 @@ const splash = await p.evaluate(() => ({
   title: document.title,
   links: [...document.querySelectorAll("a")].map((a) => a.getAttribute("href")),
   body: document.body.textContent.replace(/\s+/g, " "),
+  // The commentary entries, by their own addresses and by what they say. A
+  // count taken off a name regex cannot see an entry whose book has no plain
+  // name, and would read a real offer as a missing one.
+  commentary: [...new Set([...document.querySelectorAll("a.sub-book")].map((a) => a.getAttribute("href")))]
+    .map((href) => ({ href, en: ([...document.querySelectorAll(`a.sub-book[href="${href}"] .en`)][0] || {}).textContent || "" })),
   offscreen: document.documentElement.scrollWidth > window.innerWidth + 1,
   // A Hebrew name never stands by itself: whatever box carries it carries the
   // English too, so a reader who cannot read it still knows what it offers.
@@ -179,6 +184,15 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
     const benchFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "toggles", "index.html");
     check("the order switch stands at its own address", existsSync(benchFile), benchFile);
     FINISHED.push("/toggles/");
+    // And the opensourcing page, the door's fourth, standing beside the census
+    // in the top bar. It is a page held open for a question this project has
+    // not answered — what, if anything, of its own work it releases — and the
+    // door names it rather than leaving the question unasked. This guard had
+    // never been told, so the one link on the page that says the project does
+    // not know something read as a stray way out.
+    const openFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "opensourcing", "index.html");
+    check("the opensourcing page stands at its own address", existsSync(openFile), openFile);
+    FINISHED.push("/opensourcing/");
   // and the reference pages: each group in the typed reference record
   // (data/reference-groups-v1.json, the owner's naming ruling) is a
   // published address the door points at
@@ -209,11 +223,25 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
   // whole generator exists to make impossible — and a commentary named on the
   // door that no zone carries would be the same fault in the other direction.
   // The expected set is the sidecars on disk, never a typed title.
-  const offered = (splash.body || "").match(/Commentary on [A-Za-z -]+/g) || [];
-  const carried = zonesWithCommentary();
+  // COUNT THE BOOKS OFFERED, NOT THE MENTIONS, AND COUNT THEM BY ADDRESS. The
+  // shelf is filed two ways on this page — thirty-nine files or twenty-four
+  // books — and both filings are in the DOM at once, so a book standing on its
+  // own in each would read as two commentaries where there is one. What must be
+  // true is that the SET of commentaries the door offers is the set the shelf
+  // carries, and the address is what says which book an entry is for.
+  const offered = splash.commentary || [];
+  const carried = zonesServedWithCommentary();
+  const wrongAddr = offered.filter((o) => !/^\/[^?]+\?c=open$/.test(String(o.href)));
   check("and the commentary is offered exactly where a zone carries one",
-    offered.length === carried.length,
-    `${offered.length} offered (${offered.join(" · ") || "none"}) for ${carried.length} sidecar(s) on disk`);
+    offered.length === carried.length && wrongAddr.length === 0,
+    `${offered.length} offered for ${carried.length} sidecar(s) on disk${wrongAddr.length ? ` · ${wrongAddr.length} at an address that does not open one` : ""}`);
+  // and each entry names its book the way every other name slot on this page
+  // does: plain letters, or the absence said in words — never a raw id and
+  // never a bare Hebrew title dressed as a name
+  const badName = offered.filter((o) => /[\u0590-\u05FF]/u.test(o.en) || !/[A-Za-z]/.test(o.en));
+  check("  and each names its book in plain letters, or says the absence in words",
+    badName.length === 0,
+    badName.length ? badName.map((o) => `${o.href}: "${o.en}"` ).slice(0, 3).join(" · ") : `${offered.length} entries`);
 }
 check("it does not run off the side", !splash.offscreen);
 // Two kinds of text are allowed on our own surfaces: text from the chain,
@@ -543,9 +571,18 @@ check("and the bare instrument at its own path is untouched by any of it",
 // reader presses the first mark and the first work behind it.
 console.log("— a commentary entry opens a commentary —");
 await p.goto(`${B}/`, { waitUntil: "networkidle" });
-const doorLinks = await p.evaluate(() => [...document.querySelectorAll("a.sub-book")]
-  .map((a) => ({ href: a.getAttribute("href"), en: a.querySelector(".en")?.textContent || "" })));
-const CARRIED = zonesWithCommentary().filter((z) => ON_DISK.has(z));
+// BY ADDRESS, NOT BY ELEMENT. The shelf is filed two ways on this page and
+// both filings are in the DOM, so a book standing on its own in each carries
+// two identical entries to one commentary. What is being checked is that every
+// carried commentary has a way in, and that every way in opens a commentary.
+const doorLinks = await p.evaluate(() => {
+  const seen = new Map();
+  for (const a of document.querySelectorAll("a.sub-book"))
+    if (!seen.has(a.getAttribute("href")))
+      seen.set(a.getAttribute("href"), { href: a.getAttribute("href"), en: a.querySelector(".en")?.textContent || "" });
+  return [...seen.values()];
+});
+const CARRIED = zonesServedWithCommentary().filter((z) => ON_DISK.has(z));
 check("the door offers a commentary entry per book that carries one",
   doorLinks.length === CARRIED.length && doorLinks.every((l) => /\?c=open$/.test(l.href)),
   `${doorLinks.length} for ${CARRIED.length} sidecar(s) · ${doorLinks.map((l) => l.href).join(" · ") || "none"}`);

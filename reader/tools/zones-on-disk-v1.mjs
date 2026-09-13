@@ -79,6 +79,16 @@ export function zonesWithCommentary(dir = ZONES) {
   return zonesOnDisk(dir).filter((z) => existsSync(join(dir, `${z}.commentary.bin`)));
 }
 
+/** Zones that carry a commentary sidecar AND are themselves served. This is
+ *  what the door may offer: a commentary is read where its base is read, so a
+ *  commentary beside a book the gate withheld has nowhere to be offered and
+ *  must not be. A check asking "what does the door offer" wants this one;
+ *  a check asking "what did the builder produce" still wants the list above. */
+export function zonesServedWithCommentary(dir = ZONES) {
+  const served = new Set(zonesServed(dir));
+  return zonesWithCommentary(dir).filter((z) => served.has(z));
+}
+
 /** Zones that also carry a Hebrew-on-Hebrew sidecar (<slug>.hoh.bin), fixtures
  *  included — a fixture is the only place one may stand until a delivery
  *  lands, and the check that presses the panel needs to find it. */
