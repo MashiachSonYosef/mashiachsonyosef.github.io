@@ -34,7 +34,7 @@
 //
 // Run: node tools/check-frame-coverage-v1.mjs
 
-import { zonesServed } from "./zones-on-disk-v1.mjs";
+import { zonesServed, zonesOnDisk } from "./zones-on-disk-v1.mjs";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
@@ -250,12 +250,58 @@ for (const t of table) console.log(`     ${String(t.work).padEnd(pad)}  ${t.lice
 console.log("\n  — is this lane holding no artifact that would show the layer:");
 for (const [l, why] of Object.entries(NOT_VISIBLE)) if (frame.includes(l)) console.log(`     ${l.padEnd(9)} ${why}`);
 
+// ---- V IS NOT LIKE THE OTHER LETTERS -------------------------------------
+//
+// Every other letter is a property of the work itself: its own units, its own
+// licence, its own keys. A work that lacked one would be a work this lane had
+// half-built, which is what "no layer is on one work and off another" exists
+// to catch.
+//
+// V is a relation to a SECOND WORK, and a second work either exists or does
+// not. Nobody wrote a Targum on Psalms; none has been acquired for Genesis.
+// Holding the frame to "V on all or V on none" would call seventeen books
+// half-built for a fact about the corpus, and — worse — the day one book got a
+// commentary the check would go red until all thirty-nine did, which is an
+// instruction to stop shipping commentary.
+//
+// What IS this lane's to answer is the other half: a commentary work standing
+// on the shelf whose sidecar was never built. That is a real gap and it is
+// asserted. A work names what it stands on in its own recorded id — the first
+// "-on-" or "-to-" separates the work from its target, and the rest of the
+// slug is that target WHOLE. Reading it the other way round matters: the
+// Esther notes end in "-on-esther" and stand on the midrash, not on the book,
+// and numbering against the midrash they claim 123 units Esther has no verse
+// for. The builder refuses them by name; the name says why first.
+const TARGET_OF = (z) => { const m = /^(.+?)-(?:on|to)-(.+)$/u.exec(z); return m ? m[2] : null; };
+const NAMED_BY = new Map();
+{
+  const servedSet = new Set(servedNow);
+  for (const z of zonesOnDisk(ZONES)) {
+    const t = TARGET_OF(z);
+    if (!t || z === t || !servedSet.has(t)) continue;
+    if (!NAMED_BY.has(t)) NAMED_BY.set(t, []);
+    NAMED_BY.get(t).push(z);
+  }
+}
+const slugOf = (t) => String(t.file).replace(/\.bin$/u, "");
+
 // ---- the one assertion ----------------------------------------------------
 console.log("\n— no layer is on one work and off another —");
 const visible = frame.filter((l) => table.some((t) => t.layers[l] !== null));
 const carried = visible.filter((l) => table.some((t) => t.layers[l] > 0));
 const nowhere = visible.filter((l) => table.every((t) => !t.layers[l]));
 for (const l of carried) {
+  if (l === "V") {
+    const owed = table.filter((t) => NAMED_BY.has(slugOf(t)));
+    const missing = owed.filter((t) => !t.layers.V).map((t) => `${t.work} [${NAMED_BY.get(slugOf(t)).join(", ")}]`);
+    const unasked = table.filter((t) => !NAMED_BY.has(slugOf(t)) && t.layers.V).map((t) => t.work);
+    const none = table.length - owed.length;
+    check("  V", missing.length === 0 && unasked.length === 0,
+      missing.length ? `${missing.length} work(s) a commentary stands on carry none: ${missing.join(" · ")}`
+      : unasked.length ? `${unasked.length} carry a commentary no work on the shelf names: ${unasked.join(", ")}`
+      : `on all ${owed.length} a commentary work stands on · ${none} that none stands on carry none, which is the corpus's shape and not a gap`);
+    continue;
+  }
   const off = table.filter((t) => !t.layers[l]).map((t) => t.work);
   check(`  ${l}`, off.length === 0,
     off.length ? `on ${table.length - off.length}, off: ${off.join(", ")}` : `on all ${table.length}`);
