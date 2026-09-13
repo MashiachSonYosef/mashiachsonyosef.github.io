@@ -10,31 +10,50 @@
 // never a list; the list is what the press is for.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { defaultZoneUrl, zonesServed, zonesServedWithCommentary } from "./zones-on-disk-v1.mjs";
+import { readFileSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
 const SKIP_LABEL = "check-contents-shut-v1";
 // A check about commentary needs a work that carries some. When none is
 // served, that is a fact about the corpus and not a defect in the reader, so
 // this says so and stops rather than failing every assertion against a page
 // with nothing on it.
-{
-  const { zonesWithCommentary } = await import("./zones-on-disk-v1.mjs");
-  if (!zonesWithCommentary().length) {
-    console.log(`SKIPPED — no served work carries a commentary sidecar, so ${SKIP_LABEL} has nothing to open`);
-    process.exit(3);
-  }
+const WITH_COMMENTARY = zonesServedWithCommentary();
+if (!WITH_COMMENTARY.length) {
+  console.log(`SKIPPED — no served work carries a commentary sidecar, so ${SKIP_LABEL} has nothing to open`);
+  process.exit(3);
 }
 
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const BASE = (defaultZoneUrl()).split("?")[0];
-const BOOKS_ON_DISK = zonesOnDisk();
+
+// WHICH BOOKS, AND WHY THESE. This walked every zone on disk. That was
+// written for a two-book shelf and went on standing while the shelf grew to
+// thousands — a browser page each, which is a check that times out rather
+// than reports, and it opened withheld books besides. It never showed,
+// because the file skipped for want of a commentary sidecar from the day the
+// shelf grew until the day one was built.
+//
+// What this check is about is the reader's own behaviour — one codebase — so
+// it walks the SHAPES the handle has to hold rather than every instance:
+// the longest book and the shortest, because a grid of fifty cells and a grid
+// of one are the two ends of "a count, never a list"; a book that carries a
+// commentary, because the second handle only exists there; and the first
+// served book in sort order, so the panel is not all extremes. Derived from
+// the shelf, never typed, deduped.
+const SECTIONS = new Map();
+for (const z of zonesServed()) {
+  try { SECTIONS.set(z, (JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.bin`)).toString("utf8")).sections || []).length); }
+  catch { /* a zone that will not read is another check's finding */ }
+}
+const bySections = [...SECTIONS.entries()].sort((a, c) => c[1] - a[1]).map(([z]) => z);
+const BOOKS = [...new Set([bySections[0], bySections[bySections.length - 1], WITH_COMMENTARY[0], zonesServed()[0]].filter(Boolean))];
+console.log(`panel: ${BOOKS.map((z) => `${z} (${SECTIONS.get(z)} sections)`).join(" · ")}`);
 
 const b = await chromium.launch(launchOptions());
-// The books come from the directory. This read ["genesis", "1kings"] — two
-// works withdrawn from the site on 2026-08-23 — so it opened the withheld
-// page twice and asserted about a reader that was never loaded.
-for (const book of BOOKS_ON_DISK) {
+for (const book of BOOKS) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await p.goto(`${BASE}?b=${book}`, { waitUntil: "networkidle" });
@@ -58,6 +77,12 @@ for (const book of BOOKS_ON_DISK) {
       firstWordTop: Math.round(first.getBoundingClientRect().top),
       ciHead: ci ? ci.querySelector(".ci-head").textContent.replace(/\s+/g, " ").trim() : null,
       ciOpen: ci ? !ci.querySelector(".ci-body").hidden : null,
+      // the count is the third thing that stood between a reader and the book
+      stampShown: !document.getElementById("stamp").hidden,
+      stampHead: (document.querySelector("#stampHead .toc-t")?.textContent || "").trim(),
+      stampSays: (document.querySelector("#stampHead .toc-n")?.textContent || "").replace(/\s+/g, " ").trim(),
+      stampOpen: !document.getElementById("stampBody").hidden,
+      stampH: Math.round(document.getElementById("stamp").getBoundingClientRect().height),
     };
   });
   check("  the contents arrives shut", !shut.gridShown && /^Contents$/i.test(shut.label), shut.label);
@@ -69,6 +94,31 @@ for (const book of BOOKS_ON_DISK) {
   if (shut.ciHead !== null) {
     check("  the book's commentary is a handle too", !shut.ciOpen &&
       /^C[\d,]+ Commentary$/.test(shut.ciHead), shut.ciHead);
+  }
+  // AND SO IS THE COUNT. It was the third thing standing between a reader and
+  // the book, and the largest: five figures, a witness row apiece and a
+  // paragraph, 285px of a 915px phone. The owner put the count on the book's
+  // own page and it stays there; what it may not do is be the page. Shut, it
+  // keeps the same law as the two handles beside it — a count, never a list —
+  // and the news a reader wants at a glance is whether this text agrees with
+  // the men who counted it.
+  if (shut.stampShown) {
+    check("  the count is a handle too, and says its verdict shut",
+      !shut.stampOpen && /^The count$/i.test(shut.stampHead)
+      && /\bwitness(es)?\b/.test(shut.stampSays)
+      && /(all agree|differs?|none published)/.test(shut.stampSays)
+      && shut.stampH < 90,
+      `${shut.stampHead} — ${shut.stampSays} · ${shut.stampH}px tall`);
+    const st = await p.evaluate(async () => {
+      document.getElementById("stampHead").click();
+      await new Promise((r) => setTimeout(r, 240));
+      const body = document.getElementById("stampBody");
+      return { open: !body.hidden, cells: body.querySelectorAll(".desk .cell").length,
+        rows: body.querySelectorAll("table tr").length };
+    });
+    check("  pressing it gives the whole comparison, witness by witness",
+      st.open && st.cells > 0 && st.rows > 0, `${st.cells} figures, ${st.rows} witness rows`);
+    await p.evaluate(() => document.getElementById("stampHead").click());
   }
 
   const opened = await p.evaluate(async () => {
@@ -82,7 +132,16 @@ for (const book of BOOKS_ON_DISK) {
     return { shown: !body.hidden, cells: cells.length, drilled: !sp.hidden,
       links: sp.querySelectorAll("a").length };
   });
-  check("  pressing it opens the grid", opened.shown && opened.cells > 5, `${opened.cells} cells`);
+  // A COUNT IS NOT A LENGTH. This read `cells > 5`, which asks the book to be
+  // long rather than asking the handle to work: a book of one chapter opens a
+  // grid of one cell, correctly, and failed. What the press has to prove is
+  // that the list arrived, and that it is the list the shut handle counted.
+  const claim = /^([\d,]+)\s+(\w+)/.exec(shut.count || "");
+  const claimed = claim ? Number(claim[1].replace(/,/gu, "")) : null;
+  const countsChapters = !!claim && /^chapter/i.test(claim[2]);
+  check("  pressing it opens the grid",
+    opened.shown && opened.cells >= 1 && (!countsChapters || opened.cells === claimed),
+    `${opened.cells} cells for a handle that said "${shut.count}"`);
   check("  and a chapter still drills to its sections",
     opened.drilled && opened.links > 1, `${opened.links} in the panel`);
 
@@ -126,7 +185,7 @@ for (const book of BOOKS_ON_DISK) {
 {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=${zonesOnDisk()[0]}`, { waitUntil: "networkidle" });
+  await p.goto(`${BASE}?b=${BOOKS[0]}`, { waitUntil: "networkidle" });
   await p.waitForSelector("#tocHead");
   await p.waitForTimeout(600);
   console.log("— shut, the contents is still a control —");
@@ -159,10 +218,10 @@ for (const book of BOOKS_ON_DISK) {
 // everything else that can be pressed, it is in the same place in every book,
 // and it goes to the site's own root and nowhere else.
 {
-  // The books come from the directory. This read ["genesis", "1kings"] — two
-// works withdrawn from the site on 2026-08-23 — so it opened the withheld
-// page twice and asserted about a reader that was never loaded.
-for (const book of BOOKS_ON_DISK) {
+  // The same panel as above: the way home is one codebase's behaviour, not a
+// fact about a book, so the shapes cover it. This read every zone on disk,
+// which at fleet scale is thousands of browser pages.
+for (const book of BOOKS) {
     const p = await b.newPage({ viewport: { width: 412, height: 915 } });
     p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
     await p.goto(`${BASE}?b=${book}`, { waitUntil: "networkidle" });

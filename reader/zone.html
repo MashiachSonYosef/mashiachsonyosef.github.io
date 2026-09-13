@@ -249,7 +249,33 @@
      of the page where nobody published a figure. The color reinforces the
      number and the glyph and never carries the meaning alone. The rows light
      once, top to bottom, and hold still for a reader who asked for still. */
-  #stamp { margin: 0.6rem 0 0; max-width: 62rem; border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim); padding: 0.35rem 0 0.4rem; font-size: 0.8rem; overflow-x: auto; }
+  #stamp { margin: 0.6rem 0 0; max-width: 62rem; padding: 0; font-size: 0.8rem; }
+  /* THE COUNT IS A HANDLE, like the contents and the commentary index beside
+     it, and for the same reason they are. The owner's ruling of 2026-09-07
+     put the count on the book's own page, and it belongs there; what nobody
+     ruled was that it should stand between a reader and the first word. Five
+     figures, four witness rows and a paragraph came to 285px of an 915px
+     phone, and with the masthead, the modes and the two other handles above
+     it the first word of every book on the shelf opened below the fold —
+     1,128px down in Amos, which check-contents-shut-v1 caught the day it
+     first ran. Shut, this says what it is and what the witnesses made of it;
+     pressed, the whole comparison is there, unchanged. */
+  #stamp #stampHead { display: flex; align-items: center; gap: 0.55rem; width: 100%; text-align: left;
+    background: var(--panel2); border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--gold-dim); border-radius: 0.5rem;
+    padding: 0.5rem 0.85rem; margin: 0; cursor: pointer;
+    font: inherit; color: var(--shesh); }
+  #stamp #stampHead .toc-t { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; }
+  #stamp #stampHead .toc-n { font-size: 0.78rem; color: var(--muted); }
+  #stamp #stampHead .toc-n .differs { color: var(--argaman); font-weight: 600; }
+  #stamp #stampHead::after { content: "\25be"; margin-inline-start: auto; font-size: 0.9rem;
+    color: var(--gold-dim); transform: rotate(-90deg); transition: transform 0.12s; }
+  #stamp #stampHead[aria-expanded="true"] { color: var(--sel); border-inline-start-color: var(--sel); }
+  #stamp #stampHead[aria-expanded="true"]::after { transform: none; color: var(--sel); }
+  #stamp #stampHead:hover { color: var(--ink-strong); border-color: var(--muted); }
+  #stampBody[hidden] { display: none; }
+  #stampBody { border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim);
+    margin-top: 0.4rem; padding: 0.35rem 0 0.4rem; overflow-x: auto; }
   /* THE DESK. The count used to be a sentence, and a sentence is the one shape
      a number cannot be read in at a glance. Five figures, each under its axis,
      each over what the witnesses say about that axis: a mark per witness in
@@ -1383,7 +1409,7 @@
        first thing. A reader who opens a book of the Tanakh here is looking at
        a counted text; the count is the thing this shelf offers that nothing
        else does, and it stood below a nine-line credit block. -->
-  <div id="stamp" hidden></div>
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
   <details class="byline-fold" id="bylineFold" hidden>
     <summary id="bylineSum"></summary>
     <p class="byline" id="byline"></p>
@@ -1926,7 +1952,8 @@
   // a figure for is a row in the page's own linen that says so.
   let deskShown = false;
   {
-    const st = zone.count_stamp, el = document.getElementById("stamp");
+    const st = zone.count_stamp, box = document.getElementById("stamp");
+    const el = box && box.querySelector("#stampBody");
     const instrument = !!((zone.emitted_from || {}).test_instrument);
     if (st && el && Array.isArray(st.rows) && !instrument) {
       const AX = { verses: "verses", words: "words · read", words_written: "words · written", letters: "letters · written", letters_read: "letters · read" };
@@ -1992,7 +2019,28 @@
         ? `ours, this page measured as drawn \u00b7 theirs, each witness's own figure \u00b7 the difference is ours less theirs, and nothing is adjusted to close one.`
         : `the page's own measure of the sections it draws (${n(pageMeasure.words)} words read, ${n(pageMeasure.letters)} letters, ${n(pageMeasure.verses)} verses) does not agree with the stamp the builder wrote (${n(st.ours.words)}, ${n(st.ours.letters)}, ${n(st.ours.verses)}); the stamp stands on the builder's measure and this line says the page could not reproduce it.`;
       el.append(note);
-      el.hidden = false;
+      // THE HANDLE SAYS WHAT IS BEHIND IT BEFORE THE PRESS IS MADE — the same
+      // law the contents keeps: a count, never a list. What a reader wants at
+      // a glance is not five figures, it is whether this text agrees with the
+      // men who counted it, so that is what the shut line carries.
+      const witnesses = new Set(st.rows.map((r) => r.witness).filter(Boolean)).size;
+      const differs = st.rows.filter((r) => r.verdict === "DIFFERS").length;
+      const nSlot = box.querySelector(".toc-n");
+      nSlot.textContent = `${n(st.ours.verses)} verses · ${witnesses} witness${witnesses === 1 ? "" : "es"} · `;
+      const verdict = document.createElement("span");
+      verdict.className = differs ? "differs" : "";
+      verdict.textContent = differs
+        ? `${differs} differ${differs === 1 ? "s" : ""}`
+        : (witnesses ? "all agree" : "none published");
+      nSlot.append(verdict);
+      const head = box.querySelector("#stampHead");
+      head.title = "the count of this book on every named axis, beside the figures other men reached for it";
+      head.addEventListener("click", () => {
+        const shut = el.hidden;
+        el.hidden = !shut;
+        head.setAttribute("aria-expanded", String(shut));
+      });
+      box.hidden = false;
       deskShown = true;
     }
   }

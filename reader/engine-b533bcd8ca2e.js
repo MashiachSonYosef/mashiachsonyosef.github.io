@@ -477,7 +477,8 @@
   // a figure for is a row in the page's own linen that says so.
   let deskShown = false;
   {
-    const st = zone.count_stamp, el = document.getElementById("stamp");
+    const st = zone.count_stamp, box = document.getElementById("stamp");
+    const el = box && box.querySelector("#stampBody");
     const instrument = !!((zone.emitted_from || {}).test_instrument);
     if (st && el && Array.isArray(st.rows) && !instrument) {
       const AX = { verses: "verses", words: "words · read", words_written: "words · written", letters: "letters · written", letters_read: "letters · read" };
@@ -543,7 +544,28 @@
         ? `ours, this page measured as drawn \u00b7 theirs, each witness's own figure \u00b7 the difference is ours less theirs, and nothing is adjusted to close one.`
         : `the page's own measure of the sections it draws (${n(pageMeasure.words)} words read, ${n(pageMeasure.letters)} letters, ${n(pageMeasure.verses)} verses) does not agree with the stamp the builder wrote (${n(st.ours.words)}, ${n(st.ours.letters)}, ${n(st.ours.verses)}); the stamp stands on the builder's measure and this line says the page could not reproduce it.`;
       el.append(note);
-      el.hidden = false;
+      // THE HANDLE SAYS WHAT IS BEHIND IT BEFORE THE PRESS IS MADE — the same
+      // law the contents keeps: a count, never a list. What a reader wants at
+      // a glance is not five figures, it is whether this text agrees with the
+      // men who counted it, so that is what the shut line carries.
+      const witnesses = new Set(st.rows.map((r) => r.witness).filter(Boolean)).size;
+      const differs = st.rows.filter((r) => r.verdict === "DIFFERS").length;
+      const nSlot = box.querySelector(".toc-n");
+      nSlot.textContent = `${n(st.ours.verses)} verses · ${witnesses} witness${witnesses === 1 ? "" : "es"} · `;
+      const verdict = document.createElement("span");
+      verdict.className = differs ? "differs" : "";
+      verdict.textContent = differs
+        ? `${differs} differ${differs === 1 ? "s" : ""}`
+        : (witnesses ? "all agree" : "none published");
+      nSlot.append(verdict);
+      const head = box.querySelector("#stampHead");
+      head.title = "the count of this book on every named axis, beside the figures other men reached for it";
+      head.addEventListener("click", () => {
+        const shut = el.hidden;
+        el.hidden = !shut;
+        head.setAttribute("aria-expanded", String(shut));
+      });
+      box.hidden = false;
       deskShown = true;
     }
   }

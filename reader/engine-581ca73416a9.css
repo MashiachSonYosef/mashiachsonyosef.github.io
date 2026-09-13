@@ -229,7 +229,33 @@
      of the page where nobody published a figure. The color reinforces the
      number and the glyph and never carries the meaning alone. The rows light
      once, top to bottom, and hold still for a reader who asked for still. */
-  #stamp { margin: 0.6rem 0 0; max-width: 62rem; border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim); padding: 0.35rem 0 0.4rem; font-size: 0.8rem; overflow-x: auto; }
+  #stamp { margin: 0.6rem 0 0; max-width: 62rem; padding: 0; font-size: 0.8rem; }
+  /* THE COUNT IS A HANDLE, like the contents and the commentary index beside
+     it, and for the same reason they are. The owner's ruling of 2026-09-07
+     put the count on the book's own page, and it belongs there; what nobody
+     ruled was that it should stand between a reader and the first word. Five
+     figures, four witness rows and a paragraph came to 285px of an 915px
+     phone, and with the masthead, the modes and the two other handles above
+     it the first word of every book on the shelf opened below the fold —
+     1,128px down in Amos, which check-contents-shut-v1 caught the day it
+     first ran. Shut, this says what it is and what the witnesses made of it;
+     pressed, the whole comparison is there, unchanged. */
+  #stamp #stampHead { display: flex; align-items: center; gap: 0.55rem; width: 100%; text-align: left;
+    background: var(--panel2); border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--gold-dim); border-radius: 0.5rem;
+    padding: 0.5rem 0.85rem; margin: 0; cursor: pointer;
+    font: inherit; color: var(--shesh); }
+  #stamp #stampHead .toc-t { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; }
+  #stamp #stampHead .toc-n { font-size: 0.78rem; color: var(--muted); }
+  #stamp #stampHead .toc-n .differs { color: var(--argaman); font-weight: 600; }
+  #stamp #stampHead::after { content: "\25be"; margin-inline-start: auto; font-size: 0.9rem;
+    color: var(--gold-dim); transform: rotate(-90deg); transition: transform 0.12s; }
+  #stamp #stampHead[aria-expanded="true"] { color: var(--sel); border-inline-start-color: var(--sel); }
+  #stamp #stampHead[aria-expanded="true"]::after { transform: none; color: var(--sel); }
+  #stamp #stampHead:hover { color: var(--ink-strong); border-color: var(--muted); }
+  #stampBody[hidden] { display: none; }
+  #stampBody { border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim);
+    margin-top: 0.4rem; padding: 0.35rem 0 0.4rem; overflow-x: auto; }
   /* THE DESK. The count used to be a sentence, and a sentence is the one shape
      a number cannot be read in at a glance. Five figures, each under its axis,
      each over what the witnesses say about that axis: a mark per witness in
