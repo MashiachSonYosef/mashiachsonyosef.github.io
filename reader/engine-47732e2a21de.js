@@ -1563,6 +1563,60 @@
     hud.style.top = `${Math.max(pad, Math.min(top, window.innerHeight - h - pad))}px`;
     hud.style.left = `${Math.max(pad, Math.min(left, window.innerWidth - w - pad))}px`;
   };
+  // AND THEN A BAND STOPS ON A ROW.
+  //
+  // Every height fitBands assigns is an estimate of where the rows will be
+  // once that height is set, and setting it moves them: the band gains a
+  // scrollbar, loses a few pixels of width, and the pills wrap one place
+  // earlier than they did when they were measured. fitBands narrows that in
+  // three passes and cannot close it, because the last thing it does is
+  // assign — and what is left over shows as a pill sliced in half by the
+  // band's own bottom edge, which reads as something broken rather than as
+  // something that scrolls. Four words of Genesis stood that way at every
+  // window size since the bands were written.
+  //
+  // It cannot be settled inside fitBands either: the card is placed and
+  // clamped AFTER the bands are fitted, and the clamp changes the card's
+  // height, which changes the band's width, which re-wraps the pills again.
+  // So this runs where the layout actually comes to rest — at the end of the
+  // placement — and it measures rather than predicts: while a band's edge
+  // cuts a pill, the band is pulled back to the last row that wholly fits
+  // inside it. It only ever comes DOWN, because a band that grew here would
+  // take back room the card has already handed the record, and never below
+  // its own first row, which is the floor every pass above fought for. A
+  // band that is not cut is not touched, so this settles and stays settled.
+  // one string compare per band on an idle frame: a band whose height, width
+  // and pill count are what they were last frame cannot have started cutting
+  // a pill since. Without this the scan reads three hundred pill rectangles
+  // every frame on a form with three hundred readings, which is a cost the
+  // reader pays for nothing.
+  const snapKeys = new WeakMap();
+  const snapBands = () => {
+    if (hud.hidden) return;
+    for (const q of [".b-cut .s-pills", ".b-cell .s-pills", ".b-read .r-pills"]) {
+      const box = hud.querySelector(q);
+      if (!box || !box.children.length || !box.style.height) continue;
+      const r0 = box.getBoundingClientRect();
+      const key = `${Math.round(r0.width)}x${box.clientHeight}:${box.children.length}`;
+      if (snapKeys.get(box) === key) continue;
+      snapKeys.set(box, key);
+      for (let pass = 0; pass < 4; pass += 1) {
+        const r = box.getBoundingClientRect();
+        const cut = [...box.children].some((c) => {
+          const cr = c.getBoundingClientRect();
+          return cr.top < r.bottom - 0.5 && cr.bottom > r.bottom + 0.5;
+        });
+        if (!cut) break;
+        const rows = rowsOf(box);
+        if (!rows.length) break;
+        const fits = rows.filter((row) => row.bottom <= box.clientHeight + 0.5);
+        const to = Math.ceil((fits.length ? fits[fits.length - 1] : rows[0]).bottom);
+        if (to >= box.clientHeight) break;
+        box.style.height = `${to}px`; box.style.maxHeight = `${to}px`;
+        snapKeys.set(box, `${Math.round(box.getBoundingClientRect().width)}x${box.clientHeight}:${box.children.length}`);
+      }
+    }
+  };
   const clampHud = placeInBounds;
   // The thread runs from each held word to the card — the owner's own
   // mechanic, carried in: a card should say where you were working without
@@ -1637,7 +1691,15 @@
       hud.classList.add("pop");
     }
   };
-  (function tetherLoop() { drawTether(); requestAnimationFrame(tetherLoop); })();
+  // The tether and the bands settle for the same reason and on the same
+  // clock. A card is fitted, then placed, then fitted again to the height the
+  // placement gave it — and the placement itself can scroll the page and run
+  // the whole thing over. There is no last line of that sequence to hang a
+  // measurement on; every candidate turned out to have another layout after
+  // it. So both are driven per frame, and both cost one comparison on an idle
+  // one: the tether compares its own key, and the bands look only for a pill
+  // their edge is cutting.
+  (function cardLoop() { drawTether(); snapBands(); requestAnimationFrame(cardLoop); })();
   const placeHud = (el) => {
     if (el) hudAnchor = el;
     if (!hudAnchor) return;
@@ -2832,6 +2894,14 @@
       selectedRecordRef.m = index.m_sources[selected.records[0][3]] || null;
       renderDCard(); dSlot.replaceChildren(dCard);
       paintGloss();
+      // AND FIT THE BANDS TO WHAT ARRIVED. The readings are fetched, so this
+      // band was last measured holding one line — "Fetching one shard…" — and
+      // the pills have just replaced it. Placing the card re-fits them
+      // eventually, by a path that takes the better part of a second, and
+      // until it does the band stands at the placeholder's height with a pill
+      // sliced in half by its own edge. The switch above has always re-fitted
+      // on redraw; the first draw, the one every reader sees, never did.
+      fitBands();
       clampHud();
       // The pressed pill is the reading printed under the word, so a card that
       // opens with it scrolled out of sight is a card claiming a reading it is

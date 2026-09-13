@@ -234,8 +234,16 @@ if (!ONLY) {
   if (git.status === 0) {
     const ok = new Set(served);
     for (const f of git.stdout.split("\0")) {
+      // A SIDECAR IS JUDGED AS THE BOOK IT RIDES BESIDE, not as a book of
+      // its own. <slug>.commentary.bin, <slug>.hoh.bin and <slug>.lattice.bin
+      // carry no C0 — a commentary's text, a dictionary's entries, the
+      // lattice's grades — so the question this line asks is still the right
+      // one, asked of the right name: publishing a sidecar for a book the
+      // gate refused publishes that book's data. The suffix list has to cover
+      // every sidecar; when .lattice.bin was added and this was not, the 39
+      // of them read as 39 books published outside the gate.
       if (!f.endsWith(".bin") || f.includes("fixture-")) continue;
-      const slug = f.replace(/^.*\//u, "").replace(/\.(commentary\.)?bin$/u, "");
+      const slug = f.replace(/^.*\//u, "").replace(/\.(commentary|hoh|lattice)?\.?bin$/u, "");
       if (!ok.has(slug)) l4.push(slug);
     }
   }

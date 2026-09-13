@@ -47,9 +47,14 @@ flag, and the Leningrad difference per position. It is projected by
 
 - **the join** is the headword join, pair-aware: the n-th ON word of a verse
   is the n-th ON position (kind, not rule — an ink mark is not a word), and a
-  position proves when any of its entries keys as one of the word's keys.
-  39 books: 23,195 verses joined; the handful that do not prove are held
-  whole and named on the receipt.
+  position proves when any of its entries keys as one of the word's keys AND
+  the verse's rows carry `j` distinct and ascending. **`j` is the position,
+  not `i`** — the corpus lane's warning of 2026-09-13, and it is real: `i`
+  repeats across the parts of a maqaf compound 2,951 times inside a verse in
+  Genesis alone, so anything keyed on `i` merges the pieces of a joined word.
+  This tool never keyed on `i`; it binds by file order, which is `j` order,
+  and now proves that rather than assuming it. 39 books: 23,204 verses
+  joined, none held, none absent.
 - **on the word**: `hg` — the headword's first reading under lemma-sort v3,
   with `hm` (source, licence key, year), only where `h` is the lattice's
   lemma and the stack has cards in this book; `ld` — where Leningrad differs.
@@ -75,19 +80,30 @@ flag, and the Leningrad difference per position. It is projected by
 - **not projected**: `pieces` (joined words) until the welded-form ruling.
 - **guards**: `check-lattice-projection-v1` (the files), `check-lattice-orders-v1` (the page).
 
-## The next ones, in the order that needs the fewest rulings
+## What is live, and what is left (2026-09-13)
 
-1. **pairs** — already live (KETIV / QERE / SOURCE); Moses's `qere-ketiv-v1.json` adds what to show at the 298 qere-only / 21 ketiv-only sites once the owner rules.
-2. **reads first** — the four dead positions (masoretic = B, which equals today's default at 100% and is dropped; cites here = C; vowels differ = E; outside the era = F) need the lattice's per-card fields projected — a per-card ledger, joined on `primary_source`.
-3. **joined words** — `maqaf-v1.json` + `maqaf-compounds-v1.jsonl.gz`; ruling first: suppress WELDED where nothing matches the vowels (1,041 of 1,311)?
-4. **license** — `licence-v1.json`; rulings first: sort or filter; 17 strings or four classes; and the Jastrow-not-served ruling must sit ABOVE the license sort or a public-domain-first sort re-serves him (58,093 ties).
-5. **names** — `transliterate-v1.json`; the three clauses of the rule must be written before the ledger is final.
-6. **edition** — `editions-diff-v1.csv.gz`; provisional until its recount runs.
+Live: **reads first** (all seven positions), **pairs**, **look up by**,
+**license**, **names**, **edition**. One row is not:
+
+1. **joined words** — `maqaf-v1.json` + `maqaf-compounds-v1.jsonl.gz`, and the
+   lattice's own `pieces`, which v12 carries and this lane does not project.
+   A RULING FIRST, and it is the owner's: suppress WELDED where nothing
+   matches the vowels (1,041 of 1,311)? The rail says so on its own face.
+
+Two rulings stand behind live rows and are still owed:
+
+- **pairs** — `qere-ketiv-v1.json` has what to show at the 298 qere-only /
+  21 ketiv-only sites; the row runs on the default until the owner rules.
+- **license** — the Jastrow-not-served ruling must sit ABOVE the license sort,
+  or a public-domain-first sort re-serves him (58,093 ties). The sort is live;
+  that ruling is not written.
 
 ## What a new projection tool must do
 
-Copy `project-toggle-headword-v1.mjs`. Keep: the verse-by-verse join proved by
-`form_key`; the receipt at `emitted_from.toggles.<name>` with `rule`, `source`
+Copy `project-toggle-headword-v1.mjs` or `project-lattice-v12-v1.mjs`. Keep:
+the verse-by-verse join proved by `form_key` — and, where the ledger carries
+`i` and `j`, **prove `j` distinct and ascending and never key on `i`**, which
+repeats across the parts of a maqaf compound (42,627 times over the 39 books); the receipt at `emitted_from.toggles.<name>` with `rule`, `source`
 (path, bytes, sha256, ledger path on R2, witnesses, `candidate_only`), `join`,
 `projected_on`, `projected_by`, `counts`, `what_the_word_carries`,
 `rulings_owed`; the typed exemption merge (`post_build.wrote` gains

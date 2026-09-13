@@ -122,7 +122,7 @@ await readLines(files.positions, (line) => {
 // ---- rule 2 · the join, verse by verse, proved by the key ------------------
 const stats = { verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
   hg: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
-  ld: 0, grades: 0, held_examples: [] };
+  ld: 0, grades: 0, verses_held_j_not_sound: 0, held_examples: [] };
 const grades = {};          // pointed surface -> { k, g, n }
 const wordsTouched = [];    // for the recount
 for (const sec of zone.sections || []) {
@@ -135,7 +135,18 @@ for (const sec of zone.sections || []) {
   // form and the qere) keys as one of the zone's keys for that word
   const keysOfRow = (p) => (p.megacompspan || []).map((m) => m.key).filter(Boolean);
   const matches = (w, p) => keysOfRow(p).some((k) => keysOf(w).includes(k));
-  const proved = rows.length === on.length && on.every((w, i) => matches(w, rows[i]));
+  // J IS THE POSITION, NOT I. The corpus lane's warning (2026-09-13): i
+  // repeats across the parts of a maqaf compound — 2,951 times inside a
+  // verse in Genesis alone — so anything keyed on i silently merges the
+  // pieces of a joined word. This tool never keyed on i; it binds the n-th
+  // ON word of a verse to the n-th ON row. That is the same binding as j
+  // only while the rows arrive in j order with j distinct, so it is proved
+  // here rather than assumed, and a verse whose rows do not is held whole
+  // like any other verse that does not prove.
+  const js = rows.map((p) => p.j);
+  const jSound = new Set(js).size === js.length && js.every((v, i) => i === 0 || v > js[i - 1]);
+  const proved = jSound && rows.length === on.length && on.every((w, i) => matches(w, rows[i]));
+  if (!jSound) stats.verses_held_j_not_sound += 1;
   if (!proved) {
     stats.verses_held += 1;
     if (stats.held_examples.length < 6) stats.held_examples.push(`${sec.label}: zone ${on.length} words, lattice ${rows.length} positions${rows.length === on.length ? `, first mismatch at ${on.findIndex((w, i) => !matches(w, rows[i])) + 1}` : ""}`);
@@ -256,7 +267,7 @@ ef.toggles.lattice = {
   rule: LATTICE_RULE_ID,
   source: sidecar.source,
   sidecar: { path: `data/zones/${slug}.lattice.bin`, schema: SIDECAR_SCHEMA },
-  join: "verse by verse, in order, ON positions only (kind, not rule), proved by key at every position; a verse that does not prove is held whole",
+  join: "verse by verse, ON positions only (kind, not rule); the n-th ON word takes the n-th ON row, proved by key at every position AND by j being distinct and ascending across the verse's rows (j is the position identity — i repeats across the parts of a maqaf compound); a verse that does not prove is held whole",
   projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs",
   counts: { ...stats },
   what_the_word_carries: "hg: the headword's first reading under lemma-sort v3, with hm (source, licence key, year) — only where h is the lattice's lemma and the stack is in routes; ld: the Leningrad difference where the codex spells the word otherwise",
