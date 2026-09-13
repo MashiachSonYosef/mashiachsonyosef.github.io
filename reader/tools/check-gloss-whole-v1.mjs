@@ -145,9 +145,19 @@ check("no reading anywhere is cut off after the ruling", ruledSweep.clipped === 
   `${ruledSweep.clipped} of ${ruledSweep.n}`);
 await p.keyboard.press("Escape");
 
-// The tether: an open card runs four faint lines back to the word it opened
-// from, so the page says where you were working. It is an overlay — it must
-// take no taps, and it must die with the card.
+// The tether: an open card runs two gold lines back to the word it opened
+// from, so the page says where you were working.
+//
+// It was four lines to the Hebrew word's own corners (the owner's ruling of
+// 2026-08-30). On 2026-09-11 the owner replaced it: the whole block is boxed
+// in gold — "a big gold box around the entire selected" — and the tether is
+// the FRUSTUM of that box and the card, two lines leaving the box's far
+// corners for the card's near corners, so the card reads as the box opening
+// out. This check followed the old drawing for two days and reported "0
+// lines" against a page that was drawing two; it now reads what is there.
+//
+// It is an overlay either way — it must take no taps, and it must die with
+// the card.
 {
   const t = await p.evaluate(async () => {
     const wb = (document.querySelector("section.seg .he-text .wb .g:not(.bare)") || {}).closest?.(".wb");
@@ -155,22 +165,34 @@ await p.keyboard.press("Escape");
     await new Promise((r) => setTimeout(r, 900));
     const svg = document.getElementById("tether");
     const open = svg && getComputedStyle(svg).display !== "none";
-    const lines = svg ? svg.querySelectorAll("line").length : 0;
+    const paths = svg ? [...svg.querySelectorAll("path")] : [];
+    const drawn = paths.filter((l) => (l.getAttribute("d") || "").trim()).length;
     const noTaps = svg && getComputedStyle(svg).pointerEvents === "none";
-    // the tether holds the Hebrew word's own corners — the owner's ruling,
-    // 2026-08-30 — not the block around it
-    const a = (wb.querySelector(".w") || wb).getBoundingClientRect();
-    const l0 = svg && svg.querySelector("line");
-    const anchored = l0 && Math.abs(Number(l0.getAttribute("x1")) - a.left) < 2
-      && Math.abs(Number(l0.getAttribute("y1")) - a.top) < 2;
+    // The lines leave the BLOCK's own box, outset by its gold outline, and
+    // land on the card. Read the two ends of each path and ask that of them,
+    // rather than assuming which pair of corners this geometry chose: above,
+    // below or beside the card are four different frustums of one box.
+    const b = wb.getBoundingClientRect();
+    const h = document.getElementById("hud").getBoundingClientRect();
+    const OUT = 4.5, near = (v, lo, hi) => v >= lo - 2.5 && v <= hi + 2.5;
+    const ends = paths.map((l) => (l.getAttribute("d") || "").match(/-?\d+(?:\.\d+)?/gu) || []).filter((m) => m.length === 4).map((m) => m.map(Number));
+    const onBox = ends.every(([x, y]) => near(x, b.left - OUT, b.right + OUT) && near(y, b.top - OUT, b.bottom + OUT));
+    const onCard = ends.every(([, , x, y]) => near(x, h.left, h.right) && near(y, h.top, h.bottom));
+    // and the block wears the box the lines leave from
+    const boxed = getComputedStyle(wb).outlineStyle === "solid" && Number.parseFloat(getComputedStyle(wb).outlineWidth) > 0;
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
     await new Promise((r) => setTimeout(r, 300));
     const closed = getComputedStyle(svg).display === "none";
-    return { open, lines, noTaps, anchored, closed };
+    const unboxed = !getComputedStyle(wb).outline.includes("solid") || getComputedStyle(wb).outlineStyle !== "solid";
+    return { open, drawn, ends: ends.length, noTaps, onBox, onCard, boxed, closed, unboxed };
   });
-  check("an open card runs its tether back to the word", t.open && t.lines === 4 && t.anchored,
-    `${t.lines} lines · anchored ${t.anchored}`);
+  check("an open card runs its tether back to the word", t.open && t.drawn === 2 && t.ends === 2,
+    `${t.drawn} lines drawn, ${t.ends} read`);
+  check("  and each line leaves the held block's own box for the card",
+    t.onBox && t.onCard, `on the box ${t.onBox} · on the card ${t.onCard}`);
+  check("  the block it leaves is boxed in gold while the card stands open", t.boxed);
   check("the tether takes no taps and dies with the card", t.noTaps && t.closed);
+  check("  and the box goes with it", t.unboxed);
 }
 
 await p.click("#modeEn");

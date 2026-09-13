@@ -470,6 +470,9 @@
      box, because gold is line work and a quotation is a line drawn around
      somebody else's words */
   .hoh-slot:empty { display: none; }
+  /* the edition mark: a word the Leningrad codex spells otherwise wears a
+     dotted gold rule while the toggle asks for it — gold is line work */
+  body.ed-mark .wb[data-ld] .w { text-decoration: underline dotted var(--gold); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
   .hoh { margin: 0.4rem 0 0; padding: 0.45rem 0.6rem 0.3rem; background: var(--surface-c);
     border: 1px solid var(--line-c); border-radius: 0.6rem; max-height: 42vh; overflow: auto; }
   .hoh .r-label { margin: 0 0 0.3rem; }
@@ -1585,22 +1588,67 @@
   const DEF_POS = [
     { id: "corpus", lab: "corpus", live: true,
       say: "Lexicons of the text\u2019s own era answer first \u2014 the corpus lane\u2019s classification of each source, not ours." },
-    { id: "masoretic", lab: "masoretic", live: false,
-      say: "Readings whose source points the word the way this text points it. Waiting on the lattice: the pointed headwords are in it, and it is not on this shelf yet." },
-    { id: "cites", lab: "cites here", live: false,
-      say: "Readings whose source cites this verse. Waiting on the lattice, and on its citations being the verses themselves rather than a count of them." },
+    // The three lattice orders read the corpus lane's grade of every card
+    // against the word as this text points it (lattice v12, projected over
+    // this book by tools/project-lattice-v12-v1.mjs into <book>.lattice.bin).
+    // They are live where that sidecar rides beside the book, fetched the
+    // first time one is chosen; a graded card sorts by its tier, an ungraded
+    // one after every graded one, and nothing is dropped.
+    { id: "masoretic", lab: "masoretic", live: false, needs: "lattice", lattice: "m",
+      say: "Readings whose source points the word the way this text points it answer first \u2014 the lattice\u2019s vowel match, the corpus lane\u2019s grade and not ours. The rest keep their own order under them." },
+    { id: "cites", lab: "cites here", live: false, needs: "lattice", lattice: "c",
+      say: "Readings whose source names this verse answer first \u2014 the lattice\u2019s own citation list for this position. The rest keep their own order under them." },
     { id: "characters", lab: "characters", live: true,
       say: "Letters match exactly, pointing ignored \u2014 how every key on this shelf is made, so this is the catalog\u2019s own order, undisturbed." },
-    { id: "vowels-differ", lab: "vowels differ", live: false,
-      say: "Readings whose source points the word differently while the letters agree. Waiting on the same lattice." },
-    { id: "outside-era", lab: "outside the era", live: false,
-      say: "Lexicons explicitly NOT of the text\u2019s era first, to watch the sense move. Nothing this shelf cites is classified that way yet \u2014 unknown is not later, and ranking on unknown is the claim this project refuses." },
+    { id: "vowels-differ", lab: "vowels differ", live: false, needs: "lattice", lattice: "x",
+      say: "Readings whose source points the word differently while the letters agree answer first, to watch the sense move \u2014 the lattice\u2019s vowel mismatch. The rest keep their own order under them." },
+    { id: "outside-era", lab: "outside the era", live: false, needs: "corpus",
+      say: "Lexicons the corpus lane classifies as explicitly NOT of the text\u2019s era answer first, to watch the sense move. Unknown is not later: a source with no classification keeps its place." },
     { id: "oldest", lab: "oldest first", live: true,
       say: "The oldest source answers first, antiquity ahead of everything. The order this reader has always used." },
   ];
   // the open card's own redraw, handed up so the page-level switch can reach
   // it; null while no card is open, which is most of the time
   let redrawReadings = null;
+  // THE LATTICE, on demand. <book>.lattice.bin carries, per key, the corpus
+  // lane's card fingerprints in the lattice's order with its transliteration
+  // flags, and per pointed surface the tier of each card and which cite this
+  // verse — lattice-projection-rule-v1. It is fetched the first time an
+  // order that needs it is chosen, never before, and a book without one
+  // simply keeps those orders dead with their reason.
+  let latticeStore = null, latticePromise = null;
+  const latticeReady = () => {
+    if (!latticePromise) latticePromise = fetchBin(`${BOOK}.lattice`)
+      .then((s) => { latticeStore = s; window.__latticeStore = s; return s; })
+      .catch((e) => { if (String((e && e.message) || "").startsWith("REFUSED")) { window.__latticeRefused = e.message; console.error(e.message); } return null; });
+    return latticePromise;
+  };
+  // the fingerprint a store row and a lattice card share: FNV-1a over the
+  // UTF-16 code units of "text|source label", eight hex digits — the same
+  // function, to the character, as tools/project-lattice-v12-v1.mjs
+  const fnv1a = (s) => {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < s.length; i += 1) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+    return h.toString(16).padStart(8, "0");
+  };
+  // the licence class of a posture key, as the page reads it from the key
+  // itself (0 public domain and cc0 · 1 CC BY · 2 CC BY-SA · 3 CC BY-NC ·
+  // 4 everything else) — a SORT key only; nothing is ever dropped by it
+  const licClass = (key) => {
+    const p = String(key || "");
+    if (/^(public_domain|cc0)/u.test(p)) return 0;
+    if (/^cc_by_nc/u.test(p)) return 3;
+    if (/^cc_by_sa/u.test(p) || /gfdl/u.test(p)) return 2;   // a GFDL dual reads as share-alike, the corpus lane's class list agrees
+    if (/^cc_by/u.test(p)) return 1;
+    return 4;
+  };
+  // the word standing open on the card: its pointed surface and its key,
+  // which is what the lattice's grades are keyed by
+  let openPointed = null, openKey = null;
+  const LIC_KEY = "fh.licence", NAMES_KEY = "fh.names", ED_KEY = "fh.edition";
+  let licencePref = (() => { try { return ["any", "pd", "by", "by-sa"].includes(localStorage.getItem(LIC_KEY)) ? localStorage.getItem(LIC_KEY) : "any"; } catch { return "any"; } })();
+  let namesPref = (() => { try { return localStorage.getItem(NAMES_KEY) === "sound" ? "sound" : "meaning"; } catch { return "meaning"; } })();
+  let editionMark = (() => { try { return localStorage.getItem(ED_KEY) === "diff" ? "diff" : "mam"; } catch { return "mam"; } })();
   let defOrder = (() => {
     let held = null;
     try { held = localStorage.getItem(DEF_KEY); } catch { /* a device that remembers nothing still reads */ }
@@ -1637,15 +1685,36 @@
     { id: "maqaf", lab: "joined words", why: "a word written with a maqaf: read its pieces, the phrase, or the welded form",
       positions: [{ id: "pieces", lab: "each piece" }, { id: "phrase", lab: "the phrase" }, { id: "welded", lab: "welded" }],
       live: () => false, waits: "a ruling — suppress “welded” where nothing matches the vowels (1,041 of 1,311)? — then the maqaf ledger projected", now: () => "each piece" },
-    { id: "licence", lab: "license", why: "prefer readings released under one license — never a source the site refuses",
+    // A SORT, never a filter: readings under the chosen class answer first
+    // and every other reading keeps its place under them. The class is read
+    // off each source's posture key; a source the site refuses never reaches
+    // the store at all, so no class can re-serve it.
+    { id: "licence", lab: "license", why: "prefer readings released under one license — a sort, never a filter; a source the site refuses is not in the catalog to be sorted",
       positions: [{ id: "any", lab: "any" }, { id: "pd", lab: "public domain" }, { id: "by", lab: "CC BY" }, { id: "by-sa", lab: "CC BY-SA" }],
-      live: () => false, waits: "a ruling — sort or filter, 17 strings or four classes — and the Jastrow-not-served ruling written above it", now: () => "any license" },
-    { id: "names", lab: "names", why: "a name’s card can say what it means or how it sounds",
+      live: () => !!(index && index.m_sources),
+      get: () => licencePref,
+      set: (id) => { licencePref = id; try { localStorage.setItem(LIC_KEY, id); } catch { /* the choice still stands on this page */ } if (redrawReadings) redrawReadings(); },
+      now: () => ({ any: "any license", pd: "public domain first", by: "CC BY first", "by-sa": "CC BY-SA first" })[licencePref] },
+    // The lattice flags a card as a transliteration under the corpus lane's
+    // strict rule; "as sound" answers with those first, "as meaning" leaves
+    // the order as it is. A sort, and only on the card.
+    { id: "names", lab: "names", why: "a name’s card can answer with what it means or how it sounds — the lattice’s transliteration flag, the corpus lane’s rule",
       positions: [{ id: "meaning", lab: "as meaning" }, { id: "sound", lab: "as sound" }],
-      live: () => false, waits: "a ruling on the three clauses of the transliteration rule", now: () => "as meaning" },
+      live: () => !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice),
+      waits: "the lattice projected over this book (tools/project-lattice-v12-v1.mjs)",
+      get: () => namesPref,
+      set: (id) => { namesPref = id; try { localStorage.setItem(NAMES_KEY, id); } catch { /* the choice still stands on this page */ } if (id === "sound" && !latticeStore) latticeReady().then(() => { if (redrawReadings) redrawReadings(); }); if (redrawReadings) redrawReadings(); },
+      now: () => (namesPref === "sound" ? "as sound" : "as meaning") },
+    // The lattice carries, per position, whether the Leningrad codex spells
+    // the word otherwise (editions-diff, blind-verified in v12); the word
+    // wears a dotted gold rule when the mark is on, and its title says how.
     { id: "edition", lab: "edition", why: "the text is MAM; the other great codex differs at about a thousand spellings and three verse runs",
       positions: [{ id: "mam", lab: "MAM" }, { id: "diff", lab: "mark where Leningrad differs" }],
-      live: () => false, waits: "the editions-diff recount — single-counted today", now: () => "MAM" },
+      live: () => !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice && zone.emitted_from.toggles.lattice.counts && zone.emitted_from.toggles.lattice.counts.ld),
+      waits: "the lattice projected over this book, with at least one position where Leningrad differs",
+      get: () => editionMark,
+      set: (id) => { editionMark = id; try { localStorage.setItem(ED_KEY, id); } catch { /* the choice still stands on this page */ } document.body.classList.toggle("ed-mark", id === "diff"); },
+      now: () => (editionMark === "diff" ? "Leningrad marked" : "MAM") },
   ];
   const licenseName = (posture) => {
     const p = String(posture || "");
@@ -1679,6 +1748,22 @@
     // off the page it is checking proves only that the page is consistent
     // with itself.
     window.__zone = zone;
+    // which orders this book can answer: the lattice ones where its sidecar
+    // rides beside it, the corpus one where the corpus record loaded — and a
+    // remembered choice this book cannot answer falls back to oldest first
+    {
+      const hasLattice = !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice);
+      for (const p of DEF_POS) {
+        if (p.needs === "lattice") p.live = hasLattice;
+        if (p.needs === "corpus") p.live = !!CORPUS_REC;
+      }
+      let held = null;
+      try { held = localStorage.getItem(DEF_KEY); } catch { /* a device that remembers nothing still reads */ }
+      defOrder = DEF_POS.some((p) => p.id === held && p.live) ? held : "oldest";
+      const pos = DEF_POS.find((p) => p.id === defOrder);
+      if (pos && pos.needs === "lattice") latticeReady();
+      if (editionMark === "diff") document.body.classList.add("ed-mark");
+    }
   } catch (e) {
     // a refusal is not an absence: a bin that failed its seal says so in the
     // refusal's own words, and a page with no book keeps the honest silence
@@ -2213,6 +2298,11 @@
     if (!ks || !ks.length || !zone.gloss_m) return null;
     const ms = ks.map((k) => zone.gloss_m[k]).filter(Boolean);
     if (ms.length !== ks.length) return null;
+    return chipOfMs(ms);
+  };
+  // the same chip from witness records already in hand — a reading a toggle
+  // moved onto the line carries its own M, not the baked column's
+  const chipOfMs = (ms) => {
     const uniq = [...new Map(ms.map((m) => [`${m.lic} ${m.m}`, m])).values()];
     const chip = document.createElement("span"); chip.className = "g-lic";
     if (uniq.length === 1) {
@@ -3207,21 +3297,53 @@
     // lexicons still sees every reading the catalog holds, in a different
     // order — hiding one because it sorted late would be the page deciding
     // what may be weighed.
-    return sortPool([...groups.values()]);
+    return sortPool([...groups.values()], surface);
   };
   const oldestFirst = (a, b) => {
     const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
     return tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger;
   };
-  const sortPool = (list) => {
-    if (defOrder === "characters") return list.sort((a, b) => a.ledger - b.ledger || oldestFirst(a, b));
-    if (defOrder === "corpus") {
-      // a group can rest on several records; it counts as the era's own if any
-      // witness under it is classified so
-      const era = (r) => (r.records.some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
-      return list.sort((a, b) => era(a) - era(b) || oldestFirst(a, b));
-    }
-    return list.sort(oldestFirst);
+  // WHICH READING ANSWERS FIRST. One comparator chain, every position of it
+  // a stable re-order of the same pool: the license preference (a sort,
+  // never a filter), then names-as-sound, then the chosen order, then oldest
+  // first. A lattice order reads the corpus lane's grade of each record for
+  // the word standing open; a record the lattice did not grade sorts after
+  // every graded one, and a card whose surface the lattice never graded
+  // (a cell of a form, a book without a sidecar) falls through to oldest.
+  const sortPool = (list, surface = null) => {
+    const pos = DEF_POS.find((p) => p.id === defOrder) || {};
+    const gr = latticeStore && latticeStore.grades && openPointed && surface && surface === openKey ? latticeStore.grades[openPointed] : null;
+    const lat = gr && latticeStore.routes[gr.k] ? latticeStore.routes[gr.k] : null;
+    const fpIdx = lat ? new Map(lat.f.map((fp, i) => [fp, i])) : null;
+    const idxOf = (row) => {
+      if (!fpIdx) return -1;
+      const m = index.m_sources[row[3]];
+      const i = fpIdx.get(fnv1a(`${row[1]}|${m ? m.label : ""}`));
+      return i === undefined ? -1 : i;
+    };
+    const TIER = { m: 0, n: 1, x: 2 };
+    // a group can rest on several records; it takes the best tier any of
+    // them earned, and counts as citing, the era's own, or a transliteration
+    // if any witness under it is
+    const tierOf = (r) => { let best = 3; for (const row of r.records) { const i = idxOf(row); if (i >= 0) { const t = TIER[gr.g[i]]; if (t !== undefined && t < best) best = t; } } return best; };
+    const cites = (r) => (gr && r.records.some((row) => gr.n.includes(idxOf(row))) ? 0 : 1);
+    const era = (r) => (r.records.some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
+    const outside = (r) => (r.records.some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
+    const lic = (r) => Math.min(...r.records.map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture)));
+    const tr = (r) => (lat && lat.t && r.records.some((row) => lat.t.includes(idxOf(row))) ? 0 : 1);
+    const primary = (a, b) => {
+      if (defOrder === "characters") return a.ledger - b.ledger;
+      if (defOrder === "corpus") return era(a) - era(b);
+      if (defOrder === "outside-era") return outside(a) - outside(b);
+      if (gr && pos.lattice === "m") return tierOf(a) - tierOf(b);
+      if (gr && pos.lattice === "x") { const v = (r) => ({ 2: 0, 1: 1, 0: 2 }[tierOf(r)] ?? 3); return v(a) - v(b); }
+      if (gr && pos.lattice === "c") return cites(a) - cites(b);
+      return 0;
+    };
+    const wantClass = { pd: 0, by: 1, "by-sa": 2 }[licencePref];
+    const licPref = (a, b) => (wantClass === undefined ? 0 : (lic(a) === wantClass ? 0 : 1) - (lic(b) === wantClass ? 0 : 1));
+    const namePref = (a, b) => (namesPref === "sound" && lat ? tr(a) - tr(b) : 0);
+    return list.sort((a, b) => licPref(a, b) || namePref(a, b) || primary(a, b) || oldestFirst(a, b));
   };
 
   /**
@@ -3245,6 +3367,11 @@
     const bin = opts.bin || zone;
     const word = opts.word || region;
     const regionIndex = opts.regionIndex || 0;
+    // the lattice's grades are keyed by the pointed surface of the form that
+    // stands open, and apply to its whole form only (bin === zone: a
+    // commentary's or a dictionary's words are not positions of this book)
+    openPointed = bin === zone && region && region.s ? region.s : null;
+    openKey = bin === zone && region ? (region.form_k || region.k || null) : null;
     // Only the atoms tile the occurrence, so only the atoms may be laid out in
     // the header. Drawing the whole lattice printed each joined interval again
     // between its own halves. When a joined interval is what was opened, every
@@ -3602,9 +3729,22 @@
         // height owes the text its lines AND the chip its own row
         const chipEl2 = box.querySelector(".g-lic");
         const chipH2 = chipEl2 ? chipEl2.getBoundingClientRect().height + (parseFloat(getComputedStyle(chipEl2).marginTop) || 0) : 0;
-        const lines = Math.max(1, Math.ceil((box.scrollHeight - chipH2 - 1) / lh));
-        box.style.height = `${Math.ceil(lines * lh + chipH2)}px`;
-        box.style.webkitLineClamp = String(lines);
+        // GROW UNTIL IT IS WHOLE, don't predict it whole. One pass computed
+        // the lines from the height the text wanted BEFORE the box changed,
+        // and a box that grows re-wraps: at the second word of Genesis the
+        // arithmetic landed on 146px for content that then reflowed to 147,
+        // and the reader's own chosen reading was cut by three pixels — the
+        // one thing this box
+        // exists to prevent. So it is measured again after each growth and
+        // grows another line while it is still short. The bound is the
+        // reading's own lines and nothing is ever shrunk.
+        let lines = Math.max(1, Math.ceil((box.scrollHeight - chipH2 - 1) / lh));
+        for (let pass = 0; pass < 40; pass += 1) {
+          box.style.height = `${Math.ceil(lines * lh + chipH2)}px`;
+          box.style.webkitLineClamp = String(lines);
+          if (box.scrollHeight <= box.clientHeight + 1) break;
+          lines += 1;
+        }
       }
       // A word inside a maqaf run does not print its own reading — the run
       // prints them once, together. So a ruling repaints the word's hidden
@@ -3815,8 +3955,15 @@
       // about being a window.
       if (pool.length > 1) label.textContent += ` · ${pool.length}`;
       const remembered = picked.get(surface);
-      let selected = (remembered && pool.find((r) => routeKey(r) === remembered.key)) || pool[0];
+      // under "look up by: the headword", the card opens on the headword's
+      // first reading under lemma-sort v3 where the lattice sorted the stack
+      // (hg on the word) — the same reading the line prints
+      const lemmaFirst = lookup === "headword" && word && word.hg && region.form_k && surface === region.k
+        ? pool.find((r) => String(r.text).toLowerCase() === String(word.hg).toLowerCase()) : null;
+      let selected = (remembered && pool.find((r) => routeKey(r) === remembered.key)) || lemmaFirst || pool[0];
       const pills = document.createElement("div"); pills.className = "r-pills";
+      // what the sort put first, said on the row so a check can read the
+      // order's effect off the page: the first reading's licence class
       const dCard = document.createElement("div"); dCard.className = "d-card";
       // A selected reading always shows at least one whole D with its M.
       //
@@ -4098,7 +4245,17 @@
       // the word is still in the list — it moved, it did not change.
       const drawPills = () => {
         pills.replaceChildren();
-        sortPool(pool).forEach((r) => pills.append(makePill(r)));
+        // a copy is sorted each time, so returning to an order returns to
+        // exactly its pool — a sort in place would carry the previous
+        // order's tie-breaks along
+        const sorted = sortPool([...pool], surface);
+        sorted.forEach((r) => pills.append(makePill(r)));
+        // the pool as sorted, said on the row and exposed, so a check can ask
+        // the page what it offered rather than read it off the pills
+        const classOf = (r) => Math.min(...r.records.map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture)));
+        window.__pool = sorted.map((r) => r.text);
+        pills.dataset.firstLic = String(classOf(sorted[0]));
+        pills.dataset.minLic = String(Math.min(...sorted.map(classOf)));
       };
       // the page's own switch redraws whatever card is open, so a change of
       // order reaches the reading standing under the word without closing it
@@ -4575,6 +4732,35 @@
     return m;
   };
 
+  // THE LINE UNDER A WORD, WHEN A TOGGLE MOVES IT PAST THE BAKED COLUMN.
+  // Two cases, both per position rather than per key, which is why the
+  // baked gloss table cannot carry them: under "look up by: the headword"
+  // the word's hg — the headword's first reading under lemma-sort v3, where
+  // the lattice sorted the stack (project-lattice-v12-v1); and under a
+  // lattice order, the first card of that order for this pointed surface,
+  // baked into the sidecar. Each comes with its own M, so the chip on the
+  // line names the witness that actually carries what the line says. Null
+  // where neither applies, and the baked column stands.
+  //
+  // WHEN BOTH ASK. A reader can hold "look up by: the headword" and a lattice
+  // order at once, and the two are asked at different grains: the headword's
+  // stack is sorted by lemma-sort v3, the lattice's grades are of the FORM as
+  // this text points it. There is no grade of the headword's stack against
+  // this position, so the headword wins the line and the card says which
+  // headword it answered under. An order the page cannot honestly apply is
+  // not applied quietly.
+  const lineUnder = (word, table) => {
+    if (!word || table !== zone.gloss) return null;
+    if (lookup === "headword" && word.hg && word.h && table[word.h])
+      return { text: word.hg, m: word.hm ? { lic: licenseName(word.hm.lic), m: word.hm.m, y: word.hm.y } : null, why: "headword" };
+    const pos = DEF_POS.find((p) => p.id === defOrder);
+    if (pos && pos.needs === "lattice" && latticeStore && latticeStore.grades && word.s) {
+      const gr = latticeStore.grades[word.s];
+      const first = gr && gr.o && gr.o[pos.lattice];
+      if (first) return { text: first[0], m: { lic: licenseName(first[2]), m: first[1], y: first[3] }, why: pos.id };
+    }
+    return null;
+  };
   const wordBlock = (word, table) => {
     const wb = document.createElement("span");
     wb.className = word.held ? "wb held" : "wb";
@@ -4585,6 +4771,10 @@
     // bookkeeping about the page; the inverted nunim may not, because they
     // speak about the text — the owner's rules 4, 5 and 6.
     if (word.typed_here) wb.classList.add("typed-here");
+    // where the Leningrad codex spells the word otherwise (the lattice's
+    // editions diff): the word carries it, and wears it when the edition
+    // toggle asks
+    if (word.ld) { wb.dataset.ld = word.ld.kind || "differs"; wb.title = `Leningrad differs${word.ld.kind ? ` (${String(word.ld.kind).replace(/_/gu, " ").toLowerCase()})` : ""}${word.ld.other ? `: ${word.ld.other}` : ""}${word.ld.mam ? ` · MAM: ${word.ld.mam}` : ""}`; }
     // AN OVERLAY OVER THE INK. The eighth rule: a commentary's opening
     // quotation was set apart by its printers, and the record carries that as
     // a run over the words rather than as markup inside them. The page draws
@@ -4687,6 +4877,7 @@
     // so the Hebrew never rides higher than its neighbors, in either mode.
     // A word holding several W reads them joined, the same join a span uses.
     let wasRuled = false;
+    let lineMoved = null;      // a toggle moved this line past the baked column, with its own M
     const parts = (regions || (word.k ? [{ k: word.k }] : [])).map((r) => {
       // a form the reader has already ruled on reads under its ruling, even
       // in a section built after the ruling was made
@@ -4694,6 +4885,7 @@
       if (held !== null) { wasRuled = true; return held; }
       // one region only: a headword is projected onto a position, and a
       // position with two forms on it keeps its forms
+      if (!(regions && regions.length > 1)) { const ov = lineUnder(word, table); if (ov) { lineMoved = ov; return spanJoin(ov.text); } }
       const g = table ? table[regions && regions.length > 1 ? r.k : lookupKey(word, r.k, table)] : null;
       return g ? spanJoin(g) : "—";
     });
@@ -4731,7 +4923,9 @@
       const ks = word.kq && regions ? (kqShown >= 0 ? [regions[kqShown].k] : [])
         : regions ? regions.filter((r, i) => parts[i] !== "—" && ruledLine(r.k, table) == null).map((r) => r.k)
         : word.k ? [word.k] : [];
-      const chip = licChipFor(ks);
+      // a moved line wears the M of what it now says, or no chip at all —
+      // absent over wrong, always
+      const chip = lineMoved ? (lineMoved.m ? chipOfMs([lineMoved.m]) : null) : licChipFor(ks);
       if (chip) ge.append(chip);
     }
     if (table === zone.gloss && !wasRuled && !word.kq) {
@@ -4932,13 +5126,18 @@
   const repaintGlossOrder = () => {
     const runs = new Set();
     for (const st of GLOSS_STANDS) {
-      const parts = st.ks.map((k) => { const g = zone.gloss[lookupKey(st.word, k, zone.gloss)]; return g ? spanJoin(g) : "\u2014"; });
+      // a one-form word may read past the baked column (the headword's
+      // lemma-sorted reading, or a lattice order's first card); the joined
+      // parts of a several-form word keep to the column
+      const moved = st.ks.length === 1 ? lineUnder(st.word, zone.gloss) : null;
+      const parts = moved ? [spanJoin(moved.text)]
+        : st.ks.map((k) => { const g = zone.gloss[lookupKey(st.word, k, zone.gloss)]; return g ? spanJoin(g) : "\u2014"; });
       const line = parts.filter((x) => x !== "\u2014").length ? parts.join(" + ") : "";
       st.ge.replaceChildren();
       if (line) { st.ge.textContent = line; st.ge.title = line; st.ge.classList.remove("bare"); }
       else { st.ge.textContent = " "; st.ge.classList.add("bare"); }
       if (line && zone.gloss_m) {
-        const chip = licChipFor(st.ks.filter((k, i) => parts[i] !== "\u2014"));
+        const chip = moved ? (moved.m ? chipOfMs([moved.m]) : null) : licChipFor(st.ks.filter((k, i) => parts[i] !== "\u2014"));
         if (chip) st.ge.append(chip);
       }
       const run = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
@@ -4978,6 +5177,9 @@
         // and the word standing open re-answers without closing
         if (redrawReadings) redrawReadings();
         railSay();
+        // a lattice order fetches its sidecar the first time it is chosen,
+        // then the line and the card move again with what it says
+        if (pos.needs === "lattice" && !latticeStore) latticeReady().then((s) => { if (!s || defOrder !== pos.id) return; repaintGlossOrder(); if (redrawReadings) redrawReadings(); });
       });
       row.append(btn);
     }

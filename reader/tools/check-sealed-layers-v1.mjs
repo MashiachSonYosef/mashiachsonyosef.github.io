@@ -44,7 +44,9 @@ if (!existsSync(ZONES)) {
   console.log(`SKIPPED — no zones directory here (looked in "${ZONES}")`);
   process.exit(3);
 }
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")).sort();
+// a lattice sidecar (<slug>.lattice.bin) holds grades and fingerprints, not
+// Hebrew a reader opens; it has no component layer to withhold
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.endsWith(".lattice.bin")).sort();
 if (!bins.length) {
   console.log(`SKIPPED — no zones built yet in ${ZONES}`);
   process.exit(3);

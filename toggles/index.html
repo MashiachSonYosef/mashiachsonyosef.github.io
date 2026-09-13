@@ -771,9 +771,9 @@
   #wcard .r-now .v.none { color:var(--argaman); font-style:italic; }
   #wcard .r-label { margin:.5rem 0 .3rem; color:var(--faint); font-size:.74rem;
     letter-spacing:.06em; text-transform:uppercase; }
-  /* the order row: seven positions, three answerable today. A dead one is
-     dimmed and struck, never hidden — the question stands even where the
-     evidence has not arrived. */
+  /* the order row, one pill per position of DEF_POSITIONS. A position a book
+     cannot answer is dimmed and struck, never hidden — the question stands
+     even where the evidence has not arrived. */
   .def-order { display:flex; flex-wrap:wrap; gap:.3rem; margin:0 0 .45rem; }
   .def-order .dfp { font:inherit; font-size:.6rem; letter-spacing:.1em; text-transform:uppercase;
     color:var(--faint); background:none; border:1px solid var(--line); border-radius:999px;
@@ -1007,30 +1007,30 @@
       <p class="tg-say">Lexicons of the text’s own era answer first — the corpus lane’s classification of each source, not ours. The rest keep their own order under them.</p>
       <p class="tg-from"><span class="tg-k">answered from</span> data/source-corpus-v1.json · declared_corpus</p>
     </article>
-    <article class="tg tg-wait">
-      <p class="tg-head"><span class="tg-n">2</span><span class="tg-lab">masoretic</span><span class="tg-badge">waiting</span></p>
-      <p class="tg-say">Readings whose source points the word the way this text points it. Waiting on the lattice: the pointed headwords are in it, and it is not on this shelf yet.</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> the lattice · the match grade — not on this disk</p>
+    <article class="tg">
+      <p class="tg-head"><span class="tg-n">2</span><span class="tg-lab">masoretic</span><span class="tg-badge">live</span></p>
+      <p class="tg-say">Readings whose source points the word the way this text points it answer first — the lattice’s vowel match, the corpus lane’s grade and not ours. The rest keep their own order under them.</p>
+      <p class="tg-from"><span class="tg-k">answered from</span> the lattice v12 · VOWEL_MATCH · projected into &lt;book&gt;.lattice.bin by tools/project-lattice-v12-v1.mjs</p>
     </article>
-    <article class="tg tg-wait">
-      <p class="tg-head"><span class="tg-n">3</span><span class="tg-lab">cites here</span><span class="tg-badge">waiting</span></p>
-      <p class="tg-say">Readings whose source cites this verse. Waiting on the lattice, and on its citations being the verses themselves rather than a count of them.</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> the lattice · names_this_verse — not on this disk</p>
+    <article class="tg">
+      <p class="tg-head"><span class="tg-n">3</span><span class="tg-lab">cites here</span><span class="tg-badge">live</span></p>
+      <p class="tg-say">Readings whose source names this verse answer first — the lattice’s own citation list for this position. The rest keep their own order under them.</p>
+      <p class="tg-from"><span class="tg-k">answered from</span> the lattice v12 · names_this_verse · projected into &lt;book&gt;.lattice.bin</p>
     </article>
     <article class="tg">
       <p class="tg-head"><span class="tg-n">4</span><span class="tg-lab">characters</span><span class="tg-badge">live</span></p>
       <p class="tg-say">Letters match exactly, pointing ignored — which is how every key on this shelf is made, so this is the catalog’s own order, undisturbed.</p>
       <p class="tg-from"><span class="tg-k">answered from</span> data/route-store · the key itself</p>
     </article>
-    <article class="tg tg-wait">
-      <p class="tg-head"><span class="tg-n">5</span><span class="tg-lab">vowels differ</span><span class="tg-badge">waiting</span></p>
-      <p class="tg-say">Readings whose source points the word differently while the letters agree — the masoretic position turned over. Waiting on the same lattice.</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> the lattice · VOWEL_MISMATCH — not on this disk</p>
+    <article class="tg">
+      <p class="tg-head"><span class="tg-n">5</span><span class="tg-lab">vowels differ</span><span class="tg-badge">live</span></p>
+      <p class="tg-say">Readings whose source points the word differently while the letters agree answer first, to watch the sense move — the lattice’s vowel mismatch. The rest keep their own order under them.</p>
+      <p class="tg-from"><span class="tg-k">answered from</span> the lattice v12 · VOWEL_MISMATCH · projected into &lt;book&gt;.lattice.bin</p>
     </article>
-    <article class="tg tg-wait">
-      <p class="tg-head"><span class="tg-n">6</span><span class="tg-lab">outside the era</span><span class="tg-badge">waiting</span></p>
-      <p class="tg-say">Lexicons explicitly NOT of the text’s own era first, to let a reader watch the sense move. Nothing this shelf cites is classified that way yet — unknown is not the same as later, and ranking on unknown would be the claim this project refuses.</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> data/source-corpus-v1.json · declared_corpus, inverted</p>
+    <article class="tg">
+      <p class="tg-head"><span class="tg-n">6</span><span class="tg-lab">outside the era</span><span class="tg-badge">live</span></p>
+      <p class="tg-say">Lexicons the corpus lane classifies as explicitly NOT of the text’s own era answer first, to let a reader watch the sense move. Unknown is not later: a source with no classification keeps its place.</p>
+      <p class="tg-from"><span class="tg-k">answered from</span> data/source-corpus-v1.json · declared_corpus, where it is explicitly not the text’s own</p>
     </article>
     <article class="tg">
       <p class="tg-head"><span class="tg-n">7</span><span class="tg-lab">oldest first</span><span class="tg-badge">live</span></p>

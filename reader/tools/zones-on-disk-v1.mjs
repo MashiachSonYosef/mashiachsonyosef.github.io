@@ -37,6 +37,7 @@ export function zonesOnDisk(dir = ZONES) {
     .filter((f) => f.endsWith(".bin"))
     .filter((f) => !f.endsWith(".commentary.bin"))
     .filter((f) => !f.endsWith(".hoh.bin"))         // a dictionary sidecar, <slug>.hoh.bin, same law
+    .filter((f) => !f.endsWith(".lattice.bin"))     // the lattice sidecar, <slug>.lattice.bin, same law
     .filter((f) => !/^[0-9a-f]{2}\.bin$/.test(f))   // route-store shards
     .filter((f) => f !== "w-top.bin")
     .filter((f) => !f.startsWith("fixture-"))       // instruments, not works
