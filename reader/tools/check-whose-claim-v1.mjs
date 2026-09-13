@@ -21,15 +21,14 @@
 
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { defaultZoneUrl, zonesOnDisk, zonesServedWithCommentary } from "./zones-on-disk-v1.mjs";
 const SKIP_LABEL = "check-whose-claim-v1";
 // A check about commentary needs a work that carries some. When none is
 // served, that is a fact about the corpus and not a defect in the reader, so
 // this says so and stops rather than failing every assertion against a page
 // with nothing on it.
 {
-  const { zonesWithCommentary } = await import("./zones-on-disk-v1.mjs");
-  if (!zonesWithCommentary().length) {
+  if (!zonesServedWithCommentary().length) {
     console.log(`SKIPPED — no served work carries a commentary sidecar, so ${SKIP_LABEL} has nothing to open`);
     process.exit(3);
   }
@@ -42,13 +41,38 @@ const check = (name, ok, detail = "") => {
   if (!ok) bad += 1;
   console.log(`${ok ? "  ok  " : "FAIL  "}${name}${detail ? "  ·  " + detail : ""}`);
 };
+// A MARK ON A WORD NEEDS A COMMENTARY PLACED ON A WORD. This check is about
+// the placement THIS lane made — the one it computes and labels as its own —
+// and that placement only exists at word grain. Every commentary the shelf
+// serves today attaches at the section, by the coordinates the two works
+// already share, so ".c-mark" is on no page and the check waited thirty
+// seconds for it and died on the timeout, reporting nothing at all. A check
+// that cannot reach its subject says so and stops; a crash says nothing, and
+// nothing reads like green.
+const { readFileSync: _rf } = await import("node:fs");
+const { gunzipSync: _gz } = await import("node:zlib");
+const onAWord = (slug) => {
+  try {
+    const c = JSON.parse(_gz(_rf(`data/zones/${slug}.commentary.bin`)).toString("utf8"));
+    return Object.values(c.units || {}).some((u) => Object.values(u.words || {}).some((l) => l.length));
+  } catch { return false; }
+};
+const WITH_COMMENTARY = zonesServedWithCommentary().filter(onAWord);
+if (!WITH_COMMENTARY.length) {
+  console.log(`SKIPPED — every commentary the shelf serves attaches at the section, so no page carries a word-level mark for ${SKIP_LABEL} to press`);
+  process.exit(3);
+}
 const b = await chromium.launch(launchOptions());
 
 // ---- a placement we made, on the card ---------------------------------
 {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=${zonesOnDisk()[0]}`, { waitUntil: "networkidle" });
+  // A CHECK ABOUT A COMMENTARY MARK OPENS A BOOK THAT HAS ONE. This took the
+  // first zone on the disk in sort order, which on this shelf is a fleet work
+  // with no commentary at all: it then waited thirty seconds for a mark that
+  // was never coming and died on the timeout, reporting nothing.
+  await p.goto(`${BASE}?b=${WITH_COMMENTARY[0]}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .c-mark");
   await p.waitForTimeout(800);
   console.log("— a placement this reader made says so —");

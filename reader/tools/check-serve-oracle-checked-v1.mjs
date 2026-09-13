@@ -113,7 +113,15 @@ const l1Detail = l1
 
 // ── the shelf ─────────────────────────────────────────────────────────────
 if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); process.exit(3); }
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")).sort();
+// BOOKS, NOT THE SIDECARS THAT RIDE BESIDE THEM. A sidecar is a layer built
+// FROM zones that were already walked — a commentary attached by coordinate, a
+// lattice of grades and route fingerprints — so it has no walk of its own and
+// never could. Counted as zones they were the whole of this law's finding:
+// every one of the 67 "costumed" was a sidecar, and the number moved with how
+// many sidecars happened to be on a given disk rather than with anything about
+// a route. The layer each one belongs to is checked by the check that owns it.
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")
+  && !/\.(commentary|hoh|lattice)\.bin$/u.test(f)).sort();
 if (!bins.length) { console.log("SKIPPED — no zones on this disk"); process.exit(3); }
 
 const costume = [], noVerdict = [], notPass = [], countsOff = [];

@@ -29,7 +29,14 @@ const check = (name, ok, detail) => {
   ok ? pass++ : fail++;
 };
 
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.endsWith(".commentary.bin")).sort();
+// Books, not the sidecars beside them. The commentary sidecar was excluded
+// by name when it was the only kind; a lattice sidecar carries grades and
+// route fingerprints, no sections and no word count, so asking it whether
+// its counts equal its sections got "counts say NaN, sections carry 0" from
+// every one of the thirty-nine. A sidecar is judged by the check that owns
+// its layer.
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")
+  && !/\.(commentary|hoh|lattice)\.bin$/u.test(f)).sort();
 if (!bins.length) { console.log("SKIPPED — no zone bins in " + ZONES); process.exit(3); }
 
 for (const f of bins) {
