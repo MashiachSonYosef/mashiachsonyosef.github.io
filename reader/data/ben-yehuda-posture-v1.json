@@ -1,6 +1,6 @@
 {
  "schema_version": "BEN_YEHUDA_POSTURE_V1",
- "rule": "A Hebrew-on-Hebrew definition is served only from a volume this record declares served, and this record declares nothing it was not told. A volume absent from served_volumes is not served, whatever anyone believes about it; an entry Ben Yehuda marked with an asterisk is not served until the asterisk read is done, whatever volume it stands in. No licence is as absolute as a forbidding one, and silence here forbids.",
+ "rule": "A Hebrew-on-Hebrew definition is served only from a volume this record declares served, and this record declares nothing it was not told. It declares NOTHING today: the owner withdrew the volumes below on 2026-09-13, and an empty served_volumes serves nothing. No licence is as absolute as a forbidding one, and silence here forbids.",
  "work": {
   "id": "lexicon/ben-yehuda",
   "title": "A Complete Dictionary of Ancient and Modern Hebrew",
@@ -8,29 +8,16 @@
   "volumes": 16,
   "what_it_is": "Hebrew defined in Hebrew, with the ancient citations that carry each sense, the author's own explanatory prose, glosses in European languages, and comparanda from cognate languages. The layers are not one thing and are not served as one thing: see strata."
  },
- "served_volumes": [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7
- ],
- "ruling": {
-  "by": "owner",
-  "on": "2026-09-12",
-  "said": "volumes 1 to 7, and no further",
-  "basis_as_stated": [
-   "the author's death plus the term that applied where the work was published, as the owner and the corpus lane read it",
-   "no explicit retroactive change the owner or the corpus lane could point to",
-   "not published in the United States in the first instance",
-   "volumes 15 and 16 were filed in the United States and are out on that ground alone; volumes 8 to 14 were not ruled on either way"
-  ],
-  "what_this_is_not": "a legal finding. It is the owner's ruling, recorded on the date it was given, with the reasons the owner gave. A reader is shown the volume an entry stands in and this record's posture for that volume, and nothing stronger."
- },
+ "served_volumes": [],
  "not_declared": {
   "volumes": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
    8,
    9,
    10,
@@ -42,7 +29,7 @@
    16
   ],
   "posture": "NOT_DECLARED",
-  "reader": "an entry from one of these volumes is emitted held, by volume, with no text: the headword and the volume print, the definition does not"
+  "reader": "every volume. An entry from any of them is emitted held, by volume, with no text \u2014 which is to say nothing of this dictionary is served at all."
  },
  "floor": {
   "volume": 7,
@@ -88,8 +75,28 @@
   "held_as": "ASTERISK_PENDING_READ"
  },
  "delivery": {
-  "expected_from": "the corpus lane, at r2:mishkan/moses-ledgers/ben-yehuda-v1/ (proposed path; nothing has been delivered there as of 2026-09-12)",
+  "expected_from": "nothing is expected: the owner withdrew the dictionary on 2026-09-13. The road is kept in tools/BEN-YEHUDA-PIPELINE-v1.md as a road not taken.",
   "shape": "tools/BEN-YEHUDA-PIPELINE-v1.md names the JSONL row and the builder that reads it",
   "delivered": false
+ },
+ "withdrawn": {
+  "on": "2026-09-13",
+  "by": "owner",
+  "said": "not a fan of the ben yehuda 7 volumes at all; currently thinking: no ben yehuda dictionary",
+  "effect": "served_volumes is empty, so no entry of this dictionary can be emitted by tools/build-hoh-sidecar-v1.mjs for any volume, and check-hoh-sidecar-v1 L3 refuses one that claims otherwise",
+  "what_this_is_not": "a finding about the licence. The owner's ruling of 2026-09-12 read volumes 1 to 7 as servable and is kept below as the record of what was said then; it is superseded, not corrected. Nothing was ever served under it \u2014 no entry was delivered and the only sidecar built stood beside a fixture.",
+  "supersedes": "the ruling of 2026-09-12 recorded in ruling_as_given_2026_09_12"
+ },
+ "ruling_as_given_2026_09_12": {
+  "by": "owner",
+  "on": "2026-09-12",
+  "said": "volumes 1 to 7, and no further",
+  "basis_as_stated": [
+   "the author's death plus the term that applied where the work was published, as the owner and the corpus lane read it",
+   "no explicit retroactive change the owner or the corpus lane could point to",
+   "not published in the United States in the first instance",
+   "volumes 15 and 16 were filed in the United States and are out on that ground alone; volumes 8 to 14 were not ruled on either way"
+  ],
+  "what_this_is_not": "a legal finding. It is the owner's ruling, recorded on the date it was given, with the reasons the owner gave. A reader is shown the volume an entry stands in and this record's posture for that volume, and nothing stronger."
  }
 }

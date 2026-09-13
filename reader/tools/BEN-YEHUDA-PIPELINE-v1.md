@@ -1,9 +1,23 @@
 # Hebrew on Hebrew · the Ben Yehuda pipeline · v1 (2026-09-12)
 
+> **WITHDRAWN, 2026-09-13.** The owner: *"not a fan of the ben yehuda 7 volumes
+> at all... no ben yehuda dictionary."* `data/ben-yehuda-posture-v1.json` now
+> declares no served volume, the fixture that pressed the panel is gone from the
+> tree, and nothing of this dictionary is served or can be. Nothing ever was:
+> no entry was delivered, and the one sidecar built stood beside a test
+> instrument. This page is kept as a road not taken — the machinery under it
+> (`build-hoh-sidecar-v1`, the card's panel, the two guards) is generic to any
+> dictionary that defines Hebrew in Hebrew and is inert without a delivery.
+>
+> **Project Ben-Yehuda is a different thing and is untouched** (owner, same
+> day: *"yes pby stays obviously"*): it is a source of the corpus lane's
+> texts, not a defining source, and it is named nowhere in this lane.
+
 How a dictionary that defines Hebrew in Hebrew gets from the corpus lane's
-delivery to a panel on the card a word opens. Nothing of the dictionary's is
-here yet; every part below is built and pressed against a fixture made of
-our own verses, so the day the delivery lands the road is already walked.
+delivery to a panel on the card a word opens. Nothing of the dictionary's was
+ever here, and none is coming: read the withdrawal above before the rest. What
+follows is how the road was built, kept so that a different dictionary could
+walk it.
 
 The frame line that governs it: **we serve fire, we define only from the
 floor.** The citations are fire (ancient, red); his own prose is his and is
@@ -16,8 +30,8 @@ not served; a coinage is never served.
 
 | field | says |
 |---|---|
-| `served_volumes` | 1–7, by the owner's ruling of 2026-09-12, with the reasons the owner gave recorded as reasons, not as a legal finding |
-| `not_declared.volumes` | 8–16 · an entry from one of these is emitted HELD, by volume, with no text |
+| `served_volumes` | **empty, since the withdrawal of 2026-09-13.** It read 1–7 by the owner's ruling of 2026-09-12, kept in the record as `ruling_as_given_2026_09_12` — superseded, not corrected |
+| `not_declared.volumes` | **1–16, all of them** · an entry from any volume is emitted HELD, by volume, with no text |
 | `floor` | volume 7 ends at the headword whose key is recorded there (under nun); a headword whose first letter is past nun, or under nun and after the floor, cannot be in a served volume |
 | `strata` | quote (served, fire) · prose (served, his, channel not yet ruled) · foreign (counted, never emitted) · comparandum (counted, never emitted) |
 | `asterisk` | an asterisked headword is a coinage or reconstruction; emitted HELD as `ASTERISK_PENDING_READ` until the corpus lane's asterisk read is delivered and ruled on |
@@ -73,9 +87,10 @@ stands in a volume that is not served), or it is under the floor and simply
 not in what was delivered. Where the entry is held it prints the headword and
 the volume and the reason, and no text.
 
-## The fixture
+## The fixture — withdrawn with the dictionary
 
-`tools/make-hoh-fixture-v1.mjs --from genesis` writes `fixture-hoh.bin` (the
+`fixture-hoh.bin` and its sidecar are no longer in the tree; the maker below
+still runs if a different dictionary ever needs a road pressed. It wrote (the
 first chapter, as it is) and `build/fixtures/hoh-fixture-entries-v1.jsonl`:
 six of that chapter's own headwords, each with one **quote** stratum that is a
 verse of the chapter word for word, cited by its own label. No prose is
@@ -85,9 +100,12 @@ volume, one holds by asterisk, and one carries an empty foreign stratum so
 the withholding can be seen to count. `?b=fixture-hoh` opens it; the door
 never lists it.
 
-## Rulings still owed (the owner, when the delivery lands)
+## Rulings that were owed, and are now moot
 
-1. his prose: red (his Hebrew is Hebrew) or blue (a modern layer over the floor)?
-2. the asterisk read: what it found, and whether any asterisked entry may ever serve
-3. the per-volume letter ranges, so the panel can name a volume rather than "one of 1–7"
+None of these needs an answer: the dictionary is withdrawn. They are kept
+because any Hebrew-in-Hebrew dictionary would raise the same four.
+
+1. the author's prose: red (his Hebrew is Hebrew) or blue (a modern layer over the floor)?
+2. the asterisk read: what it found, and whether a coined headword may ever serve
+3. the per-volume letter ranges, so a panel can name a volume rather than a range
 4. whether comparanda in Aramaic — the other fire — may serve as quotes once typed by language
