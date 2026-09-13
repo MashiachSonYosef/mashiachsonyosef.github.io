@@ -45,6 +45,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { zonesServed } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -87,8 +88,14 @@ check("L1  the declaring file declares the rule and its function keeps it on the
   l1.length ? few(l1) : `${cases.length} cases hold`);
 
 if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); process.exit(3); }
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-")).sort();
-let zones = 0, words = 0, trailing = 0, internal = 0, ascii = 0, typo = 0;
+// Books, not the sidecars that ride beside them. A sidecar carries units and
+// no sections, so L2 through L7 never walked one; only L8 saw them, and it
+// asked a lattice sidecar — which holds grades and route fingerprints and
+// not one word — to name the rule its keys were made under. A sidecar is
+// judged beside the book it rides with, by the check that owns that layer.
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-")
+  && !/\.(commentary|hoh|lattice)\.bin$/u.test(f)).sort();
+let zones = 0, words = 0, trailing = 0, internal = 0, ascii = 0, typo = 0, stale = 0;
 const l2 = [], l3 = [], l4 = [], l5 = [], l6 = [], l7 = [], l8 = [];
 const unsplitByZone = new Map();
 // the rule this one replaced, gathered in the same pass rather than a second
@@ -100,8 +107,23 @@ for (const f of bins) {
   zones += 1;
   const name = f.replace(/\.bin$/u, "");
   const keyRule = String(((z.emitted_from || {}).gloss_layer || {}).key_rule || "");
-  if (!keyRule.startsWith(RULE_ID)) l8.push(`${name}: ${keyRule.slice(0, 50) || "no key rule named"}`);
   if (keyRule.startsWith(V1_RULE)) namedV1.push(name);
+  // A ZONE IS HELD TO THE RULE ITS OWN RECEIPT NAMES. L9's text has always
+  // said this in words — "L8 counts the zones whose keys were made under v1,
+  // and while the rebuild is unfinished that count is the shelf's age, not a
+  // second fault" — and the laws below did not act on it. They asked every
+  // zone on the disk for v2's keys, so the 3,435 works this container still
+  // holds from the fleet run of 2026-09-10, a day before v2, failed L2, L4,
+  // L6 and L7 as well as L8: one fact, the unfinished rebuild, counted five
+  // times, and loud enough to hide a real one.
+  //
+  // So the laws run on the zones keyed under THIS rule, and the zones keyed
+  // under the one it replaced are counted as the shelf's age. What is not
+  // softened is the part that would be a fault: a zone the door SERVES may
+  // not be one of them, and L8 says so by name.
+  const onV2 = keyRule.startsWith(RULE_ID);
+  if (!onV2 && !keyRule) l8.push(`${name}: no key rule named`);
+  if (!onV2) { stale += 1; continue; }
   for (const sec of z.sections || []) for (const w of sec.words || []) {
     if (w.held) continue;
     words += 1;
@@ -145,7 +167,20 @@ check("L5  no key carries a mark the rule removes", l5.length === 0, l5.length ?
 check("L6  every key is what the declared function makes of its surface", l6.length === 0, l6.length ? `${l6.length} — ${few(l6)}` : `${words.toLocaleString()} words agree`);
 check("L7  an abbreviation mark written as an ASCII quote survives in the key as the Hebrew mark", l7.length === 0,
   l7.length ? `${l7.length} of ${ascii.toLocaleString()} lost — ${few(l7)}` : `${ascii.toLocaleString()} carried${typo ? ` · ${typo} typographic quotes among letters reported, not remapped` : ""}`);
-check("L8  every zone names this rule as the rule its keys were made under", l8.length === 0, l8.length ? `${l8.length} — ${few(l8)}` : `${zones} zones`);
+// L8 · WHAT IS SERVED NAMES THIS RULE. The shelf on this disk is larger than
+// the shelf the door offers: the fleet's works are built here and published
+// only when the gate names them. A work keyed under the replaced rule is the
+// rebuild's backlog and is counted as such; a work keyed under it AND SERVED
+// would be the site answering under the wrong key, which is a fault.
+{
+  const servedSet = new Set(zonesServed(ZONES));
+  const servedOnV1 = namedV1.filter((z) => servedSet.has(z));
+  const bad8 = [...l8, ...servedOnV1.map((z) => `${z}: SERVED and keyed by the replaced rule`)];
+  check("L8  every zone the door serves names this rule as the rule its keys were made under", bad8.length === 0,
+    bad8.length ? `${bad8.length} — ${few(bad8)}`
+      : `${zones - stale} of ${zones} zones on this disk name it, all ${servedSet.size} served among them · ` +
+        `${stale.toLocaleString()} name the rule it replaced and await the fleet rebuild, which is the shelf's age and not a fault`);
+}
 
 // L9: THE REPLACED RULE, STILL HELD WHERE IT IS STILL IN FORCE. v1's law was
 // that a maqaf survives in the key wherever it is written. Under the owner's

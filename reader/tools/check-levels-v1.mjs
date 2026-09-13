@@ -4,7 +4,7 @@
 // section's three acts sit at three different weights.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { defaultZoneUrl, zonesServedWithCommentary } from "./zones-on-disk-v1.mjs";
 import { mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -13,12 +13,10 @@ const SKIP_LABEL = "check-levels-v1";
 // served, that is a fact about the corpus and not a defect in the reader, so
 // this says so and stops rather than failing every assertion against a page
 // with nothing on it.
-{
-  const { zonesWithCommentary } = await import("./zones-on-disk-v1.mjs");
-  if (!zonesWithCommentary().length) {
-    console.log(`SKIPPED — no served work carries a commentary sidecar, so ${SKIP_LABEL} has nothing to open`);
-    process.exit(3);
-  }
+const WITH_COMMENTARY = zonesServedWithCommentary();
+if (!WITH_COMMENTARY.length) {
+  console.log(`SKIPPED — no served work carries a commentary sidecar, so ${SKIP_LABEL} has nothing to open`);
+  process.exit(3);
 }
 
 
@@ -63,7 +61,7 @@ await page.waitForSelector("section.seg", { timeout: 20000 });
 await readThrough(page);
 
 // ---- levels ----------------------------------------------------------
-const levels = await page.evaluate(() => {
+const readLevels = () => {
   const s = document.querySelector("section.seg");
   const bar = s.querySelector(".c-bar");
   const xp = s.querySelector(".xp-row");
@@ -88,19 +86,40 @@ const levels = await page.evaluate(() => {
     slotBeforeExport: (() => { const sl = s.querySelector(".c-slot"); return !!sl && !!xp &&
       (sl.compareDocumentPosition(xp) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0; })(),
   };
-});
-check("the commentary has a line of its own", levels.hasBar && !levels.barInsideSegRow, levels.barText);
+};
+const levels = await page.evaluate(readLevels);
+// THE COMMENTARY CLAUSES ARE ASKED OF A BOOK THAT HAS ONE. This check takes a
+// URL and the suite hands it one work per shape the shelf carries; none of
+// those shapes is "carries a commentary", and on a book with none the line it
+// asks about is correctly absent. Measured anyway it read as four failures and
+// a width of NaN — the reader called wrong for a fact about the corpus. So the
+// line is asked of the first served book that carries a commentary, which is
+// stronger than what stood here: the clause used to hold only for whichever
+// work the run happened to be pointed at.
+let cmv = levels, cmBook = null;
+if (!levels.hasBar) {
+  cmBook = WITH_COMMENTARY[0];
+  await page.goto(`${URL.split("?")[0]}?b=${cmBook}`, { waitUntil: "networkidle" });
+  await page.waitForSelector("section.seg", { timeout: 20000 });
+  await readThrough(page);
+  cmv = await page.evaluate(readLevels);
+}
+const on = cmBook ? ` · asked of ${cmBook}` : "";
+check("the commentary has a line of its own", cmv.hasBar && !cmv.barInsideSegRow, cmv.barText + on);
 check("the commentary line is the width of the column",
-  levels.barW > levels.secW * 0.9, `${Math.round(levels.barW)} of ${Math.round(levels.secW)}`);
+  cmv.barW > cmv.secW * 0.9, `${Math.round(cmv.barW)} of ${Math.round(cmv.secW)}${on}`);
 check("the commentary line sits at the foot, under the text it belongs to",
-  levels.barTop >= levels.heBottom, `line at ${Math.round(levels.barTop)}, text ends ${Math.round(levels.heBottom)}`);
+  cmv.barTop >= cmv.heBottom, `line at ${Math.round(cmv.barTop)}, text ends ${Math.round(cmv.heBottom)}${on}`);
 check("its text opens directly beneath the line, not at the end of the section",
-  levels.slotAfterBar && levels.slotBeforeExport);
+  cmv.slotAfterBar && cmv.slotBeforeExport, on.slice(3));
 check("no control on the page writes to a clipboard", levels.clipboardControls === 0,
   `${levels.clipboardControls} found`);
+// Measured on the same page as the line it is measured against. Where the
+// run's own book carries no commentary there is no line for the export to sit
+// under, and comparing the two across two pages gave a width against a NaN.
 check("the export sits under the commentary line, at the smaller weight",
-  levels.hasXp && levels.xpTop >= levels.barTop && Math.max(...levels.xpW) < levels.barW / 2,
-  `${Math.max(...levels.xpW)}px vs ${Math.round(levels.barW)}px`);
+  cmv.hasXp && cmv.xpTop >= cmv.barTop && Math.max(...cmv.xpW) < cmv.barW / 2,
+  `${Math.max(...cmv.xpW)}px vs ${Math.round(cmv.barW)}px${on}`);
 check("every section carries the export", levels.sectionsWithXp === levels.sections,
   `${levels.sectionsWithXp} of ${levels.sections}`);
 

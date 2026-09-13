@@ -52,6 +52,14 @@ for (const f of BUILDERS) {
     // part of the tool, not an input to it
     if (/^\.{0,2}\/?tools\//.test(path) || /^\.\/[a-z-]+\.mjs$/.test(path)) continue;
     if (/^node:/.test(path)) continue;
+    // A TEMPLATE WITH A HOLE IN IT IS NOT A LITERAL. `${base}.tokens.csv.gz`
+    // reads whatever base says it reads, and base comes from a flag — which is
+    // the whole of what this check asks for. The opener pattern captures the
+    // text between the backticks without noticing the interpolation, so two
+    // build steps that are redirectable read here as two that are not: the
+    // fleet's stream lookup and the stream serve. Neither can be pointed at a
+    // literal file; both can be pointed at any book.
+    if (m[2] === "`" && /\$\{/.test(path)) continue;
     // a default a flag overrides: look back for the arg( that wraps it
     const before = src.slice(Math.max(0, m.index - 120), m.index);
     if (/\barg(?:Of|_)?\s*\([^)]*$/.test(before)) continue;

@@ -1,5 +1,13 @@
 #!/usr/bin/env node
 // Synthesis lane · hoh-sidecar-rule-v1-a-hebrew-definition-is-served-by-volume-and-quotes-only-from-the-floor
+// LEDGER: D
+// A dictionary that defines Hebrew in Hebrew writes D, in Hebrew, for a
+// headword's own K. This tool is INERT and has never written one: the
+// posture record declares no served volume since the withdrawal of
+// 2026-09-13, no entry was ever delivered, and with delivery.delivered
+// false a sidecar may stand only beside a fixture. The letter is declared
+// anyway, because what this tool would write is not in doubt, and a road
+// with no sign on it is how a lane comes to write a record nobody claimed.
 //
 // Hebrew on Hebrew: a dictionary that defines a Hebrew word in Hebrew, hung
 // beside a book zone the way a commentary is, so the card a word opens can
@@ -52,7 +60,11 @@ import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { exactK } from "./k-normalization-v1.mjs";
+// A dictionary headword keys the way the shelf keys, or a word answers under
+// the wrong entry — the risk this pipeline names in its own words. v2 is the
+// shelf's rule since 2026-09-11: an ASCII quote among letters IS the Hebrew
+// abbreviation mark, and a headword in a rabbinic dictionary is full of them.
+import { exactK } from "./k-normalization-v2.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { glossMFor } from "./gloss-m-v1.mjs";
 

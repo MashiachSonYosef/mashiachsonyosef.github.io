@@ -37,7 +37,11 @@ import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { exactK } from "./k-normalization-v1.mjs";
+// A dictionary headword keys the way the shelf keys, or a word answers under
+// the wrong entry — the risk this pipeline names in its own words. v2 is the
+// shelf's rule since 2026-09-11: an ASCII quote among letters IS the Hebrew
+// abbreviation mark, and a headword in a rabbinic dictionary is full of them.
+import { exactK } from "./k-normalization-v2.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");

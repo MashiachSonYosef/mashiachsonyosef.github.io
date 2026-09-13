@@ -52,7 +52,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `kq-rule-v1-both-halves-as-written` | tools/make-kq-fixture-zone-v1.mjs, tools/zone-lib-v1.mjs | check-kq-carried-v1, check-kq-presentation-v1 |
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
 | `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/emit-language-sweep-record-v1.mjs, tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
-| `lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store` | tools/lattice-lib-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-lattice-orders-v1, check-lattice-projection-v1 |
+| `lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store` | tools/lattice-lib-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-lattice-orders-v1, check-lattice-parts-in-card-v1, check-lattice-projection-v1 |
 | `ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for` | tools/emit-ledger-index-v1.mjs | check-ledger-declared-v1 |
 | `licence-name-rule-v1-the-record-names-the-licence` | tools/check-licence-names-v1.mjs | check-licence-names-v1 |
 | `licence-posture-name-rule-v1-the-record-names-the-licence` | tools/emit-license-postures-v1.mjs | check-posture-names-from-record-v1 |
@@ -97,7 +97,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands` | tools/check-build-derived-v1.mjs | check-build-derived-v1 |
 | `zone-commentary-rule-v2-everything-recorded-stands-somewhere` | tools/build-commentary-sidecar-v1.mjs | check-nothing-dropped-v1 |
 | `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | check-commentary-section-aligned-v1 |
-| `zone-commentary-rule-v3-two-zones-one-coordinate` | tools/build-commentary-sidecar-v2.mjs | check-commentary-in-line-v1, check-commentary-section-aligned-v1 |
+| `zone-commentary-rule-v3-two-zones-one-coordinate` | tools/build-commentary-sidecar-v2.mjs | check-attachment-grain-v1, check-commentary-in-line-v1, check-commentary-section-aligned-v1 |
 | `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs, tools/run-restore-v5-fleet-v1.mjs | check-zone-single-pass-receipts-v1 |
 | `zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-page-agrees-with-store-v1 |
 | `zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight` | tools/emit-zone-shipment-v1.mjs, tools/emit-zone-store-v1.mjs, tools/move-shelf-v1.sh, tools/pull-zones-from-store-v1.mjs, zone.html | check-zone-store-crossing-v1, check-zone-store-reachable-v1, check-zone-store-v1 |

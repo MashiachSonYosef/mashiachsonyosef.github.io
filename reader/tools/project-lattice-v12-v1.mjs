@@ -1,5 +1,13 @@
 #!/usr/bin/env node
 // Synthesis lane · lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store
+// LEDGER: R D
+// R because every order this tool projects is a SELECTION over readings the
+// store already holds — masoretic, vowels differ, cites here, licence,
+// names as sound — and rule 1 above is that it adds, removes and reorders
+// nothing in the store itself. D because the parts band carries a named
+// source's English for a COMPcell, two witnesses per piece, carried and
+// never composed into a reading of the word. It creates no M and no S; it
+// carries the ones the card it grades already names.
 //
 // THE LATTICE (r2:mishkan/moses-ledgers/lattice-v12/, the corpus lane's
 // megacompspan lattice ledger, candidate-only) grades every card of every

@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 // hoh-fixture-rule-v1-a-real-chapter-with-entries-made-only-of-its-own-verses
+// LEDGER: -
+// It writes a test instrument and no record of the frame. The fixture's
+// entries are a chapter's own verses quoted back at it, so a panel can be
+// pressed without a dictionary; nothing in it is anybody's D, and
+// check-fixture-never-served-v1 holds it off the shelf.
 //
 // A test instrument, never served and never deployed.
 //
