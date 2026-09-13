@@ -83,7 +83,19 @@ const tripleVerse = async (nth = 0, target = ".wb .w") => {
   // what scrolls into view: scrolling the block parks its first line under
   // the sticky chrome, and a click on covered glyphs selects the cover.
   const word = await el.$(target);
-  await word.scrollIntoViewIfNeeded();
+  // PARKED WHERE A READER READS IT, not merely far enough in to count as
+  // visible. scrollIntoViewIfNeeded declines to scroll a word that is mostly
+  // on screen, which leaves one at the foot of the window clipped by the
+  // fold — and a triple tap on a clipped word anchors inside its block
+  // instead of at the word, so the copy begins mid-line and takes the
+  // readings with it. Nothing about the page changed when this first showed:
+  // the masthead had shrunk by 247px, the first verse rose to the fold, and
+  // the same gesture on the same word started giving a different answer. The
+  // comment above already names this family of fault for the sticky chrome at
+  // the top; this is the same fault at the bottom. Centred, the gesture means
+  // one thing wherever the text happens to sit.
+  await word.evaluate((e) => e.scrollIntoView({ block: "center" }));
+  await p.waitForTimeout(120);
   const box = await word.boundingBox();
   await p.mouse.click(box.x + box.width / 2, box.y + box.height / 2, { clickCount: 3 });
   await p.waitForTimeout(120);
