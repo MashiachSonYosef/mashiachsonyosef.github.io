@@ -41,14 +41,45 @@
 //
 // Run: node tools/check-page-agrees-with-its-record-v1.mjs [base-url]
 import { readFileSync, existsSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { readFile } from "node:fs/promises";
+import { createServer } from "node:http";
+import { join, dirname, extname, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const RECORD = join(K3, "data", "color-contract-v1.json");
-const BASE = (process.argv[2] || "http://127.0.0.1:8903").replace(/\/$/u, "");
+
+// IT SERVES THE PUBLICATION ITSELF. This took a base URL and defaulted to a
+// port it did not own, so it passed or failed on whether somebody had left a
+// server running there. Worse, the suite hands every check that takes an
+// argument a ZONE url — and this one wants the publication's root — so
+// "http://…/zone.html?b=amos" became the base and /palette/ under it was a
+// 404. Ten record fields then read as ten fields no page prints, which is
+// this check's loudest finding and the one thing it must never say wrongly.
+// Now it serves the repository root, which is the deployed tree, on a port it
+// opens itself. A url given on purpose still wins.
+const SITE = join(K3, "..");
+const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8" };
+const given = process.argv[2] && !/zone\.html/u.test(process.argv[2]) ? process.argv[2] : null;
+let srv = null;
+const BASE = await (async () => {
+  if (given) return given.replace(/\/$/u, "");
+  srv = createServer(async (req, res) => {
+    const q = normalize(decodeURIComponent(req.url.split("?")[0]));
+    if (/(^|[/\\])\./u.test(q)) { res.writeHead(404); return res.end("no"); }
+    try {
+      let f = join(SITE, q);
+      if (!extname(q)) f = join(f, "index.html");
+      const body = await readFile(f);
+      res.writeHead(200, { "content-type": TYPES[extname(f)] || "application/octet-stream" });
+      res.end(body);
+    } catch { res.writeHead(404); res.end("no"); }
+  });
+  await new Promise((r) => srv.listen(0, "127.0.0.1", r));
+  return `http://127.0.0.1:${srv.address().port}`;
+})();
 
 let bad = 0;
 const check = (what, ok, detail) => {
@@ -72,6 +103,14 @@ await p.goto(`${BASE}/palette/`, { waitUntil: "networkidle" });
 await p.waitForTimeout(1500);
 const text = await p.evaluate(() => document.body.innerText);
 await b.close();
+if (srv) srv.close();
+// A page that did not arrive is not a page that prints nothing. Ten fields
+// reported missing because the address 404'd would read exactly like the bug
+// this file exists to catch, which is the one mistake it cannot afford.
+if (!text || text.trim().length < 40) {
+  console.log(`FAIL  the palette page answers at ${BASE}/palette/  ·  ${text ? `${text.trim().length} characters` : "no body"}`);
+  process.exit(1);
+}
 
 // ── L1 · every declared value reaches the page ───────────────────────────────
 // Only the fields the page is meant to show. A record may hold reasoning the
