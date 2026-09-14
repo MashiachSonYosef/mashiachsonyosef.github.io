@@ -1,0 +1,67 @@
+{
+  "schema_version": "V_LEDGER_POSTURE_V1",
+  "rule_id": "v-ledger-posture-rule-v1-an-anchor-is-served-only-where-this-lane-can-keep-the-offer-it-makes",
+  "recorded_on": "2026-09-14",
+  "recorded_by": "the serving lane, on the corpus lane's delivery of V ledger v2 (2026-09-13)",
+
+  "what_v_is": "An ANCHOR, not a lattice. It points from a base word to the commentary units whose opening catchword names that word, and from a verse to how much commentary sits on it. It has no opinion on what a comment says, and it does not hold the commentary's words: those are an uncarded token stream the corpus lane keeps elsewhere.",
+
+  "delivery": {
+    "shipment": "r2:mishkan/moses-ledgers/v-ledger-v2/",
+    "objects": 61,
+    "contract": "V-SERVING-CONTRACT-v2.md",
+    "candidate_only": true,
+    "current_effect": "NONE",
+    "integrity": "sha256sum -c SHA256SUMS.txt — 60 of 60 files verified on 2026-09-14, this lane's own run",
+    "counts_reproduced_here": {
+      "reverse index lines": 21686,
+      "lines that exist only under the candidate clause": 122,
+      "verse rows": 23204,
+      "chapter rows": 929,
+      "book rows": 39,
+      "silence rows": 258
+    }
+  },
+
+  "counter_verified": {
+    "by": "tools/verify-v-ledger-v2-v1.mjs",
+    "on": "2026-09-14",
+    "says": "Every one of the 21,686 anchored positions is an ON position of lattice v12, carries the reference and the surface the lattice gives it, and lands on a word this lane's own zone draws. j is unique and ascending; i repeats 12,230 times across maqaf parts in the eight books that carry an anchor, which is why the join is on book and i and j and never on i alone.",
+    "does_not_say": "that a catchword names the word it resolved to. That is the corpus lane's resolution and its own recount's question, not this lane's."
+  },
+
+  "why_nothing_is_served_yet": "Two measured findings, neither of them a defect in V. V measures the corpus lane's 34 works; this site serves a different set, and the two do not meet where the page would need them to.",
+
+  "findings": [
+    {
+      "id": "the-word-layer-has-nothing-to-open-here",
+      "measured_on": "2026-09-14, against the shipped reverse index and this lane's zone list",
+      "says": "Under the rule as it stands, 10,138 word-anchored pairs are spread over fourteen works. This lane holds the text of NONE of them. Rashi on Genesis, Leviticus, Numbers and Deuteronomy; Ibn Ezra on Genesis, Exodus, Leviticus and Numbers; Midrash Lekach Tov and its three small books; Midrash Tannaim on Deuteronomy; the GRA's Aderet Eliyahu. Not one is a zone on this shelf.",
+      "cost": "V's first sentence is 'N comments cover this word' and then opens them. This lane can count them and cannot open one. An offer a page cannot keep is worse than a silence that explains itself.",
+      "works_this_lane_does_hold_that_v_names": "Chizkuni, Mizrachi, Rabbeinu Bahya, Tur HaArokh, Ibn Ezra on Zechariah, Ralbag Esther, Shelom Esther and nine more — every one of them with zero word-anchored pairs, which V measured and did not assume: the sixteen TWO_INT works carry no markup at all.",
+      "whose": "the corpus lane's to deliver, or the owner's to rule that the word layer is served as a finding with no link"
+    },
+    {
+      "id": "sentence-six-contradicts-this-lane-s-own-door",
+      "measured_on": "2026-09-14, against the shipped book table and this lane's served commentary sidecars",
+      "says": "V's sixth sentence reads 'We hold no commentary on {BOOK}' and covers 213,459 positions, seven words in ten. V holds commentary on ten books. This site serves a commentary on eighteen of the twenty-nine it holds none on — Joshua, Judges, II Samuel, I Kings, Isaiah, Ezekiel, Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Malachi, Song of Songs.",
+      "cost": "The page would tell a reader it holds no commentary on Amos while its own door offers 'Commentary on Amos, 146 carried from 1 work'. A page that contradicts itself inside one screen is the fault this project exists to make impossible.",
+      "not_v_s_fault": "V's 'we' is the corpus lane's 34 works. The sentence is true of what V measured. It is this lane's holdings it does not know about.",
+      "whose": "the owner's. The sentence is his to rule, and three readings are open: name the scope ('among the works the corpus lane has indexed'), fold this lane's own commentary into the count, or hold the sentence until the two sets are one."
+    }
+  ],
+
+  "what_is_owed_and_by_whom": {
+    "the_owner": [
+      "the wording of the sixth sentence, given that eighteen books contradict it as written",
+      "whether the word layer is served as a finding that names the work without offering to open it",
+      "the book display names: V ships book_display_name with status PROPOSED_PENDING_OWNER, on 213,459 positions",
+      "whether clause 13 (the framing trim) becomes the rule, strict or conservative. Candidate only; the switch is one filter and the tables carry all three positions"
+    ],
+    "the_corpus_lane": [
+      "the text of the fourteen word-anchoring works, if the word layer is ever to open a comment rather than name one"
+    ]
+  },
+
+  "what_this_lane_will_not_do": "Serve a count it cannot open, print a sentence its own door contradicts, or name a book by a slug or by a name of its own. V ships the display name; the owner rules it; the page prints what he rules."
+}
