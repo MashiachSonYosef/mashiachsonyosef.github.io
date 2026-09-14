@@ -309,8 +309,16 @@ if (!SECTION_ZONE) {
     /\d+:\d+/.test(open.lab) && open.lab.length > 8 && open.licence.length > 2, `${open.lab.slice(0, 60)} · ${open.licence}`);
   check("  and says what a commentary is, and whose the attachment is",
     /a work of its own/i.test(open.att) && /ours/i.test(open.att) && /^SEALED_UNIT_COORDINATE_/.test(open.basis), open.basis);
-  check("  every word of the section carries the mark while it stands open", open.marked === open.verseWords && open.marked > 0,
-    `${open.marked} of ${open.verseWords}`);
+  // AND NO WORD OF IT CARRIES THE COVERAGE MARK. This clause read the other
+  // way until 2026-09-14 — every word of the section marked, the same mark a
+  // single word gets. It is the right mark for a comment that covers three
+  // words of twenty-five and the wrong one for a comment that covers all
+  // twenty-five: a mark on everything picks out nothing, and the bar above it
+  // has already said a commentary is open. The owner met it on Amos 1:1 and
+  // read it as decoration. The mark is kept for the case it means something
+  // in, which is the word-anchored one the fixture above still presses.
+  check("  and no word of it is marked — a mark on every word picks out none",
+    open.marked === 0, `${open.marked} of ${open.verseWords} marked`);
   check("  every word of it is a block", open.recorded !== null && open.blocks === open.recorded,
     `${open.blocks} blocks, the sidecar records ${open.recorded ?? "?"}`);
   check("  and the blocks put the commentary back together", open.rejoins);
@@ -483,11 +491,17 @@ if (!WORD_ZONE) {
     if (!r) continue;
     // everything the span covers is above the panel and everything else is
     // below it — which is nothing at all when the span is the whole verse,
-    // and six comments on Genesis 1:1 are
+    // and six comments on Genesis 1:1 are.
+    //
+    // The MARK is a separate question from the placement, and it is withheld
+    // where the span is the whole verse: a mark on every word picks out no
+    // word. So the span still decides what sits above the panel, and the
+    // count of marked words is the span only when the span is a part of it.
+    const wholeVerse = r.span === r.words;
     check(`  ${r.ref}`,
-      r.span !== null && r.covered.length === r.span && r.allAbove &&
+      r.span !== null && r.covered.length === (wholeVerse ? 0 : r.span) && r.allAbove &&
       r.below === r.words - r.span,
-      `chain says ${r.span} of ${r.words} · covers ${r.covered.length} · ${r.covered.join(" ")} · ${r.below} below`);
+      `chain says ${r.span} of ${r.words} · covers ${r.covered.length}${wholeVerse ? " (the whole verse, so unmarked)" : ""} · ${r.covered.join(" ")} · ${r.below} below`);
     if (r.span !== null) widths.add(r.span);
     seen += 1;
   }

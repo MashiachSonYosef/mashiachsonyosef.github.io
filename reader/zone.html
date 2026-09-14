@@ -6124,9 +6124,25 @@
     const ps = [...el.querySelectorAll(".c-inline")];
     if (!ps.length) return false;
     const on = want === undefined ? ps.some((x) => x.hidden) : want;
-    // case 1 · the coordinate is the section, so the section is what carries
-    // the mark — every word of it, the same mark a single word gets.
-    el.querySelectorAll(".he-text .wb").forEach((w) => w.classList.toggle("c-open", on));
+    // case 1 · the coordinate is the section, so this commentary is about the
+    // whole verse.
+    //
+    // A MARK THAT COVERS EVERY WORD DISTINGUISHES NOTHING. It was every word
+    // of the section, the same mark a single word gets — which is right when
+    // a comment covers three words of twenty-five and says "these", and says
+    // nothing at all when it covers all twenty-five. The bar directly above
+    // it has already said a commentary is open and whose it is; underlining
+    // every word is a second announcement of the same fact, in gold, which on
+    // this page means line work. The owner met it on Amos 1:1 and asked what
+    // the decoration was, which is what it had become.
+    //
+    // So the mark is kept for the case it was written for and withheld here,
+    // and the words of the section are cleared rather than lit. Every
+    // commentary the shelf serves today attaches at the section
+    // (check-whose-claim-v1 skips for exactly that reason), so for now this
+    // is the whole of what a reader meets; when a word-anchored commentary
+    // lands it will not be, and the mark will mean something again.
+    el.querySelectorAll(".he-text .wb").forEach((w) => w.classList.remove("c-open"));
     // Pin the line the reader pressed, not the top of the section: the text
     // now opens directly beneath it, so that is the thing that must not move.
     holdingSection(el.querySelector(".c-bar") || el, () => {
@@ -6736,8 +6752,15 @@
         last.after(slot);
         // Which words those are says so only to a reader who already knows to
         // look. Mark them, so the words and their commentary are one thing on
-        // the page and not two that happen to be adjacent.
-        for (const w of covers) if (w.classList && w.classList.contains("wb")) w.classList.add("c-open");
+        // the page and not two that happen to be adjacent — but only where
+        // the mark picks some of the verse out of the rest. A run that covers
+        // every word of the verse distinguishes nothing and reads as
+        // decoration; the same law as the section case above, which is where
+        // it is written out.
+        const verseWb = [...(sectionEl.querySelector(".he-text") || sectionEl).querySelectorAll(".wb")]
+          .filter((w) => !w.closest(".c-mark-slot"));
+        const marks = covers.filter((w) => w.classList && w.classList.contains("wb"));
+        if (marks.length && marks.length < verseWb.length) for (const w of marks) w.classList.add("c-open");
       };
       settleRef.fn = settle;
       settle();
