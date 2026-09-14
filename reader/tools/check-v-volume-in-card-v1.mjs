@@ -23,6 +23,10 @@
 //       so a count here opens nothing, and a page that makes it look like it
 //       does has made the offer the ruling was written to avoid.
 //   V6  "1 comment", never "1 comments"
+//   V7  the panel names the set the count was taken over
+//   V8  and it is sized like the footnote it is, because fixed prose on this
+//       card is bought from the controls and paid for by the card's place
+//       under the word
 //
 // Every case is found by reading the sidecars, never by naming a book: the
 // verse pressed is whatever verse on this shelf exhibits that case today.
@@ -106,7 +110,6 @@ const readPanel = async (book, ref) => {
       drawn: true,
       say: (box.querySelector(".vol-say") || {}).textContent || "",
       n: (box.querySelector(".vol-n") || {}).textContent || "",
-      src: (box.querySelector(".vol-src") || {}).textContent || "",
       // a count is not an offer: nothing here may be a link or a control
       pressable: box.querySelectorAll("a, button, [role=button], [onclick]").length,
     };
@@ -126,10 +129,16 @@ for (const [name, want] of CASES) {
   const N = site.N, CN = site.CN, BN = site.BN;
   const want_n = N ? N : CN ? CN : BN ? BN : null;
   const noun = `${(want_n || 0).toLocaleString()} comment${want_n === 1 ? "" : "s"}`;
-  const shape = N ? /^[\d,]+ comments? on this verse,/u
-    : CN ? /^No commentary on this verse\. [\d,]+ comments? in this chapter,/u
-      : BN ? /^No commentary in this chapter\. [\d,]+ comments? in this book,/u
-        : new RegExp(`^No commentary on ${site.display.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&")} `, "u");
+  // The shape asserts what the sentence must SAY, not how it was worded on
+  // the day the check was written. The panel was three paragraphs until the
+  // overlaps gate showed what they cost the card; it is one sentence now, and
+  // two of these patterns had to be edited to admit a comma. A check that
+  // pins the prose fails every time the prose improves, and a check nobody
+  // can improve the prose past is a check that stops being read.
+  const shape = N ? /^[\d,]+ comments? on this verse\b/u
+    : CN ? /^No commentary on this verse\. [\d,]+ comments? in this chapter\b/u
+      : BN ? /^No commentary in this chapter\. [\d,]+ comments? in this book\b/u
+        : new RegExp(`^No commentary on ${site.display.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&")}\\b`, "u");
   const numOk = want_n === null ? got.n === "" : got.n === noun;
   check(name, scopeSaid && numOk && shape.test(got.say),
     `${site.book} ${site.ref} · ${JSON.stringify(got.say)}`);
@@ -142,10 +151,29 @@ check("V5  nothing in the panel is pressable — a count is not an offer",
 // And the one thing the panel must always say about itself: that the set it
 // counted over is not this site's shelf. It is the sentence that stops "V
 // holds no commentary on Amos" from reading as a contradiction of the door.
-const lastSrc = await p.evaluate(() => (document.querySelector("#hud .vol-src") || {}).textContent || "");
+const lastSay = await p.evaluate(() => (document.querySelector("#hud .vol-say") || {}).textContent || "");
 check("V7  the panel names the set it counted over, and says it is not this shelf",
-  /\d+ works in \d+ editions/u.test(lastSrc) && /not this site's shelf/u.test(lastSrc),
-  JSON.stringify(lastSrc));
+  /\b\d+ works\b/u.test(lastSay) && /not this site's shelf/u.test(lastSay) && /not opened from here/u.test(lastSay),
+  JSON.stringify(lastSay));
+
+// V8 — AND IT COSTS THE CARD LITTLE ENOUGH TO STAY UNDER ITS WORD.
+//
+// placeHud caps the card to the room beneath the word and releases that cap
+// the moment fitBands reports the bands can no longer hold a row each. So
+// fixed prose on this card is not free: it is bought from the controls, and
+// past a point the card pays by standing somewhere else. The first draft of
+// this panel took 134px in three paragraphs and cost the card its place under
+// the word on a 360x640 phone — check-nothing-overlaps-v1 caught it, and this
+// clause is here so that gate is not the only thing standing between a longer
+// sentence and a card over the reader's text.
+const panelH = await p.evaluate(() => {
+  const el = document.querySelector("#hud .vol");
+  return el ? Math.round(el.getBoundingClientRect().height) : null;
+});
+const BUDGET = 80;
+check("V8  the panel is a footnote and is sized like one",
+  panelH !== null && panelH <= BUDGET,
+  panelH === null ? "no panel to measure" : `${panelH}px of a ${BUDGET}px budget on a 412px screen`);
 
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

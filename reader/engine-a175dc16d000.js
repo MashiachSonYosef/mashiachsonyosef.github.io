@@ -3089,25 +3089,25 @@
     const BN = (volStore.book || {}).pairs || 0;
     const scope = (volStore.scope || {}).say || "among the works indexed so far";
     const panel = document.createElement("div"); panel.className = "vol";
-    const lab = document.createElement("p"); lab.className = "r-label";
-    lab.textContent = "How much commentary sits here";
     const say = document.createElement("p"); say.className = "vol-say";
+    const lead = document.createElement("span"); lead.className = "vol-lead";
     const num = (k, noun) => Object.assign(document.createElement("span"), { className: "vol-n", textContent: COUNT(k, noun) });
-    const scoped = () => Object.assign(document.createElement("span"), { className: "vol-scope", textContent: `, ${scope}.` });
     // The counts nest — the verses of a chapter sum to its count and the
     // chapters of a book to its own, on all 929 and all 39 — so a reader who
     // adds up the verses of a chapter meets the chapter's own number and
-    // never a larger one. That is what lets the second and third lines stand
-    // beside the first without contradicting it.
-    if (N) say.append(num(N, "comment"), " on this verse", scoped());
-    else if (CN) say.append("No commentary on this verse. ", num(CN, "comment"), " in this chapter", scoped());
-    else if (BN) say.append("No commentary in this chapter. ", num(BN, "comment"), " in this book", scoped());
-    else say.append(`No commentary on ${volStore.display_name || BOOK} `, Object.assign(document.createElement("span"), { className: "vol-scope", textContent: `${scope}.` }));
-    const src = document.createElement("p"); src.className = "vol-src";
+    // never a larger one. That is what lets the second and third sentences
+    // stand beside the first without contradicting it.
+    if (N) lead.append(num(N, "comment"), " on this verse");
+    else if (CN) lead.append("No commentary on this verse. ", num(CN, "comment"), " in this chapter");
+    else if (BN) lead.append("No commentary in this chapter. ", num(BN, "comment"), " in this book");
+    else lead.append(`No commentary on ${volStore.display_name || BOOK}`);
+    // AND THE SCOPE, IN THE SAME BREATH. It is one sentence rather than a
+    // heading and two paragraphs because a count whose scope arrives in a
+    // separate paragraph is a count a reader can read without its scope.
     const sc = volStore.scope || {};
-    src.textContent = `Counted by the corpus lane over ${sc.works || 34} works in ${sc.editions || 116} editions. `
-      + "A count, not a link: this page does not open them from here, and the set it was counted over is not this site's shelf.";
-    panel.append(lab, say, src);
+    say.append(lead, `, ${scope} — the corpus lane's index of ${sc.works || 34} works, `
+      + "not this site's shelf, and not opened from here.");
+    panel.append(say);
     slot.append(panel);
   };
   // The panel on the card. It asks under the word's headword first (the
