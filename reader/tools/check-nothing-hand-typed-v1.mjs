@@ -30,6 +30,7 @@
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -161,7 +162,7 @@ const servedSlugs = existsSync(gateFile)
   : null;                       // no receipt: judge the whole shelf, as before
 const doorServes = (slug) => servedSlugs === null || servedSlugs.has(slug);
 if (existsSync(zonesDir)) {
-  for (const zf of readdirSync(zonesDir).filter((x) => x.endsWith(".bin") && !x.endsWith(".commentary.bin") && !x.endsWith(".hoh.bin") && !x.endsWith(".lattice.bin") && doorServes(x.replace(/\.bin$/, "")))) {
+  for (const zf of readdirSync(zonesDir).filter((x) => x.endsWith(".bin") && !isSidecar(x) && doorServes(x.replace(/\.bin$/, "")))) {
     try {
       const z = JSON.parse(gunzipSync(readFileSync(join(zonesDir, zf))).toString("utf8"));
       zoneNames.add(zf.replace(/\.bin$/, ""));
@@ -191,7 +192,7 @@ if (existsSync(zonesDir)) {
   const doorSrcPath = join(K3, "..", "index.html");
   const doorHasDemo = existsSync(doorSrcPath) && /id="demo"/.test(readFileSync(doorSrcPath, "utf8"));
   const firstZone = doorHasDemo ? readdirSync(zonesDir)
-    .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin") && doorServes(x.replace(/\.bin$/, "")))
+    .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !isSidecar(x) && doorServes(x.replace(/\.bin$/, "")))
     .sort()[0] : null;
   if (firstZone) {
     try {

@@ -73,6 +73,7 @@ import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { dirname, join, basename } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -176,7 +177,7 @@ const struckNow = admission ? [...(admission.struck_m_ids || [])].sort().join(",
 
 // ── the shelf, read once ──────────────────────────────────────────────────
 if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); process.exit(3); }
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin") && !f.endsWith(".hoh.bin") && !f.endsWith(".lattice.bin")).sort();
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !isSidecar(f)).sort();
 if (!bins.length) { console.log("SKIPPED — no zones on this disk"); process.exit(3); }
 
 let zonesRead = 0, otherRule = 0, unreadable = 0;

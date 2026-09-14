@@ -12,7 +12,7 @@ import { resolve } from "node:path";
 import assert from "node:assert/strict";
 import { basename, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { zonesOnDisk, zonesServed } from "./zones-on-disk-v1.mjs";
+import { zonesOnDisk, zonesServed, isSidecar } from "./zones-on-disk-v1.mjs";
 
 const arg = (name, fallback) => {
   const i = process.argv.indexOf(`--${name}`);
@@ -220,7 +220,7 @@ for (const pinned of receipt.rendered.zones) {
   // works' own Hebrew opening words — the shape assert admits any name that
   // stays inside the zones directory and is a work bin.
   assert.match(pinned.path, /^data\/zones\/[^/]+\.bin$/);
-  assert.ok(!pinned.path.includes("fixture-") && !pinned.path.endsWith(".commentary.bin"), `${pinned.path} is not a work bin`);
+  assert.ok(!pinned.path.includes("fixture-") && !isSidecar(pinned.path), `${pinned.path} is not a work bin`);
   const bytes = readBytes(pinned.path);
   const zone = JSON.parse(gunzipSync(bytes).toString("utf8"));
   const rows = (zone.sections || []).reduce((total, section) => total + (section.words || []).length, 0);

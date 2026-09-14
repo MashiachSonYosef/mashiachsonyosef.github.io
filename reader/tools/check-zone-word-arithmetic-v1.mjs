@@ -19,6 +19,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { gunzipSync } from "node:zlib";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const ZONES = arg("zones", "data/zones");
@@ -36,7 +37,7 @@ const check = (name, ok, detail) => {
 // every one of the thirty-nine. A sidecar is judged by the check that owns
 // its layer.
 const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")
-  && !/\.(commentary|hoh|lattice)\.bin$/u.test(f)).sort();
+  && !isSidecar(f)).sort();
 if (!bins.length) { console.log("SKIPPED — no zone bins in " + ZONES); process.exit(3); }
 
 for (const f of bins) {

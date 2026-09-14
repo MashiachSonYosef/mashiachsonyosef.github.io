@@ -26,6 +26,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { glossSource as glossSourceFor } from "./gloss-m-v1.mjs";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -48,7 +49,7 @@ export const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is
 const WROTE = ["gloss_m", "gloss_layer.store_version"];
 
 const bins = readdirSync(ZONES)
-  .filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin"))
+  .filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !isSidecar(f))
   .sort();
 let zones = 0, keys = 0, chipped = 0, drifted = 0, builtInPass = 0;
 const driftZones = [];

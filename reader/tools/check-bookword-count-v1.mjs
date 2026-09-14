@@ -59,6 +59,7 @@ import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { measureZone, MEASURE_RULE_ID } from "./bookword-measure-v1.mjs";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -78,7 +79,7 @@ const witnesses = existsSync(WITNESSES) ? JSON.parse(readFileSync(WITNESSES, "ut
 const gate = existsSync(GATE) ? JSON.parse(readFileSync(GATE, "utf8")) : null;
 const servedSet = gate ? new Set(gate.served || []) : null;
 const zones = existsSync(ZONES)
-  ? readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin") && !/^[0-9a-f]{2}\.bin$/u.test(f) && f !== "w-top.bin").map((f) => f.replace(/\.bin$/u, "")).sort()
+  ? readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !isSidecar(f) && !/^[0-9a-f]{2}\.bin$/u.test(f) && f !== "w-top.bin").map((f) => f.replace(/\.bin$/u, "")).sort()
   : [];
 const served = servedSet ? zones.filter((z) => servedSet.has(z)) : zones;
 

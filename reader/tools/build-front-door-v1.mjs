@@ -51,6 +51,7 @@ import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
 import { exactK, K_RULE_ID } from "./k-normalization-v2.mjs";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const ZONES = arg("zones", "data/zones");
@@ -103,7 +104,7 @@ const assertJudgedBytes = (slug, bytes) => {
 // serve, it asks here — one listing, so a book cannot be counted in a tally
 // it is withheld from, or given a page the shelf never lists.
 const shelfZoneFiles = () => readdirSync(ZONES)
-  .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin") && !x.endsWith(".hoh.bin") && !x.endsWith(".lattice.bin"))
+  .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !isSidecar(x))
   .filter((x) => gated(x.replace(/\.bin$/, "")))
   .sort();
 
@@ -682,7 +683,7 @@ for (const b of BOOKS) {
 // The curated tier can lawfully be empty — the owner's ruling, 2026-08-30:
 // no hand-done books at all. The refusal that matters is a shelf with no
 // zones behind it, judged by the zones directory itself.
-if (!books.length && !readdirSync(ZONES).some((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin") && !f.endsWith(".hoh.bin") && !f.endsWith(".lattice.bin")))
+if (!books.length && !readdirSync(ZONES).some((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !isSidecar(f)))
   throw new Error(`no zones found in ${ZONES} — refusing to write a door with nothing behind it`);
 // Every place a book is referred to in English refers to it by the one name
 // the law allows to print: the ledger's English when a licensed record backs

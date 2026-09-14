@@ -67,6 +67,7 @@ const countRows = async (p) => {
 };
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -121,7 +122,7 @@ if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); proce
 // many sidecars happened to be on a given disk rather than with anything about
 // a route. The layer each one belongs to is checked by the check that owns it.
 const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")
-  && !/\.(commentary|hoh|lattice)\.bin$/u.test(f)).sort();
+  && !isSidecar(f)).sort();
 if (!bins.length) { console.log("SKIPPED — no zones on this disk"); process.exit(3); }
 
 const costume = [], noVerdict = [], notPass = [], countsOff = [];

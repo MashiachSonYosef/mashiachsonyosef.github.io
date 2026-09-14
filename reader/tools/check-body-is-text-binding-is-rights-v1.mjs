@@ -86,6 +86,7 @@ import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { dirname, join, relative, basename } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -175,7 +176,7 @@ const l1 = l1Why.length === 0;
 
 // ── the shelf ─────────────────────────────────────────────────────────────
 if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); process.exit(3); }
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.endsWith(".commentary.bin")).sort();
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !isSidecar(f)).sort();
 if (!bins.length) { console.log("SKIPPED — no zones on this disk"); process.exit(3); }
 
 // ── what is in custody ────────────────────────────────────────────────────

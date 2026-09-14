@@ -36,6 +36,7 @@ import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -129,7 +130,7 @@ const covered = (lo, hi) => {
 
 // ---- what already serves, from the zones on disk --------------------------
 const serving = new Map(); // work_id -> slug
-for (const f of readdirSync(join(K3, "data", "zones")).filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))) {
+for (const f of readdirSync(join(K3, "data", "zones")).filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !isSidecar(x))) {
   try {
     const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", f))).toString("utf8"));
     const m = String((z.work_receipts || {}).b_n || "").match(/work_id=([^\s·]+)/);

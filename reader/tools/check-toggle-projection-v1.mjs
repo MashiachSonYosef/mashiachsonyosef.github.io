@@ -23,6 +23,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { carriesReaderHebrew } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -34,7 +35,7 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 
 const HEBREW_POINTS = /[֑-ׇ]/u;
 const layered = [];
-for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin") && !x.endsWith(".lattice.bin")).sort()) {
+for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin") && carriesReaderHebrew(x)).sort()) {
   let z; try { z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8")); } catch { continue; }
   const t = z.emitted_from && z.emitted_from.toggles && z.emitted_from.toggles.headword;
   if (!t) continue;

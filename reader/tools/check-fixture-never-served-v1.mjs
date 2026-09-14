@@ -73,6 +73,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -111,7 +112,7 @@ const suffixMatch = makerSrc.match(/base\.work = `\$\{base\.work\}([^`]+)`/);
 const suffix = suffixMatch ? suffixMatch[1] : "";
 const stampMatch = makerSrc.match(/rule_id:\s*"([^"]+)"/);
 const makerRule = stampMatch ? stampMatch[1] : "";
-const baseName = outputs.find((o) => !o.endsWith(".commentary.bin")) || null;
+const baseName = outputs.find((o) => !isSidecar(o)) || null;
 const comName = outputs.find((o) => o.endsWith(".commentary.bin")) || null;
 check("L1  the maker still declares what it writes",
   !!baseName && !!comName && makerAt.length > 0 && !!suffix && makerRule === RULE,
@@ -133,7 +134,7 @@ const isFixtureSlug = (s) => outputSlugs.has(s) || /^fixture(-|$)/.test(String(s
 // the question is what the door WOULD list, and improving the filter in a
 // check would answer a different question.
 const shelf = readdirSync(ZONES)
-  .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))
+  .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !isSidecar(x))
   .sort();
 const byName = shelf.map(slugOf).filter(isFixtureSlug);
 const byContent = [];
@@ -243,7 +244,7 @@ if (!haveBase && !haveCom) {
     !haveBase || !haveCom ? `only ${haveBase ? baseName : comName} is here — a fixture is two files or none`
       : !decl ? `${comName} carries no fixture stamp`
         : decl.rule_id !== RULE ? `stamped ${JSON.stringify(decl.rule_id)}, not this rule`
-          : !madeFrom.endsWith(".commentary.bin") ? `made_from ${JSON.stringify(madeFrom)} names no sidecar`
+          : !isSidecar(madeFrom) ? `made_from ${JSON.stringify(madeFrom)} names no sidecar`
             : !sameAt ? `declares positions ${JSON.stringify(decl.hung_at_word_positions)}, the maker hangs at ${JSON.stringify(makerAt)}`
               : !decl.never_served ? "does not say it is never served"
                 : !baseWork.endsWith(suffix) ? `the base is named ${JSON.stringify(baseWork)}, without ${JSON.stringify(suffix)}`

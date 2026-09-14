@@ -25,6 +25,7 @@ import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
 import { zonesOnDisk, zonesServed, zonesServedWithCommentary } from "./zones-on-disk-v1.mjs";
 import { basename } from "node:path";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -318,7 +319,7 @@ check("the site's own name carries no Hebrew that nothing recorded",
     // lends the door no verse (2026-09-06)
     const servedFirst = zonesServed()[0];
     const firstZone = servedFirst ? `${servedFirst}.bin` : readdirSync(zdir)
-      .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !x.endsWith(".commentary.bin"))
+      .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !isSidecar(x))
       .sort()[0];
     if (firstZone) {
       const z = JSON.parse(gunzipSync(readFileSync(join(zdir, firstZone))).toString("utf8"));

@@ -2,7 +2,7 @@
   "schema_version": "V_LEDGER_POSTURE_V1",
   "rule_id": "v-ledger-posture-rule-v1-an-anchor-is-served-only-where-this-lane-can-keep-the-offer-it-makes",
   "recorded_on": "2026-09-14",
-  "recorded_by": "the serving lane, on the corpus lane's delivery of V ledger v2 (2026-09-13)",
+  "recorded_by": "the serving lane, on the corpus lane's delivery of V ledger v2 (2026-09-13), amended the same day on the owner's two rulings",
 
   "what_v_is": "An ANCHOR, not a lattice. It points from a base word to the commentary units whose opening catchword names that word, and from a verse to how much commentary sits on it. It has no opinion on what a comment says, and it does not hold the commentary's words: those are an uncarded token stream the corpus lane keeps elsewhere.",
 
@@ -11,7 +11,7 @@
     "objects": 61,
     "contract": "V-SERVING-CONTRACT-v2.md",
     "candidate_only": true,
-    "current_effect": "NONE",
+    "current_effect": "THE COUNTS LAYER IS SERVED. The word layer is not.",
     "integrity": "sha256sum -c SHA256SUMS.txt — 60 of 60 files verified on 2026-09-14, this lane's own run",
     "counts_reproduced_here": {
       "reverse index lines": 21686,
@@ -30,38 +30,46 @@
     "does_not_say": "that a catchword names the word it resolved to. That is the corpus lane's resolution and its own recount's question, not this lane's."
   },
 
-  "why_nothing_is_served_yet": "Two measured findings, neither of them a defect in V. V measures the corpus lane's 34 works; this site serves a different set, and the two do not meet where the page would need them to.",
-
-  "findings": [
-    {
-      "id": "the-word-layer-has-nothing-to-open-here",
-      "measured_on": "2026-09-14, against the shipped reverse index and this lane's zone list",
-      "says": "Under the rule as it stands, 10,138 word-anchored pairs are spread over fourteen works. This lane holds the text of NONE of them. Rashi on Genesis, Leviticus, Numbers and Deuteronomy; Ibn Ezra on Genesis, Exodus, Leviticus and Numbers; Midrash Lekach Tov and its three small books; Midrash Tannaim on Deuteronomy; the GRA's Aderet Eliyahu. Not one is a zone on this shelf.",
-      "cost": "V's first sentence is 'N comments cover this word' and then opens them. This lane can count them and cannot open one. An offer a page cannot keep is worse than a silence that explains itself.",
-      "works_this_lane_does_hold_that_v_names": "Chizkuni, Mizrachi, Rabbeinu Bahya, Tur HaArokh, Ibn Ezra on Zechariah, Ralbag Esther, Shelom Esther and nine more — every one of them with zero word-anchored pairs, which V measured and did not assume: the sixteen TWO_INT works carry no markup at all.",
-      "whose": "the corpus lane's to deliver, or the owner's to rule that the word layer is served as a finding with no link"
+  "the_owner_ruled": {
+    "on": "2026-09-14",
+    "what_v_gives_a_reader_today": {
+      "ruling": "Counts only, scope named",
+      "in_his_words": "Serve the verse, chapter and book counts with the scope said out loud: '11 comments on this verse, among the works indexed so far.'",
+      "what_this_lane_did": "tools/project-v-volume-v1.mjs projects pairs_verse_level, pairs_chapter_level and pairs_book_level onto the 39 books as <slug>.volume.bin; the card draws one line under the word, and that line carries the scope. The word layer stays off the page.",
+      "he_was_told_the_cost_and_chose_it_anyway": "The option he picked was put to him with its cost printed on it — that it still shows a reader numbers for comments this site cannot open from here. So the panel says that too, in its own words, rather than leaving it for the reader to discover."
     },
-    {
-      "id": "sentence-six-contradicts-this-lane-s-own-door",
-      "measured_on": "2026-09-14, against the shipped book table and this lane's served commentary sidecars",
-      "says": "V's sixth sentence reads 'We hold no commentary on {BOOK}' and covers 213,459 positions, seven words in ten. V holds commentary on ten books. This site serves a commentary on eighteen of the twenty-nine it holds none on — Joshua, Judges, II Samuel, I Kings, Isaiah, Ezekiel, Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Malachi, Song of Songs.",
-      "cost": "The page would tell a reader it holds no commentary on Amos while its own door offers 'Commentary on Amos, 146 carried from 1 work'. A page that contradicts itself inside one screen is the fault this project exists to make impossible.",
-      "not_v_s_fault": "V's 'we' is the corpus lane's 34 works. The sentence is true of what V measured. It is this lane's holdings it does not know about.",
-      "whose": "the owner's. The sentence is his to rule, and three readings are open: name the scope ('among the works the corpus lane has indexed'), fold this lane's own commentary into the count, or hold the sentence until the two sets are one."
+    "the_book_display_names": {
+      "ruling": "Use them as proposed",
+      "in_his_words": "Print V's proposed names as shipped. They came from the corpus lane and carry its status marker.",
+      "what_this_lane_found": "All 39 of V's PROPOSED_PENDING_OWNER names are already, character for character, the name this lane's own zone carries out of its edition's metadata. Two lanes arrived at the same 39 names apart. So the ruling changes no page.",
+      "what_it_changes_instead": "It makes the agreement a law. tools/project-v-volume-v1.mjs refuses to write a sidecar for a book whose zone calls it something else, and check-v-volume-projection-v1 holds all 39 pairs together on every run. The day one of them moves, a check fails instead of a page printing two names for one book."
     }
-  ],
+  },
+
+  "what_is_served_and_what_is_not": {
+    "served": "The counts. 5,764 verses and 217 chapters across 10 of the 39 books carry a number; the other 29 books say they carry none. The 39 book counts sum to 50,341 — the corpus lane's own figure for folded pairs that reach a verse, the whole ledger landed and counted once.",
+    "not_served": "The word layer. V's first sentence is 'N comments cover this word' and then opens them: 21,686 anchored positions over fourteen works, and this lane holds the text of none of the fourteen. An offer a page cannot keep is worse than a silence that explains itself, so the card says nothing there.",
+    "the_column": "pairs_*, never units_*. On Exodus 16:29 the unit count is 1,210 and the pair count is 411 — the same commentary counted once per edition against once per work. A reader meets works.",
+    "the_switch_does_not_reach_here": "V ships three positions of the framing trim and the ruling on which becomes the rule is still owed. It is owed about the WORD layer. Not one of the three numbers served moves between the positions, because the trim governs which units are word-anchored and never how many sit on a verse. So the counts layer shipped without waiting on it."
+  },
+
+  "why_the_scope_is_said_out_loud": {
+    "the_fault_it_closes": "V's sixth sentence reads 'We hold no commentary on {BOOK}' and covers 213,459 positions, seven words in ten. V holds commentary on ten books. This site serves a commentary on eighteen of the twenty-nine V holds none on — Joshua, Judges, II Samuel, I Kings, Isaiah, Ezekiel, Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Malachi, Song of Songs. Unscoped, the page would tell a reader it holds no commentary on Amos while its own door offers one.",
+    "not_v_s_fault": "V's 'we' is the corpus lane's 34 works in 116 editions. Every sentence is true of what V measured. It is this lane's holdings V does not know about.",
+    "how_it_is_said": "Every count on the card ends '— among the works indexed so far', the owner's own phrase, and the panel names the set under it: 34 works in 116 editions, and that the set is not this site's shelf. The phrase lives in one place (tools/project-v-volume-v1.mjs, carried into every sidecar) so the page and the projection cannot drift into two different scopes, and check-v-volume-projection-v1 asserts all 39 say it the same way."
+  },
+
+  "the_counts_hold_each_other_up": "On all 929 chapters the verse counts sum to the chapter's own, and on all 39 books the chapter counts sum to the book's. This is what lets the four sentences stand beside each other: 'no commentary on this verse, 408 in this chapter' is a sentence a reader cannot disprove by adding up the verses, because the 408 are on the other verses exactly. Checked before a byte was written and again on every run.",
 
   "what_is_owed_and_by_whom": {
     "the_owner": [
-      "the wording of the sixth sentence, given that eighteen books contradict it as written",
-      "whether the word layer is served as a finding that names the work without offering to open it",
-      "the book display names: V ships book_display_name with status PROPOSED_PENDING_OWNER, on 213,459 positions",
-      "whether clause 13 (the framing trim) becomes the rule, strict or conservative. Candidate only; the switch is one filter and the tables carry all three positions"
+      "whether clause 13 (the framing trim) becomes the rule, strict or conservative. Candidate only; the switch is one filter, the tables carry all three positions, and nothing now served moves with it",
+      "whether the word layer is ever served as a finding that names the work without offering to open it — moot while this lane holds none of the fourteen"
     ],
     "the_corpus_lane": [
-      "the text of the fourteen word-anchoring works, if the word layer is ever to open a comment rather than name one"
+      "the text of the fourteen word-anchoring works, if the word layer is ever to open a comment rather than name one. Rashi on Genesis, Leviticus, Numbers and Deuteronomy; Ibn Ezra on Genesis, Exodus, Leviticus and Numbers; Midrash Lekach Tov and its three small books; Midrash Tannaim on Deuteronomy; the GRA's Aderet Eliyahu"
     ]
   },
 
-  "what_this_lane_will_not_do": "Serve a count it cannot open, print a sentence its own door contradicts, or name a book by a slug or by a name of its own. V ships the display name; the owner rules it; the page prints what he rules."
+  "what_this_lane_will_not_do": "Print a number without the set it was counted over, make a count look like a link to something it cannot open, or name a book by a slug or by a name of its own. V ships the display name; the owner ruled it; the page prints what he ruled, and a check holds the two lanes to the same 39 names."
 }

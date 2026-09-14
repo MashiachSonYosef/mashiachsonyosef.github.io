@@ -78,6 +78,7 @@ import { createInterface } from "node:readline";
 import { dirname, join, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { SPAN_RULE_ID } from "./span-slice-v1.mjs";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -123,7 +124,7 @@ if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); proce
 // attached, and that zone is judged here under its own name. Asking the
 // sidecar the same question read every one of its keys as a key it does not
 // hold (2026-09-12: 49,375 of them, all the targums' words).
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.endsWith(".commentary.bin") && !f.endsWith(".hoh.bin") && !f.endsWith(".lattice.bin")).sort();
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !isSidecar(f)).sort();
 if (!bins.length) { console.log("SKIPPED — no zones on this disk"); process.exit(3); }
 
 const readZone = (f) => { try { return JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8")); } catch { return null; } };

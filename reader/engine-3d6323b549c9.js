@@ -2560,9 +2560,14 @@
     const hohSlot = document.createElement("div"); hohSlot.className = "hoh-slot";
     // and, for a word the catalog answers nothing for, what its parts are
     const partsSlot = document.createElement("div"); partsSlot.className = "parts-slot";
-    hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, partsSlot, hohSlot, prov);
+    // and, under all of it, how much commentary the corpus lane has counted
+    // on the verse this word stands in — a number with its scope, never a
+    // link, because nothing here opens
+    const volSlot = document.createElement("div"); volSlot.className = "vol-slot";
+    hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, partsSlot, hohSlot, volSlot, prov);
     renderParts(partsSlot, bin === zone ? (opts.word || word) : null);
     renderHoh(hohSlot, region, opts.word || word);
+    renderVolume(volSlot, bin === zone ? unitId : null);
 
     // --- row 1 · how the form divides ---------------------------------
     const renderCuts = () => {
@@ -3033,6 +3038,78 @@
         console.error(e.message);
       }
     });
+  // v-volume-rule-v1 · HOW MUCH COMMENTARY SITS HERE.
+  //
+  // The corpus lane's V ledger is an ANCHOR, not a lattice: it counts the
+  // commentary units that reach each verse, chapter and book of the 39, over
+  // 34 works in 116 editions. <slug>.volume.bin carries those three numbers
+  // for this book and nothing else.
+  //
+  // WHAT IS SHOWN AND WHAT IS NOT, under the owner's ruling of 2026-09-14:
+  // the counts are served and the WORD layer is not. V's first sentence is
+  // "N comments cover this word" and then opens them; the fourteen works
+  // that anchor those 21,686 positions are works this lane does not hold, so
+  // the page would be making an offer it cannot keep. It says nothing there.
+  //
+  // AND THE SCOPE IS SAID OUT LOUD, which is the whole of the ruling. V's
+  // "we" is the corpus lane's 34 works, not this door's shelf: V holds no
+  // commentary on Amos and this site serves one. Both are true, and a number
+  // printed without the set it was counted over is what makes them look like
+  // a contradiction. So every line below carries "among the works indexed so
+  // far" — the owner's own phrase — and the sidecar carries it too, so the
+  // page and the projection can never drift into two different scopes.
+  let volStore = null;
+  const volReady = fetchBin(`${BOOK}.volume`)
+    .then((s) => { volStore = s; window.__volStore = s; })
+    .catch((e) => {
+      if (String((e && e.message) || "").startsWith("REFUSED")) {
+        window.__volRefused = e.message;
+        console.error(e.message);
+      }
+    });
+  // The verse a section is, by the id its words are wired with. The counts are
+  // keyed by the reference (1:1), the card is handed the unit (genesis-1-1),
+  // and deriving one from the other by splitting on hyphens is a guess about
+  // every slug that ever carries a number. The zone already holds both.
+  const REF_OF_UNIT = new Map((zone.sections || []).map((s) => [s.unit, s.label]));
+  // "1 comment" / "N comments" — the contract makes the singular mandatory,
+  // and a page that prints "1 comments" has told the reader how much care
+  // went into the rest of it.
+  const COUNT = (k, noun) => `${k.toLocaleString()} ${noun}${k === 1 ? "" : "s"}`;
+  const renderVolume = (slot, unitId) => {
+    slot.replaceChildren();
+    // No sidecar, or a card that is not a word of this book's own text — a
+    // commentary's word, a dictionary's word — has no verse to count over.
+    if (!volStore || !unitId) return;
+    const ref = REF_OF_UNIT.get(unitId);
+    if (!ref) return;
+    const chapter = String(ref).split(":")[0];
+    const N = (volStore.verses || {})[ref] || 0;
+    const CN = (volStore.chapters || {})[chapter] || 0;
+    const BN = (volStore.book || {}).pairs || 0;
+    const scope = (volStore.scope || {}).say || "among the works indexed so far";
+    const panel = document.createElement("div"); panel.className = "vol";
+    const lab = document.createElement("p"); lab.className = "r-label";
+    lab.textContent = "How much commentary sits here";
+    const say = document.createElement("p"); say.className = "vol-say";
+    const num = (k, noun) => Object.assign(document.createElement("span"), { className: "vol-n", textContent: COUNT(k, noun) });
+    const scoped = () => Object.assign(document.createElement("span"), { className: "vol-scope", textContent: `, ${scope}.` });
+    // The counts nest — the verses of a chapter sum to its count and the
+    // chapters of a book to its own, on all 929 and all 39 — so a reader who
+    // adds up the verses of a chapter meets the chapter's own number and
+    // never a larger one. That is what lets the second and third lines stand
+    // beside the first without contradicting it.
+    if (N) say.append(num(N, "comment"), " on this verse", scoped());
+    else if (CN) say.append("No commentary on this verse. ", num(CN, "comment"), " in this chapter", scoped());
+    else if (BN) say.append("No commentary in this chapter. ", num(BN, "comment"), " in this book", scoped());
+    else say.append(`No commentary on ${volStore.display_name || BOOK} `, Object.assign(document.createElement("span"), { className: "vol-scope", textContent: `${scope}.` }));
+    const src = document.createElement("p"); src.className = "vol-src";
+    const sc = volStore.scope || {};
+    src.textContent = `Counted by the corpus lane over ${sc.works || 34} works in ${sc.editions || 116} editions. `
+      + "A count, not a link: this page does not open them from here, and the set it was counted over is not this site's shelf.";
+    panel.append(lab, say, src);
+    slot.append(panel);
+  };
   // The panel on the card. It asks under the word's headword first (the
   // look-up-by projection, h) and its form second, because a dictionary is
   // keyed by headwords and the form is what the page happens to hold.
@@ -4439,6 +4516,7 @@
   })();
   await commentaryReady;
   await hohReady;
+  await volReady;
   const LEDGER_NAMES = await ledgerNamesReady;
   const NAV_LABELS = await navLabelsReady;
   // Say what the commentary is and where it came from — inside the receipts,

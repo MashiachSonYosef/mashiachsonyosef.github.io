@@ -30,6 +30,7 @@ import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -50,7 +51,7 @@ const KQ_GROUP = /\(([^()]*)\)|\[([^\[\]]*)\]/gu;
 const nfc = (s) => String(s ?? "").normalize("NFC");
 const bare = (t) => nfc(t).replace(/^\u05be+|\u05be+$/gu, "");
 
-const zones = existsSync(ZONES) ? readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin") && !/^[0-9a-f]{2}\.bin$/u.test(f) && f !== "w-top.bin").sort() : [];
+const zones = existsSync(ZONES) ? readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !isSidecar(f) && !/^[0-9a-f]{2}\.bin$/u.test(f) && f !== "w-top.bin").sort() : [];
 const rights = existsSync(RIGHTS) ? JSON.parse(readFileSync(RIGHTS, "utf8")) : null;
 const l1 = [], l2 = [], l3 = [], l4 = [];
 let seen = 0;

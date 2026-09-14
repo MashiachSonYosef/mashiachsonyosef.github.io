@@ -50,6 +50,7 @@ import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { exactK } from "./k-normalization-v2.mjs";
+import { isSidecar, baseOfSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -144,7 +145,12 @@ const judge = (z) => {
 
 // ---- every zone on the shelf, judged from its bytes ------------------------
 const zones = existsSync(ZONES)
-  ? readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin") && !/^[0-9a-f]{2}\.bin$/u.test(f) && f !== "w-top.bin").sort()
+  // The suffix list is NOT written here. It was, and it named one sidecar of
+  // the three that existed: the 39 lattice sidecars came onto the shelf as
+  // 39 more zones for the gate to judge, and the shelf counted 3,519 where
+  // 3,480 books stand. A sidecar carries no C0, so the gate had nothing to
+  // ask it. zones-on-disk-v1 keeps the one list.
+  ? readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !isSidecar(f) && !/^[0-9a-f]{2}\.bin$/u.test(f) && f !== "w-top.bin").sort()
   : [];
 const LINES_VERSION = sha(readFileSync(fileURLToPath(import.meta.url))).slice(0, 16);
 let cache = {};
@@ -235,15 +241,15 @@ if (!ONLY) {
     const ok = new Set(served);
     for (const f of git.stdout.split("\0")) {
       // A SIDECAR IS JUDGED AS THE BOOK IT RIDES BESIDE, not as a book of
-      // its own. <slug>.commentary.bin, <slug>.hoh.bin and <slug>.lattice.bin
-      // carry no C0 — a commentary's text, a dictionary's entries, the
-      // lattice's grades — so the question this line asks is still the right
-      // one, asked of the right name: publishing a sidecar for a book the
-      // gate refused publishes that book's data. The suffix list has to cover
-      // every sidecar; when .lattice.bin was added and this was not, the 39
-      // of them read as 39 books published outside the gate.
+      // its own. A sidecar carries no C0 — a commentary's text, a
+      // dictionary's entries, the lattice's grades, V's counts — so the
+      // question this line asks is still the right one, asked of the right
+      // name: publishing a sidecar for a book the gate refused publishes that
+      // book's data. The suffix list has to cover every sidecar, so it is
+      // read from zones-on-disk-v1 and never written here.
       if (!f.endsWith(".bin") || f.includes("fixture-")) continue;
-      const slug = f.replace(/^.*\//u, "").replace(/\.(commentary|hoh|lattice)?\.?bin$/u, "");
+      const base = f.replace(/^.*\//u, "");
+      const slug = baseOfSidecar(base) || base.replace(/\.bin$/u, "");
       if (!ok.has(slug)) l4.push(slug);
     }
   }

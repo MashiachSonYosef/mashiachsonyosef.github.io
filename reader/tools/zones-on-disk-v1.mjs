@@ -22,22 +22,65 @@ const ZONES = process.env.ZONES_DIR || "data/zones";
 const PORT = process.env.SERVE_PORT || "8899";
 const BASE = process.env.SERVE_BASE || `http://127.0.0.1:${PORT}`;
 
-/** Every zone on disk that is a work: not a commentary sidecar, not a route
- *  shard, not a test instrument. Sorted, so a run is reproducible.
+/** EVERY SIDECAR SUFFIX THERE IS, in one place, because four tools got this
+ *  wrong in one week by each keeping its own list.
  *
- *  A sidecar is <slug>.commentary.bin — a dot, not a hyphen. It was
- *  <slug>-commentary.bin until 2026-09-02, when the fleet served a work whose
- *  own slug ends in "-commentary" (an introduction to a Mishnah commentary)
- *  and every tool that knew a sidecar by that suffix passed the work over as
- *  one. A slug is derived from the work id and never carries a dot, so a name
- *  with one cannot be a work's, and the collision cannot recur. */
+ *  A sidecar rides beside a book zone under the book's own slug and a
+ *  suffix: <slug>.commentary.bin, <slug>.hoh.bin, <slug>.lattice.bin,
+ *  <slug>.volume.bin. None of them is a work. Every tool that enumerates the
+ *  shelf must skip all of them, and the way a tool comes to skip three of
+ *  four is by holding its own copy of the list: the copy was right when it
+ *  was written and the fourth suffix arrived somewhere else. So the list
+ *  lives here, is exported, and check-sidecars-all-named-v1 fails any tool
+ *  that writes its own.
+ *
+ *  The suffix is a DOT, not a hyphen. It was <slug>-commentary.bin until
+ *  2026-09-02, when the fleet served a work whose own slug ends in
+ *  "-commentary" (an introduction to a Mishnah commentary) and every tool
+ *  that knew a sidecar by that suffix passed the work over as one. A slug is
+ *  derived from the work id and never carries a dot, so a name with one
+ *  cannot be a work's, and the collision cannot recur. */
+export const SIDECAR_SUFFIXES = Object.freeze([
+  ".commentary.bin",   // a commentary on this book, aligned to its sections
+  ".hoh.bin",          // Hebrew-on-Hebrew: a dictionary in the text's own language
+  ".lattice.bin",      // the corpus lane's grade of every card, per position
+  ".volume.bin",       // how much commentary sits on each verse, chapter and book
+]);
+
+/** Whether a file name in the zones directory is a sidecar rather than a work. */
+export const isSidecar = (f) => SIDECAR_SUFFIXES.some((s) => String(f).endsWith(s));
+
+/** The sidecars that hold no Hebrew a reader opens.
+ *
+ *  A second axis, and a real one: a commentary sidecar and a dictionary
+ *  sidecar are text — every word of them opens a card, so every check about
+ *  what a reader may open asks them the same questions it asks a book. A
+ *  lattice sidecar holds grades and fingerprints; a volume sidecar holds
+ *  three numbers. Asking either of them about its component layer is asking
+ *  a file with no words in it whether it withheld any.
+ *
+ *  It is a separate list from SIDECAR_SUFFIXES because it answers a separate
+ *  question, and a check that wants "not a work" must not get "not text" by
+ *  accident. Both are here so neither is written anywhere else. */
+export const SIDECARS_WITHOUT_READER_HEBREW = Object.freeze([".lattice.bin", ".volume.bin"]);
+
+/** Whether a name in the zones directory holds Hebrew a reader can open —
+ *  true for a book, a commentary sidecar and a dictionary sidecar. */
+export const carriesReaderHebrew = (f) => !SIDECARS_WITHOUT_READER_HEBREW.some((s) => String(f).endsWith(s));
+
+/** The book a sidecar rides beside, or null if the name is not a sidecar. */
+export function baseOfSidecar(f) {
+  const s = SIDECAR_SUFFIXES.find((x) => String(f).endsWith(x));
+  return s ? String(f).slice(0, -s.length) : null;
+}
+
+/** Every zone on disk that is a work: not a sidecar, not a route shard, not a
+ *  test instrument. Sorted, so a run is reproducible. */
 export function zonesOnDisk(dir = ZONES) {
   if (!existsSync(dir)) return [];
   return readdirSync(dir)
     .filter((f) => f.endsWith(".bin"))
-    .filter((f) => !f.endsWith(".commentary.bin"))
-    .filter((f) => !f.endsWith(".hoh.bin"))         // a dictionary sidecar, <slug>.hoh.bin, same law
-    .filter((f) => !f.endsWith(".lattice.bin"))     // the lattice sidecar, <slug>.lattice.bin, same law
+    .filter((f) => !isSidecar(f))
     .filter((f) => !/^[0-9a-f]{2}\.bin$/.test(f))   // route-store shards
     .filter((f) => f !== "w-top.bin")
     .filter((f) => !f.startsWith("fixture-"))       // instruments, not works
@@ -87,6 +130,14 @@ export function zonesWithCommentary(dir = ZONES) {
 export function zonesServedWithCommentary(dir = ZONES) {
   const served = new Set(zonesServed(dir));
   return zonesWithCommentary(dir).filter((z) => served.has(z));
+}
+
+/** Zones that carry V's volume sidecar (<slug>.volume.bin): how much
+ *  commentary the corpus lane has indexed on each of that book's verses,
+ *  chapters and the book itself. A check about the counts layer has nothing
+ *  to look at without one, and should say so rather than pass. */
+export function zonesWithVolume(dir = ZONES) {
+  return zonesOnDisk(dir).filter((z) => existsSync(join(dir, `${z}.volume.bin`)));
 }
 
 /** Zones that also carry a Hebrew-on-Hebrew sidecar (<slug>.hoh.bin), fixtures

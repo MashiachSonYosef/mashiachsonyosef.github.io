@@ -37,6 +37,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { fnv1a, LATTICE_RULE_ID, SIDECAR_SCHEMA } from "./lattice-lib-v1.mjs";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -65,7 +66,7 @@ const store = openRouteStore(join(K3, "data", "route-store"));
 const labels = new Set(Object.values(store.index.m_sources || {}).map((m) => m.label));
 const pins = existsSync(join(K3, "data", "zone-store-v1.json")) ? (JSON.parse(readFileSync(join(K3, "data", "zone-store-v1.json"), "utf8")).pins || {}) : {};
 const layered = [];
-for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin") && !x.endsWith(".commentary.bin") && !x.endsWith(".hoh.bin") && !x.endsWith(".lattice.bin")).sort()) {
+for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin") && !isSidecar(x)).sort()) {
   const z = load(f); if (!z) continue;
   const t = z.emitted_from && z.emitted_from.toggles && z.emitted_from.toggles.lattice;
   if (t) layered.push({ slug: f.replace(/\.bin$/u, ""), z, t });

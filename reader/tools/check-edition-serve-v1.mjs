@@ -38,6 +38,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -62,7 +63,7 @@ check("L1  the serving tool declares the rule, the route and the rights source",
   `quoted from ${TOOL.split("/").pop()}`);
 
 if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); process.exit(3); }
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !f.endsWith(".commentary.bin")).sort();
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !isSidecar(f)).sort();
 const l2 = [], l3 = [], l4 = [], l5 = [], seen = new Map();
 let onRoute = 0, zonesRead = 0;
 for (const f of bins) {

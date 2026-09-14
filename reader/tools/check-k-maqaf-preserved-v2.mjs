@@ -46,6 +46,7 @@ import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -94,7 +95,7 @@ if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); proce
 // not one word — to name the rule its keys were made under. A sidecar is
 // judged beside the book it rides with, by the check that owns that layer.
 const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-")
-  && !/\.(commentary|hoh|lattice)\.bin$/u.test(f)).sort();
+  && !isSidecar(f)).sort();
 let zones = 0, words = 0, trailing = 0, internal = 0, ascii = 0, typo = 0, stale = 0;
 const l2 = [], l3 = [], l4 = [], l5 = [], l6 = [], l7 = [], l8 = [];
 const unsplitByZone = new Map();

@@ -34,6 +34,7 @@ import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { carriesReaderHebrew } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ZONES = process.argv[2] || join(HERE, "..", "data", "zones");
@@ -44,9 +45,13 @@ if (!existsSync(ZONES)) {
   console.log(`SKIPPED — no zones directory here (looked in "${ZONES}")`);
   process.exit(3);
 }
-// a lattice sidecar (<slug>.lattice.bin) holds grades and fingerprints, not
-// Hebrew a reader opens; it has no component layer to withhold
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.endsWith(".lattice.bin")).sort();
+// A lattice sidecar holds grades and fingerprints and a volume sidecar holds
+// three numbers — neither is Hebrew a reader opens, so neither has a
+// component layer to withhold. A commentary sidecar and a dictionary sidecar
+// are text and stay in. Which is which is zones-on-disk-v1's list, not this
+// file's: when it was this file's it named the lattice alone, and the volume
+// sidecars would have arrived as 39 more files asked what they withheld.
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && carriesReaderHebrew(f)).sort();
 if (!bins.length) {
   console.log(`SKIPPED — no zones built yet in ${ZONES}`);
   process.exit(3);

@@ -23,6 +23,7 @@ import { createReadStream } from "node:fs";
 import { createInterface } from "node:readline";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -97,7 +98,7 @@ const ZONES = join(K3, "data", "zones");
 // check to break because it is the way nobody notices.
 const books = existsSync(ZONES)
   ? readdirSync(ZONES).filter((f) => f.endsWith(".bin")
-      && !f.endsWith(".commentary.bin")
+      && !isSidecar(f)
       && !f.startsWith("fixture-")
       && !/^[0-9a-f]{2}\.bin$/.test(f)
       && f !== "w-top.bin")

@@ -31,6 +31,7 @@ const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesWithCommentary } from "./zones-on-disk-v1.mjs";
 import { readdirSync, readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 const SKIP_LABEL = "check-commentary-in-line-v1";
 // A check about commentary needs a work that carries some. When none is
 // served, that is a fact about the corpus and not a defect in the reader, so
@@ -60,7 +61,7 @@ const grains = (store) => {
 // one exists, and whether it carries word-anchored commentary, is the
 // directory's to say.
 const FIXTURE_ZONE = readdirSync("data/zones")
-  .filter((f) => f.startsWith("fixture-") && f.endsWith(".bin") && !f.endsWith(".commentary.bin"))
+  .filter((f) => f.startsWith("fixture-") && f.endsWith(".bin") && !isSidecar(f))
   .map((f) => f.replace(/\.bin$/, ""))
   .find((z) => grains(sidecarOf(z)).word) || null;
 const WORD_ZONE = WITH_COMMENTARY.find((z) => grains(sidecarOf(z)).word) || null;
