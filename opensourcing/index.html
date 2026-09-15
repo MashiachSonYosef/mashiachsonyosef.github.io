@@ -631,13 +631,30 @@
      where a wrapped attestation can be taller than the name beside it. The
      hairline is the page’s own line color and the ground is untouched, so
      the shelf gains a grid and not a stack of cards. */
-  /* THE CARD IS THE READING. A whole card on the door is one book's reading,
-     so the card carries tekhelet and the Hebrew keeps its own red inside it.
-     The door only: inside a book a reading is one word wide, and there the
-     wash belongs on the word. */
+  /* THE READING CARRIES TEKHELET, NOT THE CARD. This said the opposite until
+     2026-09-15 — a whole card on the door is one book's reading, so the card
+     took the wash — and it was wrong twice over.
+
+     Wrong in fact: a card holds a name, a Hebrew title, an attestation, a
+     licence and a reading, and only the last of those is a reading. Four
+     things wore a channel that names none of them.
+
+     Wrong in effect: every atlas row on this door is built, all sixty-three
+     of them, so the fill separated nothing from nothing. Measured on a phone
+     it came to 6,253px of wash on a 6,101px page — the blue was not a mark on
+     the page, it was the page, and it turned linen in daylight blue-grey.
+
+     And the reader had the rule all along: a reading is tekhelet INK, on the
+     reading itself, with background:none (zone.html, .wb > .g). The wash is
+     defined there and used as a background exactly zero times. The door was
+     painting its readings argaman — this project's own prose — so tekhelet
+     had no element to sit on, and it went onto the card to get onto the page
+     at all. Put the channel back on the reading and the fill has no job.
+
+     The card keeps its border and radius: that is the shelf's grid, and it is
+     the page's own line color over untouched ground. */
   .atlas-row.built, details.fam > summary .row:first-child {
-    border:1px solid var(--line); border-radius:.55rem; padding:.4rem .6rem;
-    background:var(--wash-tekhelet); }
+    border:1px solid var(--line); border-radius:.55rem; padding:.4rem .6rem; }
   .atlas-row.built + .atlas-row.built { margin-top:.3rem; }
   /* A commentary HANGS OFF the book it is read in. Drawn full width with a
      rule across the top, it sat in the gap between two cards and read as
@@ -731,7 +748,7 @@
      reading, so one gesture reads the same everywhere on the site */
   .g.ruled { text-decoration:underline; text-decoration-color:var(--sel-dim);
     text-decoration-thickness:1px; text-underline-offset:.18em; }
-  .col-he .fam-he .g, details.fam > summary .fam-he .g { font-size:.7rem; color:var(--argaman); }
+  .col-he .fam-he .g, details.fam > summary .fam-he .g { font-size:.7rem; color:var(--tekhelet-ink); }
   /* the license rides beside every printed reading and every backed
      force-read, in the same quiet chip the reader's card uses */
   details.fam > summary .chip, .col-att .chip, .col-lic .chip, .fam-he .g .chip, .demo-he .g .chip, #bkcard .chip, #census-demo .chip {
@@ -925,7 +942,7 @@
   #bkcard .slot .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   #bkcard .slot .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
     font-size:1.2rem; color:var(--argaman); }
-  #bkcard .slot .fam-he .g { font-size:.7rem; color:var(--argaman); }
+  #bkcard .slot .fam-he .g { font-size:.7rem; color:var(--tekhelet-ink); }
   #bkcard .slot .of .en { font-size:.85rem; }
   #bkcard .of { color:var(--faint); font-size:.76rem; }
   #bkcard .prov { color:var(--faint); font-size:.72rem; margin:.35rem 0 0; }
