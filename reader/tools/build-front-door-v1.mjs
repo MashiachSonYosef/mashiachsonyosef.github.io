@@ -232,11 +232,18 @@ const STAMP_CSS = `
 // on the day the site moved it became a promise nobody had kept — the README
 // still sent readers to an address the work had left. CNAME is the record: it
 // is what the host serves under, and it is a build input like any other.
+//
+// THE REPOSITORY DOES NOT SEND ANYONE TO THE SITE. It used to: the README
+// carried the address as its heading and a "Live site:" line under it. The
+// owner's word, 2026-09-15 — the repository is not how this work is published
+// and somebody who lands on it is not an audience we are courting, so there
+// is nothing to link them to. The address is still read here, because the
+// site has to know what to call itself on its own pages; it is simply not
+// printed on the one face that points outward from somewhere else.
 const SITE_HOST = (() => {
   const cname = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "CNAME");
   return existsSync(cname) ? readFileSync(cname, "utf8").trim().split(/\s+/)[0] : "";
 })();
-const SITE_URL = SITE_HOST ? `https://${SITE_HOST}/` : "";
 // What the house calls itself, in front of readers: its own address, once it
 // has one of its own. Until then the working name stands. This is the only
 // place either is decided, so the door, the work pages, the held addresses
@@ -2461,14 +2468,12 @@ const titleCase = (t) => String(t).split("-").map((w) =>
 // a reader nothing they could act on. Grain vocabulary went with them. What is
 // left is what stays true between builds, so this file changes when the design
 // changes and not when a work lands.
-const readme = `# ${SITE_NAME}
+const readme = `# A Hebrew reader on a sealed chain
 
-A Hebrew reader on a sealed chain. Every reading printed under a word traces to
-the record that carries it, and every record to the license it was released
-under. No English is forced: a word offers every reading its sources attest, one
-at a time, and the reader chooses.
+Every reading printed under a word traces to the record that carries it, and
+every record to the license it was released under. No English is forced: a word
+offers every reading its sources attest, one at a time, and the reader chooses.
 
-${SITE_URL ? `Live site: ${SITE_URL}\n` : ""}
 ## What is served, and how much of it
 
 The front page lists every work and counts what it holds. Exact figures, per-work

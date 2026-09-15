@@ -1,11 +1,8 @@
-# fireandhail.com
+# A Hebrew reader on a sealed chain
 
-A Hebrew reader on a sealed chain. Every reading printed under a word traces to
-the record that carries it, and every record to the license it was released
-under. No English is forced: a word offers every reading its sources attest, one
-at a time, and the reader chooses.
-
-Live site: https://fireandhail.com/
+Every reading printed under a word traces to the record that carries it, and
+every record to the license it was released under. No English is forced: a word
+offers every reading its sources attest, one at a time, and the reader chooses.
 
 ## What is served, and how much of it
 
