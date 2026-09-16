@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-16.
 
-**90 rules declared · 89 named by a check · 1 unguarded.**
+**91 rules declared · 90 named by a check · 1 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -53,6 +53,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `import-side-effect-rule-v1-a-check-that-rebuilds-its-own-baseline-cannot-fail` | tools/check-no-import-side-effects-v1.mjs | check-no-import-side-effects-v1 |
 | `kq-rule-v1-both-halves-as-written` | tools/make-kq-fixture-zone-v1.mjs, tools/zone-lib-v1.mjs | check-kq-carried-v1, check-kq-presentation-v1 |
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
+| `lane-state-rule-v1-one-fetch-says-what-this-lane-is-serving` | tools/emit-lane-state-v1.mjs | check-lane-state-v1 |
 | `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/emit-language-sweep-record-v1.mjs, tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
 | `lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store` | tools/lattice-lib-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-lattice-orders-v1, check-lattice-parts-in-card-v1, check-lattice-projection-v1 |
 | `ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for` | tools/emit-ledger-index-v1.mjs | check-ledger-declared-v1 |
@@ -123,7 +124,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 18 of the 76 tools that are not checks.
+`build.sh` calls 19 of the 77 tools that are not checks.
 
 Not called by any build stage:
 

@@ -1,0 +1,149 @@
+{
+ "schema_version": "LANE_STATE_V1",
+ "rule_id": "lane-state-rule-v1-one-fetch-says-what-this-lane-is-serving",
+ "lane": "synthesis — the reader, the door, and the store they read",
+ "what_this_is": "one fetch that says what this lane is serving right now, so a peer lane can tell whether it is looking at the same store without asking anybody. Every number is read from the artifact that owns it at the moment this file is written.",
+ "built_at": "2026-09-16T12:54:35.870Z",
+ "store": {
+  "scope": "the route store this site serves from",
+  "version": "f28629cb1f1a",
+  "sources": 147,
+  "keys": 124935,
+  "routes": 676463,
+  "shards": 256,
+  "files_pinned": 259,
+  "version_history": [
+   {
+    "was": "7d3e04a9d270",
+    "now": "d0a557d4500d",
+    "on": "2026-09-01T01:00:08.399Z"
+   },
+   {
+    "was": "d0a557d4500d",
+    "now": "f28629cb1f1a",
+    "on": "2026-09-01T01:03:05.341Z"
+   }
+  ]
+ },
+ "language_admission": {
+  "scope": "every round of the strike, deduplicated by m id",
+  "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
+  "admitted_languages": [
+   "Hebrew",
+   "Aramaic",
+   "Chaldee"
+  ],
+  "rounds": 2,
+  "sources_struck": 49,
+  "routes_struck": 97384,
+  "keys_touched": 32146,
+  "measured_between": {
+   "before": "7d3e04a9d270",
+   "after": "f28629cb1f1a"
+  },
+  "struck_m_ids": [
+   "M8",
+   "M12",
+   "M24",
+   "M26",
+   "M31",
+   "M39",
+   "M40",
+   "M49",
+   "M51",
+   "M52",
+   "M63",
+   "M65",
+   "M67",
+   "M75",
+   "M77",
+   "M78",
+   "M82",
+   "M83",
+   "M84",
+   "M88",
+   "M89",
+   "M91",
+   "M99",
+   "M100",
+   "M101",
+   "M103",
+   "M104",
+   "M106",
+   "M107",
+   "M108",
+   "M109",
+   "M113",
+   "M114",
+   "M115",
+   "M117",
+   "M118",
+   "M119",
+   "M121",
+   "M122",
+   "M124",
+   "M125",
+   "M126",
+   "M127",
+   "M131",
+   "M140",
+   "M141",
+   "M146",
+   "M168",
+   "M172"
+  ],
+  "record": "reader/data/language-admission-v1.json",
+  "reasons": {
+   "NAMES_NO_LANGUAGE__SILENCE_IS_NOT_A_DECLARATION": 27,
+   "DECLARES_ITSELF_NON_HEBREW_WITHOUT_NAMING_A_LANGUAGE": 5,
+   "NAMES_A_LANGUAGE_OUTSIDE_HEBREW_AND_ARAMAIC": 5,
+   "PROVENANCE_NAMES_A_LANGUAGE_OUTSIDE_HEBREW_AND_ARAMAIC": 12
+  }
+ },
+ "shelf": {
+  "scope": "the zone files beside the reader, and what rides with them",
+  "zones_on_disk": 3480,
+  "zones_served": 39,
+  "withheld": 3441,
+  "sidecars": {
+   "commentary": {
+    "books": 28,
+    "on_served_books": 21
+   },
+   "hoh": {
+    "books": 0,
+    "on_served_books": 0
+   },
+   "lattice": {
+    "books": 39,
+    "on_served_books": 39
+   },
+   "volume": {
+    "books": 39,
+    "on_served_books": 39
+   }
+  }
+ },
+ "lattice": {
+  "scope": "the corpus lane's lattice, as projected onto served books",
+  "books_carrying_one": 39,
+  "words_the_lattice_lands_on": 305431,
+  "schemas_present": [
+   {
+    "schema_and_generated": "mishkan.moses.megacompspan_lattice_ledger.v12 · 2026-09-11",
+    "books": 39
+   }
+  ]
+ },
+ "counts_layer": {
+  "scope": "V's commentary counts, where they ride",
+  "books_carrying_one": 39,
+  "counted_over": "among the works indexed so far"
+ },
+ "what_this_does_not_say": [
+  "which routes were struck for which reason — the record names a reason per SOURCE, and the struck-rank record names a rank per KEY, and nothing ties one to the other",
+  "that the works not served are unservable — most are held on a named gate, and the gate is in the build plan, not here",
+  "anything about the corpus lane's own state; this file describes one lane and says so",
+  "that these numbers were true a minute ago. It is written by a build, and built_at is when"
+ ]
+}

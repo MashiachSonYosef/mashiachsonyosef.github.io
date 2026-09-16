@@ -236,4 +236,12 @@ done
 echo "── 9 · what the pipeline can prove about itself ────────────────────────"
 node tools/pipeline-manifest-v1.mjs --stamp "$STAMP"
 
+# And what the OTHER lane can find out without asking. This is last on purpose:
+# it summarizes the store, the shelf and the sidecars as they finally stand, so
+# it has to run after everything that could move them. It is in the build
+# rather than run by hand because a state file somebody remembers to regenerate
+# is a state file that is wrong exactly when it matters — the day a build
+# changed something and nobody re-ran it.
+node tools/emit-lane-state-v1.mjs
+
 echo "done · $(du -sh site | cut -f1) in site/"
