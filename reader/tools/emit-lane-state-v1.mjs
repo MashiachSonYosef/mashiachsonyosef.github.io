@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 // Synthesis lane · lane-state-rule-v1-one-fetch-says-what-this-lane-is-serving
+// LEDGER: -
+// no frame letter. This writes no A, N, R, M or D and changes nothing any
+// letter stands on; it reads what the other writers already wrote and says
+// where they stand. A record ABOUT the ledgers is not a ledger, and declaring
+// a letter here would make this file look like a place a letter can be
+// changed — which is the whole reason the declaration is required.
 //
 // ONE FETCH, SO NEITHER LANE HAS TO ASK.
 //
