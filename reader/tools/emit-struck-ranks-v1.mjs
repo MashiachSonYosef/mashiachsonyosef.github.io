@@ -92,7 +92,13 @@ export const recordStruckRanks = (storeDir, diff, made) => {
   const record = {
     schema_version: "STRUCK_RANKS_V1",
     rule_id: STRUCK_RANK_RULE_ID,
-    what: "every rank a licence strike removed from the route store, with the M record it stood on; the hole it left is kept, never renumbered",
+    // "admission", not "licence". What removed these ranks was the language
+    // admission rule — a source that will not say it answers about Hebrew or
+    // Aramaic cannot define an A. Licence had nothing to do with it, and the
+    // largest thing it took, Jastrow at 60,926 routes, is not held on licence
+    // at all. Calling it a licence outcome asserts a rights posture no record
+    // in this tree declares.
+    what: "every rank the language admission strike removed from the route store, with the M record it stood on; the hole it left is kept, never renumbered",
     made: [...(prior ? prior.made : []), made],
     counts: { keys: Object.keys(keys).length, ranks: Object.values(keys).reduce((a, l) => a + l.length, 0) },
     keys,

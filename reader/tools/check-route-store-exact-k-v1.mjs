@@ -43,12 +43,12 @@
 //        recomputed hash finds it
 //   L4   rows under a key never descend in rank
 //   L5   every hole in a key's ranks is a typed strike, and no rank is shared
-//        by two M records. A licence strike leaves holes and the holes stay
+//        by two M records. A strike leaves holes and the holes stay
 //        (renumbering rewrites every citation into the store); the strike
 //        writes each rank it took, with the record it stood on, beside the
 //        store (struck-ranks-v1.json.gz, tools/emit-struck-ranks-v1.mjs). A
 //        hole that record names is a hole by strike; a hole it does not name
-//        is a reading gone with no licence the reader can see, and alarms. A
+//        is a reading gone with no rule the reader can see, and alarms. A
 //        repeat on one record is a route divided on a declared mark; a rank
 //        shared by two records is two routes given one rank, and alarms.
 //        L5b prints the plain 1..n shape beside it, informational.
@@ -56,8 +56,10 @@
 //        they have them
 //   L7   every row's M id resolves in index.m_sources, the full M record the
 //        rule says ships with the route, and is not an id the index says a
-//        licence struck. Nothing but a licence removes a reading; a reading
-//        still shipped on a struck id is the licence contradicted.
+//        strike removed. Two things remove a reading from this store and both
+//        are declared: a licence that does not permit display, and the
+//        language admission rule. A reading still shipped on a struck id is
+//        whichever of those struck it, contradicted.
 //   L8   every row carries its route text, its definition text, and a
 //        positive integer rank; no text is empty
 //   L9   the index counts of keys, routes and shards are what the shards hold
@@ -67,9 +69,11 @@
 // complete was shipped; that needs the sealed input packages, which are the
 // corpus lane's and are read by check-nothing-invented-v1 where they are
 // mounted. It does not prove a route text is verbatim from its source. It
-// does not prove which routes a licence struck: the language admission
-// record names struck sources, not struck routes, so a hole in a key's ranks
-// cannot be matched to a strike from what ships. It does not prove the
+// does not prove a route was struck for the reason the record gives: the
+// admission record names each struck source and the reason it was struck, and
+// struck-ranks-v1.json.gz names each rank removed, but the rank carries no
+// reason of its own — a hole can be tied to a strike from what ships, and not
+// to which rule did it. It does not prove the
 // shards are the bytes the manifest pins; that is
 // check-store-pinned-v1. It does not prove the page reads the store the way
 // the store is laid out; that is check-page-agrees-with-store-v1.
@@ -136,7 +140,7 @@ check("L1   the index declares the layout this check reads, and a rank that orde
 let keys = 0, rows = 0, bytesOnDisk = 0;
 const marked = [], misplaced = [], descending = [], notOneToN = [], unresolved = new Map(), onStruck = new Map(), hollow = [];
 let holes = 0, repeats = 0, repeatsAcrossRecords = 0, noRankOne = 0, overFive = 0, maxRows = 0, struckSeen = 0;
-// The typed record of what the licence strike took, rank by rank, written by
+// The typed record of what the admission strike took, rank by rank, written by
 // the strike (tools/emit-struck-ranks-v1.mjs). Without it every hole is untyped.
 const struckRanks = readStruckRanks(STORE);
 let holesByBug = 0; const holesUntyped = [];
@@ -172,7 +176,7 @@ for (const f of bins) {
       // L7 — the M record is held
       const m = String(r?.[3] ?? "");
       if (!mSources[m]) unresolved.set(m || "(empty)", (unresolved.get(m || "(empty)") || 0) + 1);
-      // L7 — and the record is not one a licence struck
+      // L7 — and the record is not one a declared strike removed
       if (struck.has(m)) { struckSeen += 1; onStruck.set(m, (onStruck.get(m) || 0) + 1); }
       // L4 — order
       if (rankOk) { if (rank < prev) desc = true; prev = rank; seen.add(rank); }
@@ -228,7 +232,7 @@ check("L4   rows under a key never descend in rank",
   descending.length ? `${descending.length} key(s) descend — ${named(descending)}`
     : "every list is in rank order");
 
-// L5 — the plain law. The index says in its counts that a licence struck
+// L5 — the plain law. The index says in its counts that a strike removed
 // routes and that routes were divided into pieces, and both would leave the
 // factory's numbering with holes and repeats. But the row carries no mark
 // saying which hole is a strike and which repeat is a division, and the
@@ -238,7 +242,21 @@ check("L4   rows under a key never descend in rank",
 // the repeats that no division could explain: a rank shared by rows on two
 // different M records, when a divided route's pieces all stand on its one.
 const accounted = [
-  Number.isFinite(Number(((index.language_admission || {}).counts || {}).routes_struck)) ? `${Number(index.language_admission.counts.routes_struck).toLocaleString()} routes struck by licence` : null,
+  // NOT "struck by licence". The strike that removed these routes was the
+  // LANGUAGE ADMISSION rule — a source that will not say it answers about
+  // Hebrew or Aramaic cannot define an A — and licence had nothing to do with
+  // it. Jastrow is the largest thing it took, 60,926 routes, and Jastrow is
+  // not held on licence at all. Saying "licence" here asserts a rights posture
+  // that no record in this tree declares, which is the one thing this project
+  // may never do on its own authority.
+  //
+  // And the number says its scope. index.language_admission.counts describes
+  // the LAST ROUND, sitting beside a struck list covering every round; printed
+  // bare it reads as the whole strike, and did, in another lane's notes.
+  Number.isFinite(Number(((index.language_admission || {}).counts || {}).routes_struck))
+    ? `${Number(index.language_admission.counts.routes_struck).toLocaleString()} routes struck on language admission in its last round`
+      + `${(index.language_admission.cumulative || {}).rounds ? ` of ${index.language_admission.cumulative.rounds}` : ""}`
+    : null,
   Number.isFinite(Number(counts.routes_separated_on_a_declared_mark)) ? `${Number(counts.routes_separated_on_a_declared_mark).toLocaleString()} routes divided into ${Number(counts.pieces_those_routes_divided_into || 0).toLocaleString()} pieces` : null,
 ].filter(Boolean);
 // Since 2026-09-02 the strike shows its work: tools/emit-struck-ranks-v1.mjs
@@ -264,7 +282,7 @@ check("L6   the top-5 flag does not gate: keys ship more than five routes where 
   overFive ? `${overFive.toLocaleString()} keys ship more than five routes; the widest ships ${maxRows}`
     : `no key ships more than five routes (widest ${maxRows}); this is the capped store the rule forbids`);
 
-check("L7   every row's M id resolves in index.m_sources and is not an id a licence struck",
+check("L7   every row's M id resolves in index.m_sources and is not an id the admission strike removed",
   unresolved.size === 0 && struckSeen === 0,
   [
     unresolved.size ? `unresolved: ${[...unresolved.entries()].slice(0, 4).map(([m, c]) => `${m} x${c.toLocaleString()}`).join(" · ")}` : null,

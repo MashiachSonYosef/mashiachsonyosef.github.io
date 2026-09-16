@@ -79,7 +79,7 @@ import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { recordStruckRanks } from "./emit-struck-ranks-v1.mjs";
+import { recordStruckRanks, readStruckRanks, STRUCK_RANKS_FILE } from "./emit-struck-ranks-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -244,6 +244,55 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     ? [{ ran_at: prior.ran_at, struck: priorStruck.map((s) => s.m_id), counts: prior.counts }]
     : []);
 
+  // The one sentence that keeps this block from being read as the strike.
+  // Exported-shaped rather than typed twice, because the index summary carries
+  // the same numbers and a scope that travels with only one copy of them is
+  // the same number standing unlabelled somewhere else.
+  const COUNTS_SCOPE_SAY =
+    "the last round that struck anything, NOT the whole strike — see cumulative for that, "
+    + "and rounds[] for what each round struck";
+
+  // A ROUND IS A DELTA. THE TOTAL IS NOT A ROUND.
+  //
+  // The fallback directly above synthesizes a round out of the CUMULATIVE
+  // struck list when a prior file has no rounds[] — which is right, once, for
+  // a record that has no round history at all, and wrong the moment a record
+  // that does have one is read by a run that recomputes every struck source
+  // rather than only the new ones. Both happened. The shelf carried three
+  // rounds of 10, 39 and 49 for a strike of 49 sources: the third held no id
+  // the other two did not, and its timestamp sat an hour and a half BEFORE the
+  // second. It was the total, written down as though it were an event.
+  //
+  // The test is exact, not a heuristic about size or order: a round whose id
+  // set is precisely the union of every other round is a restatement of the
+  // total. It cannot be a delta, because a delta that equals the whole has
+  // nothing before it — and there is something before it, namely the rounds
+  // that union to it. Nothing is deleted; the entry moves to
+  // rounds_restating_the_total so the file still shows what it used to say.
+  const foldRounds = (rs) => {
+    const sets = rs.map((r) => new Set(r.struck || []));
+    const kept = [], restating = [];
+    sets.forEach((s, i) => {
+      const others = new Set(sets.filter((_, j) => j !== i).flatMap((x) => [...x]));
+      const isTotal = sets.length > 1 && s.size === others.size && [...s].every((m) => others.has(m));
+      (isTotal ? restating : kept).push(rs[i]);
+    });
+    return { kept, restating };
+  };
+
+  // A round carries its own counts from here on. The rounds already on the
+  // shelf carry none, which is why `cumulative` below has to say null for
+  // routes and keys instead of summing; recording them now is what makes that
+  // null temporary rather than permanent.
+  const roundsNow = struck.size
+    ? [...priorRounds, {
+      ran_at: new Date().toISOString(),
+      struck: [...struck],
+      counts: { sources_struck: struck.size, routes_struck: routesStruck, keys_left_with_no_route: keysEmptied },
+    }]
+    : priorRounds;
+  const folded = foldRounds(roundsNow);
+
   const record = {
     rule_id: ADMISSION_RULE_ID,
     ran_at: new Date().toISOString(),
@@ -260,16 +309,146 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     // report four rounds while the record it summarizes held three, because
     // the record is only rewritten when it has changed and the index summary
     // was built from the in-memory value.
-    rounds: struck.size
-      ? [...priorRounds, { ran_at: new Date().toISOString(), struck: [...struck] }]
-      : priorRounds,
+    rounds: folded.kept,
+    // Carried forward, not recomputed from this run alone. Once a restating
+    // entry has been folded out of rounds[], the NEXT run reads a rounds[]
+    // with nothing to fold and would write an empty list here — erasing the
+    // only trace of what the file used to claim. That is the very fault the
+    // comment above this block was written about, committed a second time by
+    // the code that fixes it.
+    rounds_restating_the_total: (() => {
+      const seen = new Set(), out = [];
+      for (const r of [...((prior && prior.rounds_restating_the_total) || []), ...folded.restating]) {
+        const key = JSON.stringify([r.ran_at, (r.struck || []).length]);
+        if (seen.has(key)) continue;
+        seen.add(key); out.push(r);
+      }
+      return out;
+    })(),
     kept_sources: Object.entries(decisions).filter(([, d]) => d.admitted)
       .map(([m, d]) => ({ m_id: m, reason: d.reason, evidence: d.evidence, label: d.label })),
-    counts: { sources_before: Object.keys(index.m_sources).length, sources_struck: struck.size,
-      routes_before: routesBefore, routes_struck: routesStruck,
-      keys_before: keysBefore, keys_left_with_no_route: keysEmptied },
-    keys_left_with_no_route_examples: emptied,
+    // EVERY COUNT SAYS WHAT IT WAS COUNTED OVER.
+    //
+    // This block held six numbers describing ONE round, sitting beside a
+    // struck list holding every round — 27 sources and 79,095 routes next to
+    // 49 ids. Anybody reading it came away with a number for the strike that
+    // was the number for its last part, and the peer lane did: the figure
+    // travelled between lanes and was restated before it was caught.
+    //
+    // It is the same law the owner ruled for the counts panel on the card —
+    // counts only, scope named — and it is the same fault as a mark that
+    // covers every word: a number whose set is not beside it is read as
+    // covering everything there is.
+    counts: {
+      scope: COUNTS_SCOPE_SAY,
+      sources_before: Object.keys(index.m_sources).length,
+      sources_struck: struck.size,
+      routes_before: routesBefore,
+      routes_struck: routesStruck,
+      keys_before: keysBefore,
+      keys_left_with_no_route: keysEmptied,
+    },
+    // And what is true of the whole strike, with the unknowns left unknown
+    // rather than filled from the nearest number to hand. Sources are countable
+    // because every struck id is on the list. Routes and keys are not: the
+    // rounds before this file recorded per-round counts did not record them,
+    // and the routes they removed are gone from the store that would have to
+    // be counted to recover them. A cumulative route figure can only be had by
+    // differencing this store against a pre-strike one, which is the corpus
+    // lane's copy and not this lane's to assert.
+    cumulative: (() => {
+      // The first draft of this block said routes could not be counted
+      // cumulatively — that it would take differencing this store against a
+      // pre-strike copy, which this lane does not hold. Both halves were
+      // wrong. The difference was taken on 2026-09-02 and written down beside
+      // the store as struck-ranks-v1.json.gz: every rank the strike removed,
+      // with the M record it stood on, reconstructed from the pre-strike store
+      // against the struck one. It covers all the struck ids, not one round's.
+      //
+      // Which is the same failure as the one this whole block exists to fix,
+      // one level up: I wrote down a confident sentence about what could not be
+      // known without looking for whether it was already written down. The
+      // number is read from the record now, and the record's own provenance is
+      // carried with it so nobody has to take this file's word for it.
+      const sr = (() => { try { return readStruckRanks(STORE); } catch { return null; } })();
+      const made = sr && (sr.made || [])[0];
+      return {
+        scope: "every round, deduplicated by m id",
+        rounds: folded.kept.length,
+        sources_struck: null, // filled below, once struck_sources is built
+        routes_struck: sr ? sr.counts.ranks : null,
+        keys_touched: sr ? sr.counts.keys : null,
+        routes_and_keys_from: sr
+          ? {
+            record: `data/route-store/${STRUCK_RANKS_FILE}`,
+            how: made ? made.how : null,
+            before_store_version: made ? made.before_store_version : null,
+            after_store_version: made ? made.after_store_version : null,
+            covers_m_ids: made ? (made.struck_m_ids || []).length : null,
+            caveat: "a difference of two stores, not a sum of per-round counts: it says what the "
+              + "struck store lacks that the pre-strike store held, across every round at once.",
+          }
+          : null,
+        keys_left_with_no_route: null,
+        why_keys_left_with_no_route_is_null:
+          "how many keys the strike left with NO route at all is a different quantity from how many "
+          + "keys it touched, and only the per-round counts record it. The rounds before this file "
+          + "recorded their own counts did not, so it cannot be summed. Rounds from here on do.",
+      };
+    })(),
+    // Evidence a run that struck nothing cannot produce, and therefore must
+    // not overwrite. `emptied` is [] on a repair run — writing it would drop
+    // the twelve keys the strike left bare, which are the only examples in the
+    // file of what the strike actually did to a reader's page. Same for the
+    // store version the strike moved: a repair does not rewrite shards, so it
+    // has no version change of its own to report and no business clearing the
+    // one that happened.
+    keys_left_with_no_route_examples: emptied.length
+      ? emptied : ((prior && prior.keys_left_with_no_route_examples) || []),
+    ...((prior && prior.store_version) ? { store_version: prior.store_version } : {}),
+    // A standing fact about this file, emitted rather than remembered: it was
+    // typed in by hand once, and the first run of the repair that follows
+    // deleted it, because a field no tool writes is a field the next write
+    // drops.
+    record_is_cumulative:
+      "every source struck in any round, deduplicated by m id. Earlier runs overwrote this file rather "
+      + "than adding to it, so rounds had to be recovered from git and from re-running the classifier "
+      + "over the pre-strike index; see rounds_partition_is_reconstructed for what that recovery can "
+      + "and cannot establish.",
   };
+  record.cumulative.sources_struck = record.struck_sources.length;
+
+  // AND WHERE THE FILE DISAGREES WITH ITSELF, IT SAYS SO.
+  //
+  // counts describes the last round that struck anything. If no round in
+  // rounds[] struck that many sources, then the two halves of this file
+  // describe two different histories and at most one of them is what happened.
+  // On the shelf today they do: counts says 27 sources, and rounds[] holds
+  // rounds of 10 and 39 — because those two were RECONSTRUCTED by re-running
+  // the classifier over a pre-strike index, which sorts every source by the
+  // rule and cannot recover which run struck which. The reconstruction is
+  // honest about the set and cannot be honest about the partition.
+  //
+  // Neither is corrected into the other, because I do not know which is right
+  // and inventing agreement is how a record stops being evidence. The
+  // disagreement is computed and written down, so the next person to read
+  // these numbers meets the doubt at the same time as the numbers.
+  // Recomputed rather than assigned once, because the repair path below
+  // replaces record.counts with the last real round's numbers after this point
+  // — and a note about counts that was written before counts settled is a note
+  // about a number that is no longer there.
+  const notePartition = (rec) => {
+    const sizes = rec.rounds.map((r) => (r.struck || []).length);
+    rec.rounds_partition_is_reconstructed =
+      sizes.includes(rec.counts.sources_struck) ? null
+        : `counts says the last round struck ${rec.counts.sources_struck} source(s), and no round in `
+          + `rounds[] struck that many (${sizes.join(", ")}). The rounds were recovered by re-running `
+          + `the classifier over a pre-strike index, which recovers the SET struck and not which run `
+          + `struck it, so the per-round split is a reconstruction and the totals are not: `
+          + `${rec.struck_sources.length} sources struck across ${rec.rounds.length} round(s) is measured.`;
+    return rec;
+  };
+  notePartition(record);
 
   console.log(`— ${ADMISSION_RULE_ID} —`);
   for (const s of record.struck_sources)
@@ -288,24 +467,62 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   // could fix it exits before reaching it.
   if (!struck.size) {
     let wrote = [];
-    const recordAgrees = prior && (prior.struck_sources || []).length === record.struck_sources.length;
-    if (!recordAgrees) { writeFileSync(priorPath, JSON.stringify(record, null, 1)); wrote.push(`record ${(priorStruck || []).length} -> ${record.struck_sources.length}`); }
+    // A run that struck nothing has no round of its own, so its counts block
+    // would be six zeros. Carrying the last real round's numbers forward is
+    // what this file has always done and is right — as long as the block says
+    // so, which is the whole of the fix: the numbers were never wrong, they
+    // were unlabelled, and an unlabelled number is read as covering
+    // everything there is.
+    if (prior && prior.counts) {
+      const { scope, ...n } = prior.counts;
+      record.counts = { scope: COUNTS_SCOPE_SAY, ...n };
+      notePartition(record);
+    }
+    // Compared on the whole record, not on one field. The old test was
+    // `struck_sources.length differs`, which is blind to every repair that
+    // does not change how many sources were struck — including this one: the
+    // scope lines and the folded round would have been computed correctly,
+    // found 49 === 49, and never been written. ran_at is stripped because it
+    // moves every run and would make every run a rewrite.
+    const stable = (r) => { const { ran_at, ...rest } = r || {}; return JSON.stringify(rest); };
+    const recordAgrees = prior && stable(prior) === stable(record);
+    if (!recordAgrees) {
+      writeFileSync(priorPath, JSON.stringify(record, null, 1));
+      wrote.push(`record ${(priorStruck || []).length} -> ${record.struck_sources.length} sources, `
+        + `${(prior && prior.rounds || []).length} -> ${record.rounds.length} round(s)`);
+    }
     // The index carries a summary OF the record, and a summary that disagrees
     // with what it summarizes is the same lie in a smaller font. It is synced
     // here even when nothing was struck, because the index is what the served
     // page reads and the record is only what a person opens.
     const cur = index.language_admission || {};
-    const want = record.struck_sources.map((s) => s.m_id);
     // Compare every field the summary carries, not only the list length. A
     // sync keyed on one field leaves the others stale: the round count sat at
     // 4 in the index against 3 in the record because only struck_m_ids was
-    // being compared, and 49 equalled 49.
-    if ((cur.struck_m_ids || []).length !== want.length || cur.rounds !== record.rounds.length) {
-      index.language_admission = { ...cur, rule_id: ADMISSION_RULE_ID,
-        admitted_languages: ADMITTED_LANGUAGES, record: "data/language-admission-v1.json",
-        struck_m_ids: want, rounds: record.rounds.length, counts: cur.counts };
+    // being compared, and 49 equalled 49. The comparison is now on the built
+    // summary itself, so a field added to the summary is a field that syncs
+    // without anybody remembering to add it to a condition.
+    //
+    // The index is the copy that matters most here. It is fetched by the
+    // reader on every page load, which makes it the most public thing this
+    // lane publishes and the one a peer lane reads — and the unlabelled 27
+    // and 79,095 it carried are the numbers that actually travelled.
+    const want = record.struck_sources.map((s) => s.m_id);
+    const summary = {
+      ...cur,
+      rule_id: ADMISSION_RULE_ID,
+      admitted_languages: ADMITTED_LANGUAGES,
+      record: "data/language-admission-v1.json",
+      struck_m_ids: want,
+      rounds: record.rounds.length,
+      counts: record.counts,
+      cumulative: record.cumulative,
+    };
+    if (JSON.stringify(cur) !== JSON.stringify(summary)) {
+      index.language_admission = summary;
       writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
-      wrote.push(`index summary ${(cur.struck_m_ids || []).length} -> ${want.length}`);
+      wrote.push(`index summary: ${(cur.struck_m_ids || []).length} -> ${want.length} ids, `
+        + `${cur.rounds} -> ${record.rounds.length} round(s), counts and cumulative now name their scope`);
     }
     // The same repair for the counts: the index once said the shards weighed
     // 14,641,140 bytes when 12,898,585 were on disk, because the strike that
@@ -367,6 +584,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     struck_this_round: [...struck],
     rounds: record.rounds.length,
     counts: record.counts,
+    cumulative: record.cumulative,
   };
   // The counts describe the shards as shipped, so they are read off the
   // shards just written — a strike that shrank the shelf and left the index

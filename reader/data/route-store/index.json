@@ -1201,6 +1201,7 @@
    "M172"
   ],
   "counts": {
+   "scope": "the last round that struck anything, NOT the whole strike — see cumulative for that, and rounds[] for what each round struck",
    "sources_before": 174,
    "sources_struck": 27,
    "routes_before": 755558,
@@ -1208,7 +1209,24 @@
    "keys_before": 137782,
    "keys_left_with_no_route": 12847
   },
-  "rounds": 3
+  "rounds": 2,
+  "cumulative": {
+   "scope": "every round, deduplicated by m id",
+   "rounds": 2,
+   "sources_struck": 49,
+   "routes_struck": 97384,
+   "keys_touched": 32146,
+   "routes_and_keys_from": {
+    "record": "data/route-store/struck-ranks-v1.json.gz",
+    "how": "reconstructed from the pre-strike store beside the struck store",
+    "before_store_version": "7d3e04a9d270",
+    "after_store_version": "f28629cb1f1a",
+    "covers_m_ids": 49,
+    "caveat": "a difference of two stores, not a sum of per-round counts: it says what the struck store lacks that the pre-strike store held, across every round at once."
+   },
+   "keys_left_with_no_route": null,
+   "why_keys_left_with_no_route_is_null": "how many keys the strike left with NO route at all is a different quantity from how many keys it touched, and only the per-round counts record it. The rounds before this file recorded their own counts did not, so it cannot be summed. Rounds from here on do."
+  }
  },
  "store_version_history": [
   {
