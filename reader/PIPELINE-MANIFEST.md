@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-16.
 
-**89 rules declared · 88 named by a check · 1 unguarded.**
+**90 rules declared · 89 named by a check · 1 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -83,6 +83,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `serve-from-restore-rule-v1-the-restore-is-the-text-the-split-is-this-lanes-the-rights-are-the-records` | tools/run-restore-v5-fleet-v1.mjs, tools/serve-from-restore-v5.mjs, tools/build-front-door-v1.mjs | check-restore-serve-v1 |
 | `serve-from-stream-rule-v2-the-successor-stream-is-the-text-bridge-v2-is-its-identity-the-binding-is-the-rights` | tools/serve-from-stream-v2.mjs | check-stream-is-text-v1 |
 | `source-corpus-rule-v1-a-witness-names-the-body-it-describes-or-is-not-sorted-by-one` | tools/emit-source-corpus-v1.mjs | check-source-corpus-v1 |
+| `source-switch-rule-v1-a-reading-remembers-who-carried-it` | tools/gloss-store-v1.mjs | check-carrier-survives-v1 |
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | check-span-receipt-carried-identical-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
