@@ -372,6 +372,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       // carried with it so nobody has to take this file's word for it.
       const sr = (() => { try { return readStruckRanks(STORE); } catch { return null; } })();
       const made = sr && (sr.made || [])[0];
+      const carriers = new Set();
+      if (sr) for (const rows of Object.values(sr.keys || {})) for (const r of rows) carriers.add(r[1]);
       return {
         scope: "every round, deduplicated by m id",
         rounds: folded.kept.length,
@@ -385,15 +387,35 @@ if (import.meta.url === `file://${process.argv[1]}`) {
             before_store_version: made ? made.before_store_version : null,
             after_store_version: made ? made.after_store_version : null,
             covers_m_ids: made ? (made.struck_m_ids || []).length : null,
+            // "covers" means the record was taken over all of them, not that
+            // all of them left a mark. Four struck sources carried no route in
+            // the pre-strike store at all, so they appear in no rank row — an
+            // absence that looks like a hole in the record and is not one.
+            of_which_carried_no_route: made
+              ? (made.struck_m_ids || []).filter((m) => !carriers.has(m)).length
+              : null,
             caveat: "a difference of two stores, not a sum of per-round counts: it says what the "
               + "struck store lacks that the pre-strike store held, across every round at once.",
           }
           : null,
-        keys_left_with_no_route: null,
-        why_keys_left_with_no_route_is_null:
-          "how many keys the strike left with NO route at all is a different quantity from how many "
-          + "keys it touched, and only the per-round counts record it. The rounds before this file "
-          + "recorded their own counts did not, so it cannot be summed. Rounds from here on do.",
+        // MEASURED, NOT DECLARED UNOBTAINABLE. This field said null with a
+        // reason, and the reason was false — the second time in this same
+        // block I wrote a confident sentence about what could not be known
+        // without trying it. The answer needs no git and no peer's copy: the
+        // struck-rank record names every key the strike touched, and a key
+        // that is touched and is now in no shard is a key the strike left
+        // bare. Two files in this directory, one pass.
+        keys_left_with_no_route: sr ? (() => {
+          const live = new Set();
+          for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bin")))
+            for (const k of Object.keys(JSON.parse(gunzipSync(readFileSync(join(STORE, "shards", f))).toString("utf8"))))
+              live.add(k);
+          return Object.keys(sr.keys).filter((k) => !live.has(k)).length;
+        })() : null,
+        keys_left_with_no_route_how: sr
+          ? "keys named by struck-ranks-v1.json.gz that no shard still carries — the strike touched "
+            + "more keys than it emptied, so this is smaller than keys_touched"
+          : null,
       };
     })(),
     // Evidence a run that struck nothing cannot produce, and therefore must
