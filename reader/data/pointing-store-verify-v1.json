@@ -1,0 +1,71 @@
+{
+ "schema_version": "POINTING_STORE_VERIFY_V1",
+ "rule_id": "pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said",
+ "verified_on": "2026-09-18",
+ "shipment": {
+  "lane": "moses-pointing-store-v1",
+  "manifest_sha256": "01c416c28ab7067eee6a739fd9e42a7df5f49441817f1468222ecfdb139ac02e",
+  "store_version": "204f85ce600e",
+  "candidate_only": true,
+  "current_effect": "NONE"
+ },
+ "pin": {
+  "manifest_sha256": "01c416c28ab7067eee6a739fd9e42a7df5f49441817f1468222ecfdb139ac02e",
+  "files_pinned": 332,
+  "files_present_and_matching": 318,
+  "files_mismatched": [],
+  "files_absent": [
+   "grades/build-stderr-v1.log",
+   "price/run-stderr-v1.log",
+   "store-v2/build-stderr-v2-v1.log",
+   "store-v2/fold-test-stderr-v2-v1.log",
+   "store-v2/grade-check-stderr-v2-v1.log",
+   "verify-nothing-lost/run-check1-v1.log",
+   "verify-nothing-lost/run-check2-v1.log",
+   "verify-nothing-lost/run-check3-smoke-amos-v1.log",
+   "verify-nothing-lost/run-check3-v1.log",
+   "verify-nothing-lost/run-check5-v1.log",
+   "verify-nothing-lost/run-check6-v1.log",
+   "verify-nothing-lost/run-check7-v1.log",
+   "verify-recount/recount-grade-stderr-v1.log",
+   "verify-recount/recount-states-stderr-v1.log"
+  ],
+  "shard_digest_matches": true,
+  "shard_digest": "6b46cab3c32ff8071dc22b91a7b5b059052d63af116c9136f4e8cad7f0d8f50f",
+  "shards": 256
+ },
+ "fold": {
+  "against": "git b1d1895ef:reader/data/route-store (the pre-strike store this lane holds)",
+  "shards_identical": 256,
+  "shards_differ": [],
+  "rows": 773847,
+  "rows_length_7": 773847,
+  "keys": 140532,
+  "rows_with_headword": 331953,
+  "rows_with_pointed_headword": 249610
+ },
+ "landing": {
+  "landable": true,
+  "shards_identical_after_fold": 256,
+  "shards": 256,
+  "rows_kept": 676463,
+  "rows_dropped_by_admission": 97384,
+  "dropped_ids": 45,
+  "dropped_ids_all_on_the_struck_list": true,
+  "served_rows_with_headword": 294784,
+  "candidate_store_version": "407740a0d6a0"
+ },
+ "same_fact": {
+  "grade_rows": 17254616,
+  "agree": 17254616,
+  "disagree": 0,
+  "unjoinable": 0,
+  "books_with_disagreements": {},
+  "joined_by": "(book, i, j, reading) into entries-v1 for the surface; card_index into the lattice order the sidecar's fingerprints keep"
+ },
+ "what_this_does_not_say": [
+  "that the candidate is served; it is not, and the page cannot yet read [6]",
+  "that the per-source grade the contract asks the card to compute from [6] equals the merged lattice grade — the contract itself counts 6.1% of slots where it does not, and that difference is the toggle's purpose",
+  "anything about the default, which is the owner's"
+ ]
+}
