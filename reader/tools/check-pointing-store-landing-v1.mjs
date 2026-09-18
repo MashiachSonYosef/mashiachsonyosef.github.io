@@ -30,22 +30,36 @@ for (const CAND of CANDS) {
   const receipt = JSON.parse(readFileSync(join(CAND, "landing-receipt-v1.json"), "utf8"));
   const fold = (r) => { const c = r.slice(0, 6); if (c[5] === null) c.pop(); return c; };
   const names = readdirSync(join(CAND, "shards")).filter((f) => f.endsWith(".bin")).sort();
+  // the v1 the fold is proved against: the served store while it is still
+  // v1; once the served store IS a v2, the v1 it replaced is read from git
+  // at the commit the receipt's served version was sealed in (the store's
+  // own history names it), so the fold stays a proof and not a tautology
+  const servedIdx = JSON.parse(readFileSync(join(SERVED, "index.json"), "utf8"));
+  const v1Dir = servedIdx.schema_version === "ROUTE_STORE_V1" ? SERVED : (existsSync("build/route-store-v1-before-pointing") ? "build/route-store-v1-before-pointing" : null);
+  if (!v1Dir) { check("L1  the candidate's shards, folded, are the served shards byte for byte — recounted, not re-read", false, "the served store is a v2 and no v1 copy stands at build/route-store-v1-before-pointing to fold against: git show <pre-swap commit>:reader/data/route-store/shards/*.bin into it"); continue; }
   let same = 0; const differ = []; let bad7 = 0;
   for (const n of names) {
     const cand = JSON.parse(gunzipSync(readFileSync(join(CAND, "shards", n))).toString("utf8"));
-    const served = existsSync(join(SERVED, "shards", n)) ? gunzipSync(readFileSync(join(SERVED, "shards", n))).toString("utf8") : null;
+    const served = existsSync(join(v1Dir, "shards", n)) ? gunzipSync(readFileSync(join(v1Dir, "shards", n))).toString("utf8") : null;
     const folded = {}; for (const [k, rs] of Object.entries(cand)) folded[k] = rs.map((r) => { if (r.length !== 7) bad7 += 1; return fold(r); });
     if (served !== null && JSON.stringify(folded) === served) same += 1; else differ.push(n);
   }
-  check("L1  the candidate's shards, folded, are the served shards byte for byte — recounted, not re-read",
+  check(`L1  the candidate's shards, folded, are the v1 shards byte for byte — recounted against ${v1Dir}, not re-read`,
     names.length === 256 && same === 256 && bad7 === 0, `${same} of ${names.length} · ${bad7} rows not length 7${differ.length ? " · differ: " + differ.slice(0, 4).join(",") : ""}`);
   check("L2  and the receipt says the same, with every dropped id on the struck list",
     receipt.landable === true && receipt.counts.shards_identical_after_fold === 256 && receipt.counts.dropped_ids_all_on_the_struck_list === true,
     `receipt: landable ${receipt.landable} · ${receipt.counts.rows_dropped_by_admission.toLocaleString()} rows dropped on ${receipt.counts.dropped_ids.length} ids`);
-  // the served store must not have moved under the candidate
+  // the served store must not have moved under the candidate — unless it
+  // moved TO the candidate: once a candidate is served, the store on disk is
+  // the candidate's own version, and L1 above has just re-proved that the
+  // bytes now served fold to the v1 they replaced
   const idx = JSON.parse(readFileSync(join(SERVED, "index.json"), "utf8"));
-  check("L3  the served store the candidate was proved against is the served store on disk",
-    receipt.served.store_version === idx.store_version, `${receipt.served.store_version} vs ${idx.store_version}`);
+  // a superseded candidate (v2 under v2.2) was proved against the v1 that
+  // now stands under build/ — that copy's own version says so
+  const v1Idx = v1Dir === SERVED ? servedIdx : JSON.parse(readFileSync(join(v1Dir, "index.json"), "utf8"));
+  const provedAgainst = receipt.served.store_version === idx.store_version, isServed = receipt.candidate.store_version === idx.store_version, v1Stands = receipt.served.store_version === v1Idx.store_version;
+  check("L3  the served store is the one the candidate was proved against, or is the candidate itself, or the v1 it was proved against still stands under build/",
+    provedAgainst || isServed || v1Stands, isServed ? `the candidate ${idx.store_version} is what is served` : v1Stands ? `proved against ${receipt.served.store_version}, which stands at ${v1Dir}; served is ${idx.store_version}` : `${receipt.served.store_version} vs ${idx.store_version}`);
 }
 for (const REC of RECS) {
   console.log(`— record ${REC} —`);

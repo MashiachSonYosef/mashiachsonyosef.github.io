@@ -82,10 +82,14 @@ check("S3  the strike it reports is cumulative and matches the record",
     && s.language_admission.routes_struck === (Object.prototype.hasOwnProperty.call(cum, "routes_struck") ? cum.routes_struck : null)
     && s.language_admission.rounds === la.rounds,
   `${s.language_admission.sources_struck} sources · ${(s.language_admission.routes_struck || 0).toLocaleString()} routes · ${s.language_admission.rounds} round(s)`);
+// the store may have moved since the strike by a move that changes no row —
+// the pointing store landing, whose fold the index proves — and the pair the
+// strike was measured between still stands; the history names the chain
+const foldMoves = new Set((index.store_version_history || []).filter((h) => h.why === (index.pointing_store || {}).rule && (index.pointing_store || {}).landable === true).map((h) => h.was));
 check("S4  and it says which two stores that figure was measured between",
   s.language_admission.routes_struck === null
     || (s.language_admission.measured_between
-      && s.language_admission.measured_between.after === index.store_version),
+      && (s.language_admission.measured_between.after === index.store_version || foldMoves.has(s.language_admission.measured_between.after))),
   s.language_admission.measured_between
     ? `${s.language_admission.measured_between.before} -> ${s.language_admission.measured_between.after}`
     : "no pair named");

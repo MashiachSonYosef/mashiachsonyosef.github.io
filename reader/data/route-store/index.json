@@ -1,5 +1,5 @@
 {
- "schema_version": "ROUTE_STORE_V1",
+ "schema_version": "ROUTE_STORE_V2",
  "rule_id": "route-store-rule-v3-declared-reading",
  "reading_rule": "provider-declaration-rule-v1-closed-set-ship-whole-by-default",
  "reading_declared_on": "2026-08-17",
@@ -13,7 +13,8 @@
   "definition_text",
   "m_id",
   "source_year_or_S_NO_SOURCE_YEAR",
-  "1 when the reading is a piece cut out of a sibling standing on the same record; absent otherwise"
+  "1 when the reading is a piece cut out of a sibling standing on the same record; null otherwise (v1 omitted the slot; v2 writes null so that HEADWORDS is always at [6])",
+  "HEADWORDS: array of the source's own headword strings for this (key, route_text, source label) — verbatim bytes of catalog source_headword; distinct by exact string, no cap, no normalisation, pointed and unpointed both kept. Rows non-empty in v2 carry v2's array unchanged (first appearance in (source_priority, source_order, catalog row) order via the unmerged lattice cards). Rows empty in v2 carry the DIRECT catalog join: catalog rows at (K == k_normalized_key.trim(), m_sources[m_id].label == m_source_label) whose r_route_text == route_text (WHOLE) or, for wikisource_strongs_explicit_forms only, whose r_route_text separated on the declared comma outside parentheses yields route_text as one piece byte-exact, the first piece admissible also with its one or two head hyphens removed and then trimmed (PIECE) — WHOLE and PIECE matches unioned; first appearance in catalog row order. [] when no catalog row joined (see counts). Label-level: several m_ids share one label and receive the label's array. v2.2 REPAIR (RULE-store-v2.2-v1.md §3-§5): on the rows whose v2.1 array held no string equal to any source_headword reached by the evidence road (store row -> sidecar cards at (rank, route_text, m_id) -> evidence_support_id -> catalog row in the row's own cell), the array is REPLACED by the distinct non-empty source_headword strings of those catalog rows, verbatim, catalog row order. Every other row is v2.1's."
  ],
  "selection": "every route with a complete M record; semantic_route_rank orders them and does not gate them",
  "m_sources": {
@@ -1053,7 +1054,7 @@
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 12898585,
+  "shard_bytes_total": 15316940,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1119,7 +1120,8 @@
    "M97": 1,
    "M65": 2,
    "M49": 1
-  }
+  },
+  "scope": "the served v2 candidate: v2 rows whose m id this site admits, folded to prove identity with the served v1"
  },
  "inputs": [
   {
@@ -1140,7 +1142,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "f28629cb1f1a",
+ "store_version": "94bc125695bf",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1241,6 +1243,31 @@
    "now": "f28629cb1f1a",
    "why": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
    "on": "2026-09-01T01:03:05.341Z"
+  },
+  {
+   "was": "f28629cb1f1a",
+   "now": "94bc125695bf",
+   "why": "pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land",
+   "on": "2026-09-18"
   }
- ]
+ ],
+ "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
+ "join_rule": "## 3. THE JOIN RULE (emission) — v3 wording, complete\n\nFor every v2 row `(K, rank, route_text, definition_text, m_id, year, is_piece, [])` whose `[6]` is `[]`:\n\n**key.** `K === k_normalized_key.trim()`. The store's K is byte-exact; the catalog holds 3 rows with edge whitespace on the key;\ntrimming the catalog side is the only normalisation in the join. A store K with its own edge whitespace would simply miss (counted).\n\n**source.** `index.json.m_sources[m_id].label === m_source_label`, byte for byte. Several m_ids share one label (editions,\npartitions); the array is the label's, as in v2. Where a store label appears nowhere in the catalog the row is counted under (b1)\nwith the label named; as a finding only, the build also measures how many of those rows would join on `m_sources[m_id].key ===\nm_source_key`. Nothing is emitted from that finding.\n\n**text.** Let `cell` be the catalog rows at (K, label), in catalog row order.\n- For every provider: a catalog row **matches WHOLE** when `route_text === r_route_text`. This covers the `is_piece = 1` rows too:\n  they are word-boundary fragments of a sibling (v3 builder rule 8) and are catalog routes in their own right.\n- For `wikisource_strongs_explicit_forms` (M14) only — the one provider `declarations-v1.json` gives `separates_on`; the v1\n  index's `counts.cuts_by_source` counts the `is_piece` flag, not separations — a catalog row **matches PIECE** when `route_text`\n  equals, byte for byte, one of its **admissible pieces**:\n  - raw pieces = `r_route_text` separated on `,` at parenthesis depth 0 (`(` opens, `)` closes, an orphan `)` is inert, from the\n    piece carrying the first unclosed `(` everything to the end is one piece), each `.trim()`med, empties dropped;\n  - fewer than 2 pieces → the route is WHOLE and has no pieces;\n  - the pieces joined with `,` must equal the route with **all whitespace removed** from both (R5), else the route is WHOLE and\n    has no pieces;\n  - plus, when the first raw piece begins with one or two `-`: that piece with those hyphens removed and then trimmed (R4).\n- The matched set is **every row of `cell` that matches WHOLE or PIECE**, in catalog row order. No substring test anywhere.\n- The parent is never `d_exact_text` (the declaration never mines the definition); a count of still-empty M14 rows whose text is\n  a top-level comma piece of `d_exact_text` is reported as a finding only.\n\n**HEADWORDS** = distinct `source_headword` over the matched set, verbatim, first appearance, no cap, no normalisation, pointed and\nunpointed both kept. Empty `source_headword` fields contribute nothing.\n\n**Classification of a filled row:** `WHOLE`, `PIECE`, `WHOLE_and_PIECE`. **Still-empty reasons:** (a) K not a catalog key;\n(b1) label nowhere in the catalog; (b2) no catalog row at (K, label); (c) rows at (K, label) but no text match; (w) withheld below.\n\n**3.4 The record check.** For every store record (K, rank, m_id) of M14 with more than one row, its **parents** are the catalog rows\nany of its rows matched by piece. A parent **reproduces the record exactly** when the store's row texts, as a multiset, consume\nthat parent's raw pieces one for one (the first piece consumable as written or under its R4 alternative); **as a subset** when\nthey consume a strict part; the record is **reproduced** when any parent does either, **not reproduced** when none does. A record\nwith no piece parent is counted apart. In a not-reproduced record, rows classified `PIECE` are withheld (stay `[]`, reason (w)) and\nlisted with witnesses; `WHOLE` and `WHOLE_and_PIECE` rows keep their arrays.\n\n**Rows already non-empty in v2 are copied, not recomputed.** The same join is run for them and compared: `same_array`,\n`different_array` (split into `direct_is_strict_superset_of_v2` and `differs_otherwise`), `direct_join_empty` — counted, never\nwritten.\n\n---\n\n\n## 3. THE JOIN RULE — the one clause that changes (everything else exactly as v3 §3)\n\nUnder **text → PIECE → raw pieces**, the rejoin clause reads: the pieces joined with `,` must equal the route with **all whitespace\nremoved and any trailing commas removed** from both sides (R5 + R6), else the route is WHOLE and has no pieces.\n\n---\n\n",
+ "pointing_store": {
+  "rule": "pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land",
+  "landed_on": "2026-09-18",
+  "landable": true,
+  "from": {
+   "store_version": "760f6e427e30",
+   "schema": "ROUTE_STORE_V2",
+   "built_against": "7d3e04a9d270 (196 sources, disk)"
+  },
+  "proof": "every one of 256 shards, admission-filtered and folded, is the served shard's bytes exactly",
+  "headwords": {
+   "scope": "rows this site admits",
+   "rows": 676463,
+   "with_headword": 676463,
+   "with_pointed_headword": 363330
+  }
+ }
 }

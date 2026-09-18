@@ -36,6 +36,7 @@ import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
+import { gradeRow } from "./pointing-grade-v1.mjs";
 import { fnv1a, LATTICE_RULE_ID, SIDECAR_SCHEMA } from "./lattice-lib-v1.mjs";
 import { isSidecar } from "./zones-on-disk-v1.mjs";
 
@@ -133,11 +134,19 @@ for (const { slug, z, t } of layered) {
   // L4
   const routes = s.routes || {}, grades = s.grades || {};
   let badLen = 0, badFirst = 0;
+  // since pointing-grade-rule-v1 a leader rests on the row's own grade where
+  // the store row carries its headwords, and on the lattice card's grade
+  // where it does not — so the tier a leader leads must exist among the
+  // key's cards OR among the key's store rows graded by their own headwords
+  // against this surface. The sidecar says which rule it was projected under.
+  const rowGraded = !!(s.first_under && s.first_under.row_grade);
   for (const [surface, gr] of Object.entries(grades)) {
     const r = routes[gr.k];
     if (!r || r.f.length !== gr.g.length) { badLen += 1; continue; }
     if (!/^[mnx-]*$/u.test(gr.g)) badLen += 1;
     if ((gr.n || []).some((ix) => ix >= r.f.length)) badFirst += 1;
+    const own = rowGraded ? new Set((store.routesFor(gr.k) || []).filter((row) => store.index.m_sources[row[3]]).map((row) => gradeRow(row, surface)).filter((g) => g !== "-")) : new Set();
+    const has = (ch) => gr.g.includes(ch) || own.has(ch);
     // a first-under entry is [reading, source label, licence key, year]:
     // the reading is one the card would group, its witness is a source the
     // store holds, and the tier it leads must exist among the key's cards
@@ -153,12 +162,12 @@ for (const { slug, z, t } of layered) {
       // carded — so an all-mismatch grade string can still have a lenient
       // leader; there is nothing in g alone that refuses it. The first
       // draft refused it and was wrong at 92 surfaces across three books.
-      else if (ch === "s" && !gr.g.includes("m")) badFirst += 1;
-      else if (!["c", "l", "s"].includes(ch) && !gr.g.includes(ch)) badFirst += 1;
+      else if (ch === "s" && !has("m")) badFirst += 1;
+      else if (!["c", "l", "s"].includes(ch) && !has(ch)) badFirst += 1;
     }
   }
   if (badLen) note(l4, `${slug}: ${badLen} surfaces grade a different number of cards than their key carries`);
-  if (badFirst) note(l4, `${slug}: ${badFirst} first-under entries name no card of their key`);
+  if (badFirst) note(l4, `${slug}: ${badFirst} first-under entries name no card or own-graded row of their key`);
   if (s.counts.surfaces_graded !== Object.keys(grades).length || s.counts.keys !== Object.keys(routes).length) note(l4, `${slug}: sidecar counts do not match its tables`);
   surfacesAll += Object.keys(grades).length;
   // L5 — the join, sampled over every key the sidecar carries

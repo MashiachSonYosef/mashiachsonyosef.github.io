@@ -33,7 +33,7 @@
 // The build wrote the rule; nothing read the store back against it. This
 // does. It opens the index and all 256 shards once and asks:
 //
-//   L1   the index declares the layout this check reads: ROUTE_STORE_V1,
+//   L1   the index declares the layout this check reads: ROUTE_STORE_V1 or V2,
 //        rows laid out rank, route text, definition text, M id, year, and a
 //        selection that says the rank orders and does not gate
 //   L2   no key carries a vowel or accent mark: nothing in U+0591..U+05C7
@@ -129,11 +129,14 @@ const wanted = ["semantic_route_rank", "route_text", "definition_text", "m_id", 
 const layoutOk = wanted.every((w, i) => (layout[i] || "").startsWith(w));
 const selection = String(index.selection || "");
 const ordersNotGates = /orders/.test(selection) && /does not gate/.test(selection);
+// v2 is v1 with one slot added at [6] (the source's own headwords); the five
+// columns this check reads sit where they sat
+const SCHEMAS = ["ROUTE_STORE_V1", "ROUTE_STORE_V2"];
 check("L1   the index declares the layout this check reads, and a rank that orders but does not gate",
-  index.schema_version === "ROUTE_STORE_V1" && layoutOk && ordersNotGates,
+  SCHEMAS.includes(index.schema_version) && layoutOk && ordersNotGates,
   !layoutOk ? `route_row is ${JSON.stringify(layout.slice(0, 5))}, wanted ${wanted.join(", ")}`
     : !ordersNotGates ? `selection reads ${JSON.stringify(selection.slice(0, 80))}`
-      : index.schema_version !== "ROUTE_STORE_V1" ? `schema_version is ${JSON.stringify(index.schema_version)}`
+      : !SCHEMAS.includes(index.schema_version) ? `schema_version is ${JSON.stringify(index.schema_version)}`
         : `route_row ${layout.slice(0, 5).join(", ")}${layout.length > 5 ? ` (+${layout.length - 5} optional)` : ""}`);
 
 // ── the shards, read once ─────────────────────────────────────────────────

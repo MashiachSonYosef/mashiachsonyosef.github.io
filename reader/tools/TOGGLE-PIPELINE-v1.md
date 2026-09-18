@@ -173,10 +173,81 @@ lines, darkens 3**; STEP off **changes 737, darkens 2,762** — STEP is the
 sole carrier at 2,762 keys. On amos, 70 sources carry a reading, 51 lead one;
 across the shelf 82 carry on Genesis alone.
 
+## The fifth one through · the pointing store (2026-09-18)
+
+The wire the pointing toggle was waiting on, landed. The corpus lane's
+pointing store (route store v2.2) is the served store with one slot added:
+`[6]`, the source's own pointed headword strings for that (key, text,
+source). Proved before it was served, twice: every one of 256 shards,
+admission-filtered and folded (`delete [6]`, then `[5]` if null), is the v1
+shard's bytes exactly (`land-pointing-store-v2-v1`, receipt under
+`build/pointing-store-v2.2-served/`), and the corpus lane's shipment was
+counter-verified from bytes (`verify-pointing-store-v1`, records under
+`data/pointing-store-verify-*.json`). A reader that ignores `[6]` reads
+exactly what it read before. Served since 2026-09-18 as `94bc125695bf`,
+schema `ROUTE_STORE_V2`; the v1 it replaced was `f28629cb1f1a` and stands
+under `build/route-store-v1-before-pointing/` (from git) so the landing
+guard's fold stays a proof and not a tautology.
+
+**The grade, computed from the row and never stored** —
+`tools/pointing-grade-v1.mjs`, `pointing-grade-rule-v1`. The corpus lane's
+own two lines (`vowelForm`, `isPointed`: U+034F dropped before NFKD,
+cantillation and the non-vowel marks deleted, everything but vowel points,
+shin/sin dots, dagesh and letters removed; pointed = a vowel point U+05B0–05BB
+after NFKD), carried unchanged, and one rule on top:
+
+    V = { vowelForm(h) : h in row[6], isPointed(h) }
+    V empty              → n  NORMALIZED     the source is silent
+    vowelForm(S) in V    → m  VOWEL_MATCH    ANY ONE matching headword is enough
+    else                 → x  VOWEL_MISMATCH
+    no [6]               → -  ungraded here  (a v1 row: the lattice card's grade stands)
+
+S is the open word's own pointed surface. Per source, per row, not merged —
+the lattice merged every source's headwords into one card and graded the
+card; that mesh is what the toggle undoes, so a per-row grade does not
+reproduce the lattice's and should not. Recounted on this side
+(`emit-pointing-grade-recount-v1` → `data/pointing-grade-recount-v1.json`):
+the two grades differ at **58,656 of 5,513,609** surface × row slots
+(1.06%), **154,236 of 14,663,382** entry × row slots (1.05%); the crossing
+is mostly the merged card saying *mismatch* where the row's own source is
+*silent* (25,581) and the merged card saying *match* where this source's
+headword is *other* (21,823). The corpus lane's 6.1% is on its own axis
+(196 sources, every row) and is not this number; both are recorded.
+
+**Where the grade now acts.** Three places, one function, two copies held
+to the character by `check-pointing-grade-v1` P1:
+
+- `zone.html` `poolFor` under *only* — a row graded x by its own headwords
+  is withheld; a row without the slot falls to the lattice card's grade;
+  `sortPool` — the *masoretic* and *vowels differ* tiers take the same grade;
+  every pill carries `data-grade`.
+- `project-lattice-v12-v1.mjs` — the baked leaders (`o.m`, `o.x`, `o.l`,
+  `o.s`) rest on the same grade, so the line under the word and the card's
+  first pill still say one thing. The lattice's own `g` strings are kept
+  unchanged in the sidecar (they still serve *cites here* and the fallback).
+  On Amos the swap moved the strict leader at 457 of 1,487 graded surfaces,
+  lenient at 236, masoretic at 183, vowels-differ at 350.
+- `check-pointing-grade-v1` — the two copies; the rule on fixtures (davar /
+  dibber / bare, any-of, accents and U+034F never decide); every sidecar
+  projected under the rule; the recount record against the store on disk,
+  one book recounted to the unit; and the card pressed: no pill graded x
+  survives *only*, and what the card says it withheld is what the check
+  counts from the shard.
+
+**What did not move.** The Hebrew on the page (`check-masorah-toggle-v1` M6,
+still). The gloss tables (the folded rows are the v1 rows). The struck ranks
+(the holes are the same holes; `emit-struck-ranks-v1` still names
+`f28629cb1f1a` as the store it was cut against, which is true). The zones'
+`gloss_layer.store_version` names `f28629cb1f1a`, which is the store they
+were glossed from and which the served store folds to byte for byte.
+
+**Still the owner's:** the default (ships at *keep*), strict or lenient
+(strict `o.s` is baked, not on the rail), and the deploy.
+
 ## What is live, and what is left (2026-09-18)
 
 Live: **reads first** (all seven positions), **the pointing** (three
-positions; default owed), **sources** (every source, each removable; the
+positions, graded from the served pointing store row by row; default owed), **sources** (every source, each removable; the
 branch owed to the corpus lane), **pairs**, **look up by**, **license**,
 **names**, **edition**, and **the parts of a word nobody defines**. One row
 is not:

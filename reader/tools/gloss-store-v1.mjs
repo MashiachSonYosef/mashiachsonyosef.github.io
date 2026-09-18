@@ -80,7 +80,11 @@ export const SWITCH_RULE_TEXT =
 
 export const openRouteStore = (storeDir) => {
   const index = JSON.parse(readFileSync(join(storeDir, "index.json"), "utf8"));
-  if (index.schema_version !== "ROUTE_STORE_V1")
+  // v1, or v2 — the same rows with one slot added at [6], the source's own
+  // headwords (pointing-store-landing-rule-v1: the served v2 folds to the
+  // served v1 byte for byte). Everything here reads the first six slots and
+  // nothing more, so a v2 store is read exactly as its v1 fold would be.
+  if (index.schema_version !== "ROUTE_STORE_V1" && index.schema_version !== "ROUTE_STORE_V2")
     throw new Error(`unexpected store schema ${index.schema_version} — refusing output`);
 
   const shardCache = new Map();

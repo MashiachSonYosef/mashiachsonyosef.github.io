@@ -83,6 +83,7 @@ import { join } from "node:path";
 
 import { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a } from "./lattice-lib-v1.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
+import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
 import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
 export { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a };
 const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
@@ -170,7 +171,7 @@ await readLines(files.positions, (line) => {
 });
 
 // ---- rule 2 · the join, verse by verse, proved by the key ------------------
-const stats = { verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
+const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows_ungraded: 0, verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
   hg: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
   ld: 0, grades: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
@@ -241,11 +242,27 @@ for (const sec of zone.sections || []) {
       const readingsOfRow = new Map(srows.map((row, i) => [i, new Set(store.packSplit(row[1]).flatMap((sense) => { const r = readingSplit(sense); return r.damaged ? [] : r.readings.map((t) => t.toLowerCase()); }))]));
       const pool = store.readingPool(srows, "oldest");
       const TIER = { m: 0, n: 1, x: 2 };
+      // THE GRADE OF A ROW — pointing-grade-rule-v1, the same two steps the
+      // page takes: a row that carries its source's own headwords at [6] is
+      // graded by them against this pointed surface; a row that does not
+      // falls to the lattice card's grade by fingerprint; "-" when neither
+      // can say. On a v1 store every row falls through, and nothing here
+      // moves; on the v2 store the leaders baked below say what the card's
+      // first pill says under each position, per source and not merged.
+      const gradeCache = new Map();
+      const gradeOfRow = (row) => {
+        if (gradeCache.has(row)) return gradeCache.get(row);
+        let gc;
+        const sg = gradeRow(row, m.surface);
+        if (sg !== "-") { stats.rows_graded_from_headwords += 1; gc = sg; }
+        else { const ix = rowIx(row); if (ix < 0) { stats.rows_ungraded += 1; gc = "-"; } else { stats.rows_graded_from_lattice += 1; gc = g[ix] || "-"; } }
+        gradeCache.set(row, gc); return gc;
+      };
       const groupInfo = pool.map((grp) => {
         const key = grp.text.toLowerCase();
         const carriers = srows.map((row, i) => ({ row, i })).filter((x) => store.index.m_sources[x.row[3]] && readingsOfRow.get(x.i).has(key));
         let tier = 3, cites = 1;
-        for (const x of carriers) { const ix = rowIx(x.row); if (ix < 0) continue; const t = TIER[g[ix]]; if (t !== undefined && t < tier) tier = t; if (names.includes(ix)) cites = 0; }
+        for (const x of carriers) { const t = TIER[gradeOfRow(x.row)]; if (t !== undefined && t < tier) tier = t; const ix = rowIx(x.row); if (ix >= 0 && names.includes(ix)) cites = 0; }
         return { text: grp.text, tier, cites, carriers };
       });
       const firstUnder = (rank, only) => {
@@ -275,7 +292,6 @@ for (const sec of zone.sections || []) {
       // the printed line at 13.2% of graded words and bares 2.0%; strict
       // moves 61.5% and bares 5.2%, blacking out the divine name at its
       // Elohim-pointing, whose 60 cards hold 26 NORMALIZED and 0 matches.
-      const gradeOfRow = (row) => { const ix = rowIx(row); return ix < 0 ? "-" : (g[ix] || "-"); };
       const rowLeader = (keep) => {
         const kept = srows.filter((row) => store.index.m_sources[row[3]] && keep(gradeOfRow(row)));
         const p = store.readingPool(kept, "oldest");
@@ -359,6 +375,7 @@ const sidecar = {
     l: "masorah · only (lenient) — the oldest reading among rows NOT graded VOWEL_MISMATCH: NORMALIZED and ungraded rows stay, computed row by row as the page filters",
     s: "masorah · only (strict) — the oldest reading among rows graded VOWEL_MATCH only, row by row",
     shape: "[route text, source label, licence key, year] or null when the leading set is empty",
+    row_grade: { rule: POINTING_GRADE_RULE_ID, from: "a store row that carries its source's own headwords at [6] is graded by them against this pointed surface, any one matching headword a match; a row without the slot takes the lattice card's grade by fingerprint; the leaders m, x, l, s all rest on that one grade — per source, not merged" },
   },
   counts: { keys: Object.keys(sideRoutes).length, cards: routeCards, transliteration_cards: trCards, surfaces_graded: Object.keys(grades).length, lattice_route_lines: routeLines, lattice_positions: posLines, lattice_on: posOn },
   emitted_from: { rule: LATTICE_RULE_ID, projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs", join: { ...stats } },

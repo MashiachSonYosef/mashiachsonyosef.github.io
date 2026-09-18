@@ -268,6 +268,28 @@
     for (let i = 0; i < s.length; i += 1) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
     return h.toString(16).padStart(8, "0");
   };
+  // THE GRADE FROM THE ROW'S OWN HEADWORDS — pointing-grade-rule-v1. A store
+  // row that carries the source's own pointed headwords at [6] is graded
+  // here, against the word standing open, by the corpus lane's two lines
+  // (vowelForm, isPointed: the same functions, to the character, as
+  // tools/pointing-grade-v1.mjs, which explains them). Any one matching
+  // headword is a match; no pointed headword is silence, not contradiction;
+  // a row without the slot is not graded here and keeps the lattice card's
+  // grade, if the lattice graded it — so on a v1 store nothing here moves.
+  const vowelForm = (t) => String(t ?? "")
+    .replace(/\u034F/g, "")
+    .normalize("NFKD")
+    .replace(/[\u0591-\u05AF\u05BD\u05BE\u05BF\u05C0\u05C3\u05C4\u05C5\u05C6\u05C7]/g, "")
+    .replace(/[^\u05B0-\u05BC\u05C1\u05C2\u05D0-\u05EA]/g, "");
+  const isPointed = (t) => /[\u05B0-\u05BB]/.test(String(t ?? "").normalize("NFKD"));
+  const rowCarriesHeadwords = (row) => Array.isArray(row) && Array.isArray(row[6]);
+  const gradeRow = (row, surface) => {
+    if (!rowCarriesHeadwords(row)) return "-";
+    const V = row[6].filter(isPointed).map(vowelForm);
+    if (!V.length) return "n";
+    return V.includes(vowelForm(surface)) ? "m" : "x";
+  };
+  window.__gradeRow = gradeRow;
   // the licence class of a posture key, as the page reads it from the key
   // itself (0 public domain and cc0 · 1 CC BY · 2 CC BY-SA · 3 CC BY-NC ·
   // 4 everything else) — a SORT key only; nothing is ever dropped by it
@@ -2064,6 +2086,21 @@
   // (sense-split-rule-v2), and each reading is its own pill; a damaged sense
   // neither prints nor pools. Pills dedupe by text, merging the oldest year
   // and lowest rank; oldest source leads, post-1940 and unyeared sources last.
+  // the grade of one store row for the card's surface, as the pill exposes
+  // it: the row's own headwords against the open word when it carries them,
+  // the lattice card's grade otherwise, "-" when neither can say — the same
+  // two steps sortPool takes, for a check to read off the pill
+  const rowGradeFor = (row, surface) => {
+    const own = openPointed && surface && surface === openKey;
+    const sg = own ? gradeRow(row, openPointed) : "-";
+    if (sg !== "-") return sg;
+    const gr = own && latticeStore && latticeStore.grades ? latticeStore.grades[openPointed] : null;
+    const lat = gr && latticeStore.routes[gr.k] ? latticeStore.routes[gr.k] : null;
+    if (!lat) return "-";
+    const m = index.m_sources[row[3]];
+    const i = lat.f.indexOf(fnv1a(`${row[1]}|${m ? m.label : ""}`));
+    return i < 0 ? "-" : (gr.g[i] || "-");
+  };
   const poolFor = async (surface) => {
     const all = await routesFor(surface);
     if (!all) return null;
@@ -2086,9 +2123,16 @@
       if (!latticeStore) await latticeReady();
       const gr = latticeStore && latticeStore.grades && openPointed && surface === openKey ? latticeStore.grades[openPointed] : null;
       const lat = gr && latticeStore.routes[gr.k] ? latticeStore.routes[gr.k] : null;
-      if (lat) {
-        const fpIdx = new Map(lat.f.map((fp, i) => [fp, i]));
+      // a row that carries its source's own headwords is graded here, by
+      // them, against the open word (pointing-grade-rule-v1); a row that does
+      // not falls to the lattice card's grade, as before
+      const own = openPointed && surface === openKey;
+      if (lat || own) {
+        const fpIdx = lat ? new Map(lat.f.map((fp, i) => [fp, i])) : null;
         routes = all.filter((row) => {
+          const sg = own ? gradeRow(row, openPointed) : "-";
+          if (sg !== "-") return sg !== "x";
+          if (!fpIdx) return true;
           const m = index.m_sources[row[3]];
           const i = fpIdx.get(fnv1a(`${row[1]}|${m ? m.label : ""}`));
           return i === undefined || gr.g[i] !== "x";
@@ -2159,10 +2203,18 @@
       return i === undefined ? -1 : i;
     };
     const TIER = { m: 0, n: 1, x: 2 };
+    // the grade of one record: its own headwords against the open word when
+    // it carries them (pointing-grade-rule-v1), the lattice card's grade
+    // otherwise, "-" when neither can say
+    const own = openPointed && surface && surface === openKey;
+    const gradeOf = (row) => { const sg = own ? gradeRow(row, openPointed) : "-"; if (sg !== "-") return sg; const i = idxOf(row); return i >= 0 ? (gr.g[i] || "-") : "-"; };
+    // whether anything here is graded at all: the lattice's card, or rows
+    // that brought their own headwords
+    const graded = !!gr || (own && list.some((r) => r.records.some(rowCarriesHeadwords)));
     // a group can rest on several records; it takes the best tier any of
     // them earned, and counts as citing, the era's own, or a transliteration
     // if any witness under it is
-    const tierOf = (r) => { let best = 3; for (const row of r.records) { const i = idxOf(row); if (i >= 0) { const t = TIER[gr.g[i]]; if (t !== undefined && t < best) best = t; } } return best; };
+    const tierOf = (r) => { let best = 3; for (const row of r.records) { const t = TIER[gradeOf(row)]; if (t !== undefined && t < best) best = t; } return best; };
     const cites = (r) => (gr && r.records.some((row) => gr.n.includes(idxOf(row))) ? 0 : 1);
     const era = (r) => (r.records.some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
     const outside = (r) => (r.records.some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
@@ -2176,8 +2228,8 @@
       // order falls through to oldest, and the toggle's set() already moved
       // the "reads first" row there and said so
       if (masorah === "letters" && pos.lattice) return 0;
-      if (gr && pos.lattice === "m") return tierOf(a) - tierOf(b);
-      if (gr && pos.lattice === "x") { const v = (r) => ({ 2: 0, 1: 1, 0: 2 }[tierOf(r)] ?? 3); return v(a) - v(b); }
+      if (graded && pos.lattice === "m") return tierOf(a) - tierOf(b);
+      if (graded && pos.lattice === "x") { const v = (r) => ({ 2: 0, 1: 1, 0: 2 }[tierOf(r)] ?? 3); return v(a) - v(b); }
       if (gr && pos.lattice === "c") return cites(a) - cites(b);
       return 0;
     };
@@ -2499,6 +2551,14 @@
     const textOfCell = (surface) => {
       const p = picked.get(surface);
       if (p) return spanJoin(p.text);
+      // the line's own law before the baked gloss: under the masorah's
+      // "only", a lattice order, the headword lookup or a source switch, the
+      // word's line is led by that position's leader (lineUnder), and an
+      // open card must say the same — painting the baked gloss back under
+      // the word while the card stands open was the line and the first pill
+      // saying two things, found the day the store carried its own grades
+      const led = bin === zone && word && region && surface === region.k ? lineUnder(word, bin.gloss) : null;
+      if (led) return led.text ? spanJoin(led.text) : "—";
       const g = bin.gloss ? bin.gloss[surface] : null;
       return g ? spanJoin(g) : "—";
     };
@@ -3100,6 +3160,11 @@
         // who carries it, on the pill and exposed, so a check can ask the
         // page whether a switched-off source still stands behind a reading
         btn.dataset.by = [...new Set(route.records.map((r) => r[3]))].sort().join(" ");
+        // and its grade against the open word — the best any record under
+        // it earned (m match · n silent · x otherwise · - ungraded), exposed
+        // so a check can ask the page how it graded rather than regrade
+        const RANK = { m: 0, n: 1, x: 2, "-": 3 };
+        btn.dataset.grade = route.records.map((r) => rowGradeFor(r, surface)).sort((p, q) => RANK[p] - RANK[q])[0];
         const oldestM = index.m_sources[route.records[0][3]];
         btn.title = [Number.isFinite(route.year) ? String(route.year) : "no source year", oldestM ? oldestM.label : ""].filter(Boolean).join(" · ");
         btn.setAttribute("aria-pressed", String(route === selected));

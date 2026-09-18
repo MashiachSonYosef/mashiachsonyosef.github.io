@@ -171,7 +171,16 @@ if (!existsSync(STORE_INDEX)) { console.log(`SKIPPED — no route store index at
 const index = JSON.parse(readFileSync(STORE_INDEX, "utf8"));
 const storeInputs = (index.inputs || []).map((i) => `${i.file}@${i.sha256}`).sort().join("\n");
 const storeVersion = String(index.store_version || "");
-const storeMoves = (index.store_version_history || []).map((h) => ({ on: String(h.on || "").slice(0, 10), now: h.now, why: h.why }));
+// a move of the store that moved no reading — the pointing store landing,
+// where the index itself carries the proof that every shard folds to the
+// store it replaced (pointing_store.landable, re-proved by
+// check-pointing-store-landing-v1) — leaves every zone standing on the same
+// six slots it was glossed from, and is not a move L5 asks a zone to name
+const foldRule = (index.pointing_store || {}).landable === true ? (index.pointing_store || {}).rule : null;
+const storeMoves = (index.store_version_history || []).filter((h) => !(foldRule && h.why === foldRule)).map((h) => ({ on: String(h.on || "").slice(0, 10), now: h.now, why: h.why }));
+// and a zone that names the version this store folds to names this store:
+// the six slots it was glossed from are the six slots served
+const foldsTo = new Set((index.store_version_history || []).filter((h) => foldRule && h.why === foldRule).map((h) => h.was));
 const admission = index.language_admission || null;
 const struckNow = admission ? [...(admission.struck_m_ids || [])].sort().join(",") : null;
 
@@ -284,7 +293,7 @@ for (const f of bins) {
   const emitted = String(build.emitted || "").slice(0, 10);
   const movedSince = storeMoves.filter((m) => m.on && emitted && m.on > emitted);
   if (movedSince.length) {
-    const namesVersion = gl.store_version && gl.store_version === storeVersion;
+    const namesVersion = gl.store_version && (gl.store_version === storeVersion || foldsTo.has(gl.store_version));
     const la = gl.language_admission;
     const zoneStruck = la ? [...(la.struck_m_ids || [])].sort() : [];
     const namesStrike = la && admission && la.rule_id === admission.rule_id && zoneStruck.join(",") === struckNow;
