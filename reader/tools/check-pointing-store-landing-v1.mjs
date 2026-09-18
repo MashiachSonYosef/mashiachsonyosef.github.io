@@ -17,11 +17,16 @@ import { join } from "node:path";
 
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
-const CAND = "build/pointing-store-v2-served", SERVED = "data/route-store", REC = "data/pointing-store-verify-v1.json";
-const haveCand = existsSync(join(CAND, "landing-receipt-v1.json")), haveRec = existsSync(REC);
-if (!haveCand && !haveRec) { console.log("SKIPPED — no pointing-store candidate under build/ and no counter-verification record in data/; nothing landed to guard"); process.exit(3); }
+// Every candidate under build/ and every record in data/: a shipment that
+// supersedes another leaves both on the shelf (v2, then v2.2), and each is
+// held to its own proof. Nothing is skipped because a newer one exists.
+const SERVED = "data/route-store";
+const CANDS = existsSync("build") ? readdirSync("build").filter((d) => /^pointing-store-.*-served$/u.test(d) && existsSync(join("build", d, "landing-receipt-v1.json"))).map((d) => join("build", d)) : [];
+const RECS = existsSync("data") ? readdirSync("data").filter((f) => /^pointing-store-verify-.*\.json$/u.test(f)).map((f) => join("data", f)) : [];
+if (!CANDS.length && !RECS.length) { console.log("SKIPPED — no pointing-store candidate under build/ and no counter-verification record in data/; nothing landed to guard"); process.exit(3); }
 
-if (haveCand) {
+for (const CAND of CANDS) {
+  console.log(`— candidate ${CAND} —`);
   const receipt = JSON.parse(readFileSync(join(CAND, "landing-receipt-v1.json"), "utf8"));
   const fold = (r) => { const c = r.slice(0, 6); if (c[5] === null) c.pop(); return c; };
   const names = readdirSync(join(CAND, "shards")).filter((f) => f.endsWith(".bin")).sort();
@@ -42,7 +47,8 @@ if (haveCand) {
   check("L3  the served store the candidate was proved against is the served store on disk",
     receipt.served.store_version === idx.store_version, `${receipt.served.store_version} vs ${idx.store_version}`);
 }
-if (haveRec) {
+for (const REC of RECS) {
+  console.log(`— record ${REC} —`);
   const rec = JSON.parse(readFileSync(REC, "utf8"));
   check("V1  every pinned file that was present matched its pin, and the shard digest matched",
     rec.pin.files_mismatched.length === 0 && rec.pin.shard_digest_matches === true && rec.pin.files_present_and_matching + rec.pin.files_absent.length === rec.pin.files_pinned,
@@ -50,9 +56,11 @@ if (haveRec) {
   check("V2  the fold held on every shard against this lane's own pre-strike copy",
     rec.fold.shards_identical === 256 && rec.fold.shards_differ.length === 0 && rec.fold.rows_length_7 === rec.fold.rows,
     `${rec.fold.shards_identical} of 256 · ${rec.fold.rows.toLocaleString()} rows`);
-  check("V3  the grade table agreed with the lattice sidecar at every row",
+  if (rec.same_fact && rec.same_fact.not_carried) console.log(`  --  V3  no grade table in this shipment: ${rec.same_fact.not_carried}`);
+  else check("V3  the grade table agreed with the lattice sidecar at every row",
     rec.same_fact.disagree === 0 && rec.same_fact.unjoinable === 0 && rec.same_fact.agree === rec.same_fact.grade_rows && rec.same_fact.grade_rows > 0,
     `${rec.same_fact.agree.toLocaleString()} of ${rec.same_fact.grade_rows.toLocaleString()}`);
+  if (rec.version_recipe) check("V5  the store_version recomputes by the corpus lane's recipe", rec.version_recipe.matches === true, `${rec.version_recipe.recomputed} vs ${rec.version_recipe.stated}`);
   check("V4  the record says what it does not say", Array.isArray(rec.what_this_does_not_say) && rec.what_this_does_not_say.length >= 3);
 }
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
