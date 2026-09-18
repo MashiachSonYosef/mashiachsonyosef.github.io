@@ -259,10 +259,46 @@ for (const sec of zone.sections || []) {
         const src = store.index.m_sources[best.row[3]];
         return [top.gi.text, src.label, src.licensePosture, Number.isFinite(best.y) ? best.y : null];
       };
+      // THE FILTER LEADERS, at the ROW grain. The three above lead a
+      // re-order of the whole pool; a group takes the best tier any card
+      // carrying it earned, which is right for sorting. The masorah toggle's
+      // "only" position is not a sort — it withholds the rows the lattice
+      // graded as contradicting this pointing BEFORE the pool is built, and
+      // the page does that row by row. So the leader baked for it has to be
+      // computed row by row too, or the line under the word and the first
+      // pill on the card say two different things:
+      //   l  lenient — rows graded VOWEL_MISMATCH withheld; a NORMALIZED row
+      //      (the source's headword is unpointed) and an ungraded row stay,
+      //      because silence is not contradiction and unknown is not later
+      //   s  strict  — only rows graded VOWEL_MATCH stay
+      // Measured over the 39 books before this was written: lenient moves
+      // the printed line at 13.2% of graded words and bares 2.0%; strict
+      // moves 61.5% and bares 5.2%, blacking out the divine name at its
+      // Elohim-pointing, whose 60 cards hold 26 NORMALIZED and 0 matches.
+      const gradeOfRow = (row) => { const ix = rowIx(row); return ix < 0 ? "-" : (g[ix] || "-"); };
+      const rowLeader = (keep) => {
+        const kept = srows.filter((row) => store.index.m_sources[row[3]] && keep(gradeOfRow(row)));
+        const p = store.readingPool(kept, "oldest");
+        if (!p.length) return null;
+        const top = p[0];
+        // its M: the oldest kept row carrying the reading, as the card prints it
+        let best = null;
+        for (const row of kept) {
+          const carries = store.packSplit(row[1]).some((sense) => { const r = readingSplit(sense); return !r.damaged && r.readings.some((t) => t.toLowerCase() === top.text.toLowerCase()); });
+          if (!carries) continue;
+          const y = Number.parseInt(row[4], 10); const yy = Number.isInteger(y) ? y : Infinity;
+          if (!best || yy < best.y) best = { row, y: yy };
+        }
+        if (!best) return null;
+        const src = store.index.m_sources[best.row[3]];
+        return [top.text, src.label, src.licensePosture, Number.isFinite(best.y) ? best.y : null];
+      };
       const o = {
         m: firstUnder((gi) => gi.tier, (gi) => gi.tier === 0),
         x: firstUnder((gi) => ({ 2: 0, 1: 1, 0: 2 }[gi.tier] ?? 3), (gi) => gi.tier === 2),
         c: firstUnder((gi) => gi.cites, (gi) => gi.cites === 0),
+        l: rowLeader((gc) => gc !== "x"),
+        s: rowLeader((gc) => gc === "m"),
       };
       grades[m.surface] = { k: m.key, g: g.join(""), n: names, o };
       stats.grades += 1;
@@ -318,7 +354,12 @@ const sidecar = {
     receipt: { path: files.receipt.split("/").pop(), sha256: sha256File(files.receipt) } },
   fingerprint: "fnv1a-32 over the UTF-16 code units of `${text}|${primary_source}`, 8 hex digits; the store row's text and its source's label make the same string",
   grade_chars: { m: "VOWEL_MATCH", n: "NORMALIZED", x: "VOWEL_MISMATCH", "-": "ungraded" },
-  first_under: { m: "masoretic — the oldest VOWEL_MATCH card", x: "vowels differ — the oldest VOWEL_MISMATCH card", c: "cites here — the oldest card naming this verse", shape: "[route text, source label, licence key, year] or null when the leading set is empty" },
+  first_under: {
+    m: "masoretic — the oldest VOWEL_MATCH card", x: "vowels differ — the oldest VOWEL_MISMATCH card", c: "cites here — the oldest card naming this verse",
+    l: "masorah · only (lenient) — the oldest reading among rows NOT graded VOWEL_MISMATCH: NORMALIZED and ungraded rows stay, computed row by row as the page filters",
+    s: "masorah · only (strict) — the oldest reading among rows graded VOWEL_MATCH only, row by row",
+    shape: "[route text, source label, licence key, year] or null when the leading set is empty",
+  },
   counts: { keys: Object.keys(sideRoutes).length, cards: routeCards, transliteration_cards: trCards, surfaces_graded: Object.keys(grades).length, lattice_route_lines: routeLines, lattice_positions: posLines, lattice_on: posOn },
   emitted_from: { rule: LATTICE_RULE_ID, projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs", join: { ...stats } },
   routes: sideRoutes, grades,
@@ -341,7 +382,7 @@ ef.toggles.lattice = {
     witnesses: pieceWitness,
     both_witnesses_ride: "TAHOT gives the English this position reads and MACULA the headword's; they differ at 205,953 of 466,981 pieces over the 39 books, so both are carried and neither is chosen",
   },
-  what_the_sidecar_carries: "per key the cards' fingerprints in lattice order with transliteration flags; per pointed surface the tier of each card and which cite this verse",
+  what_the_sidecar_carries: "per key the cards' fingerprints in lattice order with transliteration flags; per pointed surface the tier of each card, which cite this verse, and the first reading under each order (o.m, o.x, o.c) and under each masorah filter (o.l lenient, o.s strict) so the line under the word can move without a fetch",
   rulings_owed: "the welded-form ruling is still owed and is a separate question from these affix pieces: it governs the maqaf toggle, which nothing here touches; licence_class puts cc0 in class 0 as the corpus lane's reading, and the page derives its own classes from the posture keys",
 };
 {

@@ -80,11 +80,60 @@ flag, and the Leningrad difference per position. It is projected by
 - **not projected**: `pieces` (joined words) until the welded-form ruling.
 - **guards**: `check-lattice-projection-v1` (the files), `check-lattice-orders-v1` (the page).
 
-## What is live, and what is left (2026-09-13)
+## The third one through · the pointing (2026-09-17)
 
-Live: **reads first** (all seven positions), **pairs**, **look up by**,
-**license**, **names**, **edition**, and **the parts of a word nobody
-defines**. One row is not:
+The one toggle that is a statement of the project's, not a convenience. The
+owner's words: *"the masoretics can't negate the hebrew, and strong defining
+each voweled version must apply to the otherly voweled versions"* — and, on
+the same day, that the marks *should be removeable*, inside the card only.
+Three positions, on the rail as **the pointing**:
+
+- **keep** — today, exactly. Pointed head on the card; every reading of the
+  letters; "reads first" orders them (its *masoretic* position is the corpus
+  lane's vowel grade as a SORT, unchanged).
+- **only this pointing** — a SELECTION, the first the page has made. Rows the
+  lattice graded VOWEL_MISMATCH for this surface are withheld in `poolFor`
+  before the pool exists; NORMALIZED rows (the source's headword is unpointed)
+  and ungraded rows stay — silence is not contradiction, unknown is not a
+  mismatch. The card says how many records it withheld and why. The line
+  under the word moves to `o.l`, the sidecar's row-level lenient leader,
+  baked by `project-lattice-v12-v1.mjs` with the same row filter, so the line
+  and the first pill say one thing. Strict (`o.s`, VOWEL_MATCH only) is baked
+  beside it for the sub-choice the corpus lane's contract names; not yet on
+  the rail.
+- **the letters only** — the head leads with the bare consonants, the pointed
+  form faint beside them; every reading, oldest first, grade ignored; a
+  lattice order in "reads first" falls back to oldest and the rail says so.
+
+**What never moves: the Hebrew on the page.** Not a vowel, not a mark, not a
+nun, not a ketiv or qere — the Masoretic text is the licensed text. The
+toggle reaches the card and the English line, and nothing else.
+`check-masorah-toggle-v1` M6 byte-compares the section's Hebrew across all
+three positions.
+
+Measured over the 39 books before the row was built, against the baked line
+(oldest first, grade ignored — which is what the page prints today):
+*only* (lenient) moves the printed line at **13.2%** of graded words and
+bares **2.0%**; strict would move **61.5%** and bare **5.2%**, blacking out
+the divine name at its Elohim-pointing (60 cards, 26 NORMALIZED, 0 matches).
+The corpus lane's 44.3% (134,717 of 303,777 positions) is its grade-first
+order against oldest-first — and since the page's baked line IS oldest-first
+with no vowel tier, that number is what changes if the tier is turned ON as a
+sort, not off. The corpus lane corrected its own note to say so.
+
+**THE DEFAULT IS THE OWNER'S RULING AND IS NOT MADE.** The row ships at
+*keep* because it is the one position that changes no English on the page.
+
+The order law amended (zone.html, "THE ORDER TOGGLES"): an ORDER is never a
+selection; two switches ARE selections by the owner's ruling of 2026-09-17 —
+the pointing's *only* position and the source switches — and each says on
+the card how many records it withheld.
+
+## What is live, and what is left (2026-09-17)
+
+Live: **reads first** (all seven positions), **the pointing** (three
+positions; default owed), **pairs**, **look up by**, **license**, **names**,
+**edition**, and **the parts of a word nobody defines**. One row is not:
 
 1. **joined words** — `maqaf-v1.json` + `maqaf-compounds-v1.jsonl.gz`.
    A RULING FIRST, and it is the owner's: suppress WELDED where nothing

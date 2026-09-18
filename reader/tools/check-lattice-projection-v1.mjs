@@ -144,7 +144,17 @@ for (const { slug, z, t } of layered) {
     for (const [ch, first] of Object.entries(gr.o || {})) {
       if (first === null) continue;
       if (!Array.isArray(first) || first.length !== 4 || !String(first[0] || "").trim() || !labels.has(first[1])) badFirst += 1;
-      else if (ch !== "c" && !gr.g.includes(ch)) badFirst += 1;
+      // the tier a leader leads must exist among the key's cards. The two
+      // masorah filter leaders lead a set, not a tier: strict needs a match
+      // card; lenient needs any card that is not a mismatch, and an ungraded
+      // row counts, so only an all-mismatch grade string refuses it
+      // strict keeps only rows graded m, so its leader implies an m card.
+      // Lenient keeps ungraded rows too — store rows the lattice never
+      // carded — so an all-mismatch grade string can still have a lenient
+      // leader; there is nothing in g alone that refuses it. The first
+      // draft refused it and was wrong at 92 surfaces across three books.
+      else if (ch === "s" && !gr.g.includes("m")) badFirst += 1;
+      else if (!["c", "l", "s"].includes(ch) && !gr.g.includes(ch)) badFirst += 1;
     }
   }
   if (badLen) note(l4, `${slug}: ${badLen} surfaces grade a different number of cards than their key carries`);

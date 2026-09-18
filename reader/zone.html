@@ -1644,6 +1644,50 @@
   let CORPUS_REC = null;
   const CORPUS_OF = (m) => (CORPUS_REC && CORPUS_REC.witnesses && CORPUS_REC.witnesses[m] || {}).corpus || null;
   const DEF_KEY = "fh.def.order";
+  // THE MASORAH · masorah-toggle-rule-v1-the-pointing-is-kept-the-gate-or-lifted-and-the-page-never-changes
+  //
+  // The one toggle that is a statement of this project's rather than a
+  // convenience, so it is written out here in full.
+  //
+  // The Masoretes pointed the text in Tiberias a thousand years after it was
+  // written. The pointing is a reading of the letters — one reading, the one
+  // that survived with authority — and the letters carry every meaning they
+  // are attested to carry, wherever they occur. This site keys every
+  // definition on the letters (FRAME rule 7), so the pointing has never been
+  // the gate. What this toggle does is let the reader choose whether it is.
+  //
+  //   keep     the pointing as the page prints it. The card shows the word as
+  //            pointed; every reading of the letters is offered; the "reads
+  //            first" control orders them — including "masoretic first", the
+  //            corpus lane's vowel grade as a sort. Today's behaviour, exactly.
+  //   only     the pointing gates. Rows whose source points the word
+  //            OTHERWISE (the lattice's VOWEL_MISMATCH) are withheld before the
+  //            pool is built; a source whose headword carries no vowels is
+  //            silent, not contradicting, and stays; an ungraded row stays,
+  //            because unknown is not a mismatch. The card says how many it
+  //            withheld. Measured over the 39 books: moves the printed line at
+  //            13.2% of graded words, bares 2.0%.
+  //   letters  the pointing is lifted, inside the card only. The head shows
+  //            the bare consonants with the pointed form faint beside them;
+  //            every reading of the letters is offered oldest first, the
+  //            grade ignored; a lattice order chosen in "reads first" falls
+  //            back to oldest and the rail says so.
+  //
+  // WHAT NEVER MOVES: the Hebrew on the page. Not a vowel, not a mark, not a
+  // nun, not a ketiv or a qere. The Masoretic text is the licensed text and
+  // the site changes nothing in it. This toggle reaches the card and the
+  // English line under the word, and nothing else — the owner's rule, in his
+  // words: "no masoretic markings can be removed from the book page".
+  //
+  // The DEFAULT is the owner's ruling and is not made here: it ships at
+  // "keep" because that is the one position that changes no English on the
+  // page. The corpus lane ships its own three-state contract for this switch
+  // (pointing store v1); its ON-SORT is keep + masoretic-first, its
+  // ON-FILTER is only, its OFF is letters.
+  const MASORAH_KEY = "fh.masorah";
+  const MASORAH_POS = ["keep", "only", "letters"];
+  let masorah = (() => { try { const v = localStorage.getItem(MASORAH_KEY); return MASORAH_POS.includes(v) ? v : "keep"; } catch { return "keep"; } })();
+  window.__masorah = masorah;
   const DEF_POS = [
     { id: "corpus", lab: "corpus", live: true,
       say: "Lexicons of the text\u2019s own era answer first \u2014 the corpus lane\u2019s classification of each source, not ours." },
@@ -1730,6 +1774,27 @@
   const TOGGLES = [
     { id: "order", lab: "reads first", why: "which dictionary answers first, when several can",
       live: () => true, now: () => (DEF_POS.find((p) => p.id === defOrder) || {}).lab },
+    // THE MASORAH — see the note above MASORAH_KEY. Second on the rail because
+    // it is the page's own statement; "only" needs the lattice's grade of this
+    // book and is drawn dead without it; "letters" needs nothing.
+    { id: "masorah", lab: "the pointing", why: "the Masoretic vowels: kept as the page prints them, made the gate on what a word can mean, or lifted inside the card — the page itself never changes",
+      positions: [{ id: "keep", lab: "keep" }, { id: "only", lab: "only this pointing" }, { id: "letters", lab: "the letters only" }],
+      live: () => true,
+      get: () => masorah,
+      set: (id) => {
+        if (!MASORAH_POS.includes(id)) return;
+        if (id === "only" && !(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice)) return;
+        masorah = id; window.__masorah = id;
+        try { localStorage.setItem(MASORAH_KEY, id); } catch { /* the choice still stands on this page */ }
+        // lifting the Masorah leaves no grade to sort by: a lattice order in
+        // "reads first" falls back to oldest, said on the rail by its own word
+        if (id === "letters") { const pos = DEF_POS.find((p) => p.id === defOrder); if (pos && pos.needs === "lattice") { defOrder = "oldest"; try { localStorage.setItem(DEF_KEY, defOrder); } catch { /* same */ } } }
+        // the card re-opens so its pool is rebuilt under the new position —
+        // after the sidecar is here, never before, or it rebuilds unfiltered
+        const reopen = () => { repaintGlossOrder(); if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } };
+        if (id === "only" && !latticeStore) latticeReady().then(reopen); else reopen();
+      },
+      now: () => ({ keep: "pointing kept", only: "only this pointing", letters: "the letters only" })[masorah] },
     { id: "pairs", lab: "pairs", why: "places where the scribes kept one form and read another: which half the English reads from",
       live: () => (zone.sections || []).some((s) => (s.words || []).some((w) => w.kq)),
       waits: "no ketiv-qere site in this book",
@@ -2328,8 +2393,15 @@
   /* ── THE ORDER TOGGLES ────────────────────────────────────────────────────
      Where the ink offers more than one reading at one position, the reader
      sets which one leads and the page says whose order it is. Nothing is
-     added and nothing is dropped: a toggle is an ORDER, never a selection,
-     and the Hebrew on the page never moves — C0 never changes.
+     added and nothing is dropped: an ORDER toggle is never a selection, and
+     the Hebrew on the page never moves — C0 never changes.
+
+     TWO SWITCHES ARE SELECTIONS, by the owner's ruling of 2026-09-17, and
+     each one says on the card how many records it withheld: the masorah
+     "only" position (a source that points the word otherwise is not asked)
+     and the source switches (a source the reader turned off is not asked).
+     Neither removes anything from the store or from the page; both reach
+     the card and the English line under the word, and nothing else.
 
      Precedence, and it does not bend: a reading the reader has RULED on a
      form wins, because a ruling is a decision about that form; then the
@@ -3442,8 +3514,37 @@
   // neither prints nor pools. Pills dedupe by text, merging the oldest year
   // and lowest rank; oldest source leads, post-1940 and unyeared sources last.
   const poolFor = async (surface) => {
-    const routes = await routesFor(surface);
-    if (!routes) return null;
+    const all = await routesFor(surface);
+    if (!all) return null;
+    // THE MASORAH FILTER, at the row grain, before the pool exists. Under
+    // "only", a row the lattice graded as pointing this word OTHERWISE never
+    // enters the pool — it is not sorted late, it is withheld, and the card
+    // says how many. A page that filtered readings after the pool was built
+    // would be a page deciding what a source said; withholding the row is
+    // declining to ask that source about this pointing. Rows the lattice did
+    // not grade stay: unknown is not a mismatch. The same guard sortPool
+    // uses — the open word's own pointed surface, and only that.
+    let routes = all, withheld = 0;
+    if (masorah === "only") {
+      // the grade has to be here before the pool is built, not after: a
+      // pool built while the sidecar was still arriving is an unfiltered
+      // pool, and no later redraw filters it — a redraw re-sorts what was
+      // built. The first press of "only" found exactly that: 0 withheld of
+      // 173 on a word with mismatch cards, because the card re-opened
+      // before the lattice landed.
+      if (!latticeStore) await latticeReady();
+      const gr = latticeStore && latticeStore.grades && openPointed && surface === openKey ? latticeStore.grades[openPointed] : null;
+      const lat = gr && latticeStore.routes[gr.k] ? latticeStore.routes[gr.k] : null;
+      if (lat) {
+        const fpIdx = new Map(lat.f.map((fp, i) => [fp, i]));
+        routes = all.filter((row) => {
+          const m = index.m_sources[row[3]];
+          const i = fpIdx.get(fnv1a(`${row[1]}|${m ? m.label : ""}`));
+          return i === undefined || gr.g[i] !== "x";
+        });
+        withheld = all.length - routes.length;
+      }
+    }
     const groups = new Map();
     routes.forEach((row) => {
       const [rank, routeText, , mId, year] = row;
@@ -3465,12 +3566,15 @@
       });
     });
     const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
-    // WHICH READING ANSWERS FIRST. Every position is a stable re-order of the
-    // same pool; nothing is filtered. A reader who asks for the era's own
+    // WHICH READING ANSWERS FIRST. Every ORDER is a stable re-order of the
+    // same pool; an order never filters. A reader who asks for the era's own
     // lexicons still sees every reading the catalog holds, in a different
     // order — hiding one because it sorted late would be the page deciding
-    // what may be weighed.
-    return sortPool([...groups.values()], surface);
+    // what may be weighed. The masorah "only" position is not an order and
+    // was withheld above, row by row, with its count riding on the pool.
+    const pool = sortPool([...groups.values()], surface);
+    pool.withheld = withheld; pool.rows = all.length;
+    return pool;
   };
   const oldestFirst = (a, b) => {
     const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
@@ -3508,6 +3612,10 @@
       if (defOrder === "characters") return a.ledger - b.ledger;
       if (defOrder === "corpus") return era(a) - era(b);
       if (defOrder === "outside-era") return outside(a) - outside(b);
+      // with the Masorah lifted there is no grade to sort by: a lattice
+      // order falls through to oldest, and the toggle's set() already moved
+      // the "reads first" row there and said so
+      if (masorah === "letters" && pos.lattice) return 0;
       if (gr && pos.lattice === "m") return tierOf(a) - tierOf(b);
       if (gr && pos.lattice === "x") { const v = (r) => ({ 2: 0, 1: 1, 0: 2 }[tierOf(r)] ?? 3); return v(a) - v(b); }
       if (gr && pos.lattice === "c") return cites(a) - cites(b);
@@ -3573,6 +3681,17 @@
         if (!lit) seg.style.color = "var(--faint)";
         b.append(seg);
       });
+    } else if (masorah === "letters" && !word.mark && (region && (region.form_k || region.k))) {
+      // THE LETTERS ONLY, inside the card. The bare consonants lead; the
+      // pointed form stands faint beside them so nothing is hidden — the
+      // reader lifted the Masorah here and can see exactly what was lifted.
+      // The page above is untouched: this is the head of a card, not the text.
+      const bare = document.createElement("span"); bare.textContent = region.form_k || region.k;
+      const pointed = document.createElement("span"); pointed.textContent = word.s;
+      pointed.style.color = "var(--faint)"; pointed.style.marginInlineStart = "0.5em"; pointed.style.fontSize = "0.8em";
+      pointed.title = "as the page points it";
+      b.append(bare, pointed);
+      b.dataset.masorah = "letters";
     } else b.textContent = word.s;
     // a mark's head is drawn as the page draws it — the brick gap is a ruled
     // span on the line, so it is a ruled span here, not the restore's stand-in
@@ -3589,6 +3708,17 @@
       const hLine = document.createElement("p"); hLine.className = "kq-role";
       hLine.textContent = `looked up by its headword${region.hp ? ` ${region.hp}` : ""} — the form as written is keyed ${region.form_k}`;
       head.append(hLine);
+    }
+    // THE MASORAH, said on the card in words. A card whose readings were
+    // withheld says so and says how many; a card whose head shows bare
+    // letters says why. A toggle that changes what a card offers without the
+    // card saying so is the page deciding quietly.
+    if (masorah !== "keep" && !word.mark) {
+      const mLine = document.createElement("p"); mLine.className = "kq-role"; mLine.dataset.masorah = masorah;
+      mLine.textContent = masorah === "letters"
+        ? "the letters only — the pointing stands on the page and is lifted here; every reading of these letters, oldest first"
+        : "only readings of this pointing — a source that points the word otherwise is not asked";
+      head.append(mLine);
     }
     // A source-marked branch says which half it is ON the card, in words —
     // the roles lived only in hover titles, and a phone has no hover. The
@@ -4437,6 +4567,15 @@
         window.__pool = sorted.map((r) => r.text);
         pills.dataset.firstLic = String(classOf(sorted[0]));
         pills.dataset.minLic = String(Math.min(...sorted.map(classOf)));
+        // what the masorah filter withheld, on the row and exposed, so a
+        // check can ask the page rather than recount the shard
+        pills.dataset.withheld = String(pool.withheld || 0);
+        pills.dataset.rows = String(pool.rows || 0);
+        let note = readRow.querySelector(".masorah-withheld");
+        if (pool.withheld) {
+          if (!note) { note = document.createElement("p"); note.className = "kq-role masorah-withheld"; readRow.append(note); }
+          note.textContent = `${pool.withheld} of ${pool.rows} records withheld — their source points this word otherwise`;
+        } else if (note) note.remove();
       };
       // the page's own switch redraws whatever card is open, so a change of
       // order reaches the reading standing under the word without closing it
@@ -5014,6 +5153,18 @@
     if (!word || table !== zone.gloss) return null;
     if (lookup === "headword" && word.hg && word.h && table[word.h])
       return { text: word.hg, m: word.hm ? { lic: licenseName(word.hm.lic), m: word.hm.m, y: word.hm.y } : null, why: "headword" };
+    // the masorah filter's own leader, baked row by row into the sidecar
+    // (o.l) so it says what the card's first pill says under "only"; with
+    // the Masorah lifted, no lattice order can move the line at all
+    if (masorah === "only" && latticeStore && latticeStore.grades && word.s) {
+      const gr = latticeStore.grades[word.s];
+      const first = gr && gr.o && gr.o.l;
+      if (first) return { text: first[0], m: { lic: licenseName(first[2]), m: first[1], y: first[3] }, why: "masorah" };
+      // graded, and nothing survives the filter: the word goes bare here,
+      // which the frame calls a finding and not an error
+      if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) return { text: "", m: null, why: "masorah-bare" };
+    }
+    if (masorah === "letters") return null;
     const pos = DEF_POS.find((p) => p.id === defOrder);
     if (pos && pos.needs === "lattice" && latticeStore && latticeStore.grades && word.s) {
       const gr = latticeStore.grades[word.s];
