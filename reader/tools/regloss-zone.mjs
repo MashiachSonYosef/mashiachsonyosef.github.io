@@ -30,7 +30,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
-import { glossMFor, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
+import { glossMFor, sourceSwitchCosts, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
+import { SWITCH_RULE_ID } from "./gloss-store-v1.mjs";
 import { cellsOf } from "./span-slice-v1.mjs";
 import { require_ } from "./zone-lib-v1.mjs";
 
@@ -115,6 +116,40 @@ zone.emitted_from.gloss_layer = {
   },
 };
 
+// THE SOURCE SWITCHES' RECEIPT. gloss_m now carries, per key, every carrier
+// of the printed reading (by) and the reading that leads when all of them
+// are off (alt) — see gloss-m-v1.mjs. What the rail needs beside that is one
+// table per book: each source this book's readings stand on, and what its
+// switch costs HERE — lines that change, lines that go dark. Computed in
+// this pass because it needs every key of the book and the page holds one
+// shard at a time. The unit the reader switches is the source's own key;
+// the ids are the ledger's, and both are on the table.
+const switchTable = sourceSwitchCosts(store, gloss, glossM);
+const withBy = Object.values(glossM).filter((e) => Array.isArray(e.by)).length;
+const withAlt = Object.values(glossM).filter((e) => e.alt).length;
+zone.emitted_from.toggles = zone.emitted_from.toggles || {};
+zone.emitted_from.toggles.sources = {
+  rule: SWITCH_RULE_ID,
+  projected_on: stamp,
+  projected_by: "tools/regloss-zone.mjs",
+  what_the_word_carries: "gloss_m[k].by — every admitted source whose route divides to the printed reading, sorted; gloss_m[k].alt — the reading that leads when every carrier in by is switched off, with its own M and its own carriers, or absent when nothing survives",
+  what_the_rail_reads: "sources — per ledger id: the source's own key and label, its licence name, and on THIS book: leads (keys whose printed reading it carries), carries (keys where any reading is its), changes (keys whose line moves when it alone is off), darkens (keys whose line has no successor when it alone is off)",
+  counts: {
+    keys: Object.keys(gloss).length,
+    keys_with_carriers: withBy,
+    keys_with_an_alternate: withAlt,
+    keys_sole_carrier: Object.values(glossM).filter((e) => Array.isArray(e.by) && e.by.length === 1).length,
+    sources_carrying: Object.keys(switchTable).length,
+    sources_leading: Object.values(switchTable).filter((s) => s.leads > 0).length,
+    source_keys: new Set(Object.values(switchTable).map((s) => s.key || "")).size,
+  },
+  sources: switchTable,
+  branch: {
+    waits: "each source's own declarations about itself — language, part of speech, period, sense type — toggleable a declaration at a time under the source's switch; the corpus lane's declarations ledger has not shipped, so the rail draws no branch",
+  },
+  rulings_owed: "none for the switch itself; which sources are ADMITTED at all is the language admission rule, and the Jastrow lean is not a ruling (serving-rulings-v1.json)",
+};
+
 // TYPED on the zone: a post-build write is named under the single-pass
 // exemption — who wrote it, which field, why, and when it expires — so the
 // receipts check counts it rather than faulting it as anonymous patching.
@@ -125,7 +160,7 @@ zone.emitted_from.gloss_layer = {
   const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
   const me = "tools/regloss-zone.mjs";
   pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-  for (const f of ["gloss_layer.reprojected", "gloss_m"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = me; }
+  for (const f of ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
   const why = "the gloss layer is a projection of the route store over this zone's own keys, re-run here at cell grain after the component layer was projected";
   pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
   const exp = "with this zone's rebuild by a build-zone run that writes its gloss layer in its single pass";

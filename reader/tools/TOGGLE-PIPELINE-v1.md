@@ -129,11 +129,57 @@ selection; two switches ARE selections by the owner's ruling of 2026-09-17 —
 the pointing's *only* position and the source switches — and each says on
 the card how many records it withheld.
 
-## What is live, and what is left (2026-09-17)
+## The fourth one through · the sources (2026-09-18)
+
+The primary toggle the two lanes settled on: *"the source itself, each one
+removeable, all the cards."* On the rail as **sources**, one chip per source
+KEY (three Jastrow framings are one switch; three Kaikki Aramaic extractions
+are one), each chip carrying the two numbers its switch costs on this book —
+lines that **change** · lines that go **dark** — because those are different
+harms and a reader deserves both.
+
+- **the wire** is this lane's own, not the corpus lane's: `gloss-store-v1`'s
+  `by` (every carrier of a reading, surviving the merge) and `omit` (rows
+  withheld before the pool exists), from 2026-09-16.
+- **on the key**, baked by `regloss-zone.mjs` into `gloss_m[k]` beside the
+  chip's `lic/m/y`: `by` — every admitted source whose route divides to the
+  printed reading; `alt` — the reading that leads when all of them are off,
+  with its own M and its own carriers, found among the rows that SURVIVE the
+  omit (a source carrying both leader and alternate must not be named as the
+  alternate's witness while switched off). Absent when nothing survives.
+- **on the zone**, `emitted_from.toggles.sources`: per ledger id its key,
+  label, licence name, and on this book `leads / carries / changes / darkens`;
+  counts; the branch's `waits`.
+- **on the page**: `poolFor` withholds a switched-off source's rows before
+  grouping, counted apart from the pointing's count; the card says *N of M
+  records withheld by your source switches — k sources off*; every pill
+  exposes its carriers (`data-by`); `lineUnder` follows the switch from the
+  baked `by`/`alt` without a fetch, and a line whose every carrier is off and
+  which has no alternate goes bare, the reader's own doing.
+- **known limit, stated in the code**: the baked alternate answers one
+  question — all carriers of THIS reading are off. Under the pointing filter
+  and a source switch together, the line follows the source switch and the
+  card, which composes every switch exactly, is the authority.
+- **the branch** — each source's own declarations, toggleable one at a time
+  under its switch — waits on the corpus lane's declarations ledger and is
+  drawn as a sentence on the row until it lands.
+- **guards**: `check-source-switch-v1` (the page, S1–S8), `check-carrier-survives-v1`
+  (the store). Amos on first press: MACULA off moves "fourth" to OmegaWiki's
+  reading with OmegaWiki on the chip; the shared line stands; 1 of 13
+  records withheld and said so.
+
+Measured on Genesis before the row was built: Strong's off **changes 3,320
+lines, darkens 3**; STEP off **changes 737, darkens 2,762** — STEP is the
+sole carrier at 2,762 keys. On amos, 70 sources carry a reading, 51 lead one;
+across the shelf 82 carry on Genesis alone.
+
+## What is live, and what is left (2026-09-18)
 
 Live: **reads first** (all seven positions), **the pointing** (three
-positions; default owed), **pairs**, **look up by**, **license**, **names**,
-**edition**, and **the parts of a word nobody defines**. One row is not:
+positions; default owed), **sources** (every source, each removable; the
+branch owed to the corpus lane), **pairs**, **look up by**, **license**,
+**names**, **edition**, and **the parts of a word nobody defines**. One row
+is not:
 
 1. **joined words** — `maqaf-v1.json` + `maqaf-compounds-v1.jsonl.gz`.
    A RULING FIRST, and it is the owner's: suppress WELDED where nothing

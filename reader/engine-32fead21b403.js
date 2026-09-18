@@ -192,6 +192,32 @@
   // page. The corpus lane ships its own three-state contract for this switch
   // (pointing store v1); its ON-SORT is keep + masoretic-first, its
   // ON-FILTER is only, its OFF is letters.
+  // THE SOURCE SWITCHES · source-switch-rule-v1-a-reading-remembers-who-carried-it
+  //
+  // The primary toggle the two lanes settled on: the source itself, each one
+  // removable. A source the reader turns off is not asked — its rows never
+  // enter the pool, on any card, for any word — and the card says how many
+  // records that withheld. The line under every word follows without a
+  // fetch: the zone bakes, per key, every carrier of the printed reading
+  // (gloss_m[k].by) and the reading that leads when all of them are off
+  // (gloss_m[k].alt), so a switch that merely CHANGES a line changes it, and
+  // only a switch that leaves no carrier at all darkens it. Those are two
+  // different harms and the rail prints both beside every source.
+  //
+  // Ids are grouped by the source's own `key` on the rail, because "the
+  // entire source" is the owner's unit and the M ids are the ledger's: three
+  // Jastrow framings are one switch, three Kaikki Aramaic extractions are
+  // one switch. The BRANCH under each — what the source declares about
+  // itself, toggleable a declaration at a time — waits on the corpus lane's
+  // declarations ledger and is drawn dead until it lands.
+  //
+  // KNOWN LIMIT, stated: the baked alternate answers one question — "all the
+  // carriers of THIS reading are off" — and the card always composes every
+  // switch exactly. Under the pointing filter and a source switch together,
+  // the LINE follows the source switch and the card is the authority.
+  const SOURCES_KEY = "fh.sources.off";
+  let sourcesOff = new Set((() => { try { const v = JSON.parse(localStorage.getItem(SOURCES_KEY) || "[]"); return Array.isArray(v) ? v.filter((x) => typeof x === "string") : []; } catch { return []; } })());
+  window.__sourcesOff = [...sourcesOff];
   const MASORAH_KEY = "fh.masorah";
   const MASORAH_POS = ["keep", "only", "letters"];
   let masorah = (() => { try { const v = localStorage.getItem(MASORAH_KEY); return MASORAH_POS.includes(v) ? v : "keep"; } catch { return "keep"; } })();
@@ -303,6 +329,23 @@
         if (id === "only" && !latticeStore) latticeReady().then(reopen); else reopen();
       },
       now: () => ({ keep: "pointing kept", only: "only this pointing", letters: "the letters only" })[masorah] },
+    // THE SOURCE SWITCHES — see the note above SOURCES_KEY. Its row is its own
+    // widget (sourceSwitch below), one chip per source this book's readings
+    // stand on, each with the two numbers its switch costs on this book.
+    { id: "sources", lab: "sources", why: "every dictionary this book's readings stand on, each one removable — a source turned off is not asked, and the card says how many records that withheld",
+      live: () => !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.sources && zone.emitted_from.toggles.sources.sources),
+      waits: "the per-source switch costs baked on this book (tools/regloss-zone.mjs)",
+      get: () => [...sourcesOff],
+      set: (ids, on) => {
+        // ids: every M id of one source (grouped by its own key); on: whether
+        // the reader is turning it back on
+        for (const id of ids) { if (on) sourcesOff.delete(id); else sourcesOff.add(id); }
+        window.__sourcesOff = [...sourcesOff];
+        try { localStorage.setItem(SOURCES_KEY, JSON.stringify([...sourcesOff])); } catch { /* the choice still stands on this page */ }
+        repaintGlossOrder();
+        if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
+      },
+      now: () => (sourcesOff.size ? `${sourcesOff.size} source id${sourcesOff.size === 1 ? "" : "s"} off` : "every source") },
     { id: "pairs", lab: "pairs", why: "places where the scribes kept one form and read another: which half the English reads from",
       live: () => (zone.sections || []).some((s) => (s.words || []).some((w) => w.kq)),
       waits: "no ketiv-qere site in this book",
@@ -909,9 +952,7 @@
      "only" position (a source that points the word otherwise is not asked)
      and the source switches (a source the reader turned off is not asked).
      Neither removes anything from the store or from the page; both reach
-     the card and the English line under the word, and nothing else. */
-  /* ── THE PAIR ORDER ─────────────────────────────────────────────────────── */
-  /* (the paragraph above continues)
+     the card and the English line under the word, and nothing else.
 
      Precedence, and it does not bend: a reading the reader has RULED on a
      form wins, because a ruling is a decision about that form; then the
@@ -2055,6 +2096,15 @@
         withheld = all.length - routes.length;
       }
     }
+    // THE SOURCE SWITCHES, at the same grain and before the same pool: a
+    // source the reader turned off is not asked. Counted apart from the
+    // pointing's count so the card can say which switch withheld what.
+    let withheldBySources = 0;
+    if (sourcesOff.size) {
+      const kept = routes.filter((row) => !sourcesOff.has(row[3]));
+      withheldBySources = routes.length - kept.length;
+      routes = kept;
+    }
     const groups = new Map();
     routes.forEach((row) => {
       const [rank, routeText, , mId, year] = row;
@@ -2083,7 +2133,7 @@
     // what may be weighed. The masorah "only" position is not an order and
     // was withheld above, row by row, with its count riding on the pool.
     const pool = sortPool([...groups.values()], surface);
-    pool.withheld = withheld; pool.rows = all.length;
+    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = all.length;
     return pool;
   };
   const oldestFirst = (a, b) => {
@@ -3047,6 +3097,9 @@
       const makePill = (route) => {
         const btn = document.createElement("button"); btn.type = "button";
         btn.textContent = spanJoin(route.text);
+        // who carries it, on the pill and exposed, so a check can ask the
+        // page whether a switched-off source still stands behind a reading
+        btn.dataset.by = [...new Set(route.records.map((r) => r[3]))].sort().join(" ");
         const oldestM = index.m_sources[route.records[0][3]];
         btn.title = [Number.isFinite(route.year) ? String(route.year) : "no source year", oldestM ? oldestM.label : ""].filter(Boolean).join(" · ");
         btn.setAttribute("aria-pressed", String(route === selected));
@@ -3080,12 +3133,19 @@
         // what the masorah filter withheld, on the row and exposed, so a
         // check can ask the page rather than recount the shard
         pills.dataset.withheld = String(pool.withheld || 0);
+        pills.dataset.withheldBySources = String(pool.withheldBySources || 0);
         pills.dataset.rows = String(pool.rows || 0);
         let note = readRow.querySelector(".masorah-withheld");
         if (pool.withheld) {
           if (!note) { note = document.createElement("p"); note.className = "kq-role masorah-withheld"; readRow.append(note); }
           note.textContent = `${pool.withheld} of ${pool.rows} records withheld — their source points this word otherwise`;
         } else if (note) note.remove();
+        let sNote = readRow.querySelector(".sources-withheld");
+        if (pool.withheldBySources) {
+          if (!sNote) { sNote = document.createElement("p"); sNote.className = "kq-role sources-withheld"; readRow.append(sNote); }
+          const n = sourcesOff.size;
+          sNote.textContent = `${pool.withheldBySources} of ${pool.rows} records withheld by your source switch${n === 1 ? "" : "es"} — ${n} source${n === 1 ? "" : "s"} off`;
+        } else if (sNote) sNote.remove();
       };
       // the page's own switch redraws whatever card is open, so a change of
       // order reaches the reading standing under the word without closing it
@@ -3663,6 +3723,21 @@
     if (!word || table !== zone.gloss) return null;
     if (lookup === "headword" && word.hg && word.h && table[word.h])
       return { text: word.hg, m: word.hm ? { lic: licenseName(word.hm.lic), m: word.hm.m, y: word.hm.y } : null, why: "headword" };
+    // THE SOURCE SWITCHES FIRST. A source the reader turned off cannot lead
+    // the line. Every carrier of the printed reading is baked on the key
+    // (gloss_m[k].by); if all of them are off, the baked alternate leads with
+    // its own M — unless its carriers are all off too, and then the word is
+    // bare here by the reader's own choice, marked as such.
+    if (sourcesOff.size && zone.gloss_m && word.k) {
+      const k = lookupKey(word, word.k, table);
+      const gm = zone.gloss_m[k];
+      if (gm && Array.isArray(gm.by) && gm.by.length && gm.by.every((m) => sourcesOff.has(m))) {
+        const alt = gm.alt;
+        if (alt && Array.isArray(alt.by) && !alt.by.every((m) => sourcesOff.has(m)))
+          return { text: alt.text, m: { lic: alt.lic, m: alt.m, y: alt.y }, why: "sources" };
+        return { text: "", m: null, why: "sources-bare" };
+      }
+    }
     // the masorah filter's own leader, baked row by row into the sidecar
     // (o.l) so it says what the card's first pill says under "only"; with
     // the Masorah lifted, no lattice order can move the line at all
@@ -4214,7 +4289,55 @@
     const why = host.parentElement && host.parentElement.querySelector(".why");
     if (why && pairs.length) why.textContent = `${pairs.length} place${pairs.length === 1 ? "" : "s"} in this book are written one way and read another; the edition writes the ketiv first at ${srcFirst}. Both halves always print and both always open; this only sets which one backs the English. A reading you have ruled on beats this switch.`;
   };
-  // THE RAIL draws itself from the registry: a row per toggle, the two rows
+  // THE SOURCE SWITCHES' ROW. One chip per source, grouped by the source's
+  // own key, sorted by how many of this book's lines it leads; each chip
+  // carries the two numbers its switch costs here — lines that change,
+  // lines that go dark — and the full label on hover. A chip is ON until
+  // pressed; pressed, it withholds every id in its group.
+  const sourceSwitch = () => {
+    const host = document.getElementById("sourcesRow");
+    if (!host) return;
+    const t = TOGGLES.find((x) => x.id === "sources");
+    const rec = zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.sources;
+    const table = rec && rec.sources ? rec.sources : null;
+    host.replaceChildren();
+    if (!table) { const seg = document.createElement("span"); seg.className = "def-order"; const b = document.createElement("button"); b.type = "button"; b.className = "dfp waiting"; b.disabled = true; b.textContent = "waiting"; b.title = t.waits; seg.append(b); host.append(seg); return; }
+    // group ids by the source's own key; a source with no key stands alone
+    const groups = new Map();
+    for (const [id, s] of Object.entries(table)) {
+      const gk = s.key || id;
+      const g = groups.get(gk) || { key: gk, ids: [], labels: [], lic: s.lic, leads: 0, carries: 0, changes: 0, darkens: 0 };
+      g.ids.push(id); g.labels.push(s.label); g.leads += s.leads; g.carries += s.carries; g.changes += s.changes; g.darkens += s.darkens;
+      groups.set(gk, g);
+    }
+    const seg = document.createElement("span"); seg.className = "def-order"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
+    const ordered = [...groups.values()].sort((a, b) => b.leads - a.leads || b.carries - a.carries || a.key.localeCompare(b.key));
+    for (const g of ordered) {
+      const on = !g.ids.every((id) => sourcesOff.has(id));
+      const btn = document.createElement("button"); btn.type = "button";
+      btn.className = "dfp" + (on ? " on" : "");
+      btn.dataset.ids = g.ids.join(" "); btn.dataset.key = g.key;
+      // the shortest label of the group, cut to a chip's width; the whole
+      // group is on the title, so nothing is hidden, only abbreviated
+      const short = [...g.labels].sort((a, b) => a.length - b.length)[0] || g.key;
+      btn.textContent = short.length > 30 ? `${short.slice(0, 29)}…` : short;
+      const cost = document.createElement("i"); cost.textContent = ` ${g.changes.toLocaleString()}·${g.darkens.toLocaleString()}`; cost.style.fontStyle = "normal"; cost.style.opacity = "0.7";
+      btn.append(cost);
+      btn.title = `${g.labels.map((l, i) => `${g.ids[i]} ${l}`).join("\n")}\n${g.lic}\nleads ${g.leads.toLocaleString()} of this book's lines, carries a reading at ${g.carries.toLocaleString()} keys\noff: ${g.changes.toLocaleString()} lines change, ${g.darkens.toLocaleString()} go dark`;
+      btn.setAttribute("aria-pressed", String(on));
+      btn.addEventListener("click", () => {
+        const nowOn = btn.getAttribute("aria-pressed") === "true";
+        t.set(g.ids, !nowOn);
+        btn.classList.toggle("on", !nowOn); btn.setAttribute("aria-pressed", String(!nowOn));
+        railSay();
+      });
+      seg.append(btn);
+    }
+    host.append(seg);
+    const why = host.parentElement && host.parentElement.querySelector(".why");
+    if (why) why.textContent = `${ordered.length} sources stand behind this book's readings (${Object.keys(table).length} ledger ids). Beside each: lines that change · lines that go dark when it alone is off. A source off is not asked on any card; the line under a word follows. The branch under each source — what it declares about itself — waits on the corpus lane's declarations ledger.`;
+  };
+  // THE RAIL draws itself from the registry: a row per toggle, the three rows
   // that have their own switches hosting them, every other row a segment
   const railSwitch = () => {
     const rows = document.getElementById("railRows");
@@ -4226,6 +4349,7 @@
       const host = document.createElement("span");
       if (t.id === "order") host.id = "defRow";
       else if (t.id === "pairs") host.id = "pairRow";
+      else if (t.id === "sources") host.id = "sourcesRow";
       else host.append(segRow(t, t.positions || [], t.get ? t.get() : null, (id) => { if (t.set) t.set(id); }));
       const why = document.createElement("span"); why.className = "why";
       why.textContent = t.live() ? t.why : `${t.why} — waiting on ${t.waits}`;
@@ -6043,6 +6167,7 @@
   marksSwitch();
   railSwitch();
   pairSwitch();
+  sourceSwitch();
   // the reader's order is in force before the first word is drawn, and any
   // section already drawn is brought to it
   applyGlossOrder(defOrder);
