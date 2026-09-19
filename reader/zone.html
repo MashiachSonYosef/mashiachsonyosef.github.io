@@ -6204,7 +6204,7 @@
       reach.dataset.reach = switchable ? (switchable === n ? "source" : "mixed") : "needs-a-tag";
       const tail = "Turning one of those off on its own would need a tag on every row, and this site does not carry one yet, so those lines say what the source declares — they do not switch it.";
       reach.textContent = !switchable
-        ? `Each of these holds for some of this source${RS}s records and not others. ${tail}`
+        ? `Each of these holds for some of this source’s records and not others. ${tail}`
         : switchable === n
           ? `The source declares every one of these over every record it has, so each is the same set as the source itself: the box beside its name turns any of them off.`
           : `${switchable} of these the source declares over every record it has, so ${switchable === 1 ? "it is" : "they are"} the same set as the source itself and the box beside its name turns ${switchable === 1 ? "it" : "them"} off. The other ${n - switchable} hold for some records and not others. ${tail}`;

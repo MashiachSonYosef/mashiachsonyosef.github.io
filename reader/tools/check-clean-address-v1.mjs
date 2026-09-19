@@ -194,6 +194,28 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
     const openFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "opensourcing", "index.html");
     check("the opensourcing page stands at its own address", existsSync(openFile), openFile);
     FINISHED.push("/opensourcing/");
+    // And the chain, the door's fifth: the same books with the meaning taken
+    // out, so only the joins are left. It is not built by the door and does
+    // not live under deploy-root — it is published beside the engine, from
+    // the zones and the route store, by tools/build-chain-book-v1.mjs — so
+    // it is asked for where it actually stands. It is not a book and must
+    // never be counted as one: it prints no Hebrew and no English, only
+    // fingerprints.
+    //
+    // A tab that lands on an index whose own rows land nowhere is the same
+    // fault one floor down, so every book the index names is asked for too.
+    // That is the whole law of this check applied where the check can reach.
+    const chainDir = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "chain");
+    const chainIndex = join(chainDir, "index.html");
+    if (existsSync(chainIndex)) {
+      const page = readFileSync(chainIndex, "utf8");
+      const named = [...page.matchAll(/<a href="([^"/]+)\/">/gu)].map((m) => m[1]);
+      const lost = named.filter((b) => !existsSync(join(chainDir, b, "index.html")) || !existsSync(join(chainDir, b, "chain-v1.json.gz")));
+      check("the chain stands at its own address, and every book it names stands at its own",
+        named.length > 0 && lost.length === 0,
+        `${named.length} book(s) named${lost.length ? ` · nowhere to land: ${lost.slice(0, 4).join(", ")}` : ""}`);
+      FINISHED.push("/chain/");
+    } else check("the chain stands at its own address", false, `${chainIndex} — the door carries a tab for it (build-front-door-v1.mjs altLink), so it must be built: node tools/build-chain-book-v1.mjs --index`);
   // and the reference pages: each group in the typed reference record
   // (data/reference-groups-v1.json, the owner's naming ruling) is a
   // published address the door points at
