@@ -244,11 +244,84 @@ were glossed from and which the served store folds to byte for byte.
 **Still the owner's:** the default (ships at *keep*), strict or lenient
 (strict `o.s` is baked, not on the rail), and the deploy.
 
+## The sixth one through · the source's own declarations (2026-09-19)
+
+The branch the source switches were waiting on. The corpus lane's per-source
+declarations ledger (`declaration-store-v7`, contract v6, 29 files pinned at
+3,496,645 bytes, all re-hashed here before a line was read) says, per source
+and per aspect, what that source declares ABOUT ITSELF, at the address in its
+own file. `tools/project-declarations-v1.mjs` joins it to this site's catalog
+(§5: `m_ids[i] === m_sources[<m_id>].key`, exact string equality) and writes
+`data/route-store/source-declarations-v1.bin` — beside the store, because it
+is a fact about the sources and not about any one book, and pinned by the
+store manifest that ships with them.
+
+**The menorah.** One stem per source — the chip that already removes it —
+and, behind a second press, one branch per aspect the source declares and one
+leaf per value it names, with the source's own count beside each and the
+address underneath. 37 stems of this site's 39 catalog keys; 163 branches;
+2,654 values; 137 of 147 reader sources reached.
+
+**The one rule that decides what is drawn** (contract §7.1/§7.2). A `values[]`
+entry that is a RESERVED TOKEN is the corpus lane's plumbing, not a value the
+source declares: drop it, THEN read `values_tail_not_enumerated` to know the
+list is partial. The test is **exact string membership against ten strings**,
+compared with `===`. No regex, no shape, no prefix, suffix, bracket or
+capitalisation rule — because a source writing its own values in capitals is
+indistinguishable from plumbing under a shape test. An earlier draft that
+dropped by shape deleted nineteen real source strings, among them `PBH`
+(Sefaria's code for post-biblical Hebrew), `YIVO`, `BDB` and
+`NOT_IN_COPYRIGHT`, emptying two branches that hold a real declaration.
+
+So this lane does not type the list. It parses it out of the contract's own
+§7.2 code block, cross-checks it against `vocabulary-v7.json`, and refuses to
+write if the two disagree or if any of the nineteen would be dropped. The
+eleven branch names are parsed the same way, from the contract's own
+honest-heights table. `check-declarations-branch-v1` runs the rule rather
+than quoting it: the nineteen survive (19 of 19), the ten are dropped (10 of
+10), the projector's value test reads `reserved.has(...)` with no pattern
+anywhere near it, and **the page carries none of the ten and no list of its
+own** — it draws what the sidecar carries and decides nothing.
+
+**And the flag is never the test.** `values_tail_not_enumerated` warns that a
+list is partial; it does not say what a token is. Drop by the token test,
+then read the flag. Where it is true the branch prints how many distinct
+values the field really holds beside how many are carried.
+
+**Short branches are drawn at their real height.** Script is 0 of 102 source
+keys and period is 0 of 102, so no script branch and no period branch exist;
+a source that declares nothing has no branch and the panel says so. Nothing
+fills a gap. Strong's via Hebrew Wikisource, for instance, declares none of
+the eleven: four lines of what the work says it is, and silence on the rest.
+
+**A silence is at an address, not about a source.** 46 (source key, aspect)
+pairs sit in both the declaration file and the not-declared file — 20 of them
+reaching this site. They are not a contradiction: BDB names its language
+inside the definition markup and carries none in the record's own keys, and
+both rows are true of different addresses in the same file. The panel draws
+that as what it is, rather than flattening it into "the source says nothing
+about language" above a language branch.
+
+**What is NOT drawn.** Observations — "this column is filled on N of M" is
+this project's measurement, not the source's statement — are counted and left
+out (199 of them). Aspects that are not among the eleven, and rows the ledger
+marks a channel, licence material or a work-identity statement, stand BESIDE
+the branches under their own names (225 of them), because what a source says
+it is remains a real thing it says. And where only this project's manifest
+speaks and the source never does, the panel says that in those words.
+
+**What a branch does NOT do.** It does not filter a reading. The store
+carries no per-row declaration — a route row knows its source, not which of
+that source's declared values it falls under — so a branch SAYS what a source
+declares and never withholds a row by it. The two switches that withhold are
+still the only two: the pointing's *only* position and the source switches
+themselves.
+
 ## What is live, and what is left (2026-09-18)
 
 Live: **reads first** (all seven positions), **the pointing** (three
-positions, graded from the served pointing store row by row; default owed), **sources** (every source, each removable; the
-branch owed to the corpus lane), **pairs**, **look up by**, **license**,
+positions, graded from the served pointing store row by row; default owed), **sources** (every source, each removable,
+each opening into its own declarations), **pairs**, **look up by**, **license**,
 **names**, **edition**, and **the parts of a word nobody defines**. One row
 is not:
 

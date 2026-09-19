@@ -744,6 +744,29 @@
   .rail .row .why { grid-column: 2; font-size: 0.66rem; color: var(--faint); font-style: italic; margin-top: -0.1rem; }
   .rail .row .def-order { margin: 0; }
   .rail .row.dead .lab { color: var(--faint); }
+  /* THE SOURCE'S OWN DECLARATIONS — the branch that opens under a source
+     chip. Gold line-work only; the source's own strings carry the reading
+     ink, because they are the source speaking, not this project. */
+  .rail .decl { grid-column: 1 / -1; margin: 0.35rem 0 0.2rem; padding: 0.45rem 0.6rem;
+    border: 1px solid var(--line); border-radius: 0.5rem; max-width: 52rem; }
+  .rail .decl-lead { margin: 0 0 0.4rem; font-size: 0.66rem; color: var(--muted); font-style: italic; }
+  .rail .decl-branch { margin: 0 0 0.5rem; padding-left: 0.5rem; border-left: 1px solid var(--line); }
+  .rail .decl-branch:last-child { margin-bottom: 0; }
+  .rail .decl-branch[data-klass] { opacity: 0.82; }
+  .rail .decl-aspect { margin: 0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .rail .decl-aspect i { font-style: normal; letter-spacing: 0; text-transform: none; color: var(--faint); }
+  .rail .decl-aspect i.decl-work { font-size: 0.6rem; }
+  .rail .decl-values { margin: 0.1rem 0 0.12rem; font-size: 0.76rem; color: var(--tekhelet); line-height: 1.45; }
+  .rail .decl-values.none { color: var(--faint); font-style: italic; font-size: 0.68rem; }
+  .rail .decl-v i { font-style: normal; color: var(--faint); font-size: 0.66rem; padding-left: 0.14rem; }
+  .rail .decl-where { margin: 0; font-size: 0.62rem; color: var(--faint); word-break: break-word; }
+  .rail .decl-partial { margin: 0.1rem 0 0; font-size: 0.62rem; color: var(--muted); font-style: italic; }
+  .rail .decl-silent, .rail .decl-none { margin: 0.35rem 0 0; font-size: 0.64rem; color: var(--faint); font-style: italic; }
+  .rail .def-order .declp { font: inherit; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--faint); background: none; border: 1px dashed var(--line); border-radius: 0.5rem;
+    padding: 0.16rem 0.44rem; cursor: pointer; }
+  .rail .def-order .declp:hover { color: var(--muted); border-color: var(--muted); }
+  .rail .declp.decl-open[aria-expanded="true"] { color: var(--sel); border-color: var(--sel-dim); border-style: solid; }
   @media (max-width: 30rem) { .rail .row { grid-template-columns: 1fr; } .rail .row .why { grid-column: 1; } }
   /* Which way the words run, and nothing else. The two readers differ in the
      direction of the flow, so that is what is said under them. */

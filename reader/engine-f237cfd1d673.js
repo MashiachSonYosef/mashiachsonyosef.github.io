@@ -4359,6 +4359,116 @@
   // carries the two numbers its switch costs here — lines that change,
   // lines that go dark — and the full label on hover. A chip is ON until
   // pressed; pressed, it withholds every id in its group.
+  // THE SOURCE'S OWN DECLARATIONS, on demand. The corpus lane's per-source
+  // declarations ledger, projected onto the sources this site holds by
+  // tools/project-declarations-v1.mjs and served beside the store, because it
+  // is a fact about the sources and not about any one book. Fetched the first
+  // time a reader opens a branch, never before.
+  let declStore = null, declPromise = null;
+  const declReady = () => {
+    if (!declPromise) declPromise = fetch(`${ROOT}data/route-store/source-declarations-v1.bin${storeVersion ? `?v=${storeVersion}` : ""}`)
+      .then(unpack).then((d) => { declStore = d; window.__declarations = d; return d; })
+      .catch(() => null);
+    return declPromise;
+  };
+  // one branch of the menorah: the aspect, then a leaf per value the source
+  // names, then the address in the source's own file. Counts are the SOURCE's
+  // own, on its own axis, and the denominator wears its name so nothing is
+  // divided by the wrong thing.
+  const declBranch = (b, klass, showWork) => {
+    const box = document.createElement("div"); box.className = "decl-branch"; box.dataset.aspect = b.aspect;
+    if (klass) box.dataset.klass = klass;
+    const head = document.createElement("p"); head.className = "decl-aspect";
+    head.textContent = String(b.aspect).replace(/_/gu, " ");
+    if (klass) { const n = document.createElement("i"); n.textContent = klass === "WORK_IDENTITY" ? " · what the work says it is" : klass === "LICENCE_MATERIAL_PARKED" ? " · licence material" : " · not one of the eleven branches" ; head.append(n); }
+    // one chip can gather several of the ledger's works; when it does, every
+    // line says WHICH work said it, or a reader meets one work declaring what
+    // another is silent about and reads it as a contradiction
+    if (showWork && b.work) { const w = document.createElement("i"); w.className = "decl-work"; w.textContent = ` · ${String(b.work).split("#").pop()}`; head.append(w); }
+    box.append(head);
+    const leaves = document.createElement("p"); leaves.className = "decl-values";
+    b.values.forEach((v, i) => {
+      if (i) leaves.append(document.createTextNode(" · "));
+      const s = document.createElement("span"); s.className = "decl-v"; s.textContent = v.v;
+      if (v.n !== null && v.n !== undefined) { const c = document.createElement("i"); c.textContent = ` ${Number(v.n).toLocaleString()}`; s.append(c); }
+      leaves.append(s);
+    });
+    if (!b.values.length) { leaves.className = "decl-values none"; leaves.textContent = "no value survives the reserved-token rule"; }
+    box.append(leaves);
+    const foot = document.createElement("p"); foot.className = "decl-where";
+    const bits = [];
+    if (b.cover && b.cover.n !== null && b.cover.n !== undefined)
+      bits.push(`${Number(b.cover.n).toLocaleString()}${b.cover.of ? ` of ${Number(b.cover.of).toLocaleString()}` : ""}${b.cover.of_what ? ` ${String(b.cover.of_what).replace(/_/gu, " ")}` : ""}${b.cover.pct ? ` · ${b.cover.pct}%` : ""}${b.cover.upper_bound ? " · at most" : ""}`);
+    if (b.grain) bits.push(String(b.grain).replace(/_/gu, " "));
+    if (b.where) bits.push(b.where);
+    foot.textContent = bits.join(" — ");
+    box.append(foot);
+    // the flag, read AFTER the drop and never as the test for one: it says
+    // this list is a PART of what the field holds, so the card may not be
+    // read as a complete set and no "other" bucket is built from the gap
+    if (b.tail) {
+      const p = document.createElement("p"); p.className = "decl-partial";
+      p.textContent = b.distinct_total ? `this list is partial — the field holds ${Number(b.distinct_total).toLocaleString()} distinct values and ${b.values.length} are carried here` : "this list is partial — what the field holds is more than what is carried here";
+      box.append(p);
+    }
+    if (b.decoded) { const p = document.createElement("p"); p.className = "decl-partial"; p.textContent = `a value here is the corpus lane's decoding of the source's own string (${b.decoded})`; box.append(p); }
+    return box;
+  };
+  const declPanel = (g, d) => {
+    const wrap = document.createElement("div"); wrap.className = "decl"; wrap.dataset.key = g.key;
+    const stem = d && d.stems ? d.stems[g.key] : null;
+    if (!stem) {
+      const p = document.createElement("p"); p.className = "decl-none";
+      p.textContent = "the declarations ledger holds nothing for this source — it names no aspect this source declares, and this lane fills no gap";
+      wrap.append(p); return wrap;
+    }
+    const lead = document.createElement("p"); lead.className = "decl-lead";
+    lead.textContent = `${stem.labels.join(" · ")} — what this source says about itself, in its own files`;
+    wrap.append(lead);
+    const works = new Set([...stem.branches, ...stem.channels].map((b) => b.work).filter(Boolean));
+    const many = works.size > 1;
+    if (many) {
+      const p = document.createElement("p"); p.className = "decl-silent";
+      p.textContent = `this one switch stands for ${works.size} works of the same source; each line below says which of them said it`;
+      wrap.append(p);
+    }
+    stem.branches.forEach((b) => wrap.append(declBranch(b, null, many)));
+    stem.channels.forEach((b) => wrap.append(declBranch(b, b.klass || "CHANNEL_NOT_A_BRANCH", many)));
+    if (!stem.branches.length && !stem.channels.length) {
+      const p = document.createElement("p"); p.className = "decl-none";
+      p.textContent = "this source declares nothing the ledger could record — a short branch drawn at its real height";
+      wrap.append(p);
+    }
+    if (stem.silent.length) {
+      // A SILENCE IS AT AN ADDRESS, not about a source. The same file can
+      // state a thing in one place and hold nothing in another: BDB names its
+      // language inside the definition markup and carries none in the
+      // record's own keys, so both rows are true. Flattening them into "the
+      // source says nothing about language" while a language branch stands
+      // above it would be this page inventing a contradiction the ledger
+      // never recorded. So a silence on an aspect this stem DOES declare is
+      // drawn as what it is — a second address, that one empty.
+      const declared = new Set([...stem.branches, ...stem.channels].map((b) => b.aspect));
+      const ours = stem.silent.filter((s) => s.why === "ONLY_OUR_MANIFEST_SAYS_IT" || s.why === "ONLY_OUR_DERIVED_FILE_SAYS_IT");
+      const rest = stem.silent.filter((s) => !ours.includes(s));
+      const whole = rest.filter((s) => !declared.has(s.aspect));
+      const elsewhere = rest.filter((s) => declared.has(s.aspect));
+      const line = (cls, text) => { const p = document.createElement("p"); p.className = cls; p.textContent = text; wrap.append(p); };
+      if (whole.length) line("decl-silent", `the source's own files say nothing about ${[...new Set(whole.map((s) => String(s.aspect).replace(/_/gu, " ")))].join(", ")}`);
+      if (elsewhere.length) {
+        const names = [...new Set(elsewhere.map((s) => String(s.aspect).replace(/_/gu, " ")))].join(", ");
+        const at = [...new Set(elsewhere.map((s) => String(s.where || "").split("::").slice(1).join("::").trim()).filter(Boolean))];
+        line("decl-silent", `on ${names} the source speaks only where the branch above says, and nothing stands${at.length ? ` at ${at.slice(0, 2).join("; ")}` : " at the other address the ledger looked"}`);
+      }
+      if (ours.length) line("decl-silent", `on ${[...new Set(ours.map((s) => String(s.aspect).replace(/_/gu, " ")))].join(", ")} only this project's own manifest speaks, never the source`);
+    }
+    if (stem.observations) {
+      const p = document.createElement("p"); p.className = "decl-silent";
+      p.textContent = `${stem.observations} further ${stem.observations === 1 ? "line is" : "lines are"} this project's measurement of the source, not the source's own statement, and ${stem.observations === 1 ? "is" : "are"} not drawn here`;
+      wrap.append(p);
+    }
+    return wrap;
+  };
   const sourceSwitch = () => {
     const host = document.getElementById("sourcesRow");
     if (!host) return;
@@ -4397,6 +4507,29 @@
         railSay();
       });
       seg.append(btn);
+      // THE BRANCH. The chip is the switch — that gesture does not change.
+      // Beside it, a second press opens what this source says about itself:
+      // its own declarations, at the addresses in its own files. The stem
+      // removes the source; the branch shows the reader what they would be
+      // removing, in the source's own words.
+      // its own class, never the source chip's: a check that counts the chips
+      // in this row is counting SOURCES, and an opener wearing dfp would be
+      // counted as one — the row would report twice the sources it has
+      const open = document.createElement("button"); open.type = "button"; open.className = "declp decl-open";
+      open.textContent = "what it declares"; open.setAttribute("aria-expanded", "false");
+      open.dataset.key = g.key;
+      open.addEventListener("click", async () => {
+        const shown = open.getAttribute("aria-expanded") === "true";
+        const existing = host.querySelector(`.decl[data-key="${CSS.escape(g.key)}"]`);
+        if (shown) { open.setAttribute("aria-expanded", "false"); if (existing) existing.remove(); return; }
+        host.querySelectorAll(".decl").forEach((x) => x.remove());
+        host.querySelectorAll(".decl-open").forEach((x) => x.setAttribute("aria-expanded", "false"));
+        open.setAttribute("aria-expanded", "true");
+        const d = declStore || await declReady();
+        if (open.getAttribute("aria-expanded") !== "true") return;   // the reader closed it while it arrived
+        host.append(declPanel(g, d));
+      });
+      seg.append(open);
     }
     host.append(seg);
     const why = host.parentElement && host.parentElement.querySelector(".why");
