@@ -2381,7 +2381,13 @@ const doc = pageDoc({
   // one word.
   demo: false,
   altLink: `<a class="face alt-face" href="/census/" title="every work the bridge records that does not serve yet — nothing hidden, nothing promised">the census</a>`
-    + `<a class="face alt-face" href="/opensourcing/" title="a page held open for a question this project has not answered yet">opensourcing</a>`,
+    + `<a class="face alt-face" href="/opensourcing/" title="a page held open for a question this project has not answered yet">opensourcing</a>`
+    // THE CHAIN — the same books with the meaning taken out. It is a separate
+    // tab from opensourcing on purpose: that page holds a question this
+    // project has not answered, and this one publishes evidence. Filing
+    // evidence under a heading that says nothing is decided would weaken
+    // both.
+    + `<a class="face alt-face" href="/chain/" title="the same books with the meaning taken out, so only the joins are left — every word and every reading as the fingerprint of its own bytes">the chain</a>`,
   sections: sectionsHtml,
 });
 
