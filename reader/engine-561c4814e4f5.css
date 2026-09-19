@@ -744,6 +744,40 @@
   .rail .row .why { grid-column: 2; font-size: 0.66rem; color: var(--faint); font-style: italic; margin-top: -0.1rem; }
   .rail .row .def-order { margin: 0; }
   .rail .row.dead .lab { color: var(--faint); }
+  /* THE SOURCES ROW — a folded list, one source per line. The switch is a
+     box on the left because that is where a reader looks to see what is on;
+     the name has the whole line, because a source whose name is cut at
+     thirty characters is a source nobody can weigh. */
+  .rail .src-fold { grid-column: 1 / -1; margin: 0; }
+  .rail .src-fold > summary { list-style: none; cursor: pointer; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.22rem 0.5rem;
+    width: fit-content; }
+  .rail .src-fold > summary::-webkit-details-marker { display: none; }
+  .rail .src-fold > summary::after { content: " \25be"; color: var(--faint); }
+  .rail .src-fold[open] > summary::after { content: " \25b4"; }
+  .rail .src-fold > summary:hover { color: var(--ink); border-color: var(--muted); }
+  .rail .def-order.src-list { display: block; margin: 0.4rem 0 0; max-width: 52rem; }
+  .rail .src-row { border-top: 1px solid var(--line); padding: 0.3rem 0 0.34rem; }
+  .rail .src-row:first-child { border-top: none; }
+  .rail .src-row { display: grid; grid-template-columns: 1.15rem 1fr; gap: 0 0.5rem; align-items: start; }
+  /* the box: the switch, and nothing else */
+  .rail .def-order.src-list .dfp { width: 0.92rem; height: 0.92rem; margin-top: 0.34rem; padding: 0;
+    border: 1px solid var(--muted); border-radius: 0.2rem; background: none; cursor: pointer;
+    font-size: 0; letter-spacing: 0; }
+  .rail .def-order.src-list .dfp.on { background: var(--sel); border-color: var(--sel); }
+  .rail .def-order.src-list .dfp:hover { border-color: var(--sel); }
+  /* the panel: the name, what the switch costs, and a press to open it */
+  .rail .src-open { grid-column: 2; display: block; width: 100%; text-align: left; font: inherit;
+    font-size: 0.78rem; color: var(--ink); background: none; border: none; padding: 0.22rem 0 0.3rem;
+    cursor: pointer; }
+  .rail .src-open::after { content: " \25be"; color: var(--faint); font-size: 0.7rem; }
+  .rail .src-open[aria-expanded="true"]::after { content: " \25b4"; color: var(--sel); }
+  .rail .src-open:hover .src-name { color: var(--sel); }
+  .rail .src-name { line-height: 1.32; }
+  .rail .src-row.off .src-name { color: var(--faint); text-decoration: line-through; text-decoration-color: var(--line); }
+  .rail .src-cost { display: block; font-style: normal; font-size: 0.64rem; color: var(--faint); }
+  .rail .src-row .decl { grid-column: 2; margin: 0.1rem 0 0.35rem; }
   /* THE SOURCE'S OWN DECLARATIONS — the branch that opens under a source
      chip. Gold line-work only; the source's own strings carry the reading
      ink, because they are the source speaking, not this project. */
@@ -756,17 +790,28 @@
   .rail .decl-aspect { margin: 0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .rail .decl-aspect i { font-style: normal; letter-spacing: 0; text-transform: none; color: var(--faint); }
   .rail .decl-aspect i.decl-work { font-size: 0.6rem; }
-  .rail .decl-values { margin: 0.1rem 0 0.12rem; font-size: 0.76rem; color: var(--tekhelet); line-height: 1.45; }
-  .rail .decl-values.none { color: var(--faint); font-style: italic; font-size: 0.68rem; }
+  .rail .decl-says { margin: 0; font-size: 0.74rem; color: var(--tekhelet); line-height: 1.5; }
+  .rail .decl-lead-in { color: var(--ink); }
+  .rail .decl-more { font: inherit; font-size: 0.66rem; color: var(--faint); background: none;
+    border: none; border-bottom: 1px solid var(--line); padding: 0; cursor: pointer; }
+  .rail .decl-more:hover { color: var(--muted); border-bottom-color: var(--muted); }
+  .rail .decl-head { margin: 0.5rem 0 0.3rem; font-size: 0.6rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); }
+  .rail .decl-where-fold { margin: 0.06rem 0 0; }
+  .rail .decl-where-fold > summary { list-style: none; cursor: pointer; font-size: 0.6rem; color: var(--faint); width: fit-content; }
+  .rail .decl-where-fold > summary::-webkit-details-marker { display: none; }
+  .rail .decl-where-fold > summary:hover { color: var(--muted); }
   .rail .decl-v i { font-style: normal; color: var(--faint); font-size: 0.66rem; padding-left: 0.14rem; }
   .rail .decl-where { margin: 0; font-size: 0.62rem; color: var(--faint); word-break: break-word; }
   .rail .decl-partial { margin: 0.1rem 0 0; font-size: 0.62rem; color: var(--muted); font-style: italic; }
   .rail .decl-silent, .rail .decl-none { margin: 0.35rem 0 0; font-size: 0.64rem; color: var(--faint); font-style: italic; }
-  .rail .def-order .declp { font: inherit; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--faint); background: none; border: 1px dashed var(--line); border-radius: 0.5rem;
-    padding: 0.16rem 0.44rem; cursor: pointer; }
-  .rail .def-order .declp:hover { color: var(--muted); border-color: var(--muted); }
-  .rail .declp.decl-open[aria-expanded="true"] { color: var(--sel); border-color: var(--sel-dim); border-style: solid; }
+  .rail .def-order .declp { font: inherit; font-size: 0.6rem; letter-spacing: 0.04em;
+    color: var(--faint); background: none; border: none; border-bottom: 1px solid var(--line);
+    border-radius: 0; padding: 0 0 0.04rem; cursor: pointer; }
+  .rail .def-order .declp::after { content: " \25be"; }
+  .rail .def-order .declp[aria-expanded="true"]::after { content: " \25b4"; }
+  .rail .def-order .declp:hover { color: var(--muted); border-bottom-color: var(--muted); }
+  .rail .declp.decl-open[aria-expanded="true"] { color: var(--sel); border-bottom-color: var(--sel-dim); }
   @media (max-width: 30rem) { .rail .row { grid-template-columns: 1fr; } .rail .row .why { grid-column: 1; } }
   /* Which way the words run, and nothing else. The two readers differ in the
      direction of the flow, so that is what is said under them. */
@@ -962,6 +1007,13 @@
      hover titles do not exist on a phone */
   #hud .head .kq-key { flex: 1 1 100%; margin: 0; color: var(--faint);
     font-size: 0.68rem; direction: ltr; text-align: left; }
+  /* the card's own pointing switch, in the corner of its head */
+  #hud .hud-lift { flex: 1 1 100%; display: flex; align-items: flex-start; gap: 0.4rem;
+    margin: 0.16rem 0 0; font-size: 0.66rem; line-height: 1.35; color: var(--faint);
+    cursor: pointer; }
+  #hud .hud-lift input { margin: 0.12rem 0 0; accent-color: var(--sel); flex: none; }
+  #hud .hud-lift:hover { color: var(--muted); }
+  #hud .hud-lift[data-on="true"] { color: var(--sel); }
   #hud .head .kq-role { flex: 1 1 100%; margin: 0; color: var(--muted);
     font-size: 0.74rem; font-style: italic; direction: ltr; text-align: left; }
   /* THE CARD KEEPS THE PAGE'S RULE: one ink, channels as washes, gold for

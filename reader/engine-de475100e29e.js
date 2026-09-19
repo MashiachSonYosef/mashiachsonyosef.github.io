@@ -304,6 +304,18 @@
   // the word standing open on the card: its pointed surface and its key,
   // which is what the lattice's grades are keyed by
   let openPointed = null, openKey = null;
+  // THE POINTING, CARD BY CARD. The rail sets where every card starts; a card
+  // may be lifted on its own, and that is the only scribal switch the reader
+  // gets, because the only place a scribal mark may be touched at all is
+  // INSIDE the card. The licensed Hebrew on the page is never what is being
+  // toggled — not a vowel of it — and this map cannot reach it: it is read
+  // by the card's head, its pool and its order, and by nothing that draws
+  // the text of the book.
+  const cardPointing = new Map();   // the word's pointed surface -> "letters"
+  const pointingNow = (surface) => {
+    const s = surface || openPointed;
+    return (s && cardPointing.get(s)) || masorah;
+  };
   const LIC_KEY = "fh.licence", NAMES_KEY = "fh.names", ED_KEY = "fh.edition";
   let licencePref = (() => { try { return ["any", "pd", "by", "by-sa"].includes(localStorage.getItem(LIC_KEY)) ? localStorage.getItem(LIC_KEY) : "any"; } catch { return "any"; } })();
   let namesPref = (() => { try { return localStorage.getItem(NAMES_KEY) === "sound" ? "sound" : "meaning"; } catch { return "meaning"; } })();
@@ -2113,7 +2125,7 @@
     // not grade stay: unknown is not a mismatch. The same guard sortPool
     // uses — the open word's own pointed surface, and only that.
     let routes = all, withheld = 0;
-    if (masorah === "only") {
+    if (pointingNow(surface === openKey ? openPointed : null) === "only") {
       // the grade has to be here before the pool is built, not after: a
       // pool built while the sidecar was still arriving is an unfiltered
       // pool, and no later redraw filters it — a redraw re-sorts what was
@@ -2227,7 +2239,21 @@
       // with the Masorah lifted there is no grade to sort by: a lattice
       // order falls through to oldest, and the toggle's set() already moved
       // the "reads first" row there and said so
-      if (masorah === "letters" && pos.lattice) return 0;
+      // THE LIFTED CARD LEADS WITH WHAT THE POINTING WAS WITHHOLDING. An
+      // earlier draft said that with the Masorah lifted there was no grade
+      // left to sort by, and that was wrong: the grade is a fact about each
+      // SOURCE's headword against the page's pointing, and lifting the
+      // pointing inside a card does not unmake it — it is exactly the fact
+      // the reader reached for. So a lifted card puts the readings whose
+      // source points this word OTHERWISE first, then the sources silent on
+      // pointing, then the ones that agree. Nothing is withheld and nothing
+      // is added: the whole pool stands, in the order the switch asked for,
+      // and the card says in words that the order moved.
+      if (pointingNow(surface === openKey ? openPointed : null) === "letters") {
+        if (!graded) return 0;
+        const v = (r) => ({ 2: 0, 1: 1, 0: 2 }[tierOf(r)] ?? 3);
+        return v(a) - v(b);
+      }
       if (graded && pos.lattice === "m") return tierOf(a) - tierOf(b);
       if (graded && pos.lattice === "x") { const v = (r) => ({ 2: 0, 1: 1, 0: 2 }[tierOf(r)] ?? 3); return v(a) - v(b); }
       if (gr && pos.lattice === "c") return cites(a) - cites(b);
@@ -2293,7 +2319,7 @@
         if (!lit) seg.style.color = "var(--faint)";
         b.append(seg);
       });
-    } else if (masorah === "letters" && !word.mark && (region && (region.form_k || region.k))) {
+    } else if (pointingNow() === "letters" && !word.mark && (region && (region.form_k || region.k))) {
       // THE LETTERS ONLY, inside the card. The bare consonants lead; the
       // pointed form stands faint beside them so nothing is hidden — the
       // reader lifted the Masorah here and can see exactly what was lifted.
@@ -2325,12 +2351,38 @@
     // withheld says so and says how many; a card whose head shows bare
     // letters says why. A toggle that changes what a card offers without the
     // card saying so is the page deciding quietly.
-    if (masorah !== "keep" && !word.mark) {
-      const mLine = document.createElement("p"); mLine.className = "kq-role"; mLine.dataset.masorah = masorah;
-      mLine.textContent = masorah === "letters"
-        ? "the letters only — the pointing stands on the page and is lifted here; every reading of these letters, oldest first"
+    const cardPos = pointingNow();
+    if (cardPos !== "keep" && !word.mark) {
+      const mLine = document.createElement("p"); mLine.className = "kq-role"; mLine.dataset.masorah = cardPos;
+      mLine.textContent = cardPos === "letters"
+        ? "the letters only — the pointing stands on the page and is lifted here; every reading of these letters, and the ones whose source points this word otherwise lead"
         : "only readings of this pointing — a source that points the word otherwise is not asked";
       head.append(mLine);
+    }
+    // THE CARD'S OWN SWITCH, in the corner, in plain words. The rail at the
+    // top says where every card starts; this one is for the word in front of
+    // the reader, and it reaches nothing else. The claim it carries is the
+    // project's own and not a source's: the scribes chose this pointing
+    // knowing the letters could carry others, and a reader is entitled to
+    // stand where they stood. What it can never do is touch the page: the
+    // Masoretic text is the licensed text and not a byte of it moves.
+    if (!word.mark && region && (region.form_k || region.k) && openPointed) {
+      const lift = document.createElement("label"); lift.className = "hud-lift";
+      const box = document.createElement("input"); box.type = "checkbox";
+      box.checked = cardPos === "letters";
+      box.addEventListener("change", () => {
+        if (box.checked) cardPointing.set(openPointed, "letters"); else cardPointing.delete(openPointed);
+        window.__cardPointing = [...cardPointing.entries()];
+        const wb = activeEl;
+        if (wb) { closeHud(false); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
+      });
+      const say = document.createElement("span");
+      say.textContent = box.checked
+        ? "Masoretic vowels off for this word — defined by character"
+        : "Turn off the Masoretic vowels for character-defined Hebrew";
+      lift.append(box, say);
+      lift.dataset.on = String(box.checked);
+      head.append(lift);
     }
     // A source-marked branch says which half it is ON the card, in words —
     // the roles lived only in hover titles, and a phone has no hover. The
@@ -4371,47 +4423,95 @@
       .catch(() => null);
     return declPromise;
   };
-  // one branch of the menorah: the aspect, then a leaf per value the source
-  // names, then the address in the source's own file. Counts are the SOURCE's
-  // own, on its own axis, and the denominator wears its name so nothing is
-  // divided by the wrong thing.
+  // WHAT A SOURCE SAYS, IN PLAIN ENGLISH. An expression is one thing this
+  // source states about itself. The SENTENCE is ours and the VALUES are
+  // always theirs, never mixed: the lead-in below is written per ASPECT and
+  // never per value, so no string a source wrote is ever reworded, classified
+  // or interpreted by this page. A reader sees "it tags senses with labels of
+  // its own — Syriac 4" and both halves are legible for what they are.
+  const SAY = {
+    language: "It calls its language",
+    dialect_or_variety: "It names the dialect or variety",
+    period: "It names the period",
+    register: "It names the register",
+    part_of_speech: "It labels parts of speech",
+    script: "It names the script",
+    pointing: "It says how it writes the vowels",
+    sense_type: "It types its senses",
+    semantic_domain: "It files senses under subjects",
+    grammatical_form_label: "It labels word forms",
+    edition_or_version: "It names its edition",
+    pronunciation_or_transcription: "It records pronunciation",
+    uncontrolled_label_channel: "It tags entries with labels of its own, in a field it never declares as one",
+    work_identity_statement: "It says what the work is",
+    source_self_description: "It describes itself",
+    licence_material: "It states its licence terms",
+    attestation: "It records where a form is attested",
+    provenance_or_crossref: "It points at other works",
+    editorial_status: "It marks editorial status",
+    ocr_engine: "It names the software that read the page",
+    root_entry_marker: "It marks which entries are roots",
+    has_aramaic_counterpart: "It marks entries with an Aramaic counterpart",
+  };
+  const sayFor = (aspect) => SAY[aspect] || `It records ${String(aspect).replace(/_/gu, " ")}`;
+  // one expression: the sentence, the source's own values inside it, and the
+  // address folded away — a reader wants to know WHAT it says before WHERE
   const declBranch = (b, klass, showWork) => {
     const box = document.createElement("div"); box.className = "decl-branch"; box.dataset.aspect = b.aspect;
     if (klass) box.dataset.klass = klass;
-    const head = document.createElement("p"); head.className = "decl-aspect";
-    head.textContent = String(b.aspect).replace(/_/gu, " ");
-    if (klass) { const n = document.createElement("i"); n.textContent = klass === "WORK_IDENTITY" ? " · what the work says it is" : klass === "LICENCE_MATERIAL_PARKED" ? " · licence material" : " · not one of the eleven branches" ; head.append(n); }
-    // one chip can gather several of the ledger's works; when it does, every
-    // line says WHICH work said it, or a reader meets one work declaring what
-    // another is silent about and reads it as a contradiction
-    if (showWork && b.work) { const w = document.createElement("i"); w.className = "decl-work"; w.textContent = ` · ${String(b.work).split("#").pop()}`; head.append(w); }
-    box.append(head);
-    const leaves = document.createElement("p"); leaves.className = "decl-values";
-    b.values.forEach((v, i) => {
-      if (i) leaves.append(document.createTextNode(" · "));
-      const s = document.createElement("span"); s.className = "decl-v"; s.textContent = v.v;
-      if (v.n !== null && v.n !== undefined) { const c = document.createElement("i"); c.textContent = ` ${Number(v.n).toLocaleString()}`; s.append(c); }
-      leaves.append(s);
-    });
-    if (!b.values.length) { leaves.className = "decl-values none"; leaves.textContent = "no value survives the reserved-token rule"; }
-    box.append(leaves);
+    const line = document.createElement("p"); line.className = "decl-says";
+    const lead = document.createElement("span"); lead.className = "decl-lead-in";
+    lead.textContent = `${sayFor(b.aspect)}${b.values.length ? " — " : ""}`;
+    line.append(lead);
+    // THE LIST IS CAPPED, AND THE CAP IS SAID. A source that labels its word
+    // forms thirty-five ways is a source whose line nobody reads to the end,
+    // so the first eight stand and the rest wait behind a press that names
+    // how many they are. Nothing is dropped and nothing is summarised: the
+    // values are the source's own, in the order the ledger carries them.
+    const CAP = 8;
+    const draw = (v, first) => {
+      const frag = document.createDocumentFragment();
+      if (!first) frag.append(document.createTextNode(" · "));
+      const sp = document.createElement("span"); sp.className = "decl-v"; sp.textContent = v.v;
+      if (v.n !== null && v.n !== undefined) { const c = document.createElement("i"); c.textContent = ` ${Number(v.n).toLocaleString()}`; sp.append(c); }
+      frag.append(sp); return frag;
+    };
+    b.values.slice(0, CAP).forEach((v, i) => line.append(draw(v, i === 0)));
+    if (b.values.length > CAP) {
+      const rest = document.createElement("span"); rest.className = "decl-rest"; rest.hidden = true;
+      b.values.slice(CAP).forEach((v) => rest.append(draw(v, false)));
+      line.append(rest);
+      const more = document.createElement("button"); more.type = "button"; more.className = "decl-more";
+      more.textContent = `and ${(b.values.length - CAP).toLocaleString()} more`;
+      more.addEventListener("click", () => {
+        const shown = !rest.hidden;
+        rest.hidden = shown;
+        more.textContent = shown ? `and ${(b.values.length - CAP).toLocaleString()} more` : "fewer";
+      });
+      // a button is inline-block and eats its own leading space, so the gap
+      // is a text node of the line's, not of the button's
+      line.append(document.createTextNode(" "), more);
+    }
+    if (!b.values.length) line.append(document.createTextNode(" — nothing the reserved-token rule lets stand"));
+    box.append(line);
+    // the partial warning stays in the open: it changes what the list MEANS
+    if (b.tail) {
+      const p = document.createElement("p"); p.className = "decl-partial";
+      p.textContent = b.distinct_total ? `and more — the field holds ${Number(b.distinct_total).toLocaleString()} different labels and ${b.values.length} are carried here` : "and more — this list is a part of what the field holds";
+      box.append(p);
+    }
+    if (b.decoded) { const p = document.createElement("p"); p.className = "decl-partial"; p.textContent = `one value here is this project's reading of the source's own string (${b.decoded})`; box.append(p); }
+    // the address, folded
+    const where = document.createElement("details"); where.className = "decl-where-fold";
+    const ws = document.createElement("summary"); ws.textContent = "where it says this"; where.append(ws);
     const foot = document.createElement("p"); foot.className = "decl-where";
     const bits = [];
     if (b.cover && b.cover.n !== null && b.cover.n !== undefined)
-      bits.push(`${Number(b.cover.n).toLocaleString()}${b.cover.of ? ` of ${Number(b.cover.of).toLocaleString()}` : ""}${b.cover.of_what ? ` ${String(b.cover.of_what).replace(/_/gu, " ")}` : ""}${b.cover.pct ? ` · ${b.cover.pct}%` : ""}${b.cover.upper_bound ? " · at most" : ""}`);
-    if (b.grain) bits.push(String(b.grain).replace(/_/gu, " "));
+      bits.push(`on ${Number(b.cover.n).toLocaleString()}${b.cover.of ? ` of ${Number(b.cover.of).toLocaleString()}` : ""}${b.cover.of_what ? ` ${String(b.cover.of_what).replace(/_/gu, " ")}` : ""}${b.cover.upper_bound ? ", at most" : ""}`);
     if (b.where) bits.push(b.where);
+    if (showWork && b.work) bits.push(`the ${String(b.work).split("#").pop()} part of this source`);
     foot.textContent = bits.join(" — ");
-    box.append(foot);
-    // the flag, read AFTER the drop and never as the test for one: it says
-    // this list is a PART of what the field holds, so the card may not be
-    // read as a complete set and no "other" bucket is built from the gap
-    if (b.tail) {
-      const p = document.createElement("p"); p.className = "decl-partial";
-      p.textContent = b.distinct_total ? `this list is partial — the field holds ${Number(b.distinct_total).toLocaleString()} distinct values and ${b.values.length} are carried here` : "this list is partial — what the field holds is more than what is carried here";
-      box.append(p);
-    }
-    if (b.decoded) { const p = document.createElement("p"); p.className = "decl-partial"; p.textContent = `a value here is the corpus lane's decoding of the source's own string (${b.decoded})`; box.append(p); }
+    where.append(foot); box.append(where);
     return box;
   };
   const declPanel = (g, d) => {
@@ -4419,52 +4519,54 @@
     const stem = d && d.stems ? d.stems[g.key] : null;
     if (!stem) {
       const p = document.createElement("p"); p.className = "decl-none";
-      p.textContent = "the declarations ledger holds nothing for this source — it names no aspect this source declares, and this lane fills no gap";
+      p.textContent = "the declarations ledger holds nothing for this source, and this page fills no gap";
       wrap.append(p); return wrap;
     }
+    // WHAT THIS SOURCE IS, in one sentence. Every source on this shelf is a
+    // dictionary read for English; what differs is what it says about itself
+    // and on whose word the licence rests — and where only this project's own
+    // manifest states the licence, the sentence says so rather than letting
+    // the reader assume the source did.
+    const ourLicence = stem.silent.some((x) => x.aspect === "licence_material" && (x.why === "ONLY_OUR_MANIFEST_SAYS_IT" || x.why === "ONLY_OUR_DERIVED_FILE_SAYS_IT"));
+    const theirLicence = [...stem.branches, ...stem.channels].some((b) => b.aspect === "licence_material");
     const lead = document.createElement("p"); lead.className = "decl-lead";
-    lead.textContent = `${stem.labels.join(" · ")} — what this source says about itself, in its own files`;
+    lead.textContent = `An English dictionary this site reads for definitions of words written in Hebrew letters. ${
+      theirLicence ? "It states its own licence terms" : ourLicence ? "Its licence is recorded by this project, not stated in the source's own files" : "Its licence is recorded by this project"
+    }. On this book it leads ${g.leads.toLocaleString()} line${g.leads === 1 ? "" : "s"} and carries a reading at ${g.carries.toLocaleString()} word${g.carries === 1 ? "" : "s"}.`;
     wrap.append(lead);
     const works = new Set([...stem.branches, ...stem.channels].map((b) => b.work).filter(Boolean));
     const many = works.size > 1;
     if (many) {
       const p = document.createElement("p"); p.className = "decl-silent";
-      p.textContent = `this one switch stands for ${works.size} works of the same source; each line below says which of them said it`;
+      p.textContent = `This one switch stands for ${works.size} works of the same source; each line says which of them said it.`;
       wrap.append(p);
     }
+    const head = document.createElement("p"); head.className = "decl-head";
+    const n = stem.branches.length + stem.channels.length;
+    head.textContent = n ? `What it says about itself · ${n}` : "";
+    if (n) wrap.append(head);
     stem.branches.forEach((b) => wrap.append(declBranch(b, null, many)));
     stem.channels.forEach((b) => wrap.append(declBranch(b, b.klass || "CHANNEL_NOT_A_BRANCH", many)));
-    if (!stem.branches.length && !stem.channels.length) {
+    if (!n) {
       const p = document.createElement("p"); p.className = "decl-none";
-      p.textContent = "this source declares nothing the ledger could record — a short branch drawn at its real height";
+      p.textContent = "This source declares nothing the ledger could record. A short branch, drawn at its real height.";
       wrap.append(p);
     }
     if (stem.silent.length) {
-      // A SILENCE IS AT AN ADDRESS, not about a source. The same file can
-      // state a thing in one place and hold nothing in another: BDB names its
-      // language inside the definition markup and carries none in the
-      // record's own keys, so both rows are true. Flattening them into "the
-      // source says nothing about language" while a language branch stands
-      // above it would be this page inventing a contradiction the ledger
-      // never recorded. So a silence on an aspect this stem DOES declare is
-      // drawn as what it is — a second address, that one empty.
       const declared = new Set([...stem.branches, ...stem.channels].map((b) => b.aspect));
-      const ours = stem.silent.filter((s) => s.why === "ONLY_OUR_MANIFEST_SAYS_IT" || s.why === "ONLY_OUR_DERIVED_FILE_SAYS_IT");
-      const rest = stem.silent.filter((s) => !ours.includes(s));
-      const whole = rest.filter((s) => !declared.has(s.aspect));
-      const elsewhere = rest.filter((s) => declared.has(s.aspect));
-      const line = (cls, text) => { const p = document.createElement("p"); p.className = cls; p.textContent = text; wrap.append(p); };
-      if (whole.length) line("decl-silent", `the source's own files say nothing about ${[...new Set(whole.map((s) => String(s.aspect).replace(/_/gu, " ")))].join(", ")}`);
-      if (elsewhere.length) {
-        const names = [...new Set(elsewhere.map((s) => String(s.aspect).replace(/_/gu, " ")))].join(", ");
-        const at = [...new Set(elsewhere.map((s) => String(s.where || "").split("::").slice(1).join("::").trim()).filter(Boolean))];
-        line("decl-silent", `on ${names} the source speaks only where the branch above says, and nothing stands${at.length ? ` at ${at.slice(0, 2).join("; ")}` : " at the other address the ledger looked"}`);
-      }
-      if (ours.length) line("decl-silent", `on ${[...new Set(ours.map((s) => String(s.aspect).replace(/_/gu, " ")))].join(", ")} only this project's own manifest speaks, never the source`);
+      const ours = stem.silent.filter((x) => x.why === "ONLY_OUR_MANIFEST_SAYS_IT" || x.why === "ONLY_OUR_DERIVED_FILE_SAYS_IT");
+      const rest = stem.silent.filter((x) => !ours.includes(x));
+      const whole = rest.filter((x) => !declared.has(x.aspect));
+      const elsewhere = rest.filter((x) => declared.has(x.aspect));
+      const line = (t) => { const p = document.createElement("p"); p.className = "decl-silent"; p.textContent = t; wrap.append(p); };
+      const words = (xs) => [...new Set(xs.map((x) => String(x.aspect).replace(/_/gu, " ")))].join(", ");
+      if (whole.length) line(`It says nothing at all about ${words(whole)}.`);
+      if (elsewhere.length) line(`On ${words(elsewhere)} it speaks only where the line above says, and the other place the ledger looked holds nothing.`);
+      if (ours.length) line(`On ${words(ours)} only this project's own manifest speaks, never the source.`);
     }
     if (stem.observations) {
       const p = document.createElement("p"); p.className = "decl-silent";
-      p.textContent = `${stem.observations} further ${stem.observations === 1 ? "line is" : "lines are"} this project's measurement of the source, not the source's own statement, and ${stem.observations === 1 ? "is" : "are"} not drawn here`;
+      p.textContent = `${stem.observations} further line${stem.observations === 1 ? " is" : "s are"} this project measuring the source rather than the source speaking, and ${stem.observations === 1 ? "is" : "are"} not shown here.`;
       wrap.append(p);
     }
     return wrap;
@@ -4485,53 +4587,75 @@
       g.ids.push(id); g.labels.push(s.label); g.leads += s.leads; g.carries += s.carries; g.changes += s.changes; g.darkens += s.darkens;
       groups.set(gk, g);
     }
-    const seg = document.createElement("span"); seg.className = "def-order"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
+    // A LIST, NOT A CLOUD. Thirty-six sources wrapped as chips is a wall at
+    // phone width: the names truncate at thirty characters, the two cost
+    // numbers run together, and nothing can be read down. So the row is a
+    // list — one source per line, its whole name, its switch on the left
+    // where a reader looks first, and what it costs said in words — and the
+    // list lives inside a fold, because the rail has other rows and a reader
+    // who has not come for the sources should not have to scroll past them.
+    const fold = document.createElement("details"); fold.className = "src-fold";
+    const sum = document.createElement("summary"); sum.className = "src-sum";
+    fold.append(sum);
+    const seg = document.createElement("div"); seg.className = "def-order src-list"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
     const ordered = [...groups.values()].sort((a, b) => b.leads - a.leads || b.carries - a.carries || a.key.localeCompare(b.key));
+    const sayFold = () => {
+      const off = ordered.filter((g) => g.ids.every((id) => sourcesOff.has(id))).length;
+      sum.textContent = off ? `${ordered.length} sources · ${off} switched off` : `${ordered.length} sources, all on`;
+    };
     for (const g of ordered) {
       const on = !g.ids.every((id) => sourcesOff.has(id));
+      const line = document.createElement("div"); line.className = "src-row";
+      const label = [...g.labels].sort((a, b) => a.length - b.length)[0] || g.key;
+      const costs = g.changes || g.darkens
+        ? `off: ${g.changes.toLocaleString()} line${g.changes === 1 ? "" : "s"} change${g.darkens ? `, ${g.darkens.toLocaleString()} go bare` : ""}`
+        : "off: nothing on this book changes";
+      // TWO CONTROLS, ONE ROW, and neither does the other's work. The box is
+      // the switch and nothing else: it turns the source off. The panel beside
+      // it — the name, what the switch costs, the count — opens what the
+      // source says about itself. A reader who taps the name to read about a
+      // source must never find they have removed it.
       const btn = document.createElement("button"); btn.type = "button";
       btn.className = "dfp" + (on ? " on" : "");
       btn.dataset.ids = g.ids.join(" "); btn.dataset.key = g.key;
-      // the shortest label of the group, cut to a chip's width; the whole
-      // group is on the title, so nothing is hidden, only abbreviated
-      const short = [...g.labels].sort((a, b) => a.length - b.length)[0] || g.key;
-      btn.textContent = short.length > 30 ? `${short.slice(0, 29)}…` : short;
-      const cost = document.createElement("i"); cost.textContent = ` ${g.changes.toLocaleString()}·${g.darkens.toLocaleString()}`; cost.style.fontStyle = "normal"; cost.style.opacity = "0.7";
-      btn.append(cost);
-      btn.title = `${g.labels.map((l, i) => `${g.ids[i]} ${l}`).join("\n")}\n${g.lic}\nleads ${g.leads.toLocaleString()} of this book's lines, carries a reading at ${g.carries.toLocaleString()} keys\noff: ${g.changes.toLocaleString()} lines change, ${g.darkens.toLocaleString()} go dark`;
       btn.setAttribute("aria-pressed", String(on));
+      btn.setAttribute("aria-label", `use ${label}`);
+      btn.title = `${on ? "switch off" : "switch back on"}: ${label}\n${costs}`;
       btn.addEventListener("click", () => {
         const nowOn = btn.getAttribute("aria-pressed") === "true";
         t.set(g.ids, !nowOn);
         btn.classList.toggle("on", !nowOn); btn.setAttribute("aria-pressed", String(!nowOn));
-        railSay();
+        line.classList.toggle("off", nowOn);
+        sayFold(); railSay();
       });
-      seg.append(btn);
-      // THE BRANCH. The chip is the switch — that gesture does not change.
-      // Beside it, a second press opens what this source says about itself:
-      // its own declarations, at the addresses in its own files. The stem
-      // removes the source; the branch shows the reader what they would be
-      // removing, in the source's own words.
-      // its own class, never the source chip's: a check that counts the chips
-      // in this row is counting SOURCES, and an opener wearing dfp would be
-      // counted as one — the row would report twice the sources it has
-      const open = document.createElement("button"); open.type = "button"; open.className = "declp decl-open";
-      open.textContent = "what it declares"; open.setAttribute("aria-expanded", "false");
-      open.dataset.key = g.key;
+      line.append(btn);
+      if (!on) line.classList.add("off");
+      const open = document.createElement("button"); open.type = "button"; open.className = "src-open decl-open";
+      open.setAttribute("aria-expanded", "false"); open.dataset.key = g.key;
+      const name = document.createElement("span"); name.className = "src-name"; name.textContent = label;
+      const cost = document.createElement("i"); cost.className = "src-cost"; cost.textContent = costs;
+      open.append(name, cost);
+      open.title = `${g.labels.map((l, i) => `${g.ids[i]} ${l}`).join("\n")}\n${g.lic}\nleads ${g.leads.toLocaleString()} of this book's lines, carries a reading at ${g.carries.toLocaleString()} keys`;
+      seg.append(line);
       open.addEventListener("click", async () => {
         const shown = open.getAttribute("aria-expanded") === "true";
-        const existing = host.querySelector(`.decl[data-key="${CSS.escape(g.key)}"]`);
+        const existing = line.querySelector(".decl");
         if (shown) { open.setAttribute("aria-expanded", "false"); if (existing) existing.remove(); return; }
         host.querySelectorAll(".decl").forEach((x) => x.remove());
         host.querySelectorAll(".decl-open").forEach((x) => x.setAttribute("aria-expanded", "false"));
         open.setAttribute("aria-expanded", "true");
         const d = declStore || await declReady();
         if (open.getAttribute("aria-expanded") !== "true") return;   // the reader closed it while it arrived
-        host.append(declPanel(g, d));
+        // under ITS OWN source, not at the foot of the list: a branch that
+        // opens thirty rows below the name it belongs to is a branch the
+        // reader has to hunt for
+        line.append(declPanel(g, d));
       });
-      seg.append(open);
+      line.append(open);
     }
-    host.append(seg);
+    sayFold();
+    fold.append(seg);
+    host.append(fold);
     const why = host.parentElement && host.parentElement.querySelector(".why");
     if (why) why.textContent = `${ordered.length} sources stand behind this book's readings (${Object.keys(table).length} ledger ids). Beside each: lines that change · lines that go dark when it alone is off. A source off is not asked on any card; the line under a word follows. The branch under each source — what it declares about itself — waits on the corpus lane's declarations ledger.`;
   };
