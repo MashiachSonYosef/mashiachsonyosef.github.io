@@ -764,6 +764,37 @@
   .rail .row .why { grid-column: 2; font-size: 0.66rem; color: var(--faint); font-style: italic; margin-top: -0.1rem; }
   .rail .row .def-order { margin: 0; }
   .rail .row.dead .lab { color: var(--faint); }
+  /* THE SOURCES ROW — a folded list, one source per line. The switch is a
+     box on the left because that is where a reader looks to see what is on;
+     the name has the whole line, because a source whose name is cut at
+     thirty characters is a source nobody can weigh. */
+  .rail .src-fold { grid-column: 1 / -1; margin: 0; }
+  .rail .src-fold > summary { list-style: none; cursor: pointer; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.22rem 0.5rem;
+    width: fit-content; }
+  .rail .src-fold > summary::-webkit-details-marker { display: none; }
+  .rail .src-fold > summary::after { content: " \25be"; color: var(--faint); }
+  .rail .src-fold[open] > summary::after { content: " \25b4"; }
+  .rail .src-fold > summary:hover { color: var(--ink); border-color: var(--muted); }
+  .rail .def-order.src-list { display: block; margin: 0.4rem 0 0; max-width: 52rem; }
+  .rail .src-row { border-top: 1px solid var(--line); padding: 0.3rem 0 0.34rem; }
+  .rail .src-row:first-child { border-top: none; }
+  .rail .def-order.src-list .dfp { display: grid; grid-template-columns: 1.05rem 1fr; gap: 0 0.45rem;
+    width: 100%; text-align: left; border: none; border-radius: 0; padding: 0;
+    font-size: 0.78rem; letter-spacing: 0; text-transform: none; color: var(--ink); background: none; }
+  .rail .def-order.src-list .dfp::before { content: ""; grid-row: 1 / span 2; align-self: start;
+    width: 0.86rem; height: 0.86rem; margin-top: 0.12rem; border: 1px solid var(--muted);
+    border-radius: 0.18rem; }
+  .rail .def-order.src-list .dfp.on::before { background: var(--sel); border-color: var(--sel); }
+  .rail .def-order.src-list .dfp:not(.on) .src-name { color: var(--faint); text-decoration: line-through;
+    text-decoration-color: var(--line); }
+  .rail .def-order.src-list .dfp:hover .src-name { color: var(--sel); }
+  .rail .src-name { line-height: 1.32; }
+  .rail .src-cost { grid-column: 2; font-style: normal; font-size: 0.64rem; color: var(--faint); }
+  .rail .src-row .declp { margin: 0.1rem 0 0 1.5rem; }
+  .rail .src-row .decl { margin: 0.3rem 0 0.1rem 1.5rem; }
+  @media (max-width: 30rem) { .rail .src-row .declp, .rail .src-row .decl { margin-left: 1.5rem; } }
   /* THE SOURCE'S OWN DECLARATIONS — the branch that opens under a source
      chip. Gold line-work only; the source's own strings carry the reading
      ink, because they are the source speaking, not this project. */
@@ -782,11 +813,13 @@
   .rail .decl-where { margin: 0; font-size: 0.62rem; color: var(--faint); word-break: break-word; }
   .rail .decl-partial { margin: 0.1rem 0 0; font-size: 0.62rem; color: var(--muted); font-style: italic; }
   .rail .decl-silent, .rail .decl-none { margin: 0.35rem 0 0; font-size: 0.64rem; color: var(--faint); font-style: italic; }
-  .rail .def-order .declp { font: inherit; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--faint); background: none; border: 1px dashed var(--line); border-radius: 0.5rem;
-    padding: 0.16rem 0.44rem; cursor: pointer; }
-  .rail .def-order .declp:hover { color: var(--muted); border-color: var(--muted); }
-  .rail .declp.decl-open[aria-expanded="true"] { color: var(--sel); border-color: var(--sel-dim); border-style: solid; }
+  .rail .def-order .declp { font: inherit; font-size: 0.6rem; letter-spacing: 0.04em;
+    color: var(--faint); background: none; border: none; border-bottom: 1px solid var(--line);
+    border-radius: 0; padding: 0 0 0.04rem; cursor: pointer; }
+  .rail .def-order .declp::after { content: " \25be"; }
+  .rail .def-order .declp[aria-expanded="true"]::after { content: " \25b4"; }
+  .rail .def-order .declp:hover { color: var(--muted); border-bottom-color: var(--muted); }
+  .rail .declp.decl-open[aria-expanded="true"] { color: var(--sel); border-bottom-color: var(--sel-dim); }
   @media (max-width: 30rem) { .rail .row { grid-template-columns: 1fr; } .rail .row .why { grid-column: 1; } }
   /* Which way the words run, and nothing else. The two readers differ in the
      direction of the flow, so that is what is said under them. */
@@ -6000,18 +6033,39 @@
       g.ids.push(id); g.labels.push(s.label); g.leads += s.leads; g.carries += s.carries; g.changes += s.changes; g.darkens += s.darkens;
       groups.set(gk, g);
     }
-    const seg = document.createElement("span"); seg.className = "def-order"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
+    // A LIST, NOT A CLOUD. Thirty-six sources wrapped as chips is a wall at
+    // phone width: the names truncate at thirty characters, the two cost
+    // numbers run together, and nothing can be read down. So the row is a
+    // list — one source per line, its whole name, its switch on the left
+    // where a reader looks first, and what it costs said in words — and the
+    // list lives inside a fold, because the rail has other rows and a reader
+    // who has not come for the sources should not have to scroll past them.
+    const fold = document.createElement("details"); fold.className = "src-fold";
+    const sum = document.createElement("summary"); sum.className = "src-sum";
+    fold.append(sum);
+    const seg = document.createElement("div"); seg.className = "def-order src-list"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
     const ordered = [...groups.values()].sort((a, b) => b.leads - a.leads || b.carries - a.carries || a.key.localeCompare(b.key));
+    const sayFold = () => {
+      const off = ordered.filter((g) => g.ids.every((id) => sourcesOff.has(id))).length;
+      sum.textContent = off ? `${ordered.length} sources · ${off} switched off` : `${ordered.length} sources, all on`;
+    };
     for (const g of ordered) {
       const on = !g.ids.every((id) => sourcesOff.has(id));
+      const line = document.createElement("div"); line.className = "src-row";
       const btn = document.createElement("button"); btn.type = "button";
       btn.className = "dfp" + (on ? " on" : "");
       btn.dataset.ids = g.ids.join(" "); btn.dataset.key = g.key;
-      // the shortest label of the group, cut to a chip's width; the whole
-      // group is on the title, so nothing is hidden, only abbreviated
-      const short = [...g.labels].sort((a, b) => a.length - b.length)[0] || g.key;
-      btn.textContent = short.length > 30 ? `${short.slice(0, 29)}…` : short;
-      const cost = document.createElement("i"); cost.textContent = ` ${g.changes.toLocaleString()}·${g.darkens.toLocaleString()}`; cost.style.fontStyle = "normal"; cost.style.opacity = "0.7";
+      // the whole name, wrapping — a list has room for it, and a source the
+      // reader cannot read the name of is a source they cannot weigh
+      const name = document.createElement("span"); name.className = "src-name";
+      name.textContent = [...g.labels].sort((a, b) => a.length - b.length)[0] || g.key;
+      btn.append(name);
+      // and what the switch costs, in words rather than two numbers with a
+      // dot between them
+      const cost = document.createElement("i"); cost.className = "src-cost";
+      cost.textContent = g.changes || g.darkens
+        ? `off: ${g.changes.toLocaleString()} line${g.changes === 1 ? "" : "s"} change${g.darkens ? `, ${g.darkens.toLocaleString()} go bare` : ""}`
+        : "off: nothing on this book changes";
       btn.append(cost);
       btn.title = `${g.labels.map((l, i) => `${g.ids[i]} ${l}`).join("\n")}\n${g.lic}\nleads ${g.leads.toLocaleString()} of this book's lines, carries a reading at ${g.carries.toLocaleString()} keys\noff: ${g.changes.toLocaleString()} lines change, ${g.darkens.toLocaleString()} go dark`;
       btn.setAttribute("aria-pressed", String(on));
@@ -6019,9 +6073,10 @@
         const nowOn = btn.getAttribute("aria-pressed") === "true";
         t.set(g.ids, !nowOn);
         btn.classList.toggle("on", !nowOn); btn.setAttribute("aria-pressed", String(!nowOn));
-        railSay();
+        sayFold(); railSay();
       });
-      seg.append(btn);
+      line.append(btn);
+      seg.append(line);
       // THE BRANCH. The chip is the switch — that gesture does not change.
       // Beside it, a second press opens what this source says about itself:
       // its own declarations, at the addresses in its own files. The stem
@@ -6035,18 +6090,23 @@
       open.dataset.key = g.key;
       open.addEventListener("click", async () => {
         const shown = open.getAttribute("aria-expanded") === "true";
-        const existing = host.querySelector(`.decl[data-key="${CSS.escape(g.key)}"]`);
+        const existing = line.querySelector(".decl");
         if (shown) { open.setAttribute("aria-expanded", "false"); if (existing) existing.remove(); return; }
         host.querySelectorAll(".decl").forEach((x) => x.remove());
         host.querySelectorAll(".decl-open").forEach((x) => x.setAttribute("aria-expanded", "false"));
         open.setAttribute("aria-expanded", "true");
         const d = declStore || await declReady();
         if (open.getAttribute("aria-expanded") !== "true") return;   // the reader closed it while it arrived
-        host.append(declPanel(g, d));
+        // under ITS OWN source, not at the foot of the list: a branch that
+        // opens thirty rows below the name it belongs to is a branch the
+        // reader has to hunt for
+        line.append(declPanel(g, d));
       });
-      seg.append(open);
+      line.append(open);
     }
-    host.append(seg);
+    sayFold();
+    fold.append(seg);
+    host.append(fold);
     const why = host.parentElement && host.parentElement.querySelector(".why");
     if (why) why.textContent = `${ordered.length} sources stand behind this book's readings (${Object.keys(table).length} ledger ids). Beside each: lines that change · lines that go dark when it alone is off. A source off is not asked on any card; the line under a word follows. The branch under each source — what it declares about itself — waits on the corpus lane's declarations ledger.`;
   };

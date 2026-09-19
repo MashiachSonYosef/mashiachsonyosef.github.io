@@ -10,7 +10,7 @@
 // apart: a line that CHANGES because another carrier remains or an alternate
 // leads, and a line that goes DARK because nobody else carries anything.
 //
-//   S1  the sources row is on the rail: one chip per source key, every one
+//   S1  the sources row is on the rail: one row per source key, every one
 //       ON, each carrying two numbers (change · dark) and its ledger ids
 //   S2  the receipt's sources agree with the chips, and its counts with the
 //       zone's own gloss_m (every printed reading carries its carriers)
@@ -61,15 +61,33 @@ const rail = await p.evaluate(() => {
     dead: row.classList.contains("dead"),
     n: chips.length,
     allOn: chips.every((c) => c.getAttribute("aria-pressed") === "true"),
-    withNumbers: chips.filter((c) => /\d+·\d+/u.test(c.textContent)).length,
     withIds: chips.filter((c) => /^M\d+( M\d+)*$/u.test(c.dataset.ids || "")).length,
     keys: chips.map((c) => c.dataset.key),
+    // what each chip SAYS its switch costs, read off the chip as a reader
+    // reads it — the two numbers by value, in whatever words the row uses,
+    // never by the shape of a separator
+    said: Object.fromEntries(chips.map((c) => [c.dataset.key, (c.textContent.match(/[\d,]+/gu) || []).map((x) => Number(x.replace(/,/gu, "")))])),
   };
 });
 const keysInReceipt = new Set(Object.values(rec.sources).map((s) => s.key || ""));
-check("S1  the sources row is on the rail, every chip on, each with its two numbers and its ids",
-  rail && !rail.dead && rail.n > 0 && rail.allOn && rail.withNumbers === rail.n && rail.withIds === rail.n,
-  rail ? `${rail.n} chips · ${rail.withNumbers} numbered · ${rail.withIds} with ids` : "no row");
+// the two costs the receipt bakes for each source key, summed over its ids —
+// what the chip must be saying, by value
+const costOf = new Map();
+for (const s of Object.values(rec.sources)) {
+  const k = s.key || "";
+  const c = costOf.get(k) || { changes: 0, darkens: 0 };
+  c.changes += Number(s.changes) || 0; c.darkens += Number(s.darkens) || 0;
+  costOf.set(k, c);
+}
+const wrongCost = rail ? rail.keys.filter((k) => {
+  const want = costOf.get(k), said = (rail.said || {})[k] || [];
+  if (!want) return true;
+  // a cost of zero may be left unsaid in words; a non-zero one may not
+  return (want.changes && !said.includes(want.changes)) || (want.darkens && !said.includes(want.darkens));
+}) : [];
+check("S1  the sources row is on the rail, every chip on, each saying what its switch costs and carrying its ids",
+  rail && !rail.dead && rail.n > 0 && rail.allOn && wrongCost.length === 0 && rail.withIds === rail.n,
+  rail ? `${rail.n} chips · ${rail.n - wrongCost.length} say both their costs · ${rail.withIds} with ids${wrongCost.length ? ` · not saying them: ${wrongCost.slice(0, 3).join(", ")}` : ""}` : "no row");
 // S2
 const byCount = Object.values(zone.gloss_m || {}).filter((e) => Array.isArray(e.by) && e.by.length).length;
 check("S2  the receipt agrees with the chips and with gloss_m",
