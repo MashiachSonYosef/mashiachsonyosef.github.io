@@ -339,13 +339,26 @@
   // entry says what it is, its positions, what makes it live on this zone,
   // and — when it is not — what it waits on. A row that cannot answer is
   // drawn dead with its reason, never dropped. `now` is the summary word.
+  /** WHOSE STATEMENT A ROW IS. Every row used to be drawn the same, so a
+   *  reader could not tell the sources talking from this project talking.
+   *  The source tree is built to contain nothing of ours; the pointing is
+   *  this project making a claim of its own. Drawing them identically was
+   *  the project wearing the sources’ clothes, which is the one thing the
+   *  source tree exists to avoid. So every row names its voice, and the one
+   *  claim that is ours is marked as ours. */
+  const VOICE = {
+    them: ["the sources", "what a dictionary says about itself, in its own words"],
+    text: ["the manuscripts", "something the text itself carries"],
+    arrange: ["this site", "how this site arranges what the sources said — an order, never a selection"],
+    claim: ["this project’s claim", "a statement this project makes, not one a source made"],
+  };
   const TOGGLES = [
-    { id: "order", lab: "reads first", why: "which dictionary answers first, when several can",
+    { id: "order", voice: "arrange", lab: "reads first", why: "which dictionary answers first, when several can",
       live: () => true, now: () => (DEF_POS.find((p) => p.id === defOrder) || {}).lab },
     // THE MASORAH — see the note above MASORAH_KEY. Second on the rail because
     // it is the page's own statement; "only" needs the lattice's grade of this
     // book and is drawn dead without it; "letters" needs nothing.
-    { id: "masorah", lab: "the pointing", why: "the Masoretic vowels: kept as the page prints them, made the gate on what a word can mean, or lifted inside the card — the page itself never changes",
+    { id: "masorah", voice: "claim", lab: "the pointing", why: "the Masoretic vowels: kept as the page prints them, made the gate on what a word can mean, or lifted inside the card — the page itself never changes",
       positions: [{ id: "keep", lab: "keep" }, { id: "only", lab: "only this pointing" }, { id: "letters", lab: "the letters only" }],
       live: () => true,
       get: () => masorah,
@@ -366,7 +379,7 @@
     // THE SOURCE SWITCHES — see the note above SOURCES_KEY. Its row is its own
     // widget (sourceSwitch below), one chip per source this book's readings
     // stand on, each with the two numbers its switch costs on this book.
-    { id: "sources", lab: "sources", why: "every dictionary this book's readings stand on, each one removable — a source turned off is not asked, and the card says how many records that withheld",
+    { id: "sources", voice: "them", lab: "sources", why: "every dictionary this book's readings stand on, each one removable — a source turned off is not asked, and the card says how many records that withheld",
       live: () => !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.sources && zone.emitted_from.toggles.sources.sources),
       waits: "the per-source switch costs baked on this book (tools/regloss-zone.mjs)",
       get: () => [...sourcesOff],
@@ -380,25 +393,25 @@
         if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
       },
       now: () => (sourcesOff.size ? `${sourcesOff.size} source id${sourcesOff.size === 1 ? "" : "s"} off` : "every source") },
-    { id: "pairs", lab: "pairs", why: "places where the scribes kept one form and read another: which half the English reads from",
+    { id: "pairs", voice: "text", lab: "pairs", why: "places where the scribes kept one form and read another: which half the English reads from",
       live: () => (zone.sections || []).some((s) => (s.words || []).some((w) => w.kq)),
       waits: "no ketiv-qere site in this book",
       now: () => ({ KETIV: "written", QERE: "read", SOURCE: "as the source" })[kqOrder] },
-    { id: "lookup", lab: "look up by", why: "the word as written, or the dictionary headword it belongs to",
+    { id: "lookup", voice: "arrange", lab: "look up by", why: "the word as written, or the dictionary headword it belongs to",
       positions: [{ id: "form", lab: "the form" }, { id: "headword", lab: "the headword" }],
       live: () => !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.headword),
       waits: "Moses’s headword ledger, projected over this book (tools/project-toggle-headword-v1.mjs)",
       get: () => lookup,
       set: (id) => { lookup = id; try { localStorage.setItem(LOOKUP_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); },
       now: () => (lookup === "headword" ? "the headword" : "the form") },
-    { id: "maqaf", lab: "joined words", why: "a word written with a maqaf: read its pieces, the phrase, or the welded form",
+    { id: "maqaf", voice: "text", lab: "joined words", why: "a word written with a maqaf: read its pieces, the phrase, or the welded form",
       positions: [{ id: "pieces", lab: "each piece" }, { id: "phrase", lab: "the phrase" }, { id: "welded", lab: "welded" }],
       live: () => false, waits: "a ruling — suppress “welded” where nothing matches the vowels (1,041 of 1,311)? — then the maqaf ledger projected", now: () => "each piece" },
     // A SORT, never a filter: readings under the chosen class answer first
     // and every other reading keeps its place under them. The class is read
     // off each source's posture key; a source the site refuses never reaches
     // the store at all, so no class can re-serve it.
-    { id: "licence", lab: "license", why: "prefer readings released under one license — a sort, never a filter; a source the site refuses is not in the catalog to be sorted",
+    { id: "licence", voice: "arrange", lab: "license", why: "prefer readings released under one license — a sort, never a filter; a source the site refuses is not in the catalog to be sorted",
       positions: [{ id: "any", lab: "any" }, { id: "pd", lab: "public domain" }, { id: "by", lab: "CC BY" }, { id: "by-sa", lab: "CC BY-SA" }],
       live: () => !!(index && index.m_sources),
       get: () => licencePref,
@@ -407,7 +420,7 @@
     // The lattice flags a card as a transliteration under the corpus lane's
     // strict rule; "as sound" answers with those first, "as meaning" leaves
     // the order as it is. A sort, and only on the card.
-    { id: "names", lab: "names", why: "a name’s card can answer with what it means or how it sounds — the lattice’s transliteration flag, the corpus lane’s rule",
+    { id: "names", voice: "arrange", lab: "names", why: "a name’s card can answer with what it means or how it sounds — the lattice’s transliteration flag, the corpus lane’s rule",
       positions: [{ id: "meaning", lab: "as meaning" }, { id: "sound", lab: "as sound" }],
       live: () => !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice),
       waits: "the lattice projected over this book (tools/project-lattice-v12-v1.mjs)",
@@ -417,7 +430,7 @@
     // The lattice carries, per position, whether the Leningrad codex spells
     // the word otherwise (editions-diff, blind-verified in v12); the word
     // wears a dotted gold rule when the mark is on, and its title says how.
-    { id: "edition", lab: "edition", why: "the text is MAM; the other great codex differs at about a thousand spellings and three verse runs",
+    { id: "edition", voice: "text", lab: "edition", why: "the text is MAM; the other great codex differs at about a thousand spellings and three verse runs",
       positions: [{ id: "mam", lab: "MAM" }, { id: "diff", lab: "mark where Leningrad differs" }],
       live: () => !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice && zone.emitted_from.toggles.lattice.counts && zone.emitted_from.toggles.lattice.counts.ld),
       waits: "the lattice projected over this book, with at least one position where Leningrad differs",
@@ -4454,6 +4467,38 @@
     has_aramaic_counterpart: "It marks entries with an Aramaic counterpart",
   };
   const sayFor = (aspect) => SAY[aspect] || `It records ${String(aspect).replace(/_/gu, " ")}`;
+  // ── WHICH EXPRESSIONS ARE SWITCHES TODAY, AND WHICH ARE ONLY SENTENCES ──
+  //
+  // The tree has two layers by design: the whole source, and each expression
+  // named on its own. The first layer is a switch and has been since the
+  // sources row became a list. The second is not, for most expressions, and
+  // the reason is boring and worth saying out loud: a route row carries who
+  // said it, not which of that source's senses it came from. Turning off
+  // "Syriac" inside a dictionary needs a tag on every row, and no row has one.
+  //
+  // But some expressions need no tag at all. When a source declares ONE value
+  // for an aspect and declares it over every record it has — Kaikki Hebrew
+  // saying its language is Hebrew, on all 17,395 — then every row this site
+  // took from that source carries that value by construction. For those, the
+  // expression and the source are the same set, and the box beside the
+  // source's name already IS the switch. Forty-six of a hundred and sixty
+  // three branches are like that today.
+  //
+  // So the page says which of the two each line is, and never draws a control
+  // that does not exist. A second checkbox for a whole-source expression would
+  // imply a second, independent switch, and implying a switch this site cannot
+  // honour is the one failure this whole tree is built to avoid.
+  const WHOLE_BASES = new Set(["SINGLE_VALUE_ROW", "WHOLE_SOURCE_STATEMENT"]);
+  const coversEverything = (b) => {
+    if (b.tail) return false;                 // a partial list is not a whole statement
+    if (b.distinct_total !== 1 || b.values.length !== 1) return false;
+    const c = b.cover || {};
+    if (c.upper_bound) return false;          // "at most" is not "every"
+    if (!WHOLE_BASES.has(c.basis)) return false;
+    if (b.grain === "whole_source") return true;
+    return c.n !== null && c.n !== undefined && c.of !== null && c.of !== undefined
+      && Number(c.n) >= Number(c.of) && Number(c.of) > 0;
+  };
   // one expression: the sentence, the source's own values inside it, and the
   // address folded away — a reader wants to know WHAT it says before WHERE
   const declBranch = (b, klass, showWork) => {
@@ -4501,6 +4546,16 @@
       box.append(p);
     }
     if (b.decoded) { const p = document.createElement("p"); p.className = "decl-partial"; p.textContent = `one value here is this project's reading of the source's own string (${b.decoded})`; box.append(p); }
+    // Only the whole-source lines mark themselves. The other case is the
+    // standing one and is stated once at the head of the panel; printing it
+    // under every line put one sentence on the screen ten times over and
+    // buried the two lines that were actually different.
+    if (!klass && coversEverything(b)) {
+      const reach = document.createElement("p"); reach.className = "decl-reach";
+      reach.dataset.reach = "source";
+      reach.textContent = "the whole source says this — the box above turns it off";
+      box.append(reach);
+    }
     // the address, folded
     const where = document.createElement("details"); where.className = "decl-where-fold";
     const ws = document.createElement("summary"); ws.textContent = "where it says this"; where.append(ws);
@@ -4543,8 +4598,28 @@
     }
     const head = document.createElement("p"); head.className = "decl-head";
     const n = stem.branches.length + stem.channels.length;
+    const switchable = stem.branches.filter(coversEverything).length;
     head.textContent = n ? `What it says about itself · ${n}` : "";
+    if (n && switchable) { const sub = document.createElement("i"); sub.textContent = ` · ${switchable} of them the whole source`; head.append(sub); }
     if (n) wrap.append(head);
+    // WHICH OF THESE ARE SWITCHES, said once and in plain words. Everything
+    // below is a sentence this source wrote about itself; what differs is
+    // whether this site can act on it. Where a source declares ONE value over
+    // every record it has, the expression and the source are the same set, so
+    // the box beside its name is already that expression's switch. Everything
+    // else would need a tag on each row and no row carries one, so the page
+    // says so rather than drawing a control it cannot honour.
+    if (n) {
+      const reach = document.createElement("p"); reach.className = "decl-reach decl-reach-head";
+      reach.dataset.reach = switchable ? (switchable === n ? "source" : "mixed") : "needs-a-tag";
+      const tail = "Turning one of those off on its own would need a tag on every row, and this site does not carry one yet, so those lines say what the source declares — they do not switch it.";
+      reach.textContent = !switchable
+        ? `Each of these holds for some of this source${RS}s records and not others. ${tail}`
+        : switchable === n
+          ? `The source declares every one of these over every record it has, so each is the same set as the source itself: the box beside its name turns any of them off.`
+          : `${switchable} of these the source declares over every record it has, so ${switchable === 1 ? "it is" : "they are"} the same set as the source itself and the box beside its name turns ${switchable === 1 ? "it" : "them"} off. The other ${n - switchable} hold for some records and not others. ${tail}`;
+      wrap.append(reach);
+    }
     stem.branches.forEach((b) => wrap.append(declBranch(b, null, many)));
     stem.channels.forEach((b) => wrap.append(declBranch(b, b.klass || "CHANNEL_NOT_A_BRANCH", many)));
     if (!n) {
@@ -4667,12 +4742,18 @@
     rows.replaceChildren();
     for (const t of TOGGLES) {
       const row = document.createElement("div"); row.className = "row" + (t.live() ? "" : " dead"); row.dataset.toggle = t.id;
+      if (t.voice) row.dataset.voice = t.voice;
       const lab = document.createElement("span"); lab.className = "lab"; lab.textContent = t.lab;
       const host = document.createElement("span");
       if (t.id === "order") host.id = "defRow";
       else if (t.id === "pairs") host.id = "pairRow";
       else if (t.id === "sources") host.id = "sourcesRow";
       else host.append(segRow(t, t.positions || [], t.get ? t.get() : null, (id) => { if (t.set) t.set(id); }));
+      const v = VOICE[t.voice];
+      if (v) {
+        const tag = document.createElement("span"); tag.className = "voice"; tag.textContent = v[0];
+        tag.title = v[1]; lab.append(tag);
+      }
       const why = document.createElement("span"); why.className = "why";
       why.textContent = t.live() ? t.why : `${t.why} — waiting on ${t.waits}`;
       row.append(lab, host, why);

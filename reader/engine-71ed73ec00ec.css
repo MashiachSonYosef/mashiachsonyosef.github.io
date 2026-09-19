@@ -744,6 +744,16 @@
   .rail .row .why { grid-column: 2; font-size: 0.66rem; color: var(--faint); font-style: italic; margin-top: -0.1rem; }
   .rail .row .def-order { margin: 0; }
   .rail .row.dead .lab { color: var(--faint); }
+  .rail .voice { display: block; margin-top: 0.12rem; font-size: 0.54rem; letter-spacing: 0.08em;
+    text-transform: none; color: var(--faint); font-style: italic; }
+  /* EACH VOICE IN ITS OWN CHANNEL, which the colour contract already names:
+     a source's words are someone else's, so tekhelet; the manuscripts are the
+     corpus, so tola'at shani; and what this project says is the page's own
+     ink, which is argaman and the unmarked case. Gold is not a voice — it is
+     the frame around one — so no tag takes it. */
+  .rail .row[data-voice="claim"] .voice { color: var(--ink); font-style: normal; }
+  .rail .row[data-voice="them"] .voice { color: var(--tekhelet-ink); font-style: normal; }
+  .rail .row[data-voice="text"] .voice { color: var(--shani-ink); font-style: normal; }
   /* THE SOURCES ROW — a folded list, one source per line. The switch is a
      box on the left because that is where a reader looks to see what is on;
      the name has the whole line, because a source whose name is cut at
@@ -765,7 +775,16 @@
   .rail .def-order.src-list .dfp { width: 0.92rem; height: 0.92rem; margin-top: 0.34rem; padding: 0;
     border: 1px solid var(--muted); border-radius: 0.2rem; background: none; cursor: pointer;
     font-size: 0; letter-spacing: 0; }
-  .rail .def-order.src-list .dfp.on { background: var(--sel); border-color: var(--sel); }
+  /* ON IS DRAWN, NEVER FILLED. This box used to take a gold ground when it
+     was on, and a gold ground is the one thing gold may not be: the contract
+     (data/color-contract-v1.json, structure) says gold is line work only —
+     rules, borders, boxes, never a surface and never ink at rest. So the
+     check is two borders turned forty-two degrees, which is thread, and the
+     box keeps its ground. check-color-channels-v1 caught the fill. */
+  .rail .def-order.src-list .dfp.on { border-color: var(--sel); }
+  .rail .def-order.src-list .dfp.on::after { content: ""; display: block;
+    width: 0.24rem; height: 0.5rem; margin: 0.03rem auto 0; border: solid var(--sel);
+    border-width: 0 1.5px 1.5px 0; transform: rotate(42deg); }
   .rail .def-order.src-list .dfp:hover { border-color: var(--sel); }
   /* the panel: the name, what the switch costs, and a press to open it */
   .rail .src-open { grid-column: 2; display: block; width: 100%; text-align: left; font: inherit;
@@ -803,6 +822,10 @@
   .rail .decl-where-fold > summary:hover { color: var(--muted); }
   .rail .decl-v i { font-style: normal; color: var(--faint); font-size: 0.66rem; padding-left: 0.14rem; }
   .rail .decl-where { margin: 0; font-size: 0.62rem; color: var(--faint); word-break: break-word; }
+  .rail .decl-reach { margin: 0.12rem 0 0; font-size: 0.64rem; color: var(--faint); line-height: 1.45; }
+  .rail .decl-reach[data-reach="source"] { color: var(--muted); }
+  .rail .decl-reach-head { margin: 0.1rem 0 0.55rem; color: var(--muted); font-size: 0.66rem; }
+  .rail .decl-head i { font-style: normal; color: var(--faint); font-weight: 400; }
   .rail .decl-partial { margin: 0.1rem 0 0; font-size: 0.62rem; color: var(--muted); font-style: italic; }
   .rail .decl-silent, .rail .decl-none { margin: 0.35rem 0 0; font-size: 0.64rem; color: var(--faint); font-style: italic; }
   .rail .def-order .declp { font: inherit; font-size: 0.6rem; letter-spacing: 0.04em;
