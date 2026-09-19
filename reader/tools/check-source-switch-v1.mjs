@@ -63,10 +63,14 @@ const rail = await p.evaluate(() => {
     allOn: chips.every((c) => c.getAttribute("aria-pressed") === "true"),
     withIds: chips.filter((c) => /^M\d+( M\d+)*$/u.test(c.dataset.ids || "")).length,
     keys: chips.map((c) => c.dataset.key),
-    // what each chip SAYS its switch costs, read off the chip as a reader
-    // reads it — the two numbers by value, in whatever words the row uses,
-    // never by the shape of a separator
-    said: Object.fromEntries(chips.map((c) => [c.dataset.key, (c.textContent.match(/[\d,]+/gu) || []).map((x) => Number(x.replace(/,/gu, "")))])),
+    // what each source's ROW says its switch costs, read as a reader reads
+    // it — the two numbers by value, in whatever words the row uses, and
+    // never by the shape of a separator. The row, not the box: the box is
+    // the switch and carries no text at all, which is the point of it.
+    said: Object.fromEntries(chips.map((c) => {
+      const row = c.closest(".src-row") || c;
+      return [c.dataset.key, (row.textContent.match(/[\d,]+/gu) || []).map((x) => Number(x.replace(/,/gu, "")))];
+    })),
   };
 });
 const keysInReceipt = new Set(Object.values(rec.sources).map((s) => s.key || ""));
