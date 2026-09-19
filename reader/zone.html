@@ -1027,6 +1027,13 @@
      hover titles do not exist on a phone */
   #hud .head .kq-key { flex: 1 1 100%; margin: 0; color: var(--faint);
     font-size: 0.68rem; direction: ltr; text-align: left; }
+  /* the card's own pointing switch, in the corner of its head */
+  #hud .hud-lift { flex: 1 1 100%; display: flex; align-items: flex-start; gap: 0.4rem;
+    margin: 0.16rem 0 0; font-size: 0.66rem; line-height: 1.35; color: var(--faint);
+    cursor: pointer; }
+  #hud .hud-lift input { margin: 0.12rem 0 0; accent-color: var(--sel); flex: none; }
+  #hud .hud-lift:hover { color: var(--muted); }
+  #hud .hud-lift[data-on="true"] { color: var(--sel); }
   #hud .head .kq-role { flex: 1 1 100%; margin: 0; color: var(--muted);
     font-size: 0.74rem; font-style: italic; direction: ltr; text-align: left; }
   /* THE CARD KEEPS THE PAGE'S RULE: one ink, channels as washes, gold for
@@ -1864,6 +1871,18 @@
   // the word standing open on the card: its pointed surface and its key,
   // which is what the lattice's grades are keyed by
   let openPointed = null, openKey = null;
+  // THE POINTING, CARD BY CARD. The rail sets where every card starts; a card
+  // may be lifted on its own, and that is the only scribal switch the reader
+  // gets, because the only place a scribal mark may be touched at all is
+  // INSIDE the card. The licensed Hebrew on the page is never what is being
+  // toggled — not a vowel of it — and this map cannot reach it: it is read
+  // by the card's head, its pool and its order, and by nothing that draws
+  // the text of the book.
+  const cardPointing = new Map();   // the word's pointed surface -> "letters"
+  const pointingNow = (surface) => {
+    const s = surface || openPointed;
+    return (s && cardPointing.get(s)) || masorah;
+  };
   const LIC_KEY = "fh.licence", NAMES_KEY = "fh.names", ED_KEY = "fh.edition";
   let licencePref = (() => { try { return ["any", "pd", "by", "by-sa"].includes(localStorage.getItem(LIC_KEY)) ? localStorage.getItem(LIC_KEY) : "any"; } catch { return "any"; } })();
   let namesPref = (() => { try { return localStorage.getItem(NAMES_KEY) === "sound" ? "sound" : "meaning"; } catch { return "meaning"; } })();
@@ -3673,7 +3692,7 @@
     // not grade stay: unknown is not a mismatch. The same guard sortPool
     // uses — the open word's own pointed surface, and only that.
     let routes = all, withheld = 0;
-    if (masorah === "only") {
+    if (pointingNow(surface === openKey ? openPointed : null) === "only") {
       // the grade has to be here before the pool is built, not after: a
       // pool built while the sidecar was still arriving is an unfiltered
       // pool, and no later redraw filters it — a redraw re-sorts what was
@@ -3787,7 +3806,21 @@
       // with the Masorah lifted there is no grade to sort by: a lattice
       // order falls through to oldest, and the toggle's set() already moved
       // the "reads first" row there and said so
-      if (masorah === "letters" && pos.lattice) return 0;
+      // THE LIFTED CARD LEADS WITH WHAT THE POINTING WAS WITHHOLDING. An
+      // earlier draft said that with the Masorah lifted there was no grade
+      // left to sort by, and that was wrong: the grade is a fact about each
+      // SOURCE's headword against the page's pointing, and lifting the
+      // pointing inside a card does not unmake it — it is exactly the fact
+      // the reader reached for. So a lifted card puts the readings whose
+      // source points this word OTHERWISE first, then the sources silent on
+      // pointing, then the ones that agree. Nothing is withheld and nothing
+      // is added: the whole pool stands, in the order the switch asked for,
+      // and the card says in words that the order moved.
+      if (pointingNow(surface === openKey ? openPointed : null) === "letters") {
+        if (!graded) return 0;
+        const v = (r) => ({ 2: 0, 1: 1, 0: 2 }[tierOf(r)] ?? 3);
+        return v(a) - v(b);
+      }
       if (graded && pos.lattice === "m") return tierOf(a) - tierOf(b);
       if (graded && pos.lattice === "x") { const v = (r) => ({ 2: 0, 1: 1, 0: 2 }[tierOf(r)] ?? 3); return v(a) - v(b); }
       if (gr && pos.lattice === "c") return cites(a) - cites(b);
@@ -3853,7 +3886,7 @@
         if (!lit) seg.style.color = "var(--faint)";
         b.append(seg);
       });
-    } else if (masorah === "letters" && !word.mark && (region && (region.form_k || region.k))) {
+    } else if (pointingNow() === "letters" && !word.mark && (region && (region.form_k || region.k))) {
       // THE LETTERS ONLY, inside the card. The bare consonants lead; the
       // pointed form stands faint beside them so nothing is hidden — the
       // reader lifted the Masorah here and can see exactly what was lifted.
@@ -3885,12 +3918,38 @@
     // withheld says so and says how many; a card whose head shows bare
     // letters says why. A toggle that changes what a card offers without the
     // card saying so is the page deciding quietly.
-    if (masorah !== "keep" && !word.mark) {
-      const mLine = document.createElement("p"); mLine.className = "kq-role"; mLine.dataset.masorah = masorah;
-      mLine.textContent = masorah === "letters"
-        ? "the letters only — the pointing stands on the page and is lifted here; every reading of these letters, oldest first"
+    const cardPos = pointingNow();
+    if (cardPos !== "keep" && !word.mark) {
+      const mLine = document.createElement("p"); mLine.className = "kq-role"; mLine.dataset.masorah = cardPos;
+      mLine.textContent = cardPos === "letters"
+        ? "the letters only — the pointing stands on the page and is lifted here; every reading of these letters, and the ones whose source points this word otherwise lead"
         : "only readings of this pointing — a source that points the word otherwise is not asked";
       head.append(mLine);
+    }
+    // THE CARD'S OWN SWITCH, in the corner, in plain words. The rail at the
+    // top says where every card starts; this one is for the word in front of
+    // the reader, and it reaches nothing else. The claim it carries is the
+    // project's own and not a source's: the scribes chose this pointing
+    // knowing the letters could carry others, and a reader is entitled to
+    // stand where they stood. What it can never do is touch the page: the
+    // Masoretic text is the licensed text and not a byte of it moves.
+    if (!word.mark && region && (region.form_k || region.k) && openPointed) {
+      const lift = document.createElement("label"); lift.className = "hud-lift";
+      const box = document.createElement("input"); box.type = "checkbox";
+      box.checked = cardPos === "letters";
+      box.addEventListener("change", () => {
+        if (box.checked) cardPointing.set(openPointed, "letters"); else cardPointing.delete(openPointed);
+        window.__cardPointing = [...cardPointing.entries()];
+        const wb = activeEl;
+        if (wb) { closeHud(false); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
+      });
+      const say = document.createElement("span");
+      say.textContent = box.checked
+        ? "Masoretic vowels off for this word — defined by character"
+        : "Turn off the Masoretic vowels for character-defined Hebrew";
+      lift.append(box, say);
+      lift.dataset.on = String(box.checked);
+      head.append(lift);
     }
     // A source-marked branch says which half it is ON the card, in words —
     // the roles lived only in hover titles, and a phone has no hover. The

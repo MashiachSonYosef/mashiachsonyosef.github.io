@@ -24,6 +24,12 @@
 //   M6  and across all three, the Hebrew of the section never changed by a
 //       byte, and neither did the number of words on it
 //   M7  KEEP again restores exactly the first pool
+//   M8  THE CARD'S OWN SWITCH: a checkbox in the card's corner, in plain
+//       words, lifts the pointing for THAT WORD — its head turns to bare
+//       letters — while the Hebrew of the page stays byte-identical and the
+//       next word's card opens with its own switch untouched. The only
+//       scribal thing a reader may move is inside a card, and it may move
+//       only that card
 //
 // Runs against the first served zone that carries the lattice layer; SKIPS
 // by name when none does.
@@ -162,6 +168,46 @@ await press("keep");
 await p.waitForTimeout(700);
 const back = await cardNow();
 check("M7  keep again restores exactly the first pool", back && keep && JSON.stringify(back.pills) === JSON.stringify(keep.pills) && back.withheld === 0 && back.headMode === "");
+
+// M8 — the card's own switch
+await press("keep");
+if (target) {
+  await p.evaluate((i) => { const w = document.querySelectorAll("section.seg .he-text .wb")[i]; (w.querySelector(".w span") || w.querySelector(".w")).click(); }, target.i);
+  await p.waitForTimeout(700);
+  const heNow = await hebrewOfSection();
+  const lift = await p.evaluate(() => {
+    const el = document.querySelector("#hud .hud-lift input"); if (!el) return null;
+    const say = (document.querySelector("#hud .hud-lift span") || {}).textContent || "";
+    return { checked: el.checked, say };
+  });
+  if (!lift) check("M8  the card carries its own pointing switch, in plain words", false, "no switch in the card's corner");
+  else {
+    const wordsOk = /masoretic/iu.test(lift.say) && /vowel/iu.test(lift.say) && /character/iu.test(lift.say);
+    await p.evaluate(() => document.querySelector("#hud .hud-lift input").click());
+    await p.waitForTimeout(1200);
+    const lifted = await cardNow();
+    const heAfter = await hebrewOfSection();
+    const liftedHead = await p.evaluate(() => { const b2 = document.querySelector("#hud .head b"); return { mode: b2.dataset.masorah || "", text: b2.textContent }; });
+    check("M8  the card's own switch lifts that card, says so in plain words, and moves no byte of the page",
+      !lift.checked && wordsOk && liftedHead.mode === "letters" && heNow && heAfter && heNow.text === heAfter.text && heNow.words === heAfter.words,
+      `"${lift.say}" → head ${liftedHead.mode || "unchanged"} · the section's Hebrew ${heNow && heAfter && heNow.text === heAfter.text ? "identical" : "MOVED"} (${heAfter ? heAfter.text.length : "?"} characters)`);
+    // and the next word is its own card, with its own switch
+    const next = await p.evaluate((i) => {
+      const wbs = [...document.querySelectorAll("section.seg .he-text .wb")];
+      for (let j = i + 1; j < Math.min(wbs.length, i + 12); j += 1) {
+        const g = wbs[j].querySelector(".g"); if (!g || g.classList.contains("bare")) continue;
+        if (wbs[j].querySelectorAll(".wr").length > 1) continue;
+        (wbs[j].querySelector(".w span") || wbs[j].querySelector(".w")).click(); return j;
+      }
+      return -1;
+    }, target.i);
+    await p.waitForTimeout(800);
+    const neighbour = await p.evaluate(() => { const el = document.querySelector("#hud .hud-lift input"); const b2 = document.querySelector("#hud .head b"); return el ? { checked: el.checked, mode: b2.dataset.masorah || "" } : null; });
+    check("  and the word beside it opens with its own switch, unlifted",
+      next >= 0 && neighbour && neighbour.checked === false && neighbour.mode === "",
+      neighbour ? `word ${next + 1}: switch ${neighbour.checked ? "carried over — it must not" : "its own"} · head ${neighbour.mode || "as the page points it"}` : "no neighbour with a card");
+  }
+}
 
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
