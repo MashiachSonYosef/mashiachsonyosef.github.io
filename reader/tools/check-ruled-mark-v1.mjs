@@ -7,7 +7,9 @@
 // nothing and leaves nothing behind.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { defaultZoneUrl, zonesOnDisk, zoneIdOf } from "./zones-on-disk-v1.mjs";
+import { readFileSync, existsSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
 const SKIP_LABEL = "check-ruled-mark-v1";
 // A check about commentary needs a work that carries some. When none is
 // served, that is a fact about the corpus and not a defect in the reader, so
@@ -27,8 +29,52 @@ const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " 
 const b = await chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
-await p.goto(defaultZoneUrl(), { waitUntil: "networkidle" });
+const URL = defaultZoneUrl();
+await p.goto(URL, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
+
+// ── HOW MANY WORDS A RULING TOUCHES, ASKED OF THE BOOK ────────────────────
+//
+// A RULING IS ABOUT A FORM, NOT ABOUT A POSITION. The page keeps a registry
+// of every place a form stands (standsOf, beside standAt in zone.html), and a
+// reading ruled at any one of them is painted at all of them, with the mark
+// on each. That is the site's whole model of a reading: the English attaches
+// to the key, so a reader who rules once does not have to rule again forty
+// lines down, and a book that showed two different readings for one form
+// would be the page disagreeing with itself.
+//
+// This check used to assert that exactly ONE word carried the mark. That was
+// true for as long as the shelf held two short books where a form stood once.
+// On a seventy-three-thousand-word work a common form stands hundreds of
+// times, and the check read the model working as the mark leaking — four
+// failures, all of them the check's. So the number is now DERIVED: the ruled
+// form's own count, taken from the zone the page is built from, over the
+// stretch of the book the page has actually rendered.
+//
+// The window is verified, never assumed: the rendered surfaces are compared
+// against the book's own first N, and when they do not line up this says so
+// and holds only the law that needs no count.
+const SLUG = zoneIdOf(URL);
+const BIN = SLUG ? `data/zones/${SLUG}.bin` : null;
+const zone = BIN && existsSync(BIN) ? JSON.parse(gunzipSync(readFileSync(BIN)).toString("utf8")) : null;
+const flat = [];
+for (const sec of (zone ? zone.sections || [] : [])) for (const w of (sec.words || [])) flat.push(w);
+const rendered = await p.evaluate(() => [...document.querySelectorAll("section.seg .he-text .wb")].map((e) => (e.querySelector(".w") || e).textContent.trim()));
+const isPrefix = flat.length >= rendered.length && rendered.length > 0
+  && rendered.every((t, i) => String(flat[i].s ?? "").trim() === t);
+const RULED_KEY = flat.length > 1 ? flat[1].k : null;
+// every place that form stands inside what the page has drawn
+const EXPECT = isPrefix && RULED_KEY
+  ? flat.slice(0, rendered.length).filter((w) => w.k === RULED_KEY).length : null;
+// and a neighbour that is NOT that form, so "it does not spread" is a real question
+const OTHER = isPrefix && RULED_KEY ? flat.slice(0, rendered.length).findIndex((w, i) => i > 1 && w.k && w.k !== RULED_KEY) : 4;
+// the masthead's title is a word like any other: it wears the ruling when it
+// carries the ruled form, and there is nothing for it to follow when it does not
+const TITLE_CARRIES = !!(zone && (zone.work_he_tokens || []).some((t) => t.k && t.k === RULED_KEY));
+console.log(`  --  ${SLUG}: ${rendered.length.toLocaleString()} of ${flat.length.toLocaleString()} words drawn${
+  isPrefix ? "" : " (not the book's own opening stretch — the count cannot be derived and is not asserted)"}${
+  EXPECT === null ? "" : ` · the form at word 2 stands ${EXPECT.toLocaleString()} time(s) in what is drawn`}${
+  TITLE_CARRIES ? " · the title carries it too" : " · the title does not carry it"}`);
 
 // IN THE TEXT, NOT ON THE PAGE. The masthead's title is a word like any
 // other: it carries its own key, it opens its own record, and it wears the
@@ -107,7 +153,24 @@ const after = await p.evaluate((q) => {
     titleFollows: [...document.querySelectorAll(".wb.chosen")].length > w.length,
   };
 }, IN_TEXT);
-check("the word the reader ruled on is marked", after.n === 1 && after.isTheWord, `${after.n} marked`);
+check("the word the reader ruled on is marked, and so is every other place that form stands",
+  after.isTheWord && (EXPECT === null ? after.n >= 1 : after.n === EXPECT),
+  EXPECT === null ? `${after.n} marked · the book's own count could not be derived, so only the ruled word itself is held`
+                  : `${after.n} marked · the form stands ${EXPECT} time(s) in what is drawn`);
+// AND NOT ONE OF THEM READS ANYTHING ELSE. The count above says how many; this
+// says they are the right ones. A mark on a word still showing another reading
+// would be the page claiming a ruling it did not make.
+{
+  const spread = await p.evaluate((q) => {
+    const ch = [...document.querySelectorAll(q)];
+    const gl = ch.map((e) => (e.querySelector(".g") || { textContent: "" }).textContent.trim());
+    return { n: ch.length, distinct: [...new Set(gl)], };
+  }, IN_TEXT);
+  check("  and every one of them reads what was ruled, so the mark never lands on a word saying something else",
+    spread.distinct.length === 1 && spread.distinct[0] === chosenText,
+    spread.distinct.length === 1 ? `${spread.n} word(s), all reading "${spread.distinct[0]}"`
+      : `${spread.distinct.length} different readings under one mark: ${spread.distinct.slice(0, 3).map((x) => `"${x}"`).join(", ")}`);
+}
 {
   const m = await markCosts();
   const free = !!m && m.on.w === m.off.w && m.on.h === m.off.h
@@ -119,18 +182,31 @@ check("the word the reader ruled on is marked", after.n === 1 && after.isTheWord
         : free ? `the box is ${m.on.w}\u00d7${m.on.h} with the mark and without it`
                : `the mark costs layout: ${m.off.w}\u00d7${m.off.h} without, ${m.on.w}\u00d7${m.on.h} with`));
 }
-check("the mark survives the card closing", after.n === 1 && after.stillActive === 0);
+check("the mark survives the card closing", (EXPECT === null ? after.n >= 1 : after.n === EXPECT) && after.stillActive === 0,
+  `${after.n} still marked with no card open`);
 check("and the reading it carries is the one that was chosen", after.gloss === chosenText,
   `page "${after.gloss}" vs card "${chosenText}"`);
-check("and the book's own title follows the same ruling", after.titleFollows,
-  after.titleFollows ? "the masthead wears it too" : "the title did not follow");
+check("and the book's own title follows the same ruling, where the title carries that form",
+  TITLE_CARRIES ? after.titleFollows : !after.titleFollows,
+  TITLE_CARRIES
+    ? (after.titleFollows ? "the masthead carries this form and wears the ruling too" : "the masthead carries this form and did NOT follow")
+    : (after.titleFollows ? "the masthead does not carry this form yet wears the mark" : "this book's title does not carry the ruled form, so there is nothing here for it to follow"));
 
-// the mark does not spread to its neighbours
-await wbs[4].click();
+// AND OPENING A DIFFERENT FORM RULES NOTHING. The neighbour is chosen for
+// carrying a different key, so this asks a real question: looking at another
+// word must not add a mark, and must not take one away from the form that was
+// ruled.
+const nbr = OTHER >= 0 && wbs[OTHER] ? OTHER : 4;
+await wbs[nbr].click();
 await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
 await p.keyboard.press("Escape");
 await p.waitForTimeout(120);
-check("a word merely opened alongside it stays unmarked", (await marked()) === 1, `${await marked()} marked`);
+{
+  const now = await marked();
+  check("a word of another form, merely opened alongside it, leaves the marks exactly as they were",
+    EXPECT === null ? now === after.n : now === EXPECT,
+    `${now} marked after opening word ${nbr + 1}, which stands under a different form`);
+}
 
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
