@@ -2873,9 +2873,20 @@ ${DEF_POSITIONS.map(posSection).join("\n")}
   <p><a href="/genesis/">open it full size</a></p>
   <footer>This page is emitted from the same list the switch itself is built from, so it cannot describe a position the reader does not get. Recorded in tools/build-front-door-v1.mjs as DEF_POSITIONS.</footer>
 </main></body></html>`;
-mkdirSync(join(OUT, "toggles"), { recursive: true });
-writeFileSync(join(OUT, "toggles", "index.html"), benchHtml);
-console.log(`  toggles bench: ${DEF_POSITIONS.length} positions, ${DEF_POSITIONS.filter((x) => x.live).length} live`);
+// THE SWITCHES PAGE IS NOT THIS BUILD'S ANY MORE. It was, and the page it
+// wrote described "The order switch" — singular — from DEF_POSITIONS, a typed
+// list. Eight more switches were built and the page never learned of one of
+// them, because a typed copy of what the reader says goes stale the day after
+// it is typed. tools/build-toggle-design-v1.mjs replaces it: it parses the
+// rail's own TOGGLES out of zone.html and photographs the live reader, so it
+// cannot fall behind, and it draws this lane's proposed wording beside what
+// the rail says today so the language can be ruled on rather than described.
+//
+// Emitting the old bench here would overwrite that page on the next publish,
+// because deploy-root is copied over the site. So it is not emitted, and the
+// bench's own prose survives as DEF_POSITIONS above, which the order switch
+// still reads for each position's provenance.
+console.log(`  toggles: /toggles/ is built by tools/build-toggle-design-v1.mjs and is not emitted here`);
 
 writeFileSync(join(OUT, "README.md"), readme);
 writeFileSync(join(OUT, "front-door-counts-receipt-v1.json"), countReceiptJson);

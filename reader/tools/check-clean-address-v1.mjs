@@ -182,8 +182,22 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
     // every position on it is a claim about the ORDER readings come in, and an
     // order is shown by pressing a word in a real book rather than by a
     // specimen typed onto a page about the switch.
-    const benchFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "toggles", "index.html");
-    check("the order switch stands at its own address", existsSync(benchFile), benchFile);
+    // The switches page moved out of the door build on 2026-09-20: it is built
+    // from the reader's own TOGGLES by tools/build-toggle-design-v1.mjs and
+    // published beside the engine, not under deploy-root. So it is asked for
+    // where it actually stands, and it must carry every switch the rail draws
+    // — a page about the switches that is missing one is the exact rot that
+    // retired the old bench, and this is the guard that would have caught it.
+    const benchFile = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "toggles", "index.html");
+    if (existsSync(benchFile)) {
+      const bench = readFileSync(benchFile, "utf8");
+      const ids = [...readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "zone.html"), "utf8")
+        .matchAll(/\{ id: "([a-z]+)", voice: "[a-z]+", lab: "/gu)].map((m) => m[1]);
+      const absent = ids.filter((id) => !bench.includes(`id="${id}"`));
+      check("the switches page stands at its own address, and carries every switch the rail draws",
+        ids.length > 0 && absent.length === 0,
+        absent.length ? `${absent.length} switch(es) the rail draws and the page does not: ${absent.join(", ")}` : `${ids.length} switches drawn and documented`);
+    } else check("the switches page stands at its own address", false, `${benchFile} — run node tools/build-toggle-design-v1.mjs`);
     FINISHED.push("/toggles/");
     // And the opensourcing page, the door's fourth, standing beside the census
     // in the top bar. It is a page held open for a question this project has
