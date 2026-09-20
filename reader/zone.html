@@ -1994,9 +1994,9 @@
       get: () => lookup,
       set: (id) => { lookup = id; try { localStorage.setItem(LOOKUP_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); },
       now: () => (lookup === "headword" ? "the headword" : "the form") },
-    { id: "maqaf", voice: "text", lab: "joined words", why: "a word written with a maqaf: read its pieces, the phrase, or the welded form",
-      positions: [{ id: "pieces", lab: "each piece" }, { id: "phrase", lab: "the phrase" }, { id: "welded", lab: "welded" }],
-      live: () => false, waits: "a ruling — suppress “welded” where nothing matches the vowels (1,041 of 1,311)? — then the maqaf ledger projected", now: () => "each piece" },
+    { id: "maqaf", voice: "text", lab: "joined words", why: "the scribes join words with a small stroke. Look the run up as separate words, as written with the stroke, joined into one word, or in the spelling a dictionary used for it — whichever of those a dictionary actually published",
+      positions: [{ id: "pieces", lab: "as separate words" }, { id: "maqaf", lab: "as written" }, { id: "weld", lab: "joined" }, { id: "folded", lab: "the source’s spelling" }],
+      live: () => false, waits: "the joined runs carried per book — the zones hold none today, so there is nothing for this to move", now: () => "each piece" },
     // A SORT, never a filter: readings under the chosen class answer first
     // and every other reading keeps its place under them. The class is read
     // off each source's posture key; a source the site refuses never reaches
@@ -6322,7 +6322,7 @@
     fold.append(seg);
     host.append(fold);
     const why = host.parentElement && host.parentElement.querySelector(".why");
-    if (why) why.textContent = `${ordered.length} sources stand behind this book's readings (${Object.keys(table).length} ledger ids). Beside each: lines that change · lines that go dark when it alone is off. A source off is not asked on any card; the line under a word follows. The branch under each source — what it declares about itself — waits on the corpus lane's declarations ledger.`;
+    if (why) why.textContent = `${ordered.length} sources stand behind this book's readings (${Object.keys(table).length} ledger ids). Beside each: lines that change · lines that go dark when it alone is off. A source off is not asked on any card; the line under a word follows. Press a source's name to open what it says about itself, in its own words.`;
   };
   // THE RAIL draws itself from the registry: a row per toggle, the three rows
   // that have their own switches hosting them, every other row a segment
