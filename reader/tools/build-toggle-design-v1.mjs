@@ -73,6 +73,28 @@ export function togglesFrom(page) {
   return out;
 }
 
+/** THE ORDER THE SWITCHES ARE MET IN, WHICH IS AN ARGUMENT AND NOT A LIST.
+ *
+ *  The rail draws them in the order they were built. A page meant to settle
+ *  what the overlay IS should draw them in the order that explains it, and the
+ *  voices already carry that order: a reader meets someone else's words first,
+ *  then what the scribes themselves put in the text, then the ways this site
+ *  arranges those two, and last the single place where this project says
+ *  something on its own account.
+ *
+ *  Least us to most us. The sources lead because they are the easiest thing
+ *  here to understand and because they are what this site is for (owner,
+ *  2026-09-20: "sources are the easiest to understand and lead concept"). The
+ *  project's own claim comes last because it should have to be reached.
+ */
+export const VOICE_ORDER = Object.freeze(["them", "text", "arrange", "claim"]);
+export const VOICE_LEDE = Object.freeze({
+  them: "Someone else wrote these. Every one of them is a dictionary, and the switch decides which of them are asked — never what any of them said.",
+  text: "The scribes put these in the text. Nobody is interpreting anything: the switch decides which of two things the ink already carries the English follows.",
+  arrange: "These are ours, and they only ever move the order. Nothing is hidden by any of them, and no reading is added or taken away.",
+  claim: "This one is a statement this project makes. It is the only switch here that is not somebody else's material, or our arrangement of it, and it is marked so a reader can refuse it.",
+});
+
 const esc = (s) => String(s).replace(/&/gu, "&amp;").replace(/</gu, "&lt;").replace(/>/gu, "&gt;").replace(/"/gu, "&quot;");
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
 
@@ -122,7 +144,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const card = (t) => {
     const pr = props[t.id];
     return `<section class="sw${pr ? " open" : ""}" id="${esc(t.id)}">
-  <h2>${esc(t.lab)}<i class="v v-${esc(t.voice)}">${esc((voices[t.voice] || {}).name || t.voice)}</i>${pr ? `<em class="flag">wording open</em>` : ""}</h2>
+  <h3>${esc(t.lab)}${pr ? `<em class="flag">wording open</em>` : ""}</h3>
   <p class="shot"><img src="shots/row-${esc(t.id)}.png" alt="the ${esc(t.lab)} row of the rail, as a reader sees it" loading="lazy"></p>
   ${t.positions.length ? `<p class="pos">it offers · ${t.positions.map((x) => `<b>${esc(x)}</b>`).join(" · ")}</p>` : ""}
   ${t.dead ? `<p class="dark">drawn, and dark. It waits on ${esc(t.waits)}.</p>` : ""}
@@ -159,7 +181,14 @@ if (import.meta.url === `file://${process.argv[1]}`) {
  ol.voices b { font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; }
  .v-them b, .them { color:var(--tekhelet); } .v-text b, .text { color:var(--shani); }
  .v-arrange b, .arrange { color:var(--muted); } .v-claim b, .claim { color:var(--ink); }
+ .grp { margin:2.2rem 0 0; }
+ .gh { font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; margin:0; color:var(--muted); }
+ .gh.v-them { color:var(--tekhelet); } .gh.v-text { color:var(--shani); } .gh.v-claim { color:var(--ink); }
+ .gl { margin:.3rem 0 .2rem; font-size:.9rem; color:var(--muted); }
  section.sw { border-top:1px solid var(--line); padding:1.1rem 0 .4rem; }
+ section.sw h3 { font-size:1.05rem; margin:0 0 .15rem; color:var(--ink); font-weight:600; }
+ section.sw h3 em.flag { font-style:normal; font-size:.58rem; letter-spacing:.08em; text-transform:uppercase;
+   color:var(--sel); padding-inline-start:.55rem; }
  section.sw h2 { font-size:1.05rem; margin:0 0 .15rem; color:var(--ink); font-weight:600; }
  section.sw h2 i { font-style:normal; font-size:.62rem; letter-spacing:.09em; text-transform:uppercase;
    padding-inline-start:.6rem; color:var(--faint); }
@@ -190,15 +219,18 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 <p>The law over all of them: <b>none of them writes on the Hebrew.</b> The text is a floor, not a surface. Every switch here acts inside the card or in the space around the line, and the letters do not move when you press one.</p>
 </div>
 
-<p class="lede">And every control says <b>whose statement it is</b>, because a reader should never have to guess whether they are reading a dictionary's opinion, a scribe's mark, this site's arrangement, or a claim this project is making on its own account:</p>
-<ol class="voices">
-${Object.entries(voices).map(([k, v]) => `<li class="v-${esc(k)}"><b>${esc(v.name)}</b> — ${esc(v.gloss)}</li>`).join("\n")}
-</ol>
+<p class="lede">And every control says <b>whose statement it is</b>, because a reader should never have to guess whether they are reading a dictionary's opinion, a scribe's mark, this site's arrangement, or a claim this project is making on its own account. The switches below are grouped that way and run in that order — <b>least us to most us</b>.</p>
 
 <p class="lede" style="margin-top:1.1rem">${live.length} switch${live.length === 1 ? "" : "es"} a reader can press today${dark.length ? `, and ${dark.length} drawn and dark` : ""}. Each picture is the rail itself, photographed; this page holds no typed copy of any switch.</p>
 <p class="lede"><b>${openCount} of ${toggles.length} have their wording open.</b> Where a switch is marked so, this lane is proposing different words and the ruling is the owner's. An accepted proposal is written into the reader and deleted from <code>data/toggle-wording-proposals-v1.json</code>, so that file empties as the language settles and its length is the size of what is still unsettled.</p>
 
-${toggles.map(card).join("\n")}
+${VOICE_ORDER.filter((v) => toggles.some((t) => t.voice === v)).map((v) => `<div class="grp" id="voice-${esc(v)}">
+<h2 class="gh v-${esc(v)}">${esc((voices[v] || {}).name || v)}</h2>
+<p class="gl">${esc(VOICE_LEDE[v] || (voices[v] || {}).gloss || "")}</p>
+${toggles.filter((t) => t.voice === v).map(card).join("\n")}
+</div>`).join("\n")}
+${toggles.some((t) => !VOICE_ORDER.includes(t.voice)) ? `<div class="grp"><h2 class="gh">not yet placed in a voice</h2>
+${toggles.filter((t) => !VOICE_ORDER.includes(t.voice)).map(card).join("\n")}</div>` : ""}
 
 <footer>Built by <code>tools/build-toggle-design-v1.mjs</code>, which parses the switches out of the reader itself and photographs the live rail. An earlier page here carried typed copies and described one switch while the rail carried nine; nothing on this page is typed, so it cannot fall behind that way again. The pictures are of ${esc(String(URL).split("?").pop())}.</footer>
 </div></body></html>`;

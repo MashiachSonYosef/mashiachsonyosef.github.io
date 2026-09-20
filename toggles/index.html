@@ -22,7 +22,14 @@
  ol.voices b { font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; }
  .v-them b, .them { color:var(--tekhelet); } .v-text b, .text { color:var(--shani); }
  .v-arrange b, .arrange { color:var(--muted); } .v-claim b, .claim { color:var(--ink); }
+ .grp { margin:2.2rem 0 0; }
+ .gh { font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; margin:0; color:var(--muted); }
+ .gh.v-them { color:var(--tekhelet); } .gh.v-text { color:var(--shani); } .gh.v-claim { color:var(--ink); }
+ .gl { margin:.3rem 0 .2rem; font-size:.9rem; color:var(--muted); }
  section.sw { border-top:1px solid var(--line); padding:1.1rem 0 .4rem; }
+ section.sw h3 { font-size:1.05rem; margin:0 0 .15rem; color:var(--ink); font-weight:600; }
+ section.sw h3 em.flag { font-style:normal; font-size:.58rem; letter-spacing:.08em; text-transform:uppercase;
+   color:var(--sel); padding-inline-start:.55rem; }
  section.sw h2 { font-size:1.05rem; margin:0 0 .15rem; color:var(--ink); font-weight:600; }
  section.sw h2 i { font-style:normal; font-size:.62rem; letter-spacing:.09em; text-transform:uppercase;
    padding-inline-start:.6rem; color:var(--faint); }
@@ -53,39 +60,16 @@
 <p>The law over all of them: <b>none of them writes on the Hebrew.</b> The text is a floor, not a surface. Every switch here acts inside the card or in the space around the line, and the letters do not move when you press one.</p>
 </div>
 
-<p class="lede">And every control says <b>whose statement it is</b>, because a reader should never have to guess whether they are reading a dictionary's opinion, a scribe's mark, this site's arrangement, or a claim this project is making on its own account:</p>
-<ol class="voices">
-<li class="v-them"><b>the sources</b> — what a dictionary says about itself, in its own words</li>
-<li class="v-text"><b>the manuscripts</b> — something the text itself carries</li>
-<li class="v-arrange"><b>this site</b> — how this site arranges what the sources said — an order, never a selection</li>
-<li class="v-claim"><b>this project’s claim</b> — a statement this project makes, not one a source made</li>
-</ol>
+<p class="lede">And every control says <b>whose statement it is</b>, because a reader should never have to guess whether they are reading a dictionary's opinion, a scribe's mark, this site's arrangement, or a claim this project is making on its own account. The switches below are grouped that way and run in that order — <b>least us to most us</b>.</p>
 
 <p class="lede" style="margin-top:1.1rem">8 switches a reader can press today, and 1 drawn and dark. Each picture is the rail itself, photographed; this page holds no typed copy of any switch.</p>
 <p class="lede"><b>6 of 9 have their wording open.</b> Where a switch is marked so, this lane is proposing different words and the ruling is the owner's. An accepted proposal is written into the reader and deleted from <code>data/toggle-wording-proposals-v1.json</code>, so that file empties as the language settles and its length is the size of what is still unsettled.</p>
 
-<section class="sw" id="order">
-  <h2>reads first<i class="v v-arrange">this site</i></h2>
-  <p class="shot"><img src="shots/row-order.png" alt="the reads first row of the rail, as a reader sees it" loading="lazy"></p>
-  
-  
-  <p class="settled">wording settled — this is what the rail says and what it should say.</p>
-  <p class="voice-note">how this site arranges what the sources said — an order, never a selection</p>
-</section>
-<section class="sw open" id="masorah">
-  <h2>the pointing<i class="v v-claim">this project’s claim</i><em class="flag">wording open</em></h2>
-  <p class="shot"><img src="shots/row-masorah.png" alt="the the pointing row of the rail, as a reader sees it" loading="lazy"></p>
-  <p class="pos">it offers · <b>keep</b> · <b>only this pointing</b> · <b>the letters only</b></p>
-  
-  <div class="prop">
-    <p class="ph">proposed instead</p>
-    <p class="pl"><b>the vowels</b> — the marks the scribes added under the letters. Keep them, require them, or set them aside inside the card. The page never changes.</p>
-    <p class="pn">“the pointing” is the scribal term; “the vowels” is the owner’s own phrase for it (2026-09-19, “turn off the masoretic vowels”). Also drops “Masoretic”, which the row never defines.</p>
-  </div>
-  <p class="voice-note">a statement this project makes, not one a source made</p>
-</section>
+<div class="grp" id="voice-them">
+<h2 class="gh v-them">the sources</h2>
+<p class="gl">Someone else wrote these. Every one of them is a dictionary, and the switch decides which of them are asked — never what any of them said.</p>
 <section class="sw open" id="sources">
-  <h2>sources<i class="v v-them">the sources</i><em class="flag">wording open</em></h2>
+  <h3>sources<em class="flag">wording open</em></h3>
   <p class="shot"><img src="shots/row-sources.png" alt="the sources row of the rail, as a reader sees it" loading="lazy"></p>
   
   
@@ -96,8 +80,12 @@
   </div>
   <p class="voice-note">what a dictionary says about itself, in its own words</p>
 </section>
+</div>
+<div class="grp" id="voice-text">
+<h2 class="gh v-text">the manuscripts</h2>
+<p class="gl">The scribes put these in the text. Nobody is interpreting anything: the switch decides which of two things the ink already carries the English follows.</p>
 <section class="sw open" id="pairs">
-  <h2>pairs<i class="v v-text">the manuscripts</i><em class="flag">wording open</em></h2>
+  <h3>pairs<em class="flag">wording open</em></h3>
   <p class="shot"><img src="shots/row-pairs.png" alt="the pairs row of the rail, as a reader sees it" loading="lazy"></p>
   
   
@@ -108,24 +96,48 @@
   </div>
   <p class="voice-note">something the text itself carries</p>
 </section>
-<section class="sw" id="lookup">
-  <h2>look up by<i class="v v-arrange">this site</i></h2>
-  <p class="shot"><img src="shots/row-lookup.png" alt="the look up by row of the rail, as a reader sees it" loading="lazy"></p>
-  <p class="pos">it offers · <b>the form</b> · <b>the headword</b></p>
-  
-  <p class="settled">wording settled — this is what the rail says and what it should say.</p>
-  <p class="voice-note">how this site arranges what the sources said — an order, never a selection</p>
-</section>
 <section class="sw" id="maqaf">
-  <h2>joined words<i class="v v-text">the manuscripts</i></h2>
+  <h3>joined words</h3>
   <p class="shot"><img src="shots/row-maqaf.png" alt="the joined words row of the rail, as a reader sees it" loading="lazy"></p>
   <p class="pos">it offers · <b>as separate words</b> · <b>as written</b> · <b>joined</b> · <b>the source’s spelling</b></p>
   <p class="dark">drawn, and dark. It waits on the joined runs carried per book — the zones hold none today, so there is nothing for this to move.</p>
   <p class="settled">wording settled — this is what the rail says and what it should say.</p>
   <p class="voice-note">something the text itself carries</p>
 </section>
+<section class="sw open" id="edition">
+  <h3>edition<em class="flag">wording open</em></h3>
+  <p class="shot"><img src="shots/row-edition.png" alt="the edition row of the rail, as a reader sees it" loading="lazy"></p>
+  <p class="pos">it offers · <b>MAM</b> · <b>mark where Leningrad differs</b></p>
+  
+  <div class="prop">
+    <p class="ph">proposed instead</p>
+    <p class="pl"><b>other manuscripts</b> — this is one manuscript tradition. Another great copy spells about a thousand words differently. Mark where.</p>
+    <p class="pn">“MAM” is never expanded anywhere a reader can see it. “edition” also reads like a publisher’s edition rather than a manuscript.</p>
+  </div>
+  <p class="voice-note">something the text itself carries</p>
+</section>
+</div>
+<div class="grp" id="voice-arrange">
+<h2 class="gh v-arrange">this site</h2>
+<p class="gl">These are ours, and they only ever move the order. Nothing is hidden by any of them, and no reading is added or taken away.</p>
+<section class="sw" id="order">
+  <h3>reads first</h3>
+  <p class="shot"><img src="shots/row-order.png" alt="the reads first row of the rail, as a reader sees it" loading="lazy"></p>
+  
+  
+  <p class="settled">wording settled — this is what the rail says and what it should say.</p>
+  <p class="voice-note">how this site arranges what the sources said — an order, never a selection</p>
+</section>
+<section class="sw" id="lookup">
+  <h3>look up by</h3>
+  <p class="shot"><img src="shots/row-lookup.png" alt="the look up by row of the rail, as a reader sees it" loading="lazy"></p>
+  <p class="pos">it offers · <b>the form</b> · <b>the headword</b></p>
+  
+  <p class="settled">wording settled — this is what the rail says and what it should say.</p>
+  <p class="voice-note">how this site arranges what the sources said — an order, never a selection</p>
+</section>
 <section class="sw open" id="licence">
-  <h2>license<i class="v v-arrange">this site</i><em class="flag">wording open</em></h2>
+  <h3>license<em class="flag">wording open</em></h3>
   <p class="shot"><img src="shots/row-licence.png" alt="the license row of the rail, as a reader sees it" loading="lazy"></p>
   <p class="pos">it offers · <b>any</b> · <b>public domain</b> · <b>CC BY</b> · <b>CC BY-SA</b></p>
   
@@ -137,7 +149,7 @@
   <p class="voice-note">how this site arranges what the sources said — an order, never a selection</p>
 </section>
 <section class="sw open" id="names">
-  <h2>names<i class="v v-arrange">this site</i><em class="flag">wording open</em></h2>
+  <h3>names<em class="flag">wording open</em></h3>
   <p class="shot"><img src="shots/row-names.png" alt="the names row of the rail, as a reader sees it" loading="lazy"></p>
   <p class="pos">it offers · <b>as meaning</b> · <b>as sound</b></p>
   
@@ -148,18 +160,24 @@
   </div>
   <p class="voice-note">how this site arranges what the sources said — an order, never a selection</p>
 </section>
-<section class="sw open" id="edition">
-  <h2>edition<i class="v v-text">the manuscripts</i><em class="flag">wording open</em></h2>
-  <p class="shot"><img src="shots/row-edition.png" alt="the edition row of the rail, as a reader sees it" loading="lazy"></p>
-  <p class="pos">it offers · <b>MAM</b> · <b>mark where Leningrad differs</b></p>
+</div>
+<div class="grp" id="voice-claim">
+<h2 class="gh v-claim">this project’s claim</h2>
+<p class="gl">This one is a statement this project makes. It is the only switch here that is not somebody else's material, or our arrangement of it, and it is marked so a reader can refuse it.</p>
+<section class="sw open" id="masorah">
+  <h3>the pointing<em class="flag">wording open</em></h3>
+  <p class="shot"><img src="shots/row-masorah.png" alt="the the pointing row of the rail, as a reader sees it" loading="lazy"></p>
+  <p class="pos">it offers · <b>keep</b> · <b>only this pointing</b> · <b>the letters only</b></p>
   
   <div class="prop">
     <p class="ph">proposed instead</p>
-    <p class="pl"><b>other manuscripts</b> — this is one manuscript tradition. Another great copy spells about a thousand words differently. Mark where.</p>
-    <p class="pn">“MAM” is never expanded anywhere a reader can see it. “edition” also reads like a publisher’s edition rather than a manuscript.</p>
+    <p class="pl"><b>the vowels</b> — the marks the scribes added under the letters. Keep them, require them, or set them aside inside the card. The page never changes.</p>
+    <p class="pn">“the pointing” is the scribal term; “the vowels” is the owner’s own phrase for it (2026-09-19, “turn off the masoretic vowels”). Also drops “Masoretic”, which the row never defines.</p>
   </div>
-  <p class="voice-note">something the text itself carries</p>
+  <p class="voice-note">a statement this project makes, not one a source made</p>
 </section>
+</div>
+
 
 <footer>Built by <code>tools/build-toggle-design-v1.mjs</code>, which parses the switches out of the reader itself and photographs the live rail. An earlier page here carried typed copies and described one switch while the rail carried nine; nothing on this page is typed, so it cannot fall behind that way again. The pictures are of b=amos.</footer>
 </div></body></html>
