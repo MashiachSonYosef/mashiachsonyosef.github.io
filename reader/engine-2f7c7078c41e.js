@@ -2924,6 +2924,29 @@
     };
 
     // --- row 3 · what the catalog attests for that block ---------------
+    // WHAT THE SOURCE SAID ABOUT THIS PIECE, HERE.
+    //
+    // A piece is not a word and its key does not mean what the piece means.
+    // Looked up by key, the letter VAV returns an 1890 concordance's list of
+    // every English word it ever helped render, so the conjunction "and"
+    // reads "describe". Six of the ten commonest pieces in our cuts read as
+    // nonsense that way. The fix is not a better sort: the article HE is
+    // "the" at 22,250 positions and "her" at 1,111, and no table keyed by
+    // letter can tell those apart. Only the position can, and the source
+    // wrote it down on the same line.
+    //
+    // MATCHED BY PLACE, NOT BY LETTER. A word can carry the same piece twice
+    // (VAV + ... + VAV), so the cell is matched to the source's piece by its
+    // position in the division, and only when the division this reader has
+    // open is the one the source drew: same number of pieces, same keys, in
+    // the same order. Anything else and nothing is claimed.
+    const pieceGloss = (cells, idx) => {
+      const pg = word && Array.isArray(word.pg) ? word.pg : null;
+      if (!pg || !pg.length || cells.length !== pg.length) return null;
+      for (let i = 0; i < cells.length; i += 1) if (cells[i].surface !== pg[i].k) return null;
+      const hit = pg[idx];
+      return hit && hit.g ? hit : null;
+    };
     const renderReadings = async () => {
       const surface = cover[cellIdx].surface;
       readRow.replaceChildren();
@@ -2936,6 +2959,20 @@
       if (surface !== cover[cellIdx].surface) return;    // the reader moved on
       const pool = cache.get(surface);
       readRow.replaceChildren(label);
+      // It leads and it is labelled. The store's readings for this key all
+      // still stand below, in their own order: this is priority, never a
+      // filter, and a reader can see both the source's word for this place
+      // and everything the catalog holds for the key.
+      {
+        const hit = pieceGloss(cover, cellIdx);
+        if (hit) {
+          const line = document.createElement("p"); line.className = "r-piece";
+          const lab2 = document.createElement("i"); lab2.textContent = "here the source reads ";
+          const val = document.createElement("b"); val.textContent = hit.g;
+          line.append(lab2, val);
+          readRow.append(line);
+        }
+      }
       if (!pool || !pool.length) {
         const p = document.createElement("p");
         p.textContent = pool ? "No displayable route in the catalog for this form." : "No exact route in the catalog for this form.";

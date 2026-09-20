@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 // Synthesis lane · toggle-design-rule-v1-the-page-about-the-switches-is-built-from-the-switches
+// LEDGER: -
+// no frame letter. This tool writes a page, not a record. It READS
+// data/toggle-wording-proposals-v1.json and writes nothing back into data/;
+// the proposals file is kept by hand as the owner rules on each wording.
 //
 // THE PAGE WHERE THE OVERLAY IS AGREED, NOT THE PAGE WHERE IT IS DOCUMENTED.
 //
@@ -29,10 +33,12 @@
 // speaks in, the sentence it says to a reader, and — for the ones that are
 // dark — what they are waiting on, in the words the rail itself uses.
 //
-// Run: node tools/build-toggle-design-v1.mjs [--url http://127.0.0.1:8899/zone.html?b=amos]
+// Run: node tools/build-toggle-design-v1.mjs [--url http://127.0.0.1:8899/zone.html]
+//      With no --url it photographs the first book the shelf holds.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
 
 export const TOGGLE_DESIGN_RULE_ID = "toggle-design-rule-v1-the-page-about-the-switches-is-built-from-the-switches";
 
@@ -103,7 +109,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const PAGE = readFileSync(join(HERE, "..", "zone.html"), "utf8");
   const OUT = arg("--out", join(HERE, "..", "..", "toggles"));
   const SHOTS = join(OUT, "shots");
-  const URL = arg("--url", "http://127.0.0.1:8899/zone.html?b=amos");
+  // The book is asked of the shelf, never named here. A tool that types a slug
+  // goes dormant the day that work is withdrawn, and a dormant tool reports
+  // nothing, which reads exactly like green (check-scope-derived-v1 S1).
+  const URL = arg("--url", `http://127.0.0.1:8899/zone.html?b=${zonesOnDisk()[0]}`);
   const toggles = togglesFrom(PAGE), voices = voicesFrom(PAGE);
   // THE OPEN QUESTION, AS A FILE THAT EMPTIES. A proposal is wording this lane
   // suggests for a switch; it is drawn beside what the rail says today and is

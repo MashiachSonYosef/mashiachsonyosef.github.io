@@ -36,13 +36,13 @@
 
 /** final letters, and the medial letter each one is the final form of */
 export const FINAL_TO_MEDIAL = Object.freeze({
-  "ך": "כ",   // kaf
-  "ם": "מ",   // mem
-  "ן": "נ",   // nun
-  "ף": "פ",   // pe
-  "ץ": "צ",   // tsadi
+  "\u05da": "\u05db",   // kaf (final → medial)
+  "\u05dd": "\u05de",   // mem
+  "\u05df": "\u05e0",   // nun
+  "\u05e3": "\u05e4",   // pe
+  "\u05e5": "\u05e6",   // tsadi
 });
-export const MAQAF = "־";
+export const MAQAF = "\u05be";
 export const WELD_FORMS_RULE_ID = "weld-forms-rule-v1-a-joined-run-is-offered-in-every-form-a-source-published-and-in-no-form-it-did-not";
 
 /** the seam positions of a run that CAN fold: a piece, not the last, whose
