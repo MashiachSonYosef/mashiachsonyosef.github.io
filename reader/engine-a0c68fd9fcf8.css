@@ -803,7 +803,21 @@
   .rail .decl { grid-column: 1 / -1; margin: 0.35rem 0 0.2rem; padding: 0.45rem 0.6rem;
     border: 1px solid var(--line); border-radius: 0.5rem; max-width: 52rem; }
   .rail .decl-lead { margin: 0 0 0.4rem; font-size: 0.66rem; color: var(--muted); font-style: italic; }
-  .rail .decl-branch { margin: 0 0 0.5rem; padding-left: 0.5rem; border-left: 1px solid var(--line); }
+  .rail .decl-branch { margin: 0 0 0.5rem; padding-left: 0.5rem; border-left: 1px solid var(--line);
+    display: grid; grid-template-columns: 0.92rem 1fr; gap: 0 0.45rem; align-items: start; }
+  .rail .decl-branch > :not(.decl-bx) { grid-column: 2; }
+  /* the expression's own box. Same box as a source's, so a reader learns one
+     control: drawn on every line, live where the source declares the
+     expression over every record it has, and disabled with its reason where
+     switching it alone would need a per-row tag nothing carries yet. */
+  .rail .decl-bx { grid-column: 1; grid-row: 1; width: 0.82rem; height: 0.82rem; margin-top: 0.16rem;
+    padding: 0; border: 1px solid var(--muted); border-radius: 0.2rem; background: none;
+    cursor: pointer; font-size: 0; letter-spacing: 0; }
+  .rail .decl-bx[aria-pressed="true"]:not(:disabled) { border-color: var(--sel); }
+  .rail .decl-bx[aria-pressed="true"]::after { content: ""; display: block; width: 0.22rem; height: 0.44rem;
+    margin: 0.02rem auto 0; border: solid var(--sel); border-width: 0 1.5px 1.5px 0; transform: rotate(42deg); }
+  .rail .decl-bx:disabled { border-color: var(--line); cursor: default; }
+  .rail .decl-bx:disabled::after { border-color: var(--line); }
   .rail .decl-branch:last-child { margin-bottom: 0; }
   .rail .decl-branch[data-klass] { opacity: 0.82; }
   .rail .decl-aspect { margin: 0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }

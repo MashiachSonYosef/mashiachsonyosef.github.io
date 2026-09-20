@@ -4501,9 +4501,39 @@
   };
   // one expression: the sentence, the source's own values inside it, and the
   // address folded away — a reader wants to know WHAT it says before WHERE
-  const declBranch = (b, klass, showWork) => {
+  const declBranch = (b, klass, showWork, stemKey) => {
     const box = document.createElement("div"); box.className = "decl-branch"; box.dataset.aspect = b.aspect;
     if (klass) box.dataset.klass = klass;
+    // EVERY EXPRESSION CARRIES ITS OWN BOX (owner, 2026-09-20). Layer two of
+    // the tree is a switch per expression, not a list of sentences, so the
+    // box is drawn on every line whether or not this site can honour it yet.
+    //
+    // Two states, and the difference is the truth about our data:
+    //   live  the source declares this over every record it has, so the
+    //         expression and the source are the same set. Pressing it is
+    //         pressing the source's own switch, and it does.
+    //   dead  the expression holds for some of the source's records and not
+    //         others. Switching it alone needs a tag on every route row and
+    //         no row carries one, so the box is drawn disabled with the
+    //         reason on it rather than drawn live and doing nothing. The
+    //         corpus lane's ledgers are what light these.
+    //
+    // A row that cannot answer is drawn dead with its reason, never dropped —
+    // the same law the rail's own switches are held to.
+    const whole = !klass && coversEverything(b);
+    const bx = document.createElement("button");
+    bx.type = "button"; bx.className = "dfp decl-bx";
+    bx.setAttribute("aria-pressed", "true");
+    if (whole) {
+      bx.setAttribute("aria-label", `turn off: ${sayFor(b.aspect)}`);
+      bx.title = "the source declares this over every record it has — this is the source's own switch";
+      bx.addEventListener("click", (ev) => { ev.stopPropagation(); const t = box.closest(".src-row"); const s2 = t && t.querySelector(".dfp:not(.decl-bx)"); if (s2) s2.click(); });
+    } else {
+      bx.disabled = true;
+      bx.setAttribute("aria-label", `${sayFor(b.aspect)} — not switchable on its own yet`);
+      bx.title = "holds for some of this source's records and not others — switching it alone needs a tag on every row, which is not carried yet";
+    }
+    box.append(bx);
     const line = document.createElement("p"); line.className = "decl-says";
     const lead = document.createElement("span"); lead.className = "decl-lead-in";
     lead.textContent = `${sayFor(b.aspect)}${b.values.length ? " — " : ""}`;
@@ -4574,7 +4604,7 @@
     const stem = d && d.stems ? d.stems[g.key] : null;
     if (!stem) {
       const p = document.createElement("p"); p.className = "decl-none";
-      p.textContent = "the declarations ledger holds nothing for this source, and this page fills no gap";
+      p.textContent = "nothing in the ledger for this source — and this page fills no gap";
       wrap.append(p); return wrap;
     }
     // WHAT THIS SOURCE IS, in one sentence. Every source on this shelf is a
@@ -4585,15 +4615,16 @@
     const ourLicence = stem.silent.some((x) => x.aspect === "licence_material" && (x.why === "ONLY_OUR_MANIFEST_SAYS_IT" || x.why === "ONLY_OUR_DERIVED_FILE_SAYS_IT"));
     const theirLicence = [...stem.branches, ...stem.channels].some((b) => b.aspect === "licence_material");
     const lead = document.createElement("p"); lead.className = "decl-lead";
-    lead.textContent = `An English dictionary this site reads for definitions of words written in Hebrew letters. ${
-      theirLicence ? "It states its own licence terms" : ourLicence ? "Its licence is recorded by this project, not stated in the source's own files" : "Its licence is recorded by this project"
-    }. On this book it leads ${g.leads.toLocaleString()} line${g.leads === 1 ? "" : "s"} and carries a reading at ${g.carries.toLocaleString()} word${g.carries === 1 ? "" : "s"}.`;
+    lead.append(`${g.leads.toLocaleString()} line${g.leads === 1 ? "" : "s"} lead · reading at ${g.carries.toLocaleString()} word${g.carries === 1 ? "" : "s"}`);
+    const lic = document.createElement("i");
+    lic.textContent = theirLicence ? " · states its own licence" : " · licence recorded by this project";
+    lead.append(lic);
     wrap.append(lead);
     const works = new Set([...stem.branches, ...stem.channels].map((b) => b.work).filter(Boolean));
     const many = works.size > 1;
     if (many) {
       const p = document.createElement("p"); p.className = "decl-silent";
-      p.textContent = `This one switch stands for ${works.size} works of the same source; each line says which of them said it.`;
+      p.textContent = `one switch, ${works.size} works of this source — each line says which`;
       wrap.append(p);
     }
     const head = document.createElement("p"); head.className = "decl-head";
@@ -4612,19 +4643,22 @@
     if (n) {
       const reach = document.createElement("p"); reach.className = "decl-reach decl-reach-head";
       reach.dataset.reach = switchable ? (switchable === n ? "source" : "mixed") : "needs-a-tag";
-      const tail = "Turning one of those off on its own would need a tag on every row, and this site does not carry one yet, so those lines say what the source declares — they do not switch it.";
+      // SHORT, BECAUSE IT IS OURS. This ran four lines and stood between a
+      // reader and the source's own words. What it has to say is small: which
+      // of these the box already switches, and that the rest read only.
+      const rest = n - switchable;
       reach.textContent = !switchable
-        ? `Each of these holds for some of this source’s records and not others. ${tail}`
+        ? `these read — none switches on its own yet`
         : switchable === n
-          ? `The source declares every one of these over every record it has, so each is the same set as the source itself: the box beside its name turns any of them off.`
-          : `${switchable} of these the source declares over every record it has, so ${switchable === 1 ? "it is" : "they are"} the same set as the source itself and the box beside its name turns ${switchable === 1 ? "it" : "them"} off. The other ${n - switchable} hold for some records and not others. ${tail}`;
+          ? `the box beside the name switches all of these`
+          : `the box switches ${switchable} of these — the other ${rest} read only`;
       wrap.append(reach);
     }
-    stem.branches.forEach((b) => wrap.append(declBranch(b, null, many)));
-    stem.channels.forEach((b) => wrap.append(declBranch(b, b.klass || "CHANNEL_NOT_A_BRANCH", many)));
+    stem.branches.forEach((b) => wrap.append(declBranch(b, null, many, g.key)));
+    stem.channels.forEach((b) => wrap.append(declBranch(b, b.klass || "CHANNEL_NOT_A_BRANCH", many, g.key)));
     if (!n) {
       const p = document.createElement("p"); p.className = "decl-none";
-      p.textContent = "This source declares nothing the ledger could record. A short branch, drawn at its real height.";
+      p.textContent = "declares nothing the ledger could record — a short branch, at its real height";
       wrap.append(p);
     }
     if (stem.silent.length) {
@@ -4635,13 +4669,13 @@
       const elsewhere = rest.filter((x) => declared.has(x.aspect));
       const line = (t) => { const p = document.createElement("p"); p.className = "decl-silent"; p.textContent = t; wrap.append(p); };
       const words = (xs) => [...new Set(xs.map((x) => String(x.aspect).replace(/_/gu, " ")))].join(", ");
-      if (whole.length) line(`It says nothing at all about ${words(whole)}.`);
-      if (elsewhere.length) line(`On ${words(elsewhere)} it speaks only where the line above says, and the other place the ledger looked holds nothing.`);
-      if (ours.length) line(`On ${words(ours)} only this project's own manifest speaks, never the source.`);
+      if (whole.length) line(`silent on · ${words(whole)}`);
+      if (elsewhere.length) line(`${words(elsewhere)} — only where the line above says`);
+      if (ours.length) line(`${words(ours)} — our manifest only, never the source`);
     }
     if (stem.observations) {
       const p = document.createElement("p"); p.className = "decl-silent";
-      p.textContent = `${stem.observations} further line${stem.observations === 1 ? " is" : "s are"} this project measuring the source rather than the source speaking, and ${stem.observations === 1 ? "is" : "are"} not shown here.`;
+      p.textContent = `${stem.observations} more — us measuring the source, not the source speaking — not shown`;
       wrap.append(p);
     }
     return wrap;
