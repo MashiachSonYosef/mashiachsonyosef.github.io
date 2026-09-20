@@ -823,7 +823,21 @@
   .rail .decl { grid-column: 1 / -1; margin: 0.35rem 0 0.2rem; padding: 0.45rem 0.6rem;
     border: 1px solid var(--line); border-radius: 0.5rem; max-width: 52rem; }
   .rail .decl-lead { margin: 0 0 0.4rem; font-size: 0.66rem; color: var(--muted); font-style: italic; }
-  .rail .decl-branch { margin: 0 0 0.5rem; padding-left: 0.5rem; border-left: 1px solid var(--line); }
+  .rail .decl-branch { margin: 0 0 0.5rem; padding-left: 0.5rem; border-left: 1px solid var(--line);
+    display: grid; grid-template-columns: 0.92rem 1fr; gap: 0 0.45rem; align-items: start; }
+  .rail .decl-branch > :not(.decl-bx) { grid-column: 2; }
+  /* the expression's own box. Same box as a source's, so a reader learns one
+     control: drawn on every line, live where the source declares the
+     expression over every record it has, and disabled with its reason where
+     switching it alone would need a per-row tag nothing carries yet. */
+  .rail .decl-bx { grid-column: 1; grid-row: 1; width: 0.82rem; height: 0.82rem; margin-top: 0.16rem;
+    padding: 0; border: 1px solid var(--muted); border-radius: 0.2rem; background: none;
+    cursor: pointer; font-size: 0; letter-spacing: 0; }
+  .rail .decl-bx[aria-pressed="true"]:not(:disabled) { border-color: var(--sel); }
+  .rail .decl-bx[aria-pressed="true"]::after { content: ""; display: block; width: 0.22rem; height: 0.44rem;
+    margin: 0.02rem auto 0; border: solid var(--sel); border-width: 0 1.5px 1.5px 0; transform: rotate(42deg); }
+  .rail .decl-bx:disabled { border-color: var(--line); cursor: default; }
+  .rail .decl-bx:disabled::after { border-color: var(--line); }
   .rail .decl-branch:last-child { margin-bottom: 0; }
   .rail .decl-branch[data-klass] { opacity: 0.82; }
   .rail .decl-aspect { margin: 0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
@@ -6091,9 +6105,39 @@
   };
   // one expression: the sentence, the source's own values inside it, and the
   // address folded away — a reader wants to know WHAT it says before WHERE
-  const declBranch = (b, klass, showWork) => {
+  const declBranch = (b, klass, showWork, stemKey) => {
     const box = document.createElement("div"); box.className = "decl-branch"; box.dataset.aspect = b.aspect;
     if (klass) box.dataset.klass = klass;
+    // EVERY EXPRESSION CARRIES ITS OWN BOX (owner, 2026-09-20). Layer two of
+    // the tree is a switch per expression, not a list of sentences, so the
+    // box is drawn on every line whether or not this site can honour it yet.
+    //
+    // Two states, and the difference is the truth about our data:
+    //   live  the source declares this over every record it has, so the
+    //         expression and the source are the same set. Pressing it is
+    //         pressing the source's own switch, and it does.
+    //   dead  the expression holds for some of the source's records and not
+    //         others. Switching it alone needs a tag on every route row and
+    //         no row carries one, so the box is drawn disabled with the
+    //         reason on it rather than drawn live and doing nothing. The
+    //         corpus lane's ledgers are what light these.
+    //
+    // A row that cannot answer is drawn dead with its reason, never dropped —
+    // the same law the rail's own switches are held to.
+    const whole = !klass && coversEverything(b);
+    const bx = document.createElement("button");
+    bx.type = "button"; bx.className = "dfp decl-bx";
+    bx.setAttribute("aria-pressed", "true");
+    if (whole) {
+      bx.setAttribute("aria-label", `turn off: ${sayFor(b.aspect)}`);
+      bx.title = "the source declares this over every record it has — this is the source's own switch";
+      bx.addEventListener("click", (ev) => { ev.stopPropagation(); const t = box.closest(".src-row"); const s2 = t && t.querySelector(".dfp:not(.decl-bx)"); if (s2) s2.click(); });
+    } else {
+      bx.disabled = true;
+      bx.setAttribute("aria-label", `${sayFor(b.aspect)} — not switchable on its own yet`);
+      bx.title = "holds for some of this source's records and not others — switching it alone needs a tag on every row, which is not carried yet";
+    }
+    box.append(bx);
     const line = document.createElement("p"); line.className = "decl-says";
     const lead = document.createElement("span"); lead.className = "decl-lead-in";
     lead.textContent = `${sayFor(b.aspect)}${b.values.length ? " — " : ""}`;
@@ -6214,8 +6258,8 @@
           : `the box switches ${switchable} of these — the other ${rest} read only`;
       wrap.append(reach);
     }
-    stem.branches.forEach((b) => wrap.append(declBranch(b, null, many)));
-    stem.channels.forEach((b) => wrap.append(declBranch(b, b.klass || "CHANNEL_NOT_A_BRANCH", many)));
+    stem.branches.forEach((b) => wrap.append(declBranch(b, null, many, g.key)));
+    stem.channels.forEach((b) => wrap.append(declBranch(b, b.klass || "CHANNEL_NOT_A_BRANCH", many, g.key)));
     if (!n) {
       const p = document.createElement("p"); p.className = "decl-none";
       p.textContent = "declares nothing the ledger could record — a short branch, at its real height";
