@@ -136,7 +136,14 @@ echo
 # What the checks do not cover is as much a result as what they do. The
 # manifest reads it out of the source every run, so the number is in front of
 # whoever ran the checks rather than in a document nobody opened.
-node tools/pipeline-manifest-v1.mjs --stamp "$(date +%F)" | sed -n '2,3p;/NO BUILD STEP/p' | sed 's/^/  /'
+# --out to a scratch path, NEVER the committed manifest. Reading the numbers
+# out is not a reason to rewrite a tracked file: the default --out is
+# PIPELINE-MANIFEST.md, so every suite run left the tree dirty with a date
+# line nobody asked for, and a run that dirties the tree teaches whoever ran
+# it to ignore a dirty tree. The manifest is committed by the build, here it
+# is only read.
+node tools/pipeline-manifest-v1.mjs --stamp "$(date +%F)" --out "$(mktemp)" \
+  | sed -n '2,3p;/NO BUILD STEP/p' | sed 's/^/  /'
 echo
 if [ "$fail" -eq 0 ]; then echo "all $pass suites passed"; else
   echo "$fail of $((pass+fail)) suites FAILED: ${failed[*]}"; fi
