@@ -2238,7 +2238,14 @@
   };
   const oldestFirst = (a, b) => {
     const tier = (r) => (Number.isFinite(r.year) && r.year <= ERA_CUT_CE ? 0 : 1);
-    return tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger;
+    // A row with no year cannot be weighed by year. Comparing it by year
+    // gave NaN, which fell through to catalog rank against a dated row while
+    // two dated rows compared by year, so a pool mixing the two had no
+    // consistent order (corpus lane, 2026-09-23). Within a tier the dated
+    // rows lead, oldest first; the undated follow in catalog rank.
+    const dated = (r) => (Number.isFinite(r.year) ? 0 : 1);
+    return tier(a) - tier(b) || dated(a) - dated(b)
+      || (dated(a) ? 0 : a.year - b.year) || a.ledger - b.ledger;
   };
   // WHICH READING ANSWERS FIRST. One comparator chain, every position of it
   // a stable re-order of the same pool: the license preference (a sort,
