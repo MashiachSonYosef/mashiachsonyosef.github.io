@@ -11,14 +11,13 @@
 //
 //   K1  the page draws every pair the zone counts, both halves printed
 //   K2  under each position of the switch (written · read · as the source
-//       sets them), pressing EITHER half of a pair opens ONE card that
-//       carries both halves as pills, with the switch's half pressed — or,
-//       where the switch's half has no reading and the line fell back, the
-//       card says so in words; the underline on the line sits under the
-//       same half the card is about
-//   K3  pressing the other half ON THE CARD keeps the one card, flips the
-//       pressed pill, and moves the line's underline with it, and the card
-//       says the reader pressed it here
+//       sets them), pressing EITHER half of a pair opens the card on the
+//       switch's half — both halves in the head as always, the open one
+//       lit — or, where the switch's half has no reading, on the half the
+//       line fell back to; the underline on the line sits under the same
+//       half the card is about. Nothing else on the card changes.
+//   K3  pressing the other half in the head keeps the one card, lights it
+//       instead, and moves the line's underline with it
 //   K4  moving the switch forgets that press: the pair opens on the switch's
 //       half again
 //   K5  the Hebrew of every pair never changed by a byte through all of it
@@ -85,16 +84,15 @@ const openPair = async (n, h) => {
   return p.evaluate((n) => {
     const w = document.querySelectorAll("section.seg .he-text .wb.kq")[n];
     const hud = document.getElementById("hud");
-    const pills = [...hud.querySelectorAll(".b-q .kq-pills button")];
-    const pressed = pills.filter((x) => x.getAttribute("aria-pressed") === "true");
-    const label = (hud.querySelector(".b-q .r-label") || {}).textContent || "";
-    const headSegs = [...hud.querySelectorAll(".head b span:not(.mq)")].map((s) => ({ t: s.textContent, lit: !s.style.color }));
+    const headSegs = [...hud.querySelectorAll(".head b span:not(.mq)")].map((s) => ({ t: s.textContent, lit: !s.style.color, pressable: s.getAttribute("role") === "button" }));
     const halves = [...w.querySelectorAll(".wr")];
+    const litIdx = headSegs.findIndex((s) => s.lit);
+    const roleLine = (hud.querySelector(".head .kq-role") || {}).textContent || "";
     return {
-      open: !hud.hidden, pills: pills.length, pressedRole: pressed.length === 1 ? pressed[0].dataset.role : null,
-      pressedIdx: pressed.length === 1 ? pills.indexOf(pressed[0]) : -1,
-      firstPillRole: pills[0] ? pills[0].dataset.role : null,
-      label, headLit: headSegs.filter((s) => s.lit).length, headSegs: headSegs.length,
+      open: !hud.hidden, litIdx, headLit: headSegs.filter((s) => s.lit).length, headSegs: headSegs.length,
+      otherPressable: headSegs.some((s) => !s.lit && s.pressable),
+      litRole: roleLine.startsWith("ketiv") ? "KETIV" : roleLine.startsWith("qere") ? "QERE" : null,
+      extras: hud.querySelectorAll(".b-q *").length,
       underline: halves.findIndex((x) => x.classList.contains("backs-en")),
       on: halves.findIndex((x) => x.classList.contains("on")),
       roles: halves.map((x) => (x.title.startsWith("ketiv") ? "KETIV" : "QERE")),
@@ -114,43 +112,45 @@ for (const [label, id] of POSITIONS) {
     for (const h of [0, 1]) {
       const r = await openPair(n, h);
       const want = id === "SOURCE" ? r.roles[0] : id;
-      const fell = /has no reading here/.test(r.label);
-      const okRole = r.pressedRole === want || (fell && r.pressedRole && r.pressedRole !== want);
-      check(`K2  ${label} · pair ${n + 1} half ${h + 1} · one card, both halves as pills, the switch's half pressed`,
-        r.open && r.pills === 2 && okRole && r.headSegs === 2 && r.headLit === 1,
-        `pressed ${r.pressedRole} · wanted ${want}${fell ? " (fell back, said so)" : ""} · pills ${r.pills} · line "${r.line.slice(0, 30)}"`);
-      const idx = r.pressedIdx;
+      const wantIdx = r.roles.indexOf(want);
+      // the switch's half, unless the line has no reading under it and fell
+      // to the other: then the card follows the line, which is what the
+      // underline says
+      const fell = r.underline >= 0 && r.underline !== wantIdx && r.litIdx === r.underline;
+      const okIdx = r.litIdx === wantIdx || fell;
+      check(`K2  ${label} · pair ${n + 1} half ${h + 1} · the card opens on the switch's half, both halves in the head, that one lit`,
+        r.open && okIdx && r.headSegs === 2 && r.headLit === 1 && r.litRole === r.roles[r.litIdx],
+        `lit ${r.roles[r.litIdx]} · wanted ${want}${fell ? " (the line fell back; the card followed it)" : ""} · line "${r.line.slice(0, 30)}"`);
       check(`K2  ${label} · pair ${n + 1} half ${h + 1} · the underline and the open mark sit under the half the card is about`,
-        idx >= 0 && r.underline === idx && r.on === idx, `underline ${r.underline} · on ${r.on} · pressed ${idx}`);
-      check(`K2  ${label} · pair ${n + 1} half ${h + 1} · the card says why this half opened`,
-        /as the pairs switch says|has no reading here|you ruled on it/.test(r.label), r.label.slice(0, 80));
+        r.litIdx >= 0 && r.underline === r.litIdx && r.on === r.litIdx, `underline ${r.underline} · on ${r.on} · lit ${r.litIdx}`);
+      check(`K2  ${label} · pair ${n + 1} half ${h + 1} · nothing was added to the card for this; the other half is pressable where it stands`,
+        r.extras === 0 && r.otherPressable, `extras ${r.extras} · pressable ${r.otherPressable}`);
       await closeCard();
     }
   }
 }
 
-// K3 — under "written", press the other half on the card at pair 1
+// K3 — under "written", press the other half in the head at pair 1
 await setSwitch("written (ketiv)"); await p.waitForTimeout(300);
 const first = await openPair(0, 0);
-const otherIdx = first.pressedIdx === 0 ? 1 : 0;
-await p.evaluate((j) => { document.querySelectorAll("#hud .b-q .kq-pills button")[j].click(); }, otherIdx);
+const otherIdx = first.litIdx === 0 ? 1 : 0;
+await p.evaluate((j) => { document.querySelectorAll("#hud .head b span:not(.mq)")[j].click(); }, otherIdx);
 await p.waitForTimeout(900);
 const flipped = await p.evaluate(() => {
   const w = document.querySelectorAll("section.seg .he-text .wb.kq")[0];
   const hud = document.getElementById("hud");
-  const pills = [...hud.querySelectorAll(".b-q .kq-pills button")];
-  const pressed = pills.findIndex((x) => x.getAttribute("aria-pressed") === "true");
+  const segs = [...hud.querySelectorAll(".head b span:not(.mq)")];
+  const lit = segs.findIndex((s) => !s.style.color);
   const halves = [...w.querySelectorAll(".wr")];
-  return { open: !hud.hidden, pills: pills.length, pressed, label: (hud.querySelector(".b-q .r-label") || {}).textContent || "",
+  return { open: !hud.hidden, segs: segs.length, lit,
     underline: halves.findIndex((x) => x.classList.contains("backs-en")), line: ((w.querySelector(":scope > .g") || {}).textContent || "").replace(/\s+/g, " ").trim() };
 });
-check("K3  pressing the other half on the card keeps the one card and flips the pressed pill",
-  flipped.open && flipped.pills === 2 && flipped.pressed === otherIdx, `pressed ${flipped.pressed} · wanted ${otherIdx}`);
+check("K3  pressing the other half in the head keeps the one card and lights that half instead",
+  flipped.open && flipped.segs === 2 && flipped.lit === otherIdx, `lit ${flipped.lit} · wanted ${otherIdx}`);
 check("K3  the line's underline moved to the half the card is now about", flipped.underline === otherIdx, `underline ${flipped.underline}`);
-check("K3  the card says the reader pressed it here", /because you pressed it/.test(flipped.label), flipped.label.slice(0, 80));
 await closeCard();
 const again = await openPair(0, 0);
-check("K3  reopened at the same place, the pair still opens on the pressed half", again.pressedIdx === otherIdx, `pressed ${again.pressedIdx}`);
+check("K3  reopened at the same place, the pair still opens on the pressed half", again.litIdx === otherIdx, `lit ${again.litIdx}`);
 await closeCard();
 
 // K4
@@ -158,7 +158,7 @@ await setSwitch("read (qere)"); await p.waitForTimeout(300);
 await setSwitch("written (ketiv)"); await p.waitForTimeout(300);
 const reset = await openPair(0, 1);
 check("K4  moving the switch forgets the press: the pair opens on the switch's half again",
-  reset.pressedRole === "KETIV" || /has no reading here/.test(reset.label), `pressed ${reset.pressedRole} · ${reset.label.slice(0, 60)}`);
+  reset.litIdx === reset.roles.indexOf("KETIV") || reset.litIdx === reset.underline, `lit ${reset.roles[reset.litIdx]}`);
 await closeCard();
 
 // K5
