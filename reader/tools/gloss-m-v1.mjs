@@ -38,6 +38,16 @@ const licenseName = (posture) => {
   return postureNames[p] || p;
 };
 
+// TWO YEARS (year repair, store 3411c86e94e7). y is the source's EDITION year,
+// what the copy prints of itself (index sourceYear). wy is the WORDING year of
+// the row that leads: the year the words themselves were written, which is
+// why this reading leads under oldest first — a collector repeating Brown-
+// Driver-Briggs word for word carries 1906 here whatever its edition says.
+// Written only when the row has one; the store's no-year marker never is.
+const wordingYearOf = (row) => {
+  const y = Number.parseInt(row && row[4], 10);
+  return Number.isInteger(y) ? { wy: String(y) } : {};
+};
 /** The M of one reading, or null when no admitted route divides to it. */
 export const glossSource = (store, key, text) => {
   if (!key || !text) return null;
@@ -57,7 +67,7 @@ export const glossSource = (store, key, text) => {
     return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
   });
   const m = store.index.m_sources[hits[0][3]];
-  return { lic: licenseName(m.licensePosture), m: m.label || "", y: m.sourceYear || "" };
+  return { lic: licenseName(m.licensePosture), m: m.label || "", y: m.sourceYear || "", ...wordingYearOf(hits[0]) };
 };
 
 // THE CARRIERS, AND THE READING THAT LEADS WHEN THEY ARE ALL SWITCHED OFF.
@@ -95,7 +105,7 @@ const sourceAmong = (store, key, text, omit) => {
   if (!hits.length) return null;
   hits.sort((a, c) => { const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10); return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9); });
   const m = store.index.m_sources[hits[0][3]];
-  return { lic: licenseName(m.licensePosture), m: m.label || "", y: m.sourceYear || "", by: [...new Set(hits.map((r) => r[3]))].sort() };
+  return { lic: licenseName(m.licensePosture), m: m.label || "", y: m.sourceYear || "", ...wordingYearOf(hits[0]), by: [...new Set(hits.map((r) => r[3]))].sort() };
 };
 
 /** The carriers of one printed reading, and the alternate under their absence. */
@@ -149,9 +159,16 @@ export const glossMFor = (store, gloss) => {
 export const sourceSwitchCosts = (store, gloss, gm) => {
   const t = {};
   const row = (m) => (t[m] = t[m] || { leads: 0, carries: 0, changes: 0, darkens: 0 });
+  // wc: this source's rows under this book's keys, by the WORDING year's
+  // century (AM; "none" where the row gives no year) — the owner's ruling
+  // that a card belongs to the century its English was written in. A source
+  // can carry words written in more than one century; the counts say so.
+  const wc = {};
+  const centuryAM = (y) => { const n = Number.parseInt(y, 10); return Number.isInteger(n) ? String(Math.ceil((n + 3760) / 100)) : "none"; };
   for (const [k, text] of Object.entries(gloss || {})) {
     const routes = store.routesFor(k);
     if (!routes) continue;
+    for (const r of routes) { if (!store.index.m_sources[r[3]]) continue; const c = centuryAM(r[4]); (wc[r[3]] = wc[r[3]] || {})[c] = (wc[r[3]][c] || 0) + 1; }
     const pool = store.readingPool(routes);
     for (const m of new Set(pool.flatMap((e) => e.by))) row(m).carries += 1;
     const e = gm[k];
@@ -165,7 +182,7 @@ export const sourceSwitchCosts = (store, gloss, gm) => {
   const out = {};
   for (const m of Object.keys(t).sort((a, b) => Number(a.slice(1)) - Number(b.slice(1)))) {
     const src = store.index.m_sources[m] || {};
-    out[m] = { key: src.key || null, label: src.label || "", lic: licenseName(src.licensePosture), y: src.sourceYear || "", ...t[m] };
+    out[m] = { key: src.key || null, label: src.label || "", lic: licenseName(src.licensePosture), y: src.sourceYear || "", ...t[m], ...(wc[m] ? { wc: wc[m] } : {}) };
   }
   return out;
 };

@@ -129,11 +129,15 @@ const centuryOK = await p.evaluate((cut) => {
   const bad = [];
   for (const sh of row.querySelectorAll(".shelf")) {
     const title = sh.dataset.shelf;
+    // a chip stands on the shelf of its WORDING century (the owner's ruling),
+    // said in AM; "none" stands on no year given
+    const cutC = Math.ceil((cut + 3760) / 100);
     for (const c of sh.querySelectorAll(".dfp")) {
-      const y = Number(c.dataset.year);
-      const dated = /^\d{4}$/.test(String(c.dataset.year));
+      const cen = String(c.dataset.century);
+      const dated = /^\d+$/.test(cen);
       if (title === "no year given" ? dated : !dated) bad.push(`${c.dataset.key}@${title}`);
-      else if (dated && ((y <= cut) !== /^5[0-7]|^[1-4]/.test(String(Math.ceil((y + 3760) / 100))))) bad.push(`${c.dataset.key}:${y}@${title}`);
+      else if (dated && parseInt(title, 10) !== Number(cen)) bad.push(`${c.dataset.key}:${cen}@${title}`);
+      else if (dated && (Number(cen) <= cutC) !== (parseInt(title, 10) <= cutC)) bad.push(`${c.dataset.key}:${cen}@${title}`);
     }
   }
   return bad;

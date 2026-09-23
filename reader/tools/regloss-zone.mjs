@@ -95,6 +95,33 @@ const mBefore = Object.keys(zone.gloss_m || {}).length;
 const previous = (zone.emitted_from || {}).gloss_layer || {};
 zone.gloss = gloss;
 zone.gloss_m = glossM;
+// THE ORDER COLUMNS' M, RE-DERIVED WITH THE REST. build-zone wrote each order
+// column's license records once, as {lic, m, y} with no carriers; so a
+// source switch could not reach a line an order put there, and when the
+// store's years moved (the year repair, 3411c86e94e7) those records kept the
+// old ones. The order's READINGS are the ledger's and are not touched; their
+// M is derived here over the same store, the same way gloss_m is — with its
+// carriers and its alternate — and a reading no route stands on keeps no M,
+// which draws no chip: absent over wrong.
+let ordersM = null;
+if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
+  ordersM = {};
+  for (const [o, table] of Object.entries(zone.gloss_orders)) {
+    if (!table || typeof table !== "object") continue;
+    ordersM[o] = glossMFor(store, table);
+  }
+  const prevOM = zone.gloss_m_orders || {};
+  zone.gloss_m_orders = Object.fromEntries(Object.entries(ordersM).map(([o, r]) => [o, r.gloss_m]));
+  zone.emitted_from.gloss_m_orders_layer = {
+    rule: GLOSS_M_RULE_ID, projected_on: stamp, projected_by: "tools/regloss-zone.mjs",
+    per_order: Object.fromEntries(Object.entries(ordersM).map(([o, r]) => [o, {
+      readings: Object.keys(zone.gloss_orders[o] || {}).length,
+      carry_their_m: Object.keys(r.gloss_m).length,
+      no_route_stands_on: r.drift,
+      had_m_before: Object.keys(prevOM[o] || {}).length,
+    }])),
+  };
+}
 zone.counts.glossed_words = glossedWords;
 zone.emitted_from.gloss_layer = {
   ...previous,
@@ -160,7 +187,7 @@ zone.emitted_from.toggles.sources = {
   const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
   const me = "tools/regloss-zone.mjs";
   pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-  for (const f of ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
+  for (const f of ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", ...(ordersM ? ["gloss_m_orders"] : [])]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
   const why = "the gloss layer is a projection of the route store over this zone's own keys, re-run here at cell grain after the component layer was projected";
   pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
   const exp = "with this zone's rebuild by a build-zone run that writes its gloss layer in its single pass";

@@ -425,6 +425,10 @@ const licenseRank = (posture) => {
   if (!row) return [3, 9, 9];
   return [row.export ? 0 : 1, (row.obligations || []).length, row.attribution === "courtesy" ? 0 : 1];
 };
+// The store's no-year marker is a field value, never text for a reader; and a
+// source's sourceYear is the year its EDITION prints of itself (year repair,
+// store 3411c86e94e7), so the door labels it as that.
+const hasYear = (y) => y !== undefined && y !== null && y !== "" && y !== "S_NO_SOURCE_YEAR";
 // A NAME IS ATTESTED WHEN A RECORD READS IT, and the reading is found the same
 // way every other reading on this page is found: through the store's own pack
 // and sense split, case-insensitively. This used to compare the whole unsplit
@@ -461,7 +465,7 @@ const titleReading = (tokens, en) => {
     return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
   });
   const m = STORE.index.m_sources[hits[0][3]];
-  return { lic: licenseName(m.licensePosture), label: m.label || "", year: m.sourceYear || "", attests: hits.length };
+  return { lic: licenseName(m.licensePosture), label: m.label || "", year: hasYear(m.sourceYear) ? m.sourceYear : "", attests: hits.length };
 };
 // The M behind one printed reading: the oldest licensed route whose own text
 // divides — under the store's own pack and reading rules — to that exact
@@ -485,7 +489,7 @@ const glossSource = (key, text) => {
     return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
   });
   const m = STORE.index.m_sources[hits[0][3]];
-  return { lic: licenseName(m.licensePosture), label: m.label || "", year: m.sourceYear || "" };
+  return { lic: licenseName(m.licensePosture), label: m.label || "", year: hasYear(m.sourceYear) ? m.sourceYear : "" };
 };
 // A zone's own licenses, read from its own per-occurrence receipt. Each
 // rows-group's composite leads with its posture; the plain name comes from
@@ -504,7 +508,7 @@ const posturesOf = (z) => {
   return out;
 };
 const chipHtml = (src) => src
-  ? `<span class="chip" title="${esc(src.label)}${src.year ? ` · ${esc(String(src.year))}` : ""}">${esc(src.lic)}</span>`
+  ? `<span class="chip" title="${esc(src.label)}${src.year ? ` · edition ${esc(String(src.year))}` : ""}">${esc(src.lic)}</span>`
   : "";
 // A force-read in English is a claim about how to read the Hebrew, and a
 // claim needs a record: the ledger's English prints only when a licensed
@@ -2090,7 +2094,7 @@ ${page.sections.join("\n")}
         var chip = cell.querySelector(".chip");
         if (!chip) { chip = document.createElement("span"); chip.className = "chip"; cell.append(chip); }
         chip.textContent = r.lic;
-        chip.title = (r.m || "") + (r.year ? " \u00b7 " + r.year : "");
+        chip.title = (r.m || "") + (r.year ? " \u00b7 wording " + r.year : "");
       }
     }
     return gs.length;
@@ -2121,7 +2125,7 @@ ${page.sections.join("\n")}
     body.textContent = r[2] || r[1];
     var foot = wcard.querySelector(".d-foot");
     foot.replaceChildren();
-    foot.append((m.label || r[3]) + (r[4] && r[4] !== "S_NO_SOURCE_YEAR" ? " \u00b7 " + r[4] : ""));
+    foot.append((m.label || r[3]) + (r[4] && r[4] !== "S_NO_SOURCE_YEAR" ? " \u00b7 wording " + r[4] : ""));
     var chip = document.createElement("span"); chip.className = "lic-chip";
     chip.textContent = licName(m.licensePosture); foot.append(chip);
     if (m.licensePointer) {
@@ -2157,7 +2161,7 @@ ${page.sections.join("\n")}
     var srcBtn = function (j) {
       var mj = (storeIndex.m_sources || {})[rows[j][3]] || {};
       var btn = document.createElement("button"); btn.type = "button"; btn.className = "d-also-m";
-      btn.append((mj.label || rows[j][3]) + " · " + (rows[j][4] && rows[j][4] !== "S_NO_SOURCE_YEAR" ? rows[j][4] : "no source year"));
+      btn.append((mj.label || rows[j][3]) + " · " + (rows[j][4] && rows[j][4] !== "S_NO_SOURCE_YEAR" ? "wording " + rows[j][4] : "no wording year"));
       var c2 = document.createElement("span"); c2.className = "lic-chip";
       c2.textContent = licName(mj.licensePosture); btn.append(c2);
       var rd = document.createElement("span"); rd.className = "d-also-read";
@@ -2258,7 +2262,7 @@ ${page.sections.join("\n")}
             b.type = "button"; b.textContent = r[1];
             b.setAttribute("aria-pressed", "false");
             var cls = CORPUS[r[3]];
-            b.title = (r[4] && r[4] !== "S_NO_SOURCE_YEAR" ? r[4] + " \u00b7 " : "") + (m.label || r[3])
+            b.title = (r[4] && r[4] !== "S_NO_SOURCE_YEAR" ? "wording " + r[4] + " \u00b7 " : "") + (m.label || r[3])
               + (cls ? " \u00b7 " + cls.toLowerCase() : "");
             b.addEventListener("click", function () { paint(ordered, i); rule(key, ordered[i]); });
             pills.append(b);

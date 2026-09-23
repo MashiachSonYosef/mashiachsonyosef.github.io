@@ -1082,6 +1082,16 @@
     if (ms.length !== ks.length) return null;
     return chipOfMs(ms);
   };
+  // TWO YEARS, SAID APART. Since the year repair (store 3411c86e94e7) a row's
+  // own year is the year its WORDING was written — a collector repeating an
+  // older work's exact words carries that work's date — and a source's
+  // sourceYear is the year its EDITION prints of itself. They answer
+  // different questions, so each is labelled with the one it answers, and a
+  // year nobody supplied is said in words: the store's no-year marker is a
+  // field value, never text for a reader.
+  const NO_YEAR = "S_NO_SOURCE_YEAR";
+  const hasYear = (y) => y !== undefined && y !== null && y !== "" && y !== NO_YEAR;
+  const yearTag = (y, axis) => (hasYear(y) ? ` \u00b7 ${axis} ${y}` : "");
   // the same chip from witness records already in hand — a reading a toggle
   // moved onto the line carries its own M, not the baked column's
   const chipOfMs = (ms) => {
@@ -1089,10 +1099,10 @@
     const chip = document.createElement("span"); chip.className = "g-lic";
     if (uniq.length === 1) {
       chip.textContent = uniq[0].lic;
-      chip.title = `${uniq[0].m}${uniq[0].y ? ` · ${uniq[0].y}` : ""} — the oldest witness carrying this reading; every other witness is on the word’s own card`;
+      chip.title = `${uniq[0].m}${yearTag(uniq[0].wy, "wording")}${yearTag(uniq[0].y, uniq[0].ya || "edition")} — the oldest witness carrying this reading; every other witness is on the word’s own card`;
     } else {
       chip.textContent = `${uniq.length} licenses`;
-      chip.title = uniq.map((m) => `${m.lic} — ${m.m}${m.y ? ` · ${m.y}` : ""}`).join("\n");
+      chip.title = uniq.map((m) => `${m.lic} — ${m.m}${yearTag(m.wy, "wording")}${yearTag(m.y, m.ya || "edition")}`).join("\n");
     }
     return chip;
   };
@@ -1213,8 +1223,8 @@
     // building must carry what the source wrote, not how we drew it
     return post.ok
       ? { ok: true, text: hit.text, label: m.label, posture: m.licensePosture,
-          pointer: m.licensePointer, year: m.sourceYear, obligations: post.obligations,
-          also: also.map((x) => `${x.label} · ${x.sourceYear || "year not supplied"} · ${x.licensePosture}`) }
+          pointer: m.licensePointer, year: hasYear(m.sourceYear) ? m.sourceYear : "", obligations: post.obligations,
+          also: also.map((x) => `${x.label} · ${hasYear(x.sourceYear) ? `edition ${x.sourceYear}` : "edition year not supplied"} · ${x.licensePosture}`) }
       : { ok: false, why: post.why, label: m.label };
   };
 
@@ -1393,7 +1403,7 @@
         // in number order, which is the order the reader meets them
         for (const { n, s } of [...cited.values()].sort((a, b) => a.n - b.n)) {
           L.push("");
-          L.push(`- [${n}] ${s.posture} — ${s.label}${s.year ? ` · ${s.year}` : ""}`);
+          L.push(`- [${n}] ${s.posture} — ${s.label}${yearTag(s.year, "edition")}`);
           (s.obligations || []).forEach((o) => L.push(`    obligation, in our words: ${o}`));
           if (s.pointer) L.push(`    record: ${s.pointer}`);
           (s.also || []).forEach((x) => L.push(`    also attested by: ${x}`));
@@ -3124,7 +3134,7 @@
         const mLine = ([, , , mId, year]) => {
           const m = index.m_sources[mId];
           const att = document.createElement("p"); att.className = "att";
-          att.append(`${m.label} · ${!year || year === "S_NO_SOURCE_YEAR" ? "source year not supplied" : year} `);
+          att.append(`${m.label} · ${hasYear(year) ? `wording ${year}` : "wording year not supplied"} `);
           const lic = document.createElement("span"); lic.className = "lic-chip";
           lic.textContent = licenseName(m.licensePosture);
           // The chain's pointer is the audit's business, not the reading
@@ -3229,7 +3239,7 @@
           const one = ({ row, group, text }) => {
             const m = index.m_sources[row[3]];
             const b = document.createElement("button"); b.type = "button"; b.className = "d-also-m";
-            b.append(`${m.label.split(/[,(]/)[0].trim()} · ${!row[4] || row[4] === "S_NO_SOURCE_YEAR" ? "no source year" : row[4]}`);
+            b.append(`${m.label.split(/[,(]/)[0].trim()} · ${hasYear(row[4]) ? `wording ${row[4]}` : "no wording year"}`);
             const lic = document.createElement("span"); lic.className = "lic-chip";
             lic.textContent = licenseName(m.licensePosture); b.append(lic);
             if (text && text !== firstText)
@@ -3943,7 +3953,7 @@
   const lineUnder = (word, table) => {
     if (!word || table !== zone.gloss) return null;
     if (lookup === "headword" && word.hg && word.h && table[word.h])
-      return { text: word.hg, m: word.hm ? { lic: licenseName(word.hm.lic), m: word.hm.m, y: word.hm.y } : null, why: "headword" };
+      return { text: word.hg, m: word.hm ? { lic: licenseName(word.hm.lic), m: word.hm.m, y: word.hm.y, ya: "wording" } : null, why: "headword" };
     // THE SOURCE SWITCHES FIRST. A source the reader turned off cannot lead
     // the line. Every carrier of the printed reading is baked on the key
     // (gloss_m[k].by); if all of them are off, the baked alternate leads with
@@ -4837,7 +4847,11 @@
   };
   const SHELVINGS = [
     { id: "century", lab: "century",
-      of: (g) => { const c = centuryAM(g.y); return c ? `${ordinal(c)} century` : "no year given"; },
+      // the owner's ruling: a card belongs to the century its English was
+      // WRITTEN in, not the year its edition prints of itself. A source whose
+      // words come from more than one century sits where most of its rows on
+      // this book do, and its chip says the rest.
+      of: (g) => (g.wcMain && g.wcMain !== "none" ? `${ordinal(Number(g.wcMain))} century` : "no year given"),
       rank: (title) => (title === "no year given" ? 1e9 : parseInt(title, 10)) },
     { id: "language", lab: "language",
       of: (g) => { const c = g.corpus; return c === "ARAMAIC" ? "Aramaic" : c === "BIBLICAL" ? "the Bible’s Hebrew" : "Hebrew in general"; },
@@ -4860,7 +4874,19 @@
       const gk = s.key || id;
       const g = groups.get(gk) || { key: gk, ids: [], labels: [], lic: s.lic, y: s.y, leads: 0, carries: 0, changes: 0, darkens: 0 };
       g.ids.push(id); g.labels.push(s.label); g.leads += s.leads; g.carries += s.carries; g.changes += s.changes; g.darkens += s.darkens;
+      g.wc = g.wc || {};
+      for (const [c, n] of Object.entries(s.wc || {})) g.wc[c] = (g.wc[c] || 0) + n;
       groups.set(gk, g);
+    }
+    // the wording century most of a source's rows on this book fall in; a
+    // tie goes to the older century, and an undated row counts for none
+    for (const g of groups.values()) {
+      const cs = Object.entries(g.wc || {}).sort((a, b) => b[1] - a[1] || (a[0] === "none") - (b[0] === "none") || Number(a[0]) - Number(b[0]));
+      g.wcMain = cs.length ? cs[0][0] : "none";
+      const total = cs.reduce((n, [, k]) => n + k, 0);
+      g.wcSay = cs.length > 1
+        ? `wording: ${cs.map(([c, n]) => `${c === "none" ? "undated" : `${ordinal(Number(c))} century`} ${n.toLocaleString()}`).join(" · ")} rows on this book`
+        : cs.length ? `wording: all ${total.toLocaleString()} rows on this book ${g.wcMain === "none" ? "undated" : `from the ${ordinal(Number(g.wcMain))} century`}` : "";
     }
     for (const g of groups.values()) {
       g.corpus = g.ids.map((id) => CORPUS_OF(id)).find(Boolean) || "UNDECLARED";
@@ -4908,10 +4934,10 @@
       const on = !isOff(g);
       const btn = document.createElement("button"); btn.type = "button";
       btn.className = "dfp" + (on ? " on" : "");
-      btn.dataset.ids = g.ids.join(" "); btn.dataset.key = g.key; btn.dataset.year = String(g.y);
+      btn.dataset.ids = g.ids.join(" "); btn.dataset.key = g.key; btn.dataset.year = String(g.y); btn.dataset.century = String(g.wcMain);
       btn.setAttribute("aria-pressed", String(on));
       btn.setAttribute("aria-label", `use ${g.label}`);
-      btn.title = `${on ? "switch off" : "switch back on"}: ${g.label}\n${g.costs}`;
+      btn.title = `${on ? "switch off" : "switch back on"}: ${g.label}\n${g.costs}${g.wcSay ? `\n${g.wcSay}` : ""}`;
       btn.addEventListener("click", () => {
         const nowOn = btn.getAttribute("aria-pressed") === "true";
         t.set(g.ids, !nowOn);
@@ -4924,7 +4950,7 @@
       if (shelveBy === "language" && g.corpus !== "ARAMAIC" && /Aramaic|Chaldee/.test(g.lang)) {
         const tag = document.createElement("i"); tag.className = "src-tag"; tag.textContent = "+ Aramaic"; open.append(tag);
       }
-      open.title = `${g.labels.map((l, i) => `${g.ids[i]} ${l}`).join("\n")}\n${g.lic}\n${g.costs}\nleads ${g.leads.toLocaleString()} of this book's lines, carries a reading at ${g.carries.toLocaleString()} keys`;
+      open.title = `${g.labels.map((l, i) => `${g.ids[i]} ${l}`).join("\n")}\n${g.lic}\n${g.costs}${g.wcSay ? `\n${g.wcSay}` : ""}\nleads ${g.leads.toLocaleString()} of this book's lines, carries a reading at ${g.carries.toLocaleString()} keys`;
       open.addEventListener("click", async () => {
         const shelf = row.closest(".shelf");
         const shown = open.getAttribute("aria-expanded") === "true";
@@ -5276,7 +5302,7 @@
       // every other witness is one press away on the title word's record.
       chip.textContent = `attested: ${a.label}`;
       chip.title = [
-        `${a.label}${a.year ? ` · ${a.year}` : ""} — attests this usage; the oldest witness leads by the standing rule. A name is an identification, not licensed expression.`,
+        `${a.label}${hasYear(a.year) ? ` · ${a.year}` : ""} — attests this usage; the oldest witness leads by the standing rule. A name is an identification, not licensed expression.`,
         ...(a.also || []),
       ].join("\n");
       chip.hidden = false;
