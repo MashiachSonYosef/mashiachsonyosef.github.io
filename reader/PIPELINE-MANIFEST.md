@@ -119,7 +119,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `zone-commentary-rule-v3-two-zones-one-coordinate` | tools/build-commentary-sidecar-v2.mjs | check-attachment-grain-v1, check-commentary-in-line-v1, check-commentary-section-aligned-v1 |
 | `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs, tools/run-restore-v5-fleet-v1.mjs | check-zone-single-pass-receipts-v1 |
 | `zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-page-agrees-with-store-v1 |
-| `zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight` | tools/emit-zone-shipment-v1.mjs, tools/emit-zone-store-v1.mjs, tools/move-shelf-v1.sh, tools/pull-zones-from-store-v1.mjs, zone.html | check-zone-store-crossing-v1, check-zone-store-reachable-v1, check-zone-store-v1 |
+| `zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight` | tools/emit-zone-shipment-v1.mjs, tools/emit-zone-store-v1.mjs, tools/move-shelf-v1.sh, tools/pull-zones-from-store-v1.mjs, tools/restore-shelf-from-history-v1.mjs, zone.html | check-zone-store-crossing-v1, check-zone-store-reachable-v1, check-zone-store-v1 |
 
 ## What the site publishes
 
@@ -137,7 +137,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 86 tools that are not checks.
+`build.sh` calls 19 of the 87 tools that are not checks.
 
 Not called by any build stage:
 
@@ -191,6 +191,7 @@ Not called by any build stage:
 - `tools/redrive-zone-gloss-v1.mjs`
 - `tools/regloss-zone.mjs`
 - `tools/respan-zone-v1.mjs`
+- `tools/restore-shelf-from-history-v1.mjs`
 - `tools/rights-join-v1.mjs`
 - `tools/run-fleet-v2.mjs`
 - `tools/run-restore-v5-fleet-v1.mjs`
