@@ -92,7 +92,7 @@ const cardNow = () => p.evaluate(() => {
     headMode: head ? head.dataset.masorah || "" : "",
     surface: wb ? wb.querySelector(".w").textContent.trim() : null,
     line: wb ? wb.querySelector(".g").textContent.replace(/\s+/g, " ").trim() : null,
-    order: (document.querySelector("#railNow b") || {}).textContent || "",
+    order: (document.querySelector('#railNow b[data-toggle="order"]') || document.querySelector("#railNow b") || {}).textContent || "",
   };
 });
 

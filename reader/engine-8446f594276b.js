@@ -1580,6 +1580,15 @@
       { el: hud.querySelector(".b-read"), box: read },
     ].filter((x) => x.el && x.box && x.box.children.length);
     if (!bands.length) return;
+    // A PAIR'S BAND IS NOT SHARED OUT. The two forms of a source-marked pair
+    // stand above the divisions in their own band, which never scrolls and is
+    // never trimmed: it is what the card is about. So the room handed out to
+    // the other bands is the region less that band, measured as drawn —
+    // handing out the whole region left the pair's pills cut off at the
+    // region's edge on a phone, with the rest of the card scrolled under them.
+    const qBand = hud.querySelector(".b-q");
+    const qFixed = qBand && qBand.children.length ? qBand.offsetHeight : 0;
+    const roomOf = () => rowsEl.clientHeight - qFixed;
 
     // measure with nothing imposed, so the rows are where the content puts them
     // Everything that can be borrowed from goes back first. The provenance line
@@ -1607,14 +1616,14 @@
     // presses.
     const cap = window.innerHeight >= 660 ? 3 : window.innerHeight >= 480 ? 2 : 1;
     const floors = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
-    if (floors > rowsEl.clientHeight && dSlot) {
+    if (floors > roomOf() && dSlot) {
       const foot = hud.querySelector(".d-foot");
       const dLine = parseFloat(getComputedStyle(hud.querySelector(".d-text") || dSlot).lineHeight) || 26;
       const floor = (foot ? foot.offsetHeight : 0) + Math.ceil(dLine * 3);
-      const give = Math.min(floors - rowsEl.clientHeight, Math.max(0, dSlot.clientHeight - floor));
+      const give = Math.min(floors - roomOf(), Math.max(0, dSlot.clientHeight - floor));
       if (give > 0) dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`;
     }
-    if (floors > rowsEl.clientHeight && prov && prov.offsetHeight) prov.hidden = true;
+    if (floors > roomOf() && prov && prov.offsetHeight) prov.hidden = true;
 
     // Then hand the room out — and then look, and hand it out again against
     // what is actually there. The height of the rows region depends on what
@@ -1627,7 +1636,7 @@
       for (const x of bands) { x.box.style.height = ""; x.box.style.maxHeight = ""; }
       for (const x of bands) { const r = rowsOf(x.box); if (r.length) x.rows = r; }
       for (let pass = 0; pass < 3; pass += 1) {
-        room = rowsEl.clientHeight;
+        room = roomOf();
         take = bands.map(() => 1);
         let used = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
         const grow = (i, limit) => {
@@ -1682,7 +1691,7 @@
       const floor = (foot ? foot.offsetHeight : 0) + Math.ceil(dLine * 3);
       const shares = bands.reduce((n, x) => n + x.chrome
         + x.rows[Math.min(x.box === read ? 1 : cap, x.rows.length) - 1].bottom, 0);
-      const give = Math.min(Math.ceil(shares - rowsEl.clientHeight), Math.max(0, dSlot.clientHeight - floor));
+      const give = Math.min(Math.ceil(shares - roomOf()), Math.max(0, dSlot.clientHeight - floor));
       if (give > 0) { dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`; handOut(); }
     }
     if (owedShort() && prov && prov.offsetHeight) { prov.hidden = true; handOut(); }
@@ -1739,7 +1748,7 @@
     // has? The caller decides what to do about it — there is nothing left here
     // to take it out of.
     const stands = bands.reduce((n, x) => n + x.el.offsetHeight, 0);
-    return stands <= rowsEl.clientHeight + 1;
+    return stands <= roomOf() + 1;
   };
 
   // AT THE END OF THE PLACEMENT, AND THE END MEANS THE END. The snap below was
@@ -2323,6 +2332,15 @@
   // It is a question about the card, never about the line: choosing a branch
   // changes what the card is about and does not move one character of the C0.
   const pickedQForm = new Map();
+  // THE PAIR OPENS ON THE HALF THE SWITCH NAMES. The owner's rule, 2026-09-23,
+  // in his words: "both would always open together in 1 hud ... the toggle is
+  // much smaller conceptually, it's just ... what english leads, so if you
+  // clicked qere, when you meet a qere word, the qere megacompspan would
+  // already be selected for you." Both halves print, both halves stand on
+  // the one card; the pairs switch only says which one the card opens on and
+  // which one backs the English. A half the reader presses on the card is
+  // remembered for that place until the switch moves again.
+  const kqPicks = new Map();
 
   const openHud = async (el, region, unitId, wordPos, opts = {}) => {
     closeHud(false);
@@ -2457,9 +2475,8 @@
       // attested and the motive is disputed: the received letters were not
       // to be altered, so the reading was recorded beside them, never over
       // them. Every pair on the page is a scribe's refusal to edit.
-      key.textContent = "( ) holds the ketiv, as written · [ ] holds the qere, as read — press either half. "
-        + "Where the reading differed from the received letters, the scribes changed nothing: "
-        + "the written form kept, the read form recorded beside it.";
+      key.textContent = "( ) holds the ketiv, as written · [ ] holds the qere, as read. "
+        + "The scribes changed nothing: the written form kept, the read form recorded beside it.";
       head.append(key);
     }
     // A variant site the source marked. The card prints the record's own
@@ -2892,6 +2909,46 @@
         });
         qRow.append(label, pills);
       }
+    }
+    // --- a source-marked pair: both halves on the one card -------------
+    // The half the card opened on is pressed; the other is one press away and
+    // opens on this same card, and the line then reads from it. The label
+    // says why this half opened, so the switch's word and the reader's own
+    // press are never confused: a card that opened on the qere because the
+    // switch says so, and one that opened on it because the reader pressed
+    // it here, say different things.
+    if (opts.kqOpenAt && word.kq && regions.length > 1 && regionIndex >= 0) {
+      const label = document.createElement("p"); label.className = "r-label";
+      const roleWord = (r) => (r && r.role === "KETIV" ? "written form (ketiv)" : r && r.role === "QERE" ? "read form (qere)" : "first form");
+      const here = regions[regionIndex], other = regions.find((r, j) => j !== regionIndex);
+      const why = opts.kqWhy;
+      label.textContent = why === "picked" ? `Two forms here \u00b7 ${roleWord(here)} open, because you pressed it`
+        : why === "ruled" ? `Two forms here \u00b7 ${roleWord(here)} open, because you ruled on it`
+        : why === "fell" ? `Two forms here \u00b7 the switch asks for the ${roleWord(other)}, which has no reading here, so the ${roleWord(here)} opened`
+        : kqOrder === "SOURCE" ? `Two forms here \u00b7 the edition\u2019s first form open, as the pairs switch says`
+        : `Two forms here \u00b7 ${roleWord(here)} open, as the pairs switch says`;
+      const pills = document.createElement("div");
+      pills.className = "s-pills kq-pills"; pills.dir = "rtl";
+      regions.forEach((r, j) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.setAttribute("aria-pressed", String(j === regionIndex));
+        btn.dataset.role = String(r.role || "");
+        const he = document.createElement("span");
+        he.lang = "he"; he.dir = "rtl"; he.textContent = r.s;
+        const rl = document.createElement("span");
+        rl.className = "q-role";
+        rl.textContent = r.role === "KETIV" ? "ketiv \u2014 written" : r.role === "QERE" ? "qere \u2014 read" : "";
+        btn.append(he, rl);
+        btn.title = j === regionIndex ? "the half this card is about" : "open this half instead; the line reads from it";
+        btn.addEventListener("click", (ev) => {
+          ev.stopPropagation();
+          if (j === regionIndex) return;
+          opts.kqOpenAt(j);
+        });
+        pills.append(btn);
+      });
+      qRow.append(label, pills);
     }
     const dSlot = document.createElement("div"); dSlot.className = "d-slot";
     // what a dictionary says about this word in Hebrew, under the record and
@@ -4206,7 +4263,8 @@
     else if (word.k) standAt(word.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 });
     joined.forEach((r) => standAt(r.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 }));
     if (wasRuled) wb.classList.add("chosen");
-    return { wb, regionEls, markEls, joined, glossParts: parts };
+    return { wb, regionEls, markEls, joined, glossParts: parts,
+      kqStand: word.kq && regions && regions.length > 1 ? { regions, parts, table } : null };
   };
 
   /**
@@ -4228,24 +4286,48 @@
     const regions = (word.w ? word.w.filter((r) => !String((r.s || r.k) || "").includes("\u05be"))
                             : null) || [{ s: word.s, k: word.k }];
     const targets = built.regionEls.length ? built.regionEls : [built.wb];
+    // A PAIR IS ONE CARD. Whichever half is pressed, the card opens on the
+    // half the pairs switch names — or the half the reader pressed on the
+    // card at this place, or a ruled half, or the half the line fell back to
+    // when the switch's half has no reading. The card says which of these it
+    // was. The other half stands on the same card, one press away.
+    const site = `${unitId}:${wordPos}`;
+    const kqLead = () => {
+      const st = built.kqStand;
+      const picked = kqPicks.get(site);
+      if (picked != null && picked < st.regions.length) return { i: picked, why: "picked" };
+      const ruled = st.regions.findIndex((r) => ruledLine(r.k, st.table) !== null);
+      if (ruled >= 0) return { i: ruled, why: "ruled" };
+      const { i, fellFrom } = kqPick(st.regions, st.parts, st.table);
+      if (i >= 0) return { i, why: fellFrom ? "fell" : "switch" };
+      const wanted = kqOrder === "QERE" ? st.regions.findIndex((r) => r.role !== "KETIV")
+        : kqOrder === "SOURCE" ? 0 : st.regions.findIndex((r) => r.role === "KETIV");
+      return { i: Math.max(0, wanted), why: "switch" };
+    };
+    const openAt = (i, target, why) => {
+      built.regionEls.forEach((r) => r.classList.remove("on"));
+      // a pair's halves are alternatives: the line under a pair carries ONE
+      // reading, never the two joined, and the half you open is the half it
+      // reads from (owner, 2026-09-11: "a single showing definition with the
+      // underline pointing to which variation is currently being served")
+      // under "look up by: the headword" a one-form word opens under its
+      // headword's key and says so on the card; the form key rides along
+      const hk = regions.length === 1 && bin && bin.gloss ? lookupKey(word, regions[i].k, bin.gloss) : regions[i].k;
+      const region = hk !== regions[i].k ? { ...regions[i], k: hk, form_k: regions[i].k, hp: word.hp } : regions[i];
+      openHud(target, region, unitId, wordPos, {
+        ...opts, bin, word, regionIndex: i,
+        glossParts: built.regionEls.length && !word.kq ? built.glossParts : null,
+        kqEls: word.kq && built.regionEls.length ? built.regionEls : null,
+        kqWhy: why || null,
+        kqOpenAt: built.kqStand ? (j) => { kqPicks.set(site, j); openAt(j, built.regionEls[j] || target, "picked"); } : null,
+        mark: () => { if (built.regionEls.length) target.classList.add("on"); built.wb.classList.add("active"); },
+      });
+    };
     targets.forEach((target, i) => {
       target.addEventListener("click", (ev) => {
         ev.stopPropagation();
-        built.regionEls.forEach((r) => r.classList.remove("on"));
-        // a pair's halves are alternatives: the line under a pair carries ONE
-        // reading, never the two joined, and the half you open is the half it
-        // reads from (owner, 2026-09-11: "a single showing definition with the
-        // underline pointing to which variation is currently being served")
-        // under "look up by: the headword" a one-form word opens under its
-        // headword's key and says so on the card; the form key rides along
-        const hk = regions.length === 1 && bin && bin.gloss ? lookupKey(word, regions[i].k, bin.gloss) : regions[i].k;
-        const region = hk !== regions[i].k ? { ...regions[i], k: hk, form_k: regions[i].k, hp: word.hp } : regions[i];
-        openHud(target, region, unitId, wordPos, {
-          ...opts, bin, word, regionIndex: i,
-          glossParts: built.regionEls.length && !word.kq ? built.glossParts : null,
-          kqEls: word.kq && built.regionEls.length ? built.regionEls : null,
-          mark: () => { if (built.regionEls.length) target.classList.add("on"); built.wb.classList.add("active"); },
-        });
+        if (built.kqStand) { const lead = kqLead(); openAt(lead.i, built.regionEls[lead.i] || target, lead.why); return; }
+        openAt(i, target, null);
       });
     });
     // A joined interval is a W the reader can ask about, and the character that
@@ -4453,7 +4535,7 @@
     const lead = TOGGLES.filter((t) => t.id === "sources").concat(TOGGLES.filter((t) => t.id !== "sources"));
     lead.forEach((t, i) => {
       if (i) now.append(Object.assign(document.createElement("i"), { textContent: "·" }));
-      const b = document.createElement("b"); b.textContent = t.now() || t.lab;
+      const b = document.createElement("b"); b.textContent = t.now() || t.lab; b.dataset.toggle = t.id;
       if (!t.live()) b.style.color = "var(--faint)";
       else if (t.id !== "sources") { b.style.color = "var(--muted)"; b.style.fontWeight = "500"; }
       now.append(b);
@@ -4488,10 +4570,11 @@
     host.replaceChildren(segRow(t, positions, kqOrder, (id) => {
       kqOrder = id;
       try { localStorage.setItem(ORDER_KEY, kqOrder); } catch { /* a reader who blocks storage still gets the toggle, just not the memory of it */ }
+      kqPicks.clear();
       paintPairs();
     }));
     const why = host.parentElement && host.parentElement.querySelector(".why");
-    if (why && pairs.length) why.textContent = `${pairs.length} place${pairs.length === 1 ? "" : "s"} in this book are written one way and read another; the edition writes the ketiv first at ${srcFirst}. Both halves always print and both always open; this only sets which one backs the English. A reading you have ruled on beats this switch.`;
+    if (why && pairs.length) why.textContent = `${pairs.length} place${pairs.length === 1 ? "" : "s"} in this book are written one way and read another; the edition writes the ketiv first at ${srcFirst}. Both halves always print and both always open; this only sets which one backs the English and which one the card opens on. A reading you have ruled on beats this switch.`;
   };
   // THE SOURCE SWITCHES' ROW. One chip per source, grouped by the source's
   // own key, sorted by how many of this book's lines it leads; each chip
