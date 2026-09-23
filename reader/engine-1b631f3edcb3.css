@@ -768,11 +768,39 @@
   .rail .src-fold[open] > summary::after { content: " \25b4"; }
   .rail .src-fold > summary:hover { color: var(--ink); border-color: var(--muted); }
   .rail .def-order.src-list { display: block; margin: 0.4rem 0 0; max-width: 52rem; }
-  .rail .src-row { border-top: 1px solid var(--line); padding: 0.3rem 0 0.34rem; }
-  .rail .src-row:first-child { border-top: none; }
-  .rail .src-row { display: grid; grid-template-columns: 1.15rem 1fr; gap: 0 0.5rem; align-items: start; }
+  /* the chooser: three words, one pressed — ink when pressed, never gold */
+  .rail .shelve-by { display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem; margin: 0 0 0.45rem; font-size: 0.64rem; color: var(--muted); }
+  .rail .shelve-by > span { margin-right: 0.15rem; }
+  .rail .shelve-opt { font: inherit; font-size: 0.68rem; padding: 0.16rem 0.55rem; border: 1px solid var(--line);
+    border-radius: 0.5rem; background: none; color: var(--ink); cursor: pointer; }
+  .rail .shelve-opt:hover { border-color: var(--muted); }
+  .rail .shelve-opt[aria-pressed="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+  /* a shelf: its switch, its name, its count, then its strip of chips */
+  .rail .shelf { border-top: 1px solid var(--line); padding: 0.4rem 0 0.45rem; }
+  .rail .shelf:first-child { border-top: none; padding-top: 0.1rem; }
+  .rail .shelf-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.2rem 0.5rem; margin: 0 0 0.35rem; font-size: 0.78rem; }
+  .rail .shelf-title { font-weight: 600; color: var(--ink-strong); }
+  .rail .shelf-count { font-size: 0.64rem; color: var(--muted); }
+  .rail .shelf.off .shelf-title { color: var(--faint); }
+  /* THE SHELF SWITCH. A track and a knob: ink when on, open when off, and a
+     dashed track with the knob at centre when the chips disagree. Gold stays
+     line-work here as everywhere (data/color-contract-v1.json). */
+  .rail .shelf-sw { position: relative; width: 1.9rem; height: 1.05rem; flex: 0 0 1.9rem; padding: 0;
+    border: 1px solid var(--muted); border-radius: 0.55rem; background: none; cursor: pointer; font-size: 0; }
+  .rail .shelf-sw::after { content: ""; position: absolute; top: 0.1rem; left: 0.1rem; width: 0.75rem; height: 0.75rem;
+    border-radius: 50%; background: var(--muted); transition: left 0.12s; }
+  .rail .shelf-sw[aria-checked="true"] { background: var(--ink); border-color: var(--ink); }
+  .rail .shelf-sw[aria-checked="true"]::after { left: 0.95rem; background: var(--panel); }
+  .rail .shelf-sw[aria-checked="mixed"] { border-color: var(--ink); border-style: dashed; }
+  .rail .shelf-sw[aria-checked="mixed"]::after { left: 0.52rem; background: var(--ink); }
+  .rail .shelf-sw:hover { border-color: var(--ink); }
+  /* the strip: chips wrapping, each a box and a short name */
+  .rail .src-strip { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .rail .src-row { display: inline-flex; align-items: center; gap: 0.3rem; min-height: 1.65rem; box-sizing: border-box;
+    padding: 0.05rem 0.5rem 0.05rem 0.4rem; border: 1px solid var(--muted); border-radius: 1rem; }
+  .rail .src-row.off { border-color: var(--line); }
   /* the box: the switch, and nothing else */
-  .rail .def-order.src-list .dfp { width: 0.92rem; height: 0.92rem; margin-top: 0.34rem; padding: 0;
+  .rail .def-order.src-list .dfp { width: 0.92rem; height: 0.92rem; margin-top: 0; padding: 0; flex: 0 0 0.92rem;
     border: 1px solid var(--muted); border-radius: 0.2rem; background: none; cursor: pointer;
     font-size: 0; letter-spacing: 0; }
   /* ON IS DRAWN, NEVER FILLED. This box used to take a gold ground when it
@@ -787,16 +815,17 @@
     border-width: 0 1.5px 1.5px 0; transform: rotate(42deg); }
   .rail .def-order.src-list .dfp:hover { border-color: var(--sel); }
   /* the panel: the name, what the switch costs, and a press to open it */
-  .rail .src-open { grid-column: 2; display: block; width: 100%; text-align: left; font: inherit;
-    font-size: 0.78rem; color: var(--ink); background: none; border: none; padding: 0.22rem 0 0.3rem;
-    cursor: pointer; }
+  .rail .src-open { display: inline-flex; align-items: center; gap: 0.3rem; text-align: left; font: inherit;
+    font-size: 0.72rem; color: var(--ink); background: none; border: none; padding: 0; cursor: pointer; white-space: nowrap; }
+  .rail .src-tag { font-style: normal; font-size: 0.56rem; color: var(--shani-ink); border: 1px solid var(--shani-dim);
+    border-radius: 0.5rem; padding: 0 0.3rem; }
   .rail .src-open::after { content: " \25be"; color: var(--faint); font-size: 0.7rem; }
   .rail .src-open[aria-expanded="true"]::after { content: " \25b4"; color: var(--sel); }
   .rail .src-open:hover .src-name { color: var(--sel); }
   .rail .src-name { line-height: 1.32; }
   .rail .src-row.off .src-name { color: var(--faint); text-decoration: line-through; text-decoration-color: var(--line); }
   .rail .src-cost { display: block; font-style: normal; font-size: 0.64rem; color: var(--faint); }
-  .rail .src-row .decl { grid-column: 2; margin: 0.1rem 0 0.35rem; }
+  .rail .shelf .decl { margin: 0.35rem 0 0.1rem; }
   /* THE SOURCE'S OWN DECLARATIONS — the branch that opens under a source
      chip. Gold line-work only; the source's own strings carry the reading
      ink, because they are the source speaking, not this project. */

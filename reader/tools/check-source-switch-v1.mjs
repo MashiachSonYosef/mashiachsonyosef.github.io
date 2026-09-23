@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // GUARDS: source-switch-rule-v1-a-reading-remembers-who-carried-it
+// GUARDS: source-short-names-rule-v1-a-shelf-chip-wears-a-short-name-this-record-keeps-and-the-full-name-on-press
 //
 // THE SOURCE SWITCHES, PRESSED.
 //
@@ -63,14 +64,16 @@ const rail = await p.evaluate(() => {
     allOn: chips.every((c) => c.getAttribute("aria-pressed") === "true"),
     withIds: chips.filter((c) => /^M\d+( M\d+)*$/u.test(c.dataset.ids || "")).length,
     keys: chips.map((c) => c.dataset.key),
-    // what each source's ROW says its switch costs, read as a reader reads
-    // it — the two numbers by value, in whatever words the row uses, and
-    // never by the shape of a separator. The row, not the box: the box is
-    // the switch and carries no text at all, which is the point of it.
-    said: Object.fromEntries(chips.map((c) => {
-      const row = c.closest(".src-row") || c;
-      return [c.dataset.key, (row.textContent.match(/[\d,]+/gu) || []).map((x) => Number(x.replace(/,/gu, "")))];
-    })),
+    // what each chip says its switch costs, read off the chip — the two
+    // numbers by value, in whatever words, never by the shape of a separator.
+    // Since 2026-09-23 the strip wears short names and the cost rides on the
+    // chip's title and on its shelf's line; a reader on a phone sees the cost
+    // on the shelf switch and on press, not printed beside every chip.
+    said: Object.fromEntries(chips.map((c) => [c.dataset.key, (String(c.title || "").match(/[\d,]+/gu) || []).map((x) => Number(x.replace(/,/gu, "")))])),
+    // the strip's short names: which chips fell back for want of a record entry
+    fallbacks: window.__shortNameFallbacks || [],
+    shelvings: [...row.querySelectorAll(".shelve-opt")].map((b) => b.dataset.shelving),
+    shelves: [...row.querySelectorAll(".shelf")].length,
   };
 });
 const keysInReceipt = new Set(Object.values(rec.sources).map((s) => s.key || ""));
@@ -92,6 +95,82 @@ const wrongCost = rail ? rail.keys.filter((k) => {
 check("S1  the sources row is on the rail, every chip on, each saying what its switch costs and carrying its ids",
   rail && !rail.dead && rail.n > 0 && rail.allOn && wrongCost.length === 0 && rail.withIds === rail.n,
   rail ? `${rail.n} chips · ${rail.n - wrongCost.length} say both their costs · ${rail.withIds} with ids${wrongCost.length ? ` · not saying them: ${wrongCost.slice(0, 3).join(", ")}` : ""}` : "no row");
+// S1b · the short names. Every chip on the strip wears the record's name for
+// its key (source-short-names-rule-v1); a chip with no entry falls back to its
+// own label cut short, and this says which, so the record can be completed.
+check("S1b every chip wears a short name from the record",
+  rail && rail.fallbacks.length === 0,
+  rail ? (rail.fallbacks.length ? `falling back: ${rail.fallbacks.join(", ")}` : `${rail.n} chips named by data/source-short-names-v1.json`) : "no row");
+
+// S1c · THREE SHELVINGS, ONE STRIP. The chooser offers century, language and
+// license; under each the same chips stand with the same ids — a shelving is a
+// way of reading the strip, not a different set of switches.
+const under = async (id) => p.evaluate((sid) => {
+  const row = document.querySelector('.rail .row[data-toggle="sources"]');
+  const b = row && row.querySelector(`.shelve-opt[data-shelving="${sid}"]`); if (!b) return null;
+  b.click();
+  const chips = [...row.querySelectorAll(".dfp")].map((c) => `${c.dataset.key}=${c.dataset.ids}`).sort();
+  return { chips, shelves: [...row.querySelectorAll(".shelf")].map((sh) => ({ title: sh.dataset.shelf, n: sh.querySelectorAll(".dfp").length, state: sh.querySelector(".shelf-sw").getAttribute("aria-checked") })), pressed: b.getAttribute("aria-pressed") };
+}, id);
+const byShelving = {};
+for (const id of ["century", "language", "license"]) byShelving[id] = await under(id);
+const sameChips = ["language", "license"].every((id) => byShelving[id] && byShelving.century && JSON.stringify(byShelving[id].chips) === JSON.stringify(byShelving.century.chips));
+check("S1c the chooser offers three shelvings and each regroups the same chips with the same ids",
+  rail && JSON.stringify(rail.shelvings) === JSON.stringify(["century", "language", "license"]) && sameChips
+    && Object.values(byShelving).every((v) => v && v.shelves.length >= 2 && v.shelves.reduce((a, x) => a + x.n, 0) === rail.n),
+  Object.entries(byShelving).map(([k, v]) => `${k}: ${v ? v.shelves.map((x) => `${x.title} ${x.n}`).join(" · ") : "?"}`).join("  |  "));
+
+// S1d · the century shelves are cut where the reading order cuts its era
+// tier — one constant, said in AM, read off the page rather than typed here
+const eraCut = await p.evaluate(() => window.__eraCutCE);
+const centuryOK = await p.evaluate((cut) => {
+  const row = document.querySelector('.rail .row[data-toggle="sources"]');
+  row.querySelector('.shelve-opt[data-shelving="century"]').click();
+  const bad = [];
+  for (const sh of row.querySelectorAll(".shelf")) {
+    const title = sh.dataset.shelf;
+    for (const c of sh.querySelectorAll(".dfp")) {
+      const y = Number(c.dataset.year);
+      const dated = /^\d{4}$/.test(String(c.dataset.year));
+      if (title === "no year given" ? dated : !dated) bad.push(`${c.dataset.key}@${title}`);
+      else if (dated && ((y <= cut) !== /^5[0-7]|^[1-4]/.test(String(Math.ceil((y + 3760) / 100))))) bad.push(`${c.dataset.key}:${y}@${title}`);
+    }
+  }
+  return bad;
+}, eraCut);
+check("S1d the century shelves follow the era cut the reading order uses",
+  Number.isInteger(eraCut) && eraCut + 3760 === 5700 && centuryOK.length === 0,
+  `era cut ${eraCut} CE = ${eraCut + 3760} AM${centuryOK.length ? ` · astray: ${centuryOK.slice(0, 3).join(", ")}` : ""}`);
+
+// S1e · A SHELF SWITCH FLIPS THE WHOLE SHELF. Off turns off exactly its chips
+// and no other; one chip pressed back on makes the shelf say "mixed"; pressing
+// a mixed shelf turns it off; pressing an off shelf turns it on. Then every
+// chip is on again for the rest of this check.
+const shelfPlay = await p.evaluate(() => {
+  const row = document.querySelector('.rail .row[data-toggle="sources"]');
+  const sh = [...row.querySelectorAll(".shelf")].find((x) => x.querySelectorAll(".dfp").length >= 2); if (!sh) return null;
+  const title = sh.dataset.shelf;
+  const inShelf = () => [...row.querySelector(`.shelf[data-shelf="${CSS.escape(title)}"]`).querySelectorAll(".dfp")];
+  const others = () => [...row.querySelectorAll(".dfp")].filter((c) => !inShelf().includes(c));
+  const sw = () => row.querySelector(`.shelf[data-shelf="${CSS.escape(title)}"] .shelf-sw`);
+  const out = { title, n: inShelf().length };
+  sw().click();
+  out.afterOff = { shelfAllOff: inShelf().every((c) => c.getAttribute("aria-pressed") === "false"), othersAllOn: others().every((c) => c.getAttribute("aria-pressed") === "true"), state: sw().getAttribute("aria-checked"), says: row.querySelector(`.shelf[data-shelf="${CSS.escape(title)}"] .shelf-count`).textContent };
+  inShelf()[0].click();
+  out.afterOne = { state: sw().getAttribute("aria-checked"), says: row.querySelector(`.shelf[data-shelf="${CSS.escape(title)}"] .shelf-count`).textContent };
+  sw().click();
+  out.afterMixedPress = { state: sw().getAttribute("aria-checked"), shelfAllOff: inShelf().every((c) => c.getAttribute("aria-pressed") === "false") };
+  sw().click();
+  out.afterOn = { state: sw().getAttribute("aria-checked"), allOn: [...row.querySelectorAll(".dfp")].every((c) => c.getAttribute("aria-pressed") === "true") };
+  return out;
+});
+check("S1e a shelf switch turns off exactly its shelf, says mixed when one comes back, and turns the shelf on again",
+  shelfPlay && shelfPlay.afterOff.shelfAllOff && shelfPlay.afterOff.othersAllOn && shelfPlay.afterOff.state === "false" && /off:/.test(shelfPlay.afterOff.says)
+    && shelfPlay.afterOne.state === "mixed" && new RegExp(`\\b${shelfPlay.n - 1} off\\b`).test(shelfPlay.afterOne.says)
+    && shelfPlay.afterMixedPress.state === "false" && shelfPlay.afterMixedPress.shelfAllOff
+    && shelfPlay.afterOn.state === "true" && shelfPlay.afterOn.allOn,
+  shelfPlay ? `${shelfPlay.title} (${shelfPlay.n}) · off "${shelfPlay.afterOff.says}" · one back "${shelfPlay.afterOne.says}" · mixed→${shelfPlay.afterMixedPress.state} · on→${shelfPlay.afterOn.state}` : "no shelf with two chips");
+
 // S2
 const byCount = Object.values(zone.gloss_m || {}).filter((e) => Array.isArray(e.by) && e.by.length).length;
 check("S2  the receipt agrees with the chips and with gloss_m",

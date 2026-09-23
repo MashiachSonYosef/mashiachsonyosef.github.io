@@ -150,6 +150,10 @@
   // toggle that drops the questions it cannot answer teaches that they were
   // never asked.
   let CORPUS_REC = null;
+  // the language each source declared (the admission record) and the short
+  // names the strip wears — each optional: absent, the tag and the short
+  // name fall back, and nothing else on the page notices
+  let LANG_REC = null, SHORT_REC = null;
   const CORPUS_OF = (m) => (CORPUS_REC && CORPUS_REC.witnesses && CORPUS_REC.witnesses[m] || {}).corpus || null;
   const DEF_KEY = "fh.def.order";
   // THE MASORAH · masorah-toggle-rule-v1-the-pointing-is-kept-the-gate-or-lifted-and-the-page-never-changes
@@ -215,8 +219,30 @@
   // carriers of THIS reading are off" — and the card always composes every
   // switch exactly. Under the pointing filter and a source switch together,
   // the LINE follows the source switch and the card is the authority.
+  // THE ERA CUT, ONCE. The reading order's first tier is "of the era": a
+  // source dated at or before this year answers ahead of every later one.
+  // The constant was 1940 for weeks and read as a Gregorian guess. It is not:
+  // 1940 CE is 5700 AM, the last year of the 57th century by the count this
+  // project keeps, so the tier is the 57th/58th-century line and nothing
+  // else (the corpus lane, 2026-09-22). The century shelf below is cut from
+  // the same number, so the order and the shelf cannot drift apart. The gap
+  // is wide on both sides: the newest 57th-century source is 1906, the
+  // oldest 58th is 2007.
+  const AM_OFFSET = 3760;                       // CE year + 3760 = the AM year most of that CE year falls in
+  const ERA_CUT_AM = 5700;
+  const ERA_CUT_CE = ERA_CUT_AM - AM_OFFSET;    // 1940
+  const centuryAM = (y) => (/^\d{4}$/.test(String(y)) ? Math.ceil((Number(y) + AM_OFFSET) / 100) : null);
+  const ordinal = (n) => `${n}${(n % 100 >= 11 && n % 100 <= 13) ? "th" : ({ 1: "st", 2: "nd", 3: "rd" })[n % 10] || "th"}`;
   const SOURCES_KEY = "fh.sources.off";
   let sourcesOff = new Set((() => { try { const v = JSON.parse(localStorage.getItem(SOURCES_KEY) || "[]"); return Array.isArray(v) ? v.filter((x) => typeof x === "string") : []; } catch { return []; } })());
+  // HOW THE STRIP IS SHELVED. One strip of every source; three ways to read
+  // it — by century, by which Hebrew it is about, by what its license lets a
+  // reader do — and a shelving is only a way of reading the strip: the same
+  // chips under every one, a chip switched off under one still off under the
+  // next. The chooser remembers, per reader, like every other switch.
+  const SHELVE_KEY = "fh.sources.shelve";
+  const SHELVINGS_IDS = ["century", "language", "license"];
+  let shelveBy = (() => { try { const v = localStorage.getItem(SHELVE_KEY); return SHELVINGS_IDS.includes(v) ? v : "century"; } catch { return "century"; } })();
   window.__sourcesOff = [...sourcesOff];
   const MASORAH_KEY = "fh.masorah";
   const MASORAH_POS = ["keep", "only", "letters"];
@@ -446,7 +472,7 @@
   };
   let zone, index;
   try {
-    [zone, index, POSTURES, CORPUS_REC] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -463,6 +489,11 @@
       // position reads it; its absence costs that one position and nothing
       // else, so the page does not wait on it and does not fail without it.
       fetch(`${ROOT}data/source-corpus-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // The language each source declared, from the admission record, so a
+      // chip on the Bible's shelf can say "+ Aramaic" when its source covers
+      // both. And the short names the strip wears. Neither stops the page.
+      fetch(`${ROOT}data/language-admission-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      fetch(`${ROOT}data/source-short-names-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
     ]);
     // The zone as it arrived, by the same rule the commentary sidecar is
     // exposed under: a check should be able to ask the record what it says
@@ -2110,7 +2141,8 @@
   // divides into readings at the commas outside the provider's parentheses
   // (sense-split-rule-v2), and each reading is its own pill; a damaged sense
   // neither prints nor pools. Pills dedupe by text, merging the oldest year
-  // and lowest rank; oldest source leads, post-1940 and unyeared sources last.
+  // and lowest rank; oldest source leads, sources after the era cut (ERA_CUT_CE,
+  // the 57th/58th-century line in AM) and unyeared sources last.
   // the grade of one store row for the card's surface, as the pill exposes
   // it: the row's own headwords against the open word when it carries them,
   // the lattice card's grade otherwise, "-" when neither can say — the same
@@ -2194,7 +2226,7 @@
         });
       });
     });
-    const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
+    const tier = (r) => (Number.isFinite(r.year) && r.year <= ERA_CUT_CE ? 0 : 1);
     // WHICH READING ANSWERS FIRST. Every ORDER is a stable re-order of the
     // same pool; an order never filters. A reader who asks for the era's own
     // lexicons still sees every reading the catalog holds, in a different
@@ -2206,7 +2238,7 @@
     return pool;
   };
   const oldestFirst = (a, b) => {
-    const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
+    const tier = (r) => (Number.isFinite(r.year) && r.year <= ERA_CUT_CE ? 0 : 1);
     return tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger;
   };
   // WHICH READING ANSWERS FIRST. One comparator chain, every position of it
@@ -4717,6 +4749,51 @@
     }
     return wrap;
   };
+  // THE STRIP, ON SHELVES. Every source this book's readings stand on, as
+  // one strip of chips; a chooser above it says how the strip is shelved; and
+  // every shelf carries one switch that flips every chip on it. The owner's
+  // ruling (2026-09-23): show all thirty-six along the top, neatly, under
+  // short names, and make a metatoggle plainly a switch over a SET of
+  // dictionaries. Three shelvings, all read off records already on the shelf:
+  //
+  //   century    the AM century of the source's year, cut where the reading
+  //              order cuts its era tier (ERA_CUT_CE); "no year given" apart
+  //   language   which Hebrew the dictionary is about: the Bible's, Hebrew in
+  //              general, or Aramaic — the corpus lane's classification of
+  //              each witness, with "+ Aramaic" on a Bible chip whose source
+  //              declared both
+  //   license    what a reader may do with it: public domain, credit
+  //              required, share-alike, non-commercial, other terms
+  //
+  // A shelving is a way of READING the strip, never a different set of
+  // switches. The chip state is per source (sourcesOff, by ledger id) and
+  // survives every regroup; a shelf whose chips disagree says "mixed" rather
+  // than picking a side. Pressing a mixed or an on shelf turns it off;
+  // pressing an off shelf turns it on.
+  const LANG_OF = (() => {
+    const m = new Map();
+    for (const e of Object.values((LANG_REC && LANG_REC.kept_sources) || {})) if (e && e.m_id) m.set(e.m_id, String(e.evidence || ""));
+    return (id) => m.get(id) || "";
+  })();
+  const licShelf = (lic) => {
+    const p = String(lic || "").toLowerCase();
+    if (/\bnc\b|non-?commercial/.test(p)) return "non-commercial";
+    if (/public domain|cc0/.test(p)) return "public domain";
+    if (/by-sa/.test(p)) return "share-alike (CC BY-SA)";
+    if (/cc by|cc-by/.test(p)) return "credit required (CC BY)";
+    return "other terms";
+  };
+  const SHELVINGS = [
+    { id: "century", lab: "century",
+      of: (g) => { const c = centuryAM(g.y); return c ? `${ordinal(c)} century` : "no year given"; },
+      rank: (title) => (title === "no year given" ? 1e9 : parseInt(title, 10)) },
+    { id: "language", lab: "language",
+      of: (g) => { const c = g.corpus; return c === "ARAMAIC" ? "Aramaic" : c === "BIBLICAL" ? "the Bible’s Hebrew" : "Hebrew in general"; },
+      rank: (title) => ({ "the Bible’s Hebrew": 0, "Hebrew in general": 1, "Aramaic": 2 })[title] ?? 9 },
+    { id: "license", lab: "license",
+      of: (g) => licShelf(g.lic),
+      rank: (title) => ({ "public domain": 0, "credit required (CC BY)": 1, "share-alike (CC BY-SA)": 2, "non-commercial": 3, "other terms": 4 })[title] ?? 9 },
+  ];
   const sourceSwitch = () => {
     const host = document.getElementById("sourcesRow");
     if (!host) return;
@@ -4729,81 +4806,139 @@
     const groups = new Map();
     for (const [id, s] of Object.entries(table)) {
       const gk = s.key || id;
-      const g = groups.get(gk) || { key: gk, ids: [], labels: [], lic: s.lic, leads: 0, carries: 0, changes: 0, darkens: 0 };
+      const g = groups.get(gk) || { key: gk, ids: [], labels: [], lic: s.lic, y: s.y, leads: 0, carries: 0, changes: 0, darkens: 0 };
       g.ids.push(id); g.labels.push(s.label); g.leads += s.leads; g.carries += s.carries; g.changes += s.changes; g.darkens += s.darkens;
       groups.set(gk, g);
     }
-    // A LIST, NOT A CLOUD. Thirty-six sources wrapped as chips is a wall at
-    // phone width: the names truncate at thirty characters, the two cost
-    // numbers run together, and nothing can be read down. So the row is a
-    // list — one source per line, its whole name, its switch on the left
-    // where a reader looks first, and what it costs said in words — and the
-    // list lives inside a fold, because the rail has other rows and a reader
-    // who has not come for the sources should not have to scroll past them.
-    const fold = document.createElement("details"); fold.className = "src-fold";
-    const sum = document.createElement("summary"); sum.className = "src-sum";
-    fold.append(sum);
-    const seg = document.createElement("div"); seg.className = "def-order src-list"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
-    const ordered = [...groups.values()].sort((a, b) => b.leads - a.leads || b.carries - a.carries || a.key.localeCompare(b.key));
-    const sayFold = () => {
-      const off = ordered.filter((g) => g.ids.every((id) => sourcesOff.has(id))).length;
-      sum.textContent = off ? `${ordered.length} sources · ${off} switched off` : `${ordered.length} sources, all on`;
-    };
-    for (const g of ordered) {
-      const on = !g.ids.every((id) => sourcesOff.has(id));
-      const line = document.createElement("div"); line.className = "src-row";
-      const label = [...g.labels].sort((a, b) => a.length - b.length)[0] || g.key;
-      const costs = g.changes || g.darkens
+    for (const g of groups.values()) {
+      g.corpus = g.ids.map((id) => CORPUS_OF(id)).find(Boolean) || "UNDECLARED";
+      g.lang = [...new Set(g.ids.map(LANG_OF).filter(Boolean))].sort().join(" + ");
+      g.label = [...g.labels].sort((a, b) => a.length - b.length)[0] || g.key;
+      const short = SHORT_REC && SHORT_REC.names && SHORT_REC.names[g.key];
+      g.short = short || (g.label.length > 18 ? `${g.label.slice(0, 17)}…` : g.label);
+      g.shortIsFallback = !short;
+      g.costs = g.changes || g.darkens
         ? `off: ${g.changes.toLocaleString()} line${g.changes === 1 ? "" : "s"} change${g.darkens ? `, ${g.darkens.toLocaleString()} go bare` : ""}`
         : "off: nothing on this book changes";
-      // TWO CONTROLS, ONE ROW, and neither does the other's work. The box is
-      // the switch and nothing else: it turns the source off. The panel beside
-      // it — the name, what the switch costs, the count — opens what the
-      // source says about itself. A reader who taps the name to read about a
-      // source must never find they have removed it.
+    }
+    const ordered = [...groups.values()].sort((a, b) => b.leads - a.leads || b.carries - a.carries || a.key.localeCompare(b.key));
+    const isOff = (g) => g.ids.every((id) => sourcesOff.has(id));
+
+    const fold = document.createElement("details"); fold.className = "src-fold"; fold.open = true;
+    const sum = document.createElement("summary"); sum.className = "src-sum";
+    const seg = document.createElement("div"); seg.className = "def-order src-list"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
+    const sayFold = () => {
+      const off = ordered.filter(isOff).length;
+      sum.textContent = off ? `${ordered.length} sources · ${off} switched off` : `${ordered.length} sources, all on`;
+    };
+
+    // the chooser: three words, one pressed
+    const chooser = document.createElement("div"); chooser.className = "shelve-by"; chooser.setAttribute("role", "group"); chooser.setAttribute("aria-label", "shelve by");
+    const chooseLab = document.createElement("span"); chooseLab.textContent = "shelve by"; chooser.append(chooseLab);
+    const shelvesHost = document.createElement("div"); shelvesHost.className = "shelves";
+    const optButtons = new Map();
+    for (const sh of SHELVINGS) {
+      const b = document.createElement("button"); b.type = "button"; b.className = "shelve-opt"; b.dataset.shelving = sh.id;
+      b.textContent = sh.lab; b.setAttribute("aria-pressed", String(sh.id === shelveBy));
+      b.addEventListener("click", () => {
+        shelveBy = sh.id; window.__shelveBy = shelveBy;
+        try { localStorage.setItem(SHELVE_KEY, shelveBy); } catch { /* the choice still stands on this page */ }
+        for (const [id, ob] of optButtons) ob.setAttribute("aria-pressed", String(id === shelveBy));
+        draw();
+      });
+      optButtons.set(sh.id, b); chooser.append(b);
+    }
+
+    // one chip: the box is the switch, the name opens the declarations
+    const chip = (g, refresh) => {
+      const row = document.createElement("span"); row.className = "src-row" + (isOff(g) ? " off" : "");
+      row.dataset.key = g.key;
+      const on = !isOff(g);
       const btn = document.createElement("button"); btn.type = "button";
       btn.className = "dfp" + (on ? " on" : "");
-      btn.dataset.ids = g.ids.join(" "); btn.dataset.key = g.key;
+      btn.dataset.ids = g.ids.join(" "); btn.dataset.key = g.key; btn.dataset.year = String(g.y);
       btn.setAttribute("aria-pressed", String(on));
-      btn.setAttribute("aria-label", `use ${label}`);
-      btn.title = `${on ? "switch off" : "switch back on"}: ${label}\n${costs}`;
+      btn.setAttribute("aria-label", `use ${g.label}`);
+      btn.title = `${on ? "switch off" : "switch back on"}: ${g.label}\n${g.costs}`;
       btn.addEventListener("click", () => {
         const nowOn = btn.getAttribute("aria-pressed") === "true";
         t.set(g.ids, !nowOn);
-        btn.classList.toggle("on", !nowOn); btn.setAttribute("aria-pressed", String(!nowOn));
-        line.classList.toggle("off", nowOn);
-        sayFold(); railSay();
+        refresh();
       });
-      line.append(btn);
-      if (!on) line.classList.add("off");
       const open = document.createElement("button"); open.type = "button"; open.className = "src-open decl-open";
       open.setAttribute("aria-expanded", "false"); open.dataset.key = g.key;
-      const name = document.createElement("span"); name.className = "src-name"; name.textContent = label;
-      const cost = document.createElement("i"); cost.className = "src-cost"; cost.textContent = costs;
-      open.append(name, cost);
-      open.title = `${g.labels.map((l, i) => `${g.ids[i]} ${l}`).join("\n")}\n${g.lic}\nleads ${g.leads.toLocaleString()} of this book's lines, carries a reading at ${g.carries.toLocaleString()} keys`;
-      seg.append(line);
+      const name = document.createElement("span"); name.className = "src-name"; name.textContent = g.short;
+      open.append(name);
+      if (shelveBy === "language" && g.corpus !== "ARAMAIC" && /Aramaic|Chaldee/.test(g.lang)) {
+        const tag = document.createElement("i"); tag.className = "src-tag"; tag.textContent = "+ Aramaic"; open.append(tag);
+      }
+      open.title = `${g.labels.map((l, i) => `${g.ids[i]} ${l}`).join("\n")}\n${g.lic}\n${g.costs}\nleads ${g.leads.toLocaleString()} of this book's lines, carries a reading at ${g.carries.toLocaleString()} keys`;
       open.addEventListener("click", async () => {
+        const shelf = row.closest(".shelf");
         const shown = open.getAttribute("aria-expanded") === "true";
-        const existing = line.querySelector(".decl");
+        const existing = shelf && shelf.querySelector(".decl");
         if (shown) { open.setAttribute("aria-expanded", "false"); if (existing) existing.remove(); return; }
         host.querySelectorAll(".decl").forEach((x) => x.remove());
         host.querySelectorAll(".decl-open").forEach((x) => x.setAttribute("aria-expanded", "false"));
         open.setAttribute("aria-expanded", "true");
         const d = declStore || await declReady();
         if (open.getAttribute("aria-expanded") !== "true") return;   // the reader closed it while it arrived
-        // under ITS OWN source, not at the foot of the list: a branch that
-        // opens thirty rows below the name it belongs to is a branch the
-        // reader has to hunt for
-        line.append(declPanel(g, d));
+        // under ITS OWN shelf, right below the strip the chip sits in
+        if (shelf) shelf.append(declPanel(g, d));
       });
-      line.append(open);
-    }
-    sayFold();
-    fold.append(seg);
+      row.append(btn, open);
+      return row;
+    };
+
+    const draw = () => {
+      shelvesHost.replaceChildren();
+      const sh = SHELVINGS.find((x) => x.id === shelveBy) || SHELVINGS[0];
+      const shelves = new Map();
+      for (const g of ordered) { const title = sh.of(g); if (!shelves.has(title)) shelves.set(title, []); shelves.get(title).push(g); }
+      const titles = [...shelves.keys()].sort((a, b) => sh.rank(a) - sh.rank(b) || a.localeCompare(b));
+      for (const title of titles) {
+        const rows = shelves.get(title);
+        const ids = rows.flatMap((g) => g.ids);
+        const offN = rows.filter(isOff).length;
+        const state = offN === rows.length ? "false" : offN === 0 ? "true" : "mixed";
+        const changes = rows.reduce((a, g) => a + g.changes, 0), darkens = rows.reduce((a, g) => a + g.darkens, 0);
+        const shelf = document.createElement("div"); shelf.className = "shelf" + (state === "false" ? " off" : state === "mixed" ? " mixed" : "");
+        shelf.dataset.shelf = title;
+        const head = document.createElement("div"); head.className = "shelf-head";
+        const sw = document.createElement("button"); sw.type = "button"; sw.className = "shelf-sw";
+        sw.setAttribute("role", "switch"); sw.setAttribute("aria-checked", state);
+        sw.dataset.ids = ids.join(" "); sw.dataset.shelf = title;
+        const cost = changes || darkens
+          ? `off: ${changes.toLocaleString()} line${changes === 1 ? "" : "s"} change${darkens ? `, ${darkens.toLocaleString()} go bare` : ""}`
+          : "off: nothing on this book changes";
+        sw.setAttribute("aria-label", `${state === "false" ? "switch on" : "switch off"} every dictionary on the shelf: ${title}`);
+        sw.title = `${state === "false" ? "switch on" : "switch off"} all ${rows.length} on this shelf\n${cost}`;
+        sw.addEventListener("click", () => {
+          // on or mixed → off; off → on. The whole shelf, by every id on it.
+          t.set(ids, state === "false");
+          draw(); sayFold(); railSay();
+        });
+        const ttl = document.createElement("span"); ttl.className = "shelf-title"; ttl.textContent = title;
+        const cnt = document.createElement("span"); cnt.className = "shelf-count";
+        cnt.textContent = `${rows.length} ${rows.length === 1 ? "dictionary" : "dictionaries"}`
+          + (state === "false" ? ` · ${cost}` : state === "mixed" ? ` · ${offN} off` : "");
+        head.append(sw, ttl, cnt);
+        const strip = document.createElement("div"); strip.className = "src-strip";
+        for (const g of rows) strip.append(chip(g, () => { draw(); sayFold(); railSay(); }));
+        shelf.append(head, strip);
+        shelvesHost.append(shelf);
+      }
+      window.__shelveBy = shelveBy;
+      window.__eraCutCE = ERA_CUT_CE;
+      window.__shortNameFallbacks = ordered.filter((g) => g.shortIsFallback).map((g) => g.key);
+    };
+
+    seg.append(chooser, shelvesHost);
+    draw(); sayFold();
+    fold.append(sum, seg);
     host.append(fold);
     const why = host.parentElement && host.parentElement.querySelector(".why");
-    if (why) why.textContent = `${ordered.length} sources stand behind this book's readings (${Object.keys(table).length} ledger ids). Beside each: lines that change · lines that go dark when it alone is off. A source off is not asked on any card; the line under a word follows. Press a source's name to open what it says about itself, in its own words.`;
+    if (why) why.textContent = `${ordered.length} sources stand behind this book's readings (${Object.keys(table).length} ledger ids), on shelves. A shelf's switch flips every dictionary on it; a chip's box flips one. Shelve them by century, by which Hebrew they are about, or by license — the same sources every way. A source off is not asked on any card; the line under a word follows. Press a name to open what the source says about itself, in its own words.`;
   };
   // THE RAIL draws itself from the registry: a row per toggle, the three rows
   // that have their own switches hosting them, every other row a segment
