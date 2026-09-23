@@ -758,6 +758,17 @@
      box on the left because that is where a reader looks to see what is on;
      the name has the whole line, because a source whose name is cut at
      thirty characters is a source nobody can weigh. */
+  /* the fold every switch but the sources waits under, closed until it is
+     fleshed out; drawn like the sources' own fold so a reader learns one thing */
+  .rail .more-switches { margin: 0.7rem 0 0; padding-top: 0.5rem; border-top: 1px solid var(--line); }
+  .rail .more-switches > summary { list-style: none; cursor: pointer; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.22rem 0.5rem; width: fit-content; }
+  .rail .more-switches > summary::-webkit-details-marker { display: none; }
+  .rail .more-switches > summary::after { content: " \25be"; color: var(--faint); }
+  .rail .more-switches[open] > summary::after { content: " \25b4"; }
+  .rail .more-switches > summary:hover { color: var(--ink); border-color: var(--muted); }
+  .rail .more-switches > .row:first-of-type { margin-top: 0.5rem; }
   .rail .src-fold { grid-column: 1 / -1; margin: 0; }
   .rail .src-fold > summary { list-style: none; cursor: pointer; font-size: 0.62rem;
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);

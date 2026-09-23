@@ -134,7 +134,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   await p.goto(URL, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   await p.waitForTimeout(700);
-  await p.evaluate(() => { const r = document.getElementById("rail"); if (r) r.open = true; });
+  // the rail, and every fold inside it — since 2026-09-23 all but the
+  // sources wait under one closed fold, and a photograph of a closed fold
+  // is a photograph of nothing
+  await p.evaluate(() => { const r = document.getElementById("rail"); if (r) r.open = true; document.querySelectorAll(".rail details").forEach((d) => { d.open = true; }); });
   await p.waitForTimeout(400);
   const drew = [];
   for (const t of toggles) {

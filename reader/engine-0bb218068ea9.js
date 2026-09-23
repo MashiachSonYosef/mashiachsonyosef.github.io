@@ -4447,10 +4447,15 @@
     const now = document.getElementById("railNow");
     if (!now) return;
     now.replaceChildren();
-    TOGGLES.forEach((t, i) => {
+    // the sources first and in ink, since they lead the rail; every other
+    // switch's state still said, so the line stays a full account of what is
+    // applied, but quieter — those switches wait under the fold
+    const lead = TOGGLES.filter((t) => t.id === "sources").concat(TOGGLES.filter((t) => t.id !== "sources"));
+    lead.forEach((t, i) => {
       if (i) now.append(Object.assign(document.createElement("i"), { textContent: "·" }));
       const b = document.createElement("b"); b.textContent = t.now() || t.lab;
       if (!t.live()) b.style.color = "var(--faint)";
+      else if (t.id !== "sources") { b.style.color = "var(--muted)"; b.style.fontWeight = "500"; }
       now.append(b);
     });
   };
@@ -4946,6 +4951,18 @@
     const rows = document.getElementById("railRows");
     if (!rows) return;
     rows.replaceChildren();
+    // THE SOURCES LEAD, ALONE. The owner's ruling (2026-09-23): the strip of
+    // sources is the main thing in this box and stands at the top; every
+    // other switch waits under one fold, closed, until it has been fleshed
+    // out and said in plain words. Nothing is removed — a switch under the
+    // fold works exactly as it did, and every check still reaches it — but a
+    // reader who opens the rail meets one thing, and it is the one that has
+    // been agreed. The fold says how many wait under it, and nothing else.
+    const more = document.createElement("details"); more.className = "more-switches";
+    const moreSum = document.createElement("summary"); moreSum.className = "more-sum";
+    const waiting = TOGGLES.filter((t) => t.id !== "sources");
+    moreSum.textContent = `${waiting.length} more switches, not yet fleshed out`;
+    more.append(moreSum);
     for (const t of TOGGLES) {
       const row = document.createElement("div"); row.className = "row" + (t.live() ? "" : " dead"); row.dataset.toggle = t.id;
       if (t.voice) row.dataset.voice = t.voice;
@@ -4963,8 +4980,9 @@
       const why = document.createElement("span"); why.className = "why";
       why.textContent = t.live() ? t.why : `${t.why} — waiting on ${t.waits}`;
       row.append(lab, host, why);
-      rows.append(row);
+      (t.id === "sources" ? rows : more).append(row);
     }
+    rows.append(more);
     railSay();
   };
   const setMode = (m) => {
