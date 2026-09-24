@@ -33,7 +33,7 @@
 // named and not written; this exits nonzero while anything pinned is still
 // missing, so an incomplete shelf never reads as a restored one.
 //
-// Run: node tools/restore-shelf-from-history-v1.mjs [--dry] [--jobs 4]
+// Run: node tools/restore-shelf-from-history-v1.mjs [--dry] [--jobs 4] [--r2-prefix serving-lane/shelf/zones/]
 //        [--record data/zone-store-v1.json] [--zones data/zones]
 //        [--postures data/license-postures-v1.json]
 //        [--attachment data/work-attachment-v1.json]
@@ -70,6 +70,57 @@ const exactOnDisk = (f) => {
   const b = readFileSync(p);
   return b.length === pins[f].bytes && sha(b) === pins[f].sha256;
 };
+// --- first, the serving lane's own backup on R2, when this machine has keys --
+// Since the year repair (2026-09-24) every zone was re-projected over the
+// landed store, so the bytes the pins name exist in no commit: the history
+// route below reproduces the shelf as it stood BEFORE that, and refuses it.
+// The shelf is backed up byte for byte at r2:<bucket>/serving-lane/shelf/
+// zones/<name>; with R2 keys in the environment (R2_ACCESS_KEY_ID or
+// AWS_ACCESS_KEY_ID, the secret likewise, R2_ENDPOINT, R2_BUCKET) each pin
+// not already exact on disk is fetched from there and written only if exact.
+// The keys are read, never printed. Without them this step is skipped and
+// says so.
+{
+  const env = process.env;
+  const KEY = env.R2_ACCESS_KEY_ID || env.AWS_ACCESS_KEY_ID, SECRET = env.R2_SECRET_ACCESS_KEY || env.AWS_SECRET_ACCESS_KEY;
+  const ENDPOINT = env.R2_ENDPOINT, BUCKET = env.R2_BUCKET;
+  const PREFIX = arg("r2-prefix", "serving-lane/shelf/zones/");
+  const want = Object.keys(pins).filter((f) => !exactOnDisk(f)).sort();
+  if (!want.length) { /* nothing to fetch */ }
+  else if (!(KEY && SECRET && ENDPOINT && BUCKET)) console.log(`R2 backup: skipped — no R2 keys in this environment (${want.length} pins not on disk)`);
+  else {
+    const { createHmac } = await import("node:crypto");
+    const host = new URL(ENDPOINT).host;
+    const hmac = (k, s) => createHmac("sha256", k).update(s).digest();
+    const enc = (s) => encodeURIComponent(s).replace(/[!'()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
+    const get = async (key) => {
+      const now = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+      const day = now.slice(0, 8);
+      const path = `/${enc(BUCKET)}/${key.split("/").map(enc).join("/")}`;
+      const headers = { host, "x-amz-content-sha256": "UNSIGNED-PAYLOAD", "x-amz-date": now };
+      const signed = Object.keys(headers).sort();
+      const canon = ["GET", path, "", ...signed.map((h) => `${h}:${headers[h]}`), "", signed.join(";"), "UNSIGNED-PAYLOAD"].join("\n");
+      const scope = `${day}/auto/s3/aws4_request`;
+      const toSign = ["AWS4-HMAC-SHA256", now, scope, sha(Buffer.from(canon))].join("\n");
+      const kSign = hmac(hmac(hmac(hmac(`AWS4${SECRET}`, day), "auto"), "s3"), "aws4_request");
+      const sig = createHmac("sha256", kSign).update(toSign).digest("hex");
+      const res = await fetch(`https://${host}${path}`, { headers: { ...headers, Authorization: `AWS4-HMAC-SHA256 Credential=${KEY}/${scope}, SignedHeaders=${signed.join(";")}, Signature=${sig}` } });
+      return res.ok ? Buffer.from(await res.arrayBuffer()) : null;
+    };
+    let got = 0, absent = 0, wrong = 0;
+    const q = [...want];
+    await Promise.all(Array.from({ length: Math.max(4, JOBS * 2) }, async () => {
+      while (q.length) {
+        const f = q.shift();
+        const b = await get(PREFIX + f).catch(() => null);
+        if (!b) { absent += 1; continue; }
+        if (b.length !== pins[f].bytes || sha(b) !== pins[f].sha256) { wrong += 1; continue; }
+        got += 1; if (!DRY) writeFileSync(join(ZONES, f), b);
+      }
+    }));
+    console.log(`R2 backup: ${got} restored exact${DRY ? " (DRY, nothing written)" : ""} · ${absent} not in the backup · ${wrong} in the backup but not their pin`);
+  }
+}
 const missing = Object.keys(pins).filter((f) => !exactOnDisk(f)).sort();
 const isSidecar = (f) => /\.[a-z]+\.bin$/.test(f);
 const bins = missing.filter((f) => !isSidecar(f));

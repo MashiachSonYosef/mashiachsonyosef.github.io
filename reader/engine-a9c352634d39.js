@@ -1109,6 +1109,16 @@
   /** Repaint every pair on the page under the order now set. */
   const paintPairs = () => {
     for (const s of KQ_STANDS) {
+      // each half's reading is re-read from the table as it stands NOW: the
+      // parts captured when the pair was drawn went stale the moment an order
+      // moved the table under them — 26 of Daniel's 125 pair lines kept the
+      // old reading, wearing the new order's chip (a ruling still wins)
+      s.parts = s.regions.map((r) => {
+        const held = ruledLine(r.k, s.table);
+        if (held !== null) return held;
+        const g = s.table ? s.table[r.k] : null;
+        return g ? spanJoin(g) : "\u2014";
+      });
       const { i, fellFrom } = kqPick(s.regions, s.parts, s.table);
       const line = i >= 0 && s.parts[i] !== "—" ? s.parts[i] : "";
       s.ge.replaceChildren(line || " ");
@@ -2235,7 +2245,14 @@
         });
       });
     });
-    const tier = (r) => (Number.isFinite(r.year) && r.year <= ERA_CUT_CE ? 0 : 1);
+    // WHO CARRIES A READING, OLDEST FIRST. A reading's records came in the
+    // catalog's row order, and the card credited the first of them, while the
+    // line, its chip and the export credit the OLDEST carrier. They agreed
+    // while nearly every row was dated; after the year repair most rows are
+    // undated and the two named different sources for one reading. One order
+    // now: oldest wording year first, undated after, the catalog's order
+    // breaking ties — the order the chip and the export already used.
+    for (const g of groups.values()) g.records.sort(EARLIEST_FIRST);
     // WHICH READING ANSWERS FIRST. Every ORDER is a stable re-order of the
     // same pool; an order never filters. A reader who asks for the era's own
     // lexicons still sees every reading the catalog holds, in a different
@@ -3413,7 +3430,14 @@
     };
 
     // --- row 4 · where the boundaries came from ------------------------
-    if (span) {
+    if (span && !established) {
+      // the division is withheld above, so this line says so rather than
+      // naming where a boundary nobody is shown came from — it printed "proposed
+      // by the formulaic clitic pass" at 218,107 positions under a card that
+      // showed no boundary at all. Three states, never two: a division shown
+      // with its source, a division withheld and said to be, no system at all.
+      prov.textContent = "A division into parts was proposed for this form and is not shown: it has not been established";
+    } else if (span) {
       prov.textContent = comps.length === 1
         ? `${SPLIT_PROVENANCE[span.rule] || span.rule}`.replace(/^./u, (c) => c.toUpperCase())
         : `${comps.length} components · ${SPLIT_PROVENANCE[span.rule] || span.rule}`;
@@ -4459,6 +4483,116 @@
     // a joined run prints its pieces once, together, so it is made again from
     // the pieces this repaint just changed
     for (const r of runs) refreshJoinGloss(r);
+    // the pairs are enrolled apart (their line reads ONE half), and move with
+    // the table the same way
+    paintPairs();
+    switchGen += 1;
+    repaintLive(GLOSS_STANDS);
+  };
+
+  // THE LINE FOLLOWS THE CARD UNDER THE SOURCE SWITCHES.
+  //
+  // The line under a word is baked: one reading per key, and — for the
+  // switches — the carriers of that reading and one alternate. That covered a
+  // single source switched off. It did not cover a shelf: throw the 57th
+  // century and the baked alternate's carriers were often off too, so the
+  // word went bare at 17,104 places on the 39 books while its card still
+  // offered readings at 17,083 of them, and 113,963 lines kept a chip naming
+  // a source the reader had turned off. The page's own rule is "absent over
+  // wrong", and a bare line over a card full of readings is wrong too.
+  //
+  // So wherever a switched-off source stands behind a word's line — its
+  // printed reading, the order column's reading, a lattice leader or the
+  // headword's reading — the line asks the same live pool the card asks,
+  // under the same order and the same switches, and says what the card's
+  // first pill says, with that reading's own oldest carrier on the chip. A
+  // word the switches leave with no reading at all goes bare, marked as the
+  // reader's own doing. Nothing else on the page is re-asked: a line none of
+  // whose carriers is off cannot be displaced by switching sources off,
+  // since that only removes the rows of other readings.
+  let switchGen = 0, livePending = 0;
+  window.__livePending = 0;
+  let idsByLabel = null;
+  const idsOfLabel = (label) => {
+    if (!idsByLabel) {
+      idsByLabel = new Map();
+      for (const [id, s] of Object.entries((index && index.m_sources) || {})) {
+        const l = s.label || "";
+        if (!idsByLabel.has(l)) idsByLabel.set(l, []);
+        idsByLabel.get(l).push(id);
+      }
+    }
+    return idsByLabel.get(label) || [];
+  };
+  const anyOff = (ids) => ids.some((id) => sourcesOff.has(id));
+  const partNeedsLive = (st, k, moved) => {
+    if (!sourcesOff.size) return false;
+    if (moved) {
+      if (moved.why === "sources" || moved.why === "sources-bare") return true;
+      return !!(moved.m && moved.m.m && anyOff(idsOfLabel(moved.m.m)));
+    }
+    const gm = zone.gloss_m && zone.gloss_m[lookupKey(st.word, k, zone.gloss)];
+    if (!gm) return false;
+    if (Array.isArray(gm.by) && gm.by.length) return anyOff(gm.by);
+    return !!(gm.m && anyOff(idsOfLabel(gm.m)));
+  };
+  const chipMOf = (rec) => {
+    const s = (index && index.m_sources && index.m_sources[rec[3]]) || {};
+    return { lic: licenseName(s.licensePosture), m: s.label || rec[3], y: s.sourceYear || "", wy: rec[4] };
+  };
+  const repaintLive = async (stands) => {
+    if (!sourcesOff.size || !zone.gloss) return;
+    const gen = switchGen;
+    const todo = [];
+    for (const st of stands) {
+      if (!st.ge.isConnected) continue;
+      const moved = st.ks.length === 1 ? lineUnder(st.word, zone.gloss) : null;
+      const need = st.ks.map((k) => partNeedsLive(st, k, moved));
+      if (need.some(Boolean)) todo.push({ st, moved, need });
+    }
+    const one = async ({ st, moved, need }) => {
+      const parts = [], ms = [];
+      for (let i = 0; i < st.ks.length; i += 1) {
+        const k = moved && moved.why === "headword" && st.word && st.word.h ? st.word.h : lookupKey(st.word, st.ks[i], zone.gloss);
+        if (!need[i]) {
+          const g = moved ? moved.text : zone.gloss[k];
+          parts.push(g ? spanJoin(g) : "\u2014");
+          ms.push(moved ? moved.m : (zone.gloss_m ? zone.gloss_m[k] : null));
+          continue;
+        }
+        const pool = await poolFor(k);
+        if (gen !== switchGen) return;
+        const top = pool && pool[0];
+        parts.push(top ? spanJoin(top.text) : "\u2014");
+        ms.push(top && top.records && top.records[0] ? chipMOf(top.records[0]) : null);
+      }
+      if (gen !== switchGen || !st.ge.isConnected) return;
+      const line = parts.filter((x) => x !== "\u2014").length ? parts.join(" + ") : "";
+      st.ge.replaceChildren();
+      if (line) { st.ge.textContent = line; st.ge.title = line; st.ge.classList.remove("bare"); delete st.ge.dataset.off; }
+      else { st.ge.textContent = " "; st.ge.classList.add("bare"); st.ge.dataset.off = "sources"; st.ge.title = "no source that is switched on answers this word"; }
+      const shown = ms.filter((m, i) => m && parts[i] !== "\u2014");
+      if (line && shown.length) { const chip = chipOfMs(shown); if (chip) st.ge.append(chip); }
+      st.ge.dataset.live = "sources";
+      const run = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
+      if (run) refreshJoinGloss(run);
+    };
+    // the words on screen first, then outward: a reader looking at a verse
+    // sees it settle before the rest of the book does. A few at a time — the
+    // card's own shard cache serves every word after the first in each shard,
+    // so the page asks the network at most once a shard.
+    const mid = window.innerHeight / 2;
+    const dist = (x) => { const r = x.st.ge.getBoundingClientRect(); return Math.abs((r.top + r.bottom) / 2 - mid); };
+    const queue = todo.map((x) => [dist(x), x]).sort((a, b) => a[0] - b[0]).map((x) => x[1]);
+    livePending += queue.length; window.__livePending = livePending;
+    await Promise.all(Array.from({ length: 16 }, async () => {
+      while (queue.length && gen === switchGen) {
+        const x = queue.shift();
+        try { await one(x); } finally { livePending -= 1; window.__livePending = livePending; }
+      }
+    }));
+    if (gen !== switchGen) { livePending -= queue.length; window.__livePending = livePending; }
+    window.__liveLines = (window.__liveLines || 0) + todo.length;
   };
 
   const defSwitch = () => {
@@ -6714,6 +6848,9 @@
     el.__body = null;
     build();
     el.classList.remove("seg-wait");
+    // a section drawn while sources are off draws its baked lines first, then
+    // lets the lines the switches reach ask the live pool, as the rest did
+    if (sourcesOff.size) repaintLive(GLOSS_STANDS.filter((s) => el.contains(s.ge)));
     el.style.minHeight = "";
     if (io) io.unobserve(el);
     if (commentaryLayerOn && el.__sec) {

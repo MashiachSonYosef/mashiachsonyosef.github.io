@@ -187,7 +187,7 @@ zone.emitted_from.toggles.sources = {
   const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
   const me = "tools/regloss-zone.mjs";
   pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-  for (const f of ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", ...(ordersM ? ["gloss_m_orders"] : [])]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
+  for (const f of ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", ...(ordersM ? ["gloss_m_orders", "emitted_from.gloss_m_orders_layer"] : [])]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
   const why = "the gloss layer is a projection of the route store over this zone's own keys, re-run here at cell grain after the component layer was projected";
   pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
   const exp = "with this zone's rebuild by a build-zone run that writes its gloss layer in its single pass";
