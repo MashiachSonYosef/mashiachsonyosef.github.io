@@ -18,10 +18,14 @@
 //   S3  a source with SOLE carriage of some line, switched off: that line
 //       moves to the baked alternate, the chip on the line names the
 //       alternate's witness, and the card's first pill says the same
-//   S4  a line the same source carries WITH another carrier does not move
+//   S4  a line the same source carries WITH another carrier stays carried:
+//       it never goes dark, it says what its card's first pill says, and it
+//       does not move unless its card's lead moved (the switched-off carrier
+//       can be what ranked the reading first; the line follows the card)
 //   S5  the card says how many records the switch withheld, and no pill on
 //       it is carried only by the switched-off ids
-//   S6  the Hebrew of the section never changed by a byte
+//   S6  the Hebrew of the section never changed by a byte (the ink alone:
+//       the English lines under it are S3's and S4's to move)
 //   S7  switched back on, the line and the pool are exactly what they were
 //   S8  a key whose every carrier is off and whose alternate is absent goes
 //       bare on the line, marked as the reader's own doing — found on this
@@ -206,7 +210,22 @@ for (const [gk, ids] of groups) {
 }
 check("  a source that solely carries one visible line (with an alternate) and shares another stands on the page", !!pick,
   pick ? `${pick.gk} (${pick.ids.join(" ")}) · sole: ${pick.sole.s} "${pick.sole.line}" · shared: ${pick.shared.s}` : "none in the first 120 words");
-const heBefore = await p.evaluate(() => document.querySelector("section.seg .he-text").textContent);
+// the Hebrew ink of the first section, without the English lines under it
+const inkOf = () => p.evaluate(() => { const c = document.querySelector("section.seg .he-text").cloneNode(true); c.querySelectorAll(".g").forEach((x) => x.remove()); return c.textContent; });
+// what a word's card offers first, and its line without the chip
+const leadOf = (i) => p.evaluate(async (i) => {
+  const wb = document.querySelectorAll("section.seg .he-text .wb")[i];
+  (wb.querySelector(".w span") || wb.querySelector(".w")).click();
+  const t0 = Date.now(); while (Date.now() - t0 < 5000 && !document.querySelector("#hud .r-pills button")) await new Promise((r) => setTimeout(r, 50));
+  await new Promise((r) => setTimeout(r, 300));
+  const first = ((document.querySelector("#hud .r-pills button") || {}).textContent || "").trim();
+  const x = document.querySelector("#hud .head button"); if (x) x.click();
+  await new Promise((r) => setTimeout(r, 200));
+  const g = wb.querySelector(".g").cloneNode(true); g.querySelectorAll(".g-lic").forEach((c) => c.remove());
+  return { first, line: g.textContent.replace(/\s+/g, " ").trim() };
+}, i);
+const sharedBefore = pick ? await leadOf(pick.shared.i) : null;
+const heBefore = await inkOf();
 
 // switch it off
 const pressed = await p.evaluate((gk) => {
@@ -221,8 +240,16 @@ const altText = pick ? String(pick.sole.gm.alt.text) : "";
 check("S3  the solely-carried line moved to the baked alternate, and its chip names the alternate's witness",
   pressed && pick && after[0].line.toLowerCase().startsWith(altText.toLowerCase().slice(0, 12)) && after[0].chip.includes(pick.sole.gm.alt.m.slice(0, 20)),
   pick ? `"${pick.sole.line}" -> "${after[0].line}" · alt "${altText}" · chip "${after[0].chip.slice(0, 50)}"` : "");
-// S4
-check("S4  the shared line did not move", pick && after[1].line === pick.shared.line && !after[1].bare, pick ? `"${pick.shared.line}" stands (carriers ${pick.shared.gm.by.join(",")})` : "");
+// S4 · held still outright until the line came to follow the card
+// (2026-09-24): with one carrier off, the card can rank the reading lower —
+// the carrier switched off may be what put it first — and the line says what
+// the card now says. It never goes dark, and it moves only with the card.
+const sharedAfter = pick ? await leadOf(pick.shared.i) : null;
+const same = (a, b) => String(a).trim().toLowerCase() === String(b).trim().toLowerCase();
+const s4 = pick && sharedBefore && sharedAfter && !after[1].bare && same(sharedAfter.line, sharedAfter.first)
+  && (same(sharedBefore.first, sharedAfter.first) ? after[1].line === pick.shared.line : true);
+check("S4  the shared line stays carried: never dark, its card's first pill, and still unless the card's lead moved", s4,
+  pick && sharedAfter ? `"${pick.shared.line}" (carriers ${pick.shared.gm.by.join(",")}) -> "${after[1].line}" · card led "${sharedBefore.first}", now "${sharedAfter.first}" · line "${sharedAfter.line}" bare ${after[1].bare}` : "");
 
 // S5 · open the card on the moved word
 await p.evaluate((i) => { const w = document.querySelectorAll("section.seg .he-text .wb")[i]; (w.querySelector(".w span") || w.querySelector(".w")).click(); }, pick ? pick.sole.i : 0);
@@ -240,7 +267,7 @@ check("S5  the card says how many records the switch withheld, and no pill is ca
 check("    and the card's first pill is the line", card && pick && card.first.trim().toLowerCase() === after[0].line.replace(/\s*(CC|Public|License).*$/u, "").trim().toLowerCase(), card ? `pill "${card.first}" · line "${after[0].line}"` : "");
 
 // S6
-const heAfter = await p.evaluate(() => document.querySelector("section.seg .he-text").textContent);
+const heAfter = await inkOf();
 check("S6  the Hebrew of the section never changed by a byte", heBefore === heAfter, `${heAfter.length} characters`);
 
 // S7 · back on

@@ -2782,6 +2782,20 @@
       // saying two things, found the day the store carried its own grades
       const led = bin === zone && word && region && surface === region.k ? lineUnder(word, bin.gloss) : null;
       if (led) return led.text ? spanJoin(led.text) : "—";
+      // and where a switched-off source carried this reading, the line under
+      // the word follows the live pool (repaintLive) — so the card says the
+      // pool's first reading too. It said the baked one, and opening the card
+      // painted that back over the line: "Dibri" on the card, "speak" under
+      // the word, with the one carrier that ranked "speak" first switched off.
+      if (sourcesOff.size && bin === zone && word && region && surface === region.k && partNeedsLive({ word }, surface, null)) {
+        const pl = cache.get(surface);
+        if (pl && pl.length) return spanJoin(pl[0].text);
+        if (glossEl && glossEl.dataset.live === "sources") {
+          const c = glossEl.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
+          const said = c.textContent.trim();
+          if (said) return said;
+        }
+      }
       const g = bin.gloss ? bin.gloss[surface] : null;
       return g ? spanJoin(g) : "—";
     };
