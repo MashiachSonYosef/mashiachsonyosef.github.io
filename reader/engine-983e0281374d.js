@@ -960,11 +960,14 @@
   // tapped, which is the whole thing being fixed.
   const closeHud = (release = true) => {
     hud.hidden = true; hud.replaceChildren();
+    // a hidden card that keeps its pop replays it the moment it is shown
+    // again, before anything has measured it; the tether starts the pop
+    hud.classList.remove("pop");
     activeEl = null; hudAnchor = null;
     if (release) { hudMoved = false; hud.classList.remove("moved"); }
     // a card may have been opened from a whole block or from one W inside it,
     // so both marks are cleared rather than the one we happen to remember
-    document.querySelectorAll(".wb.active").forEach((w) => w.classList.remove("active"));
+    document.querySelectorAll(".wb.active, .wjoin.active").forEach((w) => w.classList.remove("active"));
     document.querySelectorAll(".wr.on").forEach((r) => r.classList.remove("on"));
   };
   // Anchor the HUD to whatever was tapped. Three surfaces open it now — a
@@ -1007,6 +1010,20 @@
   // The line a ruling composes for one form: the remembered division, each
   // block read from the remembered choice, and a block the reader has not
   // ruled on read from the catalog's own table. Null when nothing was ruled.
+  // THE WHOLE FORMS OF A MAQAF RUN, in the order the card offers them: as
+  // written (the joiner kept), joined into one word, then folded wherever a
+  // seam letter is written final — the same enumeration as the corpus lane's
+  // weld-forms-v1.formsOfRun, which bakes the published ones into the zone.
+  // Nothing here decides which are real; the store (and the baked table) does.
+  const RUN_FINAL = { "\u05da": "\u05db", "\u05dd": "\u05de", "\u05df": "\u05e0", "\u05e3": "\u05e4", "\u05e5": "\u05e6" };
+  const runWholeForms = (keys) => {
+    if (!keys || keys.length < 2 || keys.some((k) => !k)) return [];
+    const seams = keys.slice(0, -1).map((k, j) => (RUN_FINAL[k.slice(-1)] ? j : -1)).filter((j) => j >= 0);
+    const out = [keys.join("\u05be"), keys.join("")];
+    for (let mask = 1; mask < 1 << seams.length; mask += 1)
+      out.push(keys.map((k, j) => { const s = seams.indexOf(j); return s >= 0 && mask & (1 << s) ? k.slice(0, -1) + RUN_FINAL[k.slice(-1)] : k; }).join(""));
+    return [...new Set(out)];
+  };
   const ruledLine = (k, table) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
@@ -1577,12 +1594,22 @@
   // multiplied out — a pill whose text wraps is taller than its neighbours, so
   // one number for "a row" cuts the tall ones in half. These are the real
   // boundaries, read off the laid-out box.
+  // READ IN THE LAYOUT'S OWN PIXELS, NOT THE SCREEN'S. The card pops in drawn
+  // scaled down, and a screen rectangle taken mid-pop is the scaled one: a
+  // 28px pill measured 24.6, the readings band was handed 25px, and the
+  // pressed pill, scrolled into it, stood cut under the record — every time
+  // a card was reopened, because a card shown again replays its pop before
+  // the first measurement. Dividing by the card's drawn-to-laid-out ratio
+  // gives back the pixels the heights are written in.
   const rowsOf = (box) => {
-    const top = box.getBoundingClientRect().top - box.scrollTop;
+    const hb = hud.getBoundingClientRect().height;
+    const k = hud.offsetHeight && hb ? hb / hud.offsetHeight : 1;
+    const sy = Math.abs(k - 1) < 0.002 ? 1 : k;
+    const top = box.getBoundingClientRect().top;
     const rows = [];
     for (const el of box.children) {
       const r = el.getBoundingClientRect();
-      const t = r.top - top, bt = r.bottom - top;
+      const t = (r.top - top) / sy + box.scrollTop, bt = (r.bottom - top) / sy + box.scrollTop;
       const row = rows.find((x) => Math.abs(x.top - t) < 2);
       if (row) row.bottom = Math.max(row.bottom, bt);
       else rows.push({ top: t, bottom: bt });
@@ -1607,8 +1634,12 @@
     // handed a share of a card that did not exist.
     const dSlot = hud.querySelector(".d-slot");
     const prov = hud.querySelector(".prov");
+    // the commentary count under the card is, after the provenance line, the
+    // thing on the card nobody presses; it gives way before a band does
+    const vol = hud.querySelector(".vol-slot");
     if (dSlot) dSlot.style.maxHeight = "";
     if (prov) prov.hidden = false;
+    if (vol) vol.hidden = false;
     for (const x of bands) { x.box.style.height = ""; x.box.style.maxHeight = ""; }
     for (const x of bands) {
       x.rows = rowsOf(x.box);
@@ -1634,6 +1665,7 @@
       if (give > 0) dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`;
     }
     if (floors > rowsEl.clientHeight && prov && prov.offsetHeight) prov.hidden = true;
+    if (floors > rowsEl.clientHeight && vol && vol.offsetHeight) vol.hidden = true;
 
     // Then hand the room out — and then look, and hand it out again against
     // what is actually there. The height of the rows region depends on what
@@ -1705,6 +1737,7 @@
       if (give > 0) { dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`; handOut(); }
     }
     if (owedShort() && prov && prov.offsetHeight) { prov.hidden = true; handOut(); }
+    if (owedShort() && vol && vol.offsetHeight) { vol.hidden = true; handOut(); }
     // The record's floor, held against the laid-out foot. The stylesheet caps
     // the slot at a length written for a one-row source line, but the M is as
     // tall as its own chips: a license whose names wrap takes three rows of
@@ -2142,6 +2175,7 @@
     stepbible_tahot_explicit_source_alignment_v1: "component boundaries aligned to an explicit source",
     formulaic_clitic_candidate_v1: "component boundaries proposed by the formulaic clitic pass",
     whole_token_only_v1: "recorded as one component",
+    maqaf_run_v1: "joined by a maqaf: the run as written, joined, and word by word, in the forms a dictionary published",
   };
   const spanOf = (bin, k) => {
     const row = bin && bin.spans ? bin.spans[k] : null;
@@ -2609,6 +2643,9 @@
       iLine.textContent = "The source writes this joiner spaced out from the words on either side; it is read as a maqaf all the same (rule 2), and the two words stand as their own cards, joined.";
       head.append(iLine);
     }
+    // a run's card says what it is in its provenance line, at the foot, which
+    // gives way on a short screen before any band does; a line in the head
+    // cost the readings their one row in landscape
     const pjm = word.presentation_join && String(word.presentation_join.why || "").startsWith("maqaf-rule-v2") ? word.presentation_join : null;
     const mqNext = !!(pjm && pjm.join_next_without_separator);
     const mqPrev = !!((pjm && pjm.join_previous_without_separator) || word.after_maqaf);
@@ -2660,9 +2697,30 @@
     //
     // The bins keep their spans. Nothing is deleted, and the day a division
     // arrives with evidence behind it, it is offered on the strength of that.
-    const established = span && span.conf !== "draft_candidate";
-    const comps = established ? span.comps : [region.k];
-    const covers = cutsOf(comps);
+    let established = span && span.conf !== "draft_candidate";
+    let comps = established ? span.comps : [region.k];
+    let covers = cutsOf(comps);
+    // A MAQAF RUN IS ONE CARD (the megacompspan, owner 2026-09-24: "here the
+    // 1 word is the maqaf, even if masoretics count it as 2, because we need
+    // to have a lattice that holds A-maqaf-B, AB (weld) and A+B, not just A+B").
+    // The words stay two C0s on the page and in every count; the CARD is the
+    // run's. Its divisions are the run as written, maqaf and all; the run
+    // joined into one word, and folded where a seam letter is written final;
+    // and the words each on their own. A whole form is offered only where a
+    // dictionary published a headword under it — a form nobody wrote finds
+    // nothing and is not drawn (weld-forms-rule-v1). The words on their own
+    // are always offered: each is a word the text wrote.
+    let runSpan = null;
+    if (opts.run) {
+      const keys = opts.run.keys;
+      const n = keys.length;
+      const whole = (surface) => [{ surface, from: 0, to: n - 1 }];
+      const forms = runWholeForms(keys);
+      const found = await Promise.all(forms.map(async (f) => { const r = await routesFor(f); return r && r.length ? f : null; }));
+      covers = [...found.filter(Boolean).map(whole), keys.map((k, j) => ({ surface: k, from: j, to: j }))];
+      comps = keys; established = true;
+      runSpan = { comps: keys, rule: "maqaf_run_v1", conf: "established" };
+    }
 
     // What the reader chose, kept where they chose it. This lived inside the
     // open, so closing the card threw it away and the next open painted the
@@ -2678,7 +2736,15 @@
       const found = covers.find((c) => cutKey(c) === mem.cut);
       if (found) cover = found;
     }
+    // a run opens on the form its line reads: as written where a dictionary
+    // published that, else word by word on the word pressed — never on a
+    // weld, which the reader may press but the page does not choose
+    if (opts.run && !mem.cut) {
+      const asWritten = covers.find((c) => c.length === 1 && c[0].surface === region.k);
+      cover = asWritten || covers[covers.length - 1];
+    }
     let cellIdx = 0;
+    if (opts.run && cover.length === opts.run.keys.length && cover.length > 1) cellIdx = Math.max(0, Math.min(cover.length - 1, opts.run.clicked || 0));
     const selectedRecordRef = { m: null };
     // A route object is rebuilt from the shard every time the card opens, so
     // remembering the object itself remembers nothing — the new pool holds
@@ -2692,7 +2758,7 @@
     // you have open, joined the way the reader joins a span. A cell the
     // catalog does not attest reads as a dash rather than borrowing its
     // neighbour's word.
-    const glossEl = el.closest(".wb") ? el.closest(".wb").querySelector(".g") : null;
+    const glossEl = opts.run ? (opts.run.el.__gloss || null) : el.closest(".wb") ? el.closest(".wb").querySelector(".g") : null;
     const glossParts = opts.glossParts || null;
     const textOfCell = (surface) => {
       const p = picked.get(surface);
@@ -2828,6 +2894,14 @@
       // without hunting a lit pill through a scrolling row
       paintNow(mine);
       if (!glossEl) return;
+      // a run's line is drawn from its words, cell by cell with each chip
+      // under its own reading; opening the run's card changes none of that,
+      // and a ruling on the run is held by the run's key and drawn by the
+      // run itself (refreshJoinGloss), wherever the same run stands
+      if (opts.run) {
+        if (ruled) for (const r of document.querySelectorAll(".wjoin")) if (r.__key === region.k) refreshJoinGloss(r);
+        return;
+      }
       // An open only repaints its own line; nothing was ruled, so nothing
       // else on the page is owed a repaint.
       if (!ruled) {
@@ -3046,11 +3120,23 @@
       // and everything the catalog holds for the key.
       {
         const hit = pieceGloss(cover, cellIdx);
-        if (hit) {
+        // WHO SAYS IT, AND UNDER WHAT LICENSE. The source's code on the piece
+        // (tahot, macula) is resolved through the lattice's own witness
+        // record, never a mapping typed here; a code the record does not
+        // name draws no chip. A reading and its license never separate, and
+        // a source the reader switched off is not quoted here either.
+        const wits = (((zone.emitted_from || {}).toggles || {}).lattice || {}).pieces;
+        const who = hit && wits && wits.witnesses ? wits.witnesses[`english_${hit.s}`] : null;
+        const whoM = who && who.m && index && index.m_sources ? index.m_sources[who.m] : null;
+        if (hit && !(who && who.m && sourcesOff.has(who.m))) {
           const line = document.createElement("p"); line.className = "r-piece";
           const lab2 = document.createElement("i"); lab2.textContent = "here the source reads ";
           const val = document.createElement("b"); val.textContent = hit.g;
           line.append(lab2, val);
+          if (whoM) {
+            const chip = chipOfMs([{ lic: licenseName(whoM.licensePosture), m: whoM.label || who.label || who.m, y: whoM.sourceYear || "" }]);
+            if (chip) { chip.title = `${whoM.label || who.label} — the source that reads this word so at this place${hasYear(whoM.sourceYear) ? ` · edition ${whoM.sourceYear}` : ""}`; line.append(" ", chip); }
+          }
           readRow.append(line);
         }
       }
@@ -3430,7 +3516,11 @@
     };
 
     // --- row 4 · where the boundaries came from ------------------------
-    if (span && !established) {
+    if (runSpan) {
+      prov.textContent = covers.length === 1
+        ? `One card for the run: ${comps.length} words, joined by a maqaf · no dictionary published the run whole`
+        : `One card for the run: ${comps.length} words, joined by a maqaf · ${covers.some((c) => c.length === 1 && c[0].surface !== region.k) ? "a joined spelling is offered, never chosen: it can be another word" : "offered as written and word by word"}`;
+    } else if (span && !established) {
       // the division is withheld above, so this line says so rather than
       // naming where a boundary nobody is shown came from — it printed "proposed
       // by the formulaic clitic pass" at 218,107 positions under a card that
@@ -3854,6 +3944,43 @@
   // joiner between the cells belongs to neither.
   const refreshJoinGloss = (run) => {
     if (!run || !run.__ink) return;
+    // the reader ruled on the run itself: its line is that ruling, as any
+    // ruled word's line is, with no chip (absent over wrong)
+    const heldRun = run.__key ? ruledLine(run.__key, run.__table || zone.gloss) : null;
+    const lineEl = () => { let l = run.__gloss; if (!l) { l = document.createElement("span"); l.className = "g"; run.append(l); run.__gloss = l; } return l; };
+    if (heldRun !== null) {
+      const l = lineEl();
+      l.replaceChildren(); l.textContent = heldRun; l.title = heldRun; l.classList.remove("bare");
+      run.classList.add("chosen");
+      return;
+    }
+    // a run a dictionary published WHOLE, AS WRITTEN (the joiner kept), reads
+    // that, as one word does, with its own chip — unless a source the reader
+    // switched off carries it, and then the words' own lines stand. Only the
+    // as-written form leads: a weld can collide with an unrelated word (al-pi
+    // "according to" welds to a verb "to faint"; ki-hinneh "for behold" to
+    // "to hold a senior position"), and nothing on this side can yet tell a
+    // compound's weld from a homograph. The welded and folded forms stay on
+    // the card, offered and never chosen for the reader, until the corpus
+    // lane's run ledger says which are the compound.
+    if (run.__key && run.__words) {
+      const table = run.__table || zone.gloss || {};
+      const gmT = run.__table ? null : zone.gloss_m;
+      const form = runWholeForms(run.__words.map((w) => w.k)).slice(0, 1).find((f) => {
+        if (!table[f]) return false;
+        const gm = gmT && gmT[f];
+        return !(gm && Array.isArray(gm.by) && gm.by.length && gm.by.some((m) => sourcesOff.has(m)));
+      });
+      if (form) {
+        const l = lineEl();
+        const text = spanJoin(table[form]);
+        l.replaceChildren(); l.textContent = text; l.title = text; l.classList.remove("bare");
+        l.dataset.form = form;
+        const chip = gmT && gmT[form] ? chipOfMs([gmT[form]]) : null;
+        if (chip) l.append(chip);
+        return;
+      }
+    }
     const wbs = [...run.__ink.querySelectorAll(":scope > .wb")];
     const parts = [];
     for (const wb of wbs) {
@@ -3906,7 +4033,7 @@
     const pj = word && word.presentation_join;
     const joinNext = !!(pj && pj.join_next_without_separator);
     const joinPrev = !!(pj && pj.join_previous_without_separator);
-    if (joinPrev && host.__wjoin) host.__wjoin.__ink.append(built.wb);
+    if (joinPrev && host.__wjoin) { host.__wjoin.__ink.append(built.wb); host.__wjoin.__words.push(word); }
     else if (joinNext) {
       const wrap = document.createElement("span");
       wrap.className = "wjoin";
@@ -3915,9 +4042,16 @@
       ink.append(built.wb);
       wrap.append(ink);
       wrap.__ink = ink;
+      wrap.__words = [word];
       host.append(wrap);
       host.__wjoin = wrap;
     } else host.append(built.wb);
+    // the run's key once its last word is in: the words' own keys joined by
+    // the joiner the text wrote — the key its card is ruled and remembered by
+    if (host.__wjoin && !joinNext) {
+      const ws = host.__wjoin.__words || [];
+      if (ws.length > 1 && ws.every((w) => w.k && !w.kq)) host.__wjoin.__key = ws.map((w) => w.k).join("\u05be");
+    }
     if (joinNext) {
       const sep = String((pj && pj.separator_between_group_records) || "");
       if (sep) ((host.__wjoin && host.__wjoin.__ink) || host).append(document.createTextNode(sep));
@@ -4291,6 +4425,17 @@
     // the line fell back to when the switch's half has no reading. The other
     // half stands in the head as it always did, one press away.
     const site = `${unitId}:${wordPos}`;
+    const openRun = (runEl, clicked) => {
+      const words = runEl.__words;
+      const s = words.map((w) => w.s).join("");
+      const atoms = words.map((w) => ({ s: String(w.s).replace(/\u05be+$/u, ""), k: w.k }));
+      const region = { s, k: runEl.__key };
+      openHud(runEl, region, unitId, wordPos, {
+        ...opts, bin, word: { s, k: runEl.__key, w: atoms }, regionIndex: -1, glossParts: null,
+        run: { keys: words.map((w) => w.k), clicked, el: runEl },
+        mark: () => { runEl.classList.add("active"); },
+      });
+    };
     const kqLead = () => {
       const st = built.kqStand;
       const picked = kqPicks.get(site);
@@ -4324,6 +4469,11 @@
     targets.forEach((target, i) => {
       target.addEventListener("click", (ev) => {
         ev.stopPropagation();
+        // ONE MAQAF RUN, ONE CARD (the megacompspan). Either word opens the
+        // run's card; the word pressed is the one it opens on when the run is
+        // shown word by word.
+        const runEl = built.wb.closest && built.wb.closest(".wjoin");
+        if (runEl && runEl.__key && runEl.__words && runEl.__words.length > 1) { openRun(runEl, runEl.__words.indexOf(word)); return; }
         if (built.kqStand) { const lead = kqLead(); openAt(lead.i, built.regionEls[lead.i] || target); return; }
         openAt(i, target);
       });
@@ -6957,13 +7107,20 @@
   if (cWorks.length && commentaryStore.counts && commentaryStore.counts.attached_sections) {
     const layerBtn = document.getElementById("layerC");
     const name = cWorks.map((w) => w.family_en || w.title).join(" · ");
-    layerBtn.textContent = name;
-    layerBtn.title = `Read ${name} beneath each ${MINOR}`;
+    const sayLayer = (on) => {
+      layerBtn.textContent = on ? "all commentary open" : "open all commentary";
+      layerBtn.title = on ? `Close ${name} beneath every ${MINOR}` : `Read ${name} beneath every ${MINOR}`;
+      layerBtn.setAttribute("aria-pressed", String(on));
+    };
+    sayLayer(false);
+    document.getElementById("dirC").textContent = name;
     layerBtn.hidden = false;
+    document.getElementById("layerCPick").hidden = false;
     layerBtn.addEventListener("click", () => {
       commentaryLayerOn = !commentaryLayerOn;
       const on = commentaryLayerOn;
       layerBtn.classList.toggle("on", on);
+      sayLayer(on);
       // 817 sections opening at once moves the page by the height of a book.
       // Pin whichever section the reader is actually looking at.
       const seen = sectionEls.find(({ el }) => el.getBoundingClientRect().bottom > 0) || sectionEls[0];

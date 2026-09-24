@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-24.
 
-**104 rules declared · 100 named by a check · 4 unguarded.**
+**105 rules declared · 102 named by a check · 3 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -63,9 +63,10 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `licence-posture-name-rule-v1-the-record-names-the-licence` | tools/emit-license-postures-v1.mjs | check-posture-names-from-record-v1 |
 | `licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs` | zone.html | check-licence-leaves-v1 |
 | `mam-restore-v5-rights-rule-v1-one-record-for-the-edition-the-credit-on-every-page` | tools/emit-mam-restore-v5-rights-v1.mjs | check-restore-serve-v1 |
-| `maqaf-rule-v2-one-c0-per-word` | tools/zone-lib-v1.mjs, zone.html | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1 |
+| `maqaf-rule-v2-one-c0-per-word` | tools/zone-lib-v1.mjs, tools/regloss-zone.mjs, zone.html | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1, check-run-card-forms-v1 |
 | `mark-inventory-rule-v1-closed-set-over-route-text` | tools/mark-inventory-v1.mjs | check-mark-inventory-closed-v1 |
 | `masorah-toggle-rule-v1-the-pointing-is-kept-the-gate-or-lifted-and-the-page-never-changes` | zone.html | check-masorah-toggle-v1 |
+| `megacompspan-rule-v1-one-maqaf-run-one-card` | tools/check-maqaf-pair-drawn-v1.mjs | check-maqaf-pair-drawn-v1, check-run-card-forms-v1 |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | check-serve-oracle-checked-v1 |
 | `nothing-welds-rule-v1-a-mark-is-a-position-and-a-reading-is-a-word` | tools/check-nothing-welded-v1.mjs | check-nothing-welded-v1 |
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | check-numbering-gap-witnessed-v1 |
@@ -111,7 +112,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `variant-site-rule-v1-the-mark-opens-a-record-or-the-zone-does-not-board` | zone.html | check-variant-site-v1 |
 | `w-grain-rule-v1-a-component-system-is-drawn-on-a` | tools/check-w-grain-v1.mjs | check-w-grain-v1 |
 | `w-list-rule-v1-the-record-says-which-entries-are` | tools/w-list-v1.mjs | check-w-grain-v1 |
-| `weld-forms-rule-v1-a-joined-run-is-offered-in-every-form-a-source-published-and-in-no-form-it-did-not` | tools/weld-forms-v1.mjs | **UNGUARDED** |
+| `weld-forms-rule-v1-a-joined-run-is-offered-in-every-form-a-source-published-and-in-no-form-it-did-not` | tools/weld-forms-v1.mjs, zone.html | check-run-card-forms-v1 |
 | `work-attachment-rule-v1-parallel-numbering-is-not-intent` | tools/emit-work-attachment-v1.mjs | check-work-attachment-v1 |
 | `work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands` | tools/check-build-derived-v1.mjs | check-build-derived-v1 |
 | `zone-commentary-rule-v2-everything-recorded-stands-somewhere` | tools/build-commentary-sidecar-v1.mjs | check-nothing-dropped-v1 |

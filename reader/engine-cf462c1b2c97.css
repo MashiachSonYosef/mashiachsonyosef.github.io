@@ -572,6 +572,8 @@
      screenshot: "a big gold box around the entire selected"). Nothing is
      filled and nothing changes color; the outline costs no layout. */
   .wb.active { outline: 1.5px solid var(--gold); outline-offset: 3px; border-radius: 0.4rem; }
+  /* a maqaf run's card is the run's: the whole run is what stands open */
+  .wjoin.active { outline: 1.5px solid var(--gold); outline-offset: 3px; border-radius: 0.4rem; }
   .wb.active .w { background: none; }
   .wb.mark.active .w { background: none; border-color: var(--gold); }
   /* A word the reader has ruled on keeps a mark after the card closes. Without
@@ -1118,6 +1120,8 @@
   #hud .r-piece i { font-style: normal; font-size: 0.66rem; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--faint); padding-inline-end: 0.35rem; }
   #hud .r-piece b { font-weight: 600; }
+  /* its chip rides the same line: a line of its own took a readings row */
+  #hud .r-piece .g-lic { display: inline; margin: 0 0 0 0.35em; padding: 0 0.3em; font-size: 0.62rem; line-height: 1; vertical-align: baseline; }
   #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
   /* A pill shows its whole reading. It used to clamp at two lines, which made
      the card claim a reading it was not showing — the code beneath says R is

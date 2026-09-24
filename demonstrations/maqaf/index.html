@@ -23,7 +23,7 @@
   try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
-<link rel="stylesheet" href="/reader/engine-5beba7a0dc8f.css">
+<link rel="stylesheet" href="/reader/engine-cf462c1b2c97.css">
 </head>
 <body>
 <header class="top">
@@ -78,7 +78,12 @@
   <div id="modeRow">
     <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
     <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
-    <button type="button" class="mode-btn" id="layerC" hidden></button>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
     <!-- The marks the scribes wrote about the page rather than in it. Off by
          rule (owner, rules 4, 5 and 7); the button appears only where the
          text carries one, and never governs a mark that speaks about the
@@ -110,6 +115,6 @@
 <main id="text"></main>
 <div id="hud" hidden></div>
 <footer id="prov"></footer>
-<script src="/reader/engine-a9c352634d39.js"></script>
+<script src="/reader/engine-983e0281374d.js"></script>
 </body>
 </html>
