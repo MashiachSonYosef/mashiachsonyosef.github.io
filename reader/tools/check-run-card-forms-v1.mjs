@@ -16,6 +16,9 @@
 //       and the line under the run never reads one
 //   R4  where the run as written, joiner kept, is published, the line reads
 //       it and the card opens on it
+//   R5  a reading chosen for one word of a run is the run's line and is
+//       lit again when that word is pressed again; the line is never a dash
+//       (read as one form, a run ruled cell by cell printed "—" whole)
 //
 // Expected forms are computed here from the run's own keys with the corpus
 // lane's enumeration (weld-forms-v1.formsOfRun) and asked of the store on
@@ -104,6 +107,34 @@ check("R1  a run's card offers every whole form a dictionary published, and no o
 check("R2  the words one by one are always offered", r2 === looked, `${r2} of ${looked}`);
 check("R3  neither the card nor the line chooses a joined or folded spelling for the reader", r3.length === 0, r3.slice(0, 3).join(" | "));
 check("R4  a run published as written reads so on its line, and its card opens there", r4.length === 0, r4.slice(0, 3).join(" | "));
+
+// R5, on the first drawn run that opens word by word
+const plain = runs.find((r) => !r.published.some((f) => f.form === "maqaf"));
+if (plain) {
+  const r5 = await p.evaluate(async (key) => {
+    const run = [...document.querySelectorAll(".wjoin")].find((x) => x.__key === key);
+    if (!run) return { err: "run not drawn" };
+    const wait = async (q) => { const t0 = Date.now(); while (Date.now() - t0 < 5000 && !document.querySelector(q)) await new Promise((x) => setTimeout(x, 50)); await new Promise((x) => setTimeout(x, 400)); };
+    const esc = async () => { document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })); await new Promise((x) => setTimeout(x, 200)); };
+    run.scrollIntoView({ block: "center" });
+    run.querySelectorAll(".wb .w")[0].click(); await wait("#hud .r-pills button");
+    const cells = [...document.querySelectorAll("#hud .b-cell .s-pills button")];
+    if (cells.length < 2) { await esc(); return { err: "no cells" }; }
+    cells[1].click(); await new Promise((x) => setTimeout(x, 500));
+    const pool = [...document.querySelectorAll("#hud .b-read .r-pills button")];
+    const pick = pool[Math.min(1, pool.length - 1)];
+    const picked = pick.textContent.trim(); pick.click(); await new Promise((x) => setTimeout(x, 400));
+    await esc();
+    const line = (run.querySelector(":scope > .g") || {}).textContent || "";
+    run.querySelectorAll(".wb .w")[1].click(); await wait("#hud .r-pills button");
+    const lit = [...document.querySelectorAll("#hud .b-read .r-pills button")].find((x) => x.getAttribute("aria-pressed") === "true");
+    await esc();
+    return { picked, line, lit: lit ? lit.textContent.trim() : "" };
+  }, plain.key);
+  const ok5 = !r5.err && !/\u2014/u.test(r5.line) && r5.line.includes(r5.picked) && r5.lit === r5.picked;
+  check("R5  a reading chosen for one word of a run is the run's line, and is lit again on that word", ok5,
+    r5.err ? `${plain.key}: ${r5.err}` : `${plain.key}: chose "${r5.picked}" · line "${r5.line}" · lit "${r5.lit}"`);
+}
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall green");
 process.exit(bad ? 1 : 0);

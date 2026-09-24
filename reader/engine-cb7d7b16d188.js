@@ -1027,7 +1027,12 @@
   const ruledLine = (k, table) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
-    const surfaces = m.cut ? m.cut.split("+") : [k];
+    // a maqaf run ruled cell by cell, its division never pressed, stands
+    // under the division its card opened on: as written where the table
+    // reads the run whole, else word by word. Read as one form it printed a
+    // dash for the whole run the moment one word of it was chosen.
+    const run = k.includes("\u05be") && !(table && table[k]);
+    const surfaces = m.cut ? m.cut.split("+") : run ? k.split("\u05be") : [k];
     return surfaces.map((s) => {
       const p = m.cells.get(s);
       if (p) return spanJoin(p.text);

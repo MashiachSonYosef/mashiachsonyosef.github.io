@@ -188,7 +188,7 @@ const f4 = await p.evaluate(() => {
     const words = (z.sections.find((s) => String(s.id) === secEl.dataset.id || s.label === secEl.dataset.label) || {}).words || [];
     const rec = words.find((x) => x.kq && x.s === w.querySelector(".w").textContent.replace(/⁘/g, ""));
     if (!rec) continue;
-    const regs = rec.w.filter((r) => !String(r.s || r.k).includes("־"));
+    const regs = rec.w.filter((r) => !String(r.s || r.k).includes("\u05be"));
     const want = z.gloss[regs[i].k];
     if (want && want.split("/").join(" + ").replace(/\s+/g, " ").trim() !== text.replace(/\s+/g, " ").trim() && !text.includes(want.split("/")[0].trim())) { out.stale += 1; if (!out.eg) out.eg = `${text.slice(0, 20)} vs ${want.slice(0, 20)}`; }
   }

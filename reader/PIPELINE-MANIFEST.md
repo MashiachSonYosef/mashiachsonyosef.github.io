@@ -66,7 +66,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `maqaf-rule-v2-one-c0-per-word` | tools/zone-lib-v1.mjs, tools/regloss-zone.mjs, zone.html | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1, check-run-card-forms-v1 |
 | `mark-inventory-rule-v1-closed-set-over-route-text` | tools/mark-inventory-v1.mjs | check-mark-inventory-closed-v1 |
 | `masorah-toggle-rule-v1-the-pointing-is-kept-the-gate-or-lifted-and-the-page-never-changes` | zone.html | check-masorah-toggle-v1 |
-| `megacompspan-rule-v1-one-maqaf-run-one-card` | tools/check-maqaf-pair-drawn-v1.mjs | check-maqaf-pair-drawn-v1, check-run-card-forms-v1 |
+| `megacompspan-rule-v1-one-maqaf-run-one-card` | tools/check-maqaf-pair-drawn-v1.mjs | check-maqaf-pair-drawn-v1, check-run-card-forms-v1, check-choice-memory-v1 |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | check-serve-oracle-checked-v1 |
 | `nothing-welds-rule-v1-a-mark-is-a-position-and-a-reading-is-a-word` | tools/check-nothing-welded-v1.mjs | check-nothing-welded-v1 |
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | check-numbering-gap-witnessed-v1 |

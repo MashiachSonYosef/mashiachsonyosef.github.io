@@ -22,9 +22,16 @@ await p.waitForSelector("section.seg");
 // targum whose opening word carried a component system; at fleet scale the
 // first zone is whatever sorts first, and its first word may carry none.
 // So: the first word among the opening words that offers divisions.
+// A word inside a maqaf run opens the RUN's card (megacompspan-rule-v1), whose
+// pills are the run's words and divisions, and which opens on the word
+// pressed rather than on the last one chosen; its memory is held by
+// check-run-card-forms-v1 (R5). This law is about one form's divisions, so
+// it asks a word that stands alone.
 const wordIx = await p.evaluate(async () => {
+  const inRun = (wb) => { const r = wb.closest(".wjoin"); return !!(r && r.__words && r.__words.length > 1); };
   const wbs = [...document.querySelectorAll("section.seg .he-text .wb")].slice(0, 60);
   for (let i = 0; i < wbs.length; i += 1) {
+    if (inRun(wbs[i])) continue;
     wbs[i].click();
     await new Promise((r) => setTimeout(r, 400));
     if (document.querySelectorAll("#hud .s-pills button").length > 1) return i;
@@ -65,8 +72,13 @@ check("reopening keeps the division", after.cut === cuts[1], `${after.cut}`);
 check("reopening keeps the reading lit", after.lit === pool[pick], `${after.lit}`);
 check("reopening keeps the page gloss", after.gloss === g1, after.gloss);
 
-// a second word is untouched
-await p.evaluate((i) => document.querySelectorAll("section.seg .he-text .wb")[i + 1].click(), wordIx);
+// a second word is untouched — the next one that stands alone
+await p.evaluate((i) => {
+  const inRun = (wb) => { const r = wb.closest(".wjoin"); return !!(r && r.__words && r.__words.length > 1); };
+  const wbs = [...document.querySelectorAll("section.seg .he-text .wb")];
+  const next = wbs.slice(i + 1).find((w) => !inRun(w));
+  (next || wbs[i + 1]).click();
+}, wordIx);
 await p.waitForSelector("#hud .s-pills button, #hud .r-pills button", { timeout: 20000 });
 await p.waitForTimeout(400);
 const other = await p.evaluate(() => {
