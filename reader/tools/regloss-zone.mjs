@@ -31,6 +31,7 @@ import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
 import { glossMFor, sourceSwitchCosts, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
+import { formsOfRun, WELD_FORMS_RULE_ID } from "./weld-forms-v1.mjs";
 import { SWITCH_RULE_ID } from "./gloss-store-v1.mjs";
 import { cellsOf } from "./span-slice-v1.mjs";
 import { require_ } from "./zone-lib-v1.mjs";
@@ -65,6 +66,31 @@ for (const n of zone.nodes || []) {
 for (const u of Object.values(zone.units || {}))
   for (const e of [...(u.section || []), ...Object.values(u.words || {}).flat()])
     (e.words || []).forEach(addWord);
+
+// THE RUNS' WHOLE FORMS (the megacompspan, owner 2026-09-24): a maqaf run
+// is one card whose lattice holds the run as written, joined and folded, and
+// word by word. Each whole form is asked for here, so a run a dictionary
+// published whole (BDB's Bethel, Ben-Hadad) reads that on its line without a
+// fetch. The forms are Moses's enumeration (weld-forms-v1.formsOfRun),
+// mechanical and unfiltered; the store decides which any dictionary wrote,
+// and a form nobody wrote finds nothing and is not in the table.
+const runForms = new Set();
+const walkRuns = (words) => {
+  let run = [];
+  for (const w of words || []) {
+    const pj = w.presentation_join;
+    const joinsNext = !!(pj && pj.join_next_without_separator && String(pj.why || "").startsWith("maqaf-rule-v2"));
+    run.push(w);
+    if (joinsNext) continue;
+    if (run.length > 1 && run.every((x) => x.k && !x.kq))
+      for (const f of formsOfRun(run.map((x) => x.k))) if (f.form !== "pieces") runForms.add(f.key);
+    run = [];
+  }
+};
+for (const sec of zone.sections || []) walkRuns(sec.words);
+for (const u of Object.values(zone.units || {}))
+  for (const e of [...(u.section || []), ...Object.values(u.words || {}).flat()]) walkRuns(e.words);
+for (const f of runForms) keys.add(f);
 
 const cells = new Set(keys);
 for (const row of Object.values(zone.spans || {}))
@@ -139,6 +165,7 @@ zone.emitted_from.gloss_layer = {
     forms_whose_first_reading_moved: changed,
     words_carrying_a_reading: `${before.words ?? "?"} → ${glossedWords}`,
     why: "the route store moved; a zone that does not move with it prints one reading and offers another",
+    run_forms: `${WELD_FORMS_RULE_ID}: ${runForms.size} whole forms of this book's maqaf runs asked for (as written, joined, folded); ${[...runForms].filter((f) => gloss[f]).length} of them a dictionary published`,
     m_layer: `${GLOSS_M_RULE_ID}: gloss_m re-derived over the same store for every key of the re-projected table — ${Object.keys(glossM).length} readings carry their M (was ${mBefore}), ${glossMDrift} readings no route stands on and shown without a chip`,
   },
 };

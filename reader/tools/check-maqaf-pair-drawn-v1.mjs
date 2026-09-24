@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf, maqaf-rule-v2-one-c0-per-word
+// GUARDS: exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf, maqaf-rule-v2-one-c0-per-word, megacompspan-rule-v1-one-maqaf-run-one-card
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
 // ledger for one.
@@ -18,9 +18,13 @@
 //   L2  on the page: a joined run is one wrapper holding one clickable word
 //       per row, nothing between them but the rows' own ink, and the run's
 //       text is the rows' surfaces concatenated, maqaf included
-//   L3  pressing the first word opens a card headed by that word, joiner
-//       and all, whose head says it is joined to the next word; pressing
-//       the next opens its own card, which says it follows a joiner
+//   L3  THE MEGACOMPSPAN (owner, 2026-09-24, refining rule 2 for the card:
+//       "here the 1 word is the maqaf, even if masoretics count it as 2").
+//       Pressing EITHER word opens ONE card, headed by the whole run, joiner
+//       and all, saying it is one card for the run; its divisions always
+//       offer the words one by one, and the word pressed is the one it opens
+//       on when nothing whole was published. The count stays the text's: the
+//       run is still two C0s (L1, L2).
 //   L4  no word of a split pair is drawn as pieces (no lattice over a pair)
 //
 // What this does NOT prove: anything about a compound still sealed in one
@@ -100,31 +104,35 @@ check("L2  a joined run is one wrapper of one clickable word per row, the rows' 
 // L4
 const l4 = drawn.filter((d) => d.pieces).length;
 check("L4  no word of a split pair is drawn as pieces", l4 === 0, l4 ? `${l4} runs carry pieces or marks` : "none");
-// L3
+// L3 · one run, one card
 const l3 = [];
 if (expected.length) {
   const first = page.locator("section.seg .he-text .wjoin .wj-ink").first();
   await first.scrollIntoViewIfNeeded();
-  await first.locator(":scope > .wb > .w").first().click();
-  await page.waitForTimeout(600);
-  const h1 = await page.evaluate(() => { const h = document.querySelector("#hud .head"); return h ? { b: (h.querySelector("b") || {}).textContent || "", text: h.innerText } : null; });
-  if (!h1) l3.push("no card opened on the first word");
-  else {
-    if (h1.b.trim() !== expected[0].first) l3.push(`first card headed ${esc(h1.b)}, not ${esc(expected[0].first)}`);
-    if (!/joined by a maqaf to the (next word|words before and after)/u.test(h1.text)) l3.push("first card does not say it is joined to the next word");
-  }
-  if (expected[0].second) {
-    await first.locator(":scope > .wb > .w").nth(1).click();
-    await page.waitForTimeout(600);
-    const h2 = await page.evaluate(() => { const h = document.querySelector("#hud .head"); return h ? { b: (h.querySelector("b") || {}).textContent || "", text: h.innerText } : null; });
-    if (!h2) l3.push("no card opened on the second word");
-    else {
-      if (h2.b.trim() !== expected[0].second) l3.push(`second card headed ${esc(h2.b)}, not ${esc(expected[0].second)}`);
-      if (!/joined by a maqaf to the (word before|words before and after)/u.test(h2.text)) l3.push("second card does not say it follows a joiner");
-    }
+  const cardNow = () => page.evaluate(() => {
+    const h = document.querySelector("#hud"); if (!h || h.hidden) return null;
+    const head = h.querySelector(".head");
+    const cells = [...h.querySelectorAll(".b-cell .s-pills button")];
+    const cuts = [...h.querySelectorAll(".b-cut .s-pills button")];
+    return { b: (head.querySelector("b") || {}).textContent || "", text: h.textContent,
+      cuts: cuts.map((x) => x.textContent), cells: cells.map((x) => x.textContent), cellOn: cells.findIndex((x) => x.getAttribute("aria-pressed") === "true") };
+  });
+  const whole = expected[0].first + (expected[0].second || "");
+  for (const [n, label] of [[0, "first"], [1, "second"]]) {
+    if (n === 1 && !expected[0].second) break;
+    await first.locator(":scope > .wb > .w").nth(n).click();
+    await page.waitForTimeout(1200);
+    const c = await cardNow();
+    if (!c) { l3.push(`no card opened on the ${label} word`); continue; }
+    if (c.b.trim() !== whole) l3.push(`${label} word's card headed ${esc(c.b)}, not the run ${esc(whole)}`);
+    if (!/one card for the run/iu.test(c.text)) l3.push(`${label} word's card does not say it is one card for the run`);
+    const wordByWord = c.cuts.length === 0 || c.cuts.some((x) => x.includes("+"));
+    if (!wordByWord) l3.push(`${label} word's card does not offer the words one by one`);
+    if (c.cells.length > 1 && c.cellOn !== n) l3.push(`${label} word's card opened on cell ${c.cellOn}, not the word pressed`);
+    await page.keyboard.press("Escape"); await page.waitForTimeout(250);
   }
 }
-check("L3  each word of a pair opens its own card, headed by its own ink, saying it is joined", l3.length === 0, l3.length ? few(l3) : "both cards open and say so");
+check("L3  either word of a run opens ONE card, headed by the whole run, offering the words one by one", l3.length === 0, l3.length ? few(l3) : "both words open the run's card");
 if (errs.length) check("  no page error", false, errs[0].slice(0, 120));
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
