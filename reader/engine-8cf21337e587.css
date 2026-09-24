@@ -1486,7 +1486,11 @@
   .g .g-lic { display: block; width: fit-content; margin: 0.12em auto 0;
     user-select: none; -webkit-user-select: none; padding: 0 0.32em;
     border: 1px solid var(--chip-line); border-radius: 0.6em; font-size: 0.8em;
-    color: var(--faint); white-space: nowrap; }
+    color: var(--faint); max-width: 100%; box-sizing: border-box; text-align: center; }
+  /* a source under two terms names both ("WordNet Notices + CC BY 4.0"), and
+     under a narrow word that chip stood wider than the word and was cut; it
+     breaks between the terms, never inside one */
+  .g .g-lic > span { white-space: nowrap; }
   /* A joined run's reading line is two cards' readings side by side, so each
      one stands in its own cell with its own chip under it. The cells and the
      joiner between them align at the top, which puts every reading on one

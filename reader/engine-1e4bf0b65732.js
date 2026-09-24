@@ -1115,7 +1115,13 @@
     const uniq = [...new Map(ms.map((m) => [`${m.lic} ${m.m}`, m])).values()];
     const chip = document.createElement("span"); chip.className = "g-lic";
     if (uniq.length === 1) {
-      chip.textContent = uniq[0].lic;
+      const terms = String(uniq[0].lic).split(" + ");
+      terms.forEach((x, i) => {
+        const s = document.createElement("span");
+        s.textContent = i < terms.length - 1 ? `${x} +` : x;
+        chip.append(s);
+        if (i < terms.length - 1) chip.append(" ");
+      });
       chip.title = `${uniq[0].m}${yearTag(uniq[0].wy, "wording")}${yearTag(uniq[0].y, uniq[0].ya || "edition")} — the oldest witness carrying this reading; every other witness is on the word’s own card`;
     } else {
       chip.textContent = `${uniq.length} licenses`;
