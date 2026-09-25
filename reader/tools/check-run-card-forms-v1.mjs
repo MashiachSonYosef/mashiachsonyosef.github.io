@@ -29,6 +29,14 @@
 //   R7  the run's ink is printed as one word: no line is drawn between its
 //       words and no padding stands at the seam — the maqaf the text writes
 //       is the only thing between them (the owner, 2026-09-25)
+//   R8  a card the reader left behind is dead: its retry, resumed after the
+//       reader opened another word, neither draws nor takes the live card's
+//       redraw — the live card still answers the order switch
+//   R9  a block whose every record the reader's own switches withheld says
+//       so, keeps its rung pressed and remembered, and reads again when the
+//       switches come back
+//   R10 the export marks a word whose shard did not arrive [not reached],
+//       never [withheld], and says so in its note
 //
 // Expected forms are computed here from the run's own keys with the corpus
 // lane's enumeration (weld-forms-v1.formsOfRun) and asked of the store on
@@ -214,6 +222,123 @@ const r7 = await p.evaluate((keys) => {
   return out;
 }, [...seen]);
 check("R7  the run's ink is one word: no line drawn between its words, no padding at the seam", r7.length === 0, r7.length ? r7.slice(0, 3).join(" | ") : `${seen.size} runs`);
+// R8 · a dead card's retry. W1's shard fails once; the reader closes W1 within
+// the retry window and opens W2 (another shard). After the retry, the live
+// card is W2's: its pool is what the page offers, and the order switch
+// redraws its pills.
+{
+  await p.unrouteAll();
+  // two plain words in different shards, found on the page by their own ink
+  const shardOf = async (k) => { const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(k)); return new Uint8Array(d)[0].toString(16).padStart(2, "0"); };
+  const words = [];
+  for (const sec of zone.sections || []) for (const w of sec.words || []) if (w.k && !w.kq && !(w.presentation_join && w.presentation_join.join_next_without_separator)) words.push(w);
+  let w1 = null, w2 = null;
+  for (const w of words) { if (!(store.routesFor(w.k) || []).length) continue; if (!w1) { w1 = w; continue; } if ((await shardOf(w.k)) !== (await shardOf(w1.k))) { w2 = w; break; } }
+  if (w1 && w2) {
+    const s1 = await shardOf(w1.k);
+    let fails = 0;
+    await p.route(new RegExp(`shards/${s1}\\.bin`), (route) => { if (fails < 1) { fails += 1; route.abort("failed"); } else route.continue(); });
+    await p.reload({ waitUntil: "networkidle" });
+    await p.waitForSelector("section.seg .he-text .wb");
+    const r8 = await p.evaluate(async ([s1, s2]) => {
+      const wbs = [...document.querySelectorAll("section.seg .he-text .wb")];
+      const find = (s) => wbs.find((wb) => !wb.closest(".wjoin") && wb.querySelector(".w") && wb.querySelector(".w").textContent === s);
+      const a = find(s1), c = find(s2);
+      if (!a || !c) return { err: "words not drawn" };
+      const wait = (ms) => new Promise((x) => setTimeout(x, ms));
+      a.scrollIntoView({ block: "center" }); a.querySelector(".w").click();
+      await wait(300);
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+      await wait(150);
+      c.scrollIntoView({ block: "center" }); c.querySelector(".w").click();
+      const t0 = Date.now(); while (Date.now() - t0 < 5000 && !document.querySelector("#hud .r-pills button")) await wait(50);
+      await wait(2600);
+      const h = document.getElementById("hud");
+      const pills = () => [...h.querySelectorAll(".r-pills button")].map((x) => x.textContent.trim());
+      const before = pills();
+      const poolAfterRetry = (window.__pool || []).slice(0, 5);
+      const r = document.getElementById("rail"); if (r && !r.open) r.open = true;
+      const btn = [...document.querySelectorAll("#defRow button")].find((x) => x.textContent === "characters"); if (btn) btn.click();
+      await wait(600);
+      const after = pills();
+      const poolAfterSwitch = (window.__pool || []).slice(0, 5);
+      const back = [...document.querySelectorAll("#defRow button")].find((x) => x.textContent === "oldest first"); if (back) back.click();
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+      return { before: before.slice(0, 5), poolAfterRetry, after: after.slice(0, 5), poolAfterSwitch };
+    }, [w1.s, w2.s]);
+    const ok8 = !r8.err && JSON.stringify(r8.poolAfterRetry) === JSON.stringify(r8.before) && JSON.stringify(r8.poolAfterSwitch) === JSON.stringify(r8.after);
+    check("R8  a card left behind is dead: after its retry the live card's pool is the page's, and the order switch redraws the live card", ok8,
+      r8.err ? r8.err : `W1 ${w1.k} (shard ${s1} failed ${fails}×) then W2 ${w2.k}: pills ${JSON.stringify(r8.before)} · __pool ${JSON.stringify(r8.poolAfterRetry)} · after "characters": pills ${JSON.stringify(r8.after)} · __pool ${JSON.stringify(r8.poolAfterSwitch)}`);
+    await p.unrouteAll();
+  } else console.log("  --  R8  no two plain words in different shards; skipped");
+}
+
+// R9 · a rung the reader's switches emptied
+{
+  const weldRun = runs.find((r) => r.published.some((f) => f.form === "weld"));
+  if (weldRun) {
+    await p.reload({ waitUntil: "networkidle" });
+    await p.waitForSelector("section.seg .he-text .wb");
+    const r9 = await p.evaluate(async ([key, weld]) => {
+      const run = [...document.querySelectorAll(".wjoin")].find((x) => x.__key === key);
+      if (!run) return { err: "run not drawn" };
+      const h = document.getElementById("hud");
+      const wait = (ms) => new Promise((x) => setTimeout(x, ms));
+      const waitFor = async (q) => { const t0 = Date.now(); while (Date.now() - t0 < 5000 && !document.querySelector(q)) await wait(50); await wait(400); };
+      run.scrollIntoView({ block: "center" }); run.querySelector(".wb .w").click(); await waitFor("#hud .r-pills button");
+      const rung = [...h.querySelectorAll(".b-cut .s-pills button")].find((x) => x.textContent === weld); if (!rung) return { err: "weld rung not offered" };
+      rung.click(); await waitFor("#hud .r-pills button");
+      const ids = new Set([...h.querySelectorAll(".r-pills button")].flatMap((x) => (x.dataset.by || "").split(" ").filter(Boolean)));
+      const n = h.querySelectorAll(".r-pills button").length;
+      const r = document.getElementById("rail"); if (r && !r.open) r.open = true;
+      // the rail redraws its chips on every switch, so they are found again
+      // by key each time rather than held
+      const chipsNow = () => [...document.querySelectorAll('.rail .row[data-toggle="sources"] .dfp')].filter((c) => (c.dataset.ids || "").split(" ").some((id) => ids.has(id)));
+      const keys = chipsNow().map((c) => c.dataset.key);
+      const chipOf = (k) => document.querySelector(`.rail .row[data-toggle="sources"] .dfp[data-key="${CSS.escape(k)}"]`);
+      for (const k of keys) { const c = chipOf(k); if (c && c.getAttribute("aria-pressed") === "true") { c.click(); await wait(700); } }
+      await wait(1200);
+      const state = () => ({ read: h.querySelectorAll(".r-pills button").length, msg: [...h.querySelectorAll(".b-read p:not(.r-label)")].map((x) => x.textContent).join(" "), cutOn: ([...h.querySelectorAll(".b-cut .s-pills button")].find((x) => x.getAttribute("aria-pressed") === "true") || {}).textContent, chosen: run.classList.contains("chosen"), rec: h.querySelector(".d-slot").children.length });
+      const off = state();
+      for (const k of keys) { const c = chipOf(k); if (c && c.getAttribute("aria-pressed") === "false") { c.click(); await wait(700); } }
+      await wait(1200);
+      const on = state();
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+      return { n, ids: [...ids], chips: keys.length, off, on };
+    }, [weldRun.key, weldRun.weld]);
+    const ok9 = !r9.err && r9.chips > 0 && r9.off.read === 0 && /withheld/u.test(r9.off.msg) && !/No dictionary/u.test(r9.off.msg) && r9.off.cutOn === weldRun.weld && r9.off.chosen && r9.off.rec === 0
+      && r9.on.read === r9.n && r9.on.cutOn === weldRun.weld;
+    check("R9  a block the reader's switches emptied says so, keeps its rung, and reads again when they come back", ok9,
+      r9.err ? `${weldRun.key}: ${r9.err}` : `${weldRun.key} joined ${weldRun.weld}: ${r9.n} readings by ${r9.ids.join(",")} · ${r9.chips} chips off → ${r9.off.read} readings, "${r9.off.msg.slice(0, 60)}…", rung ${r9.off.cutOn}, chosen ${r9.off.chosen}, record ${r9.off.rec} · on → ${r9.on.read} readings on ${r9.on.cutOn}`);
+  } else console.log("  --  R9  no run with a published joined form in this book; skipped");
+}
+
+// R10 · the export under a shard that did not arrive
+{
+  const w = (() => { for (const sec of zone.sections || []) for (const x of sec.words || []) if (x.k && !x.kq && (store.routesFor(x.k) || []).length) return { sec, w: x }; return null; })();
+  if (w) {
+    const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(w.w.k));
+    const s = new Uint8Array(d)[0].toString(16).padStart(2, "0");
+    await p.route(new RegExp(`shards/${s}\\.bin`), (route) => route.abort("failed"));
+    await p.reload({ waitUntil: "networkidle" });
+    await p.waitForSelector("section.seg .he-text .wb");
+    const r10 = await p.evaluate(async () => {
+      const wait = (ms) => new Promise((x) => setTimeout(x, ms));
+      const sec = document.querySelector("section.seg");
+      const btn = [...sec.querySelectorAll("button")].find((x) => /^english$/iu.test(x.textContent.trim()));
+      if (!btn) return { err: "no english export button on the first section" };
+      btn.click();
+      const t0 = Date.now(); while (Date.now() - t0 < 15000 && !/save/iu.test(btn.textContent)) await wait(100);
+      const note = (sec.querySelector(".xp-note") || sec).textContent;
+      return { note };
+    });
+    // the note may also count readings withheld on license, honestly; the
+    // word whose shard did not arrive must be among the "not checked"
+    const ok10 = !r10.err && /not checked: the catalog could not be reached/u.test(r10.note);
+    check("R10 the export says a word whose shard did not arrive was not checked, never that it is withheld", ok10, r10.err || (r10.note.match(/\d+ readings? (withheld on license|not checked[^.]*)/gu) || []).join(" · "));
+    await p.unrouteAll();
+  }
+}
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall green");
 process.exit(bad ? 1 : 0);

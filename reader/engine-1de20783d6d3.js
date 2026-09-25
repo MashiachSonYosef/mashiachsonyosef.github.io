@@ -976,12 +976,23 @@
     return data ? data[key] : null;
   };
   let activeEl = null;
+  // EVERY OPEN OF THE CARD IS A GENERATION. The card's own closures — the
+  // readings band, its retry a moment later, the fold discovery — await the
+  // network, and a card the reader closed or replaced meanwhile is dead: a
+  // dead card's resumed work drew pills into detached nodes and, worse, took
+  // the page's redraw hook and the offered pool for itself, so the live card
+  // stopped answering the licence, order and lookup switches until reopened
+  // (found by review, 2026-09-25). After every await, the generation is
+  // checked; a dead card returns.
+  let hudGen = 0;
   // release=false means the card is being rebuilt for another word, not shut.
   // Only shutting it ends the reader's hold on where it sits — otherwise a
   // card parked out of the way would jump back the moment the next word was
   // tapped, which is the whole thing being fixed.
   const closeHud = (release = true) => {
     hud.hidden = true; hud.replaceChildren();
+    hudGen += 1;
+    redrawReadings = null;
     // a hidden card that keeps its pop replays it the moment it is shown
     // again, before anything has measured it; the tether starts the pop
     hud.classList.remove("pop");
@@ -1276,7 +1287,7 @@
   const attributionFor = async (surface, shownText) => {
     let pool = null;
     try { pool = await poolFor(surface); }
-    catch { return { ok: false, why: "the catalog could not be reached for this form; export again" }; }
+    catch { return { ok: false, unreachable: true, why: "the catalog could not be reached for this form; export again" }; }
     if (!pool || !pool.length) return { ok: false, why: "no record in the catalog for this form" };
     const hit = pool.find((r) => spanJoin(r.text) === shownText) ||
                 pool.find((r) => r.text === shownText);
@@ -1329,7 +1340,7 @@
       if (w.k && shown && shown !== "—") {
         const a = await attributionFor(w.k, shown);
         if (a.ok) { rec.en = a.text; rec.source = a; }
-        else { rec.held = a.why; }
+        else { rec.held = a.why; if (a.unreachable) rec.unreachable = true; }
       } else if (!w.k) rec.held = "held by the ledger; no reading is offered";
       // A word that carries a key and shows no reading is the ordinary case —
       // 677 of Targum Ruth's 2,139 — and it had no branch here. It fell
@@ -1343,14 +1354,15 @@
     }
     const sources = new Map();
     const obligations = new Set();
-    let held = 0;
+    let held = 0, unreachable = 0;
     for (const w of words) {
+      if (w.unreachable) { unreachable += 1; continue; }
       if (w.held) { held += 1; continue; }
       const s = w.source;
       if (!sources.has(s.label)) sources.set(s.label, s);
       (s.obligations || []).forEach((o) => obligations.add(o));
     }
-    return { sec, words, sources: [...sources.values()], obligations: [...obligations], held };
+    return { sec, words, sources: [...sources.values()], obligations: [...obligations], held, unreachable };
   };
 
   // The license of the work itself — the Hebrew. This is the largest thing any
@@ -1426,7 +1438,7 @@
       ? "Citations: [H] marks the Hebrew. Its entry under Sources names the license it is released under."
       : "Citations: [H] marks the Hebrew; [1] [2] … mark each reading. Every mark has an entry under Sources naming the license that reading is released under, and the entry is the record the reading is cited from — the earliest attestation the store carries, the same one the reader sees on the card. The same source keeps the same number wherever it appears. Where a reading is attested by further records, they are named under the entry; they are not what it was cited from.");
     L.push("");
-    const allObl = new Set(); let held = 0;
+    const allObl = new Set(); let held = 0, notReached = 0;
     for (const b of bundles) {
       L.push(`## ${b.sec.label || ""}`);
       L.push("");
@@ -1442,11 +1454,11 @@
       if (kind !== "en") { if (kind === "both") L.push("Hebrew [H]"); L.push(b.words.map((w) => w.he).join(" ")); }
       if (kind === "both") { L.push(""); L.push("Readings"); }
       if (kind !== "he") {
-        const line = b.words.map((w) => (w.held ? "[withheld]" : `${w.en}[${cite(w.source)}]`)).join(" ");
+        const line = b.words.map((w) => (w.unreachable ? "[not reached]" : w.held ? "[withheld]" : `${w.en}[${cite(w.source)}]`)).join(" ");
         L.push(line);
       }
       L.push("");
-      for (const w of b.words) if (w.held) held += 1;
+      for (const w of b.words) { if (w.unreachable) notReached += 1; else if (w.held) held += 1; }
       b.obligations.forEach((o) => allObl.add(o));
     }
     L.push("---");
@@ -1493,6 +1505,12 @@
       L.push("## Withheld");
       L.push("");
       L.push(`${held} reading${held === 1 ? " was" : "s were"} not exported. Each is marked [withheld] where it stood, carrying no citation number because there is no source to cite. A reading is withheld when its record carries a license that does not permit redistribution, when it carries no license at all, or when the reading on the page could not be matched to a record. The Hebrew is never withheld: it rides on the work's own license, not on any reading's.`);
+    }
+    if (notReached && kind !== "he") {
+      L.push("");
+      L.push("## Not reached");
+      L.push("");
+      L.push(`${notReached} reading${notReached === 1 ? " was" : "s were"} not checked against the catalog: it could not be reached when this file was made. Each is marked [not reached] where it stood and carries no citation number. That is the network, not a license — nothing here says the reading lacks a record. Export again when the catalog answers.`);
     }
     // ---- custody: the way back -------------------------------------------
     // Last, the way the colophon is last: everything above it is the text,
@@ -1578,8 +1596,8 @@
       catch (err) { b.classList.remove("busy"); note.textContent = `Could not read the records: ${err.message}`; return; }
       b.classList.remove("busy");
       const words = g.bundles.reduce((a, x) => a + x.words.length, 0);
-      const srcs = new Set(); const obl = new Set(); let held = 0;
-      g.bundles.forEach((x) => { x.sources.forEach((s) => srcs.add(s.label)); x.obligations.forEach((o) => obl.add(o)); held += x.held; });
+      const srcs = new Set(); const obl = new Set(); let held = 0, notReached = 0;
+      g.bundles.forEach((x) => { x.sources.forEach((s) => srcs.add(s.label)); x.obligations.forEach((o) => obl.add(o)); held += x.held; notReached += x.unreachable || 0; });
       note.replaceChildren();
       const say = (t, cls) => { const sp = document.createElement("span"); if (cls) sp.className = cls; sp.textContent = t; note.append(sp); };
       const wr = workRights();
@@ -1592,6 +1610,7 @@
         say(`${words} words · ${srcs.size} source${srcs.size === 1 ? "" : "s"}`);
         if (obl.size) { say(" · in our words: "); say([...obl].join(" ").replace(/\.$/, "")); }
         if (held) { say(" · "); say(`${held} reading${held === 1 ? "" : "s"} withheld on license`, "held"); }
+        if (notReached) { say(" · "); say(`${notReached} reading${notReached === 1 ? "" : "s"} not checked: the catalog could not be reached, export again`, "held"); }
         say(". ");
       }
       const strong = document.createElement("b"); strong.textContent = "Press again to save.";
@@ -2450,6 +2469,7 @@
 
   const openHud = async (el, region, unitId, wordPos, opts = {}) => {
     closeHud(false);
+    const myGen = ++hudGen;
     activeEl = el;
     if (!opts.mark) el.classList.add("active");
     const bin = opts.bin || zone;
@@ -2746,6 +2766,7 @@
     // The bins keep their spans. Nothing is deleted, and the day a division
     // arrives with evidence behind it, it is offered on the strength of that.
     let established = span && span.conf !== "draft_candidate";
+    let foldsUnreached = [];   // a run's folds whose shard did not arrive: offered as unknown, asked again on press
     let comps = established ? span.comps : [region.k];
     let covers = cutsOf(comps);
     // A MAQAF RUN IS ONE CARD (the megacompspan, owner 2026-09-24: "here the
@@ -2771,8 +2792,10 @@
       // it is not hidden. A fold — a joined spelling with a seam letter
       // written final — is offered only where a dictionary published it, and
       // a fold whose shard did not arrive is left off rather than guessed.
-      const folds = await Promise.all(forms.slice(2).map(async (f) => { try { const r = await routesFor(f); return r && r.length ? f : null; } catch { return null; } }));
-      covers = [...forms.slice(0, 2).map(whole), ...folds.filter(Boolean).map(whole), keys.map((k, j) => ({ surface: k, from: j, to: j }))];
+      const foldTry = await Promise.all(forms.slice(2).map(async (f) => { try { const r = await routesFor(f); return { f, ok: true, has: !!(r && r.length) }; } catch { return { f, ok: false, has: false }; } }));
+      if (myGen !== hudGen) return;
+      foldsUnreached = foldTry.filter((x) => !x.ok).map((x) => x.f);
+      covers = [...forms.slice(0, 2).map(whole), ...foldTry.filter((x) => x.ok && x.has).map((x) => whole(x.f)), keys.map((k, j) => ({ surface: k, from: j, to: j }))];
       comps = keys; established = true;
       runSpan = { comps: keys, rule: "maqaf_run_v1", conf: "established" };
     }
@@ -2860,15 +2883,19 @@
     nowK.textContent = "reading · at every place this form stands";
     const nowV = document.createElement("span"); nowV.className = "v";
     now.append(nowK, nowV);
-    const paintNow = (line) => {
+    const paintNow = (line, whenBare) => {
       const bare = !line || !line.replace(/[—\s+]/g, "");
-      nowV.textContent = bare ? "no reading in the catalog for this form" : line;
+      nowV.textContent = bare ? (whenBare || "no reading in the catalog for this form") : line;
       nowV.classList.toggle("none", bare);
       nowV.title = bare ? "" : line;
     };
+    // a block the catalog has not answered yet is not a block the catalog
+    // lacks: the row says it is asking, and says absence only once it knows
+    const pendingNow = () => cover.some((c) => !picked.get(c.surface) && !cache.has(c.surface) && !(bin.gloss && bin.gloss[c.surface]));
+    const ASKING = "asking the catalog for this block\u2026";
     // say it from the moment the card renders, not only once the readings
     // have come back from the shard
-    paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "));
+    paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "), pendingNow() ? ASKING : undefined);
 
     // A word the reader has ruled on keeps a quiet mark once the card closes,
     // so the page itself says which words have been worked and the reader is
@@ -2964,7 +2991,7 @@
       const mine = cover.map((c) => textOfCell(c.surface)).join(" + ");
       // the card says the reading plainly, where the reader can see it
       // without hunting a lit pill through a scrolling row
-      paintNow(mine);
+      paintNow(mine, pendingNow() ? ASKING : undefined);
       if (!glossEl) return;
       // a run's line is drawn from its words, cell by cell with each chip
       // under its own reading; opening the run's card changes none of that,
@@ -3119,13 +3146,35 @@
         btn.lang = "he"; btn.dir = "rtl"; btn.textContent = joinCut(c);
         btn.setAttribute("aria-pressed", String(c === cover));
         btn.addEventListener("click", () => {
-          cover = c; mem.cut = cutKey(c); cellIdx = 0;
-          markRuled();
+          cover = c; cellIdx = 0;
+          // a run's whole rung is remembered once it has been READ (the
+          // readings band, on arrival), never on the press: remembered on the
+          // press, a rung nothing answers reopened the card on itself and
+          // the reader's own choice for one word left the line meanwhile
+          if (!(opts.run && c.length === 1)) { mem.cut = cutKey(c); markRuled(); }
           renderCuts(); renderCells(); renderReadings(); paintGloss();
         });
         pills.append(btn);
       });
       cutRow.append(label, pills);
+      // a fold whose shard did not arrive is neither offered nor denied: it
+      // is said, and asked again on the reader's press
+      if (foldsUnreached.length) {
+        const p = document.createElement("p"); p.className = "r-unreachable";
+        p.textContent = `${foldsUnreached.length} more spelling${foldsUnreached.length === 1 ? "" : "s"} of the run could not be checked: the catalog could not be reached.`;
+        const again = document.createElement("button"); again.type = "button"; again.textContent = "try again";
+        again.addEventListener("click", async () => {
+          const gen = myGen;
+          const tried = await Promise.all(foldsUnreached.map(async (f) => { try { const r = await routesFor(f); return { f, ok: true, has: !!(r && r.length) }; } catch { return { f, ok: false }; } }));
+          if (gen !== hudGen) return;
+          foldsUnreached = tried.filter((x) => !x.ok).map((x) => x.f);
+          const found = tried.filter((x) => x.ok && x.has).map((x) => [{ surface: x.f, from: 0, to: cover.length ? Math.max(...cover.map((c) => c.to)) : 0 }]);
+          if (found.length) covers.splice(covers.length - 1, 0, ...found);
+          renderCuts();
+        });
+        p.append(" ", again);
+        cutRow.append(p);
+      }
     };
 
     // --- row 2 · which block of it is open -----------------------------
@@ -3181,30 +3230,30 @@
       label.textContent = cover.length > 1 ? `Exact selectable routes · ${surface}` : "Exact selectable routes";
       const wait = document.createElement("p"); wait.textContent = "Fetching one shard…";
       readRow.append(label, wait);
+      // THE RECORD SLOT IS THIS BLOCK'S from the moment the block is pressed:
+      // the last block's record stood under "Fetching one shard…" for the
+      // whole fetch — the other word's definition under this block, which is
+      // what the owner photographed
+      if (!cache.has(surface)) { dSlot.replaceChildren(); selectedRecordRef.m = null; }
       clampHud();
       let unreachable = null;
       if (!cache.has(surface)) {
         try { cache.set(surface, await poolFor(surface)); }
         catch (e) { unreachable = e; }
       }
+      if (myGen !== hudGen) return;                        // the card is gone
       if (surface !== cover[cellIdx].surface) return;    // the reader moved on
       if (unreachable) {
         // once more on its own, a moment later — a phone between two cells —
         // and then in words, with the asking left to the reader
         const n = (tried.get(surface) || 0) + 1; tried.set(surface, n);
-        if (n === 1) { await new Promise((r) => setTimeout(r, 1200)); if (surface === cover[cellIdx].surface) renderReadings(); return; }
-        readRow.replaceChildren(label);
-        const p = document.createElement("p"); p.className = "r-unreachable";
-        p.textContent = "The catalog could not be reached for this block. That is the network, not the shelf: nothing here says the catalog lacks it.";
-        const again = document.createElement("button"); again.type = "button"; again.className = "dfp"; again.textContent = "try again";
-        again.addEventListener("click", () => { tried.delete(surface); renderReadings(); });
-        p.append(" ", again);
-        readRow.append(p);
-        dSlot.replaceChildren(); selectedRecordRef.m = null;
-        paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "));
-        clampHud(); return;
+        if (n === 1) {
+          await new Promise((r) => setTimeout(r, 1200));
+          if (myGen === hudGen && surface === cover[cellIdx].surface) renderReadings();
+          return;
+        }
       }
-      const pool = cache.get(surface);
+      const pool = unreachable ? null : cache.get(surface);
       readRow.replaceChildren(label);
       // It leads and it is labelled. The store's readings for this key all
       // still stand below, in their own order: this is priority, never a
@@ -3232,8 +3281,36 @@
           readRow.append(line);
         }
       }
+      if (unreachable) {
+        const p = document.createElement("p"); p.className = "r-unreachable";
+        p.textContent = "The catalog could not be reached for this block. That is the network, not the shelf: nothing here says the catalog lacks it.";
+        const again = document.createElement("button"); again.type = "button"; again.textContent = "try again";
+        again.addEventListener("click", () => { tried.delete(surface); renderReadings(); });
+        p.append(" ", again);
+        readRow.append(p);
+        dSlot.replaceChildren(); selectedRecordRef.m = null;
+        paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "), "the catalog could not be reached for this block");
+        clampHud(); return;
+      }
       if (!pool || !pool.length) {
         const p = document.createElement("p");
+        // A POOL THE READER'S OWN SWITCHES EMPTIED IS NOT AN ABSENCE. The
+        // source switches and the pointing withhold rows before the pool
+        // exists, and a block whose every row they withheld was read as a
+        // block no dictionary gives — and its rung forgotten. It says what
+        // withheld it, keeps the rung, and stands on no record meanwhile.
+        if (pool && (pool.withheld || pool.withheldBySources)) {
+          const n = sourcesOff.size;
+          const bits = [];
+          if (pool.withheldBySources) bits.push(`${pool.withheldBySources} by your source switch${n === 1 ? "" : "es"} — ${n} source${n === 1 ? "" : "s"} off`);
+          if (pool.withheld) bits.push(`${pool.withheld} by the pointing — their source points this word otherwise`);
+          p.className = "kq-role sources-withheld";
+          p.textContent = `Every one of the ${pool.rows} record${pool.rows === 1 ? "" : "s"} for this block is withheld: ${bits.join("; ")}. Nothing here says the shelf lacks it.`;
+          readRow.append(p);
+          dSlot.replaceChildren(); selectedRecordRef.m = null;
+          paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "), "every record for this block is withheld by your switches");
+          clampHud(); return;
+        }
         // a rung of a run's lattice nothing on the shelf answers says so in
         // the run's own terms; the words one by one are always a press away
         const runWhole = !!(opts.run && cover.length === 1);
@@ -3264,6 +3341,9 @@
       // different sets of routes. The number is what makes the row honest
       // about being a window.
       if (pool.length > 1) label.textContent += ` · ${pool.length}`;
+      // a run's whole rung, read: now it is the reader's division, remembered
+      // and painted at every place the run stands
+      if (opts.run && cover.length === 1 && mem.cut !== cutKey(cover)) { mem.cut = cutKey(cover); markRuled(); paintGloss(); }
       const remembered = picked.get(surface);
       // under "look up by: the headword", the card opens on the headword's
       // first reading under lemma-sort v3 where the lattice sorted the stack
@@ -4798,10 +4878,10 @@
     const s = (index && index.m_sources && index.m_sources[rec[3]]) || {};
     return { lic: licenseName(s.licensePosture), m: s.label || rec[3], y: s.sourceYear || "", wy: rec[4] };
   };
-  const repaintLive = async (stands) => {
+  const repaintLive = async (stands, again = false) => {
     if (!sourcesOff.size || !zone.gloss) return;
     const gen = switchGen;
-    const todo = [];
+    const todo = [], failed = [];
     for (const st of stands) {
       if (!st.ge.isConnected) continue;
       const moved = st.ks.length === 1 ? lineUnder(st.word, zone.gloss) : null;
@@ -4819,9 +4899,28 @@
           continue;
         }
         let pool = null;
-        // a shard that did not arrive leaves the line as it stands: the baked
-        // reading is a reading, and a network fault is not a bare word
-        try { pool = await poolFor(k); } catch { return; }
+        // a shard that did not arrive leaves the line as it stands — the baked
+        // reading is a reading, and a network fault is not a bare word — but
+        // MARKED: the line says the switch's answer is not known yet, its chip
+        // names only the carriers still on (a chip naming a switched-off
+        // source is wrong, the page's own rule), and it is asked once more
+        try { pool = await poolFor(k); } catch {
+          if (gen !== switchGen || !st.ge.isConnected) return;
+          st.ge.dataset.off = "unreachable";
+          st.ge.title = "the catalog could not be reached for this word; what your switches leave of it is not known yet";
+          const gm = zone.gloss_m && zone.gloss_m[k];
+          const on = gm && Array.isArray(gm.by) ? gm.by.filter((id) => !sourcesOff.has(id)) : [];
+          const old = st.ge.querySelector(".g-lic");
+          if (old) {
+            old.remove();
+            if (on.length) {
+              const chip = chipOfMs(on.map((id) => { const s = (index && index.m_sources && index.m_sources[id]) || {}; return { lic: licenseName(s.licensePosture), m: s.label || id, y: s.sourceYear || "" }; }));
+              if (chip) st.ge.append(chip);
+            }
+          }
+          failed.push(st);
+          return;
+        }
         if (gen !== switchGen) return;
         const top = pool && pool[0];
         parts.push(top ? spanJoin(top.text) : "\u2014");
@@ -4854,6 +4953,8 @@
     }));
     if (gen !== switchGen) { livePending -= queue.length; window.__livePending = livePending; }
     window.__liveLines = (window.__liveLines || 0) + todo.length;
+    // the lines the shelf did not answer are asked once more, a moment later
+    if (failed.length && !again && gen === switchGen) setTimeout(() => { if (gen === switchGen) repaintLive(failed, true); }, 3000);
   };
 
   const defSwitch = () => {
