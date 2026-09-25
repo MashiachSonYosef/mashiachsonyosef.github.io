@@ -638,6 +638,12 @@
        which reader is open, and neither does this. */
     direction: rtl; }
   .wjoin .wb { margin: 0; }
+  /* and the words of a run close up at the seam: each word's box carries a
+     little padding on both sides, which inside a run put twelve pixels
+     between the maqaf and the next letter — a gap the text does not write.
+     The seam sides lose it; the run's outer sides keep theirs. */
+  .wjoin .wj-ink > .wb:not(:last-child) > .w { padding-inline-end: 0; }
+  .wjoin .wj-ink > .wb + .wb > .w { padding-inline-start: 0; }
   .wjoin .wb > .g { display: none; }
   /* No line is drawn between the words of a run. One stood there, to show
      two clickable words; the run is one card now, and the owner read the

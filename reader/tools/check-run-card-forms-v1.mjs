@@ -26,6 +26,9 @@
 //       come when it can; a rung nothing publishes says so in the run's
 //       terms; under either the record slot stands empty, never holding
 //       the last block's record; and the line under the run is never a dash
+//   R7  the run's ink is printed as one word: no line is drawn between its
+//       words and no padding stands at the seam — the maqaf the text writes
+//       is the only thing between them (the owner, 2026-09-25)
 //
 // Expected forms are computed here from the run's own keys with the corpus
 // lane's enumeration (weld-forms-v1.formsOfRun) and asked of the store on
@@ -192,6 +195,25 @@ if (target) {
   check("R6  a shard that did not arrive is said and asked again, a rung nothing publishes says so, and the record slot stands empty under both", ok6,
     r6.err ? `${target.key}: ${r6.err}` : `${target.key}: unreachable → ${r6.unreachable.read} readings, "${r6.unreachable.msg.slice(0, 40)}…", record ${r6.unreachable.rec}, again ${r6.unreachable.again} · asked again → ${r6.back.read} readings, record ${r6.back.rec} · joined rung → ${r6.rung.read} readings, record ${r6.rung.rec}, "${r6.rung.msg.slice(0, 40)}…" · line after "${r6.lineAfter}" · shard failed ${fails}×`);
 }
+// R7, on every drawn run of the sample
+const r7 = await p.evaluate((keys) => {
+  const out = [];
+  for (const key of keys) {
+    const r = [...document.querySelectorAll(".wjoin")].find((x) => x.__key === key);
+    if (!r) continue;
+    const wbs = [...r.querySelectorAll(":scope > .wj-ink > .wb")];
+    for (let i = 1; i < wbs.length; i += 1) {
+      const cs = getComputedStyle(wbs[i]);
+      const line = parseFloat(cs.borderInlineStartWidth) || 0;
+      const rng = (w) => { const t = document.createRange(); t.selectNodeContents(w.querySelector(".w")); return t.getBoundingClientRect(); };
+      const a = rng(wbs[i - 1]), c = rng(wbs[i]);
+      const gap = Math.round(a.left - c.right);   // rtl: the earlier word stands to the right
+      if (line > 0 || gap > 1) out.push(`${key}: line ${line}px, seam ${gap}px`);
+    }
+  }
+  return out;
+}, [...seen]);
+check("R7  the run's ink is one word: no line drawn between its words, no padding at the seam", r7.length === 0, r7.length ? r7.slice(0, 3).join(" | ") : `${seen.size} runs`);
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall green");
 process.exit(bad ? 1 : 0);
