@@ -639,7 +639,12 @@
     direction: rtl; }
   .wjoin .wb { margin: 0; }
   .wjoin .wb > .g { display: none; }
-  .wjoin .wj-ink > .wb + .wb { border-inline-start: 1px solid var(--gold-dim); }
+  /* No line is drawn between the words of a run. One stood there, to show
+     two clickable words; the run is one card now, and the owner read the
+     line as an interruption of the ink (2026-09-25). The maqaf the text
+     writes is the only thing between them, as it is on the page. The ink
+     was never altered by the line — the checks hold it byte for byte — and
+     now nothing is drawn across it either. */
   .wjoin > .g { display: block; text-align: center; }
   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
      body.en .w order 2). A run's ink wrapper carries no order of its own, so

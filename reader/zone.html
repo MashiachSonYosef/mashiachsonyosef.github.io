@@ -659,7 +659,12 @@
     direction: rtl; }
   .wjoin .wb { margin: 0; }
   .wjoin .wb > .g { display: none; }
-  .wjoin .wj-ink > .wb + .wb { border-inline-start: 1px solid var(--gold-dim); }
+  /* No line is drawn between the words of a run. One stood there, to show
+     two clickable words; the run is one card now, and the owner read the
+     line as an interruption of the ink (2026-09-25). The maqaf the text
+     writes is the only thing between them, as it is on the page. The ink
+     was never altered by the line — the checks hold it byte for byte — and
+     now nothing is drawn across it either. */
   .wjoin > .g { display: block; text-align: center; }
   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
      body.en .w order 2). A run's ink wrapper carries no order of its own, so
@@ -2623,7 +2628,17 @@
     const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
     if (!shardCache.has(shard)) {
       const url = `${ROOT}data/route-store/shards/${shard}.bin${storeVersion ? `?v=${storeVersion}` : ""}`;
-      shardCache.set(shard, fetch(url).then(unpack).catch(() => null));
+      // A SHARD THAT DID NOT ARRIVE IS NOT AN EMPTY SHARD. A failed fetch was
+      // cached as null for the life of the page, and every key in that shard
+      // then read "no exact route in the catalog for this form" — an honest
+      // absence claimed for a network fault, on a phone between two cells or
+      // under a deploy in progress, and never asked again (the owner's
+      // screenshot, 2026-09-25: the card for a word the line reads). The
+      // failure leaves the cache and is thrown, so the caller says what
+      // happened and can ask again.
+      shardCache.set(shard, fetch(url)
+        .then((r) => { if (!r.ok) throw new Error(`${r.status}`); return unpack(r); })
+        .catch((e) => { shardCache.delete(shard); throw new Error(`SHARD_UNREACHABLE ${shard}: ${(e && e.message) || e}`); }));
     }
     const data = await shardCache.get(shard);
     return data ? data[key] : null;
@@ -2708,12 +2723,19 @@
     // dash for the whole run the moment one word of it was chosen.
     const run = k.includes("\u05be") && !(table && table[k]);
     const surfaces = m.cut ? m.cut.split("+") : run ? k.split("\u05be") : [k];
-    return surfaces.map((s) => {
+    const parts = surfaces.map((s) => {
       const p = m.cells.get(s);
       if (p) return spanJoin(p.text);
       const g = table ? table[s] : null;
       return g ? spanJoin(g) : "—";
-    }).join(" + ");
+    });
+    // a rung of a run's lattice that reads nothing — the run joined, pressed
+    // on the card, with no dictionary giving it — is not a ruling for the
+    // line: the line stood as "—" under the run the moment the rung was
+    // pressed, before the catalog had answered, and stayed so when the card
+    // closed. The words' own lines stand instead.
+    if (k.includes("\u05be") && parts.every((x) => x === "—")) return null;
+    return parts.join(" + ");
   };
 
   /* ── THE ORDER TOGGLES ────────────────────────────────────────────────────
@@ -2920,7 +2942,9 @@
   const leadRecord = (route) => [...route.records].sort(EARLIEST_FIRST)[0];
 
   const attributionFor = async (surface, shownText) => {
-    const pool = await poolFor(surface);
+    let pool = null;
+    try { pool = await poolFor(surface); }
+    catch { return { ok: false, why: "the catalog could not be reached for this form; export again" }; }
     if (!pool || !pool.length) return { ok: false, why: "no record in the catalog for this form" };
     const hit = pool.find((r) => spanJoin(r.text) === shownText) ||
                 pool.find((r) => r.text === shownText);
@@ -4407,9 +4431,16 @@
       const keys = opts.run.keys;
       const n = keys.length;
       const whole = (surface) => [{ surface, from: 0, to: n - 1 }];
-      const forms = runWholeForms(keys);
-      const found = await Promise.all(forms.map(async (f) => { const r = await routesFor(f); return r && r.length ? f : null; }));
-      covers = [...found.filter(Boolean).map(whole), keys.map((k, j) => ({ surface: k, from: j, to: j }))];
+      const forms = runWholeForms(keys);   // as written, joined, then the folds
+      // THE LATTICE HOLDS ITS THREE RUNGS WHATEVER THE SHELF ANSWERS (the
+      // owner, 2026-09-25: "missing AMB and AB in megacompspan"): the run as
+      // written, the run joined into one, and the words one by one are always
+      // on the card. A rung no dictionary here answers says so when pressed;
+      // it is not hidden. A fold — a joined spelling with a seam letter
+      // written final — is offered only where a dictionary published it, and
+      // a fold whose shard did not arrive is left off rather than guessed.
+      const folds = await Promise.all(forms.slice(2).map(async (f) => { try { const r = await routesFor(f); return r && r.length ? f : null; } catch { return null; } }));
+      covers = [...forms.slice(0, 2).map(whole), ...folds.filter(Boolean).map(whole), keys.map((k, j) => ({ surface: k, from: j, to: j }))];
       comps = keys; established = true;
       runSpan = { comps: keys, rule: "maqaf_run_v1", conf: "established" };
     }
@@ -4432,7 +4463,9 @@
     // published that, else word by word on the word pressed — never on a
     // weld, which the reader may press but the page does not choose
     if (opts.run && !mem.cut) {
-      const asWritten = covers.find((c) => c.length === 1 && c[0].surface === region.k);
+      // the as-written rung is always on the card now; the card opens on it
+      // only where the shelf reads it (the line's own test: the baked table)
+      const asWritten = bin.gloss && bin.gloss[region.k] ? covers.find((c) => c.length === 1 && c[0].surface === region.k) : null;
       cover = asWritten || covers[covers.length - 1];
     }
     let cellIdx = 0;
@@ -4445,6 +4478,7 @@
     const routeKey = (r) => spanJoin(r.text) + " | " +
       (r.records && r.records[0] ? r.records[0][3] : "no m");
     const cache = new Map();           // cell surface -> pool (or null)
+    const tried = new Map();           // cell surface -> fetches that did not arrive
 
     // The gloss under the word follows the whole card: every cell of the cut
     // you have open, joined the way the reader joins a span. A cell the
@@ -4816,8 +4850,28 @@
       const wait = document.createElement("p"); wait.textContent = "Fetching one shard…";
       readRow.append(label, wait);
       clampHud();
-      if (!cache.has(surface)) cache.set(surface, await poolFor(surface));
+      let unreachable = null;
+      if (!cache.has(surface)) {
+        try { cache.set(surface, await poolFor(surface)); }
+        catch (e) { unreachable = e; }
+      }
       if (surface !== cover[cellIdx].surface) return;    // the reader moved on
+      if (unreachable) {
+        // once more on its own, a moment later — a phone between two cells —
+        // and then in words, with the asking left to the reader
+        const n = (tried.get(surface) || 0) + 1; tried.set(surface, n);
+        if (n === 1) { await new Promise((r) => setTimeout(r, 1200)); if (surface === cover[cellIdx].surface) renderReadings(); return; }
+        readRow.replaceChildren(label);
+        const p = document.createElement("p"); p.className = "r-unreachable";
+        p.textContent = "The catalog could not be reached for this block. That is the network, not the shelf: nothing here says the catalog lacks it.";
+        const again = document.createElement("button"); again.type = "button"; again.className = "dfp"; again.textContent = "try again";
+        again.addEventListener("click", () => { tried.delete(surface); renderReadings(); });
+        p.append(" ", again);
+        readRow.append(p);
+        dSlot.replaceChildren(); selectedRecordRef.m = null;
+        paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "));
+        clampHud(); return;
+      }
       const pool = cache.get(surface);
       readRow.replaceChildren(label);
       // It leads and it is labelled. The store's readings for this key all
@@ -4848,8 +4902,26 @@
       }
       if (!pool || !pool.length) {
         const p = document.createElement("p");
-        p.textContent = pool ? "No displayable route in the catalog for this form." : "No exact route in the catalog for this form.";
+        // a rung of a run's lattice nothing on the shelf answers says so in
+        // the run's own terms; the words one by one are always a press away
+        const runWhole = !!(opts.run && cover.length === 1);
+        p.textContent = runWhole
+          ? (surface === region.k
+            ? "No dictionary on this shelf gives the run as written, maqaf and all. The words one by one are a press away."
+            : "No dictionary on this shelf gives the run joined as one word. The words one by one are a press away.")
+          : pool ? "No displayable route in the catalog for this form." : "No exact route in the catalog for this form.";
         readRow.append(p);
+        // THE RECORD SLOT IS THIS BLOCK'S. A block with no reading stands on
+        // no record, and the last block's record was left standing under it —
+        // "he will rule as God", with its cut note, under a block that said it
+        // had no route (the owner's screenshot, 2026-09-25).
+        dSlot.replaceChildren(); selectedRecordRef.m = null;
+        // a division nothing can be read under is not a ruling to remember,
+        // and the run's line goes back to its words wherever the run stands
+        if (runWhole && mem.cut === cutKey(cover)) {
+          mem.cut = null;
+          for (const r of document.querySelectorAll(".wjoin")) if (r.__key === region.k) { if (!mem.cells.size) r.classList.remove("chosen"); refreshJoinGloss(r); }
+        }
         paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "));
         clampHud(); return;
       }
@@ -5223,9 +5295,7 @@
 
     // --- row 4 · where the boundaries came from ------------------------
     if (runSpan) {
-      prov.textContent = covers.length === 1
-        ? `One card for the run: ${comps.length} words, joined by a maqaf · no dictionary published the run whole`
-        : `One card for the run: ${comps.length} words, joined by a maqaf · ${covers.some((c) => c.length === 1 && c[0].surface !== region.k) ? "a joined spelling is offered, never chosen: it can be another word" : "offered as written and word by word"}`;
+      prov.textContent = `One card for the run: ${comps.length} words, joined by a maqaf · as written, joined into one, and word by word are its divisions; a joined spelling is offered, never chosen: it can be another word`;
     } else if (span && !established) {
       // the division is withheld above, so this line says so rather than
       // naming where a boundary nobody is shown came from — it printed "proposed
@@ -6416,7 +6486,10 @@
           ms.push(moved ? moved.m : (zone.gloss_m ? zone.gloss_m[k] : null));
           continue;
         }
-        const pool = await poolFor(k);
+        let pool = null;
+        // a shard that did not arrive leaves the line as it stands: the baked
+        // reading is a reading, and a network fault is not a bare word
+        try { pool = await poolFor(k); } catch { return; }
         if (gen !== switchGen) return;
         const top = pool && pool[0];
         parts.push(top ? spanJoin(top.text) : "\u2014");
