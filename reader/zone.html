@@ -1250,6 +1250,8 @@
   /* a line the shelf could not answer under a switch: dotted, so a phone
      with no hover can tell it from a line that was answered */
   .g[data-off="unreachable"] { border-bottom: 1px dotted var(--faint); }
+  /* said again below the frame rule that gives every line a transparent
+     border, which outranked this one and hid the mark */
   #hud .s-pills button[aria-pressed="true"] { border-color: var(--shesh); color: var(--ink-strong);
     background: var(--wash); }
   #hud .s-pills button .none { font: 0.62rem/1 Georgia, serif; color: var(--faint); margin-inline-start: 0.35rem; }
@@ -1546,6 +1548,7 @@
   /* the reading wears no box (owner, 2026-09-11: "your boxes are getting
      further and further from usable"); the border is kept transparent so the
      line's metrics do not move the day one is wanted back */
+  .wb > .g[data-off="unreachable"]:not(.bare), .wjoin > .g[data-off="unreachable"]:not(.bare) { border-bottom: 1px dotted var(--faint) !important; }
   .wb > .g:not(.bare), .wjoin > .g:not(.bare) {
     border: 1px solid transparent; border-radius: 0.45em; padding: 0.1em 0.4em; }
   .g .g-part { display: inline-block; vertical-align: top; text-align: center; }
@@ -3369,10 +3372,15 @@
     const rowsEl = hud.querySelector(".rows");
     if (!rowsEl) return;
     const read = hud.querySelector(".b-read .r-pills");
+    // a readings band holding prose instead of pills — "withheld by your
+    // switches", "could not be reached", "no dictionary gives…" — is fitted
+    // as itself, each paragraph a row: unfitted, the rows region kept the
+    // height the pills had and cut a three-line message after its first
+    const readBand = hud.querySelector(".b-read");
     const bands = [
       { el: hud.querySelector(".b-cut"), box: hud.querySelector(".b-cut .s-pills") },
       { el: hud.querySelector(".b-cell"), box: hud.querySelector(".b-cell .s-pills") },
-      { el: hud.querySelector(".b-read"), box: read },
+      { el: readBand, box: read || readBand },
     ].filter((x) => x.el && x.box && x.box.children.length);
     if (!bands.length) return;
     // measure with nothing imposed, so the rows are where the content puts them

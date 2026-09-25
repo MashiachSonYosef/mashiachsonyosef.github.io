@@ -1687,10 +1687,15 @@
     const rowsEl = hud.querySelector(".rows");
     if (!rowsEl) return;
     const read = hud.querySelector(".b-read .r-pills");
+    // a readings band holding prose instead of pills — "withheld by your
+    // switches", "could not be reached", "no dictionary gives…" — is fitted
+    // as itself, each paragraph a row: unfitted, the rows region kept the
+    // height the pills had and cut a three-line message after its first
+    const readBand = hud.querySelector(".b-read");
     const bands = [
       { el: hud.querySelector(".b-cut"), box: hud.querySelector(".b-cut .s-pills") },
       { el: hud.querySelector(".b-cell"), box: hud.querySelector(".b-cell .s-pills") },
-      { el: hud.querySelector(".b-read"), box: read },
+      { el: readBand, box: read || readBand },
     ].filter((x) => x.el && x.box && x.box.children.length);
     if (!bands.length) return;
     // measure with nothing imposed, so the rows are where the content puts them
