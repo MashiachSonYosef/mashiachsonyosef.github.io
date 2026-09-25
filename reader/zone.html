@@ -2744,6 +2744,16 @@
   };
   // whether every carrier of a key's baked reading is switched off
   const carriersOff = (k) => { const gm = sourcesOff.size && zone.gloss_m ? zone.gloss_m[k] : null; return !!(gm && Array.isArray(gm.by) && gm.by.length && gm.by.every((id) => sourcesOff.has(id))); };
+  // what a key's baked column reads under the switches: its reading where a
+  // carrier is on; its baked alternate where that one has a carrier on; a
+  // dash where the reader turned every carrier of both off
+  const switchedReading = (k, g) => {
+    if (!g) return "\u2014";
+    if (!carriersOff(k)) return spanJoin(g);
+    const alt = zone.gloss_m[k].alt;
+    if (alt && Array.isArray(alt.by) && alt.by.length && !alt.by.every((id) => sourcesOff.has(id)) && alt.text) return spanJoin(alt.text);
+    return "\u2014";
+  };
   const ruledLine = (k, table) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
@@ -2758,8 +2768,9 @@
       if (p) return spanJoin(p.text);
       const g = table ? table[s] : null;
       // a baked reading whose every carrier the reader switched off is not
-      // read here either: a source turned off is not quoted on the line
-      if (g && table === zone.gloss && carriersOff(s)) return "—";
+      // read here either: a source turned off is not quoted on the line;
+      // its baked alternate stands where one of its carriers is on
+      if (g && table === zone.gloss) return switchedReading(s, g);
       return g ? spanJoin(g) : "—";
     });
     // a rung of a run's lattice that reads nothing — the run joined, pressed
@@ -4462,6 +4473,7 @@
     // arrives with evidence behind it, it is offered on the strength of that.
     let established = span && span.conf !== "draft_candidate";
     let foldsUnreached = [];   // a run's folds whose shard did not arrive: offered as unknown, asked again on press
+    let foldsAsking = false;   // one asking at a time, whatever button the row was redrawn with
     let comps = established ? span.comps : [region.k];
     let covers = cutsOf(comps);
     // A MAQAF RUN IS ONE CARD (the megacompspan, owner 2026-09-24: "here the
@@ -4563,7 +4575,7 @@
         }
       }
       const g = bin.gloss ? bin.gloss[surface] : null;
-      if (g && bin === zone && carriersOff(surface)) return "—";
+      if (g && bin === zone) return switchedReading(surface, g);
       return g ? spanJoin(g) : "—";
     };
     // What is standing under the word right now, said on the card. The reader
@@ -4860,11 +4872,13 @@
         const p = document.createElement("p"); p.className = "r-unreachable";
         p.textContent = `${foldsUnreached.length} more spelling${foldsUnreached.length === 1 ? "" : "s"} of the run could not be checked: the catalog could not be reached.`;
         const again = document.createElement("button"); again.type = "button"; again.textContent = "try again";
+        again.disabled = foldsAsking;
         again.addEventListener("click", async () => {
-          if (again.disabled) return;      // one asking at a time: a double tap spliced the fold in twice
-          again.disabled = true;
+          if (foldsAsking) return;         // one asking at a time: a double tap spliced the fold in twice
+          foldsAsking = true; again.disabled = true;
           const gen = myGen;
           const tried = await Promise.all(foldsUnreached.map(async (f) => { try { const r = await routesFor(f); return { f, ok: true, has: !!(r && r.length) }; } catch { return { f, ok: false }; } }));
+          foldsAsking = false;
           if (gen !== hudGen) return;
           foldsUnreached = tried.filter((x) => !x.ok).map((x) => x.f);
           const found = tried.filter((x) => x.ok && x.has).map((x) => [{ surface: x.f, from: 0, to: cover.length ? Math.max(...cover.map((c) => c.to)) : 0 }]);
@@ -5839,6 +5853,7 @@
     const lineEl = () => { let l = run.__gloss; if (!l) { l = document.createElement("span"); l.className = "g"; run.append(l); run.__gloss = l; } return l; };
     if (heldRun !== null) {
       const l = lineEl();
+      delete l.dataset.off;
       l.replaceChildren(); l.textContent = heldRun; l.title = heldRun; l.classList.remove("bare");
       run.classList.add("chosen");
       return;
@@ -5862,6 +5877,7 @@
       });
       if (form) {
         const l = lineEl();
+        delete l.dataset.off;
         const text = spanJoin(table[form]);
         l.replaceChildren(); l.textContent = text; l.title = text; l.classList.remove("bare");
         l.dataset.form = form;
@@ -6509,6 +6525,18 @@
       // a one-form word may read past the baked column (the headword's
       // lemma-sorted reading, or a lattice order's first card); the joined
       // parts of a several-form word keep to the column
+      // a word the reader ruled on keeps its ruling through a switch: the
+      // ruling outranks every toggle (the precedence above), and a repaint
+      // from the table painted the table back over it until the card was
+      // opened again
+      const held = st.ks.length === 1 && st.word && st.word.k ? ruledLine(st.word.k, zone.gloss) : null;
+      if (held !== null) {
+        st.ge.replaceChildren(); delete st.ge.dataset.off; delete st.ge.dataset.live;
+        st.ge.textContent = held; st.ge.title = held; st.ge.classList.remove("bare");
+        const run0 = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
+        if (run0) runs.add(run0);
+        continue;
+      }
       const moved = st.ks.length === 1 ? lineUnder(st.word, zone.gloss) : null;
       const parts = moved ? [spanJoin(moved.text)]
         : st.ks.map((k) => { const g = zone.gloss[lookupKey(st.word, k, zone.gloss)]; return g ? spanJoin(g) : "\u2014"; });
@@ -6573,7 +6601,13 @@
   // whatever number of ledger ids it carries
   const sourcesOffSay = () => {
     const rec = ((((zone.emitted_from || {}).toggles || {}).sources || {}).sources) || {};
-    const keys = new Set([...sourcesOff].map((id) => (rec[id] && rec[id].key) || id));
+    const keys = new Set();
+    for (const id of sourcesOff) {
+      // an id this book's record does not know is another book's; it is
+      // not a source off HERE, and it is not counted (the switch is shared)
+      const key = rec[id] && rec[id].key;
+      if (key) keys.add(key);
+    }
     return `${keys.size} source${keys.size === 1 ? "" : "s"} off`;
   };
   const partNeedsLive = (st, k, moved) => {
