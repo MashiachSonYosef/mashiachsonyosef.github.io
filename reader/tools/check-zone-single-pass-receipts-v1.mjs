@@ -146,6 +146,7 @@ const SPAN_LAYER_KEYS = ["rule", "source", "rows_scanned", "forms_with_a_compone
 const PATCH_MARKS = {
   "gloss_m": "tools/enrich-gloss-m-v1.mjs",
   "gloss_m_orders_layer": "tools/regloss-zone.mjs",
+  "witnessed_order": "tools/bake-witnessed-order-v1.mjs",
   "gloss_layer.language_admission": "tools/redrive-zone-gloss-v1.mjs",
   "gloss_layer.reprojected": "tools/regloss-zone.mjs",
   "span_layer.projected_by": "tools/respan-zone-v1.mjs",

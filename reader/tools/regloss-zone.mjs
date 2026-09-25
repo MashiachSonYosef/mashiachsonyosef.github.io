@@ -132,11 +132,14 @@ zone.gloss_m = glossM;
 let ordersM = null;
 if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
   ordersM = {};
+  const prevOM = zone.gloss_m_orders || {};
+  // the witnessed columns carry the corpus lane's own credit for each
+  // reading, baked as shipped (bake-witnessed-order-v1); they are kept
+  const shipped = new Set(Object.keys((zone.emitted_from.witnessed_order || {}).columns || {}));
   for (const [o, table] of Object.entries(zone.gloss_orders)) {
     if (!table || typeof table !== "object") continue;
-    ordersM[o] = glossMFor(store, table);
+    ordersM[o] = shipped.has(o) ? { gloss_m: prevOM[o] || {}, drift: 0 } : glossMFor(store, table);
   }
-  const prevOM = zone.gloss_m_orders || {};
   zone.gloss_m_orders = Object.fromEntries(Object.entries(ordersM).map(([o, r]) => [o, r.gloss_m]));
   zone.emitted_from.gloss_m_orders_layer = {
     rule: GLOSS_M_RULE_ID, projected_on: stamp, projected_by: "tools/regloss-zone.mjs",

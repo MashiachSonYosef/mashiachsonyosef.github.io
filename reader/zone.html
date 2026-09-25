@@ -1930,6 +1930,17 @@
       say: "Readings whose source points the word differently while the letters agree answer first, to watch the sense move \u2014 the lattice\u2019s vowel mismatch. The rest keep their own order under them." },
     { id: "outside-era", lab: "outside the era", live: false, needs: "corpus",
       say: "Lexicons the corpus lane classifies as explicitly NOT of the text\u2019s era answer first, to watch the sense move. Unknown is not later: a source with no classification keeps its place." },
+    // THE WITNESSED ORDER (the owner selected it 2026-09-25): three columns
+    // the corpus lane built over this book, baked as shipped by
+    // tools/bake-witnessed-order-v1.mjs — the reading an old witness gives
+    // for this word leads, each with its own credit. Live where the book
+    // carries the column; the rest of the pool keeps its order under it.
+    { id: "witnessed_same_place", lab: "witnessed here", live: false, needs: "witnessed",
+      say: "The reading an old source gives at this very verse answers first \u2014 the corpus lane\u2019s witnessed order, same-place column. The rest keep their own order under it." },
+    { id: "witnessed_entry", lab: "witnessed in entry", live: false, needs: "witnessed",
+      say: "The reading an old source gives in its entry for this word, citing this verse, answers first \u2014 the corpus lane\u2019s witnessed order, entry column. The rest keep their own order under it." },
+    { id: "witnessed_entry_and_lists", lab: "witnessed in lists", live: false, needs: "witnessed",
+      say: "The reading an old source gives in its entry or its word lists, citing this verse, answers first \u2014 the corpus lane\u2019s witnessed order, entry-and-lists column. The rest keep their own order under it." },
     { id: "oldest", lab: "oldest first", live: true,
       say: "The oldest source answers first, antiquity ahead of everything. The order this reader has always used." },
   ];
@@ -2172,6 +2183,7 @@
       for (const p of DEF_POS) {
         if (p.needs === "lattice") p.live = hasLattice;
         if (p.needs === "corpus") p.live = !!CORPUS_REC;
+        if (p.needs === "witnessed") p.live = !!(zone.gloss_orders && zone.gloss_orders[p.id] && Object.keys(zone.gloss_orders[p.id]).length);
       }
       let held = null;
       try { held = localStorage.getItem(DEF_KEY); } catch { /* a device that remembers nothing still reads */ }
@@ -4018,10 +4030,16 @@
     const outside = (r) => (r.records.some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
     const lic = (r) => Math.min(...r.records.map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture)));
     const tr = (r) => (lat && lat.t && r.records.some((row) => lat.t.includes(idxOf(row))) ? 0 : 1);
+    const wCol = pos.needs === "witnessed" && surface && zone && zone.gloss_orders && zone.gloss_orders[pos.id] ? zone.gloss_orders[pos.id][surface] : null;
+    const wText = wCol ? String(wCol).toLowerCase() : null;
+    const witnessed = (r) => (!wText ? 0 : String(r.text).toLowerCase() === wText ? 0 : 1);
     const primary = (a, b) => {
       if (defOrder === "characters") return a.ledger - b.ledger;
       if (defOrder === "corpus") return era(a) - era(b);
       if (defOrder === "outside-era") return outside(a) - outside(b);
+      // a witnessed order leads with the reading its column gives this key —
+      // the line's own reading, so the card's first pill is the line
+      if (pos.needs === "witnessed") return witnessed(a) - witnessed(b);
       // with the Masorah lifted there is no grade to sort by: a lattice
       // order falls through to oldest, and the toggle's set() already moved
       // the "reads first" row there and said so
