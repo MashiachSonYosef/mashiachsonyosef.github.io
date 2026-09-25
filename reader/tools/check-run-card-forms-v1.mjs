@@ -37,6 +37,11 @@
 //       switches come back
 //   R10 the export marks a word whose shard did not arrive [not reached],
 //       never [withheld], and says so in its note
+//   R11 opening a run's card and closing it, pressing nothing, leaves no
+//       mark: the run is not "chosen", its line keeps its chip
+//   R12 a remembered rung whose every carrier is switched off reads nothing
+//       of that source: the line under the run is its words', and the
+//       card's reading row says the records are withheld
 //
 // Expected forms are computed here from the run's own keys with the corpus
 // lane's enumeration (weld-forms-v1.formsOfRun) and asked of the store on
@@ -89,6 +94,7 @@ await p.goto(`${BASE}?b=${ZONE}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.evaluate(async () => { let g = 0; while (g < 4000) { const n = document.querySelector("section.seg.seg-wait"); if (!n) break; n.scrollIntoView({ block: "center" }); await new Promise((r) => setTimeout(r, 5)); g += 1; } });
 
+const readThrough = () => p.evaluate(async () => { let g = 0; while (g < 4000) { const n = document.querySelector("section.seg.seg-wait"); if (!n) break; n.scrollIntoView({ block: "center" }); await new Promise((r) => setTimeout(r, 5)); g += 1; } window.scrollTo(0, 0); });
 const r1 = [], r3 = [], r4 = [];
 let r2 = 0, looked = 0;
 const seen = new Set();
@@ -168,7 +174,7 @@ if (target) {
   await p.route(new RegExp(`shards/${shard}\\.bin`), (route) => { if (fails < failFor) { fails += 1; route.abort("failed"); } else route.continue(); });
   // a fresh page, so the shard is not already in hand
   await p.reload({ waitUntil: "networkidle" });
-  await p.waitForSelector("section.seg .he-text .wb");
+  await p.waitForSelector("section.seg .he-text .wb"); await readThrough();
   const r6 = await p.evaluate(async ([key, weld]) => {
     const run = [...document.querySelectorAll(".wjoin")].find((x) => x.__key === key);
     if (!run) return { err: "run not drawn" };
@@ -239,7 +245,7 @@ check("R7  the run's ink is one word: no line drawn between its words, no paddin
     let fails = 0;
     await p.route(new RegExp(`shards/${s1}\\.bin`), (route) => { if (fails < 1) { fails += 1; route.abort("failed"); } else route.continue(); });
     await p.reload({ waitUntil: "networkidle" });
-    await p.waitForSelector("section.seg .he-text .wb");
+    await p.waitForSelector("section.seg .he-text .wb"); await readThrough();
     const r8 = await p.evaluate(async ([s1, s2]) => {
       const wbs = [...document.querySelectorAll("section.seg .he-text .wb")];
       const find = (s) => wbs.find((wb) => !wb.closest(".wjoin") && wb.querySelector(".w") && wb.querySelector(".w").textContent === s);
@@ -273,12 +279,40 @@ check("R7  the run's ink is one word: no line drawn between its words, no paddin
   } else console.log("  --  R8  no two plain words in different shards; skipped");
 }
 
+// R11 · an open with nothing pressed leaves no mark, on a run that opens on
+// its as-written rung (the one the card chooses by itself)
+{
+  const asW = runs.find((r) => r.published.some((f) => f.form === "maqaf"));
+  if (asW) {
+    await p.reload({ waitUntil: "networkidle" });
+    await p.waitForSelector("section.seg .he-text .wb"); await readThrough();
+    const r11 = await p.evaluate(async (key) => {
+      const run = [...document.querySelectorAll(".wjoin")].find((x) => x.__key === key);
+      if (!run) return { err: "run not drawn" };
+      const wait = (ms) => new Promise((x) => setTimeout(x, ms));
+      const line = () => { const g = run.querySelector(":scope > .g"); return { text: g ? g.textContent.trim() : "", chip: !!(g && g.querySelector(".g-lic")) }; };
+      const before = line();
+      run.scrollIntoView({ block: "center" }); run.querySelector(".wb .w").click();
+      const t0 = Date.now(); while (Date.now() - t0 < 5000 && !document.querySelector("#hud .r-pills button")) await wait(50);
+      await wait(600);
+      const open = { chosen: run.classList.contains("chosen"), ...line() };
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+      await wait(300);
+      const after = { chosen: run.classList.contains("chosen"), ...line() };
+      return { before, open, after };
+    }, asW.key);
+    const ok11 = !r11.err && !r11.open.chosen && !r11.after.chosen && r11.after.text === r11.before.text && r11.after.chip === r11.before.chip && r11.before.chip;
+    check("R11 opening a run's card and closing it, pressing nothing, leaves no mark and keeps the line's chip", ok11,
+      r11.err ? `${asW.key}: ${r11.err}` : `${asW.key}: chosen while open ${r11.open.chosen}, after ${r11.after.chosen} · chip before ${r11.before.chip}, after ${r11.after.chip}`);
+  } else console.log("  --  R11 no run published as written in this book; skipped");
+}
+
 // R9 · a rung the reader's switches emptied
 {
   const weldRun = runs.find((r) => r.published.some((f) => f.form === "weld"));
   if (weldRun) {
     await p.reload({ waitUntil: "networkidle" });
-    await p.waitForSelector("section.seg .he-text .wb");
+    await p.waitForSelector("section.seg .he-text .wb"); await readThrough();
     const r9 = await p.evaluate(async ([key, weld]) => {
       const run = [...document.querySelectorAll(".wjoin")].find((x) => x.__key === key);
       if (!run) return { err: "run not drawn" };
@@ -298,18 +332,21 @@ check("R7  the run's ink is one word: no line drawn between its words, no paddin
       const chipOf = (k) => document.querySelector(`.rail .row[data-toggle="sources"] .dfp[data-key="${CSS.escape(k)}"]`);
       for (const k of keys) { const c = chipOf(k); if (c && c.getAttribute("aria-pressed") === "true") { c.click(); await wait(700); } }
       await wait(1200);
-      const state = () => ({ read: h.querySelectorAll(".r-pills button").length, msg: [...h.querySelectorAll(".b-read p:not(.r-label)")].map((x) => x.textContent).join(" "), cutOn: ([...h.querySelectorAll(".b-cut .s-pills button")].find((x) => x.getAttribute("aria-pressed") === "true") || {}).textContent, chosen: run.classList.contains("chosen"), rec: h.querySelector(".d-slot").children.length });
+      const rungText = ((h.querySelector(".r-pills button") || {}).textContent || "").trim();
+      const state = () => ({ read: h.querySelectorAll(".r-pills button").length, msg: [...h.querySelectorAll(".b-read p:not(.r-label)")].map((x) => x.textContent).join(" "), cutOn: ([...h.querySelectorAll(".b-cut .s-pills button")].find((x) => x.getAttribute("aria-pressed") === "true") || {}).textContent, chosen: run.classList.contains("chosen"), rec: h.querySelector(".d-slot").children.length, now: (h.querySelector(".r-now .v") || {}).textContent, runLine: ((run.querySelector(":scope > .g") || {}).textContent || "").trim() });
       const off = state();
       for (const k of keys) { const c = chipOf(k); if (c && c.getAttribute("aria-pressed") === "false") { c.click(); await wait(700); } }
       await wait(1200);
       const on = state();
       document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-      return { n, ids: [...ids], chips: keys.length, off, on };
+      return { n, ids: [...ids], chips: keys.length, off, on, rungText };
     }, [weldRun.key, weldRun.weld]);
     const ok9 = !r9.err && r9.chips > 0 && r9.off.read === 0 && /withheld/u.test(r9.off.msg) && !/No dictionary/u.test(r9.off.msg) && r9.off.cutOn === weldRun.weld && r9.off.chosen && r9.off.rec === 0
-      && r9.on.read === r9.n && r9.on.cutOn === weldRun.weld;
-    check("R9  a block the reader's switches emptied says so, keeps its rung, and reads again when they come back", ok9,
-      r9.err ? `${weldRun.key}: ${r9.err}` : `${weldRun.key} joined ${weldRun.weld}: ${r9.n} readings by ${r9.ids.join(",")} · ${r9.chips} chips off → ${r9.off.read} readings, "${r9.off.msg.slice(0, 60)}…", rung ${r9.off.cutOn}, chosen ${r9.off.chosen}, record ${r9.off.rec} · on → ${r9.on.read} readings on ${r9.on.cutOn}`);
+      && r9.on.read === r9.n && r9.on.cutOn === weldRun.weld
+      // R12, in the same breath: with the rung's carriers off, the card's reading row says withheld and the run's line reads its words, not the off source's rung
+      && /withheld/u.test(r9.off.now || "") && r9.off.runLine && !r9.off.runLine.includes(r9.rungText || "\u0000");
+    check("R9  a block the reader's switches emptied says so, keeps its rung, reads nothing of the off source (R12), and reads again when they come back", ok9,
+      r9.err ? `${weldRun.key}: ${r9.err}` : `${weldRun.key} joined ${weldRun.weld}: ${r9.n} readings by ${r9.ids.join(",")} · ${r9.chips} chips off → ${r9.off.read} readings, "${r9.off.msg.slice(0, 60)}…", rung ${r9.off.cutOn}, chosen ${r9.off.chosen}, record ${r9.off.rec}, row "${(r9.off.now || "").slice(0, 40)}", run line "${r9.off.runLine.slice(0, 40)}" · on → ${r9.on.read} readings on ${r9.on.cutOn}`);
   } else console.log("  --  R9  no run with a published joined form in this book; skipped");
 }
 
