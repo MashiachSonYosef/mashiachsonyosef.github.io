@@ -204,6 +204,48 @@ export const sourceSwitchCosts = (store, gloss, gm) => {
 // here and named in the record so a drift shows as a set the page does
 // not find). A set the page cannot find prices as "not baked", never as a
 // sum.
+// THE LICENSE PREFERENCE, BAKED AS COLUMNS. The page's licence switch is a
+// sort, never a filter: readings under the preferred class answer first
+// and everything else keeps its place under them (zone.html, sortPool).
+// It reached only the card. The line under the word came from the base
+// column, so on a fresh load the card's pressed pill and the line said two
+// readings for one word (the owner, 2026-09-27, on Israel: BDB's public
+// domain reading pressed, Strong's on the line). The order switch already
+// moves the line through a baked column per order (gloss_orders, applied
+// by applyGlossOrder); the licence preference is three more such columns,
+// one per class the switch offers, each holding the class's first reading
+// under oldest-first for every key where it differs from the base. The
+// class of a reading is the best class any carrier of it holds — the same
+// rule the page reads off each pill.
+export const LICENCE_COLUMNS_RULE_ID = "licence-columns-rule-v1-the-licence-preference-is-a-baked-order-column-so-the-line-and-the-card-answer-as-one";
+export const LICENCE_COLUMNS = { pd: "licence_pd", by: "licence_by", "by-sa": "licence_by_sa" };
+export const licClass = (posture) => {
+  const p = String(posture || "");
+  if (/^(public_domain|cc0)/u.test(p)) return 0;
+  if (/^cc_by_nc/u.test(p)) return 3;
+  if (/^cc_by_sa/u.test(p) || /gfdl/u.test(p)) return 2;
+  if (/^cc_by/u.test(p)) return 1;
+  return 4;
+};
+export const licenceColumns = (store, gloss) => {
+  const want = { licence_pd: 0, licence_by: 1, licence_by_sa: 2 };
+  const columns = Object.fromEntries(Object.keys(want).map((c) => [c, {}]));
+  const counts = Object.fromEntries(Object.keys(want).map((c) => [c, { moved: 0, same: 0, none: 0 }]));
+  const classOf = (entry) => Math.min(...entry.by.map((id) => licClass((store.index.m_sources[id] || {}).licensePosture)));
+  for (const k of Object.keys(gloss)) {
+    const routes = store.routesFor(k);
+    if (!routes) continue;
+    const pool = store.readingPool(routes, "oldest");
+    if (!pool.length) continue;
+    for (const [c, cls] of Object.entries(want)) {
+      const lead = pool.find((e) => classOf(e) === cls);
+      if (!lead) { counts[c].none += 1; continue; }
+      if (lead.text === gloss[k]) { counts[c].same += 1; continue; }
+      columns[c][k] = lead.text; counts[c].moved += 1;
+    }
+  }
+  return { rule: LICENCE_COLUMNS_RULE_ID, columns, counts };
+};
 const licShelf = (lic) => {
   const p = String(lic || "").toLowerCase();
   if (/\bnc\b|non-?commercial/.test(p)) return "non-commercial";

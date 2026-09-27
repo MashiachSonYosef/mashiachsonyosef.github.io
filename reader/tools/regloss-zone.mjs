@@ -35,7 +35,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
-import { glossMFor, sourceSwitchCosts, jointSwitchCosts, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
+import { glossMFor, sourceSwitchCosts, jointSwitchCosts, GLOSS_M_RULE_ID, licenceColumns } from "./gloss-m-v1.mjs";
 import { existsSync as existsSync_ } from "node:fs";
 import { formsOfRun, WELD_FORMS_RULE_ID } from "./weld-forms-v1.mjs";
 import { SWITCH_RULE_ID } from "./gloss-store-v1.mjs";
@@ -135,6 +135,20 @@ zone.gloss_m = glossM;
 // M is derived here over the same store, the same way gloss_m is — with its
 // carriers and its alternate — and a reading no route stands on keeps no M,
 // which draws no chip: absent over wrong.
+// THE LICENCE COLUMNS, derived over the same store in the same pass
+// (licence-columns-rule-v1): the licence switch's three classes, each a
+// column holding the class's first reading where it differs from the base,
+// so the line follows the switch as it follows every order. Replaced whole
+// on every projection; their M is derived below with the other columns'.
+{
+  const lc = licenceColumns(store, gloss);
+  zone.gloss_orders = zone.gloss_orders && typeof zone.gloss_orders === "object" ? zone.gloss_orders : {};
+  for (const [c, col] of Object.entries(lc.columns)) zone.gloss_orders[c] = col;
+  zone.emitted_from.licence_orders_layer = {
+    rule: lc.rule, projected_on: stamp, projected_by: "tools/regloss-zone.mjs",
+    columns: lc.counts,
+  };
+}
 let ordersM = null;
 if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
   ordersM = {};

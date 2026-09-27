@@ -2050,6 +2050,9 @@
     return (s && cardPointing.get(s)) || masorah;
   };
   const LIC_KEY = "fh.licence", NAMES_KEY = "fh.names", ED_KEY = "fh.edition";
+  // the baked column each licence preference reads on the line (regloss-zone,
+  // licence-columns-rule-v1); a book without the column says so on the rail
+  const LICENCE_COLS = { pd: "licence_pd", by: "licence_by", "by-sa": "licence_by_sa" };
   let licencePref = (() => { try { return ["any", "pd", "by", "by-sa"].includes(localStorage.getItem(LIC_KEY)) ? localStorage.getItem(LIC_KEY) : "any"; } catch { return "any"; } })();
   let namesPref = (() => { try { return localStorage.getItem(NAMES_KEY) === "sound" ? "sound" : "meaning"; } catch { return "meaning"; } })();
   let editionMark = (() => { try { return localStorage.getItem(ED_KEY) === "diff" ? "diff" : "mam"; } catch { return "mam"; } })();
@@ -2148,8 +2151,12 @@
       positions: [{ id: "any", lab: "any" }, { id: "pd", lab: "public domain" }, { id: "by", lab: "CC BY" }, { id: "by-sa", lab: "CC BY-SA" }],
       live: () => !!(index && index.m_sources),
       get: () => licencePref,
-      set: (id) => { licencePref = id; try { localStorage.setItem(LIC_KEY, id); } catch { /* the choice still stands on this page */ } if (redrawReadings) redrawReadings(); },
-      now: () => ({ any: "any license", pd: "public domain first", by: "CC BY first", "by-sa": "CC BY-SA first" })[licencePref] },
+      // the line moves with the card (licence-columns-rule-v1): the switch
+      // repaints every line under the class's baked column before the open
+      // card re-sorts, so the two never say two readings for one word
+      set: (id) => { licencePref = id; try { localStorage.setItem(LIC_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); },
+      now: () => ({ any: "any license", pd: "public domain first", by: "CC BY first", "by-sa": "CC BY-SA first" })[licencePref]
+        + (licencePref !== "any" && !(zone && zone.gloss_orders && zone.gloss_orders[LICENCE_COLS[licencePref]]) ? " · not baked on this book: the line reads the oldest" : "") },
     // The lattice flags a card as a transliteration under the corpus lane's
     // strict rule; "as sound" answers with those first, "as meaning" leaves
     // the order as it is. A sort, and only on the card.
@@ -2222,7 +2229,13 @@
       try { held = localStorage.getItem(DEF_KEY); } catch { /* a device that remembers nothing still reads */ }
       defOrder = DEF_POS.some((p) => p.id === held && p.live) ? held : "oldest";
       const pos = DEF_POS.find((p) => p.id === defOrder);
-      if (pos && pos.needs === "lattice") latticeReady();
+      // a remembered setting that reads the lattice — a lattice order, the
+      // masorah switch, names as sound — fetches the sidecar now, and the
+      // lines drawn before it landed are drawn again under it once it has:
+      // under "the letters only" a cold load printed the oldest reading on
+      // every line while the card led with the vowels-differ leader
+      if ((pos && pos.needs === "lattice") || masorah !== "keep" || namesPref === "sound")
+        latticeReady().then((s) => { if (s) repaintGlossOrder(); });
       if (editionMark === "diff") document.body.classList.add("ed-mark");
     }
   } catch (e) {
@@ -5135,7 +5148,22 @@
       // (hg on the word) — the same reading the line prints
       const lemmaFirst = lookup === "headword" && word && word.hg && region.form_k && surface === region.k
         ? pool.find((r) => String(r.text).toLowerCase() === String(word.hg).toLowerCase()) : null;
-      let selected = (remembered && pool.find((r) => routeKey(r) === remembered.key)) || lemmaFirst || pool[0];
+      // THE CARD OPENS ON THE LINE'S READING. The line under the word and
+      // the card's pressed pill are one claim said twice; a sort that reached
+      // only the card — the licence preference, the letters switch — left
+      // them saying two readings on a fresh load (the owner, 2026-09-27, on
+      // Israel: BDB's public domain reading pressed, Strong's on the line).
+      // So the reading the line prints is the one pressed when the card
+      // opens, wherever the sort put it: a pressed pill that is not first
+      // says the sort moved the row, and the line is still what it answers.
+      const lineSaid = (() => {
+        if (opts.run || !bin.gloss) return null;
+        const led = bin === zone && word && surface === region.k ? lineUnder(word, zone.gloss) : null;
+        const t = led ? led.text : bin.gloss[surface];
+        return t ? spanJoin(t).toLowerCase() : null;
+      })();
+      const lineFirst = lineSaid ? pool.find((r) => spanJoin(r.text).toLowerCase() === lineSaid) : null;
+      let selected = (remembered && pool.find((r) => routeKey(r) === remembered.key)) || lemmaFirst || lineFirst || pool[0];
       const pills = document.createElement("div"); pills.className = "r-pills";
       // what the sort put first, said on the row so a check can read the
       // order's effect off the page: the first reading's licence class
@@ -6106,6 +6134,25 @@
         return { text: "", m: null, why: "sources-bare" };
       }
     }
+    // THE LICENCE PREFERENCE, a baked column per class (regloss-zone,
+    // licence-columns-rule-v1): the class's first reading under oldest
+    // first, held only where it differs from the base. The card sorts the
+    // class first (sortPool); the line reads the same reading, so the two
+    // answer as one — or the switch's rail says the column is not baked on
+    // this book. A column reading whose every carrier the reader switched
+    // off is not read here either, as the base is not.
+    if (licencePref !== "any" && zone.gloss_orders && word.k) {
+      const colId = LICENCE_COLS[licencePref];
+      const col = colId ? zone.gloss_orders[colId] : null;
+      if (col) {
+        const k = lookupKey(word, word.k, table);
+        if (Object.prototype.hasOwnProperty.call(col, k)) {
+          const gm = zone.gloss_m_orders && zone.gloss_m_orders[colId] ? zone.gloss_m_orders[colId][k] : null;
+          const off = !!(gm && Array.isArray(gm.by) && gm.by.length && gm.by.every((m) => sourcesOff.has(m)));
+          if (!off) return { text: col[k], m: gm ? { lic: gm.lic, m: gm.m, y: gm.wy || gm.y } : null, why: "licence" };
+        }
+      }
+    }
     // the masorah filter's own leader, baked row by row into the sidecar
     // (o.l) so it says what the card's first pill says under "only"; with
     // the Masorah lifted, no lattice order can move the line at all
@@ -6117,7 +6164,16 @@
       // which the frame calls a finding and not an error
       if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) return { text: "", m: null, why: "masorah-bare" };
     }
-    if (masorah === "letters") return null;
+    // THE LETTERS SWITCH lifts the pointing on the card and leads with the
+    // readings whose source points this word otherwise (sortPool); the line
+    // reads the same leader, baked by the lattice as its vowels-differ
+    // order (o.x) wherever the lattice graded the word. Where it did not,
+    // the card has no grade to sort by and the oldest stands on both.
+    if (masorah === "letters") {
+      const gr = latticeStore && latticeStore.grades && word.s ? latticeStore.grades[word.s] : null;
+      const first = gr && gr.o && gr.o.x;
+      return first ? { text: first[0], m: { lic: licenseName(first[2]), m: first[1], y: first[3] }, why: "letters" } : null;
+    }
     const pos = DEF_POS.find((p) => p.id === defOrder);
     if (pos && pos.needs === "lattice" && latticeStore && latticeStore.grades && word.s) {
       const gr = latticeStore.grades[word.s];
