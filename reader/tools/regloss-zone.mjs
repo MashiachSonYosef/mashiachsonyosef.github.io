@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 // Synthesis lane · regloss-rule-v1-project-the-store-over-a-zones-own-keys
+// LEDGER: -
+// no frame letter. This writes only the zone it was given, a projection of
+// the store over that zone's own keys; it decides nothing. It reads the
+// served source corpus (data/source-corpus-v1.json) to price the shelf
+// switches and writes no record into data/ itself.
 //
 // The gloss layer is a projection: the route store, asked about exactly the
 // keys one zone contains. It does not depend on how that zone was acquired,
