@@ -5440,6 +5440,26 @@
     const t = TOGGLES.find((x) => x.id === "sources");
     const rec = zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.sources;
     const table = rec && rec.sources ? rec.sources : null;
+    // THE PRICE OF A SET IS BAKED FOR THAT SET (joint-switch-cost-rule-v1):
+    // the tool threw every chip and every shelf as one against the store and
+    // keyed the cost by the set's own ids. A set the record does not hold is
+    // priced "not baked", never added up from its members — a sum said 295
+    // lines change and 560 go bare where a throw left 2,303 bare.
+    const jointSets = rec && rec.joint && rec.joint.sets ? rec.joint.sets : null;
+    const priceOf = (ids) => {
+      const j = jointSets && jointSets[[...new Set(ids)].sort().join(" ")];
+      if (!j) return { known: false, text: "off: the cost of this set is not baked on this book yet" };
+      // said in lines a reader sees where the record counted positions; in
+      // distinct forms, and said so, where it only counted forms
+      const lines = typeof j.lines_change === "number";
+      // "words": every place on the book whose reading moves, counted once
+      // each — the two words of a maqaf run count twice though they share a
+      // line, so the count is of words, and says so
+      const c = lines ? j.lines_change : j.changes, d = lines ? j.lines_bare : j.darkens, unit = lines ? "word" : "form";
+      return { known: true, changes: c, darkens: d, text: c || d
+        ? `off: ${c.toLocaleString()} ${unit}${c === 1 ? "" : "s"} change${d ? `, ${d.toLocaleString()} go bare` : ""}`
+        : "off: nothing on this book changes" };
+    };
     host.replaceChildren();
     if (!table) { const seg = document.createElement("span"); seg.className = "def-order"; const b = document.createElement("button"); b.type = "button"; b.className = "dfp waiting"; b.disabled = true; b.textContent = "waiting"; b.title = t.waits; seg.append(b); host.append(seg); return; }
     // group ids by the source's own key; a source with no key stands alone
@@ -5469,9 +5489,10 @@
       const short = SHORT_REC && SHORT_REC.names && SHORT_REC.names[g.key];
       g.short = short || (g.label.length > 18 ? `${g.label.slice(0, 17)}…` : g.label);
       g.shortIsFallback = !short;
-      g.costs = g.changes || g.darkens
-        ? `off: ${g.changes.toLocaleString()} line${g.changes === 1 ? "" : "s"} change${g.darkens ? `, ${g.darkens.toLocaleString()} go bare` : ""}`
-        : "off: nothing on this book changes";
+      // a chip of several ids is a set too; its price is the set's, not the sum
+      const pr = priceOf(g.ids);
+      if (pr.known) { g.changes = pr.changes; g.darkens = pr.darkens; }
+      g.costs = pr.text; g.costKnown = pr.known;
     }
     const ordered = [...groups.values()].sort((a, b) => b.leads - a.leads || b.carries - a.carries || a.key.localeCompare(b.key));
     const isOff = (g) => g.ids.every((id) => sourcesOff.has(id));
@@ -5553,16 +5574,15 @@
         const ids = rows.flatMap((g) => g.ids);
         const offN = rows.filter(isOff).length;
         const state = offN === rows.length ? "false" : offN === 0 ? "true" : "mixed";
-        const changes = rows.reduce((a, g) => a + g.changes, 0), darkens = rows.reduce((a, g) => a + g.darkens, 0);
+        const pr = priceOf(ids);
         const shelf = document.createElement("div"); shelf.className = "shelf" + (state === "false" ? " off" : state === "mixed" ? " mixed" : "");
         shelf.dataset.shelf = title;
         const head = document.createElement("div"); head.className = "shelf-head";
         const sw = document.createElement("button"); sw.type = "button"; sw.className = "shelf-sw";
         sw.setAttribute("role", "switch"); sw.setAttribute("aria-checked", state);
         sw.dataset.ids = ids.join(" "); sw.dataset.shelf = title;
-        const cost = changes || darkens
-          ? `off: ${changes.toLocaleString()} line${changes === 1 ? "" : "s"} change${darkens ? `, ${darkens.toLocaleString()} go bare` : ""}`
-          : "off: nothing on this book changes";
+        const cost = pr.text;
+        sw.dataset.costKnown = String(pr.known);
         sw.setAttribute("aria-label", `${state === "false" ? "switch on" : "switch off"} every dictionary on the shelf: ${title}`);
         sw.title = `${state === "false" ? "switch on" : "switch off"} all ${rows.length} on this shelf\n${cost}`;
         sw.addEventListener("click", () => {
