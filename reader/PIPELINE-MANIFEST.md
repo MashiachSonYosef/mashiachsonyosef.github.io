@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-27.
 
-**108 rules declared · 105 named by a check · 3 unguarded.**
+**109 rules declared · 106 named by a check · 3 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -60,6 +60,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/emit-language-sweep-record-v1.mjs, tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
 | `lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store` | tools/lattice-lib-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-lattice-orders-v1, check-lattice-parts-in-card-v1, check-lattice-projection-v1 |
 | `ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for` | tools/emit-ledger-index-v1.mjs | check-ledger-declared-v1 |
+| `licence-columns-rule-v1-the-licence-preference-is-a-baked-order-column-so-the-line-and-the-card-answer-as-one` | tools/gloss-m-v1.mjs, tools/regloss-zone.mjs, zone.html | check-card-opens-on-the-line-v1 |
 | `licence-name-rule-v1-the-record-names-the-licence` | tools/check-licence-names-v1.mjs | check-licence-names-v1 |
 | `licence-posture-name-rule-v1-the-record-names-the-licence` | tools/emit-license-postures-v1.mjs | check-posture-names-from-record-v1 |
 | `licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs` | zone.html | check-licence-leaves-v1 |
@@ -82,7 +83,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said` | tools/verify-pointing-store-v1.mjs | check-pointing-store-landing-v1 |
 | `pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land` | tools/land-pointing-store-v2-v1.mjs, tools/gloss-store-v1.mjs | check-pointing-store-landing-v1 |
 | `provider-declaration-rule-v1-closed-set-ship-whole-by-default` | tools/declaration-v1.mjs, tools/declarations-v1.json | check-citations-v1, check-cut-readings-v1, check-licence-leaves-v1, check-provider-characters-v1 |
-| `reading-order-rule-v1-the-first-reading-is-the-sorted-pools-first-and-not-the-stores-first-stored-row` | tools/check-first-reading-is-sorted-v1.mjs | check-first-reading-is-sorted-v1 |
+| `reading-order-rule-v1-the-first-reading-is-the-sorted-pools-first-and-not-the-stores-first-stored-row` | tools/check-card-opens-on-the-line-v1.mjs | check-card-opens-on-the-line-v1, check-first-reading-is-sorted-v1 |
 | `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1, check-nothing-unlanded-v1 |
 | `regloss-rule-v1-project-the-store-over-a-zones-own-keys` | tools/regloss-zone.mjs | check-page-agrees-with-store-v1 |
 | `respan-rule-v1-project-the-compspan-template-over-a-zones-own-keys` | tools/respan-zone-v1.mjs | check-respan-projection-v1 |
