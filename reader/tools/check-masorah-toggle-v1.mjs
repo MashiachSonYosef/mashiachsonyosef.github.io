@@ -74,8 +74,13 @@ const press = async (pos) => {
 };
 const hebrewOfSection = () => p.evaluate(() => {
   const s = document.querySelector("section.seg"); if (!s) return null;
+  // the ink and only the ink: the words' own Hebrew, never the English
+  // lines standing under them, which the letters switch is allowed to move
+  // (the line follows the card's leader, licence-columns-rule-v1) while
+  // the Hebrew above them never changes by a byte
   const he = s.querySelector(".he-text");
-  return { text: he ? he.textContent : "", words: s.querySelectorAll(".he-text .wb").length };
+  const ink = he ? [...he.querySelectorAll(".wb > .w")].map((w) => w.textContent).join(" ") : "";
+  return { text: ink, words: s.querySelectorAll(".he-text .wb").length };
 });
 const cardNow = () => p.evaluate(() => {
   const h = document.querySelector("#hud"); if (!h || h.hidden) return null;
