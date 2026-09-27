@@ -48,7 +48,8 @@ import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
-import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { zonesOnDisk, zonesServed } from "./zones-on-disk-v1.mjs";
+import { ERA_CUT_AD } from "./gloss-store-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -57,7 +58,9 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 
 const ARG = process.argv[2] || "";
 const BASE = (ARG || "http://127.0.0.1:8899/zone.html").split("?")[0];
-const BOOK = (ARG.match(/[?&]b=([a-z0-9-]+)/) || [])[1] || zonesOnDisk()[0];
+// a served book by default: the shelf's first name on disk is a fleet work
+// with no served page, and a check that opens one judges nothing
+const BOOK = (ARG.match(/[?&]b=([a-z0-9-]+)/) || [])[1] || (zonesServed()[0] || zonesOnDisk()[0]);
 
 const ZONE = join(K3, "data", "zones", `${BOOK}.bin`);
 const SHARDS = join(K3, "data", "route-store", "shards");
@@ -80,7 +83,7 @@ const rowsFor = (k) => {
 // second opinion typed here would test this file against itself, so the
 // shape is lifted from the engine and L4 holds the engine to it.
 const yearOf = (r) => { const y = String(r[4]); return /^\d{4}$/.test(y) ? Number(y) : Infinity; };
-const tierOf = (r) => (yearOf(r) <= 1940 ? 0 : 1);
+const tierOf = (r) => (yearOf(r) <= ERA_CUT_AD ? 0 : 1);
 const oldestFirst = (rs) => [...rs].sort((a, b) => tierOf(a) - tierOf(b) || yearOf(a) - yearOf(b) || a[0] - b[0])[0];
 const storedFirst = (rs) => [...rs].sort((a, b) => a[0] - b[0])[0];
 

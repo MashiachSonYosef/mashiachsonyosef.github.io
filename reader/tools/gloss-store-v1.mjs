@@ -53,6 +53,9 @@ import { gunzipSync } from "node:zlib";
 import { join } from "node:path";
 
 export const GLOSS_RULE_ID = "zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary";
+// the era cut, one constant: 1940 AD is 5700 AM, the last year of the 57th
+// century; the engine derives the same number from ERA_CUT_AM
+export const ERA_CUT_AD = 1940;
 export const GLOSS_RULE_TEXT =
   "a route text packs senses with ';' and a sense divides into readings at the commas outside the " +
   "provider's parentheses (sense-split-rule-v2); each division is one reading; a damaged sense is " +
@@ -197,7 +200,7 @@ export const openRouteStore = (storeDir) => {
         });
       });
     });
-    const tier = (r) => (Number.isFinite(r.year) && r.year <= 1940 ? 0 : 1);
+    const tier = (r) => (Number.isFinite(r.year) && r.year <= ERA_CUT_AD ? 0 : 1);
     const byOldest = (a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger;
     // Every order ends in the same tie-break, so two readings the order cannot
     // separate come out in the order rule 4 gives them rather than in whatever

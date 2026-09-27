@@ -147,6 +147,14 @@ const readLines = async (path, onLine) => {
   for await (const line of rl) if (line) onLine(line);
 };
 const routes = new Map();   // key -> [{ fp, text, src, lic, year, corpus, tr }]
+// the wording year the served store gives a source's own row for a reading
+const labelOf = new Map(Object.entries(store.index.m_sources || {}).map(([id, s]) => [id, s.label || ""]));
+const wordingYearOf = (key, card) => {
+  const rows = store.routesFor(key) || [];
+  const hit = rows.find((r) => labelOf.get(r[3]) === card.src && String(r[1]) === String(card.text));
+  const y = hit ? String(hit[4]) : "";
+  return /^\d{4}$/.test(y) ? Number(y) : null;
+};
 let routeLines = 0, routeCards = 0;
 await readLines(files.routes, (line) => {
   routeLines += 1;
@@ -172,7 +180,7 @@ await readLines(files.positions, (line) => {
 
 // ---- rule 2 · the join, verse by verse, proved by the key ------------------
 const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows_ungraded: 0, verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
-  hg: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
+  hg: 0, hm_year_unsaid: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
   ld: 0, grades: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
   held_examples: [] };
@@ -332,7 +340,14 @@ for (const sec of zone.sections || []) {
     else if (!L.in_routes || !Array.isArray(L.sorted_route_index) || !L.sorted_route_index.length || !routes.get(L.key)) stats.hg_skipped_lemma_not_in_routes += 1;
     else {
       const top = routes.get(L.key)[L.sorted_route_index[0]];
-      if (top) { w.hg = top.text; w.hm = { m: top.src, lic: top.lic, y: top.year }; stats.hg += 1; }
+      // THE CREDIT'S YEAR IS THE STORE'S. The lattice card carries a year of
+      // its own (BDB's 1906 on a reading SDBH repeats), and pairing it with
+      // the card's source named one source with another's year on 655 of
+      // Amos's 748 headword credits. The year said beside a source is the
+      // wording year of that source's own row for this reading, read from
+      // the served store; where no row of that source speaks the reading,
+      // no year is said.
+      if (top) { w.hg = top.text; w.hm = { m: top.src, lic: top.lic, y: wordingYearOf(L.key, top) }; stats.hg += 1; if (w.hm.y === null) stats.hm_year_unsaid += 1; }
       else stats.hg_skipped_lemma_not_in_routes += 1;
     }
     // rule 3 · ld, where the Leningrad codex differs

@@ -126,7 +126,7 @@ check("S1c the chooser offers three shelvings and each regroups the same chips w
 
 // S1d · the century shelves are cut where the reading order cuts its era
 // tier — one constant, said in AM, read off the page rather than typed here
-const eraCut = await p.evaluate(() => window.__eraCutCE);
+const eraCut = await p.evaluate(() => window.__eraCutAD);
 const centuryOK = await p.evaluate((cut) => {
   const row = document.querySelector('.rail .row[data-toggle="sources"]');
   row.querySelector('.shelve-opt[data-shelving="century"]').click();
@@ -148,7 +148,7 @@ const centuryOK = await p.evaluate((cut) => {
 }, eraCut);
 check("S1d the century shelves follow the era cut the reading order uses",
   Number.isInteger(eraCut) && eraCut + 3760 === 5700 && centuryOK.length === 0,
-  `era cut ${eraCut} CE = ${eraCut + 3760} AM${centuryOK.length ? ` · astray: ${centuryOK.slice(0, 3).join(", ")}` : ""}`);
+  `era cut ${eraCut} AD = ${eraCut + 3760} AM${centuryOK.length ? ` · astray: ${centuryOK.slice(0, 3).join(", ")}` : ""}`);
 
 // S1e · A SHELF SWITCH FLIPS THE WHOLE SHELF. Off turns off exactly its chips
 // and no other; one chip pressed back on makes the shelf say "mixed"; pressing
