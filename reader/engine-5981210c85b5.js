@@ -57,6 +57,11 @@
   };
   const hexOf = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
   const fetchBin = async (name) => {
+    // A SIDECAR THE SHELF DOES NOT PIN IS NOT ASKED FOR. The record beside
+    // the door names every bin the shelf holds; a book's optional sidecars
+    // (commentary, hoh, volume, lattice) were fetched on hope and answered
+    // 404 twice on every book of the site. Not pinned is not here.
+    if (ZSTORE && ZSTORE.pins && !(`${name}.bin` in ZSTORE.pins)) throw new Error(`${name}.bin: not on this shelf`);
     const res = await fetch(binUrl(name));
     if (!res.ok) throw new Error(`${name}.bin: ${res.status}`);
     const buf = await res.arrayBuffer();
@@ -222,15 +227,15 @@
   // THE ERA CUT, ONCE. The reading order's first tier is "of the era": a
   // source dated at or before this year answers ahead of every later one.
   // The constant was 1940 for weeks and read as a Gregorian guess. It is not:
-  // 1940 CE is 5700 AM, the last year of the 57th century by the count this
+  // 1940 AD is 5700 AM, the last year of the 57th century by the count this
   // project keeps, so the tier is the 57th/58th-century line and nothing
   // else (the corpus lane, 2026-09-22). The century shelf below is cut from
   // the same number, so the order and the shelf cannot drift apart. The gap
   // is wide on both sides: the newest 57th-century source is 1906, the
   // oldest 58th is 2007.
-  const AM_OFFSET = 3760;                       // CE year + 3760 = the AM year most of that CE year falls in
+  const AM_OFFSET = 3760;                       // AD year + 3760 = the AM year most of that AD year falls in
   const ERA_CUT_AM = 5700;
-  const ERA_CUT_CE = ERA_CUT_AM - AM_OFFSET;    // 1940
+  const ERA_CUT_AD = ERA_CUT_AM - AM_OFFSET;    // 1940
   const centuryAM = (y) => (/^\d{4}$/.test(String(y)) ? Math.ceil((Number(y) + AM_OFFSET) / 100) : null);
   const ordinal = (n) => `${n}${(n % 100 >= 11 && n % 100 <= 13) ? "th" : ({ 1: "st", 2: "nd", 3: "rd" })[n % 10] || "th"}`;
   const SOURCES_KEY = "fh.sources.off";
@@ -906,7 +911,7 @@
     `${zone.rule_id} · route: ${zone.route} · identity oracle ${oc.bridge_sha256.slice(0, 16)}… ` +
     `(${oc.sealed_units.toLocaleString()} units, C0 ${oc.first_c0_numeric_id.toLocaleString()}–${oc.last_c0_numeric_id.toLocaleString()}) · ` +
     (wk ? `${/RESIDENT_SERVE/.test(wk.route || "") ? `serve rule ${wk.walker_rule}; sealed-reader oracle ${wk.sealed_oracle.report.field_exact}/${wk.sealed_oracle.report.sampled} field-exact; ` : `walk: `}module ${wk.module.sha256.slice(0, 12)}…, pointer ${wk.pointer.sha256.slice(0, 12)}… · ${zone.emitted_from.license_receipts.per_occurrence} · ` : `payload sha ${ac.payload_sha256_transferred.slice(0, 16)}… · ${zone.emitted_from.license_receipts.work_activation} · `) +
-    `${zone.emitted_from.gloss_layer ? `glosses: ${zone.emitted_from.gloss_layer.rule} (table sha ${zone.emitted_from.gloss_layer.gloss_table_sha256.slice(0, 12)}…; ${zone.emitted_from.gloss_layer.attribution}) · ` : ""}` +
+    `${zone.emitted_from.gloss_layer ? `glosses: ${zone.emitted_from.gloss_layer.rule} (table sha ${zone.emitted_from.gloss_layer.gloss_table_sha256.slice(0, 12)}…; ${zone.emitted_from.gloss_layer.attribution || (zone.emitted_from.gloss_layer.store_version ? `store ${zone.emitted_from.gloss_layer.store_version}` : "the served store")}) · ` : ""}` +
     `${zone.emitted_from.span_layer && zone.emitted_from.span_layer.rule
       ? `components: ${zone.emitted_from.span_layer.rule} from ${zone.emitted_from.span_layer.source.path} (sha ${zone.emitted_from.span_layer.source.sha256.slice(0, 12)}…), ` +
         `${zone.emitted_from.span_layer.forms_with_a_component_system.toLocaleString()} forms, ` +
@@ -1169,7 +1174,10 @@
   // field value, never text for a reader.
   const NO_YEAR = "S_NO_SOURCE_YEAR";
   const hasYear = (y) => y !== undefined && y !== null && y !== "" && y !== NO_YEAR;
-  const yearTag = (y, axis) => (hasYear(y) ? ` \u00b7 ${axis} ${y}` : "");
+  // a year a reader sees wears its era — the owner writes AD/BC or AM, never
+  // CE — and every year a source prints of itself is an AD year
+  const adYear = (y) => (/^\d{3,4}$/.test(String(y)) ? `${y} AD` : String(y));
+  const yearTag = (y, axis) => (hasYear(y) ? ` \u00b7 ${axis} ${adYear(y)}` : "");
   // the same chip from witness records already in hand — a reading a toggle
   // moved onto the line carries its own M, not the baked column's
   const chipOfMs = (ms) => {
@@ -1320,7 +1328,7 @@
     return post.ok
       ? { ok: true, text: hit.text, label: m.label, posture: m.licensePosture,
           pointer: m.licensePointer, year: hasYear(m.sourceYear) ? m.sourceYear : "", obligations: post.obligations,
-          also: also.map((x) => `${x.label} · ${hasYear(x.sourceYear) ? `edition ${x.sourceYear}` : "edition year not supplied"} · ${x.licensePosture}`) }
+          also: also.map((x) => `${x.label} · ${hasYear(x.sourceYear) ? `edition ${adYear(x.sourceYear)}` : "edition year not supplied"} · ${x.licensePosture}`) }
       : { ok: false, why: post.why, label: m.label };
   };
 
@@ -2276,7 +2284,7 @@
   // divides into readings at the commas outside the provider's parentheses
   // (sense-split-rule-v2), and each reading is its own pill; a damaged sense
   // neither prints nor pools. Pills dedupe by text, merging the oldest year
-  // and lowest rank; oldest source leads, sources after the era cut (ERA_CUT_CE,
+  // and lowest rank; oldest source leads, sources after the era cut (ERA_CUT_AD,
   // the 57th/58th-century line in AM) and unyeared sources last.
   // the grade of one store row for the card's surface, as the pill exposes
   // it: the row's own headwords against the open word when it carries them,
@@ -2380,7 +2388,7 @@
     return pool;
   };
   const oldestFirst = (a, b) => {
-    const tier = (r) => (Number.isFinite(r.year) && r.year <= ERA_CUT_CE ? 0 : 1);
+    const tier = (r) => (Number.isFinite(r.year) && r.year <= ERA_CUT_AD ? 0 : 1);
     // A row with no year cannot be weighed by year. Comparing it by year
     // gave NaN, which fell through to catalog rank against a dated row while
     // two dated rows compared by year, so a pool mixing the two had no
@@ -5385,7 +5393,7 @@
   // dictionaries. Three shelvings, all read off records already on the shelf:
   //
   //   century    the AM century of the source's year, cut where the reading
-  //              order cuts its era tier (ERA_CUT_CE); "no year given" apart
+  //              order cuts its era tier (ERA_CUT_AD); "no year given" apart
   //   language   which Hebrew the dictionary is about: the Bible's, Hebrew in
   //              general, or Aramaic — the corpus lane's classification of
   //              each witness, with "+ Aramaic" on a Bible chip whose source
@@ -5417,7 +5425,7 @@
       // WRITTEN in, not the year its edition prints of itself. A source whose
       // words come from more than one century sits where most of its rows on
       // this book do, and its chip says the rest.
-      of: (g) => (g.wcMain && g.wcMain !== "none" ? `${ordinal(Number(g.wcMain))} century` : "no year given"),
+      of: (g) => (g.wcMain && g.wcMain !== "none" ? `${ordinal(Number(g.wcMain))} century AM` : "no year given"),
       rank: (title) => (title === "no year given" ? 1e9 : parseInt(title, 10)) },
     { id: "language", lab: "language",
       of: (g) => { const c = g.corpus; return c === "ARAMAIC" ? "Aramaic" : c === "BIBLICAL" ? "the Bible’s Hebrew" : "Hebrew in general"; },
@@ -5451,8 +5459,8 @@
       g.wcMain = cs.length ? cs[0][0] : "none";
       const total = cs.reduce((n, [, k]) => n + k, 0);
       g.wcSay = cs.length > 1
-        ? `wording: ${cs.map(([c, n]) => `${c === "none" ? "undated" : `${ordinal(Number(c))} century`} ${n.toLocaleString()}`).join(" · ")} rows on this book`
-        : cs.length ? `wording: all ${total.toLocaleString()} rows on this book ${g.wcMain === "none" ? "undated" : `from the ${ordinal(Number(g.wcMain))} century`}` : "";
+        ? `wording: ${cs.map(([c, n]) => `${c === "none" ? "undated" : `${ordinal(Number(c))} century AM`} ${n.toLocaleString()}`).join(" · ")} rows on this book`
+        : cs.length ? `wording: all ${total.toLocaleString()} rows on this book ${g.wcMain === "none" ? "undated" : `from the ${ordinal(Number(g.wcMain))} century AM`}` : "";
     }
     for (const g of groups.values()) {
       g.corpus = g.ids.map((id) => CORPUS_OF(id)).find(Boolean) || "UNDECLARED";
@@ -5573,7 +5581,7 @@
         shelvesHost.append(shelf);
       }
       window.__shelveBy = shelveBy;
-      window.__eraCutCE = ERA_CUT_CE;
+      window.__eraCutAD = ERA_CUT_AD; window.__eraCutCE = ERA_CUT_AD;   // the old name, read by an older check, for one release
       window.__shortNameFallbacks = ordered.filter((g) => g.shortIsFallback).map((g) => g.key);
     };
 
