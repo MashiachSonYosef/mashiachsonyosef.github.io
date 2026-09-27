@@ -184,12 +184,26 @@ const wbDiv = divIx >= 0 ? wbs[divIx] : null;
     await wbDiv.click();
     await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
     await p.waitForTimeout(150);
-    await p.evaluate(() => {
+    // A maqaf run's card offers its whole forms as divisions — as written,
+    // joined, the folds — and a form no source publishes is offered and says
+    // so, with no reading under it and no record: that is the card telling
+    // the truth, not a band that lost its pills. The stress stands on a
+    // division that HAS readings, so the many-part one is tried first and
+    // the others in their order until one answers.
+    const stood = await p.evaluate(async () => {
+      const wait = (ms) => new Promise((r) => setTimeout(r, ms));
       const bs = [...document.querySelectorAll("#hud .b-cut .s-pills button")];
       const many = bs.find((x) => (x.textContent.match(/\+/g) || []).length >= 2) || bs[1];
-      if (many) many.click();
+      const opened = bs.find((x) => x.getAttribute("aria-pressed") === "true") || null;
+      const order = many ? [many, ...bs.filter((x) => x !== many)] : bs;
+      for (const d of order) {
+        d.click(); await wait(400);
+        if (document.querySelector("#hud .r-pills button")) return d.textContent.trim();
+      }
+      if (opened) { opened.click(); await wait(400); }
+      return null;
     });
-    await p.waitForTimeout(400);
+    if (!stood) console.log("        no division of this card carries a reading — stressing the card as it opened");
     const stressed = await p.evaluate(() => {
       const h = document.getElementById("hud");
       for (const q of [".b-cut .s-pills", ".b-cell .s-pills"]) {

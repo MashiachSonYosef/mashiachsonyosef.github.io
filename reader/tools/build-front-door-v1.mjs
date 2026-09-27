@@ -249,6 +249,15 @@ const SITE_HOST = (() => {
 // place either is decided, so the door, the work pages, the held addresses
 // and the README cannot drift apart from one another.
 const SITE_NAME = SITE_HOST || "The Tabernacle";
+// THE SITE'S WHOLE ADDRESS, for the one reader that cannot follow a relative
+// one: a crawler. The owner verified the domain with Google (2026-09-27) and
+// it would not crawl — the site offered it no sitemap, no robots file, one
+// title on every work page, and a canonical that pointed at a redirect (Pages
+// answers /amos with a 301 to /amos/). Every address the door writes is
+// listed as it is written, and the list is emitted as the sitemap at the end.
+const ORIGIN = SITE_HOST ? `https://${SITE_HOST}` : "";
+const SITEMAP = [];
+const listed = (path) => { SITEMAP.push(path); return path; };
 const TEXT_PIN_PATHS = [
   "data/corpus-atlas-v1.json",
   "data/bezelal-front-door-counts-handoff-v1.json",
@@ -2641,13 +2650,25 @@ const readerPage = (b) => {
   // same everything; two extra metas say which address it stands at and
   // which rule it demonstrates. The rule's plain English is written once, in
   // the demonstration record, and rides in here — the page never re-words it.
+  // The canonical is the address Pages actually answers at — the directory,
+  // with its slash — and whole, so a crawler is not sent through the 301
+  // that the bare form draws. The page's own title and description are the
+  // work's, where the work has a name: a crawler reads the head, not the
+  // masthead the engine paints, and thirty-nine pages under one title read
+  // as one page thirty-nine times.
+  const canonical = `${(b.canonical || `/${b.slug}`).replace(/\/?$/, "/")}`;
+  listed(canonical);
   const metas =
     `<meta name="reader-book" content="${b.slug}">\n` +
     `<meta name="reader-home" content="/${ENGINE}/">\n` +
     `<meta name="site-name" content="${SITE_NAME}">\n` +
     (b.demonstration ? `<meta name="reader-demonstration" content="${esc(b.demonstration)}">\n` : "") +
-    `<link rel="canonical" href="${b.canonical || `/${b.slug}`}">\n`;
-  return ZONE_HTML
+    (b.en ? `<meta name="description" content="${esc(b.en)}, read word by word in Hebrew: every reading traced to the record that carries it, and every record to its license.">\n` : "") +
+    `<link rel="canonical" href="${ORIGIN}${canonical}">\n`;
+  const titled = b.en
+    ? ZONE_HTML.replace(/<title>[^<]*<\/title>/, `<title>${esc(b.en)} · ${SITE_NAME}</title>`)
+    : ZONE_HTML;
+  return titled
     .replace(anchor, metas + anchor)
     .replace(engineBlocks.css.whole, `<link rel="stylesheet" href="/${ENGINE}/${engineBlocks.css.name}">`)
     .replace(engineBlocks.js.whole, `<script src="/${ENGINE}/${engineBlocks.js.name}"></script>`);
@@ -2699,11 +2720,11 @@ const scrubTitles = (text) => {
 if (HEBREW.test(readme)) throw new Error("the README printed a character of the text — refusing output");
 
 mkdirSync(OUT, { recursive: true });
-writeFileSync(join(OUT, "index.html"), doc);
+writeFileSync(join(OUT, "index.html"), doc); listed("/");
 mkdirSync(join(OUT, "census"), { recursive: true });
-writeFileSync(join(OUT, "census", "index.html"), censusPageDoc);
+writeFileSync(join(OUT, "census", "index.html"), censusPageDoc); listed("/census/");
 mkdirSync(join(OUT, "opensourcing"), { recursive: true });
-writeFileSync(join(OUT, "opensourcing", "index.html"), openSourcingDoc);
+writeFileSync(join(OUT, "opensourcing", "index.html"), openSourcingDoc); listed("/opensourcing/");
 // The demonstrations, at their own address.
 //
 // They were going to sit on the front door and the door refused to emit them:
@@ -2804,7 +2825,7 @@ ${RD.rules.map((r) => fold(r, rulePage(r))).join("\n")}
   // previous build having left one behind. That held until the first build
   // into a clean tree, which is exactly the build that has to work.
   mkdirSync(join(OUT, "demonstrations"), { recursive: true });
-  writeFileSync(join(OUT, "demonstrations", "index.html"), idx);
+  writeFileSync(join(OUT, "demonstrations", "index.html"), idx); listed("/demonstrations/");
   if (ccArticle) {
     const head = idx.split("<body>")[0];
     const pal = `${head}<body><main>
@@ -2814,7 +2835,7 @@ ${RD.rules.map((r) => fold(r, rulePage(r))).join("\n")}
 ${ccArticle}
 </main></body></html>`;
     mkdirSync(join(OUT, "palette"), { recursive: true });
-    writeFileSync(join(OUT, "palette", "index.html"), pal);
+    writeFileSync(join(OUT, "palette", "index.html"), pal); listed("/palette/");
   }
   let rdPages = 0;
   for (const r of RD.rules) {
@@ -2964,7 +2985,12 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
   for (const f of shelfZoneFiles()) {
     const slug = f.replace(/\.bin$/, "");
     if (covered.has(slug)) continue;
-    const page = readerPage({ slug });
+    // the work's English name titles the page where the zone carries one
+    // without a character of the text in it; a name the page could not
+    // stand behind leaves the reader's own title in place
+    const zi = ZONE_INFO.get(slug);
+    const en = zi && zi.workEn && zi.workEn !== slug && !HEBREW.test(zi.workEn) ? zi.workEn : undefined;
+    const page = readerPage({ slug, en });
     const stripped = page.split(slug).join("");
     if (HEBREW.test(stripped)) throw new Error(`${slug}: the work page carries Hebrew beyond the recorded id — refusing output`);
     mkdirSync(join(OUT, slug), { recursive: true });
@@ -2972,6 +2998,19 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
     fleetPages += 1;
   }
   console.log(`  ${n(fleetPages)} fleet work addresses emitted beside the ${books.length} book page${books.length === 1 ? "" : "s"}`);
+}
+// THE SITEMAP AND THE ROBOTS FILE: every address written above, whole, in
+// the order it was written; and a robots file that allows every crawler and
+// names the sitemap. Withheld addresses are not listed — they answer, but
+// there is nothing at them to index. Only when the site has an address of
+// its own: a sitemap of relative paths is not one.
+if (ORIGIN) {
+  const urls = [...new Set(SITEMAP)];
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
+    + urls.map((u) => `  <url><loc>${esc(ORIGIN + u)}</loc></url>`).join("\n") + `\n</urlset>\n`;
+  writeFileSync(join(OUT, "sitemap.xml"), xml);
+  writeFileSync(join(OUT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);
+  console.log(`  sitemap.xml: ${n(urls.length)} addresses · robots.txt allows every crawler`);
 }
 
 // ---- reference groups: the owner's naming ruling, 2026-08-30 --------------

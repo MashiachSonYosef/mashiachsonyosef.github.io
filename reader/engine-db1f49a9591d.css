@@ -962,6 +962,9 @@
      instead of the reading — the pill was there, on screen, and dead. */
   #hud .band { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
   #hud .band > .r-label { flex: 0 0 auto; }
+  /* the last thing a card gives up on a window too short for its bands: the
+     bands' own labels, so the pills stand unlabelled but stand */
+  #hud .rows.tight .band > .r-label { display: none; }
   /* overflow-x hidden as well as overflow-y auto: setting one axis to auto makes
      the other auto too, and a horizontal scrollbar nobody asked for took nine
      pixels off the height — so a box given exactly three rows had room to show

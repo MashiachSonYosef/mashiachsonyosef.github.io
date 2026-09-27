@@ -1714,6 +1714,13 @@
     // as itself, each paragraph a row: unfitted, the rows region kept the
     // height the pills had and cut a three-line message after its first
     const readBand = hud.querySelector(".b-read");
+    // and when the pills arrive after a prose fit — "asking the catalog for
+    // this block…" gave way to 165 readings — the band's own height, set
+    // while it was the box, is released before anything is measured: the
+    // reset below reaches only the box of the moment, and a band held at
+    // its prose height stood 65px tall over a pills box it showed 4px of,
+    // every pill present and none pressable
+    if (readBand && read) { readBand.style.height = ""; readBand.style.maxHeight = ""; }
     const bands = [
       { el: hud.querySelector(".b-cut"), box: hud.querySelector(".b-cut .s-pills") },
       { el: hud.querySelector(".b-cell"), box: hud.querySelector(".b-cell .s-pills") },
@@ -1733,6 +1740,7 @@
     if (dSlot) dSlot.style.maxHeight = "";
     if (prov) prov.hidden = false;
     if (vol) vol.hidden = false;
+    rowsEl.classList.remove("tight");
     for (const x of bands) { x.box.style.height = ""; x.box.style.maxHeight = ""; }
     for (const x of bands) {
       x.rows = rowsOf(x.box);
@@ -1880,11 +1888,59 @@
         if (to < dSlot.clientHeight - 1) { dSlot.style.maxHeight = `${Math.floor(to)}px`; handOut(); }
       }
     }
+    // THE READINGS BAND'S OWN SHORTFALL, read off the outcome. owedShort asks
+    // whether the structural bands got their share; nothing above asks
+    // whether the bands as a whole ended inside the region. A maqaf run's
+    // card carries three bands, and on a short window the three floors alone
+    // overran the region — measured 193px against 160 — while the record
+    // stood unlent and the count and the provenance line stood visible under
+    // it: the readings were scrolled out of the region, present and dead,
+    // every pill's centre landing on the record. So the overrun is measured
+    // as it stands, and the yielders yield in the card's own order: the
+    // provenance line, the count, then the record down to its floor, each
+    // followed by a fresh handout.
+    // These are a last resort, and a fit that needed them still answers
+    // "did not fit": the caller's law is unchanged — a card under a
+    // placement budget that cannot hold its bands has the budget released
+    // and is fitted again with the room it then has, and only a card that
+    // fits with nothing given up answers true. Answering true here instead
+    // kept a card on a tall phone short under its word with the provenance
+    // line, the count and the labels gone and 300px of window unused. What
+    // changes is only the layout a card is left with when nothing fits: its
+    // readings and its selectors stand, instead of the readings scrolling
+    // out of the region under the record.
+    let lastResort = false;
+    const overrun = () => bands.reduce((n, x) => n + x.el.offsetHeight, 0) - rowsEl.clientHeight;
+    if (overrun() > 1 && prov && prov.offsetHeight) { prov.hidden = true; lastResort = true; handOut(); }
+    if (overrun() > 1 && vol && vol.offsetHeight) { vol.hidden = true; lastResort = true; handOut(); }
+    if (overrun() > 1 && dSlot && !dSlot.classList.contains("whole")) {
+      // the record's floor here is what the window affords it — the same
+      // three, two or one lines the structural bands are capped at — and
+      // never less than one line above its source: on a window 440px tall
+      // the three-line floor alone held 142px of a 382px card, and the
+      // readings had nowhere left to stand
+      const foot = hud.querySelector(".d-foot");
+      const dLine = parseFloat(getComputedStyle(hud.querySelector(".d-text") || dSlot).lineHeight) || 26;
+      // the chrome above the record's text — its own head — is part of the
+      // floor: a floor of foot plus lines alone left 4px of text above the
+      // source on a card whose head took the line's room
+      const body = hud.querySelector(".d-card .d-body");
+      const chromeAbove = body ? Math.max(0, Math.ceil(body.getBoundingClientRect().top - dSlot.getBoundingClientRect().top + dSlot.scrollTop)) : 0;
+      const floor = (foot ? foot.offsetHeight : 0) + Math.ceil(dLine * cap) + chromeAbove;
+      const give = Math.min(Math.ceil(overrun()), Math.max(0, dSlot.clientHeight - floor));
+      if (give > 0) { dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`; lastResort = true; handOut(); }
+    }
+    // And when the card still cannot hold its bands — a window 440px tall,
+    // a run's three bands, a source line three rows of chips deep — the
+    // bands give up their labels, which are the one thing in them nobody
+    // presses: the pills stand unlabelled, and stand. Released at the top
+    // of every fit, so a taller window has its labels back.
+    if (overrun() > 1) { rowsEl.classList.add("tight"); lastResort = true; handOut(); }
     // did every band end up with the row it is owed, in the space it actually
-    // has? The caller decides what to do about it — there is nothing left here
-    // to take it out of.
+    // has, with nothing given up? The caller decides what to do about it —
+    // there is nothing left here to take it out of.
     const stands = bands.reduce((n, x) => n + x.el.offsetHeight, 0);
-    return stands <= rowsEl.clientHeight + 1;
+    return stands <= rowsEl.clientHeight + 1 && !lastResort;
   };
 
   // AT THE END OF THE PLACEMENT, AND THE END MEANS THE END. The snap below was
