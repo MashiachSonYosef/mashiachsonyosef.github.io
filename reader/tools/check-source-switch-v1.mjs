@@ -81,24 +81,42 @@ const rail = await p.evaluate(() => {
   };
 });
 const keysInReceipt = new Set(Object.values(rec.sources).map((s) => s.key || ""));
-// the two costs the receipt bakes for each source key, summed over its ids —
-// what the chip must be saying, by value
+// the two costs the chip must be saying, by value: the JOINT price the
+// receipt bakes for the chip's own set of ids (joint-switch-cost-rule-v1),
+// never a sum over its ids — a set thrown together is not the sum of its
+// members. A receipt from before the rule carries no joint prices; then the
+// chip says "not baked" and the cost half of S1 is not judged.
+const joint = rec.joint && rec.joint.sets ? rec.joint.sets : null;
+const idsByKey = new Map();
+for (const [id, s] of Object.entries(rec.sources)) { const k = s.key || id; if (!idsByKey.has(k)) idsByKey.set(k, []); idsByKey.get(k).push(id); }
 const costOf = new Map();
-for (const s of Object.values(rec.sources)) {
-  const k = s.key || "";
-  const c = costOf.get(k) || { changes: 0, darkens: 0 };
-  c.changes += Number(s.changes) || 0; c.darkens += Number(s.darkens) || 0;
-  costOf.set(k, c);
-}
+const said = (j) => (typeof j.lines_change === "number" ? { changes: Number(j.lines_change) || 0, darkens: Number(j.lines_bare) || 0 } : { changes: Number(j.changes) || 0, darkens: Number(j.darkens) || 0 });
+for (const [k, ids] of idsByKey) { const j = joint && joint[[...ids].sort().join(" ")]; if (j) costOf.set(k, said(j)); }
 const wrongCost = rail ? rail.keys.filter((k) => {
   const want = costOf.get(k), said = (rail.said || {})[k] || [];
-  if (!want) return true;
+  if (!want) return !!joint;   // no joint price baked: not judged
   // a cost of zero may be left unsaid in words; a non-zero one may not
   return (want.changes && !said.includes(want.changes)) || (want.darkens && !said.includes(want.darkens));
 }) : [];
 check("S1  the sources row is on the rail, every chip on, each saying what its switch costs and carrying its ids",
   rail && !rail.dead && rail.n > 0 && rail.allOn && wrongCost.length === 0 && rail.withIds === rail.n,
-  rail ? `${rail.n} chips · ${rail.n - wrongCost.length} say both their costs · ${rail.withIds} with ids${wrongCost.length ? ` · not saying them: ${wrongCost.slice(0, 3).join(", ")}` : ""}` : "no row");
+  rail ? `${rail.n} chips · ${joint ? `${rail.n - wrongCost.length} say their joint costs` : "no joint prices baked on this book; costs not judged"} · ${rail.withIds} with ids${wrongCost.length ? ` · not saying them: ${wrongCost.slice(0, 3).join(", ")}` : ""}` : "no row");
+// S1f · every shelf's cost is the baked joint price of its own set of ids
+const shelfCosts = await p.evaluate(() => {
+  const row = document.querySelector('.rail .row[data-toggle="sources"]');
+  const out = [];
+  for (const sid of ["century", "language", "license"]) {
+    row.querySelector(`.shelve-opt[data-shelving="${sid}"]`).click();
+    for (const sh of row.querySelectorAll(".shelf")) { const sw = sh.querySelector(".shelf-sw"); out.push({ sid, title: sh.dataset.shelf, ids: (sw.dataset.ids || "").split(" ").filter(Boolean).sort().join(" "), known: sw.dataset.costKnown === "true", said: (String(sw.title).match(/[\d,]+/gu) || []).map((x) => Number(x.replace(/,/gu, ""))) }); }
+  }
+  row.querySelector('.shelve-opt[data-shelving="century"]').click();
+  return out;
+});
+const shelfWrong = joint ? shelfCosts.filter((s) => { const j = joint[s.ids]; if (!j) return !s.known ? false : true; const w = said(j); return (w.changes && !s.said.includes(w.changes)) || (w.darkens && !s.said.includes(w.darkens)); }) : [];
+const shelfUnbaked = shelfCosts.filter((s) => !s.known);
+check("S1f every shelf says the joint price baked for its own set, or says it is not baked — never a sum",
+  shelfWrong.length === 0 && (!joint || shelfUnbaked.length === 0),
+  `${shelfCosts.length} shelves · ${shelfUnbaked.length} not baked${shelfWrong.length ? ` · astray: ${shelfWrong.slice(0, 2).map((s) => `${s.sid}/${s.title}`).join(", ")}` : ""}`);
 // S1b · the short names. Every chip on the strip wears the record's name for
 // its key (source-short-names-rule-v1); a chip with no entry falls back to its
 // own label cut short, and this says which, so the record can be completed.

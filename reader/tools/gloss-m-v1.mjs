@@ -186,3 +186,76 @@ export const sourceSwitchCosts = (store, gloss, gm) => {
   }
   return out;
 };
+
+// THE COST OF A SET OF SWITCHES THROWN TOGETHER. The rail throws sets: a
+// chip (every ledger id of one source), a shelf (every source of one
+// century, language or licence). The page priced a set by adding its
+// members' costs, and a joint throw is not a sum — a line one member
+// leads and another also carries changes under the set and under
+// neither alone; a line every member carries between them goes bare
+// under the set and under none of them. On Amos the "no year given"
+// shelf said 295 change and 560 go bare; thrown, it left 2,303 bare.
+// So every set the rail can throw is priced here, thrown as one, against
+// the served store, and keyed by its own ids so the page can only read
+// the price of exactly the set it holds — never add, never guess.
+//
+// The sets: one per source key (the chips), and one per shelf of each
+// shelving, grouped as the page groups them (its own rules, mirrored
+// here and named in the record so a drift shows as a set the page does
+// not find). A set the page cannot find prices as "not baked", never as a
+// sum.
+const licShelf = (lic) => {
+  const p = String(lic || "").toLowerCase();
+  if (/\bnc\b|non-?commercial/.test(p)) return "non-commercial";
+  if (/public domain|cc0/.test(p)) return "public domain";
+  if (/by-sa/.test(p)) return "share-alike (CC BY-SA)";
+  if (/cc by|cc-by/.test(p)) return "credit required (CC BY)";
+  return "other terms";
+};
+const ordinal = (n) => `${n}${(n % 100 >= 11 && n % 100 <= 13) ? "th" : ({ 1: "st", 2: "nd", 3: "rd" })[n % 10] || "th"}`;
+export const JOINT_COST_RULE_ID = "joint-switch-cost-rule-v1-a-set-of-switches-is-priced-thrown-together-and-read-by-its-own-ids";
+// weights: key -> the positions on the book that read under that key, so a
+// price can be said in LINES a reader sees as well as in distinct forms
+export const jointSwitchCosts = (store, gloss, gm, table, corpusRec, weights = null) => {
+  // the chips: ids grouped by the source's own key
+  const byKey = new Map();
+  for (const [id, s] of Object.entries(table)) { const k = s.key || id; if (!byKey.has(k)) byKey.set(k, []); byKey.get(k).push(id); }
+  const groups = [...byKey.entries()].map(([key, ids]) => {
+    const wc = {}; for (const id of ids) for (const [c, n] of Object.entries(table[id].wc || {})) wc[c] = (wc[c] || 0) + n;
+    const cs = Object.entries(wc).sort((a, b) => b[1] - a[1] || (a[0] === "none") - (b[0] === "none") || Number(a[0]) - Number(b[0]));
+    const wcMain = cs.length ? cs[0][0] : "none";
+    const corpus = ids.map((id) => ((corpusRec && corpusRec.witnesses && corpusRec.witnesses[id]) || {}).corpus || null).find(Boolean) || "UNDECLARED";
+    return { key, ids: [...ids].sort(), wcMain, corpus, lic: table[ids[0]].lic };
+  });
+  const shelfOf = {
+    century: (g) => (g.wcMain && g.wcMain !== "none" ? `${ordinal(Number(g.wcMain))} century AM` : "no year given"),
+    language: (g) => (g.corpus === "ARAMAIC" ? "Aramaic" : g.corpus === "BIBLICAL" ? "the Bible\u2019s Hebrew" : "Hebrew in general"),
+    license: (g) => licShelf(g.lic),
+  };
+  const sets = new Map();   // ids key -> { ids, what }
+  const put = (ids, what) => { const k = [...new Set(ids)].sort().join(" "); if (!sets.has(k)) sets.set(k, { ids: k.split(" "), what: [] }); sets.get(k).what.push(what); };
+  for (const g of groups) put(g.ids, `chip ${g.key}`);
+  for (const [sid, of] of Object.entries(shelfOf)) {
+    const shelves = new Map();
+    for (const g of groups) { const title = of(g); if (!shelves.has(title)) shelves.set(title, []); shelves.get(title).push(...g.ids); }
+    for (const [title, ids] of shelves) put(ids, `shelf ${sid}: ${title}`);
+  }
+  // priced: only a key whose printed reading some member carries can move
+  const priced = new Map([...sets.keys()].map((k) => [k, { changes: 0, darkens: 0, lines_change: 0, lines_bare: 0 }]));
+  const setsOfId = new Map();
+  for (const [k, s] of sets) for (const id of s.ids) { if (!setsOfId.has(id)) setsOfId.set(id, []); setsOfId.get(id).push(k); }
+  for (const [k, text] of Object.entries(gloss || {})) {
+    const e = gm[k];
+    if (!e || !Array.isArray(e.by) || !e.by.length) continue;
+    const touched = new Set(e.by.flatMap((id) => setsOfId.get(id) || []));
+    for (const sk of touched) {
+      const g = store.glossFor(k, "oldest", null, new Set(sets.get(sk).ids));
+      const w = weights ? (weights[k] || 0) : 0;
+      if (g.text === null) { priced.get(sk).darkens += 1; priced.get(sk).lines_bare += w; }
+      else if (g.text !== text) { priced.get(sk).changes += 1; priced.get(sk).lines_change += w; }
+    }
+  }
+  const out = {};
+  for (const [k, s] of sets) out[k] = { ...priced.get(k), what: s.what };
+  return { rule: JOINT_COST_RULE_ID, counts: "changes/darkens count distinct forms; lines_change/lines_bare count the positions on this book that read under them (a word by its own key, a divided word by each part's key)", sets: out, groupings: "chips by source key; shelves as the page shelves them: century by the majority wording century (ties to the older), language by the corpus record's corpus of the key's first id, licence by the posture's family" };
+};

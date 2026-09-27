@@ -30,7 +30,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
-import { glossMFor, sourceSwitchCosts, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
+import { glossMFor, sourceSwitchCosts, jointSwitchCosts, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
+import { existsSync as existsSync_ } from "node:fs";
 import { formsOfRun, WELD_FORMS_RULE_ID } from "./weld-forms-v1.mjs";
 import { SWITCH_RULE_ID } from "./gloss-store-v1.mjs";
 import { cellsOf } from "./span-slice-v1.mjs";
@@ -182,6 +183,16 @@ zone.emitted_from.gloss_layer = {
 // shard at a time. The unit the reader switches is the source's own key;
 // the ids are the ledger's, and both are on the table.
 const switchTable = sourceSwitchCosts(store, gloss, glossM);
+// the corpus record the page shelves languages by, read from beside the zones
+const corpusPath = String(inPath).replace(/data\/zones\/.*$/u, "") + "data/source-corpus-v1.json";
+const corpusRec = existsSync_(corpusPath) ? JSON.parse(readFileSync(corpusPath, "utf8")) : null;
+// positions per key: a word by its own key, a divided word by each part's
+const weights = {};
+for (const sec of zone.sections || []) for (const w of sec.words || []) {
+  if (w.k) weights[w.k] = (weights[w.k] || 0) + 1;
+  else if (Array.isArray(w.w)) for (const a of w.w) if (a && a.k && !String(a.k).includes("\u05be")) weights[a.k] = (weights[a.k] || 0) + 1;
+}
+const joint = jointSwitchCosts(store, gloss, glossM, switchTable, corpusRec, weights);
 const withBy = Object.values(glossM).filter((e) => Array.isArray(e.by)).length;
 const withAlt = Object.values(glossM).filter((e) => e.alt).length;
 zone.emitted_from.toggles = zone.emitted_from.toggles || {};
@@ -201,6 +212,7 @@ zone.emitted_from.toggles.sources = {
     source_keys: new Set(Object.values(switchTable).map((s) => s.key || "")).size,
   },
   sources: switchTable,
+  joint,
   branch: {
     waits: "each source's own declarations about itself — language, part of speech, period, sense type — toggleable a declaration at a time under the source's switch; the corpus lane's declarations ledger has not shipped, so the rail draws no branch",
   },
