@@ -61,7 +61,10 @@
     // the door names every bin the shelf holds; a book's optional sidecars
     // (commentary, hoh, volume, lattice) were fetched on hope and answered
     // 404 twice on every book of the site. Not pinned is not here.
-    if (ZSTORE && ZSTORE.pins && !(`${name}.bin` in ZSTORE.pins)) throw new Error(`${name}.bin: not on this shelf`);
+    // A fixture is a test instrument, never pinned; a check that asks for
+    // one with ?fixture=1 gets it, and the page's own refusal below still
+    // keeps it from being served as a work.
+    if (ZSTORE && ZSTORE.pins && !(`${name}.bin` in ZSTORE.pins) && QUERY.get("fixture") !== "1") throw new Error(`${name}.bin: not on this shelf`);
     const res = await fetch(binUrl(name));
     if (!res.ok) throw new Error(`${name}.bin: ${res.status}`);
     const buf = await res.arrayBuffer();
