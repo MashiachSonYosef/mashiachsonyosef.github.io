@@ -3818,7 +3818,9 @@
         // the pool as sorted, said on the row and exposed, so a check can ask
         // the page what it offered rather than read it off the pills
         const classOf = (r) => Math.min(...r.records.map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture)));
-        window.__pool = sorted.map((r) => r.text);
+        // as the pills print it (spanJoin: pieces joined, a closing period
+        // not drawn), so what a check reads here is what a reader sees
+        window.__pool = sorted.map((r) => spanJoin(r.text));
         pills.dataset.firstLic = String(classOf(sorted[0]));
         pills.dataset.minLic = String(Math.min(...sorted.map(classOf)));
         // what the masorah filter withheld, on the row and exposed, so a
