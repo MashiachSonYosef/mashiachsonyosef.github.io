@@ -2999,6 +2999,120 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
   }
   console.log(`  ${n(fleetPages)} fleet work addresses emitted beside the ${books.length} book page${books.length === 1 ? "" : "s"}`);
 }
+// THE CHAPTER PAGES (chapter-page-rule-v1). A search for "Amos 3:7" cannot
+// land on a reader that is one address per book with the text arriving
+// sealed: the crawler sees one page called Amos, if its render finishes,
+// and nothing called Amos 3:7. So every stamped book — the count stamp is
+// what marks a served book, 39 on this shelf — gets a static page per
+// chapter: the reference in the title, every verse a heading, and under
+// each verse the English readings the shelf prints for its words, each
+// credited to its source and licence, and a link that opens the reader at
+// that verse (?at=label, the reader's own locator). The page carries no
+// character of the Hebrew: the ink lives only in the sealed bin, as on
+// every work page, and that is asserted here as it is there. These are the
+// front porch onto the reader, not a second reader; the reader does not
+// know they exist.
+{
+  const stamped = [...ZONE_INFO.values()].filter((zi) => zi.stamp);
+  let chapterPages = 0, versesOn = 0;
+  const receipt = { rule: "chapter-page-rule-v1-a-searchable-page-per-chapter-carries-the-readings-credited-and-no-ink-and-opens-the-reader-at-the-verse",
+    emitted_by: "tools/build-front-door-v1.mjs", letter: "Y", what: "a static page per chapter of every stamped book: the reference, every verse a heading, the readings the zone bakes for its words credited by source, a link opening the reader at the verse (?at=label); no character of the Hebrew", books: {} };
+  const cssChapter = `body{margin:0;background:#f1e9d8;color:#3a3348;font:17px/1.6 Georgia,serif;padding:1.2rem 1rem 3rem}
+  main{max-width:38rem;margin:0 auto} h1{font-size:1.5rem;margin:.4rem 0 .2rem} .sub{color:#7b7290;font-size:.9rem;margin:0 0 1.2rem}
+  h2{font-size:1.05rem;margin:1.4rem 0 .3rem;color:#5c5270} .r{margin:0 0 .3rem;line-height:1.75}
+  .r span{white-space:nowrap} .r i{font-style:normal;color:#96700f;font-size:.72em;letter-spacing:.02em}
+  sup{font-size:.62em;color:#96700f;margin-left:.1em} footer ol{padding-left:1.4em;margin:.3rem 0 .8rem}
+  .open{font-size:.88rem} a{color:#96700f} nav{display:flex;justify-content:space-between;font-size:.9rem;margin:1.6rem 0 0}
+  footer{margin-top:2rem;font-size:.82rem;color:#7b7290}`;
+  for (const zi of stamped) {
+    const bytes = readFileSync(join(ZONES, `${zi.slug}.bin`));
+    const z = JSON.parse(gunzipSync(bytes).toString("utf8"));
+    const en = z.work || zi.workEn || zi.slug;
+    if (HEBREW.test(en)) continue;
+    const gloss = z.gloss || {}, gm = z.gloss_m || {};
+    // chapters in the order the sections come; a label with no colon is
+    // its own chapter (one section on the page)
+    const chapters = new Map();
+    for (const sec of z.sections || []) {
+      const label = String(sec.label || "");
+      if (!label) continue;
+      const ch = label.includes(":") ? label.split(":")[0] : label;
+      if (!chapters.has(ch)) chapters.set(ch, []);
+      chapters.get(ch).push(sec);
+    }
+    const chs = [...chapters.keys()];
+    const tally = { work: en, chapters: chs.length, verses: 0, readings: 0, readings_quoting_hebrew_held: 0 };
+    chs.forEach((ch, ci) => {
+      const secs = chapters.get(ch);
+      // the sources of this chapter, numbered in order of first appearance:
+      // each reading carries its number, the legend at the foot names the
+      // source and its licence once. A reading that itself quotes Hebrew
+      // letters (Strong's Aramaic "corresponding to …", 260 across the
+      // shelf) is not printed here — the page carries no ink — and says so.
+      const sources = new Map();
+      const numOf = (who, lic) => { if (!sources.has(who)) sources.set(who, { n: sources.size + 1, lic }); return sources.get(who).n; };
+      let quotesHebrew = 0;
+      const verses = secs.map((sec) => {
+        const label = String(sec.label);
+        const parts = [];
+        for (const w of sec.words || []) {
+          const keys = Array.isArray(w.w) ? w.w.map((r) => r.k) : (w.k ? [w.k] : []);
+          for (const k of keys) {
+            const g = gloss[k];
+            if (!g) continue;
+            const m = gm[k];
+            const who = m && m.m ? String(m.m) : "";
+            const lic = m && m.lic ? String(m.lic) : "";
+            if (HEBREW.test(String(g)) || HEBREW.test(who)) { quotesHebrew += 1; parts.push(`<i>a reading that quotes Hebrew letters, in the reader</i>`); continue; }
+            const sup = who ? `<sup>${numOf(who, lic)}</sup>` : "";
+            parts.push(`<span>${esc(g)}${sup}</span>`);
+          }
+        }
+        if (parts.length) versesOn += 1;
+        tally.verses += 1; tally.readings += parts.filter((x) => x.startsWith("<span>")).length;
+        const id = `v${label.replace(/[^0-9a-z]+/gi, "-")}`;
+        return `  <h2 id="${id}">${esc(en)} ${esc(label)}</h2>
+  <p class="r">${parts.length ? parts.join(" · ") : "<i>no reading on the shelf for the words of this verse</i>"}</p>
+  <p class="open"><a href="/${zi.slug}/?at=${encodeURIComponent(label)}">Open ${esc(en)} ${esc(label)} in the reader, word by word</a></p>`;
+      });
+      const prev = ci > 0 ? `<a href="/${zi.slug}/${chs[ci - 1]}/">${esc(en)} ${esc(chs[ci - 1])}</a>` : `<a href="/${zi.slug}/">${esc(en)}, the reader</a>`;
+      const next = ci + 1 < chs.length ? `<a href="/${zi.slug}/${chs[ci + 1]}/">${esc(en)} ${esc(chs[ci + 1])}</a>` : `<a href="/">${SITE_NAME}</a>`;
+      const srcList = [...sources.entries()].map(([who, s]) => `<li value="${s.n}">${esc(who)}${s.lic ? ` · ${esc(s.lic)}` : ""}</li>`).join("\n    ");
+      const quotesNote = quotesHebrew ? ` ${quotesHebrew} reading${quotesHebrew === 1 ? "" : "s"} on this page quote${quotesHebrew === 1 ? "s" : ""} Hebrew letters and print${quotesHebrew === 1 ? "s" : ""} only in the reader.` : "";
+      const page = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(en)} ${esc(ch)} · Hebrew, word by word · ${SITE_NAME}</title>
+<meta name="description" content="${esc(en)} ${esc(ch)} in Hebrew, word by word: the English reading the shelf prints for every word, each credited to the dictionary that gives it and to its license, with the reader open at any verse.">
+<link rel="canonical" href="${ORIGIN}/${zi.slug}/${ch}/">
+<style>${cssChapter}</style>
+</head>
+<body><main>
+  <h1>${esc(en)} ${esc(ch)}</h1>
+  <p class="sub">Hebrew, word by word. Under each verse: the reading printed for each of its words, oldest witness first, each credited to its source. Press a verse to open it in the reader with the Hebrew and every other reading.</p>
+${verses.join("\n")}
+  <nav>${prev}${next}</nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    ${srcList || "<li>no source</li>"}
+    </ol>
+    Each carried reading keeps its own license.${quotesNote} What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</main></body></html>
+`;
+      if (HEBREW.test(page)) throw new Error(`${zi.slug} ${ch}: the chapter page printed a character of the text — refusing output`);
+      mkdirSync(join(OUT, zi.slug, ch), { recursive: true });
+      writeFileSync(join(OUT, zi.slug, ch, "index.html"), page);
+      listed(`/${zi.slug}/${ch}/`);
+      chapterPages += 1;
+      tally.readings_quoting_hebrew_held += quotesHebrew;
+    });
+    receipt.books[zi.slug] = tally;
+  }
+  writeFileSync(join(OUT, "chapter-pages-receipt-v1.json"), JSON.stringify(receipt, null, 1));
+  console.log(`  chapter pages: ${n(chapterPages)} across ${stamped.length} stamped books · ${n(versesOn)} verses with a reading`);
+}
 // THE SITEMAP AND THE ROBOTS FILE: every address written above, whole, in
 // the order it was written; and a robots file that allows every crawler and
 // names the sitemap. Withheld addresses are not listed — they answer, but
