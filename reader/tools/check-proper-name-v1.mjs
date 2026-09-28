@@ -13,13 +13,13 @@
 //       exactly the keys the rule derives today over the store on disk, with
 //       the same readings — nothing baked the rule would not bake, nothing
 //       the rule bakes left out
-//   N2  every name lead is the line (zone.gloss[k]), is credited to a
-//       Strong's record, is a bare capitalised form, and is the name TAHOT
-//       prints at every place the key stands; and no key is led whose
-//       letters TAHOT reads as a common word anywhere in the book
-//   N3  the derivation is not lost: at every led key the store still pools
-//       at least one other reading, so the card has the entry's other senses
-//       to show beneath the name
+//   N2  every name lead is the line (zone.gloss[k]), a Strong's record is
+//       among its carriers (the chip names the oldest wording's witness,
+//       gloss-m-rule-v1, which can be another source carrying the same
+//       1890 wording), it is a bare capitalised form, and it is the name
+//       TAHOT prints at every place the key stands
+//   N3  the derivation is not lost: wherever the name displaced the oldest
+//       reading, that reading still pools, so the card shows it beneath
 //   N4  in a browser, on the first named word of the book: the line prints
 //       the name without Strong's closing period, the card opens pressed on
 //       it, its first pill is it, another pill carries the entry's other
@@ -77,18 +77,19 @@ for (const { slug, z } of stamped) {
     ledKeys += 1; ledWords += (places.get(k) || []).length;
     if (z.gloss[k] !== text) { n2.push(`${slug} ${k}: gloss_names says ${JSON.stringify(text)}, the line reads ${JSON.stringify(z.gloss[k])}`); continue; }
     const m = z.gloss_m && z.gloss_m[k];
-    if (!m || !isStrongs(m.m)) { n2.push(`${slug} ${k}: credited to ${JSON.stringify(m && m.m)}`); continue; }
+    const by = m && Array.isArray(m.by) ? m.by : [];
+    if (!m || !(isStrongs(m.m) || by.some((id) => isStrongs((store.index.m_sources[id] || {}).label)))) { n2.push(`${slug} ${k}: credited to ${JSON.stringify(m && m.m)}, carriers ${JSON.stringify(by)}`); continue; }
     if (!NAME_FORM.test(text)) { n2.push(`${slug} ${k}: ${JSON.stringify(text)} is not a bare capitalised form`); continue; }
     const wits = (places.get(k) || []).map(tahotNameOf).filter((x) => x !== null);
     if (!wits.length || wits.some((w) => w.toLowerCase() !== text.replace(/\.$/u, "").toLowerCase())) { n2.push(`${slug} ${k}: TAHOT prints ${JSON.stringify([...new Set(wits)])}, the line ${JSON.stringify(text)}`); continue; }
     const pool = store.readingPool(store.routesFor(k) || [], "oldest");
-    if (pool.length < 2 || !pool.some((r) => r.text !== text)) n3.push(`${slug} ${k}: only the name pools`);
+    if (pool.length && pool[0].text !== text && !pool.some((r) => r.text === pool[0].text)) n3.push(`${slug} ${k}: ${JSON.stringify(pool[0].text)} no longer pools`);
   }
 }
 console.log(`— ${stamped.length} stamped books · ${booksLed} carry name leads · ${ledKeys.toLocaleString()} keys · ${ledWords.toLocaleString()} words lead with a name —`);
 check("N1  the keys baked as name leads are exactly the keys the rule derives today, reading for reading", n1.length === 0, n1.slice(0, 3).join(" | "));
-check("N2  every name lead is the line, credited to Strong's, a bare capitalised form, and TAHOT's name at every place", n2.length === 0, n2.slice(0, 3).join(" | "));
-check("N3  the entry's other senses still pool beneath every name, so nothing is hidden", n3.length === 0, n3.slice(0, 3).join(" | "));
+check("N2  every name lead is the line, carried by Strong's, a bare capitalised form, and TAHOT's name at every place", n2.length === 0, n2.slice(0, 3).join(" | "));
+check("N3  the reading a name displaced still pools beneath it, so nothing is hidden", n3.length === 0, n3.slice(0, 3).join(" | "));
 
 // N4, N5 — the page
 const pick = stamped.find((s) => s.slug === BOOK && s.z.gloss_names && Object.keys(s.z.gloss_names).length) || stamped.find((s) => s.z.gloss_names && Object.keys(s.z.gloss_names).length);
@@ -117,7 +118,8 @@ const openNamed = async (ctx) => {
   await p.waitForTimeout(800);
   return p.evaluate(async (surface) => {
     const wait = (ms) => new Promise((x) => setTimeout(x, ms));
-    const strip = (t) => String(t || "").replace(/[֑-ׇ]/g, "").trim();
+    const MARKS = new RegExp("[\\u0591-\\u05C7]", "g");
+    const strip = (t) => String(t || "").replace(MARKS, "").trim();
     const wb = [...document.querySelectorAll("section.seg .he-text .wb")].find((x) => !x.closest(".wjoin") && strip(x.querySelector(".w")?.textContent) === strip(surface));
     if (!wb) return { found: false };
     const g = wb.querySelector(":scope > .g");

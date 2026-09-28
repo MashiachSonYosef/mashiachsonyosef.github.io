@@ -136,7 +136,11 @@ for (const u of Object.values(zone.units || {}))
 // carried a reading and no license record: 77,342 of them across the shelf.
 const { gloss_m: glossM, drift: glossMDrift } = glossMFor(store, gloss);
 const mBefore = Object.keys(zone.gloss_m || {}).length;
-const previous = (zone.emitted_from || {}).gloss_layer || {};
+const previous = { ...((zone.emitted_from || {}).gloss_layer || {}) };
+// a field a projection of 2026-09-28 wrote here for one run and moved to
+// the names layer the same day: carried forward by the spread below, it
+// would stand on every zone forever, so it is dropped at the door
+delete previous.base_table_sha256_before_names;
 zone.gloss = gloss;
 zone.gloss_m = glossM;
 zone.gloss_names = names.leads;
@@ -144,6 +148,7 @@ zone.emitted_from.proper_names_layer = {
   rule: `${PROPER_NAME_RULE_ID}: ${PROPER_NAME_RULE_TEXT}`,
   projected_on: stamp, projected_by: "tools/regloss-zone.mjs",
   what_the_zone_carries: "gloss_names — every key whose line (zone.gloss[k]) is the entry's own name under this rule; the reading's M, carriers and alternate stand in gloss_m[k] as for every reading",
+  base_table_sha256_before_names: baseSha256,
   counts: names.counts,
   held: names.held,
 };
@@ -202,7 +207,6 @@ zone.emitted_from.gloss_layer = {
   ...previous,
   rule: `${GLOSS_RULE_ID}: ${GLOSS_RULE_TEXT}`,
   gloss_table_sha256: sha256,
-  base_table_sha256_before_names: baseSha256,
   distinct_forms_glossed: counts.glossed,
   distinct_forms_bare: counts.no_exact_route + counts.no_displayable_route,
   store_inputs: store.index.inputs,

@@ -48,7 +48,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `from-restore-rule-v1` | tools/check-front-door-three-counts-v1.mjs | check-front-door-three-counts-v1 |
 | `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-three-counts-v1, check-nothing-hard-wired-v1, check-sidecars-all-named-v1 |
 | `front-door-rule-v2` | zone.html | check-front-door-opens-title-v1 |
-| `gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed` | tools/enrich-gloss-m-v1.mjs, tools/gloss-m-v1.mjs, tools/proper-name-v1.mjs, tools/regloss-zone.mjs | check-english-license-v1, check-every-reading-licensed-v1 |
+| `gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed` | tools/enrich-gloss-m-v1.mjs, tools/gloss-m-v1.mjs, tools/proper-name-v1.mjs, tools/regloss-zone.mjs | check-english-license-v1, check-every-reading-licensed-v1, check-proper-name-v1 |
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
 | `hoh-fixture-rule-v1-a-real-chapter-with-entries-made-only-of-its-own-verses` | tools/make-hoh-fixture-v1.mjs | check-hoh-sidecar-v1 |
 | `hoh-sidecar-rule-v1-a-hebrew-definition-is-served-by-volume-and-quotes-only-from-the-floor` | tools/build-hoh-sidecar-v1.mjs, zone.html | check-hoh-in-card-v1, check-hoh-sidecar-v1 |
