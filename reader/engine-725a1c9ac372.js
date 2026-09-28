@@ -1962,22 +1962,6 @@
     // presses: the pills stand unlabelled, and stand. Released at the top
     // of every fit, so a taller window has its labels back.
     if (overrun() > 1) { rowsEl.classList.add("tight"); lastResort = true; handOut(); }
-    // THE ROUNDING. Every band box is set at the ceiling of a fractional row
-    // bottom, and the chrome above the rows (the head, the reading row, its
-    // note on a name) stands at fractional heights of its own, so a card can
-    // end a pixel or three past its own edge with every band correctly
-    // handed its share — the day the reading row grew a second line, the
-    // Israel card spilled by two. A spill that small is shaved off the
-    // readings box, which scrolls, so nothing pressable is lost; a larger
-    // one is a fit that failed and is left for the caller to see.
-    {
-      const spill = hud.scrollHeight - hud.clientHeight;
-      const rb = bands.find((x) => x.box === read) || bands[bands.length - 1];
-      if (spill > 0 && spill <= 4 && rb) {
-        const h = Math.max(0, rb.box.clientHeight - spill);
-        rb.box.style.height = `${h}px`; rb.box.style.maxHeight = `${h}px`;
-      }
-    }
     // did every band end up with the row it is owed, in the space it actually
     // has, with nothing given up? The caller decides what to do about it —
     // there is nothing left here to take it out of.
@@ -2103,8 +2087,37 @@
       snapBox(box);
       snapKeys.set(box, keyOf(box));
     }
+    shaveSpill();
   };
-  const snapBandsNow = () => { for (const q of BAND_Q) snapBox(hud.querySelector(q)); };
+  // THE ROUNDING. Every band box is set at the ceiling of a fractional row
+  // bottom, and the chrome above the rows (the head, the reading row, its
+  // note on a name) stands at fractional heights of its own, so a card can
+  // end a pixel or three past its own edge with every band correctly
+  // handed its share — the day the reading row grew a second line, the
+  // Israel card spilled by two. It runs AFTER the snap, because the snap
+  // is the last thing that moves a band and a shave taken before it was
+  // given back. A spill that small comes off the record, which scrolls, so
+  // no pill is lost or cut; where there is no record to take it from, the
+  // readings box is pulled back to the row above. A larger spill is a fit
+  // that failed and is left for the caller to see.
+  const shaveSpill = () => {
+    if (hud.hidden) return;
+    const spill = hud.scrollHeight - hud.clientHeight;
+    if (spill <= 0 || spill > 4) return;
+    const dSlot = hud.querySelector(".d-slot");
+    if (dSlot && !dSlot.classList.contains("whole") && dSlot.clientHeight > spill + 40) {
+      dSlot.style.maxHeight = `${dSlot.clientHeight - spill}px`;
+      return;
+    }
+    const box = hud.querySelector(".b-read .r-pills");
+    if (!box || !box.children.length || !box.style.height) return;
+    const rows = rowsOf(box);
+    const fits = rows.filter((row) => row.bottom <= box.clientHeight - spill + 0.5);
+    if (!fits.length) return;
+    const to = Math.ceil(fits[fits.length - 1].bottom);
+    if (to < box.clientHeight) { box.style.height = `${to}px`; box.style.maxHeight = `${to}px`; }
+  };
+  const snapBandsNow = () => { for (const q of BAND_Q) snapBox(hud.querySelector(q)); shaveSpill(); };
   const clampHud = placeInBounds;
   // The thread runs from each held word to the card — the owner's own
   // mechanic, carried in: a card should say where you were working without
