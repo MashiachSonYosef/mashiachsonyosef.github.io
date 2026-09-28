@@ -74,21 +74,30 @@ console.log(`— ${SWITCH_RULE_ID} · ${SERVED.length} served work(s) —`);
 // text, so the claim is structural — but structural is what people say about
 // changes that turn out to have moved something, so it is measured: every
 // gloss in every shipped zone, recomputed, compared to the byte on disk.
+// A key the zone lists in gloss_names leads with the entry's own name by
+// proper-name-rule-v1 (tools/proper-name-v1.mjs), baked over the pool's
+// first reading on purpose; check-proper-name-v1 holds those to their rule,
+// and here they are compared to what that rule says, not to the pool.
 const shipped = [];
+let named = 0;
 for (const z of SERVED) {
   const p = `data/zones/${z}.bin`;
   if (!existsSync(p)) continue;
   const zone = JSON.parse(gunzipSync(readFileSync(p)).toString("utf8"));
-  for (const [k, v] of Object.entries(zone.gloss || {})) shipped.push([z, k, v]);
+  const names = zone.gloss_names || {};
+  for (const [k, v] of Object.entries(zone.gloss || {})) {
+    if (Object.prototype.hasOwnProperty.call(names, k)) { named += 1; shipped.push([z, k, v, names[k]]); }
+    else shipped.push([z, k, v, null]);
+  }
 }
 let moved = 0, firstMove = "";
-for (const [z, k, v] of shipped) {
-  const g = store.glossFor(k);
-  if (g.text !== v) { moved += 1; if (!firstMove) firstMove = `${z} ${k}: ${JSON.stringify(v)} -> ${JSON.stringify(g.text)}`; }
+for (const [z, k, v, name] of shipped) {
+  const want = name !== null ? name : store.glossFor(k).text;
+  if (want !== v) { moved += 1; if (!firstMove) firstMove = `${z} ${k}: ${JSON.stringify(v)} -> ${JSON.stringify(want)}`; }
 }
 check("C1  there is a shelf to ask about", shipped.length > 10000, `${shipped.length.toLocaleString()} shipped readings`);
 check("C2  every shipped reading still computes identically", moved === 0,
-  moved ? `${moved.toLocaleString()} moved · first: ${firstMove}` : `${shipped.length.toLocaleString()} of ${shipped.length.toLocaleString()} unchanged`);
+  moved ? `${moved.toLocaleString()} moved · first: ${firstMove}` : `${shipped.length.toLocaleString()} of ${shipped.length.toLocaleString()} unchanged (${named.toLocaleString()} of them a name lead, held to its own rule)`);
 
 // ---- the sample the carrier assertions stand on --------------------------
 //
