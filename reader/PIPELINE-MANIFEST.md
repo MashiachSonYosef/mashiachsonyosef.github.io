@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-09-28.
 
-**110 rules declared · 107 named by a check · 3 unguarded.**
+**111 rules declared · 108 named by a check · 3 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -48,7 +48,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `from-restore-rule-v1` | tools/check-front-door-three-counts-v1.mjs | check-front-door-three-counts-v1 |
 | `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-three-counts-v1, check-nothing-hard-wired-v1, check-sidecars-all-named-v1 |
 | `front-door-rule-v2` | zone.html | check-front-door-opens-title-v1 |
-| `gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed` | tools/enrich-gloss-m-v1.mjs, tools/gloss-m-v1.mjs, tools/regloss-zone.mjs | check-english-license-v1, check-every-reading-licensed-v1 |
+| `gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed` | tools/enrich-gloss-m-v1.mjs, tools/gloss-m-v1.mjs, tools/proper-name-v1.mjs, tools/regloss-zone.mjs | check-english-license-v1, check-every-reading-licensed-v1 |
 | `hand-typing-rule-v1-plain-english-descriptors-and-nothing-else` | tools/check-nothing-hand-typed-v1.mjs | check-nothing-hand-typed-v1 |
 | `hoh-fixture-rule-v1-a-real-chapter-with-entries-made-only-of-its-own-verses` | tools/make-hoh-fixture-v1.mjs | check-hoh-sidecar-v1 |
 | `hoh-sidecar-rule-v1-a-hebrew-definition-is-served-by-volume-and-quotes-only-from-the-floor` | tools/build-hoh-sidecar-v1.mjs, zone.html | check-hoh-in-card-v1, check-hoh-sidecar-v1 |
@@ -80,9 +80,10 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `piece-gloss-rule-v1-a-piece-reads-what-its-source-said-at-this-position-not-what-the-key-means-in-general` | tools/project-piece-gloss-v1.mjs | **UNGUARDED** |
 | `pipeline-manifest-rule-v1-a-rule-with-no-guard-is-printed-as-having-none` | tools/pipeline-manifest-v1.mjs | check-manifest-prints-unguarded-v1 |
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
-| `pointing-grade-rule-v1-a-row-is-graded-by-its-own-headwords-against-the-open-word` | tools/emit-pointing-grade-recount-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-pointing-grade-v1, check-lattice-projection-v1 |
+| `pointing-grade-rule-v1-a-row-is-graded-by-its-own-headwords-against-the-open-word` | tools/emit-pointing-grade-recount-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/proper-name-v1.mjs, zone.html | check-pointing-grade-v1, check-lattice-projection-v1 |
 | `pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said` | tools/verify-pointing-store-v1.mjs | check-pointing-store-landing-v1 |
 | `pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land` | tools/land-pointing-store-v2-v1.mjs, tools/gloss-store-v1.mjs | check-pointing-store-landing-v1 |
+| `proper-name-rule-v1-a-name-leads-with-the-name-when-the-witness-reading-the-place-and-the-entry-it-belongs-to-name-it-alike` | tools/proper-name-v1.mjs, tools/gloss-m-v1.mjs, tools/regloss-zone.mjs, zone.html | check-proper-name-v1 |
 | `provider-declaration-rule-v1-closed-set-ship-whole-by-default` | tools/declaration-v1.mjs, tools/declarations-v1.json | check-citations-v1, check-cut-readings-v1, check-licence-leaves-v1, check-provider-characters-v1 |
 | `reading-order-rule-v1-the-first-reading-is-the-sorted-pools-first-and-not-the-stores-first-stored-row` | tools/check-card-opens-on-the-line-v1.mjs | check-card-opens-on-the-line-v1, check-first-reading-is-sorted-v1 |
 | `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1, check-nothing-unlanded-v1 |
@@ -96,7 +97,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `serve-from-body-rule-v1-the-verified-body-is-the-text-the-binding-is-the-rights` | tools/serve-from-body-v1.mjs | check-body-is-text-binding-is-rights-v1 |
 | `serve-from-restore-rule-v1-the-restore-is-the-text-the-split-is-this-lanes-the-rights-are-the-records` | tools/run-restore-v5-fleet-v1.mjs, tools/serve-from-restore-v5.mjs, tools/build-front-door-v1.mjs | check-restore-serve-v1 |
 | `serve-from-stream-rule-v2-the-successor-stream-is-the-text-bridge-v2-is-its-identity-the-binding-is-the-rights` | tools/serve-from-stream-v2.mjs | check-stream-is-text-v1 |
-| `served-line-rule-v1-the-zones-gloss-field-is-the-line-the-page-draws-and-no-lane-need-model-the-sort` | tools/check-disk-gloss-is-the-line-v1.mjs | check-disk-gloss-is-the-line-v1 |
+| `served-line-rule-v1-the-zones-gloss-field-is-the-line-the-page-draws-and-no-lane-need-model-the-sort` | tools/regloss-zone.mjs | check-disk-gloss-is-the-line-v1 |
 | `source-corpus-rule-v1-a-witness-names-the-body-it-describes-or-is-not-sorted-by-one` | tools/emit-source-corpus-v1.mjs | check-source-corpus-v1 |
 | `source-short-names-rule-v1-a-shelf-chip-wears-a-short-name-this-record-keeps-and-the-full-name-on-press` | tools/check-source-switch-v1.mjs | check-source-switch-v1 |
 | `source-switch-rule-v1-a-reading-remembers-who-carried-it` | tools/gloss-store-v1.mjs, zone.html, tools/gloss-m-v1.mjs | check-carrier-survives-v1, check-line-follows-card-v1, check-source-switch-v1 |
@@ -143,7 +144,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 88 tools that are not checks.
+`build.sh` calls 19 of the 89 tools that are not checks.
 
 Not called by any build stage:
 
@@ -194,6 +195,7 @@ Not called by any build stage:
 - `tools/project-piece-gloss-v1.mjs`
 - `tools/project-toggle-headword-v1.mjs`
 - `tools/project-v-volume-v1.mjs`
+- `tools/proper-name-v1.mjs`
 - `tools/pull-zones-from-store-v1.mjs`
 - `tools/redrive-zone-gloss-v1.mjs`
 - `tools/regloss-zone.mjs`

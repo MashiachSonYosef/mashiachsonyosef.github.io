@@ -3006,8 +3006,9 @@ const chapterReceipt = { rule: CHAPTER_PAGE_RULE,
 {
   const stamped = [...ZONE_INFO.values()].filter((zi) => zi.stamp);
   // a word's pieces are joined the way the reader joins them (spanJoin in
-  // zone.html, to the character): "and/ the/ man" prints as "and + the + man"
-  const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
+  // zone.html, to the character): "and/ the/ man" prints as "and + the +
+  // man", and a period closing a reading is not printed ("Israel." → Israel)
+  const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "");
   let versesOn = 0;
   for (const zi of stamped) {
     const bytes = readFileSync(join(ZONES, `${zi.slug}.bin`));

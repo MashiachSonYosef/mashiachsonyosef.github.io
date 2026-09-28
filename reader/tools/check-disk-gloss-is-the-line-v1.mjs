@@ -18,11 +18,13 @@
 //   wants to know what a reader meets reads that field. It does not simulate
 //   the comparator, the sense split, the grouping or the tie-break.
 //
-// ONE DIFFERENCE, AND IT IS RENDERING, NOT READING. A compound is written
+// TWO DIFFERENCES, AND BOTH ARE RENDERING, NOT READING. A compound is written
 // with "/" between its pieces on disk and drawn with " + " on the page:
 // "from/ Tekoa" against "from + Tekoa". That is the same reading in two
-// spellings of the same separator, so the comparison normalises it and
-// nothing else. Any other difference is a real one and fails.
+// spellings of the same separator. And a period closing a reading on disk
+// ("Israel.", Strong's list terminator) is not drawn on the line. The
+// comparison normalises those two and nothing else, the same two the page's
+// own spanJoin applies. Any other difference is a real one and fails.
 //
 //   L1  the page and the disk agree on every word of the opening screen
 //   L2  and the agreement is not vacuous — the screen carried readings
@@ -55,7 +57,7 @@ if (!zone.gloss) { console.log(`SKIPPED — ${BOOK} carries no gloss map, so the
 
 // the one normalisation, and its whole extent: the separator between the
 // pieces of a compound
-const norm = (s) => String(s ?? "").split("/").map((x) => x.trim()).filter(Boolean).join(" + ").trim();
+const norm = (s) => String(s ?? "").split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "").trim();
 
 const pw = await loadPlaywright();
 const b = await pw.chromium.launch(launchOptions());

@@ -975,7 +975,15 @@
   // The reader's display law: route texts pack morpheme spans with "/"; the
   // page never shows the raw packing — spans join with " + ", exactly the
   // reader's own cell join. One route on display at a time, everywhere.
-  const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
+  // And the one other mark the page does not show: a period closing a
+  // reading. Strong's ends every usage list with one ("Israel.", "spear.")
+  // and a definition that is a sentence ends with one; neither is part of
+  // the word, and a line that printed "Israel." under a name read as a typo
+  // the day names began to lead (proper-name-rule-v1). The stored text is
+  // untouched: the pill, the record beneath it and the export still carry
+  // the period, and the porch and every check join readings by this same
+  // function, to the character.
+  const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "");
   const shardCache = new Map();
   // A shard is addressed by which store it belongs to. Without this a reader
   // whose browser already holds yesterday's shard keeps being answered from it
@@ -2547,7 +2555,26 @@
     const wantClass = { pd: 0, by: 1, "by-sa": 2 }[licencePref];
     const licPref = (a, b) => (wantClass === undefined ? 0 : (lic(a) === wantClass ? 0 : 1) - (lic(b) === wantClass ? 0 : 1));
     const namePref = (a, b) => (namesPref === "sound" && lat ? tr(a) - tr(b) : 0);
-    return list.sort((a, b) => licPref(a, b) || namePref(a, b) || primary(a, b) || oldestFirst(a, b));
+    // THE NAME LEADS (proper-name-rule-v1). Where the line is the entry's own
+    // name — baked into the table by regloss-zone, listed in gloss_names —
+    // the card's first pill is that name too, so the two answer as one. It
+    // yields exactly where the line yields: to a lattice or witnessed order
+    // that has its own leader for this word, to the Masorah filter's own
+    // leader, and to the letters switch; a licence class is sorted ahead of
+    // it above, and a carrier switched off never reaches this pool at all.
+    // ... and where the order in force swapped the table's reading for its
+    // own (applyGlossOrder: the characters, corpus and witnessed columns),
+    // the line is that reading and the name does not lead the card either
+    // (keyed by the block's own surface, not the open word's: a run's block
+    // is a key of its own, and the line under that piece reads its name)
+    const nameLed = zone && zone.gloss_names && surface && Object.prototype.hasOwnProperty.call(zone.gloss_names, surface)
+      && zone.gloss && zone.gloss[surface] === zone.gloss_names[surface] ? zone.gloss_names[surface] : null;
+    const nameYields = () => masorah === "letters"
+      || (masorah === "only" && gr && gr.o && gr.o.l)
+      || (pos.needs === "lattice" && gr && gr.o && gr.o[pos.lattice])
+      || (pos.needs === "witnessed" && wCol);
+    const nameLead = (a, b) => (!nameLed || nameYields() ? 0 : (a.text === nameLed ? 0 : 1) - (b.text === nameLed ? 0 : 1));
+    return list.sort((a, b) => licPref(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
   };
 
   /**
@@ -2992,6 +3019,16 @@
     nowK.textContent = "reading · at every place this form stands";
     const nowV = document.createElement("span"); nowV.className = "v";
     now.append(nowK, nowV);
+    // A NAME SAYS WHY IT LEADS (proper-name-rule-v1). Under the reading row
+    // of a word whose line is the entry's own name, one sentence: which two
+    // witnesses agreed, and that the derivation the dictionary gives first
+    // is still on the card, below, as a reading of the entry rather than of
+    // the word. Said once, here, where the reader is looking at the choice.
+    if (bin === zone && zone.gloss_names && zone.gloss && cover.some((c) => Object.prototype.hasOwnProperty.call(zone.gloss_names, c.surface) && zone.gloss[c.surface] === zone.gloss_names[c.surface])) {
+      const nn = document.createElement("span"); nn.className = "n";
+      nn.textContent = "a name: the witness reading this place and the entry it belongs to name it alike, so the name leads; the derivation the entry gives first stands among the readings below";
+      now.append(nn);
+    }
     const paintNow = (line, whenBare) => {
       const bare = !line || !line.replace(/[—\s+]/g, "");
       nowV.textContent = bare ? (whenBare || "no reading in the catalog for this form") : line;

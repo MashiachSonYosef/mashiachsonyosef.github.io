@@ -190,7 +190,9 @@ const f4 = await p.evaluate(() => {
     if (!rec) continue;
     const regs = rec.w.filter((r) => !String(r.s || r.k).includes("\u05be"));
     const want = z.gloss[regs[i].k];
-    if (want && want.split("/").join(" + ").replace(/\s+/g, " ").trim() !== text.replace(/\s+/g, " ").trim() && !text.includes(want.split("/")[0].trim())) { out.stale += 1; if (!out.eg) out.eg = `${text.slice(0, 20)} vs ${want.slice(0, 20)}`; }
+    // the page's own join: pieces with " + ", a period closing a reading not drawn
+    const drawnAs = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "");
+    if (want && drawnAs(want).replace(/\s+/g, " ").trim() !== text.replace(/\s+/g, " ").trim() && !text.includes(want.split("/")[0].trim().replace(/\.$/, ""))) { out.stale += 1; if (!out.eg) out.eg = `${text.slice(0, 20)} vs ${want.slice(0, 20)}`; }
   }
   return out;
 });

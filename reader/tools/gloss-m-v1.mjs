@@ -227,7 +227,12 @@ export const licClass = (posture) => {
   if (/^cc_by/u.test(p)) return 1;
   return 4;
 };
-export const licenceColumns = (store, gloss) => {
+// `nameClass` (proper-name-rule-v1): for a key whose base line is a name
+// lead, the licence class of that lead's carriers. A class that already has
+// the name on the line keeps it — the name is the class's own reading and
+// the preference is met — so no column entry is written for that class and
+// the line, the porch and the card all read the base.
+export const licenceColumns = (store, gloss, nameClass = null) => {
   const want = { licence_pd: 0, licence_by: 1, licence_by_sa: 2 };
   const columns = Object.fromEntries(Object.keys(want).map((c) => [c, {}]));
   const counts = Object.fromEntries(Object.keys(want).map((c) => [c, { moved: 0, same: 0, none: 0 }]));
@@ -238,6 +243,7 @@ export const licenceColumns = (store, gloss) => {
     const pool = store.readingPool(routes, "oldest");
     if (!pool.length) continue;
     for (const [c, cls] of Object.entries(want)) {
+      if (nameClass && Object.prototype.hasOwnProperty.call(nameClass, k) && nameClass[k] === cls) { counts[c].same += 1; continue; }
       const lead = pool.find((e) => classOf(e) === cls);
       if (!lead) { counts[c].none += 1; continue; }
       if (lead.text === gloss[k]) { counts[c].same += 1; continue; }
