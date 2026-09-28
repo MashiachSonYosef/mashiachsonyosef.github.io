@@ -20,7 +20,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `attachment-authorship-rule-v1-the-placement-is-ours-and-says-so` | tools/generate-attachment-map-v2.mjs, zone.html | check-whose-claim-v1 |
 | `bookword-measure-rule-v1-every-count-names-its-axis` | tools/bookword-measure-v1.mjs, tools/serve-from-restore-v5.mjs | check-bookword-count-v1 |
 | `chain-book-rule-v1-the-same-book-with-the-meaning-taken-out-so-only-the-joins-are-left` | tools/build-chain-book-v1.mjs | check-chain-book-v1 |
-| `chapter-page-rule-v1-a-searchable-page-per-chapter-carries-the-readings-credited-and-no-ink-and-opens-the-reader-at-the-verse` | tools/build-front-door-v1.mjs | check-chapter-pages-v1 |
+| `chapter-page-rule-v2-the-chapters-address-is-the-reader-opened-at-the-chapter-and-its-readings-stand-in-plain-text-credited-and-no-ink` | tools/build-front-door-v1.mjs, zone.html | check-chapter-pages-v2 |
 | `check-variant-class-one-rule-v1` | tools/run-all-checks.sh | check-variant-class-one-rule-v1 |
 | `color-channel-rule-v2-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours` | tools/build-front-door-v1.mjs, zone.html | check-color-channels-v1, check-page-agrees-with-its-record-v1 |
 | `colour-role-rule-v1` | zone.html | check-color-channels-v1 |

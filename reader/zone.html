@@ -416,6 +416,29 @@
 
   main { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 5rem; }
 
+  /* THE PORCH (chapter-page-rule-v2). A chapter's address is this reader,
+     and the door writes under the text slot a plain-text copy of what the
+     lines will say: every verse a heading, the readings under it credited by
+     number. It stands in the page's own frame, in the page's own inks, until
+     the text is drawn — then it is hidden, because the same readings now
+     stand under the words. It stays if the book never arrives: a page with
+     no script, or a bin the shelf refused, still says what the chapter reads. */
+  #porch { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 3rem; direction: ltr; text-align: left; }
+  #porch[hidden] { display: none; }
+  #porch h2 { font-size: 1.25rem; color: var(--ink-strong); margin: 0.6rem 0 0.2rem; }
+  #porch .porch-sub { color: var(--faint); font-size: 0.86rem; margin: 0 0 1rem; line-height: 1.55; }
+  #porch h3 { font-size: 1rem; color: var(--muted); margin: 1.3rem 0 0.25rem; font-weight: 600; }
+  #porch .r { margin: 0 0 0.3rem; line-height: 1.75; color: var(--en-word); }
+  #porch .r span { overflow-wrap: anywhere; }
+  #porch .r i { font-style: normal; color: var(--gold); font-size: 0.72em; letter-spacing: 0.02em; }
+  #porch sup { font-size: 0.62em; color: var(--gold); margin-left: 0.1em; }
+  #porch .porch-nav { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; font-size: 0.9rem; margin: 1.6rem 0 0; }
+  #porch .porch-nav a, #porch .porch-chs a, #porch footer a { color: var(--link); }
+  #porch .porch-chs { display: flex; flex-wrap: wrap; gap: 0.35rem 0.55rem; margin: 0.4rem 0 1rem; font-size: 0.9rem; }
+  #porch .porch-chs a { text-decoration: none; padding: 0.05rem 0.45rem; border: 1px solid var(--chip-line); border-radius: 0.6em; }
+  #porch footer { margin-top: 2rem; font-size: 0.82rem; color: var(--faint); }
+  #porch footer ol { padding-left: 1.4em; margin: 0.3rem 0 0.8rem; }
+
   .part-head { margin: 3rem 0 0.4rem; padding-top: 1.6rem; border-top: 1px double var(--gold-dim); }
   .part-head .he { direction: rtl; text-align: right; font-size: 1.05rem; color: var(--shani); letter-spacing: 0.04em; }
   .part-head .en { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--faint); text-align: left; }
@@ -2323,7 +2346,12 @@
       for (const n of document.querySelectorAll("#workTitle .t-note, #workTitle .t-sug")) n.remove();
     }
   }
-  document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · ${SITE}`;
+  // A chapter's address is this reader (chapter-page-rule-v2): the door wrote
+  // which chapter into the head, and the title keeps it — a crawler that read
+  // "Amos 3" in the head must not be handed "Amos" once the page has drawn,
+  // or fifty chapter addresses of one book read as one page fifty times.
+  const AT_META = META("reader-at");
+  document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work}${AT_META ? ` ${AT_META}` : ""} · ${SITE}`;
   // THE CREDIT, FOLDED, WITH ITS TERMS STILL IN THE OPEN. The full byline is
   // unchanged and one press away; the summary carries the two facts a license
   // actually requires a reader to be able to see — which edition this is, and
@@ -7920,7 +7948,15 @@
   // ?at=7:14 opens the book at that coordinate. A coordinate is a locator, so
   // one work can hand a reader to another at the same place without either of
   // them claiming anything about the other.
-  const openAt = (QUERY.get("at") || "").trim();
+  // Three ways to arrive at a place, in order of how exactly they ask. ?at=
+  // names a coordinate outright. A hash of the form #v3-7 is a verse heading
+  // on the page's own porch (chapter-page-rule-v2) — the same label with its
+  // punctuation folded to hyphens — and it is resolved below against the
+  // labels the book actually carries, never unfolded by guesswork. And the
+  // door's own meta names the chapter this address is: a chapter, not a
+  // verse, so the page lands on the chapter head and marks nothing.
+  const hashAt = decodeURIComponent(location.hash || "").replace(/^#/, "");
+  const openAt = (QUERY.get("at") || (/^v[0-9a-z-]+$/i.test(hashAt) ? hashAt : "") || META("reader-at") || "").trim();
   // ?palette=tabernacle used to live here, as a link somebody followed on
   // purpose so the page every other reader got stayed untouched. The owner
   // looked at it and ruled it in on 2026-09-10, so there is nothing left to
@@ -9062,6 +9098,9 @@
   };
 
   main.append(frag);
+  // the text is drawn, so the porch's plain-text copy of it stands down
+  // (chapter-page-rule-v2); it stays only on a page the book never reached
+  { const porch = document.getElementById("porch"); if (porch) porch.hidden = true; }
   {
     const ci = buildCommentaryIndex();
     if (ci) main.prepend(ci);
@@ -9280,12 +9319,32 @@
   applyGlossOrder(defOrder);
   repaintGlossOrder();
   defSwitch();
-  if (openAt && byLabel.has(openAt)) {
-    const target = document.getElementById(byLabel.get(openAt));
-    if (target) {
-      materialise(target);
-      window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 80);
-      target.querySelector(".vnum")?.classList.add("at");
+  if (openAt) {
+    // a verse: by its label, or by its porch heading id (#v3-7 is the label
+    // "3:7" with every run of punctuation folded to one hyphen)
+    const foldId = (label) => `v${String(label).replace(/[^0-9a-z]+/gi, "-")}`;
+    let label = byLabel.has(openAt) ? openAt : null;
+    if (!label && /^v/i.test(openAt)) for (const l of byLabel.keys()) if (foldId(l) === openAt) { label = l; break; }
+    if (label) {
+      const target = document.getElementById(byLabel.get(label));
+      if (target) {
+        materialise(target);
+        window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 80);
+        target.querySelector(".vnum")?.classList.add("at");
+      }
+    } else {
+      // a chapter: the first section whose label is the chapter's own or
+      // stands under it; the page lands on that chapter's head where the
+      // book draws one, and marks no verse, because none was asked for
+      const first = zone.sections.find((sec) => sec.label === openAt || String(sec.label || "").startsWith(`${openAt}:`));
+      if (first) {
+        const head = document.getElementById(`n${first.node}`);
+        const target = head || document.getElementById(byLabel.get(first.label));
+        if (target) {
+          if (!head) materialise(target);
+          window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 24);
+        }
+      }
     }
   }
   // front-door-rule-v1 · ?c=open lands the reader inside a commentary.

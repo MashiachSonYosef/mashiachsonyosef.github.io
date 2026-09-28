@@ -2656,22 +2656,33 @@ const readerPage = (b) => {
   // work's, where the work has a name: a crawler reads the head, not the
   // masthead the engine paints, and thirty-nine pages under one title read
   // as one page thirty-nine times.
+  // A CHAPTER'S ADDRESS IS THE READER TOO (chapter-page-rule-v2): the same
+  // page with one more meta naming the chapter it opens at, its own title
+  // and description, and under the text slot the porch — the chapter's
+  // readings in plain text, which the engine hides once the text is drawn.
   const canonical = `${(b.canonical || `/${b.slug}`).replace(/\/?$/, "/")}`;
   listed(canonical);
   const metas =
     `<meta name="reader-book" content="${b.slug}">\n` +
     `<meta name="reader-home" content="/${ENGINE}/">\n` +
     `<meta name="site-name" content="${SITE_NAME}">\n` +
+    (b.at ? `<meta name="reader-at" content="${esc(b.at)}">\n` : "") +
     (b.demonstration ? `<meta name="reader-demonstration" content="${esc(b.demonstration)}">\n` : "") +
-    (b.en ? `<meta name="description" content="${esc(b.en)}, read word by word in Hebrew: every reading traced to the record that carries it, and every record to its license.">\n` : "") +
+    (b.description ? `<meta name="description" content="${esc(b.description)}">\n`
+      : b.en ? `<meta name="description" content="${esc(b.en)}, read word by word in Hebrew: every reading traced to the record that carries it, and every record to its license.">\n` : "") +
     `<link rel="canonical" href="${ORIGIN}${canonical}">\n`;
-  const titled = b.en
-    ? ZONE_HTML.replace(/<title>[^<]*<\/title>/, `<title>${esc(b.en)} · ${SITE_NAME}</title>`)
+  const title = b.title || (b.en ? `${b.en} · ${SITE_NAME}` : "");
+  const titled = title
+    ? ZONE_HTML.replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`)
     : ZONE_HTML;
+  const slot = `<main id="text"></main>`;
+  if (b.porch && !titled.includes(slot))
+    throw new Error("zone.html lost its text slot — refusing to emit a page with a porch and nowhere to stand it");
   return titled
     .replace(anchor, metas + anchor)
     .replace(engineBlocks.css.whole, `<link rel="stylesheet" href="/${ENGINE}/${engineBlocks.css.name}">`)
-    .replace(engineBlocks.js.whole, `<script src="/${ENGINE}/${engineBlocks.js.name}"></script>`);
+    .replace(engineBlocks.js.whole, `<script src="/${ENGINE}/${engineBlocks.js.name}"></script>`)
+    .replace(slot, b.porch ? `${slot}\n${b.porch}` : slot);
 };
 
 // The only Hebrew this page may print is a title carried from a zone — the
@@ -2965,68 +2976,39 @@ for (const b of withheldBooks) {
   mkdirSync(join(OUT, b.slug), { recursive: true });
   writeFileSync(join(OUT, b.slug, "index.html"), heldPage(b.withheld_reason, heldFrom(b)));
 }
-for (const b of books) {
-  mkdirSync(join(OUT, b.slug), { recursive: true });
-  const r = readerPage(b);
-  // The reader supplies no character of the text; a work page is the reader.
-  if (HEBREW.test(r)) throw new Error(`${b.slug}: the work page printed a character of the text — refusing output`);
-  writeFileSync(join(OUT, b.slug, "index.html"), r);
-}
-// Every zone on the shelf answers at its own address — the fleet's works
-// included. The page is the reader, stamped with the bin's own name; the
-// only Hebrew such a page may carry is that name, which is the recorded id
-// (a record, the same standing as the atlas rows' ids) — so the base reader
-// is asserted Hebrew-free once, and the emitted page is asserted to carry
-// no Hebrew beyond the id's own occurrences.
-if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew — refusing to emit any work page");
-{
-  const covered = new Set([...books.map((b) => b.slug), ...withheldBooks.map((b) => b.slug)]);
-  let fleetPages = 0;
-  for (const f of shelfZoneFiles()) {
-    const slug = f.replace(/\.bin$/, "");
-    if (covered.has(slug)) continue;
-    // the work's English name titles the page where the zone carries one
-    // without a character of the text in it; a name the page could not
-    // stand behind leaves the reader's own title in place
-    const zi = ZONE_INFO.get(slug);
-    const en = zi && zi.workEn && zi.workEn !== slug && !HEBREW.test(zi.workEn) ? zi.workEn : undefined;
-    const page = readerPage({ slug, en });
-    const stripped = page.split(slug).join("");
-    if (HEBREW.test(stripped)) throw new Error(`${slug}: the work page carries Hebrew beyond the recorded id — refusing output`);
-    mkdirSync(join(OUT, slug), { recursive: true });
-    writeFileSync(join(OUT, slug, "index.html"), page);
-    fleetPages += 1;
-  }
-  console.log(`  ${n(fleetPages)} fleet work addresses emitted beside the ${books.length} book page${books.length === 1 ? "" : "s"}`);
-}
-// THE CHAPTER PAGES (chapter-page-rule-v1). A search for "Amos 3:7" cannot
+// THE CHAPTER PAGES (chapter-page-rule-v2). A search for "Amos 3:7" cannot
 // land on a reader that is one address per book with the text arriving
 // sealed: the crawler sees one page called Amos, if its render finishes,
 // and nothing called Amos 3:7. So every stamped book — the count stamp is
-// what marks a served book, 39 on this shelf — gets a static page per
-// chapter: the reference in the title, every verse a heading, and under
-// each verse the English readings the shelf prints for its words, each
-// credited to its source and licence, and a link that opens the reader at
-// that verse (?at=label, the reader's own locator). The page carries no
-// character of the Hebrew: the ink lives only in the sealed bin, as on
-// every work page, and that is asserted here as it is there. These are the
-// front porch onto the reader, not a second reader; the reader does not
-// know they exist.
+// what marks a served book, 39 on this shelf — answers at an address per
+// chapter, and THAT ADDRESS IS THE READER: the same page as the book's own,
+// told in its head which chapter it opens at, titled for the chapter, and
+// carrying under its text slot a porch — every verse a heading, under each
+// the English readings the shelf prints for its words, each credited to its
+// source and licence — in plain text a crawler reads before any script
+// runs. The engine hides the porch once the text is drawn, because the same
+// readings then stand under the words; on a page the book never reaches
+// (no script, a refused bin) the porch stays and still says what the
+// chapter reads. Its verse headings are anchors the engine lands on
+// (#v3-7). No page carries a character of the Hebrew: the ink lives only in
+// the sealed bin, as on every work page, and that is asserted here as it is
+// there. The first cut of this rule (v1) wrote a separate plain page per
+// chapter with a link into the reader; the owner, 2026-09-28: "its not our
+// book page anymore" — so the porch moved into the book page itself.
+const CHAPTER_PAGE_RULE = "chapter-page-rule-v2-the-chapters-address-is-the-reader-opened-at-the-chapter-and-its-readings-stand-in-plain-text-credited-and-no-ink";
+const CHAPTER_PAGES = [];          // { slug, ch, page } — written after the book pages, listed after them
+const CHAPTER_LISTS = new Map();   // slug → [ch, ...] for the book page's own porch
+const CHAPTER_EN = new Map();      // slug → the name the chapter pages print
+const chapterReceipt = { rule: CHAPTER_PAGE_RULE,
+  emitted_by: "tools/build-front-door-v1.mjs", letter: "Y",
+  what: "an address per chapter of every stamped book that serves the reader itself, opened at the chapter (meta reader-at), titled for the chapter, with a porch under the text slot: every verse a heading, the readings the zone bakes for its words credited by source, hidden by the engine once the text is drawn; the book's own page carries a porch listing its chapters; no character of the Hebrew",
+  books: {} };
 {
   const stamped = [...ZONE_INFO.values()].filter((zi) => zi.stamp);
   // a word's pieces are joined the way the reader joins them (spanJoin in
   // zone.html, to the character): "and/ the/ man" prints as "and + the + man"
   const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
-  let chapterPages = 0, versesOn = 0;
-  const receipt = { rule: "chapter-page-rule-v1-a-searchable-page-per-chapter-carries-the-readings-credited-and-no-ink-and-opens-the-reader-at-the-verse",
-    emitted_by: "tools/build-front-door-v1.mjs", letter: "Y", what: "a static page per chapter of every stamped book: the reference, every verse a heading, the readings the zone bakes for its words credited by source, a link opening the reader at the verse (?at=label); no character of the Hebrew", books: {} };
-  const cssChapter = `body{margin:0;background:#f1e9d8;color:#3a3348;font:17px/1.6 Georgia,serif;padding:1.2rem 1rem 3rem}
-  main{max-width:38rem;margin:0 auto} h1{font-size:1.5rem;margin:.4rem 0 .2rem} .sub{color:#7b7290;font-size:.9rem;margin:0 0 1.2rem}
-  h2{font-size:1.05rem;margin:1.4rem 0 .3rem;color:#5c5270} .r{margin:0 0 .3rem;line-height:1.75}
-  .r span{overflow-wrap:anywhere} .r i{font-style:normal;color:#96700f;font-size:.72em;letter-spacing:.02em}
-  sup{font-size:.62em;color:#96700f;margin-left:.1em} footer ol{padding-left:1.4em;margin:.3rem 0 .8rem}
-  .open{font-size:.88rem} a{color:#96700f} nav{display:flex;justify-content:space-between;font-size:.9rem;margin:1.6rem 0 0}
-  footer{margin-top:2rem;font-size:.82rem;color:#7b7290}`;
+  let versesOn = 0;
   for (const zi of stamped) {
     const bytes = readFileSync(join(ZONES, `${zi.slug}.bin`));
     const z = JSON.parse(gunzipSync(bytes).toString("utf8"));
@@ -3044,6 +3026,7 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
       chapters.get(ch).push(sec);
     }
     const chs = [...chapters.keys()];
+    CHAPTER_LISTS.set(zi.slug, chs); CHAPTER_EN.set(zi.slug, en);
     const tally = { work: en, chapters: chs.length, verses: 0, readings: 0, readings_quoting_hebrew_held: 0 };
     chs.forEach((ch, ci) => {
       const secs = chapters.get(ch);
@@ -3074,48 +3057,90 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
         if (parts.length) versesOn += 1;
         tally.verses += 1; tally.readings += parts.filter((x) => x.startsWith("<span>")).length;
         const id = `v${label.replace(/[^0-9a-z]+/gi, "-")}`;
-        return `  <h2 id="${id}">${esc(en)} ${esc(label)}</h2>
-  <p class="r">${parts.length ? parts.join(" · ") : "<i>no reading on the shelf for the words of this verse</i>"}</p>
-  <p class="open"><a href="/${zi.slug}/?at=${encodeURIComponent(label)}">Open ${esc(en)} ${esc(label)} in the reader, word by word</a></p>`;
+        return `  <article class="pv"><h3 id="${id}">${esc(en)} ${esc(label)}</h3>
+  <p class="r">${parts.length ? parts.join(" · ") : "<i>no reading on the shelf for the words of this verse</i>"}</p></article>`;
       });
-      const prev = ci > 0 ? `<a href="/${zi.slug}/${chs[ci - 1]}/">${esc(en)} ${esc(chs[ci - 1])}</a>` : `<a href="/${zi.slug}/">${esc(en)}, the reader</a>`;
-      const next = ci + 1 < chs.length ? `<a href="/${zi.slug}/${chs[ci + 1]}/">${esc(en)} ${esc(chs[ci + 1])}</a>` : `<a href="/">${SITE_NAME}</a>`;
+      const prev = ci > 0 ? `<a href="/${zi.slug}/${chs[ci - 1]}/" rel="prev">${esc(en)} ${esc(chs[ci - 1])}</a>` : "";
+      const next = ci + 1 < chs.length ? `<a href="/${zi.slug}/${chs[ci + 1]}/" rel="next">${esc(en)} ${esc(chs[ci + 1])}</a>` : "";
       const srcList = [...sources.entries()].map(([who, s]) => `<li value="${s.n}">${esc(who)}${s.lic ? ` · ${esc(s.lic)}` : ""}</li>`).join("\n    ");
-      const quotesNote = quotesHebrew ? ` ${quotesHebrew} reading${quotesHebrew === 1 ? "" : "s"} on this page quote${quotesHebrew === 1 ? "s" : ""} Hebrew letters and print${quotesHebrew === 1 ? "s" : ""} only in the reader.` : "";
-      const page = `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(en)} ${esc(ch)} · Hebrew, word by word · ${SITE_NAME}</title>
-<meta name="description" content="${esc(en)} ${esc(ch)} in Hebrew, word by word: the English reading the shelf prints for every word, each credited to the dictionary that gives it and to its license, with the reader open at any verse.">
-<link rel="canonical" href="${ORIGIN}/${zi.slug}/${ch}/">
-<style>${cssChapter}</style>
-</head>
-<body><main>
-  <h1>${esc(en)} ${esc(ch)}</h1>
-  <p class="sub">Hebrew, word by word. Under each verse: the reading printed for each of its words, oldest witness first, each credited to its source. Press a verse to open it in the reader with the Hebrew and every other reading.</p>
+      const quotesNote = quotesHebrew ? ` ${quotesHebrew} reading${quotesHebrew === 1 ? "" : "s"} of this chapter quote${quotesHebrew === 1 ? "s" : ""} Hebrew letters and print${quotesHebrew === 1 ? "s" : ""} only under the words.` : "";
+      const porch = `<section id="porch" lang="en" dir="ltr">
+  <h2>${esc(en)} ${esc(ch)}</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
 ${verses.join("\n")}
-  <nav>${prev}${next}</nav>
+  <nav class="porch-nav">${prev}<a href="/${zi.slug}/">${esc(en)}, from the beginning</a>${next}</nav>
   <footer>Sources, by the number beside each reading:
     <ol>
     ${srcList || "<li>no source</li>"}
     </ol>
     Each carried reading keeps its own license.${quotesNote} What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
-</main></body></html>
-`;
+</section>`;
+      const page = readerPage({ slug: zi.slug, en, canonical: `/${zi.slug}/${ch}`, at: ch,
+        title: `${en} ${ch} · Hebrew, word by word · ${SITE_NAME}`,
+        description: `${en} ${ch} in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.`,
+        porch });
       if (HEBREW.test(page)) throw new Error(`${zi.slug} ${ch}: the chapter page printed a character of the text — refusing output`);
-      mkdirSync(join(OUT, zi.slug, ch), { recursive: true });
-      writeFileSync(join(OUT, zi.slug, ch, "index.html"), page);
-      listed(`/${zi.slug}/${ch}/`);
-      chapterPages += 1;
+      CHAPTER_PAGES.push({ slug: zi.slug, ch, page });
       tally.readings_quoting_hebrew_held += quotesHebrew;
     });
-    receipt.books[zi.slug] = tally;
+    chapterReceipt.books[zi.slug] = tally;
   }
-  writeFileSync(join(OUT, "chapter-pages-receipt-v1.json"), JSON.stringify(receipt, null, 1));
-  console.log(`  chapter pages: ${n(chapterPages)} across ${stamped.length} stamped books · ${n(versesOn)} verses with a reading`);
+  console.log(`  chapter pages: ${n(CHAPTER_PAGES.length)} across ${stamped.length} stamped books · ${n(versesOn)} verses with a reading`);
 }
+// the book's own page carries the porch that names its chapters, so a
+// crawler reading the book's address finds every chapter's from it; the
+// engine hides it once the text is drawn, as it hides the chapter porch
+const bookPorch = (slug) => {
+  const chs = CHAPTER_LISTS.get(slug), en = CHAPTER_EN.get(slug);
+  if (!chs || !chs.length || !en) return "";
+  return `<section id="porch" lang="en" dir="ltr">
+  <h2>${esc(en)}, by chapter</h2>
+  <p class="porch-sub">Each chapter has an address of its own: this reader, open at the chapter, with every verse's readings in plain text beneath the words.</p>
+  <nav class="porch-chs">${chs.map((ch) => `<a href="/${slug}/${ch}/" aria-label="${esc(en)} ${esc(ch)}">${esc(ch)}</a>`).join("")}</nav>
+</section>`;
+};
+for (const b of books) {
+  mkdirSync(join(OUT, b.slug), { recursive: true });
+  const r = readerPage({ ...b, porch: bookPorch(b.slug) });
+  // The reader supplies no character of the text; a work page is the reader.
+  if (HEBREW.test(r)) throw new Error(`${b.slug}: the work page printed a character of the text — refusing output`);
+  writeFileSync(join(OUT, b.slug, "index.html"), r);
+}
+// Every zone on the shelf answers at its own address — the fleet's works
+// included. The page is the reader, stamped with the bin's own name; the
+// only Hebrew such a page may carry is that name, which is the recorded id
+// (a record, the same standing as the atlas rows' ids) — so the base reader
+// is asserted Hebrew-free once, and the emitted page is asserted to carry
+// no Hebrew beyond the id's own occurrences.
+if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew — refusing to emit any work page");
+{
+  const covered = new Set([...books.map((b) => b.slug), ...withheldBooks.map((b) => b.slug)]);
+  let fleetPages = 0;
+  for (const f of shelfZoneFiles()) {
+    const slug = f.replace(/\.bin$/, "");
+    if (covered.has(slug)) continue;
+    // the work's English name titles the page where the zone carries one
+    // without a character of the text in it; a name the page could not
+    // stand behind leaves the reader's own title in place
+    const zi = ZONE_INFO.get(slug);
+    const en = zi && zi.workEn && zi.workEn !== slug && !HEBREW.test(zi.workEn) ? zi.workEn : undefined;
+    // a stamped book's page carries the porch naming its chapters, the
+    // same as a plan book's (chapter-page-rule-v2)
+    const page = readerPage({ slug, en, porch: bookPorch(slug) });
+    const stripped = page.split(slug).join("");
+    if (HEBREW.test(stripped)) throw new Error(`${slug}: the work page carries Hebrew beyond the recorded id — refusing output`);
+    mkdirSync(join(OUT, slug), { recursive: true });
+    writeFileSync(join(OUT, slug, "index.html"), page);
+    fleetPages += 1;
+  }
+  console.log(`  ${n(fleetPages)} fleet work addresses emitted beside the ${books.length} book page${books.length === 1 ? "" : "s"}`);
+}
+for (const { slug, ch, page } of CHAPTER_PAGES) {
+  mkdirSync(join(OUT, slug, ch), { recursive: true });
+  writeFileSync(join(OUT, slug, ch, "index.html"), page);
+  listed(`/${slug}/${ch}/`);
+}
+writeFileSync(join(OUT, "chapter-pages-receipt-v1.json"), JSON.stringify(chapterReceipt, null, 1));
 // THE SITEMAP AND THE ROBOTS FILE: every address written above, whole, in
 // the order it was written; and a robots file that allows every crawler and
 // names the sitemap. Withheld addresses are not listed — they answer, but

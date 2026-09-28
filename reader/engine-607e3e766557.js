@@ -635,7 +635,12 @@
       for (const n of document.querySelectorAll("#workTitle .t-note, #workTitle .t-sug")) n.remove();
     }
   }
-  document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work} · ${SITE}`;
+  // A chapter's address is this reader (chapter-page-rule-v2): the door wrote
+  // which chapter into the head, and the title keeps it — a crawler that read
+  // "Amos 3" in the head must not be handed "Amos" once the page has drawn,
+  // or fifty chapter addresses of one book read as one page fifty times.
+  const AT_META = META("reader-at");
+  document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work}${AT_META ? ` ${AT_META}` : ""} · ${SITE}`;
   // THE CREDIT, FOLDED, WITH ITS TERMS STILL IN THE OPEN. The full byline is
   // unchanged and one press away; the summary carries the two facts a license
   // actually requires a reader to be able to see — which edition this is, and
@@ -6232,7 +6237,15 @@
   // ?at=7:14 opens the book at that coordinate. A coordinate is a locator, so
   // one work can hand a reader to another at the same place without either of
   // them claiming anything about the other.
-  const openAt = (QUERY.get("at") || "").trim();
+  // Three ways to arrive at a place, in order of how exactly they ask. ?at=
+  // names a coordinate outright. A hash of the form #v3-7 is a verse heading
+  // on the page's own porch (chapter-page-rule-v2) — the same label with its
+  // punctuation folded to hyphens — and it is resolved below against the
+  // labels the book actually carries, never unfolded by guesswork. And the
+  // door's own meta names the chapter this address is: a chapter, not a
+  // verse, so the page lands on the chapter head and marks nothing.
+  const hashAt = decodeURIComponent(location.hash || "").replace(/^#/, "");
+  const openAt = (QUERY.get("at") || (/^v[0-9a-z-]+$/i.test(hashAt) ? hashAt : "") || META("reader-at") || "").trim();
   // ?palette=tabernacle used to live here, as a link somebody followed on
   // purpose so the page every other reader got stayed untouched. The owner
   // looked at it and ruled it in on 2026-09-10, so there is nothing left to
@@ -7374,6 +7387,9 @@
   };
 
   main.append(frag);
+  // the text is drawn, so the porch's plain-text copy of it stands down
+  // (chapter-page-rule-v2); it stays only on a page the book never reached
+  { const porch = document.getElementById("porch"); if (porch) porch.hidden = true; }
   {
     const ci = buildCommentaryIndex();
     if (ci) main.prepend(ci);
@@ -7592,12 +7608,32 @@
   applyGlossOrder(defOrder);
   repaintGlossOrder();
   defSwitch();
-  if (openAt && byLabel.has(openAt)) {
-    const target = document.getElementById(byLabel.get(openAt));
-    if (target) {
-      materialise(target);
-      window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 80);
-      target.querySelector(".vnum")?.classList.add("at");
+  if (openAt) {
+    // a verse: by its label, or by its porch heading id (#v3-7 is the label
+    // "3:7" with every run of punctuation folded to one hyphen)
+    const foldId = (label) => `v${String(label).replace(/[^0-9a-z]+/gi, "-")}`;
+    let label = byLabel.has(openAt) ? openAt : null;
+    if (!label && /^v/i.test(openAt)) for (const l of byLabel.keys()) if (foldId(l) === openAt) { label = l; break; }
+    if (label) {
+      const target = document.getElementById(byLabel.get(label));
+      if (target) {
+        materialise(target);
+        window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 80);
+        target.querySelector(".vnum")?.classList.add("at");
+      }
+    } else {
+      // a chapter: the first section whose label is the chapter's own or
+      // stands under it; the page lands on that chapter's head where the
+      // book draws one, and marks no verse, because none was asked for
+      const first = zone.sections.find((sec) => sec.label === openAt || String(sec.label || "").startsWith(`${openAt}:`));
+      if (first) {
+        const head = document.getElementById(`n${first.node}`);
+        const target = head || document.getElementById(byLabel.get(first.label));
+        if (target) {
+          if (!head) materialise(target);
+          window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 24);
+        }
+      }
     }
   }
   // front-door-rule-v1 · ?c=open lands the reader inside a commentary.

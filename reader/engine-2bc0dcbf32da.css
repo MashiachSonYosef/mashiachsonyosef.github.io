@@ -396,6 +396,29 @@
 
   main { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 5rem; }
 
+  /* THE PORCH (chapter-page-rule-v2). A chapter's address is this reader,
+     and the door writes under the text slot a plain-text copy of what the
+     lines will say: every verse a heading, the readings under it credited by
+     number. It stands in the page's own frame, in the page's own inks, until
+     the text is drawn — then it is hidden, because the same readings now
+     stand under the words. It stays if the book never arrives: a page with
+     no script, or a bin the shelf refused, still says what the chapter reads. */
+  #porch { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 3rem; direction: ltr; text-align: left; }
+  #porch[hidden] { display: none; }
+  #porch h2 { font-size: 1.25rem; color: var(--ink-strong); margin: 0.6rem 0 0.2rem; }
+  #porch .porch-sub { color: var(--faint); font-size: 0.86rem; margin: 0 0 1rem; line-height: 1.55; }
+  #porch h3 { font-size: 1rem; color: var(--muted); margin: 1.3rem 0 0.25rem; font-weight: 600; }
+  #porch .r { margin: 0 0 0.3rem; line-height: 1.75; color: var(--en-word); }
+  #porch .r span { overflow-wrap: anywhere; }
+  #porch .r i { font-style: normal; color: var(--gold); font-size: 0.72em; letter-spacing: 0.02em; }
+  #porch sup { font-size: 0.62em; color: var(--gold); margin-left: 0.1em; }
+  #porch .porch-nav { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; font-size: 0.9rem; margin: 1.6rem 0 0; }
+  #porch .porch-nav a, #porch .porch-chs a, #porch footer a { color: var(--link); }
+  #porch .porch-chs { display: flex; flex-wrap: wrap; gap: 0.35rem 0.55rem; margin: 0.4rem 0 1rem; font-size: 0.9rem; }
+  #porch .porch-chs a { text-decoration: none; padding: 0.05rem 0.45rem; border: 1px solid var(--chip-line); border-radius: 0.6em; }
+  #porch footer { margin-top: 2rem; font-size: 0.82rem; color: var(--faint); }
+  #porch footer ol { padding-left: 1.4em; margin: 0.3rem 0 0.8rem; }
+
   .part-head { margin: 3rem 0 0.4rem; padding-top: 1.6rem; border-top: 1px double var(--gold-dim); }
   .part-head .he { direction: rtl; text-align: right; font-size: 1.05rem; color: var(--shani); letter-spacing: 0.04em; }
   .part-head .en { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--faint); text-align: left; }
