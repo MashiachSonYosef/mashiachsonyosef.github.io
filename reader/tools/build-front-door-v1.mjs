@@ -3014,13 +3014,16 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
 // know they exist.
 {
   const stamped = [...ZONE_INFO.values()].filter((zi) => zi.stamp);
+  // a word's pieces are joined the way the reader joins them (spanJoin in
+  // zone.html, to the character): "and/ the/ man" prints as "and + the + man"
+  const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
   let chapterPages = 0, versesOn = 0;
   const receipt = { rule: "chapter-page-rule-v1-a-searchable-page-per-chapter-carries-the-readings-credited-and-no-ink-and-opens-the-reader-at-the-verse",
     emitted_by: "tools/build-front-door-v1.mjs", letter: "Y", what: "a static page per chapter of every stamped book: the reference, every verse a heading, the readings the zone bakes for its words credited by source, a link opening the reader at the verse (?at=label); no character of the Hebrew", books: {} };
   const cssChapter = `body{margin:0;background:#f1e9d8;color:#3a3348;font:17px/1.6 Georgia,serif;padding:1.2rem 1rem 3rem}
   main{max-width:38rem;margin:0 auto} h1{font-size:1.5rem;margin:.4rem 0 .2rem} .sub{color:#7b7290;font-size:.9rem;margin:0 0 1.2rem}
   h2{font-size:1.05rem;margin:1.4rem 0 .3rem;color:#5c5270} .r{margin:0 0 .3rem;line-height:1.75}
-  .r span{white-space:nowrap} .r i{font-style:normal;color:#96700f;font-size:.72em;letter-spacing:.02em}
+  .r span{overflow-wrap:anywhere} .r i{font-style:normal;color:#96700f;font-size:.72em;letter-spacing:.02em}
   sup{font-size:.62em;color:#96700f;margin-left:.1em} footer ol{padding-left:1.4em;margin:.3rem 0 .8rem}
   .open{font-size:.88rem} a{color:#96700f} nav{display:flex;justify-content:space-between;font-size:.9rem;margin:1.6rem 0 0}
   footer{margin-top:2rem;font-size:.82rem;color:#7b7290}`;
@@ -3065,7 +3068,7 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
             const lic = m && m.lic ? String(m.lic) : "";
             if (HEBREW.test(String(g)) || HEBREW.test(who)) { quotesHebrew += 1; parts.push(`<i>a reading that quotes Hebrew letters, in the reader</i>`); continue; }
             const sup = who ? `<sup>${numOf(who, lic)}</sup>` : "";
-            parts.push(`<span>${esc(g)}${sup}</span>`);
+            parts.push(`<span>${esc(spanJoin(g))}${sup}</span>`);
           }
         }
         if (parts.length) versesOn += 1;

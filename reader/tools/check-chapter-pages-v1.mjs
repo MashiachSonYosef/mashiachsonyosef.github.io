@@ -37,6 +37,7 @@ const ZONES = join(K3, "data", "zones");
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const HEBREW = /[֐-׿]/u;
+const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
 const unesc = (t) => String(t).replace(/&quot;/g, "\"").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
 
 const stamped = [];
@@ -89,7 +90,7 @@ for (const { slug, z } of stamped) {
           const m = z.gloss_m ? z.gloss_m[k] : null;
           const who = m && m.m ? String(m.m) : "";
           if (HEBREW.test(String(g)) || HEBREW.test(who)) baked.push({ quotes: true });
-          else baked.push({ text: String(g), who });
+          else baked.push({ text: spanJoin(g), who });
         }
       }
       const legend = new Map([...html.matchAll(/<li value="(\d+)">([^<]*)<\/li>/g)].map((m) => [m[1], unesc(m[2])]));
@@ -143,7 +144,7 @@ if (href) {
     const lines = sec ? [...sec.querySelectorAll(".wb > .g:not(.bare)")].map((g) => (g.title || "").trim()).filter(Boolean) : [];
     return { marked: !!at, label: at ? at.textContent.trim() : null, top, lines };
   });
-  const bakedLines = (sec.words || []).flatMap((w) => Array.isArray(w.w) ? w.w.map((r) => r.k) : (w.k ? [w.k] : [])).map((k) => pick.z.gloss[k]).filter(Boolean).map(String);
+  const bakedLines = (sec.words || []).flatMap((w) => Array.isArray(w.w) ? w.w.map((r) => r.k) : (w.k ? [w.k] : [])).map((k) => pick.z.gloss[k]).filter(Boolean).map(spanJoin);
   const overlap = landed.lines.filter((l) => bakedLines.includes(l)).length;
   check("P4  the reader lands on that verse, marked and in view, and its lines carry the page's readings",
     landed.marked && landed.top !== null && landed.top >= 0 && landed.top < 400 && overlap >= Math.min(3, bakedLines.length),
