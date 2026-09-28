@@ -3674,6 +3674,22 @@
     // presses: the pills stand unlabelled, and stand. Released at the top
     // of every fit, so a taller window has its labels back.
     if (overrun() > 1) { rowsEl.classList.add("tight"); lastResort = true; handOut(); }
+    // THE ROUNDING. Every band box is set at the ceiling of a fractional row
+    // bottom, and the chrome above the rows (the head, the reading row, its
+    // note on a name) stands at fractional heights of its own, so a card can
+    // end a pixel or three past its own edge with every band correctly
+    // handed its share — the day the reading row grew a second line, the
+    // Israel card spilled by two. A spill that small is shaved off the
+    // readings box, which scrolls, so nothing pressable is lost; a larger
+    // one is a fit that failed and is left for the caller to see.
+    {
+      const spill = hud.scrollHeight - hud.clientHeight;
+      const rb = bands.find((x) => x.box === read) || bands[bands.length - 1];
+      if (spill > 0 && spill <= 4 && rb) {
+        const h = Math.max(0, rb.box.clientHeight - spill);
+        rb.box.style.height = `${h}px`; rb.box.style.maxHeight = `${h}px`;
+      }
+    }
     // did every band end up with the row it is owed, in the space it actually
     // has, with nothing given up? The caller decides what to do about it —
     // there is nothing left here to take it out of.
