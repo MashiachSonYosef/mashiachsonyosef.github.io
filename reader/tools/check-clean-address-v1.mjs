@@ -199,15 +199,6 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
         absent.length ? `${absent.length} switch(es) the rail draws and the page does not: ${absent.join(", ")}` : `${ids.length} switches drawn and documented`);
     } else check("the switches page stands at its own address", false, `${benchFile} — run node tools/build-toggle-design-v1.mjs`);
     FINISHED.push("/toggles/");
-    // And the opensourcing page, the door's fourth, standing beside the census
-    // in the top bar. It is a page held open for a question this project has
-    // not answered — what, if anything, of its own work it releases — and the
-    // door names it rather than leaving the question unasked. This guard had
-    // never been told, so the one link on the page that says the project does
-    // not know something read as a stray way out.
-    const openFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "opensourcing", "index.html");
-    check("the opensourcing page stands at its own address", existsSync(openFile), openFile);
-    FINISHED.push("/opensourcing/");
     // And the chain, the door's fifth: the same books with the meaning taken
     // out, so only the joins are left. It is not built by the door and does
     // not live under deploy-root — it is published beside the engine, from

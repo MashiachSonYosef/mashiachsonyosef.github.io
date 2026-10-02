@@ -20,7 +20,7 @@
   :root {
     color-scheme: light;
     --bg:#f1e9d8; --panel:#f8f2e5; --panel2:#ebe2cd; --line:#8a6a18;
-    --ink:#2b2338; --ink-strong:#191223; --muted:#5c5270; --faint:#7b7290;
+    --ink:#4b3570; --ink-strong:#3a265c; --muted:#665082; --faint:#7b7290;
     --gold:#96700f; --gold-dim:#9a7a28; --amber:#96700f;
     --sel:#8d5e0c; --sel-dim:#b8871a;
     --shani:#7a2e3b; --shani-dim:#a8797f;
@@ -37,6 +37,17 @@
          justify-content:center; padding:1.4rem 1rem; overflow-x:hidden; }
   main { width:100%; max-width:40rem; }
   h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--ink-strong); }
+  /* THE NAME IS THE MARK. The site has no logo but its name, so the name is
+     drawn as one: the curtain's three dyed yarns, tola'at shani through argaman
+     to tekhelet, in one word on the linen. Exodus 26:1 names them together and
+     never apart. Where a browser cannot clip a background to text, the name
+     stands in argaman, the project's own voice. Ruled 2026-10-02. */
+  .masthead { margin:0 0 .4rem; }
+  .wordmark { display:inline-block; margin:0; font-size:2.1rem; letter-spacing:.02em; font-weight:700; color:var(--argaman); text-decoration:none; }
+  a.wordmark { font-size:1.2rem; }
+  @supports ((-webkit-background-clip:text) or (background-clip:text)) {
+    .wordmark { background-image:linear-gradient(90deg, var(--shani) 0%, var(--argaman) 55%, var(--tekhelet) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; }
+  }
   p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }
   /* The face speaks plainly; the audited panel stands whole behind one quiet
      fold, its grains and receipts byte-identical for the count guard. What a
@@ -131,7 +142,7 @@
      is where a commentary is read. */
   #find { margin:0 0 1rem; }
   #find input { width:100%; padding:.6rem .9rem; border:1px solid var(--line); border-radius:.55rem;
-    background:var(--panel); color:var(--ink); font:inherit; font-size:.92rem; }
+    background:var(--bg); color:var(--ink); font:inherit; font-size:.92rem; }
   #find input::placeholder { color:var(--faint); }
   #find input:focus { outline:none; border-color:var(--muted); }
   .workgroup { border:1px solid var(--line); border-radius:.7rem; background:var(--panel); overflow:hidden; }
@@ -363,7 +374,7 @@
      far the record below it has been scrolled. */
   .pc-hudwrap .head { cursor: grab; touch-action: none; flex: 0 0 auto; }
 .pc-hudwrap .head:active { cursor: grabbing; }
-.pc-hudwrap.moved { box-shadow: 0 14px 40px rgba(0,0,0,.6), 0 0 0 1px var(--sel-dim); }
+.pc-hudwrap.moved { box-shadow: var(--shadow-card), 0 0 0 1px var(--sel-dim); }
 .pc-hudwrap .head button { cursor: pointer; }
 .pc-hudwrap .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem;
     flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
@@ -727,10 +738,10 @@
        indent with it or the nesting reads as broken */
     .atlas-row.built .col-att { padding-inline-start:1.9rem; }
   }
-    .atlas-row .fam-he .he { font-size:.92rem; color:var(--argaman); }
+    .atlas-row .fam-he .he { font-size:.92rem; color:var(--shani); }
   .col-he .fam-he, details.fam > summary .fam-he { display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
   .col-he .fam-he .he, details.fam > summary .fam-he .he { font-family:"Frank Ruehl CLM","David Libre","SBL Hebrew",Georgia,serif;
-    font-size:1.3rem; color:var(--argaman); }
+    font-size:1.3rem; color:var(--shani); }
     /* a gloss the reader ruled, marked as theirs rather than the catalogue's
      first answer — the same underline the book pages use for a chosen
      reading, so one gesture reads the same everywhere on the site */
@@ -966,13 +977,13 @@
   a, summary, button, input { transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease; }
   :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
   @media (prefers-reduced-motion: reduce) { a, summary, button, input { transition: none; } }
-  .topbar { display:flex; justify-content:flex-end; gap:.4rem; margin:0 0 .5rem; }
-  .face { border:1px solid var(--line);
-    border-radius:999px; background:var(--panel); color:var(--muted); font:inherit;
-    font-size:.72rem; padding:.12rem .7rem; cursor:pointer; }
-  .face:hover { color:var(--ink-strong); border-color:var(--muted); }
-  /* the census stands at its own address; the door wears the way there in
-     the same corner the faces live in, one step down */
+  .ways { display:flex; justify-content:center; flex-wrap:wrap; gap:1.4rem; margin:1.8rem 0 .9rem; }
+  .face { border:0; background:none; padding:0; color:var(--muted); font:inherit;
+    font-size:.85rem; letter-spacing:.04em; cursor:pointer; }
+  .face.is-here { color:var(--ink-strong); cursor:default; }
+  .face:hover { color:var(--ink-strong); }
+  /* the three addresses off the door stand in one quiet row at the foot of the
+     page; a sub-page wears the name at its head as its way home */
   a.alt-face { text-decoration:none; }
   /* the way to the bench. One quiet line above the footer: the order
      switch governs every card on the site, and a reader who wants to know
@@ -1000,7 +1011,7 @@
      holds nothing here, which is our own voice and not an absence of one. */
   .fam-he .he, .col-he .he, #bkcard .slot .fam-he .he,
   .bookcard .he, a.sub-work .he, span.atlas-row .fam-he .he,
-  .pc-hudwrap .head b { color:var(--shani-ink); background:none;
+  .pc-hudwrap .head b { color:var(--shani); background:none;
     border-radius:.5em; padding:.02em .3em; }
   .he.none, .en.none, .fam-he .he.none, #bkcard .he.none { color:var(--argaman);
     background:none; padding:0; font-style:italic; }

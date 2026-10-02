@@ -30,7 +30,7 @@
     --nav-veil: rgba(248, 242, 229, 0.94);
     --line: #8a6a18; --wash: #e8dec7;
     --surface-c: #ece0c6; --panel-c: #e4d5b4; --line-c: #c6b189;
-    --ink: #2b2338; --ink-strong: #191223; --muted: #5c5270; --faint: #7b7290;
+    --ink: #4b3570; --ink-strong: #3a265c; --muted: #665082; --faint: #7b7290;
     --shesh: #6b5a35; --shesh-bright: #4f421d;
     /* on linen, bright means saturated and not light: a pale gold vanishes
        into the ground, and a deep one reads as leaf. Both clear the 3:1 a
@@ -100,8 +100,13 @@
   #home .nav-lab { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--faint); }
   #home a.home { border: 1px solid var(--line); border-radius: 999px;
-    padding: 0.3rem 0.95rem; background: var(--panel2); color: var(--shesh);
+    padding: 0.3rem 0.95rem; background: var(--panel2); color: var(--argaman);
     text-decoration: none; white-space: nowrap; }
+  /* the name is the mark, as on the door: the curtain's three yarns in one word (ruled 2026-10-02) */
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    #home a.home { background: linear-gradient(90deg, var(--shani) 0%, var(--argaman) 55%, var(--tekhelet) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+  }
   #home a.home:hover { color: var(--ink-strong); border-color: var(--muted); }
   /* the other face, one press away — the button names where it takes you */
   #home button.face { border: 1px solid var(--line); border-radius: 999px; background: none;
@@ -1136,7 +1141,7 @@
      far the record below it has been scrolled. */
   #hud .head { cursor: grab; touch-action: none; flex: 0 0 auto; }
   #hud .head:active { cursor: grabbing; }
-  #hud.moved { box-shadow: 0 14px 40px rgba(0,0,0,.6), 0 0 0 1px var(--sel-dim); }
+  #hud.moved { box-shadow: var(--shadow-card), 0 0 0 1px var(--sel-dim); }
   #hud .head button { cursor: pointer; }
   #hud .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem;
     flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
