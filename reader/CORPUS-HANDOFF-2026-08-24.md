@@ -54,5 +54,5 @@ waits on the first conforming zone.
 - The sealed W lists (`check-w-grain-v1` runs red until the first one lands).
 - The Y ledgers for works still on `TYPED_AWAITING_LEDGER` basis.
 
-The website lane is this repository, branch `gh-pages`. Everything it does
+The website lane is this repository, branch `main`. Everything it does
 to what you ship is derived, checked, and pushed back where you can read it.

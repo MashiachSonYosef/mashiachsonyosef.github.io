@@ -39,7 +39,7 @@ import { fileURLToPath } from "node:url";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const REMOTE = process.argv[2] || "https://github.com/MashiachSonYosef/mashiachsonyosef.github.io.git";
-const BRANCH = process.argv[3] || "gh-pages";
+const BRANCH = process.argv[3] || "main";
 // where this tree sits inside the branch — read from where it stands
 const PREFIX = `${basename(K3)}/`;
 let bad = 0;

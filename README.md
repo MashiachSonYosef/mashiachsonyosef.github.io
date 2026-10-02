@@ -77,5 +77,5 @@ There is no single license. Every work carries its own, computed from its own
 records. Nothing here is licensed as a whole, and nothing inherits a license
 from what it sits beside.
 
-Served from the `gh-pages` branch.
+Served from the `main` branch.
 
