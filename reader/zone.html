@@ -108,13 +108,9 @@
     padding: 0.3rem 0.95rem; background: var(--panel2); color: var(--shani-ink);
     font-family: 'wordmark', Georgia, serif; font-weight: 600; letter-spacing: -0.01em;
     text-decoration: none; white-space: nowrap; }
-  /* the name is the mark, as on the door: fire to hail, shani to tekhelet at the soft values a word and its reading wear, the turn held short,
-     in Outfit at 600 (SIL OFL 1.1, subset to the name, its license beside it at /fonts/) (ruled 2026-10-02) */
+  /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02): fire in shani, and in argaman, hail in tekhelet, the .com in gold, each word its own color with no blend between. The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. The .com is the one gold a page shows at rest, and the color check names it. */
   @font-face { font-family: 'wordmark'; src: url('/fonts/outfit-wordmark-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
-  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-    #home a.home { background: linear-gradient(90deg, var(--shani-ink) 0%, var(--shani-ink) 30%, var(--tekhelet-ink) 50%, var(--tekhelet-ink) 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
-  }
+  #home a.home .wm-fire { color:var(--shani); } #home a.home .wm-and { color:var(--argaman); } #home a.home .wm-hail { color:var(--tekhelet); } #home a.home .wm-tld { color:var(--gold); }
   #home a.home:hover { color: var(--ink-strong); border-color: var(--muted); }
   /* the other face, one press away — the button names where it takes you */
   #home button.face { border: 1px solid var(--line); border-radius: 999px; background: none;
@@ -130,6 +126,8 @@
      itself. The labels are ours; only the title is the corpus's. */
   header.top h1 { display: flex; flex-direction: column; gap: 0.1rem; }
   header.top h1 .t-row { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
+  /* a label is plain, never weighted, and a selection shows in gold, never in weight (the owner, 2026-10-02) */
+  header.top h1 .t-lab, header.top h1 .lic-chip { font-weight: normal; }
   header.top h1 .t-lab { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--faint); font-variant: normal; flex: 0 0 auto; min-width: 6.4rem; }
   header.top h1 .he-t { font-size: 2.1rem; }
@@ -385,7 +383,7 @@
     text-decoration: none; font: 0.92rem/1 Georgia, serif; color: var(--ink-strong);
     font-variant-numeric: tabular-nums; transition: border-color 120ms, background 120ms; }
   #toc .chs a:hover { border-color: var(--ink-strong); background: var(--wash); }
-  #toc .chs a.on { border-color: var(--sel); color: var(--sel); font-weight: bold; }
+  #toc .chs a.on { border-color: var(--sel); color: var(--sel); }
   /* the sections of one chapter, opened in place under the grid */
   #secPanel { margin-top: 0.7rem; border: 1px solid var(--line); border-radius: 0.5rem;
     background: var(--panel2); padding: 0.6rem 0.7rem; }
@@ -511,7 +509,7 @@
   .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; direction: ltr; }
   .vnum { font-size: 0.72rem; color: var(--ink-strong); border: 1px solid var(--gold-dim);
     background: var(--panel); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
-  .vnum.at { color: var(--sel); border-color: var(--sel); font-weight: bold; }
+  .vnum.at { color: var(--sel); border-color: var(--sel); }
   .drift-chip { font-size: 0.68rem; color: var(--argaman); border: 1px dashed var(--argaman-dim); border-radius: 0.5rem;
     padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
   .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
@@ -805,7 +803,7 @@
   .rail > summary::-webkit-details-marker { display: none; }
   .rail .k { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
   .rail .now { font-size: 0.8rem; color: var(--ink); }
-  .rail .now b { font-weight: 600; color: var(--ink); }
+  .rail .now b { font-weight: normal; color: var(--sel); }
   .rail .now i { color: var(--faint); font-style: normal; padding: 0 0.2rem; }
   .rail .row { display: grid; grid-template-columns: 6.2rem 1fr; gap: 0.35rem 0.6rem; align-items: baseline;
     padding: 0.42rem 0 0; margin-top: 0.42rem; border-top: 1px dotted var(--chip-line); }
@@ -965,7 +963,7 @@
   .mode-dir { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--faint); }
   .mode-btn { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
-  .mode-btn.on { color: var(--sel); border-color: var(--sel); font-weight: bold; }
+  .mode-btn.on { color: var(--sel); border-color: var(--sel); }
 
   /* The HUD floats. The Hebrew never moves — law of the house. */
   /* A card that always carries a whole record needs room for one; 55vh put
@@ -1225,7 +1223,7 @@
   /* the pressed pill is the reading's own ink, filled, with the linen showing
      through as its letters — pressed, not a box in a second color */
   #hud .r-pills button[aria-pressed="true"] { border-color: var(--tekhelet-ink);
-    background: var(--tekhelet-ink); color: var(--bg); font-weight: bold; }
+    background: var(--tekhelet-ink); color: var(--bg); }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
   #hud .r-overflow { margin-top: 0.45rem; }
@@ -1233,7 +1231,7 @@
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
   #hud .r-overflow select:hover { border-color: var(--muted); }
-  #hud .r-overflow select.on { background: var(--tekhelet-ink); color: var(--bg); font-weight: bold; }
+  #hud .r-overflow select.on { background: var(--tekhelet-ink); color: var(--bg); }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   /* P — the sources that carry the same record. A corroboration is not a
      louder kind of source, so it wears the same chip and the same weight as
@@ -1255,7 +1253,7 @@
   /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
   #hud .d-card .d-text { margin: 0.25rem 0; color: var(--tekhelet-ink); }
-  #hud .d-card .d-sense.on { font-weight: bold; }
+  #hud .d-card .d-sense.on { color: var(--sel); }
   #hud .d-card .d-sep { color: var(--faint); }
   #hud .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; padding: 0 0 0.05rem; text-align: left; }
@@ -1326,7 +1324,7 @@
     letter-spacing: 0.04em; cursor: pointer; }
   .c-mark:hover { color: var(--ink-strong); border-color: var(--muted); }
   .c-mark[aria-expanded="true"] { border-color: var(--sel);
-    color: var(--sel); font-weight: bold; }
+    color: var(--sel); }
   .c-mark .c-glyph { font-variant: small-caps; letter-spacing: 0.08em; }
   /* Bounded, like the card's regions. A Rashi runs to a page and it was taking
      one — the verse it belongs to disappeared above it. It gets a share and
@@ -1447,7 +1445,7 @@
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #hud .c-pills button[aria-pressed="true"] { border-color: var(--tekhelet-ink);
-    background: var(--tekhelet-ink); color: var(--bg); font-weight: bold; }
+    background: var(--tekhelet-ink); color: var(--bg); }
   #hud .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--shani-ink);
     padding: 0.1rem 0.4rem; border-radius: 0.4em;
@@ -1613,7 +1611,7 @@
     background: var(--panel2); border-radius: 0.5rem; padding: 0.12rem 0.5rem;
     letter-spacing: 0.04em; cursor: pointer; font-family: inherit; }
   .xp:hover { border-color: var(--muted); color: var(--shesh); }
-  .xp.armed { color: var(--sel); border-color: var(--sel); font-weight: bold; }
+  .xp.armed { color: var(--sel); border-color: var(--sel); }
   .xp.busy { opacity: 0.6; cursor: progress; }
   .xp-note { font-size: 0.66rem; color: var(--faint); direction: ltr; flex: 1 1 100%; margin: 0.1rem 0 0; }
   .xp-note b { color: var(--shesh); font-weight: normal; }
@@ -1631,6 +1629,11 @@
     .he-text { font-size: 1.32rem; line-height: 2.05; }
     header.top h1 { font-size: 1.5rem; } header.top h1 .he-t { font-size: 1.7rem; }
   }
+
+  /* THE READINGS WEAR A STEADIER FACE. The owner, 2026-10-02: Georgia's hairline strokes at ten pixels let the soft blue fade toward gray and the letters wobble. Every rule that paints text tekhelet, and only those, sets it in Source Serif 4 at medium weight (SIL Open Font License 1.1, its license beside it at /fonts/); the purple, the Hebrew and the frame keep their faces. Two files: plain Latin always, accents and Greek only on a page that uses them. */
+  @font-face { font-family:'reading'; src:url('/fonts/reading-latin-500.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; unicode-range:U+0020-007E, U+00A0-00FF, U+2000-206F, U+FB01-FB02; }
+  @font-face { font-family:'reading'; src:url('/fonts/reading-ext-500.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; unicode-range:U+0100-024F, U+0370-03FF, U+1E00-1FFF, U+2100-22FF; }
+  .wb > .g, .wjoin > .g, .pen, .g, body.en .g, .rail .row[data-voice="them"] .voice, .rail .decl-says, #hud .r-now .v, #hud .r-piece, #hud .r-pills button, #hud .r-overflow select, #hud .d-card .d-text { font-family:'reading', Georgia, serif; font-weight:500; }
 </style>
 </head>
 <body>
@@ -1751,7 +1754,12 @@
   // address the site answers at; a bare reader carries no meta and keeps the
   // project's working name. Typed in one place, shown in two.
   const SITE = META("site-name") || "The Tabernacle";
-  { const h = document.querySelector("#home a.home"); if (h) h.textContent = SITE; }
+  { const h = document.querySelector("#home a.home"); if (h) {
+    // the mark's four parts (the owner, 2026-10-02); a name this does not match stands whole
+    const p = /^(fire)(and)(hail)(\..+)$/u.exec(SITE);
+    if (!p) h.textContent = SITE;
+    else { h.textContent = ""; ["fire", "and", "hail", "tld"].forEach((k, i) => { const s = document.createElement("span"); s.className = "wm-" + k; s.textContent = p[i + 1]; h.appendChild(s); }); }
+  } }
   const unpack = async (res) =>
     JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
   // The door keeps the seals; the shelf keeps the weight. A zone bin may be

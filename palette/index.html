@@ -41,22 +41,12 @@
          justify-content:center; padding:1.4rem 1rem; overflow-x:hidden; }
   main { width:100%; max-width:40rem; }
   h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--ink-strong); }
-  /* THE NAME IS THE MARK. The site has no logo but its name, so the name is
-     drawn as one: fire to hail, tola'at shani to tekhelet, the two dyed yarns
-     at the soft values the reader paints a word and its reading in, with the
-     turn held short so the eye reads
-     red and blue and not the purple between them. One gold hairline beneath,
-     the frame's own line work. Where a browser cannot clip a background to
-     text, the name stands in shani. The face is Outfit at 600, SIL Open Font
-     License 1.1, subset to the letters of the name and served beside its
-     license at /fonts/; where it has not loaded, Georgia. Ruled 2026-10-02. */
+  /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02): fire in shani, and in argaman, hail in tekhelet, the .com in gold, each word its own color with no blend between. The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. The .com is the one gold a page shows at rest, and the color check names it. */
   @font-face { font-family:'wordmark'; src:url('/fonts/outfit-wordmark-600.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
   .masthead { margin:0 0 .4rem; }
   .wordmark { display:inline-block; margin:0; font-family:'wordmark',Georgia,serif; font-size:2.1rem; letter-spacing:-.01em; font-weight:600; color:var(--shani-ink); text-decoration:none; padding-bottom:.06em; border-bottom:1px solid var(--gold-dim); }
   a.wordmark { font-size:1.2rem; }
-  @supports ((-webkit-background-clip:text) or (background-clip:text)) {
-    .wordmark { background-image:linear-gradient(90deg, var(--shani-ink) 0%, var(--shani-ink) 30%, var(--tekhelet-ink) 50%, var(--tekhelet-ink) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; }
-  }
+  .wordmark .wm-fire { color:var(--shani); } .wordmark .wm-and { color:var(--argaman); } .wordmark .wm-hail { color:var(--tekhelet); } .wordmark .wm-tld { color:var(--gold); }
   p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }
   /* The face speaks plainly; the audited panel stands whole behind one quiet
      fold, its grains and receipts byte-identical for the count guard. What a
@@ -411,7 +401,7 @@
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
 .pc-hudwrap .r-pills button[aria-pressed="true"] { border-color: var(--sel);
-    color: var(--sel); font-weight: bold; }
+    color: var(--sel); }
 .pc-hudwrap .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
 .pc-hudwrap .r-overflow { margin-top: 0.45rem; }
@@ -419,7 +409,7 @@
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
 .pc-hudwrap .r-overflow select:hover { border-color: var(--muted); }
-.pc-hudwrap .r-overflow select.on { color: var(--sel); border-color: var(--sel); font-weight: bold; }
+.pc-hudwrap .r-overflow select.on { color: var(--sel); border-color: var(--sel); }
 .pc-hudwrap .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
 /* P — the sources that carry the same record. A corroboration is not a
      louder kind of source, so it wears the same chip and the same weight as
@@ -441,7 +431,7 @@
 /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
   .pc-hudwrap .d-card .d-text { margin: 0.25rem 0; color: var(--muted); }
-.pc-hudwrap .d-card .d-sense.on { color: var(--ink-strong); font-weight: bold; }
+.pc-hudwrap .d-card .d-sense.on { color: var(--sel); }
 .pc-hudwrap .d-card .d-sep { color: var(--faint); }
 .pc-hudwrap .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; padding: 0 0 0.05rem; text-align: left; }
@@ -477,7 +467,7 @@
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pc-hudwrap .c-pills button[aria-pressed="true"] { border-color: var(--sel);
-    color: var(--sel); font-weight: bold; }
+    color: var(--sel); }
 .pc-hudwrap .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
 .pc-hudwrap .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
@@ -698,7 +688,7 @@
     color:var(--faint); background:none; border:1px solid var(--line); border-radius:999px;
     padding:.2rem .6rem; cursor:pointer; }
   .filing-pick .fp:hover { color:var(--muted); border-color:var(--muted); }
-  .filing-pick .fp.on { color:var(--ink-strong); border-color:var(--muted); background:var(--hover-wash); }
+  .filing-pick .fp.on { color:var(--sel); border-color:var(--sel); background:var(--hover-wash); }
   .filing-24 { display:none; }
   body[data-filing="24"] .filing-39 { display:none; }
   body[data-filing="24"] .filing-24 { display:block; }
@@ -1038,6 +1028,12 @@
   span.g, a.titleway .g, .bookcard .g, .atlas-row .g { color:var(--tekhelet-ink); }
   /* a reading already standing on a tekhelet card is not washed a second time */
   .atlas-row.built .g, details.fam > summary .row:first-child .g { background:none; padding:0; }
+  /* THE READINGS WEAR A STEADIER FACE. The owner, 2026-10-02: Georgia's hairline strokes at ten pixels let the soft blue fade toward gray and the letters wobble. Every rule that paints text tekhelet, and only those, sets it in Source Serif 4 at medium weight (SIL Open Font License 1.1, its license beside it at /fonts/); the purple, the Hebrew and the frame keep their faces. Two files: plain Latin always, accents and Greek only on a page that uses them. */
+  @font-face { font-family:'reading'; src:url('/fonts/reading-latin-500.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; unicode-range:U+0020-007E, U+00A0-00FF, U+2000-206F, U+FB01-FB02; }
+  @font-face { font-family:'reading'; src:url('/fonts/reading-ext-500.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; unicode-range:U+0100-024F, U+0370-03FF, U+1E00-1FFF, U+2100-22FF; }
+  a.titleway:hover .g, .col-he .fam-he .g, details.fam > summary .fam-he .g, #bkcard .slot .fam-he .g, span.g, a.titleway .g, .bookcard .g, .atlas-row .g { font-family:'reading', Georgia, serif; font-weight:500; }
+  /* a plain label in our own voice, before a name: lowercase, a colon, no weight (the owner, 2026-10-02) */
+  .kind { font-size:.66rem; letter-spacing:.03em; color:var(--muted); font-variant:normal; text-transform:none; margin-inline-end:.4rem; }
 
   .bookcard .stamp, .atlas-row .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; flex-basis:100%; }
   .atlas-row.stamped { flex-wrap:wrap; }

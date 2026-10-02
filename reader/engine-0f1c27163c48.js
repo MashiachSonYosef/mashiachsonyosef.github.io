@@ -26,7 +26,12 @@
   // address the site answers at; a bare reader carries no meta and keeps the
   // project's working name. Typed in one place, shown in two.
   const SITE = META("site-name") || "The Tabernacle";
-  { const h = document.querySelector("#home a.home"); if (h) h.textContent = SITE; }
+  { const h = document.querySelector("#home a.home"); if (h) {
+    // the mark's four parts (the owner, 2026-10-02); a name this does not match stands whole
+    const p = /^(fire)(and)(hail)(\..+)$/u.exec(SITE);
+    if (!p) h.textContent = SITE;
+    else { h.textContent = ""; ["fire", "and", "hail", "tld"].forEach((k, i) => { const s = document.createElement("span"); s.className = "wm-" + k; s.textContent = p[i + 1]; h.appendChild(s); }); }
+  } }
   const unpack = async (res) =>
     JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream("gzip"))).text());
   // The door keeps the seals; the shelf keeps the weight. A zone bin may be

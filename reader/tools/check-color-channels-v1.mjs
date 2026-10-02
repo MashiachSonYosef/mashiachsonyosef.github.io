@@ -383,6 +383,10 @@ if (commentaryHere) {
     const out = [];
     for (const e of document.querySelectorAll("body *")) {
       if (e.closest('.active, .chosen, [aria-pressed="true"], [aria-expanded="true"], .on, .at, .armed')) continue;
+      // two more the reader holds or the owner ruled (2026-10-02): the summary of
+      // what this page answers under, which is the reader's own choice shown back
+      // in gold; and the site's name, whose .com is gold as a mark, not as ink
+      if (e.closest('.rail .now, #home a.home, .wordmark')) continue;
       if (![...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())) continue;
       const c = getComputedStyle(e).color;
       const m = String(c).match(/(\d+(?:\.\d+)?)/gu);
