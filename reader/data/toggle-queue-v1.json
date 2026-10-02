@@ -3,24 +3,29 @@
  "rule": "toggle-queue-rule-v1-a-delivery-is-named-in-the-open-until-a-receipt-can-name-it",
  "basis": "TYPED_IN_THE_OPEN",
  "recorded_on": "2026-10-02",
- "recorded_by": "the synthesis lane, from five read-only reports of 2026-10-02 (the rail, the projection tools, the shelf and gate, R2 and the shipments, the guards); every value names where it was read",
- "what_this_is": "the toggle push queue: every delivery of Moses's this lane knows about, what it feeds on the rail, where it sits on R2, which tool projects it, what it waits on, and where the owner's ruling is owed. Read by tools/push-toggles-v1.mjs, which proposes and prints and never chooses. The runbook is TOGGLE-PUSH-PLAN-2026-10-02.md in the reader directory.",
- "why_typed_in_the_open": "a delivery's prefix on R2 and its shape are written nowhere this tree can read as data: they sit in comments and prose (tools/TOGGLE-PIPELINE-v1.md, the projectors' headers, the source.ledger strings on receipts), and a candidate with no receipt yet is named nowhere else. So these facts are typed here, each with its source, and 'unknown' is written where the sources name nothing. Anything a receipt can say — which zones carry a layer, what a receipt's rulings_owed says, a source's sha256 — the driver reads off the receipt and never from here.",
+ "recorded_by": "the synthesis lane, from five read-only reports of 2026-10-02 (the rail, the projection tools, the shelf and gate, R2 and the shipments, the guards), revised the same day on three reviews; every value names where it was read",
+ "what_this_is": "the toggle push queue: every delivery of Moses's this lane knows about, what it feeds on the rail, where it sits on R2, which tool projects it, what it waits on, and where the owner's ruling is owed. Read by tools/push-toggles-v1.mjs, which proposes and prints and never chooses, and which carries this file's rule id as a constant and faults the file when the two differ. The runbook is the file named under runbook below.",
+ "runbook": "TOGGLE-PUSH-PLAN-2026-10-02.md",
+ "report": "build/toggle-push-report-<stamp>.md — written by the operator as the loop runs, never by the driver; what a receipt says is copied into it and never patched; build/ is scratch, so the report is a source for the commit message and for what the owner is shown, not a record",
+ "why_typed_in_the_open": "a delivery's prefix on R2 and its shape are written nowhere this tree can read as data: they sit in comments and prose (tools/TOGGLE-PIPELINE-v1.md, the projectors' headers, the source.ledger strings on receipts), and a candidate with no receipt yet is named nowhere else. So these facts are typed here, each with its source, and 'unknown' is written where the sources name nothing. Anything a receipt or a record can say — which zones carry a layer, what a receipt's rulings_owed says, a source's sha256, a landing date, a byte count, a row count — the driver reads off the receipt (receipt_pins) or the record (record_pins) and never from here; this file keeps the path and the driver reads the number.",
  "fields": {
   "id": "the queue's name for the delivery; also the folder under build/ledgers/ that --fetch writes",
   "feeds": "rail row ids from zone.html's TOGGLES registry (order, masorah, sources, pairs, lookup, maqaf, licence, names, edition); a position inside a row is written row/position (order/witnessed_entry, masorah/only); empty when the delivery reaches the card and not the rail, with feeds_note saying where",
   "r2_prefix": "the key prefix inside the bucket, as the sources write it after r2:<bucket>/; 'unknown' when no source names one",
-  "delivery_shape": "per-position ledger / per-card / sidecar / stream, as the sources say, with the file names",
-  "objects": "the object names the projector reads, with <slug> where there is one per book; empty when nothing is fetched",
+  "delivery_shape": "per-position ledger / per-card / sidecar / stream, as the sources say, with the file names; never a count a record carries",
+  "objects": "the object names the projector reads, with <slug> where there is one per book; empty when nothing is fetched for this entry, and --fetch then refuses the entry by name; objects_note says when the delivery is larger than the names listed",
   "projection_tool": "an existing path under tools/, or 'none yet: <what would be needed>'",
-  "status": "served / candidate / proposed / waiting",
+  "status": "served / candidate / proposed / waiting; --fetch refuses an entry whose status is proposed",
+  "landed": "where the delivery stands today, in words; every date, size and count it could carry is left to receipt_pins or record_pins and read by the driver",
   "carried_by": "how the driver tells that a zone already carries the layer: kind zone_field (a dotted path into the zone's JSON), sidecar (a suffix beside the zone), sidecar_field (a dotted path into that sidecar), store_file or record (one file for every zone), none",
   "waits_on": "one sentence from the sources",
-  "ruling_owed": "true or false; ruling_receipt_field names the receipt field that carries it, or says 'none' and where the ruling is stated instead; ruling_what says what is owed",
-  "receipt_pins": "dotted paths the driver reads off the first zone that has them and prints, so the pin is read, not typed",
+  "ruling_owed": "true or false; ruling_receipt_field names the receipt field that carries it as a bare dotted path (which the driver reads off a zone and prints), or says 'none' and where the ruling is stated instead; ruling_what says what is owed",
+  "receipt_pins": "dotted paths the driver reads off the first zone that has them and prints, so the pin is read, not typed; for a zone_field entry the driver also prints, per zone that carries the layer, counts.verses_held, every counts.verses_absent_from_* and counts.held_examples when the receipt carries them",
+  "record_pins": "a list of { file, paths }: a record under data/ and dotted paths into it, read and printed by the driver so a date, a size or a count on a record is read here and never typed; a path segment name[key=value] picks the element of an array whose key equals value",
   "next": "the entry's own commands, in order, with <slug>, <stamp>, <id> placeholders the driver fills; the shared loop below follows them",
-  "guards": "the checks for this layer, run by hand from the reader directory with python3 -m http.server 8899 serving it for the browser checks",
-  "stop": "the line where the owner's ruling is owed and the driver stops"
+  "guards": "the checks for this layer, run by hand from the reader directory with python3 -m http.server 8899 serving it in the background for the browser checks",
+  "stop": "the line where the owner's ruling is owed and the driver stops",
+  "cites": "the file:line each value was read at"
  },
  "r2": {
   "bucket_as_the_sources_name_it": "mishkan",
@@ -29,16 +34,24 @@
   "toggle_builds_root": "moses-ledgers/toggle-builds-v1/",
   "readme_at_toggle_builds_root": "README-v1.md",
   "readme_says": "one row per toggle with the ruling it still needs (tools/TOGGLE-PIPELINE-v1.md:11; tools/project-toggle-headword-v1.mjs:22-23)",
-  "access": "R2_ACCESS_KEY_ID or AWS_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY or AWS_SECRET_ACCESS_KEY, R2_ENDPOINT, R2_BUCKET — the four variables tools/restore-shelf-from-history-v1.mjs:85-86 reads; SigV4, region auto, service s3, path-style, unsigned payload (:93-107). No tool in this tree lists a prefix; the driver's ListObjectsV2 is signed the same way",
+  "ledger_of_ledgers": {
+   "what": "the owner says Moses keeps an index of every ledger delivered, which the owner calls 'the ledger of ledgers'; nothing in this tree has read it, so its name is tried, not known",
+   "at": "directly under ledgers_root, no folder between",
+   "names": ["ledger-of-ledgers", "LEDGER-OF-LEDGERS", "ledger_of_ledgers"],
+   "extensions": [".md", ".json", ".jsonl", ".csv", ".txt"],
+   "how": "every name with every extension, matched case-insensitively against the listing of ledgers_root; --inventory looks for it FIRST, fetches it to build/ledgers/ held to its listed size, and prints it before the listing; when it is absent the driver says so in one line and falls back to the listing"
+  },
+  "access": "R2_ACCESS_KEY_ID or AWS_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY or AWS_SECRET_ACCESS_KEY, R2_ENDPOINT, R2_BUCKET — the four variables tools/restore-shelf-from-history-v1.mjs:85-86 reads; SigV4, region auto, service s3, path-style, unsigned payload (:93-107). R2_ENDPOINT is https://<account-id>.r2.cloudflarestorage.com, set in the cloud environment's settings and never pasted into a chat. No tool in this tree lists a prefix; the driver's ListObjectsV2 is signed the same way",
   "posture": "this lane holds a read token; write belongs to the ferryman (tools/emit-zone-shipment-v1.mjs:14-16). Nothing in the suite writes to R2",
   "known_prefixes_that_are_not_toggles": [
-   { "prefix": "moses-ledgers/maqaf-reseal-v1/streams/", "what": "the text route's resealed token streams, one per work with a receipt; served since 2026-09-03", "cites": "tools/serve-from-stream-v2.mjs:7-9" },
+   { "prefix": "moses-ledgers/maqaf-reseal-v1/streams/", "what": "the text route's resealed token streams, one per work with a receipt; served, as the serve tool's header says", "cites": "tools/serve-from-stream-v2.mjs:7-9" },
    { "prefix": "moses-ledgers/kq-reseal-v1/streams/", "what": "the ketiv-qere reseal streams; probed only", "cites": "data/rule-demonstrations-v1.json:205" },
    { "prefix": "moses-ledgers/frame/", "what": "the owner's serving rulings as the corpus lane distilled them", "cites": "data/serving-rulings-v1.json:4" }
   ]
  },
  "staging": {
   "dir": "build/ledgers/<id>/",
+  "incoming": "build/ledgers/<id>.incoming/ — where --fetch downloads; renamed to the staging dir only once the delivery holds to its SHA256SUMS (or, with no sums file, once every object is its listed size and every sha256 is printed); deleted whole on a refusal, so nothing refused is ever at the path the next stage reads",
   "why": "build/ is where every stage writes what the next stage reads, and it is gitignored (the tree's .gitignore, lines 3-8); a delivery is a thing that arrives, not a thing this tree keeps, so nothing of it is copied into data/"
  },
  "entries": [
@@ -48,27 +61,31 @@
    "feeds": ["sources"],
    "r2_prefix": "moses-parse-source-and-declaration-v1/declaration-store-v7/",
    "r2_prefix_note": "as the sidecar's source.ledger writes it (tools/project-declarations-v1.mjs:241); not under moses-ledgers/, so the driver lists it separately",
-   "delivery_shape": "sidecar: a fix/ directory (or the files flat) holding MANIFEST-declarations-v6.json, CONTRACT-declarations-v6.md, vocabulary-v7.json, declaration-store-v7.jsonl, not-declared-v7.jsonl, observations-v7.jsonl — 29 files pinned at 3,496,645 bytes by the manifest (data/source-declarations-receipt-v1.json ledger_pins)",
+   "delivery_shape": "sidecar: a fix/ directory (or the files flat) holding MANIFEST-declarations-v6.json, CONTRACT-declarations-v6.md, vocabulary-v7.json, declaration-store-v7.jsonl, not-declared-v7.jsonl, observations-v7.jsonl and every other file the manifest pins; how many files and how many bytes it pins is on data/source-declarations-receipt-v1.json ledger_pins (a record pin below)",
    "objects": ["fix/MANIFEST-declarations-v6.json", "fix/CONTRACT-declarations-v6.md", "fix/vocabulary-v7.json", "fix/declaration-store-v7.jsonl", "fix/not-declared-v7.jsonl", "fix/observations-v7.jsonl"],
+   "objects_note": "the delivery is the FULL manifest-pinned set, not these six: --fetch lands the whole prefix, and tools/project-declarations-v1.mjs re-hashes every file the manifest pins and refuses LEDGER_PIN_FAILED on any that is absent or differs (and LEDGER_BYTES on the total); the six named are the ones it opens by name",
    "projection_tool": "tools/project-declarations-v1.mjs",
    "projection_scope": "the store, once; no zone is touched",
    "status": "served",
-   "landed": "2026-09-19 as data/route-store/source-declarations-v1.bin (61,389 bytes), pinned by data/route-store/store-manifest-v1.json; 37 stems, 163 branches (data/source-declarations-receipt-v1.json)",
+   "landed": "as data/route-store/source-declarations-v1.bin, pinned by data/route-store/store-manifest-v1.json; the landing date, the sidecar's bytes and sha256, the pinned file count and bytes, the stem and branch counts are on data/source-declarations-receipt-v1.json and printed below as record pins, never typed here",
    "carried_by": { "kind": "store_file", "path": "data/route-store/source-declarations-v1.bin" },
    "waits_on": "nothing on R2; what is stale is the string branch.waits that tools/regloss-zone.mjs:268 bakes onto every zone's emitted_from.toggles.sources ('the corpus lane's declarations ledger has not shipped, so the rail draws no branch') and the comment beside the source switches in zone.html ('waits on the corpus lane's declarations ledger and is drawn dead until it lands'), both older than the landing",
    "ruling_owed": false,
    "ruling_receipt_field": "none: emitted_from.toggles.sources.rulings_owed says 'none for the switch itself'; data/source-declarations-receipt-v1.json carries what_this_does_not_say, not rulings_owed",
    "ruling_what": "nothing for the branch; which sources are admitted at all is the language admission rule, and the Jastrow lean is not a ruling (data/serving-rulings-v1.json)",
    "receipt_pins": ["emitted_from.toggles.sources.projected_on", "emitted_from.toggles.sources.rulings_owed", "emitted_from.toggles.sources.branch.waits"],
+   "record_pins": [
+    { "file": "data/source-declarations-receipt-v1.json", "paths": ["on", "sidecar.path", "sidecar.bytes", "sidecar.sha256", "ledger_pins.files", "ledger_pins.bytes", "counts.stems", "counts.branches"] }
+   ],
    "next": [
     "nothing to fetch and nothing to project: the sidecar is landed and pinned — run the guards below",
-    "to re-project from a new delivery only: node tools/push-toggles-v1.mjs --fetch declarations-branch",
+    "to re-project from a new delivery only: node tools/push-toggles-v1.mjs --fetch declarations-branch   (the whole prefix lands; the manifest-pinned set, not six files)",
     "node tools/project-declarations-v1.mjs --ledger build/ledgers/declarations-branch --store data/route-store --out data/route-store/source-declarations-v1.bin --receipt data/source-declarations-receipt-v1.json --stamp <stamp>   (pass --out: the tool's own default is data/source-declarations-v1.bin, not the landed path; pass --stamp: without it the tool reads the clock)",
     "node tools/emit-store-manifest-v1.mjs --store data/route-store   (the store manifest pins the sidecar; no zone re-pin, no regloss)"
    ],
    "guards": ["node tools/check-declarations-branch-v1.mjs", "node tools/check-store-pinned-v1.mjs", "node tools/check-source-switch-v1.mjs"],
-   "stop": "stop here: the branch stands on a landed, pinned sidecar. The stale branch.waits string is a line of tools/regloss-zone.mjs, and changing it means a regloss of all 39 zones (39 re-pins) — propose that in the report, do not run it",
-   "cites": ["tools/TOGGLE-PIPELINE-v1.md:247-257", "tools/project-declarations-v1.mjs:61-62,104-108,238-245", "tools/regloss-zone.mjs:266-270", "data/source-declarations-receipt-v1.json:1-15", "tools/check-declarations-branch-v1.mjs:40-42"]
+   "stop": "stop here: the branch stands on a landed, pinned sidecar. The stale branch.waits string is a line of tools/regloss-zone.mjs, and changing it means a regloss of every served zone, each one a re-pin — propose that in the report, do not run it",
+   "cites": ["tools/TOGGLE-PIPELINE-v1.md:247-257", "tools/project-declarations-v1.mjs:61-62,104-108,121-122,238-245", "tools/regloss-zone.mjs:266-270", "data/source-declarations-receipt-v1.json", "tools/check-declarations-branch-v1.mjs:40-42"]
   },
   {
    "id": "witnessed-order",
@@ -81,18 +98,19 @@
    "projection_tool": "tools/bake-witnessed-order-v1.mjs",
    "projection_scope": "one zone per run, IN PLACE on --zone; after the lattice and before regloss on that zone, because regloss keeps a witnessed column's credit as shipped only where the receipt already names the column (tools/regloss-zone.mjs:187-192)",
    "status": "served",
-   "landed": "baked 2026-09-25 on the 39 served zones (emitted_from.witnessed_order.baked_on); the owner selected the order 2026-09-25 (tools/bake-witnessed-order-v1.mjs:4)",
+   "landed": "baked on the served zones; the date is emitted_from.witnessed_order.baked_on (a receipt pin below) and how many carry it is what the driver counts; the owner's selection of the order is recorded at tools/bake-witnessed-order-v1.mjs:4",
    "carried_by": { "kind": "zone_field", "path": "emitted_from.witnessed_order" },
-   "waits_on": "nothing for the 39; for a zone rebuilt after today, the delivery directory, which no cited path puts on R2",
+   "waits_on": "nothing for the zones that carry it; for a zone rebuilt after today, the delivery directory, which no cited path puts on R2",
    "ruling_owed": false,
    "ruling_receipt_field": "none: emitted_from.witnessed_order carries rule, baked_on, baked_by and per-column counts, no rulings_owed",
-   "ruling_what": "nothing: the owner selected the order (2026-09-25); the positions are live on the rail wherever the book carries the column",
+   "ruling_what": "nothing: the owner selected the order (tools/bake-witnessed-order-v1.mjs:4); the positions are live on the rail wherever the book carries the column",
    "receipt_pins": ["emitted_from.witnessed_order.baked_on", "emitted_from.witnessed_order.columns.witnessed_same_place.order_sha256"],
+   "record_pins": [],
    "next": [
-    "node tools/push-toggles-v1.mjs --inventory   (find the six files per book; the queue holds no prefix — the plan's open questions)",
-    "node tools/push-toggles-v1.mjs --fetch <the prefix the inventory shows>   (into build/ledgers/<its last segment>/)",
+    "node tools/push-toggles-v1.mjs --inventory   (find the six files per book; the queue holds no prefix — the runbook's open questions)",
+    "node tools/push-toggles-v1.mjs --fetch <the prefix the inventory shows>   (into build/ledgers/<its last segment>/, by way of build/ledgers/<its last segment>.incoming/)",
     "node tools/bake-witnessed-order-v1.mjs --dir build/ledgers/<its last segment> --zone build/lattice/<slug>.bin --stamp <stamp>   (in place on the zone under build/, after the lattice and before regloss)",
-    "then regloss, re-pin and the guards, as the loop says"
+    "then regloss, re-pin (gated on the restored shelf) and the guards, as the loop says"
    ],
    "guards": ["node tools/check-witnessed-order-v1.mjs --zone <slug> --dir build/ledgers/<its last segment>   (W2 compares the baked column to the shipped files when --dir holds them; its default is build/witnessed-v2.7)"],
    "stop": "no ruling owed; the stop is the pin: a zone that already carries emitted_from.witnessed_order is not re-baked, because a re-bake is a re-pin",
@@ -106,6 +124,7 @@
    "r2_prefix_note": "the same delivery as the lattice: the strict leader is computed from it (tools/project-lattice-v12-v1.mjs:325) into <slug>.lattice.bin first_under.s and grades[surface].o.s; nothing separate is on R2",
    "delivery_shape": "per-position ledger, the lattice's three files per book (entry lattice-v12)",
    "objects": [],
+   "objects_note": "nothing is fetched for this entry: the lattice delivery is entry lattice-v12's, and --fetch strict-pointing is refused by the driver",
    "projection_tool": "none needed: tools/project-lattice-v12-v1.mjs already bakes o.s; what is missing is a position on the masorah row of zone.html's TOGGLES, and the ruling",
    "status": "waiting",
    "carried_by": { "kind": "sidecar_field", "suffix": ".lattice.bin", "path": "first_under.s" },
@@ -114,6 +133,7 @@
    "ruling_receipt_field": "none on a receipt: emitted_from.toggles.lattice.rulings_owed names the welded-form and licence_class questions only; the pointing's default and strict-or-lenient are stated in prose (tools/TOGGLE-PIPELINE-v1.md:244-245; zone.html, the note above MASORAH_KEY)",
    "ruling_what": "strict (o.s) or lenient (o.l) for 'only this pointing', and whether the row's default stays at keep",
    "receipt_pins": ["emitted_from.toggles.lattice.projected_on"],
+   "record_pins": [],
    "next": [],
    "guards": ["node tools/check-masorah-toggle-v1.mjs   (M1 expects exactly the three positions keep / only this pointing / the letters only: a fourth position changes what M1 asserts, which is the owner's wording to rule on)"],
    "stop": "stop before anything: nothing to fetch, nothing to project; a position on the masorah row is a zone.html edit the driver never makes, and it waits on the ruling",
@@ -127,14 +147,15 @@
    "r2_prefix_note": "tools/TOGGLE-PIPELINE-v1.md:328 names the files maqaf-v1.json and maqaf-compounds-v1.jsonl.gz and no prefix; the driver's --inventory searches the listing for the two names",
    "delivery_shape": "as the doc names them: maqaf-v1.json (per-card) and maqaf-compounds-v1.jsonl.gz (a stream, one line per run); the row shape is not cited anywhere this tree holds",
    "objects": ["maqaf-v1.json", "maqaf-compounds-v1.jsonl.gz"],
-   "projection_tool": "none yet: after the ruling, a per-position projector by the generic recipe (entry new-toggle-builds-folder) carrying the joined runs per book — the zones hold none today (the maqaf row's waits in zone.html's TOGGLES); the four forms a run can take are already enumerable from the store (tools/weld-forms-v1.mjs:11-18; tools/regloss-zone.mjs records them as run_forms)",
+   "projection_tool": "none yet: after the ruling, a per-position projector by the generic recipe (the template entry) carrying the joined runs per book — the zones hold none today (the maqaf row's waits in zone.html's TOGGLES); the four forms a run can take are already enumerable from the store (tools/weld-forms-v1.mjs:11-18; tools/regloss-zone.mjs records them as run_forms)",
    "status": "waiting",
    "carried_by": { "kind": "none", "why": "the maqaf row is live: () => false in zone.html's TOGGLES, and nothing on a zone can make it live until a carried layer and the ruling exist" },
-   "waits_on": "the owner's welded-form ruling first: suppress WELDED where nothing matches the vowels (1,041 of 1,311)? — tools/TOGGLE-PIPELINE-v1.md:328-330; the lattice's pieces of joined words stay unprojected until it (tools/TOGGLE-PIPELINE-v1.md:80)",
+   "waits_on": "the owner's welded-form ruling first: suppress WELDED where nothing matches the vowels? — the count is at tools/TOGGLE-PIPELINE-v1.md:328-330; the lattice's pieces of joined words stay unprojected until it (tools/TOGGLE-PIPELINE-v1.md:80)",
    "ruling_owed": true,
    "ruling_receipt_field": "emitted_from.toggles.lattice.rulings_owed",
-   "ruling_what": "the welded-form ruling: whether WELDED is suppressed where nothing matches the vowels (1,041 of 1,311)",
+   "ruling_what": "the welded-form ruling: whether WELDED is suppressed where nothing matches the vowels (the count is at tools/TOGGLE-PIPELINE-v1.md:328-330)",
    "receipt_pins": ["emitted_from.toggles.lattice.rulings_owed"],
+   "record_pins": [],
    "next": [],
    "guards": ["node tools/check-maqaf-pair-drawn-v1.mjs http://127.0.0.1:8899/zone.html?b=<slug>   (the run is two C0s, one card — what stands today and must not move)", "node tools/check-lattice-parts-in-card-v1.mjs   (the parts band is a different question: tools/TOGGLE-PIPELINE-v1.md:332-336)"],
    "stop": "stop before anything: a ruling first, and it is the owner's; nothing is fetched, projected or wired until it is written as a dated record",
@@ -142,25 +163,30 @@
   },
   {
    "id": "v-word-layer",
-   "what": "V's first sentence — 'N comments cover this word' — and the comments it opens: 21,686 positions anchored to a word over fourteen works",
+   "what": "V's first sentence — 'N comments cover this word' — and the comments it opens: the positions anchored to a word over the fourteen word-anchoring works; the counts are on data/v-ledger-posture-v1.json delivery.counts_reproduced_here (a record pin below)",
    "feeds": [],
    "feeds_note": "no TOGGLES row; V reaches the card's counts panel (the v-volume note in zone.html), and the word layer would be a line on the card, not a switch on the rail",
    "r2_prefix": "moses-ledgers/v-ledger-v2/",
-   "r2_prefix_note": "the same 61-object delivery as the counts (entry v-counts)",
-   "delivery_shape": "stream: v-reverse-index-v2.jsonl.gz (the anchors) beside the three count tables, SHA256SUMS.txt, V-SERVING-CONTRACT-v2.md and v-ledger-v2.json (data/v-ledger-posture-v1.json:9-15; tools/verify-v-ledger-v2-v1.mjs:30-31)",
-   "objects": ["v-reverse-index-v2.jsonl.gz", "SHA256SUMS.txt", "V-SERVING-CONTRACT-v2.md"],
+   "r2_prefix_note": "the same delivery as the counts (entry v-counts)",
+   "delivery_shape": "stream: v-reverse-index-v2.jsonl.gz (the anchors) beside the three count tables, SHA256SUMS.txt, V-SERVING-CONTRACT-v2.md and v-ledger-v2.json (data/v-ledger-posture-v1.json delivery; tools/verify-v-ledger-v2-v1.mjs:30-31)",
+   "objects": [],
+   "objects_note": "nothing is fetched for this entry: the anchors ride in the v-counts delivery (entry v-counts), which is where the guard below reads them; a folder of its own would be a copy no projector reads, so --fetch v-word-layer is refused by the driver — fetch v-counts",
    "projection_tool": "none yet: tools/project-v-volume-v1.mjs carries the counts and writes the_word_layer_is_not_carried on every sidecar; a word-layer projection would need the text of the fourteen works, which this lane holds none of, and the ruling",
    "status": "waiting",
    "carried_by": { "kind": "none", "why": "every <slug>.volume.bin says the_word_layer_is_not_carried; no zone field or sidecar field holds it" },
-   "waits_on": "the owner (whether clause 13 becomes the rule, strict or conservative, or RULE6; and whether a finding that names a work without opening it is ever served) and the corpus lane (the text of the fourteen word-anchoring works) — data/v-ledger-posture-v1.json:64-71",
+   "waits_on": "the owner (whether clause 13 becomes the rule, strict or conservative, or RULE6; and whether a finding that names a work without opening it is ever served) and the corpus lane (the text of the fourteen word-anchoring works) — data/v-ledger-posture-v1.json what_is_owed_and_by_whom",
    "ruling_owed": true,
    "ruling_receipt_field": "none on a receipt: data/v-volume-receipt-v1.json has no rulings_owed; the owed rulings are written at data/v-ledger-posture-v1.json what_is_owed_and_by_whom.the_owner and in tools/project-v-volume-v1.mjs:34-42",
-   "ruling_what": "which framing-trim position becomes the rule (RULE6 21,564 / clause 13 strict 21,686 / conservative 21,657 word-anchored positions), and whether the word layer is ever served as a finding",
+   "ruling_what": "which framing-trim position becomes the rule (RULE6, clause 13 strict, or conservative — the three counts are on data/v-ledger-posture-v1.json, printed below), and whether the word layer is ever served as a finding",
    "receipt_pins": [],
+   "record_pins": [
+    { "file": "data/v-ledger-posture-v1.json", "paths": ["delivery.counts_reproduced_here", "what_is_owed_and_by_whom.the_owner"] },
+    { "file": "data/v-volume-receipt-v1.json", "paths": ["what_is_not_served"] }
+   ],
    "next": [],
    "guards": ["node tools/verify-v-ledger-v2-v1.mjs --ledger build/ledgers/v-counts --lattice build/ledgers/lattice-v12   (the counter-verification of the anchors; SKIPs by name without both directories)"],
    "stop": "stop before anything: the ruling is the owner's and the text is the corpus lane's; the counts layer (entry v-counts) shipped without waiting on either, and nothing served moves with the ruling",
-   "cites": ["data/v-ledger-posture-v1.json:9-15,49-54,64-71", "tools/project-v-volume-v1.mjs:14-20,34-42", "tools/verify-v-ledger-v2-v1.mjs:30-31,49-53"]
+   "cites": ["data/v-ledger-posture-v1.json delivery, what_is_served_and_what_is_not, what_is_owed_and_by_whom", "tools/project-v-volume-v1.mjs:14-20,34-42", "tools/verify-v-ledger-v2-v1.mjs:30-31,49-53"]
   },
   {
    "id": "ben-yehuda",
@@ -171,18 +197,23 @@
    "r2_prefix_note": "proposed only (tools/BEN-YEHUDA-PIPELINE-v1.md:44); never delivered",
    "delivery_shape": "per-entry stream, proposed: entries-v1.jsonl[.gz], one entry per line with strata typed at delivery; the per-volume letter ranges; the asterisk read",
    "objects": [],
+   "objects_note": "nothing is fetched: the entry is proposed and withdrawn, and --fetch ben-yehuda (or its prefix) is refused by the driver",
    "projection_tool": "tools/build-hoh-sidecar-v1.mjs (inert; it has never written a sidecar, and a sidecar may stand only beside a fixture while delivery.delivered is false)",
    "status": "proposed",
    "carried_by": { "kind": "sidecar", "suffix": ".hoh.bin" },
-   "waits_on": "nothing: withdrawn 2026-09-13 by the owner's ruling no-ben-yehuda-dictionary (data/serving-rulings-v1.json); data/ben-yehuda-posture-v1.json served_volumes is empty and delivery.delivered is false",
+   "waits_on": "nothing: withdrawn by the owner's ruling no-ben-yehuda-dictionary (data/serving-rulings-v1.json; the ruling's date is on its own row, a record pin below); data/ben-yehuda-posture-v1.json served_volumes is empty and delivery.delivered is false",
    "ruling_owed": false,
    "ruling_receipt_field": "none; the ruling that forbids is recorded at data/serving-rulings-v1.json, id no-ben-yehuda-dictionary",
    "ruling_what": "nothing: a lean that forbids was acted on at once; Project Ben-Yehuda (the text source) is a different thing and untouched",
    "receipt_pins": [],
+   "record_pins": [
+    { "file": "data/serving-rulings-v1.json", "paths": ["rulings[id=no-ben-yehuda-dictionary].whose", "rulings[id=no-ben-yehuda-dictionary].plainly"] },
+    { "file": "data/ben-yehuda-posture-v1.json", "paths": ["delivery.delivered", "served_volumes"] }
+   ],
    "next": [],
    "guards": [],
-   "stop": "do not attempt: if --inventory ever shows objects under the prefix, print them in the report and stop; nothing of this dictionary is served or can be",
-   "cites": ["tools/BEN-YEHUDA-PIPELINE-v1.md:1-14,44", "data/ben-yehuda-posture-v1.json served_volumes", "data/serving-rulings-v1.json no-ben-yehuda-dictionary"]
+   "stop": "do not attempt: --fetch is refused by the driver (status proposed, no object); if --inventory ever shows objects under the prefix, print them in the report and stop; nothing of this dictionary is served or can be",
+   "cites": ["tools/BEN-YEHUDA-PIPELINE-v1.md:1-14,44", "data/ben-yehuda-posture-v1.json served_volumes, delivery", "data/serving-rulings-v1.json no-ben-yehuda-dictionary"]
   },
   {
    "id": "new-toggle-builds-folder",
@@ -193,6 +224,7 @@
    "r2_prefix": "moses-ledgers/toggle-builds-v1/",
    "delivery_shape": "per-position ledger: one row per position (book, ref, i, j, surface, form_key, ...) or per card (primary_source, primary_licence), plus blind recounts; README-v1.md at the root has one row per toggle with the ruling it still needs (tools/TOGGLE-PIPELINE-v1.md:11)",
    "objects": [],
+   "objects_note": "a template fetches nothing: --fetch new-toggle-builds-folder is refused by name; the folder's own entry, typed before its fetch, carries the object names the inventory printed for it",
    "projection_tool": "none yet: tools/project-toggle-<name>-v1.mjs, copied from tools/project-toggle-headword-v1.mjs (per position, no sidecar) or tools/project-lattice-v12-v1.mjs (per position, with a sidecar), as tools/TOGGLE-PIPELINE-v1.md:359-370 says",
    "status": "candidate",
    "carried_by": { "kind": "zone_field", "path": "emitted_from.toggles.<name>" },
@@ -201,19 +233,20 @@
    "ruling_receipt_field": "emitted_from.toggles.<name>.rulings_owed, once the projector writes it; until the README row is read, a ruling is taken as owed",
    "ruling_what": "whatever README-v1.md's row for the toggle says it still needs",
    "receipt_pins": [],
+   "record_pins": [],
    "next": [
-    "node tools/push-toggles-v1.mjs --inventory   (the folder prints as UNKNOWN to the queue)",
+    "node tools/push-toggles-v1.mjs --inventory   (the folder prints as UNKNOWN to the queue, with its object names)",
     "node tools/push-toggles-v1.mjs --fetch moses-ledgers/toggle-builds-v1/README-v1.md   (lands at build/ledgers/toggle-builds-v1/README-v1.md; read the toggle's row: the ruling it still needs)",
-    "node tools/push-toggles-v1.mjs --fetch <folder>   (a bare name resolves under moses-ledgers/toggle-builds-v1/; the delivery lands in build/ledgers/<folder>/, held to its sums)",
-    "add an entry for <folder> to data/toggle-queue-v1.json, typed in the open like the others: feeds, r2_prefix, delivery_shape (read off the file's header row), projection_tool ('none yet: ...' until it is written), status candidate, waits_on and ruling_what from the README row, ruling_owed true until the row says otherwise, carried_by zone_field emitted_from.toggles.<name>",
-    "write tools/project-toggle-<name>-v1.mjs by copying tools/project-toggle-headword-v1.mjs or tools/project-lattice-v12-v1.mjs: the verse-by-verse join proved by form_key at every position, a verse that does not prove held whole and counted; where the ledger carries i and j, prove j distinct and ascending and never key on i; the receipt at emitted_from.toggles.<name> with rule, source (path, bytes, sha256, ledger path on R2, witnesses, candidate_only), join, projected_on, projected_by, counts, what_the_word_carries, rulings_owed; the exemption merge so emitted_from.post_build.wrote gains emitted_from.toggles",
+    "add an entry for <folder> to data/toggle-queue-v1.json BEFORE fetching it, typed in the open like the others, with every field the driver's REQUIRED set demands, in the order the driver reads them — id, feeds, r2_prefix, delivery_shape, projection_tool, status, waits_on, ruling_owed, carried_by, next, stop — and the fields plan mode prints: what, ruling_receipt_field (the bare path emitted_from.toggles.<name>.rulings_owed, so the driver reads it), ruling_what, receipt_pins, record_pins, objects (the names the inventory printed; empty means --fetch refuses), guards, cites. Values: feeds [] until the row is wired; r2_prefix moses-ledgers/toggle-builds-v1/<folder>/; delivery_shape the file names first and, after the fetch, the header row read off the file; projection_tool 'none yet: ...' until it is written; status candidate; waits_on and ruling_what from the README row; ruling_owed true until the row says otherwise; carried_by { kind: zone_field, path: emitted_from.toggles.<name> }. Then node tools/push-toggles-v1.mjs must exit 0 (a missing field is MALFORMED_QUEUE in every mode)",
+    "node tools/push-toggles-v1.mjs --fetch <folder>   (by its entry's id: the delivery arrives in build/ledgers/<folder>.incoming/ and lands in build/ledgers/<folder>/ once held to its sums)",
+    "write tools/project-toggle-<name>-v1.mjs by copying tools/project-toggle-headword-v1.mjs or tools/project-lattice-v12-v1.mjs: the verse-by-verse join proved by form_key at every position, a verse that does not prove held whole and counted; where the ledger carries i and j, prove j distinct and ascending and never key on i; the receipt at emitted_from.toggles.<name> with rule, source (path, bytes, sha256, ledger path on R2, witnesses, candidate_only), join, projected_on, projected_by, counts (verses_held, verses_absent_from_ledger, held_examples among them), what_the_word_carries, rulings_owed; the exemption merge so emitted_from.post_build.wrote gains emitted_from.toggles",
     "node tools/project-toggle-<name>-v1.mjs --zone data/zones/<slug>.bin --ledger build/ledgers/<folder>/<file> --stamp <stamp> --out build/toggles/<slug>.bin",
     "node tools/regloss-zone.mjs --zone build/toggles/<slug>.bin --out data/zones/<slug>.bin --stamp <stamp>",
-    "then re-pin, the guards, read rulings_owed and stop, as the loop says"
+    "then re-pin (gated on the restored shelf), the guards, read rulings_owed and the held counts into the report, and stop, as the loop says"
    ],
    "guards": ["node tools/check-toggle-projection-v1.mjs   (holds the headword layer; a new layer needs its own check copied from it, naming the new rule in its GUARDS line — until then the manifest prints the rule UNGUARDED, which is the truth)"],
    "stop": "after the projector's receipt prints its rulings_owed and before the TOGGLES entry: put the row in front of the owner before wiring anything the ruling could change (tools/TOGGLE-PIPELINE-v1.md:368-370)",
-   "cites": ["tools/TOGGLE-PIPELINE-v1.md:9-16,20-30,359-370", "tools/project-toggle-headword-v1.mjs:1-60,128-139", "tools/check-toggle-projection-v1.mjs:46-65"]
+   "cites": ["tools/TOGGLE-PIPELINE-v1.md:9-16,20-30,359-370", "tools/project-toggle-headword-v1.mjs:1-60,96-108,128-139", "tools/check-toggle-projection-v1.mjs:46-65", "tools/push-toggles-v1.mjs REQUIRED"]
   },
   {
    "id": "headword",
@@ -225,21 +258,22 @@
    "projection_tool": "tools/project-toggle-headword-v1.mjs",
    "projection_scope": "one zone per run; reads --zone, writes --out; never in place",
    "status": "served",
-   "landed": "projected 2026-09-11 on the 39 served zones (emitted_from.toggles.headword.projected_on); the receipt pins the ledger by bytes and sha256 (source.bytes, source.sha256)",
+   "landed": "projected on the served zones; the date is emitted_from.toggles.headword.projected_on and the ledger's bytes and sha256 are source.bytes and source.sha256 (receipt pins below); source.path is the local file name the projector was given and is not a pin",
    "carried_by": { "kind": "zone_field", "path": "emitted_from.toggles.headword" },
    "waits_on": "nothing",
    "ruling_owed": false,
    "ruling_receipt_field": "emitted_from.toggles.headword.rulings_owed",
    "ruling_what": "none for this toggle; the headword is imported, not sorted",
    "receipt_pins": ["emitted_from.toggles.headword.projected_on", "emitted_from.toggles.headword.source.path", "emitted_from.toggles.headword.source.sha256", "emitted_from.toggles.headword.source.bytes"],
+   "record_pins": [],
    "next": [
-    "node tools/push-toggles-v1.mjs --fetch headword   (then: the measured sha256 of word-lemma-v1.csv.gz must equal emitted_from.toggles.headword.source.sha256 on a zone that carries it, printed above)",
-    "node tools/project-toggle-headword-v1.mjs --zone data/zones/<slug>.bin --ledger build/ledgers/headword/word-lemma-v1.csv.gz --stamp <stamp> --out build/toggles/<slug>.bin",
-    "then the lattice over build/toggles/<slug>.bin (entry lattice-v12), the witnessed bake, regloss into data/zones/<slug>.bin, the re-pin and the guards, as the loop says"
+    "node tools/push-toggles-v1.mjs --fetch headword   (then: the measured sha256 and byte count of word-lemma-v1.csv.gz must equal emitted_from.toggles.headword.source.sha256 and source.bytes on a zone that carries it, printed above; source.path will differ — it is the local file name, not a pin)",
+    "node tools/project-toggle-headword-v1.mjs --zone data/zones/<slug>.bin --ledger build/ledgers/headword/word-lemma-v1.csv.gz --stamp <stamp> --out build/toggles/<slug>.bin   (its stdout prints verses joined / held / absent from the ledger and a held: line; the receipt carries the same under counts)",
+    "then the lattice over build/toggles/<slug>.bin (entry lattice-v12), the witnessed bake, regloss into data/zones/<slug>.bin, the re-pin (gated on the restored shelf) and the guards, as the loop says"
    ],
    "guards": ["node tools/check-toggle-projection-v1.mjs"],
    "stop": "no ruling owed; the row is live wherever the zone carries the receipt",
-   "cites": ["tools/project-toggle-headword-v1.mjs:1-60,128-139", "tools/TOGGLE-PIPELINE-v1.md:32-37", "tools/check-toggle-projection-v1.mjs:1-45"]
+   "cites": ["tools/project-toggle-headword-v1.mjs:1-60,96-108,128-139,156-159", "tools/TOGGLE-PIPELINE-v1.md:32-37", "tools/check-toggle-projection-v1.mjs:1-45"]
   },
   {
    "id": "lattice-v12",
@@ -249,51 +283,57 @@
    "delivery_shape": "per-position ledger, three files per book: positions-<slug>-v12.jsonl.gz, routes-<slug>-v12.jsonl.gz and the lane's receipt lattice-<slug>-v12.json (schema ending lattice_ledger.v12, files.positions.sha256 and files.routes.sha256, which the projector holds the disk to)",
    "objects": ["positions-<slug>-v12.jsonl.gz", "routes-<slug>-v12.jsonl.gz", "lattice-<slug>-v12.json"],
    "projection_tool": "tools/project-lattice-v12-v1.mjs",
-   "projection_scope": "one zone per run; reads --zone, writes --out and the sidecar (--sidecar, default beside the INPUT zone); needs the headword layer first (hg reads w.h) and the route store",
+   "projection_scope": "one zone per run; reads --zone, writes --out and the sidecar (--sidecar, default beside the INPUT zone) — the sidecar is an in-place write into data/zones/ when --sidecar names it there; needs the headword layer first (hg reads w.h) and the route store",
    "status": "served",
-   "landed": "projected 2026-09-27 on the 39 served zones; schema mishkan.moses.megacompspan_lattice_ledger.v12 · 2026-09-11 (data/lane-state-v1.json:141-146); 39 sidecars pinned",
+   "landed": "projected on the served zones (emitted_from.toggles.lattice.projected_on, a receipt pin below); the schema the ledger carries and how many books carry a sidecar are on data/lane-state-v1.json (record pins below)",
    "carried_by": { "kind": "zone_field", "path": "emitted_from.toggles.lattice" },
-   "waits_on": "nothing for the 39; the lattice's pieces of joined words are not projected until the welded-form ruling (entry maqaf-joined-runs)",
+   "waits_on": "nothing for the zones that carry it; the lattice's pieces of joined words are not projected until the welded-form ruling (entry maqaf-joined-runs)",
    "ruling_owed": true,
    "ruling_receipt_field": "emitted_from.toggles.lattice.rulings_owed",
    "ruling_what": "the welded-form ruling (it governs the maqaf row, not these rows; entry maqaf-joined-runs) and the licence_class reading (cc0 in class 0 as the corpus lane's reading; the page derives its own classes from the posture keys) — nothing the names, edition or order rows wait on",
    "receipt_pins": ["emitted_from.toggles.lattice.projected_on", "emitted_from.toggles.lattice.source.positions.sha256", "emitted_from.toggles.lattice.sidecar.path"],
+   "record_pins": [
+    { "file": "data/lane-state-v1.json", "paths": ["lattice.books_carrying_one", "lattice.schemas_present", "shelf.sidecars.lattice.on_served_books"] }
+   ],
    "next": [
-    "node tools/push-toggles-v1.mjs --fetch lattice-v12   (three objects per book; the projector then holds each book's two files to the sha256 in its receipt)",
-    "node tools/project-lattice-v12-v1.mjs --zone build/toggles/<slug>.bin --lattice build/ledgers/lattice-v12 --stamp <stamp> --out build/lattice/<slug>.bin --sidecar data/zones/<slug>.lattice.bin --store data/route-store   (pass --store: its default is derived from a --zone path under data/zones/, which this one is not; pass --sidecar: its default lands beside the input zone)",
+    "node tools/push-toggles-v1.mjs --fetch lattice-v12   (three objects per book; no sums file, so every sha256 is printed and the projector then holds each book's two files to the sha256 in its receipt)",
+    "node tools/project-lattice-v12-v1.mjs --zone build/toggles/<slug>.bin --lattice build/ledgers/lattice-v12 --stamp <stamp> --out build/lattice/<slug>.bin --sidecar data/zones/<slug>.lattice.bin --store data/route-store   (pass --store: its default is derived from a --zone path under data/zones/, which this one is not; pass --sidecar: its default lands beside the input zone; the sidecar named here lands in data/zones/ in place)",
     "node tools/bake-witnessed-order-v1.mjs --dir build/ledgers/<the witnessed folder> --zone build/lattice/<slug>.bin --stamp <stamp>   (in place, before regloss; skip when the delivery is not on disk and say so in the report)",
     "node tools/regloss-zone.mjs --zone build/lattice/<slug>.bin --out data/zones/<slug>.bin --stamp <stamp>",
-    "then the re-pin (the zone and its sidecar) and the guards, as the loop says"
+    "then the re-pin (the zone and its sidecar; gated on the restored shelf) and the guards, as the loop says"
    ],
    "guards": ["node tools/check-lattice-projection-v1.mjs", "node tools/check-lattice-orders-v1.mjs", "node tools/check-masorah-toggle-v1.mjs", "node tools/check-pointing-grade-v1.mjs", "node tools/check-lattice-parts-in-card-v1.mjs"],
    "stop": "no ruling owed for these rows; the welded-form ruling the receipt names is the maqaf row's and stops there",
-   "cites": ["tools/project-lattice-v12-v1.mjs:75-77,92-117,324-325,403-419", "tools/TOGGLE-PIPELINE-v1.md:39-81", "tools/check-lattice-projection-v1.mjs:33,64-75", "data/lane-state-v1.json:127-130,137-146"]
+   "cites": ["tools/project-lattice-v12-v1.mjs:75-77,92-117,324-325,403-419", "tools/TOGGLE-PIPELINE-v1.md:39-81", "tools/check-lattice-projection-v1.mjs:33,64-75", "data/lane-state-v1.json lattice, shelf.sidecars"]
   },
   {
    "id": "source-corpus",
    "what": "the corpus lane's classification of each source as of the text's era or not: the 'corpus' and 'outside the era' positions of reads first",
    "feeds": ["order/corpus", "order/outside-era"],
    "r2_prefix": "moses-ledgers/toggle-ledgers-v1/",
-   "r2_prefix_note": "toggle-ledgers-v1, not toggle-builds-v1 (tools/emit-source-corpus-v1.mjs:48; data/source-corpus-v1.json:7)",
+   "r2_prefix_note": "toggle-ledgers-v1, not toggle-builds-v1 (tools/emit-source-corpus-v1.mjs:48; data/source-corpus-v1.json ledger.at)",
    "delivery_shape": "per-card: one JSON, source-corpus-v1.json, schema mishkan.moses.toggle.source_corpus.v1, sources[] with source, declared_corpus, evidence",
    "objects": ["source-corpus-v1.json"],
    "projection_tool": "tools/emit-source-corpus-v1.mjs",
    "projection_scope": "the record data/source-corpus-v1.json, once; the page loads it beside the zone (CORPUS_REC); no zone is touched",
    "status": "served",
-   "landed": "the record is stamped 2026-09-06 and pins the ledger's sha256 (data/source-corpus-v1.json)",
+   "landed": "the record data/source-corpus-v1.json carries its own stamp and the ledger's path and sha256 (record pins below)",
    "carried_by": { "kind": "record", "path": "data/source-corpus-v1.json" },
    "waits_on": "nothing",
    "ruling_owed": false,
    "ruling_receipt_field": "none: the record carries the classification; a source with no classification keeps its place (unknown is not later)",
    "ruling_what": "nothing",
    "receipt_pins": [],
+   "record_pins": [
+    { "file": "data/source-corpus-v1.json", "paths": ["stamp", "ledger.at", "ledger.sha256", "witnesses_cited_here", "witnesses_classified"] }
+   ],
    "next": [
     "to re-emit from a new delivery only: node tools/push-toggles-v1.mjs --fetch source-corpus",
     "node tools/emit-source-corpus-v1.mjs --ledger build/ledgers/source-corpus/source-corpus-v1.json --stamp <stamp>"
    ],
    "guards": ["node tools/check-source-corpus-v1.mjs --ledger build/ledgers/source-corpus/source-corpus-v1.json   (re-hashes the ledger when given)"],
    "stop": "no ruling owed",
-   "cites": ["tools/emit-source-corpus-v1.mjs:30,44-54", "tools/check-source-corpus-v1.mjs:32", "data/source-corpus-v1.json:7"]
+   "cites": ["tools/emit-source-corpus-v1.mjs:30,44-54", "tools/check-source-corpus-v1.mjs:32", "data/source-corpus-v1.json stamp, ledger"]
   },
   {
    "id": "v-counts",
@@ -301,77 +341,95 @@
    "feeds": [],
    "feeds_note": "no TOGGLES row; the card's counts panel (the v-volume note in zone.html), one line under the word",
    "r2_prefix": "moses-ledgers/v-ledger-v2/",
-   "delivery_shape": "three per-scope count tables, gzipped CSV, in a 61-object delivery with SHA256SUMS.txt and V-SERVING-CONTRACT-v2.md: v-verse-volume-v2.csv.gz (23,204 rows), v-chapter-volume-v2.csv.gz (929), v-book-volume-v2.csv.gz (39); columns read: pairs_verse_level, pairs_chapter_level, pairs_book_level — pairs, never units",
+   "delivery_shape": "three per-scope count tables, gzipped CSV — v-verse-volume-v2.csv.gz, v-chapter-volume-v2.csv.gz, v-book-volume-v2.csv.gz — in one delivery with SHA256SUMS.txt, V-SERVING-CONTRACT-v2.md, v-ledger-v2.json and the reverse index; the object count is on data/v-ledger-posture-v1.json delivery.objects and the row counts on delivery.counts_reproduced_here (record pins below); columns read: pairs_verse_level, pairs_chapter_level, pairs_book_level — pairs, never units",
    "objects": ["v-verse-volume-v2.csv.gz", "v-chapter-volume-v2.csv.gz", "v-book-volume-v2.csv.gz", "SHA256SUMS.txt"],
+   "objects_note": "--fetch lands the whole prefix and holds every object to SHA256SUMS.txt; the reverse index (entry v-word-layer) rides in the same delivery",
    "projection_tool": "tools/project-v-volume-v1.mjs",
-   "projection_scope": "every served zone in one run (or one with --only <slug>, whose receipt then counts that book alone); writes sidecars only, touches no zone",
+   "projection_scope": "every served zone in one run (or one with --only <slug>, whose receipt then counts that book alone); writes sidecars only — in place into data/zones/<slug>.volume.bin — and touches no zone",
    "status": "served",
-   "landed": "2026-09-14 on the 39 served zones (data/v-volume-receipt-v1.json); SHA256SUMS.txt verified 60 of 60 on 2026-09-14 (data/v-ledger-posture-v1.json:15)",
+   "landed": "on the served zones; the date and the sidecar count are on data/v-volume-receipt-v1.json, the sums verification and the owner's ruling date on data/v-ledger-posture-v1.json (record pins below)",
    "carried_by": { "kind": "sidecar", "suffix": ".volume.bin" },
    "waits_on": "nothing",
    "ruling_owed": false,
-   "ruling_receipt_field": "none: data/v-volume-receipt-v1.json has no rulings_owed; the counts were ruled 2026-09-14 (counts only, scope named; the display names as proposed) at data/v-ledger-posture-v1.json the_owner_ruled",
+   "ruling_receipt_field": "none: data/v-volume-receipt-v1.json has no rulings_owed; the counts were ruled (counts only, scope named; the display names as proposed) at data/v-ledger-posture-v1.json the_owner_ruled, dated on the record",
    "ruling_what": "nothing for the counts; the word layer's rulings are entry v-word-layer",
    "receipt_pins": [],
+   "record_pins": [
+    { "file": "data/v-volume-receipt-v1.json", "paths": ["projected_on", "sidecars", "source.shipment"] },
+    { "file": "data/v-ledger-posture-v1.json", "paths": ["delivery.objects", "delivery.integrity", "delivery.counts_reproduced_here", "the_owner_ruled.on"] }
+   ],
    "next": [
-    "node tools/push-toggles-v1.mjs --fetch v-counts   (SHA256SUMS.txt is in the delivery: the driver holds every object to it)",
-    "node tools/project-v-volume-v1.mjs --ledger build/ledgers/v-counts --stamp <stamp> --zones data/zones --out data/zones --only <slug>   (without --only every served book's sidecar is rewritten: 39 re-pins)",
-    "then the re-pin (the sidecar) and the guards, as the loop says"
+    "node tools/push-toggles-v1.mjs --fetch v-counts   (SHA256SUMS.txt is in the delivery: the driver holds every object to it before anything lands)",
+    "node tools/project-v-volume-v1.mjs --ledger build/ledgers/v-counts --stamp <stamp> --zones data/zones --out data/zones --only <slug>   (without --only every served book's sidecar is rewritten: a re-pin of each)",
+    "then the re-pin (the sidecar; gated on the restored shelf) and the guards, as the loop says"
    ],
    "guards": ["node tools/check-v-volume-projection-v1.mjs", "node tools/check-v-volume-in-card-v1.mjs"],
    "stop": "no ruling owed",
-   "cites": ["tools/project-v-volume-v1.mjs:1-82", "data/v-volume-receipt-v1.json:1-40", "data/v-ledger-posture-v1.json:9-24,33-47", "tools/check-v-volume-projection-v1.mjs:27-45"]
+   "cites": ["tools/project-v-volume-v1.mjs:1-82", "data/v-volume-receipt-v1.json", "data/v-ledger-posture-v1.json delivery, the_owner_ruled", "tools/check-v-volume-projection-v1.mjs:27-45"]
   },
   {
    "id": "piece-gloss",
    "what": "what each source said about a piece at this position: pg on the word, read by the parts band of a word nobody defines",
    "feeds": [],
-   "feeds_note": "no TOGGLES row; the parts band on the card (renderParts in zone.html), live since 2026-09-13",
+   "feeds_note": "no TOGGLES row; the parts band on the card (renderParts in zone.html), live",
    "r2_prefix": "unknown",
    "r2_prefix_note": "no source names a prefix; the zones' receipt names the file piece-gloss-v2.jsonl.gz (zone.piece_gloss.from), the tool's run line says piece-gloss-v1.jsonl.gz; the driver's --inventory searches the listing for both names",
    "delivery_shape": "stream: one gzipped JSONL for all books; a record is book, ref, surface, j, pieces[{k, gloss, src, role}], with j the running one-based word index across the book",
    "objects": ["piece-gloss-v2.jsonl.gz", "piece-gloss-v1.jsonl.gz"],
    "projection_tool": "tools/project-piece-gloss-v1.mjs",
-   "projection_scope": "every served zone in one run, IN PLACE on data/zones/<slug>.bin; a record that does not prove its position is dropped and counted, never fatal",
+   "projection_scope": "every served zone in one run, IN PLACE on data/zones/<slug>.bin; a record that does not prove its position is dropped and counted, never fatal; there is no one-zone form",
    "status": "served",
-   "landed": "zone.piece_gloss on the 39 served zones (joined on book and j, surface and verse checked on every record); the rule is unguarded (PIPELINE-MANIFEST.md:80)",
+   "landed": "zone.piece_gloss on the served zones (joined on book and j, surface and verse checked on every record); the file it came from is piece_gloss.from (a receipt pin below); the rule is unguarded, as PIPELINE-MANIFEST.md prints it",
    "carried_by": { "kind": "zone_field", "path": "piece_gloss" },
-   "waits_on": "nothing for the 39; for a zone rebuilt after today, the delivery file, which no cited path puts on R2",
+   "waits_on": "nothing for the zones that carry it; for a zone rebuilt after today, a shelf-wide run ruled by the owner — the rebuilt zone stays without the piece gloss, counted under 'not carried' here with that reason, until then",
    "ruling_owed": false,
    "ruling_receipt_field": "none: zone.piece_gloss carries rule, from, joined_on, positions_written, positions_dropped, says — no rulings_owed",
    "ruling_what": "nothing",
    "receipt_pins": ["piece_gloss.from", "piece_gloss.joined_on"],
+   "record_pins": [],
    "next": [
     "node tools/push-toggles-v1.mjs --inventory   (find the file; the queue holds no prefix)",
-    "node tools/project-piece-gloss-v1.mjs --col build/ledgers/<its folder>/piece-gloss-v2.jsonl.gz --stamp <stamp> --zones data/zones   (in place on every served zone: 39 re-pins; there is no one-zone form)",
-    "then the re-pin and the full suite, as the loop says"
+    "ONLY ON A SHELF-WIDE RUN THE OWNER RULED: node tools/project-piece-gloss-v1.mjs --col build/ledgers/<its folder>/piece-gloss-v2.jsonl.gz --stamp <stamp> --zones data/zones   (in place on every served zone, each one a re-pin; there is no one-zone form)",
+    "then the re-pin (gated on the restored shelf) and the full suite, as the loop says"
    ],
-   "guards": ["no check names the piece gloss rule (PIPELINE-MANIFEST.md:80); the full suite runs"],
-   "stop": "no ruling owed; the stop is the pin: do not run it for one zone, it rewrites all 39",
-   "cites": ["tools/project-piece-gloss-v1.mjs:42-70", "PIPELINE-MANIFEST.md:80"]
+   "guards": ["no check names the piece gloss rule, as PIPELINE-MANIFEST.md prints; the full suite runs"],
+   "stop": "no ruling owed; the stop is the pin: do not run it for one zone — it rewrites every served zone; a zone rebuilt after today stays without the piece gloss, counted with that reason, until a shelf-wide run is ruled",
+   "cites": ["tools/project-piece-gloss-v1.mjs:42-70,80-136", "PIPELINE-MANIFEST.md, the unguarded rules"]
   }
  ],
  "loop": [
-  "fetch: node tools/push-toggles-v1.mjs --fetch <id> — the delivery lands in build/ledgers/<id>/ and is held to its SHA256SUMS, or every object's sha256 is printed for the projector's own pin",
-  "project, per zone: the entry's own command; the output goes under build/, never over data/zones/<slug>.bin, except the two tools that are in place by design (bake-witnessed-order-v1, project-piece-gloss-v1)",
+  "fetch: node tools/push-toggles-v1.mjs --fetch <id> — the delivery arrives in build/ledgers/<id>.incoming/ and is renamed to build/ledgers/<id>/ only once it holds to its SHA256SUMS (with no sums file: once every object is its listed size, every sha256 printed for the projector's own pin); a refused delivery is deleted with its incoming directory",
+  "project, per zone: the entry's own command; the output goes under build/, never over data/zones/<slug>.bin — the in-place writes are named: bake-witnessed-order-v1 (on the zone under build/), project-piece-gloss-v1 (every served zone, never for one), the lattice sidecar data/zones/<slug>.lattice.bin and the volume sidecar data/zones/<slug>.volume.bin, which land beside the zone before the re-pin",
   "regloss: node tools/regloss-zone.mjs --zone <the projected zone under build/> --out data/zones/<slug>.bin --stamp <stamp> — the store re-projected over the zone's keys",
-  "re-pin: node tools/emit-zone-store-v1.mjs ; node tools/emit-zone-shipment-v1.mjs ; node tools/emit-store-manifest-v1.mjs --store data/route-store — a zone that changed without a new pin is refused by the reader",
-  "guards: the entry's checks, from the reader directory, with python3 -m http.server 8899 --directory . serving it for the browser checks",
-  "read: emitted_from.toggles.<name>.rulings_owed on one re-projected zone, printed into the report",
-  "stop: the TOGGLES entry in zone.html (step 5) and the ruling (step 6) are the owner's; propose the wording, write nothing"
+  "re-pin, ONLY after the shelf restore of the runbook's section 2 exited 0 with every pinned bin on disk and exact: node tools/emit-zone-store-v1.mjs ; node tools/emit-zone-shipment-v1.mjs ; node tools/emit-store-manifest-v1.mjs --store data/route-store — emit-zone-store pins what data/zones holds at that moment and nothing else (a bin absent from the disk loses its pin), and emit-zone-shipment refuses PINNED_BUT_ABSENT while any pinned bin is missing; without the restore this step is a stop and the projected zone waits under build/; a zone that changed without a new pin is refused by the reader",
+  "guards: the entry's checks, from the reader directory, with python3 -m http.server 8899 --directory . serving it in the background for the browser checks (the runbook's section 2 has the start, the readiness line and the stop)",
+  "read: on every re-projected zone, emitted_from.toggles.<name>.rulings_owed and counts.verses_held, counts.verses_absent_from_ledger and counts.held_examples — the projector prints them on stdout (verses ... held, held: ...) and the driver prints them per zone in plan mode (the held: lines); copy them into the report build/toggle-push-report-<stamp>.md, which the operator writes and the driver never does; a held verse is a finding, never re-run or patched for",
+  "stop: the TOGGLES entry in zone.html (step 5) and the ruling (step 6) are the owner's; propose the wording in the report (and, for a lab/why, in data/toggle-wording-proposals-v1.json, which the operator may write and the driver never does); write nothing else",
+  "after the ruling lands: the owner's dated ruling is written where the projector's receipt carries rulings_owed — the rulings_owed string of tools/project-toggle-<name>-v1.mjs — then re-project, regloss, re-pin (the gate above still holds), and only then the TOGGLES entry in zone.html, which the owner approves"
+ ],
+ "deploy_tail": [
+  "preconditions: every loop stopped where its entry's stop line says and the report holds every receipt read; when nothing was re-pinned, the gate, the door and the copy are skipped — there is no new bin for the gate to judge or the door to file",
+  "the gate: node tools/check-c0-refusals-v1.mjs first (it judges and prints); then --write ONLY IF the shelf restore of the runbook's section 2 exited 0, or a dated ruling of the owner's accepts a receipt cut over the served zones alone; otherwise stop — the door refuses a re-pinned zone whose bytes are not the bytes the gate judged",
+  "the door: node tools/plan-build-v1.mjs --out build/build-plan-v1.json --tsv build/build-plan-v1.tsv ; node tools/build-front-door-v1.mjs --zones data/zones --out deploy-root --atlas data/corpus-atlas-v1.json --physical-handoff data/bezelal-front-door-counts-handoff-v1.json --count-bindings data/front-door-three-count-bindings-v1.json",
+  "deploy-root to the root: cp -r deploy-root/. .. ; then the byte-identity loop the runbook prints (find + cmp over every file under deploy-root/), which must print no NOT IDENTICAL line",
+  "the manifest, the lane state, the ledger index: node tools/pipeline-manifest-v1.mjs --stamp <stamp> ; node tools/emit-lane-state-v1.mjs ; node tools/emit-ledger-index-v1.mjs",
+  "the full suite: bash tools/run-all-checks.sh — a red suite deploys nothing; every red row is a known red the runbook names with its reason still holding (S4 before the restore, check-nothing-unlanded-v1 before the push), or a stop",
+  "commit: git rev-parse HEAD origin/main first; the list is git status --short, reviewed against the steps run — never a typed list",
+  "push: git push origin HEAD:main ; then the suite again — check-nothing-unlanded-v1 green, or the push was incomplete and that is a stop"
  ],
  "never": [
   "never patch a join by hand: a verse that does not prove is held whole and counted on the receipt (tools/TOGGLE-PIPELINE-v1.md:20-30)",
-  "never re-pin a zone that did not change: the pins are read off the shelf, so a zone not rewritten keeps its pin; and never rewrite a zone for no reason",
+  "never re-pin a zone that did not change: a pin is read off the bin on disk at emit time and nothing carries an absent bin's pin forward — which is why the re-pin waits for the restored shelf; and never rewrite a zone for no reason",
+  "never describe tools/emit-zone-store-v1.mjs as pin-preserving: it pins the directory as it stands when it runs",
   "never touch the Hebrew: no masoretic marking can be removed from the book page (zone.html, the note above MASORAH_KEY); a projection writes beside the word, never in it",
   "never choose a default: the default of every row is the owner's ruling (tools/TOGGLE-PIPELINE-v1.md:124-125); the driver prints positions and chooses none",
   "never mark a row live or record a ruling: a ruling is the owner's, written as a dated record on the receipt's rulings_owed",
   "never write to R2: this lane holds a read token (tools/emit-zone-shipment-v1.mjs:14-16)",
   "never copy a delivery into data/: build/ledgers/ is where it stays",
-  "never type what a record can say: this file is the one place a fact is typed in the open, and it says so in its basis"
+  "never type what a record can say: this file is the one place a fact is typed in the open, and it says so in its basis; a date, a size or a count a record carries is a record_pin here, not a number"
  ],
  "owed_behind_live_rows_not_queued": [
-  { "row": "pairs", "what": "the default at the 298 qere-only / 21 ketiv-only sites; qere-ketiv-v1.json has what to show; the row runs on the default until the owner rules", "objects": ["qere-ketiv-v1.json"], "r2_prefix": "unknown", "cites": "tools/TOGGLE-PIPELINE-v1.md:353-354" },
-  { "row": "licence", "what": "the Jastrow-not-served ruling must sit above the license sort or a public-domain-first sort re-serves him (58,093 ties); the sort is live, that ruling is not written", "cites": "tools/TOGGLE-PIPELINE-v1.md:355-357; data/serving-rulings-v1.json jastrow-the-owner-leans-yes" }
+  { "row": "pairs", "what": "the default at the qere-only and ketiv-only sites (their counts are at tools/TOGGLE-PIPELINE-v1.md:353-354); qere-ketiv-v1.json has what to show; the row runs on the default until the owner rules", "objects": ["qere-ketiv-v1.json"], "r2_prefix": "unknown", "cites": "tools/TOGGLE-PIPELINE-v1.md:353-354" },
+  { "row": "licence", "what": "the Jastrow-not-served ruling must sit above the license sort or a public-domain-first sort re-serves him (the tie count is at tools/TOGGLE-PIPELINE-v1.md:355-357); the sort is live, that ruling is not written", "cites": "tools/TOGGLE-PIPELINE-v1.md:355-357; data/serving-rulings-v1.json jastrow-the-owner-leans-yes" }
  ]
 }
