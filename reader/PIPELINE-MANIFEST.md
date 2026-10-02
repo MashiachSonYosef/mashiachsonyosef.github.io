@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-10-02.
 
-**114 rules declared · 108 named by a check · 6 unguarded.**
+**115 rules declared · 109 named by a check · 6 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -75,6 +75,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `nothing-welds-rule-v1-a-mark-is-a-position-and-a-reading-is-a-word` | tools/check-nothing-welded-v1.mjs | check-nothing-welded-v1 |
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | check-numbering-gap-witnessed-v1 |
 | `orders-registered-together-rule-v1-a-reading-column-and-its-credit-column-are-one-registration` | tools/check-orders-registered-together-v1.mjs | check-orders-registered-together-v1 |
+| `overlay-rule-v1-an-overlay-adds-readings-after-the-store-and-changes-nothing-above-them` | zone.html | check-overlays-v1 |
 | `partial-serve-rule-v1-a-work-served-in-part-says-so-where-the-part-is-missing` | zone.html | check-partial-serve-declared-v1 |
 | `parts-direction-rule-v1-the-first-part-of-a-hebrew-row-is-the-rightmost` | zone.html | check-parts-read-right-to-left-v1 |
 | `pass-through-rule-v1-a-sealed-layer-can-only-be-withheld-never-added` | tools/build-commentary-sidecar-v1.mjs, tools/build-commentary-sidecar-v2.mjs | check-sealed-layers-v1 |
