@@ -35,6 +35,8 @@
     --ink:#561f86; --ink-strong:#44166c; --muted:#6c359e; --faint:#845ba7;
     --gold:#96700f; --gold-dim:#9a7a28; --amber:#96700f;
     --sel:#8d5e0c; --sel-dim:#b8871a;
+    /* the mark's own gold, brighter than the frame's so the .com never reads as the red beside it (the owner, 2026-10-02); used by the name and nothing else */
+    --mark-gold:#c4921c;
     /* FOUR COLORS, ruled 2026-10-02: one soft red, one soft blue, the gold and the
      purple, and the purple alone at its full depth. The deep red the titles wore and the royal blue are retired; the deep
      names now carry the soft values, and the olive-brown text of the neutral is
@@ -53,12 +55,12 @@
          justify-content:center; padding:1.4rem 1rem; overflow-x:hidden; }
   main { width:100%; max-width:40rem; }
   h1 { margin:0 0 .35rem; font-size:2.1rem; letter-spacing:.02em; color:var(--ink-strong); }
-  /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02): fire in shani, and in argaman, hail in tekhelet, the .com in gold, each word its own color with no blend between. The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. The .com is the one gold a page shows at rest, and the color check names it. */
+  /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02): fire in shani, and in argaman, hail in tekhelet, the .com in gold, each word its own color, and the and the turn between them: red into purple into blue, purple full only at its n. The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. The .com is the one gold a page shows at rest, and the color check names it. */
   @font-face { font-family:'wordmark'; src:url('/fonts/outfit-wordmark-600.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
   .masthead { margin:0 0 .4rem; }
   .wordmark { display:inline-block; margin:0; font-family:'wordmark',Georgia,serif; font-size:2.1rem; letter-spacing:-.01em; font-weight:600; color:var(--shani-ink); text-decoration:none; padding-bottom:.06em; border-bottom:1px solid var(--gold-dim); }
   a.wordmark { font-size:1.2rem; }
-  .wordmark .wm-fire { color:var(--shani); } .wordmark .wm-and { color:var(--argaman); } .wordmark .wm-hail { color:var(--tekhelet); } .wordmark .wm-tld { color:var(--gold); }
+  .wordmark .wm-fire { color:var(--shani); } .wordmark .wm-and { color:var(--argaman); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { .wordmark .wm-and { background-image:linear-gradient(90deg, var(--shani) 0%, var(--argaman) 36%, var(--argaman) 64%, var(--tekhelet) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } } .wordmark .wm-hail { color:var(--tekhelet); } .wordmark .wm-tld { color:var(--mark-gold); }
   p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }
   /* The face speaks plainly; the audited panel stands whole behind one quiet
      fold, its grains and receipts byte-identical for the count guard. What a
@@ -1046,6 +1048,13 @@
   a.titleway:hover .g, .col-he .fam-he .g, details.fam > summary .fam-he .g, #bkcard .slot .fam-he .g, span.g, a.titleway .g, .bookcard .g, .atlas-row .g { font-family:'reading', Georgia, serif; font-weight:500; }
   /* a plain label in our own voice, before a name: lowercase, a colon, no weight (the owner, 2026-10-02) */
   .kind { font-size:.66rem; letter-spacing:.03em; color:var(--muted); font-variant:normal; text-transform:none; margin-inline-end:.4rem; }
+  /* AN ATTESTED NAME IS BLUE (the owner, 2026-10-02): an English name stands on this site only because a licensed source attests it, so the name itself speaks in the reading's channel, tekhelet, in the reading's face. The attestation chip beside it keeps its own color; a name nothing attests stays in our own voice. */
+  details.fam > summary .en.attested, .bookcard .en.attested, span.atlas-row.built a.aw.attested { color:var(--tekhelet-ink); font-family:'reading', Georgia, serif; font-weight:500; }
+  span.atlas-row.built a.aw.attested:hover, details.fam > summary:hover .en.attested { color:var(--tekhelet-ink); text-decoration:underline; text-decoration-color:var(--gold-dim); text-underline-offset:.18em; }
+  /* THE SEARCH HIDES A ROW BY ITS hidden FLAG, and a row's own display rule was
+     overriding the flag, so every query showed every book (found 2026-10-02).
+     hidden means hidden, whatever else the element is. */
+  [hidden] { display:none !important; }
 
   .bookcard .stamp, .atlas-row .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; flex-basis:100%; }
   .atlas-row.stamped { flex-wrap:wrap; }
@@ -1121,7 +1130,7 @@
   <form id="find" role="search" onsubmit="return go(event)">
     <input id="q" type="search" autocomplete="off" spellcheck="false"
       placeholder="find a book"
-      title="1 kings, i-kings and 1-kings all land"
+      title="i kings and 1 kings both land"
       aria-label="find a book" oninput="sift()">
   </form>
   <nav class="books">
@@ -5399,7 +5408,11 @@
   })();
   var atlasRows = [].slice.call(document.querySelectorAll(".atlas-row")).map(function (r) {
     var aw = r.querySelector(".aw");
-    return { el: r, key: norm((r.getAttribute("data-p") || "") + " " + (aw ? aw.textContent : "") + " " + (r.getAttribute("href") || "")) };
+    // a row is found by its English name, its address and its Hebrew title; the
+    // way in is the row's own link, which Enter follows
+    var he = r.querySelector(".he:not(.none)");
+    var link = r.querySelector("a.aw") || (r.matches("a[href]") ? r : null);
+    return { el: r, link: link, key: norm((r.getAttribute("data-p") || "") + " " + (aw ? aw.textContent : "") + " " + (link ? link.getAttribute("href") || "" : "") + " " + (he ? he.textContent : "")) };
   });
   var groups = [].slice.call(document.querySelectorAll(".workgroup")).map(function (g) {
     var names = [].slice.call(g.querySelectorAll(".en")).map(function (e) { return e.textContent; });
@@ -5942,10 +5955,16 @@
   });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") hideTip(); });
   applyRulings();
+  // ENTER OPENS THE FIRST BOOK THE BOX STILL SHOWS, in the filing the reader is
+  // looking at. It asked only the bordered cards, and since every book became a
+  // row (2026-10-02) there were none, so Enter did nothing.
   function go(e) {
     e.preventDefault();
-    var live = groups.filter(function (g) { return !g.el.hidden; });
-    if (live.length && document.getElementById("q").value.trim()) location.href = live[0].first.getAttribute("href");
+    if (!document.getElementById("q").value.trim()) return false;
+    var row = atlasRows.filter(function (r) { return r.link && !r.el.hidden && r.el.offsetParent !== null; })[0];
+    if (row) { location.href = row.link.getAttribute("href"); return false; }
+    var live = groups.filter(function (g) { return !g.el.hidden && g.first; });
+    if (live.length) location.href = live[0].first.getAttribute("href");
     return false;
   }
   </script>
