@@ -176,8 +176,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>the switches</title>
 <style>
- :root { --ink:#4b3570; --faint:#7b7290; --muted:#665082; --line:#d8cdbc; --paper:#f1e9d8; --sel:#8d5e0c;
-   --tekhelet:#34649a; --shani:#8b5560; --argaman:#6b3f8f; }
+ :root { --ink:#561f86; --faint:#845ba7; --muted:#6c359e; --line:#d8cdbc; --paper:#f1e9d8; --sel:#8d5e0c;
+   --tekhelet:#34649a; --shani:#8b5560; --argaman:#772ba3; }
  /* one face, linen, since 2026-09-10; the dark face came off this sheet 2026-10-02 */
  * { box-sizing: border-box; }
  body { margin:0; padding:1.2rem 16px 4rem; background:var(--paper); color:var(--ink);

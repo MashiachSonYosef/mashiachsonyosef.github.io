@@ -59,7 +59,7 @@ const esc = (s) => String(s).replace(/&/gu, "&amp;").replace(/</gu, "&lt;").repl
  *  the same publication and a reader who follows a link from one to the other
  *  should not be able to tell they were built by different code paths. */
 export const CHAIN_CSS = `
- :root { --ink:#4b3570; --faint:#7b7290; --muted:#665082; --line:#d8cdbc; --paper:#f1e9d8; --sel:#8d5e0c; --tekhelet:#34649a; }
+ :root { --ink:#561f86; --faint:#845ba7; --muted:#6c359e; --line:#d8cdbc; --paper:#f1e9d8; --sel:#8d5e0c; --tekhelet:#34649a; }
  /* one face, linen, since 2026-09-10; the dark face came off this sheet 2026-10-02 */
  * { box-sizing: border-box; }
  body { margin:0; padding:1rem 16px 4rem; background:var(--paper); color:var(--ink);
