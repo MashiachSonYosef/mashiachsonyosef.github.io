@@ -376,6 +376,21 @@ const r2 = () => {
 const ledgerOfLedgers = async (q, r, objects) => {
   const lol = q.r2.ledger_of_ledgers;
   const root = q.r2.ledgers_root;
+  // its key is known since 2026-10-02 (the bucket root); fetched directly first
+  if (lol.key) {
+    const b = await r.get(lol.key).catch(() => null);
+    if (b && b.length) {
+      const landing = ledgersDir(q); mkdirSync(landing, { recursive: true });
+      const p = join(landing, lol.key.split("/").pop()); writeFileSync(p, b);
+      console.log();
+      console.log(`— the ledger of ledgers · ${lol.key} · ${b.length} bytes → ${rel(p)} · printed here, before the listing —`);
+      const lines = b.toString("utf8").replace(/\n$/, "").split("\n");
+      for (const line of lines.slice(0, 400)) console.log(`  ${line}`);
+      if (lines.length > 400) console.log(`  … and ${lines.length - 400} more line(s), in ${rel(p)}`);
+      return;
+    }
+    console.log(`— the ledger of ledgers · ${lol.key} did not answer; trying the names under ${root} —`);
+  }
   const wanted = new Set(lol.names.flatMap((n) => lol.extensions.map((x) => `${n}${x}`.toLowerCase())));
   const hits = objects.filter((o) => o.key.startsWith(root) && !o.key.slice(root.length).includes("/") && wanted.has(o.key.slice(root.length).toLowerCase()));
   console.log();

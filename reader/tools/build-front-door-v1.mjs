@@ -1560,8 +1560,12 @@ const RD = RD_PUBLISH && existsSync(RD_PATH) ? JSON.parse(readFileSync(RD_PATH, 
 // reader meets books, not the frame's own vocabulary. The record still loads,
 // because the palette page prints the color contract from it, and the
 // fixtures and their check stay; what stops is the publishing.
-const DEMO_PAGES_PUBLISH = false;
-const pocLink = RD && DEMO_PAGES_PUBLISH ? `  <p class="poc-link"><a href="/demonstrations/">what each part of the frame looks like when it works</a></p>` : "";
+// The owner, later the same day: keep serving them, with no link from the door.
+// So they are built and stand at their addresses, and nothing on the door
+// points there; a reader reaches them only by the address.
+const DEMO_PAGES_PUBLISH = true;
+const DEMO_PAGES_LINKED = false;
+const pocLink = RD && DEMO_PAGES_PUBLISH && DEMO_PAGES_LINKED ? `  <p class="poc-link"><a href="/demonstrations/">what each part of the frame looks like when it works</a></p>` : "";
 
 const demoHtml = demo ? `  <section id="demo" aria-label="The reader, working">
     <p class="demo-lab">the reader, working — press any word</p>
