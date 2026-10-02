@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-10-02.
 
-**112 rules declared · 108 named by a check · 4 unguarded.**
+**113 rules declared · 108 named by a check · 5 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -112,6 +112,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `title-key-rule-v1-only-what-the-store-already-attests` | tools/build-zone.mjs, tools/name-the-titles-v1.mjs, tools/run-restore-v5-fleet-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-opens-title-v1 |
 | `toggle-design-rule-v1-the-page-about-the-switches-is-built-from-the-switches` | tools/build-toggle-design-v1.mjs | **UNGUARDED** |
 | `toggle-projection-rule-v1-a-toggle-is-a-ledger-projected-over-a-zones-own-positions` | tools/project-toggle-headword-v1.mjs | check-toggle-projection-v1 |
+| `toggle-push-rule-v1-the-driver-proposes-and-prints-and-never-chooses` | tools/push-toggles-v1.mjs | **UNGUARDED** |
 | `v-ledger-counter-verification-rule-v1-an-anchor-is-checked-against-the-word-this-lane-draws` | tools/verify-v-ledger-v2-v1.mjs | **UNGUARDED** |
 | `v-volume-rule-v1-a-count-is-served-only-with-the-scope-it-was-counted-over` | tools/project-v-volume-v1.mjs, zone.html | check-v-volume-in-card-v1, check-v-volume-projection-v1 |
 | `variant-site-grouping-v1-one-alignment-rule-per-encoding-class` | tools/group-variant-sites-v1.mjs | check-variant-class-one-rule-v1 |
@@ -145,7 +146,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 89 tools that are not checks.
+`build.sh` calls 19 of the 90 tools that are not checks.
 
 Not called by any build stage:
 
@@ -198,6 +199,7 @@ Not called by any build stage:
 - `tools/project-v-volume-v1.mjs`
 - `tools/proper-name-v1.mjs`
 - `tools/pull-zones-from-store-v1.mjs`
+- `tools/push-toggles-v1.mjs`
 - `tools/redrive-zone-gloss-v1.mjs`
 - `tools/regloss-zone.mjs`
 - `tools/respan-zone-v1.mjs`
