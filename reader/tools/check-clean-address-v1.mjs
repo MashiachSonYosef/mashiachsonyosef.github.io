@@ -1,0 +1,668 @@
+#!/usr/bin/env node
+// The front door, and the addresses it opens.
+//
+// The site's own root is a splash: the books that are finished, and nothing
+// else clickable. Each is reached at a clean address derived from its work id —
+// which serves the one reader itself, told in its own head which work it is
+// and where the reader's files live. There is no second hop and no rewrite:
+// the address in the bar is the work's own from the first byte, and this is
+// the check that it stays that way — the page at the address, the readings
+// arriving, and nothing rewriting anything.
+//
+// It serves the publication itself — the repository root is the deployed
+// tree, address pages and reader and data exactly as Pages serves them — so
+// what passes here is what a reader gets, not a replica of it. It takes no
+// URL for the same reason.
+// GUARDS: title-key-rule-v1-only-what-the-store-already-attests, front-door-rule-v1-the-door-lists-what-the-zones-carry
+//
+import { createServer } from "node:http";
+import { readFile } from "node:fs/promises";
+import { readFileSync, existsSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
+import { join, dirname, extname, normalize } from "node:path";
+import { fileURLToPath } from "node:url";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const pw = await loadPlaywright();
+import { zonesOnDisk, zonesServed, zonesServedWithCommentary } from "./zones-on-disk-v1.mjs";
+import { basename } from "node:path";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+const K3 = join(HERE, "..");
+const ENGINE = basename(K3);
+// The works come from the tracked basis record — derived from the plan and
+// the hold ledgers, present on every checkout — and the walk is the zones on
+// disk: a withheld work's address answers, but there is no zone to walk.
+const basis = JSON.parse(readFileSync(join(K3, "data", "work-basis-v1.json"), "utf8"));
+const ALL_WORKS = Object.entries(basis.works).map(([slug, w]) => ({ published_as: slug, ...w }));
+const ON_DISK = new Set(zonesOnDisk());
+const plan = { works: ALL_WORKS.filter((w) => ON_DISK.has(w.published_as)) };
+// What the masthead should say is not typed here: it is read out of the zone
+// the page is about to load. A check that carries its own copy of a title is
+// checking the page against me rather than against the chain.
+const titleOf = (book) => {
+  const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${book}.bin`))).toString("utf8"));
+  return [z.work_he || "", z.work || ""];
+};
+let bad = 0;
+const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
+
+const site = join(K3, "..");
+
+// Pages serves the engine's stylesheet as text/css and its script as
+// JavaScript; a stub that hands the stylesheet over as an octet stream is
+// refused by the browser under strict MIME checking, and the page this check
+// then measures is the unstyled one — the home link was reported out of its
+// corner on a page no reader ever sees (2026-09-06). The harness has to be
+// the faithful part or the check is testing the harness.
+const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8" };
+const srv = createServer(async (req, res) => {
+  const p = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "");
+  // the publication is served, the repository's plumbing is not
+  if (/(^|[/\\])\./.test(p)) { res.writeHead(404); return res.end("no"); }
+  // What was asked of the address travels with it. Pages keeps the query
+  // across the directory redirect, and a stub that dropped it would report a
+  // failure the real host does not have — the harness has to be the faithful
+  // part or the check is testing the harness.
+  const qs = req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : "";
+  try {
+    let file = join(site, p);
+    if (!extname(p)) {
+      // Pages answers a directory with its index.html; so does this.
+      if (p.endsWith("/")) file = join(file, "index.html");
+      // The Location header is percent-encoded, because a header value may not
+      // carry a raw non-ASCII byte: Node throws ERR_INVALID_CHAR on writeHead,
+      // the throw lands in the catch below, and the reader is handed a 404
+      // wearing the 301's status text. Every Hebrew-named address on the shelf
+      // — most of them — redirected into that, and it read for weeks as the
+      // site failing to serve its own Hebrew slugs. Pages encodes the header;
+      // a stub that does not is testing itself.
+      else { res.writeHead(301, { Location: `${encodeURI(p)}/${qs}` }); return res.end(); }
+    }
+    const body = await readFile(file);
+    // shards arrive gzipped and are unpacked by the page, not the transport
+    res.writeHead(200, { "content-type": TYPES[extname(file)] || "application/octet-stream" });
+    res.end(body);
+  } catch { res.writeHead(404); res.end("no"); }
+});
+await new Promise((r) => srv.listen(0, "127.0.0.1", r));
+const B = `http://127.0.0.1:${srv.address().port}`;
+
+const b = await pw.chromium.launch(launchOptions());
+const p = await b.newPage({ viewport: { width: 412, height: 915 } });
+p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+
+await p.goto(`${B}/`, { waitUntil: "networkidle" });
+const splash = await p.evaluate(() => ({
+  title: document.title,
+  links: [...document.querySelectorAll("a")].map((a) => a.getAttribute("href")),
+  body: document.body.textContent.replace(/\s+/g, " "),
+  // The commentary entries, by their own addresses and by what they say. A
+  // count taken off a name regex cannot see an entry whose book has no plain
+  // name, and would read a real offer as a missing one.
+  commentary: [...new Set([...document.querySelectorAll("a.sub-book")].map((a) => a.getAttribute("href")))]
+    .map((href) => ({ href, en: ([...document.querySelectorAll(`a.sub-book[href="${href}"] .en`)][0] || {}).textContent || "" })),
+  offscreen: document.documentElement.scrollWidth > window.innerWidth + 1,
+  // A Hebrew name never stands by itself: whatever box carries it carries the
+  // English too, so a reader who cannot read it still knows what it offers.
+  he: [...document.querySelectorAll('[lang="he"]')].map((e) => {
+    const box = e.closest("a, h1, h2");
+    return { t: e.textContent.trim(), paired: !!box && /[A-Za-z]/.test(box.textContent.replace(e.textContent, "")) };
+  }),
+}));
+console.log("— the splash —");
+// What the site calls itself is read from the site's own record, never typed
+// here. This line held the literal "Tabernacle", so the day the work moved to
+// its own address the check failed a door that was correct — and worse, a
+// door that had silently kept the wrong name would have passed it. The name
+// is CNAME's when the site has an address of its own, and the working name
+// until then; the same rule the door builder decides it by.
+const SITE_NAME = (() => {
+  const cname = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "CNAME");
+  const named = existsSync(cname) ? readFileSync(cname, "utf8").trim().split(/\s+/)[0] : "";
+  return named || "The Tabernacle";
+})();
+check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} · expected to name ${SITE_NAME}`);
+// Every way out of the front door lands on a finished book. There is more than
+// one way to reach each of them now — the book itself, and the commentary
+// carried on it, which opens inside that book because that is where a
+// commentary is read. What must not appear is a destination that is not a
+// finished book.
+{
+  // The finished books used to be typed here, then the curated plan's — five
+  // works, while the fleet shelf carries thousands. The publishing authority
+  // is the shelf itself: a zone on disk is a finished book, and the door is
+  // built from exactly that directory, so this check and the page it checks
+  // derive the same list from the same place.
+  // count-gate-rule-v1 · what the door must link to is what the door may
+  // SERVE, which since the gate is a smaller list than the shelf. This
+  // assertion runs both ways — no way off that is not a finished book, and
+  // no finished book the door fails to offer — so reading the shelf here
+  // demanded that the door publish books the gate withheld. That is the
+  // guard being wrong, not the door.
+  const FINISHED = [...new Set([
+    ...zonesServed().map((slug) => `/${slug}`),
+    ...plan.works.map((w) => `/${w.published_as}`),
+  ])];
+  // The door MAY point at its own counts receipt — a record of the door, not a
+  // way out of it: the one non-book destination allowed. ALLOWED, and since
+  // 2026-09-07 not required. The owner struck the count paragraph from the
+  // door that day ("id leave count info for book pages"): a figure about a
+  // book belongs beside that book, where the stamp prints it against every
+  // witness who published one. Nothing on the page links the receipt now. The
+  // receipt is still built, still recomputed from the books' own bytes, still
+  // embedded in the page's own DOM and still held there, byte for byte, by
+  // check-front-door-three-counts-v1 — so this assertion demanding the link
+  // would only be demanding the paragraph back.
+  const NOT_REQUIRED = ["/front-door-counts-receipt-v1.json"];
+  FINISHED.push(...NOT_REQUIRED);
+  // And at the census — the register of every work the bridge records that
+  // does not serve yet, standing at its own address since 2026-08-30 (the
+  // owner's ask: not forgotten at the bottom of the home page). It is the
+  // publication's own second page, so the way there must exist and land.
+  {
+    const censusFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "census", "index.html");
+    check("the census stands at its own address", existsSync(censusFile), censusFile);
+    FINISHED.push("/census/");
+    // The demonstrations were a page and not a book: one passage per rule,
+    // standing apart from the shelf so nothing on it could be mistaken for a
+    // work. The owner retired the PAGE on 2026-09-06, the day all thirty-nine
+    // books went live — every rule it showed is now visible on real text a
+    // reader can open, and he only wants the live ones. The zones and the
+    // builder stay on disk and stay guarded; what is gone is the publishing
+    // of them. So the door may still link there and need not: the address is
+    // required to be a lawful destination only while the page is built.
+    const pocFile = join(dirname(fileURLToPath(import.meta.url)), "..", "deploy-root", "demonstrations", "index.html");
+    if (existsSync(pocFile)) FINISHED.push("/demonstrations/");
+    // And the order switch's own page, standing since 2026-09-09. The switch
+    // governs every card the site serves, and a reader who wants to know what
+    // it is should not have to open a book to find out — so it is the door's
+    // third page, beside the census, and the way there must exist and land.
+    // It is not a book and never will be: it prints no Hebrew at all, because
+    // every position on it is a claim about the ORDER readings come in, and an
+    // order is shown by pressing a word in a real book rather than by a
+    // specimen typed onto a page about the switch.
+    // The switches page moved out of the door build on 2026-09-20: it is built
+    // from the reader's own TOGGLES by tools/build-toggle-design-v1.mjs and
+    // published beside the engine, not under deploy-root. So it is asked for
+    // where it actually stands, and it must carry every switch the rail draws
+    // — a page about the switches that is missing one is the exact rot that
+    // retired the old bench, and this is the guard that would have caught it.
+    const benchFile = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "toggles", "index.html");
+    if (existsSync(benchFile)) {
+      const bench = readFileSync(benchFile, "utf8");
+      const ids = [...readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "zone.html"), "utf8")
+        .matchAll(/\{ id: "([a-z]+)", voice: "[a-z]+", lab: "/gu)].map((m) => m[1]);
+      const absent = ids.filter((id) => !bench.includes(`id="${id}"`));
+      check("the switches page stands at its own address, and carries every switch the rail draws",
+        ids.length > 0 && absent.length === 0,
+        absent.length ? `${absent.length} switch(es) the rail draws and the page does not: ${absent.join(", ")}` : `${ids.length} switches drawn and documented`);
+    } else check("the switches page stands at its own address", false, `${benchFile} — run node tools/build-toggle-design-v1.mjs`);
+    FINISHED.push("/toggles/");
+    // And the chain, the door's fifth: the same books with the meaning taken
+    // out, so only the joins are left. It is not built by the door and does
+    // not live under deploy-root — it is published beside the engine, from
+    // the zones and the route store, by tools/build-chain-book-v1.mjs — so
+    // it is asked for where it actually stands. It is not a book and must
+    // never be counted as one: it prints no Hebrew and no English, only
+    // fingerprints.
+    //
+    // A tab that lands on an index whose own rows land nowhere is the same
+    // fault one floor down, so every book the index names is asked for too.
+    // That is the whole law of this check applied where the check can reach.
+    const chainDir = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "chain");
+    const chainIndex = join(chainDir, "index.html");
+    if (existsSync(chainIndex)) {
+      const page = readFileSync(chainIndex, "utf8");
+      const named = [...page.matchAll(/<a href="([^"/]+)\/">/gu)].map((m) => m[1]);
+      const lost = named.filter((b) => !existsSync(join(chainDir, b, "index.html")) || !existsSync(join(chainDir, b, "chain-v1.json.gz")));
+      check("the chain stands at its own address, and every book it names stands at its own",
+        named.length > 0 && lost.length === 0,
+        `${named.length} book(s) named${lost.length ? ` · nowhere to land: ${lost.slice(0, 4).join(", ")}` : ""}`);
+      FINISHED.push("/chain/");
+    } else check("the chain stands at its own address", false, `${chainIndex} — the door carries a tab for it (build-front-door-v1.mjs altLink), so it must be built: node tools/build-chain-book-v1.mjs --index`);
+  // and the reference pages: each group in the typed reference record
+  // (data/reference-groups-v1.json, the owner's naming ruling) is a
+  // published address the door points at
+  {
+    const rg = join(dirname(fileURLToPath(import.meta.url)), "..", "data", "reference-groups-v1.json");
+    if (existsSync(rg)) for (const g of JSON.parse(readFileSync(rg, "utf8")).groups || []) FINISHED.push(`/${g.slug}`);
+  }
+  }
+  // A destination is the address, not what is asked of it: /genesis and
+  // /genesis?c=open are the same book, opened two ways. What must not appear
+  // is a place that is not a finished book.
+  const dest = (h) => String(h).split("?")[0];
+  // one exception, typed: a rel="license" citation link (the CC0 dedication
+  // in the openness declaration) is a receipt, not a way off — it points at
+  // the license text the declaration stands under
+  const stray = splash.links.filter((h) => !FINISHED.includes(dest(h))
+    && !/^https:\/\/creativecommons\.org\/publicdomain\//.test(String(h)));
+  const linked = splash.links.map(dest);
+  const missing = FINISHED.filter((f) => !NOT_REQUIRED.includes(f) && !linked.includes(f));
+  check("every way off it lands on a finished book",
+    stray.length === 0 && missing.length === 0,
+    // both directions, and each says which way it broke — this printed
+    // fifty-nine links and no verdict, so a page that had simply stopped
+    // linking one thing read as a page full of strays
+    `${splash.links.length} links${stray.length ? ` · stray: ${stray.join(" ")}` : ""}${missing.length ? ` · finished but unlinked: ${missing.join(" ")}` : ""}${stray.length || missing.length ? "" : ` · ${splash.links.join(" ")}`}`);
+  // The door is built from the zones, so what it offers is what is there. A
+  // commentary the zones carry and the door does not mention is the fault this
+  // whole generator exists to make impossible — and a commentary named on the
+  // door that no zone carries would be the same fault in the other direction.
+  // The expected set is the sidecars on disk, never a typed title.
+  // COUNT THE BOOKS OFFERED, NOT THE MENTIONS, AND COUNT THEM BY ADDRESS. The
+  // shelf is filed two ways on this page — thirty-nine files or twenty-four
+  // books — and both filings are in the DOM at once, so a book standing on its
+  // own in each would read as two commentaries where there is one. What must be
+  // true is that the SET of commentaries the door offers is the set the shelf
+  // carries, and the address is what says which book an entry is for.
+  const offered = splash.commentary || [];
+  const carried = zonesServedWithCommentary();
+  const wrongAddr = offered.filter((o) => !/^\/[^?]+\?c=open$/.test(String(o.href)));
+  check("and the commentary is offered exactly where a zone carries one",
+    offered.length === carried.length && wrongAddr.length === 0,
+    `${offered.length} offered for ${carried.length} sidecar(s) on disk${wrongAddr.length ? ` · ${wrongAddr.length} at an address that does not open one` : ""}`);
+  // and each entry names its book the way every other name slot on this page
+  // does: plain letters, or the absence said in words — never a raw id and
+  // never a bare Hebrew title dressed as a name
+  const badName = offered.filter((o) => /[\u0590-\u05FF]/u.test(o.en) || !/[A-Za-z]/.test(o.en));
+  check("  and each names its book in plain letters, or says the absence in words",
+    badName.length === 0,
+    badName.length ? badName.map((o) => `${o.href}: "${o.en}"` ).slice(0, 3).join(" · ") : `${offered.length} entries`);
+}
+check("it does not run off the side", !splash.offscreen);
+// Two kinds of text are allowed on our own surfaces: text from the chain,
+// carrying its record, and plain English of ours that says what a thing is.
+// Hebrew we typed is neither, and the site's own name was the worst place for
+// it — the one string on the page with nothing behind it, at the top.
+const framed = await p.evaluate(() => {
+  const labOf = (e) => (e.closest(".row")?.querySelector(".lab")?.textContent || "").trim();
+  return {
+    inSiteName: document.querySelectorAll("h1 [lang='he']").length,
+    hebrews: [...document.querySelectorAll('[lang="he"]')].map((e) => ({ t: e.textContent.trim(), lab: labOf(e) })),
+    // The register used to be a label printed in front of the name — six or
+    // seven words ahead of one. It is now carried by the mark that already
+    // proves it: an "attested:" chip whose hover opens with the claim
+    // register, or an "awaiting a named source" note whose hover opens with
+    // the catalog register. Read where it is said, not where it used to be.
+    commons: [...document.querySelectorAll(".family summary .en")].map((e) => {
+      const row = e.closest(".row") || e.parentElement;
+      const chip = row.querySelector(".chip"), of = row.querySelector(".of");
+      return { t: e.textContent.trim(), lab: labOf(e),
+        chip: chip ? chip.textContent : "",
+        register: /^commonly force read as\b/i.test(chip?.title || "") ? "claim"
+          : /^listed in the catalog as\b/i.test(of?.title || "") ? "catalog" : "" };
+    }),
+    unnamed: [...document.querySelectorAll(".bookcard .he.none")].map((e) => e.textContent.trim()),
+  };
+});
+check("the site's own name carries no Hebrew that nothing recorded",
+  framed.inSiteName === 0, `${framed.inSiteName} found`);
+// The door prints Hebrew from exactly two records and nothing else: a book's
+// own title as its zone carries it, and a family's name as the family ledger
+// gives it (each token store-verified by check-family-ledger-v1). Anything
+// outside both sets is a character nobody recorded. An earlier form of this
+// check knew only the zones — the family ledger's names are records too.
+{
+  // every zone on the shelf may carry its own claimed title to the door —
+  // the fleet's zones included, by the same authority as the curated plan's:
+  // the zone's own work_he, claimed from its own C0 under the title rule
+  const carried = new Set(zonesOnDisk().map((slug) => titleOf(slug)[0]).filter(Boolean));
+  const L = JSON.parse(readFileSync(join(K3, "data", "family-ledger-v1.json"), "utf8"));
+  for (const lf of L.families || []) if (lf.he) { carried.add(lf.he); for (const t of lf.he_tokens || []) carried.add(t.s); }
+  // A GATHERED BOOK'S NAME IS A THIRD CATEGORY, and the narrowest of the three.
+  // The corpus lane's grouping ledger (2026-09-07) names the twenty-four books
+  // the tradition counts over the thirty-nine files this edition ships, and
+  // four of those names are not any file's title \u2014 no file is called "the
+  // Twelve". The door may print such a name only where EVERY word of it is a
+  // form the route store already carries, and that is re-derived here from
+  // the ledger and the store rather than trusted from the door: a name whose
+  // words the store does not attest is still a stray, and this check still
+  // says so. The door refuses its own build in the same case.
+  {
+    const gp = join(K3, "data", "book-grouping-v1.json");
+    if (existsSync(gp)) {
+      const { exactK } = await import("./k-normalization-v2.mjs");
+      const { openRouteStore } = await import("./gloss-store-v1.mjs");
+      const store = existsSync(join(K3, "data", "route-store", "index.json")) ? openRouteStore(join(K3, "data", "route-store")) : null;
+      if (store) for (const g of JSON.parse(readFileSync(gp, "utf8")).groups || []) {
+        if ((g.files || []).length < 2) continue;
+        const toks = String(g.hebrew_name || "").split(/\s+/u).filter(Boolean);
+        const keyed = toks.map((t) => exactK(t)).map((k) => (k && store.routesFor(k) ? k : null));
+        if (toks.length && keyed.every(Boolean)) { for (const t of toks) carried.add(t); carried.add(g.hebrew_name); }
+      }
+    }
+  }
+  // demo-verse-rule-v1, re-derived: the door's working verse is the first
+  // ten words of the first section of the first zone in shelf order — each
+  // word a recorded surface, carried like a title's own words
+  {
+    const { readdirSync } = await import("node:fs");
+    const { gunzipSync } = await import("node:zlib");
+    const zdir = join(K3, "data", "zones");
+    // the door's working verse comes from the first zone the door SERVES
+    // (the gate's served set), not the first bin on disk: a withheld zone
+    // lends the door no verse (2026-09-06)
+    const servedFirst = zonesServed()[0];
+    const firstZone = servedFirst ? `${servedFirst}.bin` : readdirSync(zdir)
+      .filter((x) => x.endsWith(".bin") && !x.startsWith("fixture-") && !isSidecar(x))
+      .sort()[0];
+    if (firstZone) {
+      const z = JSON.parse(gunzipSync(readFileSync(join(zdir, firstZone))).toString("utf8"));
+      for (const w of ((z.sections || [])[0]?.words || []).slice(0, 10)) if (w.s) carried.add(w.s);
+    }
+  }
+  const strays = framed.hebrews.filter((x) => !carried.has(x.t));
+  check("every Hebrew on the door is a zone's title or the family ledger's name, and nothing else",
+    strays.length === 0,
+    strays.length ? strays.map((x) => x.t).join(" · ") : `${framed.hebrews.length} names, all recorded`);
+  // A work with no recorded title either shows the open slot or shows no
+  // Hebrew at all — the stray check above already refuses an invented name.
+  // What an open slot may never do is soften what it is.
+  check("and an open title slot, where one stands, says none is recorded",
+    framed.unnamed.every((t) => /none is recorded/.test(t)),
+    framed.unnamed.length ? framed.unnamed.join(" · ") : "no open slots on this door");
+}
+// The register never softens, here least of all. English standing at a
+// shelf's head says where it comes from: a family's name is a forced reading
+// of the Hebrew above it, and the awaiting shelf's head is the bridge's own
+// recorded value. Both say so; what is refused is English with no register.
+check("and the English beside it says what register it stands in",
+  framed.commons.length > 0 && framed.commons.every((x) => x.register === "claim" || x.register === "catalog"),
+  framed.commons.filter((x) => !x.register).map((x) => `${x.t} says no register`).join(" · ").slice(0, 200)
+    || `${framed.commons.length} names, each saying whether it is a claim or the catalog's own value`);
+// The owner's ruling on the name slot: it never dresses a record as prose.
+// A slot under either register prints plain Latin text or says the absence
+// in words — never a bridge id from another script read as if it were a
+// name. Asserted over every name slot the door builds, because the census
+// found 2,933 Hebrew bridge ids waiting to be printed the day the library
+// fills.
+{
+  const NO_PLAIN = "none is recorded in plain letters";
+  const slots = await p.evaluate(() =>
+    [...document.querySelectorAll(".family summary .en, .bookcard .en, .atlas-row.built .aw")]
+      .map((e) => e.textContent.trim()));
+  const badSlots = slots.filter((t) => !(t === NO_PLAIN || (/^[a-z0-9 \u00b7·]+$/i.test(t) && /[a-z]/i.test(t))));
+  check("every name slot is plain letters or says the absence in words",
+    slots.length > 0 && badSlots.length === 0,
+    badSlots.length ? badSlots.map((t) => JSON.stringify(t.slice(0, 40))).join(" · ").slice(0, 160) : `${slots.length} slots plain`);
+}
+// The owner's ruling, made at the liturgy shelf: the claim label prints only
+// with the record's force license beside it — a claim with no chip is the
+// exact fault this door carried.
+// Attestation, not license — FRAME v2.7: a common name is an identification,
+// an uncopyrightable fact, so the chip beside a claim label says WHO ATTESTS
+// the usage. A license name here was the category error the ruling retired.
+check("and every claim label carries its attestation, never a license",
+  framed.commons.filter((x) => x.register === "claim").every((x) => /^attested: .+/.test(x.chip || "")),
+  framed.commons.filter((x) => x.register === "claim").map((x) => `${x.t}: ${x.chip || "NO ATTESTATION"}`).join(" · ").slice(0, 200) || "no claim labels on this door");
+
+// A directory address answers with or without its closing slash — the slash
+// is the server's dress, not a second address.
+// The browser reports location.pathname percent-encoded, and most addresses on
+// this shelf are the works' own Hebrew opening words — so a raw comparison
+// asked whether "/%D7%AA..." equals "/תתחדש-4078" and was told no about a page
+// that had loaded correctly. Both sides are decoded before comparing: what is
+// being checked is which address the reader is standing at, not which bytes the
+// browser chose to spell it with.
+const decodeAddr = (s) => { try { return decodeURIComponent(String(s)); } catch { return String(s); } };
+const sameAddr = (got, want) => {
+  const g = decodeAddr(got), w = decodeAddr(want);
+  return g === w || g === `${w}/`;
+};
+
+
+// What the masthead should say is not typed here: it is read out of the zone
+// the page is about to load. A check that carries its own copy of a title is
+// checking the page against me rather than against the chain.
+// The walked addresses come from the same plan as the door, not a typed list
+// — every published work gets its masthead read against its own zone.
+// The zone's own section count rides with each row: the loaded page is
+// checked against the bin it loads, not against a typed bound. An earlier
+// form asserted sections > 100, which declared every small book broken —
+// Ruth carries 85 sections and loads whole.
+const sectionsOf = (book) =>
+  JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${book}.bin`))).toString("utf8")).sections.length;
+const WALK = plan.works.map((w) => [`/${w.published_as}`, ...titleOf(w.published_as), sectionsOf(w.published_as)]);
+for (const [href, ...expected] of WALK) {
+  const [heTitle, en, expectSections] = expected;
+  console.log(`— ${href} —`);
+  await p.goto(`${B}/`, { waitUntil: "networkidle" });
+  // A seated work's row stands behind its group's fold. Opening the fold is
+  // the reader's own gesture — the summary is the control — so the walk makes
+  // it before reaching for the row, exactly as a finger would.
+  await p.evaluate((h) => {
+    const a = document.querySelector(`a[href="${h}"]`);
+    // every enclosing fold — a group's fold can stand inside a family's
+    for (let d = a && a.closest("details"); d; d = d.parentElement && d.parentElement.closest("details")) d.open = true;
+  }, href);
+  await Promise.all([p.waitForURL(new RegExp(`\\${href}/?$`), { timeout: 20000 }), p.click(`a[href="${href}"]`)]);
+  await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+  await p.waitForTimeout(700);
+  const r = await p.evaluate(() => {
+    const he = document.querySelector("#workTitle .he-t"), enEl = document.querySelector("#workTitle .en-t");
+    const labOf = (e2) => (e2.closest(".t-row")?.querySelector(".t-lab")?.textContent || "").trim();
+    return { addr: location.pathname + location.search, title: document.title,
+      he: (he.querySelector(".w") || he).textContent.trim(), en: enEl.textContent.trim(),
+      heLab: labOf(he), enLab: labOf(enEl), heUnnamed: he.classList.contains("unnamed"),
+      lic: (() => { const c = document.getElementById("workLic"); return c && !c.hidden ? c.textContent.trim() : ""; })(),
+      enNote: (document.querySelector("#workTitle .t-note")?.textContent || "").trim(),
+      titleOpens: !!document.querySelector("#workTitle .he-t .wb"),
+      words: document.querySelectorAll("section.seg .he-text .wb").length,
+      glossed: [...document.querySelectorAll("section.seg .he-text .wb .g")].filter((g) => g.textContent.trim()).length,
+      sections: document.querySelectorAll("section.seg").length,
+      // The header offers one thing: the way out. A book offers its own text;
+      // the door offers the books, and a reader goes through the door.
+      nav: [...document.querySelectorAll("header.top nav a")].map((a) => a.getAttribute("href")),
+      navHe: document.querySelectorAll('header.top nav [lang="he"]').length,
+      navLab: (document.querySelector("#home .nav-lab")?.textContent || "").trim(),
+      navRight: (() => {
+        const a = document.querySelector("#home a.home"), h = document.querySelector("header.top");
+        if (!a || !h) return false;
+        const ar = a.getBoundingClientRect(), hr = h.getBoundingClientRect();
+        return hr.right - ar.right < hr.width / 3 && ar.top - hr.top < 90;
+      })() };
+  });
+  check("  the bar keeps the clean address", sameAddr(r.addr.replace(/[?].*$/, ""), href), r.addr);
+  check("  the tab names the book in both", r.title.includes(en) && (!heTitle || r.title.includes(heTitle)), r.title);
+  check("  the masthead carries the book's own title, said to be the title",
+    /^book title$/i.test(r.heLab) && (heTitle ? r.he === heTitle && !r.heUnnamed
+      : r.heUnnamed && /on record/i.test(r.he)), `"${r.heLab}": ${r.he}`);
+  // And it is a word of the corpus, not a caption: it opens the same catalogue
+  // every other word of the book opens.
+  check("  and it opens like any word of the text", heTitle ? r.titleOpens : !r.titleOpens,
+    r.titleOpens ? "pressable" : "not pressable");
+  // The label is a claim and follows the evidence — the owner's ruling,
+  // which overruled the law this block used to state ("the label never
+  // softens"). "commonly force read as" may head an English only when a
+  // record reads the title's own form that way, its ATTESTATION riding
+  // beside it (FRAME v2.7: a name is an identification, not licensed
+  // expression — who attests, never who permits); where none does, the row
+  // is the bridge's value read plainly under the register that says so,
+  // with the note naming what the English is waiting on. Two lawful
+  // states, nothing between them.
+  const addrPlain = href.replace(/^\//, "").replace(/[-_]+/g, " ");
+  check("  the claim label stands only where a record backs the claim",
+    r.lic ? /^commonly force read as$/i.test(r.enLab) && r.en === en
+          : /^listed in the catalog as$/i.test(r.enLab) && r.en === addrPlain,
+    `"${r.enLab}": ${r.en}`);
+  check("  with an attestation on the claim, and the note on the record",
+    r.lic ? /^attested: .+/.test(r.lic) && !r.enNote : /a source on record uses one/.test(r.enNote),
+    `${r.enLab} · ${r.lic || r.enNote || "no attestation and no note"}`);
+  check("  the zone still loads under the rewritten bar", r.sections === expectSections && r.words > 3, `${r.sections} of ${expectSections} sections`);
+  check("  and its readings came with it", r.glossed > 0, `${r.glossed} of ${r.words} words glossed`);
+
+  // Navigation carries coordinates. A title is corpus text and belongs in the
+  // masthead, out of the ledger, where it can be tapped and defined — a copy of
+  // it typed into a link would be the one string on the page with nothing
+  // behind it.
+  check("  the header offers one way out and nothing else",
+    r.nav.length === 1 && r.nav[0] === "/", r.nav.join(" ") || "nothing");
+  check("  it says what it is, in plain English", /home/i.test(r.navLab), r.navLab || "unsaid");
+  check("  and it sits in the corner the eye goes to", r.navRight);
+  check("  the nav prints no title, only where to go", r.navHe === 0, `${r.navHe} Hebrew in the nav`);
+
+  // The store is fetched shard by shard as words are pressed — long after the
+  // bar stopped saying where the page came from. The word pressed is the
+  // first one the zone itself says is glossed: a first word the store has
+  // nothing for is a fact about that word, not a failed page — the Aramaic
+  // Targum to Ruth opens on such a word — and this check is about the wire
+  // to the store, so it presses where the zone says the wire answers.
+  await p.evaluate(() => {
+    const w = [...document.querySelectorAll("section.seg .he-text .wb")]
+      .find((x) => (x.querySelector(".g")?.textContent || "").trim()) ||
+      document.querySelector("section.seg .he-text .wb");
+    w.click();
+  });
+  await p.waitForTimeout(1000);
+  const card = await p.evaluate(() => {
+    const h = document.getElementById("hud");
+    return { open: !h.hidden, readings: h.querySelectorAll(".r-pills button").length,
+      lic: (h.querySelector(".d-card .d-foot")?.textContent || "").replace(/\s+/g, " ").trim().slice(0, 52) };
+  });
+  check("  a word still reaches the store and opens its record",
+    card.open && card.readings > 0, `${card.readings} readings · ${card.lic}`);
+  await p.keyboard.press("Escape");
+}
+
+console.log("— the addresses on their own —");
+// the curated tier can be empty (owner's ruling, 2026-08-30); the probe
+// address comes from the shelf itself then — the last SERVED zone in sort
+// order. count-gate-rule-v1: a withheld book has no address page to land
+// on, so probing the shelf here opened a page that is deliberately not
+// there and waited twenty-five seconds for a reader to appear in it. That
+// is not a failing site, it is a probe aimed at nothing.
+// Whichever pool it comes from, the probe must be a book that is actually
+// SERVED: a withheld work still answers at its address, with the page that
+// says it is withheld, and that page has no reader in it to wait for.
+const servedNow = new Set(zonesServed());
+const addrPool = (plan.works.length ? plan.works.map((w) => w.published_as) : zonesServed())
+  .filter((slug) => servedNow.has(slug));
+const LAST = addrPool[addrPool.length - 1];
+if (!LAST) {
+  // Said out loud rather than passed over: no book is through the gate, so
+  // there is no book address to type. The redirect law below still runs —
+  // a published address stays a promise whether or not anything is served.
+  check("  no book is through the count gate, so there is no book address to type",
+    true, "the address laws below still run");
+} else {
+const A0 = `/${LAST}`;
+await p.goto(`${B}${A0}`, { waitUntil: "networkidle" });
+await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+const typed = await p.evaluate(() => ({ addr: location.pathname, secs: document.querySelectorAll("section.seg").length }));
+check("a clean address typed in lands on the reader and stays",
+  sameAddr(typed.addr, A0) && typed.secs === sectionsOf(LAST), `${typed.addr} · ${typed.secs} of ${sectionsOf(LAST)} sections`);
+}
+
+// A published address is a promise: every republished address in the history
+// record still answers, as a redirect to where its work now lives.
+{
+  const histPath = join(K3, "data", "address-history-v1.json");
+  if (existsSync(histPath)) {
+    const hist = JSON.parse(readFileSync(histPath, "utf8"));
+    const slugOfWork = new Map(ALL_WORKS.map((w) => [w.work_id, w.published_as]));
+    for (const row of hist.republished || []) {
+      const slug = slugOfWork.get(row.to_work_id);
+      const target = `/${slug}`;
+      await p.goto(`${B}/${row.from}`, { waitUntil: "networkidle" });
+      if (ON_DISK.has(slug)) {
+        await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+        const r2 = await p.evaluate(() => ({ addr: location.pathname, secs: document.querySelectorAll("section.seg").length }));
+        check(`the republished address /${row.from} still answers, at its work's new address`,
+          sameAddr(r2.addr, target) && r2.secs === sectionsOf(slug), `/${row.from} → ${r2.addr} · ${r2.secs} sections`);
+      } else {
+        // the work behind the promise is withheld: the address must still
+        // answer, saying who is holding the book — never a broken page
+        const r2 = await p.evaluate(() => ({ addr: location.pathname, body: document.body.textContent.replace(/\s+/g, " ").trim() }));
+        check(`the republished address /${row.from} still answers while its work is withheld`,
+          r2.body.length > 40, `/${row.from} → ${r2.addr} · ${r2.body.slice(0, 60)}…`);
+      }
+    }
+  }
+}
+
+await p.goto(`${B}/${ENGINE}/zone.html?b=${zonesOnDisk()[0]}`, { waitUntil: "networkidle" });
+await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+const raw = await p.evaluate(() => ({ addr: location.pathname, secs: document.querySelectorAll("section.seg").length,
+  glossed: [...document.querySelectorAll("section.seg .he-text .wb .g")].filter((g) => g.textContent.trim()).length }));
+check("and the bare instrument at its own path is untouched by any of it",
+  raw.addr === `/${ENGINE}/zone.html` && raw.secs === sectionsOf(zonesOnDisk()[0]) && raw.glossed > 0,
+  `${raw.addr} · ${raw.secs} sections · ${raw.glossed} glossed`);
+
+// ---- the door's commentary entries open a commentary --------------------
+//
+// "Commentary on Genesis" is offered on the door as its own way in. A way in
+// that lands a reader at the top of a book with every commentary still shut is
+// not one — they arrive at the thing they asked for and have to go find it. So
+// the entry carries ?c=open, the address page carries it through, and the
+// reader presses the first mark and the first work behind it.
+console.log("— a commentary entry opens a commentary —");
+await p.goto(`${B}/`, { waitUntil: "networkidle" });
+// BY ADDRESS, NOT BY ELEMENT. The shelf is filed two ways on this page and
+// both filings are in the DOM, so a book standing on its own in each carries
+// two identical entries to one commentary. What is being checked is that every
+// carried commentary has a way in, and that every way in opens a commentary.
+const doorLinks = await p.evaluate(() => {
+  const seen = new Map();
+  for (const a of document.querySelectorAll("a.sub-book"))
+    if (!seen.has(a.getAttribute("href")))
+      seen.set(a.getAttribute("href"), { href: a.getAttribute("href"), en: a.querySelector(".en")?.textContent || "" });
+  return [...seen.values()];
+});
+const CARRIED = zonesServedWithCommentary().filter((z) => ON_DISK.has(z));
+check("the door offers a commentary entry per book that carries one",
+  doorLinks.length === CARRIED.length && doorLinks.every((l) => /\?c=open$/.test(l.href)),
+  `${doorLinks.length} for ${CARRIED.length} sidecar(s) · ${doorLinks.map((l) => l.href).join(" · ") || "none"}`);
+
+for (const slug of CARRIED) {
+  const shape = (plan.works.find((w) => w.published_as === slug) || {}).basis === "SEALED_Y_LEDGER" ? "word" : "section";
+  await p.goto(`${B}/${slug}?c=open`, { waitUntil: "networkidle" });
+  await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+  await p.waitForTimeout(2500);
+  const r = await p.evaluate(() => ({
+    addr: location.pathname,
+    panels: document.querySelectorAll("section.seg .c-mark-slot:not(.c-choose)").length,
+    inline: [...document.querySelectorAll("section.seg .c-inline")].filter((x) => !x.hidden).length,
+    said: (document.querySelector(".c-how-said, .c-att")?.textContent || "").replace(/\s+/g, " ").slice(0, 60),
+  }));
+  const opened = shape === "word" ? r.panels : r.inline;
+  check(`  ${slug} arrives with a commentary already open`, opened > 0,
+    `${r.panels} panel(s), ${r.inline} in line · "${r.said}…"`);
+  check(`  and the address is still the clean one`, sameAddr(r.addr, `/${slug}`), r.addr);
+}
+// and the book's own entry still opens the book, not a commentary
+{
+  // The curated tier can be empty — the owner's ruling of 2026-08-30 — so the
+  // plan can carry no works at all while the shelf carries thousands. The
+  // address pool above already asks the shelf when the plan is empty; this
+  // asked plan.works[0] directly and crashed on undefined, taking the two
+  // assertions after it down with it. The shelf is the authority on what is
+  // published, here as everywhere else.
+  // count-gate-rule-v1 · and it has to be a book that is SERVED. The shelf
+  // stopped being the authority on what is published the day a book had to
+  // prove its count first; a withheld work still answers at its address with
+  // the page that says so, and waiting for a reader inside that page waits
+  // twenty-five seconds for something that is deliberately absent.
+  const first = addrPool[0];
+  if (!first) {
+    check("  no book is through the count gate, so no book entry to open", true, "nothing served");
+  } else {
+  await p.goto(`${B}/${first}`, { waitUntil: "networkidle" });
+  await p.waitForSelector("section.seg .he-text .wb", { timeout: 25000 });
+  await p.waitForTimeout(1200);
+  const shut = await p.evaluate(() => document.querySelectorAll("section.seg .c-mark-slot:not(.c-choose)").length);
+  check("  while the book's own entry opens the book with nothing pressed", shut === 0, `${shut} open`);
+  }
+}
+
+// Nothing rewrites the bar, on anyone's say-so: the clean= parameter of the
+// old handshake is dead, and a hostile copy of it moves nothing.
+await p.goto(`${B}/${ENGINE}/zone.html?b=${zonesOnDisk()[0]}&clean=..%2F..%2Fevil`, { waitUntil: "networkidle" });
+const hostile = await p.evaluate(() => location.pathname);
+check("a clean= from the retired handshake moves nothing",
+  hostile === `/${ENGINE}/zone.html`, hostile);
+
+await p.close(); await b.close(); srv.close();
+console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
+process.exit(bad ? 1 : 0);

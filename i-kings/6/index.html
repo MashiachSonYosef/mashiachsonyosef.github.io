@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="i-kings">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="6">
+<meta name="description" content="I Kings 6 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/i-kings/6/">
+<title>I Kings 6 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>I Kings 6</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v6-1">I Kings 6:1</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>in + eighty<sup>1</sup></span> · <span>alter<sup>2</sup></span> · <span>and + four<sup>1</sup></span> · <span>hundred((-fold), -th)<sup>3</sup></span> · <span>alter<sup>2</sup></span> · <span>of + going out<sup>1</sup></span> · <span>young<sup>3</sup></span> · <span>Israel<sup>2</sup></span> · <span>from + [the] land of<sup>1</sup></span> · <span>Mizraim<sup>3</sup></span> · <span>shamefulness<sup>2</sup></span> · <span>&lt;the&gt; + fourth<sup>1</sup></span> · <span>in the + month<sup>1</sup></span> · <span>which<sup>2</sup></span> · <span>this<sup>4</sup></span> · <span>the + month<sup>1</sup></span> · <span>&lt;the&gt; + second<sup>1</sup></span> · <span>to + [the] king of<sup>1</sup></span> · <span>Salmah<sup>2</sup></span> · <span>Most High<sup>3</sup></span> · <span>Israel<sup>2</sup></span> · <span>and + he built<sup>1</sup></span> · <span>the + house<sup>1</sup></span> · <span>to + Yahweh<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-2">I Kings 6:2</h3>
+  <p class="r"><span>and + the + household<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>build<sup>3</sup></span> · <span>consult<sup>3</sup></span> · <span>Salmah<sup>2</sup></span> · <span>to + Yahweh<sup>1</sup></span> · <span>sixty<sup>2</sup></span> · <span>cubit<sup>2</sup></span> · <span>defer<sup>3</sup></span> · <span>and + twenty<sup>1</sup></span> · <span>breadth + its<sup>1</sup></span> · <span>and + thirty<sup>1</sup></span> · <span>cubit<sup>2</sup></span> · <span>stature + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-3">I Kings 6:3</h3>
+  <p class="r"><span>and + the + porch<sup>1</sup></span> · <span>Most High<sup>3</sup></span> · <span>face<sup>3</sup></span> · <span>palace<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>twentieth<sup>2</sup></span> · <span>cubit<sup>2</sup></span> · <span>defer<sup>3</sup></span> · <span>Most High<sup>3</sup></span> · <span>face<sup>3</sup></span> · <span>breadth<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>ten<sup>2</sup></span> · <span>by the + cubit<sup>1</sup></span> · <span>breadth + its<sup>1</sup></span> · <span>Most High<sup>3</sup></span> · <span>face<sup>3</sup></span> · <span>the + house<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-4">I Kings 6:4</h3>
+  <p class="r"><span>and + he made<sup>1</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>window<sup>3</sup></span> · <span>light<sup>3</sup></span> · <span>atom<sup>5</sup></span></p></article>
+  <article class="pv"><h3 id="v6-5">I Kings 6:5</h3>
+  <p class="r"><span>and + he built<sup>1</sup></span> · <span>Most High<sup>3</sup></span> · <span>wall<sup>3</sup></span> · <span>the + house<sup>1</sup></span> · <span>couch<sup>3</sup></span> · <span>bed<sup>3</sup></span> · <span>circuit<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>+ mason<sup>3</sup></span> · <span>the + house<sup>1</sup></span> · <span>circuit<sup>2</sup></span> · <span>&lt;to&gt; the + temple<sup>1</sup></span> · <span>and + &lt;to&gt; the + innermost room<sup>1</sup></span> · <span>and + he made<sup>1</sup></span> · <span>beam<sup>3</sup></span> · <span>circuit<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v6-6">I Kings 6:6</h3>
+  <p class="r"><span>couch<sup>6</sup></span> · <span>the + extension<sup>1</sup></span> · <span>&lt;the&gt; + lower<sup>1</sup></span> · <span>fifth<sup>2</sup></span> · <span>by the + cubit<sup>1</sup></span> · <span>broad<sup>3</sup></span> · <span>and + the + middle [extension]<sup>1</sup></span> · <span>sixth<sup>3</sup></span> · <span>by the + cubit<sup>1</sup></span> · <span>broad<sup>3</sup></span> · <span>and + &lt;the&gt; + third [extension]<sup>1</sup></span> · <span>abundance<sup>2</sup></span> · <span>by the + cubit<sup>1</sup></span> · <span>broad<sup>3</sup></span> · <span>since<sup>2</sup></span> · <span>narrowed rest<sup>3</sup></span> · <span>Make<sup>3</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>circuit<sup>2</sup></span> · <span>outside + towards<sup>1</sup></span> · <span>to + not<sup>1</sup></span> · <span>Achaz<sup>2</sup></span> · <span>in + [the] walls of<sup>1</sup></span> · <span>the + house<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-7">I Kings 6:7</h3>
+  <p class="r"><span>and + the + household<sup>1</sup></span> · <span>when + was built + it<sup>1</sup></span> · <span>wheel<sup>2</sup></span> · <span>Salmah<sup>2</sup></span> · <span>dart<sup>3</sup></span> · <span>(begin to) build(-er)<sup>3</sup></span> · <span>and + hammers<sup>1</sup></span> · <span>and + &lt;the&gt; + axe<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>vessel<sup>2</sup></span> · <span>iron<sup>3</sup></span> · <span>no<sup>2</sup></span> · <span>X attentively<sup>3</sup></span> · <span>in the + house<sup>1</sup></span> · <span>when + was built + it<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-8">I Kings 6:8</h3>
+  <p class="r"><span>opening<sup>2</sup></span> · <span>the + rib<sup>1</sup></span> · <span>the + middle [extension]<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>side<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>&lt;the&gt; + right<sup>1</sup></span> · <span>and + by + stairs<sup>1</sup></span> · <span>arise (up)<sup>3</sup></span> · <span>Most High<sup>3</sup></span> · <span>the + middle [extension]<sup>1</sup></span> · <span>and + of<sup>1</sup></span> · <span>the + middle [extension]<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>the + thirty<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-9">I Kings 6:9</h3>
+  <p class="r"><span>and + he built<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>and + he finished + it<sup>1</sup></span> · <span>and + he covered<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>Gebim<sup>2</sup></span> · <span>and + planks<sup>1</sup></span> · <span>with &lt;the&gt; + cedar&lt;s&gt;<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-10">I Kings 6:10</h3>
+  <p class="r"><span>and + he built<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>the + extension<sup>1</sup></span> · <span>couch<sup>6</sup></span> · <span>Most High<sup>3</sup></span> · <span>all<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>fifth<sup>2</sup></span> · <span>cubit<sup>3</sup></span> · <span>stature + his<sup>1</sup></span> · <span>and + he took hold<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>with + [the] wood&lt;s&gt; of<sup>1</sup></span> · <span>made of cedar<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v6-11">I Kings 6:11</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>to speak<sup>2</sup></span> · <span>The Lord<sup>3</sup></span> · <span>these<sup>2</sup></span> · <span>Salmah<sup>2</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-12">I Kings 6:12</h3>
+  <p class="r"><span>the + house<sup>1</sup></span> · <span>to dream<sup>7</sup></span> · <span>that<sup>2</sup></span> · <span>you<sup>8</sup></span> · <span>build<sup>3</sup></span> · <span>mother<sup>2</sup></span> · <span>X again<sup>3</sup></span> · <span>in + statutes<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>+ adversary<sup>3</sup></span> · <span>accomplish<sup>3</sup></span> · <span>and + you will keep<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>(which was) commanded(-ment)<sup>3</sup></span> · <span>to + go<sup>1</sup></span> · <span>shut<sup>9</sup></span> · <span>and + I will establish<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>speak<sup>3</sup></span> · <span>with + you<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>answer<sup>3</sup></span> · <span>these<sup>2</sup></span> · <span>lover<sup>2</sup></span> · <span>filled or abounding with fog or mist<sup>10</sup></span></p></article>
+  <article class="pv"><h3 id="v6-13">I Kings 6:13</h3>
+  <p class="r"><span>and + I will dwell<sup>1</sup></span> · <span>in + [the] middle of<sup>1</sup></span> · <span>young<sup>3</sup></span> · <span>Israel<sup>2</sup></span> · <span>and + not<sup>1</sup></span> · <span>commit self<sup>3</sup></span> · <span>with<sup>2</sup></span> · <span>Ben-ammi<sup>3</sup></span> · <span>Israel<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v6-14">I Kings 6:14</h3>
+  <p class="r"><span>and + he built<sup>1</sup></span> · <span>Salmah<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>and + he finished + it<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-15">I Kings 6:15</h3>
+  <p class="r"><span>and + he built<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>+ mason<sup>3</sup></span> · <span>the + house<sup>1</sup></span> · <span>from + inside + &lt;towards&gt;<sup>1</sup></span> · <span>with + boards of<sup>1</sup></span> · <span>made of cedar<sup>3</sup></span> · <span>from + [the] floor of<sup>1</sup></span> · <span>the + house<sup>1</sup></span> · <span>until<sup>2</sup></span> · <span>+ mason<sup>3</sup></span> · <span>the + ceiling<sup>1</sup></span> · <span>overlay<sup>3</sup></span> · <span>tree<sup>2</sup></span> · <span>from + inside<sup>1</sup></span> · <span>and + he overlaid<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>bottom<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>with + boards of<sup>1</sup></span> · <span>fir (tree)<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v6-16">I Kings 6:16</h3>
+  <p class="r"><span>and + he built<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>twentieth<sup>2</sup></span> · <span>cubit<sup>2</sup></span> · <span>from + [the] innermost parts of<sup>1</sup></span> · <span>the + house<sup>1</sup></span> · <span>with + boards of<sup>1</sup></span> · <span>made of cedar<sup>3</sup></span> · <span>part<sup>2</sup></span> · <span>&lt;the&gt; + Karka<sup>1</sup></span> · <span>until<sup>2</sup></span> · <span>the + walls<sup>1</sup></span> · <span>and + he built<sup>1</sup></span> · <span>if (haply)<sup>3</sup></span> · <span>from + inside<sup>1</sup></span> · <span>&lt;to&gt; the + innermost room<sup>1</sup></span> · <span>to + set apart as holy<sup>1</sup></span> · <span>the + holy places<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-17">I Kings 6:17</h3>
+  <p class="r"><span>and + forty<sup>1</sup></span> · <span>by the + cubit<sup>1</sup></span> · <span>to exist<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>this<sup>4</sup></span> · <span>[is] the + temple<sup>1</sup></span> · <span>before<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v6-18">I Kings 6:18</h3>
+  <p class="r"><span>and + cedar<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>faceward<sup>2</sup></span> · <span>carving<sup>2</sup></span> · <span>knop<sup>3</sup></span> · <span>and + spread out [things] of<sup>1</sup></span> · <span>blossom<sup>3</sup></span> · <span>&lt;the&gt; + everything<sup>1</sup></span> · <span>of cedar<sup>2</sup></span> · <span>nothing<sup>2</sup></span> · <span>wheel<sup>2</sup></span> · <span>advise self<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v6-19">I Kings 6:19</h3>
+  <p class="r"><span>and + an innermost room<sup>1</sup></span> · <span>in + [the] middle of<sup>1</sup></span> · <span>the + house<sup>1</sup></span> · <span>from + within<sup>1</sup></span> · <span>certain(-ty)<sup>3</sup></span> · <span>to + put<sup>1</sup></span> · <span>authority<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>chest<sup>2</sup></span> · <span>covenant<sup>2</sup></span> · <span>The Lord<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v6-20">I Kings 6:20</h3>
+  <p class="r"><span>and + &lt;to&gt; + before<sup>1</sup></span> · <span>the + innermost room<sup>1</sup></span> · <span>twentieth<sup>2</sup></span> · <span>cubit<sup>2</sup></span> · <span>long<sup>3</sup></span> · <span>and + twenty<sup>1</sup></span> · <span>cubit<sup>2</sup></span> · <span>breadth<sup>2</sup></span> · <span>and + twenty<sup>1</sup></span> · <span>cubit<sup>2</sup></span> · <span>stature + his<sup>1</sup></span> · <span>and + he overlaid + it<sup>1</sup></span> · <span>gold<sup>2</sup></span> · <span>shut up<sup>2</sup></span> · <span>and + he overlaid<sup>1</sup></span> · <span>an altar<sup>1</sup></span> · <span>of cedar<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v6-21">I Kings 6:21</h3>
+  <p class="r"><span>and + he overlaid<sup>1</sup></span> · <span>Salmah<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>from + within<sup>1</sup></span> · <span>gold<sup>2</sup></span> · <span>shut up<sup>2</sup></span> · <span>and + he made to pass<sup>1</sup></span> · <span>with + chains of<sup>1</sup></span> · <span>gold<sup>2</sup></span> · <span>before<sup>2</sup></span> · <span>the + innermost room<sup>1</sup></span> · <span>and + he overlaid + it<sup>1</sup></span> · <span>gold<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v6-22">I Kings 6:22</h3>
+  <p class="r"><span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>overlay<sup>3</sup></span> · <span>gold<sup>2</sup></span> · <span>until<sup>2</sup></span> · <span>perfect<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>the + altar<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>&lt;to&gt; the + innermost room<sup>1</sup></span> · <span>overlay<sup>3</sup></span> · <span>gold<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v6-23">I Kings 6:23</h3>
+  <p class="r"><span>and + he made<sup>1</sup></span> · <span>in the + innermost room<sup>1</sup></span> · <span>both<sup>3</sup></span> · <span>cherub<sup>3</sup></span> · <span>+ carpenter<sup>3</sup></span> · <span>rich<sup>2</sup></span> · <span>ten<sup>2</sup></span> · <span>cubit<sup>3</sup></span> · <span>stature + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-24">I Kings 6:24</h3>
+  <p class="r"><span>and + five<sup>1</sup></span> · <span>cubit<sup>3</sup></span> · <span>corner<sup>2</sup></span> · <span>the + cherub<sup>1</sup></span> · <span>the + one<sup>1</sup></span> · <span>and + five<sup>1</sup></span> · <span>cubit<sup>3</sup></span> · <span>corner<sup>2</sup></span> · <span>the + cherub<sup>1</sup></span> · <span>the + second<sup>1</sup></span> · <span>ten<sup>2</sup></span> · <span>cubit<sup>3</sup></span> · <span>from + ends<sup>1</sup></span> · <span>wings + its<sup>1</sup></span> · <span>and + unto<sup>1</sup></span> · <span>cut off<sup>3</sup></span> · <span>wings + its<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-25">I Kings 6:25</h3>
+  <p class="r"><span>and + ten<sup>1</sup></span> · <span>by the + cubit<sup>1</sup></span> · <span>the + cherub<sup>1</sup></span> · <span>&lt;the&gt; + second<sup>1</sup></span> · <span>tribute<sup>3</sup></span> · <span>one<sup>3</sup></span> · <span>and + a shape<sup>1</sup></span> · <span>one<sup>2</sup></span> · <span>language<sup>3</sup></span> · <span>the + cherubim<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-26">I Kings 6:26</h3>
+  <p class="r"><span>height<sup>3</sup></span> · <span>the + cherub<sup>1</sup></span> · <span>the + one<sup>1</sup></span> · <span>ten<sup>2</sup></span> · <span>by the + cubit<sup>1</sup></span> · <span>and + thus<sup>1</sup></span> · <span>the + cherub<sup>1</sup></span> · <span>&lt;the&gt; + second<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-27">I Kings 6:27</h3>
+  <p class="r"><span>and + he set<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>the + cherubim<sup>1</sup></span> · <span>in + [the] middle of<sup>1</sup></span> · <span>the + house<sup>1</sup></span> · <span>&lt;the&gt; + inner<sup>1</sup></span> · <span>and + they spread out<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>+ bird<sup>3</sup></span> · <span>the + cherubim<sup>1</sup></span> · <span>and + she made [it] touch<sup>1</sup></span> · <span>corner<sup>2</sup></span> · <span>the + one<sup>1</sup></span> · <span>[was] in + [the] wall of<sup>1</sup></span> · <span>and + [the] wing of<sup>1</sup></span> · <span>the + cherub<sup>1</sup></span> · <span>&lt;the&gt; + second<sup>1</sup></span> · <span>beat<sup>3</sup></span> · <span>[was] in + [the] wall of<sup>1</sup></span> · <span>&lt;the&gt; + second<sup>1</sup></span> · <span>and + wings + their<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>middle<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>beat<sup>3</sup></span> · <span>corner<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>corner<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v6-28">I Kings 6:28</h3>
+  <p class="r"><span>and + he overlaid<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>the + cherubim<sup>1</sup></span> · <span>gold<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v6-29">I Kings 6:29</h3>
+  <p class="r"><span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>+ mason<sup>3</sup></span> · <span>the + house<sup>1</sup></span> · <span>a divan<sup>2</sup></span> · <span>hanging<sup>2</sup></span> · <span>carved (work) (are, en-)grave(-ing, -n)<sup>3</sup></span> · <span>carved (figure)<sup>3</sup></span> · <span>cherub<sup>3</sup></span> · <span>and + palm trees<sup>1</sup></span> · <span>and + spread out [things] of<sup>1</sup></span> · <span>blossom<sup>3</sup></span> · <span>from + to + faces<sup>1</sup></span> · <span>and + to the + outer<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-30">I Kings 6:30</h3>
+  <p class="r"><span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>bottom<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>overlay<sup>3</sup></span> · <span>gold<sup>2</sup></span> · <span>to + within<sup>1</sup></span> · <span>and + to the + outer<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-31">I Kings 6:31</h3>
+  <p class="r"><span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>opening<sup>2</sup></span> · <span>the + innermost room<sup>1</sup></span> · <span>make<sup>3</sup></span> · <span>doors<sup>4</sup></span> · <span>+ carpenter<sup>3</sup></span> · <span>rich<sup>2</sup></span> · <span>the + ram<sup>1</sup></span> · <span>(door, side) post<sup>3</sup></span> · <span>fifth (part)<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v6-32">I Kings 6:32</h3>
+  <p class="r"><span>Vashti<sup>2</sup></span> · <span>doors<sup>4</sup></span> · <span>+ carpenter<sup>3</sup></span> · <span>rich<sup>2</sup></span> · <span>and + sling<sup>1</sup></span> · <span>on + them<sup>1</sup></span> · <span>carved (figure)<sup>3</sup></span> · <span>cherub<sup>3</sup></span> · <span>and + palm trees<sup>1</sup></span> · <span>and + spread out [things] of<sup>1</sup></span> · <span>blossom<sup>3</sup></span> · <span>and + he overlaid<sup>1</sup></span> · <span>gold<sup>2</sup></span> · <span>and + he came down<sup>1</sup></span> · <span>Most High<sup>3</sup></span> · <span>the + cherubim<sup>1</sup></span> · <span>and + on<sup>1</sup></span> · <span>the + palm trees<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>&lt;the&gt; + gold<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-33">I Kings 6:33</h3>
+  <p class="r"><span>and + thus<sup>1</sup></span> · <span>make<sup>3</sup></span> · <span>to the + door<sup>1</sup></span> · <span>[is] the + temple<sup>1</sup></span> · <span>(door, side) post<sup>3</sup></span> · <span>+ carpenter<sup>3</sup></span> · <span>rich<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>3</sup></span> · <span>foursquare<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v6-34">I Kings 6:34</h3>
+  <p class="r"><span>Vashti<sup>2</sup></span> · <span>doors<sup>4</sup></span> · <span>+ carpenter<sup>3</sup></span> · <span>fir (tree)<sup>3</sup></span> · <span>both<sup>3</sup></span> · <span>beam<sup>3</sup></span> · <span>the + door<sup>1</sup></span> · <span>the + one<sup>1</sup></span> · <span>folding<sup>3</sup></span> · <span>Vashni<sup>2</sup></span> · <span>hanging<sup>3</sup></span> · <span>the + door<sup>1</sup></span> · <span>the + second<sup>1</sup></span> · <span>folding<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v6-35">I Kings 6:35</h3>
+  <p class="r"><span>and + sling<sup>1</sup></span> · <span>cherub<sup>3</sup></span> · <span>and + palm trees<sup>1</sup></span> · <span>and + spread out [things] of<sup>1</sup></span> · <span>blossom<sup>3</sup></span> · <span>and + he overlaid<sup>1</sup></span> · <span>gold<sup>2</sup></span> · <span>uprightness<sup>3</sup></span> · <span>Most High<sup>3</sup></span> · <span>the + carved [work]<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v6-36">I Kings 6:36</h3>
+  <p class="r"><span>and + he built<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>the + courtyard<sup>1</sup></span> · <span>&lt;the&gt; + inner<sup>1</sup></span> · <span>Shalishah<sup>4</sup></span> · <span>row<sup>3</sup></span> · <span>hewn stone<sup>2</sup></span> · <span>and + a row of<sup>1</sup></span> · <span>beam<sup>3</sup></span> · <span>made of cedar<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v6-37">I Kings 6:37</h3>
+  <p class="r"><span>shamefulness<sup>2</sup></span> · <span>&lt;the&gt; + fourth<sup>1</sup></span> · <span>to found<sup>2</sup></span> · <span>place<sup>2</sup></span> · <span>The Lord<sup>3</sup></span> · <span>in + [the] month of<sup>1</sup></span> · <span>which<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v6-38">I Kings 6:38</h3>
+  <p class="r"><span>and + in the + year<sup>1</sup></span> · <span>the + one<sup>1</sup></span> · <span>ten<sup>3</sup></span> · <span>in + [the] month of<sup>1</sup></span> · <span>Bul<sup>2</sup></span> · <span>this<sup>4</sup></span> · <span>the + month<sup>1</sup></span> · <span>&lt;the&gt; + eighth<sup>1</sup></span> · <span>completely<sup>2</sup></span> · <span>the + house<sup>1</sup></span> · <span>to + every<sup>1</sup></span> · <span>words + his<sup>1</sup></span> · <span>and + to + every<sup>1</sup></span> · <span>plan + its<sup>1</sup></span> · <span>and + he built + it<sup>1</sup></span> · <span>abundance<sup>2</sup></span> · <span>second<sup>2</sup></span></p></article>
+  <nav class="porch-nav"><a href="/i-kings/5/" rel="prev">I Kings 5</a><a href="/i-kings/">I Kings, from the beginning</a><a href="/i-kings/7/" rel="next">I Kings 7</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="2">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="3">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="4">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="5">Wikidata Hebrew source-explicit form linked to exact English lexeme sense · CC0</li>
+    <li value="6">Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary · CC BY-SA + GFDL</li>
+    <li value="7">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    <li value="8">ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · CC BY-SA 4.0</li>
+    <li value="9">Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · CC BY 4.0</li>
+    <li value="10">Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · WordNet Licenses</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

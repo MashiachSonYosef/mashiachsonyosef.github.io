@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="ezra">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="2">
+<meta name="description" content="Ezra 2 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/ezra/2/">
+<title>Ezra 2 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Ezra 2</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v2-1">Ezra 2:1</h3>
+  <p class="r"><span>and + these<sup>1</sup></span> · <span>young<sup>2</sup></span> · <span>the + province<sup>1</sup></span> · <span>X any ways<sup>2</sup></span> · <span>from + [the] captivity of<sup>1</sup></span> · <span>the + exile[s]<sup>1</sup></span> · <span>that<sup>3</sup></span> · <span>+ advertise<sup>2</sup></span> · <span>Nebuchadnezzar<sup>2</sup></span> · <span>Nebuchadnezzar<sup>3</sup></span> · <span>king<sup>3</sup></span> · <span>Babel<sup>3</sup></span> · <span>to + Babylon<sup>1</sup></span> · <span>and + they turned back<sup>1</sup></span> · <span>to + Jerusalem<sup>1</sup></span> · <span>and + Judah<sup>1</sup></span> · <span>person<sup>3</sup></span> · <span>to + own city + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-2">Ezra 2:2</h3>
+  <p class="r"><span>that<sup>3</sup></span> · <span>abide<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>Zerubbabel<sup>3</sup></span> · <span>Jeshua<sup>3</sup></span> · <span>Nehemiah<sup>3</sup></span> · <span>Seraiah<sup>3</sup></span> · <span>Reelajah<sup>3</sup></span> · <span>Mordecai<sup>3</sup></span> · <span>Bilshan<sup>3</sup></span> · <span>account<sup>3</sup></span> · <span>Bigvai<sup>3</sup></span> · <span>Rehum<sup>3</sup></span> · <span>Baanah<sup>3</sup></span> · <span>account<sup>3</sup></span> · <span>also<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>Israel<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-3">Ezra 2:3</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Parosh<sup>3</sup></span> · <span>captain<sup>2</sup></span> · <span>a hundred<sup>3</sup></span> · <span>seventy<sup>3</sup></span> · <span>and + years<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-4">Ezra 2:4</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Shephatiah<sup>3</sup></span> · <span>three<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>seventy<sup>3</sup></span> · <span>and + years<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-5">Ezra 2:5</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Arah<sup>3</sup></span> · <span>abundance<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>fif(-teen)<sup>2</sup></span> · <span>and + seventy<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-6">Ezra 2:6</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>pit<sup>3</sup></span> · <span>Moab<sup>3</sup></span> · <span>Libni<sup>3</sup></span> · <span>Jeshua<sup>3</sup></span> · <span>Joab<sup>3</sup></span> · <span>captain<sup>2</sup></span> · <span>fat<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>and + years<sup>1</sup></span> · <span>ten<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-7">Ezra 2:7</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Elam<sup>3</sup></span> · <span>Eleph<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>fifty<sup>3</sup></span> · <span>and + four<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-8">Ezra 2:8</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Zattu<sup>3</sup></span> · <span>ninth<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>and + forty<sup>1</sup></span> · <span>and + five<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-9">Ezra 2:9</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Zakkai<sup>3</sup></span> · <span>abundance<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>and + sixty<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-10">Ezra 2:10</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>young<sup>2</sup></span> · <span>sixth<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>forty<sup>3</sup></span> · <span>and + years<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-11">Ezra 2:11</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Bebai<sup>3</sup></span> · <span>sixth<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>twentieth<sup>3</sup></span> · <span>and + three<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-12">Ezra 2:12</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Azgad<sup>3</sup></span> · <span>Eleph<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>twentieth<sup>3</sup></span> · <span>and + years<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-13">Ezra 2:13</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Adonikam<sup>3</sup></span> · <span>sixth<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>sixty<sup>3</sup></span> · <span>and + six<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-14">Ezra 2:14</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Bigvai<sup>3</sup></span> · <span>captain<sup>2</sup></span> · <span>fifty<sup>3</sup></span> · <span>and + six<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-15">Ezra 2:15</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Adin<sup>3</sup></span> · <span>Arba<sup>4</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>fifty<sup>3</sup></span> · <span>and + four<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-16">Ezra 2:16</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Ater<sup>3</sup></span> · <span>of + Hezekiah<sup>1</sup></span> · <span>ninety<sup>3</sup></span> · <span>and + eight<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-17">Ezra 2:17</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Betsai<sup>3</sup></span> · <span>three<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>twentieth<sup>3</sup></span> · <span>and + three<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-18">Ezra 2:18</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Jorah<sup>3</sup></span> · <span>a hundred<sup>3</sup></span> · <span>and + years<sup>1</sup></span> · <span>ten<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-19">Ezra 2:19</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Hashum<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>twentieth<sup>3</sup></span> · <span>and + three<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-20">Ezra 2:20</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Gibbar<sup>3</sup></span> · <span>ninety<sup>3</sup></span> · <span>and + five<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-21">Ezra 2:21</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>place<sup>3</sup></span> · <span>food<sup>3</sup></span> · <span>a hundred<sup>3</sup></span> · <span>twentieth<sup>3</sup></span> · <span>and + three<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-22">Ezra 2:22</h3>
+  <p class="r"><span>also<sup>2</sup></span> · <span>Netophah<sup>3</sup></span> · <span>fifty<sup>3</sup></span> · <span>and + six<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-23">Ezra 2:23</h3>
+  <p class="r"><span>also<sup>2</sup></span> · <span>Anathoth<sup>3</sup></span> · <span>a hundred<sup>3</sup></span> · <span>twentieth<sup>3</sup></span> · <span>and + eight<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-24">Ezra 2:24</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Azmaveth<sup>3</sup></span> · <span>forty<sup>3</sup></span> · <span>and + years<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-25">Ezra 2:25</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>city<sup>5</sup></span> · <span>Ai (from margin)<sup>2</sup></span> · <span>Kephirah<sup>3</sup></span> · <span>and + Beeroth<sup>1</sup></span> · <span>abundance<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>and + forty<sup>1</sup></span> · <span>and + three<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-26">Ezra 2:26</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>the act of raising something<sup>6</sup></span> · <span>and + Geba<sup>1</sup></span> · <span>sixth<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>twentieth<sup>3</sup></span> · <span>and + one [plus]<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-27">Ezra 2:27</h3>
+  <p class="r"><span>also<sup>2</sup></span> · <span>Mikmas<sup>7</sup></span> · <span>a hundred<sup>3</sup></span> · <span>twentieth<sup>3</sup></span> · <span>and + years<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-28">Ezra 2:28</h3>
+  <p class="r"><span>also<sup>2</sup></span> · <span>place<sup>3</sup></span> · <span>these<sup>3</sup></span> · <span>and + &lt;the&gt; + Ai<sup>1</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>twentieth<sup>3</sup></span> · <span>and + three<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-29">Ezra 2:29</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Nebo<sup>3</sup></span> · <span>fifty<sup>3</sup></span> · <span>and + years<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-30">Ezra 2:30</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Magbish<sup>3</sup></span> · <span>a hundred<sup>3</sup></span> · <span>fifty<sup>3</sup></span> · <span>and + six<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-31">Ezra 2:31</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Elam<sup>3</sup></span> · <span>behind<sup>3</sup></span> · <span>Eleph<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>fifty<sup>3</sup></span> · <span>and + four<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-32">Ezra 2:32</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Harim<sup>3</sup></span> · <span>three<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>and + twenty<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-33">Ezra 2:33</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Lod<sup>3</sup></span> · <span>Hadid<sup>3</sup></span> · <span>and + Ono<sup>1</sup></span> · <span>abundance<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>twentieth<sup>3</sup></span> · <span>and + five<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-34">Ezra 2:34</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Jericho<sup>5</sup></span> · <span>three<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>forty<sup>3</sup></span> · <span>and + five<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-35">Ezra 2:35</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Senaah<sup>3</sup></span> · <span>three<sup>2</sup></span> · <span>captain<sup>2</sup></span> · <span>and + six<sup>1</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>and + thirty<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-36">Ezra 2:36</h3>
+  <p class="r"><span>the + priests<sup>1</sup></span> · <span>young<sup>2</sup></span> · <span>Jedaiah<sup>3</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>Jeshua<sup>3</sup></span> · <span>ninth<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>seventy<sup>3</sup></span> · <span>and + three<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-37">Ezra 2:37</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>word<sup>2</sup></span> · <span>Eleph<sup>3</sup></span> · <span>fifty<sup>3</sup></span> · <span>and + years<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-38">Ezra 2:38</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Pashchur<sup>3</sup></span> · <span>Eleph<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>forty<sup>3</sup></span> · <span>and + seven<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-39">Ezra 2:39</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Harim<sup>3</sup></span> · <span>Eleph<sup>3</sup></span> · <span>and + seven<sup>1</sup></span> · <span>ten<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-40">Ezra 2:40</h3>
+  <p class="r"><span>the + Levites<sup>1</sup></span> · <span>young<sup>2</sup></span> · <span>Jeshua<sup>3</sup></span> · <span>and + Kadmiel<sup>1</sup></span> · <span>Libni<sup>3</sup></span> · <span>Hodaviah<sup>3</sup></span> · <span>seventy<sup>3</sup></span> · <span>and + four<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-41">Ezra 2:41</h3>
+  <p class="r"><span>the + singers<sup>1</sup></span> · <span>young<sup>2</sup></span> · <span>Asaph<sup>3</sup></span> · <span>a hundred<sup>3</sup></span> · <span>twentieth<sup>3</sup></span> · <span>and + eight<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-42">Ezra 2:42</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>the + barley&lt;s&gt;<sup>1</sup></span> · <span>young<sup>2</sup></span> · <span>Shallum<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Ater<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>name of porters<sup>8</sup></span> · <span>young<sup>2</sup></span> · <span>Akkub<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Hatita<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>captured<sup>3</sup></span> · <span>&lt;the&gt; + everything<sup>1</sup></span> · <span>a hundred<sup>3</sup></span> · <span>thirty<sup>2</sup></span> · <span>and + nine<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-43">Ezra 2:43</h3>
+  <p class="r"><span>the + temple servants<sup>1</sup></span> · <span>young<sup>2</sup></span> · <span>Ziha<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Hasupha<sup>2</sup></span> · <span>young<sup>2</sup></span> · <span>Tabbaoth<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-44">Ezra 2:44</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>hunch<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Siaha<sup>2</sup></span> · <span>young<sup>2</sup></span> · <span>ransom<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-45">Ezra 2:45</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Lebanah<sup>2</sup></span> · <span>young<sup>2</sup></span> · <span>Hagabah<sup>2</sup></span> · <span>young<sup>2</sup></span> · <span>Akkub<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-46">Ezra 2:46</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Hagab<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Salmai<sup>9</sup></span> · <span>Shamlai<sup>4</sup></span> · <span>young<sup>2</sup></span> · <span>bend<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-47">Ezra 2:47</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>greatness<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Gachar<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Reaiah<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-48">Ezra 2:48</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Rezin<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Nekoda<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>a kind of locust<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-49">Ezra 2:49</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Uzzah<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>pass over<sup>2</sup></span> · <span>young<sup>2</sup></span> · <span>Besai<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-50">Ezra 2:50</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Asnah<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Meunim<sup>2</sup></span> · <span>young<sup>2</sup></span> · <span>Nephisim<sup>4</sup></span> · <span>Nephisim<sup>5</sup></span></p></article>
+  <article class="pv"><h3 id="v2-51">Ezra 2:51</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Bakbuk<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Hakupha<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Harhur<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-52">Ezra 2:52</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Bazlith<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Mehida<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Harsha<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-53">Ezra 2:53</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Barkos<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Sisera<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Tamah<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-54">Ezra 2:54</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Neziah<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Hatipha<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-55">Ezra 2:55</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Abdi<sup>3</sup></span> · <span>Solomon<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Sotai<sup>5</sup></span> · <span>young<sup>2</sup></span> · <span>the + Sophereth<sup>1</sup></span> · <span>young<sup>2</sup></span> · <span>Perida<sup>10</sup></span></p></article>
+  <article class="pv"><h3 id="v2-56">Ezra 2:56</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Jaalah<sup>2</sup></span> · <span>young<sup>2</sup></span> · <span>Darkon<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>greatness<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-57">Ezra 2:57</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Shephatiah<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Hattil<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Pokereth-<sup>1</sup></span> · <span>Hazzebaim<sup>1</sup></span> · <span>young<sup>2</sup></span> · <span>Ami<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-58">Ezra 2:58</h3>
+  <p class="r"><span>all<sup>3</sup></span> · <span>the + temple servants<sup>1</sup></span> · <span>and + sons<sup>1</sup></span> · <span>Abdi<sup>3</sup></span> · <span>Solomon<sup>3</sup></span> · <span>three<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>ninety<sup>3</sup></span> · <span>and + years<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-59">Ezra 2:59</h3>
+  <p class="r"><span>and + these<sup>1</sup></span> · <span>X any ways<sup>2</sup></span> · <span>from + Tel<sup>1</sup></span> · <span>to eat salt<sup>3</sup></span> · <span>a mound<sup>3</sup></span> · <span>Harsha<sup>3</sup></span> · <span>Kerub<sup>3</sup></span> · <span>socket<sup>2</sup></span> · <span>word<sup>2</sup></span> · <span>and + not<sup>1</sup></span> · <span>be able<sup>2</sup></span> · <span>by + telling<sup>1</sup></span> · <span>place<sup>3</sup></span> · <span>ancestors + their<sup>1</sup></span> · <span>and + offspring + their<sup>1</sup></span> · <span>mother<sup>3</sup></span> · <span>from + Israel<sup>1</sup></span> · <span>them<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-60">Ezra 2:60</h3>
+  <p class="r"><span>young<sup>2</sup></span> · <span>Delajah<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Tobiah<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Nekoda<sup>3</sup></span> · <span>sixth<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>fifty<sup>3</sup></span> · <span>and + years<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-61">Ezra 2:61</h3>
+  <p class="r"><span>and + of + [the] descendants of<sup>1</sup></span> · <span>the + priests<sup>1</sup></span> · <span>young<sup>2</sup></span> · <span>Chabajah<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Koz<sup>2</sup></span> · <span>young<sup>2</sup></span> · <span>Barzillai<sup>3</sup></span> · <span>that<sup>3</sup></span> · <span>carry away<sup>3</sup></span> · <span>from + [the] daughters of<sup>1</sup></span> · <span>Barzillai<sup>3</sup></span> · <span>the + Gileadite[s]<sup>1</sup></span> · <span>wife<sup>3</sup></span> · <span>the third book of the Old Testament<sup>11</sup></span> · <span>Most High<sup>2</sup></span> · <span>stun<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-62">Ezra 2:62</h3>
+  <p class="r"><span>god<sup>3</sup></span> · <span>ask<sup>2</sup></span> · <span>document[s] + their<sup>1</sup></span> · <span>the + [ones who] had had themselves enrolled<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>+ be able<sup>2</sup></span> · <span>and + they were defiled<sup>1</sup></span> · <span>part<sup>3</sup></span> · <span>the + priesthood<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-63">Ezra 2:63</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>the + governor<sup>1</sup></span> · <span>burn in<sup>3</sup></span> · <span>that<sup>3</sup></span> · <span>no<sup>3</sup></span> · <span>X at all<sup>2</sup></span> · <span>holy place<sup>3</sup></span> · <span>the + holy places<sup>1</sup></span> · <span>until<sup>3</sup></span> · <span>to stand<sup>3</sup></span> · <span>a priest<sup>3</sup></span> · <span>to + Urim<sup>1</sup></span> · <span>and + to + Thummim<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-64">Ezra 2:64</h3>
+  <p class="r"><span>all<sup>3</sup></span> · <span>assemble (selves) (together)<sup>2</sup></span> · <span>like + one<sup>1</sup></span> · <span>Arba<sup>4</sup></span> · <span>great things<sup>2</sup></span> · <span>captain<sup>2</sup></span> · <span>three<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>sixty<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-65">Ezra 2:65</h3>
+  <p class="r"><span>&lt;from&gt; + &lt;to&gt; + besides<sup>1</sup></span> · <span>[male] servants + their<sup>1</sup></span> · <span>and + female servants + their<sup>1</sup></span> · <span>god<sup>3</sup></span> · <span>seven<sup>2</sup></span> · <span>captain<sup>2</sup></span> · <span>three<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>thirty<sup>2</sup></span> · <span>and + seven<sup>1</sup></span> · <span>and + for &lt;the&gt; + them<sup>1</sup></span> · <span>behold (by mistake for shuwr)<sup>2</sup></span> · <span>and + female singers<sup>1</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-66">Ezra 2:66</h3>
+  <p class="r"><span>horses + their<sup>1</sup></span> · <span>abundance<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>thirty<sup>2</sup></span> · <span>and + six<sup>1</sup></span> · <span>mules + their<sup>1</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>forty<sup>3</sup></span> · <span>and + five<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-67">Ezra 2:67</h3>
+  <p class="r"><span>camels + their<sup>1</sup></span> · <span>Arba<sup>4</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>thirty<sup>2</sup></span> · <span>and + five<sup>1</sup></span> · <span>(he)ass<sup>2</sup></span> · <span>six((-teen, -teenth))<sup>2</sup></span> · <span>captain<sup>2</sup></span> · <span>abundance<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>and + twenty<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-68">Ezra 2:68</h3>
+  <p class="r"><span>and + some of + [the] heads of<sup>1</sup></span> · <span>the + fathers<sup>1</sup></span> · <span>when + came + they<sup>1</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>The Lord<sup>2</sup></span> · <span>that<sup>3</sup></span> · <span>in + Jerusalem<sup>1</sup></span> · <span>offer freely<sup>2</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>&lt;the&gt; + God<sup>1</sup></span> · <span>to + make stand + it<sup>1</sup></span> · <span>Most High<sup>2</sup></span> · <span>place + its<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-69">Ezra 2:69</h3>
+  <p class="r"><span>according to + ability + their<sup>1</sup></span> · <span>add<sup>2</sup></span> · <span>to + [the] treasury of<sup>1</sup></span> · <span>the + property<sup>1</sup></span> · <span>gold<sup>3</sup></span> · <span>dram<sup>2</sup></span> · <span>sixth<sup>2</sup></span> · <span>great things<sup>2</sup></span> · <span>and + one thousand<sup>1</sup></span> · <span>and + silver<sup>1</sup></span> · <span>maneh<sup>2</sup></span> · <span>fifth<sup>2</sup></span> · <span>captain<sup>2</sup></span> · <span>and + a tunic of<sup>1</sup></span> · <span>chief ruler<sup>2</sup></span> · <span>a hundred<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-70">Ezra 2:70</h3>
+  <p class="r"><span>and + they turned back<sup>1</sup></span> · <span>the + priests<sup>1</sup></span> · <span>and + the + Levites<sup>1</sup></span> · <span>and + of<sup>1</sup></span> · <span>the + people<sup>1</sup></span> · <span>and + the + singers<sup>1</sup></span> · <span>and + the + gatekeepers<sup>1</sup></span> · <span>and + the + temple servants<sup>1</sup></span> · <span>in + cities + their<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>Israel<sup>3</sup></span> · <span>in + cities + their<sup>1</sup></span></p></article>
+  <nav class="porch-nav"><a href="/ezra/1/" rel="prev">Ezra 1</a><a href="/ezra/">Ezra, from the beginning</a><a href="/ezra/3/" rel="next">Ezra 3</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="2">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="3">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="4">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    <li value="5">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="6">Hebrew WordNet PWN 3.0 alignment bridged to Open English WordNet 2025 by complete permanent-sense-key agreement · WordNet Notices + CC BY 4.0</li>
+    <li value="7">Open Scriptures Hebrew Lexical Index · CC BY 4.0</li>
+    <li value="8">Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source · Public Domain</li>
+    <li value="9">Classical Hebrew Words database · Public Domain</li>
+    <li value="10">BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas · Public Domain + CC BY 4.0</li>
+    <li value="11">Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · WordNet Licenses</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

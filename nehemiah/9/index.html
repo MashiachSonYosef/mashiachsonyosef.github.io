@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="nehemiah">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="9">
+<meta name="description" content="Nehemiah 9 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/nehemiah/9/">
+<title>Nehemiah 9 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Nehemiah 9</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v9-1">Nehemiah 9:1</h3>
+  <p class="r"><span>and + [will be] on the + day<sup>1</sup></span> · <span>twentieth<sup>2</sup></span> · <span>and + four<sup>1</sup></span> · <span>of the + month<sup>1</sup></span> · <span>to dream<sup>3</sup></span> · <span>assemble<sup>4</sup></span> · <span>young<sup>4</sup></span> · <span>Israel<sup>2</sup></span> · <span>with + fasting<sup>1</sup></span> · <span>and + in + sackcloth&lt;s&gt;<sup>1</sup></span> · <span>and + Admah<sup>1</sup></span> · <span>on + them<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-2">Nehemiah 9:2</h3>
+  <p class="r"><span>and + they separated themselves<sup>1</sup></span> · <span>child<sup>2</sup></span> · <span>Israel<sup>2</sup></span> · <span>from + all<sup>1</sup></span> · <span>young<sup>4</sup></span> · <span>to acknowledge<sup>2</sup></span> · <span>and + they stood<sup>1</sup></span> · <span>and + they confessed<sup>1</sup></span> · <span>Most High<sup>4</sup></span> · <span>sins + their<sup>1</sup></span> · <span>and + [the] iniquities of<sup>1</sup></span> · <span>ancestors + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-3">Nehemiah 9:3</h3>
+  <p class="r"><span>and + they arose<sup>1</sup></span> · <span>Most High<sup>4</sup></span> · <span>place + their<sup>1</sup></span> · <span>and + they called<sup>1</sup></span> · <span>in the + book<sup>1</sup></span> · <span>manner<sup>4</sup></span> · <span>The Lord<sup>4</sup></span> · <span>God + their<sup>1</sup></span> · <span>foursquare<sup>4</sup></span> · <span>on this day as distinct from yesterday or tomorrow<sup>5</sup></span> · <span>and + a fourth<sup>1</sup></span> · <span>cast (out)<sup>4</sup></span> · <span>and + [they were] bowing down<sup>1</sup></span> · <span>to + Yahweh<sup>1</sup></span> · <span>God + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-4">Nehemiah 9:4</h3>
+  <p class="r"><span>and + he rose up<sup>1</sup></span> · <span>Most High<sup>4</sup></span> · <span>ascent<sup>2</sup></span> · <span>the + Levites<sup>1</sup></span> · <span>Jeshua<sup>2</sup></span> · <span>and + sons<sup>1</sup></span> · <span>Kadmiel<sup>2</sup></span> · <span>Shebaniah<sup>2</sup></span> · <span>young<sup>4</sup></span> · <span>Sherebiah<sup>2</sup></span> · <span>young<sup>4</sup></span> · <span>Kenani<sup>2</sup></span> · <span>and + they cried out<sup>1</sup></span> · <span>with + a voice<sup>1</sup></span> · <span>older<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>The Lord<sup>4</sup></span> · <span>God + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-5">Nehemiah 9:5</h3>
+  <p class="r"><span>and + they said<sup>1</sup></span> · <span>the + Levites<sup>1</sup></span> · <span>Jeshua<sup>2</sup></span> · <span>and + Kadmiel<sup>1</sup></span> · <span>young<sup>4</sup></span> · <span>Chashabnejah<sup>2</sup></span> · <span>Sherebiah<sup>2</sup></span> · <span>Hodiah<sup>2</sup></span> · <span>Shebaniah<sup>2</sup></span> · <span>Pethachjah<sup>2</sup></span> · <span>abide<sup>4</sup></span> · <span>bless<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>The Lord<sup>4</sup></span> · <span>God + your<sup>1</sup></span> · <span>part<sup>2</sup></span> · <span>&lt;the&gt; + antiquity<sup>1</sup></span> · <span>until<sup>2</sup></span> · <span>&lt;the&gt; + antiquity<sup>1</sup></span> · <span>and + they blessed<sup>1</sup></span> · <span>authority<sup>2</sup></span> · <span>glory + your<sup>1</sup></span> · <span>and + [may it] be exalted<sup>1</sup></span> · <span>Most High<sup>4</sup></span> · <span>all<sup>2</sup></span> · <span>blessing<sup>2</sup></span> · <span>and + praise<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-6">Nehemiah 9:6</h3>
+  <p class="r"><span>you<sup>6</sup></span> · <span>this<sup>7</sup></span> · <span>The Lord<sup>4</sup></span> · <span>to + alone + you<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>you<sup>6</sup></span> · <span>think<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>the + heavens<sup>1</sup></span> · <span>place<sup>4</sup></span> · <span>the + heavens<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>host + their<sup>1</sup></span> · <span>the + earth<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>Aliah<sup>4</sup></span> · <span>the + days<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>shut<sup>8</sup></span> · <span>and + you<sup>1</sup></span> · <span>sustenance<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>wound<sup>2</sup></span> · <span>and + military group<sup>1</sup></span> · <span>the + heavens<sup>1</sup></span> · <span>come<sup>4</sup></span> · <span>bow (self) down<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-7">Nehemiah 9:7</h3>
+  <p class="r"><span>you<sup>6</sup></span> · <span>this<sup>7</sup></span> · <span>The Lord<sup>4</sup></span> · <span>&lt;the&gt; + God<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>acceptable<sup>4</sup></span> · <span>&lt;in&gt; + Abram<sup>1</sup></span> · <span>and + you brought out + him<sup>1</sup></span> · <span>light<sup>7</sup></span> · <span>Chaldeans<sup>4</sup></span> · <span>and + you will appoint<sup>1</sup></span> · <span>+ command<sup>4</sup></span> · <span>Abraham<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v9-8">Nehemiah 9:8</h3>
+  <p class="r"><span>and + you will find [him]<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>heart + his<sup>1</sup></span> · <span>hence<sup>4</sup></span> · <span>&lt;to&gt; + before + you<sup>1</sup></span> · <span>and + [one which] is cut<sup>1</sup></span> · <span>Amaw<sup>9</sup></span> · <span>the + covenant<sup>1</sup></span> · <span>to + give<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>earth<sup>2</sup></span> · <span>the + Canaanite[s]<sup>1</sup></span> · <span>the + Hittite[s]<sup>1</sup></span> · <span>the + Amorite[s]<sup>1</sup></span> · <span>and + the + Perizzite[s]<sup>1</sup></span> · <span>and + the + Jebusite[s]<sup>1</sup></span> · <span>and + the + Girgashite[s]<sup>1</sup></span> · <span>to + give<sup>1</sup></span> · <span>for + offspring + his<sup>1</sup></span> · <span>and + she arose<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>words + your<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>just<sup>2</sup></span> · <span>you<sup>6</sup></span></p></article>
+  <article class="pv"><h3 id="v9-9">Nehemiah 9:9</h3>
+  <p class="r"><span>and + she saw<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>affliction<sup>4</sup></span> · <span>fathers + our<sup>1</sup></span> · <span>in + Egypt<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>assemble<sup>4</sup></span> · <span>report<sup>4</sup></span> · <span>Most High<sup>4</sup></span> · <span>large body of water<sup>2</sup></span> · <span>end<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v9-10">Nehemiah 9:10</h3>
+  <p class="r"><span>and + she gave [it]<sup>1</sup></span> · <span>mark<sup>4</sup></span> · <span>and + wonders<sup>1</sup></span> · <span>by + Pharaoh<sup>1</sup></span> · <span>and + over + all<sup>1</sup></span> · <span>servants + his<sup>1</sup></span> · <span>and + over + all<sup>1</sup></span> · <span>with<sup>4</sup></span> · <span>favour<sup>9</sup></span> · <span>since<sup>2</sup></span> · <span>certify<sup>4</sup></span> · <span>since<sup>2</sup></span> · <span>be proud<sup>4</sup></span> · <span>on + them<sup>1</sup></span> · <span>and + she prepared<sup>1</sup></span> · <span>come<sup>4</sup></span> · <span>authority<sup>2</sup></span> · <span>when + the + day<sup>1</sup></span> · <span>to dream<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v9-11">Nehemiah 9:11</h3>
+  <p class="r"><span>and + the + sea<sup>1</sup></span> · <span>make a breach<sup>4</sup></span> · <span>&lt;to&gt; + before + them<sup>1</sup></span> · <span>and + they passed by<sup>1</sup></span> · <span>in + [the] middle of<sup>1</sup></span> · <span>the + sea<sup>1</sup></span> · <span>on the + dry ground<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>pursuers + their<sup>1</sup></span> · <span>adventure<sup>4</sup></span> · <span>in + [the] depths<sup>1</sup></span> · <span>when<sup>2</sup></span> · <span>wheel<sup>2</sup></span> · <span>in &lt;the&gt; + water<sup>1</sup></span> · <span>mighty<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-12">Nehemiah 9:12</h3>
+  <p class="r"><span>and + in + a pillar of<sup>1</sup></span> · <span>Anan<sup>2</sup></span> · <span>you led + them<sup>1</sup></span> · <span>daily<sup>7</sup></span> · <span>and + in + a pillar of<sup>1</sup></span> · <span>entity<sup>2</sup></span> · <span>((mid-))night (season)<sup>4</sup></span> · <span>to + give light<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>the + road<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>X again<sup>4</sup></span> · <span>Hephzi-bah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-13">Nehemiah 9:13</h3>
+  <p class="r"><span>and + on<sup>1</sup></span> · <span>Hor<sup>7</sup></span> · <span>Sinai<sup>2</sup></span> · <span>a primitive root<sup>4</sup></span> · <span>and + he will speak<sup>1</sup></span> · <span>with + them<sup>1</sup></span> · <span>make amazed<sup>4</sup></span> · <span>and + she gave [it]<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>+ adversary<sup>4</sup></span> · <span>convenient<sup>4</sup></span> · <span>and + laws of<sup>1</sup></span> · <span>trustworthiness<sup>2</sup></span> · <span>appointed<sup>4</sup></span> · <span>and + unleavened bread&lt;s&gt;<sup>1</sup></span> · <span>beautiful<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-14">Nehemiah 9:14</h3>
+  <p class="r"><span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>seat<sup>4</sup></span> · <span>holiness + your<sup>1</sup></span> · <span>certify<sup>4</sup></span> · <span>burn in<sup>2</sup></span> · <span>and + commandments<sup>1</sup></span> · <span>and + statutes<sup>1</sup></span> · <span>and + [the] law<sup>1</sup></span> · <span>appoint<sup>4</sup></span> · <span>burn in<sup>2</sup></span> · <span>for<sup>9</sup></span> · <span>Moses<sup>2</sup></span> · <span>servant + your<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-15">Nehemiah 9:15</h3>
+  <p class="r"><span>and + food<sup>1</sup></span> · <span>make amazed<sup>4</sup></span> · <span>add<sup>4</sup></span> · <span>burn in<sup>2</sup></span> · <span>for + hunger + their<sup>1</sup></span> · <span>and + water<sup>1</sup></span> · <span>rocky place<sup>9</sup></span> · <span>X after<sup>4</sup></span> · <span>burn in<sup>2</sup></span> · <span>for + thirst + their<sup>1</sup></span> · <span>and + she said<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>abide<sup>4</sup></span> · <span>to + take possession of<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>the + earth<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>something taken<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>hand + your<sup>1</sup></span> · <span>to + give<sup>1</sup></span> · <span>burn in<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v9-16">Nehemiah 9:16</h3>
+  <p class="r"><span>and + they<sup>1</sup></span> · <span>and + ancestors + our<sup>1</sup></span> · <span>be proud<sup>4</sup></span> · <span>and + they stiffened<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>neck + their<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>listen<sup>4</sup></span> · <span>these<sup>2</sup></span> · <span>commandments + your<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-17">Nehemiah 9:17</h3>
+  <p class="r"><span>and + they refused<sup>1</sup></span> · <span>to + listen<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>remember<sup>4</sup></span> · <span>wonders + your<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>think<sup>4</sup></span> · <span>with + them<sup>1</sup></span> · <span>and + they stiffened<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>neck + their<sup>1</sup></span> · <span>and + they gave<sup>1</sup></span> · <span>head<sup>2</sup></span> · <span>to + return<sup>1</sup></span> · <span>for + service + their<sup>1</sup></span> · <span>in + rebellion + their<sup>1</sup></span> · <span>and + you<sup>1</sup></span> · <span>God<sup>2</sup></span> · <span>forgiveness<sup>4</sup></span> · <span>Chanun<sup>2</sup></span> · <span>and + compassionate<sup>1</sup></span> · <span>long<sup>4</sup></span> · <span>face<sup>4</sup></span> · <span>and + [the] great [one]<sup>1</sup></span> · <span>be kind<sup>3</sup></span> · <span>and + covenant loyalty<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>commit self<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-18">Nehemiah 9:18</h3>
+  <p class="r"><span>nose<sup>2</sup></span> · <span>since<sup>2</sup></span> · <span>do<sup>4</sup></span> · <span>burn in<sup>2</sup></span> · <span>calf<sup>4</sup></span> · <span>covering<sup>2</sup></span> · <span>and + they said<sup>1</sup></span> · <span>this<sup>2</sup></span> · <span>God + your<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>he brought up + you<sup>1</sup></span> · <span>from + Egypt<sup>1</sup></span> · <span>Jaasu<sup>3</sup></span> · <span>blasphemy<sup>4</sup></span> · <span>+ aloud<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-19">Nehemiah 9:19</h3>
+  <p class="r"><span>and + you<sup>1</sup></span> · <span>in + compassion&lt;s&gt; + your<sup>1</sup></span> · <span>&lt;the&gt; + many<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>commit self<sup>4</sup></span> · <span>in the + wilderness<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>pillar<sup>4</sup></span> · <span>&lt;the&gt; + cloud<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>peevish<sup>2</sup></span> · <span>from + with &lt;the&gt; + them<sup>1</sup></span> · <span>in + daytime + their<sup>1</sup></span> · <span>to + lead + them<sup>1</sup></span> · <span>in + the + way<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>pillar<sup>4</sup></span> · <span>the + fire<sup>1</sup></span> · <span>over the + night<sup>1</sup></span> · <span>to + give light<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>the + road<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>X again<sup>4</sup></span> · <span>Hephzi-bah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-20">Nehemiah 9:20</h3>
+  <p class="r"><span>and + spirit + your<sup>1</sup></span> · <span>the + good<sup>1</sup></span> · <span>add<sup>4</sup></span> · <span>to + instruct + them<sup>1</sup></span> · <span>and + manna + your<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>deny<sup>4</sup></span> · <span>from + mouth + their<sup>1</sup></span> · <span>and + water<sup>1</sup></span> · <span>add<sup>4</sup></span> · <span>burn in<sup>2</sup></span> · <span>for + thirst + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-21">Nehemiah 9:21</h3>
+  <p class="r"><span>and + forty<sup>1</sup></span> · <span>alter<sup>2</sup></span> · <span>you sustained + them<sup>1</sup></span> · <span>in the + wilderness<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>be abated<sup>4</sup></span> · <span>clothes + their<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>excise<sup>2</sup></span> · <span>and + feet + their<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>swell<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-22">Nehemiah 9:22</h3>
+  <p class="r"><span>and + she gave [it]<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>kingdom<sup>2</sup></span> · <span>and + peoples<sup>1</sup></span> · <span>and + you apportioned + them<sup>1</sup></span> · <span>of the + side<sup>1</sup></span> · <span>and + they took possession of<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>earth<sup>2</sup></span> · <span>Sihon<sup>2</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>earth<sup>2</sup></span> · <span>king<sup>2</sup></span> · <span>Heshbon<sup>2</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>earth<sup>2</sup></span> · <span>Og<sup>2</sup></span> · <span>king<sup>2</sup></span> · <span>&lt;the&gt; + Bashan<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-23">Nehemiah 9:23</h3>
+  <p class="r"><span>and + sons + their<sup>1</sup></span> · <span>(bring in) abundance (X -antly)<sup>4</sup></span> · <span>like + [the] stars of<sup>1</sup></span> · <span>the + heavens<sup>1</sup></span> · <span>and + you brought + them<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>the + earth<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>speech<sup>4</sup></span> · <span>to + ancestors + their<sup>1</sup></span> · <span>abide<sup>4</sup></span> · <span>to + take possession of<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-24">Nehemiah 9:24</h3>
+  <p class="r"><span>and + they came<sup>1</sup></span> · <span>+ champion<sup>4</sup></span> · <span>and + they took possession of<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>the + earth<sup>1</sup></span> · <span>and + it was subdued<sup>1</sup></span> · <span>&lt;to&gt; + before + them<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>a Jashubite<sup>2</sup></span> · <span>the + earth<sup>1</sup></span> · <span>the + Canaanites<sup>1</sup></span> · <span>and + you gave + them<sup>1</sup></span> · <span>[were] in + hand + their<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>kings + their<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>folk<sup>4</sup></span> · <span>the + earth<sup>1</sup></span> · <span>to + make<sup>1</sup></span> · <span>shut<sup>8</sup></span> · <span>according to + will + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-25">Nehemiah 9:25</h3>
+  <p class="r"><span>and + they captured<sup>1</sup></span> · <span>Ai (from margin)<sup>4</sup></span> · <span>cut off<sup>4</sup></span> · <span>and + Admah<sup>1</sup></span> · <span>fat<sup>4</sup></span> · <span>and + they took possession of<sup>1</sup></span> · <span>court<sup>4</sup></span> · <span>accomplish<sup>4</sup></span> · <span>all<sup>2</sup></span> · <span>beautiful<sup>2</sup></span> · <span>the cypress (or some elastic tree)<sup>2</sup></span> · <span>cut<sup>4</sup></span> · <span>vines<sup>4</sup></span> · <span>and + olive trees<sup>1</sup></span> · <span>and + tree[s]<sup>1</sup></span> · <span>food<sup>2</sup></span> · <span>to + become numerous<sup>1</sup></span> · <span>and + they ate<sup>1</sup></span> · <span>and + they swore an oath<sup>1</sup></span> · <span>and + they grew fat<sup>1</sup></span> · <span>and + they luxuriated<sup>1</sup></span> · <span>in + goodness + your<sup>1</sup></span> · <span>Haggadol<sup>9</sup></span></p></article>
+  <article class="pv"><h3 id="v9-26">Nehemiah 9:26</h3>
+  <p class="r"><span>and + they were disobedient<sup>1</sup></span> · <span>and + they rebelled<sup>1</sup></span> · <span>over &lt;the&gt; + you<sup>1</sup></span> · <span>and + they threw<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>law + your<sup>1</sup></span> · <span>behind<sup>4</sup></span> · <span>back + their<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>prophets + your<sup>1</sup></span> · <span>kill<sup>4</sup></span> · <span>that<sup>2</sup></span> · <span>admonish<sup>4</sup></span> · <span>then<sup>9</sup></span> · <span>to + bring back + them<sup>1</sup></span> · <span>[is] to + you<sup>1</sup></span> · <span>Jaasu<sup>3</sup></span> · <span>blasphemy<sup>4</sup></span> · <span>+ aloud<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-27">Nehemiah 9:27</h3>
+  <p class="r"><span>and + you gave + them<sup>1</sup></span> · <span>for<sup>9</sup></span> · <span>opponents + their<sup>1</sup></span> · <span>and + they laid siege<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>and + at the + time<sup>1</sup></span> · <span>distress + their<sup>1</sup></span> · <span>X at all<sup>4</sup></span> · <span>[is] to + you<sup>1</sup></span> · <span>and + you<sup>1</sup></span> · <span>make amazed<sup>4</sup></span> · <span>X attentively<sup>4</sup></span> · <span>and + according to + compassion&lt;s&gt; + your<sup>1</sup></span> · <span>&lt;the&gt; + many<sup>1</sup></span> · <span>add<sup>4</sup></span> · <span>burn in<sup>2</sup></span> · <span>X at all<sup>4</sup></span> · <span>and + they delivered + them<sup>1</sup></span> · <span>without delay or hesitation<sup>5</sup></span> · <span>opponents + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-28">Nehemiah 9:28</h3>
+  <p class="r"><span>and + just as + was rest<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>return<sup>7</sup></span> · <span>to + make<sup>1</sup></span> · <span>bad<sup>2</sup></span> · <span>&lt;to&gt; + before + you<sup>1</sup></span> · <span>and + you abandoned + them<sup>1</sup></span> · <span>for<sup>9</sup></span> · <span>enemies + their<sup>1</sup></span> · <span>and + they may rule<sup>1</sup></span> · <span>shut<sup>8</sup></span> · <span>and + they turned back<sup>1</sup></span> · <span>and + they cried out to + you<sup>1</sup></span> · <span>and + you<sup>1</sup></span> · <span>make amazed<sup>4</sup></span> · <span>X attentively<sup>4</sup></span> · <span>and + you rescued + them<sup>1</sup></span> · <span>according to + compassion&lt;s&gt; + your<sup>1</sup></span> · <span>increase<sup>4</sup></span> · <span>times<sup>7</sup></span></p></article>
+  <article class="pv"><h3 id="v9-29">Nehemiah 9:29</h3>
+  <p class="r"><span>and + you warned<sup>1</sup></span> · <span>shut<sup>8</sup></span> · <span>to + bring back + them<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>law + your<sup>1</sup></span> · <span>and + they<sup>1</sup></span> · <span>be proud<sup>4</sup></span> · <span>and + not<sup>1</sup></span> · <span>listen<sup>4</sup></span> · <span>to + commandments + your<sup>1</sup></span> · <span>and + in + judgments + your<sup>1</sup></span> · <span>bear the blame<sup>4</sup></span> · <span>then<sup>9</sup></span> · <span>that<sup>2</sup></span> · <span>accomplish<sup>4</sup></span> · <span>red<sup>2</sup></span> · <span>and + live<sup>1</sup></span> · <span>shut<sup>8</sup></span> · <span>and + they gave<sup>1</sup></span> · <span>side<sup>2</sup></span> · <span>stubborn<sup>4</sup></span> · <span>and + neck + their<sup>1</sup></span> · <span>be cruel<sup>4</sup></span> · <span>and + not<sup>1</sup></span> · <span>listen<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-30">Nehemiah 9:30</h3>
+  <p class="r"><span>and + you prolonged<sup>1</sup></span> · <span>on + them<sup>1</sup></span> · <span>second<sup>2</sup></span> · <span>increase<sup>4</sup></span> · <span>and + you warned<sup>1</sup></span> · <span>then<sup>9</sup></span> · <span>with + breath + your<sup>1</sup></span> · <span>for<sup>9</sup></span> · <span>prophets + your<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>give (perceive by the) ear<sup>4</sup></span> · <span>and + you gave + them<sup>1</sup></span> · <span>for<sup>9</sup></span> · <span>Ben-ammi<sup>4</sup></span> · <span>the + lands<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v9-31">Nehemiah 9:31</h3>
+  <p class="r"><span>and + in + compassion&lt;s&gt; + your<sup>1</sup></span> · <span>&lt;the&gt; + many<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>accomplish<sup>4</sup></span> · <span>completely<sup>2</sup></span> · <span>and + not<sup>1</sup></span> · <span>commit self<sup>4</sup></span> · <span>since<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>Chanun<sup>2</sup></span> · <span>and + compassionate<sup>1</sup></span> · <span>you<sup>6</sup></span></p></article>
+  <article class="pv"><h3 id="v9-32">Nehemiah 9:32</h3>
+  <p class="r"><span>and + therefore<sup>1</sup></span> · <span>God + our<sup>1</sup></span> · <span>&lt;the&gt; + these<sup>1</sup></span> · <span>Haggadol<sup>9</sup></span> · <span>&lt;the&gt; + mighty<sup>1</sup></span> · <span>and + &lt;the&gt; + awesome<sup>1</sup></span> · <span>Shomer<sup>2</sup></span> · <span>the + covenant<sup>1</sup></span> · <span>and + &lt;the&gt; + covenant loyalty<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>suffer to decrease<sup>4</sup></span> · <span>&lt;to&gt; + before + you<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + hardship<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>it has come upon + us<sup>1</sup></span> · <span>to + kings + our<sup>1</sup></span> · <span>to + leaders + our<sup>1</sup></span> · <span>and + to + priests + our<sup>1</sup></span> · <span>and + to + ancestors + our<sup>1</sup></span> · <span>and + to + every<sup>1</sup></span> · <span>[is] with + you<sup>1</sup></span> · <span>+ piss<sup>4</sup></span> · <span>consult<sup>4</sup></span> · <span>Assyria<sup>2</sup></span> · <span>until<sup>2</sup></span> · <span>on this day as distinct from yesterday or tomorrow<sup>5</sup></span> · <span>to dream<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v9-33">Nehemiah 9:33</h3>
+  <p class="r"><span>and + you<sup>1</sup></span> · <span>just<sup>2</sup></span> · <span>Most High<sup>4</sup></span> · <span>all<sup>2</sup></span> · <span>put<sup>4</sup></span> · <span>arise (up)<sup>4</sup></span> · <span>since<sup>2</sup></span> · <span>trustworthiness<sup>2</sup></span> · <span>think<sup>4</sup></span> · <span>and + we<sup>1</sup></span> · <span>condemn<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-34">Nehemiah 9:34</h3>
+  <p class="r"><span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>kings + our<sup>1</sup></span> · <span>leaders + our<sup>1</sup></span> · <span>priests + our<sup>1</sup></span> · <span>and + ancestors + our<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>do<sup>4</sup></span> · <span>law + your<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>attend<sup>4</sup></span> · <span>these<sup>2</sup></span> · <span>commandments + your<sup>1</sup></span> · <span>and + to + testimonies + your<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>admonish<sup>4</sup></span> · <span>shut<sup>8</sup></span></p></article>
+  <article class="pv"><h3 id="v9-35">Nehemiah 9:35</h3>
+  <p class="r"><span>and + they<sup>1</sup></span> · <span>in + own kingdom + their<sup>1</sup></span> · <span>and + in + goodness + your<sup>1</sup></span> · <span>(bring in) abundance (X -antly)<sup>4</sup></span> · <span>that<sup>2</sup></span> · <span>add<sup>4</sup></span> · <span>burn in<sup>2</sup></span> · <span>and + in + [the] land of<sup>1</sup></span> · <span>the act of making something wider<sup>5</sup></span> · <span>and + &lt;the&gt; + fertile<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>add<sup>4</sup></span> · <span>&lt;to&gt; + before + them<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>they will serve + you<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>remain<sup>4</sup></span> · <span>any of + deeds + their<sup>1</sup></span> · <span>X break<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-36">Nehemiah 9:36</h3>
+  <p class="r"><span>here<sup>2</sup></span> · <span>we<sup>4</sup></span> · <span>on this day as distinct from yesterday or tomorrow<sup>5</sup></span> · <span>X be<sup>4</sup></span> · <span>and + the + earth<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>add<sup>4</sup></span> · <span>to + ancestors + our<sup>1</sup></span> · <span>to + eat<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>bear<sup>4</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>prosperity<sup>4</sup></span> · <span>here<sup>2</sup></span> · <span>we<sup>4</sup></span> · <span>X be<sup>4</sup></span> · <span>Aliah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v9-37">Nehemiah 9:37</h3>
+  <p class="r"><span>and + produce + its<sup>1</sup></span> · <span>increase<sup>4</sup></span> · <span>to the + kings<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>add<sup>4</sup></span> · <span>arise (up)<sup>4</sup></span> · <span>in + sins + our<sup>1</sup></span> · <span>and + on<sup>1</sup></span> · <span>bodies + our<sup>1</sup></span> · <span>(have, make to have) dominion<sup>4</sup></span> · <span>and + over + cattle + our<sup>1</sup></span> · <span>according to + will + their<sup>1</sup></span> · <span>and + [are] in + distress<sup>1</sup></span> · <span>loud<sup>4</sup></span> · <span>we<sup>4</sup></span></p></article>
+  <nav class="porch-nav"><a href="/nehemiah/8/" rel="prev">Nehemiah 8</a><a href="/nehemiah/">Nehemiah, from the beginning</a><a href="/nehemiah/10/" rel="next">Nehemiah 10</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="2">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="3">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    <li value="4">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="5">Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · WordNet Licenses</li>
+    <li value="6">ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · CC BY-SA 4.0</li>
+    <li value="7">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="8">Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · CC BY 4.0</li>
+    <li value="9">Classical Hebrew Words database · Public Domain</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

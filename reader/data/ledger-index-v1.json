@@ -1,0 +1,790 @@
+{
+ "schema_version": 1,
+ "rule_id": "ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for",
+ "emitted_by": "tools/emit-ledger-index-v1.mjs",
+ "emitted_on": "2026-09-27",
+ "what_this_is": "which letter of the frame each of this lane's records is the ledger for, read from the '// LEDGER:' declaration in the header of the tool that writes it. Declared by the writer, never inferred here.",
+ "letters_known_to_the_frame": [
+  "A",
+  "N",
+  "B",
+  "C0",
+  "W",
+  "COMPspan",
+  "COMPcell",
+  "K",
+  "D",
+  "R",
+  "M",
+  "P",
+  "S",
+  "V",
+  "Y",
+  "X",
+  "Z",
+  "Q",
+  "U",
+  "O"
+ ],
+ "by_letter": {
+  "B": [
+   "build-front-door-v1.mjs",
+   "emit-corpus-atlas-v1.mjs",
+   "emit-work-basis-v1.mjs"
+  ],
+  "C0": [
+   "build-demonstrations-v1.mjs",
+   "build-zone.mjs",
+   "check-c0-refusals-v1.mjs",
+   "check-restore-serve-v1.mjs",
+   "emit-derived-work-ranges-v1.mjs",
+   "run-restore-v5-fleet-v1.mjs",
+   "serve-from-restore-v5.mjs"
+  ],
+  "D": [
+   "build-hoh-sidecar-v1.mjs",
+   "project-lattice-v12-v1.mjs"
+  ],
+  "M": [
+   "check-restore-serve-v1.mjs",
+   "check-source-corpus-v1.mjs",
+   "emit-language-sweep-record-v1.mjs",
+   "emit-mam-restore-v5-rights-v1.mjs",
+   "emit-source-corpus-v1.mjs",
+   "emit-struck-ranks-v1.mjs",
+   "strike-language-v1.mjs"
+  ],
+  "N": [
+   "build-front-door-v1.mjs",
+   "emit-license-postures-v1.mjs",
+   "serve-edition-v1.mjs"
+  ],
+  "O": [
+   "emit-apparatus-baseline-v1.mjs",
+   "emit-zone-shipment-v1.mjs",
+   "emit-zone-store-v1.mjs",
+   "install-pinned-zone-successors-v1.mjs",
+   "pull-zones-from-store-v1.mjs",
+   "restore-shelf-from-history-v1.mjs",
+   "serve-edition-v1.mjs"
+  ],
+  "Q": [
+   "emit-apparatus-baseline-v1.mjs"
+  ],
+  "R": [
+   "project-lattice-v12-v1.mjs",
+   "strike-language-v1.mjs"
+  ],
+  "U": [
+   "emit-work-attachment-v1.mjs",
+   "serve-edition-v1.mjs"
+  ],
+  "V": [
+   "emit-work-attachment-v1.mjs",
+   "emit-work-basis-v1.mjs"
+  ],
+  "Y": [
+   "build-front-door-v1.mjs",
+   "check-bookword-count-v1.mjs",
+   "emit-corpus-atlas-v1.mjs",
+   "emit-derived-work-ranges-v1.mjs",
+   "emit-masorah-witnesses-v1.mjs",
+   "emit-work-basis-v1.mjs"
+  ],
+  "Z": [
+   "build-zone.mjs"
+  ]
+ },
+ "by_tool": {
+  "build-chain-book-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This serves no reading, changes no letter and decides nothing. It republishes a book this site already serves with every visible thing replaced by the fingerprint of its own bytes.",
+   "writes": []
+  },
+  "build-demonstrations-v1.mjs": {
+   "letters": [
+    "C0"
+   ],
+   "updates_no_letter": false,
+   "why": "the ink at its position: the zones it writes are real positions of real works, one passage per rule, so a rule is shown on ink and never on a drawing.",
+   "writes": [
+    "rule-demonstrations-v1.json"
+   ]
+  },
+  "build-front-door-v1.mjs": {
+   "letters": [
+    "N",
+    "B",
+    "Y"
+   ],
+   "updates_no_letter": false,
+   "why": "the license shown for each work, the groupings the door lists, and the addresses it links to.",
+   "writes": [
+    "serve-gate-receipt-v1.json",
+    "corpus-atlas-v1.json",
+    "bezelal-front-door-counts-handoff-v1.json",
+    "front-door-three-count-bindings-v1.json",
+    "work-basis-v1.json",
+    "book-grouping-v1.json",
+    "grouping-attestation-v1.json",
+    "source-corpus-v1.json",
+    "license-postures-v1.json",
+    "family-ledger-v1.json",
+    "masorah-witnesses-v1.json",
+    "rule-demonstrations-v1.json",
+    "reference-groups-v1.json",
+    "work-attribution-display-v3.json",
+    "address-history-v1.json",
+    "color-contract-v1.json"
+   ]
+  },
+  "build-hoh-sidecar-v1.mjs": {
+   "letters": [
+    "D"
+   ],
+   "updates_no_letter": false,
+   "why": "A dictionary that defines Hebrew in Hebrew writes D, in Hebrew, for a headword's own K. This tool is INERT and has never written one: the posture record declares no served volume since the withdrawal of 2026-09-13, no entry was ever delivered, and with delivery.delivered false a sidecar may stand only beside a fixture. The letter is declared anyway, because what this tool would write is not in doubt, and a road with no sign on it is how a lane comes to write a record nobody claimed.",
+   "writes": [
+    "ben-yehuda-posture-v1.json"
+   ]
+  },
+  "build-toggle-design-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This tool writes a page, not a record. It READS data/toggle-wording-proposals-v1.json and writes nothing back into data/; the proposals file is kept by hand as the owner rules on each wording.",
+   "writes": [
+    "toggle-wording-proposals-v1.json"
+   ]
+  },
+  "build-zone.mjs": {
+   "letters": [
+    "Z",
+    "C0"
+   ],
+   "updates_no_letter": false,
+   "why": "the catchword as quoted and where it lands, recorded per zone as it is built.",
+   "writes": [
+    "variant-sites-standing-v1.json",
+    "source-corpus-v1.json"
+   ]
+  },
+  "check-body-is-text-binding-is-rights-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-bookword-count-v1.mjs": {
+   "letters": [
+    "Y"
+   ],
+   "updates_no_letter": false,
+   "why": "the measures of the address space: how many words, letters and verses a book has on each named axis, and what other men reached for the same book.",
+   "writes": [
+    "masorah-witnesses-v1.json",
+    "serve-gate-receipt-v1.json",
+    "count-stamp-receipt-v1.json"
+   ]
+  },
+  "check-c0-refusals-v1.mjs": {
+   "letters": [
+    "C0"
+   ],
+   "updates_no_letter": false,
+   "why": "the ink, the mark itself, at its position: what the frame refuses to call a C0, applied to every position of every built book before it is served.",
+   "writes": [
+    "serve-gate-receipt-v1.json"
+   ]
+  },
+  "check-commentary-section-aligned-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-demonstrations-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "rule-demonstrations-v1.json"
+   ]
+  },
+  "check-disk-gloss-is-the-line-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-division-established-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-edition-serve-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-every-reading-licensed-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "license-postures-v1.json"
+   ]
+  },
+  "check-first-reading-is-sorted-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-fixture-never-served-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-front-door-opens-title-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-hoh-sidecar-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "ben-yehuda-posture-v1.json"
+   ]
+  },
+  "check-k-maqaf-preserved-v2.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-lattice-projection-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "zone-store-v1.json"
+   ]
+  },
+  "check-ledger-declared-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-manifest-prints-unguarded-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-maqaf-pair-drawn-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-mark-inventory-closed-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-numbering-gap-witnessed-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-partial-serve-declared-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-parts-read-right-to-left-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-posture-names-from-record-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "license-postures-v1.json"
+   ]
+  },
+  "check-respan-projection-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "workspace-manifest-v1.json"
+   ]
+  },
+  "check-restore-serve-v1.mjs": {
+   "letters": [
+    "C0",
+    "M"
+   ],
+   "updates_no_letter": false,
+   "why": "the ink at its position, and the licence riding on every occurrence of it.",
+   "writes": [
+    "mam-restore-v5-rights-v1.json"
+   ]
+  },
+  "check-rights-profile-attested-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "serving-rulings-v1.json"
+   ]
+  },
+  "check-route-store-exact-k-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-serve-oracle-checked-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "serve-rebuild-receipt-2026-08-22.json"
+   ]
+  },
+  "check-source-corpus-v1.mjs": {
+   "letters": [
+    "M"
+   ],
+   "updates_no_letter": false,
+   "why": "the witness and what body it describes: this holds the served route store to the corpus lane's classification, and refuses outright any witness that describes a language outside Hebrew and Aramaic.",
+   "writes": [
+    "source-corpus-v1.json"
+   ]
+  },
+  "check-span-receipt-carried-identical-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-stream-is-text-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-variant-class-one-rule-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-variant-site-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one. The file it writes is a run artifact, not a claim about a work.",
+   "writes": [
+    "variant-sites-standing-v1.json"
+   ]
+  },
+  "check-zone-single-pass-receipts-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "workspace-manifest-v1.json"
+   ]
+  },
+  "check-zone-store-crossing-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "zone-store-v1.json"
+   ]
+  },
+  "check-zone-store-reachable-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "zone-store-v1.json"
+   ]
+  },
+  "emit-apparatus-baseline-v1.mjs": {
+   "letters": [
+    "Q",
+    "O"
+   ],
+   "updates_no_letter": false,
+   "why": "the source's own marks, per named stream. The census counts MAM's classes and records which copy of each stream it read them from.",
+   "writes": [
+    "apparatus-baseline-v1.json"
+   ]
+  },
+  "emit-corpus-atlas-v1.mjs": {
+   "letters": [
+    "B",
+    "Y"
+   ],
+   "updates_no_letter": false,
+   "why": "the groupings the door lists and the addresses inside them.",
+   "writes": [
+    "corpus-atlas-v1.json"
+   ]
+  },
+  "emit-derived-work-ranges-v1.mjs": {
+   "letters": [
+    "C0",
+    "Y"
+   ],
+   "updates_no_letter": false,
+   "why": "the address of a work's span and the measures of that address.",
+   "writes": [
+    "corpus-atlas-v1.json",
+    "derived-work-ranges-v1.json"
+   ]
+  },
+  "emit-lane-state-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This writes no A, N, R, M or D and changes nothing any letter stands on; it reads what the other writers already wrote and says where they stand. A record ABOUT the ledgers is not a ledger, and declaring a letter here would make this file look like a place a letter can be changed — which is the whole reason the declaration is required.",
+   "writes": [
+    "lane-state-v1.json",
+    "language-admission-v1.json"
+   ]
+  },
+  "emit-language-sweep-record-v1.mjs": {
+   "letters": [
+    "M"
+   ],
+   "updates_no_letter": false,
+   "why": "the source record and the readings hanging off it. This writes a finding ABOUT M sources and strikes none of them: it records what a review found and measured, so a ruling can be made on it and audited after. GUARDS: language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
+   "writes": [
+    "language-sweep-v1.json"
+   ]
+  },
+  "emit-ledger-index-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This is the index OF the ledgers, not one of them.",
+   "writes": [
+    "ledger-index-v1.json",
+    "x.json"
+   ]
+  },
+  "emit-license-postures-v1.mjs": {
+   "letters": [
+    "N"
+   ],
+   "updates_no_letter": false,
+   "why": "the license for A, as each work declares it.",
+   "writes": [
+    "license-postures-v1.json"
+   ]
+  },
+  "emit-mam-restore-v5-rights-v1.mjs": {
+   "letters": [
+    "M"
+   ],
+   "updates_no_letter": false,
+   "why": "the sources and what they permit: the record it writes is one row per book, the licence class and the credit line as the registers themselves state them.",
+   "writes": [
+    "mam-restore-v5-rights-v1.json"
+   ]
+  },
+  "emit-masorah-witnesses-v1.mjs": {
+   "letters": [
+    "Y"
+   ],
+   "updates_no_letter": false,
+   "why": "what has been counted and by whom: the record it writes holds each witness's own published figure, per book and per section, with the axis it counted on.",
+   "writes": [
+    "masorah-witnesses-v1.json"
+   ]
+  },
+  "emit-pointing-grade-recount-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A record, not a change: nothing here is served.",
+   "writes": [
+    "pointing-grade-recount-v1.json"
+   ]
+  },
+  "emit-source-corpus-v1.mjs": {
+   "letters": [
+    "M"
+   ],
+   "updates_no_letter": false,
+   "why": "the witness and what it may be asked about: this record carries, for every witness the route store cites, which body of text that witness declares itself to describe, and refuses outright the ones that describe a language outside Hebrew and Aramaic.",
+   "writes": [
+    "source-corpus-v1.json"
+   ]
+  },
+  "emit-store-manifest-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This pins the bytes of what ships; the facts inside those bytes are M and R, and strike-language-v1 is their ledger.",
+   "writes": []
+  },
+  "emit-struck-ranks-v1.mjs": {
+   "letters": [
+    "M"
+   ],
+   "updates_no_letter": false,
+   "why": "The M ledger's own record of what a strike took from it, rank by rank.",
+   "writes": []
+  },
+  "emit-work-attachment-v1.mjs": {
+   "letters": [
+    "V",
+    "U"
+   ],
+   "updates_no_letter": false,
+   "why": "what attaches to a location, and work-to-work relationals. Every row is a work naming a base and the relation it stands in to it.",
+   "writes": [
+    "work-attachment-v1.json",
+    "corpus-atlas-v1.json"
+   ]
+  },
+  "emit-work-basis-v1.mjs": {
+   "letters": [
+    "B",
+    "Y",
+    "V"
+   ],
+   "updates_no_letter": false,
+   "why": "the grouping a work belongs to, how you address a part of it, and the names its attachments are shown under.",
+   "writes": [
+    "work-basis-v1.json",
+    "commentary-names-v1.json",
+    "y-nav-labels-v1.json"
+   ]
+  },
+  "emit-workspace-manifest-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This records the state of the working tree, not a fact about a work.",
+   "writes": [
+    "workspace-manifest-v1.json"
+   ]
+  },
+  "emit-zone-shipment-v1.mjs": {
+   "letters": [
+    "O"
+   ],
+   "updates_no_letter": false,
+   "why": "the named stream: which zone bin is published, and its bytes — this names each bin's object on the shelf it is moving to, and writes nothing else. GUARDS: zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight",
+   "writes": [
+    "zone-store-v1.json"
+   ]
+  },
+  "emit-zone-store-v1.mjs": {
+   "letters": [
+    "O"
+   ],
+   "updates_no_letter": false,
+   "why": "the named stream: which zone bin is published, and its bytes.",
+   "writes": [
+    "zone-store-v1.json"
+   ]
+  },
+  "install-pinned-zone-successors-v1.mjs": {
+   "letters": [
+    "O"
+   ],
+   "updates_no_letter": false,
+   "why": "the named stream: which copy of a zone is the one published.",
+   "writes": [
+    "front-door-three-count-bindings-v1.json"
+   ]
+  },
+  "land-pointing-store-v2-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This writes a CANDIDATE under build/ and a receipt; it serves nothing and changes no letter. What it changes is whether the corpus lane's pointing store can be shown, on this side, to be exactly the store this site already serves with one slot added — before anyone swaps a wire.",
+   "writes": []
+  },
+  "make-hoh-fixture-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "It writes a test instrument and no record of the frame. The fixture's entries are a chapter's own verses quoted back at it, so a panel can be pressed without a dictionary; nothing in it is anybody's D, and check-fixture-never-served-v1 holds it off the shelf.",
+   "writes": [
+    "ben-yehuda-posture-v1.json"
+   ]
+  },
+  "plan-build-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This derives the build scaffold, not a fact about a work.",
+   "writes": [
+    "corpus-atlas-v1.json"
+   ]
+  },
+  "plan-fleet-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This plans which works a run covers, not a fact about any of them.",
+   "writes": [
+    "derived-work-ranges-v1.json"
+   ]
+  },
+  "plan-work-shards-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This is a build receipt, not a fact about a work.",
+   "writes": [
+    "serve-rebuild-receipt-2026-08-22.json"
+   ]
+  },
+  "pointing-grade-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This changes no letter of the text and no row of the store: it is the one definition by which a store row earns its grade against the word standing open, computed at display time and never stored.",
+   "writes": []
+  },
+  "project-declarations-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This serves no reading and changes no letter: it projects the corpus lane's per-source declarations ledger onto the sources this site actually holds, so the rail's source row can open into what each source SAYS ABOUT ITSELF.",
+   "writes": [
+    "source-declarations-receipt-v1.json"
+   ]
+  },
+  "project-lattice-v12-v1.mjs": {
+   "letters": [
+    "R",
+    "D"
+   ],
+   "updates_no_letter": false,
+   "why": "R because every order this tool projects is a SELECTION over readings the store already holds — masoretic, vowels differ, cites here, licence, names as sound — and rule 1 above is that it adds, removes and reorders nothing in the store itself. D because the parts band carries a named source's English for a COMPcell, two witnesses per piece, carried and never composed into a reading of the word. It creates no M and no S; it carries the ones the card it grades already names.",
+   "writes": [
+    "license-postures-v1.json"
+   ]
+  },
+  "project-v-volume-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "It creates no reading, grades no card and touches no word. It carries one number per verse, one per chapter and one per book, and the sentence that names what those numbers were counted over. A count with no scope is a claim about everything; a count with its scope is a measurement.",
+   "writes": []
+  },
+  "pull-zones-from-store-v1.mjs": {
+   "letters": [
+    "O"
+   ],
+   "updates_no_letter": false,
+   "why": "the named stream: which zone bin is published, and its bytes. This writes bins to data/zones, but only bytes the record already pins — it restores O's stream from the shelf it was shipped to and originates nothing. GUARDS: zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight",
+   "writes": [
+    "zone-store-v1.json"
+   ]
+  },
+  "regloss-zone.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This writes only the zone it was given, a projection of the store over that zone's own keys; it decides nothing. It reads the served source corpus (data/source-corpus-v1.json) to price the shelf switches and writes no record into data/ itself.",
+   "writes": [
+    "source-corpus-v1.json"
+   ]
+  },
+  "restore-shelf-from-history-v1.mjs": {
+   "letters": [
+    "O"
+   ],
+   "updates_no_letter": false,
+   "why": "the named stream: which zone bin is published, and its bytes. This writes bins to data/zones, but only bytes the record already pins — it restores the shelf from this tree's own history and originates nothing. GUARDS: zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight",
+   "writes": [
+    "zone-store-v1.json",
+    "license-postures-v1.json",
+    "work-attachment-v1.json"
+   ]
+  },
+  "run-restore-v5-fleet-v1.mjs": {
+   "letters": [
+    "C0"
+   ],
+   "updates_no_letter": false,
+   "why": "the ledger it writes says, book by book, how many rows of the restore became how many positions, and names verbatim whatever refused instead.",
+   "writes": [
+    "masorah-witnesses-v1.json",
+    "mam-restore-v5-rights-v1.json",
+    "license-links-tanakh.json"
+   ]
+  },
+  "serve-edition-v1.mjs": {
+   "letters": [
+    "O",
+    "U",
+    "N"
+   ],
+   "updates_no_letter": false,
+   "why": "an edition (O) of a work (U) served with the rights the edition door gives it (N): the serve NDJSON and the edition bridge this tool writes are the inputs the zone builder reads; nothing here writes into data/.",
+   "writes": [
+    "serving-rulings-v1.json"
+   ]
+  },
+  "serve-from-restore-v5.mjs": {
+   "letters": [
+    "C0"
+   ],
+   "updates_no_letter": false,
+   "why": "the ink at its position: every row this writes is one position of the text — a word, a piece of a word the joiner holds, or a scribal mark standing alone.",
+   "writes": [
+    "mam-restore-v5-rights-v1.json"
+   ]
+  },
+  "strike-language-v1.mjs": {
+   "letters": [
+    "M",
+    "R"
+   ],
+   "updates_no_letter": false,
+   "why": "the source record and the readings hanging off it. This tool removes M records and the R routes they carry. It does not touch an A span or an N license: what it changes is WHICH sources are permitted to answer for an A.",
+   "writes": [
+    "language-admission-v1.json"
+   ]
+  },
+  "verify-pointing-store-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This reads a shipment and writes a record of what THIS side measured; it changes no letter and serves nothing.",
+   "writes": [
+    "pointing-store-verify-v1.json"
+   ]
+  },
+  "verify-v-ledger-v2-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "It writes no record of the frame. It reads the corpus lane's V ledger and this lane's own zones and reports whether the two agree; the record it produces is a finding, and data/v-ledger-posture-v1.json is where a finding that has been ruled on lives.",
+   "writes": [
+    "v-ledger-posture-v1.json"
+   ]
+  }
+ },
+ "tools_that_write_a_record_and_declare_nothing": [],
+ "records_no_tool_in_this_tree_claims_to_write": [
+  "corpus-defect-manifest-2026-08-22.json",
+  "pointing-store-verify-v2.2-v1.json",
+  "source-short-names-v1.json",
+  "store-before-strike-witness-v1.json",
+  "v-volume-receipt-v1.json"
+ ],
+ "letters_declared_that_the_frame_does_not_name": [],
+ "standing_caveat": "this indexes THIS LANE only. A letter with no tool here is not a letter nobody keeps — the corpus lane keeps most of them. An empty list under a letter means this lane writes nothing to it, never that the letter is unowned."
+}

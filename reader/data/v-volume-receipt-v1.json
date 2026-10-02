@@ -1,0 +1,43 @@
+{
+  "schema_version": "V_VOLUME_RECEIPT_V1",
+  "rule_id": "v-volume-rule-v1-a-count-is-served-only-with-the-scope-it-was-counted-over",
+  "projected_on": "2026-09-14",
+  "projected_by": "tools/project-v-volume-v1.mjs",
+  "source": {
+    "shipment": "r2:mishkan/moses-ledgers/v-ledger-v2/",
+    "what": "V ledger v2, the corpus lane's commentary anchor — 34 works in 116 editions over the 39 canonical books",
+    "scope_count": {
+      "works": 34,
+      "editions": 116
+    },
+    "tables": [
+      {
+        "file": "v-verse-volume-v2.csv.gz",
+        "sha256": "9c34bbf17a70a168f34930208fcc7e2783df3b3664eca2c60dfc42a7d755cc92",
+        "bytes": 179357,
+        "rows": 23204
+      },
+      {
+        "file": "v-chapter-volume-v2.csv.gz",
+        "sha256": "3515df83dd0b1932e0837271b0e1931e02204289baf9143a72750f0ef09d602a",
+        "bytes": 9138,
+        "rows": 929
+      },
+      {
+        "file": "v-book-volume-v2.csv.gz",
+        "sha256": "05b413f6e39e776643e6686b2bc6402f363287e4dd0e3b6eba9b448befec8549",
+        "bytes": 1553,
+        "rows": 39
+      }
+    ],
+    "candidate_only": true,
+    "column": "pairs_*, never units_* — the folded count, one per work, which is what a reader meets"
+  },
+  "sidecars": 39,
+  "books_carrying_commentary": 10,
+  "verses_carrying_commentary": 5764,
+  "chapters_carrying_commentary": 217,
+  "scope_say": "among the works indexed so far",
+  "what_is_served": "the verse, chapter and book counts, each printed with the scope it was counted over",
+  "what_is_not_served": "the word layer — 21,686 anchored positions over fourteen works whose text this lane does not hold"
+}

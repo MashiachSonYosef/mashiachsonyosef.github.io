@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="exodus">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="11">
+<meta name="description" content="Exodus 11 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/exodus/11/">
+<title>Exodus 11 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Exodus 11</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v11-1">Exodus 11:1</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>The Lord<sup>2</sup></span> · <span>these<sup>3</sup></span> · <span>debt<sup>4</sup></span> · <span>still<sup>3</sup></span> · <span>to touch<sup>3</sup></span> · <span>one<sup>3</sup></span> · <span>abide<sup>2</sup></span> · <span>Most High<sup>2</sup></span> · <span>leadership<sup>3</sup></span> · <span>and + on<sup>1</sup></span> · <span>Mizraim<sup>2</sup></span> · <span>behind<sup>2</sup></span> · <span>thus<sup>3</sup></span> · <span>X any wise<sup>2</sup></span> · <span>with + you<sup>1</sup></span> · <span>exhausted<sup>3</sup></span> · <span>when + lets [you] go + he<sup>1</sup></span> · <span>completely<sup>3</sup></span> · <span>thrust out<sup>2</sup></span> · <span>cast up (out)<sup>2</sup></span> · <span>with + you<sup>1</sup></span> · <span>exhausted<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v11-2">Exodus 11:2</h3>
+  <p class="r"><span>to speak<sup>3</sup></span> · <span>now<sup>3</sup></span> · <span>in + ears<sup>1</sup></span> · <span>the + people<sup>1</sup></span> · <span>and + they asked<sup>1</sup></span> · <span>person<sup>3</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>neighbor + his<sup>1</sup></span> · <span>and + everyone [fem]<sup>1</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>neighbor [fem] + her<sup>1</sup></span> · <span>vessel<sup>3</sup></span> · <span>money<sup>3</sup></span> · <span>and + articles of<sup>1</sup></span> · <span>gold<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v11-3">Exodus 11:3</h3>
+  <p class="r"><span>and + he set<sup>1</sup></span> · <span>The Lord<sup>2</sup></span> · <span>with<sup>3</sup></span> · <span>favour<sup>3</sup></span> · <span>the + people<sup>1</sup></span> · <span>in + [the] eyes of<sup>1</sup></span> · <span>Mizraim<sup>2</sup></span> · <span>also<sup>3</sup></span> · <span>the + man<sup>1</sup></span> · <span>debt<sup>4</sup></span> · <span>older<sup>3</sup></span> · <span>vehemence<sup>3</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>Mizraim<sup>2</sup></span> · <span>in + [the] eyes of<sup>1</sup></span> · <span>Abdi<sup>3</sup></span> · <span>leadership<sup>3</sup></span> · <span>and + in + [the] eyes of<sup>1</sup></span> · <span>the + people<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v11-4">Exodus 11:4</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>debt<sup>4</sup></span> · <span>hitherto<sup>3</sup></span> · <span>word<sup>2</sup></span> · <span>The Lord<sup>2</sup></span> · <span>about + [the] middle of<sup>1</sup></span> · <span>the + night<sup>1</sup></span> · <span>galley<sup>3</sup></span> · <span>X after<sup>2</sup></span> · <span>in + [the] middle of<sup>1</sup></span> · <span>Mizraim<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v11-5">Exodus 11:5</h3>
+  <p class="r"><span>and + he will die<sup>1</sup></span> · <span>all<sup>3</sup></span> · <span>chief<sup>3</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>Mizraim<sup>2</sup></span> · <span>from + [the] firstborn of<sup>1</sup></span> · <span>leadership<sup>3</sup></span> · <span>who + was dwelling<sup>1</sup></span> · <span>Most High<sup>2</sup></span> · <span>throne + his<sup>1</sup></span> · <span>until<sup>3</sup></span> · <span>chief<sup>3</sup></span> · <span>the + maidservant<sup>1</sup></span> · <span>that<sup>3</sup></span> · <span>behind<sup>3</sup></span> · <span>the + hand-mill<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>chief<sup>3</sup></span> · <span>cattle<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v11-6">Exodus 11:6</h3>
+  <p class="r"><span>and + it will become<sup>1</sup></span> · <span>shriek<sup>3</sup></span> · <span>loud<sup>2</sup></span> · <span>over + all<sup>1</sup></span> · <span>earth<sup>3</sup></span> · <span>Mizraim<sup>2</sup></span> · <span>that<sup>3</sup></span> · <span>like + it<sup>1</sup></span> · <span>no<sup>3</sup></span> · <span>beacon<sup>2</sup></span> · <span>and + like + it<sup>1</sup></span> · <span>no<sup>3</sup></span> · <span>assemble<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v11-7">Exodus 11:7</h3>
+  <p class="r"><span>and + to + every<sup>1</sup></span> · <span>young<sup>2</sup></span> · <span>Israel<sup>3</sup></span> · <span>no<sup>3</sup></span> · <span>bestir self<sup>2</sup></span> · <span>a dog<sup>3</sup></span> · <span>own language + its<sup>1</sup></span> · <span>to + from + a human<sup>1</sup></span> · <span>and + unto<sup>1</sup></span> · <span>cattle<sup>2</sup></span> · <span>because of<sup>2</sup></span> · <span>you may know + !<sup>1</sup></span> · <span>that<sup>3</sup></span> · <span>put a difference<sup>2</sup></span> · <span>The Lord<sup>2</sup></span> · <span>between<sup>2</sup></span> · <span>Mizraim<sup>2</sup></span> · <span>and + between<sup>1</sup></span> · <span>Israel<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v11-8">Exodus 11:8</h3>
+  <p class="r"><span>and + they may rule<sup>1</sup></span> · <span>all<sup>3</sup></span> · <span>servants + your<sup>1</sup></span> · <span>god<sup>3</sup></span> · <span>against<sup>2</sup></span> · <span>and + they will bow down<sup>1</sup></span> · <span>to &lt;the&gt; + me<sup>1</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>X after<sup>2</sup></span> · <span>you<sup>5</sup></span> · <span>and + all<sup>1</sup></span> · <span>the + people<sup>1</sup></span> · <span>that<sup>3</sup></span> · <span>[is] at + feet + your<sup>1</sup></span> · <span>and + after<sup>1</sup></span> · <span>thus<sup>3</sup></span> · <span>X after<sup>2</sup></span> · <span>and + he went out<sup>1</sup></span> · <span>from with<sup>6</sup></span> · <span>leadership<sup>3</sup></span> · <span>young men<sup>2</sup></span> · <span>nose<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v11-9">Exodus 11:9</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>The Lord<sup>2</sup></span> · <span>these<sup>3</sup></span> · <span>debt<sup>4</sup></span> · <span>no<sup>3</sup></span> · <span>hear<sup>2</sup></span> · <span>to + you<sup>1</sup></span> · <span>leadership<sup>3</sup></span> · <span>because of<sup>2</sup></span> · <span>increase<sup>2</sup></span> · <span>miracle<sup>2</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>Mizraim<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v11-10">Exodus 11:10</h3>
+  <p class="r"><span>and + Moses<sup>1</sup></span> · <span>and + Aaron<sup>1</sup></span> · <span>do<sup>2</sup></span> · <span>with<sup>3</sup></span> · <span>all<sup>3</sup></span> · <span>the + wonders<sup>1</sup></span> · <span>Elah<sup>2</sup></span> · <span>before<sup>3</sup></span> · <span>leadership<sup>3</sup></span> · <span>and + it was severe<sup>1</sup></span> · <span>The Lord<sup>2</sup></span> · <span>with<sup>3</sup></span> · <span>understanding<sup>3</sup></span> · <span>leadership<sup>3</sup></span> · <span>and + not<sup>1</sup></span> · <span>weapon<sup>2</sup></span> · <span>with<sup>3</sup></span> · <span>young<sup>2</sup></span> · <span>Israel<sup>3</sup></span> · <span>from + land + his<sup>1</sup></span></p></article>
+  <nav class="porch-nav"><a href="/exodus/10/" rel="prev">Exodus 10</a><a href="/exodus/">Exodus, from the beginning</a><a href="/exodus/12/" rel="next">Exodus 12</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="2">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="3">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="4">Classical Hebrew Words database · Public Domain</li>
+    <li value="5">ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · CC BY-SA 4.0</li>
+    <li value="6">Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · CC BY 4.0</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

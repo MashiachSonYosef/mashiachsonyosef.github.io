@@ -1,2 +1,0 @@
-| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
-|---|---|---|---|---|---|---|---|

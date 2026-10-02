@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="i-chronicles">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="5">
+<meta name="description" content="I Chronicles 5 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/i-chronicles/5/">
+<title>I Chronicles 5 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>I Chronicles 5</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v5-1">I Chronicles 5:1</h3>
+  <p class="r"><span>and + sons<sup>1</sup></span> · <span>Reuben<sup>2</sup></span> · <span>chief<sup>2</sup></span> · <span>Israel<sup>2</sup></span> · <span>since<sup>2</sup></span> · <span>this<sup>3</sup></span> · <span>the + firstborn<sup>1</sup></span> · <span>and + when + profaned + he<sup>1</sup></span> · <span>bed<sup>4</sup></span> · <span>chief<sup>4</sup></span> · <span>add<sup>4</sup></span> · <span>birthright + his<sup>1</sup></span> · <span>Libni<sup>2</sup></span> · <span>Joseph<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>Israel<sup>2</sup></span> · <span>and + not<sup>1</sup></span> · <span>to + have themselves enrolled<sup>1</sup></span> · <span>to the + birthright<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-2">I Chronicles 5:2</h3>
+  <p class="r"><span>since<sup>2</sup></span> · <span>Judah<sup>2</sup></span> · <span>Gibbar<sup>2</sup></span> · <span>on + brother + his<sup>1</sup></span> · <span>and + to + a leader<sup>1</sup></span> · <span>from + it<sup>1</sup></span> · <span>and + the + birthright<sup>1</sup></span> · <span>to + Joseph<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-3">I Chronicles 5:3</h3>
+  <p class="r"><span>young<sup>4</sup></span> · <span>Reuben<sup>2</sup></span> · <span>chief<sup>2</sup></span> · <span>Israel<sup>2</sup></span> · <span>Chanok<sup>2</sup></span> · <span>and + Pallu<sup>1</sup></span> · <span>Hezron<sup>2</sup></span> · <span>and + Carmi<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-4">I Chronicles 5:4</h3>
+  <p class="r"><span>young<sup>4</sup></span> · <span>Joel<sup>2</sup></span> · <span>Shemaiah<sup>2</sup></span> · <span>build<sup>4</sup></span> · <span>Gog<sup>2</sup></span> · <span>build<sup>4</sup></span> · <span>Shimei<sup>2</sup></span> · <span>build<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v5-5">I Chronicles 5:5</h3>
+  <p class="r"><span>Micah<sup>2</sup></span> · <span>build<sup>4</sup></span> · <span>Reaiah<sup>4</sup></span> · <span>build<sup>4</sup></span> · <span>to marry<sup>2</sup></span> · <span>build<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v5-6">I Chronicles 5:6</h3>
+  <p class="r"><span>Beerah<sup>2</sup></span> · <span>build<sup>4</sup></span> · <span>that<sup>2</sup></span> · <span>+ advertise<sup>4</sup></span> · <span>Tiglath-<sup>1</sup></span> · <span>pileser<sup>1</sup></span> · <span>king<sup>2</sup></span> · <span>that<sup>2</sup></span> · <span>this<sup>3</sup></span> · <span>chief<sup>2</sup></span> · <span>to the + Reubenite[s]<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-7">I Chronicles 5:7</h3>
+  <p class="r"><span>and + brothers + his<sup>1</sup></span> · <span>to + clans + his<sup>1</sup></span> · <span>by + genealogical enrolment<sup>1</sup></span> · <span>to + generations + their<sup>1</sup></span> · <span>the + head<sup>1</sup></span> · <span>Jeiel<sup>2</sup></span> · <span>and + Zechariah<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-8">I Chronicles 5:8</h3>
+  <p class="r"><span>and + Bela<sup>1</sup></span> · <span>son<sup>2</sup></span> · <span>Azaz<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>loud<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>Joel<sup>2</sup></span> · <span>this<sup>3</sup></span> · <span>(make to) abide(-ing)<sup>4</sup></span> · <span>[were] in + Aroer<sup>1</sup></span> · <span>and + unto<sup>1</sup></span> · <span>Nebo<sup>2</sup></span> · <span>and + [the] owner of<sup>1</sup></span> · <span>den<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-9">I Chronicles 5:9</h3>
+  <p class="r"><span>and + to the + east<sup>1</sup></span> · <span>to remain<sup>2</sup></span> · <span>until<sup>2</sup></span> · <span>abide<sup>4</sup></span> · <span>wilderness + towards<sup>1</sup></span> · <span>&lt;to&gt; + from<sup>1</sup></span> · <span>the + river<sup>1</sup></span> · <span>Euphrates<sup>2</sup></span> · <span>since<sup>2</sup></span> · <span>livestock + their<sup>1</sup></span> · <span>greatness<sup>2</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>Galed<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-10">I Chronicles 5:10</h3>
+  <p class="r"><span>and + in + [the] days of<sup>1</sup></span> · <span>Saul<sup>2</sup></span> · <span>do<sup>4</sup></span> · <span>battle<sup>2</sup></span> · <span>with<sup>4</sup></span> · <span>the + Hagrites<sup>1</sup></span> · <span>and + they fell<sup>1</sup></span> · <span>[were] in + hand + their<sup>1</sup></span> · <span>and + they turned back<sup>1</sup></span> · <span>in + tents + their<sup>1</sup></span> · <span>Most High<sup>4</sup></span> · <span>all<sup>2</sup></span> · <span>face<sup>4</sup></span> · <span>sunrise<sup>2</sup></span> · <span>of + Gilead<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-11">I Chronicles 5:11</h3>
+  <p class="r"><span>and + sons<sup>1</sup></span> · <span>Gad<sup>2</sup></span> · <span>to + before + them<sup>1</sup></span> · <span>(make to) abide(-ing)<sup>4</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>&lt;the&gt; + Bashan<sup>1</sup></span> · <span>until<sup>2</sup></span> · <span>Salcah<sup>5</sup></span></p></article>
+  <article class="pv"><h3 id="v5-12">I Chronicles 5:12</h3>
+  <p class="r"><span>Joel<sup>2</sup></span> · <span>the + head<sup>1</sup></span> · <span>and + Shapham<sup>1</sup></span> · <span>the + second<sup>1</sup></span> · <span>and + Janai<sup>1</sup></span> · <span>and + a judge<sup>1</sup></span> · <span>in &lt;the&gt; + Bashan<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-13">I Chronicles 5:13</h3>
+  <p class="r"><span>and + relatives + their<sup>1</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>ancestors + their<sup>1</sup></span> · <span>Michael<sup>2</sup></span> · <span>and + [who] repays<sup>1</sup></span> · <span>and + seven<sup>1</sup></span> · <span>and + Jorai<sup>1</sup></span> · <span>and + Jakan<sup>1</sup></span> · <span>and + Zia<sup>1</sup></span> · <span>and + he will pass through<sup>1</sup></span> · <span>oath<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v5-14">I Chronicles 5:14</h3>
+  <p class="r"><span>god<sup>2</sup></span> · <span>young<sup>4</sup></span> · <span>my father is might<sup>6</sup></span> · <span>son<sup>2</sup></span> · <span>Churi<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>Jaroah<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>Galed<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>Michael<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>Jeshishai<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>alike<sup>4</sup></span> · <span>son<sup>2</sup></span> · <span>Buz<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-15">I Chronicles 5:15</h3>
+  <p class="r"><span>Achi<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>Abdiel<sup>3</sup></span> · <span>son<sup>2</sup></span> · <span>Guni<sup>2</sup></span> · <span>head<sup>2</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>ancestors + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-16">I Chronicles 5:16</h3>
+  <p class="r"><span>and + they turned back<sup>1</sup></span> · <span>in &lt;the&gt; + Gilead<sup>1</sup></span> · <span>in &lt;the&gt; + Bashan<sup>1</sup></span> · <span>and + in + daughters + its<sup>1</sup></span> · <span>and + over + all<sup>1</sup></span> · <span>cast out<sup>4</sup></span> · <span>Sharon<sup>2</sup></span> · <span>Most High<sup>4</sup></span> · <span>extremities + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-17">I Chronicles 5:17</h3>
+  <p class="r"><span>wound<sup>2</sup></span> · <span>(number after, number throughout the) genealogy (to be reckoned)<sup>4</sup></span> · <span>in + days<sup>1</sup></span> · <span>Jotham<sup>2</sup></span> · <span>king<sup>2</sup></span> · <span>Judah<sup>2</sup></span> · <span>and + in + [the] days of<sup>1</sup></span> · <span>Jeroboam<sup>2</sup></span> · <span>king<sup>2</sup></span> · <span>Israel<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-18">I Chronicles 5:18</h3>
+  <p class="r"><span>young<sup>4</sup></span> · <span>Reuben<sup>2</sup></span> · <span>and + a kid of<sup>1</sup></span> · <span>and + [the] half of<sup>1</sup></span> · <span>rod<sup>2</sup></span> · <span>Manasseh<sup>2</sup></span> · <span>part<sup>2</sup></span> · <span>young<sup>4</sup></span> · <span>substance<sup>2</sup></span> · <span>people<sup>4</sup></span> · <span>accept<sup>4</sup></span> · <span>shield<sup>4</sup></span> · <span>and + a sword<sup>1</sup></span> · <span>and + [who] bent<sup>1</sup></span> · <span>arrow<sup>2</sup></span> · <span>and + [who] were trained of<sup>1</sup></span> · <span>battle<sup>2</sup></span> · <span>forty<sup>2</sup></span> · <span>and + four<sup>1</sup></span> · <span>Eleph<sup>2</sup></span> · <span>and + seven<sup>1</sup></span> · <span>hundred((-fold), -th)<sup>4</sup></span> · <span>and + sixty<sup>1</sup></span> · <span>X after<sup>4</sup></span> · <span>service<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-19">I Chronicles 5:19</h3>
+  <p class="r"><span>Jaasu<sup>7</sup></span> · <span>battle<sup>2</sup></span> · <span>with<sup>4</sup></span> · <span>the + Hagrites<sup>1</sup></span> · <span>and + Jetur<sup>1</sup></span> · <span>and + Naphish<sup>1</sup></span> · <span>and + Nodab<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-20">I Chronicles 5:20</h3>
+  <p class="r"><span>and + they helped<sup>1</sup></span> · <span>on + them<sup>1</sup></span> · <span>and + they were given<sup>1</sup></span> · <span>[were] in + hand + their<sup>1</sup></span> · <span>the + Hagrites<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>[those] who + [were] with + them<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>&lt;into&gt; + God<sup>1</sup></span> · <span>assemble<sup>4</sup></span> · <span>by + battle<sup>1</sup></span> · <span>and + he was entreated<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>since<sup>2</sup></span> · <span>be bold (confident, secure, sure)<sup>4</sup></span> · <span>[is] in &lt;the&gt; + it<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-21">I Chronicles 5:21</h3>
+  <p class="r"><span>and + they turned back<sup>1</sup></span> · <span>livestock + their<sup>1</sup></span> · <span>camels + their<sup>1</sup></span> · <span>fifty<sup>2</sup></span> · <span>Eleph<sup>2</sup></span> · <span>and + flock[s]<sup>1</sup></span> · <span>hundred((-fold), -th)<sup>4</sup></span> · <span>and + fifty<sup>1</sup></span> · <span>Eleph<sup>2</sup></span> · <span>and + donkeys<sup>1</sup></span> · <span>captain<sup>4</sup></span> · <span>and + life<sup>1</sup></span> · <span>red<sup>2</sup></span> · <span>a hundred<sup>2</sup></span> · <span>Eleph<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-22">I Chronicles 5:22</h3>
+  <p class="r"><span>since<sup>2</sup></span> · <span>pipe<sup>4</sup></span> · <span>(in) abound(-undance, -ant, -antly)<sup>4</sup></span> · <span>fall (down)<sup>4</sup></span> · <span>since<sup>2</sup></span> · <span>[was] from + &lt;the&gt; + God<sup>1</sup></span> · <span>the + battle<sup>1</sup></span> · <span>and + they turned back<sup>1</sup></span> · <span>[was] under + them<sup>1</sup></span> · <span>until<sup>2</sup></span> · <span>+ advertise<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v5-23">I Chronicles 5:23</h3>
+  <p class="r"><span>and + sons<sup>1</sup></span> · <span>arrow<sup>4</sup></span> · <span>rod<sup>2</sup></span> · <span>Manasseh<sup>2</sup></span> · <span>(make to) abide(-ing)<sup>4</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>from + Bashan<sup>1</sup></span> · <span>until<sup>2</sup></span> · <span>to marry<sup>2</sup></span> · <span>Hermon<sup>2</sup></span> · <span>and + Senir<sup>1</sup></span> · <span>and + [the] mountain of<sup>1</sup></span> · <span>Hermon<sup>2</sup></span> · <span>they<sup>4</sup></span> · <span>greatness<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-24">I Chronicles 5:24</h3>
+  <p class="r"><span>and + these<sup>1</sup></span> · <span>chief<sup>4</sup></span> · <span>place<sup>2</sup></span> · <span>ancestors + their<sup>1</sup></span> · <span>and + dust<sup>1</sup></span> · <span>and + Ishi<sup>1</sup></span> · <span>and + Eliel<sup>1</sup></span> · <span>and + Azriel<sup>1</sup></span> · <span>and + Jeremiah<sup>1</sup></span> · <span>and + Hodaviah<sup>1</sup></span> · <span>and + Jahdiel<sup>1</sup></span> · <span>people<sup>4</sup></span> · <span>champion<sup>4</sup></span> · <span>substance<sup>2</sup></span> · <span>also<sup>4</sup></span> · <span>Shammoth<sup>2</sup></span> · <span>band<sup>4</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>ancestors + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-25">I Chronicles 5:25</h3>
+  <p class="r"><span>and + they acted unfaithfully<sup>1</sup></span> · <span>on + gods<sup>1</sup></span> · <span>ancestors + their<sup>1</sup></span> · <span>and + they acted as prostitutes<sup>1</sup></span> · <span>behind<sup>4</sup></span> · <span>God<sup>4</sup></span> · <span>Ben-ammi<sup>4</sup></span> · <span>the + earth<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>destroy(- uction)<sup>4</sup></span> · <span>judges<sup>2</sup></span> · <span>&lt;from&gt; + because of + them<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-26">I Chronicles 5:26</h3>
+  <p class="r"><span>and + he stirred up<sup>1</sup></span> · <span>God<sup>4</sup></span> · <span>Israel<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>Spirit<sup>2</sup></span> · <span>bean<sup>8</sup></span> · <span>king<sup>2</sup></span> · <span>Assyria<sup>2</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>Spirit<sup>2</sup></span> · <span>Tiglath-<sup>1</sup></span> · <span>pileser<sup>1</sup></span> · <span>king<sup>2</sup></span> · <span>Assyria<sup>2</sup></span> · <span>and + he folded it up<sup>1</sup></span> · <span>to the + Reubenite[s]<sup>1</sup></span> · <span>and + to the + Gadite[s]<sup>1</sup></span> · <span>and + to + [the] half of<sup>1</sup></span> · <span>rod<sup>2</sup></span> · <span>Manasseh<sup>2</sup></span> · <span>and + he brought + them<sup>1</sup></span> · <span>to + Halah<sup>1</sup></span> · <span>and + Habor<sup>1</sup></span> · <span>and + he will show<sup>1</sup></span> · <span>and + a river<sup>1</sup></span> · <span>Gozan<sup>2</sup></span> · <span>until<sup>2</sup></span> · <span>on this day as distinct from yesterday or tomorrow<sup>9</sup></span> · <span>to dream<sup>7</sup></span></p></article>
+  <article class="pv"><h3 id="v5-27">I Chronicles 5:27</h3>
+  <p class="r"><span>young<sup>4</sup></span> · <span>Levi<sup>2</sup></span> · <span>Gershon<sup>2</sup></span> · <span>Kohath<sup>2</sup></span> · <span>and + Merari<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-28">I Chronicles 5:28</h3>
+  <p class="r"><span>and + sons<sup>1</sup></span> · <span>Kohath<sup>2</sup></span> · <span>Amram<sup>2</sup></span> · <span>Izhar<sup>2</sup></span> · <span>and + Hebron<sup>1</sup></span> · <span>and + Uzziel<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-29">I Chronicles 5:29</h3>
+  <p class="r"><span>and + sons<sup>1</sup></span> · <span>Amram<sup>2</sup></span> · <span>Aaron<sup>10</sup></span> · <span>and + Moses<sup>1</sup></span> · <span>and + Miriam<sup>1</sup></span> · <span>and + sons<sup>1</sup></span> · <span>Aaron<sup>10</sup></span> · <span>Nadab<sup>2</sup></span> · <span>and + Abihu<sup>1</sup></span> · <span>Eleazar<sup>2</sup></span> · <span>and + Ithamar<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-30">I Chronicles 5:30</h3>
+  <p class="r"><span>Eleazar<sup>2</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Phinehas<sup>2</sup></span> · <span>Phinehas<sup>2</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Abishua<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-31">I Chronicles 5:31</h3>
+  <p class="r"><span>and + Abishua<sup>1</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Bukki<sup>2</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Uzzi<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-32">I Chronicles 5:32</h3>
+  <p class="r"><span>and + female goats<sup>1</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Zerahiah<sup>2</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Meraioth<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-33">I Chronicles 5:33</h3>
+  <p class="r"><span>Meraioth<sup>2</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Amariah<sup>2</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Ahitub<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-34">I Chronicles 5:34</h3>
+  <p class="r"><span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Zadok<sup>2</sup></span> · <span>and + Zadok<sup>1</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Achimaats<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-35">I Chronicles 5:35</h3>
+  <p class="r"><span>and + Ahimaaz<sup>1</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Azariah<sup>2</sup></span> · <span>and + Azariah<sup>1</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Johanan<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-36">I Chronicles 5:36</h3>
+  <p class="r"><span>and + Johanan<sup>1</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Azariah<sup>2</sup></span> · <span>this<sup>3</sup></span> · <span>that<sup>2</sup></span> · <span>a priest<sup>2</sup></span> · <span>in the + house<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>build<sup>4</sup></span> · <span>Solomon<sup>2</sup></span> · <span>in + Jerusalem<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v5-37">I Chronicles 5:37</h3>
+  <p class="r"><span>and + he was born<sup>1</sup></span> · <span>Azariah<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>Amariah<sup>2</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Ahitub<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-38">I Chronicles 5:38</h3>
+  <p class="r"><span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Zadok<sup>2</sup></span> · <span>and + Zadok<sup>1</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>peace<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-39">I Chronicles 5:39</h3>
+  <p class="r"><span>and + Shallum<sup>1</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Chilhijah<sup>2</sup></span> · <span>and + Hilkiah<sup>1</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Azariah<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-40">I Chronicles 5:40</h3>
+  <p class="r"><span>and + Azariah<sup>1</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Seraiah<sup>2</sup></span> · <span>and + Seraiah<sup>1</sup></span> · <span>bear<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Jehozadek<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v5-41">I Chronicles 5:41</h3>
+  <p class="r"><span>come<sup>2</sup></span> · <span>because + sent into exile<sup>1</sup></span> · <span>The Lord<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>Judah<sup>2</sup></span> · <span>and + Jerusalem<sup>1</sup></span> · <span>for<sup>11</sup></span> · <span>Nebuchadnezzar<sup>4</sup></span></p></article>
+  <nav class="porch-nav"><a href="/i-chronicles/4/" rel="prev">I Chronicles 4</a><a href="/i-chronicles/">I Chronicles, from the beginning</a><a href="/i-chronicles/6/" rel="next">I Chronicles 6</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="2">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="3">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="4">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="5">BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas · Public Domain + CC BY 4.0</li>
+    <li value="6">Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · CC BY 4.0</li>
+    <li value="7">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    <li value="8">Semantic Dictionary of Biblical Hebrew via HiperBiblia · CC BY-SA 4.0</li>
+    <li value="9">Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · WordNet Licenses</li>
+    <li value="10">Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source · Public Domain</li>
+    <li value="11">Classical Hebrew Words database · Public Domain</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

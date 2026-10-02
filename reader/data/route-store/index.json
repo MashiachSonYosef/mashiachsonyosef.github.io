@@ -1,0 +1,1279 @@
+{
+ "schema_version": "ROUTE_STORE_V2",
+ "rule_id": "route-store-rule-v3-declared-reading",
+ "reading_rule": "provider-declaration-rule-v1-closed-set-ship-whole-by-default",
+ "reading_declared_on": "2026-08-17",
+ "generated_by": "tools/build-route-store.mjs",
+ "key": "byte-exact kNormalizedKey; shard = sha256(utf8(K)) first 2 hex chars",
+ "shard_path": "data/route-store/shards/{shard}.bin",
+ "shard_encoding": "gzip(JSON) — unpack with DecompressionStream('gzip')",
+ "route_row": [
+  "semantic_route_rank",
+  "route_text",
+  "definition_text",
+  "m_id",
+  "source_year_or_S_NO_SOURCE_YEAR",
+  "1 when the reading is a piece cut out of a sibling standing on the same record; null otherwise (v1 omitted the slot; v2 writes null so that HEADWORDS is always at [6])",
+  "HEADWORDS: array of the source's own headword strings for this (key, route_text, source label) — verbatim bytes of catalog source_headword; distinct by exact string, no cap, no normalisation, pointed and unpointed both kept. Rows non-empty in v2 carry v2's array unchanged (first appearance in (source_priority, source_order, catalog row) order via the unmerged lattice cards). Rows empty in v2 carry the DIRECT catalog join: catalog rows at (K == k_normalized_key.trim(), m_sources[m_id].label == m_source_label) whose r_route_text == route_text (WHOLE) or, for wikisource_strongs_explicit_forms only, whose r_route_text separated on the declared comma outside parentheses yields route_text as one piece byte-exact, the first piece admissible also with its one or two head hyphens removed and then trimmed (PIECE) — WHOLE and PIECE matches unioned; first appearance in catalog row order. [] when no catalog row joined (see counts). Label-level: several m_ids share one label and receive the label's array. v2.2 REPAIR (RULE-store-v2.2-v1.md §3-§5): on the rows whose v2.1 array held no string equal to any source_headword reached by the evidence road (store row -> sidecar cards at (rank, route_text, m_id) -> evidence_support_id -> catalog row in the row's own cell), the array is REPLACED by the distinct non-empty source_headword strings of those catalog rows, verbatim, catalog row order. Every other row is v2.1's."
+ ],
+ "selection": "every route with a complete M record; semantic_route_rank orders them and does not gate them",
+ "m_sources": {
+  "M1": {
+   "key": "conceptnet_5_7_hebrew_english_cc_by_sa_4_0",
+   "label": "ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge)",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/conceptnet-5.7.0-2026-07-15/conceptnet-hebrew-english-definition-routes-manifest-v1.json",
+   "sourceYear": "2019"
+  },
+  "M2": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "https://www.wikidata.org/w/index.php?title=Wikidata:Licensing&oldid=2496674574",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M3": {
+   "key": "macula_hebrew_cherith_surface_english_2022",
+   "label": "MACULA exact Hebrew morph surfaces with Cherith English definitions",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/macula-hebrew-2026-07-15/macula-hebrew-surface-english-routes-manifest-v2.json",
+   "sourceYear": "2022"
+  },
+  "M4": {
+   "key": "stepbible_tahot_aligned_translation",
+   "label": "STEP Bible Translators Amalgamated Hebrew OT aligned component translation",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "https://github.com/STEPBible/STEPBible-Data/blob/b86d26cdb1f51729e73b5b4eb7f7ccadc5dfba39/README.md",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M5": {
+   "key": "openscriptures_bdb_1906",
+   "label": "Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures",
+   "licensePosture": "cc_by_4_0_underlying_public_domain",
+   "licensePointer": "https://github.com/openscriptures/HebrewLexicon/blob/21c9add13bc727d3a951361778e97e3ff7afd1ce/readme.md",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M6": {
+   "key": "muse_hebrew_english_ground_truth_dictionary",
+   "label": "MUSE large-scale ground-truth Hebrew-English bilingual dictionary",
+   "licensePosture": "cc_by_nc_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/muse-hebrew-english-2026-07-14/muse-hebrew-english-exact-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M7": {
+   "key": "unfoldingword_uhal",
+   "label": "unfoldingWord Hebrew-Aramaic Lexicon",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/unfoldingword-uhal-2026-07-12/en_uhal/LICENSE",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M9": {
+   "key": "openscriptures_strongs",
+   "label": "Strong's Hebrew Dictionary via Open Scriptures",
+   "licensePosture": "cc_by_4_0_underlying_public_domain",
+   "licensePointer": "https://github.com/openscriptures/HebrewLexicon/blob/21c9add13bc727d3a951361778e97e3ff7afd1ce/readme.md",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M10": {
+   "key": "wikidata_hebrew_explicit_form_english_sense",
+   "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikidata-hebrew-lexemes-2026-07-14/explicit-form-source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M11": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/kaikki-2026-07-12/kaikki-hebrew-strict-form-manifest-v2.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M13": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki machine-readable Hebrew dictionary from English Wiktionary",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "https://kaikki.org/dictionary/index.html#copyright-and-license",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M14": {
+   "key": "wikisource_strongs_explicit_forms",
+   "label": "Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource",
+   "licensePosture": "cc_by_sa_4_0_underlying_public_domain",
+   "licensePointer": "https://en.wikisource.org/wiki/Wikisource:Licensing",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M15": {
+   "key": "wikimedia_hebrew_english_interlanguage_title_20260701",
+   "label": "Hebrew Wikipedia 20260701 direct English interlanguage title",
+   "licensePosture": "cc_by_sa_4_0_and_gfdl",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikimedia-hebrew-english-titles-2026-07-14/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M16": {
+   "key": "muse_hebrew_english_ground_truth_dictionary",
+   "label": "MUSE Hebrew-English ground-truth dictionary - CC BY-NC noncommercial partition",
+   "licensePosture": "cc_by_nc_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/muse-hebrew-english-2026-07-14/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M17": {
+   "key": "hiperbiblia_sdbh",
+   "label": "Semantic Dictionary of Biblical Hebrew via HiperBiblia",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "https://hiperbiblia.com/lexicons?dict=sdbh&script=hebrew",
+   "sourceYear": "2023"
+  },
+  "M18": {
+   "key": "ubs_sdbh_hebrew_v0_9_2",
+   "label": "UBS Dictionary of Biblical Hebrew v0.9.2 exact definitions and glosses",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/ubs-sdbh-hebrew-2026-07-15/ubs-sdbh-hebrew-definition-routes-manifest-v1.json",
+   "sourceYear": "2023"
+  },
+  "M19": {
+   "key": "stepbible_tbesh_gloss",
+   "label": "STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "https://github.com/STEPBible/STEPBible-Data/blob/b86d26cdb1f51729e73b5b4eb7f7ccadc5dfba39/README.md",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M20": {
+   "key": "bolls_bdbt_brown_driver_briggs_hebrew_1906",
+   "label": "Bolls byte-pinned reformatted Brown-Driver-Briggs Hebrew definition frame",
+   "licensePosture": "public_domain_document_reformatted_source",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/bolls-bdbt-hebrew-2026-07-14/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M21": {
+   "key": "panlex_hebrew_english_meanings_20240301",
+   "label": "PanLex 2024 exact same-meaning Hebrew-English lexical expression",
+   "licensePosture": "cc_by_nc_sa_4_0_conservative_current",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/panlex-hebrew-english-2026-07-14/source-manifest-v1.json",
+   "sourceYear": "2024"
+  },
+  "M22": {
+   "key": "conceptnet_5_7_hebrew_english_cc_by_4_0",
+   "label": "ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY 4.0 edge)",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/conceptnet-5.7.0-2026-07-15/conceptnet-hebrew-english-definition-routes-manifest-v1.json",
+   "sourceYear": "2019"
+  },
+  "M23": {
+   "key": "classical_hebrew_words",
+   "label": "Classical Hebrew Words database",
+   "licensePosture": "public_domain",
+   "licensePointer": "https://classical-hebrew-words.org/#a-legacy-gift",
+   "sourceYear": "2026"
+  },
+  "M25": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/kaikki-2026-07-12/kaikki-hebrew-strict-form-manifest-v2.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M27": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M28": {
+   "key": "wikidata_hebrew_explicit_form_english_sense",
+   "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikidata-hebrew-lexemes-2026-07-14/explicit-form-source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M29": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M30": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki Hebrew strict source-explicit inflection-table forms from English Wiktionary",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "definition-poc/source-license-evidence.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M32": {
+   "key": "omegawiki_structured_defined_meaning",
+   "label": "OmegaWiki structured Hebrew-English DefinedMeaning relations and definitions",
+   "licensePosture": "cc_by_chosen_from_dual_cc_by_and_gfdl",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/omegawiki-lexical-2026-07-14/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M33": {
+   "key": "openscriptures_lexical_index",
+   "label": "Open Scriptures Hebrew Lexical Index",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "https://github.com/openscriptures/HebrewLexicon/blob/21c9add13bc727d3a951361778e97e3ff7afd1ce/readme.md",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M34": {
+   "key": "kaikki_english_wiktionary_hebrew_translation_table",
+   "label": "Kaikki English Wiktionary source-explicit Hebrew translation tables",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/kaikki-english-hebrew-translations-2026-07-14/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M35": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki Hebrew strict source-explicit linked forms from English Wiktionary",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "definition-poc/source-license-evidence.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M36": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M37": {
+   "key": "dbnary_english_wiktionary_hebrew_translation_gloss",
+   "label": "DBnary English Wiktionary source-explicit Hebrew translations and English glosses",
+   "licensePosture": "cc_by_sa_3_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/dbnary-english-2026-07-15/dbnary-hebrew-translation-gloss-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M38": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M41": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M42": {
+   "key": "panlex_hebrew_english_definitions_20250201",
+   "label": "PanLex 2025 explicit English definition joined to continuity-confirmed Hebrew meaning",
+   "licensePosture": "cc_by_nc_sa_4_0_conservative_current",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/panlex-hebrew-english-2026-07-14/source-manifest-v1.json",
+   "sourceYear": "2025"
+  },
+  "M43": {
+   "key": "omw_hebrew_pwn30",
+   "label": "Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss",
+   "licensePosture": "dual_open_wordnet_style_licenses_attribution_notice_required",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/omw-hebrew-pwn30-2026-07-14/source-manifest-v1.json",
+   "sourceYear": "2007"
+  },
+  "M44": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M45": {
+   "key": "biblicaltools_living_lexicon",
+   "label": "BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas",
+   "licensePosture": "public_domain_strongs_definitions_plus_cc_by_4_0_stepbible_lemma_data",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/biblicaltools-living-lexicon-2026-07-12-manifest-v2.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M46": {
+   "key": "unabridged_bdb_1906",
+   "label": "Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source",
+   "licensePosture": "public_domain_document_reformatted_source",
+   "licensePointer": "https://github.com/eliranwong/unabridged-BDB-Hebrew-lexicon/blob/6e8326c6884f8ef1399c7a365d660da9bb9e2d01/README.md",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M47": {
+   "key": "wikimedia_english_intro_definition_20260715",
+   "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikimedia-english-intro-definitions-2026-07-15/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M48": {
+   "key": "wikidata_hebrew_explicit_form_english_sense",
+   "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikidata-hebrew-lexemes-2026-07-14/explicit-form-source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M50": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/kaikki-2026-07-12/kaikki-hebrew-strict-form-catalog-gap-delta-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M53": {
+   "key": "wikidata_hebrew_explicit_form_english_sense",
+   "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikidata-hebrew-lexemes-2026-07-14/explicit-form-source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M54": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M55": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M56": {
+   "key": "wikimedia_english_intro_definition_successor_unmatched_v1",
+   "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "definition-poc/work/successor-unmatched-wikimedia-english-intro-acquisition-v2/final-artifacts-v2/successor-unmatched-wikimedia-english-intro-acquisition-v2-manifest.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M57": {
+   "key": "omw_hebrew_oewn2025_permanent_sense_key_bridge",
+   "label": "Hebrew WordNet PWN 3.0 alignment bridged to Open English WordNet 2025 by complete permanent-sense-key agreement",
+   "licensePosture": "omw_wordnet_notice_plus_princeton_wordnet_notice_plus_cc_by_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/open-english-wordnet-2025-2026-07-15/omw-hebrew-oewn2025-exact-bridge-manifest-v1.json",
+   "sourceYear": "2025"
+  },
+  "M58": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M59": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M60": {
+   "key": "kaikki_wiktionary_aramaic",
+   "label": "Kaikki machine-readable Aramaic dictionary from English Wiktionary",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "https://kaikki.org/dictionary/index.html#copyright-and-license",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M61": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "https://www.wikidata.org/w/index.php?title=Wikidata:Licensing&oldid=2496674574",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M62": {
+   "key": "muse_hebrew_english_ground_truth_dictionary",
+   "label": "MUSE large-scale ground-truth Hebrew-English bilingual dictionary",
+   "licensePosture": "cc_by_nc_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/muse-hebrew-english-2026-07-14/muse-hebrew-english-catalog-gap-delta-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M64": {
+   "key": "lexibank_analysed_v2_2_northeuralex_hebrew",
+   "label": "Lexibank Analysed v2.2 NorthEuraLex literal Hebrew source values with Concepticon English glosses",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/lexibank-analysed-v2.2-2026-07-15/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M66": {
+   "key": "wikimedia_english_intro_definition_successor_unmatched_v1",
+   "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "definition-poc/work/successor-unmatched-wikimedia-english-intro-acquisition-v2/final-artifacts-v2/successor-unmatched-wikimedia-english-intro-acquisition-v2-manifest.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M68": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M69": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/kaikki-2026-07-12/kaikki-hebrew-strict-form-catalog-gap-delta-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M70": {
+   "key": "wikimedia_english_intro_definition_20260715",
+   "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikimedia-english-intro-definitions-2026-07-15/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M71": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-recovery-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M72": {
+   "key": "kaikki_wiktionary_aramaic",
+   "label": "Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/kaikki-aramaic-2026-07-14/kaikki-aramaic-explicit-form-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M73": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "https://www.wikidata.org/w/index.php?title=Wikidata:Licensing&oldid=2496674574",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M74": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M76": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "https://www.wikidata.org/w/index.php?title=Wikidata:Licensing&oldid=2496674574",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M79": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M80": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M81": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "https://www.wikidata.org/w/index.php?title=Wikidata:Licensing&oldid=2496674574",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M85": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M86": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M87": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "https://www.wikidata.org/w/index.php?title=Wikidata:Licensing&oldid=2496674574",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M90": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M92": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M93": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M94": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "https://www.wikidata.org/w/index.php?title=Wikidata:Licensing&oldid=2496674574",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M95": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M96": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M97": {
+   "key": "davidson_1855_manual_source_image_reviewed_v1",
+   "label": "Davidson 1855 Analytical Hebrew and Chaldee Lexicon manually source-image-reviewed exact English definitions v1",
+   "licensePosture": "public_domain",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/davidson-2026-07-12/manual-source-image-reviewed-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M98": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-recovery-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M102": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M105": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M110": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M111": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-recovery-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M112": {
+   "key": "kaikki_wiktionary_aramaic",
+   "label": "Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/kaikki-aramaic-2026-07-14/kaikki-aramaic-explicit-form-manifest-v3.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M116": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M120": {
+   "key": "wikimedia_english_intro_definition_20260715",
+   "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikimedia-english-intro-definitions-2026-07-15/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M123": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-recovery-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M128": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M129": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M130": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M132": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-recovery-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M133": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-heading-alternate-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M134": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M135": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M136": {
+   "key": "wikimedia_english_intro_definition_successor_unmatched_v1",
+   "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "definition-poc/work/successor-unmatched-wikimedia-english-intro-acquisition-v2/final-artifacts-v2/successor-unmatched-wikimedia-english-intro-acquisition-v2-manifest.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M137": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-recovery-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M138": {
+   "key": "wikidata_hebrew_explicit_form_english_sense",
+   "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikidata-hebrew-lexemes-2026-07-14/explicit-form-source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M139": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M142": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M143": {
+   "key": "wikimedia_english_intro_definition_20260715",
+   "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikimedia-english-intro-definitions-2026-07-15/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M144": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M145": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-heading-alternate-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M147": {
+   "key": "wikimedia_english_intro_definition_successor_unmatched_v1",
+   "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "definition-poc/work/successor-unmatched-wikimedia-english-intro-acquisition-v2/final-artifacts-v2/successor-unmatched-wikimedia-english-intro-acquisition-v2-manifest.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M148": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-heading-alternate-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M149": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M150": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-recovery-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M151": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M152": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M153": {
+   "key": "wikimedia_english_intro_definition_successor_unmatched_v1",
+   "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "definition-poc/work/successor-unmatched-wikimedia-english-intro-acquisition-v2/final-artifacts-v2/successor-unmatched-wikimedia-english-intro-acquisition-v2-manifest.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M154": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-heading-alternate-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M155": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M156": {
+   "key": "wikimedia_english_intro_definition_20260715",
+   "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikimedia-english-intro-definitions-2026-07-15/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M157": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M158": {
+   "key": "wikimedia_english_intro_definition_20260715",
+   "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikimedia-english-intro-definitions-2026-07-15/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M159": {
+   "key": "wikimedia_english_intro_definition_successor_unmatched_v1",
+   "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "definition-poc/work/successor-unmatched-wikimedia-english-intro-acquisition-v2/final-artifacts-v2/successor-unmatched-wikimedia-english-intro-acquisition-v2-manifest.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M160": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-heading-alternate-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M161": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-heading-alternate-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M162": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M163": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-recovery-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M164": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M165": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M166": {
+   "key": "wikimedia_english_intro_definition_successor_unmatched_v1",
+   "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "definition-poc/work/successor-unmatched-wikimedia-english-intro-acquisition-v2/final-artifacts-v2/successor-unmatched-wikimedia-english-intro-acquisition-v2-manifest.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M167": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-heading-alternate-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M169": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-recovery-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M170": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M171": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M173": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M174": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M175": {
+   "key": "wikimedia_english_intro_definition_successor_unmatched_v1",
+   "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "definition-poc/work/successor-unmatched-wikimedia-english-intro-acquisition-v2/final-artifacts-v2/successor-unmatched-wikimedia-english-intro-acquisition-v2-manifest.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M176": {
+   "key": "wikimedia_english_intro_definition_20260715",
+   "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikimedia-english-intro-definitions-2026-07-15/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M177": {
+   "key": "kaikki_wiktionary_aramaic",
+   "label": "Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary",
+   "licensePosture": "cc_by_sa_gfdl",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/kaikki-aramaic-2026-07-14/kaikki-aramaic-explicit-form-catalog-gap-delta-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M178": {
+   "key": "wikimedia_english_intro_definition_successor_unmatched_v1",
+   "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "definition-poc/work/successor-unmatched-wikimedia-english-intro-acquisition-v2/final-artifacts-v2/successor-unmatched-wikimedia-english-intro-acquisition-v2-manifest.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M179": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M180": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-heading-alternate-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M181": {
+   "key": "wikimedia_english_intro_definition_20260715",
+   "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikimedia-english-intro-definitions-2026-07-15/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M182": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M183": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-english-translation-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M184": {
+   "key": "kethoneth_yoseph_1887_source_image_reviewed",
+   "label": "Kethoneth Yoseph 1887 source-image-reviewed exact Hebrew abbreviation definitions",
+   "licensePosture": "public_domain",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/kethoneth-yoseph-hebrew-abbreviations-2026-07-15/source-image-reviewed-manifest-v1.json",
+   "sourceYear": "1887"
+  },
+  "M185": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M186": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M187": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M188": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M189": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M190": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-recovery-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M191": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-heading-alternate-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M192": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M193": {
+   "key": "wikimedia_english_intro_definition_20260715",
+   "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikimedia-english-intro-definitions-2026-07-15/source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M194": {
+   "key": "wikidata_hebrew_explicit_form_english_sense",
+   "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+   "licensePosture": "cc0_public_domain",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wikidata-hebrew-lexemes-2026-07-14/explicit-form-source-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M195": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-full-spelling-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  },
+  "M196": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/hewiktionary-explicit-inflection-english-routes-manifest-v1.json",
+   "sourceYear": "S_NO_SOURCE_YEAR"
+  }
+ },
+ "counts": {
+  "keys": 124935,
+  "routes": 676463,
+  "refused_routes": 0,
+  "refused_m_records": 0,
+  "shards": 256,
+  "shard_bytes_total": 15347670,
+  "routes_separated_on_a_declared_mark": 16776,
+  "pieces_those_routes_divided_into": 144612,
+  "routes_shipped_whole": 629665,
+  "declaration_refusals": {
+   "unclosed ( ) — nothing after it is separated": 76
+  },
+  "marks_a_declared_provider_used_but_did_not_declare": {
+   "-": 1116,
+   "=": 4842,
+   "\"": 4856,
+   "!": 32,
+   "'": 1322,
+   "ֲ": 5,
+   "ִ": 16,
+   ".": 529,
+   ":": 150,
+   "?": 99,
+   "ָ": 95,
+   "&": 18,
+   "ּ": 46,
+   "ַ": 58,
+   "ֹ": 17,
+   "/": 30,
+   "ֱ": 1,
+   "ׁ": 58,
+   "֫": 27,
+   "`": 113,
+   "+": 2,
+   "[": 11,
+   "]": 11,
+   "ֶ": 16,
+   "$": 1,
+   "ְ": 25,
+   "ֵ": 10,
+   "ׂ": 3
+  },
+  "readings_that_are_a_cut_of_a_sibling_record": 17845,
+  "readings_cut_from_a_record_whose_licence_forbids_it": 0,
+  "cuts_by_source": {
+   "M14": 513,
+   "M17": 547,
+   "M9": 7889,
+   "M20": 6858,
+   "M1": 1142,
+   "M83": 28,
+   "M5": 755,
+   "M39": 31,
+   "M26": 15,
+   "M31": 2,
+   "M101": 6,
+   "M89": 21,
+   "M23": 3,
+   "M107": 3,
+   "M91": 4,
+   "M51": 3,
+   "M109": 1,
+   "M141": 1,
+   "M67": 5,
+   "M75": 3,
+   "M84": 6,
+   "M37": 1,
+   "M114": 4,
+   "M97": 1,
+   "M65": 2,
+   "M49": 1
+  },
+  "scope": "the served v2 candidate: v2 rows whose m id this site admits, folded to prove identity with the served v1"
+ },
+ "inputs": [
+  {
+   "file": "three-lane-successor-lprms-compcell-l-distinct-r-breadth-v1-k-r-routes.csv.gz",
+   "sha256": "aed1ac3518ee7d71907594d61537eff62fe43c42b9f30fa25dd88a41f23cdc46"
+  },
+  {
+   "file": "three-lane-successor-lprms-rdm-compact-successor-v1-r-identities.csv.gz",
+   "sha256": "5bbe86084015d5c39cc7ef98f099681b51fd1616646f9a3a42a6e275f6f1c6a2"
+  },
+  {
+   "file": "three-lane-successor-lprms-rdm-compact-successor-v1-d-identities.csv.gz",
+   "sha256": "06c34a9a9ffc1432e5d22681b3052b86eae73ef6a7d2b36bacd3b0d81d629018"
+  },
+  {
+   "file": "three-lane-successor-lprms-rdm-compact-successor-v1-m-identities.csv.gz",
+   "sha256": "fbfbfeb796dff44361d0b563eb874f93903e973ca693bd22ca80448332d970e7"
+  }
+ ],
+ "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
+ "store_version": "3411c86e94e7",
+ "language_admission": {
+  "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
+  "admitted_languages": [
+   "Hebrew",
+   "Aramaic",
+   "Chaldee"
+  ],
+  "record": "data/language-admission-v1.json",
+  "struck_m_ids": [
+   "M8",
+   "M12",
+   "M24",
+   "M26",
+   "M31",
+   "M39",
+   "M40",
+   "M49",
+   "M51",
+   "M52",
+   "M63",
+   "M65",
+   "M67",
+   "M75",
+   "M77",
+   "M78",
+   "M82",
+   "M83",
+   "M84",
+   "M88",
+   "M89",
+   "M91",
+   "M99",
+   "M100",
+   "M101",
+   "M103",
+   "M104",
+   "M106",
+   "M107",
+   "M108",
+   "M109",
+   "M113",
+   "M114",
+   "M115",
+   "M117",
+   "M118",
+   "M119",
+   "M121",
+   "M122",
+   "M124",
+   "M125",
+   "M126",
+   "M127",
+   "M131",
+   "M140",
+   "M141",
+   "M146",
+   "M168",
+   "M172"
+  ],
+  "counts": {
+   "scope": "the last round that struck anything, NOT the whole strike — see cumulative for that, and rounds[] for what each round struck",
+   "sources_before": 174,
+   "sources_struck": 27,
+   "routes_before": 755558,
+   "routes_struck": 79095,
+   "keys_before": 137782,
+   "keys_left_with_no_route": 12847
+  },
+  "rounds": 2,
+  "cumulative": {
+   "scope": "every round, deduplicated by m id",
+   "rounds": 2,
+   "sources_struck": 49,
+   "routes_struck": 97384,
+   "keys_touched": 32146,
+   "routes_and_keys_from": {
+    "record": "data/route-store/struck-ranks-v1.json.gz",
+    "how": "reconstructed from the pre-strike store beside the struck store",
+    "before_store_version": "7d3e04a9d270",
+    "after_store_version": "f28629cb1f1a",
+    "covers_m_ids": 49,
+    "of_which_carried_no_route": 4,
+    "caveat": "a difference of two stores, not a sum of per-round counts: it says what the struck store lacks that the pre-strike store held, across every round at once."
+   },
+   "keys_left_with_no_route": 15597,
+   "keys_left_with_no_route_how": "keys named by struck-ranks-v1.json.gz that no shard still carries — the strike touched more keys than it emptied, so this is smaller than keys_touched"
+  }
+ },
+ "store_version_history": [
+  {
+   "was": "7d3e04a9d270",
+   "now": "d0a557d4500d",
+   "why": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
+   "on": "2026-09-01T01:00:08.399Z"
+  },
+  {
+   "was": "d0a557d4500d",
+   "now": "f28629cb1f1a",
+   "why": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
+   "on": "2026-09-01T01:03:05.341Z"
+  },
+  {
+   "was": "f28629cb1f1a",
+   "now": "94bc125695bf",
+   "why": "pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land",
+   "on": "2026-09-18"
+  },
+  {
+   "was": "94bc125695bf",
+   "now": "3411c86e94e7",
+   "why": "year-ruling-v1.1-owner-rulings-E1-E3-W1-W5-with-determinations-D1-D5-2026-09-23: row slot 4 set to the ruled wording year and m_sources[].sourceYear to the ruled edition year (moses-year-repair-v1.1: the v1 rulings with determinations D1 the two WordNets, D2 the ETCBC gloss file, D3 the Lexibank edition, D4 Harkavy, D5 Strongs via Open Scriptures as a copy that names its work; applied to parent 94bc125695bf); store_version = first 12 hex of sha256(the 256 shard sha256 hex digests in 00..ff order + \"\\n\" + JSON.stringify(route_row) + \"\\n\" + \"94bc125695bf\")",
+   "on": "2026-09-23"
+  }
+ ],
+ "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
+ "join_rule": "## 3. THE JOIN RULE (emission) — v3 wording, complete\n\nFor every v2 row `(K, rank, route_text, definition_text, m_id, year, is_piece, [])` whose `[6]` is `[]`:\n\n**key.** `K === k_normalized_key.trim()`. The store's K is byte-exact; the catalog holds 3 rows with edge whitespace on the key;\ntrimming the catalog side is the only normalisation in the join. A store K with its own edge whitespace would simply miss (counted).\n\n**source.** `index.json.m_sources[m_id].label === m_source_label`, byte for byte. Several m_ids share one label (editions,\npartitions); the array is the label's, as in v2. Where a store label appears nowhere in the catalog the row is counted under (b1)\nwith the label named; as a finding only, the build also measures how many of those rows would join on `m_sources[m_id].key ===\nm_source_key`. Nothing is emitted from that finding.\n\n**text.** Let `cell` be the catalog rows at (K, label), in catalog row order.\n- For every provider: a catalog row **matches WHOLE** when `route_text === r_route_text`. This covers the `is_piece = 1` rows too:\n  they are word-boundary fragments of a sibling (v3 builder rule 8) and are catalog routes in their own right.\n- For `wikisource_strongs_explicit_forms` (M14) only — the one provider `declarations-v1.json` gives `separates_on`; the v1\n  index's `counts.cuts_by_source` counts the `is_piece` flag, not separations — a catalog row **matches PIECE** when `route_text`\n  equals, byte for byte, one of its **admissible pieces**:\n  - raw pieces = `r_route_text` separated on `,` at parenthesis depth 0 (`(` opens, `)` closes, an orphan `)` is inert, from the\n    piece carrying the first unclosed `(` everything to the end is one piece), each `.trim()`med, empties dropped;\n  - fewer than 2 pieces → the route is WHOLE and has no pieces;\n  - the pieces joined with `,` must equal the route with **all whitespace removed** from both (R5), else the route is WHOLE and\n    has no pieces;\n  - plus, when the first raw piece begins with one or two `-`: that piece with those hyphens removed and then trimmed (R4).\n- The matched set is **every row of `cell` that matches WHOLE or PIECE**, in catalog row order. No substring test anywhere.\n- The parent is never `d_exact_text` (the declaration never mines the definition); a count of still-empty M14 rows whose text is\n  a top-level comma piece of `d_exact_text` is reported as a finding only.\n\n**HEADWORDS** = distinct `source_headword` over the matched set, verbatim, first appearance, no cap, no normalisation, pointed and\nunpointed both kept. Empty `source_headword` fields contribute nothing.\n\n**Classification of a filled row:** `WHOLE`, `PIECE`, `WHOLE_and_PIECE`. **Still-empty reasons:** (a) K not a catalog key;\n(b1) label nowhere in the catalog; (b2) no catalog row at (K, label); (c) rows at (K, label) but no text match; (w) withheld below.\n\n**3.4 The record check.** For every store record (K, rank, m_id) of M14 with more than one row, its **parents** are the catalog rows\nany of its rows matched by piece. A parent **reproduces the record exactly** when the store's row texts, as a multiset, consume\nthat parent's raw pieces one for one (the first piece consumable as written or under its R4 alternative); **as a subset** when\nthey consume a strict part; the record is **reproduced** when any parent does either, **not reproduced** when none does. A record\nwith no piece parent is counted apart. In a not-reproduced record, rows classified `PIECE` are withheld (stay `[]`, reason (w)) and\nlisted with witnesses; `WHOLE` and `WHOLE_and_PIECE` rows keep their arrays.\n\n**Rows already non-empty in v2 are copied, not recomputed.** The same join is run for them and compared: `same_array`,\n`different_array` (split into `direct_is_strict_superset_of_v2` and `differs_otherwise`), `direct_join_empty` — counted, never\nwritten.\n\n---\n\n\n## 3. THE JOIN RULE — the one clause that changes (everything else exactly as v3 §3)\n\nUnder **text → PIECE → raw pieces**, the rejoin clause reads: the pieces joined with `,` must equal the route with **all whitespace\nremoved and any trailing commas removed** from both sides (R5 + R6), else the route is WHOLE and has no pieces.\n\n---\n\n",
+ "pointing_store": {
+  "rule": "pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land",
+  "landed_on": "2026-09-18",
+  "landable": true,
+  "from": {
+   "store_version": "760f6e427e30",
+   "schema": "ROUTE_STORE_V2",
+   "built_against": "7d3e04a9d270 (196 sources, disk)"
+  },
+  "proof": "every one of 256 shards, admission-filtered and folded, is the served shard's bytes exactly",
+  "headwords": {
+   "scope": "rows this site admits",
+   "rows": 676463,
+   "with_headword": 676463,
+   "with_pointed_headword": 363330
+  }
+ }
+}

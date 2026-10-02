@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="nehemiah">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="10">
+<meta name="description" content="Nehemiah 10 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/nehemiah/10/">
+<title>Nehemiah 10 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Nehemiah 10</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v10-1">Nehemiah 10:1</h3>
+  <p class="r"><span>and + over + all<sup>1</sup></span> · <span>this<sup>2</sup></span> · <span>we<sup>3</sup></span> · <span>be chewed<sup>3</sup></span> · <span>truly<sup>3</sup></span> · <span>and + on<sup>1</sup></span> · <span>&lt;the&gt; + sealed<sup>1</sup></span> · <span>leaders + our<sup>1</sup></span> · <span>abide with<sup>3</sup></span> · <span>priests + our<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v10-2">Nehemiah 10:2</h3>
+  <p class="r"><span>and + on<sup>1</sup></span> · <span>Nehemiah<sup>4</sup></span> · <span>the + governor<sup>1</sup></span> · <span>son<sup>4</sup></span> · <span>Chakaljah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-3">Nehemiah 10:3</h3>
+  <p class="r"><span>Seraiah<sup>4</sup></span> · <span>Azariah<sup>4</sup></span> · <span>Jeremiah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-4">Nehemiah 10:4</h3>
+  <p class="r"><span>Pashchur<sup>4</sup></span> · <span>Amariah<sup>4</sup></span> · <span>Malkijah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-5">Nehemiah 10:5</h3>
+  <p class="r"><span>Hattush<sup>4</sup></span> · <span>Shebaniah<sup>4</sup></span> · <span>Malluch<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-6">Nehemiah 10:6</h3>
+  <p class="r"><span>Harim<sup>4</sup></span> · <span>Meremoth<sup>4</sup></span> · <span>Obadiah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-7">Nehemiah 10:7</h3>
+  <p class="r"><span>Daniel<sup>4</sup></span> · <span>Ginnethon<sup>3</sup></span> · <span>Baruch<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-8">Nehemiah 10:8</h3>
+  <p class="r"><span>Meshullam<sup>4</sup></span> · <span>Abijah<sup>4</sup></span> · <span>Mijamin<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-9">Nehemiah 10:9</h3>
+  <p class="r"><span>Maaziah<sup>4</sup></span> · <span>Bilgai<sup>4</sup></span> · <span>Shemaiah<sup>4</sup></span> · <span>god<sup>4</sup></span> · <span>the + priests<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v10-10">Nehemiah 10:10</h3>
+  <p class="r"><span>and + the + Levites<sup>1</sup></span> · <span>and + Jeshua<sup>1</sup></span> · <span>son<sup>4</sup></span> · <span>Azaniah<sup>4</sup></span> · <span>Binnui<sup>4</sup></span> · <span>Mebunnai<sup>4</sup></span> · <span>Henadad<sup>4</sup></span> · <span>Kadmiel<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-11">Nehemiah 10:11</h3>
+  <p class="r"><span>and + relatives + their<sup>1</sup></span> · <span>Shebaniah<sup>4</sup></span> · <span>Hodiah<sup>4</sup></span> · <span>Kelita<sup>4</sup></span> · <span>secret<sup>3</sup></span> · <span>bend<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-12">Nehemiah 10:12</h3>
+  <p class="r"><span>Mica<sup>4</sup></span> · <span>street<sup>3</sup></span> · <span>Hashabiah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-13">Nehemiah 10:13</h3>
+  <p class="r"><span>Zaccur<sup>4</sup></span> · <span>Sherebiah<sup>4</sup></span> · <span>Shebaniah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-14">Nehemiah 10:14</h3>
+  <p class="r"><span>Hodiah<sup>4</sup></span> · <span>young<sup>3</sup></span> · <span>Beninu<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-15">Nehemiah 10:15</h3>
+  <p class="r"><span>chief<sup>3</sup></span> · <span>the + people<sup>1</sup></span> · <span>Parosh<sup>4</sup></span> · <span>pit<sup>4</sup></span> · <span>Moab<sup>4</sup></span> · <span>Elam<sup>4</sup></span> · <span>Zattu<sup>4</sup></span> · <span>young<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v10-16">Nehemiah 10:16</h3>
+  <p class="r"><span>young<sup>3</sup></span> · <span>Azgad<sup>4</sup></span> · <span>Bebai<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-17">Nehemiah 10:17</h3>
+  <p class="r"><span>Adonijah<sup>4</sup></span> · <span>Bigvai<sup>4</sup></span> · <span>Adin<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-18">Nehemiah 10:18</h3>
+  <p class="r"><span>Ater<sup>4</sup></span> · <span>Hezekiah<sup>4</sup></span> · <span>Azzur<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-19">Nehemiah 10:19</h3>
+  <p class="r"><span>Hodiah<sup>4</sup></span> · <span>Hashum<sup>4</sup></span> · <span>Betsai<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-20">Nehemiah 10:20</h3>
+  <p class="r"><span>Hariph<sup>4</sup></span> · <span>Anathoth<sup>4</sup></span> · <span>Nobai<sup>5</sup></span> · <span>Nebai (from the margin)<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v10-21">Nehemiah 10:21</h3>
+  <p class="r"><span>Magpiash<sup>4</sup></span> · <span>Meshullam<sup>4</sup></span> · <span>Hezir<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-22">Nehemiah 10:22</h3>
+  <p class="r"><span>Meshezabel<sup>4</sup></span> · <span>Zadok<sup>4</sup></span> · <span>Jaddua<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-23">Nehemiah 10:23</h3>
+  <p class="r"><span>Pelatiah<sup>4</sup></span> · <span>bend<sup>4</sup></span> · <span>Anaiah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-24">Nehemiah 10:24</h3>
+  <p class="r"><span>Hoshea<sup>4</sup></span> · <span>Hananiah<sup>4</sup></span> · <span>Hasshub<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v10-25">Nehemiah 10:25</h3>
+  <p class="r"><span>Hallohesh<sup>3</sup></span> · <span>Pilcha<sup>6</sup></span> · <span>Shobek<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-26">Nehemiah 10:26</h3>
+  <p class="r"><span>Rehum<sup>4</sup></span> · <span>Hashabnah<sup>4</sup></span> · <span>Maaseiah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-27">Nehemiah 10:27</h3>
+  <p class="r"><span>and + I may restore to life<sup>1</sup></span> · <span>bend<sup>4</sup></span> · <span>Anan<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-28">Nehemiah 10:28</h3>
+  <p class="r"><span>Malluch<sup>4</sup></span> · <span>Harim<sup>4</sup></span> · <span>Baanah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-29">Nehemiah 10:29</h3>
+  <p class="r"><span>and + [the] rest of<sup>1</sup></span> · <span>the + people<sup>1</sup></span> · <span>the + priests<sup>1</sup></span> · <span>the + Levites<sup>1</sup></span> · <span>the + gatekeepers<sup>1</sup></span> · <span>the + singers<sup>1</sup></span> · <span>the + temple servants<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>&lt;the&gt; + [one who] had separated himself<sup>1</sup></span> · <span>from + kinspeople&lt;s&gt;<sup>1</sup></span> · <span>the + lands<sup>1</sup></span> · <span>these<sup>4</sup></span> · <span>manner<sup>3</sup></span> · <span>&lt;the&gt; + God<sup>1</sup></span> · <span>wives + their<sup>1</sup></span> · <span>sons + their<sup>1</sup></span> · <span>and + daughters + their<sup>1</sup></span> · <span>all<sup>4</sup></span> · <span>acknowledge<sup>3</sup></span> · <span>attend<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v10-30">Nehemiah 10:30</h3>
+  <p class="r"><span>aid<sup>3</sup></span> · <span>Most High<sup>3</sup></span> · <span>brothers + their<sup>1</sup></span> · <span>nobles + their<sup>1</sup></span> · <span>and + coming<sup>1</sup></span> · <span>in + these [ways]<sup>1</sup></span> · <span>to + go<sup>1</sup></span> · <span>in + law<sup>1</sup></span> · <span>&lt;the&gt; + God<sup>1</sup></span> · <span>that<sup>4</sup></span> · <span>add<sup>3</sup></span> · <span>for<sup>5</sup></span> · <span>Moses<sup>4</sup></span> · <span>to serve<sup>4</sup></span> · <span>&lt;the&gt; + God<sup>1</sup></span> · <span>and + to + keep<sup>1</sup></span> · <span>and + to + do<sup>1</sup></span> · <span>with<sup>4</sup></span> · <span>all<sup>4</sup></span> · <span>a quarrel<sup>4</sup></span> · <span>The Lord<sup>3</sup></span> · <span>master&lt;s&gt; + our<sup>1</sup></span> · <span>and + judgments + his<sup>1</sup></span> · <span>and + statutes + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v10-31">Nehemiah 10:31</h3>
+  <p class="r"><span>and + which<sup>1</sup></span> · <span>no<sup>4</sup></span> · <span>Make<sup>3</sup></span> · <span>daughters + our<sup>1</sup></span> · <span>to + people + my<sup>1</sup></span> · <span>the + earth<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>daughters + their<sup>1</sup></span> · <span>no<sup>4</sup></span> · <span>accept<sup>3</sup></span> · <span>to + children + our<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v10-32">Nehemiah 10:32</h3>
+  <p class="r"><span>and + people + my<sup>1</sup></span> · <span>the + earth<sup>1</sup></span> · <span>with<sup>4</sup></span> · <span>and + all<sup>1</sup></span> · <span>hope<sup>4</sup></span> · <span>over the + day<sup>1</sup></span> · <span>(cause to, let, make to) cease<sup>3</sup></span> · <span>sell<sup>7</sup></span> · <span>no<sup>4</sup></span> · <span>accept<sup>3</sup></span> · <span>melt<sup>5</sup></span> · <span>when + sat<sup>1</sup></span> · <span>and + [will be] on the + day<sup>1</sup></span> · <span>Kedesh<sup>4</sup></span> · <span>with<sup>4</sup></span> · <span>the + year<sup>1</sup></span> · <span>&lt;the&gt; + seventh<sup>1</sup></span> · <span>and + Massa<sup>1</sup></span> · <span>all<sup>4</sup></span> · <span>hand<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v10-33">Nehemiah 10:33</h3>
+  <p class="r"><span>arise (up)<sup>3</sup></span> · <span>a quarrel<sup>4</sup></span> · <span>to + give<sup>1</sup></span> · <span>arise (up)<sup>3</sup></span> · <span>third (part, rank, time)<sup>3</sup></span> · <span>the + shekel<sup>1</sup></span> · <span>shamefulness<sup>4</sup></span> · <span>of + [the] service of<sup>1</sup></span> · <span>place<sup>4</sup></span> · <span>God + our<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v10-34">Nehemiah 10:34</h3>
+  <p class="r"><span>for &lt;the&gt; + food<sup>1</sup></span> · <span>the + row<sup>1</sup></span> · <span>and + Manahath<sup>1</sup></span> · <span>&lt;the&gt; + continuity<sup>1</sup></span> · <span>&lt;the&gt; + continuity<sup>1</sup></span> · <span>&lt;the&gt; + new<sup>1</sup></span> · <span>&lt;into&gt; + appointed times<sup>1</sup></span> · <span>to + make atonement<sup>1</sup></span> · <span>Most High<sup>3</sup></span> · <span>Israel<sup>4</sup></span> · <span>and + all<sup>1</sup></span> · <span>business<sup>3</sup></span> · <span>place<sup>4</sup></span> · <span>God + our<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v10-35">Nehemiah 10:35</h3>
+  <p class="r"><span>be accepted<sup>3</sup></span> · <span>Most High<sup>3</sup></span> · <span>offering<sup>3</sup></span> · <span>the + wood&lt;s&gt;<sup>1</sup></span> · <span>the + priests<sup>1</sup></span> · <span>the + Levites<sup>1</sup></span> · <span>and + the + people<sup>1</sup></span> · <span>to + bring [it]<sup>1</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>God + our<sup>1</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>fathers + our<sup>1</sup></span> · <span>to + times<sup>1</sup></span> · <span>appoint<sup>3</sup></span> · <span>alter<sup>4</sup></span> · <span>shamefulness<sup>4</sup></span> · <span>&lt;into&gt; + consuming<sup>1</sup></span> · <span>Most High<sup>3</sup></span> · <span>an altar<sup>1</sup></span> · <span>The Lord<sup>3</sup></span> · <span>God + our<sup>1</sup></span> · <span>according to &lt;the&gt; + [what] is written<sup>1</sup></span> · <span>in the + law<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v10-36">Nehemiah 10:36</h3>
+  <p class="r"><span>and + to + bring<sup>1</sup></span> · <span>with<sup>4</sup></span> · <span>eldest (son)<sup>3</sup></span> · <span>land + our<sup>1</sup></span> · <span>all<sup>4</sup></span> · <span>reward<sup>3</sup></span> · <span>all<sup>4</sup></span> · <span>tree<sup>4</sup></span> · <span>alter<sup>4</sup></span> · <span>shamefulness<sup>4</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>The Lord<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v10-37">Nehemiah 10:37</h3>
+  <p class="r"><span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>eldest (son)<sup>3</sup></span> · <span>Beninu<sup>4</sup></span> · <span>according to &lt;the&gt; + [what] is written<sup>1</sup></span> · <span>in the + law<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>eldest (son)<sup>3</sup></span> · <span>bovine<sup>8</sup></span> · <span>to + bring [it]<sup>1</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>God + our<sup>1</sup></span> · <span>[belonged] to the + priests<sup>1</sup></span> · <span>who + serve<sup>1</sup></span> · <span>in the + house<sup>1</sup></span> · <span>God + our<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v10-38">Nehemiah 10:38</h3>
+  <p class="r"><span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>beginning<sup>4</sup></span> · <span>and + [the] fruit of<sup>1</sup></span> · <span>all<sup>4</sup></span> · <span>tree<sup>4</sup></span> · <span>fresh grape-juice<sup>4</sup></span> · <span>and + Izhar<sup>1</sup></span> · <span>a prophet<sup>1</sup></span> · <span>[belonged] to the + priests<sup>1</sup></span> · <span>these<sup>4</sup></span> · <span>chamber<sup>3</sup></span> · <span>place<sup>4</sup></span> · <span>God + our<sup>1</sup></span> · <span>and + [the] tithe of<sup>1</sup></span> · <span>land + our<sup>1</sup></span> · <span>to the + Levites<sup>1</sup></span> · <span>and + they<sup>1</sup></span> · <span>the + Levites<sup>1</sup></span> · <span>over + all<sup>1</sup></span> · <span>Eri<sup>4</sup></span> · <span>servitude + our<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v10-39">Nehemiah 10:39</h3>
+  <p class="r"><span>and + it became<sup>1</sup></span> · <span>the + priest<sup>1</sup></span> · <span>son<sup>4</sup></span> · <span>Aaron<sup>9</sup></span> · <span>with<sup>3</sup></span> · <span>the + Levites<sup>1</sup></span> · <span>on the + ten<sup>1</sup></span> · <span>the + Levites<sup>1</sup></span> · <span>and + the + Levites<sup>1</sup></span> · <span>arise (up)<sup>3</sup></span> · <span>with<sup>4</sup></span> · <span>a tenth<sup>4</sup></span> · <span>the + tithe<sup>1</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>God + our<sup>1</sup></span> · <span>these<sup>4</sup></span> · <span>the + store-rooms<sup>1</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>the + storehouse<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v10-40">Nehemiah 10:40</h3>
+  <p class="r"><span>since<sup>4</sup></span> · <span>these<sup>4</sup></span> · <span>the + store-rooms<sup>1</sup></span> · <span>abide<sup>3</sup></span> · <span>young<sup>3</sup></span> · <span>Israel<sup>4</sup></span> · <span>and + sons<sup>1</sup></span> · <span>the + Levite<sup>1</sup></span> · <span>with<sup>4</sup></span> · <span>gift<sup>3</sup></span> · <span>the + grain<sup>1</sup></span> · <span>the + new wine<sup>1</sup></span> · <span>and + the + fresh oil<sup>1</sup></span> · <span>and + [the] name of<sup>1</sup></span> · <span>vessel<sup>4</sup></span> · <span>the + sanctuary<sup>1</sup></span> · <span>and + the + priests<sup>1</sup></span> · <span>who + serve<sup>1</sup></span> · <span>and + the + gatekeepers<sup>1</sup></span> · <span>and + the + singers<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>commit self<sup>3</sup></span> · <span>with<sup>4</sup></span> · <span>place<sup>4</sup></span> · <span>God + our<sup>1</sup></span></p></article>
+  <nav class="porch-nav"><a href="/nehemiah/9/" rel="prev">Nehemiah 9</a><a href="/nehemiah/">Nehemiah, from the beginning</a><a href="/nehemiah/11/" rel="next">Nehemiah 11</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="2">ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · CC BY-SA 4.0</li>
+    <li value="3">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="4">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="5">Classical Hebrew Words database · Public Domain</li>
+    <li value="6">BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas · Public Domain + CC BY 4.0</li>
+    <li value="7">MUSE large-scale ground-truth Hebrew-English bilingual dictionary · CC BY-NC 4.0</li>
+    <li value="8">Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary · CC BY-SA + GFDL</li>
+    <li value="9">Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source · Public Domain</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

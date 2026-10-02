@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="jeremiah">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="36">
+<meta name="description" content="Jeremiah 36 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/jeremiah/36/">
+<title>Jeremiah 36 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Jeremiah 36</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v36-1">Jeremiah 36:1</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>shamefulness<sup>2</sup></span> · <span>&lt;the&gt; + fourth<sup>1</sup></span> · <span>of + Jehoiakim<sup>1</sup></span> · <span>son<sup>2</sup></span> · <span>supporteth<sup>3</sup></span> · <span>king<sup>2</sup></span> · <span>Jehudah<sup>2</sup></span> · <span>to exist<sup>2</sup></span> · <span>vizier<sup>2</sup></span> · <span>to dream<sup>4</sup></span> · <span>these<sup>2</sup></span> · <span>Jeremiah’s<sup>5</sup></span> · <span>hundred((-fold), -th)<sup>6</sup></span> · <span>The Lord<sup>6</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-2">Jeremiah 36:2</h3>
+  <p class="r"><span>bring<sup>6</sup></span> · <span>come<sup>6</sup></span> · <span>roll<sup>6</sup></span> · <span>book<sup>2</sup></span> · <span>and + [the] inscription of<sup>1</sup></span> · <span>Elijah<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + things<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>answer<sup>6</sup></span> · <span>[is] to + you<sup>1</sup></span> · <span>Most High<sup>6</sup></span> · <span>Israel<sup>2</sup></span> · <span>and + on<sup>1</sup></span> · <span>Jehudah<sup>2</sup></span> · <span>and + on<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>Gentile<sup>6</sup></span> · <span>from + [the] day<sup>1</sup></span> · <span>answer<sup>6</sup></span> · <span>[is] to + you<sup>1</sup></span> · <span>+ piss<sup>6</sup></span> · <span>supporteth<sup>3</sup></span> · <span>and + unto<sup>1</sup></span> · <span>on this day as distinct from yesterday or tomorrow<sup>7</sup></span> · <span>to dream<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v36-3">Jeremiah 36:3</h3>
+  <p class="r"><span>foolish<sup>2</sup></span> · <span>X attentively<sup>6</sup></span> · <span>place<sup>2</sup></span> · <span>Jehudah<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + calamity<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>I<sup>2</sup></span> · <span>mean<sup>2</sup></span> · <span>to + make<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>because of<sup>6</sup></span> · <span>return<sup>5</sup></span> · <span>person<sup>2</sup></span> · <span>from + way + his<sup>1</sup></span> · <span>the + calamity<sup>1</sup></span> · <span>and + I will forgive<sup>1</sup></span> · <span>&lt;to&gt; + iniquity + their<sup>1</sup></span> · <span>and + &lt;to&gt; + sin + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-4">Jeremiah 36:4</h3>
+  <p class="r"><span>the third book of the Old Testament<sup>7</sup></span> · <span>Jeremiah’s<sup>5</sup></span> · <span>with<sup>2</sup></span> · <span>Baruk<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>Neriah<sup>2</sup></span> · <span>and + he wrote<sup>1</sup></span> · <span>Baruk<sup>2</sup></span> · <span>Mephibosheth<sup>6</sup></span> · <span>Jeremiah’s<sup>5</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>speak<sup>6</sup></span> · <span>The Lord<sup>6</sup></span> · <span>that<sup>2</sup></span> · <span>to speak<sup>2</sup></span> · <span>to + him<sup>1</sup></span> · <span>Most High<sup>6</sup></span> · <span>roll<sup>6</sup></span> · <span>book<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v36-5">Jeremiah 36:5</h3>
+  <p class="r"><span>and + he commanded<sup>1</sup></span> · <span>Jeremiah’s<sup>5</sup></span> · <span>with<sup>2</sup></span> · <span>Baruk<sup>2</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>galley<sup>2</sup></span> · <span>X be able<sup>6</sup></span> · <span>no<sup>2</sup></span> · <span>X at all<sup>6</sup></span> · <span>abide<sup>6</sup></span> · <span>place<sup>2</sup></span> · <span>The Lord<sup>6</sup></span></p></article>
+  <article class="pv"><h3 id="v36-6">Jeremiah 36:6</h3>
+  <p class="r"><span>and + you will go<sup>1</sup></span> · <span>you<sup>8</sup></span> · <span>and + you will call<sup>1</sup></span> · <span>in the + scroll<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>letter<sup>2</sup></span> · <span>Mephibosheth<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>speak<sup>6</sup></span> · <span>The Lord<sup>6</sup></span> · <span>in + ears<sup>1</sup></span> · <span>the + people<sup>1</sup></span> · <span>place<sup>2</sup></span> · <span>The Lord<sup>6</sup></span> · <span>over the + day<sup>1</sup></span> · <span>fast<sup>6</sup></span> · <span>and + also<sup>1</sup></span> · <span>in + ears<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>Jehudah<sup>2</sup></span> · <span>those + [which] came<sup>1</sup></span> · <span>from + cities + their<sup>1</sup></span> · <span>you will read aloud + them<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-7">Jeremiah 36:7</h3>
+  <p class="r"><span>foolish<sup>2</sup></span> · <span>plaster<sup>2</sup></span> · <span>supplication + their<sup>1</sup></span> · <span>before<sup>2</sup></span> · <span>The Lord<sup>6</sup></span> · <span>and + they turned back<sup>1</sup></span> · <span>person<sup>2</sup></span> · <span>from + way + his<sup>1</sup></span> · <span>the + calamity<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>older<sup>2</sup></span> · <span>¿ + also<sup>1</sup></span> · <span>and + the + rage<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>to speak<sup>2</sup></span> · <span>The Lord<sup>6</sup></span> · <span>these<sup>2</sup></span> · <span>the + people<sup>1</sup></span> · <span>to dream<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v36-8">Jeremiah 36:8</h3>
+  <p class="r"><span>and + he made<sup>1</sup></span> · <span>Baruk<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>Neriah<sup>2</sup></span> · <span>according to + all<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>he commanded + him<sup>1</sup></span> · <span>Jeremiah’s<sup>5</sup></span> · <span>the + prophet<sup>1</sup></span> · <span>to + call<sup>1</sup></span> · <span>in the + book<sup>1</sup></span> · <span>speak<sup>6</sup></span> · <span>The Lord<sup>6</sup></span> · <span>place<sup>2</sup></span> · <span>The Lord<sup>6</sup></span></p></article>
+  <article class="pv"><h3 id="v36-9">Jeremiah 36:9</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>shamefulness<sup>2</sup></span> · <span>&lt;the&gt; + fifth<sup>1</sup></span> · <span>of + Jehoiakim<sup>1</sup></span> · <span>son<sup>2</sup></span> · <span>supporteth<sup>3</sup></span> · <span>king<sup>2</sup></span> · <span>Jehudah<sup>2</sup></span> · <span>in the + month<sup>1</sup></span> · <span>the + ninth<sup>1</sup></span> · <span>read<sup>6</sup></span> · <span>fast<sup>6</sup></span> · <span>before<sup>2</sup></span> · <span>The Lord<sup>6</sup></span> · <span>all<sup>2</sup></span> · <span>the + people<sup>1</sup></span> · <span>in + Jerusalem<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>the + people<sup>1</sup></span> · <span>those + [which] came<sup>1</sup></span> · <span>some of + cities<sup>1</sup></span> · <span>Jehudah<sup>2</sup></span> · <span>in + Jerusalem<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-10">Jeremiah 36:10</h3>
+  <p class="r"><span>the third book of the Old Testament<sup>7</sup></span> · <span>Baruk<sup>2</sup></span> · <span>in the + book<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>speak<sup>6</sup></span> · <span>Jeremiah’s<sup>5</sup></span> · <span>place<sup>2</sup></span> · <span>The Lord<sup>6</sup></span> · <span>[were] in the + rooms<sup>1</sup></span> · <span>hath accomplished<sup>3</sup></span> · <span>son<sup>2</sup></span> · <span>conceal<sup>2</sup></span> · <span>the + letter<sup>1</sup></span> · <span>in + courtyard<sup>1</sup></span> · <span>at or nearest to the top<sup>7</sup></span> · <span>opening<sup>2</sup></span> · <span>storm<sup>6</sup></span> · <span>place<sup>2</sup></span> · <span>The Lord<sup>6</sup></span> · <span>the + month<sup>1</sup></span> · <span>in + ears<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>the + people<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-11">Jeremiah 36:11</h3>
+  <p class="r"><span>and + he heard<sup>1</sup></span> · <span>Micaiah<sup>6</sup></span> · <span>son<sup>2</sup></span> · <span>hath accomplished<sup>3</sup></span> · <span>son<sup>2</sup></span> · <span>conceal<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>speak<sup>6</sup></span> · <span>The Lord<sup>6</sup></span> · <span>above<sup>2</sup></span> · <span>the + letter<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-12">Jeremiah 36:12</h3>
+  <p class="r"><span>and + he came down<sup>1</sup></span> · <span>place<sup>2</sup></span> · <span>consult<sup>6</sup></span> · <span>Most High<sup>6</sup></span> · <span>chamber<sup>6</sup></span> · <span>the + letter<sup>1</sup></span> · <span>and + there!<sup>1</sup></span> · <span>authority<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + commanders<sup>1</sup></span> · <span>(make to) abide(-ing)<sup>6</sup></span> · <span>Elishama<sup>2</sup></span> · <span>the + letter<sup>1</sup></span> · <span>and + Delaiah<sup>1</sup></span> · <span>son<sup>2</sup></span> · <span>man of God<sup>9</sup></span> · <span>and + Elnathan<sup>1</sup></span> · <span>son<sup>2</sup></span> · <span>Achbor<sup>2</sup></span> · <span>and + Gemariah<sup>1</sup></span> · <span>son<sup>2</sup></span> · <span>conceal<sup>2</sup></span> · <span>and + Zedekiah<sup>1</sup></span> · <span>son<sup>2</sup></span> · <span>hath been gracious<sup>3</sup></span> · <span>and + all<sup>1</sup></span> · <span>the + commanders<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-13">Jeremiah 36:13</h3>
+  <p class="r"><span>and + he told<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>Micaiah<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + things<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>loud<sup>2</sup></span> · <span>inquire<sup>6</sup></span> · <span>Baruk<sup>2</sup></span> · <span>in the + book<sup>1</sup></span> · <span>in + ears<sup>1</sup></span> · <span>the + people<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-14">Jeremiah 36:14</h3>
+  <p class="r"><span>and + they sent away<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>the + commanders<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>Baruk<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>Jehudi<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>father of Jehudi<sup>10</sup></span> · <span>son<sup>2</sup></span> · <span>man<sup>9</sup></span> · <span>son<sup>2</sup></span> · <span>Cushite<sup>2</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>the + scroll<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>meet<sup>6</sup></span> · <span>Hephzi-bah<sup>6</sup></span> · <span>in + ears<sup>1</sup></span> · <span>the + people<sup>1</sup></span> · <span>take + it<sup>1</sup></span> · <span>in + hand + your<sup>1</sup></span> · <span>and + go<sup>1</sup></span> · <span>and + he took<sup>1</sup></span> · <span>Baruk<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>father of Baruch<sup>10</sup></span> · <span>with<sup>2</sup></span> · <span>the + scroll<sup>1</sup></span> · <span>on + hand + his<sup>1</sup></span> · <span>and + he brought [them]<sup>1</sup></span> · <span>to + them<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-15">Jeremiah 36:15</h3>
+  <p class="r"><span>and + they said<sup>1</sup></span> · <span>to + him<sup>1</sup></span> · <span>remain<sup>6</sup></span> · <span>now<sup>2</sup></span> · <span>and + read aloud + it<sup>1</sup></span> · <span>with + ears + our<sup>1</sup></span> · <span>the third book of the Old Testament<sup>7</sup></span> · <span>Baruk<sup>2</sup></span> · <span>in + ears + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-16">Jeremiah 36:16</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>when + heard + they<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + things<sup>1</sup></span> · <span>be afraid<sup>6</sup></span> · <span>person<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>neighbor + his<sup>1</sup></span> · <span>and + they said<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>Baruk<sup>2</sup></span> · <span>tell<sup>6</sup></span> · <span>chief<sup>2</sup></span> · <span>to + [the] king of<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + things<sup>1</sup></span> · <span>Elah<sup>6</sup></span></p></article>
+  <article class="pv"><h3 id="v36-17">Jeremiah 36:17</h3>
+  <p class="r"><span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>Baruk<sup>2</sup></span> · <span>ask (counsel, on)<sup>6</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>tell<sup>6</sup></span> · <span>now<sup>2</sup></span> · <span>abide (all night)<sup>6</sup></span> · <span>how?<sup>11</sup></span> · <span>letter<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + things<sup>1</sup></span> · <span>Elah<sup>6</sup></span> · <span>from + mouth + its<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-18">Jeremiah 36:18</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>Baruk<sup>2</sup></span> · <span>from + mouth + its<sup>1</sup></span> · <span>bewray (self)<sup>6</sup></span> · <span>against<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + things<sup>1</sup></span> · <span>Elah<sup>6</sup></span> · <span>and + I<sup>1</sup></span> · <span>record<sup>2</sup></span> · <span>Most High<sup>6</sup></span> · <span>the + letter<sup>1</sup></span> · <span>poles + its<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-19">Jeremiah 36:19</h3>
+  <p class="r"><span>and + they said<sup>1</sup></span> · <span>the + commanders<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>Baruk<sup>2</sup></span> · <span>come<sup>6</sup></span> · <span>be absent<sup>6</sup></span> · <span>you<sup>8</sup></span> · <span>and + Jeremiah<sup>1</sup></span> · <span>and + [is] a man<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>know<sup>2</sup></span> · <span>ephah<sup>2</sup></span> · <span>you<sup>6</sup></span></p></article>
+  <article class="pv"><h3 id="v36-20">Jeremiah 36:20</h3>
+  <p class="r"><span>and + they came<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>consult<sup>6</sup></span> · <span>[the] court + towards<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>the + scroll<sup>1</sup></span> · <span>appoint<sup>6</sup></span> · <span>[were] in the + rooms<sup>1</sup></span> · <span>Elishama<sup>2</sup></span> · <span>the + letter<sup>1</sup></span> · <span>and + they told<sup>1</sup></span> · <span>in + ears<sup>1</sup></span> · <span>consult<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + things<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-21">Jeremiah 36:21</h3>
+  <p class="r"><span>and + he sent out<sup>1</sup></span> · <span>consult<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>Jehudi<sup>2</sup></span> · <span>accept<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>the + scroll<sup>1</sup></span> · <span>and + he took + it<sup>1</sup></span> · <span>from + [the] room of<sup>1</sup></span> · <span>Elishama<sup>2</sup></span> · <span>the + letter<sup>1</sup></span> · <span>and + he summoned + her<sup>1</sup></span> · <span>Jehudi<sup>2</sup></span> · <span>in + ears<sup>1</sup></span> · <span>consult<sup>6</sup></span> · <span>and + in + [the] ears of<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>the + commanders<sup>1</sup></span> · <span>the + pillars<sup>1</sup></span> · <span>above<sup>2</sup></span> · <span>consult<sup>6</sup></span></p></article>
+  <article class="pv"><h3 id="v36-22">Jeremiah 36:22</h3>
+  <p class="r"><span>and + the + king<sup>1</sup></span> · <span>(make to) abide(-ing)<sup>6</sup></span> · <span>place<sup>2</sup></span> · <span>the + winter<sup>1</sup></span> · <span>in the + month<sup>1</sup></span> · <span>&lt;the&gt; + ninth<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>ah<sup>2</sup></span> · <span>&lt;to&gt; + before + him<sup>1</sup></span> · <span>be brutish<sup>6</sup></span></p></article>
+  <article class="pv"><h3 id="v36-23">Jeremiah 36:23</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>when + read aloud<sup>1</sup></span> · <span>Jehudi<sup>2</sup></span> · <span>three<sup>6</sup></span> · <span>doors<sup>5</sup></span> · <span>and + four<sup>1</sup></span> · <span>he tore + it<sup>1</sup></span> · <span>in + sheath<sup>1</sup></span> · <span>the + letter<sup>1</sup></span> · <span>and + throw [it]<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>the + fire<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>ah<sup>2</sup></span> · <span>until<sup>2</sup></span> · <span>perfect<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + scroll<sup>1</sup></span> · <span>Most High<sup>6</sup></span> · <span>the + fire<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>Most High<sup>6</sup></span> · <span>ah<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v36-24">Jeremiah 36:24</h3>
+  <p class="r"><span>and + not<sup>1</sup></span> · <span>be afraid<sup>6</sup></span> · <span>and + not<sup>1</sup></span> · <span>tear<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>clothes + their<sup>1</sup></span> · <span>consult<sup>6</sup></span> · <span>and + all<sup>1</sup></span> · <span>servants + his<sup>1</sup></span> · <span>those + [who] heard<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + things<sup>1</sup></span> · <span>Elah<sup>6</sup></span></p></article>
+  <article class="pv"><h3 id="v36-25">Jeremiah 36:25</h3>
+  <p class="r"><span>and + also<sup>1</sup></span> · <span>Elnathan<sup>2</sup></span> · <span>and + Delaiah<sup>1</sup></span> · <span>and + Gemariah<sup>1</sup></span> · <span>come (betwixt)<sup>6</sup></span> · <span>against + [the] king of<sup>1</sup></span> · <span>to + not<sup>1</sup></span> · <span>seraph<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>the + scroll<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>loud<sup>2</sup></span> · <span>to + them<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-26">Jeremiah 36:26</h3>
+  <p class="r"><span>and + he commanded<sup>1</sup></span> · <span>consult<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>Jerahmeel<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>consult<sup>6</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>man<sup>9</sup></span> · <span>son<sup>2</sup></span> · <span>Azriel<sup>2</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>man<sup>9</sup></span> · <span>son<sup>2</sup></span> · <span>Abdeel<sup>2</sup></span> · <span>accept<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>Baruk<sup>2</sup></span> · <span>the + letter<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>Jeremiah’s<sup>5</sup></span> · <span>the + prophet<sup>1</sup></span> · <span>and + he hid + them<sup>1</sup></span> · <span>The Lord<sup>6</sup></span></p></article>
+  <article class="pv"><h3 id="v36-27">Jeremiah 36:27</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>to speak<sup>2</sup></span> · <span>The Lord<sup>6</sup></span> · <span>these<sup>2</sup></span> · <span>Jeremiah’s<sup>5</sup></span> · <span>behind<sup>6</sup></span> · <span>seraph<sup>6</sup></span> · <span>consult<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>the + scroll<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>the + things<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>record<sup>2</sup></span> · <span>Baruk<sup>2</sup></span> · <span>Mephibosheth<sup>6</sup></span> · <span>Jeremiah’s<sup>5</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-28">Jeremiah 36:28</h3>
+  <p class="r"><span>retreat<sup>2</sup></span> · <span>bring<sup>6</sup></span> · <span>come<sup>6</sup></span> · <span>roll<sup>2</sup></span> · <span>following<sup>6</sup></span> · <span>and + he will write<sup>1</sup></span> · <span>Aliah<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + things<sup>1</sup></span> · <span>the + former<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>beacon<sup>6</sup></span> · <span>Most High<sup>6</sup></span> · <span>the + scroll<sup>1</sup></span> · <span>&lt;the&gt; + first<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>seraph<sup>6</sup></span> · <span>Jehojakim<sup>2</sup></span> · <span>king<sup>2</sup></span> · <span>Jehudah<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v36-29">Jeremiah 36:29</h3>
+  <p class="r"><span>and + on<sup>1</sup></span> · <span>Jehojakim<sup>2</sup></span> · <span>king<sup>2</sup></span> · <span>Jehudah<sup>2</sup></span> · <span>answer<sup>6</sup></span> · <span>hitherto<sup>2</sup></span> · <span>word<sup>6</sup></span> · <span>The Lord<sup>6</sup></span> · <span>you<sup>8</sup></span> · <span>(cause to, make a) burn((-ing), up) kindle<sup>6</sup></span> · <span>with<sup>2</sup></span> · <span>the + scroll<sup>1</sup></span> · <span>&lt;the&gt; + this<sup>1</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>what<sup>2</sup></span> · <span>letter<sup>2</sup></span> · <span>Aliah<sup>6</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>abide<sup>6</sup></span> · <span>abide<sup>6</sup></span> · <span>king<sup>2</sup></span> · <span>Babel<sup>2</sup></span> · <span>and + destroy<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>the + earth<sup>1</sup></span> · <span>&lt;the&gt; + this<sup>1</sup></span> · <span>and + he removed<sup>1</sup></span> · <span>from + it<sup>1</sup></span> · <span>red<sup>2</sup></span> · <span>and + livestock<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-30">Jeremiah 36:30</h3>
+  <p class="r"><span>X again<sup>6</sup></span> · <span>hitherto<sup>2</sup></span> · <span>word<sup>6</sup></span> · <span>The Lord<sup>6</sup></span> · <span>Most High<sup>6</sup></span> · <span>Jehojakim<sup>2</sup></span> · <span>king<sup>2</sup></span> · <span>Jehudah<sup>2</sup></span> · <span>no<sup>2</sup></span> · <span>beacon<sup>6</sup></span> · <span>if (haply)<sup>6</sup></span> · <span>(make to) abide(-ing)<sup>6</sup></span> · <span>Most High<sup>6</sup></span> · <span>seat<sup>2</sup></span> · <span>lover<sup>2</sup></span> · <span>and + corpse + his<sup>1</sup></span> · <span>beacon<sup>6</sup></span> · <span>adventure<sup>6</sup></span> · <span>to the + sword<sup>1</sup></span> · <span>over the + day<sup>1</sup></span> · <span>and + to the + frost<sup>1</sup></span> · <span>over the + night<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v36-31">Jeremiah 36:31</h3>
+  <p class="r"><span>and + I will visit<sup>1</sup></span> · <span>on + him<sup>1</sup></span> · <span>and + on<sup>1</sup></span> · <span>bear<sup>6</sup></span> · <span>and + on<sup>1</sup></span> · <span>servants + his<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>iniquity + their<sup>1</sup></span> · <span>and + I will bring<sup>1</sup></span> · <span>on + them<sup>1</sup></span> · <span>and + on<sup>1</sup></span> · <span>a Jashubite<sup>2</sup></span> · <span>(Chald)<sup>6</sup></span> · <span>and + [will be] to<sup>1</sup></span> · <span>person<sup>2</sup></span> · <span>Jehudah<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>the + calamity<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>answer<sup>6</sup></span> · <span>to + them<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>listen<sup>6</sup></span></p></article>
+  <article class="pv"><h3 id="v36-32">Jeremiah 36:32</h3>
+  <p class="r"><span>and + Jeremiah<sup>1</sup></span> · <span>carry away<sup>2</sup></span> · <span>roll<sup>2</sup></span> · <span>following<sup>6</sup></span> · <span>and + he gave + it<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>Baruk<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>father of Baruch<sup>10</sup></span> · <span>the + letter<sup>1</sup></span> · <span>and + he wrote<sup>1</sup></span> · <span>Aliah<sup>6</sup></span> · <span>Mephibosheth<sup>6</sup></span> · <span>Jeremiah’s<sup>5</sup></span> · <span>with<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>speak<sup>6</sup></span> · <span>the + letter<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>seraph<sup>6</sup></span> · <span>Jehojakim<sup>2</sup></span> · <span>king<sup>2</sup></span> · <span>Jehudah<sup>2</sup></span> · <span>smell<sup>2</sup></span> · <span>and + still<sup>1</sup></span> · <span>add<sup>6</sup></span> · <span>on + them<sup>1</sup></span> · <span>bee<sup>6</sup></span> · <span>(in) abound(-undance, -ant, -antly)<sup>6</sup></span> · <span>like + them<sup>1</sup></span></p></article>
+  <nav class="porch-nav"><a href="/jeremiah/35/" rel="prev">Jeremiah 35</a><a href="/jeremiah/">Jeremiah, from the beginning</a><a href="/jeremiah/37/" rel="next">Jeremiah 37</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="2">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="3">Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · CC BY 4.0</li>
+    <li value="4">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    <li value="5">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="6">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="7">Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · WordNet Licenses</li>
+    <li value="8">ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · CC BY-SA 4.0</li>
+    <li value="9">UBS Dictionary of Biblical Hebrew v0.9.2 exact definitions and glosses · CC BY-SA 4.0</li>
+    <li value="10">Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source · Public Domain</li>
+    <li value="11">Semantic Dictionary of Biblical Hebrew via HiperBiblia · CC BY-SA 4.0</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

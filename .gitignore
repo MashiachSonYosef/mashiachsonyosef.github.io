@@ -1,59 +1,26 @@
-data/lexical/.cache/
-data/import-cache/
-data/catalog/source-catalog.json
-.codex-tmp/
-.local-cache/
-.env
-*.env
-*.map
+# Scratch, and only scratch.
+#
+# build/ is where every stage writes what the next stage reads: the derived
+# plan, the staged pinned zones, the assembled door before it is copied out.
+# None of it is a record and none of it is published — but it sits inside the
+# published tree, so without this line one `git add -A` puts a build's private
+# working state on the site. That nearly happened on 2026-08-24.
+reader/build/
+reader/site/
+reader/deploy-root/
 
-# Generated high-volume workbench evidence stays local; regenerate with scripts.
-data/workbench-evidence/*.json
-data/workbench-evidence/*.jsonl
-data/workbench-evidence/*/*.json
-data/workbench-evidence/*/*.jsonl
-data/workbench-evidence/batch-runs/
-!data/workbench-evidence/frame-seeds.json
-!data/workbench-evidence/usage-concordance-manifest.json
-data/paraphrase-evidence/prototype-*.json
-data/paraphrase-evidence/prototype-*-preview.html
-reports/workbench-batch-*.log
-reports/usage-batch-*.md
-reports/workbench-usage-graph-*.md
-reports/workbench-token-inventory.md
-reports/workbench-target-queue*.md
-reports/workbench-handoff-index*.md
-reports/workbench-autonomy-*.md
-reports/workbench-seed-gap*.md
-reports/workbench-seed-review*.md
-reports/definition-route-claim-audit*.md
-reports/paraphrase-evidence-prototype-*.md
-
-# Generated per-page overlay exports stay local; regenerate from page data.
-**/overlay-export.csv
-**/overlay-export.json
-**/overlay-export.md
-
-# Temporary A10 page lists used during corpus render rollout.
-reports/.agent10-*.tmp.json
-
-# Local process markers are not evidence artifacts.
-reports/*.pid
-reports/*.stop
-
-# Local cleanup residuals intentionally preserved but not staged.
-data/sources/a-new-israeli-commentary-on-pirkei-avot.json
-data/overlays/a-new-israeli-commentary-on-pirkei-avot.json
-data/sources/amudei-yerushalayim-on-jerusalem-talmud-nedarim.json
-data/overlays/amudei-yerushalayim-on-jerusalem-talmud-nedarim.json
-data/sources/bepardes-hachasidut-vehakabbalah.json
-data/overlays/bepardes-hachasidut-vehakabbalah.json
-data/sources/ohr-penimi-on-talmud-eser-hasefirot.json
-data/overlays/ohr-penimi-on-talmud-eser-hasefirot.json
-data/sources/shuvi-shuvi-hashulamit.json
-data/overlays/shuvi-shuvi-hashulamit.json
-reports/agent10-a14-cleanup-residual-dirt-packet-2026-06-10.md
-reports/agent10-a14-cleanup-residual-dirt-packet-2026-06-10.json
-reports/agent10-live-public-old-hud-guard-2026-06-04-post-orot-reader-hint-candidate-patch.json
-reports/agent11-reader-workbench-reception-proof-2026-06-03.json
-tanakh/daniel/poc-1-1.html
+# refusals-gate-rule-v1 · a book is PUBLISHED when the gate serves it: no
+# line of the frame's C0 letter refuses a position of it, and its count is
+# stamped beside the witnesses on its own page (count-stamp-rule-v1).
+#
+# This site is served as a whole tree, so a committed zone file is a readable
+# book whether or not any page links to it. Withholding an address and
+# leaving the data is a door that says nothing is served while everything
+# still is. So the safe state is the default: zone data is not published, and
+# a book the gate serves is added on purpose (git add -f), which is the one
+# place publishing should ever be a decision somebody makes.
+#
+# The bins stay on disk — the builder reads them — they are simply not in the
+# tree. check-c0-refusals-v1 L4 holds the line from the other side.
+reader/data/zones/*.bin
+!reader/data/zones/fixture-*.bin

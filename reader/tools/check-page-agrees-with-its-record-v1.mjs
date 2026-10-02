@@ -1,0 +1,181 @@
+// check-page-agrees-with-its-record-v1
+//
+// WHY THIS EXISTS. On 2026-09-10 the demonstrations page printed, in one
+// sentence:
+//
+//     Two faces, both the record's: One face. The courtyard: linen hangings
+//     in daylight.
+//
+// Nothing was broken. The emitter carried a hardcoded lead-in, "Two faces,
+// both the record's:", and concatenated the contract's own faces.rule after
+// it. When the second face was dropped the record was updated and the
+// hardcoded half was not, so the page stated a fact and then contradicted it
+// inside the same line. Every check in the suite passed. The contract was
+// right, the CSS was right, the colors were right, and the page lied.
+//
+// That is the failure mode this project exists to catch, turned inward: a
+// page saying something about itself that its own record does not support.
+// A guard for it cannot be "does the page look right" — it has to be "does
+// every claim the page makes about a record appear IN that record".
+//
+// WHAT IS CHECKED
+//
+//   L1  every value the color contract declares is printed somewhere on the
+//       page that claims to show the contract. A record field that no page
+//       prints is a record nobody can check.
+//   L2  the page prints no phrase from the RETIRED vocabulary — words that
+//       described a design this edition used to have. Each retired phrase
+//       names the record field that would have to say it for the phrase to
+//       be legitimate, and the check consults that field rather than banning
+//       the word outright, so the day a thing comes back the guard follows.
+//   L3  no number-word sits immediately before a record value it could
+//       contradict. This is the shape of the original bug: a hardcoded
+//       "Two faces" welded to a record that says "One face".
+//
+// THE RULE THIS GUARDS, named here rather than only read at run time. The
+// manifest credits a guard by finding the rule id in its source, so a check
+// that only loads the record at run time guards it in fact and not on the
+// record, and can be deleted without the manifest noticing it is gone:
+//
+//   color-channel-rule-v2-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours
+//
+// Run: node tools/check-page-agrees-with-its-record-v1.mjs [base-url]
+import { readFileSync, existsSync } from "node:fs";
+import { readFile } from "node:fs/promises";
+import { createServer } from "node:http";
+import { join, dirname, extname, normalize } from "node:path";
+import { fileURLToPath } from "node:url";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+const K3 = join(HERE, "..");
+const RECORD = join(K3, "data", "color-contract-v1.json");
+
+// IT SERVES THE PUBLICATION ITSELF. This took a base URL and defaulted to a
+// port it did not own, so it passed or failed on whether somebody had left a
+// server running there. Worse, the suite hands every check that takes an
+// argument a ZONE url — and this one wants the publication's root — so
+// "http://…/zone.html?b=amos" became the base and /palette/ under it was a
+// 404. Ten record fields then read as ten fields no page prints, which is
+// this check's loudest finding and the one thing it must never say wrongly.
+// Now it serves the repository root, which is the deployed tree, on a port it
+// opens itself. A url given on purpose still wins.
+const SITE = join(K3, "..");
+const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8" };
+const given = process.argv[2] && !/zone\.html/u.test(process.argv[2]) ? process.argv[2] : null;
+let srv = null;
+const BASE = await (async () => {
+  if (given) return given.replace(/\/$/u, "");
+  srv = createServer(async (req, res) => {
+    const q = normalize(decodeURIComponent(req.url.split("?")[0]));
+    if (/(^|[/\\])\./u.test(q)) { res.writeHead(404); return res.end("no"); }
+    try {
+      let f = join(SITE, q);
+      if (!extname(q)) f = join(f, "index.html");
+      const body = await readFile(f);
+      res.writeHead(200, { "content-type": TYPES[extname(f)] || "application/octet-stream" });
+      res.end(body);
+    } catch { res.writeHead(404); res.end("no"); }
+  });
+  await new Promise((r) => srv.listen(0, "127.0.0.1", r));
+  return `http://127.0.0.1:${srv.address().port}`;
+})();
+
+let bad = 0;
+const check = (what, ok, detail) => {
+  if (!ok) bad += 1;
+  console.log(`${ok ? "  ok" : "FAIL"}  ${what}${detail ? `  ·  ${detail}` : ""}`);
+};
+
+if (!existsSync(RECORD)) { console.log(`SKIPPED — no record at ${RECORD}`); process.exit(3); }
+const CC = JSON.parse(readFileSync(RECORD, "utf8"));
+
+// Whitespace is presentation. Compare on the words.
+const flat = (s) => String(s).replace(/\s+/gu, " ").trim();
+const has = (hay, needle) => flat(hay).includes(flat(needle));
+
+const pw = await loadPlaywright();
+const b = await pw.chromium.launch(launchOptions());
+const p = await b.newPage({ viewport: { width: 1180, height: 900 } });
+// the record is printed at /palette/ since 2026-09-11; it left the demonstrations
+// page when the owner approved it, because that page is an approval queue
+await p.goto(`${BASE}/palette/`, { waitUntil: "networkidle" });
+await p.waitForTimeout(1500);
+const text = await p.evaluate(() => document.body.innerText);
+await b.close();
+if (srv) srv.close();
+// A page that did not arrive is not a page that prints nothing. Ten fields
+// reported missing because the address 404'd would read exactly like the bug
+// this file exists to catch, which is the one mistake it cannot afford.
+if (!text || text.trim().length < 40) {
+  console.log(`FAIL  the palette page answers at ${BASE}/palette/  ·  ${text ? `${text.trim().length} characters` : "no body"}`);
+  process.exit(1);
+}
+
+// ── L1 · every declared value reaches the page ───────────────────────────────
+// Only the fields the page is meant to show. A record may hold reasoning the
+// page does not print; what may not happen is a VALUE going unprinted.
+const mustPrint = [];
+for (const [key, d] of Object.entries(CC.channels || {})) {
+  if (key === "rule" || !d || typeof d !== "object") continue;
+  if (d.material) mustPrint.push([`channel ${key}: its material`, d.material]);
+  if (d.reads_as) mustPrint.push([`channel ${key}: how it is borne`, d.reads_as]);
+}
+if (CC.channels && CC.channels.rule) mustPrint.push(["the channel rule", CC.channels.rule]);
+if (CC.faces && CC.faces.rule) mustPrint.push(["the faces rule", CC.faces.rule]);
+
+for (const [what, value] of mustPrint) {
+  check(`L1  ${what} is printed where a reader can check it`, has(text, value),
+    has(text, value) ? "" : `the record says "${flat(value).slice(0, 70)}…" and no page prints it`);
+}
+
+// ── L2 · retired vocabulary, consulted against the record ───────────────────
+// Each entry: the phrase, and a function saying whether the record still
+// licenses it. The phrase is only a fault when the record has moved on.
+const RETIRED = [
+  ["Two faces", () => Object.keys(CC.faces || {}).filter((k) => CC.faces[k] && CC.faces[k].base_surface).length >= 2,
+    "the contract declares one face"],
+  ["both the record's", () => Object.keys(CC.faces || {}).filter((k) => CC.faces[k] && CC.faces[k].base_surface).length >= 2,
+    "that phrase counted two faces"],
+  ["the tent is dark", () => !!(CC.faces || {}).night, "the night face was dropped"],
+  ["electric_blue", () => JSON.stringify(CC.channels || {}).includes("electric_blue"),
+    "reader_selection is no longer valued blue"],
+];
+// "a final color" was in this list on the guard's first run and it fired at
+// once — on the owner's own quoted ruling, "Gold is NOT a final color". The
+// phrase is legitimate prose; what was really being asked was whether the
+// emitter's dead fallback could still fire. That is a question for the record,
+// not for the page's words, and asking it of the words was the guard making
+// the same mistake it exists to catch.
+for (const [key, d] of Object.entries(CC.channels || {})) {
+  if (key === "rule" || !d || typeof d !== "object") continue;
+  check(`L2  channel ${key} says how it is borne, so no emitter has to guess`,
+    typeof d.reads_as === "string" && d.reads_as.length > 0,
+    d.reads_as ? "" : "no reads_as, so the emitter falls back to a sentence of its own");
+}
+for (const [phrase, licensed, why] of RETIRED) {
+  const present = has(text, phrase);
+  const ok = !present || licensed();
+  check(`L2  "${phrase}" is not printed unless the record still says it`, ok,
+    ok ? (present ? "printed, and the record backs it" : "not printed") : `printed, but ${why}`);
+}
+
+// ── L3 · the shape of the original bug ──────────────────────────────────────
+// A hardcoded count welded to a record value that carries its own count. The
+// page said "Two faces" and then, in the same line, the record's "One face".
+const COUNTS = ["one", "two", "three", "four", "both", "either", "neither"];
+const facesRule = flat((CC.faces || {}).rule || "");
+const rulesOwnCount = COUNTS.find((w) => new RegExp(`^${w}\\b`, "iu").test(facesRule));
+if (rulesOwnCount) {
+  // find what the page puts immediately before the record's own sentence
+  const at = flat(text).indexOf(facesRule);
+  const before = at > 0 ? flat(text).slice(Math.max(0, at - 60), at) : "";
+  const clash = COUNTS.find((w) => new RegExp(`\\b${w}\\b`, "iu").test(before) && w.toLowerCase() !== rulesOwnCount.toLowerCase());
+  check("L3  no counting word is welded in front of a record that counts for itself",
+    !clash, clash ? `the record opens "${rulesOwnCount}…" and the page puts "${clash}" right before it: "…${before}"` : `the record opens "${rulesOwnCount}…" and nothing counts over it`);
+} else {
+  console.log("  --    L3  the faces rule does not open with a count, so nothing can contradict one");
+}
+
+console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
+process.exit(bad ? 1 : 0);

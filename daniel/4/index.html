@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="daniel">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="4">
+<meta name="description" content="Daniel 4 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/daniel/4/">
+<title>Daniel 4 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Daniel 4</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v4-1">Daniel 4:1</h3>
+  <p class="r"><span>mourn<sup>1</sup></span> · <span>Nebuchadnezzar<sup>2</sup></span> · <span>prosper<sup>2</sup></span> · <span>be<sup>1</sup></span> · <span>[is] in + house + my<sup>3</sup></span> · <span>[is] in + [the] palaces of<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-2">Daniel 4:2</h3>
+  <p class="r"><span>a dream<sup>3</sup></span> · <span>behold<sup>1</sup></span> · <span>Most High<sup>1</sup></span> · <span>bed<sup>1</sup></span> · <span>and + [the] visions of<sup>3</sup></span> · <span>chief<sup>1</sup></span> · <span>they alarmed + me<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-3">Daniel 4:3</h3>
+  <p class="r"><span>and + from + me<sup>3</sup></span> · <span>set<sup>1</sup></span> · <span>to taste<sup>2</sup></span> · <span>first<sup>2</sup></span> · <span>to + every<sup>3</sup></span> · <span>wise<sup>1</sup></span> · <span>Babel<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>to interpret<sup>4</sup></span> · <span>dream + the<sup>3</sup></span> · <span>he made known to + me<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-4">Daniel 4:4</h3>
+  <p class="r"><span>&lt;in&gt; + then<sup>3</sup></span> · <span>bring in<sup>1</sup></span> · <span>Alian<sup>1</sup></span> · <span>conjurers + the<sup>3</sup></span> · <span>Chaldeans + the<sup>3</sup></span> · <span>and + astrologers + the<sup>3</sup></span> · <span>word<sup>1</sup></span> · <span>mourn<sup>1</sup></span> · <span>and + interpretation + its<sup>3</sup></span> · <span>no<sup>2</sup></span> · <span>certify<sup>1</sup></span> · <span>to &lt;the&gt; + me<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-5">Daniel 4:5</h3>
+  <p class="r"><span>and + unto<sup>3</sup></span> · <span>last<sup>2</sup></span> · <span>Most High<sup>1</sup></span> · <span>first<sup>2</sup></span> · <span>Daniel<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>Shammah<sup>2</sup></span> · <span>Belteshatstsar<sup>2</sup></span> · <span>according to + [the] name of<sup>3</sup></span> · <span>God<sup>1</sup></span> · <span>and + Di<sup>3</sup></span> · <span>Spirit<sup>2</sup></span> · <span>God<sup>1</sup></span> · <i>a reading that quotes Hebrew letters, in the reader</i> · <span>Hephzi-bah<sup>1</sup></span> · <span>before + him<sup>3</sup></span> · <span>speech<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v4-6">Daniel 4:6</h3>
+  <p class="r"><span>Belteshatstsar<sup>2</sup></span> · <span>many<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>mourn<sup>1</sup></span> · <span>certify<sup>1</sup></span> · <span>which<sup>2</sup></span> · <span>Spirit<sup>2</sup></span> · <span>God<sup>1</sup></span> · <i>a reading that quotes Hebrew letters, in the reader</i> · <span>over &lt;the&gt; + you<sup>3</sup></span> · <span>and + all<sup>3</sup></span> · <span>attenuate<sup>2</sup></span> · <span>no<sup>2</sup></span> · <span>insist<sup>2</sup></span> · <span>come<sup>1</sup></span> · <span>look<sup>1</sup></span> · <span>Helmi 1<sup>5</sup></span> · <span>which<sup>2</sup></span> · <span>behold<sup>1</sup></span> · <span>and + interpretation + its<sup>3</sup></span> · <span>word<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v4-7">Daniel 4:7</h3>
+  <p class="r"><span>and + [the] visions of<sup>3</sup></span> · <span>chief<sup>1</sup></span> · <span>Most High<sup>1</sup></span> · <span>bed<sup>1</sup></span> · <span>seer<sup>2</sup></span> · <span>be<sup>1</sup></span> · <span>and + if<sup>3</sup></span> · <span>a tree<sup>2</sup></span> · <span>in + [the] midst of<sup>3</sup></span> · <span>earth<sup>1</sup></span> · <span>and + Rumah<sup>3</sup></span> · <span>many<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v4-8">Daniel 4:8</h3>
+  <p class="r"><span>populous<sup>1</sup></span> · <span>tree<sup>6</sup></span> · <span>and + Rumah<sup>3</sup></span> · <span>come<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>earth<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v4-9">Daniel 4:9</h3>
+  <p class="r"><span>afia<sup>7</sup></span> · <span>Shaphir<sup>2</sup></span> · <span>many<sup>2</sup></span> · <span>and + food<sup>3</sup></span> · <span>to + put an end to<sup>3</sup></span> · <span>Hephzi-bah<sup>1</sup></span> · <span>have a shadow<sup>1</sup></span> · <span>alive<sup>1</sup></span> · <span>cut down<sup>2</sup></span> · <span>dwell<sup>1</sup></span> · <span>dwell<sup>8</sup></span> · <i>a reading that quotes Hebrew letters, in the reader</i> · <span>heavens + the<sup>3</sup></span> · <span>and + from + it<sup>3</sup></span> · <span>feed<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>&lt;the&gt; + flesh<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-10">Daniel 4:10</h3>
+  <p class="r"><span>seer<sup>2</sup></span> · <span>be<sup>1</sup></span> · <span>in + vision + my<sup>3</sup></span> · <span>chief<sup>1</sup></span> · <span>Most High<sup>1</sup></span> · <span>bed<sup>1</sup></span> · <span>and + if<sup>3</sup></span> · <span>town<sup>1</sup></span> · <span>part<sup>2</sup></span> · <span>heavens + the<sup>3</sup></span> · <span>to descend<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v4-11">Daniel 4:11</h3>
+  <p class="r"><span>call<sup>2</sup></span> · <span>with + a retinue<sup>3</sup></span> · <span>and + thus<sup>3</sup></span> · <span>word<sup>1</sup></span> · <span>hew down<sup>1</sup></span> · <span>tree<sup>6</sup></span> · <span>shake off<sup>1</sup></span> · <span>afia<sup>7</sup></span> · <span>bemoan<sup>1</sup></span> · <span>animal[s] + the<sup>3</sup></span> · <span>part<sup>2</sup></span> · <span>part<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v4-12">Daniel 4:12</h3>
+  <p class="r"><span>but<sup>2</sup></span> · <span>to hamstring<sup>2</sup></span> · <span>on + earth + the<sup>3</sup></span> · <span>leave<sup>1</sup></span> · <span>which<sup>2</sup></span> · <span>iron<sup>2</sup></span> · <span>and + he practiced divination<sup>3</sup></span> · <span>which<sup>2</sup></span> · <span>cut down<sup>2</sup></span> · <span>heavens + the<sup>3</sup></span> · <span>wet<sup>1</sup></span> · <span>and + with<sup>3</sup></span> · <span>animal[s] + the<sup>3</sup></span> · <span>portion<sup>2</sup></span> · <span>on + [the] vegetation of<sup>3</sup></span> · <span>earth<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v4-13">Daniel 4:13</h3>
+  <p class="r"><span>cakes<sup>9</sup></span> · <span>part<sup>2</sup></span> · <span>accept<sup>1</sup></span> · <span>alter<sup>1</sup></span> · <span>and + heart<sup>3</sup></span> · <span>living creature<sup>4</sup></span> · <i>a reading that quotes Hebrew letters, in the reader</i> · <span>X before<sup>1</sup></span> · <span>and + seven<sup>3</sup></span> · <span>time<sup>1</sup></span> · <span>pass<sup>1</sup></span> · <span>to + him<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-14">Daniel 4:14</h3>
+  <p class="r"><span>watcher<sup>1</sup></span> · <span>word + the<sup>3</sup></span> · <span>and + [the] command of<sup>3</sup></span> · <i>a reading that quotes Hebrew letters, in the reader</i> · <span>demand<sup>1</sup></span> · <span>until<sup>2</sup></span> · <span>Daberath<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>certify<sup>1</sup></span> · <span>Hija<sup>5</sup></span> · <span>which<sup>2</sup></span> · <span>ruler<sup>1</sup></span> · <span>(most) high<sup>1</sup></span> · <span>Most High + the<sup>3</sup></span> · <span>in + kingdom<sup>3</sup></span> · <span>accept<sup>1</sup></span> · <span>and + &lt;to&gt; + from<sup>3</sup></span> · <span>which<sup>2</sup></span> · <span>truth<sup>1</sup></span> · <span>let him give + it<sup>3</sup></span> · <span>and + [the] lowly<sup>3</sup></span> · <span>people<sup>1</sup></span> · <span>Jakim<sup>2</sup></span> · <span>Aliah<sup>1</sup></span> · <span>to ascend<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v4-15">Daniel 4:15</h3>
+  <p class="r"><span>these<sup>1</sup></span> · <span>dream + the<sup>3</sup></span> · <span>behold<sup>1</sup></span> · <span>mourn<sup>1</sup></span> · <span>queen<sup>2</sup></span> · <span>Nebuchadnezzar<sup>2</sup></span> · <span>and + you<sup>3</sup></span> · <span>Belteshatstsar<sup>2</sup></span> · <span>interpretation + the<sup>3</sup></span> · <span>word<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>before<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>wise<sup>1</sup></span> · <span>kingdom + my<sup>3</sup></span> · <span>no<sup>2</sup></span> · <span>be able<sup>1</sup></span> · <span>interpretation + the<sup>3</sup></span> · <span>and + you<sup>3</sup></span> · <span>be able<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>Spirit<sup>2</sup></span> · <span>God<sup>1</sup></span> · <i>a reading that quotes Hebrew letters, in the reader</i> · <span>over &lt;the&gt; + you<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-16">Daniel 4:16</h3>
+  <p class="r"><span>then<sup>1</sup></span> · <span>Daniel<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>Shammah<sup>2</sup></span> · <span>Belteshatstsar<sup>2</sup></span> · <span>make amazed<sup>1</sup></span> · <span>to rejoice<sup>10</sup></span> · <span>and + thoughts + his<sup>3</sup></span> · <span>to respond<sup>2</sup></span> · <span>queen<sup>2</sup></span> · <span>and + I said<sup>3</sup></span> · <span>Belteshatstsar<sup>2</sup></span> · <span>dream + the<sup>3</sup></span> · <span>and + interpretation + the<sup>3</sup></span> · <span>these<sup>2</sup></span> · <span>it terrifies + you<sup>3</sup></span> · <span>to respond<sup>2</sup></span> · <span>Belteshatstsar<sup>2</sup></span> · <span>and + I said<sup>3</sup></span> · <span>form<sup>1</sup></span> · <span>dream + the<sup>3</sup></span> · <span>and + interpretation + its<sup>3</sup></span> · <span>(of quantities) imprecise but fairly close to correct<sup>11</sup></span></p></article>
+  <article class="pv"><h3 id="v4-17">Daniel 4:17</h3>
+  <p class="r"><span>tree<sup>6</sup></span> · <span>which<sup>2</sup></span> · <span>behold<sup>1</sup></span> · <span>which<sup>2</sup></span> · <span>populous<sup>1</sup></span> · <span>and + Rumah<sup>3</sup></span> · <span>come<sup>1</sup></span> · <span>to + every<sup>3</sup></span> · <span>earth<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v4-18">Daniel 4:18</h3>
+  <p class="r"><span>Shaphir<sup>2</sup></span> · <span>many<sup>2</sup></span> · <span>and + food<sup>3</sup></span> · <span>to + put an end to<sup>3</sup></span> · <span>Hephzi-bah<sup>1</sup></span> · <span>dwell<sup>1</sup></span> · <span>alive<sup>1</sup></span> · <span>cut down<sup>2</sup></span> · <span>cause to dwell<sup>1</sup></span> · <i>a reading that quotes Hebrew letters, in the reader</i> · <span>heavens + the<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-19">Daniel 4:19</h3>
+  <p class="r"><span>thou<sup>1</sup></span> · <span>as for thee<sup>1</sup></span> · <span>this<sup>12</sup></span> · <span>queen<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>Rabbith<sup>2</sup></span> · <span>Rabbah<sup>1</sup></span> · <span>Rabbah<sup>1</sup></span> · <span>earth<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v4-20">Daniel 4:20</h3>
+  <p class="r"><span>and + Di<sup>3</sup></span> · <span>seer<sup>2</sup></span> · <span>queen<sup>2</sup></span> · <span>town<sup>1</sup></span> · <span>to descend<sup>2</sup></span> · <span>part<sup>2</sup></span> · <span>heavens + the<sup>3</sup></span> · <span>and + I said<sup>3</sup></span> · <span>hew down<sup>1</sup></span> · <span>tree<sup>6</sup></span> · <span>but<sup>2</sup></span> · <span>to hamstring<sup>2</sup></span> · <span>on + earth + the<sup>3</sup></span> · <span>leave<sup>1</sup></span> · <span>which<sup>2</sup></span> · <span>iron<sup>2</sup></span> · <span>and + he practiced divination<sup>3</sup></span> · <span>which<sup>2</sup></span> · <span>cut down<sup>2</sup></span> · <span>heavens + the<sup>3</sup></span> · <span>wet<sup>1</sup></span> · <span>and + with<sup>3</sup></span> · <span>alive<sup>1</sup></span> · <span>cut down<sup>2</sup></span> · <span>portion<sup>2</sup></span> · <span>until<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>oath<sup>1</sup></span> · <span>time<sup>1</sup></span> · <span>pass<sup>1</sup></span> · <span>to + him<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-21">Daniel 4:21</h3>
+  <p class="r"><span>these<sup>1</sup></span> · <span>interpretation + the<sup>3</sup></span> · <span>queen<sup>2</sup></span> · <span>(most) high<sup>1</sup></span> · <span>Most High + the<sup>3</sup></span> · <span>it<sup>1</sup></span> · <span>which<sup>2</sup></span> · <span>bands<sup>1</sup></span> · <span>Most High<sup>1</sup></span> · <span>form<sup>1</sup></span> · <span>queen<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v4-22">Daniel 4:22</h3>
+  <p class="r"><span>and + go<sup>3</sup></span> · <span>drive<sup>1</sup></span> · <span>part<sup>2</sup></span> · <span>accept<sup>1</sup></span> · <span>and + with<sup>3</sup></span> · <span>alive<sup>1</sup></span> · <span>cut down<sup>2</sup></span> · <span>be<sup>1</sup></span> · <span>treading<sup>4</sup></span> · <span>like + oxen<sup>3</sup></span> · <span>come<sup>1</sup></span> · <span>make to eat<sup>1</sup></span> · <span>and + away from + [the] dew of<sup>3</sup></span> · <span>heavens + the<sup>3</sup></span> · <span>come<sup>1</sup></span> · <span>wet<sup>1</sup></span> · <span>and + seven<sup>3</sup></span> · <span>time<sup>1</sup></span> · <span>pass<sup>1</sup></span> · <span>[is] on + you<sup>3</sup></span> · <span>to + you<sup>3</sup></span> · <span>until<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>certify<sup>1</sup></span> · <span>which<sup>2</sup></span> · <span>ruler<sup>1</sup></span> · <span>(most) high<sup>1</sup></span> · <span>Most High + the<sup>3</sup></span> · <span>in + kingdom<sup>3</sup></span> · <span>accept<sup>1</sup></span> · <span>and + &lt;to&gt; + from<sup>3</sup></span> · <span>which<sup>2</sup></span> · <span>truth<sup>1</sup></span> · <span>let him give + it<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-23">Daniel 4:23</h3>
+  <p class="r"><span>and + Di<sup>3</sup></span> · <span>say<sup>1</sup></span> · <span>to hamstring<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>tree<sup>6</sup></span> · <span>kingdom + your<sup>3</sup></span> · <span>come<sup>1</sup></span> · <span>part<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>certify<sup>1</sup></span> · <span>which<sup>2</sup></span> · <span>empire<sup>2</sup></span> · <span>heavens + the<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-24">Daniel 4:24</h3>
+  <p class="r"><span>therefore<sup>2</sup></span> · <span>queen<sup>2</sup></span> · <span>consult<sup>1</sup></span> · <span>be acceptable<sup>1</sup></span> · <span>[is] on + you<sup>3</sup></span> · <span>to + you<sup>3</sup></span> · <span>in + righteousness<sup>3</sup></span> · <span>rapine<sup>13</sup></span> · <span>business<sup>2</sup></span> · <span>if<sup>2</sup></span> · <span>be<sup>1</sup></span> · <span>lengthening<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v4-25">Daniel 4:25</h3>
+  <p class="r"><span>restrain<sup>2</sup></span> · <span>reach<sup>1</sup></span> · <span>Most High<sup>1</sup></span> · <span>Nebuchadnezzar<sup>2</sup></span> · <span>queen<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v4-26">Daniel 4:26</h3>
+  <p class="r"><span>month<sup>1</sup></span> · <span>second<sup>1</sup></span> · <span>ten<sup>2</sup></span> · <span>Most High<sup>1</sup></span> · <span>palace<sup>2</sup></span> · <span>kingdom + the<sup>3</sup></span> · <span>which<sup>2</sup></span> · <span>Babel<sup>2</sup></span> · <span>journey<sup>2</sup></span> · <span>desire<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v4-27">Daniel 4:27</h3>
+  <p class="r"><span>to respond<sup>2</sup></span> · <span>queen<sup>2</sup></span> · <span>and + I said<sup>3</sup></span> · <span>remove<sup>2</sup></span> · <span>one..another<sup>2</sup></span> · <span>it<sup>1</sup></span> · <span>Babel<sup>2</sup></span> · <span>leader<sup>14</sup></span> · <span>which<sup>2</sup></span> · <span>mourn<sup>1</sup></span> · <span>of + Beth-<sup>3</sup></span> · <span>kingdom<sup>2</sup></span> · <span>with + [the] power of<sup>3</sup></span> · <span>hardiness<sup>15</sup></span> · <span>beauty<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v4-28">Daniel 4:28</h3>
+  <p class="r"><span>still<sup>2</sup></span> · <span>word + the<sup>3</sup></span> · <span>queen<sup>2</sup></span> · <span>voice<sup>1</sup></span> · <span>part<sup>2</sup></span> · <span>heavens + the<sup>3</sup></span> · <span>to fall<sup>2</sup></span> · <span>come<sup>1</sup></span> · <span>command<sup>1</sup></span> · <span>Nebuchadnezzar<sup>2</sup></span> · <span>queen<sup>2</sup></span> · <span>kingdom + the<sup>3</sup></span> · <span>testimony<sup>1</sup></span> · <span>manna + your<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-29">Daniel 4:29</h3>
+  <p class="r"><span>and + of<sup>3</sup></span> · <span>accept<sup>1</sup></span> · <span>come<sup>1</sup></span> · <span>drive<sup>1</sup></span> · <span>and + with<sup>3</sup></span> · <span>alive<sup>1</sup></span> · <span>cut down<sup>2</sup></span> · <span>treading<sup>4</sup></span> · <span>&lt;the&gt; + grass<sup>3</sup></span> · <span>like + oxen<sup>3</sup></span> · <span>come<sup>1</sup></span> · <span>make to eat<sup>1</sup></span> · <span>and + seven<sup>3</sup></span> · <span>time<sup>1</sup></span> · <span>pass<sup>1</sup></span> · <span>[is] on + you<sup>3</sup></span> · <span>to + you<sup>3</sup></span> · <span>until<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>certify<sup>1</sup></span> · <span>which<sup>2</sup></span> · <span>ruler<sup>1</sup></span> · <span>(most) high<sup>1</sup></span> · <span>Most High + the<sup>3</sup></span> · <span>in + kingdom<sup>3</sup></span> · <span>accept<sup>1</sup></span> · <span>and + &lt;to&gt; + from<sup>3</sup></span> · <span>which<sup>2</sup></span> · <span>truth<sup>1</sup></span> · <span>let him give + it<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-30">Daniel 4:30</h3>
+  <p class="r"><span>Hephzi-bah<sup>1</sup></span> · <span>moment + the<sup>3</sup></span> · <span>word + the<sup>3</sup></span> · <span>consume<sup>1</sup></span> · <span>Most High<sup>1</sup></span> · <span>Nebuchadnezzar<sup>2</sup></span> · <span>and + of<sup>3</sup></span> · <span>accept<sup>1</sup></span> · <span>drive<sup>1</sup></span> · <span>like + oxen<sup>3</sup></span> · <span>X at all<sup>1</sup></span> · <span>and + away from + [the] dew of<sup>3</sup></span> · <span>heavens + the<sup>3</sup></span> · <span>rained upon<sup>1</sup></span> · <span>wet<sup>1</sup></span> · <span>until<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>storm<sup>2</sup></span> · <span>populous<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v4-31">Daniel 4:31</h3>
+  <p class="r"><span>days + the<sup>3</sup></span> · <span>mourn<sup>1</sup></span> · <span>Nebuchadnezzar<sup>2</sup></span> · <span>eye<sup>1</sup></span> · <span>take up<sup>1</sup></span> · <span>Eli<sup>2</sup></span> · <span>answer<sup>1</sup></span> · <span>blessing<sup>1</sup></span> · <span>and + cheeks<sup>3</sup></span> · <span>&lt;the&gt; + antiquity<sup>3</sup></span> · <span>praise<sup>1</sup></span> · <span>and + you will honor<sup>3</sup></span> · <span>which<sup>2</sup></span> · <span>dominion + his<sup>3</sup></span> · <span>empire<sup>2</sup></span> · <span>forever<sup>2</sup></span> · <span>and + queenhood + her<sup>3</sup></span> · <span>with<sup>1</sup></span> · <span>generation<sup>1</sup></span> · <span>and + mother-of-pearl<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-32">Daniel 4:32</h3>
+  <p class="r"><span>and + all<sup>3</sup></span> · <span>dwell<sup>1</sup></span> · <span>dwell<sup>1</sup></span> · <span>earth<sup>1</sup></span> · <span>completely<sup>2</sup></span> · <span>repute<sup>1</sup></span> · <span>to serve<sup>2</sup></span> · <span>with + a retinue<sup>3</sup></span> · <span>heavens + the<sup>3</sup></span> · <span>earth<sup>1</sup></span> · <span>and + not<sup>3</sup></span> · <span>there is<sup>2</sup></span> · <span>which<sup>2</sup></span> · <span>hang<sup>1</sup></span> · <span>in + hand + her<sup>3</sup></span> · <span>and + he said<sup>3</sup></span> · <span>X before<sup>1</sup></span> · <span>why?<sup>12</sup></span> · <span>work<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v4-33">Daniel 4:33</h3>
+  <p class="r"><span>Hephzi-bah<sup>1</sup></span> · <span>time + the<sup>3</sup></span> · <span>answer<sup>1</sup></span> · <span>Eli<sup>2</sup></span> · <span>kingdom + my<sup>3</sup></span> · <span>beauty<sup>1</sup></span> · <span>and + brightness&lt;es&gt;<sup>3</sup></span> · <span>answer<sup>1</sup></span> · <span>Eli<sup>2</sup></span> · <span>and + to &lt;the&gt; + me<sup>3</sup></span> · <span>counsellor<sup>1</sup></span> · <span>ask<sup>1</sup></span> · <span>and + on<sup>3</sup></span> · <span>kingdom + my<sup>3</sup></span> · <span>establish<sup>1</sup></span> · <span>and + multiply<sup>3</sup></span> · <span>exceeding(-ly)<sup>1</sup></span> · <span>add<sup>1</sup></span> · <span>to &lt;the&gt; + me<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v4-34">Daniel 4:34</h3>
+  <p class="r"><span>now<sup>2</sup></span> · <span>mourn<sup>1</sup></span> · <span>Nebuchadnezzar<sup>1</sup></span> · <span>praise<sup>1</sup></span> · <span>and + [may it] be exalted<sup>3</sup></span> · <span>and + from + [the] splendor of<sup>3</sup></span> · <span>to + [the] king of<sup>3</sup></span> · <span>heavens + the<sup>3</sup></span> · <span>which<sup>2</sup></span> · <span>all<sup>2</sup></span> · <span>equity<sup>2</sup></span> · <span>to rule<sup>2</sup></span> · <span>and + Di<sup>3</sup></span> · <span>walk<sup>1</sup></span> · <span>in + midst + its<sup>3</sup></span> · <span>be able<sup>2</sup></span></p></article>
+  <nav class="porch-nav"><a href="/daniel/3/" rel="prev">Daniel 3</a><a href="/daniel/">Daniel, from the beginning</a><a href="/daniel/5/" rel="next">Daniel 5</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="2">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="3">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="4">Semantic Dictionary of Biblical Hebrew via HiperBiblia · CC BY-SA 4.0</li>
+    <li value="5">Classical Hebrew Words database · Public Domain</li>
+    <li value="6">PanLex 2024 exact same-meaning Hebrew-English lexical expression · CC BY-NC-SA 4.0</li>
+    <li value="7">MUSE large-scale ground-truth Hebrew-English bilingual dictionary · CC BY-NC 4.0</li>
+    <li value="8">Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source · Public Domain</li>
+    <li value="9">Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · CC BY 4.0</li>
+    <li value="10">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    <li value="11">Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · WordNet Licenses</li>
+    <li value="12">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="13">BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas · Public Domain + CC BY 4.0</li>
+    <li value="14">Kaikki machine-readable Aramaic dictionary from English Wiktionary · CC BY-SA + GFDL</li>
+    <li value="15">Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary · CC BY-SA + GFDL</li>
+    </ol>
+    Each carried reading keeps its own license. 7 readings of this chapter quote Hebrew letters and print only under the words. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

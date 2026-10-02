@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="jeremiah">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="2">
+<meta name="description" content="Jeremiah 2 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/jeremiah/2/">
+<title>Jeremiah 2 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Jeremiah 2</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v2-1">Jeremiah 2:1</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>to speak<sup>2</sup></span> · <span>The Lord<sup>3</sup></span> · <span>against<sup>3</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-2">Jeremiah 2:2</h3>
+  <p class="r"><span>come<sup>2</sup></span> · <span>and + you will call<sup>1</sup></span> · <span>in + ears<sup>1</sup></span> · <span>(Chald)<sup>3</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>hitherto<sup>2</sup></span> · <span>word<sup>3</sup></span> · <span>The Lord<sup>3</sup></span> · <span>X burn (incense)<sup>3</sup></span> · <span>come<sup>3</sup></span> · <span>be kind<sup>4</sup></span> · <span>youth&lt;s&gt; + your<sup>1</sup></span> · <span>(be-)love(-d, -ly, -r)<sup>3</sup></span> · <span>betrothal&lt;s&gt; + your<sup>1</sup></span> · <span>going + you<sup>1</sup></span> · <span>behind<sup>3</sup></span> · <span>in the + wilderness<sup>1</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>bear<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-3">Jeremiah 2:3</h3>
+  <p class="r"><span>Kedesh<sup>2</sup></span> · <span>Israel<sup>2</sup></span> · <span>to + Yahweh<sup>1</sup></span> · <span>beginning<sup>2</sup></span> · <span>produce + its<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>[those who] eat + it<sup>1</sup></span> · <span>X certainly<sup>3</sup></span> · <span>trouble<sup>3</sup></span> · <span>consent<sup>3</sup></span> · <span>to + them<sup>1</sup></span> · <span>whisper<sup>2</sup></span> · <span>The Lord<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-4">Jeremiah 2:4</h3>
+  <p class="r"><span>listen<sup>3</sup></span> · <span>to speak<sup>2</sup></span> · <span>The Lord<sup>3</sup></span> · <span>place<sup>2</sup></span> · <span>Jaakob<sup>2</sup></span> · <span>and + all<sup>1</sup></span> · <span>family<sup>3</sup></span> · <span>place<sup>2</sup></span> · <span>Israel<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-5">Jeremiah 2:5</h3>
+  <p class="r"><span>hitherto<sup>2</sup></span> · <span>word<sup>3</sup></span> · <span>The Lord<sup>3</sup></span> · <span>why?<sup>5</sup></span> · <span>+ be able<sup>3</sup></span> · <span>ancestors + your<sup>1</sup></span> · <span>oh that!<sup>2</sup></span> · <span>to suckle<sup>2</sup></span> · <span>since<sup>2</sup></span> · <span>(a-, be, cast, drive, get, go, keep (self), put, remove, be too, (wander), withdraw) far (away, off)<sup>3</sup></span> · <span>going down<sup>3</sup></span> · <span>and + they walked<sup>1</sup></span> · <span>behind<sup>3</sup></span> · <span>&lt;the&gt; + vanity<sup>1</sup></span> · <span>and + they became vain<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-6">Jeremiah 2:6</h3>
+  <p class="r"><span>and + not<sup>1</sup></span> · <span>say<sup>3</sup></span> · <span>Aiah<sup>2</sup></span> · <span>The Lord<sup>3</sup></span> · <span>who + brought up<sup>1</sup></span> · <span>(be-, things to) come (upon)<sup>3</sup></span> · <span>from + [the] land of<sup>1</sup></span> · <span>Mizraim<sup>3</sup></span> · <span>who + led<sup>1</sup></span> · <span>(be-, things to) come (upon)<sup>3</sup></span> · <span>in the + wilderness<sup>1</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>plain<sup>2</sup></span> · <span>and + pit<sup>1</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>drought<sup>2</sup></span> · <span>and + deep darkness<sup>1</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>beyond<sup>2</sup></span> · <span>Hephzi-bah<sup>3</sup></span> · <span>person<sup>2</sup></span> · <span>and + not<sup>1</sup></span> · <span>to remain<sup>2</sup></span> · <span>red<sup>2</sup></span> · <span>authority<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-7">Jeremiah 2:7</h3>
+  <p class="r"><span>and + I brought<sup>1</sup></span> · <span>with + you<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>earth<sup>2</sup></span> · <span>&lt;the&gt; + Carmel<sup>1</sup></span> · <span>to + eat<sup>1</sup></span> · <span>bear<sup>3</sup></span> · <span>and + [am] good<sup>1</sup></span> · <span>and + you came<sup>1</sup></span> · <span>and + you made unclean<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>land + my<sup>1</sup></span> · <span>and + inheritance + my<sup>1</sup></span> · <span>X any wise<sup>3</sup></span> · <span>&lt;into&gt; + an abomination<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-8">Jeremiah 2:8</h3>
+  <p class="r"><span>the + priests<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>say<sup>3</sup></span> · <span>Aiah<sup>2</sup></span> · <span>The Lord<sup>3</sup></span> · <span>and + [those who] handled<sup>1</sup></span> · <span>the + law<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>wizard<sup>3</sup></span> · <span>and + the + shepherds<sup>1</sup></span> · <span>offend<sup>3</sup></span> · <span>oh that!<sup>2</sup></span> · <span>and + the + prophets<sup>1</sup></span> · <span>prophesy(-ing)<sup>3</sup></span> · <span>at + Baal<sup>1</sup></span> · <span>and + after<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>X at all<sup>3</sup></span> · <span>(all) along<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-9">Jeremiah 2:9</h3>
+  <p class="r"><span>X again<sup>3</sup></span> · <span>until<sup>2</sup></span> · <span>adversary<sup>3</sup></span> · <span>with + you<sup>1</sup></span> · <span>whisper<sup>2</sup></span> · <span>The Lord<sup>3</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>young<sup>3</sup></span> · <span>sons + your<sup>1</sup></span> · <span>adversary<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-10">Jeremiah 2:10</h3>
+  <p class="r"><span>since<sup>2</sup></span> · <span>alienate<sup>3</sup></span> · <span>country<sup>3</sup></span> · <span>Kittim<sup>3</sup></span> · <span>and + see<sup>1</sup></span> · <span>and + Kedar<sup>1</sup></span> · <span>send<sup>3</sup></span> · <span>and + consider carefully<sup>1</sup></span> · <span>vehemence<sup>2</sup></span> · <span>and + see<sup>1</sup></span> · <span>if<sup>2</sup></span> · <span>she is<sup>5</sup></span> · <span>according to + this<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-11">Jeremiah 2:11</h3>
+  <p class="r"><span>¿ + has it exchanged<sup>1</sup></span> · <span>nation<sup>2</sup></span> · <span>judges<sup>2</sup></span> · <span>and + they<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>judges<sup>2</sup></span> · <span>and + people + my<sup>1</sup></span> · <span>X at all<sup>3</sup></span> · <span>glory + his<sup>1</sup></span> · <span>(only in plural construction) rags<sup>2</sup></span> · <span>X at all<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-12">Jeremiah 2:12</h3>
+  <p class="r"><span>+ command<sup>3</sup></span> · <span>aloft<sup>2</sup></span> · <span>Most High<sup>3</sup></span> · <span>this<sup>6</sup></span> · <span>and + shudder<sup>1</sup></span> · <span>decay<sup>3</sup></span> · <span>vehemence<sup>2</sup></span> · <span>whisper<sup>2</sup></span> · <span>The Lord<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-13">Jeremiah 2:13</h3>
+  <p class="r"><span>since<sup>2</sup></span> · <span>both<sup>3</sup></span> · <span>companion<sup>3</sup></span> · <span>make<sup>3</sup></span> · <span>Ben-ammi<sup>3</sup></span> · <span>Ittai<sup>3</sup></span> · <span>commit self<sup>3</sup></span> · <span>spring<sup>2</sup></span> · <span>water<sup>2</sup></span> · <span>alive<sup>3</sup></span> · <span>to + dig<sup>1</sup></span> · <span>burn in<sup>2</sup></span> · <span>Beeroth<sup>2</sup></span> · <span>pit<sup>3</sup></span> · <span>break (down, off, in pieces, up)<sup>3</sup></span> · <span>that<sup>2</sup></span> · <span>no<sup>2</sup></span> · <span>be able<sup>3</sup></span> · <span>the + waters<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-14">Jeremiah 2:14</h3>
+  <p class="r"><span>the + servant<sup>1</sup></span> · <span>Israel<sup>2</sup></span> · <span>mother<sup>2</sup></span> · <span>(home-) born<sup>2</sup></span> · <span>place<sup>2</sup></span> · <span>this<sup>5</sup></span> · <span>what<sup>2</sup></span> · <span>to exist<sup>2</sup></span> · <span>&lt;into&gt; + plunder<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-15">Jeremiah 2:15</h3>
+  <p class="r"><span>on + him<sup>1</sup></span> · <span>X mightily<sup>3</sup></span> · <span>(young) lion<sup>3</sup></span> · <span>add<sup>3</sup></span> · <span>voice + their<sup>1</sup></span> · <span>and + they have made<sup>1</sup></span> · <span>favour<sup>7</sup></span> · <span>&lt;into&gt; + a horror<sup>1</sup></span> · <span>cities + its<sup>1</sup></span> · <span>burn (up)<sup>3</sup></span> · <span>burn (up)<sup>3</sup></span> · <span>because + not<sup>1</sup></span> · <span>to remain<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-16">Jeremiah 2:16</h3>
+  <p class="r"><span>also<sup>2</sup></span> · <span>young<sup>3</sup></span> · <span>Noph<sup>8</sup></span> · <span>and + Tahpanhes<sup>1</sup></span> · <span>they will graze + you<sup>1</sup></span> · <span>scalp<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-17">Jeremiah 2:17</h3>
+  <p class="r"><span>¿ + not<sup>1</sup></span> · <span>this<sup>6</sup></span> · <span>accomplish<sup>3</sup></span> · <span>come<sup>3</sup></span> · <span>abandon + you<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>The Lord<sup>3</sup></span> · <span>God + your<sup>1</sup></span> · <span>terrify<sup>2</sup></span> · <span>on + [the] way of<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-18">Jeremiah 2:18</h3>
+  <p class="r"><span>and + therefore<sup>1</sup></span> · <span>why?<sup>5</sup></span> · <span>come<sup>3</sup></span> · <span>for the + journey<sup>1</sup></span> · <span>Mizraim<sup>3</sup></span> · <span>to + drink<sup>1</sup></span> · <span>whoever<sup>5</sup></span> · <span>soot<sup>5</sup></span> · <span>and + what?<sup>1</sup></span> · <span>come<sup>3</sup></span> · <span>for the + journey<sup>1</sup></span> · <span>Assyria<sup>2</sup></span> · <span>to + drink<sup>1</sup></span> · <span>whoever<sup>5</sup></span> · <span>river<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-19">Jeremiah 2:19</h3>
+  <p class="r"><span>it will punish + you<sup>1</sup></span> · <span>calamity + your<sup>1</sup></span> · <span>and + apostasies + your<sup>1</sup></span> · <span>they will rebuke + you<sup>1</sup></span> · <span>and + know<sup>1</sup></span> · <span>and + see<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>bad<sup>2</sup></span> · <span>and + bitter<sup>1</sup></span> · <span>abandon + you<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>The Lord<sup>3</sup></span> · <span>God + your<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>be afraid<sup>3</sup></span> · <span>[is] to + you<sup>1</sup></span> · <span>whisper<sup>2</sup></span> · <span>lord<sup>3</sup></span> · <span>The Lord<sup>3</sup></span> · <span>assemble<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-20">Jeremiah 2:20</h3>
+  <p class="r"><span>since<sup>2</sup></span> · <span>[were] from + long ago<sup>1</sup></span> · <span>hope<sup>3</sup></span> · <span>to + you<sup>1</sup></span> · <span>break (off)<sup>3</sup></span> · <span>fetters + your<sup>1</sup></span> · <span>and + you said<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>to work<sup>9</sup></span> · <span>alienate<sup>3</sup></span> · <span>since<sup>2</sup></span> · <span>Most High<sup>3</sup></span> · <span>all<sup>2</sup></span> · <span>hill<sup>2</sup></span> · <span>haughty<sup>3</sup></span> · <span>and + [was] under<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>tree<sup>2</sup></span> · <span>flourishing<sup>3</sup></span> · <span>with<sup>2</sup></span> · <span>tip<sup>2</sup></span> · <span>commit adultery<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-21">Jeremiah 2:21</h3>
+  <p class="r"><span>and + I<sup>1</sup></span> · <span>I had planted + you<sup>1</sup></span> · <span>Sorek<sup>2</sup></span> · <span>completely<sup>2</sup></span> · <span>child<sup>2</sup></span> · <span>trustworthiness<sup>2</sup></span> · <span>and + how?<sup>1</sup></span> · <span>X become<sup>3</sup></span> · <span>to &lt;the&gt; + me<sup>1</sup></span> · <span>degenerate<sup>3</sup></span> · <span>the + vine<sup>1</sup></span> · <span>alien<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-22">Jeremiah 2:22</h3>
+  <p class="r"><span>since<sup>2</sup></span> · <span>mother<sup>2</sup></span> · <span>fuller<sup>3</sup></span> · <span>with &lt;the&gt; + soda<sup>1</sup></span> · <span>and + you increased<sup>1</sup></span> · <span>come<sup>3</sup></span> · <span>covenant<sup>2</sup></span> · <span>mark<sup>3</sup></span> · <span>[one who] answers + you<sup>1</sup></span> · <span>before<sup>2</sup></span> · <span>whisper<sup>2</sup></span> · <span>lord<sup>3</sup></span> · <span>The Lord<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-23">Jeremiah 2:23</h3>
+  <p class="r"><span>how?<sup>10</sup></span> · <span>answer<sup>3</sup></span> · <span>no<sup>2</sup></span> · <span>defile (self)<sup>3</sup></span> · <span>behind<sup>3</sup></span> · <span>the + Baals<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>X again<sup>3</sup></span> · <span>consider<sup>3</sup></span> · <span>journey + your<sup>1</sup></span> · <span>in the + valley<sup>1</sup></span> · <span>knowledge<sup>3</sup></span> · <span>why?<sup>5</sup></span> · <span>think<sup>3</sup></span> · <span>birthright<sup>3</sup></span> · <span>roast<sup>3</sup></span> · <span>traverse<sup>3</sup></span> · <span>ways + her<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-24">Jeremiah 2:24</h3>
+  <p class="r"><span>cow<sup>2</sup></span> · <span>learn<sup>2</sup></span> · <span>desert<sup>2</sup></span> · <span>abide<sup>3</sup></span> · <span>grow up<sup>3</sup></span> · <span>life + her<sup>1</sup></span> · <span>desire (earnestly)<sup>3</sup></span> · <span>Spirit<sup>2</sup></span> · <span>heat + its<sup>1</sup></span> · <span>whoever<sup>5</sup></span> · <span>he brings back + it<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>[those who] seek + it<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>faint<sup>3</sup></span> · <span>in + month + its<sup>1</sup></span> · <span>they will find + it<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-25">Jeremiah 2:25</h3>
+  <p class="r"><span>restrain<sup>3</sup></span> · <span>foot + your<sup>1</sup></span> · <span>from + barefoot<sup>1</sup></span> · <span>and + throat + your<sup>1</sup></span> · <span>from + thirst<sup>1</sup></span> · <span>and + you said<sup>1</sup></span> · <span>(cause to) despair<sup>3</sup></span> · <span>if<sup>5</sup></span> · <span>since<sup>2</sup></span> · <span>(be-)love(-d, -ly, -r)<sup>3</sup></span> · <span>(come from) another (man, place)<sup>3</sup></span> · <span>and + after + them<sup>1</sup></span> · <span>these<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-26">Jeremiah 2:26</h3>
+  <p class="r"><span>(ewe) lamb<sup>3</sup></span> · <span>thieve<sup>2</sup></span> · <span>since<sup>2</sup></span> · <span>+ be able<sup>3</sup></span> · <span>thus<sup>2</sup></span> · <span>be ashamed<sup>3</sup></span> · <span>place<sup>2</sup></span> · <span>Israel<sup>2</sup></span> · <span>they<sup>3</sup></span> · <span>kings + their<sup>1</sup></span> · <span>leaders + their<sup>1</sup></span> · <span>and + priests + their<sup>1</sup></span> · <span>and + prophets + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-27">Jeremiah 2:27</h3>
+  <p class="r"><span>saying<sup>3</sup></span> · <span>for &lt;the&gt; + a tree<sup>1</sup></span> · <span>Abi<sup>2</sup></span> · <span>you<sup>6</sup></span> · <span>and + for + stone[s]<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>you gave birth to + me<sup>1</sup></span> · <span>you gave birth to + us<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>appear<sup>3</sup></span> · <span>against<sup>3</sup></span> · <span>to break the neck<sup>2</sup></span> · <span>and + not<sup>1</sup></span> · <span>presence<sup>3</sup></span> · <span>and + at the + time<sup>1</sup></span> · <span>&lt;of&gt; harm + their<sup>1</sup></span> · <span>answer<sup>3</sup></span> · <span>height<sup>2</sup></span> · <span>and + save + us<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-28">Jeremiah 2:28</h3>
+  <p class="r"><span>and + where?<sup>1</sup></span> · <span>God + your<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>think<sup>3</sup></span> · <span>come<sup>3</sup></span> · <span>abide<sup>3</sup></span> · <span>mother<sup>2</sup></span> · <span>they will save + you<sup>1</sup></span> · <span>terrify<sup>2</sup></span> · <span>calamity + your<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>account<sup>2</sup></span> · <span>enemies + your<sup>1</sup></span> · <span>beacon<sup>3</sup></span> · <span>God + your<sup>1</sup></span> · <span>Jehudah<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-29">Jeremiah 2:29</h3>
+  <p class="r"><span>why?<sup>10</sup></span> · <span>adversary<sup>3</sup></span> · <span>against<sup>3</sup></span> · <span>all of + you<sup>1</sup></span> · <span>offend<sup>3</sup></span> · <span>oh that!<sup>2</sup></span> · <span>whisper<sup>2</sup></span> · <span>The Lord<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-30">Jeremiah 2:30</h3>
+  <p class="r"><span>to no avail<sup>11</sup></span> · <span>beat<sup>3</sup></span> · <span>with<sup>2</sup></span> · <span>sons + your<sup>1</sup></span> · <span>bond<sup>2</sup></span> · <span>no<sup>2</sup></span> · <span>accept<sup>3</sup></span> · <span>food<sup>2</sup></span> · <span>sword + your<sup>1</sup></span> · <span>prophets + your<sup>1</sup></span> · <span>like + a lion<sup>1</sup></span> · <span>destruction<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-31">Jeremiah 2:31</h3>
+  <p class="r"><span>countenance<sup>3</sup></span> · <span>you<sup>3</sup></span> · <span>consider<sup>3</sup></span> · <span>to speak<sup>2</sup></span> · <span>The Lord<sup>3</sup></span> · <span>the + wilderness<sup>1</sup></span> · <span>beacon<sup>3</sup></span> · <span>to + Israel<sup>1</sup></span> · <span>mother<sup>2</sup></span> · <span>earth<sup>2</sup></span> · <span>opaqueness<sup>2</sup></span> · <span>what<sup>2</sup></span> · <span>say<sup>3</sup></span> · <span>Ben-ammi<sup>3</sup></span> · <span>have the dominion<sup>3</sup></span> · <span>if<sup>5</sup></span> · <span>abide<sup>3</sup></span> · <span>still<sup>2</sup></span> · <span>[is] to + you<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-32">Jeremiah 2:32</h3>
+  <p class="r"><span>¿ + will she forget<sup>1</sup></span> · <span>virgin<sup>3</sup></span> · <span>Adajah<sup>2</sup></span> · <span>completely<sup>2</sup></span> · <span>sashes + her<sup>1</sup></span> · <span>and + people + my<sup>1</sup></span> · <span>they have forgotten + me<sup>1</sup></span> · <span>sea (X -faring man, (-shore))<sup>3</sup></span> · <span>nothing<sup>2</sup></span> · <span>account<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-33">Jeremiah 2:33</h3>
+  <p class="r"><span>why?<sup>5</sup></span> · <span>be accepted<sup>3</sup></span> · <span>journey + your<sup>1</sup></span> · <span>to + seek<sup>1</sup></span> · <span>love<sup>2</sup></span> · <span>X again<sup>3</sup></span> · <span>also<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>afflict<sup>3</sup></span> · <span>(un-) accustomed<sup>3</sup></span> · <span>(un-) accustomed<sup>3</sup></span> · <span>with<sup>2</sup></span> · <span>ways + your<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-34">Jeremiah 2:34</h3>
+  <p class="r"><span>also<sup>2</sup></span> · <span>on + skirts + your<sup>1</sup></span> · <span>+ be able<sup>3</sup></span> · <span>be silent<sup>3</sup></span> · <span>any<sup>3</sup></span> · <span>beggar<sup>3</sup></span> · <span>free<sup>3</sup></span> · <span>no<sup>2</sup></span> · <span>in &lt;the&gt; + breaking in<sup>1</sup></span> · <span>you found + them<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>Most High<sup>3</sup></span> · <span>all<sup>2</sup></span> · <span>god<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v2-35">Jeremiah 2:35</h3>
+  <p class="r"><span>and + you said<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>acquit X at all<sup>3</sup></span> · <span>only<sup>2</sup></span> · <span>remain<sup>3</sup></span> · <span>now<sup>12</sup></span> · <span>from + me<sup>1</sup></span> · <span>here [am] + I<sup>1</sup></span> · <span>+ avenge<sup>3</sup></span> · <span>&lt;obj.&gt; + you<sup>1</sup></span> · <span>Most High<sup>3</sup></span> · <span>saying + you<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>bear the blame<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v2-36">Jeremiah 2:36</h3>
+  <p class="r"><span>why?<sup>5</sup></span> · <span>19 the word is rendered by many &quot;from Uzal<sup>3</sup></span> · <span>vehemence<sup>2</sup></span> · <span>+ babbler<sup>3</sup></span> · <span>with<sup>2</sup></span> · <span>journey + your<sup>1</sup></span> · <span>also<sup>2</sup></span> · <span>from + Egypt<sup>1</sup></span> · <span>(be, make, bring to, cause, put to, with, a-)shamed(-d)<sup>3</sup></span> · <span>according as<sup>13</sup></span> · <span>idol<sup>2</sup></span> · <span>from + Assyria<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v2-37">Jeremiah 2:37</h3>
+  <p class="r"><span>also<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>3</sup></span> · <span>this<sup>2</sup></span> · <span>X after<sup>3</sup></span> · <span>and + hands + your<sup>1</sup></span> · <span>Most High<sup>3</sup></span> · <span>head + your<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>reject<sup>2</sup></span> · <span>The Lord<sup>3</sup></span> · <span>&lt;in&gt; + objects of confidence + your<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>break out<sup>3</sup></span> · <span>burn in<sup>2</sup></span></p></article>
+  <nav class="porch-nav"><a href="/jeremiah/1/" rel="prev">Jeremiah 1</a><a href="/jeremiah/">Jeremiah, from the beginning</a><a href="/jeremiah/3/" rel="next">Jeremiah 3</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="2">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="3">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="4">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    <li value="5">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="6">ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · CC BY-SA 4.0</li>
+    <li value="7">Classical Hebrew Words database · Public Domain</li>
+    <li value="8">Open Scriptures Hebrew Lexical Index · CC BY 4.0</li>
+    <li value="9">Wikidata Hebrew source-explicit form linked to exact English lexeme sense · CC0</li>
+    <li value="10">Semantic Dictionary of Biblical Hebrew via HiperBiblia · CC BY-SA 4.0</li>
+    <li value="11">Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · WordNet Licenses</li>
+    <li value="12">UBS Dictionary of Biblical Hebrew v0.9.2 exact definitions and glosses · CC BY-SA 4.0</li>
+    <li value="13">Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · CC BY 4.0</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

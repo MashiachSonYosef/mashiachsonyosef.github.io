@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="job">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="41">
+<meta name="description" content="Job 41 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/job/41/">
+<title>Job 41 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Job 41</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v41-1">Job 41:1</h3>
+  <p class="r"><span>if<sup>1</sup></span> · <span>beginning<sup>2</sup></span> · <span>fail<sup>3</sup></span> · <span>¿ + also<sup>4</sup></span> · <span>these<sup>1</sup></span> · <span>carry away<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-2">Job 41:2</h3>
+  <p class="r"><span>no<sup>1</sup></span> · <span>cruel<sup>1</sup></span> · <span>since<sup>1</sup></span> · <span>and + [the] waters of<sup>4</sup></span> · <span>this<sup>5</sup></span> · <span>before<sup>1</sup></span> · <span>present selves<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-3">Job 41:3</h3>
+  <p class="r"><span>whoever<sup>5</sup></span> · <span>so + I may pay<sup>4</sup></span> · <span>under<sup>1</sup></span> · <span>all<sup>1</sup></span> · <span>the + heavens<sup>4</sup></span> · <span>to &lt;the&gt; + me<sup>4</sup></span> · <span>this<sup>5</sup></span></p></article>
+  <article class="pv"><h3 id="v41-4">Job 41:4</h3>
+  <p class="r"><span>no<sup>1</sup></span> · <span>if (haply)<sup>3</sup></span> · <span>X altogether<sup>3</sup></span> · <span>poles + its<sup>4</sup></span> · <span>and + he will speak<sup>4</sup></span> · <span>force<sup>3</sup></span> · <span>put (set) (the battle, self) in array<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-5">Job 41:5</h3>
+  <p class="r"><span>whoever<sup>5</sup></span> · <span>to reveal<sup>1</sup></span> · <span>face<sup>3</sup></span> · <span>clothing + his<sup>4</sup></span> · <span>whoever<sup>5</sup></span> · <span>abide<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-6">Job 41:6</h3>
+  <p class="r"><span>3<sup>3</sup></span> · <span>face + his<sup>4</sup></span> · <span>whoever<sup>5</sup></span> · <span>opening<sup>1</sup></span> · <span>(place, round) about<sup>3</sup></span> · <span>alter<sup>3</sup></span> · <span>terror<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-7">Job 41:7</h3>
+  <p class="r"><span>swelling<sup>3</sup></span> · <span>brook<sup>3</sup></span> · <span>X armed<sup>3</sup></span> · <span>shut up<sup>1</sup></span> · <span>seal<sup>1</sup></span> · <span>narrow<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v41-8">Job 41:8</h3>
+  <p class="r"><span>one<sup>1</sup></span> · <span>on + [day] one<sup>4</sup></span> · <span>(make to) approach (nigh)<sup>3</sup></span> · <span>and + [the] spirit of<sup>4</sup></span> · <span>no<sup>1</sup></span> · <span>abide<sup>3</sup></span> · <span>[was] between + them<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v41-9">Job 41:9</h3>
+  <p class="r"><span>person<sup>1</sup></span> · <span>abide fast<sup>3</sup></span> · <span>X at all<sup>3</sup></span> · <span>and + not<sup>4</sup></span> · <span>disperse<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-10">Job 41:10</h3>
+  <p class="r"><span>(make) boast (self)<sup>3</sup></span> · <span>light<sup>3</sup></span> · <span>and + eyes + his<sup>4</sup></span> · <span>Shihor<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-11">Job 41:11</h3>
+  <p class="r"><span>from + mouth + its<sup>4</sup></span> · <span>(fire-)brand<sup>3</sup></span> · <span>(all) along<sup>3</sup></span> · <span>spark<sup>3</sup></span> · <span>entity<sup>1</sup></span> · <span>deliver (self)<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-12">Job 41:12</h3>
+  <p class="r"><span>going out<sup>1</sup></span> · <span>to smoke<sup>1</sup></span> · <span>[is] like + David<sup>4</sup></span> · <span>blow<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-13">Job 41:13</h3>
+  <p class="r"><span>grow up<sup>3</sup></span> · <span>(burning) coal<sup>3</sup></span> · <span>burn (up)<sup>3</sup></span> · <span>and + a flame of<sup>4</sup></span> · <span>from + mouth + its<sup>4</sup></span> · <span>going out<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v41-14">Job 41:14</h3>
+  <p class="r"><span>abide (all night)<sup>3</sup></span> · <span>strong<sup>1</sup></span> · <span>and + &lt;to&gt; + before + him<sup>4</sup></span> · <span>be turned<sup>3</sup></span> · <span>pining<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v41-15">Job 41:15</h3>
+  <p class="r"><span>flake<sup>3</sup></span> · <span>messenger<sup>3</sup></span> · <span>abide fast<sup>3</sup></span> · <span>cast<sup>3</sup></span> · <span>on + him<sup>4</sup></span> · <span>failure<sup>1</sup></span> · <span>be carried<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-16">Job 41:16</h3>
+  <p class="r"><span>heart + his<sup>4</sup></span> · <span>cast<sup>3</sup></span> · <span>when<sup>1</sup></span> · <span>wheel<sup>1</sup></span> · <span>[is] like + [the] slice of<sup>4</sup></span> · <span>low (parts, -er, -er parts, - est)<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-17">Job 41:17</h3>
+  <p class="r"><span>abide<sup>3</sup></span> · <span>mighty (man)<sup>3</sup></span> · <span>to wait<sup>6</sup></span> · <span>bear the blame<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-18">Job 41:18</h3>
+  <p class="r"><span>knife<sup>1</sup></span> · <span>not<sup>1</sup></span> · <span>appoint<sup>3</sup></span> · <span>lance<sup>1</sup></span> · <span>dart<sup>3</sup></span> · <span>and + Seraiah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v41-19">Job 41:19</h3>
+  <p class="r"><span>(make) account (of)<sup>3</sup></span> · <span>for the + straw<sup>4</sup></span> · <span>iron<sup>3</sup></span> · <span>for &lt;the&gt; + a tree<sup>4</sup></span> · <span>decay<sup>7</sup></span> · <span>brass<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v41-20">Job 41:20</h3>
+  <p class="r"><span>no<sup>1</sup></span> · <span>son<sup>1</sup></span> · <span>arrow<sup>1</sup></span> · <span>latter growth<sup>3</sup></span> · <span>X become<sup>3</sup></span> · <span>if (haply)<sup>3</sup></span> · <span>+ carbuncle<sup>3</sup></span> · <span>hanging<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v41-21">Job 41:21</h3>
+  <p class="r"><span>like &lt;the&gt; + stubble<sup>4</sup></span> · <span>(make) account (of)<sup>3</sup></span> · <span>a club<sup>1</sup></span> · <span>so + he may make sport<sup>4</sup></span> · <span>strike<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v41-22">Job 41:22</h3>
+  <p class="r"><span>in place of + him<sup>4</sup></span> · <span>sharp<sup>3</sup></span> · <span>craftsman<sup>1</sup></span> · <span>comfort<sup>3</sup></span> · <span>diligent<sup>1</sup></span> · <span>Eli<sup>1</sup></span> · <span>dirt<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v41-23">Job 41:23</h3>
+  <p class="r"><span>boil<sup>3</sup></span> · <span>depth<sup>3</sup></span> · <span>large body of water<sup>1</sup></span> · <span>make amazed<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-24">Job 41:24</h3>
+  <p class="r"><span>after + him<sup>4</sup></span> · <span>Jair<sup>1</sup></span> · <span>way<sup>3</sup></span> · <span>(make) account (of)<sup>3</sup></span> · <span>depth<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v41-25">Job 41:25</h3>
+  <p class="r"><span>nothing<sup>1</sup></span> · <span>Most High<sup>3</sup></span> · <span>dust<sup>1</sup></span> · <span>(have, make to have) dominion<sup>3</sup></span> · <span>the + [one who] made + it<sup>4</sup></span> · <span>for + not<sup>4</sup></span> · <span>broken<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v41-26">Job 41:26</h3>
+  <p class="r"><span>with<sup>1</sup></span> · <span>all<sup>1</sup></span> · <span>high<sup>1</sup></span> · <span>reverence<sup>1</sup></span> · <span>this<sup>5</sup></span> · <span>king<sup>1</sup></span> · <span>Most High<sup>3</sup></span> · <span>all<sup>1</sup></span> · <span>young<sup>3</sup></span> · <span>pride<sup>3</sup></span></p></article>
+  <nav class="porch-nav"><a href="/job/40/" rel="prev">Job 40</a><a href="/job/">Job, from the beginning</a><a href="/job/42/" rel="next">Job 42</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="2">Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary · CC BY-SA + GFDL</li>
+    <li value="3">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="4">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="5">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="6">Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary · CC BY-SA + GFDL</li>
+    <li value="7">PanLex 2024 exact same-meaning Hebrew-English lexical expression · CC BY-NC-SA 4.0</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

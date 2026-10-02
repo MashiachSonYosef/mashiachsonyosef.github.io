@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="ii-samuel">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="15">
+<meta name="description" content="II Samuel 15 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/ii-samuel/15/">
+<title>II Samuel 15 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>II Samuel 15</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v15-1">II Samuel 15:1</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>continue<sup>2</sup></span> · <span>thus<sup>3</sup></span> · <span>and + he made<sup>1</sup></span> · <span>if (haply)<sup>2</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>a chariot<sup>1</sup></span> · <span>and + horses<sup>1</sup></span> · <span>and + fifty<sup>1</sup></span> · <span>person<sup>3</sup></span> · <span>break down<sup>2</sup></span> · <span>&lt;to&gt; + before + him<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-2">II Samuel 15:2</h3>
+  <p class="r"><span>and + he rose early<sup>1</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>and + it stood<sup>1</sup></span> · <span>Most High<sup>2</sup></span> · <span>hand<sup>3</sup></span> · <span>to tread<sup>3</sup></span> · <span>the + gate<sup>1</sup></span> · <span>and + there was<sup>1</sup></span> · <span>all<sup>3</sup></span> · <span>the + man<sup>1</sup></span> · <span>that<sup>3</sup></span> · <span>beacon<sup>2</sup></span> · <span>if (haply)<sup>2</sup></span> · <span>adversary<sup>3</sup></span> · <span>abide<sup>2</sup></span> · <span>these<sup>3</sup></span> · <span>consult<sup>2</sup></span> · <span>for &lt;the&gt; + judgment<sup>1</sup></span> · <span>the third book of the Old Testament<sup>4</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>to + him<sup>1</sup></span> · <span>and + he said<sup>1</sup></span> · <span>where<sup>3</sup></span> · <span>exhausted<sup>3</sup></span> · <span>town<sup>2</sup></span> · <span>you<sup>5</sup></span> · <span>and + he said<sup>1</sup></span> · <span>any + one of<sup>1</sup></span> · <span>tribe<sup>2</sup></span> · <span>Israel<sup>3</sup></span> · <span>servant + your<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-3">II Samuel 15:3</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>to + him<sup>1</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>to see<sup>3</sup></span> · <span>words + your<sup>1</sup></span> · <span>beautiful<sup>2</sup></span> · <span>and + right<sup>1</sup></span> · <span>and + listen<sup>1</sup></span> · <span>nothing<sup>3</sup></span> · <span>come<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>consult<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v15-4">II Samuel 15:4</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>whoever<sup>6</sup></span> · <span>will he make + me<sup>1</sup></span> · <span>to judge<sup>3</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>and + [will be] on<sup>1</sup></span> · <span>abide<sup>2</sup></span> · <span>all<sup>3</sup></span> · <span>person<sup>3</sup></span> · <span>that<sup>3</sup></span> · <span>beacon<sup>2</sup></span> · <span>if (haply)<sup>2</sup></span> · <span>adversary<sup>3</sup></span> · <span>and + justice<sup>1</sup></span> · <span>and + I will do justice + him<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-5">II Samuel 15:5</h3>
+  <p class="r"><span>and + it became<sup>1</sup></span> · <span>in + inner being<sup>1</sup></span> · <span>person<sup>3</sup></span> · <span>to + bow down<sup>1</sup></span> · <span>if (haply)<sup>2</sup></span> · <span>and + Shelah<sup>1</sup></span> · <span>with<sup>3</sup></span> · <span>shoot<sup>2</sup></span> · <span>and + he will take hold<sup>1</sup></span> · <span>if (haply)<sup>2</sup></span> · <span>and + he kissed<sup>1</sup></span> · <span>if (haply)<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v15-6">II Samuel 15:6</h3>
+  <p class="r"><span>and + he made<sup>1</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>according to the + manner<sup>1</sup></span> · <span>to dream<sup>7</sup></span> · <span>to + every<sup>1</sup></span> · <span>Israel<sup>3</sup></span> · <span>that<sup>3</sup></span> · <span>abide<sup>2</sup></span> · <span>for &lt;the&gt; + judgment<sup>1</sup></span> · <span>these<sup>3</sup></span> · <span>consult<sup>2</sup></span> · <span>and + he stole<sup>1</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>with<sup>3</sup></span> · <span>understanding<sup>3</sup></span> · <span>also<sup>2</sup></span> · <span>Israel<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v15-7">II Samuel 15:7</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>Makats<sup>3</sup></span> · <span>forty<sup>3</sup></span> · <span>alter<sup>3</sup></span> · <span>and + he said<sup>1</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>these<sup>3</sup></span> · <span>consult<sup>2</sup></span> · <span>X again<sup>2</sup></span> · <span>now<sup>3</sup></span> · <span>so + I may pay<sup>1</sup></span> · <span>with<sup>3</sup></span> · <span>vow((-ed))<sup>2</sup></span> · <span>that<sup>3</sup></span> · <span>(make a) vow<sup>2</sup></span> · <span>to + Yahweh<sup>1</sup></span> · <span>[are] at + Hebron<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-8">II Samuel 15:8</h3>
+  <p class="r"><span>since<sup>3</sup></span> · <span>thing promised<sup>3</sup></span> · <span>thing promised<sup>3</sup></span> · <span>servant + your<sup>1</sup></span> · <span>when + dwelt + I<sup>1</sup></span> · <span>at + Geshur<sup>1</sup></span> · <span>among + Aram<sup>1</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>mother<sup>3</sup></span> · <span>jashub<sup>3</sup></span> · <span>(make to) abide(-ing)<sup>2</sup></span> · <span>he will bring back + me<sup>1</sup></span> · <span>The Lord<sup>2</sup></span> · <span>(Chald)<sup>2</sup></span> · <span>and + I will serve<sup>1</sup></span> · <span>with<sup>3</sup></span> · <span>The Lord<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v15-9">II Samuel 15:9</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>if (haply)<sup>2</sup></span> · <span>consult<sup>2</sup></span> · <span>come<sup>2</sup></span> · <span>in + peace<sup>1</sup></span> · <span>and + he rose up<sup>1</sup></span> · <span>and + he went<sup>1</sup></span> · <span>Hebron + towards<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-10">II Samuel 15:10</h3>
+  <p class="r"><span>and + he sent out<sup>1</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>backbite<sup>2</sup></span> · <span>over + all<sup>1</sup></span> · <span>tribe<sup>2</sup></span> · <span>Israel<sup>3</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>when + heard + you<sup>1</sup></span> · <span>with<sup>3</sup></span> · <span>sound<sup>3</sup></span> · <span>the + ram's horn<sup>1</sup></span> · <span>and + you will say<sup>1</sup></span> · <span>king<sup>3</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>[are] at + Hebron<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-11">II Samuel 15:11</h3>
+  <p class="r"><span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>(all) along<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>person<sup>3</sup></span> · <span>from + Jerusalem<sup>1</sup></span> · <span>bewray (self)<sup>2</sup></span> · <span>and + [those who] were going<sup>1</sup></span> · <span>to + innocence + their<sup>1</sup></span> · <span>and + not<sup>1</sup></span> · <span>acknowledge<sup>2</sup></span> · <span>all<sup>3</sup></span> · <span>to speak<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v15-12">II Samuel 15:12</h3>
+  <p class="r"><span>and + he sent out<sup>1</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>with<sup>3</sup></span> · <span>Ahithophel<sup>3</sup></span> · <span>the + Gilonite<sup>1</sup></span> · <span>advertise<sup>2</sup></span> · <span>lover<sup>3</sup></span> · <span>from + city + his<sup>1</sup></span> · <span>roll<sup>3</sup></span> · <span>when + sacrificed + he<sup>1</sup></span> · <span>with<sup>3</sup></span> · <span>the + sacrifices<sup>1</sup></span> · <span>and + there was<sup>1</sup></span> · <span>the + conspiracy<sup>1</sup></span> · <span>harden<sup>3</sup></span> · <span>and + the + people<sup>1</sup></span> · <span>X again<sup>2</sup></span> · <span>and + [the] great [one]<sup>1</sup></span> · <span>with<sup>3</sup></span> · <span>Abishalom<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v15-13">II Samuel 15:13</h3>
+  <p class="r"><span>and + he brought [them]<sup>1</sup></span> · <span>who + had told<sup>1</sup></span> · <span>these<sup>3</sup></span> · <span>lover<sup>3</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>to exist<sup>3</sup></span> · <span>understanding<sup>3</sup></span> · <span>person<sup>3</sup></span> · <span>Israel<sup>3</sup></span> · <span>behind<sup>2</sup></span> · <span>Abishalom<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v15-14">II Samuel 15:14</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>lover<sup>3</sup></span> · <span>to + every<sup>1</sup></span> · <span>servants + his<sup>1</sup></span> · <span>that<sup>3</sup></span> · <span>sign<sup>2</sup></span> · <span>in + Jerusalem<sup>1</sup></span> · <span>abide<sup>2</sup></span> · <span>so + let us flee<sup>1</sup></span> · <span>since<sup>3</sup></span> · <span>no<sup>3</sup></span> · <span>beacon<sup>2</sup></span> · <span>abide (all night)<sup>2</sup></span> · <span>deliverance<sup>3</sup></span> · <span>from + before<sup>1</sup></span> · <span>Absalom<sup>2</sup></span> · <span>be carried headlong<sup>2</sup></span> · <span>to + go<sup>1</sup></span> · <span>lest<sup>3</sup></span> · <span>be carried headlong<sup>2</sup></span> · <span>and + he will overtake + us<sup>1</sup></span> · <span>and + he will thrust<sup>1</sup></span> · <span>arise (up)<sup>2</sup></span> · <span>with<sup>3</sup></span> · <span>the + calamity<sup>1</sup></span> · <span>and + he will strike<sup>1</sup></span> · <span>(a-)wake(-n, up)<sup>2</sup></span> · <span>according to<sup>5</sup></span> · <span>knife<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v15-15">II Samuel 15:15</h3>
+  <p class="r"><span>and + they said<sup>1</sup></span> · <span>Abdi<sup>3</sup></span> · <span>consult<sup>2</sup></span> · <span>these<sup>3</sup></span> · <span>consult<sup>2</sup></span> · <span>according to + all<sup>1</sup></span> · <span>that<sup>3</sup></span> · <span>Jibchar<sup>3</sup></span> · <span>lord<sup>2</sup></span> · <span>consult<sup>2</sup></span> · <span>here<sup>3</sup></span> · <span>servants + your<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-16">II Samuel 15:16</h3>
+  <p class="r"><span>and + he went out<sup>1</sup></span> · <span>consult<sup>2</sup></span> · <span>and + all<sup>1</sup></span> · <span>house + his<sup>1</sup></span> · <span>at + feet + his<sup>1</sup></span> · <span>and + he left<sup>1</sup></span> · <span>consult<sup>2</sup></span> · <span>with<sup>3</sup></span> · <span>ten<sup>3</sup></span> · <span>(adulter)ess<sup>2</sup></span> · <span>concubine<sup>2</sup></span> · <span>to + keep<sup>1</sup></span> · <span>the + house<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-17">II Samuel 15:17</h3>
+  <p class="r"><span>and + he went out<sup>1</sup></span> · <span>consult<sup>2</sup></span> · <span>and + all<sup>1</sup></span> · <span>the + people<sup>1</sup></span> · <span>at + feet + his<sup>1</sup></span> · <span>and + they stood<sup>1</sup></span> · <span>place<sup>3</sup></span> · <span>the + distance<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-18">II Samuel 15:18</h3>
+  <p class="r"><span>and + all<sup>1</sup></span> · <span>servants + his<sup>1</sup></span> · <span>Abarim<sup>3</sup></span> · <span>Most High<sup>2</sup></span> · <span>shoot<sup>2</sup></span> · <span>and + all<sup>1</sup></span> · <span>be chewed<sup>2</sup></span> · <span>and + all<sup>1</sup></span> · <span>be accepted<sup>2</sup></span> · <span>and + all<sup>1</sup></span> · <span>the + Gittites<sup>1</sup></span> · <span>sixth<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>2</sup></span> · <span>person<sup>3</sup></span> · <span>that<sup>3</sup></span> · <span>abide<sup>2</sup></span> · <span>at + foot + his<sup>1</sup></span> · <span>from + Gath<sup>1</sup></span> · <span>Abarim<sup>3</sup></span> · <span>Most High<sup>2</sup></span> · <span>face<sup>2</sup></span> · <span>consult<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v15-19">II Samuel 15:19</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>consult<sup>2</sup></span> · <span>these<sup>3</sup></span> · <span>Ittai<sup>2</sup></span> · <span>the + Gittite[s]<sup>1</sup></span> · <span>why?<sup>8</sup></span> · <span>X again<sup>2</sup></span> · <span>also<sup>3</sup></span> · <span>you<sup>5</sup></span> · <span>(be-, things to) come (upon)<sup>2</sup></span> · <span>retreat<sup>3</sup></span> · <span>dwell<sup>9</sup></span> · <span>with<sup>2</sup></span> · <span>consult<sup>2</sup></span> · <span>since<sup>3</sup></span> · <span>strange<sup>3</sup></span> · <span>you<sup>5</sup></span> · <span>and + also<sup>1</sup></span> · <span>to reveal<sup>3</sup></span> · <span>you<sup>5</sup></span> · <span>to + place + your<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-20">II Samuel 15:20</h3>
+  <p class="r"><span>yesterday<sup>2</sup></span> · <span>coming + you<sup>1</sup></span> · <span>and + the + day<sup>1</sup></span> · <span>will I make wander? + you<sup>1</sup></span> · <span>which [is] with + us<sup>1</sup></span> · <span>to + go<sup>1</sup></span> · <span>and + I<sup>1</sup></span> · <span>X again<sup>2</sup></span> · <span>Most High<sup>2</sup></span> · <span>that<sup>3</sup></span> · <span>galley<sup>3</sup></span> · <span>X again<sup>2</sup></span> · <span>retreat<sup>3</sup></span> · <span>and + bring to<sup>1</sup></span> · <span>with<sup>3</sup></span> · <span>brother + your<sup>1</sup></span> · <span>[is] with + you<sup>1</sup></span> · <span>be kind<sup>7</sup></span> · <span>and + faithfulness<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-21">II Samuel 15:21</h3>
+  <p class="r"><span>and + he answered<sup>1</sup></span> · <span>Ittai<sup>2</sup></span> · <span>with<sup>3</sup></span> · <span>consult<sup>2</sup></span> · <span>and + he said<sup>1</sup></span> · <span>alive<sup>3</sup></span> · <span>The Lord<sup>2</sup></span> · <span>and + he will live<sup>1</sup></span> · <span>lord<sup>2</sup></span> · <span>consult<sup>2</sup></span> · <span>since<sup>3</sup></span> · <span>mother<sup>3</sup></span> · <span>in the + place<sup>1</sup></span> · <span>that<sup>3</sup></span> · <span>beacon<sup>2</sup></span> · <span>authority<sup>3</sup></span> · <span>lord<sup>2</sup></span> · <span>consult<sup>2</sup></span> · <span>mother<sup>3</sup></span> · <span>to + die<sup>1</sup></span> · <span>mother<sup>3</sup></span> · <span>cheek (bone)<sup>2</sup></span> · <span>since<sup>3</sup></span> · <span>authority<sup>3</sup></span> · <span>beacon<sup>2</sup></span> · <span>servant + your<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-22">II Samuel 15:22</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>lover<sup>3</sup></span> · <span>these<sup>3</sup></span> · <span>Ittai<sup>2</sup></span> · <span>come<sup>2</sup></span> · <span>and + he will pass through<sup>1</sup></span> · <span>and + he made to pass<sup>1</sup></span> · <span>Ittai<sup>2</sup></span> · <span>the + Gittite[s]<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>men + his<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>drop(-ping)<sup>2</sup></span> · <span>that<sup>3</sup></span> · <span>sign<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v15-23">II Samuel 15:23</h3>
+  <p class="r"><span>and + all<sup>1</sup></span> · <span>the + earth<sup>1</sup></span> · <span>X at all<sup>2</sup></span> · <span>sound<sup>3</sup></span> · <span>older<sup>3</sup></span> · <span>and + all<sup>1</sup></span> · <span>the + people<sup>1</sup></span> · <span>Abarim<sup>3</sup></span> · <span>and + the + king<sup>1</sup></span> · <span>beyond<sup>3</sup></span> · <span>in + [the] wadi of<sup>1</sup></span> · <span>Kidron<sup>3</sup></span> · <span>and + all<sup>1</sup></span> · <span>the + people<sup>1</sup></span> · <span>Abarim<sup>3</sup></span> · <span>Most High<sup>2</sup></span> · <span>face<sup>2</sup></span> · <span>to tread<sup>3</sup></span> · <span>with<sup>3</sup></span> · <span>the + wilderness<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-24">II Samuel 15:24</h3>
+  <p class="r"><span>and + there!<sup>1</sup></span> · <span>also<sup>3</sup></span> · <span>Zadok<sup>3</sup></span> · <span>and + all<sup>1</sup></span> · <span>the + Levites<sup>1</sup></span> · <span>sign<sup>2</sup></span> · <span>creditor<sup>2</sup></span> · <span>with<sup>3</sup></span> · <span>chest<sup>3</sup></span> · <span>covenant<sup>3</sup></span> · <span>&lt;the&gt; + God<sup>1</sup></span> · <span>and + they set down<sup>1</sup></span> · <span>with<sup>3</sup></span> · <span>chest<sup>3</sup></span> · <span>&lt;the&gt; + God<sup>1</sup></span> · <span>and + he offered up<sup>1</sup></span> · <span>Abiathar<sup>3</sup></span> · <span>until<sup>3</sup></span> · <span>perfect<sup>3</sup></span> · <span>all<sup>3</sup></span> · <span>the + people<sup>1</sup></span> · <span>to + pass over<sup>1</sup></span> · <span>part<sup>3</sup></span> · <span>(a-)wake(-n, up)<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v15-25">II Samuel 15:25</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>consult<sup>2</sup></span> · <span>to + Zadok<sup>1</sup></span> · <span>return<sup>6</sup></span> · <span>with<sup>3</sup></span> · <span>chest<sup>3</sup></span> · <span>&lt;the&gt; + God<sup>1</sup></span> · <span>(a-)wake(-n, up)<sup>2</sup></span> · <span>mother<sup>3</sup></span> · <span>+ be able<sup>2</sup></span> · <span>favour<sup>3</sup></span> · <span>in + [the] eyes of<sup>1</sup></span> · <span>The Lord<sup>2</sup></span> · <span>and + bring to + me<sup>1</sup></span> · <span>and + he will show + me<sup>1</sup></span> · <span>sign<sup>2</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>habitation + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-26">II Samuel 15:26</h3>
+  <p class="r"><span>and + if<sup>1</sup></span> · <span>hitherto<sup>3</sup></span> · <span>command<sup>2</sup></span> · <span>no<sup>3</sup></span> · <span>X any at all<sup>2</sup></span> · <span>over &lt;the&gt; + you<sup>1</sup></span> · <span>here [am] + I<sup>1</sup></span> · <span>accomplish<sup>2</sup></span> · <span>to &lt;the&gt; + me<sup>1</sup></span> · <span>according as<sup>10</sup></span> · <span>beautiful<sup>3</sup></span> · <span>in + view + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-27">II Samuel 15:27</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>consult<sup>2</sup></span> · <span>these<sup>3</sup></span> · <span>Zadok<sup>3</sup></span> · <span>the + priest<sup>1</sup></span> · <span>¿ + a seer<sup>1</sup></span> · <span>you<sup>5</sup></span> · <span>transport into captivity<sup>3</sup></span> · <span>(a-)wake(-n, up)<sup>2</sup></span> · <span>in + peace<sup>1</sup></span> · <span>and + Ahimaaz<sup>1</sup></span> · <span>son + your<sup>1</sup></span> · <span>and + Jonathan<sup>1</sup></span> · <span>son<sup>3</sup></span> · <span>Abiathar<sup>3</sup></span> · <span>both<sup>2</sup></span> · <span>sons + your<sup>1</sup></span> · <span>with + you<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-28">II Samuel 15:28</h3>
+  <p class="r"><span>consider<sup>2</sup></span> · <span>I<sup>3</sup></span> · <span>delay<sup>2</sup></span> · <span>in + [the] plains of<sup>1</sup></span> · <span>the + wilderness<sup>1</sup></span> · <span>until<sup>3</sup></span> · <span>put<sup>3</sup></span> · <span>to speak<sup>3</sup></span> · <span>from + with &lt;the&gt; + you<sup>1</sup></span> · <span>by + telling<sup>1</sup></span> · <span>to &lt;the&gt; + me<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-29">II Samuel 15:29</h3>
+  <p class="r"><span>and + he dwelt<sup>1</sup></span> · <span>Zadok<sup>3</sup></span> · <span>and + Abiathar<sup>1</sup></span> · <span>with<sup>3</sup></span> · <span>chest<sup>3</sup></span> · <span>&lt;the&gt; + God<sup>1</sup></span> · <span>(Chald)<sup>2</sup></span> · <span>and + they turned back<sup>1</sup></span> · <span>authority<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v15-30">II Samuel 15:30</h3>
+  <p class="r"><span>and + David<sup>1</sup></span> · <span>to ascend<sup>3</sup></span> · <span>on + [the] ascent of<sup>1</sup></span> · <span>the + olive trees<sup>1</sup></span> · <span>to ascend<sup>3</sup></span> · <span>and + weeping<sup>1</sup></span> · <span>and + top<sup>1</sup></span> · <span>if (haply)<sup>2</sup></span> · <span>ceil<sup>2</sup></span> · <span>and + he<sup>1</sup></span> · <span>come<sup>3</sup></span> · <span>barefoot<sup>3</sup></span> · <span>and + all<sup>1</sup></span> · <span>the + people<sup>1</sup></span> · <span>that<sup>3</sup></span> · <span>sign<sup>2</sup></span> · <span>ceil<sup>2</sup></span> · <span>person<sup>3</sup></span> · <span>top + its<sup>1</sup></span> · <span>and + go up<sup>1</sup></span> · <span>to ascend<sup>3</sup></span> · <span>and + utterly &lt;to weep&gt;<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-31">II Samuel 15:31</h3>
+  <p class="r"><span>and + David<sup>1</sup></span> · <span>tell<sup>2</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>Ahithophel<sup>3</sup></span> · <span>[is] among the + conspirators<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>Abishalom<sup>2</sup></span> · <span>and + he said<sup>1</sup></span> · <span>lover<sup>3</sup></span> · <span>be silly<sup>3</sup></span> · <span>now<sup>3</sup></span> · <span>with<sup>3</sup></span> · <span>purpose<sup>2</sup></span> · <span>Ahithophel<sup>3</sup></span> · <span>The Lord<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v15-32">II Samuel 15:32</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>lover<sup>3</sup></span> · <span>abide<sup>2</sup></span> · <span>until<sup>3</sup></span> · <span>the + head<sup>1</sup></span> · <span>that<sup>3</sup></span> · <span>bow (self) down<sup>2</sup></span> · <span>authority<sup>3</sup></span> · <span>&lt;into&gt; + God<sup>1</sup></span> · <span>and + there!<sup>1</sup></span> · <span>to + meet + him<sup>1</sup></span> · <span>Hushai<sup>3</sup></span> · <span>the + Arkite[s]<sup>1</sup></span> · <span>tear<sup>2</sup></span> · <span>long garment + his<sup>1</sup></span> · <span>and + Admah<sup>1</sup></span> · <span>Most High<sup>2</sup></span> · <span>top + its<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-33">II Samuel 15:33</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>if (haply)<sup>2</sup></span> · <span>lover<sup>3</sup></span> · <span>mother<sup>3</sup></span> · <span>wrath<sup>2</sup></span> · <span>Ittai<sup>2</sup></span> · <span>and + you will become<sup>1</sup></span> · <span>Eli<sup>3</sup></span> · <span>for + carrying<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-34">II Samuel 15:34</h3>
+  <p class="r"><span>and + if<sup>1</sup></span> · <span>(a-)wake(-n, up)<sup>2</sup></span> · <span>return<sup>6</sup></span> · <span>and + you will say<sup>1</sup></span> · <span>[belonged] to + Absalom<sup>1</sup></span> · <span>servant + your<sup>1</sup></span> · <span>galley<sup>3</sup></span> · <span>consult<sup>2</sup></span> · <span>beacon<sup>2</sup></span> · <span>to serve<sup>3</sup></span> · <span>filled or abounding with fog or mist<sup>4</sup></span> · <span>and + I<sup>1</sup></span> · <span>from that time<sup>10</sup></span> · <span>and + therefore<sup>1</sup></span> · <span>and + I<sup>1</sup></span> · <span>servant + your<sup>1</sup></span> · <span>and + you will frustrate<sup>1</sup></span> · <span>to &lt;the&gt; + me<sup>1</sup></span> · <span>with<sup>3</sup></span> · <span>purpose<sup>2</sup></span> · <span>Ahithophel<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v15-35">II Samuel 15:35</h3>
+  <p class="r"><span>and + ¿ + not<sup>1</sup></span> · <span>[is] with + you<sup>1</sup></span> · <span>authority<sup>3</sup></span> · <span>Zadok<sup>3</sup></span> · <span>and + Abiathar<sup>1</sup></span> · <span>the + priests<sup>1</sup></span> · <span>and + it became<sup>1</sup></span> · <span>all<sup>3</sup></span> · <span>vizier<sup>3</sup></span> · <span>that<sup>3</sup></span> · <span>X attentively<sup>2</sup></span> · <span>from + inside<sup>1</sup></span> · <span>consult<sup>2</sup></span> · <span>bewray<sup>2</sup></span> · <span>to + Zadok<sup>1</sup></span> · <span>and + to + Abiathar<sup>1</sup></span> · <span>the + priests<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v15-36">II Samuel 15:36</h3>
+  <p class="r"><span>here<sup>3</sup></span> · <span>authority<sup>3</sup></span> · <span>associate<sup>3</sup></span> · <span>both<sup>2</sup></span> · <span>sons + their<sup>1</sup></span> · <span>Ahimaaz<sup>3</sup></span> · <span>to + Zadok<sup>1</sup></span> · <span>and + Jonathan<sup>1</sup></span> · <span>to + Abiathar<sup>1</sup></span> · <span>and + you will send away<sup>1</sup></span> · <span>[were] in + hand + their<sup>1</sup></span> · <span>against<sup>2</sup></span> · <span>all<sup>3</sup></span> · <span>to speak<sup>3</sup></span> · <span>that<sup>3</sup></span> · <span>X attentively<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v15-37">II Samuel 15:37</h3>
+  <p class="r"><span>and + he brought [them]<sup>1</sup></span> · <span>Hushai<sup>3</sup></span> · <span>trouble<sup>2</sup></span> · <span>lover<sup>3</sup></span> · <span>(a-)wake(-n, up)<sup>2</sup></span> · <span>and + Absalom<sup>1</sup></span> · <span>abide<sup>2</sup></span> · <span>(Chald)<sup>2</sup></span></p></article>
+  <nav class="porch-nav"><a href="/ii-samuel/14/" rel="prev">II Samuel 14</a><a href="/ii-samuel/">II Samuel, from the beginning</a><a href="/ii-samuel/16/" rel="next">II Samuel 16</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="2">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="3">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="4">Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · WordNet Licenses</li>
+    <li value="5">ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · CC BY-SA 4.0</li>
+    <li value="6">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="7">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    <li value="8">Semantic Dictionary of Biblical Hebrew via HiperBiblia · CC BY-SA 4.0</li>
+    <li value="9">Classical Hebrew Words database · Public Domain</li>
+    <li value="10">Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · CC BY 4.0</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

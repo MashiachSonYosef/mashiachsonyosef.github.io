@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="genesis">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="37">
+<meta name="description" content="Genesis 37 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/genesis/37/">
+<title>Genesis 37 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Genesis 37</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v37-1">Genesis 37:1</h3>
+  <p class="r"><span>and + he dwelt<sup>1</sup></span> · <span>Jacob<sup>2</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>dwelling<sup>3</sup></span> · <span>chief<sup>3</sup></span> · <span>on the + earth<sup>1</sup></span> · <span>Canaan<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v37-2">Genesis 37:2</h3>
+  <p class="r"><span>god<sup>2</sup></span> · <span>generations<sup>3</sup></span> · <span>Jacob<sup>2</sup></span> · <span>Joseph<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>abundance<sup>2</sup></span> · <span>ten<sup>3</sup></span> · <span>alter<sup>2</sup></span> · <span>to exist<sup>2</sup></span> · <span>trouble<sup>3</sup></span> · <span>with<sup>2</sup></span> · <span>Achio<sup>2</sup></span> · <span>among + [the] flock of<sup>1</sup></span> · <span>and + he<sup>1</sup></span> · <span>boy<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>young<sup>3</sup></span> · <span>terror<sup>2</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>young<sup>3</sup></span> · <span>Zilpah<sup>2</sup></span> · <span>a debt<sup>2</sup></span> · <span>chief<sup>3</sup></span> · <span>and + he brought [them]<sup>1</sup></span> · <span>Joseph<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>report + their<sup>1</sup></span> · <span>trouble<sup>3</sup></span> · <span>these<sup>2</sup></span> · <span>father + their<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-3">Genesis 37:3</h3>
+  <p class="r"><span>and + Israel<sup>1</sup></span> · <span>friend<sup>3</sup></span> · <span>with<sup>2</sup></span> · <span>Joseph<sup>2</sup></span> · <span>from + all<sup>1</sup></span> · <span>sons + his<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>son<sup>2</sup></span> · <span>aged<sup>3</sup></span> · <span>this<sup>4</sup></span> · <span>if (haply)<sup>3</sup></span> · <span>and + do<sup>1</sup></span> · <span>if (haply)<sup>3</sup></span> · <span>shirt<sup>2</sup></span> · <span>(divers) colours<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-4">Genesis 37:4</h3>
+  <p class="r"><span>and + they saw<sup>1</sup></span> · <span>Achio<sup>2</sup></span> · <span>since<sup>2</sup></span> · <span>sign<sup>3</sup></span> · <span>friend<sup>3</sup></span> · <span>father + their<sup>1</sup></span> · <span>from + all<sup>1</sup></span> · <span>Achio<sup>2</sup></span> · <span>and + they hated<sup>1</sup></span> · <span>sign<sup>3</sup></span> · <span>and + not<sup>1</sup></span> · <span>be able<sup>3</sup></span> · <span>speak<sup>3</sup></span> · <span>to + welfare<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-5">Genesis 37:5</h3>
+  <p class="r"><span>and + he dreamed<sup>1</sup></span> · <span>Joseph<sup>2</sup></span> · <span>a dream<sup>1</sup></span> · <span>and + he told<sup>1</sup></span> · <span>of + brothers + his<sup>1</sup></span> · <span>and + they increased<sup>1</sup></span> · <span>still<sup>2</sup></span> · <span>enemy<sup>2</sup></span> · <span>sign<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-6">Genesis 37:6</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>to + them<sup>1</sup></span> · <span>listen<sup>3</sup></span> · <span>now<sup>2</sup></span> · <span>the + dream<sup>1</sup></span> · <span>to dream<sup>5</sup></span> · <span>that<sup>2</sup></span> · <span>dream(-er)<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-7">Genesis 37:7</h3>
+  <p class="r"><span>and + there!<sup>1</sup></span> · <span>we<sup>3</sup></span> · <span>bind<sup>3</sup></span> · <span>dumb (man)<sup>3</sup></span> · <span>in + [the] middle of<sup>1</sup></span> · <span>the + field<sup>1</sup></span> · <span>and + there!<sup>1</sup></span> · <span>rises<sup>2</sup></span> · <span>sheaf<sup>3</sup></span> · <span>and + also<sup>1</sup></span> · <span>fixedness<sup>2</sup></span> · <span>and + there!<sup>1</sup></span> · <span>bring<sup>3</sup></span> · <span>sheaves + your<sup>1</sup></span> · <span>and + they bowed down<sup>1</sup></span> · <span>to + sheaf + my<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-8">Genesis 37:8</h3>
+  <p class="r"><span>and + they said<sup>1</sup></span> · <span>if (haply)<sup>3</sup></span> · <span>Achio<sup>2</sup></span> · <span>consult<sup>3</sup></span> · <span>consult<sup>3</sup></span> · <span>arise (up)<sup>3</sup></span> · <span>mother<sup>2</sup></span> · <span>(have, make to have) dominion<sup>3</sup></span> · <span>(have, make to have) dominion<sup>3</sup></span> · <span>build<sup>3</sup></span> · <span>and + they increased<sup>1</sup></span> · <span>still<sup>2</sup></span> · <span>enemy<sup>2</sup></span> · <span>sign<sup>3</sup></span> · <span>Most High<sup>3</sup></span> · <span>dreams + his<sup>1</sup></span> · <span>and + on<sup>1</sup></span> · <span>words + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-9">Genesis 37:9</h3>
+  <p class="r"><span>and + he dreamed<sup>1</sup></span> · <span>still<sup>2</sup></span> · <span>a dream<sup>1</sup></span> · <span>behind<sup>2</sup></span> · <span>and + he recounted<sup>1</sup></span> · <span>sign<sup>3</sup></span> · <span>of + brothers + his<sup>1</sup></span> · <span>and + he said<sup>1</sup></span> · <span>here<sup>2</sup></span> · <span>dream(-er)<sup>3</sup></span> · <span>a dream<sup>1</sup></span> · <span>still<sup>2</sup></span> · <span>and + there!<sup>1</sup></span> · <span>the + sun<sup>1</sup></span> · <span>and + the + moon<sup>1</sup></span> · <span>and + one [plus]<sup>1</sup></span> · <span>ten<sup>2</sup></span> · <span>star((-gazer))<sup>3</sup></span> · <span>bow (self) down<sup>3</sup></span> · <span>to &lt;the&gt; + me<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-10">Genesis 37:10</h3>
+  <p class="r"><span>and + he recounted<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>chief<sup>3</sup></span> · <span>and + [will be] to<sup>1</sup></span> · <span>Achio<sup>2</sup></span> · <span>and + he rebuked<sup>1</sup></span> · <span>[is] in &lt;the&gt; + it<sup>1</sup></span> · <span>chief<sup>3</sup></span> · <span>and + he said<sup>1</sup></span> · <span>if (haply)<sup>3</sup></span> · <span>why?<sup>4</sup></span> · <span>the + dream<sup>1</sup></span> · <span>to dream<sup>5</sup></span> · <span>that<sup>2</sup></span> · <span>(cause to) dream(-er)<sup>3</sup></span> · <span>¿ + really &lt;come&gt;<sup>1</sup></span> · <span>abide<sup>3</sup></span> · <span>galley<sup>2</sup></span> · <span>and + mother + your<sup>1</sup></span> · <span>and + relatives + your<sup>1</sup></span> · <span>to + bow down<sup>1</sup></span> · <span>come<sup>3</sup></span> · <span>break down<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-11">Genesis 37:11</h3>
+  <p class="r"><span>and + they envied<sup>1</sup></span> · <span>[is] in &lt;the&gt; + it<sup>1</sup></span> · <span>Achio<sup>2</sup></span> · <span>and + father + his<sup>1</sup></span> · <span>dregs<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>vizier<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v37-12">Genesis 37:12</h3>
+  <p class="r"><span>and + they walked<sup>1</sup></span> · <span>Achio<sup>2</sup></span> · <span>to + pasture<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>a collective name for a flock (of sheep or goats)<sup>2</sup></span> · <span>father + their<sup>1</sup></span> · <span>at + Shechem<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-13">Genesis 37:13</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>Israel<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>Joseph<sup>2</sup></span> · <span>¿ + not<sup>1</sup></span> · <span>brother + your<sup>1</sup></span> · <span>bad<sup>3</sup></span> · <span>at + Shechem<sup>1</sup></span> · <span>Lekah<sup>6</sup></span> · <span>and + I sent away + you<sup>1</sup></span> · <span>to + them<sup>1</sup></span> · <span>and + he said<sup>1</sup></span> · <span>if (haply)<sup>3</sup></span> · <span>here [am] + I<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-14">Genesis 37:14</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>if (haply)<sup>3</sup></span> · <span>come<sup>3</sup></span> · <span>now<sup>2</sup></span> · <span>to see<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>peace<sup>2</sup></span> · <span>brother + your<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>1</sup></span> · <span>peace<sup>2</sup></span> · <span>the + flock<sup>1</sup></span> · <span>and + bring to + me<sup>1</sup></span> · <span>to speak<sup>2</sup></span> · <span>and + he sent out + him<sup>1</sup></span> · <span>deep<sup>2</sup></span> · <span>Hebron<sup>2</sup></span> · <span>and + he brought [them]<sup>1</sup></span> · <span>the shoulderbone<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v37-15">Genesis 37:15</h3>
+  <p class="r"><span>and + he found + him<sup>1</sup></span> · <span>person<sup>2</sup></span> · <span>and + there!<sup>1</sup></span> · <span>vacillate<sup>2</sup></span> · <span>in the + field<sup>1</sup></span> · <span>and + he asked + him<sup>1</sup></span> · <span>the + man<sup>1</sup></span> · <span>&lt;to&gt; + saying<sup>1</sup></span> · <span>why?<sup>4</sup></span> · <span>ask<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-16">Genesis 37:16</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>Achi<sup>2</sup></span> · <span>I<sup>2</sup></span> · <span>ask<sup>3</sup></span> · <span>bewray<sup>3</sup></span> · <span>now<sup>2</sup></span> · <span>to &lt;the&gt; + me<sup>1</sup></span> · <span>ephah<sup>2</sup></span> · <span>them<sup>2</sup></span> · <span>bad<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-17">Genesis 37:17</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>the + man<sup>1</sup></span> · <span>cause to blow<sup>3</sup></span> · <span>exhausted<sup>2</sup></span> · <span>since<sup>2</sup></span> · <span>Shimathite<sup>2</sup></span> · <span>saying<sup>3</sup></span> · <span>X again<sup>3</sup></span> · <span>Dothan + towards<sup>1</sup></span> · <span>and + he went<sup>1</sup></span> · <span>Joseph<sup>2</sup></span> · <span>behind<sup>2</sup></span> · <span>Achio<sup>2</sup></span> · <span>and + he found + them<sup>1</sup></span> · <span>at + Dothan<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-18">Genesis 37:18</h3>
+  <p class="r"><span>and + they saw<sup>1</sup></span> · <span>sign<sup>3</sup></span> · <span>remoteness<sup>2</sup></span> · <span>and + just + before<sup>1</sup></span> · <span>(cause to) approach<sup>3</sup></span> · <span>to + them<sup>1</sup></span> · <span>and + they dealt deceptively with<sup>1</sup></span> · <span>sign<sup>3</sup></span> · <span>to + kill + him<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-19">Genesis 37:19</h3>
+  <p class="r"><span>and + they said<sup>1</sup></span> · <span>person<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>Achio<sup>2</sup></span> · <span>here<sup>2</sup></span> · <span>to marry<sup>2</sup></span> · <span>&lt;the&gt; + dreams<sup>1</sup></span> · <span>this very<sup>2</sup></span> · <span>abide<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-20">Genesis 37:20</h3>
+  <p class="r"><span>and + therefore<sup>1</sup></span> · <span>X again<sup>3</sup></span> · <span>and + let us kill + him<sup>1</sup></span> · <span>and + let us throw + him<sup>1</sup></span> · <span>on + [day] one<sup>1</sup></span> · <span>choose<sup>3</sup></span> · <span>and + we will say<sup>1</sup></span> · <span>to live<sup>2</sup></span> · <span>trouble<sup>3</sup></span> · <span>it has eaten + him<sup>1</sup></span> · <span>and + we may see<sup>1</sup></span> · <span>why?<sup>4</sup></span> · <span>they were<sup>4</sup></span> · <span>dreams + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-21">Genesis 37:21</h3>
+  <p class="r"><span>and + he heard<sup>1</sup></span> · <span>Reuben<sup>2</sup></span> · <span>and + he rescued + him<sup>1</sup></span> · <span>from + hand + their<sup>1</sup></span> · <span>and + he said<sup>1</sup></span> · <span>no<sup>2</sup></span> · <span>certain(-ty)<sup>3</sup></span> · <span>breath<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v37-22">Genesis 37:22</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>to + them<sup>1</sup></span> · <span>Reuben<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>cast (up)<sup>3</sup></span> · <span>be silent<sup>3</sup></span> · <span>throw<sup>3</sup></span> · <span>sign<sup>3</sup></span> · <span>these<sup>2</sup></span> · <span>the + pit<sup>1</sup></span> · <span>to dream<sup>5</sup></span> · <span>that<sup>2</sup></span> · <span>in the + wilderness<sup>1</sup></span> · <span>and + [the] hand of<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>X any wise<sup>3</sup></span> · <span>[is] in &lt;the&gt; + it<sup>1</sup></span> · <span>because of<sup>3</sup></span> · <span>rescue<sup>3</sup></span> · <span>sign<sup>3</sup></span> · <span>from + hand + their<sup>1</sup></span> · <span>to + restore + him<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>chief<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-23">Genesis 37:23</h3>
+  <p class="r"><span>and + there was<sup>1</sup></span> · <span>according as<sup>7</sup></span> · <span>abide<sup>3</sup></span> · <span>Joseph<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>Achio<sup>2</sup></span> · <span>and + they stripped<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>Joseph<sup>2</sup></span> · <span>with<sup>2</sup></span> · <span>long garment + his<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>shirt<sup>2</sup></span> · <span>the + palms and soles<sup>1</sup></span> · <span>that<sup>2</sup></span> · <span>on + him<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-24">Genesis 37:24</h3>
+  <p class="r"><span>and + they took + him<sup>1</sup></span> · <span>and + they threw<sup>1</sup></span> · <span>sign<sup>3</sup></span> · <span>a unit of spoken language larger than a phoneme<sup>8</sup></span> · <span>and + the + pit<sup>1</sup></span> · <span>only<sup>2</sup></span> · <span>nothing<sup>2</sup></span> · <span>[is] in &lt;the&gt; + it<sup>1</sup></span> · <span>water<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v37-25">Genesis 37:25</h3>
+  <p class="r"><span>and + they turned back<sup>1</sup></span> · <span>to + eat<sup>1</sup></span> · <span>food<sup>2</sup></span> · <span>and + they lifted<sup>1</sup></span> · <span>eyes + their<sup>1</sup></span> · <span>and + they saw<sup>1</sup></span> · <span>and + there!<sup>1</sup></span> · <span>allowance<sup>3</sup></span> · <span>Ishmaelite<sup>3</sup></span> · <span>an entrance to a building<sup>2</sup></span> · <span>from + Gilead<sup>1</sup></span> · <span>and + camels + their<sup>1</sup></span> · <span>creditor<sup>3</sup></span> · <span>smiting<sup>2</sup></span> · <span>and + balm<sup>1</sup></span> · <span>and + myrrh<sup>1</sup></span> · <span>(all) along<sup>3</sup></span> · <span>to + take [them] down<sup>1</sup></span> · <span>Egypt + towards<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-26">Genesis 37:26</h3>
+  <p class="r"><span>and + he said<sup>1</sup></span> · <span>Judah<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>Achio<sup>2</sup></span> · <span>why?<sup>4</sup></span> · <span>to break off<sup>2</sup></span> · <span>since<sup>2</sup></span> · <span>destroy<sup>3</sup></span> · <span>with<sup>2</sup></span> · <span>relatives + our<sup>1</sup></span> · <span>and + we will conceal<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>be silent<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-27">Genesis 37:27</h3>
+  <p class="r"><span>X again<sup>3</sup></span> · <span>and + let us sell + him<sup>1</sup></span> · <span>to the + Ishmaelites<sup>1</sup></span> · <span>and + hand + our<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>beacon<sup>3</sup></span> · <span>[is] in &lt;the&gt; + it<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>relatives + our<sup>1</sup></span> · <span>flesh + our<sup>1</sup></span> · <span>this<sup>4</sup></span> · <span>and + they heard<sup>1</sup></span> · <span>Achio<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v37-28">Genesis 37:28</h3>
+  <p class="r"><span>and + they passed by<sup>1</sup></span> · <span>people<sup>3</sup></span> · <span>brawling<sup>3</sup></span> · <span>go about<sup>3</sup></span> · <span>and + they drew<sup>1</sup></span> · <span>and + they brought up<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>Joseph<sup>2</sup></span> · <span>part<sup>2</sup></span> · <span>the + pit<sup>1</sup></span> · <span>and + they sold<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>Joseph<sup>2</sup></span> · <span>to the + Ishmaelites<sup>1</sup></span> · <span>for + twenty<sup>1</sup></span> · <span>money<sup>2</sup></span> · <span>and + they brought<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>Joseph<sup>2</sup></span> · <span>Egypt + towards<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-29">Genesis 37:29</h3>
+  <p class="r"><span>and + he dwelt<sup>1</sup></span> · <span>Reuben<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>the + pit<sup>1</sup></span> · <span>and + there!<sup>1</sup></span> · <span>nothing<sup>2</sup></span> · <span>Joseph<sup>2</sup></span> · <span>[was] in the + pit<sup>1</sup></span> · <span>and + he tore<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>clothes + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-30">Genesis 37:30</h3>
+  <p class="r"><span>and + he dwelt<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>Achio<sup>2</sup></span> · <span>and + he said<sup>1</sup></span> · <span>the + child<sup>1</sup></span> · <span>not [was] + he<sup>1</sup></span> · <span>and + I<sup>1</sup></span> · <span>mourn<sup>3</sup></span> · <span>galley<sup>2</sup></span> · <span>abide<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-31">Genesis 37:31</h3>
+  <p class="r"><span>and + they took<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>shirt<sup>2</sup></span> · <span>Joseph<sup>2</sup></span> · <span>and + they slaughtered<sup>1</sup></span> · <span>satyr<sup>3</sup></span> · <span>mighty<sup>3</sup></span> · <span>and + they dipped<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>the + long garment<sup>1</sup></span> · <span>in the + blood<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v37-32">Genesis 37:32</h3>
+  <p class="r"><span>and + they sent away<sup>1</sup></span> · <span>with<sup>2</sup></span> · <span>shirt<sup>2</sup></span> · <span>the + palms and soles<sup>1</sup></span> · <span>and + they brought<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>father + their<sup>1</sup></span> · <span>and + they said<sup>1</sup></span> · <span>this<sup>9</sup></span> · <span>+ be able<sup>3</sup></span> · <span>injure<sup>2</sup></span> · <span>now<sup>2</sup></span> · <span>the + long garment<sup>1</sup></span> · <span>son + your<sup>1</sup></span> · <span>this<sup>4</sup></span> · <span>mother<sup>2</sup></span> · <span>no<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v37-33">Genesis 37:33</h3>
+  <p class="r"><span>and + he recognized + it<sup>1</sup></span> · <span>and + he said<sup>1</sup></span> · <span>shirt<sup>2</sup></span> · <span>young<sup>3</sup></span> · <span>to live<sup>2</sup></span> · <span>trouble<sup>3</sup></span> · <span>it has eaten + him<sup>1</sup></span> · <span>prey<sup>2</sup></span> · <span>prey<sup>2</sup></span> · <span>Joseph<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v37-34">Genesis 37:34</h3>
+  <p class="r"><span>and + he tore<sup>1</sup></span> · <span>Jacob<sup>2</sup></span> · <span>clothes + his<sup>1</sup></span> · <span>and + he put<sup>1</sup></span> · <span>kiss<sup>3</sup></span> · <span>on + loins + his<sup>1</sup></span> · <span>and + he mourned<sup>1</sup></span> · <span>Most High<sup>3</sup></span> · <span>build<sup>3</sup></span> · <span>sea (X -faring man, (-shore))<sup>3</sup></span> · <span>(in) abound(-undance, -ant, -antly)<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-35">Genesis 37:35</h3>
+  <p class="r"><span>and + they arose<sup>1</sup></span> · <span>all<sup>2</sup></span> · <span>sons + his<sup>1</sup></span> · <span>and + all<sup>1</sup></span> · <span>&lt;of&gt; daughters + his<sup>1</sup></span> · <span>to + comfort + him<sup>1</sup></span> · <span>and + he refused<sup>1</sup></span> · <span>to + be comforted<sup>1</sup></span> · <span>and + he said<sup>1</sup></span> · <span>since<sup>2</sup></span> · <span>Ard<sup>2</sup></span> · <span>these<sup>2</sup></span> · <span>young<sup>3</sup></span> · <span>Abel<sup>2</sup></span> · <span>request<sup>3</sup></span> · <span>and + he wept<sup>1</sup></span> · <span>sign<sup>3</sup></span> · <span>chief<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v37-36">Genesis 37:36</h3>
+  <p class="r"><span>and + the + Medanites<sup>1</sup></span> · <span>X at all<sup>3</sup></span> · <span>sign<sup>3</sup></span> · <span>these<sup>2</sup></span> · <span>Mizraim<sup>3</sup></span> · <span>to + Potiphar<sup>1</sup></span> · <span>eunuch<sup>2</sup></span> · <span>leadership<sup>2</sup></span> · <span>governor<sup>2</sup></span> · <span>the + bodyguards<sup>1</sup></span></p></article>
+  <nav class="porch-nav"><a href="/genesis/36/" rel="prev">Genesis 36</a><a href="/genesis/">Genesis, from the beginning</a><a href="/genesis/38/" rel="next">Genesis 38</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="2">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="3">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="4">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="5">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    <li value="6">Semantic Dictionary of Biblical Hebrew via HiperBiblia · CC BY-SA 4.0</li>
+    <li value="7">Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · CC BY 4.0</li>
+    <li value="8">Hebrew WordNet PWN 3.0 alignment bridged to Open English WordNet 2025 by complete permanent-sense-key agreement · WordNet Notices + CC BY 4.0</li>
+    <li value="9">ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · CC BY-SA 4.0</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

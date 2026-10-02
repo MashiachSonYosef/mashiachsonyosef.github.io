@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="deuteronomy">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="1">
+<meta name="description" content="Deuteronomy 1 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/deuteronomy/1/">
+<title>Deuteronomy 1 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Deuteronomy 1</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v1-1">Deuteronomy 1:1</h3>
+  <p class="r"><span>god<sup>1</sup></span> · <span>the + things<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>to speak<sup>1</sup></span> · <span>debt<sup>3</sup></span> · <span>these<sup>1</sup></span> · <span>all<sup>1</sup></span> · <span>Israel<sup>1</sup></span> · <span>in + order that<sup>2</sup></span> · <span>the + Jordan<sup>2</sup></span> · <span>in the + wilderness<sup>2</sup></span> · <span>in the + desert plain<sup>2</sup></span> · <span>opposite<sup>4</sup></span> · <span>end<sup>1</sup></span> · <span>between<sup>5</sup></span> · <span>Paran<sup>1</sup></span> · <span>and + between<sup>2</sup></span> · <span>Tophel<sup>1</sup></span> · <span>and + Laban<sup>2</sup></span> · <span>and + Hazeroth<sup>2</sup></span> · <span>and + Di<sup>2</sup></span> · <span>gold<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v1-2">Deuteronomy 1:2</h3>
+  <p class="r"><span>one<sup>1</sup></span> · <span>ten<sup>1</sup></span> · <span>time<sup>5</sup></span> · <span>laying waste<sup>3</sup></span> · <span>to tread<sup>1</sup></span> · <span>Hor<sup>4</sup></span> · <span>Seir<sup>1</sup></span> · <span>until<sup>1</sup></span> · <span>Kedesh<sup>1</sup></span> · <span>Barnea<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-3">Deuteronomy 1:3</h3>
+  <p class="r"><span>and + there was<sup>2</sup></span> · <span>in + forty<sup>2</sup></span> · <span>alter<sup>1</sup></span> · <span>in + [the] one [plus]<sup>2</sup></span> · <span>ten<sup>1</sup></span> · <span>a month<sup>1</sup></span> · <span>on + [day] one<sup>2</sup></span> · <span>of the + month<sup>2</sup></span> · <span>to speak<sup>1</sup></span> · <span>debt<sup>3</sup></span> · <span>these<sup>1</sup></span> · <span>young<sup>5</sup></span> · <span>Israel<sup>1</sup></span> · <span>according to + all<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>appoint<sup>1</sup></span> · <span>The Lord<sup>5</sup></span> · <span>sign<sup>5</sup></span> · <span>to + them<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-4">Deuteronomy 1:4</h3>
+  <p class="r"><span>behind<sup>5</sup></span> · <span>had defeated + he<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>Sihon<sup>4</sup></span> · <span>king<sup>1</sup></span> · <span>the + Amorite[s]<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>(make to) abide(-ing)<sup>5</sup></span> · <span>in + Heshbon<sup>2</sup></span> · <span>and + &lt;obj.&gt;<sup>2</sup></span> · <span>Og<sup>1</sup></span> · <span>king<sup>1</sup></span> · <span>&lt;the&gt; + Bashan<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>(make to) abide(-ing)<sup>5</sup></span> · <span>in + Ashteroth<sup>2</sup></span> · <span>in + Edrei<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-5">Deuteronomy 1:5</h3>
+  <p class="r"><span>in + order that<sup>2</sup></span> · <span>the + Jordan<sup>2</sup></span> · <span>on the + earth<sup>2</sup></span> · <span>Moab<sup>1</sup></span> · <span>assay<sup>5</sup></span> · <span>debt<sup>3</sup></span> · <span>well<sup>5</sup></span> · <span>with<sup>1</sup></span> · <span>the + law<sup>2</sup></span> · <span>&lt;the&gt; + this<sup>2</sup></span> · <span>&lt;to&gt; + saying<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-6">Deuteronomy 1:6</h3>
+  <p class="r"><span>The Lord<sup>5</sup></span> · <span>God + our<sup>2</sup></span> · <span>to speak<sup>1</sup></span> · <span>to + us<sup>2</sup></span> · <span>by + sword<sup>2</sup></span> · <span>&lt;to&gt; + saying<sup>2</sup></span> · <span>many<sup>1</sup></span> · <span>to &lt;the&gt; + you<sup>2</sup></span> · <span>seat<sup>5</sup></span> · <span>be bright<sup>6</sup></span> · <span>to dream<sup>7</sup></span></p></article>
+  <article class="pv"><h3 id="v1-7">Deuteronomy 1:7</h3>
+  <p class="r"><span>appear<sup>5</sup></span> · <span>and + set out<sup>2</sup></span> · <span>to &lt;the&gt; + you<sup>2</sup></span> · <span>and + come<sup>2</sup></span> · <span>Hor<sup>4</sup></span> · <span>the + Amorite[s]<sup>2</sup></span> · <span>and + [will be] to<sup>2</sup></span> · <span>all<sup>1</sup></span> · <span>neighbors + its<sup>2</sup></span> · <span>in the + desert plain<sup>2</sup></span> · <span>be bright<sup>6</sup></span> · <span>and + in the + Shephelah<sup>2</sup></span> · <span>and + in the + Negev<sup>2</sup></span> · <span>and + on + [the] coast of<sup>2</sup></span> · <span>the + sea<sup>2</sup></span> · <span>earth<sup>1</sup></span> · <span>the + Canaanite[s]<sup>2</sup></span> · <span>and + &lt;the&gt; + Lebanon<sup>2</sup></span> · <span>until<sup>1</sup></span> · <span>the + river<sup>2</sup></span> · <span>advance<sup>5</sup></span> · <span>river<sup>1</sup></span> · <span>Euphrates<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v1-8">Deuteronomy 1:8</h3>
+  <p class="r"><span>to see<sup>1</sup></span> · <span>add<sup>5</sup></span> · <span>&lt;to&gt; + before + you<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>the + earth<sup>2</sup></span> · <span>abide<sup>5</sup></span> · <span>and + take possession of<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>the + earth<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>have enough<sup>5</sup></span> · <span>The Lord<sup>5</sup></span> · <span>to + ancestors + your<sup>2</sup></span> · <span>&lt;to&gt; + Abraham<sup>2</sup></span> · <span>for + Isaac<sup>2</sup></span> · <span>and + to + Jacob<sup>2</sup></span> · <span>to + give<sup>2</sup></span> · <span>burn in<sup>1</sup></span> · <span>and + to + offspring + their<sup>2</sup></span> · <span>after + them<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-9">Deuteronomy 1:9</h3>
+  <p class="r"><span>and + I said<sup>2</sup></span> · <span>to + you<sup>2</sup></span> · <span>terrify<sup>1</sup></span> · <span>&lt;the&gt; + that<sup>2</sup></span> · <span>&lt;to&gt; + saying<sup>2</sup></span> · <span>no<sup>1</sup></span> · <span>X at all<sup>5</sup></span> · <span>to + alone + me<sup>2</sup></span> · <span>rising<sup>5</sup></span> · <span>with + you<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-10">Deuteronomy 1:10</h3>
+  <p class="r"><span>The Lord<sup>5</sup></span> · <span>God + your<sup>2</sup></span> · <span>increase<sup>5</sup></span> · <span>with + you<sup>2</sup></span> · <span>and + here + you<sup>2</sup></span> · <span>on this day as distinct from yesterday or tomorrow<sup>8</sup></span> · <span>like + [the] stars of<sup>2</sup></span> · <span>the + heavens<sup>2</sup></span> · <span>to + become numerous<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-11">Deuteronomy 1:11</h3>
+  <p class="r"><span>The Lord<sup>5</sup></span> · <span>God<sup>5</sup></span> · <span>ancestors + your<sup>2</sup></span> · <span>join<sup>1</sup></span> · <span>on + you<sup>2</sup></span> · <span>as &lt;the&gt; + you<sup>2</sup></span> · <span>Eleph<sup>1</sup></span> · <span>anvil<sup>5</sup></span> · <span>and + he blessed<sup>2</sup></span> · <span>with + you<sup>2</sup></span> · <span>according as<sup>6</sup></span> · <span>to speak<sup>1</sup></span> · <span>to &lt;the&gt; + you<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-12">Deuteronomy 1:12</h3>
+  <p class="r"><span>where<sup>4</sup></span> · <span>flame<sup>5</sup></span> · <span>to + alone + me<sup>2</sup></span> · <span>burden + your<sup>2</sup></span> · <span>and + burden + your<sup>2</sup></span> · <span>and + dispute[s] + your<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-13">Deuteronomy 1:13</h3>
+  <p class="r"><span>give<sup>5</sup></span> · <span>to &lt;the&gt; + you<sup>2</sup></span> · <span>people<sup>5</sup></span> · <span>cunning (man)<sup>5</sup></span> · <span>and + understanding<sup>2</sup></span> · <span>and + known<sup>2</sup></span> · <span>to + tribes + your<sup>2</sup></span> · <span>so + I may appoint + them<sup>2</sup></span> · <span>&lt;in&gt; + chiefs + your<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-14">Deuteronomy 1:14</h3>
+  <p class="r"><span>and + you answered<sup>2</sup></span> · <span>Ittai<sup>5</sup></span> · <span>and + you said<sup>2</sup></span> · <span>beautiful<sup>1</sup></span> · <span>vizier<sup>1</sup></span> · <span>that<sup>1</sup></span> · <span>Daberath<sup>1</sup></span> · <span>to + make<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-15">Deuteronomy 1:15</h3>
+  <p class="r"><span>and + I took<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>chief<sup>5</sup></span> · <span>tribes + your<sup>2</sup></span> · <span>people<sup>5</sup></span> · <span>cunning (man)<sup>5</sup></span> · <span>and + known<sup>2</sup></span> · <span>and + I put<sup>2</sup></span> · <span>&lt;obj.&gt; + them<sup>2</sup></span> · <span>band<sup>5</sup></span> · <span>on + you<sup>2</sup></span> · <span>Sharay<sup>1</sup></span> · <span>captain<sup>5</sup></span> · <span>and + Sarai<sup>2</sup></span> · <span>hundred((-fold), -th)<sup>5</sup></span> · <span>and + Sarai<sup>2</sup></span> · <span>fifty<sup>1</sup></span> · <span>and + Sarai<sup>2</sup></span> · <span>ten<sup>5</sup></span> · <span>and + officials<sup>2</sup></span> · <span>to + tribes + your<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-16">Deuteronomy 1:16</h3>
+  <p class="r"><span>and + I commanded<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>judges + your<sup>2</sup></span> · <span>terrify<sup>1</sup></span> · <span>&lt;the&gt; + that<sup>2</sup></span> · <span>&lt;to&gt; + saying<sup>2</sup></span> · <span>loud<sup>1</sup></span> · <span>between<sup>5</sup></span> · <span>brother + your<sup>2</sup></span> · <span>and + you will judge<sup>2</sup></span> · <span>be<sup>1</sup></span> · <span>between<sup>5</sup></span> · <span>person<sup>1</sup></span> · <span>and + between<sup>2</sup></span> · <span>Achio<sup>1</sup></span> · <span>and + between<sup>2</sup></span> · <span>abide<sup>5</sup></span></p></article>
+  <article class="pv"><h3 id="v1-17">Deuteronomy 1:17</h3>
+  <p class="r"><span>no<sup>1</sup></span> · <span>acknowledge<sup>5</sup></span> · <span>presence<sup>5</sup></span> · <span>in &lt;the&gt; + judgment<sup>2</sup></span> · <span>as the + small<sup>2</sup></span> · <span>according to + [the] greatness of<sup>2</sup></span> · <span>hear<sup>5</sup></span> · <span>no<sup>1</sup></span> · <span>abide<sup>5</sup></span> · <span>from + before<sup>2</sup></span> · <span>person<sup>1</sup></span> · <span>since<sup>1</sup></span> · <span>&lt;the&gt; + judgment<sup>2</sup></span> · <span>&lt;into&gt; + God<sup>2</sup></span> · <span>this<sup>4</sup></span> · <span>and + the + matter<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>be cruel<sup>5</sup></span> · <span>of &lt;the&gt; + yourselves<sup>2</sup></span> · <span>you will bring near + !<sup>2</sup></span> · <span>against<sup>5</sup></span> · <span>and + I will hear + it<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-18">Deuteronomy 1:18</h3>
+  <p class="r"><span>and + I commanded<sup>2</sup></span> · <span>with + you<sup>2</sup></span> · <span>terrify<sup>1</sup></span> · <span>&lt;the&gt; + that<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>all<sup>1</sup></span> · <span>the + things<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>you will do + !<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-19">Deuteronomy 1:19</h3>
+  <p class="r"><span>and + it will set out<sup>2</sup></span> · <span>laying waste<sup>3</sup></span> · <span>and + we walked<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>all<sup>1</sup></span> · <span>the + wilderness<sup>2</sup></span> · <span>Haggadol<sup>3</sup></span> · <span>and + &lt;the&gt; + awesome<sup>2</sup></span> · <span>&lt;the&gt; + that<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>advise self<sup>5</sup></span> · <span>to tread<sup>1</sup></span> · <span>Hor<sup>4</sup></span> · <span>the + Amorite[s]<sup>2</sup></span> · <span>according as<sup>6</sup></span> · <span>appoint<sup>1</sup></span> · <span>The Lord<sup>5</sup></span> · <span>God + our<sup>2</sup></span> · <span>(be-, things to) come (upon)<sup>5</sup></span> · <span>and + we came<sup>2</sup></span> · <span>until<sup>1</sup></span> · <span>Kedesh<sup>1</sup></span> · <span>Barnea<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-20">Deuteronomy 1:20</h3>
+  <p class="r"><span>and + I said<sup>2</sup></span> · <span>to + you<sup>2</sup></span> · <span>abide<sup>5</sup></span> · <span>until<sup>1</sup></span> · <span>Hor<sup>4</sup></span> · <span>the + Amorite[s]<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>The Lord<sup>5</sup></span> · <span>God + our<sup>2</sup></span> · <span>Make<sup>5</sup></span> · <span>abide (all night)<sup>5</sup></span></p></article>
+  <article class="pv"><h3 id="v1-21">Deuteronomy 1:21</h3>
+  <p class="r"><span>to see<sup>1</sup></span> · <span>Make<sup>5</sup></span> · <span>The Lord<sup>5</sup></span> · <span>God + your<sup>2</sup></span> · <span>&lt;to&gt; + before + you<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>the + earth<sup>2</sup></span> · <span>to ascend<sup>1</sup></span> · <span>cast out<sup>5</sup></span> · <span>according as<sup>6</sup></span> · <span>to speak<sup>1</sup></span> · <span>The Lord<sup>5</sup></span> · <span>God<sup>5</sup></span> · <span>ancestors + your<sup>2</sup></span> · <span>come<sup>5</sup></span> · <span>these<sup>1</sup></span> · <span>affright<sup>5</sup></span> · <span>and + [will be] to<sup>2</sup></span> · <span>under<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v1-22">Deuteronomy 1:22</h3>
+  <p class="r"><span>and + you drew near + !<sup>2</sup></span> · <span>against<sup>5</sup></span> · <span>all of + you<sup>2</sup></span> · <span>and + you said<sup>2</sup></span> · <span>X any wise<sup>5</sup></span> · <span>people<sup>5</sup></span> · <span>&lt;to&gt; + before + us<sup>2</sup></span> · <span>and + they dug<sup>2</sup></span> · <span>abide (all night)<sup>5</sup></span> · <span>with<sup>1</sup></span> · <span>the + earth<sup>2</sup></span> · <span>and + they turned back<sup>2</sup></span> · <span>(be-, things to) come (upon)<sup>5</sup></span> · <span>to speak<sup>1</sup></span> · <span>with<sup>1</sup></span> · <span>the + road<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>arise (up)<sup>5</sup></span> · <span>Hephzi-bah<sup>5</sup></span> · <span>and + &lt;obj.&gt;<sup>2</sup></span> · <span>the + cities<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>to prophesy<sup>1</sup></span> · <span>to + them<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-23">Deuteronomy 1:23</h3>
+  <p class="r"><span>and + it was good<sup>2</sup></span> · <span>in + [the] eyes of<sup>2</sup></span> · <span>vizier<sup>1</sup></span> · <span>and + I took<sup>2</sup></span> · <span>of &lt;the&gt; + yourselves<sup>2</sup></span> · <span>second<sup>1</sup></span> · <span>ten<sup>1</sup></span> · <span>people<sup>5</sup></span> · <span>person<sup>1</sup></span> · <span>one<sup>1</sup></span> · <span>to the + tribe<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-24">Deuteronomy 1:24</h3>
+  <p class="r"><span>and + they turned away<sup>2</sup></span> · <span>and + they brought up<sup>2</sup></span> · <span>the + hill country + towards<sup>2</sup></span> · <span>and + they came<sup>2</sup></span> · <span>until<sup>1</sup></span> · <span>brook<sup>1</sup></span> · <span>Eshcol<sup>1</sup></span> · <span>and + they spied out<sup>2</sup></span> · <span>you<sup>9</sup></span></p></article>
+  <article class="pv"><h3 id="v1-25">Deuteronomy 1:25</h3>
+  <p class="r"><span>and + they took<sup>2</sup></span> · <span>[were] in + hand + their<sup>2</sup></span> · <span>from + [the] fruit of<sup>2</sup></span> · <span>the + earth<sup>2</sup></span> · <span>and + they brought down<sup>2</sup></span> · <span>to + us<sup>2</sup></span> · <span>and + they turned back<sup>2</sup></span> · <span>(be-, things to) come (upon)<sup>5</sup></span> · <span>to speak<sup>1</sup></span> · <span>and + they said<sup>2</sup></span> · <span>prosperity<sup>5</sup></span> · <span>the + earth<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>The Lord<sup>5</sup></span> · <span>God + our<sup>2</sup></span> · <span>Make<sup>5</sup></span> · <span>abide (all night)<sup>5</sup></span></p></article>
+  <article class="pv"><h3 id="v1-26">Deuteronomy 1:26</h3>
+  <p class="r"><span>and + not<sup>2</sup></span> · <span>consent<sup>5</sup></span> · <span>to + go up<sup>2</sup></span> · <span>and + you rebelled toward<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>mouth<sup>5</sup></span> · <span>The Lord<sup>5</sup></span> · <span>God + your<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-27">Deuteronomy 1:27</h3>
+  <p class="r"><span>and + you murmured<sup>2</sup></span> · <span>in + tents + your<sup>2</sup></span> · <span>and + you said<sup>2</sup></span> · <span>in + [the] hatred of<sup>2</sup></span> · <span>The Lord<sup>5</sup></span> · <span>(be-, things to) come (upon)<sup>5</sup></span> · <span>he brought out + us<sup>2</sup></span> · <span>from + [the] land of<sup>2</sup></span> · <span>Mizraim<sup>5</sup></span> · <span>to + give<sup>2</sup></span> · <span>(be-, things to) come (upon)<sup>5</sup></span> · <span>for<sup>3</sup></span> · <span>the + Amorite[s]<sup>2</sup></span> · <span>to + destroy + us<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-28">Deuteronomy 1:28</h3>
+  <p class="r"><span>mourn<sup>5</sup></span> · <span>we<sup>5</sup></span> · <span>arise (up)<sup>5</sup></span> · <span>relatives + our<sup>2</sup></span> · <span>discourage<sup>5</sup></span> · <span>with<sup>1</sup></span> · <span>heart + our<sup>2</sup></span> · <span>&lt;to&gt; + saying<sup>2</sup></span> · <span>with<sup>5</sup></span> · <span>older<sup>1</sup></span> · <span>and + lofty<sup>2</sup></span> · <span>from + it<sup>2</sup></span> · <span>Ai (from margin)<sup>5</sup></span> · <span>+ aloud<sup>5</sup></span> · <span>and + fortified<sup>2</sup></span> · <span>smell<sup>5</sup></span> · <span>and + also<sup>2</sup></span> · <span>young<sup>5</sup></span> · <span>chain<sup>5</sup></span> · <span>advise self<sup>5</sup></span> · <span>authority<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v1-29">Deuteronomy 1:29</h3>
+  <p class="r"><span>and + I said<sup>2</sup></span> · <span>to + you<sup>2</sup></span> · <span>no<sup>1</sup></span> · <span>you must be terrified + !<sup>2</sup></span> · <span>and + not<sup>2</sup></span> · <span>you fear + !<sup>2</sup></span> · <span>melt<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v1-30">Deuteronomy 1:30</h3>
+  <p class="r"><span>The Lord<sup>5</sup></span> · <span>God + your<sup>2</sup></span> · <span>[is] the + [one which] goes<sup>2</sup></span> · <span>&lt;to&gt; + before + you<sup>2</sup></span> · <span>this<sup>4</sup></span> · <span>devour<sup>5</sup></span> · <span>to &lt;the&gt; + you<sup>2</sup></span> · <span>according to + all<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>make<sup>5</sup></span> · <span>with + you<sup>2</sup></span> · <span>in + Egypt<sup>2</sup></span> · <span>to + eyes + your<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-31">Deuteronomy 1:31</h3>
+  <p class="r"><span>and + in the + wilderness<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>sight<sup>1</sup></span> · <span>that<sup>1</sup></span> · <span>he carried + you<sup>2</sup></span> · <span>The Lord<sup>5</sup></span> · <span>God + your<sup>2</sup></span> · <span>according as<sup>6</sup></span> · <span>beguile<sup>5</sup></span> · <span>person<sup>1</sup></span> · <span>with<sup>1</sup></span> · <span>build<sup>5</sup></span> · <span>over + all<sup>2</sup></span> · <span>the + road<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>(all) along<sup>5</sup></span> · <span>until<sup>1</sup></span> · <span>go + you<sup>2</sup></span> · <span>until<sup>1</sup></span> · <span>the + place<sup>2</sup></span> · <span>to dream<sup>7</sup></span></p></article>
+  <article class="pv"><h3 id="v1-32">Deuteronomy 1:32</h3>
+  <p class="r"><span>and + in the + thing<sup>2</sup></span> · <span>to dream<sup>7</sup></span> · <span>not + you<sup>2</sup></span> · <span>hence<sup>5</sup></span> · <span>in + Yahweh<sup>2</sup></span> · <span>God + your<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-33">Deuteronomy 1:33</h3>
+  <p class="r"><span>[is] the + [one which] goes<sup>2</sup></span> · <span>&lt;to&gt; + before + you<sup>2</sup></span> · <span>on + [the] way of<sup>2</sup></span> · <span>to + seek out<sup>2</sup></span> · <span>to &lt;the&gt; + you<sup>2</sup></span> · <span>place<sup>1</sup></span> · <span>to + camp + you<sup>2</sup></span> · <span>smell<sup>1</sup></span> · <span>((mid-))night (season)<sup>5</sup></span> · <span>to + show + you<sup>2</sup></span> · <span>on + [the] way of<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>X again<sup>5</sup></span> · <span>Hephzi-bah<sup>5</sup></span> · <span>and + in the + cloud<sup>2</sup></span> · <span>daily<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v1-34">Deuteronomy 1:34</h3>
+  <p class="r"><span>and + he heard<sup>2</sup></span> · <span>The Lord<sup>5</sup></span> · <span>with<sup>1</sup></span> · <span>sound<sup>1</sup></span> · <span>words + your<sup>2</sup></span> · <span>and + he was angry<sup>2</sup></span> · <span>and + he swore an oath<sup>2</sup></span> · <span>&lt;to&gt; + saying<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-35">Deuteronomy 1:35</h3>
+  <p class="r"><span>mother<sup>1</sup></span> · <span>reverence<sup>1</sup></span> · <span>person<sup>1</sup></span> · <span>among the + men<sup>2</sup></span> · <span>Elah<sup>5</sup></span> · <span>countenance<sup>5</sup></span> · <span>do harm<sup>5</sup></span> · <span>to dream<sup>7</sup></span> · <span>with<sup>1</sup></span> · <span>the + earth<sup>2</sup></span> · <span>the + good<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>adjure<sup>5</sup></span> · <span>to + give<sup>2</sup></span> · <span>to + ancestors + your<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-36">Deuteronomy 1:36</h3>
+  <p class="r"><span>beside<sup>5</sup></span> · <span>a dog<sup>1</sup></span> · <span>son<sup>1</sup></span> · <span>Jephunneh<sup>1</sup></span> · <span>this<sup>4</sup></span> · <span>he will see + it<sup>2</sup></span> · <span>and + [will belong] to + him<sup>2</sup></span> · <span>you<sup>5</sup></span> · <span>with<sup>1</sup></span> · <span>the + earth<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>to tread<sup>1</sup></span> · <span>Hephzi-bah<sup>5</sup></span> · <span>and + for + sons + his<sup>2</sup></span> · <span>cause<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>setting<sup>7</sup></span> · <span>behind<sup>5</sup></span> · <span>The Lord<sup>5</sup></span></p></article>
+  <article class="pv"><h3 id="v1-37">Deuteronomy 1:37</h3>
+  <p class="r"><span>also<sup>1</sup></span> · <span>oh that!<sup>1</sup></span> · <span>be angry (displeased)<sup>5</sup></span> · <span>The Lord<sup>5</sup></span> · <span>on + account of + you<sup>2</sup></span> · <span>&lt;to&gt; + saying<sup>2</sup></span> · <span>also<sup>1</sup></span> · <span>you<sup>9</sup></span> · <span>no<sup>1</sup></span> · <span>consent<sup>5</sup></span> · <span>authority<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v1-38">Deuteronomy 1:38</h3>
+  <p class="r"><span>Jehoshua<sup>5</sup></span> · <span>son<sup>1</sup></span> · <span>Non<sup>10</sup></span> · <span>abide (behind)<sup>5</sup></span> · <span>&lt;to&gt; + before + you<sup>2</sup></span> · <span>this<sup>4</sup></span> · <span>abide<sup>5</sup></span> · <span>Shammah<sup>1</sup></span> · <span>sign<sup>5</sup></span> · <span>mighty<sup>1</sup></span> · <span>since<sup>1</sup></span> · <span>this<sup>4</sup></span> · <span>he will give as an inheritance + it<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>Israel<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v1-39">Deuteronomy 1:39</h3>
+  <p class="r"><span>and + little one[s] + your<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>answer<sup>5</sup></span> · <span>&lt;into&gt; + plunder<sup>2</sup></span> · <span>beacon<sup>5</sup></span> · <span>and + children + your<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>no<sup>1</sup></span> · <span>acknowledge<sup>5</sup></span> · <span>on this day as distinct from yesterday or tomorrow<sup>8</sup></span> · <span>beautiful<sup>1</sup></span> · <span>and + evil<sup>2</sup></span> · <span>they<sup>5</sup></span> · <span>abide<sup>5</sup></span> · <span>Shammah<sup>1</sup></span> · <span>and + for &lt;the&gt; + them<sup>2</sup></span> · <span>I will give + it<sup>2</sup></span> · <span>and + they<sup>2</sup></span> · <span>they will take possession of + it<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-40">Deuteronomy 1:40</h3>
+  <p class="r"><span>and + you<sup>2</sup></span> · <span>appear<sup>5</sup></span> · <span>to &lt;the&gt; + you<sup>2</sup></span> · <span>and + set out<sup>2</sup></span> · <span>the + wilderness + towards<sup>2</sup></span> · <span>to tread<sup>1</sup></span> · <span>large body of water<sup>1</sup></span> · <span>end<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v1-41">Deuteronomy 1:41</h3>
+  <p class="r"><span>and + you answered<sup>2</sup></span> · <span>and + you said<sup>2</sup></span> · <span>against<sup>5</sup></span> · <span>bear the blame<sup>5</sup></span> · <span>to + Yahweh<sup>2</sup></span> · <span>we<sup>5</sup></span> · <span>arise (up)<sup>5</sup></span> · <span>and + we will fight<sup>2</sup></span> · <span>according to + all<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>he has commanded + us<sup>2</sup></span> · <span>The Lord<sup>5</sup></span> · <span>God + our<sup>2</sup></span> · <span>and + you girded on<sup>2</sup></span> · <span>person<sup>1</sup></span> · <span>with<sup>1</sup></span> · <span>vessel<sup>1</sup></span> · <span>war + his<sup>2</sup></span> · <span>and + you regarded as easy<sup>2</sup></span> · <span>to + go up<sup>2</sup></span> · <span>the + hill country + towards<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-42">Deuteronomy 1:42</h3>
+  <p class="r"><span>and + he said<sup>2</sup></span> · <span>The Lord<sup>5</sup></span> · <span>against<sup>5</sup></span> · <span>word<sup>5</sup></span> · <span>burn in<sup>1</sup></span> · <span>no<sup>1</sup></span> · <span>arise (up)<sup>5</sup></span> · <span>and + not<sup>2</sup></span> · <span>devour<sup>5</sup></span> · <span>since<sup>1</sup></span> · <span>not + I<sup>2</sup></span> · <span>[is] in + midst + your<sup>2</sup></span> · <span>and + not<sup>2</sup></span> · <span>beat<sup>5</sup></span> · <span>before<sup>1</sup></span> · <span>enemies + your<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-43">Deuteronomy 1:43</h3>
+  <p class="r"><span>and + I spoke<sup>2</sup></span> · <span>to + you<sup>2</sup></span> · <span>and + not<sup>2</sup></span> · <span>X attentively<sup>5</sup></span> · <span>and + you rebelled toward<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>mouth<sup>5</sup></span> · <span>The Lord<sup>5</sup></span> · <span>and + you acted presumptuously<sup>2</sup></span> · <span>and + you went up<sup>2</sup></span> · <span>the + hill country + towards<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-44">Deuteronomy 1:44</h3>
+  <p class="r"><span>and + he went out<sup>2</sup></span> · <span>the + Amorite[s]<sup>2</sup></span> · <span>who + was dwelling<sup>2</sup></span> · <span>be bright<sup>6</sup></span> · <span>&lt;the&gt; + that<sup>2</sup></span> · <span>to + meet + you<sup>2</sup></span> · <span>and + they pursued<sup>2</sup></span> · <span>with + you<sup>2</sup></span> · <span>according as<sup>6</sup></span> · <span>accomplish<sup>5</sup></span> · <span>the + things<sup>2</sup></span> · <span>and + they scattered<sup>2</sup></span> · <span>with + you<sup>2</sup></span> · <span>in + Seir<sup>2</sup></span> · <span>until<sup>1</sup></span> · <span>Hormah<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v1-45">Deuteronomy 1:45</h3>
+  <p class="r"><span>and + you returned<sup>2</sup></span> · <span>and + you have wept<sup>2</sup></span> · <span>before<sup>1</sup></span> · <span>The Lord<sup>5</sup></span> · <span>and + not<sup>2</sup></span> · <span>loud<sup>1</sup></span> · <span>The Lord<sup>5</sup></span> · <span>to + voice + your<sup>2</sup></span> · <span>and + not<sup>2</sup></span> · <span>give (perceive by the) ear<sup>5</sup></span> · <span>to + you<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v1-46">Deuteronomy 1:46</h3>
+  <p class="r"><span>and + you returned<sup>2</sup></span> · <span>in &lt;the&gt; + holiness<sup>2</sup></span> · <span>sea (X -faring man, (-shore))<sup>5</sup></span> · <span>(in) abound(-undance, -ant, -antly)<sup>5</sup></span> · <span>like + days<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>(make to) abide(-ing)<sup>5</sup></span></p></article>
+  <nav class="porch-nav"><a href="/deuteronomy/">Deuteronomy, from the beginning</a><a href="/deuteronomy/2/" rel="next">Deuteronomy 2</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="2">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="3">Classical Hebrew Words database · Public Domain</li>
+    <li value="4">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="5">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="6">Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures · CC BY 4.0</li>
+    <li value="7">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    <li value="8">Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · WordNet Licenses</li>
+    <li value="9">ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge) · CC BY-SA 4.0</li>
+    <li value="10">BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas · Public Domain + CC BY 4.0</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

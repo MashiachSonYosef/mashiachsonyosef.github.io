@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="isaiah">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="33">
+<meta name="description" content="Isaiah 33 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/isaiah/33/">
+<title>Isaiah 33 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Isaiah 33</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v33-1">Isaiah 33:1</h3>
+  <p class="r"><span>be<sup>1</sup></span> · <span>dead<sup>1</sup></span> · <span>and + you<sup>2</sup></span> · <span>no<sup>3</sup></span> · <span>dead<sup>1</sup></span> · <span>and + [the] traitor<sup>2</sup></span> · <span>and + not<sup>2</sup></span> · <span>deal deceitfully (treacherously, unfaithfully)<sup>1</sup></span> · <span>[is] in &lt;the&gt; + it<sup>2</sup></span> · <span>when + finishing + you<sup>2</sup></span> · <span>dead<sup>1</sup></span> · <span>dead<sup>1</sup></span> · <span>when + completing + you<sup>2</sup></span> · <span>to + deal treacherously<sup>2</sup></span> · <span>deal deceitfully (treacherously, unfaithfully)<sup>1</sup></span> · <span>over &lt;the&gt; + you<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v33-2">Isaiah 33:2</h3>
+  <p class="r"><span>The Lord<sup>1</sup></span> · <span>favor<sup>4</sup></span> · <span>come<sup>1</sup></span> · <span>gather (together)<sup>1</sup></span> · <span>to exist<sup>3</sup></span> · <span>offspring + their<sup>2</sup></span> · <span>to + mornings<sup>2</sup></span> · <span>nose<sup>3</sup></span> · <span>salvation + our<sup>2</sup></span> · <span>terrify<sup>3</sup></span> · <span>trouble<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v33-3">Isaiah 33:3</h3>
+  <p class="r"><span>from + [the] sound of<sup>2</sup></span> · <span>noise<sup>3</sup></span> · <span>chase (away)<sup>1</sup></span> · <span>folk<sup>1</sup></span> · <span>from + arising + your<sup>2</sup></span> · <span>be beaten in sunder<sup>1</sup></span> · <span>Gentile<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v33-4">Isaiah 33:4</h3>
+  <p class="r"><span>and + he will gather<sup>2</sup></span> · <span>plunder + your<sup>2</sup></span> · <span>withdraw<sup>1</sup></span> · <span>&lt;the&gt; + locust[s]<sup>2</sup></span> · <span>like + [the] rushing of<sup>2</sup></span> · <span>Gebim<sup>3</sup></span> · <span>course<sup>3</sup></span> · <span>[is] in &lt;the&gt; + it<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v33-5">Isaiah 33:5</h3>
+  <p class="r"><span>a primitive root<sup>1</sup></span> · <span>The Lord<sup>1</sup></span> · <span>since<sup>3</sup></span> · <span>inhabitant<sup>3</sup></span> · <span>height<sup>3</sup></span> · <span>setting<sup>5</sup></span> · <span>Zion<sup>3</sup></span> · <span>sentence<sup>3</sup></span> · <span>and + righteousness<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v33-6">Isaiah 33:6</h3>
+  <p class="r"><span>and + it became<sup>2</sup></span> · <span>faith(-ful, -ly, -ness, (man))<sup>1</sup></span> · <span>times + your<sup>2</sup></span> · <span>to hoard<sup>3</sup></span> · <span>deliverance<sup>1</sup></span> · <span>wisdom<sup>1</sup></span> · <span>and + knowledge of<sup>2</sup></span> · <span>affright<sup>1</sup></span> · <span>The Lord<sup>1</sup></span> · <span>it<sup>1</sup></span> · <span>storehouse + his<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v33-7">Isaiah 33:7</h3>
+  <p class="r"><span>if<sup>3</sup></span> · <span>valiant one<sup>1</sup></span> · <span>X at all<sup>1</sup></span> · <span>divide<sup>3</sup></span> · <span>Malaki<sup>3</sup></span> · <span>peace<sup>3</sup></span> · <span>bitterly<sup>4</sup></span> · <span>they wept + !<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v33-8">Isaiah 33:8</h3>
+  <p class="r"><span>make amazed<sup>1</sup></span> · <span>causeway<sup>1</sup></span> · <span>seat<sup>1</sup></span> · <span>beyond<sup>3</sup></span> · <span>path<sup>3</sup></span> · <span>frustrate<sup>1</sup></span> · <span>covenant<sup>3</sup></span> · <span>reject<sup>3</sup></span> · <span>Ai (from margin)<sup>1</sup></span> · <span>no<sup>3</sup></span> · <span>mean<sup>3</sup></span> · <span>Enosh<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v33-9">Isaiah 33:9</h3>
+  <p class="r"><span>Abel<sup>3</sup></span> · <span>languish<sup>1</sup></span> · <span>earth<sup>3</sup></span> · <span>be ashamed<sup>1</sup></span> · <span>Lebanon<sup>3</sup></span> · <span>wither<sup>3</sup></span> · <span>to exist<sup>3</sup></span> · <span>&lt;the&gt; + Sharon<sup>2</sup></span> · <span>like &lt;the&gt; + desert plain<sup>2</sup></span> · <span>and + a youth<sup>2</sup></span> · <span>Bashan<sup>3</sup></span> · <span>and + new corn<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v33-10">Isaiah 33:10</h3>
+  <p class="r"><span>now<sup>3</sup></span> · <span>abide<sup>1</sup></span> · <span>command<sup>1</sup></span> · <span>The Lord<sup>1</sup></span> · <span>now<sup>3</sup></span> · <span>bring up<sup>1</sup></span> · <span>now<sup>3</sup></span> · <span>accept<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v33-11">Isaiah 33:11</h3>
+  <p class="r"><span>been<sup>1</sup></span> · <span>dry grass<sup>4</sup></span> · <span>bear<sup>1</sup></span> · <span>straw<sup>3</sup></span> · <span>breath + your<sup>2</sup></span> · <span>entity<sup>3</sup></span> · <span>[which] it will consume + you<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v33-12">Isaiah 33:12</h3>
+  <p class="r"><span>and + they will become<sup>2</sup></span> · <span>folk<sup>1</sup></span> · <span>burned<sup>4</sup></span> · <span>lime<sup>3</sup></span> · <span>thorns<sup>4</sup></span> · <span>cut down (up)<sup>1</sup></span> · <span>smell<sup>3</sup></span> · <span>burn (up)<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v33-13">Isaiah 33:13</h3>
+  <p class="r"><span>listen<sup>1</sup></span> · <span>(a-)far (abroad, off)<sup>1</sup></span> · <span>that<sup>3</sup></span> · <span>accomplish<sup>1</sup></span> · <span>and + know<sup>2</sup></span> · <span>allied<sup>1</sup></span> · <span>exceed<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v33-14">Isaiah 33:14</h3>
+  <p class="r"><span>be afraid<sup>1</sup></span> · <span>in + Zion<sup>2</sup></span> · <span>sinful<sup>1</sup></span> · <span>seized<sup>3</sup></span> · <span>process by which the human body shakes<sup>6</sup></span> · <span>hypocrite(-ical)<sup>1</sup></span> · <span>whoever<sup>4</sup></span> · <span>fearful<sup>3</sup></span> · <span>abide (all night)<sup>1</sup></span> · <span>entity<sup>3</sup></span> · <span>X at all<sup>1</sup></span> · <span>whoever<sup>4</sup></span> · <span>fearful<sup>3</sup></span> · <span>abide (all night)<sup>1</sup></span> · <span>burning<sup>1</sup></span> · <span>concealed<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v33-15">Isaiah 33:15</h3>
+  <p class="r"><span>come<sup>3</sup></span> · <span>justice<sup>1</sup></span> · <span>and + he will speak<sup>2</sup></span> · <span>agreement<sup>1</sup></span> · <span>reject<sup>3</sup></span> · <span>&lt;in&gt; + unjust gain of<sup>2</sup></span> · <span>oppression<sup>1</sup></span> · <span>boy<sup>3</sup></span> · <span>hands + his<sup>2</sup></span> · <span>from + taking hold<sup>2</sup></span> · <span>on &lt;the&gt; + bribe<sup>2</sup></span> · <span>shut<sup>3</sup></span> · <span>ear + his<sup>2</sup></span> · <span>Mishma<sup>3</sup></span> · <span>blood<sup>4</sup></span> · <span>and + a bone<sup>2</sup></span> · <span>eyes + his<sup>2</sup></span> · <span>X apparently<sup>1</sup></span> · <span>Bera<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v33-16">Isaiah 33:16</h3>
+  <p class="r"><span>this<sup>4</sup></span> · <span>(far) above<sup>1</sup></span> · <span>abide<sup>1</sup></span> · <span>castle<sup>1</sup></span> · <span>(ragged) rock<sup>1</sup></span> · <span>refuge + his<sup>2</sup></span> · <span>eat<sup>1</sup></span> · <span>Make<sup>1</sup></span> · <span>water + its<sup>2</sup></span> · <span>hence<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v33-17">Isaiah 33:17</h3>
+  <p class="r"><span>king<sup>3</sup></span> · <span>in + beauty + his<sup>2</sup></span> · <span>behold<sup>1</sup></span> · <span>eyes + your<sup>2</sup></span> · <span>advise self<sup>1</sup></span> · <span>earth<sup>3</sup></span> · <span>(a-, dwell in, very) far (country, off)<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v33-18">Isaiah 33:18</h3>
+  <p class="r"><span>heart + your<sup>2</sup></span> · <span>imagine<sup>1</sup></span> · <span>terror<sup>1</sup></span> · <span>Aiah<sup>3</sup></span> · <span>book<sup>3</sup></span> · <span>Aiah<sup>3</sup></span> · <span>weigh<sup>1</sup></span> · <span>Aiah<sup>3</sup></span> · <span>book<sup>3</sup></span> · <span>with<sup>3</sup></span> · <span>the + towers<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v33-19">Isaiah 33:19</h3>
+  <p class="r"><span>with<sup>3</sup></span> · <span>with<sup>1</sup></span> · <span>d-fierce<sup>1</sup></span> · <span>no<sup>3</sup></span> · <span>advise self<sup>1</sup></span> · <span>with<sup>1</sup></span> · <span>dale<sup>1</sup></span> · <span>lip<sup>3</sup></span> · <span>for + hearing<sup>2</sup></span> · <span>have in derision<sup>1</sup></span> · <span>tongue<sup>3</sup></span> · <span>nothing<sup>3</sup></span> · <span>understanding<sup>3</sup></span></p></article>
+  <article class="pv"><h3 id="v33-20">Isaiah 33:20</h3>
+  <p class="r"><span>seer<sup>3</sup></span> · <span>Zion<sup>3</sup></span> · <span>city<sup>4</sup></span> · <span>appointed feast + our<sup>2</sup></span> · <span>eyes + your<sup>2</sup></span> · <span>advise self<sup>1</sup></span> · <span>(Chald)<sup>1</sup></span> · <span>habitation<sup>3</sup></span> · <span>secure<sup>3</sup></span> · <span>tent<sup>1</sup></span> · <span>failure<sup>3</sup></span> · <span>be taken down<sup>1</sup></span> · <span>failure<sup>3</sup></span> · <span>cause to blow<sup>1</sup></span> · <span>tent pegs + its<sup>2</sup></span> · <span>to + perpetuity<sup>2</sup></span> · <span>and + all<sup>2</sup></span> · <span>ropes + its<sup>2</sup></span> · <span>failure<sup>3</sup></span> · <span>break (off)<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v33-21">Isaiah 33:21</h3>
+  <p class="r"><span>since<sup>3</sup></span> · <span>mother<sup>3</sup></span> · <span>authority<sup>3</sup></span> · <span>noble<sup>3</sup></span> · <span>The Lord<sup>1</sup></span> · <span>abide (all night)<sup>1</sup></span> · <span>place<sup>3</sup></span> · <span>flood<sup>1</sup></span> · <span>brook<sup>1</sup></span> · <span>breadth<sup>1</sup></span> · <span>(+ be) able<sup>1</sup></span> · <span>failure<sup>3</sup></span> · <span>X again<sup>1</sup></span> · <span>[is] in &lt;the&gt; + it<sup>2</sup></span> · <span>galley<sup>3</sup></span> · <span>scourge<sup>3</sup></span> · <span>and + a ship<sup>2</sup></span> · <span>noble<sup>3</sup></span> · <span>no<sup>3</sup></span> · <span>it will pass along + it<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v33-22">Isaiah 33:22</h3>
+  <p class="r"><span>since<sup>3</sup></span> · <span>The Lord<sup>1</sup></span> · <span>judge + us<sup>2</sup></span> · <span>The Lord<sup>1</sup></span> · <span>[is] commander + our<sup>2</sup></span> · <span>The Lord<sup>1</sup></span> · <span>king + our<sup>2</sup></span> · <span>this<sup>4</sup></span> · <span>he will save + us<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v33-23">Isaiah 33:23</h3>
+  <p class="r"><span>cast off<sup>1</sup></span> · <span>ropes + your<sup>2</sup></span> · <span>failure<sup>3</sup></span> · <span>aid<sup>1</sup></span> · <span>thus<sup>3</sup></span> · <span>mast + their<sup>2</sup></span> · <span>failure<sup>3</sup></span> · <span>break<sup>1</sup></span> · <span>banner<sup>3</sup></span> · <span>then<sup>3</sup></span> · <span>portion<sup>1</sup></span> · <span>until<sup>3</sup></span> · <span>to plunder<sup>3</sup></span> · <span>increase<sup>1</sup></span> · <span>halt<sup>1</sup></span> · <span>catch<sup>1</sup></span> · <span>spoil<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v33-24">Isaiah 33:24</h3>
+  <p class="r"><span>and + not<sup>2</sup></span> · <span>command<sup>1</sup></span> · <span>inhabitant<sup>3</sup></span> · <span>beseech<sup>1</sup></span> · <span>the + people<sup>2</sup></span> · <span>who + was dwelling<sup>2</sup></span> · <span>Hephzi-bah<sup>1</sup></span> · <span>to lift<sup>3</sup></span> · <span>iniquity<sup>3</sup></span></p></article>
+  <nav class="porch-nav"><a href="/isaiah/32/" rel="prev">Isaiah 32</a><a href="/isaiah/">Isaiah, from the beginning</a><a href="/isaiah/34/" rel="next">Isaiah 34</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="2">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="3">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="4">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="5">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    <li value="6">UBS Dictionary of Biblical Hebrew v0.9.2 exact definitions and glosses · CC BY-SA 4.0</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

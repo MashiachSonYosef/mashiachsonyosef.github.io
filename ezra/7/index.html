@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="ezra">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="7">
+<meta name="description" content="Ezra 7 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/ezra/7/">
+<title>Ezra 7 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>Ezra 7</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v7-1">Ezra 7:1</h3>
+  <p class="r"><span>and + after<sup>1</sup></span> · <span>the + things<sup>1</sup></span> · <span>Elah<sup>2</sup></span> · <span>in + kingdom<sup>1</sup></span> · <span>man<sup>3</sup></span> · <span>king<sup>4</sup></span> · <span>Persia<sup>4</sup></span> · <span>Ezra<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Seraiah<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Azariah<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Chilhijah<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v7-2">Ezra 7:2</h3>
+  <p class="r"><span>son<sup>4</sup></span> · <span>Shallum<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Zadok<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Ahitub<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v7-3">Ezra 7:3</h3>
+  <p class="r"><span>son<sup>4</sup></span> · <span>Amariah<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Azariah<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Meraioth<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v7-4">Ezra 7:4</h3>
+  <p class="r"><span>son<sup>4</sup></span> · <span>Zerahiah<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Uzzi<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Bukki<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v7-5">Ezra 7:5</h3>
+  <p class="r"><span>son<sup>4</sup></span> · <span>Abishua<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Pinechas<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Eleazar<sup>4</sup></span> · <span>son<sup>4</sup></span> · <span>Aaron<sup>5</sup></span> · <span>the + priest<sup>1</sup></span> · <span>the + head<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-6">Ezra 7:6</h3>
+  <p class="r"><span>this<sup>6</sup></span> · <span>Ezra<sup>4</sup></span> · <span>to ascend<sup>4</sup></span> · <span>from + Babylon<sup>1</sup></span> · <span>and + he<sup>1</sup></span> · <span>book<sup>4</sup></span> · <span>ready<sup>2</sup></span> · <span>in + law<sup>1</sup></span> · <span>Moses<sup>4</sup></span> · <span>that<sup>4</sup></span> · <span>Make<sup>2</sup></span> · <span>The Lord<sup>2</sup></span> · <span>God<sup>2</sup></span> · <span>Israel<sup>4</sup></span> · <span>and + he set<sup>1</sup></span> · <span>if (haply)<sup>2</sup></span> · <span>consult<sup>2</sup></span> · <span>calamity<sup>4</sup></span> · <span>The Lord<sup>2</sup></span> · <span>God + his<sup>1</sup></span> · <span>on + him<sup>1</sup></span> · <span>all<sup>4</sup></span> · <span>request + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-7">Ezra 7:7</h3>
+  <p class="r"><span>and + they brought up<sup>1</sup></span> · <span>Mebunnai<sup>4</sup></span> · <span>Israel<sup>4</sup></span> · <span>and + of<sup>1</sup></span> · <span>the + priests<sup>1</sup></span> · <span>and + the + Levites<sup>1</sup></span> · <span>and + the + singers<sup>1</sup></span> · <span>and + the + gatekeepers<sup>1</sup></span> · <span>and + the + temple servants<sup>1</sup></span> · <span>these<sup>4</sup></span> · <span>(Chald)<sup>2</sup></span> · <span>in + year<sup>1</sup></span> · <span>abundance<sup>4</sup></span> · <span>of + Artaxerxes<sup>1</sup></span> · <span>consult<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v7-8">Ezra 7:8</h3>
+  <p class="r"><span>and + he brought [them]<sup>1</sup></span> · <span>(Chald)<sup>2</sup></span> · <span>in the + month<sup>1</sup></span> · <span>&lt;the&gt; + fifth<sup>1</sup></span> · <span>it<sup>2</sup></span> · <span>sleep<sup>4</sup></span> · <span>&lt;the&gt; + seventh<sup>1</sup></span> · <span>to + [the] king of<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-9">Ezra 7:9</h3>
+  <p class="r"><span>since<sup>4</sup></span> · <span>on + [day] one<sup>1</sup></span> · <span>of the + month<sup>1</sup></span> · <span>the + first<sup>1</sup></span> · <span>this<sup>6</sup></span> · <span>to found<sup>4</sup></span> · <span>who + brought up<sup>1</sup></span> · <span>from + Babylon<sup>1</sup></span> · <span>and + on + [day] one<sup>1</sup></span> · <span>of the + month<sup>1</sup></span> · <span>&lt;the&gt; + fifth<sup>1</sup></span> · <span>abide<sup>2</sup></span> · <span>these<sup>4</sup></span> · <span>(Chald)<sup>2</sup></span> · <span>calamity<sup>4</sup></span> · <span>God + his<sup>1</sup></span> · <span>the + good<sup>1</sup></span> · <span>on + him<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-10">Ezra 7:10</h3>
+  <p class="r"><span>since<sup>4</sup></span> · <span>Ezra<sup>4</sup></span> · <span>certain(-ty)<sup>2</sup></span> · <span>heart + his<sup>1</sup></span> · <span>to + consult<sup>1</sup></span> · <span>with<sup>4</sup></span> · <span>manner<sup>2</sup></span> · <span>The Lord<sup>2</sup></span> · <span>and + to + do [it]<sup>1</sup></span> · <span>and + to + teach<sup>1</sup></span> · <span>in + Israel<sup>1</sup></span> · <span>task<sup>2</sup></span> · <span>and + justice<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-11">Ezra 7:11</h3>
+  <p class="r"><span>and + this<sup>1</sup></span> · <span>transcript<sup>4</sup></span> · <span>the + letter<sup>1</sup></span> · <span>that<sup>4</sup></span> · <span>Make<sup>2</sup></span> · <span>consult<sup>2</sup></span> · <span>man<sup>3</sup></span> · <span>to + Ezra<sup>1</sup></span> · <span>the + priest<sup>1</sup></span> · <span>the + letter<sup>1</sup></span> · <span>book<sup>4</sup></span> · <span>speak<sup>2</sup></span> · <span>a quarrel<sup>4</sup></span> · <span>The Lord<sup>2</sup></span> · <span>and + statutes + his<sup>1</sup></span> · <span>Most High<sup>2</sup></span> · <span>Israel<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v7-12">Ezra 7:12</h3>
+  <p class="r"><span>man<sup>3</sup></span> · <span>king<sup>4</sup></span> · <span>&lt;the&gt; + kings<sup>1</sup></span> · <span>to + Ezra<sup>1</sup></span> · <span>priest + the<sup>1</sup></span> · <span>book<sup>4</sup></span> · <span>tender grass<sup>4</sup></span> · <span>which<sup>4</sup></span> · <span>god<sup>4</sup></span> · <span>heavens + the<sup>1</sup></span> · <span>peace<sup>6</sup></span> · <span>and + now<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-13">Ezra 7:13</h3>
+  <p class="r"><span>number<sup>2</sup></span> · <span>set<sup>2</sup></span> · <span>to taste<sup>4</sup></span> · <span>which<sup>4</sup></span> · <span>all<sup>4</sup></span> · <span>offer freely<sup>2</sup></span> · <span>in + kingdom + my<sup>1</sup></span> · <span>part<sup>4</sup></span> · <span>people + the<sup>1</sup></span> · <span>Israel<sup>4</sup></span> · <span>and + priests + its<sup>1</sup></span> · <span>and + Levites + the<sup>1</sup></span> · <span>to + go<sup>1</sup></span> · <span>to + Jerusalem<sup>1</sup></span> · <span>[is] with + you<sup>1</sup></span> · <span>bring again<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v7-14">Ezra 7:14</h3>
+  <p class="r"><span>all<sup>4</sup></span> · <span>before<sup>4</sup></span> · <span>which<sup>4</sup></span> · <span>part<sup>4</sup></span> · <span>before<sup>4</sup></span> · <span>queen<sup>4</sup></span> · <span>and + seven<sup>1</sup></span> · <span>counselors + his<sup>1</sup></span> · <span>put<sup>2</sup></span> · <span>Most High<sup>2</sup></span> · <span>Judah<sup>4</sup></span> · <span>and + to + Jerusalem<sup>1</sup></span> · <span>in + [the] law of<sup>1</sup></span> · <span>God + your<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>in + hand + your<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-15">Ezra 7:15</h3>
+  <p class="r"><span>and + to + carry<sup>1</sup></span> · <span>money<sup>4</sup></span> · <span>and + gold<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>queen<sup>4</sup></span> · <span>and + counselors + his<sup>1</sup></span> · <span>offer freely<sup>2</sup></span> · <span>for + these<sup>1</sup></span> · <span>Israel<sup>4</sup></span> · <span>which<sup>4</sup></span> · <span>in + Jerusalem<sup>1</sup></span> · <span>abode + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-16">Ezra 7:16</h3>
+  <p class="r"><span>and + all<sup>1</sup></span> · <span>money<sup>4</sup></span> · <span>and + gold<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>find<sup>2</sup></span> · <span>over + all<sup>1</sup></span> · <span>province<sup>6</sup></span> · <span>Babel<sup>4</sup></span> · <span>with<sup>2</sup></span> · <span>(be minded of...own) freewill (offering)<sup>2</sup></span> · <span>people + the<sup>1</sup></span> · <span>and + priests + the<sup>1</sup></span> · <span>(be minded of...own) freewill (offering)<sup>2</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>God + their<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>in + Jerusalem<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-17">Ezra 7:17</h3>
+  <p class="r"><span>all<sup>4</sup></span> · <span>before<sup>4</sup></span> · <span>these<sup>2</sup></span> · <span>diligently<sup>6</sup></span> · <span>(be) envy(-ious)<sup>2</sup></span> · <span>with + silver + the<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>bullock<sup>2</sup></span> · <span>ram<sup>2</sup></span> · <span>command<sup>2</sup></span> · <span>and + grain offerings + their<sup>1</sup></span> · <span>and + drink offerings + their<sup>1</sup></span> · <span>and + it drew near<sup>1</sup></span> · <span>them<sup>4</sup></span> · <span>Most High<sup>2</sup></span> · <span>altar<sup>2</sup></span> · <span>which<sup>4</sup></span> · <span>place<sup>4</sup></span> · <span>God + your<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>in + Jerusalem<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-18">Ezra 7:18</h3>
+  <p class="r"><span>and + what?<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>[is] on + you<sup>1</sup></span> · <span>to + you<sup>1</sup></span> · <span>and + on<sup>1</sup></span> · <span>Ahicha<sup>7</sup></span> · <span>brother + your<sup>1</sup></span> · <span>seem good<sup>2</sup></span> · <span>with + [the] rest of<sup>1</sup></span> · <span>&lt;the&gt; + silver<sup>1</sup></span> · <span>and + gold + the<sup>1</sup></span> · <span>to + do<sup>1</sup></span> · <span>bow (down, self)<sup>2</sup></span> · <span>God + your<sup>1</sup></span> · <span>X cut<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v7-19">Ezra 7:19</h3>
+  <p class="r"><span>and + vessels + the<sup>1</sup></span> · <span>which<sup>4</sup></span> · <i>a reading that quotes Hebrew letters, in the reader</i> · <span>come<sup>2</sup></span> · <span>for + [the] worship of<sup>1</sup></span> · <span>place<sup>4</sup></span> · <span>God + your<sup>1</sup></span> · <span>deliver<sup>2</sup></span> · <span>before<sup>4</sup></span> · <span>god<sup>4</sup></span> · <span>(Chald)<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v7-20">Ezra 7:20</h3>
+  <p class="r"><span>and + [the] rest of<sup>1</sup></span> · <span>necessity<sup>4</sup></span> · <span>place<sup>4</sup></span> · <span>God + your<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>fall (down)<sup>2</sup></span> · <span>come<sup>2</sup></span> · <span>to + give<sup>1</sup></span> · <span>bestow<sup>2</sup></span> · <span>part<sup>4</sup></span> · <span>place<sup>4</sup></span> · <span>chest<sup>2</sup></span> · <span>queen<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v7-21">Ezra 7:21</h3>
+  <p class="r"><span>and + from + me<sup>1</sup></span> · <span>mourn<sup>2</sup></span> · <span>man<sup>3</sup></span> · <span>queen<sup>4</sup></span> · <span>set<sup>2</sup></span> · <span>to taste<sup>4</sup></span> · <span>to + every<sup>1</sup></span> · <span>treasurer<sup>2</sup></span> · <span>which<sup>4</sup></span> · <span>in + order that<sup>1</sup></span> · <span>light<sup>4</sup></span> · <span>which<sup>4</sup></span> · <span>all<sup>4</sup></span> · <span>which<sup>4</sup></span> · <span>he will ask for + you<sup>1</sup></span> · <span>Ezra<sup>4</sup></span> · <span>priest + the<sup>1</sup></span> · <span>book<sup>4</sup></span> · <span>tender grass<sup>4</sup></span> · <span>which<sup>4</sup></span> · <span>god<sup>4</sup></span> · <span>heavens + the<sup>1</sup></span> · <span>diligently<sup>6</sup></span> · <span>X cut<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v7-22">Ezra 7:22</h3>
+  <p class="r"><span>until<sup>4</sup></span> · <span>money<sup>4</sup></span> · <span>talents<sup>6</sup></span> · <span>a hundred<sup>4</sup></span> · <span>and + unto<sup>1</sup></span> · <span>wheat<sup>2</sup></span> · <span>a hundred<sup>4</sup></span> · <span>and + unto<sup>1</sup></span> · <span>clay<sup>4</sup></span> · <span>baths<sup>6</sup></span> · <span>a hundred<sup>4</sup></span> · <span>and + unto<sup>1</sup></span> · <span>baths<sup>6</sup></span> · <span>anoint<sup>4</sup></span> · <span>a hundred<sup>4</sup></span> · <span>and + salt<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>no<sup>4</sup></span> · <span>record<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v7-23">Ezra 7:23</h3>
+  <p class="r"><span>all<sup>4</sup></span> · <span>which<sup>4</sup></span> · <span>part<sup>4</sup></span> · <span>to taste<sup>4</sup></span> · <span>god<sup>4</sup></span> · <span>heavens + the<sup>1</sup></span> · <span>X cut<sup>2</sup></span> · <span>quickly<sup>4</sup></span> · <span>of + Beth-<sup>1</sup></span> · <span>god<sup>4</sup></span> · <span>heavens + the<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>why?<sup>8</sup></span> · <span>be<sup>2</sup></span> · <span>wrath<sup>2</sup></span> · <span>Most High<sup>2</sup></span> · <span>kingdom<sup>4</sup></span> · <span>queen<sup>4</sup></span> · <span>and + sons + his<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-24">Ezra 7:24</h3>
+  <p class="r"><span>and + to &lt;the&gt; + you<sup>1</sup></span> · <span>certify<sup>2</sup></span> · <span>which<sup>4</sup></span> · <span>all<sup>4</sup></span> · <span>priests + the<sup>1</sup></span> · <span>and + Levites + the<sup>1</sup></span> · <span>singer<sup>2</sup></span> · <span>porter<sup>2</sup></span> · <span>Nethinims<sup>2</sup></span> · <span>and + [the] servants of<sup>1</sup></span> · <span>place<sup>4</sup></span> · <span>&lt;the&gt; + God<sup>1</sup></span> · <span>these<sup>2</sup></span> · <span>tribute<sup>2</sup></span> · <span>excise<sup>4</sup></span> · <span>and + it goes<sup>1</sup></span> · <span>no<sup>4</sup></span> · <span>ruler<sup>2</sup></span> · <span>to + throw<sup>1</sup></span> · <span>on + them<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-25">Ezra 7:25</h3>
+  <p class="r"><span>and + you<sup>1</sup></span> · <span>Ezra<sup>4</sup></span> · <span>like + [the] wisdom of<sup>1</sup></span> · <span>God + your<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>in + hand + your<sup>1</sup></span> · <span>number<sup>2</sup></span> · <span>magistrate<sup>2</sup></span> · <span>and + judges<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>be<sup>2</sup></span> · <span>judge. Or diyn<sup>2</sup></span> · <span>judge. Or diyn<sup>2</sup></span> · <span>to + every<sup>1</sup></span> · <span>people + the<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>in + order that<sup>1</sup></span> · <span>light<sup>4</sup></span> · <span>to + every<sup>1</sup></span> · <span>certify<sup>2</sup></span> · <span>commandment<sup>2</sup></span> · <span>God + your<sup>1</sup></span> · <span>and + Di<sup>1</sup></span> · <span>no<sup>4</sup></span> · <span>know<sup>4</sup></span> · <span>certify<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v7-26">Ezra 7:26</h3>
+  <p class="r"><span>and + all<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>no<sup>4</sup></span> · <span>be<sup>2</sup></span> · <span>to serve<sup>4</sup></span> · <span>tender grass<sup>4</sup></span> · <span>which<sup>4</sup></span> · <span>God + your<sup>1</sup></span> · <span>and + decree + the<sup>1</sup></span> · <span>which<sup>4</sup></span> · <span>queen<sup>4</sup></span> · <span>diligently<sup>6</sup></span> · <span>Dinah<sup>4</sup></span> · <span>be<sup>2</sup></span> · <span>X cut<sup>2</sup></span> · <span>part<sup>4</sup></span> · <span>if<sup>4</sup></span> · <span>to + die<sup>1</sup></span> · <span>if<sup>4</sup></span> · <span>to + banishment<sup>1</sup></span> · <span>if<sup>4</sup></span> · <span>to + confiscation of<sup>1</sup></span> · <span>goods<sup>2</sup></span> · <span>and + to + imprisonment&lt;s&gt;<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-27">Ezra 7:27</h3>
+  <p class="r"><span>Baruk<sup>4</sup></span> · <span>The Lord<sup>2</sup></span> · <span>God<sup>2</sup></span> · <span>fathers + our<sup>1</sup></span> · <span>that<sup>4</sup></span> · <span>Make<sup>2</sup></span> · <span>according to + this<sup>1</sup></span> · <span>in + heart<sup>1</sup></span> · <span>consult<sup>2</sup></span> · <span>to + beautify<sup>1</sup></span> · <span>with<sup>4</sup></span> · <span>place<sup>4</sup></span> · <span>The Lord<sup>2</sup></span> · <span>that<sup>4</sup></span> · <span>in + Jerusalem<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v7-28">Ezra 7:28</h3>
+  <p class="r"><span>and + [will be] on<sup>1</sup></span> · <span>incline<sup>2</sup></span> · <span>be kind<sup>9</sup></span> · <span>before<sup>4</sup></span> · <span>consult<sup>2</sup></span> · <span>and + counselors + his<sup>1</sup></span> · <span>and + to + every<sup>1</sup></span> · <span>Sharay<sup>4</sup></span> · <span>consult<sup>2</sup></span> · <span>[were] the + mighty [men]<sup>1</sup></span> · <span>and + I<sup>1</sup></span> · <span>aid<sup>2</sup></span> · <span>calamity<sup>4</sup></span> · <span>The Lord<sup>2</sup></span> · <span>God<sup>2</sup></span> · <span>Eli<sup>4</sup></span> · <span>and + let me gather<sup>1</sup></span> · <span>from + Israel<sup>1</sup></span> · <span>band<sup>2</sup></span> · <span>to + go up<sup>1</sup></span> · <span>Ben-ammi<sup>2</sup></span></p></article>
+  <nav class="porch-nav"><a href="/ezra/6/" rel="prev">Ezra 6</a><a href="/ezra/">Ezra, from the beginning</a><a href="/ezra/8/" rel="next">Ezra 8</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="2">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="3">UBS Dictionary of Biblical Hebrew v0.9.2 exact definitions and glosses · CC BY-SA 4.0</li>
+    <li value="4">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="5">Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source · Public Domain</li>
+    <li value="6">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="7">Classical Hebrew Words database · Public Domain</li>
+    <li value="8">Semantic Dictionary of Biblical Hebrew via HiperBiblia · CC BY-SA 4.0</li>
+    <li value="9">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    </ol>
+    Each carried reading keeps its own license. 1 reading of this chapter quotes Hebrew letters and prints only under the words. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>

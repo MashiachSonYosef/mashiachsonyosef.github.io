@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="reader-book" content="ii-kings">
+<meta name="reader-home" content="/reader/">
+<meta name="site-name" content="fireandhail.com">
+<meta name="reader-at" content="12">
+<meta name="description" content="II Kings 12 in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.">
+<link rel="canonical" href="https://fireandhail.com/ii-kings/12/">
+<title>II Kings 12 · Hebrew, word by word · fireandhail.com</title>
+<script>
+// The tabernacle has two faces and both are the record's: linen hangings in
+// daylight, the tent dark under its coverings by night. The device's own
+// preference decides until the reader chooses; a choice is the device's to
+// remember, and it is remembered on the device and nowhere else.
+// The page has one face now, so there is nothing here to decide and nothing to
+// remember. A device's own dark preference is answered by color-scheme in the
+// stylesheet rather than by a second palette. Any "scheme" a device kept from
+// the two-faced version is cleared once, so no reader is left holding a
+// preference for a face that no longer exists.
+(() => {
+  try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
+})();
+</script>
+<link rel="stylesheet" href="/reader/engine-c57dbfdd03c8.css">
+</head>
+<body>
+<header class="top">
+  <!-- The way out, where the eye goes first and in the same corner on every
+       page. It used to be one link inside a row that also offered the other
+       books, which put two different jobs in one line and made the way home
+       the least noticeable thing in it. A book offers its own text; the door
+       offers the books. -->
+  <nav id="home"><span class="nav-lab">home:</span><a href="/" class="home">The Tabernacle</a></nav>
+  <h1 id="workTitle">
+    <span class="t-row"><span class="t-lab">book title</span><span class="he-t" lang="he" dir="rtl"></span></span>
+    <span class="t-row"><span class="t-lab" id="enLab">listed in the catalog as</span><span class="en-t">Zone reader</span><span class="lic-chip" id="workLic" hidden></span></span>
+  </h1>
+  <!-- THE STAMP: the count of the book on every named axis, beside the figures
+       other men reached for it, each with its difference. Filled from the
+       zone's own count_stamp, written by the builder in the same pass as the
+       text; the page measures the sections it draws and says so if the two
+       disagree. Nothing here is typed.
+       IT COMES FIRST NOW. The owner, 2026-09-07: the counts we care about,
+       first thing. A reader who opens a book of the Tanakh here is looking at
+       a counted text; the count is the thing this shelf offers that nothing
+       else does, and it stood below a nine-line credit block. -->
+  <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <details class="byline-fold" id="bylineFold" hidden>
+    <summary id="bylineSum"></summary>
+    <p class="byline" id="byline"></p>
+  </details>
+  <p id="meta">Loading the zone…</p>
+  <!-- What this build stands on, and which slots stand open. A sealed work
+       and a typed-basis work used to wear the same face here, and Y's held
+       commentaries appeared nowhere at all. These lines are filled from
+       data/work-basis-v1.json, which a tool derives from the build plan and
+       the hold ledgers; nothing here is typed into this file, and nothing
+       here is an alarm — a slot is named quietly and fills when its record
+       lands, the same way the title line already works. -->
+  <!-- A DEMONSTRATION SAYS SO BEFORE IT SAYS ANYTHING ELSE. Eight of these
+       zones are not books: each is one passage that shows one rule of the
+       frame, opened by this reader with this reader's own card, because a
+       drawing of a card demonstrates a drawing. The slot fills from the
+       zone's own receipts — which rule, and whether the ink was carried from
+       a named source or typed because no source we hold carries the mark. -->
+  <p id="demoLine" hidden></p>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
+       text and belongs where it can be tapped and defined — the masthead, out
+       of the ledger, with its records behind it. The Hebrew that stood here was
+       a copy I typed: it matched, but a copy is not a source, and a copy is the
+       one thing on the page nothing stands behind. -->
+
+  <div id="modeRow">
+    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
+         a megatoggle at the top that opens all of it, without losing the drop
+         down"). It always did open every verse's commentary; it was labelled
+         only with the work's name, so it did not read as the switch it is.
+         Each verse's own C handle still opens and closes that verse. -->
+    <span class="mode-pick" id="layerCPick" hidden><button type="button" class="mode-btn" id="layerC" aria-pressed="false" aria-describedby="dirC" hidden></button><span class="mode-dir" id="dirC"></span></span>
+    <!-- The marks the scribes wrote about the page rather than in it. Off by
+         rule (owner, rules 4, 5 and 7); the button appears only where the
+         text carries one, and never governs a mark that speaks about the
+         text, which rule 6 forbids anyone to hide. -->
+    <button type="button" class="mode-btn" id="marksToggle" aria-pressed="false" hidden></button>
+    <!-- Where the ink offers two readings at one position, the reader sets
+         which leads. An order, never a selection: both halves stay printed
+         and both stay open. The owner's design of 2026-09-06; the other
+         classes he drew wait on the corpus lane's word layer. -->
+  </div>
+  <!-- THE RAIL · every toggle the page has, one row each, drawn from the
+       TOGGLES registry below. Closed, it is one line saying how the page is
+       answering right now; open, each row is a set of positions with the one
+       in force in amber and a plain sentence under it. A toggle whose layer is
+       not on this zone is drawn dead with what it waits on. Approved in shape
+       2026-09-11; the rows go live one by one as their ledgers land. -->
+  <details id="rail" class="rail">
+    <summary><span class="k">this page answers</span><span class="now" id="railNow"></span></summary>
+    <div id="railRows"></div>
+  </details>
+</header>
+<div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<div id="nav" hidden>
+  <button id="navTop" type="button" title="Back to the top of the page">Top</button>
+  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
+  <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
+</div>
+<main id="text"></main>
+<section id="porch" lang="en" dir="ltr">
+  <h2>II Kings 12</h2>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <article class="pv"><h3 id="v12-1">II Kings 12:1</h3>
+  <p class="r"><span>son<sup>1</sup></span> · <span>abundance<sup>1</sup></span> · <span>second<sup>1</sup></span> · <span>Jehoash<sup>1</sup></span> · <span>when + became king + he<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v12-2">II Kings 12:2</h3>
+  <p class="r"><span>in + year<sup>2</sup></span> · <span>abundance<sup>1</sup></span> · <span>king<sup>1</sup></span> · <span>Jehoash<sup>1</sup></span> · <span>and + forty<sup>2</sup></span> · <span>alter<sup>1</sup></span> · <span>king<sup>1</sup></span> · <span>in + Jerusalem<sup>2</sup></span> · <span>and + [the] name of<sup>2</sup></span> · <span>mother + his<sup>2</sup></span> · <span>female gazelle<sup>3</sup></span> · <span>from + Beer<sup>2</sup></span> · <span>abundance<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v12-3">II Kings 12:3</h3>
+  <p class="r"><span>and + he made<sup>2</sup></span> · <span>Jehoash<sup>1</sup></span> · <span>direct<sup>4</sup></span> · <span>in + [the] eyes of<sup>2</sup></span> · <span>The Lord<sup>4</sup></span> · <span>all<sup>1</sup></span> · <span>days + his<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>parent (mother or father)<sup>5</sup></span> · <span>Jehojada<sup>1</sup></span> · <span>the + priest<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v12-4">II Kings 12:4</h3>
+  <p class="r"><span>only<sup>1</sup></span> · <span>the + high places<sup>2</sup></span> · <span>no<sup>1</sup></span> · <span>depart<sup>4</sup></span> · <span>still<sup>1</sup></span> · <span>the + people<sup>2</sup></span> · <span>kill<sup>4</sup></span> · <span>and + [were] making smoke<sup>2</sup></span> · <span>at the + high places<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v12-5">II Kings 12:5</h3>
+  <p class="r"><span>and + he said<sup>2</sup></span> · <span>Jehoash<sup>1</sup></span> · <span>these<sup>1</sup></span> · <span>the + priests<sup>2</sup></span> · <span>all<sup>1</sup></span> · <span>money<sup>1</sup></span> · <span>the + holy places<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>abide<sup>4</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span> · <span>money<sup>1</sup></span> · <span>alienate<sup>4</sup></span> · <span>person<sup>1</sup></span> · <span>money<sup>1</sup></span> · <span>any<sup>4</sup></span> · <span>put (set) (the battle, self) in array<sup>4</sup></span> · <span>all<sup>1</sup></span> · <span>money<sup>1</sup></span> · <span>that<sup>1</sup></span> · <span>Jaalah<sup>4</sup></span> · <span>Most High<sup>4</sup></span> · <span>understanding<sup>1</sup></span> · <span>person<sup>1</sup></span> · <span>to + bring [it]<sup>2</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v12-6">II Kings 12:6</h3>
+  <p class="r"><span>accept<sup>4</sup></span> · <span>burn in<sup>1</sup></span> · <span>the + priests<sup>2</sup></span> · <span>person<sup>1</sup></span> · <span>hundred((-fold), -th)<sup>4</sup></span> · <span>X at all<sup>4</sup></span> · <span>and + they<sup>2</sup></span> · <span>aid<sup>4</sup></span> · <span>with<sup>1</sup></span> · <span>breach<sup>1</sup></span> · <span>the + house<sup>2</sup></span> · <span>to + every<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>+ be able<sup>4</sup></span> · <span>authority<sup>1</sup></span> · <span>breach<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v12-7">II Kings 12:7</h3>
+  <p class="r"><span>and + there was<sup>2</sup></span> · <span>in + year<sup>2</sup></span> · <span>twentieth<sup>1</sup></span> · <span>and + three<sup>2</sup></span> · <span>alter<sup>1</sup></span> · <span>to + [the] king of<sup>2</sup></span> · <span>Jehoash<sup>1</sup></span> · <span>no<sup>1</sup></span> · <span>aid<sup>4</sup></span> · <span>the + priests<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>breach<sup>1</sup></span> · <span>the + house<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v12-8">II Kings 12:8</h3>
+  <p class="r"><span>the third book of the Old Testament<sup>6</sup></span> · <span>consult<sup>4</sup></span> · <span>Jehoash<sup>1</sup></span> · <span>&lt;to&gt; + Jehoiada<sup>2</sup></span> · <span>the + priest<sup>2</sup></span> · <span>and + for the + priests<sup>2</sup></span> · <span>and + he said<sup>2</sup></span> · <span>to + them<sup>2</sup></span> · <span>what<sup>1</sup></span> · <span>not + you<sup>2</sup></span> · <span>aid<sup>4</sup></span> · <span>with<sup>1</sup></span> · <span>breach<sup>1</sup></span> · <span>the + house<sup>2</sup></span> · <span>and + therefore<sup>2</sup></span> · <span>these<sup>1</sup></span> · <span>accept<sup>4</sup></span> · <span>money<sup>1</sup></span> · <span>hundred((-fold), -th)<sup>4</sup></span> · <span>acquaintance<sup>5</sup></span> · <span>since<sup>1</sup></span> · <span>the + house<sup>2</sup></span> · <span>she gave + it<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v12-9">II Kings 12:9</h3>
+  <p class="r"><span>the + priests<sup>2</sup></span> · <span>to + not<sup>2</sup></span> · <span>fetch<sup>4</sup></span> · <span>money<sup>1</sup></span> · <span>hundred((-fold), -th)<sup>4</sup></span> · <span>the + people<sup>2</sup></span> · <span>and + to + not<sup>2</sup></span> · <span>mighty<sup>1</sup></span> · <span>with<sup>1</sup></span> · <span>breach<sup>1</sup></span> · <span>the + house<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v12-10">II Kings 12:10</h3>
+  <p class="r"><span>and + he took<sup>2</sup></span> · <span>Jehojada<sup>1</sup></span> · <span>the + priest<sup>2</sup></span> · <span>chest<sup>1</sup></span> · <span>one<sup>1</sup></span> · <span>and + he slandered<sup>2</sup></span> · <span>hole<sup>4</sup></span> · <span>and + he set<sup>2</sup></span> · <span>sign<sup>4</sup></span> · <span>Azal<sup>1</sup></span> · <span>the + altar<sup>2</sup></span> · <span>with + [the] right [hand] of<sup>2</sup></span> · <span>Mijamin<sup>4</sup></span> · <span>when + comes<sup>2</sup></span> · <span>person<sup>1</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span> · <span>and + we will give<sup>2</sup></span> · <span>Shammah<sup>1</sup></span> · <span>the + priests<sup>2</sup></span> · <span>Shimri<sup>1</sup></span> · <span>the + threshold<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>all<sup>1</sup></span> · <span>the + money<sup>2</sup></span> · <span>which + has been brought<sup>2</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v12-11">II Kings 12:11</h3>
+  <p class="r"><span>and + there was<sup>2</sup></span> · <span>when + saw + they<sup>2</sup></span> · <span>since<sup>1</sup></span> · <span>many<sup>1</sup></span> · <span>the + money<sup>2</sup></span> · <span>in the + coffin<sup>2</sup></span> · <span>and + he offered up<sup>2</sup></span> · <span>book<sup>1</sup></span> · <span>consult<sup>4</sup></span> · <span>and + the + priest<sup>2</sup></span> · <span>Haggadol<sup>7</sup></span> · <span>and + they laid siege<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>the + money<sup>2</sup></span> · <span>¿ + has he been found<sup>2</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v12-12">II Kings 12:12</h3>
+  <p class="r"><span>and + we will give<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>the + money<sup>2</sup></span> · <span>Most High<sup>4</sup></span> · <span>Iddo<sup>4</sup></span> · <span>hand<sup>1</sup></span> · <span>do<sup>4</sup></span> · <span>the + property<sup>2</sup></span> · <span>those + [who] are enrolled<sup>2</sup></span> · <span>who + were appointed<sup>2</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span> · <span>&lt;to&gt; + craftsmen of<sup>2</sup></span> · <span>&lt;the&gt; + tree<sup>2</sup></span> · <span>and + bricks<sup>2</sup></span> · <span>who + were doing<sup>2</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v12-13">II Kings 12:13</h3>
+  <p class="r"><span>and + to the + masons<sup>2</sup></span> · <span>the + stone<sup>2</sup></span> · <span>and + to + acquire<sup>2</sup></span> · <span>+ carpenter<sup>4</sup></span> · <span>and + stones of<sup>2</sup></span> · <span>quarry<sup>1</sup></span> · <span>to + strengthen<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>breach<sup>1</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span> · <span>and + to + every<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>going out<sup>1</sup></span> · <span>Most High<sup>4</sup></span> · <span>the + house<sup>2</sup></span> · <span>to + be strong + it<sup>2</sup></span></p></article>
+  <article class="pv"><h3 id="v12-14">II Kings 12:14</h3>
+  <p class="r"><span>only<sup>1</sup></span> · <span>no<sup>1</sup></span> · <span>accomplish<sup>4</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span> · <span>add<sup>4</sup></span> · <span>money<sup>1</sup></span> · <span>pruning-hook<sup>4</sup></span> · <span>bason<sup>4</sup></span> · <span>trumpet(-er)<sup>4</sup></span> · <span>all<sup>1</sup></span> · <span>vessel<sup>1</sup></span> · <span>gold<sup>1</sup></span> · <span>and + articles of<sup>2</sup></span> · <span>money<sup>1</sup></span> · <span>part<sup>1</sup></span> · <span>the + money<sup>2</sup></span> · <span>which + has been brought<sup>2</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v12-15">II Kings 12:15</h3>
+  <p class="r"><span>since<sup>1</sup></span> · <span>to + [the] doers of<sup>2</sup></span> · <span>the + property<sup>2</sup></span> · <span>he put + him<sup>2</sup></span> · <span>and + they will be strong<sup>2</sup></span> · <span>[is] in &lt;the&gt; + it<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v12-16">II Kings 12:16</h3>
+  <p class="r"><span>and + not<sup>2</sup></span> · <span>(make) account (of)<sup>4</sup></span> · <span>with<sup>1</sup></span> · <span>the + men<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>hire<sup>4</sup></span> · <span>with<sup>1</sup></span> · <span>the + money<sup>2</sup></span> · <span>Most High<sup>4</sup></span> · <span>cease<sup>4</sup></span> · <span>to + give<sup>2</sup></span> · <span>to + [the] doers of<sup>2</sup></span> · <span>the + property<sup>2</sup></span> · <span>since<sup>1</sup></span> · <span>in + guardianship<sup>2</sup></span> · <span>them<sup>1</sup></span> · <span>accomplish<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v12-17">II Kings 12:17</h3>
+  <p class="r"><span>money<sup>1</sup></span> · <span>guilt<sup>1</sup></span> · <span>and + silver<sup>2</sup></span> · <span>fault<sup>4</sup></span> · <span>no<sup>1</sup></span> · <span>abide<sup>4</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span> · <span>[belonged] to the + priests<sup>2</sup></span> · <span>they were<sup>8</sup></span></p></article>
+  <article class="pv"><h3 id="v12-18">II Kings 12:18</h3>
+  <p class="r"><span>then<sup>1</sup></span> · <span>Jaalah<sup>4</sup></span> · <span>Hazael<sup>1</sup></span> · <span>king<sup>1</sup></span> · <span>Aram<sup>1</sup></span> · <span>and + it joined battle<sup>2</sup></span> · <span>Most High<sup>4</sup></span> · <span>Gath<sup>1</sup></span> · <span>and + they captured + it<sup>2</sup></span> · <span>and + he put<sup>2</sup></span> · <span>Hazael<sup>1</sup></span> · <span>face + his<sup>2</sup></span> · <span>to + go up<sup>2</sup></span> · <span>Most High<sup>4</sup></span> · <span>(Chald)<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v12-19">II Kings 12:19</h3>
+  <p class="r"><span>and + he took<sup>2</sup></span> · <span>Jehoash<sup>1</sup></span> · <span>king<sup>1</sup></span> · <span>Judah<sup>1</sup></span> · <span>with<sup>1</sup></span> · <span>all<sup>1</sup></span> · <span>the + holy places<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>appoint<sup>4</sup></span> · <span>Jehoshaphat<sup>1</sup></span> · <span>and + Jehoram<sup>2</sup></span> · <span>and + Ahaziah<sup>2</sup></span> · <span>ancestors + his<sup>2</sup></span> · <span>consult<sup>4</sup></span> · <span>Judah<sup>1</sup></span> · <span>and + &lt;obj.&gt;<sup>2</sup></span> · <span>holy things + his<sup>2</sup></span> · <span>and + &lt;obj.&gt;<sup>2</sup></span> · <span>all<sup>1</sup></span> · <span>&lt;the&gt; + gold<sup>2</sup></span> · <span>¿ + has he been found<sup>2</sup></span> · <span>in + [the] treasuries of<sup>2</sup></span> · <span>place<sup>1</sup></span> · <span>The Lord<sup>4</sup></span> · <span>and + household<sup>2</sup></span> · <span>consult<sup>4</sup></span> · <span>and + he sent out<sup>2</sup></span> · <span>king<sup>1</sup></span> · <span>Aram<sup>1</sup></span> · <span>and + he offered up<sup>2</sup></span> · <span>above<sup>1</sup></span> · <span>(Chald)<sup>4</sup></span></p></article>
+  <article class="pv"><h3 id="v12-20">II Kings 12:20</h3>
+  <p class="r"><span>and + excellence of<sup>2</sup></span> · <span>speak<sup>4</sup></span> · <span>Joash<sup>1</sup></span> · <span>and + all<sup>2</sup></span> · <span>that<sup>1</sup></span> · <span>make<sup>4</sup></span> · <span>¿ + not<sup>2</sup></span> · <span>them<sup>1</sup></span> · <span>describe<sup>4</sup></span> · <span>Most High<sup>4</sup></span> · <span>book<sup>1</sup></span> · <span>speak<sup>4</sup></span> · <span>the + days<sup>2</sup></span> · <span>to + [the] kings of<sup>2</sup></span> · <span>Judah<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v12-21">II Kings 12:21</h3>
+  <p class="r"><span>and + they arose<sup>2</sup></span> · <span>servants + his<sup>2</sup></span> · <span>and + people conspired<sup>2</sup></span> · <span>to tie<sup>1</sup></span> · <span>and + they defeated<sup>2</sup></span> · <span>with<sup>1</sup></span> · <span>Joash<sup>1</sup></span> · <span>place<sup>1</sup></span> · <span>setting<sup>9</sup></span> · <span>which + was coming down<sup>2</sup></span> · <span>Silla<sup>1</sup></span></p></article>
+  <article class="pv"><h3 id="v12-22">II Kings 12:22</h3>
+  <p class="r"><span>son<sup>1</sup></span> · <span>report<sup>4</sup></span> · <span>and + Jehozabad<sup>2</sup></span> · <span>son<sup>1</sup></span> · <span>dregs<sup>1</sup></span> · <span>servants + his<sup>2</sup></span> · <span>he struck down + him<sup>2</sup></span> · <span>and + he died<sup>2</sup></span> · <span>and + they buried<sup>2</sup></span> · <span>sign<sup>4</sup></span> · <span>with<sup>4</sup></span> · <span>ancestors + his<sup>2</sup></span> · <span>cattle<sup>4</sup></span> · <span>David<sup>1</sup></span> · <span>and + he reigned<sup>2</sup></span> · <span>Amaziah<sup>1</sup></span> · <span>build<sup>4</sup></span> · <span>in place of + him<sup>2</sup></span></p></article>
+  <nav class="porch-nav"><a href="/ii-kings/11/" rel="prev">II Kings 11</a><a href="/ii-kings/">II Kings, from the beginning</a><a href="/ii-kings/13/" rel="next">II Kings 13</a></nav>
+  <footer>Sources, by the number beside each reading:
+    <ol>
+    <li value="1">Strong's Hebrew Dictionary via Open Scriptures · CC BY 4.0</li>
+    <li value="2">STEP Bible Translators Amalgamated Hebrew OT aligned component translation · CC BY 4.0</li>
+    <li value="3">BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas · Public Domain + CC BY 4.0</li>
+    <li value="4">Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource · CC BY-SA 4.0</li>
+    <li value="5">Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary · CC BY-SA + GFDL</li>
+    <li value="6">Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss · WordNet Licenses</li>
+    <li value="7">Classical Hebrew Words database · Public Domain</li>
+    <li value="8">MACULA exact Hebrew morph surfaces with Cherith English definitions · CC BY 4.0</li>
+    <li value="9">STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column · CC BY 4.0</li>
+    </ol>
+    Each carried reading keeps its own license. What this page adds is CC0. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+</section>
+<div id="hud" hidden></div>
+<footer id="prov"></footer>
+<script src="/reader/engine-725a1c9ac372.js"></script>
+</body>
+</html>
