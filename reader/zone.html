@@ -1302,6 +1302,7 @@
     text-transform: uppercase; color: var(--faint); margin-inline-start: 0.4rem; }
   #hud .b-q button[aria-pressed="true"] .q-role { color: var(--muted); }
   #hud .prov { color: var(--faint); font-size: 0.72rem; margin: 0.35rem 0 0; }
+  .att .ov-mark { font-size: 0.72rem; letter-spacing: 0.04em; color: var(--muted); }
   .lic-chip { display: inline-block; margin-inline-start: 0.45rem; padding: 0.02rem 0.5rem;
     border-radius: 999px; background: var(--chip-bg); border: 1px solid var(--chip-line);
     color: var(--shesh); font-size: 0.72rem; }
@@ -2137,6 +2138,33 @@
     arrange: ["this site", "how this site arranges what the sources said — an order, never a selection"],
     claim: ["this project’s claim", "a statement this project makes, not one a source made"],
   };
+  // THE OVERLAYS (serving-rulings-v1: jastrow-served and samaritan-served, the
+  // owner, 2026-10-02). Two dictionaries the corpus lane built beside the route
+  // store, never merged into it: Jastrow's rabbinic Hebrew and Aramaic, and the
+  // Samaritans' own Hebrew and Aramaic where an entry prints its word in square
+  // letters. Each is one switch. On by default, the serving lane's call on the
+  // owner's word that the polarity is this layer's; off, no overlay row enters
+  // any card and every card is what it is without the overlay. On, an overlay
+  // adds only readings the store does not already give the word, after every
+  // other reading on the card, so it never leads a word another source
+  // defines and never moves, re-dates or re-credits a reading above it.
+  // overlay-rule-v1-an-overlay-adds-readings-after-the-store-and-changes-nothing-above-them
+  const OVERLAY_DEFS = [
+    { id: "jastrow", dir: "data/overlays/jastrow/", key: "fh.overlay.jastrow", mark: "rabbinic" },
+    { id: "samaritan", dir: "data/overlays/samaritan/", key: "fh.overlay.samaritan", mark: "Samaritan" },
+  ];
+  const overlayOn = Object.fromEntries(OVERLAY_DEFS.map((o) => [o.id, (() => { try { return localStorage.getItem(o.key) !== "off"; } catch { return true; } })()]));
+  window.__overlayOn = { ...overlayOn };
+  const OVERLAYS = {};
+  const OVERLAY_ROWS = new WeakMap();   // a row the card holds -> the overlay it came from
+  let OVERLAY_IX = [];
+  const setOverlay = (id, on) => {
+    const o = OVERLAY_DEFS.find((d) => d.id === id); if (!o) return;
+    overlayOn[id] = !!on; window.__overlayOn = { ...overlayOn };
+    try { localStorage.setItem(o.key, on ? "on" : "off"); } catch { /* the choice still stands on this page */ }
+    // the line never carries an overlay reading, so only the open card is asked again
+    if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
+  };
   const TOGGLES = [
     { id: "order", voice: "arrange", lab: "reads first", why: "which dictionary answers first, when several can",
       live: () => true, now: () => (DEF_POS.find((p) => p.id === defOrder) || {}).lab },
@@ -2178,6 +2206,21 @@
         if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
       },
       now: () => (sourcesOff.size ? `${sourcesOff.size} source id${sourcesOff.size === 1 ? "" : "s"} off` : "every source") },
+    // THE OVERLAYS — see the note above OVERLAY_DEFS
+    { id: "jastrow", voice: "them", lab: "Jastrow", why: "Marcus Jastrow’s dictionary of rabbinic Hebrew and Aramaic (1903). On, its readings are added to each card after every other reading; off, it is not asked",
+      positions: [{ id: "on", lab: "on" }, { id: "off", lab: "off" }],
+      live: () => !!OVERLAYS.jastrow,
+      waits: "the Jastrow overlay beside the store (data/overlays/jastrow/)",
+      get: () => (overlayOn.jastrow ? "on" : "off"),
+      set: (id) => setOverlay("jastrow", id === "on"),
+      now: () => (overlayOn.jastrow ? "Jastrow added" : "no Jastrow") },
+    { id: "samaritan", voice: "them", lab: "Samaritan", why: "dictionaries of Samaritan Hebrew and Aramaic, where an entry prints its word in square letters. On, their readings are added to each card after every other reading; off, they are not asked",
+      positions: [{ id: "on", lab: "on" }, { id: "off", lab: "off" }],
+      live: () => !!OVERLAYS.samaritan,
+      waits: "the Samaritan overlay beside the store (data/overlays/samaritan/)",
+      get: () => (overlayOn.samaritan ? "on" : "off"),
+      set: (id) => setOverlay("samaritan", id === "on"),
+      now: () => (overlayOn.samaritan ? "Samaritan added" : "no Samaritan") },
     { id: "pairs", voice: "text", lab: "pairs", why: "places where the scribes kept one form and read another: which half the English reads from",
       live: () => (zone.sections || []).some((s) => (s.words || []).some((w) => w.kq)),
       waits: "no ketiv-qere site in this book",
@@ -2235,7 +2278,7 @@
   };
   let zone, index;
   try {
-    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -2257,7 +2300,18 @@
       // both. And the short names the strip wears. Neither stops the page.
       fetch(`${ROOT}data/language-admission-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       fetch(`${ROOT}data/source-short-names-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // the overlays' own indexes; an overlay that did not arrive draws its switch dead
+      ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
     ]);
+    // an overlay's sources join the index's under their own ids, which the store
+    // does not use; a store source is never overwritten
+    OVERLAY_DEFS.forEach((o, i) => {
+      const ix = OVERLAY_IX[i];
+      if (!ix || !ix.m_sources || !index || !index.m_sources) return;
+      OVERLAYS[o.id] = ix;
+      for (const [id, m] of Object.entries(ix.m_sources)) if (!index.m_sources[id]) index.m_sources[id] = { ...m, overlay: o.id };
+    });
+    window.__overlays = Object.keys(OVERLAYS);
     // The zone as it arrived, by the same rule the commentary sidecar is
     // exposed under: a check should be able to ask the record what it says
     // rather than ask the page what it decided. A check that reads its answer
@@ -2726,6 +2780,30 @@
   // whose browser already holds yesterday's shard keeps being answered from it
   // while the page prints today's reading — the two disagreeing on screen.
   const storeVersion = index.store_version || "";
+  // AN OVERLAY'S ROWS for a key, by the store's own shard rule, from beside the
+  // overlay's own index, and only while its switch is on. Only the lanes the
+  // overlay's index marks ruled are asked (read off the index, never typed), and
+  // every row is folded to the store's seven slots. A shard that did not arrive
+  // adds nothing: the store answers alone, as it does with the switch off.
+  const overlayShards = new Map();
+  const overlayRowsFor = async (o, key) => {
+    const ix = OVERLAYS[o.id];
+    if (!ix || !overlayOn[o.id]) return [];
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
+    const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
+    const ck = `${o.id}/${shard}`;
+    if (!overlayShards.has(ck)) {
+      overlayShards.set(ck, fetch(`${ROOT}${o.dir}shards/${shard}.bin${ix.store_version ? `?v=${ix.store_version}` : ""}`)
+        .then((r) => { if (!r.ok) throw new Error(`${r.status}`); return unpack(r); })
+        .catch(() => { overlayShards.delete(ck); return null; }));
+    }
+    const data = await overlayShards.get(ck);
+    if (!data || !data[key]) return [];
+    const ruled = ix.lanes ? new Set(Object.entries(ix.lanes).filter(([, l]) => l && l.standing === "ruled").map(([id]) => id)) : null;
+    return data[key]
+      .filter((row) => !ruled || !row[7] || (row[7].lanes || [row[7].lane]).some((l) => ruled.has(l)))
+      .map((row) => { const r = row.slice(0, 7); OVERLAY_ROWS.set(r, o.id); return r; });
+  };
   const routesFor = async (key) => {
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
     const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
@@ -4153,8 +4231,11 @@
     return i < 0 ? "-" : (gr.g[i] || "-");
   };
   const poolFor = async (surface) => {
-    const all = await routesFor(surface);
-    if (!all) return null;
+    const stored = await routesFor(surface);
+    let extra = [];
+    for (const o of OVERLAY_DEFS) extra = extra.concat(await overlayRowsFor(o, surface).catch(() => []));
+    if (!stored && !extra.length) return null;
+    const all = stored || [];
     // THE MASORAH FILTER, at the row grain, before the pool exists. Under
     // "only", a row the lattice graded as pointing this word OTHERWISE never
     // enters the pool — it is not sorted late, it is withheld, and the card
@@ -4234,8 +4315,41 @@
     // order — hiding one because it sorted late would be the page deciding
     // what may be weighed. The masorah "only" position is not an order and
     // was withheld above, row by row, with its count riding on the pool.
-    const pool = sortPool([...groups.values()], surface);
-    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = all.length;
+    // WHAT AN OVERLAY ADDS: readings the store does not already give this word,
+    // each in a group of its own, after the store's. A reading the store
+    // already carries is left exactly as the store has it: its year, its rank
+    // and its carriers do not move. The pointing switch withholds an overlay
+    // row as it withholds a store row, by the row's own headwords.
+    const pointingOnly = pointingNow(surface === openKey ? openPointed : null) === "only" && openPointed && surface === openKey;
+    const added = new Map();
+    // the same reading is the same as the pill prints it (spanJoin), so a store
+    // reading that closes with a period and an overlay's without one are one
+    const drawn = (t) => spanJoin(t).toLowerCase();
+    const storeHas = new Set([...groups.values()].map((g) => drawn(g.text)));
+    extra.forEach((row) => {
+      if (pointingOnly && gradeRow(row, openPointed) === "x") return;
+      const [rank, routeText, , mId, year] = row;
+      if (!index.m_sources[mId]) return;
+      const y = Number.parseInt(year, 10);
+      const yr = Number.isInteger(y) ? y : Infinity;
+      senseSplit(routeText).forEach((sense) => {
+        const split = readingSplit(sense);
+        if (split.damaged) return;
+        split.readings.forEach((reading) => {
+          const key = drawn(reading);
+          if (storeHas.has(key)) return;
+          const g = added.get(key);
+          if (!g) added.set(key, { text: reading, year: yr, ledger: Number(rank), records: [row], ov: OVERLAY_ROWS.get(row) });
+          else {
+            g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank));
+            if (!g.records.includes(row)) g.records.push(row);
+          }
+        });
+      });
+    });
+    for (const g of added.values()) g.records.sort(EARLIEST_FIRST);
+    const pool = sortPool([...groups.values(), ...added.values()], surface);
+    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = all.length; pool.overlayAdded = added.size;
     return pool;
   };
   const oldestFirst = (a, b) => {
@@ -4340,7 +4454,10 @@
       || (pos.needs === "lattice" && gr && gr.o && gr.o[pos.lattice])
       || (pos.needs === "witnessed" && wCol);
     const nameLead = (a, b) => (!nameLed || nameYields() ? 0 : (a.text === nameLed ? 0 : 1) - (b.text === nameLed ? 0 : 1));
-    return list.sort((a, b) => licPref(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
+    // an overlay's reading comes after every reading the store gives, whatever
+    // the other switches say: composed above the licence sort (overlay-rule-v1)
+    const overlayLast = (a, b) => (a.ov ? 1 : 0) - (b.ov ? 1 : 0);
+    return list.sort((a, b) => overlayLast(a, b) || licPref(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
   };
 
   /**
@@ -5370,6 +5487,9 @@
           // receipt, where the audit reads it.
           if (m.licensePointer) lic.title = m.licensePointer;
           att.append(lic, " ");
+          // an overlay's record says which overlay it is, beside its year
+          const ovDef = m.overlay ? OVERLAY_DEFS.find((o) => o.id === m.overlay) : null;
+          if (ovDef) att.append(Object.assign(document.createElement("span"), { className: "ov-mark", textContent: ovDef.mark }), " ");
           if (/^https?:\/\//u.test(m.licensePointer)) {
             const a = document.createElement("a"); a.href = m.licensePointer; a.target = "_blank";
             a.rel = "noreferrer"; a.textContent = "License terms"; att.append(a);
@@ -5587,6 +5707,8 @@
         // as the pills print it (spanJoin: pieces joined, a closing period
         // not drawn), so what a check reads here is what a reader sees
         window.__pool = sorted.map((r) => spanJoin(r.text));
+        // and which of them an overlay added, in the same order (overlay-rule-v1)
+        window.__poolOv = sorted.map((r) => r.ov || "");
         pills.dataset.firstLic = String(classOf(sorted[0]));
         pills.dataset.minLic = String(Math.min(...sorted.map(classOf)));
         // what the masorah filter withheld, on the row and exposed, so a
