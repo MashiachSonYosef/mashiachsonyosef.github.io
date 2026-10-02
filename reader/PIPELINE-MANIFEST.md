@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-10-02.
 
-**113 rules declared · 108 named by a check · 5 unguarded.**
+**114 rules declared · 108 named by a check · 6 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -113,6 +113,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `toggle-design-rule-v1-the-page-about-the-switches-is-built-from-the-switches` | tools/build-toggle-design-v1.mjs | **UNGUARDED** |
 | `toggle-projection-rule-v1-a-toggle-is-a-ledger-projected-over-a-zones-own-positions` | tools/project-toggle-headword-v1.mjs | check-toggle-projection-v1 |
 | `toggle-push-rule-v1-the-driver-proposes-and-prints-and-never-chooses` | tools/push-toggles-v1.mjs | **UNGUARDED** |
+| `toggle-queue-rule-v1-a-delivery-is-named-in-the-open-until-a-receipt-can-name-it` | tools/push-toggles-v1.mjs | **UNGUARDED** |
 | `v-ledger-counter-verification-rule-v1-an-anchor-is-checked-against-the-word-this-lane-draws` | tools/verify-v-ledger-v2-v1.mjs | **UNGUARDED** |
 | `v-volume-rule-v1-a-count-is-served-only-with-the-scope-it-was-counted-over` | tools/project-v-volume-v1.mjs, zone.html | check-v-volume-in-card-v1, check-v-volume-projection-v1 |
 | `variant-site-grouping-v1-one-alignment-rule-per-encoding-class` | tools/group-variant-sites-v1.mjs | check-variant-class-one-rule-v1 |
