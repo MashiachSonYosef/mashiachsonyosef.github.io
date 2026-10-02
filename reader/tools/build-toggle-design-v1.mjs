@@ -107,7 +107,9 @@ const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const HERE = dirname(fileURLToPath(import.meta.url));
   const PAGE = readFileSync(join(HERE, "..", "zone.html"), "utf8");
-  const OUT = arg("--out", join(HERE, "..", "..", "toggles"));
+  // built into reader/build/, which is not published: since 2026-10-02 the site
+  // carries no internal language, and this page is the rail's own record
+  const OUT = arg("--out", join(HERE, "..", "build", "switches"));
   const SHOTS = join(OUT, "shots");
   // The book is asked of the shelf, never named here. A tool that types a slug
   // goes dormant the day that work is withdrawn, and a dormant tool reports
@@ -174,9 +176,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>the switches</title>
 <style>
- :root { --ink:#2b2622; --faint:#9b9186; --muted:#6f655c; --line:#d8cdbc; --paper:#f6f1e7; --sel:#7a5c2e;
+ :root { --ink:#4b3570; --faint:#7b7290; --muted:#665082; --line:#d8cdbc; --paper:#f1e9d8; --sel:#8d5e0c;
    --tekhelet:#34649a; --shani:#8b5560; --argaman:#6b3f8f; }
- @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ink:#e8e0d4; --faint:#7d746a; --muted:#a49a8e; --line:#3a352f; --paper:#17150f; --sel:#c9a24a; --tekhelet:#8fa9d6; --shani:#c99; --argaman:#b394d6; } }
+ /* one face, linen, since 2026-09-10; the dark face came off this sheet 2026-10-02 */
  * { box-sizing: border-box; }
  body { margin:0; padding:1.2rem 16px 4rem; background:var(--paper); color:var(--ink);
    font:16px/1.65 Georgia,"Times New Roman",serif; }

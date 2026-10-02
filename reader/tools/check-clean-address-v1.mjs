@@ -188,7 +188,10 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
     // where it actually stands, and it must carry every switch the rail draws
     // — a page about the switches that is missing one is the exact rot that
     // retired the old bench, and this is the guard that would have caught it.
-    const benchFile = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "toggles", "index.html");
+    // Since 2026-10-02 it is not published: it builds into reader/build/ and the
+    // door does not link it. The guard on its completeness stays, read where it
+    // is built; the address is no longer a destination.
+    const benchFile = join(dirname(fileURLToPath(import.meta.url)), "..", "build", "switches", "index.html");
     if (existsSync(benchFile)) {
       const bench = readFileSync(benchFile, "utf8");
       const ids = [...readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "zone.html"), "utf8")
@@ -197,8 +200,7 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
       check("the switches page stands at its own address, and carries every switch the rail draws",
         ids.length > 0 && absent.length === 0,
         absent.length ? `${absent.length} switch(es) the rail draws and the page does not: ${absent.join(", ")}` : `${ids.length} switches drawn and documented`);
-    } else check("the switches page stands at its own address", false, `${benchFile} — run node tools/build-toggle-design-v1.mjs`);
-    FINISHED.push("/toggles/");
+    } else check("the switches page is built", false, `${benchFile} — run node tools/build-toggle-design-v1.mjs`);
     // And the chain, the door's fifth: the same books with the meaning taken
     // out, so only the joins are left. It is not built by the door and does
     // not live under deploy-root — it is published beside the engine, from
