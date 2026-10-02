@@ -107,9 +107,9 @@ const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const HERE = dirname(fileURLToPath(import.meta.url));
   const PAGE = readFileSync(join(HERE, "..", "zone.html"), "utf8");
-  // built into reader/build/, which is not published: since 2026-10-02 the site
-  // carries no internal language, and this page is the rail's own record
-  const OUT = arg("--out", join(HERE, "..", "build", "switches"));
+  // published at /toggles/ and linked from nowhere: the owner, 2026-10-02, keeps
+  // it served by its address while the door carries no internal language
+  const OUT = arg("--out", join(HERE, "..", "..", "toggles"));
   const SHOTS = join(OUT, "shots");
   // The book is asked of the shelf, never named here. A tool that types a slug
   // goes dormant the day that work is withdrawn, and a dormant tool reports

@@ -154,7 +154,10 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
   // embedded in the page's own DOM and still held there, byte for byte, by
   // check-front-door-three-counts-v1 — so this assertion demanding the link
   // would only be demanding the paragraph back.
-  const NOT_REQUIRED = ["/front-door-counts-receipt-v1.json"];
+  // and two pages served by their addresses with no link from the door, the
+  // owner's ruling of 2026-10-02: the switches and the demonstrations. Each is
+  // still a lawful destination, so a link to it would not be stray; none is owed.
+  const NOT_REQUIRED = ["/front-door-counts-receipt-v1.json", "/toggles/", "/demonstrations/"];
   FINISHED.push(...NOT_REQUIRED);
   // And at the census — the register of every work the bridge records that
   // does not serve yet, standing at its own address since 2026-08-30 (the
@@ -188,10 +191,9 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
     // where it actually stands, and it must carry every switch the rail draws
     // — a page about the switches that is missing one is the exact rot that
     // retired the old bench, and this is the guard that would have caught it.
-    // Since 2026-10-02 it is not published: it builds into reader/build/ and the
-    // door does not link it. The guard on its completeness stays, read where it
-    // is built; the address is no longer a destination.
-    const benchFile = join(dirname(fileURLToPath(import.meta.url)), "..", "build", "switches", "index.html");
+    // Since 2026-10-02 the door does not link it; it is still served at its
+    // address, and its completeness is guarded there.
+    const benchFile = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "toggles", "index.html");
     if (existsSync(benchFile)) {
       const bench = readFileSync(benchFile, "utf8");
       const ids = [...readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "zone.html"), "utf8")
@@ -200,7 +202,8 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
       check("the switches page stands at its own address, and carries every switch the rail draws",
         ids.length > 0 && absent.length === 0,
         absent.length ? `${absent.length} switch(es) the rail draws and the page does not: ${absent.join(", ")}` : `${ids.length} switches drawn and documented`);
-    } else check("the switches page is built", false, `${benchFile} — run node tools/build-toggle-design-v1.mjs`);
+    } else check("the switches page stands at its own address", false, `${benchFile} — run node tools/build-toggle-design-v1.mjs`);
+    FINISHED.push("/toggles/");
     // And the chain, the door's fifth: the same books with the meaning taken
     // out, so only the joins are left. It is not built by the door and does
     // not live under deploy-root — it is published beside the engine, from
