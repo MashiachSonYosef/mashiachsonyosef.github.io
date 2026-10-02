@@ -32,17 +32,17 @@
   :root {
     color-scheme: light;
     --bg:#f1e9d8; --panel:#f8f2e5; --panel2:#ebe2cd; --line:#8a6a18;
-    --ink:#4b3570; --ink-strong:#3a265c; --muted:#665082; --faint:#7b7290;
+    --ink:#561f86; --ink-strong:#44166c; --muted:#6c359e; --faint:#845ba7;
     --gold:#96700f; --gold-dim:#9a7a28; --amber:#96700f;
     --sel:#8d5e0c; --sel-dim:#b8871a;
     /* FOUR COLORS, ruled 2026-10-02: one soft red, one soft blue, the gold and the
-     purple. The deep red the titles wore and the royal blue are retired; the deep
+     purple, and the purple alone at its full depth. The deep red the titles wore and the royal blue are retired; the deep
      names now carry the soft values, and the olive-brown text of the neutral is
      the purple ink, since gold is never text at rest. No title is drawn in a color of its own. */
     --shani:#8b5560; --shani-dim:#a8797f;
-    --wash-shani:#eedcd6; --shani-ink:#8b5560; --tekhelet-ink:#34649a; --wash-tekhelet:#dfe4f1; --shesh:#4b3570; --shesh-bright:#3a265c;
+    --wash-shani:#eedcd6; --shani-ink:#8b5560; --tekhelet-ink:#34649a; --wash-tekhelet:#dfe4f1; --shesh:#561f86; --shesh-bright:#44166c;
     --tekhelet:#34649a; --tekhelet-dim:#7f8ba8;
-    --argaman:#6b3f8f; --argaman-dim:#8f7aa8; --link:#6b3f8f;
+    --argaman:#772ba3; --argaman-dim:#9c69b9; --link:#772ba3;
     --chip-bg:rgba(107,90,53,.10); --chip-line:rgba(107,90,53,.32);
     --hover-wash:rgba(138,107,38,.10); --shade:rgba(96,80,48,.35);
     --shadow-card:0 14px 40px rgba(96,80,48,.30); }
@@ -786,6 +786,15 @@
      license chip keeps the short form: it rides beside readings elsewhere on
      this page, where there is no column to fill. */
   .col-att .chip, details.fam > summary .col-att .chip { max-width:100%; white-space:normal; overflow:visible; text-overflow:clip; }
+  /* THE ATTESTATION RESTS FOLDED (the owner, 2026-10-02: it took the row's room). The
+     chip says that a source attests the name; a press opens which one. The whole
+     sentence stays in the page, so a reader of the markup and every check still
+     meet it; only its second half waits behind the press. */
+  .chip.att { cursor:pointer; }
+  .chip.att .att-v { display:none; }
+  .chip.att::after { content:" \25B8"; color:var(--faint); }
+  .chip.att.open .att-v { display:inline; }
+  .chip.att.open::after { content:""; }
   /* WHAT IS NOT HERE DOES NOT SHOUT. The count of corpuses with nothing
      readable in them was the largest, brightest thing on the page — gold
      small-caps at 1.15rem, counting what a reader cannot open. It reads in
@@ -5887,6 +5896,19 @@
   // decoration to leave to the platform. The title is taken off the element,
   // kept on it under another name so nothing is lost, and drawn in the linen
   // and the gold the rest of the page is drawn in.
+  // the attestation opens and shuts under a press, and the press is the chip's
+  // own: the fold it may sit in (a shelf's head) does not also turn
+  function flipAtt(c) { var o = c.classList.toggle("open"); c.setAttribute("aria-expanded", o ? "true" : "false"); }
+  document.addEventListener("click", function (e) {
+    var c = e.target.closest ? e.target.closest(".chip.att") : null;
+    if (!c) return;
+    e.preventDefault(); e.stopPropagation(); flipAtt(c);
+  }, true);
+  document.addEventListener("keydown", function (e) {
+    var c = e.target.closest ? e.target.closest(".chip.att") : null;
+    if (!c || (e.key !== "Enter" && e.key !== " ")) return;
+    e.preventDefault(); flipAtt(c);
+  });
   var tip = document.createElement("div");
   tip.className = "tip"; tip.hidden = true; document.body.appendChild(tip);
   function tipFor(el) {
