@@ -17,6 +17,8 @@
 //       them off, in the same order, and every reading after those is an overlay's
 //   O5  the line under every word is the same with the switches on and off
 //   O6  an overlay's reading, opened, names its overlay in the card
+//   O7  a reading the store and an overlay both give is one pill with both behind it,
+//       and every store reading is credited to the same source on and off
 //
 // Run: node tools/check-overlays-v1.mjs [zone url]   (with python3 -m http.server 8899 in reader/)
 import { readFileSync, existsSync } from "node:fs";
@@ -70,7 +72,7 @@ const pass = async (state) => {
       window.__pool = null; window.__poolOv = null;
       (w.querySelector(".w span") || w.querySelector(".w")).click();
       const t0 = Date.now(); while (Date.now() - t0 < 6000 && !window.__pool) await new Promise((r) => setTimeout(r, 40));
-      const out = { pool: window.__pool || [], ov: window.__poolOv || [] };
+      const out = { pool: window.__pool || [], ov: window.__poolOv || [], lead: window.__poolLead || [], by: window.__poolBy || [] };
       const x = document.querySelector("#hud .head button"); if (x) x.click();
       return out;
     }, i);
@@ -100,6 +102,22 @@ check("O4  on, every card begins with exactly its readings off, and only an over
   `${on.cards.length} cards · ${added} overlay readings added · ${moved} cards whose store readings moved · ${notOverlay} with a non-overlay reading after the store's`);
 const diffLines = on.lines.filter((t, i) => t !== off.lines[i]).length;
 check("O5  the line under every word is the same on and off", diffLines === 0 && on.lines.length === off.lines.length, `${on.lines.length} lines · ${diffLines} differ`);
+
+// O7 · bundles, and the credit of every store reading
+{
+  const ovIds = new Set();
+  for (const id of OVERLAYS) for (const m of Object.keys(JSON.parse(readFileSync(join("data", "overlays", id, "index.json"), "utf8")).m_sources || {})) ovIds.add(m);
+  let bundles = 0, recredited = 0;
+  on.cards.forEach((c, i) => {
+    const o = off.cards[i];
+    for (let k = 0; k < o.pool.length; k += 1) {
+      if (c.lead[k] !== o.lead[k]) recredited += 1;
+      if (String(c.by[k] || "").split(" ").some((m) => ovIds.has(m))) bundles += 1;
+    }
+  });
+  check("O7  a shared reading is one pill with both behind it, and no store reading changes its credit", recredited === 0,
+    `${bundles} store readings an overlay also gives, bundled · ${recredited} store readings credited to another source with the switches on`);
+}
 
 // O6 · open one overlay reading and read its mark
 const pick = on.cards.findIndex((c) => c.ov.some(Boolean));
