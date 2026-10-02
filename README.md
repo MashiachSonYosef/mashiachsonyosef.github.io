@@ -1,3 +1,5 @@
+> **Moved.** This branch is frozen as of 2026-10-02. The site lives on `main`, and work and deploys go there; `gh-pages` is kept as a pointer.
+
 # A Hebrew reader on a sealed chain
 
 Every reading printed under a word traces to the record that carries it, and
