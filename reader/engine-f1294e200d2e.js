@@ -1414,6 +1414,10 @@
   // named a 2023 dictionary, for the same word. A file that cites a different
   // record than the page it came from is worse than one that cites none.
   const EARLIEST_FIRST = (a, c) => {
+    // a store's carrier before an overlay's, whatever their years: an overlay
+    // never becomes the source a reading is credited to (overlay-rule-v1)
+    const oa = OVERLAY_ROWS.has(a) ? 1 : 0, oc = OVERLAY_ROWS.has(c) ? 1 : 0;
+    if (oa !== oc) return oa - oc;
     const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
     return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
   };
@@ -2592,7 +2596,8 @@
     // the same reading is the same as the pill prints it (spanJoin), so a store
     // reading that closes with a period and an overlay's without one are one
     const drawn = (t) => spanJoin(t).toLowerCase();
-    const storeHas = new Set([...groups.values()].map((g) => drawn(g.text)));
+    const storeHas = new Map([...groups.values()].map((g) => [drawn(g.text), g]));
+    let bundled = 0;
     extra.forEach((row) => {
       if (pointingOnly && gradeRow(row, openPointed) === "x") return;
       const [rank, routeText, , mId, year] = row;
@@ -2604,7 +2609,11 @@
         if (split.damaged) return;
         split.readings.forEach((reading) => {
           const key = drawn(reading);
-          if (storeHas.has(key)) return;
+          // the store already gives this reading: one pill, and the overlay's record
+          // joins it as a further carrier, after the store's, its year and rank
+          // left out of the reading's own (the owner, 2026-10-02: one pill, two M)
+          const sg = storeHas.get(key);
+          if (sg) { if (!sg.records.includes(row)) { sg.records.push(row); bundled += 1; } return; }
           const g = added.get(key);
           if (!g) added.set(key, { text: reading, year: yr, ledger: Number(rank), records: [row], ov: OVERLAY_ROWS.get(row) });
           else {
@@ -2616,7 +2625,7 @@
     });
     for (const g of added.values()) g.records.sort(EARLIEST_FIRST);
     const pool = sortPool([...groups.values(), ...added.values()], surface);
-    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = all.length; pool.overlayAdded = added.size;
+    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = all.length; pool.overlayAdded = added.size; pool.overlayBundled = bundled;
     return pool;
   };
   const oldestFirst = (a, b) => {
@@ -2648,6 +2657,9 @@
       const i = fpIdx.get(fnv1a(`${row[1]}|${m ? m.label : ""}`));
       return i === undefined ? -1 : i;
     };
+    // what a reading sorts by: its store carriers, never an overlay's that joined
+    // it; a reading only an overlay gives sorts by its own (overlay-rule-v1)
+    const storeRecs = (r) => { const s = r.records.filter((row) => !OVERLAY_ROWS.has(row)); return s.length ? s : r.records; };
     const TIER = { m: 0, n: 1, x: 2 };
     // the grade of one record: its own headwords against the open word when
     // it carries them (pointing-grade-rule-v1), the lattice card's grade
@@ -2660,12 +2672,12 @@
     // a group can rest on several records; it takes the best tier any of
     // them earned, and counts as citing, the era's own, or a transliteration
     // if any witness under it is
-    const tierOf = (r) => { let best = 3; for (const row of r.records) { const t = TIER[gradeOf(row)]; if (t !== undefined && t < best) best = t; } return best; };
-    const cites = (r) => (gr && r.records.some((row) => gr.n.includes(idxOf(row))) ? 0 : 1);
-    const era = (r) => (r.records.some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
-    const outside = (r) => (r.records.some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
-    const lic = (r) => Math.min(...r.records.map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture)));
-    const tr = (r) => (lat && lat.t && r.records.some((row) => lat.t.includes(idxOf(row))) ? 0 : 1);
+    const tierOf = (r) => { let best = 3; for (const row of storeRecs(r)) { const t = TIER[gradeOf(row)]; if (t !== undefined && t < best) best = t; } return best; };
+    const cites = (r) => (gr && storeRecs(r).some((row) => gr.n.includes(idxOf(row))) ? 0 : 1);
+    const era = (r) => (storeRecs(r).some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
+    const outside = (r) => (storeRecs(r).some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
+    const lic = (r) => Math.min(...storeRecs(r).map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture)));
+    const tr = (r) => (lat && lat.t && storeRecs(r).some((row) => lat.t.includes(idxOf(row))) ? 0 : 1);
     const wCol = pos.needs === "witnessed" && surface && zone && zone.gloss_orders && zone.gloss_orders[pos.id] ? zone.gloss_orders[pos.id][surface] : null;
     const wText = wCol ? String(wCol).toLowerCase() : null;
     const witnessed = (r) => (!wText ? 0 : String(r.text).toLowerCase() === wText ? 0 : 1);
@@ -3976,6 +3988,9 @@
         window.__pool = sorted.map((r) => spanJoin(r.text));
         // and which of them an overlay added, in the same order (overlay-rule-v1)
         window.__poolOv = sorted.map((r) => r.ov || "");
+        // the source each reading is credited to, and every source behind it
+        window.__poolLead = sorted.map((r) => leadRecord(r)[3]);
+        window.__poolBy = sorted.map((r) => [...new Set(r.records.map((x) => x[3]))].join(" "));
         pills.dataset.firstLic = String(classOf(sorted[0]));
         pills.dataset.minLic = String(Math.min(...sorted.map(classOf)));
         // what the masorah filter withheld, on the row and exposed, so a
