@@ -3450,8 +3450,11 @@
     // excerpt, and the file says so beside it rather than letting a part
     // stand as though it were the provider's whole sentence
     const piece = lead[5] === 1 || spanJoin(String(lead[1] || "")).toLowerCase() !== spanJoin(ownText).toLowerCase();
+    // the record exactly as the source handed it over, field by field: its
+    // own headwords, its reading text, its definition text, byte for byte
+    const received = { mId, headwords: Array.isArray(lead[6]) ? lead[6].map(String) : [], route: String(lead[1] || ""), definition: String(lead[2] || "") };
     return post.ok
-      ? { ok: true, text: ownText, piece, label: m.label, posture: m.licensePosture,
+      ? { ok: true, text: ownText, piece, received, label: m.label, posture: m.licensePosture,
           pointer: m.licensePointer, year: hasYear(m.sourceYear) ? m.sourceYear : "", obligations: post.obligations,
           also: also.map((x) => `${x.label} · ${hasYear(x.sourceYear) ? `edition ${adYear(x.sourceYear)}` : "edition year not supplied"} · ${x.licensePosture}`) }
       : { ok: false, why: post.why, label: m.label };
@@ -3590,7 +3593,7 @@
       : "Citations: [H] marks the Hebrew; [1] [2] … mark each reading. Every mark has an entry under Sources naming the license that reading is released under, and the entry is the record the reading is cited from — the earliest attestation the store carries, the same one the reader sees on the card. The same source keeps the same number wherever it appears. Where a reading is attested by further records, they are named under the entry; they are not what it was cited from.");
     if (kind !== "he") {
       L.push("");
-      L.push("What is the sources' and what is ours: each section gives the Hebrew [H], then a line of readings, then the same readings word by word. The line \u2014 which reading stands under which word, their order and spacing \u2014 is this site's arrangement, not any source's sentence. In the word-by-word table every reading is printed exactly as its source wrote it, beside its source and its license, and says whether it is the source's whole record or a part of it.");
+      L.push("AS RECEIVED. This file holds the Hebrew text and, under each section, every dictionary record standing behind a reading on the page, each exactly as this site received it: the source's own headword, its reading and its definition, byte for byte \u2014 never cut, never joined to another record, never reworded, never reordered inside itself. The page arranges and underlines readings for reading; this file does not. Each record carries its citation number, and its source and license are under Sources. What this file adds of its own \u2014 headings, numbering and the notes saying where a record stands on the page \u2014 is CC0 1.0.");
     }
     L.push("");
     const allObl = new Set(); let held = 0, notReached = 0;
@@ -3609,22 +3612,31 @@
       // joined as the zone's presentation_join says the ink joins: a maqaf
       // word meets the next with no space, exactly as the page draws it
       if (kind !== "en") { if (kind === "both") L.push("Hebrew [H]"); L.push(b.words.map((w, i) => w.he + (i < b.words.length - 1 && !w.joinNext ? " " : "")).join("")); }
-      if (kind === "both") { L.push(""); L.push("Readings"); }
       if (kind !== "he") {
-        const line = b.words.map((w) => (w.unreachable ? "[not reached]" : w.held ? "[withheld]" : `${w.en}[${cite(w.source)}]`)).join(" ");
-        L.push(line);
-        // WORD BY WORD: one row per word, one license per row. The line above
-        // is ours; this is each source's own reading standing alone, so no
-        // reader has to work out which word is under which license.
-        const cell = (t) => String(t == null ? "" : t).replace(/\|/g, "\\|").replace(/\s*\n\s*/g, " ");
+        // ONE ITEM PER RECORD, as received: the same record behind three
+        // words is one item, said once, with the words it stands under
+        // named in this file's own note. Nothing here is the page's line.
+        if (kind === "both") L.push("");
+        L.push("Records behind this section's readings, each as received");
         L.push("");
-        L.push("| # | Hebrew [H] | Reading, as its source wrote it | Source | License | Taken |");
-        L.push("|---|---|---|---|---|---|");
+        const items = new Map();
         b.words.forEach((w, i) => {
-          if (w.unreachable) { L.push(`| ${i + 1} | ${cell(w.he)} | [not reached] | \u2014 | \u2014 | \u2014 |`); return; }
-          if (w.held) { L.push(`| ${i + 1} | ${cell(w.he)} | [withheld] | \u2014 | \u2014 | \u2014 |`); return; }
-          L.push(`| ${i + 1} | ${cell(w.he)} | ${cell(w.en)} | [${cite(w.source)}] | ${cell(licenseName(w.source.posture))} | ${w.source.piece ? "a part of the record" : "the whole record"} |`);
+          if (w.held || w.unreachable || !w.source || !w.source.received) return;
+          const r = w.source.received;
+          const id = `${r.mId}\u0001${r.headwords.join("\u0002")}\u0001${r.route}\u0001${r.definition}`;
+          if (!items.has(id)) items.set(id, { r, src: w.source, at: [] });
+          items.get(id).at.push(`word ${i + 1} (${w.he})`);
         });
+        let k = 0;
+        for (const { r, src, at } of items.values()) {
+          k += 1;
+          L.push(`${k}. [${cite(src)}] ${src.label} \u00b7 ${licenseName(src.posture)}`);
+          if (r.headwords.length) L.push(`    headword: ${r.headwords.join(" | ")}`);
+          L.push(`    reading: ${r.route}`);
+          if (r.definition && r.definition !== r.route) L.push(`    definition: ${r.definition}`);
+          L.push(`    _where it stands on the page (our note): ${at.join(", ")}_`);
+        }
+        if (!items.size) L.push("No record stands behind a reading in this section.");
       }
       L.push("");
       for (const w of b.words) { if (w.unreachable) notReached += 1; else if (w.held) held += 1; }
@@ -8359,7 +8371,9 @@
     // been agreed. The fold says how many wait under it, and nothing else.
     const more = document.createElement("details"); more.className = "more-switches";
     const moreSum = document.createElement("summary"); moreSum.className = "more-sum";
-    const LEAD = new Set(["sources", "reads"]);
+    // and the license sort, out from under the fold to be tested (the owner,
+    // 2026-10-03: "move the license toggle out too ... so i can find my own SA")
+    const LEAD = new Set(["sources", "reads", "licence"]);
     const waiting = TOGGLES.filter((t) => !LEAD.has(t.id));
     moreSum.textContent = `${waiting.length} more switches, not yet fleshed out`;
     more.append(moreSum);
