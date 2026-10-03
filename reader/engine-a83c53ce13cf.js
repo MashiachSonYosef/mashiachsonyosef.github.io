@@ -3703,7 +3703,11 @@
     // "in + beginni…", and on a phone the cut line spilled over the
     // license chip. The ellipsis stayed after the card closed (the owner,
     // 2026-10-03, Genesis 1:1 and 1:2). The display is never changed now.
-    const holdAndPaint = (box, line) => {
+    const holdAndPaint = (box, lineIn) => {
+      // signs off: the card paints the line as the page does, its sign-only
+      // pieces undrawn ("<obj.>" stood back on the object marker's line the moment its card
+      // opened, the owner, 2026-10-03)
+      const line = signsPref === "off" ? String(lineIn).split(" + ").filter((x) => !signOnly(x)).join(" + ") : lineIn;
       if (!box.style.height) {
         const h = box.getBoundingClientRect().height;
         if (h) box.style.height = `${h}px`;
@@ -3724,7 +3728,8 @@
       // A reading that DID change gets no chip here — absent over wrong.
       const chip = box.querySelector(".g-lic");
       const was = (chip ? box.textContent.replace(chip.textContent, "") : box.textContent).trim();
-      box.textContent = line; box.title = line; box.classList.remove("bare");
+      if (!String(line).trim()) { box.textContent = " "; box.title = ""; box.classList.add("bare"); }
+      else { box.textContent = line; box.title = line; box.classList.remove("bare"); }
       if (chip && was === String(line).trim()) box.append(chip);
       // Shown whole outranks held still. The clamp above was settled for
       // the line that painted first, and a ruled compspan reading joins its

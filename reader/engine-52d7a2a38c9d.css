@@ -6,8 +6,10 @@
      dark does not hand its own dark chrome to a light page. */
   :root {
     color-scheme: light;
-    --bg: #ebdec3; --panel: #f7efdf; --panel2: #ecdfc5;
-    --nav-veil: rgba(247, 239, 223, 0.94);
+    /* the panel a step above the ground, not a sheet of white on it (the
+       owner, 2026-10-03: "id avoid how bright the hud is still") */
+    --bg: #ebdec3; --panel: #efe4cd; --panel2: #ecdfc5;
+    --nav-veil: rgba(239, 228, 205, 0.94);
     --line: #8a6a18; --wash: #e6d8bb;
     --surface-c: #e8d9bc; --panel-c: #dccbaa; --line-c: #bea983;
     --ink: #561f86; --ink-strong: #44166c; --muted: #6c359e; --faint: #845ba7;
@@ -87,23 +89,27 @@
   body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Georgia, "Times New Roman", serif;
     overflow-x: hidden; }
   /* THE SCROLL'S GROUND (the owner, 2026-10-03: "foxed flax lets do it", then "i kind
-     of want it to look like the dead sea scrolls" ... "maybe some tear marks or
-     waterlogging ... your foxed is too far toward just spotty"). Parchment, aged:
-     a fine skin grain, water stains dried to a darker tide line at their edge,
-     and a broad ochre mottle, drawn by four small noise filters, the window's
-     edges darkening the way a scroll's do. The bare ground stays light enough
-     that every ink clears 4.5:1 on it. Paint only: no box moves. */
+     of want it to look like the dead sea scrolls", then "less watermarky or not
+     watermarky around words, maybe just edges should be burnt and torn and
+     watermarked. maybe a woven pattern would be clean"). Where the text stands,
+     clean linen: warp and weft, fine and even, a faint slub in each. At the
+     window's edges, held there as the page scrolls under them, the damage: a
+     torn rim burnt dark, a scorch inside it, and water stains dried to a tide
+     line in the margins only. The bare ground stays light enough that every ink
+     clears 4.5:1 on it. Paint only: no box moves. */
   body {
     background-color: var(--bg);
     background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.009' numOctaves='3' seed='101' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.47 0 0 0 0 0.31 0 0 0 0 0.13 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.18 0.081 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='880' height='880'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0055' numOctaves='4' seed='77' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.27 0 0 0 0 0.11 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.24 0.108 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.16 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0.03 0.07 0.11 0.15 0.2 0.25'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='960'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0035' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.6 0 0 0 0 0.42 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0.01 0.04 0.1 0.17 0.23 0.28 0.32 0.36'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 640px 640px, 880px 880px, 200px 200px, 960px 960px;
+      repeating-linear-gradient(0deg, rgba(110, 84, 46, 0.045) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(110, 84, 46, 0.038) 0 1px, transparent 1px 3px),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.7' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0.02 0.05 0.08 0.11 0.14'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7 0.012' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0.02 0.05 0.08 0.11 0.14'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: auto, auto, 240px 240px, 240px 240px;
   }
   body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    background: radial-gradient(ellipse 120% 95% at 50% 45%, transparent 58%, rgba(112, 76, 34, 0.16) 82%, rgba(92, 60, 24, 0.3) 100%); }
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='4' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='16' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cfilter id='halo' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='3' seed='8'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='46' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Cfilter id='soft'%3E%3CfeGaussianBlur stdDeviation='26'/%3E%3C/filter%3E%3Cfilter id='water' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='3' seed='77'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.27 0 0 0 0 0.11 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.34 0.153 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cmask id='burn'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='8' y='8' width='384' height='884' rx='12' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3Cmask id='scorch'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='24' y='28' width='352' height='844' rx='26' fill='black' filter='url(%23halo)'/%3E%3C/mask%3E%3Cmask id='margin'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='60' y='80' width='280' height='740' rx='70' fill='black' filter='url(%23soft)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23water)' mask='url(%23margin)'/%3E%3Crect width='100%25' height='100%25' fill='%236a3c12' opacity='0.4' mask='url(%23scorch)'/%3E%3Crect width='100%25' height='100%25' fill='%231f1006' opacity='0.92' mask='url(%23burn)'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+  @media (min-width: 640px) { body::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 820 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='4' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='16' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cfilter id='halo' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='3' seed='8'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='46' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Cfilter id='soft'%3E%3CfeGaussianBlur stdDeviation='26'/%3E%3C/filter%3E%3Cfilter id='water' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='3' seed='77'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.27 0 0 0 0 0.11 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.34 0.153 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cmask id='burn'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='8' y='8' width='804' height='884' rx='12' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3Cmask id='scorch'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='24' y='28' width='772' height='844' rx='26' fill='black' filter='url(%23halo)'/%3E%3C/mask%3E%3Cmask id='margin'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='96' y='80' width='628' height='740' rx='70' fill='black' filter='url(%23soft)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23water)' mask='url(%23margin)'/%3E%3Crect width='100%25' height='100%25' fill='%236a3c12' opacity='0.4' mask='url(%23scorch)'/%3E%3Crect width='100%25' height='100%25' fill='%231f1006' opacity='0.92' mask='url(%23burn)'/%3E%3C/svg%3E"); } }
+  @media (min-width: 1100px) { body::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='4' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='16' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cfilter id='halo' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='3' seed='8'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='46' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Cfilter id='soft'%3E%3CfeGaussianBlur stdDeviation='26'/%3E%3C/filter%3E%3Cfilter id='water' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='3' seed='77'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.27 0 0 0 0 0.11 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.34 0.153 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cmask id='burn'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='8' y='8' width='1384' height='884' rx='12' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3Cmask id='scorch'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='24' y='28' width='1352' height='844' rx='26' fill='black' filter='url(%23halo)'/%3E%3C/mask%3E%3Cmask id='margin'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='130' y='80' width='1140' height='740' rx='70' fill='black' filter='url(%23soft)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23water)' mask='url(%23margin)'/%3E%3Crect width='100%25' height='100%25' fill='%236a3c12' opacity='0.4' mask='url(%23scorch)'/%3E%3Crect width='100%25' height='100%25' fill='%231f1006' opacity='0.92' mask='url(%23burn)'/%3E%3C/svg%3E"); } }
 
   /* The header holds the way out in its top corner, and the book's own title
      below it. On a narrow screen the two stack rather than fight. */
@@ -123,8 +129,10 @@
   #home button.face { border: 1px solid var(--line); border-radius: 999px; background: none;
     color: var(--muted); font: inherit; font-size: 0.72rem; padding: 0.1rem 0.7rem; cursor: pointer; }
   #home button.face:hover { color: var(--ink-strong); border-color: var(--gold); }
+  /* the header is the same cloth as the page under it, so the weave and the
+     scroll's burnt edge reach the top of the window too */
   header.top { padding: 1.4rem 1.5rem 1rem; border-bottom: 1px solid var(--line);
-    background: linear-gradient(180deg, var(--panel) 0%, var(--bg) 100%); }
+    background: none; }
   header.top h1 { margin: 0; font-size: 1.9rem; color: var(--ink-strong); letter-spacing: 0.01em; }
   /* The title is the book's own, from the ledger. The English beside it is
      not a translation of it and must not be able to be read as one — it is how
@@ -840,8 +848,10 @@
 
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
   /* the rail: the page's toggles as one control block (see the header) */
+  /* the cloth shows through it: the panel's lightest tone stood out as the
+     brightest thing on the page (the owner, 2026-10-03: "so bright white") */
   .rail { max-width: 62rem; margin: 0.6rem 0 0.2rem; border: 1px solid var(--line); border-radius: 0.6rem;
-    background: var(--panel); padding: 0.45rem 0.7rem; }
+    background: rgba(236, 223, 197, 0.55); padding: 0.45rem 0.7rem; }
   .rail > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.6rem; }
   .rail > summary::-webkit-details-marker { display: none; }
   .rail .k { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
@@ -1151,6 +1161,13 @@
      counted in the record's own lines. */
   #hud .d-body { min-height: 0; }
   #hud .d-foot { position: sticky; bottom: 0; background: var(--panel); padding-top: 0.15rem; }
+  /* THE CARD IS WOVEN TOO (the owner, 2026-10-03: "id also add woven to huds"):
+     the page's warp and weft, finer and fainter, on the card and on its sticky
+     foot alike, so the foot meets the card with no seam (the period is 3px, so
+     the two can never fall far out of step) */
+  #hud, #hud .d-foot, #wcard, #bkcard {
+    background-image: repeating-linear-gradient(0deg, rgba(110, 84, 46, 0.035) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(110, 84, 46, 0.03) 0 1px, transparent 1px 3px); }
 
   /* What is standing under the word right now. The card used to answer this
      only by which pill was lit, and with two hundred pills in a scrolling row
