@@ -60,6 +60,11 @@
   .masthead { margin:0 0 .4rem; }
   .wordmark { display:inline-block; margin:0; font-family:'wordmark',Georgia,serif; font-size:2.1rem; letter-spacing:-.01em; font-weight:600; color:var(--shani-ink); text-decoration:none; padding-bottom:.06em; border-bottom:1px solid var(--gold-dim); }
   a.wordmark { font-size:1.2rem; }
+  /* the drawn mark: on the door as wide as 26rem allows, its threads two to
+     three pixels apart; on a work page at the height its letters had as text
+     (its drawing is 879 font units tall, 34 of them below the baseline) */
+  .wordmark img.wm-mark { display:block; width:26rem; max-width:100%; height:auto; }
+  a.wordmark img.wm-mark { width:auto; height:.879em; margin-bottom:-.034em; }
   .wordmark .wm-fire { color:var(--shani); } .wordmark .wm-and { color:var(--mark-gold); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { .wordmark .wm-and { background-image:linear-gradient(90deg, var(--shani) 0%, var(--mark-gold) 36%, var(--mark-gold) 64%, var(--tekhelet) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } .wordmark .wm-tld { background-image:linear-gradient(90deg, var(--tekhelet) 0%, var(--argaman) 30%, var(--argaman) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } } .wordmark .wm-hail { color:var(--tekhelet); } .wordmark .wm-tld { color:var(--argaman); }
   p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }
   /* The face speaks plainly; the audited panel stands whole behind one quiet
@@ -1115,7 +1120,7 @@
        covers the thing it is offered beside is not offered, it is in the way.
        In flow they cross nothing, and a book page's own way home already
        works this way — so the two faces of the site now agree. -->
-  <div class="masthead"><h1 class="wordmark"><span class="wm-fire">fire</span><span class="wm-and">and</span><span class="wm-hail">hail</span><span class="wm-tld">.com</span></h1></div>
+  <div class="masthead"><h1 class="wordmark"><img class="wm-mark" src="/mark/fireandhail.com-woven-v1.svg" alt="fireandhail.com" width="710" height="88"></h1></div>
 
   <!-- The door names itself and offers the books. Two lines stood here — how
        many are readable against how many are listed, and the gate's figures

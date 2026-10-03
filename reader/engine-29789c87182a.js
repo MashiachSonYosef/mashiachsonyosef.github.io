@@ -27,9 +27,14 @@
   // project's working name. Typed in one place, shown in two.
   const SITE = META("site-name") || "The Tabernacle";
   { const h = document.querySelector("#home a.home"); if (h) {
+    // the name drawn as the mark, where the door has drawn it (the owner,
+    // 2026-10-03: the woven name, a flame and a hailstone for its i's dots);
+    // the flat drawing, as a pill is too small for threads
+    const MARK = META("site-mark");
     // the mark's four parts (the owner, 2026-10-02); a name this does not match stands whole
     const p = /^(fire)(and)(hail)(\..+)$/u.exec(SITE);
-    if (!p) h.textContent = SITE;
+    if (MARK) { const img = document.createElement("img"); img.className = "wm-mark"; img.src = MARK; img.alt = SITE; img.width = 710; img.height = 88; h.replaceChildren(img); }
+    else if (!p) h.textContent = SITE;
     else { h.textContent = ""; ["fire", "and", "hail", "tld"].forEach((k, i) => { const s = document.createElement("span"); s.className = "wm-" + k; s.textContent = p[i + 1]; h.appendChild(s); }); }
   } }
   const unpack = async (res) =>
