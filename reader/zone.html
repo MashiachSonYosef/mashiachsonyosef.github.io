@@ -114,6 +114,9 @@
   /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02, and 2026-10-03: "remember the tabernacles red and blue are crafted from gold ... maybe and should be gold. and .com should be purple"): fire in shani, and in gold, hail in tekhelet, the .com in argaman, its dot still turning out of the blue (the owner: "a transition into the purple .com right so its not so standoutish ... even if just the . is blueish purple"), each word its own color, and the and the turn between them: red into gold into blue, gold full only at its n, as the threads of the blue and the scarlet were cut from beaten gold (Exodus 39:3). The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. The and is the one gold a page shows at rest, and the color check names the mark. */
   @font-face { font-family: 'wordmark'; src: url('/fonts/outfit-wordmark-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
   #home a.home .wm-fire { color:var(--shani); } #home a.home .wm-and { color:var(--mark-gold); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { #home a.home .wm-and { background-image:linear-gradient(90deg, var(--shani) 0%, var(--mark-gold) 36%, var(--mark-gold) 64%, var(--tekhelet) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } #home a.home .wm-tld { background-image:linear-gradient(90deg, var(--tekhelet) 0%, var(--argaman) 30%, var(--argaman) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } } #home a.home .wm-hail { color:var(--tekhelet); } #home a.home .wm-tld { color:var(--argaman); }
+  /* the drawn mark at the height its letters had as text: 879 font units
+     tall, 34 of them below the baseline */
+  #home a.home img.wm-mark { width: auto; height: .879em; vertical-align: -.034em; }
   #home a.home:hover { color: var(--ink-strong); border-color: var(--muted); }
   /* the other face, one press away — the button names where it takes you */
   #home button.face { border: 1px solid var(--line); border-radius: 999px; background: none;
@@ -1786,9 +1789,14 @@
   // project's working name. Typed in one place, shown in two.
   const SITE = META("site-name") || "The Tabernacle";
   { const h = document.querySelector("#home a.home"); if (h) {
+    // the name drawn as the mark, where the door has drawn it (the owner,
+    // 2026-10-03: the woven name, a flame and a hailstone for its i's dots);
+    // the flat drawing, as a pill is too small for threads
+    const MARK = META("site-mark");
     // the mark's four parts (the owner, 2026-10-02); a name this does not match stands whole
     const p = /^(fire)(and)(hail)(\..+)$/u.exec(SITE);
-    if (!p) h.textContent = SITE;
+    if (MARK) { const img = document.createElement("img"); img.className = "wm-mark"; img.src = MARK; img.alt = SITE; img.width = 710; img.height = 88; h.replaceChildren(img); }
+    else if (!p) h.textContent = SITE;
     else { h.textContent = ""; ["fire", "and", "hail", "tld"].forEach((k, i) => { const s = document.createElement("span"); s.className = "wm-" + k; s.textContent = p[i + 1]; h.appendChild(s); }); }
   } }
   const unpack = async (res) =>
