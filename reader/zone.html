@@ -2314,7 +2314,8 @@
   // ledger: "preselect it off for now"). Off is the ledger's third branch: a
   // reading carrying a sign is not offered as a pill, and on the line a piece
   // that is nothing but a sign (TAHOT's "<obj.>", "<to>", its "\u00bf") is not
-  // drawn. Nothing is ever cut inside a reading: "[the] word of" is printed as
+  // drawn beside the pieces that carry the reading (trimSigns, below). Nothing
+  // is ever cut inside a reading: "[the] word of" is printed as
   // TAHOT printed it, and the record on the card and in every export carries
   // every sign byte for byte.
   // exposed for the checks, which ask the page what it drew under rather than assume
@@ -2324,12 +2325,19 @@
   const hasSourceSign = (t) => SOURCE_SIGN.some((re) => re.test(String(t)));
   // a piece of a reading that is a sign and nothing else
   const signOnly = (t) => /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(String(t).trim());
+  // A READING THAT IS A SIGN AND NOTHING ELSE STAYS AS PRINTED. Off leaves a
+  // sign-only piece undrawn only where another piece carries the reading
+  // ("<obj.> + the heavens" draws "the heavens"); where every piece is a
+  // sign, the sign is the source's whole reading and stands, so the switch
+  // never leaves a word with nothing under it (the owner, 2026-10-03: "the
+  // 4th word of genesis loaded blank due to set default <obj>").
+  const trimSigns = (pieces) => { const keep = pieces.filter((x) => !signOnly(x)); return keep.length ? keep : pieces; };
   // the place's reading as the line draws it under "off": its sign-only
   // pieces left undrawn, the rest as printed; the whole stays on .full
   const placeShown = (at) => {
     if (!at || signsPref !== "off") return at;
     const pieces = String(at.text).split("/");
-    const keep = pieces.filter((x) => !signOnly(x));
+    const keep = trimSigns(pieces);
     return keep.length === pieces.length ? at : { ...at, text: keep.join("/").trim(), full: at.text };
   };
   let editionMark = (() => { try { return localStorage.getItem(ED_KEY) === "diff" ? "diff" : "mam"; } catch { return "mam"; } })();
@@ -5612,7 +5620,7 @@
       // signs off: the card paints the line as the page does, its sign-only
       // pieces undrawn ("<obj.>" stood back on the object marker's line the moment its card
       // opened, the owner, 2026-10-03)
-      const line = signsPref === "off" ? String(lineIn).split(" + ").filter((x) => !signOnly(x)).join(" + ") : lineIn;
+      const line = signsPref === "off" ? trimSigns(String(lineIn).split(" + ")).join(" + ") : lineIn;
       if (!box.style.height) {
         const h = box.getBoundingClientRect().height;
         if (h) box.style.height = `${h}px`;
@@ -5989,7 +5997,7 @@
         const wits = (((zone.emitted_from || {}).toggles || {}).lattice || {}).pieces;
         const who = hit && wits && wits.witnesses ? wits.witnesses[`english_${hit.s}`] : null;
         const whoM = who && who.m && index && index.m_sources ? index.m_sources[who.m] : null;
-        if (hit && !(who && who.m && sourcesOff.has(who.m)) && !(signsPref === "off" && signOnly(hit.g))) {
+        if (hit && !(who && who.m && sourcesOff.has(who.m)) && !(signsPref === "off" && signOnly(hit.g) && word.pg.some((p) => p && !signOnly(p.g || "")))) {
           const line = document.createElement("p"); line.className = "r-piece";
           const lab2 = document.createElement("i"); lab2.textContent = "here the source reads ";
           const val = document.createElement("b"); val.textContent = hit.g;

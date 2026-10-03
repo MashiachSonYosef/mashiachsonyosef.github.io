@@ -54,10 +54,12 @@ const LINES = () => {
       if (!w.k || w.w || !Array.isArray(w.pg) || !w.pg.length) return;
       const wb = wbs[i];
       if (wb.classList.contains("kq")) return;
-      out.push({ si, i, k: w.k, line: lineOf(wb), place: spanJoin(w.pg.map((p) => String(p.g || "").trim())
-        // source signs off (the page's own default since 2026-10-03): a piece
-        // that is a sign and nothing else is not drawn on the line
-        .filter((t) => !(window.__signs === "off" && /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(t))).join("/")), base: z.gloss && z.gloss[w.k] ? spanJoin(z.gloss[w.k]) : null, by: (z.gloss_m && z.gloss_m[w.k] && z.gloss_m[w.k].by) || [] });
+      // source signs off (the page's own default since 2026-10-03): a piece
+      // that is a sign and nothing else is not drawn on the line, unless every
+      // piece is one, and then the sign is the whole reading and stands
+      const all = w.pg.map((p) => String(p.g || "").trim());
+      const plain = all.filter((t) => !(window.__signs === "off" && /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(t)));
+      out.push({ si, i, k: w.k, line: lineOf(wb), place: spanJoin((plain.length ? plain : all).join("/")), base: z.gloss && z.gloss[w.k] ? spanJoin(z.gloss[w.k]) : null, by: (z.gloss_m && z.gloss_m[w.k] && z.gloss_m[w.k].by) || [] });
     });
   }
   return { out, judged, skipped };
@@ -93,9 +95,11 @@ const ready = async (p) => {
     try { await p.waitForSelector("#hud .r-pills button", { timeout: 15000 }); } catch { continue; }
     await p.waitForTimeout(200);
     // under source signs off the line draws the pressed reading without its
-    // sign-only pieces, so the pill is read the way the line draws it
+    // sign-only pieces (all of them a sign, it draws them), so the pill is
+    // read the way the line draws it
     const r = await p.evaluate(() => {
-      const drawn = (t) => (t && window.__signs === "off" ? t.split(" + ").filter((x) => !/^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(x.trim())).join(" + ") : t);
+      const trim = (all) => { const keep = all.filter((x) => !/^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(x.trim())); return keep.length ? keep : all; };
+      const drawn = (t) => (t && window.__signs === "off" ? trim(t.split(" + ")).join(" + ") : t);
       return { pressed: drawn(document.querySelector('#hud .r-pills button[aria-pressed="true"]')?.textContent.trim()), first: drawn(document.querySelector("#hud .r-pills button")?.textContent.trim()) };
     });
     n += 1;
