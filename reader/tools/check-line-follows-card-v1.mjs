@@ -48,7 +48,11 @@ const BASE = (defaultZoneUrl()).split("?")[0];
 const b = await pw.chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-await p.addInitScript(() => { try { localStorage.clear(); } catch { /* fresh reader */ } });
+// the source signs printed, so this check asks about the source switches
+// alone: under signs off (the page's default since 2026-10-03) a word whose
+// only reading is a sign has an empty line on purpose, which is
+// check-line-reads-the-place-v1's to hold, not this one's
+await p.addInitScript(() => { try { localStorage.clear(); localStorage.setItem("fh.signs", "printed"); } catch { /* fresh reader */ } });
 await p.goto(`${BASE}?b=${ZONE}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.evaluate(async () => {

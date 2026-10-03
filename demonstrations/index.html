@@ -19,10 +19,10 @@
      set to dark does not hand its own chrome to a light page. */
   :root {
     color-scheme: light;
-    --bg:#f1e9d8; --panel:#f8f2e5; --panel2:#ebe2cd; --line:#8a6a18;
+    --bg:#ebdec3; --panel:#f7efdf; --panel2:#ecdfc5; --line:#8a6a18;
     --ink:#561f86; --ink-strong:#44166c; --muted:#6c359e; --faint:#845ba7;
     --gold:#96700f; --gold-dim:#9a7a28; --amber:#96700f;
-    --sel:#8d5e0c; --sel-dim:#b8871a;
+    --sel:#86590b; --sel-dim:#b8871a;
     /* the mark's own gold, brighter than the frame's so the .com never reads as the red beside it (the owner, 2026-10-02); used by the name and nothing else */
     --mark-gold:#c4921c;
     /* FOUR COLORS, ruled 2026-10-02: one soft red, one soft blue, the gold and the
@@ -769,8 +769,8 @@
     /* a gloss the reader ruled, marked as theirs rather than the catalog's
      first answer — the same underline the book pages use for a chosen
      reading, so one gesture reads the same everywhere on the site */
-  .g.ruled { text-decoration:underline; text-decoration-color:var(--sel-dim);
-    text-decoration-thickness:1px; text-underline-offset:.18em; }
+  /* (no mark: the owner, 2026-10-03, "no special treatments" — a ruled
+     reading reads like any other) */
   .col-he .fam-he .g, details.fam > summary .fam-he .g { font-size:.7rem; color:var(--tekhelet-ink); }
   /* the license rides beside every printed reading and every backed
      force-read, in the same quiet chip the reader's card uses */
@@ -1066,6 +1066,25 @@
      overriding the flag, so every query showed every book (found 2026-10-02).
      hidden means hidden, whatever else the element is. */
   [hidden] { display:none !important; }
+
+  /* THE SCROLL'S GROUND (the owner, 2026-10-03: "foxed flax lets do it", then "i kind
+     of want it to look like the dead sea scrolls" ... "maybe some tear marks or
+     waterlogging ... your foxed is too far toward just spotty"). Parchment, aged:
+     a fine skin grain, water stains dried to a darker tide line at their edge,
+     and a broad ochre mottle, drawn by four small noise filters, the window's
+     edges darkening the way a scroll's do. The bare ground stays light enough
+     that every ink clears 4.5:1 on it. Paint only: no box moves. */
+  body {
+    background-color: var(--bg);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.009' numOctaves='3' seed='101' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.47 0 0 0 0 0.31 0 0 0 0 0.13 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.18 0.081 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='880' height='880'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0055' numOctaves='4' seed='77' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.27 0 0 0 0 0.11 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.24 0.108 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.16 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0.03 0.07 0.11 0.15 0.2 0.25'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='960'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0035' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.6 0 0 0 0 0.42 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0.01 0.04 0.1 0.17 0.23 0.28 0.32 0.36'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 640px 640px, 880px 880px, 200px 200px, 960px 960px;
+  }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(ellipse 120% 95% at 50% 45%, transparent 58%, rgba(112, 76, 34, 0.16) 82%, rgba(92, 60, 24, 0.3) 100%); }
 
   .bookcard .stamp, .atlas-row .stamp { display:flex; flex-direction:column; gap:.12rem; margin:.35rem 0 0; font-size:.72rem; font-variant-numeric:tabular-nums; max-width:100%; flex-basis:100%; }
   .atlas-row.stamped { flex-wrap:wrap; }

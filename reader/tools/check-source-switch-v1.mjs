@@ -66,6 +66,10 @@ const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 // anymore thats a subtoggle"); it leads wherever TAHOT reads the word, and it
 // has its own check (check-line-reads-the-place-v1). A stored choice is kept.
 await p.addInitScript(() => { try { if (!localStorage.getItem("fh.def.order")) localStorage.setItem("fh.def.order", "oldest"); } catch { /* a device that remembers nothing still reads */ } });
+// the source signs printed, so this check asks about the source switches
+// alone (signs off, the page's default since 2026-10-03, is held by
+// check-line-reads-the-place-v1)
+await p.addInitScript(() => { try { if (!localStorage.getItem("fh.signs")) localStorage.setItem("fh.signs", "printed"); } catch { /* a device that remembers nothing still reads */ } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 await p.goto(`${BASE}?b=${ZONE}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
