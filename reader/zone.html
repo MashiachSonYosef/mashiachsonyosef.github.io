@@ -118,14 +118,11 @@
   /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02, and 2026-10-03: "remember the tabernacles red and blue are crafted from gold ... maybe and should be gold. and .com should be purple"): fire in shani, and in gold, hail in tekhelet, the .com in argaman, its dot still turning out of the blue (the owner: "a transition into the purple .com right so its not so standoutish ... even if just the . is blueish purple"), each word its own color, and the and the turn between them: red into gold into blue, gold full only at its n, as the threads of the blue and the scarlet were cut from beaten gold (Exodus 39:3). The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. The and is the one gold a page shows at rest, and the color check names the mark. */
   @font-face { font-family: 'wordmark'; src: url('/fonts/outfit-wordmark-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
   #home a.home .wm-fire { color:var(--shani); } #home a.home .wm-and { color:var(--mark-gold); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { #home a.home .wm-and { background-image:linear-gradient(90deg, var(--shani) 0%, var(--mark-gold) 36%, var(--mark-gold) 64%, var(--tekhelet) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } #home a.home .wm-tld { background-image:linear-gradient(90deg, var(--tekhelet) 0%, var(--argaman) 30%, var(--argaman) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } } #home a.home .wm-hail { color:var(--tekhelet); } #home a.home .wm-tld { color:var(--argaman); }
-  /* the drawn mark at the height its letters had as text: 879 font units
-     tall, 34 of them below the baseline */
-  #home a.home img.wm-mark { width: auto; height: .879em; vertical-align: -.034em; }
-  #home a.home:hover { color: var(--ink-strong); border-color: var(--muted); }
+  #home a.home:hover { color: var(--ink-strong); border-color: var(--gold); }
   /* the other face, one press away — the button names where it takes you */
   #home button.face { border: 1px solid var(--line); border-radius: 999px; background: none;
     color: var(--muted); font: inherit; font-size: 0.72rem; padding: 0.1rem 0.7rem; cursor: pointer; }
-  #home button.face:hover { color: var(--ink-strong); border-color: var(--muted); }
+  #home button.face:hover { color: var(--ink-strong); border-color: var(--gold); }
   header.top { padding: 1.4rem 1.5rem 1rem; border-bottom: 1px solid var(--line);
     background: linear-gradient(180deg, var(--panel) 0%, var(--bg) 100%); }
   header.top h1 { margin: 0; font-size: 1.9rem; color: var(--ink-strong); letter-spacing: 0.01em; }
@@ -203,6 +200,12 @@
   /* the page's own gutter, and room under it for the floating chapter bar */
   #bookEnd { margin: 2.4rem 0 0; padding: 1rem 1.5rem 6rem; border-top: 1px solid var(--line); }
   #bookEnd > * { max-width: 62rem; }
+  #cc0Line { margin: 0; font-size: 0.82rem; color: var(--muted); }
+  .byline .bl-k { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+  .byline .bl-f { white-space: nowrap; }
+  .byline a { color: inherit; }
+  #cc0Line a { color: inherit; }
+  .byline-fold > #basisLine, .byline-fold > #holdsLine, .byline-fold > #rightsLine { margin: 0.45rem 0 0; }
   .receipts-fold { margin: 0.8rem 0 0; }
   .receipts-fold > summary { cursor: pointer; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
   .receipts-fold > summary:hover { color: var(--muted); }
@@ -312,7 +315,7 @@
     color: var(--gold-dim); transform: rotate(-90deg); transition: transform 0.12s; }
   #stamp #stampHead[aria-expanded="true"] { color: var(--sel); border-inline-start-color: var(--sel); }
   #stamp #stampHead[aria-expanded="true"]::after { transform: none; color: var(--sel); }
-  #stamp #stampHead:hover { color: var(--ink-strong); border-color: var(--muted); }
+  #stamp #stampHead:hover { color: var(--ink-strong); border-color: var(--gold); }
   #stampBody[hidden] { display: none; }
   #stampBody { border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim);
     margin-top: 0.4rem; padding: 0.35rem 0 0.4rem; overflow-x: auto; }
@@ -375,7 +378,7 @@
   a { color: var(--link); }
   header.top a { color: var(--link); text-decoration: none; border-bottom: 1px solid var(--chip-line); }
   header.top #home a.home { border-bottom: 1px solid var(--line); }
-  header.top a:hover { color: var(--ink-strong); border-bottom-color: var(--ink-strong); }
+  header.top a:hover { color: var(--ink-strong); border-bottom-color: var(--gold); }
 
   /* contents */
   #toc { max-width: 48rem; margin: 1.3rem auto 0; padding: 0 1.5rem; }
@@ -398,7 +401,7 @@
     color: var(--muted); transform: rotate(-90deg); transition: transform 140ms; }
   #toc #tocHead[aria-expanded="true"] { color: var(--sel); border-inline-start-color: var(--sel); }
   #toc #tocHead[aria-expanded="true"]::after { transform: none; color: var(--sel); }
-  #toc #tocHead:hover { color: var(--ink-strong); border-color: var(--muted); }
+  #toc #tocHead:hover { color: var(--ink-strong); border-color: var(--gold); }
   #tocBody[hidden] { display: none; }
   /* Contents is a coordinate grid: positions, not content. Plain English
      names the structure ("Part 2", "Chapter 7") — describing a thing is not
@@ -411,7 +414,7 @@
     border: 1px solid var(--line); border-radius: 0.35rem; background: var(--panel2);
     text-decoration: none; font: 0.92rem/1 Georgia, serif; color: var(--ink-strong);
     font-variant-numeric: tabular-nums; transition: border-color 120ms, background 120ms; }
-  #toc .chs a:hover { border-color: var(--ink-strong); background: var(--wash); }
+  #toc .chs a:hover { border-color: var(--gold); background: var(--wash); }
   #toc .chs a.on { border-color: var(--sel); color: var(--sel); }
   /* the sections of one chapter, opened in place under the grid */
   #secPanel { margin-top: 0.7rem; border: 1px solid var(--line); border-radius: 0.5rem;
@@ -427,9 +430,9 @@
   #secPanel .sp-grid a { display: flex; align-items: center; justify-content: center; min-height: 1.85rem;
     border: 1px solid var(--line); border-radius: 0.32rem; background: var(--panel);
     color: var(--muted); text-decoration: none; font-size: 0.76rem; font-variant-numeric: tabular-nums; }
-  #secPanel .sp-grid a:hover { border-color: var(--ink-strong); color: var(--ink-strong); }
+  #secPanel .sp-grid a:hover { border-color: var(--gold); color: var(--ink-strong); }
   #secPanel .sp-grid a.sp-top { grid-column: span 2; color: var(--ink-strong); font-variant: small-caps;
-    letter-spacing: 0.1em; border-color: var(--muted); }
+    letter-spacing: 0.1em; border-color: var(--gold); }
 
   /* one floating bar, not chrome on every section */
   /* the bar wears the scheme's own panel, veiled — a hard-coded night
@@ -660,7 +663,7 @@
   /* a named run: a license names these words as one thing. A thin blue rule
      under each of its words, the reading's own color; open, the run's words
      wear the selection together. */
-  .wb.wrun > .w { border-bottom: 1.5px solid var(--tekhelet-ink); border-radius: 0; }
+  .wb.wrun > .w { border-bottom: 1.5px solid var(--gold); border-radius: 0; }
   .wb.wrun.active > .w { border-bottom-color: var(--mark-gold); }
   .wb.active .w { background: none; }
   .wb.mark.active .w { background: none; border-color: var(--gold); }
@@ -798,7 +801,6 @@
      Hebrew rides beneath — the Hebrew climbs into the reading's row and the
      line stops being a line. Nothing is printed in the space; it is kept. */
   .g.bare { min-height: 1.25em; }
-  body.en .g.bare { min-height: 1.3em; }
   /* the held word's reading is inside the block's box and wears none of its own */
   .wb.active .g { background: none; }
 
@@ -824,9 +826,16 @@
      Hebrew beneath. Nothing on this page may move while the reader is reading,
      so the box cannot grow; what it can do is stop at its own edge. The whole
      reading is on the card and on the line's own title. */
-  body.en .g { order: 1; font-size: 0.98rem; line-height: 1.3; color: var(--tekhelet); margin-top: 0; max-width: 12em;
+  /* ONE LINE, TWO DIRECTIONS. The English reader sets the same blocks as the
+     Hebrew reader: the reading at the same size under the same 11em cap, and
+     the Hebrew at the line's own size. It set the reading at 0.98rem under a
+     12em cap and shrank the Hebrew to 1.02rem, so every block stood wider and
+     a phone line held three words where the Hebrew reader held four (owner,
+     2026-10-03). Only the direction of the line and the order inside a block
+     follow the reader now, so a line holds the same words in both. */
+  body.en .g { order: 1; color: var(--tekhelet); margin-top: 0;
     white-space: normal; display: block; overflow: hidden; }
-  body.en .w { order: 2; font-size: 1.02rem; color: var(--en-word); margin-top: 0.04rem; }
+  body.en .w { order: 2; color: var(--en-word); margin-top: 0.04rem; }
   body.en .wb.active .g { background: none; }
 
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
@@ -868,7 +877,7 @@
   .rail .more-switches > summary::-webkit-details-marker { display: none; }
   .rail .more-switches > summary::after { content: " \25be"; color: var(--faint); }
   .rail .more-switches[open] > summary::after { content: " \25b4"; }
-  .rail .more-switches > summary:hover { color: var(--ink); border-color: var(--muted); }
+  .rail .more-switches > summary:hover { color: var(--ink); border-color: var(--gold); }
   .rail .more-switches > .row:first-of-type { margin-top: 0.5rem; }
   .rail .src-fold { grid-column: 1 / -1; margin: 0; }
   .rail .src-fold > summary { list-style: none; cursor: pointer; font-size: 0.62rem;
@@ -878,15 +887,15 @@
   .rail .src-fold > summary::-webkit-details-marker { display: none; }
   .rail .src-fold > summary::after { content: " \25be"; color: var(--faint); }
   .rail .src-fold[open] > summary::after { content: " \25b4"; }
-  .rail .src-fold > summary:hover { color: var(--ink); border-color: var(--muted); }
+  .rail .src-fold > summary:hover { color: var(--ink); border-color: var(--gold); }
   .rail .def-order.src-list { display: block; margin: 0.4rem 0 0; max-width: 52rem; }
   /* the chooser: three words, one pressed — ink when pressed, never gold */
   .rail .shelve-by { display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem; margin: 0 0 0.45rem; font-size: 0.64rem; color: var(--muted); }
   .rail .shelve-by > span { margin-right: 0.15rem; }
   .rail .shelve-opt { font: inherit; font-size: 0.68rem; padding: 0.16rem 0.55rem; border: 1px solid var(--line);
     border-radius: 0.5rem; background: none; color: var(--ink); cursor: pointer; }
-  .rail .shelve-opt:hover { border-color: var(--muted); }
-  .rail .shelve-opt[aria-pressed="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+  .rail .shelve-opt:hover { border-color: var(--gold); }
+  .rail .shelve-opt[aria-pressed="true"] { background: var(--ink); color: var(--panel); border-color: var(--gold); }
   /* a shelf: its switch, its name, its count, then its strip of chips */
   .rail .shelf { border-top: 1px solid var(--line); padding: 0.4rem 0 0.45rem; }
   .rail .shelf:first-child { border-top: none; padding-top: 0.1rem; }
@@ -898,22 +907,22 @@
      dashed track with the knob at centre when the chips disagree. Gold stays
      line-work here as everywhere (data/color-contract-v1.json). */
   .rail .shelf-sw { position: relative; width: 1.9rem; height: 1.05rem; flex: 0 0 1.9rem; padding: 0;
-    border: 1px solid var(--muted); border-radius: 0.55rem; background: none; cursor: pointer; font-size: 0; }
+    border: 1px solid var(--line); border-radius: 0.55rem; background: none; cursor: pointer; font-size: 0; }
   .rail .shelf-sw::after { content: ""; position: absolute; top: 0.1rem; left: 0.1rem; width: 0.75rem; height: 0.75rem;
     border-radius: 50%; background: var(--muted); transition: left 0.12s; }
-  .rail .shelf-sw[aria-checked="true"] { background: var(--ink); border-color: var(--ink); }
+  .rail .shelf-sw[aria-checked="true"] { background: var(--ink); border-color: var(--gold); }
   .rail .shelf-sw[aria-checked="true"]::after { left: 0.95rem; background: var(--panel); }
-  .rail .shelf-sw[aria-checked="mixed"] { border-color: var(--ink); border-style: dashed; }
+  .rail .shelf-sw[aria-checked="mixed"] { border-color: var(--gold); border-style: dashed; }
   .rail .shelf-sw[aria-checked="mixed"]::after { left: 0.52rem; background: var(--ink); }
-  .rail .shelf-sw:hover { border-color: var(--ink); }
+  .rail .shelf-sw:hover { border-color: var(--gold); }
   /* the strip: chips wrapping, each a box and a short name */
   .rail .src-strip { display: flex; flex-wrap: wrap; gap: 0.3rem; }
   .rail .src-row { display: inline-flex; align-items: center; gap: 0.3rem; min-height: 1.65rem; box-sizing: border-box;
-    padding: 0.05rem 0.5rem 0.05rem 0.4rem; border: 1px solid var(--muted); border-radius: 1rem; }
+    padding: 0.05rem 0.5rem 0.05rem 0.4rem; border: 1px solid var(--line); border-radius: 1rem; }
   .rail .src-row.off { border-color: var(--line); }
   /* the box: the switch, and nothing else */
   .rail .def-order.src-list .dfp { width: 0.92rem; height: 0.92rem; margin-top: 0; padding: 0; flex: 0 0 0.92rem;
-    border: 1px solid var(--muted); border-radius: 0.2rem; background: none; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 0.2rem; background: none; cursor: pointer;
     font-size: 0; letter-spacing: 0; }
   /* ON IS DRAWN, NEVER FILLED. This box used to take a gold ground when it
      was on, and a gold ground is the one thing gold may not be: the contract
@@ -952,7 +961,7 @@
      expression over every record it has, and disabled with its reason where
      switching it alone would need a per-row tag nothing carries yet. */
   .rail .decl-bx { grid-column: 1; grid-row: 1; width: 0.82rem; height: 0.82rem; margin-top: 0.16rem;
-    padding: 0; border: 1px solid var(--muted); border-radius: 0.2rem; background: none;
+    padding: 0; border: 1px solid var(--line); border-radius: 0.2rem; background: none;
     cursor: pointer; font-size: 0; letter-spacing: 0; }
   .rail .decl-bx[aria-pressed="true"]:not(:disabled) { border-color: var(--sel); }
   .rail .decl-bx[aria-pressed="true"]::after { content: ""; display: block; width: 0.22rem; height: 0.44rem;
@@ -968,7 +977,7 @@
   .rail .decl-lead-in { color: var(--ink); }
   .rail .decl-more { font: inherit; font-size: 0.66rem; color: var(--faint); background: none;
     border: none; border-bottom: 1px solid var(--line); padding: 0; cursor: pointer; }
-  .rail .decl-more:hover { color: var(--muted); border-bottom-color: var(--muted); }
+  .rail .decl-more:hover { color: var(--muted); border-bottom-color: var(--gold); }
   .rail .decl-head { margin: 0.5rem 0 0.3rem; font-size: 0.6rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--muted); }
   .rail .decl-where-fold { margin: 0.06rem 0 0; }
@@ -988,7 +997,7 @@
     border-radius: 0; padding: 0 0 0.04rem; cursor: pointer; }
   .rail .def-order .declp::after { content: " \25be"; }
   .rail .def-order .declp[aria-expanded="true"]::after { content: " \25b4"; }
-  .rail .def-order .declp:hover { color: var(--muted); border-bottom-color: var(--muted); }
+  .rail .def-order .declp:hover { color: var(--muted); border-bottom-color: var(--gold); }
   .rail .declp.decl-open[aria-expanded="true"] { color: var(--sel); border-bottom-color: var(--sel-dim); }
   @media (max-width: 30rem) { .rail .row { grid-template-columns: 1fr; } .rail .row .why { grid-column: 1; } }
   /* Which way the words run, and nothing else. The two readers differ in the
@@ -1253,7 +1262,7 @@
   #hud .def-order .dfp, #modeRow .def-order .dfp, .rail .def-order .dfp { font: inherit; font-size: 0.58rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--faint); background: none;
     border: 1px solid var(--line); border-radius: 999px; padding: 0.14rem 0.5rem; cursor: pointer; }
-  #hud .def-order .dfp:hover:not(:disabled), #modeRow .def-order .dfp:hover:not(:disabled), .rail .def-order .dfp:hover:not(:disabled) { color: var(--muted); border-color: var(--muted); }
+  #hud .def-order .dfp:hover:not(:disabled), #modeRow .def-order .dfp:hover:not(:disabled), .rail .def-order .dfp:hover:not(:disabled) { color: var(--muted); border-color: var(--gold); }
   /* THE POSITION IN FORCE IS A READER'S SELECTION, so it wears the role the
      contract gives a reader's selection. It wore gold until 2026-09-09,
      which is the structure role \u2014 the color of the frame, not of a choice
@@ -1267,16 +1276,14 @@
     opacity: 0.4; cursor: default; }
   #hud .r-pills button { border: 1px solid var(--chip-line); background: none; color: var(--tekhelet-ink);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
-    max-width: 100%; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  /* A PILL IS ONE LINE. A reading long enough to wrap inside its own pill (a
-     dictionary's whole entry cut as one "reading", two hundred characters of
-     it) stood several lines tall in a row of one-line pills, and every share
-     the card hands out in whole rows came out cut through the pills below it.
-     So a pill holds one line and ends in an ellipsis; its whole text is its
-     title, and pressed, the record under it prints every word. */
+    max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
+  /* (A pill held one line, cut with an ellipsis, for a few hours on
+     2026-10-03; that broke the standing rule that a pill shows its whole
+     reading, and the rows are fitted from where the pills actually end, so a
+     tall pill is a tall row, never a cut one.) */
   /* the pressed pill is the reading's own ink, filled, with the linen showing
      through as its letters — pressed, not a box in a second color */
-  #hud .r-pills button[aria-pressed="true"] { border-color: var(--tekhelet-ink);
+  #hud .r-pills button[aria-pressed="true"] { border-color: var(--gold);
     background: var(--tekhelet-ink); color: var(--bg); }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
@@ -1284,7 +1291,7 @@
   #hud .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--tekhelet-ink);
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
-  #hud .r-overflow select:hover { border-color: var(--muted); }
+  #hud .r-overflow select:hover { border-color: var(--gold); }
   #hud .r-overflow select.on { background: var(--tekhelet-ink); color: var(--bg); }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   /* P — the sources that carry the same record. A corroboration is not a
@@ -1333,18 +1340,18 @@
     border-radius: 0.4rem; padding: 0.18rem 0.6rem; font: inherit; font-size: 0.9rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
-  #hud .s-pills button:hover { border-color: var(--muted); color: var(--shesh); }
+  #hud .s-pills button:hover { border-color: var(--gold); color: var(--shesh); }
   /* the "try again" of a block or a fold the shelf could not answer: the
      card's own pill, not the browser's grey bevel */
   #hud .r-unreachable button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 0.4rem; padding: 0.1rem 0.6rem; font: inherit; font-size: 0.85rem; cursor: pointer; }
-  #hud .r-unreachable button:hover { border-color: var(--muted); color: var(--shesh); }
+  #hud .r-unreachable button:hover { border-color: var(--gold); color: var(--shesh); }
   /* a line the shelf could not answer under a switch: dotted, so a phone
      with no hover can tell it from a line that was answered */
   .g[data-off="unreachable"] { border-bottom: 1px dotted var(--faint); }
   /* said again below the frame rule that gives every line a transparent
      border, which outranked this one and hid the mark */
-  #hud .s-pills button[aria-pressed="true"] { border-color: var(--shesh); color: var(--ink-strong);
+  #hud .s-pills button[aria-pressed="true"] { border-color: var(--gold); color: var(--ink-strong);
     background: var(--wash); }
   #hud .s-pills button .none { font: 0.62rem/1 Georgia, serif; color: var(--faint); margin-inline-start: 0.35rem; }
   #hud .b-q { flex: 0 0 auto; min-height: 0; }
@@ -1377,7 +1384,7 @@
     border: 1px solid var(--shani-dim); border-radius: 999px; background: var(--surface-c);
     color: var(--ink-strong); font: 0.68rem/1.4 Inter, system-ui, sans-serif;
     letter-spacing: 0.04em; cursor: pointer; }
-  .c-mark:hover { color: var(--ink-strong); border-color: var(--muted); }
+  .c-mark:hover { color: var(--ink-strong); border-color: var(--gold); }
   .c-mark[aria-expanded="true"] { border-color: var(--sel);
     color: var(--sel); }
   .c-mark .c-glyph { font-variant: small-caps; letter-spacing: 0.08em; }
@@ -1451,7 +1458,7 @@
   .c-choice { display: inline-flex; align-items: baseline; gap: 0.35rem; direction: ltr;
     border: 1px solid var(--line); background: var(--panel); color: var(--muted);
     border-radius: 999px; padding: 0.2rem 0.7rem; font: inherit; font-size: 0.74rem; cursor: pointer; }
-  .c-choice:hover { border-color: var(--muted); color: var(--shesh); }
+  .c-choice:hover { border-color: var(--gold); color: var(--shesh); }
   .c-more { font: inherit; font-size: 0.72rem; color: var(--faint); background: none;
     border: 0; border-bottom: 1px dotted var(--gold-dim); cursor: pointer; padding: 0 0 1px; }
   .c-more:hover { color: var(--shesh); }
@@ -1477,7 +1484,7 @@
   #cIndex input[type="search"] { flex: 1 1 auto; min-width: 0; font: inherit; font-size: 0.82rem;
     color: var(--ink); background: var(--panel); border: 1px solid var(--line);
     border-radius: 0.45rem; padding: 0.35rem 0.6rem; }
-  #cIndex input[type="search"]:focus { outline: none; border-color: var(--muted); }
+  #cIndex input[type="search"]:focus { outline: none; border-color: var(--gold); }
   #cIndex .ci-count { color: var(--faint); font-size: 0.72rem; white-space: nowrap; }
   #cIndex .ci-list { max-height: min(24rem, 50vh); overflow-y: auto; overflow-x: hidden;
     padding: 0 0.9rem 0.8rem; display: flex; flex-direction: column; gap: 0.3rem; }
@@ -1485,7 +1492,7 @@
     text-align: left; direction: ltr; background: var(--panel); border: 1px solid var(--line);
     border-radius: 0.45rem; padding: 0.32rem 0.6rem; color: var(--muted);
     font: inherit; font-size: 0.78rem; cursor: pointer; }
-  #cIndex .ci-hit:hover { border-color: var(--muted); color: var(--shesh); }
+  #cIndex .ci-hit:hover { border-color: var(--gold); color: var(--shesh); }
   #cIndex .ci-where { color: var(--muted); }
   #cIndex .ci-what { flex: 1 1 auto; }
   #cIndex .ci-more { color: var(--faint); font-size: 0.72rem; margin: 0.3rem 0 0; }
@@ -1499,7 +1506,7 @@
   #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  #hud .c-pills button[aria-pressed="true"] { border-color: var(--tekhelet-ink);
+  #hud .c-pills button[aria-pressed="true"] { border-color: var(--gold);
     background: var(--tekhelet-ink); color: var(--bg); }
   #hud .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--shani-ink);
@@ -1567,8 +1574,14 @@
   * { -webkit-tap-highlight-color: transparent; }
   body { font-kerning: normal; }
   ::selection { background: var(--sel-text); color: inherit; }
+  /* EVERY EDGE GOLD (the owner, 2026-10-03: "i would keep all borders gold").
+     Frames, hovers, focus and pressed states draw their edges in the gold;
+     fills and text keep their colors, and the dotted and dashed marks that
+     say a state (a typed word, a reading that could not be reached, a word
+     with a question) keep theirs. The underline under a run's words is gold
+     as a maqaf run's is. */
   button, select { transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease; }
-  button:hover:not([disabled]) { border-color: var(--muted); }
+  button:hover:not([disabled]) { border-color: var(--gold); }
   button:active:not([disabled]) { transform: translateY(0.5px); }
   :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
   * { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
@@ -1665,7 +1678,7 @@
   .xp { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--line);
     background: var(--panel2); border-radius: 0.5rem; padding: 0.12rem 0.5rem;
     letter-spacing: 0.04em; cursor: pointer; font-family: inherit; }
-  .xp:hover { border-color: var(--muted); color: var(--shesh); }
+  .xp:hover { border-color: var(--gold); color: var(--shesh); }
   .xp.armed { color: var(--sel); border-color: var(--sel); }
   .xp.busy { opacity: 0.6; cursor: progress; }
   .xp-note { font-size: 0.66rem; color: var(--faint); direction: ltr; flex: 1 1 100%; margin: 0.1rem 0 0; }
@@ -1713,9 +1726,17 @@
        a counted text; the count is the thing this shelf offers that nothing
        else does, and it stood below a nine-line credit block. -->
   <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <!-- THE SOURCE, AND HOW THIS BOOK WAS MADE FROM IT, in one fold near the
+       top (the owner, 2026-10-03: at the end of the book "itll probably get
+       lost there"): the credit, how the chapters are numbered, what waits to
+       be added, and the build's receipts folded under one more press. -->
   <details class="byline-fold" id="bylineFold" hidden>
     <summary id="bylineSum"></summary>
     <p class="byline" id="byline"></p>
+    <p id="basisLine" hidden></p>
+    <p id="holdsLine" hidden></p>
+    <p id="rightsLine" hidden></p>
+    <details id="receiptsFold" class="receipts-fold"><summary>receipts</summary><p class="receipts-full" id="receiptsFull"></p><footer id="prov"></footer></details>
   </details>
   <p id="meta">Loading the zone…</p>
   <!-- What this build stands on, and which slots stand open. A sealed work
@@ -1777,17 +1798,13 @@
 </div>
 <main id="text"></main>
 <div id="hud" hidden></div>
-<!-- THE BOOK'S OWN RECORD, AT ITS END (the owner, 2026-10-03: "if we need to
-     say the receipts section id put it at the bottom of the book probably",
-     and "the internal language like Y ledger should never appear"). How this
-     book's chapters are numbered and what waits to be added are said after
-     the text, in plain words; the build's receipts and fingerprints, which
-     are the build's own language, are folded under one press. -->
-<section id="bookEnd" hidden>
-  <p id="basisLine" hidden></p>
-  <p id="holdsLine" hidden></p>
-  <p id="rightsLine" hidden></p>
-  <details id="receiptsFold" class="receipts-fold"><summary>receipts</summary><p class="receipts-full" id="receiptsFull"></p><footer id="prov"></footer></details>
+<!-- THE END OF THE BOOK holds two things (the owner, 2026-10-03: "the only
+     thing at the end would be our cc0 statement and downloads"): the whole
+     book's export, drawn after the last section, and the site's declaration,
+     the door's own words (the door's build writes them here from the one
+     sentence it prints in its footer, so the two cannot drift). -->
+<section id="bookEnd">
+  <p id="cc0Line" class="open-claim">Noncommercial: nothing sold, no advertising, no payment taken — declared 2026-08-30, standing as long as this page serves. That is how the records here released on noncommercial terms are honored. Every carried text and reading keeps its own license, named with it; nothing here relicenses it. What this site adds of its own — its code, layout, receipts and the words it writes — is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>. Where it adapts a share-alike record (the Hebrew as laid out here, a reading cut or joined for display), the adaptation stays under that record’s license.</p>
 </section>
 <script>
 (async () => {
@@ -1818,14 +1835,11 @@
   // project's working name. Typed in one place, shown in two.
   const SITE = META("site-name") || "The Tabernacle";
   { const h = document.querySelector("#home a.home"); if (h) {
-    // the name drawn as the mark, where the door has drawn it (the owner,
-    // 2026-10-03: the woven name, a flame and a hailstone for its i's dots);
-    // the flat drawing, as a pill is too small for threads
-    const MARK = META("site-mark");
-    // the mark's four parts (the owner, 2026-10-02); a name this does not match stands whole
+    // the mark's four parts (the owner, 2026-10-02); a name this does not
+    // match stands whole. The drawn mark stands on the door alone (the owner,
+    // 2026-10-03: "just our 1 logo on the homepage alone")
     const p = /^(fire)(and)(hail)(\..+)$/u.exec(SITE);
-    if (MARK) { const img = document.createElement("img"); img.className = "wm-mark"; img.src = MARK; img.alt = SITE; img.width = 710; img.height = 88; h.replaceChildren(img); }
-    else if (!p) h.textContent = SITE;
+    if (!p) h.textContent = SITE;
     else { h.textContent = ""; ["fire", "and", "hail", "tld"].forEach((k, i) => { const s = document.createElement("span"); s.className = "wm-" + k; s.textContent = p[i + 1]; h.appendChild(s); }); }
   } }
   const unpack = async (res) =>
@@ -2159,6 +2173,10 @@
     if (/^cc_by/u.test(p)) return 1;
     return 4;
   };
+  // A NoDerivatives posture (declarations-v1.json refuse_export_when.
+  // no_derivatives): its record is drawn only as the provider wrote it, one
+  // pill, never cut, joined, trimmed or case-merged, and it is never exported.
+  const isNoDerivs = (key) => /(^|[^a-z])nd([^a-z]|$)/iu.test(String(key || "")) || /noderiv/iu.test(String(key || ""));
   // the word standing open on the card: its pointed surface and its key,
   // which is what the lattice's grades are keyed by
   let openPointed = null, openKey = null;
@@ -2180,6 +2198,17 @@
   const LICENCE_COLS = { pd: "licence_pd", by: "licence_by", "by-sa": "licence_by_sa" };
   let licencePref = (() => { try { return ["any", "pd", "by", "by-sa"].includes(localStorage.getItem(LIC_KEY)) ? localStorage.getItem(LIC_KEY) : "any"; } catch { return "any"; } })();
   let namesPref = (() => { try { return localStorage.getItem(NAMES_KEY) === "sound" ? "sound" : "meaning"; } catch { return "meaning"; } })();
+  // THE SIGNS A SOURCE PRINTS ON ITS READINGS (the corpus lane's source-signs
+  // ledger v1, 3 Oct 2026: Strong's X, × and + before a rendering, STEP's
+  // \u00bf, <...> and [...], MACULA's ~ where an object goes). They are the
+  // source's own bytes and are never removed or respelled; the switch only
+  // orders them. Resting: as printed, in the card's own order. Below: a
+  // reading carrying a sign follows the plain ones. The patterns are the
+  // ledger's own, written before its count.
+  const SIGNS_KEY = "fh.signs";
+  let signsPref = (() => { try { return localStorage.getItem(SIGNS_KEY) === "below" ? "below" : "printed"; } catch { return "printed"; } })();
+  const SOURCE_SIGN = [/^(X|\u00d7|\+) /u, /\u00bf/u, /<[^>]*>/u, /\[[^\]]*\]/u, / ~ /u];
+  const hasSourceSign = (t) => SOURCE_SIGN.some((re) => re.test(String(t)));
   let editionMark = (() => { try { return localStorage.getItem(ED_KEY) === "diff" ? "diff" : "mam"; } catch { return "mam"; } })();
   let defOrder = (() => {
     let held = null;
@@ -2359,6 +2388,13 @@
       get: () => namesPref,
       set: (id) => { namesPref = id; try { localStorage.setItem(NAMES_KEY, id); } catch { /* the choice still stands on this page */ } if (id === "sound" && !latticeStore) latticeReady().then(() => { if (redrawReadings) redrawReadings(); }); if (redrawReadings) redrawReadings(); },
       now: () => (namesPref === "sound" ? "as sound" : "as meaning") },
+    { id: "signs", voice: "arrange", lab: "source signs", why: "a source's own marks on a reading: Strong's X and +, STEP's \u00bf, < > and [ ], MACULA's ~ \u2014 printed as the source printed them, never removed",
+      positions: [{ id: "printed", lab: "as printed" }, { id: "below", lab: "after plain readings" }],
+      live: () => true,
+      waits: "",
+      get: () => signsPref,
+      set: (id) => { signsPref = id; try { localStorage.setItem(SIGNS_KEY, id); } catch { /* the choice still stands on this page */ } if (redrawReadings) redrawReadings(); },
+      now: () => (signsPref === "below" ? "signs after plain" : "signs as printed") },
     // The lattice carries, per position, whether the Leningrad codex spells
     // the word otherwise (editions-diff, blind-verified in v12); the word
     // wears a dotted gold rule when the mark is on, and its title says how.
@@ -2370,6 +2406,11 @@
       set: (id) => { editionMark = id; try { localStorage.setItem(ED_KEY, id); } catch { /* the choice still stands on this page */ } document.body.classList.toggle("ed-mark", id === "diff"); },
       now: () => (editionMark === "diff" ? "Leningrad marked" : "MAM") },
   ];
+  // the deed a posture's declaration names, when it names one
+  const licenseDeed = (posture) => {
+    const row = POSTURES && POSTURES.postures && POSTURES.postures[String(posture || "")];
+    return (row && row.deed) || "";
+  };
   const licenseName = (posture) => {
     const p = String(posture || "");
     if (!p) return "License unrecorded";
@@ -2584,13 +2625,44 @@
   // actually requires a reader to be able to see — which edition this is, and
   // what it is released under — and both are read from the zone's own
   // structured fields, never parsed back out of the credit sentence.
+  // THE CREDIT, READABLE (the owner, 2026-10-03: no internal language on the
+  // page). Its own fields stand as label and value: the title, the edition,
+  // who provides it, the source as a link that can be followed, the license.
+  // The record's ids (the version witness, the document id) and the build's
+  // sentence about how it served the edition go to the receipts, word for word.
+  let BYLINE_RECEIPT = "";
   {
     const bl = document.getElementById("byline"), fold = document.getElementById("bylineFold"),
           sum = document.getElementById("bylineSum");
-    bl.textContent = zone.byline || "";
+    const raw = zone.byline || "";
+    const cut = raw.indexOf(" \u00b7 ");
+    const credit = cut >= 0 ? raw.slice(0, cut) : raw;
+    const fields = credit.split(" | ").map((kv) => { const i = kv.indexOf(": "); return i > 0 ? [kv.slice(0, i), kv.slice(i + 2)] : [null, kv]; });
+    const SAY = { "Title": "title", "Version": "edition", "Provider metadata": "from", "Source": "source", "License": "license" };
+    if (fields.length > 1 && fields.every(([k]) => k) && fields.some(([k]) => SAY[k])) {
+      bl.replaceChildren();
+      const kept = [];
+      for (const [k, v] of fields) {
+        if (!SAY[k]) { kept.push(`${k}: ${v}`); continue; }
+        const part = document.createElement("span"); part.className = "bl-f";
+        const lab = document.createElement("span"); lab.className = "bl-k"; lab.textContent = SAY[k];
+        part.append(lab, " ");
+        if (k === "Source" && /^https?:\/\//u.test(v)) {
+          const a = document.createElement("a"); a.href = v; a.rel = "noopener"; a.target = "_blank";
+          let shown = v; try { const u = new URL(v); shown = u.hostname; a.title = decodeURI(v); } catch { /* the address as written */ }
+          a.textContent = shown; part.append(a);
+        } else part.append(v);
+        if (bl.childNodes.length) bl.append(" \u00b7 ");
+        bl.append(part);
+      }
+      BYLINE_RECEIPT = [...kept, cut >= 0 ? raw.slice(cut + 3) : ""].filter(Boolean).join(" \u00b7 ");
+    } else bl.textContent = raw;
     if (zone.byline) {
       const ro = ((zone.emitted_from || {}).walk || {}).restore_oracle || null;
-      const lic = ((((zone.emitted_from || {}).walk || {}).rights) || {}).raw_license || "";
+      // a zone served from the rebuilt body carries no walk; its family is
+      // the first field of the per-occurrence rights receipt
+      const lic = ((((zone.emitted_from || {}).walk || {}).rights) || {}).raw_license
+        || (String(((zone.emitted_from || {}).license_receipts || {}).per_occurrence || "").match(/rows:\s*([A-Z0-9][A-Z0-9._-]*)\s*\u00b7/u) || [])[1] || "";
       const sLab = document.createElement("span"); sLab.className = "s-lab"; sLab.textContent = "source";
       const sVal = document.createElement("span"); sVal.className = "s-val";
       if (ro && ro.edition) sVal.append(ro.edition);
@@ -2790,9 +2862,9 @@
     } else {
       meta.append(`${renderedWords.toLocaleString()} words in ${nSec.toLocaleString()} ${nSec === 1 ? "section" : "sections"}. `);
     }
-    // the receipts stand at the book's end, folded (the owner, 2026-10-03)
-    document.getElementById("receiptsFull").textContent = receiptsText;
-    document.getElementById("bookEnd").hidden = false;
+    // the receipts stand in the source fold, folded once more (the owner, 2026-10-03)
+    document.getElementById("receiptsFull").textContent = [BYLINE_RECEIPT, receiptsText].filter(Boolean).join(" \u00b7 ");
+    document.getElementById("bylineFold").hidden = false;
     if (!meta.textContent.trim()) meta.hidden = true;
   }
   // What this build stands on, and which slots stand open — said in the same
@@ -2858,7 +2930,7 @@
       el.append(`${Number(entry.entries_without_own_license).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} commentary entries show the commentary\u2019s own license until each entry\u2019s license is recorded.`);
       el.hidden = false;
     }
-    if (["basisLine", "holdsLine", "rightsLine"].some((id) => !document.getElementById(id).hidden)) document.getElementById("bookEnd").hidden = false;
+    if (["basisLine", "holdsLine", "rightsLine"].some((id) => !document.getElementById(id).hidden)) document.getElementById("bylineFold").hidden = false;
   })();
   document.getElementById("prov").textContent =
     `${zone.work_receipts && zone.work_receipts.b_n ? `${zone.work_receipts.b_n} · ` : ""}` +
@@ -3272,10 +3344,13 @@
     const p = String(posture || "");
     if (!p) return { ok: false, why: "the record carries no license posture" };
     const row = POSTURES && POSTURES.postures && POSTURES.postures[p];
+    if (isNoDerivs(p)) return { ok: false, why: `${(row && row.name) || p} (${p}) \u2014 NoDerivatives: an export is a derivative, refused` };
     if (!row) return { ok: false, why: `undeclared posture (${p}) — a posture with no declaration is not exported` };
     if (!row.export) return { ok: false, why: `${row.name} (${p}) — the declarations record refuses export for this posture` };
     return { ok: true, why: null, obligations: row.obligations || [] };
   };
+  // the gate itself, for check-export-v1 to ask instead of a copy of it
+  window.__exportPosture = exportPosture;
 
   // What reading is standing under a word right now, and which record it is
   // standing on. The zone bakes the reading as text with no M attached, so the
@@ -3304,6 +3379,11 @@
     if (!hit) return { ok: false, why: "the reading on the page does not match any record in the store" };
     const lead = leadRecord(hit);
     const mId = lead[3];
+    // the lead record's own bytes for this reading: the pool groups readings
+    // case-blind across records, so hit.text can be another record's casing
+    const want = spanJoin(hit.text).toLowerCase();
+    const ownText = senseSplit(lead[1]).flatMap((s) => { const r = readingSplit(s); return r.damaged ? [s] : r.readings; })
+      .find((x) => spanJoin(x).toLowerCase() === want) || hit.text;
     const also = [...hit.records].sort(EARLIEST_FIRST).slice(1)
       .map((r) => index.m_sources[r[3]]).filter(Boolean);
     const m = index.m_sources[mId] || {};
@@ -3312,7 +3392,7 @@
     // "/"-packed span with " + " for reading, and a file that leaves the
     // building must carry what the source wrote, not how we drew it
     return post.ok
-      ? { ok: true, text: hit.text, label: m.label, posture: m.licensePosture,
+      ? { ok: true, text: ownText, label: m.label, posture: m.licensePosture,
           pointer: m.licensePointer, year: hasYear(m.sourceYear) ? m.sourceYear : "", obligations: post.obligations,
           also: also.map((x) => `${x.label} · ${hasYear(x.sourceYear) ? `edition ${adYear(x.sourceYear)}` : "edition year not supplied"} · ${x.licensePosture}`) }
       : { ok: false, why: post.why, label: m.label };
@@ -3346,7 +3426,7 @@
         c.querySelectorAll(".g-lic").forEach((x) => x.remove());
         return (c.textContent || "").trim();
       })() : "";
-      const rec = { he: w.s, en: null, held: null, source: null };
+      const rec = { he: w.s, joinNext: !!(w.presentation_join && w.presentation_join.join_next_without_separator), en: null, held: null, source: null };
       if (w.k && shown && shown !== "—") {
         const a = await attributionFor(w.k, shown, placeLine(w));
         if (a.ok) { rec.en = a.text; rec.source = a; }
@@ -3461,7 +3541,9 @@
       // The Hebrew is marked on its label rather than on each word: it is one
       // work under one license, and threading Latin digits through a right-to-
       // left run would rearrange the text on the page it is pasted into.
-      if (kind !== "en") { if (kind === "both") L.push("Hebrew [H]"); L.push(b.words.map((w) => w.he).join(" ")); }
+      // joined as the zone's presentation_join says the ink joins: a maqaf
+      // word meets the next with no space, exactly as the page draws it
+      if (kind !== "en") { if (kind === "both") L.push("Hebrew [H]"); L.push(b.words.map((w, i) => w.he + (i < b.words.length - 1 && !w.joinNext ? " " : "")).join("")); }
       if (kind === "both") { L.push(""); L.push("Readings"); }
       if (kind !== "he") {
         const line = b.words.map((w) => (w.unreachable ? "[not reached]" : w.held ? "[withheld]" : `${w.en}[${cite(w.source)}]`)).join(" ");
@@ -3475,12 +3557,14 @@
     L.push("");
     L.push("## Sources");
     L.push("");
+    L.push("_This file does not relicense anything in it. The Hebrew [H] and every cited reading stay under the license named for them below: share-alike material, and anything adapted from it, is shared under that material's license; noncommercial material may not be used commercially. What this file adds of its own \u2014 its headings, numbering and notes \u2014 is CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)._");
+    L.push("");
     // Whose words the obligation lines are, said before any of them is read.
     L.push(`_${LICENCE_RULES.whose}_`);
     L.push(`_(${LICENCE_RULES.rule})_`);
     L.push("");
     // [H] first, because it stands under every Hebrew word in the file.
-    L.push(`- [H] ${wr.family || "LICENCE NOT ESTABLISHED"}${wr.posture ? ` · ${wr.posture}` : ""} — the Hebrew of ${
+    L.push(`- [H] ${wr.family || "LICENSE NOT ESTABLISHED"}${wr.posture ? ` · ${wr.posture}` : ""} — the Hebrew of ${
       kind === "he" ? "this file" : "every section here"}: the sealed text of ${zone.work}${
       wr.attribution ? `, ${wr.attribution}` : ""}`);
     wr.obligations.forEach((o) => L.push(`    obligation, in our words: ${o}`));
@@ -3495,6 +3579,7 @@
         for (const { n, s } of [...cited.values()].sort((a, b) => a.n - b.n)) {
           L.push("");
           L.push(`- [${n}] ${s.posture} — ${s.label}${yearTag(s.year, "edition")}`);
+          L.push(`    license: ${licenseName(s.posture)}${licenseDeed(s.posture) ? ` \u2014 ${licenseDeed(s.posture)}` : ""}`);
           (s.obligations || []).forEach((o) => L.push(`    obligation, in our words: ${o}`));
           if (s.pointer) L.push(`    record: ${s.pointer}`);
           (s.also || []).forEach((x) => L.push(`    also attested by: ${x}`));
@@ -3515,6 +3600,9 @@
       L.push("## Withheld");
       L.push("");
       L.push(`${held} reading${held === 1 ? " was" : "s were"} not exported. Each is marked [withheld] where it stood, carrying no citation number because there is no source to cite. A reading is withheld when its record carries a license that does not permit redistribution, when it carries no license at all, or when the reading on the page could not be matched to a record. The Hebrew is never withheld: it rides on the work's own license, not on any reading's.`);
+      // each one by name, with its own reason (declarations-v1.json withholding.rule)
+      L.push("");
+      for (const b of bundles) for (const w of b.words) if (w.held && !w.unreachable) L.push(`- ${b.sec.label || ""} ${w.he}: ${w.held}`);
     }
     if (notReached && kind !== "he") {
       L.push("");
@@ -3619,7 +3707,7 @@
       } else {
         say(`${words} words · ${srcs.size} source${srcs.size === 1 ? "" : "s"}`);
         if (obl.size) { say(" · in our words: "); say([...obl].join(" ").replace(/\.$/, "")); }
-        if (held) { say(" · "); say(`${held} reading${held === 1 ? "" : "s"} withheld on license`, "held"); }
+        if (held) { say(" · "); say(`${held} reading${held === 1 ? "" : "s"} withheld, each with its reason in the file`, "held"); }
         if (notReached) { say(" · "); say(`${notReached} reading${notReached === 1 ? "" : "s"} not checked: the catalog could not be reached, export again`, "held"); }
         say(". ");
       }
@@ -4443,6 +4531,9 @@
     if (!opts.storeOnly) for (const o of OVERLAY_DEFS) extra = extra.concat(await overlayRowsFor(o, surface).catch(() => []));
     if (!stored && !extra.length) return null;
     const all = stored || [];
+    // every record asked for this word, the overlays' with the store's, before
+    // any switch withholds one: the "of N" the card's withheld counts stand on
+    const asked = all.length + extra.length;
     // THE MASORAH FILTER, at the row grain, before the pool exists. Under
     // "only", a row the lattice graded as pointing this word OTHERWISE never
     // enters the pool — it is not sorted late, it is withheld, and the card
@@ -4524,11 +4615,12 @@
       if (!index.m_sources[mId]) return;
       const y = Number.parseInt(year, 10);
       const yr = Number.isInteger(y) ? y : Infinity;
-      senseSplit(routeText).forEach((sense) => {
-        const split = readingSplit(sense);
+      const nd = isNoDerivs(index.m_sources[mId].licensePosture);
+      (nd ? [String(routeText)] : senseSplit(routeText)).forEach((sense) => {
+        const split = nd ? { readings: [sense], damaged: false } : readingSplit(sense);
         if (split.damaged) return;
         split.readings.forEach((reading) => {
-          const key = reading.toLowerCase();
+          const key = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : reading.toLowerCase();
           const g = groups.get(key);
           if (!g) groups.set(key, { text: reading, year: yr, ledger: Number(rank), records: [row] });
           else {
@@ -4562,11 +4654,12 @@
         if (!index.m_sources[mId]) return;
         const y = Number.parseInt(year, 10);
         const yr = Number.isInteger(y) ? y : Infinity;
-        senseSplit(routeText).forEach((sense) => {
-          const split = readingSplit(sense);
+        const nd = isNoDerivs(index.m_sources[mId].licensePosture);
+        (nd ? [String(routeText)] : senseSplit(routeText)).forEach((sense) => {
+          const split = nd ? { readings: [sense], damaged: false } : readingSplit(sense);
           if (split.damaged) return;
           split.readings.forEach((reading) => {
-            const d = drawn(reading);
+            const d = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : drawn(reading);
             let g = byDrawn.get(d);
             if (!g) { g = { text: reading, year: yr, ledger: Number(rank), records: [] }; byDrawn.set(d, g); groups.set(`\u0000${d}`, g); }
             g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank));
@@ -4600,7 +4693,7 @@
       placeG.placeFirst = true;
     }
     const pool = sortPool([...groups.values()], surface);
-    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = all.length + extra.length;
+    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = asked;
     return pool;
   };
   const oldestFirst = (a, b) => {
@@ -4710,7 +4803,10 @@
     // AT THIS PLACE, the place's own reading first (marked by poolFor on the
     // reading the word standing open reads here); the rest keep their order
     const placeLead = (a, b) => (defOrder !== "place" ? 0 : (a.placeFirst ? 0 : 1) - (b.placeFirst ? 0 : 1));
-    return list.sort((a, b) => placeLead(a, b) || licPref(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
+    // the source signs, after plain readings where the reader asked so (an
+    // order, never a filter: every reading stays on the card as printed)
+    const signLast = (a, b) => (signsPref !== "below" ? 0 : (hasSourceSign(a.text) ? 1 : 0) - (hasSourceSign(b.text) ? 1 : 0));
+    return list.sort((a, b) => placeLead(a, b) || licPref(a, b) || signLast(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
   };
 
   /**
@@ -5769,9 +5865,11 @@
         // second thing the provider said, and attributing an arrangement to a
         // source that did not arrange it that way is only honest if the
         // arrangement is disclosed. Whether a cut may be shown at all is the
-        // provider's license to decide, and the store has already decided it —
-        // a license that forbids derivatives never reaches this card.
-        if (selected.records.some((r) => r[5] === 1)) {
+        // provider's license to decide: a NoDerivatives record is never cut (isNoDerivs, in the pool), and
+        // a cut the page made at display time is said here as plainly as a
+        // cut the store carries.
+        const leadRow = [...selected.records].sort(EARLIEST_FIRST)[0];
+        if (selected.records.some((r) => r[5] === 1) || (leadRow && spanJoin(String(leadRow[1] || "")).toLowerCase() !== spanJoin(selected.text).toLowerCase())) {
           const cut = document.createElement("p"); cut.className = "d-cut";
           cut.textContent = "This reading is a piece cut out of the record below, not the record's own sentence.";
           body.append(cut);
@@ -5790,7 +5888,7 @@
         // the record as the source packs it: senses divided by ";", cells by
         // "/" — cells join the way they join everywhere else, and the sense
         // the reader picked is lit where it sits inside the record
-        const dText = (text) => {
+        const dText = (text, verbatim = false) => {
           const d = document.createElement("p"); d.className = "d-text";
           // dir=auto reads the first strong character, and a record that
           // opens with its Hebrew lemma laid a whole English sentence out
@@ -5800,6 +5898,8 @@
           const heb = (String(text).match(/[\u0590-\u05FF]/g) || []).length;
           const lat = (String(text).match(/[A-Za-z]/g) || []).length;
           d.dir = heb > lat ? "rtl" : "ltr";
+          // a NoDerivatives record prints as its provider wrote it, byte for byte
+          if (verbatim) { d.textContent = String(text); return d; }
           senseSplit(text).forEach((sense, i) => {
             if (i) d.append(Object.assign(document.createElement("span"), { className: "d-sep", textContent: " · " }));
             const s = document.createElement("span");
@@ -5827,6 +5927,10 @@
           // receipt, where the audit reads it.
           if (m.licensePointer) lic.title = m.licensePointer;
           att.append(lic, " ");
+          // the license's own address, which every CC license asks to travel
+          // with its material (declarations-v1.json deed, when declared)
+          const deed = licenseDeed(m.licensePosture);
+          if (deed) { const da = document.createElement("a"); da.href = deed; da.target = "_blank"; da.rel = "license noreferrer"; da.textContent = "license"; att.append(da, " "); }
           // an overlay's record says which overlay it is, beside its year
           const ovDef = m.overlay ? OVERLAY_DEFS.find((o) => o.id === m.overlay) : null;
           if (ovDef) att.append(Object.assign(document.createElement("span"), { className: "ov-mark", textContent: ovDef.mark }), " ");
@@ -5844,7 +5948,7 @@
         const first = groups[0];
         const firstText = first.text;
         const firstGroup = first.rows;
-        body.append(dText(firstText));
+        body.append(dText(firstText, isNoDerivs((index.m_sources[firstGroup[0][3]] || {}).licensePosture)));
         // The M is the one line that never scrolls: it is who says this, and a
         // reading whose source has scrolled out of sight is a reading standing
         // on nothing the reader can see. Everything else about the record —
@@ -6009,7 +6113,6 @@
       const makePill = (route) => {
         const btn = document.createElement("button"); btn.type = "button";
         btn.textContent = spanJoin(route.text);
-        btn.title = spanJoin(route.text);
         // who carries it, on the pill and exposed, so a check can ask the
         // page whether a switched-off source still stands behind a reading
         btn.dataset.by = [...new Set(route.records.map((r) => r[3]))].sort().join(" ");
@@ -6128,7 +6231,7 @@
         : `${comps.length} components · ${provenanceOf(span.rule)}`;
     } else if (bin.spans) {
       // this zone carries components and this form is not among them
-      prov.textContent = "No component system recorded for this form.";
+      prov.textContent = "No source on this shelf divides this form into parts.";
     } else prov.remove();     // this zone carries none at all; say nothing
 
     renderCuts(); renderCells();
@@ -6247,7 +6350,7 @@
     // heading and two paragraphs because a count whose scope arrives in a
     // separate paragraph is a count a reader can read without its scope.
     const sc = volStore.scope || {};
-    say.append(lead, `, ${scope} — the corpus lane's index of ${sc.works || 34} works, `
+    say.append(lead, `, ${scope} — ${sc.works || 34} works of commentary counted elsewhere, `
       + "not this site's shelf, and not opened from here.");
     panel.append(say);
     slot.append(panel);
@@ -7604,7 +7707,7 @@
     uncontrolled_label_channel: "It tags entries with labels of its own, in a field it never declares as one",
     work_identity_statement: "It says what the work is",
     source_self_description: "It describes itself",
-    licence_material: "It states its licence terms",
+    licence_material: "It states its license terms",
     attestation: "It records where a form is attested",
     provenance_or_crossref: "It points at other works",
     editorial_status: "It marks editorial status",
@@ -7773,7 +7876,7 @@
     const lead = document.createElement("p"); lead.className = "decl-lead";
     lead.append(`${g.leads.toLocaleString()} line${g.leads === 1 ? "" : "s"} lead · reading at ${g.carries.toLocaleString()} word${g.carries === 1 ? "" : "s"}`);
     const lic = document.createElement("i");
-    lic.textContent = theirLicence ? " · states its own licence" : " · licence recorded by this project";
+    lic.textContent = theirLicence ? " · states its own license" : " · license recorded by this project";
     lead.append(lic);
     wrap.append(lead);
     const works = new Set([...stem.branches, ...stem.channels].map((b) => b.work).filter(Boolean));

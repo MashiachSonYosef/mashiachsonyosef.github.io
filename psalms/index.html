@@ -6,7 +6,6 @@
 <meta name="reader-book" content="psalms">
 <meta name="reader-home" content="/reader/">
 <meta name="site-name" content="fireandhail.com">
-<meta name="site-mark" content="/mark/fireandhail.com-flat-v1.svg">
 <meta name="description" content="Psalms, read word by word in Hebrew: every reading traced to the record that carries it, and every record to its license.">
 <link rel="canonical" href="https://fireandhail.com/psalms/">
 <title>Psalms · fireandhail.com</title>
@@ -24,7 +23,7 @@
   try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
-<link rel="stylesheet" href="/reader/engine-3082255b05df.css">
+<link rel="stylesheet" href="/reader/engine-cc801abc8730.css">
 </head>
 <body>
 <header class="top">
@@ -48,9 +47,17 @@
        a counted text; the count is the thing this shelf offers that nothing
        else does, and it stood below a nine-line credit block. -->
   <div id="stamp" hidden><button type="button" id="stampHead" aria-expanded="false" aria-controls="stampBody"><span class="toc-t">The count</span><span class="toc-n"></span></button><div id="stampBody" hidden></div></div>
+  <!-- THE SOURCE, AND HOW THIS BOOK WAS MADE FROM IT, in one fold near the
+       top (the owner, 2026-10-03: at the end of the book "itll probably get
+       lost there"): the credit, how the chapters are numbered, what waits to
+       be added, and the build's receipts folded under one more press. -->
   <details class="byline-fold" id="bylineFold" hidden>
     <summary id="bylineSum"></summary>
     <p class="byline" id="byline"></p>
+    <p id="basisLine" hidden></p>
+    <p id="holdsLine" hidden></p>
+    <p id="rightsLine" hidden></p>
+    <details id="receiptsFold" class="receipts-fold"><summary>receipts</summary><p class="receipts-full" id="receiptsFull"></p><footer id="prov"></footer></details>
   </details>
   <p id="meta">Loading the zone…</p>
   <!-- What this build stands on, and which slots stand open. A sealed work
@@ -117,18 +124,14 @@
   <nav class="porch-chs"><a href="/psalms/1/" aria-label="Psalms 1">1</a><a href="/psalms/2/" aria-label="Psalms 2">2</a><a href="/psalms/3/" aria-label="Psalms 3">3</a><a href="/psalms/4/" aria-label="Psalms 4">4</a><a href="/psalms/5/" aria-label="Psalms 5">5</a><a href="/psalms/6/" aria-label="Psalms 6">6</a><a href="/psalms/7/" aria-label="Psalms 7">7</a><a href="/psalms/8/" aria-label="Psalms 8">8</a><a href="/psalms/9/" aria-label="Psalms 9">9</a><a href="/psalms/10/" aria-label="Psalms 10">10</a><a href="/psalms/11/" aria-label="Psalms 11">11</a><a href="/psalms/12/" aria-label="Psalms 12">12</a><a href="/psalms/13/" aria-label="Psalms 13">13</a><a href="/psalms/14/" aria-label="Psalms 14">14</a><a href="/psalms/15/" aria-label="Psalms 15">15</a><a href="/psalms/16/" aria-label="Psalms 16">16</a><a href="/psalms/17/" aria-label="Psalms 17">17</a><a href="/psalms/18/" aria-label="Psalms 18">18</a><a href="/psalms/19/" aria-label="Psalms 19">19</a><a href="/psalms/20/" aria-label="Psalms 20">20</a><a href="/psalms/21/" aria-label="Psalms 21">21</a><a href="/psalms/22/" aria-label="Psalms 22">22</a><a href="/psalms/23/" aria-label="Psalms 23">23</a><a href="/psalms/24/" aria-label="Psalms 24">24</a><a href="/psalms/25/" aria-label="Psalms 25">25</a><a href="/psalms/26/" aria-label="Psalms 26">26</a><a href="/psalms/27/" aria-label="Psalms 27">27</a><a href="/psalms/28/" aria-label="Psalms 28">28</a><a href="/psalms/29/" aria-label="Psalms 29">29</a><a href="/psalms/30/" aria-label="Psalms 30">30</a><a href="/psalms/31/" aria-label="Psalms 31">31</a><a href="/psalms/32/" aria-label="Psalms 32">32</a><a href="/psalms/33/" aria-label="Psalms 33">33</a><a href="/psalms/34/" aria-label="Psalms 34">34</a><a href="/psalms/35/" aria-label="Psalms 35">35</a><a href="/psalms/36/" aria-label="Psalms 36">36</a><a href="/psalms/37/" aria-label="Psalms 37">37</a><a href="/psalms/38/" aria-label="Psalms 38">38</a><a href="/psalms/39/" aria-label="Psalms 39">39</a><a href="/psalms/40/" aria-label="Psalms 40">40</a><a href="/psalms/41/" aria-label="Psalms 41">41</a><a href="/psalms/42/" aria-label="Psalms 42">42</a><a href="/psalms/43/" aria-label="Psalms 43">43</a><a href="/psalms/44/" aria-label="Psalms 44">44</a><a href="/psalms/45/" aria-label="Psalms 45">45</a><a href="/psalms/46/" aria-label="Psalms 46">46</a><a href="/psalms/47/" aria-label="Psalms 47">47</a><a href="/psalms/48/" aria-label="Psalms 48">48</a><a href="/psalms/49/" aria-label="Psalms 49">49</a><a href="/psalms/50/" aria-label="Psalms 50">50</a><a href="/psalms/51/" aria-label="Psalms 51">51</a><a href="/psalms/52/" aria-label="Psalms 52">52</a><a href="/psalms/53/" aria-label="Psalms 53">53</a><a href="/psalms/54/" aria-label="Psalms 54">54</a><a href="/psalms/55/" aria-label="Psalms 55">55</a><a href="/psalms/56/" aria-label="Psalms 56">56</a><a href="/psalms/57/" aria-label="Psalms 57">57</a><a href="/psalms/58/" aria-label="Psalms 58">58</a><a href="/psalms/59/" aria-label="Psalms 59">59</a><a href="/psalms/60/" aria-label="Psalms 60">60</a><a href="/psalms/61/" aria-label="Psalms 61">61</a><a href="/psalms/62/" aria-label="Psalms 62">62</a><a href="/psalms/63/" aria-label="Psalms 63">63</a><a href="/psalms/64/" aria-label="Psalms 64">64</a><a href="/psalms/65/" aria-label="Psalms 65">65</a><a href="/psalms/66/" aria-label="Psalms 66">66</a><a href="/psalms/67/" aria-label="Psalms 67">67</a><a href="/psalms/68/" aria-label="Psalms 68">68</a><a href="/psalms/69/" aria-label="Psalms 69">69</a><a href="/psalms/70/" aria-label="Psalms 70">70</a><a href="/psalms/71/" aria-label="Psalms 71">71</a><a href="/psalms/72/" aria-label="Psalms 72">72</a><a href="/psalms/73/" aria-label="Psalms 73">73</a><a href="/psalms/74/" aria-label="Psalms 74">74</a><a href="/psalms/75/" aria-label="Psalms 75">75</a><a href="/psalms/76/" aria-label="Psalms 76">76</a><a href="/psalms/77/" aria-label="Psalms 77">77</a><a href="/psalms/78/" aria-label="Psalms 78">78</a><a href="/psalms/79/" aria-label="Psalms 79">79</a><a href="/psalms/80/" aria-label="Psalms 80">80</a><a href="/psalms/81/" aria-label="Psalms 81">81</a><a href="/psalms/82/" aria-label="Psalms 82">82</a><a href="/psalms/83/" aria-label="Psalms 83">83</a><a href="/psalms/84/" aria-label="Psalms 84">84</a><a href="/psalms/85/" aria-label="Psalms 85">85</a><a href="/psalms/86/" aria-label="Psalms 86">86</a><a href="/psalms/87/" aria-label="Psalms 87">87</a><a href="/psalms/88/" aria-label="Psalms 88">88</a><a href="/psalms/89/" aria-label="Psalms 89">89</a><a href="/psalms/90/" aria-label="Psalms 90">90</a><a href="/psalms/91/" aria-label="Psalms 91">91</a><a href="/psalms/92/" aria-label="Psalms 92">92</a><a href="/psalms/93/" aria-label="Psalms 93">93</a><a href="/psalms/94/" aria-label="Psalms 94">94</a><a href="/psalms/95/" aria-label="Psalms 95">95</a><a href="/psalms/96/" aria-label="Psalms 96">96</a><a href="/psalms/97/" aria-label="Psalms 97">97</a><a href="/psalms/98/" aria-label="Psalms 98">98</a><a href="/psalms/99/" aria-label="Psalms 99">99</a><a href="/psalms/100/" aria-label="Psalms 100">100</a><a href="/psalms/101/" aria-label="Psalms 101">101</a><a href="/psalms/102/" aria-label="Psalms 102">102</a><a href="/psalms/103/" aria-label="Psalms 103">103</a><a href="/psalms/104/" aria-label="Psalms 104">104</a><a href="/psalms/105/" aria-label="Psalms 105">105</a><a href="/psalms/106/" aria-label="Psalms 106">106</a><a href="/psalms/107/" aria-label="Psalms 107">107</a><a href="/psalms/108/" aria-label="Psalms 108">108</a><a href="/psalms/109/" aria-label="Psalms 109">109</a><a href="/psalms/110/" aria-label="Psalms 110">110</a><a href="/psalms/111/" aria-label="Psalms 111">111</a><a href="/psalms/112/" aria-label="Psalms 112">112</a><a href="/psalms/113/" aria-label="Psalms 113">113</a><a href="/psalms/114/" aria-label="Psalms 114">114</a><a href="/psalms/115/" aria-label="Psalms 115">115</a><a href="/psalms/116/" aria-label="Psalms 116">116</a><a href="/psalms/117/" aria-label="Psalms 117">117</a><a href="/psalms/118/" aria-label="Psalms 118">118</a><a href="/psalms/119/" aria-label="Psalms 119">119</a><a href="/psalms/120/" aria-label="Psalms 120">120</a><a href="/psalms/121/" aria-label="Psalms 121">121</a><a href="/psalms/122/" aria-label="Psalms 122">122</a><a href="/psalms/123/" aria-label="Psalms 123">123</a><a href="/psalms/124/" aria-label="Psalms 124">124</a><a href="/psalms/125/" aria-label="Psalms 125">125</a><a href="/psalms/126/" aria-label="Psalms 126">126</a><a href="/psalms/127/" aria-label="Psalms 127">127</a><a href="/psalms/128/" aria-label="Psalms 128">128</a><a href="/psalms/129/" aria-label="Psalms 129">129</a><a href="/psalms/130/" aria-label="Psalms 130">130</a><a href="/psalms/131/" aria-label="Psalms 131">131</a><a href="/psalms/132/" aria-label="Psalms 132">132</a><a href="/psalms/133/" aria-label="Psalms 133">133</a><a href="/psalms/134/" aria-label="Psalms 134">134</a><a href="/psalms/135/" aria-label="Psalms 135">135</a><a href="/psalms/136/" aria-label="Psalms 136">136</a><a href="/psalms/137/" aria-label="Psalms 137">137</a><a href="/psalms/138/" aria-label="Psalms 138">138</a><a href="/psalms/139/" aria-label="Psalms 139">139</a><a href="/psalms/140/" aria-label="Psalms 140">140</a><a href="/psalms/141/" aria-label="Psalms 141">141</a><a href="/psalms/142/" aria-label="Psalms 142">142</a><a href="/psalms/143/" aria-label="Psalms 143">143</a><a href="/psalms/144/" aria-label="Psalms 144">144</a><a href="/psalms/145/" aria-label="Psalms 145">145</a><a href="/psalms/146/" aria-label="Psalms 146">146</a><a href="/psalms/147/" aria-label="Psalms 147">147</a><a href="/psalms/148/" aria-label="Psalms 148">148</a><a href="/psalms/149/" aria-label="Psalms 149">149</a><a href="/psalms/150/" aria-label="Psalms 150">150</a></nav>
 </section>
 <div id="hud" hidden></div>
-<!-- THE BOOK'S OWN RECORD, AT ITS END (the owner, 2026-10-03: "if we need to
-     say the receipts section id put it at the bottom of the book probably",
-     and "the internal language like Y ledger should never appear"). How this
-     book's chapters are numbered and what waits to be added are said after
-     the text, in plain words; the build's receipts and fingerprints, which
-     are the build's own language, are folded under one press. -->
-<section id="bookEnd" hidden>
-  <p id="basisLine" hidden></p>
-  <p id="holdsLine" hidden></p>
-  <p id="rightsLine" hidden></p>
-  <details id="receiptsFold" class="receipts-fold"><summary>receipts</summary><p class="receipts-full" id="receiptsFull"></p><footer id="prov"></footer></details>
+<!-- THE END OF THE BOOK holds two things (the owner, 2026-10-03: "the only
+     thing at the end would be our cc0 statement and downloads"): the whole
+     book's export, drawn after the last section, and the site's declaration,
+     the door's own words (the door's build writes them here from the one
+     sentence it prints in its footer, so the two cannot drift). -->
+<section id="bookEnd">
+  <p id="cc0Line" class="open-claim">Noncommercial: nothing sold, no advertising, no payment taken — declared 2026-08-30, standing as long as this page serves. That is how the records here released on noncommercial terms are honored. Every carried text and reading keeps its own license, named with it; nothing here relicenses it. What this site adds of its own — its code, layout, receipts and the words it writes — is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>. Where it adapts a share-alike record (the Hebrew as laid out here, a reading cut or joined for display), the adaptation stays under that record’s license.</p>
 </section>
-<script src="/reader/engine-04ea70253aab.js"></script>
+<script src="/reader/engine-9c36f3bb2154.js"></script>
 </body>
 </html>

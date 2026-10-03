@@ -109,24 +109,19 @@ check("every source entry is numbered and names its licence", (() => {
 })(), text.split("\n").filter((l) => /^- \[/.test(l)).slice(0, 1).join(""));
 
 // ---- the licence gate itself ----
-const gate = await p.evaluate(() => {
-  const f = window.__exportPostureProbe;
-  return null;
-});
-// exercised directly through the page's own rule
+// asked of the page's own gate, never of a copy written here: a copy passes
+// whatever the page does
 const gates = await p.evaluate(() => {
+  const f = window.__exportPosture;
+  if (typeof f !== "function") return null;
   const out = {};
-  const t = (p) => {
-    if (!p) return { ok: false };
-    if (/(^|[^a-z])nd([^a-z]|$)/i.test(p) || /noderiv/i.test(p)) return { ok: false, why: "ND" };
-    return { ok: true };
-  };
-  for (const p of ["cc_by_nd_4_0", "cc_by_nc_nd_4_0", "", "cc_by_sa_4_0", "public_domain"]) out[p || "(none)"] = t(p).ok;
+  for (const k of ["cc_by_nd_4_0", "cc_by_nc_nd_4_0", "", "cc_by_sa_4_0", "public_domain"]) out[k || "(none)"] = f(k).ok;
   return out;
 });
-check("NoDerivatives is refused", gates.cc_by_nd_4_0 === false && gates.cc_by_nc_nd_4_0 === false);
-check("no posture at all is refused", gates["(none)"] === false);
-check("share-alike and public domain are allowed", gates.cc_by_sa_4_0 === true && gates.public_domain === true);
+check("the page exposes its own export gate", !!gates);
+check("NoDerivatives is refused", !!gates && gates.cc_by_nd_4_0 === false && gates.cc_by_nc_nd_4_0 === false);
+check("no posture at all is refused", !!gates && gates["(none)"] === false);
+check("share-alike and public domain are allowed", !!gates && gates.cc_by_sa_4_0 === true && gates.public_domain === true);
 
 // ---- Hebrew export does not depend on a reading's licence ----
 await p.evaluate(() => { document.querySelectorAll(".xp.armed").forEach((x) => x.click()); });

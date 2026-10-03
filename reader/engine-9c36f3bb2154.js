@@ -27,14 +27,11 @@
   // project's working name. Typed in one place, shown in two.
   const SITE = META("site-name") || "The Tabernacle";
   { const h = document.querySelector("#home a.home"); if (h) {
-    // the name drawn as the mark, where the door has drawn it (the owner,
-    // 2026-10-03: the woven name, a flame and a hailstone for its i's dots);
-    // the flat drawing, as a pill is too small for threads
-    const MARK = META("site-mark");
-    // the mark's four parts (the owner, 2026-10-02); a name this does not match stands whole
+    // the mark's four parts (the owner, 2026-10-02); a name this does not
+    // match stands whole. The drawn mark stands on the door alone (the owner,
+    // 2026-10-03: "just our 1 logo on the homepage alone")
     const p = /^(fire)(and)(hail)(\..+)$/u.exec(SITE);
-    if (MARK) { const img = document.createElement("img"); img.className = "wm-mark"; img.src = MARK; img.alt = SITE; img.width = 710; img.height = 88; h.replaceChildren(img); }
-    else if (!p) h.textContent = SITE;
+    if (!p) h.textContent = SITE;
     else { h.textContent = ""; ["fire", "and", "hail", "tld"].forEach((k, i) => { const s = document.createElement("span"); s.className = "wm-" + k; s.textContent = p[i + 1]; h.appendChild(s); }); }
   } }
   const unpack = async (res) =>
@@ -368,6 +365,10 @@
     if (/^cc_by/u.test(p)) return 1;
     return 4;
   };
+  // A NoDerivatives posture (declarations-v1.json refuse_export_when.
+  // no_derivatives): its record is drawn only as the provider wrote it, one
+  // pill, never cut, joined, trimmed or case-merged, and it is never exported.
+  const isNoDerivs = (key) => /(^|[^a-z])nd([^a-z]|$)/iu.test(String(key || "")) || /noderiv/iu.test(String(key || ""));
   // the word standing open on the card: its pointed surface and its key,
   // which is what the lattice's grades are keyed by
   let openPointed = null, openKey = null;
@@ -389,6 +390,17 @@
   const LICENCE_COLS = { pd: "licence_pd", by: "licence_by", "by-sa": "licence_by_sa" };
   let licencePref = (() => { try { return ["any", "pd", "by", "by-sa"].includes(localStorage.getItem(LIC_KEY)) ? localStorage.getItem(LIC_KEY) : "any"; } catch { return "any"; } })();
   let namesPref = (() => { try { return localStorage.getItem(NAMES_KEY) === "sound" ? "sound" : "meaning"; } catch { return "meaning"; } })();
+  // THE SIGNS A SOURCE PRINTS ON ITS READINGS (the corpus lane's source-signs
+  // ledger v1, 3 Oct 2026: Strong's X, × and + before a rendering, STEP's
+  // \u00bf, <...> and [...], MACULA's ~ where an object goes). They are the
+  // source's own bytes and are never removed or respelled; the switch only
+  // orders them. Resting: as printed, in the card's own order. Below: a
+  // reading carrying a sign follows the plain ones. The patterns are the
+  // ledger's own, written before its count.
+  const SIGNS_KEY = "fh.signs";
+  let signsPref = (() => { try { return localStorage.getItem(SIGNS_KEY) === "below" ? "below" : "printed"; } catch { return "printed"; } })();
+  const SOURCE_SIGN = [/^(X|\u00d7|\+) /u, /\u00bf/u, /<[^>]*>/u, /\[[^\]]*\]/u, / ~ /u];
+  const hasSourceSign = (t) => SOURCE_SIGN.some((re) => re.test(String(t)));
   let editionMark = (() => { try { return localStorage.getItem(ED_KEY) === "diff" ? "diff" : "mam"; } catch { return "mam"; } })();
   let defOrder = (() => {
     let held = null;
@@ -568,6 +580,13 @@
       get: () => namesPref,
       set: (id) => { namesPref = id; try { localStorage.setItem(NAMES_KEY, id); } catch { /* the choice still stands on this page */ } if (id === "sound" && !latticeStore) latticeReady().then(() => { if (redrawReadings) redrawReadings(); }); if (redrawReadings) redrawReadings(); },
       now: () => (namesPref === "sound" ? "as sound" : "as meaning") },
+    { id: "signs", voice: "arrange", lab: "source signs", why: "a source's own marks on a reading: Strong's X and +, STEP's \u00bf, < > and [ ], MACULA's ~ \u2014 printed as the source printed them, never removed",
+      positions: [{ id: "printed", lab: "as printed" }, { id: "below", lab: "after plain readings" }],
+      live: () => true,
+      waits: "",
+      get: () => signsPref,
+      set: (id) => { signsPref = id; try { localStorage.setItem(SIGNS_KEY, id); } catch { /* the choice still stands on this page */ } if (redrawReadings) redrawReadings(); },
+      now: () => (signsPref === "below" ? "signs after plain" : "signs as printed") },
     // The lattice carries, per position, whether the Leningrad codex spells
     // the word otherwise (editions-diff, blind-verified in v12); the word
     // wears a dotted gold rule when the mark is on, and its title says how.
@@ -579,6 +598,11 @@
       set: (id) => { editionMark = id; try { localStorage.setItem(ED_KEY, id); } catch { /* the choice still stands on this page */ } document.body.classList.toggle("ed-mark", id === "diff"); },
       now: () => (editionMark === "diff" ? "Leningrad marked" : "MAM") },
   ];
+  // the deed a posture's declaration names, when it names one
+  const licenseDeed = (posture) => {
+    const row = POSTURES && POSTURES.postures && POSTURES.postures[String(posture || "")];
+    return (row && row.deed) || "";
+  };
   const licenseName = (posture) => {
     const p = String(posture || "");
     if (!p) return "License unrecorded";
@@ -793,13 +817,44 @@
   // actually requires a reader to be able to see — which edition this is, and
   // what it is released under — and both are read from the zone's own
   // structured fields, never parsed back out of the credit sentence.
+  // THE CREDIT, READABLE (the owner, 2026-10-03: no internal language on the
+  // page). Its own fields stand as label and value: the title, the edition,
+  // who provides it, the source as a link that can be followed, the license.
+  // The record's ids (the version witness, the document id) and the build's
+  // sentence about how it served the edition go to the receipts, word for word.
+  let BYLINE_RECEIPT = "";
   {
     const bl = document.getElementById("byline"), fold = document.getElementById("bylineFold"),
           sum = document.getElementById("bylineSum");
-    bl.textContent = zone.byline || "";
+    const raw = zone.byline || "";
+    const cut = raw.indexOf(" \u00b7 ");
+    const credit = cut >= 0 ? raw.slice(0, cut) : raw;
+    const fields = credit.split(" | ").map((kv) => { const i = kv.indexOf(": "); return i > 0 ? [kv.slice(0, i), kv.slice(i + 2)] : [null, kv]; });
+    const SAY = { "Title": "title", "Version": "edition", "Provider metadata": "from", "Source": "source", "License": "license" };
+    if (fields.length > 1 && fields.every(([k]) => k) && fields.some(([k]) => SAY[k])) {
+      bl.replaceChildren();
+      const kept = [];
+      for (const [k, v] of fields) {
+        if (!SAY[k]) { kept.push(`${k}: ${v}`); continue; }
+        const part = document.createElement("span"); part.className = "bl-f";
+        const lab = document.createElement("span"); lab.className = "bl-k"; lab.textContent = SAY[k];
+        part.append(lab, " ");
+        if (k === "Source" && /^https?:\/\//u.test(v)) {
+          const a = document.createElement("a"); a.href = v; a.rel = "noopener"; a.target = "_blank";
+          let shown = v; try { const u = new URL(v); shown = u.hostname; a.title = decodeURI(v); } catch { /* the address as written */ }
+          a.textContent = shown; part.append(a);
+        } else part.append(v);
+        if (bl.childNodes.length) bl.append(" \u00b7 ");
+        bl.append(part);
+      }
+      BYLINE_RECEIPT = [...kept, cut >= 0 ? raw.slice(cut + 3) : ""].filter(Boolean).join(" \u00b7 ");
+    } else bl.textContent = raw;
     if (zone.byline) {
       const ro = ((zone.emitted_from || {}).walk || {}).restore_oracle || null;
-      const lic = ((((zone.emitted_from || {}).walk || {}).rights) || {}).raw_license || "";
+      // a zone served from the rebuilt body carries no walk; its family is
+      // the first field of the per-occurrence rights receipt
+      const lic = ((((zone.emitted_from || {}).walk || {}).rights) || {}).raw_license
+        || (String(((zone.emitted_from || {}).license_receipts || {}).per_occurrence || "").match(/rows:\s*([A-Z0-9][A-Z0-9._-]*)\s*\u00b7/u) || [])[1] || "";
       const sLab = document.createElement("span"); sLab.className = "s-lab"; sLab.textContent = "source";
       const sVal = document.createElement("span"); sVal.className = "s-val";
       if (ro && ro.edition) sVal.append(ro.edition);
@@ -999,9 +1054,9 @@
     } else {
       meta.append(`${renderedWords.toLocaleString()} words in ${nSec.toLocaleString()} ${nSec === 1 ? "section" : "sections"}. `);
     }
-    // the receipts stand at the book's end, folded (the owner, 2026-10-03)
-    document.getElementById("receiptsFull").textContent = receiptsText;
-    document.getElementById("bookEnd").hidden = false;
+    // the receipts stand in the source fold, folded once more (the owner, 2026-10-03)
+    document.getElementById("receiptsFull").textContent = [BYLINE_RECEIPT, receiptsText].filter(Boolean).join(" \u00b7 ");
+    document.getElementById("bylineFold").hidden = false;
     if (!meta.textContent.trim()) meta.hidden = true;
   }
   // What this build stands on, and which slots stand open — said in the same
@@ -1067,7 +1122,7 @@
       el.append(`${Number(entry.entries_without_own_license).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} commentary entries show the commentary\u2019s own license until each entry\u2019s license is recorded.`);
       el.hidden = false;
     }
-    if (["basisLine", "holdsLine", "rightsLine"].some((id) => !document.getElementById(id).hidden)) document.getElementById("bookEnd").hidden = false;
+    if (["basisLine", "holdsLine", "rightsLine"].some((id) => !document.getElementById(id).hidden)) document.getElementById("bylineFold").hidden = false;
   })();
   document.getElementById("prov").textContent =
     `${zone.work_receipts && zone.work_receipts.b_n ? `${zone.work_receipts.b_n} · ` : ""}` +
@@ -1481,10 +1536,13 @@
     const p = String(posture || "");
     if (!p) return { ok: false, why: "the record carries no license posture" };
     const row = POSTURES && POSTURES.postures && POSTURES.postures[p];
+    if (isNoDerivs(p)) return { ok: false, why: `${(row && row.name) || p} (${p}) \u2014 NoDerivatives: an export is a derivative, refused` };
     if (!row) return { ok: false, why: `undeclared posture (${p}) — a posture with no declaration is not exported` };
     if (!row.export) return { ok: false, why: `${row.name} (${p}) — the declarations record refuses export for this posture` };
     return { ok: true, why: null, obligations: row.obligations || [] };
   };
+  // the gate itself, for check-export-v1 to ask instead of a copy of it
+  window.__exportPosture = exportPosture;
 
   // What reading is standing under a word right now, and which record it is
   // standing on. The zone bakes the reading as text with no M attached, so the
@@ -1513,6 +1571,11 @@
     if (!hit) return { ok: false, why: "the reading on the page does not match any record in the store" };
     const lead = leadRecord(hit);
     const mId = lead[3];
+    // the lead record's own bytes for this reading: the pool groups readings
+    // case-blind across records, so hit.text can be another record's casing
+    const want = spanJoin(hit.text).toLowerCase();
+    const ownText = senseSplit(lead[1]).flatMap((s) => { const r = readingSplit(s); return r.damaged ? [s] : r.readings; })
+      .find((x) => spanJoin(x).toLowerCase() === want) || hit.text;
     const also = [...hit.records].sort(EARLIEST_FIRST).slice(1)
       .map((r) => index.m_sources[r[3]]).filter(Boolean);
     const m = index.m_sources[mId] || {};
@@ -1521,7 +1584,7 @@
     // "/"-packed span with " + " for reading, and a file that leaves the
     // building must carry what the source wrote, not how we drew it
     return post.ok
-      ? { ok: true, text: hit.text, label: m.label, posture: m.licensePosture,
+      ? { ok: true, text: ownText, label: m.label, posture: m.licensePosture,
           pointer: m.licensePointer, year: hasYear(m.sourceYear) ? m.sourceYear : "", obligations: post.obligations,
           also: also.map((x) => `${x.label} · ${hasYear(x.sourceYear) ? `edition ${adYear(x.sourceYear)}` : "edition year not supplied"} · ${x.licensePosture}`) }
       : { ok: false, why: post.why, label: m.label };
@@ -1555,7 +1618,7 @@
         c.querySelectorAll(".g-lic").forEach((x) => x.remove());
         return (c.textContent || "").trim();
       })() : "";
-      const rec = { he: w.s, en: null, held: null, source: null };
+      const rec = { he: w.s, joinNext: !!(w.presentation_join && w.presentation_join.join_next_without_separator), en: null, held: null, source: null };
       if (w.k && shown && shown !== "—") {
         const a = await attributionFor(w.k, shown, placeLine(w));
         if (a.ok) { rec.en = a.text; rec.source = a; }
@@ -1670,7 +1733,9 @@
       // The Hebrew is marked on its label rather than on each word: it is one
       // work under one license, and threading Latin digits through a right-to-
       // left run would rearrange the text on the page it is pasted into.
-      if (kind !== "en") { if (kind === "both") L.push("Hebrew [H]"); L.push(b.words.map((w) => w.he).join(" ")); }
+      // joined as the zone's presentation_join says the ink joins: a maqaf
+      // word meets the next with no space, exactly as the page draws it
+      if (kind !== "en") { if (kind === "both") L.push("Hebrew [H]"); L.push(b.words.map((w, i) => w.he + (i < b.words.length - 1 && !w.joinNext ? " " : "")).join("")); }
       if (kind === "both") { L.push(""); L.push("Readings"); }
       if (kind !== "he") {
         const line = b.words.map((w) => (w.unreachable ? "[not reached]" : w.held ? "[withheld]" : `${w.en}[${cite(w.source)}]`)).join(" ");
@@ -1684,12 +1749,14 @@
     L.push("");
     L.push("## Sources");
     L.push("");
+    L.push("_This file does not relicense anything in it. The Hebrew [H] and every cited reading stay under the license named for them below: share-alike material, and anything adapted from it, is shared under that material's license; noncommercial material may not be used commercially. What this file adds of its own \u2014 its headings, numbering and notes \u2014 is CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)._");
+    L.push("");
     // Whose words the obligation lines are, said before any of them is read.
     L.push(`_${LICENCE_RULES.whose}_`);
     L.push(`_(${LICENCE_RULES.rule})_`);
     L.push("");
     // [H] first, because it stands under every Hebrew word in the file.
-    L.push(`- [H] ${wr.family || "LICENCE NOT ESTABLISHED"}${wr.posture ? ` · ${wr.posture}` : ""} — the Hebrew of ${
+    L.push(`- [H] ${wr.family || "LICENSE NOT ESTABLISHED"}${wr.posture ? ` · ${wr.posture}` : ""} — the Hebrew of ${
       kind === "he" ? "this file" : "every section here"}: the sealed text of ${zone.work}${
       wr.attribution ? `, ${wr.attribution}` : ""}`);
     wr.obligations.forEach((o) => L.push(`    obligation, in our words: ${o}`));
@@ -1704,6 +1771,7 @@
         for (const { n, s } of [...cited.values()].sort((a, b) => a.n - b.n)) {
           L.push("");
           L.push(`- [${n}] ${s.posture} — ${s.label}${yearTag(s.year, "edition")}`);
+          L.push(`    license: ${licenseName(s.posture)}${licenseDeed(s.posture) ? ` \u2014 ${licenseDeed(s.posture)}` : ""}`);
           (s.obligations || []).forEach((o) => L.push(`    obligation, in our words: ${o}`));
           if (s.pointer) L.push(`    record: ${s.pointer}`);
           (s.also || []).forEach((x) => L.push(`    also attested by: ${x}`));
@@ -1724,6 +1792,9 @@
       L.push("## Withheld");
       L.push("");
       L.push(`${held} reading${held === 1 ? " was" : "s were"} not exported. Each is marked [withheld] where it stood, carrying no citation number because there is no source to cite. A reading is withheld when its record carries a license that does not permit redistribution, when it carries no license at all, or when the reading on the page could not be matched to a record. The Hebrew is never withheld: it rides on the work's own license, not on any reading's.`);
+      // each one by name, with its own reason (declarations-v1.json withholding.rule)
+      L.push("");
+      for (const b of bundles) for (const w of b.words) if (w.held && !w.unreachable) L.push(`- ${b.sec.label || ""} ${w.he}: ${w.held}`);
     }
     if (notReached && kind !== "he") {
       L.push("");
@@ -1828,7 +1899,7 @@
       } else {
         say(`${words} words · ${srcs.size} source${srcs.size === 1 ? "" : "s"}`);
         if (obl.size) { say(" · in our words: "); say([...obl].join(" ").replace(/\.$/, "")); }
-        if (held) { say(" · "); say(`${held} reading${held === 1 ? "" : "s"} withheld on license`, "held"); }
+        if (held) { say(" · "); say(`${held} reading${held === 1 ? "" : "s"} withheld, each with its reason in the file`, "held"); }
         if (notReached) { say(" · "); say(`${notReached} reading${notReached === 1 ? "" : "s"} not checked: the catalog could not be reached, export again`, "held"); }
         say(". ");
       }
@@ -2652,6 +2723,9 @@
     if (!opts.storeOnly) for (const o of OVERLAY_DEFS) extra = extra.concat(await overlayRowsFor(o, surface).catch(() => []));
     if (!stored && !extra.length) return null;
     const all = stored || [];
+    // every record asked for this word, the overlays' with the store's, before
+    // any switch withholds one: the "of N" the card's withheld counts stand on
+    const asked = all.length + extra.length;
     // THE MASORAH FILTER, at the row grain, before the pool exists. Under
     // "only", a row the lattice graded as pointing this word OTHERWISE never
     // enters the pool — it is not sorted late, it is withheld, and the card
@@ -2733,11 +2807,12 @@
       if (!index.m_sources[mId]) return;
       const y = Number.parseInt(year, 10);
       const yr = Number.isInteger(y) ? y : Infinity;
-      senseSplit(routeText).forEach((sense) => {
-        const split = readingSplit(sense);
+      const nd = isNoDerivs(index.m_sources[mId].licensePosture);
+      (nd ? [String(routeText)] : senseSplit(routeText)).forEach((sense) => {
+        const split = nd ? { readings: [sense], damaged: false } : readingSplit(sense);
         if (split.damaged) return;
         split.readings.forEach((reading) => {
-          const key = reading.toLowerCase();
+          const key = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : reading.toLowerCase();
           const g = groups.get(key);
           if (!g) groups.set(key, { text: reading, year: yr, ledger: Number(rank), records: [row] });
           else {
@@ -2771,11 +2846,12 @@
         if (!index.m_sources[mId]) return;
         const y = Number.parseInt(year, 10);
         const yr = Number.isInteger(y) ? y : Infinity;
-        senseSplit(routeText).forEach((sense) => {
-          const split = readingSplit(sense);
+        const nd = isNoDerivs(index.m_sources[mId].licensePosture);
+        (nd ? [String(routeText)] : senseSplit(routeText)).forEach((sense) => {
+          const split = nd ? { readings: [sense], damaged: false } : readingSplit(sense);
           if (split.damaged) return;
           split.readings.forEach((reading) => {
-            const d = drawn(reading);
+            const d = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : drawn(reading);
             let g = byDrawn.get(d);
             if (!g) { g = { text: reading, year: yr, ledger: Number(rank), records: [] }; byDrawn.set(d, g); groups.set(`\u0000${d}`, g); }
             g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank));
@@ -2809,7 +2885,7 @@
       placeG.placeFirst = true;
     }
     const pool = sortPool([...groups.values()], surface);
-    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = all.length + extra.length;
+    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = asked;
     return pool;
   };
   const oldestFirst = (a, b) => {
@@ -2919,7 +2995,10 @@
     // AT THIS PLACE, the place's own reading first (marked by poolFor on the
     // reading the word standing open reads here); the rest keep their order
     const placeLead = (a, b) => (defOrder !== "place" ? 0 : (a.placeFirst ? 0 : 1) - (b.placeFirst ? 0 : 1));
-    return list.sort((a, b) => placeLead(a, b) || licPref(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
+    // the source signs, after plain readings where the reader asked so (an
+    // order, never a filter: every reading stays on the card as printed)
+    const signLast = (a, b) => (signsPref !== "below" ? 0 : (hasSourceSign(a.text) ? 1 : 0) - (hasSourceSign(b.text) ? 1 : 0));
+    return list.sort((a, b) => placeLead(a, b) || licPref(a, b) || signLast(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
   };
 
   /**
@@ -3978,9 +4057,11 @@
         // second thing the provider said, and attributing an arrangement to a
         // source that did not arrange it that way is only honest if the
         // arrangement is disclosed. Whether a cut may be shown at all is the
-        // provider's license to decide, and the store has already decided it —
-        // a license that forbids derivatives never reaches this card.
-        if (selected.records.some((r) => r[5] === 1)) {
+        // provider's license to decide: a NoDerivatives record is never cut (isNoDerivs, in the pool), and
+        // a cut the page made at display time is said here as plainly as a
+        // cut the store carries.
+        const leadRow = [...selected.records].sort(EARLIEST_FIRST)[0];
+        if (selected.records.some((r) => r[5] === 1) || (leadRow && spanJoin(String(leadRow[1] || "")).toLowerCase() !== spanJoin(selected.text).toLowerCase())) {
           const cut = document.createElement("p"); cut.className = "d-cut";
           cut.textContent = "This reading is a piece cut out of the record below, not the record's own sentence.";
           body.append(cut);
@@ -3999,7 +4080,7 @@
         // the record as the source packs it: senses divided by ";", cells by
         // "/" — cells join the way they join everywhere else, and the sense
         // the reader picked is lit where it sits inside the record
-        const dText = (text) => {
+        const dText = (text, verbatim = false) => {
           const d = document.createElement("p"); d.className = "d-text";
           // dir=auto reads the first strong character, and a record that
           // opens with its Hebrew lemma laid a whole English sentence out
@@ -4009,6 +4090,8 @@
           const heb = (String(text).match(/[\u0590-\u05FF]/g) || []).length;
           const lat = (String(text).match(/[A-Za-z]/g) || []).length;
           d.dir = heb > lat ? "rtl" : "ltr";
+          // a NoDerivatives record prints as its provider wrote it, byte for byte
+          if (verbatim) { d.textContent = String(text); return d; }
           senseSplit(text).forEach((sense, i) => {
             if (i) d.append(Object.assign(document.createElement("span"), { className: "d-sep", textContent: " · " }));
             const s = document.createElement("span");
@@ -4036,6 +4119,10 @@
           // receipt, where the audit reads it.
           if (m.licensePointer) lic.title = m.licensePointer;
           att.append(lic, " ");
+          // the license's own address, which every CC license asks to travel
+          // with its material (declarations-v1.json deed, when declared)
+          const deed = licenseDeed(m.licensePosture);
+          if (deed) { const da = document.createElement("a"); da.href = deed; da.target = "_blank"; da.rel = "license noreferrer"; da.textContent = "license"; att.append(da, " "); }
           // an overlay's record says which overlay it is, beside its year
           const ovDef = m.overlay ? OVERLAY_DEFS.find((o) => o.id === m.overlay) : null;
           if (ovDef) att.append(Object.assign(document.createElement("span"), { className: "ov-mark", textContent: ovDef.mark }), " ");
@@ -4053,7 +4140,7 @@
         const first = groups[0];
         const firstText = first.text;
         const firstGroup = first.rows;
-        body.append(dText(firstText));
+        body.append(dText(firstText, isNoDerivs((index.m_sources[firstGroup[0][3]] || {}).licensePosture)));
         // The M is the one line that never scrolls: it is who says this, and a
         // reading whose source has scrolled out of sight is a reading standing
         // on nothing the reader can see. Everything else about the record —
@@ -4218,7 +4305,6 @@
       const makePill = (route) => {
         const btn = document.createElement("button"); btn.type = "button";
         btn.textContent = spanJoin(route.text);
-        btn.title = spanJoin(route.text);
         // who carries it, on the pill and exposed, so a check can ask the
         // page whether a switched-off source still stands behind a reading
         btn.dataset.by = [...new Set(route.records.map((r) => r[3]))].sort().join(" ");
@@ -4337,7 +4423,7 @@
         : `${comps.length} components · ${provenanceOf(span.rule)}`;
     } else if (bin.spans) {
       // this zone carries components and this form is not among them
-      prov.textContent = "No component system recorded for this form.";
+      prov.textContent = "No source on this shelf divides this form into parts.";
     } else prov.remove();     // this zone carries none at all; say nothing
 
     renderCuts(); renderCells();
@@ -4456,7 +4542,7 @@
     // heading and two paragraphs because a count whose scope arrives in a
     // separate paragraph is a count a reader can read without its scope.
     const sc = volStore.scope || {};
-    say.append(lead, `, ${scope} — the corpus lane's index of ${sc.works || 34} works, `
+    say.append(lead, `, ${scope} — ${sc.works || 34} works of commentary counted elsewhere, `
       + "not this site's shelf, and not opened from here.");
     panel.append(say);
     slot.append(panel);
@@ -5813,7 +5899,7 @@
     uncontrolled_label_channel: "It tags entries with labels of its own, in a field it never declares as one",
     work_identity_statement: "It says what the work is",
     source_self_description: "It describes itself",
-    licence_material: "It states its licence terms",
+    licence_material: "It states its license terms",
     attestation: "It records where a form is attested",
     provenance_or_crossref: "It points at other works",
     editorial_status: "It marks editorial status",
@@ -5982,7 +6068,7 @@
     const lead = document.createElement("p"); lead.className = "decl-lead";
     lead.append(`${g.leads.toLocaleString()} line${g.leads === 1 ? "" : "s"} lead · reading at ${g.carries.toLocaleString()} word${g.carries === 1 ? "" : "s"}`);
     const lic = document.createElement("i");
-    lic.textContent = theirLicence ? " · states its own licence" : " · licence recorded by this project";
+    lic.textContent = theirLicence ? " · states its own license" : " · license recorded by this project";
     lead.append(lic);
     wrap.append(lead);
     const works = new Set([...stem.branches, ...stem.channels].map((b) => b.work).filter(Boolean));

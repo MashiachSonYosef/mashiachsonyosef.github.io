@@ -4,7 +4,8 @@
 # LEDGER: -
 # no frame letter. This reads the subset face beside the site (fonts/, SIL OFL
 # 1.1) and the name the site answers under (CNAME), and writes two drawings of
-# the name, mark/<name>-woven-v1.svg and mark/<name>-flat-v1.svg. Nothing in the
+# the name, mark/<name>-woven-v1.svg (the door's; the owner: "just our 1 logo on
+# the homepage alone"). Nothing in the
 # reader's data is read or written. A name that is not fire, and, hail and a
 # dot is not drawn: it stands as text, whole, as the pages already print it.
 #
@@ -22,9 +23,9 @@
 #     a hailstone; the dot of .com turns from blue into purple, smoothly
 #   - the threads are drawn for the size the woven mark is shown at, the
 #     door's name at up to 26rem: 42 font units apart, two to three pixels
-#   - the flat drawing is the same mark without the threads, for sizes where
-#     threads a pixel apart would shimmer: the book pages' home pill and the
-#     work pages' masthead
+#   - mark(uid, False) draws the same mark without threads; nothing writes it
+#     now, since the mark stands on the door alone and every other page prints
+#     the name as text
 #
 # Run: python3 tools/build-wordmark-v1.py   (from reader/; needs fontTools)
 import math, os, re, sys
@@ -207,7 +208,7 @@ def mark(uid, woven, P=42):
 
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
-    for name, woven in ((f'{TEXT}-woven-v1.svg', True), (f'{TEXT}-flat-v1.svg', False)):
+    for name, woven in ((f'{TEXT}-woven-v1.svg', True),):
         svg, box = mark('w' if woven else 'f', woven)
         open(os.path.join(OUT, name), 'w').write(svg)
         print(f'mark/{name} · {len(svg):,} bytes · viewBox {" ".join(fmt(v) for v in box)} (font units; 1000 to the em, baseline at 0)')
