@@ -22,9 +22,22 @@
 // A setting whose column is not baked on this book is reported, not failed,
 // on C2: the rail says so in words, and C1 still holds there.
 //
+// THE BAKE KNOWS THE STORE'S SOURCES. The dictionaries beside the store
+// (Jastrow, the Samaritan dictionaries) sort on the card like every other
+// since 2026-10-03 (overlay-rule-v2; the owner: "just treat them normal"), but
+// the line is baked from the store alone, so with their chips on the card can
+// put one of their readings first (Amos אשר: Uhlemann's 1837 "quod" before the
+// store's "that") while it still opens pressed on the line's reading. C1 is
+// judged with their chips on, as a reader meets the page; C2, which asks
+// whether the sort and the bake agree, is judged with their chips off, the
+// sources the bake was made from. Whether their readings reach the line is a
+// bake of its own, and the owner's to call.
+//
 // Run: node tools/check-card-opens-on-the-line-v1.mjs [zone url]
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 
 const URL = process.argv[2] || defaultZoneUrl();
 let bad = 0;
@@ -42,13 +55,21 @@ trials.push(["fh.names", "sound"], ["fh.lookup", "headword"], ["fh.masorah", "on
 // pool's own order (the open says so on the card)
 const CARD_ONLY = new Set(["fh.names=sound", "fh.lookup=headword"]);
 
+// every source id beside the store, read off the overlays' own indexes
+const OV_DIR = join("data", "overlays");
+const OV_IDS = existsSync(OV_DIR) ? readdirSync(OV_DIR).filter((d) => existsSync(join(OV_DIR, d, "index.json")))
+  .flatMap((d) => Object.keys(JSON.parse(readFileSync(join(OV_DIR, d, "index.json"), "utf8")).m_sources || {})) : [];
+
 const pw = await loadPlaywright();
 const b = await pw.chromium.launch(launchOptions());
 const c1 = [], c2 = [], unbaked = [];
 let opened = 0;
-for (const [k, v] of trials) {
+const passes = [];
+for (const [k, v] of trials) { passes.push([k, v, false]); if (OV_IDS.length) passes.push([k, v, true]); }
+for (const [k, v, bakeOnly] of passes) {
   const ctx = await b.newContext({ viewport: { width: 412, height: 915 } });
   if (v !== null) await ctx.addInitScript(([kk, vv]) => { try { localStorage.setItem(kk, vv); } catch { /* a device that remembers nothing still reads */ } }, [k, v]);
+  if (bakeOnly) await ctx.addInitScript((ids) => { try { localStorage.setItem("fh.sources.off", JSON.stringify(ids)); } catch { /* as above */ } }, OV_IDS);
   const p = await ctx.newPage();
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   const tag = v === null ? k : `${k}=${v}`;
@@ -79,8 +100,8 @@ for (const [k, v] of trials) {
     opened += r.out.length;
     for (const x of r.out) {
       if (x.pressed === null) continue;   // a card that says a reason instead of readings is not this check's
-      if (!(x.pressed === x.now && x.now === x.line)) c1.push(`${tag} · ${x.w}: line "${x.line}" · row "${x.now}" · pressed "${x.pressed}"`);
-      if (!CARD_ONLY.has(tag) && x.first !== x.line) {
+      if (!(x.pressed === x.now && x.now === x.line)) c1.push(`${tag}${bakeOnly ? " (beside-store chips off)" : ""} · ${x.w}: line "${x.line}" · row "${x.now}" · pressed "${x.pressed}"`);
+      if ((bakeOnly || !OV_IDS.length) && !CARD_ONLY.has(tag) && x.first !== x.line) {
         if (r.unbaked) unbaked.push(`${tag} · ${x.w}`);
         else c2.push(`${tag} · ${x.w}: first "${x.first}" · line "${x.line}"`);
       }
@@ -91,6 +112,6 @@ for (const [k, v] of trials) {
 await b.close();
 console.log(`— ${trials.length} settings · ${opened} cards opened cold —`);
 check("C1  under every remembered setting the pressed pill, the reading row and the line are one reading", c1.length === 0, c1.slice(0, 3).join(" | "));
-check("C2  and the card's first pill is the line wherever the setting is baked for this book", c2.length === 0, c2.slice(0, 3).join(" | ") || (unbaked.length ? `${unbaked.length} not baked here (reported, not failed): ${unbaked.slice(0, 2).join(", ")}` : "every sort and the line agree"));
+check("C2  and the card's first pill is the line wherever the setting is baked for this book, among the sources the bake was made from", c2.length === 0, c2.slice(0, 3).join(" | ") || (unbaked.length ? `${unbaked.length} not baked here (reported, not failed): ${unbaked.slice(0, 2).join(", ")}` : "every sort and the line agree"));
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);
