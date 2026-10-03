@@ -1118,7 +1118,12 @@
      strict lock"). The whole record is one press away on its own control. */
   #hud .d-slot { flex: 0 0 auto; max-height: max(26vh, 9rem); overflow-y: auto; }
   #hud .d-card { display: block; }
-  #hud .d-body { min-height: 3.9rem; }
+  /* No floor of its own in the stylesheet: a record one line long reserved
+     three, and the readings above it paid for two empty lines (the owner,
+     2026-10-03: the routes "still squished" under "in + beginning"). The
+     floor a long record keeps when the card is short is fitBands' to hold,
+     counted in the record's own lines. */
+  #hud .d-body { min-height: 0; }
   #hud .d-foot { position: sticky; bottom: 0; background: var(--panel); padding-top: 0.15rem; }
 
   /* What is standing under the word right now. The card used to answer this
@@ -1289,8 +1294,12 @@
   #hud .d-also-more { font: inherit; font-size: 0.72rem; color: var(--muted);
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.5rem;
     padding: 0.16rem 0.4rem; cursor: pointer; max-width: 100%; }
-  #hud .d-cut { margin: 0 0 0.35rem; font-size: 0.72rem; color: var(--argaman);
-    border-inline-start: 2px solid var(--argaman-dim); padding-inline-start: 0.5rem; }
+  #hud a.lic-chip { color: inherit; text-decoration: none; }
+  #hud a.lic-chip:hover { border-color: var(--gold); }
+  #hud .d-cut { font-size: 0.66rem; color: var(--faint); }
+  /* a band's own note — what a switch withheld, what the pointing withheld —
+     is the band's small print, not a heading over its pills */
+  #hud .rows .band > .kq-role { margin: 0.05rem 0 0.3rem; font-size: 0.66rem; line-height: 1.35; color: var(--faint); }
   /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
   #hud .d-card .d-text { margin: 0.25rem 0; color: var(--tekhelet-ink); }

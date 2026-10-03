@@ -603,6 +603,15 @@
     const row = POSTURES && POSTURES.postures && POSTURES.postures[String(posture || "")];
     return (row && row.deed) || "";
   };
+  // the base text's own license, by its edition, as the declarations pin it:
+  // the provider names a family ("CC-BY-SA"), the record names the version
+  // and its basis, and the page links the exact deed
+  const baseTextLicense = (edition) => {
+    const b = POSTURES && POSTURES.base_texts && POSTURES.base_texts[String(edition || "")];
+    const row = b && POSTURES.postures && POSTURES.postures[b.posture];
+    return row ? { name: row.name, deed: row.deed || "", basis: b.basis || "", says: b.provider_says || "" } : null;
+  };
+  const editionOf = () => (String(zone.byline || "").match(/(?:^|\| )Version: ([^|\u00b7]+?)(?: \||$| \u00b7)/u) || [])[1] || "";
   const licenseName = (posture) => {
     const p = String(posture || "");
     if (!p) return "License unrecorded";
@@ -858,7 +867,17 @@
       const sLab = document.createElement("span"); sLab.className = "s-lab"; sLab.textContent = "source";
       const sVal = document.createElement("span"); sVal.className = "s-val";
       if (ro && ro.edition) sVal.append(ro.edition);
-      if (lic) { const c = document.createElement("span"); c.className = "lic"; c.textContent = lic; sVal.append(ro && ro.edition ? " \u00b7 " : "", c); }
+      // the provider's family, pinned to its version where the record pins it
+      const base = baseTextLicense((ro && ro.edition) || editionOf());
+      if (base && base.deed) {
+        const a = document.createElement("a"); a.className = "lic"; a.href = base.deed; a.target = "_blank"; a.rel = "license noreferrer";
+        // the provider's own token, as it writes it, with the version the
+        // record pins beside it: what a reader copies is what the source says
+        const ver = (String(base.name).match(/\d+(?:\.\d+)+/u) || [])[0] || "";
+        a.textContent = lic ? `${lic}${ver ? ` ${ver}` : ""}` : base.name;
+        a.title = `${base.name}: the provider's metadata says ${base.says || lic}. ${base.basis}`;
+        sVal.append(ro && ro.edition ? " \u00b7 " : "", a);
+      } else if (lic) { const c = document.createElement("span"); c.className = "lic"; c.textContent = lic; sVal.append(ro && ro.edition ? " \u00b7 " : "", c); }
       sum.replaceChildren(sLab, sVal);
       fold.hidden = false;
     }
@@ -1759,6 +1778,7 @@
     L.push(`- [H] ${wr.family || "LICENSE NOT ESTABLISHED"}${wr.posture ? ` · ${wr.posture}` : ""} — the Hebrew of ${
       kind === "he" ? "this file" : "every section here"}: the sealed text of ${zone.work}${
       wr.attribution ? `, ${wr.attribution}` : ""}`);
+    { const base = baseTextLicense(editionOf()); if (base) L.push(`    license: ${base.name}${base.deed ? ` \u2014 ${base.deed}` : ""} (${base.basis})`); }
     wr.obligations.forEach((o) => L.push(`    obligation, in our words: ${o}`));
     wr.links.forEach((l) => L.push(`    record: ${l.label}${l.url ? ` — ${l.url}` : ""}`));
     L.push(`    receipt: ${wr.receipt}`);
@@ -2047,7 +2067,9 @@
       const dLine = parseFloat(getComputedStyle(hud.querySelector(".d-text") || dSlot).lineHeight) || 26;
       const body = hud.querySelector(".d-card .d-body");
       const chromeAbove = body ? Math.max(0, Math.ceil(body.getBoundingClientRect().top - dSlot.getBoundingClientRect().top + dSlot.scrollTop)) : 0;
-      return (foot ? foot.offsetHeight : 0) + Math.ceil(dLine * lines) + chromeAbove;
+      // a record shorter than the floor is owed only itself
+      const own = body ? body.scrollHeight : Infinity;
+      return (foot ? foot.offsetHeight : 0) + Math.min(Math.ceil(dLine * lines), own) + chromeAbove;
     };
     if (floors > rowsEl.clientHeight && dSlot) {
       const floor = recordFloor(2);
@@ -3531,29 +3553,20 @@
     // The page's own reading is printed whole — that is why the ellipsis came
     // off. But a reading the reader chooses can be longer than the one the
     // page painted, and letting the line grow would move every Hebrew word
-    // below it, which is the one thing this page never does. So the moment
-    // before a word's reading is first changed, its box is fixed at the
-    // height it was painted at. Nothing moves; and because the box is held, a
-    // longer reading is cut at its edge. A cut with no mark reads as the
-    // whole reading with its tail missing — on a small screen there is no
-    // hover title to say otherwise — so the clamp prints the mark at the cut;
-    // the whole reading stays on the card and on the line's own title.
+    // below it. So the moment before a word's reading is first changed, its
+    // box is fixed at the height it was painted at, and it grows below only
+    // when what it now says needs the room.
+    // NO CLAMP. The box used to turn into a -webkit-box clamped to its painted
+    // lines, and that display sizes its own width differently from the block
+    // it replaced: "in + beginning", which painted on one line, re-wrapped
+    // inside the narrower box the moment its word was pressed and printed as
+    // "in + beginni…", and on a phone the cut line spilled over the
+    // license chip. The ellipsis stayed after the card closed (the owner,
+    // 2026-10-03, Genesis 1:1 and 1:2). The display is never changed now.
     const holdAndPaint = (box, line) => {
       if (!box.style.height) {
         const h = box.getBoundingClientRect().height;
-        if (h) {
-          box.style.height = `${h}px`;
-          const lh = parseFloat(getComputedStyle(box).lineHeight) || h;
-          // The license chip is a block line inside this box; its height is
-          // not a line of the reading, and a clamp that counted it as one
-          // would eat a text line the day a chip stands here after a paint.
-          // Normalization includes the chip — the owner's sizing rule.
-          const chipEl = box.querySelector(".g-lic");
-          const chipH = chipEl ? chipEl.getBoundingClientRect().height + (parseFloat(getComputedStyle(chipEl).marginTop) || 0) : 0;
-          box.style.display = "-webkit-box";
-          box.style.webkitBoxOrient = "vertical";
-          box.style.webkitLineClamp = String(Math.max(1, Math.round((h - chipH) / lh)));
-        }
+        if (h) box.style.height = `${h}px`;
       }
       // The height alone was not the whole promise: a wider reading widens
       // its word's box up to the reading's own cap, and one word widening
@@ -3599,7 +3612,6 @@
         let lines = Math.max(1, Math.ceil((box.scrollHeight - chipH2 - 1) / lh));
         for (let pass = 0; pass < 40; pass += 1) {
           box.style.height = `${Math.ceil(lines * lh + chipH2)}px`;
-          box.style.webkitLineClamp = String(lines);
           if (box.scrollHeight <= box.clientHeight + 1) break;
           lines += 1;
         }
@@ -3863,7 +3875,17 @@
     // the same order. Anything else and nothing is claimed.
     const pieceGloss = (cells, idx) => {
       const pg = word && Array.isArray(word.pg) ? word.pg : null;
-      if (!pg || !pg.length || cells.length !== pg.length) return null;
+      if (!pg || !pg.length) return null;
+      // The word whole, where the source reads it in parts: the card opened
+      // on the whole of a word the source divides (Genesis 1:1, "in" +
+      // "beginning") and had nothing to say here, while every undivided word
+      // said what the source reads (the owner, 2026-10-03). Its pieces are
+      // joined as the line joins them, and only when they spell this cell and
+      // come from one source.
+      if (cells.length === 1 && pg.length > 1 && pg.every((p) => p && p.k && p.g && p.s === pg[0].s)
+        && pg.map((p) => p.k).join("") === cells[0].surface)
+        return { g: spanJoin(pg.map((p) => String(p.g).trim()).join("/")), s: pg[0].s };
+      if (cells.length !== pg.length) return null;
       for (let i = 0; i < cells.length; i += 1) if (cells[i].surface !== pg[i].k) return null;
       const hit = pg[idx];
       return hit && hit.g ? hit : null;
@@ -4060,12 +4082,15 @@
         // provider's license to decide: a NoDerivatives record is never cut (isNoDerivs, in the pool), and
         // a cut the page made at display time is said here as plainly as a
         // cut the store carries.
+        // It rides the source line, under the record, in the foot's small
+        // type: above the record it took the record's own lines on a phone
+        // and left a sliver of the text it was pointing at (the owner,
+        // 2026-10-03, Genesis 1:1). Saying a change beside the credit is
+        // where a license asks for it.
         const leadRow = [...selected.records].sort(EARLIEST_FIRST)[0];
-        if (selected.records.some((r) => r[5] === 1) || (leadRow && spanJoin(String(leadRow[1] || "")).toLowerCase() !== spanJoin(selected.text).toLowerCase())) {
-          const cut = document.createElement("p"); cut.className = "d-cut";
-          cut.textContent = "This reading is a piece cut out of the record below, not the record's own sentence.";
-          body.append(cut);
-        }
+        const cutNote = (selected.records.some((r) => r[5] === 1) || (leadRow && spanJoin(String(leadRow[1] || "")).toLowerCase() !== spanJoin(selected.text).toLowerCase()))
+          ? Object.assign(document.createElement("span"), { className: "d-cut", textContent: "this reading is a piece cut out of the record above" })
+          : null;
         const recs = [...selected.records].sort(EARLIEST_FIRST);
         // Grouped by P, not by bytes: sources whose D carries the same
         // readings stand together whatever their packing, and the first
@@ -4110,7 +4135,11 @@
           const m = index.m_sources[mId];
           const att = document.createElement("p"); att.className = "att";
           att.append(`${m.label} · ${hasYear(year) ? `wording ${year}` : "wording year not supplied"} `);
-          const lic = document.createElement("span"); lic.className = "lic-chip";
+          // the chip IS the license's own address where the declarations name
+          // its deed, which every CC license asks to travel with its material
+          const deed = licenseDeed(m.licensePosture);
+          const lic = document.createElement(deed ? "a" : "span"); lic.className = "lic-chip";
+          if (deed) { lic.href = deed; lic.target = "_blank"; lic.rel = "license noreferrer"; }
           lic.textContent = licenseName(m.licensePosture);
           // The chain's pointer is the audit's business, not the reading
           // surface's: a ledger path printed here spent a third of the card
@@ -4119,10 +4148,6 @@
           // receipt, where the audit reads it.
           if (m.licensePointer) lic.title = m.licensePointer;
           att.append(lic, " ");
-          // the license's own address, which every CC license asks to travel
-          // with its material (declarations-v1.json deed, when declared)
-          const deed = licenseDeed(m.licensePosture);
-          if (deed) { const da = document.createElement("a"); da.href = deed; da.target = "_blank"; da.rel = "license noreferrer"; da.textContent = "license"; att.append(da, " "); }
           // an overlay's record says which overlay it is, beside its year
           const ovDef = m.overlay ? OVERLAY_DEFS.find((o) => o.id === m.overlay) : null;
           if (ovDef) att.append(Object.assign(document.createElement("span"), { className: "ov-mark", textContent: ovDef.mark }), " ");
@@ -4146,6 +4171,9 @@
         // on nothing the reader can see. Everything else about the record —
         // its text, its corroboration — scrolls above it.
         foot.append(mLine(firstGroup[0]));
+        // on the source line itself, after the license: a line of its own
+        // under the source took the record's second line on a short phone
+        if (cutNote) { const att0 = foot.querySelector(".att"); (att0 || foot).append(" \u00b7 ", cutNote); }
         // The record, whole, on request: when the capped card is clipping
         // the D, the foot offers the whole record; pressing again folds it.
         // The check is made after layout, because clipping is a fact about

@@ -41,7 +41,10 @@ if (!existsSync("data/license-postures-v1.json")) {
   check("the projection data/license-postures-v1.json exists", false, "run tools/emit-license-postures-v1.mjs");
 } else {
   const proj = JSON.parse(readFileSync("data/license-postures-v1.json", "utf8"));
-  const want = Object.fromEntries(Object.entries(declared).map(([k, r]) => [k, { name: r.name, export: r.export, attribution: r.attribution, obligations: r.obligations }]));
+  // a NoDerivatives posture is never exportable, and a declared deed rides
+  // along (emit-license-postures-v1), so the projection is held to both
+  const ND = (key) => /(^|[^a-z])nd([^a-z]|$)/i.test(key) || /noderiv/i.test(key);
+  const want = Object.fromEntries(Object.entries(declared).map(([k, r]) => [k, { name: r.name, export: ND(k) ? false : r.export, attribution: r.attribution, obligations: r.obligations, ...(r.deed ? { deed: r.deed } : {}) }]));
   check("the projection equals the record", JSON.stringify(proj.postures) === JSON.stringify(want));
 }
 

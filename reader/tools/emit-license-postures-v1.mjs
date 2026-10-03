@@ -39,6 +39,15 @@ for (const [key, row] of Object.entries(d.export_postures)) {
   };
 }
 
+// The base texts' own licenses, by edition: a provider that names a family
+// and not a version is pinned here with its basis, to a posture declared
+// above, so the page can link the exact deed the license asks for.
+const baseTexts = {};
+for (const [edition, row] of Object.entries(d.base_texts || {})) {
+  if (!postures[row.posture]) throw new Error(`base text ${edition} names an undeclared posture ${row.posture}`);
+  baseTexts[edition] = { posture: row.posture, provider_says: row.provider_says || null, basis: row.basis || "" };
+}
+
 const doc = {
   schema_version: "LICENSE_POSTURES_V1",
   emitted_by: "tools/emit-license-postures-v1.mjs",
@@ -49,6 +58,7 @@ const doc = {
     export: d.defaults.export,
   },
   postures,
+  base_texts: baseTexts,
 };
 writeFileSync(OUT, JSON.stringify(doc, null, 1) + "\n");
 console.log(`${OUT}: ${Object.keys(postures).length} postures projected from ${DECL}`);
