@@ -2843,13 +2843,37 @@
     if (parts[0] !== "declared_v1") return rule;
     const says = [];
     for (const part of parts.slice(1)) {
-      const m = /^(every place|some places):\s*(.+)$/u.exec(part);
+      const m = /^(every place|some places|this place):\s*(.+)$/u.exec(part);
       if (!m) continue;
-      says.push(`${m[1] === "every place" ? "at every place in this book" : "at some places"}: ${listSays(m[2].split(",").map(sourceSays))}`);
+      says.push(`${m[1] === "every place" ? "at every place in this book" : m[1] === "this place" ? "at this place" : "at some places"}: ${listSays(m[2].split(",").map(sourceSays))}`);
     }
     return says.length ? `divided this way by the sources themselves, ${says.join("; ")}` : rule;
   };
   const ROLE_SAYS = { source_piece: "piece", tahot_prefix: "prefix", tahot_root: "root", tahot_suffix: "suffix" };
+  // THE SOURCE'S OWN DIVISION AT THIS PLACE, where the ledger's served rows
+  // have none (the owner, 2026-10-03, on Genesis 1:2: "we seem to be messing
+  // up basic prefix and suffix still. wheres the compspan?"). The span
+  // ledger's served table (v13.5, byte-equal to spans v2) carries two-piece
+  // rows only: in Genesis not one of the 650 forms TAHOT divides into three
+  // or four pieces has a row (and+the+earth among them), nor about a hundred
+  // suffixed forms (to+him, his+name). TAHOT's pieces at the place are the
+  // word's pg, carried byte for byte and checked to spell the form when the
+  // zone was given them, and they are already the line's pieces; a card
+  // whose form has no row divides as its line does, credited to the source
+  // at this place. The ledger's row, where there is one, always leads.
+  const PIECE_ROLE = { prefix: "tahot_prefix", core: "tahot_root", root: "tahot_root", suffix: "tahot_suffix" };
+  const placeSpan = (w, k) => {
+    const pg = w && Array.isArray(w.pg) ? w.pg : null;
+    if (!k || !pg || pg.length < 2 || !pg.every((x) => x && x.k && x.s === pg[0].s)) return null;
+    if (pg.map((x) => x.k).join("") !== k) return null;
+    const tahot = pg[0].s === "tahot";
+    return {
+      comps: pg.map((x) => x.k),
+      roles: pg.map((x) => (tahot && PIECE_ROLE[x.r]) || "source_piece"),
+      rule: `declared_v1 | this place: ${pg[0].s}:main`,
+      conf: "source_declared",
+    };
+  };
   const spanOf = (bin, k) => {
     const row = bin && bin.spans ? bin.spans[k] : null;
     if (!row) return null;
@@ -3456,7 +3480,7 @@
     // already said what the mark is
     if (word.mark && !(region && region.k)) { status.remove(); placeHud(); return; }
 
-    const span = spanOf(bin, region.k);
+    const span = spanOf(bin, region.k) || (bin === zone ? placeSpan(opts.word || word, region.k) : null);
     // A DIVISION WE HAVE NOT ESTABLISHED IS NOT OFFERED.
     //
     // The formulaic clitic pass splits any word beginning with a clitic
@@ -3586,7 +3610,8 @@
         const w = cell ? ws[cell.from] : null;
         return w && w.k === surface ? placeLine(w) : null;
       }
-      return word && surface === region.k ? placeLine(word) : null;
+      if (!word) return null;
+      return surface === region.k ? placeLine(word) : placeOfPiece(word, surface);
     };
     const tried = new Map();           // cell surface -> fetches that did not arrive
     let pressedCut = null;             // a run's whole rung the reader pressed, remembered once read
@@ -5208,6 +5233,23 @@
     if (parts.some((t) => !t)) return null;
     const m = who && index && index.m_sources ? index.m_sources[who.m] : null;
     return { text: parts.join("/"), m: who ? { lic: licenseName(who.licence), m: m ? m.label : who.label, y: null } : null, why: "place", mId: who ? who.m : null };
+  };
+  // ONE PIECE'S OWN READING AT THIS PLACE: a block of the card that is one of
+  // TAHOT's pieces of the word answers with TAHOT's reading of that piece
+  // first, as the whole word answers with the whole line (the owner,
+  // 2026-10-03: the vav of "and + the + earth" opened on Strong's "describe",
+  // 1890 form lists that file 39 unrelated readings under the bare letter,
+  // while TAHOT reads "and" there). Only a piece the word holds once: a
+  // letter it holds twice is not one place.
+  const placeOfPiece = (word, surface) => {
+    if (!placeLine(word)) return null;
+    const hits = word.pg.filter((p) => p && p.k === surface);
+    if (hits.length !== 1) return null;
+    const text = String(hits[0].g || "").trim();
+    if (!text) return null;
+    const who = tahotWitness();
+    const m = who && index && index.m_sources ? index.m_sources[who.m] : null;
+    return { text, m: who ? { lic: licenseName(who.licence), m: m ? m.label : who.label, y: null } : null, why: "place", mId: who ? who.m : null };
   };
   const lineUnder = (word, table) => {
     if (!word || table !== zone.gloss) return null;

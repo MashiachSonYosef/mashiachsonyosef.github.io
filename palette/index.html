@@ -19,9 +19,9 @@
      set to dark does not hand its own chrome to a light page. */
   :root {
     color-scheme: light;
-    --bg:#ebdec3; --panel:#efe4cd; --panel2:#ecdfc5; --line:#8a6a18;
+    --bg:#ebdec3; --panel:#efe4cd; --panel2:#ecdfc5; --line:#93661a;
     --ink:#561f86; --ink-strong:#44166c; --muted:#6c359e; --faint:#845ba7;
-    --gold:#96700f; --gold-dim:#9a7a28; --amber:#96700f;
+    --gold:#a06c10; --gold-dim:#a3762a; --amber:#a06c10;
     --sel:#4f1789; --sel-dim:#845ba7;
     /* the mark's own gold, brighter than the frame's so the .com never reads as the red beside it (the owner, 2026-10-02); used by the name and nothing else */
     --mark-gold:#c4921c;
@@ -30,7 +30,7 @@
      names now carry the soft values, and the olive-brown text of the neutral is
      the purple ink, since gold is never text at rest. No title is drawn in a color of its own. */
     --shani:#9d4355; --shani-dim:#b76670;
-    --wash-shani:#eedcd6; --shani-ink:#9d4355; --tekhelet-ink:#34649a; --tekhelet-bold:#22508a; --wash-tekhelet:#dfe4f1; --shesh:#561f86; --shesh-bright:#44166c;
+    --wash-shani:#eedcd6; --shani-ink:#9d4355; --tekhelet-ink:#34649a; --tekhelet-bold:#22508a; --press-wash:#dccbaa; --wash-tekhelet:#dfe4f1; --shesh:#561f86; --shesh-bright:#44166c;
     --tekhelet:#34649a; --tekhelet-dim:#7f8ba8;
     --argaman:#772ba3; --argaman-dim:#9c69b9; --link:#772ba3;
     --chip-bg:rgba(107,90,53,.10); --chip-line:rgba(107,90,53,.32);
@@ -211,7 +211,7 @@
   #poc .pc-btns { display: flex; gap: .4rem; flex-wrap: wrap; margin: .5rem 0 .4rem; }
   #poc .pc-pick { font: inherit; font-size: .76rem; padding: .2rem .55rem; border-radius: 3px;
     border: 1px solid var(--line); background: none; color: var(--muted); cursor: pointer; }
-  #poc .pc-pick[aria-pressed="true"] { border-color:var(--gold); color: var(--ink-strong); }
+  #poc .pc-pick[aria-pressed="true"] { color: var(--ink-strong); font-weight: 700; border-color:var(--gold); background:var(--press-wash); box-shadow:0 0 0 1px var(--gold); }
   #poc .pc-delim { margin-inline-start: .3rem; color: var(--faint); }
   /* the transmitted-form pill when the record writes it in Latin: it is a
      term, not a word of the text, so it wears the spacing the row labels do. */
@@ -407,8 +407,7 @@
   .pc-hudwrap .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
-.pc-hudwrap .r-pills button[aria-pressed="true"] { border-color: var(--tekhelet-bold);
-    color: var(--tekhelet-bold); }
+.pc-hudwrap .r-pills button[aria-pressed="true"] { color: var(--tekhelet-bold); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
 .pc-hudwrap .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
 .pc-hudwrap .r-overflow { margin-top: 0.45rem; }
@@ -416,7 +415,7 @@
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
 .pc-hudwrap .r-overflow select:hover { border-color:var(--gold); }
-.pc-hudwrap .r-overflow select.on { color: var(--tekhelet-bold); border-color: var(--tekhelet-bold); }
+.pc-hudwrap .r-overflow select.on { color: var(--tekhelet-bold); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
 .pc-hudwrap .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
 /* P — the sources that carry the same record. A corroboration is not a
      louder kind of source, so it wears the same chip and the same weight as
@@ -458,8 +457,7 @@
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
 .pc-hudwrap .s-pills button:hover { border-color:var(--gold); color: var(--shesh); }
-.pc-hudwrap .s-pills button[aria-pressed="true"] { border-color: var(--sel); color: var(--sel);
-    font-weight: 700; }
+.pc-hudwrap .s-pills button[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
 .pc-hudwrap .s-pills button .none { font: 0.62rem/1 Georgia, serif; color:var(--argaman); margin-inline-start: 0.35rem; }
 .pc-hudwrap .b-q { flex: 0 0 auto; min-height: 0; }
 .pc-hudwrap .b-q .q-role { font: 0.6rem/1 Georgia, serif; letter-spacing: 0.06em;
@@ -473,8 +471,7 @@
 .pc-hudwrap .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.pc-hudwrap .c-pills button[aria-pressed="true"] { border-color: var(--sel);
-    color: var(--sel); }
+.pc-hudwrap .c-pills button[aria-pressed="true"] { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
 .pc-hudwrap .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
 .pc-hudwrap .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
@@ -510,7 +507,7 @@
 .pc-hudwrap .d-foot { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; }
 .pc-hudwrap { box-shadow: var(--shadow-hud); }
 .pc-hudwrap .r-pills button[aria-pressed="true"], .pc-hudwrap .s-pills button[aria-pressed="true"] {
-    box-shadow: 0 0 0 1px currentColor; }
+    box-shadow: 0 0 0 1px var(--gold); }
   /* The reader's card is width: min(23rem, 92vw) because it FLOATS over the
      page and answers to the window. Standing inside a column it has to answer
      to the column instead, or it runs past the right edge and takes the close
@@ -713,7 +710,7 @@
     color:var(--faint); background:none; border:1px solid var(--line); border-radius:999px;
     padding:.2rem .6rem; cursor:pointer; }
   .filing-pick .fp:hover { color:var(--muted); border-color:var(--gold); }
-  .filing-pick .fp.on { color:var(--sel); border-color:var(--sel); }
+  .filing-pick .fp.on { color:var(--sel); border-color:var(--gold); background:var(--press-wash); box-shadow:0 0 0 1px var(--gold); }
   .filing-24 { display:none; }
   body[data-filing="24"] .filing-39 { display:none; }
   body[data-filing="24"] .filing-24 { display:block; }
@@ -866,7 +863,7 @@
      arriving under the reader's hand and leaving with it, which is the thing
      the check asserts. */
 
-  .dfp.on { color:var(--sel); border-color:var(--sel-dim); }
+  .dfp.on { color:var(--sel); border-color:var(--gold); background:var(--press-wash); box-shadow:0 0 0 1px var(--gold); }
   .def-order .dfp.waiting { opacity:.45; cursor:not-allowed;
     text-decoration-thickness:1px; }
   #wcard .r-pills { display:flex; flex-wrap:wrap; gap:.35rem; direction:ltr;
@@ -881,9 +878,10 @@
   #wcard .r-pills button { border:1px solid var(--line); background:var(--panel2); color:var(--muted);
     border-radius:.9rem; padding:.22rem .7rem; font:inherit; font-size:.76rem; cursor:pointer;
     max-width:100%; text-align:left; white-space:normal; overflow-wrap:anywhere; }
-  /* the pressed reading is the bold blue, worn bold, never filled (the owner, 2026-10-03) */
-  #wcard .r-pills button[aria-pressed="true"] { border-color:var(--tekhelet-bold);
-    color:var(--tekhelet-bold); font-weight:bold; }
+  /* a pressed cell, one rule everywhere (the owner, 2026-10-03): the gold
+     drawn twice as heavy, the linen a step darker, the letters bold in their
+     own ink, the bold blue for a reading */
+  #wcard .r-pills button[aria-pressed="true"] { color:var(--tekhelet-bold); font-weight:bold; border-color:var(--gold); background:var(--press-wash); box-shadow:0 0 0 1px var(--gold); }
   #wcard .d-card { margin-top:.55rem; border-top:1px solid var(--line); padding-top:.45rem;
     flex:0 0 auto; display:flex; flex-direction:column; overflow:hidden; max-height:32vh; }
   #wcard .d-body { flex:1 1 auto; min-height:1.2rem; overflow-y:auto; color:var(--ink); font-size:.86rem; }

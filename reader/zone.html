@@ -30,14 +30,18 @@
        owner, 2026-10-03: "id avoid how bright the hud is still") */
     --bg: #ebdec3; --panel: #efe4cd; --panel2: #ecdfc5;
     --nav-veil: rgba(239, 228, 205, 0.94);
-    --line: #8a6a18; --wash: #e6d8bb;
+    --line: #93661a; --wash: #e6d8bb;
     --surface-c: #e8d9bc; --panel-c: #dccbaa; --line-c: #bea983;
     --ink: #561f86; --ink-strong: #44166c; --muted: #6c359e; --faint: #845ba7;
     --shesh: #561f86; --shesh-bright: #44166c;
     /* on linen, bright means saturated and not light: a pale gold vanishes
        into the ground, and a deep one reads as leaf. Both clear the 3:1 a
-       rule needs, which a lighter gold did not. */
-    --gold: #96700f; --gold-dim: #9a7a28; --amber: #96700f;
+       rule needs, which a lighter gold did not. Warmed off olive (the owner,
+       2026-10-03: "also is our gold a bit too olive?"): the family stood at
+       a 43 degree hue, a dark yellow with no red in it; at 38 it is the
+       bronze of the name's own gold, each value at the same luminance, so
+       every contrast it held it still holds. */
+    --gold: #a06c10; --gold-dim: #a3762a; --amber: #a06c10;
     /* selection is amber on this face too — gold's in-process value, filled,
        with the tent's own ink on top of it */
     /* A PRESSED CONTROL IS PURPLE, WORN BOLD (the owner, 2026-10-03: "idk if
@@ -69,6 +73,13 @@
        the regular blue; the reading pressed is this one, worn bold. Nothing
        is ever filled with a color ("we shouldnt ever have to full fill"). */
     --tekhelet-bold: #22508a;
+    /* A PRESSED CELL, ONE RULE EVERYWHERE (the owner, 2026-10-03: "i wouldnt
+       retrace pills from gold to blue. you keep jumping rules. id: 1. darken
+       the linen backdrop on a highlighted cell, 2. bolden the gold, 3. bolden
+       the blue text"): its border stays gold and is drawn twice as heavy, its
+       linen darkens one step, and its letters are bold in their own ink, the
+       bold blue for a reading, the purple for a control. */
+    --press-wash: #dccbaa;
     --wash-shani: #eedcd6;
     /* the held word: its own wash, more opaque — never a third color (owner,
        2026-09-11: "move away from gold as the highlighting itself and move
@@ -100,8 +111,8 @@
        holds body text to — still warm, never black; linen is not glare and
        ink is not tar, but thin niqqud marks need 7:1 to stay marks */
     --c-word: #9d4355; --en-word: #9d4355;
-    --hover-ink: #6b4f0e; --hover-line: #bda15c;
-    --chip-bg: rgba(43, 35, 56, 0.05); --chip-line: rgba(150, 112, 15, 0.34);
+    --hover-ink: #704c0f; --hover-line: #c19f66;
+    --chip-bg: rgba(43, 35, 56, 0.05); --chip-line: rgba(160, 108, 16, 0.34);
     --shadow-pop: 0 8px 24px rgba(96, 80, 48, 0.28);
     --shadow-card: 0 14px 40px rgba(96, 80, 48, 0.30);
     --shadow-hud: 0 18px 48px rgba(96, 80, 48, 0.32), 0 2px 8px rgba(96, 80, 48, 0.20);
@@ -455,7 +466,7 @@
     text-decoration: none; font: 0.92rem/1 Georgia, serif; color: var(--ink-strong);
     font-variant-numeric: tabular-nums; transition: border-color 120ms, background 120ms; }
   #toc .chs a:hover { border-color: var(--gold); background: var(--wash); }
-  #toc .chs a.on { border-color: var(--sel); color: var(--sel); }
+  #toc .chs a.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   /* the sections of one chapter, opened in place under the grid */
   #secPanel { margin-top: 0.7rem; border: 1px solid var(--line); border-radius: 0.5rem;
     background: var(--panel2); padding: 0.6rem 0.7rem; }
@@ -581,7 +592,7 @@
   .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; direction: ltr; }
   .vnum { font-size: 0.72rem; color: var(--ink-strong); border: 1px solid var(--gold-dim);
     background: var(--panel); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
-  .vnum.at { color: var(--sel); border-color: var(--sel); }
+  .vnum.at { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   .drift-chip { font-size: 0.68rem; color: var(--argaman); border: 1px dashed var(--argaman-dim); border-radius: 0.5rem;
     padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
   .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
@@ -626,7 +637,7 @@
   .hoh .r-label { margin: 0 0 0.3rem; }
   .hoh-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem; }
   .hoh-hw { font-size: 1.3rem; line-height: 1.3; color: var(--shani-ink); }
-  .hoh-head .lic-chip.on { color: var(--sel); border-color: var(--sel-dim); }
+  .hoh-head .lic-chip.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   .hoh-held, .hoh-silent, .hoh-src { font-size: 0.72rem; line-height: 1.45; color: var(--muted); margin: 0.35rem 0 0; direction: ltr; text-align: left; }
   .hoh-silent .hoh-hw { font-size: 1.05rem; }
   /* v-volume-rule-v1 · how much commentary the corpus lane has indexed here.
@@ -942,15 +953,15 @@
   .rail .src-fold[open] > summary::after { content: " \25b4"; }
   .rail .src-fold > summary:hover { color: var(--ink); border-color: var(--gold); }
   .rail .def-order.src-list { display: block; margin: 0.4rem 0 0; max-width: 52rem; }
-  /* the chooser: three words, one pressed — purple and bold when pressed,
-     never filled and never gold (the owner, 2026-10-03: "idk about purple
-     fill, id avoid that / id keep purple as text") */
+  /* the chooser: three words, one pressed — the pressed-cell rule, its
+     letters purple and bold, never a purple fill (the owner, 2026-10-03:
+     "idk about purple fill, id avoid that / id keep purple as text") */
   .rail .shelve-by { display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem; margin: 0 0 0.45rem; font-size: 0.64rem; color: var(--muted); }
   .rail .shelve-by > span { margin-right: 0.15rem; }
   .rail .shelve-opt { font: inherit; font-size: 0.68rem; padding: 0.16rem 0.55rem; border: 1px solid var(--line);
     border-radius: 0.5rem; background: none; color: var(--ink); cursor: pointer; }
   .rail .shelve-opt:hover { border-color: var(--gold); }
-  .rail .shelve-opt[aria-pressed="true"] { color: var(--sel); border-color: var(--sel); font-weight: 700; }
+  .rail .shelve-opt[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   /* a shelf: its switch, its name, its count, then its strip of chips */
   .rail .shelf { border-top: 1px solid var(--line); padding: 0.4rem 0 0.45rem; }
   .rail .shelf:first-child { border-top: none; padding-top: 0.1rem; }
@@ -959,8 +970,9 @@
   .rail .shelf-count { font-size: 0.64rem; color: var(--muted); }
   .rail .shelf.off .shelf-title { color: var(--faint); }
   /* THE SHELF SWITCH. A track and a knob: on, the knob is purple at the
-     right on a darker linen, never a track filled with a color (the owner,
-     2026-10-03: "if we do what about a darker linen even"); off, a plain
+     right on the pressed cell's darker linen inside its gold, never a track
+     filled with a color (the owner, 2026-10-03: "if we do what about a darker
+     linen even"); off, a plain
      knob at the left on the bare track; a dashed track with the knob at
      center when the chips disagree. Gold stays line-work here as everywhere
      (data/color-contract-v1.json). */
@@ -968,7 +980,7 @@
     border: 1px solid var(--line); border-radius: 0.55rem; background: none; cursor: pointer; font-size: 0; }
   .rail .shelf-sw::after { content: ""; position: absolute; top: 0.1rem; left: 0.1rem; width: 0.75rem; height: 0.75rem;
     border-radius: 50%; background: var(--line-c); transition: left 0.12s; }
-  .rail .shelf-sw[aria-checked="true"] { background: var(--panel-c); border-color: var(--sel); }
+  .rail .shelf-sw[aria-checked="true"] { background: var(--press-wash); border-color: var(--gold); }
   .rail .shelf-sw[aria-checked="true"]::after { left: 0.95rem; background: var(--sel); }
   .rail .shelf-sw[aria-checked="mixed"] { border-color: var(--gold); border-style: dashed; }
   .rail .shelf-sw[aria-checked="mixed"]::after { left: 0.52rem; background: var(--muted); }
@@ -1064,7 +1076,7 @@
   .mode-dir { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--faint); }
   .mode-btn { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
-  .mode-btn.on { color: var(--sel); border-color: var(--sel); }
+  .mode-btn.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   /* pressed, opened, armed: the selection is worn bold */
   .mode-btn.on, #hud .def-order .dfp.on, #modeRow .def-order .dfp.on, .rail .def-order .dfp.on,
   .rail .now b, .xp.armed, .vnum.at, #toc .chs a.on, .c-bar[aria-expanded="true"],
@@ -1344,7 +1356,7 @@
      attachment crimson, and this only moves a control into the role it
      already belonged to. It is also the one cold thing on a warm page,
      which is the half of the name that had nowhere to stand. */
-  #hud .def-order .dfp.on, #modeRow .def-order .dfp.on, .rail .def-order .dfp.on { color: var(--sel); border-color: var(--sel-dim); }
+  #hud .def-order .dfp.on, #modeRow .def-order .dfp.on, .rail .def-order .dfp.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   #hud .def-order .dfp.waiting, #modeRow .def-order .dfp.waiting, .rail .def-order .dfp.waiting {
     opacity: 0.4; cursor: default; }
   #hud .r-pills button { border: 1px solid var(--chip-line); background: none; color: var(--tekhelet-ink);
@@ -1354,10 +1366,9 @@
      2026-10-03; that broke the standing rule that a pill shows its whole
      reading, and the rows are fitted from where the pills actually end, so a
      tall pill is a tall row, never a cut one.) */
-  /* the pressed pill is the reading's bold blue, its letters bold, its
-     border the same blue; no fill (the owner, 2026-10-03) */
-  #hud .r-pills button[aria-pressed="true"] { border-color: var(--tekhelet-bold);
-    background: none; color: var(--tekhelet-bold); font-weight: 700; }
+  /* the pressed reading: the pressed-cell rule (--press-wash, above), its
+     letters the bold blue */
+  #hud .r-pills button[aria-pressed="true"] { color: var(--tekhelet-bold); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
   #hud .r-overflow { margin-top: 0.45rem; }
@@ -1365,7 +1376,7 @@
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
   #hud .r-overflow select:hover { border-color: var(--gold); }
-  #hud .r-overflow select.on { color: var(--tekhelet-bold); border-color: var(--tekhelet-bold); font-weight: 700; }
+  #hud .r-overflow select.on { color: var(--tekhelet-bold); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   /* P — the sources that carry the same record. A corroboration is not a
      louder kind of source, so it wears the same chip and the same weight as
@@ -1428,8 +1439,7 @@
 
   /* said again below the frame rule that gives every line a transparent
      border, which outranked this one and hid the mark */
-  #hud .s-pills button[aria-pressed="true"] { border-color: var(--sel); color: var(--sel);
-    background: var(--panel2); font-weight: 700; }
+  #hud .s-pills button[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   #hud .s-pills button .none { font: 0.62rem/1 Georgia, serif; color: var(--faint); margin-inline-start: 0.35rem; }
   #hud .b-q { flex: 0 0 auto; min-height: 0; }
   #hud .b-q .q-role { font: 0.6rem/1 Georgia, serif; letter-spacing: 0.06em;
@@ -1462,8 +1472,7 @@
     color: var(--ink-strong); font: 0.68rem/1.4 Inter, system-ui, sans-serif;
     letter-spacing: 0.04em; cursor: pointer; }
   .c-mark:hover { color: var(--ink-strong); border-color: var(--gold); }
-  .c-mark[aria-expanded="true"] { border-color: var(--sel);
-    color: var(--sel); }
+  .c-mark[aria-expanded="true"] { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   .c-mark .c-glyph { font-variant: small-caps; letter-spacing: 0.08em; }
   /* Bounded, like the card's regions. A Rashi runs to a page and it was taking
      one — the verse it belongs to disappeared above it. It gets a share and
@@ -1583,7 +1592,7 @@
   #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  #hud .c-pills button[aria-pressed="true"] { border-color: var(--sel); color: var(--sel); font-weight: 700; }
+  #hud .c-pills button[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   #hud .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--shani-ink);
     padding: 0.1rem 0.4rem; border-radius: 0.4em;
@@ -1667,7 +1676,7 @@
   *::-webkit-scrollbar-track { background: transparent; }
   #hud { box-shadow: var(--shadow-hud); }
   #hud .r-pills button[aria-pressed="true"], #hud .s-pills button[aria-pressed="true"] {
-    box-shadow: 0 0 0 1px currentColor; }
+    box-shadow: 0 0 0 1px var(--gold); }
   @media (prefers-reduced-motion: reduce) {
     button, select { transition: none; }
     button:active:not([disabled]) { transform: none; }
@@ -1685,7 +1694,7 @@
     font-family: inherit; font-size: 0.78rem; letter-spacing: 0.04em; cursor: pointer;
     direction: ltr; text-align: left; }
   .c-bar:hover { border-color: var(--shani-dim); color: var(--shesh); }
-  .c-bar[aria-expanded="true"] { color: var(--sel); border-color: var(--sel); }
+  .c-bar[aria-expanded="true"] { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   .c-bar .c-glyph { font-variant: small-caps; letter-spacing: 0.12em; font-size: 0.7rem;
     border: 1px solid currentColor; border-radius: 0.35rem; padding: 0 0.32rem; opacity: 0.75; }
   .c-bar .c-name { flex: 1 1 auto; }
@@ -1755,7 +1764,7 @@
     background: var(--panel2); border-radius: 0.5rem; padding: 0.12rem 0.5rem;
     letter-spacing: 0.04em; cursor: pointer; font-family: inherit; }
   .xp:hover { border-color: var(--gold); color: var(--shesh); }
-  .xp.armed { color: var(--sel); border-color: var(--sel); }
+  .xp.armed { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   .xp.busy { opacity: 0.6; cursor: progress; }
   .xp-note { font-size: 0.66rem; color: var(--faint); direction: ltr; flex: 1 1 100%; margin: 0.1rem 0 0; }
   .xp-note b { color: var(--shesh); font-weight: normal; }
@@ -4727,13 +4736,37 @@
     if (parts[0] !== "declared_v1") return rule;
     const says = [];
     for (const part of parts.slice(1)) {
-      const m = /^(every place|some places):\s*(.+)$/u.exec(part);
+      const m = /^(every place|some places|this place):\s*(.+)$/u.exec(part);
       if (!m) continue;
-      says.push(`${m[1] === "every place" ? "at every place in this book" : "at some places"}: ${listSays(m[2].split(",").map(sourceSays))}`);
+      says.push(`${m[1] === "every place" ? "at every place in this book" : m[1] === "this place" ? "at this place" : "at some places"}: ${listSays(m[2].split(",").map(sourceSays))}`);
     }
     return says.length ? `divided this way by the sources themselves, ${says.join("; ")}` : rule;
   };
   const ROLE_SAYS = { source_piece: "piece", tahot_prefix: "prefix", tahot_root: "root", tahot_suffix: "suffix" };
+  // THE SOURCE'S OWN DIVISION AT THIS PLACE, where the ledger's served rows
+  // have none (the owner, 2026-10-03, on Genesis 1:2: "we seem to be messing
+  // up basic prefix and suffix still. wheres the compspan?"). The span
+  // ledger's served table (v13.5, byte-equal to spans v2) carries two-piece
+  // rows only: in Genesis not one of the 650 forms TAHOT divides into three
+  // or four pieces has a row (and+the+earth among them), nor about a hundred
+  // suffixed forms (to+him, his+name). TAHOT's pieces at the place are the
+  // word's pg, carried byte for byte and checked to spell the form when the
+  // zone was given them, and they are already the line's pieces; a card
+  // whose form has no row divides as its line does, credited to the source
+  // at this place. The ledger's row, where there is one, always leads.
+  const PIECE_ROLE = { prefix: "tahot_prefix", core: "tahot_root", root: "tahot_root", suffix: "tahot_suffix" };
+  const placeSpan = (w, k) => {
+    const pg = w && Array.isArray(w.pg) ? w.pg : null;
+    if (!k || !pg || pg.length < 2 || !pg.every((x) => x && x.k && x.s === pg[0].s)) return null;
+    if (pg.map((x) => x.k).join("") !== k) return null;
+    const tahot = pg[0].s === "tahot";
+    return {
+      comps: pg.map((x) => x.k),
+      roles: pg.map((x) => (tahot && PIECE_ROLE[x.r]) || "source_piece"),
+      rule: `declared_v1 | this place: ${pg[0].s}:main`,
+      conf: "source_declared",
+    };
+  };
   const spanOf = (bin, k) => {
     const row = bin && bin.spans ? bin.spans[k] : null;
     if (!row) return null;
@@ -5340,7 +5373,7 @@
     // already said what the mark is
     if (word.mark && !(region && region.k)) { status.remove(); placeHud(); return; }
 
-    const span = spanOf(bin, region.k);
+    const span = spanOf(bin, region.k) || (bin === zone ? placeSpan(opts.word || word, region.k) : null);
     // A DIVISION WE HAVE NOT ESTABLISHED IS NOT OFFERED.
     //
     // The formulaic clitic pass splits any word beginning with a clitic
@@ -5470,7 +5503,8 @@
         const w = cell ? ws[cell.from] : null;
         return w && w.k === surface ? placeLine(w) : null;
       }
-      return word && surface === region.k ? placeLine(word) : null;
+      if (!word) return null;
+      return surface === region.k ? placeLine(word) : placeOfPiece(word, surface);
     };
     const tried = new Map();           // cell surface -> fetches that did not arrive
     let pressedCut = null;             // a run's whole rung the reader pressed, remembered once read
@@ -7092,6 +7126,23 @@
     if (parts.some((t) => !t)) return null;
     const m = who && index && index.m_sources ? index.m_sources[who.m] : null;
     return { text: parts.join("/"), m: who ? { lic: licenseName(who.licence), m: m ? m.label : who.label, y: null } : null, why: "place", mId: who ? who.m : null };
+  };
+  // ONE PIECE'S OWN READING AT THIS PLACE: a block of the card that is one of
+  // TAHOT's pieces of the word answers with TAHOT's reading of that piece
+  // first, as the whole word answers with the whole line (the owner,
+  // 2026-10-03: the vav of "and + the + earth" opened on Strong's "describe",
+  // 1890 form lists that file 39 unrelated readings under the bare letter,
+  // while TAHOT reads "and" there). Only a piece the word holds once: a
+  // letter it holds twice is not one place.
+  const placeOfPiece = (word, surface) => {
+    if (!placeLine(word)) return null;
+    const hits = word.pg.filter((p) => p && p.k === surface);
+    if (hits.length !== 1) return null;
+    const text = String(hits[0].g || "").trim();
+    if (!text) return null;
+    const who = tahotWitness();
+    const m = who && index && index.m_sources ? index.m_sources[who.m] : null;
+    return { text, m: who ? { lic: licenseName(who.licence), m: m ? m.label : who.label, y: null } : null, why: "place", mId: who ? who.m : null };
   };
   const lineUnder = (word, table) => {
     if (!word || table !== zone.gloss) return null;
