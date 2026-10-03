@@ -245,7 +245,10 @@ let ATLAS_NAMES = [];
   // word from nowhere, and one occurrence over is still one over.
   {
     const gp = join(K3, "data", "book-grouping-v1.json");
-    if (existsSync(gp) && TITLE_TOKENS.size) {
+    // ... where the door files the twenty-four at all (door-filing-v1: the
+    // owner ruled the door to the thirty-nine, 2026-10-03)
+    const { FILE_24_ON_THE_DOOR } = await import("./door-filing-v1.mjs");
+    if (FILE_24_ON_THE_DOOR && existsSync(gp) && TITLE_TOKENS.size) {
       const G = JSON.parse(readFileSync(gp, "utf8"));
       const covered = (G.groups || []).every((g) => (g.files || []).every((f) => TITLE_TOKENS.has(f) || !doorServes(f)));
       const allServed = (G.groups || []).flatMap((g) => g.files || []).every((f) => TITLE_TOKENS.has(f));
