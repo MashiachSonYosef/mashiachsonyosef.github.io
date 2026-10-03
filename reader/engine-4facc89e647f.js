@@ -388,6 +388,8 @@
   // toggled — not a vowel of it — and this map cannot reach it: it is read
   // by the card's head, its pool and its order, and by nothing that draws
   // the text of the book.
+  // No card carries its switch for now (the owner, 2026-10-03), so the map
+  // stays empty and every card follows the book's setting.
   const cardPointing = new Map();   // the word's pointed surface -> "letters"
   const pointingNow = (surface) => {
     const s = surface || openPointed;
@@ -2757,9 +2759,9 @@
     fitBands();
   };
   // Moving the card. Pointer events so a finger and a mouse take the same
-  // path; the close button and the card's own switch are excluded so the
-  // reader can still hit them (the switch sits in the head, and a press on it
-  // was taken for a drag: the pointer was captured and the box never ticked).
+  // path; the close button and any control in the head are excluded so the
+  // reader can still hit them (a press on a checkbox in the head was taken
+  // for a drag: the pointer was captured and the box never ticked).
   let drag = null;
   hud.addEventListener("pointerdown", (e) => {
     justDragged = false;
@@ -3287,31 +3289,11 @@
         : "only readings of this pointing — a source that points the word otherwise is not asked";
       head.append(mLine);
     }
-    // THE CARD'S OWN SWITCH, in the corner, in plain words. The rail at the
-    // top says where every card starts; this one is for the word in front of
-    // the reader, and it reaches nothing else. The claim it carries is the
-    // project's own and not a source's: the scribes chose this pointing
-    // knowing the letters could carry others, and a reader is entitled to
-    // stand where they stood. What it can never do is touch the page: the
-    // Masoretic text is the licensed text and not a byte of it moves.
-    if (!word.mark && region && (region.form_k || region.k) && openPointed) {
-      const lift = document.createElement("label"); lift.className = "hud-lift";
-      const box = document.createElement("input"); box.type = "checkbox";
-      box.checked = cardPos === "letters";
-      box.addEventListener("change", () => {
-        if (box.checked) cardPointing.set(openPointed, "letters"); else cardPointing.delete(openPointed);
-        window.__cardPointing = [...cardPointing.entries()];
-        const wb = activeEl;
-        if (wb) { closeHud(false); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
-      });
-      const say = document.createElement("span");
-      say.textContent = box.checked
-        ? "Masoretic vowels off for this word — defined by character"
-        : "Turn off the Masoretic vowels for character-defined Hebrew";
-      lift.append(box, say);
-      lift.dataset.on = String(box.checked);
-      head.append(lift);
-    }
+    // THE CARD CARRIES NO POINTING SWITCH OF ITS OWN (the owner, 2026-10-03:
+    // "lets just take that toggle off individual cards for now id put it in
+    // the collapsed for now we can work on it later"). The pointing is set
+    // for the whole book in the switches' fold, and a card says above what
+    // that setting did to it.
     // A source-marked branch says which half it is ON the card, in words —
     // the roles lived only in hover titles, and a phone has no hover. The
     // ketiv/qere words are the tradition's own names for the halves, not
@@ -5090,6 +5072,13 @@
       line.className = "g";
       run.append(line);
       run.__gloss = line;
+    }
+    // signs off: a piece that is a sign and nothing else is not drawn beside a
+    // piece that carries the reading ("<obj.> + Tubal-" draws "Tubal-"); every
+    // piece a sign, they all stand, as on a single word's line (trimSigns)
+    if (signsPref === "off") {
+      const keep = parts.filter((p) => !p.t || !signOnly(p.t));
+      if (keep.some((p) => p.t)) parts.splice(0, parts.length, ...keep);
     }
     const text = parts.map((p) => p.t || "\u2014").join(" + ");
     line.replaceChildren();
