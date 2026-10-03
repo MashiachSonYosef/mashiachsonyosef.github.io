@@ -39,6 +39,10 @@
     /* selection is amber on this face too — gold's in-process value, filled,
        with the tent's own ink on top of it */
     --sel: #8d5e0c; --sel-dim: #b8871a;
+    /* text the reader drags across: the same amber, as a tint the word reads
+       through (the owner, 2026-10-03, on a word highlighted solid dark gold:
+       "is that ideal?") */
+    --sel-text: rgba(196, 146, 28, 0.3);
     /* the mark's own gold, brighter than the frame's so the .com never reads as the red beside it (the owner, 2026-10-02); used by the name and nothing else */
     --mark-gold: #c4921c;
     /* four colors, ruled 2026-10-02: one soft red, one soft blue, the gold and the purple,
@@ -143,7 +147,7 @@
   header.top h1 .he-t .title-row { display: inline-block; text-align: right; }
   header.top h1 .he-t .title-row .wb { margin-bottom: 0; }
   header.top h1 .he-t .title-row .w { font-size: 2.1rem; }
-  header.top h1 .he-t .title-row .g { font-size: 0.62rem; max-width: 12em; }
+  header.top h1 .he-t .title-row .g { font-size: 0.82rem; max-width: 12em; }
   header.top h1 .t-note { font-size: 0.6rem; letter-spacing: 0.06em; color: var(--muted);
     font-variant: normal; text-transform: none; }
   /* The third register: a machine's guess, named by its author. The chip is
@@ -183,9 +187,26 @@
   .byline-fold > summary::-webkit-details-marker { display: none; }
   .byline-fold > summary::before { content: "\25B8 "; color: var(--muted); }
   .byline-fold[open] > summary::before { content: "\25BE "; }
+  /* a label and its value, in the columns the title rows above stand in (the
+     owner, 2026-10-03: "columns fail") */
+  .byline-fold > summary { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
+  .byline-fold > summary .s-lab { flex: 0 0 auto; min-width: 5.6rem; font-size: 0.6rem; letter-spacing: 0.18em; }
+  .byline-fold > summary .s-val { flex: 1 1 12rem; min-width: 0; font-size: 0.8rem; letter-spacing: 0.02em;
+    text-transform: none; color: var(--muted); }
+  /* the attestation opens under a press, collapsed at rest (the owner, 2026-10-03) */
+  #workLic[role="button"] { cursor: pointer; }
+  #workLic:not([aria-expanded="true"]) .att-v { display: none; }
+  #workLic:not([aria-expanded="true"])::after { content: " \25B8"; font-size: 0.8em; }
   .byline-fold > summary .lic { color: var(--ink-strong); }
   .byline-fold > summary:hover { color: var(--muted); }
   #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; max-width: 62rem; }
+  /* the page's own gutter, and room under it for the floating chapter bar */
+  #bookEnd { margin: 2.4rem 0 0; padding: 1rem 1.5rem 6rem; border-top: 1px solid var(--line); }
+  #bookEnd > * { max-width: 62rem; }
+  .receipts-fold { margin: 0.8rem 0 0; }
+  .receipts-fold > summary { cursor: pointer; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .receipts-fold > summary:hover { color: var(--muted); }
+  .receipts-fold .receipts-full { margin: 0.5rem 0 0; font-size: 0.78rem; color: var(--faint); }
   .wb.ov .w { background: var(--chip-bg); }
   .wb.ov-first .w { border-start-start-radius: 0.25rem; border-end-start-radius: 0.25rem; padding-inline-start: 0.15rem; }
   .wb.ov-last .w { border-start-end-radius: 0.25rem; border-end-end-radius: 0.25rem; padding-inline-end: 0.15rem; }
@@ -1545,7 +1566,7 @@
      selection in the reader's own blue, elevation that says what floats. */
   * { -webkit-tap-highlight-color: transparent; }
   body { font-kerning: normal; }
-  ::selection { background: var(--sel-dim); color: var(--ink-strong); }
+  ::selection { background: var(--sel-text); color: inherit; }
   button, select { transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease; }
   button:hover:not([disabled]) { border-color: var(--muted); }
   button:active:not([disabled]) { transform: translateY(0.5px); }
@@ -1711,9 +1732,6 @@
        zone's own receipts — which rule, and whether the ink was carried from
        a named source or typed because no source we hold carries the mark. -->
   <p id="demoLine" hidden></p>
-  <p id="basisLine" hidden></p>
-  <p id="holdsLine" hidden></p>
-  <p id="rightsLine" hidden></p>
   <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
        text and belongs where it can be tapped and defined — the masthead, out
        of the ledger, with its records behind it. The Hebrew that stood here was
@@ -1759,7 +1777,18 @@
 </div>
 <main id="text"></main>
 <div id="hud" hidden></div>
-<footer id="prov"></footer>
+<!-- THE BOOK'S OWN RECORD, AT ITS END (the owner, 2026-10-03: "if we need to
+     say the receipts section id put it at the bottom of the book probably",
+     and "the internal language like Y ledger should never appear"). How this
+     book's chapters are numbered and what waits to be added are said after
+     the text, in plain words; the build's receipts and fingerprints, which
+     are the build's own language, are folded under one press. -->
+<section id="bookEnd" hidden>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <details id="receiptsFold" class="receipts-fold"><summary>receipts</summary><p class="receipts-full" id="receiptsFull"></p><footer id="prov"></footer></details>
+</section>
 <script>
 (async () => {
   // Every ?param this page reads, taken once and here. The rewrite a few lines
@@ -2562,9 +2591,11 @@
     if (zone.byline) {
       const ro = ((zone.emitted_from || {}).walk || {}).restore_oracle || null;
       const lic = ((((zone.emitted_from || {}).walk || {}).rights) || {}).raw_license || "";
-      sum.replaceChildren("source");
-      if (ro && ro.edition) sum.append(` \u00b7 ${ro.edition}`);
-      if (lic) { const c = document.createElement("span"); c.className = "lic"; c.textContent = lic; sum.append(" \u00b7 ", c); }
+      const sLab = document.createElement("span"); sLab.className = "s-lab"; sLab.textContent = "source";
+      const sVal = document.createElement("span"); sVal.className = "s-val";
+      if (ro && ro.edition) sVal.append(ro.edition);
+      if (lic) { const c = document.createElement("span"); c.className = "lic"; c.textContent = lic; sVal.append(ro && ro.edition ? " \u00b7 " : "", c); }
+      sum.replaceChildren(sLab, sVal);
       fold.hidden = false;
     }
   }
@@ -2754,24 +2785,15 @@
     if (deskShown) {
       /* the desk said it */
     } else if (wk && wk.restore_oracle) {
-      meta.append(`${pageMeasure.words.toLocaleString()} words on the read axis in ${nSec.toLocaleString()} ${unitName}${nSec === 1 ? "" : "s"}, with ${pageMeasure.c0_off.toLocaleString()} scribal mark${pageMeasure.c0_off === 1 ? "" : "s"} each at its own position`
-        + (wk && wk.restore_oracle ? `, served from the ${wk.restore_oracle.edition} edition as the corpus lane restored it. ` : `. `));
+      meta.append(`${pageMeasure.words.toLocaleString()} words in ${nSec.toLocaleString()} ${unitName}${nSec === 1 ? "" : "s"}, with ${pageMeasure.c0_off.toLocaleString()} scribal mark${pageMeasure.c0_off === 1 ? "" : "s"} each in its own place`
+        + (wk && wk.restore_oracle ? `, from the ${wk.restore_oracle.edition} edition. ` : `. `));
     } else {
-      meta.append(`${renderedWords.toLocaleString()} words in ${nSec.toLocaleString()} ${nSec === 1 ? "section" : "sections"}, served from the sealed chain. `);
+      meta.append(`${renderedWords.toLocaleString()} words in ${nSec.toLocaleString()} ${nSec === 1 ? "section" : "sections"}. `);
     }
-    const more = document.createElement("button");
-    more.type = "button"; more.className = "receipts-btn";
-    more.textContent = "receipts";
-    more.setAttribute("aria-expanded", "false");
-    const full = document.createElement("span");
-    full.className = "receipts-full"; full.hidden = true; full.textContent = receiptsText;
-    more.addEventListener("click", () => {
-      const on = full.hidden;
-      full.hidden = !on;
-      more.setAttribute("aria-expanded", String(on));
-      more.textContent = on ? "hide receipts" : "receipts";
-    });
-    meta.append(more, full);
+    // the receipts stand at the book's end, folded (the owner, 2026-10-03)
+    document.getElementById("receiptsFull").textContent = receiptsText;
+    document.getElementById("bookEnd").hidden = false;
+    if (!meta.textContent.trim()) meta.hidden = true;
   }
   // What this build stands on, and which slots stand open — said in the same
   // quiet register as the rest of the masthead. The frame is recorded as "a
@@ -2817,24 +2839,26 @@
     if (!entry) return;
     const basisEl = document.getElementById("basisLine");
     if (entry.basis === "TYPED_AWAITING_LEDGER") {
-      basisEl.append(`No record has been issued yet that names this book or numbers its chapters. It is shown anyway: its place in the sealed text store (${Number(entry.unit_count).toLocaleString()} passages) was entered by hand and is marked as such. Once the record is issued, the hand-entered numbers must be removed before this book will build again.`);
+      basisEl.append(`No record names this book or numbers its chapters yet, so its ${Number(entry.unit_count).toLocaleString()} passages were placed by hand, and are marked as such until the record comes.`);
       basisEl.hidden = false;
     } else if (entry.basis === "SEALED_Y_LEDGER") {
-      basisEl.append(`chapter names and order are read from this book\u2019s issued navigation record \u2014 ${entry.y_fixture || "record"}${zone.emitted_from.y_ledger?.status ? ` \u00b7 ${zone.emitted_from.y_ledger.status}` : ""}`);
+      // plain words only: no file, no ledger's name for itself
+      basisEl.append("Chapters and verses are numbered as the source text numbers them, in the order of this book\u2019s contents record. No chapter carries a name here: no source on this shelf gives one.");
       basisEl.hidden = false;
     }
     if (entry.held_commentaries > 0) {
       const holdsEl = document.getElementById("holdsLine");
-      holdsEl.append(`${Number(entry.held_commentaries).toLocaleString()} commentary slots stand open \u2014 `
+      holdsEl.append(`${Number(entry.held_commentaries).toLocaleString()} ${Number(entry.held_commentaries) === 1 ? "commentary waits" : "commentaries wait"} to be added \u2014 `
         + entry.holds.map((h) => h.title).join(", ")
-        + ` \u2014 each fills when its exact work id, body, and attachment are proven (${entry.holds_source}).`);
+        + ` \u2014 each once its text and where it attaches are confirmed.`);
       holdsEl.hidden = false;
     }
     if (entry.entries_without_own_license > 0) {
       const el = document.getElementById("rightsLine");
-      el.append(`${Number(entry.entries_without_own_license).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} printed commentary entries await their own license receipts from the commentary build \u2014 the work-level license shown for them is real, and the per-entry grain fills when that build runs.`);
+      el.append(`${Number(entry.entries_without_own_license).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} commentary entries show the commentary\u2019s own license until each entry\u2019s license is recorded.`);
       el.hidden = false;
     }
+    if (["basisLine", "holdsLine", "rightsLine"].some((id) => !document.getElementById(id).hidden)) document.getElementById("bookEnd").hidden = false;
   })();
   document.getElementById("prov").textContent =
     `${zone.work_receipts && zone.work_receipts.b_n ? `${zone.work_receipts.b_n} · ` : ""}` +
@@ -8342,7 +8366,13 @@
       // in as if the name were expression — the category error the ruling
       // retired. The witness is still the oldest by the standing S law;
       // every other witness is one press away on the title word's record.
-      chip.textContent = `attested: ${a.label}`;
+      // collapsed at rest: "attested" and a caret; a press opens the name of
+      // the witness, which stays in the chip's text either way
+      const attV = document.createElement("span"); attV.className = "att-v"; attV.textContent = `: ${a.label}`;
+      chip.replaceChildren("attested", attV);
+      chip.setAttribute("role", "button"); chip.tabIndex = 0; chip.setAttribute("aria-expanded", "false");
+      chip.addEventListener("click", () => chip.setAttribute("aria-expanded", String(chip.getAttribute("aria-expanded") !== "true")));
+      chip.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); chip.click(); } });
       chip.title = [
         `${a.label}${hasYear(a.year) ? ` · ${a.year}` : ""} — attests this usage; the oldest witness leads by the standing rule. A name is an identification, not licensed expression.`,
         ...(a.also || []),
@@ -8547,7 +8577,7 @@
   if (commentaryStore && commentaryStore.counts && commentaryStore.counts.attached_sections) {
     const cc = commentaryStore.counts;
     const w0 = (commentaryStore.works || [])[0] || {};
-    const full = document.querySelector("#meta .receipts-full");
+    const full = document.getElementById("receiptsFull");
     if (full) full.textContent +=
       ` · ${cc.attached_sections.toLocaleString()} of ${cc.base_sections.toLocaleString()} sections carry ` +
       `${w0.title || "a commentary"} (${w0.license || "license unrecorded"}), served from the same sealed chain and ` +
@@ -8555,7 +8585,7 @@
   }
   if (hohStore && hohStore.counts) {
     const hc = hohStore.counts, hs = hohStore.source || {};
-    const full = document.querySelector("#meta .receipts-full");
+    const full = document.getElementById("receiptsFull");
     if (full) full.textContent +=
       ` · ${(hs.work && hs.work.author) || "a dictionary"} defines ${hc.served.toLocaleString()} of this book's headwords in Hebrew` +
       ` (${hc.held_by_volume + hc.held_by_asterisk} held: ${hc.held_by_volume} by volume, ${hc.held_by_asterisk} by asterisk), served from volumes ${(hs.served_volumes || []).join(", ")} by the owner's ruling${hs.ruling ? ` of ${hs.ruling.on}` : ""}`;
@@ -9735,7 +9765,7 @@
   {
     const t = scopeCensus();
     window.__scopeCensus = t;
-    const full = document.querySelector("#meta .receipts-full");
+    const full = document.getElementById("receiptsFull");
     if (full && t.total) {
       const named = t[1] + t[2] + t[3];
       full.textContent += ` · ${t.total.toLocaleString()} commentary attachments, ` +
