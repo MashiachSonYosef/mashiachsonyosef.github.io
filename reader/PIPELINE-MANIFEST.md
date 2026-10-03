@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-10-03.
 
-**117 rules declared · 111 named by a check · 6 unguarded.**
+**118 rules declared · 112 named by a check · 6 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -106,6 +106,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `source-short-names-rule-v1-a-shelf-chip-wears-a-short-name-this-record-keeps-and-the-full-name-on-press` | tools/check-source-switch-v1.mjs | check-source-switch-v1 |
 | `source-switch-rule-v1-a-reading-remembers-who-carried-it` | tools/gloss-store-v1.mjs, zone.html, tools/gloss-m-v1.mjs | check-carrier-survives-v1, check-line-follows-card-v1, check-source-switch-v1 |
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | check-span-receipt-carried-identical-v1 |
+| `span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole` | tools/apply-span-ledger-v1.mjs | check-respan-projection-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed` | tools/check-store-continuity-v1.mjs | check-store-continuity-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
@@ -150,10 +151,11 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 92 tools that are not checks.
+`build.sh` calls 19 of the 93 tools that are not checks.
 
 Not called by any build stage:
 
+- `tools/apply-span-ledger-v1.mjs`
 - `tools/bake-overlay-book-counts-v1.mjs`
 - `tools/bake-witnessed-order-v1.mjs`
 - `tools/bookword-measure-v1.mjs`

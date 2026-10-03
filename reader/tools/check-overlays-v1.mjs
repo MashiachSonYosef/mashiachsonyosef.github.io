@@ -74,6 +74,9 @@ const pass = async (state) => {
   }, { ovs: OVERLAYS, ids: OV_IDS, off: state === "off" });
   await p.reload({ waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
+  // the sources row is drawn once the page's records have arrived, which can
+  // be after the first words are on screen: wait for its chips, not a clock
+  await p.waitForFunction(() => document.querySelectorAll('.rail .row[data-toggle="sources"] .dfp').length > 0, null, { timeout: 20000 }).catch(() => {});
   await p.waitForTimeout(500);
   const lines = await p.evaluate(() => [...document.querySelectorAll(".wb > .g, .wjoin > .g")].slice(0, 400).map((g) => g.textContent));
   const meta = await p.evaluate(() => ({ overlays: window.__overlays || [],

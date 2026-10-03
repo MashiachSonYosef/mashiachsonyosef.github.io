@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // GUARDS: respan-rule-v1-project-the-compspan-template-over-a-zones-own-keys
+// GUARDS: span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
 // ledger for one.
@@ -117,6 +118,17 @@ check("L0  the declaring tool still declares the rule and gathers keys from word
     : gathersFrom.length < 3 ? `the tool now gathers keys from ${gathersFrom.join(", ") || "nowhere this check knows"}; this check reads three places`
       : `quoted from ${basename(DECLARING)} · slice rule ${SPAN_RULE_ID}`);
 
+// TWO KINDS OF LAYER. Since the corpus lane's relay v59 (2026-10-03) a zone's
+// layer may instead be the lane's span ledger, swapped in whole by
+// tools/apply-span-ledger-v1.mjs and receipted at emitted_from.span_ledger:
+// the sources' own divisions, not a slice of the template. Such a zone is held
+// to L1-L3 and L5 like any other, its L4 asks that the receipt name the ledger
+// by file, bytes and sha256 under the ledger's rule, and L6-L9, which are
+// questions about the template slice, are asked of the template-layered zones
+// alone.
+const LEDGER_RULE_ID = "span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole";
+const ledgerLayered = (z) => !!(z && z.emitted_from && z.emitted_from.span_ledger && z.emitted_from.span_ledger.rule === LEDGER_RULE_ID);
+
 // ── the zones ─────────────────────────────────────────────────────────────
 if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); process.exit(3); }
 // A sidecar (<slug>.commentary.bin, <slug>.hoh.bin) carries no sections of its
@@ -146,7 +158,7 @@ const orphan = [], noRejoin = [], malformed = [], noReceipt = [], misdescribed =
 const unlayered = [];
 const namesSeen = new Map();   // "path|sha256|bytes" -> zones naming it
 const rowsScannedSeen = new Set();
-let zonesRead = 0, layered = 0, spansTotal = 0, regionsSpanned = 0;
+let zonesRead = 0, layered = 0, spansTotal = 0, regionsSpanned = 0, ledgerZones = 0;
 
 for (const f of bins) {
   const z = readZone(f);
@@ -190,15 +202,21 @@ for (const f of bins) {
   regionsSpanned += spanned;
 
   // L4 — the receipt
-  const sl = (z.emitted_from || {}).span_layer || null;
-  const src = (sl && sl.source) || {};
+  const byLedger = ledgerLayered(z);
+  const sl = byLedger ? z.emitted_from.span_ledger : (z.emitted_from || {}).span_layer || null;
+  const src = (sl && (byLedger ? sl.ledger : sl.source)) || {};
   const shaOk = SHA256.test(String(src.sha256 || ""));
-  const receiptOk = !!sl && sl.rule === SPAN_RULE_ID && typeof src.path === "string" && src.path.length > 0
-    && shaOk && Number.isInteger(src.bytes) && src.bytes > 0;
+  if (byLedger) {
+    ledgerZones += 1;
+    if (!(typeof src.file === "string" && src.file.length && shaOk && Number.isInteger(src.bytes) && src.bytes > 0))
+      sample(noReceipt, `${work} · the span ledger receipt names no file, sha256 or byte count`);
+  }
+  const receiptOk = byLedger || (!!sl && sl.rule === SPAN_RULE_ID && typeof src.path === "string" && src.path.length > 0
+    && shaOk && Number.isInteger(src.bytes) && src.bytes > 0);
   if (!receiptOk) {
     sample(noReceipt, `${work} · ${!sl ? "no span_layer receipt" : sl.rule !== SPAN_RULE_ID ? `rule ${JSON.stringify(sl.rule || null)}`
       : !src.path ? "names no sealed file" : !shaOk ? "names no sha256" : "records no byte count"}`);
-  } else {
+  } else if (!byLedger) {
     const id = `${src.path}|${src.sha256}|${src.bytes}`;
     namesSeen.set(id, (namesSeen.get(id) || 0) + 1);
     if (Number.isInteger(sl.rows_scanned)) rowsScannedSeen.add(sl.rows_scanned);
@@ -245,10 +263,10 @@ check("L3  every span resolves in its own zone's tables",
   malformed.length ? `${malformed.length} do not — ${named(malformed)}`
     : "roles match surfaces, every index in range, no empty component");
 
-check("L4  every span layer carries a receipt naming the slice rule and the sealed file by path, bytes and sha256",
+check("L4  every span layer carries a receipt naming its source by path, bytes and sha256: the sealed template's slice, or the corpus lane's span ledger",
   noReceipt.length === 0,
   noReceipt.length ? `${noReceipt.length} without one — ${named(noReceipt)}`
-    : `${layered} receipts, every one under ${SPAN_RULE_ID}`);
+    : `${layered - ledgerZones} receipts under ${SPAN_RULE_ID} · ${ledgerZones} under ${LEDGER_RULE_ID}`);
 
 check("L5  every receipt describes the table it sits on",
   misdescribed.length === 0,
@@ -351,7 +369,7 @@ if (!templatePath || !existsSync(templatePath)) {
     let ownWithRow = 0, compared = 0;
     for (const f of bins) {
       const z = readZone(f);
-      if (!z) continue;
+      if (!z || ledgerLayered(z)) continue;   // the sources' own divisions are no slice of the template
       const spans = z.spans || {};
       if (!Object.keys(spans).length) continue;
       const work = String(z.work || f.replace(/\.bin$/, ""));

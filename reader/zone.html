@@ -46,19 +46,19 @@
        the deep red the titles wore and the royal blue are retired, and the deep names
        carry the soft values; the neutral's olive-brown text is the purple ink, since gold is never text at rest. no title has
        a color of its own. the red raised one step, same lightness, more color (owner, 2026-10-03:
-       "our sites red is actually just one tone too muted"). */
-    --shani: #944c5b; --shani-dim: #b0737a;
+       "our sites red is actually just one tone too muted"), and one notch more toward the blue's own saturation ("just 1 notch more electric to match the blue", 2026-10-03). */
+    --shani: #9d4355; --shani-dim: #b76670;
     /* the inks the channels are written in, held muted: the corpus a quiet
        rose-red, the reading a quiet blue (owner, 2026-09-11: mockup 4, "i
        still might make that red like a little more muted somehow") */
-    --shani-ink: #944c5b; --tekhelet-ink: #34649a;
+    --shani-ink: #9d4355; --tekhelet-ink: #34649a;
     --wash-shani: #eedcd6;
     /* the held word: its own wash, more opaque — never a third color (owner,
        2026-09-11: "move away from gold as the highlighting itself and move
        toward just a more opaque red and blue") */
     --held-shani: #dbb9b6;
     --held-tekhelet: #b9c6e6;
-    --halo-shani: rgba(148, 76, 91, 0.75);
+    --halo-shani: rgba(157, 67, 85, 0.75);
     /* tekhelet the reading, argaman our own voice — both taken down for
        daylight, both above the AAA floor on linen */
     --tekhelet: #34649a; --tekhelet-dim: #7f8ba8;
@@ -82,7 +82,7 @@
     /* the scripture's own ink, darkened to the AAA floor the contrast judge
        holds body text to — still warm, never black; linen is not glare and
        ink is not tar, but thin niqqud marks need 7:1 to stay marks */
-    --c-word: #944c5b; --en-word: #944c5b;
+    --c-word: #9d4355; --en-word: #9d4355;
     --hover-ink: #6b4f0e; --hover-line: #bda15c;
     --chip-bg: rgba(43, 35, 56, 0.05); --chip-line: rgba(150, 112, 15, 0.34);
     --shadow-pop: 0 8px 24px rgba(96, 80, 48, 0.28);
@@ -111,9 +111,9 @@
     padding: 0.3rem 0.95rem; background: var(--panel2); color: var(--shani-ink);
     font-family: 'wordmark', Georgia, serif; font-weight: 600; letter-spacing: -0.01em;
     text-decoration: none; white-space: nowrap; }
-  /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02): fire in shani, and in argaman, hail in tekhelet, the .com in gold, each word its own color, and the and the turn between them: red into purple into blue, purple full only at its n. The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. The .com is the one gold a page shows at rest, and the color check names it. */
+  /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02, and 2026-10-03: "remember the tabernacles red and blue are crafted from gold ... maybe and should be gold. and .com should be purple"): fire in shani, and in gold, hail in tekhelet, the .com in argaman, its dot still turning out of the blue (the owner: "a transition into the purple .com right so its not so standoutish ... even if just the . is blueish purple"), each word its own color, and the and the turn between them: red into gold into blue, gold full only at its n, as the threads of the blue and the scarlet were cut from beaten gold (Exodus 39:3). The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. The and is the one gold a page shows at rest, and the color check names the mark. */
   @font-face { font-family: 'wordmark'; src: url('/fonts/outfit-wordmark-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
-  #home a.home .wm-fire { color:var(--shani); } #home a.home .wm-and { color:var(--argaman); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { #home a.home .wm-and { background-image:linear-gradient(90deg, var(--shani) 0%, var(--argaman) 36%, var(--argaman) 64%, var(--tekhelet) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } } #home a.home .wm-hail { color:var(--tekhelet); } #home a.home .wm-tld { color:var(--mark-gold); }
+  #home a.home .wm-fire { color:var(--shani); } #home a.home .wm-and { color:var(--mark-gold); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { #home a.home .wm-and { background-image:linear-gradient(90deg, var(--shani) 0%, var(--mark-gold) 36%, var(--mark-gold) 64%, var(--tekhelet) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } #home a.home .wm-tld { background-image:linear-gradient(90deg, var(--tekhelet) 0%, var(--argaman) 30%, var(--argaman) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } } #home a.home .wm-hail { color:var(--tekhelet); } #home a.home .wm-tld { color:var(--argaman); }
   #home a.home:hover { color: var(--ink-strong); border-color: var(--muted); }
   /* the other face, one press away — the button names where it takes you */
   #home button.face { border: 1px solid var(--line); border-radius: 999px; background: none;
@@ -4251,6 +4251,31 @@
     whole_token_only_v1: "recorded as one component",
     maqaf_run_v1: "joined by a maqaf: the run as written, joined, and word by word, in the forms a dictionary published",
   };
+  // THE SOURCES' OWN DIVISIONS (the corpus lane's span ledger v3, relay v59,
+  // 2026-10-03; tools/apply-span-ledger-v1.mjs): a row's rule names who divides
+  // the form this way, "declared_v1 | every place: tahot:main, macula:main |
+  // some places: tahot:variant:P". The card says it in words: which sources,
+  // and where in this book. The roles are the ledger's own names.
+  const SOURCE_SAYS = { tahot: "STEP TAHOT", macula: "MACULA" };
+  const sourceSays = (tok) => {
+    const [src, kind, which] = String(tok).trim().split(":");
+    const name = SOURCE_SAYS[src] || src;
+    return kind === "variant" && which ? `${name} (its variant ${which})` : name;
+  };
+  const listSays = (xs) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+  const provenanceOf = (rule) => {
+    if (SPLIT_PROVENANCE[rule]) return SPLIT_PROVENANCE[rule];
+    const parts = String(rule || "").split("|").map((x) => x.trim());
+    if (parts[0] !== "declared_v1") return rule;
+    const says = [];
+    for (const part of parts.slice(1)) {
+      const m = /^(every place|some places):\s*(.+)$/u.exec(part);
+      if (!m) continue;
+      says.push(`${m[1] === "every place" ? "at every place in this book" : "at some places"}: ${listSays(m[2].split(",").map(sourceSays))}`);
+    }
+    return says.length ? `divided this way by the sources themselves, ${says.join("; ")}` : rule;
+  };
+  const ROLE_SAYS = { source_piece: "piece", tahot_prefix: "prefix", tahot_root: "root", tahot_suffix: "suffix" };
   const spanOf = (bin, k) => {
     const row = bin && bin.spans ? bin.spans[k] : null;
     if (!row) return null;
@@ -5347,7 +5372,7 @@
         const btn = document.createElement("button"); btn.type = "button";
         btn.lang = "he"; btn.dir = "rtl"; btn.textContent = c.surface;
         if (span) {
-          const roles = [...new Set(span.roles.slice(c.from, c.to + 1))].join(", ").replace(/_/gu, " ");
+          const roles = [...new Set(span.roles.slice(c.from, c.to + 1))].map((r) => ROLE_SAYS[r] || r).join(", ").replace(/_/gu, " ");
           if (roles) btn.title = roles;
         }
         btn.setAttribute("aria-pressed", String(i === cellIdx));
@@ -5915,8 +5940,8 @@
       prov.textContent = "A division into parts was proposed for this form and is not shown: it has not been established";
     } else if (span) {
       prov.textContent = comps.length === 1
-        ? `${SPLIT_PROVENANCE[span.rule] || span.rule}`.replace(/^./u, (c) => c.toUpperCase())
-        : `${comps.length} components · ${SPLIT_PROVENANCE[span.rule] || span.rule}`;
+        ? `${provenanceOf(span.rule)}`.replace(/^./u, (c) => c.toUpperCase())
+        : `${comps.length} components · ${provenanceOf(span.rule)}`;
     } else if (bin.spans) {
       // this zone carries components and this form is not among them
       prov.textContent = "No component system recorded for this form.";

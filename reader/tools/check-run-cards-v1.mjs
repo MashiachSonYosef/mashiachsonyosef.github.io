@@ -152,7 +152,7 @@ const r5bad = chains.filter((o) => {
   const got = o.cuts.map((c) => c.t);
   const words = o.keys.join(" + ");
   const named = tilingsOf(o.n, o.named).filter((t) => t.length < o.n).map((t) => asText(o.keys, t.join(" ")));
-  return got[0] !== o.keys.join("־") || got[got.length - 1] !== words || named.some((t) => !got.includes(t)) || !o.active;
+  return got[0] !== o.keys.join("\u05be") || got[got.length - 1] !== words || named.some((t) => !got.includes(t)) || !o.active;
 });
 check("R5  a run that is a maqaf chain keeps the chain's divisions and adds the named ones before the words",
   chains.length === 0 || r5bad.length === 0,

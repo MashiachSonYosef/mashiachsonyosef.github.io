@@ -140,7 +140,10 @@ for (const f of bins) {
   formsTotal += forms;
   const layer = ef.span_layer || null;
   const src = (layer || {}).source || {};
-  if (forms > 0 && !(src.path && src.sha256)) {
+  // a table swapped in whole from the corpus lane's span ledger names its
+  // file under emitted_from.span_ledger (tools/apply-span-ledger-v1.mjs)
+  const ledger = (ef.span_ledger || {}).ledger || {};
+  if (forms > 0 && !(src.path && src.sha256) && !(ledger.file && ledger.sha256)) {
     if (bare.length < 12) bare.push(`${z.work || f} (${forms.toLocaleString()} forms)`); else bare.push(null);
   }
   if (layer && layer.receipt_carried) {
@@ -219,7 +222,7 @@ check("L4  the carried receipt's form count is this zone's form count",
     : sourcesRead ? "every carried receipt counts the table it sits on" : none);
 
 // ── L5 · what is left to carry ────────────────────────────────────────────
-check("L5  no zone carries spans and no receipt at all",
+check("L5  no zone carries spans and no receipt at all (the template's slice or the corpus lane's span ledger)",
   bare.length === 0,
   bare.length ? `${bare.length} table${bare.length === 1 ? "" : "s"} with no sealed file named — ${first(bare)}`
     : `every one of the ${(zonesRead - instruments).toLocaleString()} zones with a component layer names the sealed file it came from`);
