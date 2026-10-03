@@ -153,8 +153,10 @@ const proof = await p.evaluate(async () => {
     role: roles.find((t) => /^variant site — /.test(t)) || "",
     key: keys.find((t) => /Read from /.test(t)) || "" };
 });
-check("the marked word wears the mark and opens in the real reader",
-  proof.found && proof.marked, proof.found ? "dotted, pressable" : "no vs word rendered");
+// the owner, 2026-10-03: an underline is only ever one card or the selected
+// qere, so a variant site opens its record and wears no mark of its own
+check("the marked word opens in the real reader and wears no underline of its own",
+  proof.found && !proof.marked, proof.found ? (proof.marked ? "still underlined" : "plain, pressable") : "no vs word rendered");
 check("the carrier prints exactly as the source wrote it, wrapping included",
   proof.found && proof.before === carrierBefore);
 check("the card prints the record's own sentence as a variant site",
