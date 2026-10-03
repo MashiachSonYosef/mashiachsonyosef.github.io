@@ -407,9 +407,28 @@
   // reading carrying a sign follows the plain ones. The patterns are the
   // ledger's own, written before its count.
   const SIGNS_KEY = "fh.signs";
-  let signsPref = (() => { try { return localStorage.getItem(SIGNS_KEY) === "below" ? "below" : "printed"; } catch { return "printed"; } })();
+  // OFF BY DEFAULT (the owner, 2026-10-03, on the corpus lane's source-signs
+  // ledger: "preselect it off for now"). Off is the ledger's third branch: a
+  // reading carrying a sign is not offered as a pill, and on the line a piece
+  // that is nothing but a sign (TAHOT's "<obj.>", "<to>", its "\u00bf") is not
+  // drawn. Nothing is ever cut inside a reading: "[the] word of" is printed as
+  // TAHOT printed it, and the record on the card and in every export carries
+  // every sign byte for byte.
+  // exposed for the checks, which ask the page what it drew under rather than assume
+  Object.defineProperty(window, "__signs", { get: () => signsPref });
+  let signsPref = (() => { try { const v = localStorage.getItem(SIGNS_KEY); return ["printed", "below", "off"].includes(v) ? v : "off"; } catch { return "off"; } })();
   const SOURCE_SIGN = [/^(X|\u00d7|\+) /u, /\u00bf/u, /<[^>]*>/u, /\[[^\]]*\]/u, / ~ /u];
   const hasSourceSign = (t) => SOURCE_SIGN.some((re) => re.test(String(t)));
+  // a piece of a reading that is a sign and nothing else
+  const signOnly = (t) => /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(String(t).trim());
+  // the place's reading as the line draws it under "off": its sign-only
+  // pieces left undrawn, the rest as printed; the whole stays on .full
+  const placeShown = (at) => {
+    if (!at || signsPref !== "off") return at;
+    const pieces = String(at.text).split("/");
+    const keep = pieces.filter((x) => !signOnly(x));
+    return keep.length === pieces.length ? at : { ...at, text: keep.join("/").trim(), full: at.text };
+  };
   let editionMark = (() => { try { return localStorage.getItem(ED_KEY) === "diff" ? "diff" : "mam"; } catch { return "mam"; } })();
   let defOrder = (() => {
     let held = null;
@@ -605,12 +624,12 @@
       set: (id) => { namesPref = id; try { localStorage.setItem(NAMES_KEY, id); } catch { /* the choice still stands on this page */ } if (id === "sound" && !latticeStore) latticeReady().then(() => { if (redrawReadings) redrawReadings(); }); if (redrawReadings) redrawReadings(); },
       now: () => (namesPref === "sound" ? "as sound" : "as meaning") },
     { id: "signs", voice: "arrange", lab: "source signs", why: "a source's own marks on a reading: Strong's X and +, STEP's \u00bf, < > and [ ], MACULA's ~ \u2014 printed as the source printed them, never removed",
-      positions: [{ id: "printed", lab: "as printed" }, { id: "below", lab: "after plain readings" }],
+      positions: [{ id: "off", lab: "off" }, { id: "printed", lab: "as printed" }, { id: "below", lab: "after plain readings" }],
       live: () => true,
       waits: "",
       get: () => signsPref,
-      set: (id) => { signsPref = id; try { localStorage.setItem(SIGNS_KEY, id); } catch { /* the choice still stands on this page */ } if (redrawReadings) redrawReadings(); },
-      now: () => (signsPref === "below" ? "signs after plain" : "signs as printed") },
+      set: (id) => { signsPref = id; try { localStorage.setItem(SIGNS_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); },
+      now: () => ({ off: "signs off", below: "signs after plain" })[signsPref] || "signs as printed" },
     // The lattice carries, per position, whether the Leningrad codex spells
     // the word otherwise (editions-diff, blind-verified in v12); the word
     // wears a dotted gold rule when the mark is on, and its title says how.
@@ -1670,7 +1689,10 @@
       })() : "";
       const rec = { he: w.s, joinNext: !!(w.presentation_join && w.presentation_join.join_next_without_separator), en: null, held: null, source: null };
       if (w.k && shown && shown !== "—") {
-        const a = await attributionFor(w.k, shown, placeLine(w));
+        const at = placeLine(w);
+        const drawn = at && placeShown(at);
+        const asked = drawn && drawn.full && spanJoin(drawn.text) === shown ? spanJoin(at.text) : shown;
+        const a = await attributionFor(w.k, asked, at);
         if (a.ok) { rec.en = a.text; rec.source = a; }
         else { rec.held = a.why; if (a.unreachable) rec.unreachable = true; }
       } else if (!w.k) rec.held = "held by the ledger; no reading is offered";
@@ -4057,7 +4079,7 @@
         const wits = (((zone.emitted_from || {}).toggles || {}).lattice || {}).pieces;
         const who = hit && wits && wits.witnesses ? wits.witnesses[`english_${hit.s}`] : null;
         const whoM = who && who.m && index && index.m_sources ? index.m_sources[who.m] : null;
-        if (hit && !(who && who.m && sourcesOff.has(who.m))) {
+        if (hit && !(who && who.m && sourcesOff.has(who.m)) && !(signsPref === "off" && signOnly(hit.g))) {
           const line = document.createElement("p"); line.className = "r-piece";
           const lab2 = document.createElement("i"); lab2.textContent = "here the source reads ";
           const val = document.createElement("b"); val.textContent = hit.g;
@@ -4481,8 +4503,21 @@
         // a copy is sorted each time, so returning to an order returns to
         // exactly its pool — a sort in place would carry the previous
         // order's tie-breaks along
-        const sorted = sortPool([...pool], surface);
+        const every = sortPool([...pool], surface);
+        // signs off: a reading carrying a source's own sign is not offered;
+        // a card whose every reading carries one keeps them all rather than
+        // stand empty, and says so
+        // the reading standing on the line keeps its pill whatever it carries:
+        // the line reads it, so the card must offer it to press
+        const unsigned = signsPref === "off" ? every.filter((r) => r === selected || !hasSourceSign(r.text)) : every;
+        const sorted = unsigned.length ? unsigned : every;
         sorted.forEach((r) => pills.append(makePill(r)));
+        { let sn = readRow.querySelector(".signs-off");
+          const offN = every.length - sorted.length;
+          if (signsPref === "off" && (offN || !unsigned.length)) {
+            if (!sn) { sn = document.createElement("p"); sn.className = "kq-role signs-off"; readRow.insertBefore(sn, pills.parentNode === readRow ? pills : null); }
+            sn.textContent = offN ? `${offN} reading${offN === 1 ? "" : "s"} carrying a source's own sign switched off` : "every reading here carries a source's own sign, so all stand";
+          } else if (sn) sn.remove(); }
         // the pool as sorted, said on the row and exposed, so a check can ask
         // the page what it offered rather than read it off the pills
         const classOf = (r) => Math.min(...r.records.map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture)));
@@ -5174,7 +5209,7 @@
     if (!word || table !== zone.gloss) return null;
     if (lookup === "headword" && word.hg && word.h && table[word.h])
       return { text: word.hg, m: word.hm ? { lic: licenseName(word.hm.lic), m: word.hm.m, y: word.hm.y, ya: "wording" } : null, why: "headword" };
-    { const at = placeLine(word); if (at) return at; }
+    { const at = placeLine(word); if (at) return placeShown(at); }
     // THE SOURCE SWITCHES FIRST. A source the reader turned off cannot lead
     // the line. Every carrier of the printed reading is baked on the key
     // (gloss_m[k].by); if all of them are off, the baked alternate leads with
@@ -5991,7 +6026,7 @@
     // starting with the ones we have outside"): the line's order, the
     // sources, the license sort. What waits under the fold still works and
     // says its own position there; this line no longer recites it.
-    const lead = ["reads", "sources", "licence"].map((id) => TOGGLES.find((t) => t.id === id)).filter(Boolean);
+    const lead = ["reads", "sources", "licence", "signs"].map((id) => TOGGLES.find((t) => t.id === id)).filter(Boolean);
     lead.forEach((t, i) => {
       if (i) now.append(Object.assign(document.createElement("i"), { textContent: "·" }));
       const b = document.createElement("b"); b.textContent = t.now() || t.lab;
@@ -6572,7 +6607,9 @@
     const moreSum = document.createElement("summary"); moreSum.className = "more-sum";
     // and the license sort, out from under the fold to be tested (the owner,
     // 2026-10-03: "move the license toggle out too ... so i can find my own SA")
-    const LEAD = new Set(["sources", "reads", "licence"]);
+    // and the source signs, starting off (the owner, 2026-10-03: "lets move
+    // source signs out to its own toggle that starts off")
+    const LEAD = new Set(["sources", "reads", "licence", "signs"]);
     const waiting = TOGGLES.filter((t) => !LEAD.has(t.id));
     moreSum.textContent = `${waiting.length} more switches, not yet fleshed out`;
     more.append(moreSum);

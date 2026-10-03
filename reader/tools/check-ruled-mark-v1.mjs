@@ -175,9 +175,12 @@ check("the word the reader ruled on is marked, and so is every other place that 
   const m = await markCosts();
   const free = !!m && m.on.w === m.off.w && m.on.h === m.off.h
     && m.on.pad === m.off.pad && m.on.border === m.off.border;
-  check("the mark is drawn on the word and moves nothing",
-    after.marks && after.borderPx === 0 && free,
-    `${after.marks ? "drawn" : "nothing drawn"} · ${after.borderPx}px of border · ` +
+  // THE OWNER'S RULING OF 2026-10-03 TURNED THIS AROUND: "no special
+  // treatments i hate that stuff". The ruling is held (the counts above) and
+  // the word is drawn exactly as a word nobody ruled on.
+  check("the ruled word wears no mark of its own and moves nothing",
+    !after.marks && after.borderPx === 0 && free,
+    `${after.marks ? "a mark is drawn" : "nothing drawn"} · ${after.borderPx}px of border · ` +
     (!m ? "no marked word to measure"
         : free ? `the box is ${m.on.w}\u00d7${m.on.h} with the mark and without it`
                : `the mark costs layout: ${m.off.w}\u00d7${m.off.h} without, ${m.on.w}\u00d7${m.on.h} with`));
