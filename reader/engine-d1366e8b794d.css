@@ -1042,6 +1042,12 @@
   /* the last thing a card gives up on a window too short for its bands: the
      bands' own labels, so the pills stand unlabelled but stand */
   #hud .rows.tight .band > .r-label { display: none; }
+  /* except the readings' own: it is the one that says the row scrolls */
+  #hud .rows.tight .band.b-read > .r-label { display: block; }
+  /* the cue's room is always kept and only its ink comes and goes, so saying
+     it never moves a card already fitted */
+  #hud .band.b-read > .r-label::after { content: " \00b7  scroll \2193"; color: var(--link); visibility: hidden; }
+  #hud .band.b-read > .r-label.more::after { visibility: visible; }
   /* and after the labels, the prose around them: the bands' own notes ("2 of
      301 records withheld…") and the reading's label and how-it-was-chosen line.
      On a window 440px tall a run's three bands needed 122px of a 73px region,

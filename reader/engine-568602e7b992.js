@@ -117,7 +117,16 @@
       else if (c === "," && depth === 0) { raw.push(s.slice(start, i)); start = i + 1; }
     }
     raw.push(s.slice(start));
-    return { readings: raw.map((piece) => piece.trim()).filter(Boolean), damaged: false };
+    // A PAGE CITATION IS NOT A READING. Cowley's Samaritan glossary writes
+    // "beginning, p. 323 (Heb.)": the page of the liturgy where the word
+    // stands, after the comma like a second sense. Split as one, it stood as
+    // a pill of its own, "p. 323 (Heb.)", among the readings of Genesis 1:1
+    // (the owner, 2026-10-03). It stays in the record, printed whole; it is
+    // never offered as a reading. A record that is nothing but a citation
+    // keeps it, so no record is emptied.
+    const pieces = raw.map((piece) => piece.trim()).filter(Boolean);
+    const readings = pieces.filter((piece) => !/^p{1,2}\.\s*\d/u.test(piece));
+    return { readings: readings.length ? readings : pieces, damaged: false };
   };
   // P · two D records are one record when they carry the same set of
   // readings, however each provider packed them — ";" between senses, ","
@@ -528,6 +537,18 @@
     // THE SOURCE SWITCHES — see the note above SOURCES_KEY. Its row is its own
     // widget (sourceSwitch below), one chip per source this book's readings
     // stand on, each with the two numbers its switch costs on this book.
+    // THE LINE READS \u2014 the two positions of "reads first" under test, out
+    // from under the fold (the owner, 2026-10-03: "the 2 toggles we are
+    // testing now id move out of the collapsed so source selected and oldest
+    // first"). It is the same switch as "reads first", not a second order:
+    // pressing either moves both, and every other position stays under the
+    // fold where it was.
+    { id: "reads", voice: "arrange", lab: "the line reads", why: "the source at this place, or the oldest witness for the form \u2014 the two positions under test; every other order is under the fold, in reads first",
+      positions: [{ id: "place", lab: "the source here" }, { id: "oldest", lab: "oldest first" }],
+      live: () => true,
+      get: () => defOrder,
+      set: (id) => chooseDefOrder(id),
+      now: () => "" },
     { id: "sources", voice: "them", lab: "sources", why: "every dictionary this book's readings stand on, each one removable — a source turned off is not asked, and the card says how many records that withheld",
       live: () => !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.sources && zone.emitted_from.toggles.sources.sources),
       waits: "the per-source switch costs baked on this book (tools/regloss-zone.mjs)",
@@ -1602,8 +1623,12 @@
     // the record's own text, not the page's rendering of it: the page joins a
     // "/"-packed span with " + " for reading, and a file that leaves the
     // building must carry what the source wrote, not how we drew it
+    // whole or part: a reading that is one sense of a longer record is an
+    // excerpt, and the file says so beside it rather than letting a part
+    // stand as though it were the provider's whole sentence
+    const piece = lead[5] === 1 || spanJoin(String(lead[1] || "")).toLowerCase() !== spanJoin(ownText).toLowerCase();
     return post.ok
-      ? { ok: true, text: ownText, label: m.label, posture: m.licensePosture,
+      ? { ok: true, text: ownText, piece, label: m.label, posture: m.licensePosture,
           pointer: m.licensePointer, year: hasYear(m.sourceYear) ? m.sourceYear : "", obligations: post.obligations,
           also: also.map((x) => `${x.label} · ${hasYear(x.sourceYear) ? `edition ${adYear(x.sourceYear)}` : "edition year not supplied"} · ${x.licensePosture}`) }
       : { ok: false, why: post.why, label: m.label };
@@ -1728,7 +1753,9 @@
     L.push("");
     L.push(`Hebrew text [H] · license: ${wr.family || "NOT ESTABLISHED"}${wr.posture ? ` · ${wr.posture}` : ""}`);
     if (wr.attribution) L.push(`Hebrew text [H] · attribution: ${wr.attribution}`);
-    wr.links.forEach((l) => L.push(`Hebrew text [H] · ${l.label}${l.url ? ` — ${l.url}` : ""}`));
+    { const bl = baseTextLicense(editionOf());
+      if (bl && bl.deed) L.push(`Hebrew text [H] · license: ${bl.name} \u2014 ${bl.deed} (the version pinned; the provider writes ${bl.says || "the family only"})`);
+      wr.links.forEach((l) => L.push(`Hebrew text [H] · ${l.label}${l.url ? ` — ${l.url}` : ""}`)); }
     L.push(`Work receipt: ${wr.receipt}`);
     L.push(`Store: ${index.rule_id} · ${index.store_version}`);
     if (index.reading_rule) L.push(`Reading: ${index.reading_rule}`);
@@ -1738,6 +1765,10 @@
     L.push(kind === "he"
       ? "Citations: [H] marks the Hebrew. Its entry under Sources names the license it is released under."
       : "Citations: [H] marks the Hebrew; [1] [2] … mark each reading. Every mark has an entry under Sources naming the license that reading is released under, and the entry is the record the reading is cited from — the earliest attestation the store carries, the same one the reader sees on the card. The same source keeps the same number wherever it appears. Where a reading is attested by further records, they are named under the entry; they are not what it was cited from.");
+    if (kind !== "he") {
+      L.push("");
+      L.push("What is the sources' and what is ours: each section gives the Hebrew [H], then a line of readings, then the same readings word by word. The line \u2014 which reading stands under which word, their order and spacing \u2014 is this site's arrangement, not any source's sentence. In the word-by-word table every reading is printed exactly as its source wrote it, beside its source and its license, and says whether it is the source's whole record or a part of it.");
+    }
     L.push("");
     const allObl = new Set(); let held = 0, notReached = 0;
     for (const b of bundles) {
@@ -1759,6 +1790,18 @@
       if (kind !== "he") {
         const line = b.words.map((w) => (w.unreachable ? "[not reached]" : w.held ? "[withheld]" : `${w.en}[${cite(w.source)}]`)).join(" ");
         L.push(line);
+        // WORD BY WORD: one row per word, one license per row. The line above
+        // is ours; this is each source's own reading standing alone, so no
+        // reader has to work out which word is under which license.
+        const cell = (t) => String(t == null ? "" : t).replace(/\|/g, "\\|").replace(/\s*\n\s*/g, " ");
+        L.push("");
+        L.push("| # | Hebrew [H] | Reading, as its source wrote it | Source | License | Taken |");
+        L.push("|---|---|---|---|---|---|");
+        b.words.forEach((w, i) => {
+          if (w.unreachable) { L.push(`| ${i + 1} | ${cell(w.he)} | [not reached] | \u2014 | \u2014 | \u2014 |`); return; }
+          if (w.held) { L.push(`| ${i + 1} | ${cell(w.he)} | [withheld] | \u2014 | \u2014 | \u2014 |`); return; }
+          L.push(`| ${i + 1} | ${cell(w.he)} | ${cell(w.en)} | [${cite(w.source)}] | ${cell(licenseName(w.source.posture))} | ${w.source.piece ? "a part of the record" : "the whole record"} |`);
+        });
       }
       L.push("");
       for (const w of b.words) { if (w.unreachable) notReached += 1; else if (w.held) held += 1; }
@@ -1778,8 +1821,11 @@
     L.push(`- [H] ${wr.family || "LICENSE NOT ESTABLISHED"}${wr.posture ? ` · ${wr.posture}` : ""} — the Hebrew of ${
       kind === "he" ? "this file" : "every section here"}: the sealed text of ${zone.work}${
       wr.attribution ? `, ${wr.attribution}` : ""}`);
-    { const base = baseTextLicense(editionOf()); if (base) L.push(`    license: ${base.name}${base.deed ? ` \u2014 ${base.deed}` : ""} (${base.basis})`); }
+    const baseLic = baseTextLicense(editionOf());
+    if (baseLic) L.push(`    license: ${baseLic.name}${baseLic.deed ? ` \u2014 ${baseLic.deed}` : ""} (${baseLic.basis})`);
     wr.obligations.forEach((o) => L.push(`    obligation, in our words: ${o}`));
+    // every link the rights record holds travels too, the generic index of
+    // deeds among them: the pinned deed above is added, nothing is dropped
     wr.links.forEach((l) => L.push(`    record: ${l.label}${l.url ? ` — ${l.url}` : ""}`));
     L.push(`    receipt: ${wr.receipt}`);
     if (kind !== "he") {
@@ -1787,8 +1833,23 @@
         L.push("");
         L.push("No reading in this export could be traced to a record.");
       } else {
-        // in number order, which is the order the reader meets them
-        for (const { n, s } of [...cited.values()].sort((a, b) => a.n - b.n)) {
+        // GROUPED BY LICENSE, the most binding first, and in number order
+        // inside each: a reader who needs every share-alike or noncommercial
+        // reading in the file finds them together, under what they oblige
+        const bind = (p) => { const n = licenseName(p); return /NC/u.test(n) ? 0 : /SA/u.test(n) ? 1 : /ND/u.test(n) ? 0 : /^CC BY|WordNet/u.test(n) ? 2 : 3; };
+        const SAY_GROUP = [
+          "Noncommercial \u2014 not for commercial use; share-alike where its license says so",
+          "Share-alike \u2014 anything adapted from these is shared under the same license",
+          "Attribution \u2014 credit the source, link the license, say what was changed",
+          "Public domain and CC0 \u2014 no conditions; credited here all the same",
+        ];
+        const ordered = [...cited.values()].sort((a, b) => bind(a.s.posture) - bind(b.s.posture)
+          || licenseName(a.s.posture).localeCompare(licenseName(b.s.posture)) || a.n - b.n);
+        let lastGroup = -1, lastName = "";
+        for (const { n, s } of ordered) {
+          const g = bind(s.posture), nm = licenseName(s.posture);
+          if (g !== lastGroup) { L.push(""); L.push(`### ${SAY_GROUP[g]}`); lastGroup = g; lastName = ""; }
+          if (nm !== lastName) { L.push(""); L.push(`${nm}${licenseDeed(s.posture) ? ` \u2014 ${licenseDeed(s.posture)}` : ""}`); lastName = nm; }
           L.push("");
           L.push(`- [${n}] ${s.posture} — ${s.label}${yearTag(s.year, "edition")}`);
           L.push(`    license: ${licenseName(s.posture)}${licenseDeed(s.posture) ? ` \u2014 ${licenseDeed(s.posture)}` : ""}`);
@@ -2056,7 +2117,19 @@
     // owner, 2026-10-03: the R pills "can be collapsed nearly entirely"): the
     // record lends toward their second row as it lends toward a band's first,
     // down to its own floor and never its source line
-    const readOwed = (x) => (x.box === read ? Math.min(2, x.rows.length) : 1);
+    // THE READINGS ARE OWED A REAL SHARE, not a sliver: five rows on a phone
+    // of ordinary height, three on a short one, two on a window squashed
+    // flat. The record and its source (D and M) grew with their text and the
+    // routes paid for it \u2014 two rows on one card, a row cut through the
+    // middle on the next (the owner, 2026-10-03: "if D+M are bigger it
+    // squishes it we gotta stop that"). What gives way before the readings
+    // do: the commentary count, the provenance line, the record down to its
+    // floor, and then the labels and notes.
+    // never fewer than three clear rows (the owner, 2026-10-03: "3 CLEAR rows
+    // is what we need"; R, D and M are the product, and a reader who cannot
+    // see the readings cannot change one)
+    const READ_ROWS = window.innerHeight >= 660 ? 5 : 3;
+    const readOwed = (x) => (x.box === read ? Math.min(READ_ROWS, x.rows.length) : 1);
     const floors = bands.reduce((n, x) => n + x.chrome + x.rows[readOwed(x) - 1].bottom, 0);
     // THE RECORD'S FLOOR, in lines of its text above its source line — and
     // the record's own head above the text is part of it: a floor of foot
@@ -2113,7 +2186,7 @@
         // the readings' second row comes before a division's second row: the
         // readings are what the card is for (the owner, 2026-10-03), and a
         // division band at one row still scrolls to every division
-        bands.forEach((x, i) => { if (x.box === read) grow(i, 2); });
+        bands.forEach((x, i) => { if (x.box === read) grow(i, READ_ROWS); });
         bands.forEach((x, i) => { if (x.box !== read) grow(i, 2); });
         bands.forEach((x, i) => { if (x.box !== read) grow(i, cap); });
         bands.forEach((x, i) => { if (x.box === read) grow(i, x.rows.length); });
@@ -2141,16 +2214,23 @@
     // own order: the record down to its floor — never the source line — and
     // after the record, the provenance line. Each yield is followed by a
     // fresh handout against the layout it actually produced.
-    const owedShort = () => bands.some((x, i) => (x.box !== read ? take[i] < Math.min(cap, x.rows.length) : take[i] < Math.min(2, x.rows.length)));
+    const owedShort = () => bands.some((x, i) => (x.box !== read ? take[i] < Math.min(cap, x.rows.length) : take[i] < Math.min(READ_ROWS, x.rows.length)));
+    // the things nobody presses go first, then the record lends down to its
+    // floor, then the labels and notes \u2014 the readings are the last to give
+    if (owedShort() && vol && vol.offsetHeight) { vol.hidden = true; handOut(); }
+    if (owedShort() && prov && prov.offsetHeight) { prov.hidden = true; handOut(); }
     if (owedShort() && dSlot && !dSlot.classList.contains("whole")) {
       const floor = recordFloor(2);
       const shares = bands.reduce((n, x) => n + x.chrome
-        + x.rows[Math.min(x.box === read ? 2 : cap, x.rows.length) - 1].bottom, 0);
+        + x.rows[Math.min(x.box === read ? READ_ROWS : cap, x.rows.length) - 1].bottom, 0);
       const give = Math.min(Math.ceil(shares - rowsEl.clientHeight), Math.max(0, dSlot.clientHeight - floor));
       if (give > 0) { dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`; handOut(); }
     }
-    if (owedShort() && prov && prov.offsetHeight) { prov.hidden = true; handOut(); }
-    if (owedShort() && vol && vol.offsetHeight) { vol.hidden = true; handOut(); }
+    if (owedShort()) {
+      rowsEl.classList.add("tight"); hud.classList.add("tight");
+      for (const x of bands) x.chrome = chromeOf(x);
+      handOut();
+    }
     // The record's floor, held against the laid-out foot. The stylesheet caps
     // the slot at a length written for a one-row source line, but the M is as
     // tall as its own chips: a license whose names wrap takes three rows of
@@ -2253,6 +2333,10 @@
     // has, with nothing given up? The caller decides what to do about it —
     // there is nothing left here to take it out of.
     const stands = bands.reduce((n, x) => n + x.el.offsetHeight, 0);
+    // the readings' label says when the row holds more than it shows, so a
+    // reader knows it scrolls; a pill is never sliced to say it
+    { const lab = readBand && readBand.querySelector(":scope > .r-label");
+      const box = read; if (lab && box) lab.classList.toggle("more", box.scrollHeight > box.clientHeight + 1); }
     return stands <= rowsEl.clientHeight + 1 && !lastResort;
   };
 
@@ -2266,6 +2350,12 @@
   // ends by snapping, in the same call, and the loop keeps its own pass for
   // what happens after — a window resized, a band re-wrapped under a drag.
   const placeInBounds = (...a) => { placeInBoundsOnly(...a); snapBandsNow(); };
+  // THE FONT ARRIVES AFTER THE FIT. The readings' face loads with swap, so a
+  // card fitted in the fallback face held rows measured in it; when the face
+  // arrived its pills stood taller and the band cut them through the middle
+  // (the owner's phone, 2026-10-03). A card open when a face finishes loading
+  // is fitted again in the face it now shows.
+  try { if (document.fonts) document.fonts.addEventListener("loadingdone", () => { if (!hud.hidden) placeInBounds(); }); } catch { /* no font events: the next fit is the window's */ }
   const placeInBoundsOnly = () => {
     // MEASURED, NOT ARGUED: keeping the card on its cap and letting the region
     // scroll stops the page moving, and it also starves the record — the guard
@@ -5812,13 +5902,40 @@
       btn.title = pos.say;
       btn.setAttribute("aria-pressed", String(pos.id === defOrder));
       if (!pos.live) { btn.disabled = true; btn.setAttribute("aria-disabled", "true"); }
-      else btn.addEventListener("click", () => {
+      else btn.addEventListener("click", () => chooseDefOrder(pos.id));
+      row.append(btn);
+    }
+    if (!row.classList.contains("def-order")) row.className = "def-order";
+  };
+  // the line's two tested positions, beside the sources: the same order as
+  // "reads first", drawn as two buttons and lit from defOrder
+  const readsSwitch = () => {
+    const row = document.getElementById("readsRow");
+    if (!row) return;
+    const t = TOGGLES.find((x) => x.id === "reads");
+    row.replaceChildren();
+    for (const pos of t.positions) {
+      const btn = document.createElement("button"); btn.type = "button";
+      btn.className = "dfp" + (pos.id === defOrder ? " on" : "");
+      btn.textContent = pos.lab;
+      btn.title = (DEF_POS.find((p) => p.id === pos.id) || {}).say || "";
+      btn.setAttribute("aria-pressed", String(pos.id === defOrder));
+      btn.addEventListener("click", () => chooseDefOrder(pos.id));
+      row.append(btn);
+    }
+    row.className = "def-order";
+  };
+  const chooseDefOrder = (id) => {
+    const pos = DEF_POS.find((p) => p.id === id);
+    if (!pos || !pos.live) return;
+    {
         defOrder = pos.id;
         try { localStorage.setItem(DEF_KEY, pos.id); } catch { /* the choice still stands on this page */ }
-        for (const x of row.children) {
+        for (const x of (document.getElementById("defRow") || { children: [] }).children) {
           const on = x.textContent === pos.lab;
           x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on));
         }
+        readsSwitch();
         // THE LINE MOVES, NOT ONLY THE CARD. The owner pressed every position
         // and read the same sentence each time (2026-09-09): the switch had
         // only ever reached the card's reading list, while the line under each
@@ -5831,10 +5948,7 @@
         // a lattice order fetches its sidecar the first time it is chosen,
         // then the line and the card move again with what it says
         if (pos.needs === "lattice" && !latticeStore) latticeReady().then((s) => { if (!s || defOrder !== pos.id) return; repaintGlossOrder(); if (redrawReadings) redrawReadings(); });
-      });
-      row.append(btn);
     }
-    if (!row.classList.contains("def-order")) row.className = "def-order";
   };
   // the rail's one-line summary: the word each toggle is standing at
   const railSay = () => {
@@ -5844,7 +5958,7 @@
     // the sources first and in ink, since they lead the rail; every other
     // switch's state still said, so the line stays a full account of what is
     // applied, but quieter — those switches wait under the fold
-    const lead = TOGGLES.filter((t) => t.id === "sources").concat(TOGGLES.filter((t) => t.id !== "sources"));
+    const lead = TOGGLES.filter((t) => t.id === "sources").concat(TOGGLES.filter((t) => t.id !== "sources" && t.id !== "reads"));
     lead.forEach((t, i) => {
       if (i) now.append(Object.assign(document.createElement("i"), { textContent: "·" }));
       const b = document.createElement("b"); b.textContent = t.now() || t.lab; b.dataset.toggle = t.id;
@@ -6422,7 +6536,8 @@
     // been agreed. The fold says how many wait under it, and nothing else.
     const more = document.createElement("details"); more.className = "more-switches";
     const moreSum = document.createElement("summary"); moreSum.className = "more-sum";
-    const waiting = TOGGLES.filter((t) => t.id !== "sources");
+    const LEAD = new Set(["sources", "reads"]);
+    const waiting = TOGGLES.filter((t) => !LEAD.has(t.id));
     moreSum.textContent = `${waiting.length} more switches, not yet fleshed out`;
     more.append(moreSum);
     for (const t of TOGGLES) {
@@ -6433,6 +6548,7 @@
       if (t.id === "order") host.id = "defRow";
       else if (t.id === "pairs") host.id = "pairRow";
       else if (t.id === "sources") host.id = "sourcesRow";
+      else if (t.id === "reads") host.id = "readsRow";
       else host.append(segRow(t, t.positions || [], t.get ? t.get() : null, (id) => { if (t.set) t.set(id); }));
       const v = VOICE[t.voice];
       if (v) {
@@ -6442,9 +6558,10 @@
       const why = document.createElement("span"); why.className = "why";
       why.textContent = t.live() ? t.why : `${t.why} — waiting on ${t.waits}`;
       row.append(lab, host, why);
-      (t.id === "sources" ? rows : more).append(row);
+      (LEAD.has(t.id) ? rows : more).append(row);
     }
     rows.append(more);
+    readsSwitch();
     railSay();
   };
   const setMode = (m) => {
