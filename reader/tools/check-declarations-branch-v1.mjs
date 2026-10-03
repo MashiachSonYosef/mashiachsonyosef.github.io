@@ -120,13 +120,15 @@ p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 await p.goto(BASE, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(500);
-const opened = await p.evaluate(async () => {
+// the first chip whose source the ledger holds a stem for: a source beside the
+// store (Jastrow, the Samaritan dictionaries) is a chip with no stem, and says so
+const opened = await p.evaluate(async (stemmed) => {
   const r = document.getElementById("rail"); if (r && !r.open) r.open = true;
   const row = document.querySelector('.rail .row[data-toggle="sources"]'); if (!row) return { why: "no sources row" };
-  const opens = [...row.querySelectorAll(".decl-open")]; if (!opens.length) return { why: "no branch opener" };
+  const opens = [...row.querySelectorAll(".decl-open")].filter((o) => stemmed.includes(o.dataset.key)); if (!opens.length) return { why: "no branch opener for a source the ledger holds" };
   opens[0].click();
   return { key: opens[0].dataset.key, openers: opens.length };
-});
+}, Object.keys(d.stems || {}));
 if (opened.why) check("D9  a source's branch opens and draws the source's own values", false, opened.why);
 else {
   await p.waitForFunction(() => !!document.querySelector(".rail .decl"), null, { timeout: 15000 }).catch(() => {});

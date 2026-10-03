@@ -1,24 +1,30 @@
-// check-overlays-v1 · an overlay adds readings after the store and changes nothing above them
+// check-overlays-v1 · an overlay's rows are rows like the store's, and its chips switch them
 //
-// GUARDS: overlay-rule-v1-an-overlay-adds-readings-after-the-store-and-changes-nothing-above-them
+// GUARDS: overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores
 // LEDGER: -
 // no frame letter. This writes nothing: it reads the overlays the reader serves
 // and the page it draws.
 //
 // The owner ruled Jastrow and Samaritan in on 2026-10-02 (data/serving-rulings-v1.json,
 // jastrow-served and samaritan-served). Each is served beside the route store under
-// data/overlays/<id>/, never merged into it, under its own switch. What must hold:
+// data/overlays/<id>/, never merged into it. Since 2026-10-03 each of their sources
+// is a chip on the sources row like every other dictionary ("samaritan just goes in
+// as another of the 36 dictionaries afaik, same for jastrow"), and their rows are
+// grouped, sorted and credited like any other's ("i wouldnt autosort jastrow or
+// samaritans last, no, just treat them normal"). What must hold:
 //
 //   O1  every overlay beside the store is the corpus lane's delivery, file for file:
 //       sha256 and size against the manifest that came with it
-//   O2  the page loads each overlay and draws its switch live on the rail
-//   O3  with the switches off, no card holds an overlay reading
-//   O4  with them on, every card begins with exactly the readings it holds with
-//       them off, in the same order, and every reading after those is an overlay's
-//   O5  the line under every word is the same with the switches on and off
+//   O2  the page loads each overlay and draws its sources as chips on the sources
+//       row, pressed on, and pressed off when the reader turned them off
+//   O3  with their chips off, no card holds a reading only they give, and no
+//       reading is carried by one of their sources
+//   O4  with them on, every reading the card holds with them off is still there,
+//       and every reading they add is carried by one of their sources
+//   O5  the line under every word is the same with the chips on and off
 //   O6  an overlay's reading, opened, names its overlay in the card
-//   O7  a reading the store and an overlay both give is one pill with both behind it,
-//       and every store reading is credited to the same source on and off
+//   O7  one reading is one pill: no card prints the same reading twice, on or off,
+//       so a reading the store and an overlay both give is one pill with both behind it
 //
 // Run: node tools/check-overlays-v1.mjs [zone url]   (with python3 -m http.server 8899 in reader/)
 import { readFileSync, existsSync } from "node:fs";
@@ -45,6 +51,10 @@ for (const id of OVERLAYS) {
     off.length ? `${off.length} of ${man.files.length} differ: ${off.slice(0, 4).map((f) => f.path).join(", ")}` : `${man.files.length} files · store_version ${man.store_version}`);
 }
 
+// every source id the overlays bring, read off their own indexes
+const OV_IDS = [];
+for (const id of OVERLAYS) for (const m of Object.keys(JSON.parse(readFileSync(join("data", "overlays", id, "index.json"), "utf8")).m_sources || {})) OV_IDS.push(m);
+
 const pw = await loadPlaywright();
 const URL0 = defaultZoneUrl();
 const BASE = URL0.split("?")[0];
@@ -57,13 +67,16 @@ const SAMPLE = 30;
 
 const pass = async (state) => {
   await p.goto(`${BASE}?b=${BOOK}`, { waitUntil: "networkidle" });
-  await p.evaluate(({ ids, v }) => { for (const id of ids) localStorage.setItem(`fh.overlay.${id}`, v); }, { ids: OVERLAYS, v: state });
+  await p.evaluate(({ ovs, ids, off }) => {
+    for (const id of ovs) localStorage.removeItem(`fh.overlay.${id}`);
+    localStorage.setItem("fh.sources.off", JSON.stringify(off ? ids : []));
+  }, { ovs: OVERLAYS, ids: OV_IDS, off: state === "off" });
   await p.reload({ waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   await p.waitForTimeout(500);
   const lines = await p.evaluate(() => [...document.querySelectorAll(".wb > .g, .wjoin > .g")].slice(0, 400).map((g) => g.textContent));
-  const meta = await p.evaluate(() => ({ overlays: window.__overlays || [], on: window.__overlayOn || {},
-    rail: [...document.querySelectorAll(".rail .row[data-toggle]")].map((r) => ({ id: r.dataset.toggle, dead: r.classList.contains("dead") || !!r.querySelector(".dead") })) }));
+  const meta = await p.evaluate(() => ({ overlays: window.__overlays || [],
+    chips: [...document.querySelectorAll('.rail .row[data-toggle="sources"] .dfp[data-ids]')].map((c) => ({ ids: c.dataset.ids.split(" "), on: c.getAttribute("aria-pressed") === "true" })) }));
   const cards = [];
   const n = await p.evaluate(() => document.querySelectorAll("section.seg .he-text .wb").length);
   for (let i = 0; i < Math.min(SAMPLE, n); i += 1) {
@@ -84,39 +97,36 @@ const pass = async (state) => {
 const on = await pass("on");
 const off = await pass("off");
 for (const id of OVERLAYS) {
-  const row = on.meta.rail.find((r) => r.id === id);
-  check(`O2  the ${id} overlay loads and its switch is live on the rail`, on.meta.overlays.includes(id) && !!row && !row.dead, row ? (row.dead ? "drawn dead" : "live") : "no row");
+  const mine = new Set(Object.keys(JSON.parse(readFileSync(join("data", "overlays", id, "index.json"), "utf8")).m_sources || {}));
+  const chipsOn = on.meta.chips.filter((c) => c.ids.some((m) => mine.has(m)));
+  const chipsOff = off.meta.chips.filter((c) => c.ids.some((m) => mine.has(m)));
+  check(`O2  the ${id} overlay loads and its sources are chips on the sources row, on and off as the reader set them`,
+    on.meta.overlays.includes(id) && chipsOn.length > 0 && chipsOn.every((c) => c.on) && chipsOff.length === chipsOn.length && chipsOff.every((c) => !c.on),
+    `${chipsOn.length} chip${chipsOn.length === 1 ? "" : "s"} · on: ${chipsOn.filter((c) => c.on).length} pressed · off: ${chipsOff.filter((c) => !c.on).length} released`);
 }
-const leaked = off.cards.filter((c) => c.ov.some(Boolean)).length;
-check("O3  with the switches off, no card holds an overlay reading", leaked === 0, `${off.cards.length} cards · ${leaked} with an overlay reading`);
-let moved = 0, notOverlay = 0, added = 0;
+const ovIdSet = new Set(OV_IDS);
+const carriedByOv = (by) => String(by || "").split(" ").some((m) => ovIdSet.has(m));
+const leaked = off.cards.filter((c) => c.ov.some(Boolean) || c.by.some(carriedByOv)).length;
+check("O3  with their chips off, no card holds a reading only they give, and none is carried by their sources", leaked === 0, `${off.cards.length} cards · ${leaked} with an overlay reading or carrier`);
+let lost = 0, unbacked = 0, added = 0, ovLed = 0;
 on.cards.forEach((c, i) => {
   const o = off.cards[i];
-  const head = c.pool.slice(0, o.pool.length);
-  if (head.length !== o.pool.length || head.some((t, k) => t !== o.pool[k])) moved += 1;
-  const tail = c.ov.slice(o.pool.length);
-  if (tail.some((v) => !v) || c.ov.slice(0, o.pool.length).some(Boolean)) notOverlay += 1;
-  added += c.pool.length - o.pool.length;
+  const had = new Set(o.pool);
+  if (o.pool.some((t) => !c.pool.includes(t))) lost += 1;
+  c.pool.forEach((t, k) => { if (!had.has(t)) { added += 1; if (!carriedByOv(c.by[k])) unbacked += 1; } if (ovIdSet.has(c.lead[k])) ovLed += 1; });
 });
-check("O4  on, every card begins with exactly its readings off, and only an overlay's follow", moved === 0 && notOverlay === 0,
-  `${on.cards.length} cards · ${added} overlay readings added · ${moved} cards whose store readings moved · ${notOverlay} with a non-overlay reading after the store's`);
+check("O4  on, every reading the card holds off is still there, and every reading added is carried by an overlay's source", lost === 0 && unbacked === 0,
+  `${on.cards.length} cards · ${added} readings added · ${lost} cards that lost a reading · ${unbacked} added readings no overlay source carries · ${ovLed} pills credited to an overlay's source, sorted like any other`);
 const diffLines = on.lines.filter((t, i) => t !== off.lines[i]).length;
 check("O5  the line under every word is the same on and off", diffLines === 0 && on.lines.length === off.lines.length, `${on.lines.length} lines · ${diffLines} differ`);
 
-// O7 · bundles, and the credit of every store reading
+// O7 · one reading, one pill, on and off
 {
-  const ovIds = new Set();
-  for (const id of OVERLAYS) for (const m of Object.keys(JSON.parse(readFileSync(join("data", "overlays", id, "index.json"), "utf8")).m_sources || {})) ovIds.add(m);
-  let bundles = 0, recredited = 0;
-  on.cards.forEach((c, i) => {
-    const o = off.cards[i];
-    for (let k = 0; k < o.pool.length; k += 1) {
-      if (c.lead[k] !== o.lead[k]) recredited += 1;
-      if (String(c.by[k] || "").split(" ").some((m) => ovIds.has(m))) bundles += 1;
-    }
-  });
-  check("O7  a shared reading is one pill with both behind it, and no store reading changes its credit", recredited === 0,
-    `${bundles} store readings an overlay also gives, bundled · ${recredited} store readings credited to another source with the switches on`);
+  const dup = (cards) => cards.filter((c) => new Set(c.pool.map((t) => t.toLowerCase())).size !== c.pool.length).length;
+  let shared = 0;
+  on.cards.forEach((c) => c.by.forEach((by) => { const ids = String(by || "").split(" "); if (ids.some((m) => ovIdSet.has(m)) && ids.some((m) => m && !ovIdSet.has(m))) shared += 1; }));
+  check("O7  one reading is one pill: no card prints the same reading twice, on or off", dup(on.cards) === 0 && dup(off.cards) === 0,
+    `${shared} pills carried by an overlay's source and the store's together · cards printing a reading twice: on ${dup(on.cards)}, off ${dup(off.cards)}`);
 }
 
 // O6 · open one overlay reading and read its mark
@@ -124,7 +134,7 @@ const pick = on.cards.findIndex((c) => c.ov.some(Boolean));
 if (pick < 0) check("O6  an overlay's reading names its overlay in the card", false, `no overlay reading among the first ${SAMPLE} cards of ${BOOK}`);
 else {
   await p.goto(`${BASE}?b=${BOOK}`, { waitUntil: "networkidle" });
-  await p.evaluate((ids) => { for (const id of ids) localStorage.setItem(`fh.overlay.${id}`, "on"); }, OVERLAYS);
+  await p.evaluate(() => localStorage.setItem("fh.sources.off", "[]"));
   await p.reload({ waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   const want = on.cards[pick].pool[on.cards[pick].ov.findIndex(Boolean)];

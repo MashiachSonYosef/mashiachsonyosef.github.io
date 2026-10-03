@@ -45,19 +45,20 @@
        the purple alone at its full depth.
        the deep red the titles wore and the royal blue are retired, and the deep names
        carry the soft values; the neutral's olive-brown text is the purple ink, since gold is never text at rest. no title has
-       a color of its own. */
-    --shani: #8b5560; --shani-dim: #a8797f;
+       a color of its own. the red raised one step, same lightness, more color (owner, 2026-10-03:
+       "our sites red is actually just one tone too muted"). */
+    --shani: #944c5b; --shani-dim: #b0737a;
     /* the inks the channels are written in, held muted: the corpus a quiet
        rose-red, the reading a quiet blue (owner, 2026-09-11: mockup 4, "i
        still might make that red like a little more muted somehow") */
-    --shani-ink: #8b5560; --tekhelet-ink: #34649a;
+    --shani-ink: #944c5b; --tekhelet-ink: #34649a;
     --wash-shani: #eedcd6;
     /* the held word: its own wash, more opaque — never a third color (owner,
        2026-09-11: "move away from gold as the highlighting itself and move
        toward just a more opaque red and blue") */
     --held-shani: #dbb9b6;
     --held-tekhelet: #b9c6e6;
-    --halo-shani: rgba(139, 85, 96, 0.75);
+    --halo-shani: rgba(148, 76, 91, 0.75);
     /* tekhelet the reading, argaman our own voice — both taken down for
        daylight, both above the AAA floor on linen */
     --tekhelet: #34649a; --tekhelet-dim: #7f8ba8;
@@ -81,7 +82,7 @@
     /* the scripture's own ink, darkened to the AAA floor the contrast judge
        holds body text to — still warm, never black; linen is not glare and
        ink is not tar, but thin niqqud marks need 7:1 to stay marks */
-    --c-word: #8b5560; --en-word: #8b5560;
+    --c-word: #944c5b; --en-word: #944c5b;
     --hover-ink: #6b4f0e; --hover-line: #bda15c;
     --chip-bg: rgba(43, 35, 56, 0.05); --chip-line: rgba(150, 112, 15, 0.34);
     --shadow-pop: 0 8px 24px rgba(96, 80, 48, 0.28);
@@ -632,6 +633,11 @@
   .wb.active { outline: 1.5px solid var(--gold); outline-offset: 3px; border-radius: 0.4rem; }
   /* a maqaf run's card is the run's: the whole run is what stands open */
   .wjoin.active { outline: 1.5px solid var(--gold); outline-offset: 3px; border-radius: 0.4rem; }
+  /* a named run: a license names these words as one thing. A thin blue rule
+     under each of its words, the reading's own color; open, the run's words
+     wear the selection together. */
+  .wb.wrun > .w { border-bottom: 1.5px solid var(--tekhelet-ink); border-radius: 0; }
+  .wb.wrun.active > .w { border-bottom-color: var(--mark-gold); }
   .wb.active .w { background: none; }
   .wb.mark.active .w { background: none; border-color: var(--gold); }
   /* A word the reader has ruled on keeps a mark after the card closes. Without
@@ -2139,31 +2145,64 @@
     claim: ["this project’s claim", "a statement this project makes, not one a source made"],
   };
   // THE OVERLAYS (serving-rulings-v1: jastrow-served and samaritan-served, the
-  // owner, 2026-10-02). Two dictionaries the corpus lane built beside the route
+  // owner, 2026-10-02). Dictionaries the corpus lane built beside the route
   // store, never merged into it: Jastrow's rabbinic Hebrew and Aramaic, and the
   // Samaritans' own Hebrew and Aramaic where an entry prints its word in square
-  // letters. Each is one switch. On by default, the serving lane's call on the
-  // owner's word that the polarity is this layer's; off, no overlay row enters
-  // any card and every card is what it is without the overlay. On, an overlay
-  // adds only readings the store does not already give the word, after every
-  // other reading on the card, so it never leads a word another source
-  // defines and never moves, re-dates or re-credits a reading above it.
-  // overlay-rule-v1-an-overlay-adds-readings-after-the-store-and-changes-nothing-above-them
+  // letters. Each of their sources is a chip on the sources row like every
+  // other dictionary (the owner, 2026-10-03: "samaritan just goes in as another
+  // of the 36 dictionaries afaik, same for jastrow"), on unless the reader
+  // turns it off, and a shelf of the row turns a whole family off at once. On,
+  // its rows are rows like the store's (the owner, 2026-10-03: "just treat them
+  // normal"): grouped, sorted and credited by the same rules as every other
+  // dictionary's, under whatever order the reader chose. The line under the
+  // words is baked from the store, so turning one off moves no line.
+  // overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores
   const OVERLAY_DEFS = [
-    { id: "jastrow", dir: "data/overlays/jastrow/", key: "fh.overlay.jastrow", mark: "rabbinic" },
-    { id: "samaritan", dir: "data/overlays/samaritan/", key: "fh.overlay.samaritan", mark: "Samaritan" },
+    { id: "jastrow", dir: "data/overlays/jastrow/", was: "fh.overlay.jastrow", mark: "rabbinic", shelf: "rabbinic Hebrew and Aramaic" },
+    { id: "samaritan", dir: "data/overlays/samaritan/", was: "fh.overlay.samaritan", mark: "Samaritan", shelf: "Samaritan Hebrew and Aramaic" },
   ];
-  const overlayOn = Object.fromEntries(OVERLAY_DEFS.map((o) => [o.id, (() => { try { return localStorage.getItem(o.key) !== "off"; } catch { return true; } })()]));
-  window.__overlayOn = { ...overlayOn };
   const OVERLAYS = {};
   const OVERLAY_ROWS = new WeakMap();   // a row the card holds -> the overlay it came from
   let OVERLAY_IX = [];
-  const setOverlay = (id, on) => {
-    const o = OVERLAY_DEFS.find((d) => d.id === id); if (!o) return;
-    overlayOn[id] = !!on; window.__overlayOn = { ...overlayOn };
-    try { localStorage.setItem(o.key, on ? "on" : "off"); } catch { /* the choice still stands on this page */ }
-    // the line never carries an overlay reading, so only the open card is asked again
-    if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
+  // per book, what each overlay source gives (tools/bake-overlay-book-counts-v1.mjs)
+  let OVERLAY_BOOKS = null;
+  // THE RUN CARDS (the megacompspan, owner 2026-10-03: "1 single hud whereever
+  // words happen to match across xyz span. A+...+V"; from the record: "ABC…V /
+  // A+…+V unless you happened to get another match like ABC then it would
+  // include ABC + D+…+V"). A run is a stretch of words a license names as one
+  // thing; the corpus lane cuts which, and tools/project-run-cards-v1.mjs lays
+  // each card on this book's sections (data/run-cards/<book>.json). Pressing
+  // any word of a run opens one card for the whole run; its rungs are the
+  // run as named, the run welded into one word, a fold where a dictionary
+  // published one, every way to cover its words with named runs and single
+  // words, and the words one by one last, so nothing a word offers alone goes
+  // missing. The line under the words does not change: it stays word by word
+  // until the owner rules a run's reading onto it, and so the card opens on
+  // the word pressed, as the line reads it (the card opens on the line's
+  // reading, the owner, 2026-09-27), with the whole run one press away.
+  // Where two cards overlap,
+  // a word opens the longer one. No file, no run cards: every word opens its
+  // own card, as before.
+  // run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling
+  let RUN_CARDS = null;
+  const RUNS_AT = new Map();   // section unit -> (word index -> card)
+  const runAt = (unit, idx) => { const m = RUNS_AT.get(unit); return m ? m.get(idx) || null : null; };
+  // every way to cover a run's n words left to right with its named runs and
+  // single words: fewest pieces first (the whole), the words one by one last
+  const runTilings = (keys, named) => {
+    const n = keys.length;
+    const spans = (named || []).filter(([f, t]) => Number.isInteger(f) && Number.isInteger(t) && f >= 0 && t < n && t > f);
+    const memo = new Map();
+    const from = (i) => {
+      if (i === n) return [[]];
+      if (memo.has(i)) return memo.get(i);
+      const out = [];
+      for (const [f, t] of spans) if (f === i) for (const rest of from(t + 1)) out.push([{ surface: keys.slice(f, t + 1).join(" "), from: f, to: t }, ...rest]);
+      for (const rest of from(i + 1)) out.push([{ surface: keys[i], from: i, to: i }, ...rest]);
+      memo.set(i, out.slice(0, 64));
+      return memo.get(i);
+    };
+    return from(0).sort((a, b) => a.length - b.length);
   };
   const TOGGLES = [
     { id: "order", voice: "arrange", lab: "reads first", why: "which dictionary answers first, when several can",
@@ -2206,21 +2245,6 @@
         if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
       },
       now: () => (sourcesOff.size ? `${sourcesOff.size} source id${sourcesOff.size === 1 ? "" : "s"} off` : "every source") },
-    // THE OVERLAYS — see the note above OVERLAY_DEFS
-    { id: "jastrow", voice: "them", lab: "Jastrow", why: "Marcus Jastrow’s dictionary of rabbinic Hebrew and Aramaic (1903). On, its readings are added to each card after every other reading; off, it is not asked",
-      positions: [{ id: "on", lab: "on" }, { id: "off", lab: "off" }],
-      live: () => !!OVERLAYS.jastrow,
-      waits: "the Jastrow overlay beside the store (data/overlays/jastrow/)",
-      get: () => (overlayOn.jastrow ? "on" : "off"),
-      set: (id) => setOverlay("jastrow", id === "on"),
-      now: () => (overlayOn.jastrow ? "Jastrow added" : "no Jastrow") },
-    { id: "samaritan", voice: "them", lab: "Samaritan", why: "dictionaries of Samaritan Hebrew and Aramaic, where an entry prints its word in square letters. On, their readings are added to each card after every other reading; off, they are not asked",
-      positions: [{ id: "on", lab: "on" }, { id: "off", lab: "off" }],
-      live: () => !!OVERLAYS.samaritan,
-      waits: "the Samaritan overlay beside the store (data/overlays/samaritan/)",
-      get: () => (overlayOn.samaritan ? "on" : "off"),
-      set: (id) => setOverlay("samaritan", id === "on"),
-      now: () => (overlayOn.samaritan ? "Samaritan added" : "no Samaritan") },
     { id: "pairs", voice: "text", lab: "pairs", why: "places where the scribes kept one form and read another: which half the English reads from",
       live: () => (zone.sections || []).some((s) => (s.words || []).some((w) => w.kq)),
       waits: "no ketiv-qere site in this book",
@@ -2278,7 +2302,7 @@
   };
   let zone, index;
   try {
-    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, ...OVERLAY_IX] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, RUN_CARDS, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -2300,7 +2324,11 @@
       // both. And the short names the strip wears. Neither stops the page.
       fetch(`${ROOT}data/language-admission-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       fetch(`${ROOT}data/source-short-names-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
-      // the overlays' own indexes; an overlay that did not arrive draws its switch dead
+      // what each overlay source gives on each book: its chips on the sources row
+      fetch(`${ROOT}data/overlay-book-counts-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // which books have run cards; a book it does not list has none
+      fetch(`${ROOT}data/run-cards/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // the overlays' own indexes; an overlay that did not arrive adds nothing
       ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
     ]);
     // an overlay's sources join the index's under their own ids, which the store
@@ -2310,8 +2338,35 @@
       if (!ix || !ix.m_sources || !index || !index.m_sources) return;
       OVERLAYS[o.id] = ix;
       for (const [id, m] of Object.entries(ix.m_sources)) if (!index.m_sources[id]) index.m_sources[id] = { ...m, overlay: o.id };
+      // a reader who turned the overlay's old single switch off keeps it off,
+      // now as its chips; the old switch is then forgotten
+      try {
+        if (localStorage.getItem(o.was) === "off") {
+          for (const id of Object.keys(ix.m_sources)) sourcesOff.add(id);
+          localStorage.setItem(SOURCES_KEY, JSON.stringify([...sourcesOff]));
+          window.__sourcesOff = [...sourcesOff];
+        }
+        localStorage.removeItem(o.was);
+      } catch { /* nothing remembered, nothing to carry */ }
     });
     window.__overlays = Object.keys(OVERLAYS);
+    // the run cards, by section and word; a card for another book, or whose
+    // words are not this zone's words, is not drawn
+    if (RUN_CARDS && RUN_CARDS.books && RUN_CARDS.books[BOOK])
+      RUN_CARDS = await fetch(`${ROOT}data/run-cards/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    else RUN_CARDS = null;
+    if (RUN_CARDS && RUN_CARDS.book === BOOK && Array.isArray(RUN_CARDS.cards)) {
+      const secs = new Map((zone.sections || []).map((sec) => [sec.unit, sec]));
+      for (const rc of RUN_CARDS.cards) {
+        const sec = secs.get(rc.unit);
+        if (!sec || !Array.isArray(rc.idx) || rc.idx.length < 2 || rc.idx.some((i, j) => !sec.words[i] || sec.words[i].k !== rc.keys[j])) continue;
+        rc.__sec = sec; rc.__els = new Map();
+        const m = RUNS_AT.get(rc.unit) || new Map();
+        for (const i of rc.idx) { const had = m.get(i); if (!had || had.idx.length < rc.idx.length) m.set(i, rc); }
+        RUNS_AT.set(rc.unit, m);
+      }
+    }
+    window.__runCards = [...RUNS_AT.values()].reduce((n, m) => n + new Set(m.values()).size, 0);
     // The zone as it arrived, by the same rule the commentary sidecar is
     // exposed under: a check should be able to ask the record what it says
     // rather than ask the page what it decided. A check that reads its answer
@@ -2781,14 +2836,14 @@
   // while the page prints today's reading — the two disagreeing on screen.
   const storeVersion = index.store_version || "";
   // AN OVERLAY'S ROWS for a key, by the store's own shard rule, from beside the
-  // overlay's own index, and only while its switch is on. Only the lanes the
+  // overlay's own index; its chips decide in poolFor. Only the lanes the
   // overlay's index marks ruled are asked (read off the index, never typed), and
   // every row is folded to the store's seven slots. A shard that did not arrive
-  // adds nothing: the store answers alone, as it does with the switch off.
+  // adds nothing: the store answers alone, as it does with every chip off.
   const overlayShards = new Map();
   const overlayRowsFor = async (o, key) => {
     const ix = OVERLAYS[o.id];
-    if (!ix || !overlayOn[o.id]) return [];
+    if (!ix) return [];
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
     const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
     const ck = `${o.id}/${shard}`;
@@ -3147,10 +3202,6 @@
   // named a 2023 dictionary, for the same word. A file that cites a different
   // record than the page it came from is worse than one that cites none.
   const EARLIEST_FIRST = (a, c) => {
-    // a store's carrier before an overlay's, whatever their years: an overlay
-    // never becomes the source a reading is credited to (overlay-rule-v1)
-    const oa = OVERLAY_ROWS.has(a) ? 1 : 0, oc = OVERLAY_ROWS.has(c) ? 1 : 0;
-    if (oa !== oc) return oa - oc;
     const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
     return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
   };
@@ -4284,7 +4335,32 @@
       const kept = routes.filter((row) => !sourcesOff.has(row[3]));
       withheldBySources = routes.length - kept.length;
       routes = kept;
+      // an overlay's source is a chip like any other: off, it is not asked
+      const keptExtra = extra.filter((row) => !sourcesOff.has(row[3]));
+      withheldBySources += extra.length - keptExtra.length;
+      extra = keptExtra;
     }
+    // THE OVERLAYS' ROWS ARE ROWS LIKE THE STORE'S (the owner, 2026-10-03: "i
+    // wouldnt autosort jastrow or samaritans last, no, just treat them normal,
+    // we will add a toggle layer higher up to pull them out as modernity").
+    // They enter the pool here, after the pointing filter has asked their own
+    // headwords as it asked the store's, and from here on nothing tells them
+    // apart: one grouping, one sort, one credit order. Pulling them out is a
+    // switch above this one, not a rule inside it.
+    // overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores
+    if (extra.length) {
+      const pointingOnly = pointingNow(surface === openKey ? openPointed : null) === "only" && openPointed && surface === openKey;
+      const kept = pointingOnly ? extra.filter((row) => gradeRow(row, openPointed) !== "x") : extra;
+      withheld += extra.length - kept.length;
+      routes = routes.concat(kept);
+    }
+    // ONE READING, ONE PILL (the owner, 2026-10-02: "shouldnt it be bundled into
+    // 1 pill with 2 M"; the corpus lane's R pill ledger, resting position
+    // TOGETHER). Two readings are one pill when they print the same: the
+    // printed form (spanJoin: "/" pieces joined, one closing period dropped),
+    // lowercased. Grouped on the reading as written, "womb" and "womb." were two
+    // pills printing the same word on 5,597 cards.
+    const drawn = (t) => spanJoin(t).toLowerCase();
     const groups = new Map();
     routes.forEach((row) => {
       const [rank, routeText, , mId, year] = row;
@@ -4295,7 +4371,7 @@
         const split = readingSplit(sense);
         if (split.damaged) return;
         split.readings.forEach((reading) => {
-          const key = reading.toLowerCase();
+          const key = drawn(reading);
           const g = groups.get(key);
           if (!g) groups.set(key, { text: reading, year: yr, ledger: Number(rank), records: [row] });
           else {
@@ -4319,46 +4395,10 @@
     // order — hiding one because it sorted late would be the page deciding
     // what may be weighed. The masorah "only" position is not an order and
     // was withheld above, row by row, with its count riding on the pool.
-    // WHAT AN OVERLAY ADDS: readings the store does not already give this word,
-    // each in a group of its own, after the store's. A reading the store
-    // already carries is left exactly as the store has it: its year, its rank
-    // and its carriers do not move. The pointing switch withholds an overlay
-    // row as it withholds a store row, by the row's own headwords.
-    const pointingOnly = pointingNow(surface === openKey ? openPointed : null) === "only" && openPointed && surface === openKey;
-    const added = new Map();
-    // the same reading is the same as the pill prints it (spanJoin), so a store
-    // reading that closes with a period and an overlay's without one are one
-    const drawn = (t) => spanJoin(t).toLowerCase();
-    const storeHas = new Map([...groups.values()].map((g) => [drawn(g.text), g]));
-    let bundled = 0;
-    extra.forEach((row) => {
-      if (pointingOnly && gradeRow(row, openPointed) === "x") return;
-      const [rank, routeText, , mId, year] = row;
-      if (!index.m_sources[mId]) return;
-      const y = Number.parseInt(year, 10);
-      const yr = Number.isInteger(y) ? y : Infinity;
-      senseSplit(routeText).forEach((sense) => {
-        const split = readingSplit(sense);
-        if (split.damaged) return;
-        split.readings.forEach((reading) => {
-          const key = drawn(reading);
-          // the store already gives this reading: one pill, and the overlay's record
-          // joins it as a further carrier, after the store's, its year and rank
-          // left out of the reading's own (the owner, 2026-10-02: one pill, two M)
-          const sg = storeHas.get(key);
-          if (sg) { if (!sg.records.includes(row)) { sg.records.push(row); bundled += 1; } return; }
-          const g = added.get(key);
-          if (!g) added.set(key, { text: reading, year: yr, ledger: Number(rank), records: [row], ov: OVERLAY_ROWS.get(row) });
-          else {
-            g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank));
-            if (!g.records.includes(row)) g.records.push(row);
-          }
-        });
-      });
-    });
-    for (const g of added.values()) g.records.sort(EARLIEST_FIRST);
-    const pool = sortPool([...groups.values(), ...added.values()], surface);
-    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = all.length; pool.overlayAdded = added.size; pool.overlayBundled = bundled;
+    // which pills stand on overlay rows alone, for a check to read off the pool
+    for (const g of groups.values()) { const ovs = g.records.map((row) => OVERLAY_ROWS.get(row)); if (ovs.every(Boolean)) g.ov = ovs[0]; }
+    const pool = sortPool([...groups.values()], surface);
+    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = all.length + extra.length;
     return pool;
   };
   const oldestFirst = (a, b) => {
@@ -4390,9 +4430,8 @@
       const i = fpIdx.get(fnv1a(`${row[1]}|${m ? m.label : ""}`));
       return i === undefined ? -1 : i;
     };
-    // what a reading sorts by: its store carriers, never an overlay's that joined
-    // it; a reading only an overlay gives sorts by its own (overlay-rule-v1)
-    const storeRecs = (r) => { const s = r.records.filter((row) => !OVERLAY_ROWS.has(row)); return s.length ? s : r.records; };
+    // what a reading sorts by: every record behind it, an overlay's as much as
+    // the store's (overlay-rule-v2)
     const TIER = { m: 0, n: 1, x: 2 };
     // the grade of one record: its own headwords against the open word when
     // it carries them (pointing-grade-rule-v1), the lattice card's grade
@@ -4405,12 +4444,12 @@
     // a group can rest on several records; it takes the best tier any of
     // them earned, and counts as citing, the era's own, or a transliteration
     // if any witness under it is
-    const tierOf = (r) => { let best = 3; for (const row of storeRecs(r)) { const t = TIER[gradeOf(row)]; if (t !== undefined && t < best) best = t; } return best; };
-    const cites = (r) => (gr && storeRecs(r).some((row) => gr.n.includes(idxOf(row))) ? 0 : 1);
-    const era = (r) => (storeRecs(r).some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
-    const outside = (r) => (storeRecs(r).some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
-    const lic = (r) => Math.min(...storeRecs(r).map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture)));
-    const tr = (r) => (lat && lat.t && storeRecs(r).some((row) => lat.t.includes(idxOf(row))) ? 0 : 1);
+    const tierOf = (r) => { let best = 3; for (const row of r.records) { const t = TIER[gradeOf(row)]; if (t !== undefined && t < best) best = t; } return best; };
+    const cites = (r) => (gr && r.records.some((row) => gr.n.includes(idxOf(row))) ? 0 : 1);
+    const era = (r) => (r.records.some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
+    const outside = (r) => (r.records.some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
+    const lic = (r) => Math.min(...r.records.map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture)));
+    const tr = (r) => (lat && lat.t && r.records.some((row) => lat.t.includes(idxOf(row))) ? 0 : 1);
     const wCol = pos.needs === "witnessed" && surface && zone && zone.gloss_orders && zone.gloss_orders[pos.id] ? zone.gloss_orders[pos.id][surface] : null;
     const wText = wCol ? String(wCol).toLowerCase() : null;
     const witnessed = (r) => (!wText ? 0 : String(r.text).toLowerCase() === wText ? 0 : 1);
@@ -4466,10 +4505,7 @@
       || (pos.needs === "lattice" && gr && gr.o && gr.o[pos.lattice])
       || (pos.needs === "witnessed" && wCol);
     const nameLead = (a, b) => (!nameLed || nameYields() ? 0 : (a.text === nameLed ? 0 : 1) - (b.text === nameLed ? 0 : 1));
-    // an overlay's reading comes after every reading the store gives, whatever
-    // the other switches say: composed above the licence sort (overlay-rule-v1)
-    const overlayLast = (a, b) => (a.ov ? 1 : 0) - (b.ov ? 1 : 0);
-    return list.sort((a, b) => overlayLast(a, b) || licPref(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
+    return list.sort((a, b) => licPref(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
   };
 
   /**
@@ -4527,12 +4563,15 @@
     if (regions.length > 1) {
       // the marks that stand between the regions, taken off the occurrence
       const marks = String(word.s || "").split(MAQAF_SPLIT).filter((_, i) => i % 2 === 1);
+      // a named run's head stands as the ink wrote it, maqaf or space, and
+      // the whole run is what the card is about
+      const gaps = opts.run && opts.run.gaps ? opts.run.gaps : null;
       regions.forEach((r, i) => {
         if (i) b.append(Object.assign(document.createElement("span"),
-          { className: "mq", textContent: marks[i - 1] || "" }));
+          { className: "mq", textContent: (gaps ? gaps[i - 1] : marks[i - 1]) || "" }));
         const seg = document.createElement("span");
         seg.textContent = r.s;
-        const lit = regionIndex >= 0 ? (i === regionIndex) : openSurfaces.includes(r.s);
+        const lit = gaps ? true : regionIndex >= 0 ? (i === regionIndex) : openSurfaces.includes(r.s);
         if (!lit) seg.style.color = "var(--faint)";
         // on a pair, the half that is not open is one press away, here in the
         // head where it already stands; the card then reads from it
@@ -4821,12 +4860,31 @@
       // it is not hidden. A fold — a joined spelling with a seam letter
       // written final — is offered only where a dictionary published it, and
       // a fold whose shard did not arrive is left off rather than guessed.
-      const foldTry = await Promise.all(forms.slice(2).map(async (f) => { try { const r = await routesFor(f); return { f, ok: true, has: !!(r && r.length) }; } catch { return { f, ok: false, has: false }; } }));
-      if (myGen !== hudGen) return;
-      foldsUnreached = foldTry.filter((x) => !x.ok).map((x) => x.f);
-      covers = [...forms.slice(0, 2).map(whole), ...foldTry.filter((x) => x.ok && x.has).map((x) => whole(x.f)), keys.map((k, j) => ({ surface: k, from: j, to: j }))];
+      const tilings = opts.run.named ? runTilings(keys, opts.run.named) : null;
+      if (tilings && !opts.run.chain) {
+        // a named run holds the same rungs a maqaf run does (the owner,
+        // 2026-10-03: "AMB / AB / A+B is maqaf specific with AB added from
+        // regular megacompspans"): the run as the licence names it, the run
+        // welded into one word whatever the shelf answers, a fold where a
+        // dictionary published one, then every mix, then the words one by one
+        const weld = keys.join("");
+        const folds = runWholeForms(keys).slice(2);
+        const foldTry = await Promise.all(folds.map(async (f) => { try { const r = await routesFor(f); return { f, ok: true, has: !!(r && r.length) }; } catch { return { f, ok: false, has: false }; } }));
+        if (myGen !== hudGen) return;
+        foldsUnreached = foldTry.filter((x) => !x.ok).map((x) => x.f);
+        const named = tilings[0] && tilings[0].length === 1 ? [tilings[0]] : [];
+        covers = [...named, whole(weld), ...foldTry.filter((x) => x.ok && x.has).map((x) => whole(x.f)), ...tilings.slice(named.length)];
+      } else {
+        const foldTry = await Promise.all(forms.slice(2).map(async (f) => { try { const r = await routesFor(f); return { f, ok: true, has: !!(r && r.length) }; } catch { return { f, ok: false, has: false }; } }));
+        if (myGen !== hudGen) return;
+        foldsUnreached = foldTry.filter((x) => !x.ok).map((x) => x.f);
+        // a chain a license also names: its named rungs stand after the
+        // chain's own whole forms and before the words one by one
+        const namedRungs = tilings ? tilings.filter((c) => c.length < n) : [];
+        covers = [...forms.slice(0, 2).map(whole), ...foldTry.filter((x) => x.ok && x.has).map((x) => whole(x.f)), ...namedRungs, keys.map((k, j) => ({ surface: k, from: j, to: j }))];
+      }
       comps = keys; established = true;
-      runSpan = { comps: keys, rule: "maqaf_run_v1", conf: "established" };
+      runSpan = { comps: keys, rule: tilings ? "named_run_v1" : "maqaf_run_v1", conf: "established" };
     }
 
     // What the reader chose, kept where they chose it. This lived inside the
@@ -4837,7 +4895,14 @@
     // the whole form's own. The division is remembered too.
     const wbEl = (el.closest && el.closest(".wb")) || el;
     const mem = memoryOf(region.k);
-    const picked = mem.cells;
+    // INSIDE A NAMED RUN'S CARD A WORD'S READING IS THE WORD'S OWN. The line
+    // under a named run stays word by word, so a reading chosen for one word
+    // of it is that word's ruling: remembered by its form and painted under
+    // it wherever it stands, as its own card does, and its own card opens on
+    // it. A piece of several words is remembered by the run.
+    const wordsOwn = !!(opts.run && opts.run.named && !opts.run.chain);
+    const cellMap = (sf) => (wordsOwn && !/ /u.test(sf) ? memoryOf(sf).cells : mem.cells);
+    const picked = wordsOwn ? { get: (sf) => cellMap(sf).get(sf), set: (sf, v) => cellMap(sf).set(sf, v) } : mem.cells;
     let cover = covers[0];
     if (mem.cut) {
       const found = covers.find((c) => cutKey(c) === mem.cut);
@@ -4850,6 +4915,8 @@
       // the as-written rung is always on the card now; the card opens on it
       // only where the shelf reads it (the line's own test: the baked table)
       const asWritten = bin.gloss && bin.gloss[region.k] ? covers.find((c) => c.length === 1 && c[0].surface === region.k) : null;
+      // a named run opens the same way: the line reads it word by word, so
+      // the card opens on the word pressed, and the whole run is one press away
       cover = asWritten || covers[covers.length - 1];
     }
     let cellIdx = 0;
@@ -4943,7 +5010,7 @@
     // not holding that list in their head. It marks a ruling, not a visit:
     // opening a word and closing it again changes nothing and leaves no mark.
     let ruled = false;
-    const markRuled = () => { ruled = true; if (wbEl && wbEl.classList) wbEl.classList.add("chosen"); };
+    const markRuled = () => { ruled = true; if (wbEl && wbEl.classList && !wordsOwn) wbEl.classList.add("chosen"); };
 
     // The page's own reading is printed whole — that is why the ellipsis came
     // off. But a reading the reader chooses can be longer than the one the
@@ -5033,6 +5100,23 @@
       // the card says the reading plainly, where the reader can see it
       // without hunting a lit pill through a scrolling row
       paintNow(mine, pendingNow() ? ASKING : undefined);
+      // a named run's words: each word the reader ruled here is painted under
+      // itself, at every place its form stands
+      if (wordsOwn) {
+        cover.forEach((c, j) => {
+          if (c.from !== c.to || !memoryOf(c.surface).cells.get(c.surface)) return;
+          const t = textOfCell(c.surface);
+          for (const st of standsOf.get(c.surface) || []) {
+            holdAndPaint(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t);
+            st.wb.classList.add("chosen");
+            if (j === cellIdx && selectedRecordRef.m) {
+              st.wb.dataset.source = selectedRecordRef.m.label || "";
+              st.wb.dataset.license = licenseName(selectedRecordRef.m.licensePosture) || "";
+            }
+          }
+        });
+        return;
+      }
       if (!glossEl) return;
       // a run's line is drawn from its words, cell by cell with each chip
       // under its own reading; opening the run's card changes none of that,
@@ -5359,7 +5443,9 @@
         // the run's own terms; the words one by one are always a press away
         const runWhole = !!(opts.run && cover.length === 1);
         p.textContent = runWhole
-          ? (surface === region.k
+          ? (/ /u.test(surface)
+            ? "No dictionary on this shelf gives these words as one entry yet. The words one by one are a press away."
+            : surface === region.k
             ? "No dictionary on this shelf gives the run as written, maqaf and all. The words one by one are a press away."
             : "No dictionary on this shelf gives the run joined as one word. The words one by one are a press away.")
           : pool ? "No displayable route in the catalog for this form." : "No exact route in the catalog for this form.";
@@ -5406,6 +5492,16 @@
       // opens, wherever the sort put it: a pressed pill that is not first
       // says the sort moved the row, and the line is still what it answers.
       const lineSaid = (() => {
+        // a named run's word opens on what the line under that word prints
+        if (wordsOwn) {
+          const cell = cover.find((c) => c.surface === surface && c.from === c.to);
+          const wbx = cell && opts.run.wbs ? opts.run.wbs[cell.from] : null;
+          const g = wbx && wbx.querySelector(":scope > .g");
+          if (!g) return null;
+          const c2 = g.cloneNode(true); c2.querySelectorAll(".g-lic").forEach((x) => x.remove());
+          const t = (c2.textContent || "").trim();
+          return t && t !== "\u2014" ? t.toLowerCase() : null;
+        }
         if (opts.run || !bin.gloss) return null;
         const led = bin === zone && word && surface === region.k ? lineUnder(word, zone.gloss) : null;
         const t = led ? led.text : bin.gloss[surface];
@@ -5719,7 +5815,7 @@
         // as the pills print it (spanJoin: pieces joined, a closing period
         // not drawn), so what a check reads here is what a reader sees
         window.__pool = sorted.map((r) => spanJoin(r.text));
-        // and which of them an overlay added, in the same order (overlay-rule-v1)
+        // and which of them stand on an overlay's rows alone, in the same order
         window.__poolOv = sorted.map((r) => r.ov || "");
         // the source each reading is credited to, and every source behind it
         window.__poolLead = sorted.map((r) => leadRecord(r)[3]);
@@ -5778,7 +5874,9 @@
 
     // --- row 4 · where the boundaries came from ------------------------
     if (runSpan) {
-      prov.textContent = `One card for the run: ${comps.length} words, joined by a maqaf · as written, joined into one, and word by word are its divisions; a joined spelling is offered, never chosen: it can be another word`;
+      prov.textContent = runSpan && runSpan.rule === "named_run_v1" && !(opts.run && opts.run.chain)
+        ? `One card for the run: ${comps.length} words a dictionary names as one · the whole as named, welded into one, every split into runs it names, and word by word are its divisions; a welded spelling is offered, never chosen: it can be another word`
+        : `One card for the run: ${comps.length} words, joined by a maqaf · as written, joined into one, and word by word are its divisions; a joined spelling is offered, never chosen: it can be another word`;
     } else if (span && !established) {
       // the division is withheld above, so this line says so rather than
       // naming where a boundary nobody is shown came from — it printed "proposed
@@ -6730,6 +6828,23 @@
         mark: () => { runEl.classList.add("active"); },
       });
     };
+    // A NAMED RUN, ONE CARD. Its key is its words' keys joined by one space,
+    // whatever gap the ink or the source wrote; a run that is exactly a maqaf
+    // chain opens the chain's own card, with the named rungs added to it.
+    const openNamedRun = (rc, clicked, runEl) => {
+      const words = rc.idx.map((i) => rc.__sec.words[i]);
+      const s = words.map((w) => w.s).join(" ");
+      const atoms = words.map((w) => ({ s: String(w.s).replace(/\u05be+$/u, ""), k: w.k }));
+      const chain = runEl && runEl.__key && runEl.__words && runEl.__words.length === words.length && runEl.__words.every((w, j) => w === words[j]) ? runEl : null;
+      const k = chain ? chain.__key : rc.keys.join(" ");
+      openHud(chain || built.wb, { s, k }, unitId, wordPos, {
+        ...opts, bin, word: { s, k, w: atoms }, regionIndex: -1, glossParts: null,
+        run: { keys: rc.keys, clicked: Math.max(0, clicked), el: chain || built.wb, named: rc.named || [], chain: !!chain,
+          gaps: chain ? null : words.slice(0, -1).map((w) => (/\u05be$/u.test(String(w.s)) ? "\u05be" : " ")),
+          wbs: rc.idx.map((i) => rc.__els.get(i) || null) },
+        mark: () => { for (const el of rc.__els.values()) el.classList.add("active"); if (chain) chain.classList.add("active"); },
+      });
+    };
     const kqLead = () => {
       const st = built.kqStand;
       const picked = kqPicks.get(site);
@@ -6767,6 +6882,7 @@
         // run's card; the word pressed is the one it opens on when the run is
         // shown word by word.
         const runEl = built.wb.closest && built.wb.closest(".wjoin");
+        if (built.wb.__run && bin === zone && wordPos != null) { openNamedRun(built.wb.__run, built.wb.__run.idx.indexOf(wordPos), runEl); return; }
         if (runEl && runEl.__key && runEl.__words && runEl.__words.length > 1) { openRun(runEl, runEl.__words.indexOf(word)); return; }
         if (built.kqStand) { const lead = kqLead(); openAt(lead.i, built.regionEls[lead.i] || target); return; }
         openAt(i, target);
@@ -7369,6 +7485,16 @@
   const declPanel = (g, d) => {
     const wrap = document.createElement("div"); wrap.className = "decl"; wrap.dataset.key = g.key;
     const stem = d && d.stems ? d.stems[g.key] : null;
+    // an overlay's source has no stem in the declarations ledger; it says what
+    // its own index says of it, its full names and its license
+    if (!stem && g.overlay) {
+      const lead = document.createElement("p"); lead.className = "decl-lead";
+      lead.textContent = `reading at ${g.carries.toLocaleString()} word${g.carries === 1 ? "" : "s"} on this book · on the cards like every other dictionary, never on the line`;
+      wrap.append(lead);
+      for (const l of [...new Set(g.labels)]) { const p = document.createElement("p"); p.className = "decl-silent"; p.textContent = l; wrap.append(p); }
+      if (g.lic) { const p = document.createElement("p"); p.className = "decl-silent"; p.textContent = `license: ${g.lic}`; wrap.append(p); }
+      return wrap;
+    }
     if (!stem) {
       const p = document.createElement("p"); p.className = "decl-none";
       p.textContent = "nothing in the ledger for this source — and this page fills no gap";
@@ -7490,8 +7616,8 @@
       of: (g) => (g.wcMain && g.wcMain !== "none" ? `${ordinal(Number(g.wcMain))} century AM` : "no year given"),
       rank: (title) => (title === "no year given" ? 1e9 : parseInt(title, 10)) },
     { id: "language", lab: "language",
-      of: (g) => { const c = g.corpus; return c === "ARAMAIC" ? "Aramaic" : c === "BIBLICAL" ? "the Bible’s Hebrew" : "Hebrew in general"; },
-      rank: (title) => ({ "the Bible’s Hebrew": 0, "Hebrew in general": 1, "Aramaic": 2 })[title] ?? 9 },
+      of: (g) => { const ov = g.overlay && OVERLAY_DEFS.find((o) => o.id === g.overlay); if (ov) return ov.shelf; const c = g.corpus; return c === "ARAMAIC" ? "Aramaic" : c === "BIBLICAL" ? "the Bible’s Hebrew" : "Hebrew in general"; },
+      rank: (title) => ({ "the Bible’s Hebrew": 0, "Hebrew in general": 1, "Aramaic": 2 })[title] ?? (() => { const i = OVERLAY_DEFS.findIndex((o) => o.shelf === title); return i < 0 ? 9 : 3 + i; })() },
     { id: "license", lab: "license",
       of: (g) => licShelf(g.lic),
       rank: (title) => ({ "public domain": 0, "credit required (CC BY)": 1, "share-alike (CC BY-SA)": 2, "non-commercial": 3, "other terms": 4 })[title] ?? 9 },
@@ -7508,7 +7634,14 @@
     // priced "not baked", never added up from its members — a sum said 295
     // lines change and 560 go bare where a throw left 2,303 bare.
     const jointSets = rec && rec.joint && rec.joint.sets ? rec.joint.sets : null;
-    const priceOf = (ids) => {
+    // an overlay's source never carries the line (overlay-rule-v2), so a set
+    // costs what its store sources cost, and a set of overlay sources alone
+    // changes no line at all
+    const bookOverlays = (OVERLAY_BOOKS && OVERLAY_BOOKS.books && OVERLAY_BOOKS.books[BOOK]) || {};
+    const isOverlayId = (id) => !!(index.m_sources[id] && index.m_sources[id].overlay && OVERLAYS[index.m_sources[id].overlay]);
+    const priceOf = (all) => {
+      const ids = all.filter((id) => !isOverlayId(id));
+      if (!ids.length) return { known: true, changes: 0, darkens: 0, text: "off: no line on this book changes; its readings leave the cards" };
       const j = jointSets && jointSets[[...new Set(ids)].sort().join(" ")];
       if (!j) return { known: false, text: "off: the cost of this set is not baked on this book yet" };
       // said in lines a reader sees where the record counted positions; in
@@ -7532,6 +7665,19 @@
       g.ids.push(id); g.labels.push(s.label); g.leads += s.leads; g.carries += s.carries; g.changes += s.changes; g.darkens += s.darkens;
       g.wc = g.wc || {};
       for (const [c, n] of Object.entries(s.wc || {})) g.wc[c] = (g.wc[c] || 0) + n;
+      groups.set(gk, g);
+    }
+    // THE OVERLAYS' SOURCES, chips like the rest, from their per-book counts.
+    // A source that gives nothing on this book draws no chip.
+    for (const [id, e] of Object.entries(bookOverlays)) {
+      if (!isOverlayId(id) || !e.carries) continue;
+      const gk = e.key || id;
+      const lic = (POSTURES && POSTURES.postures && POSTURES.postures[e.posture] && POSTURES.postures[e.posture].name) || e.posture || "";
+      const g = groups.get(gk) || { key: gk, ids: [], labels: [], lic, y: e.y, leads: 0, carries: 0, changes: 0, darkens: 0, overlay: e.overlay };
+      g.ids.push(id); g.labels.push(e.label); g.carries += e.carries;
+      const c = centuryAM(e.y);
+      g.wc = g.wc || {};
+      g.wc[c ? String(c) : "none"] = (g.wc[c ? String(c) : "none"] || 0) + e.rows;
       groups.set(gk, g);
     }
     // the wording century most of a source's rows on this book fall in; a
@@ -9154,6 +9300,13 @@
       const myIdx = wIdx; wIdx += 1;
       wireWord(built, word, zone, sec.unit, myIdx);
       appendWord(he, built, word);
+      const rc = runAt(sec.unit, myIdx);
+      if (rc) {
+        built.wb.__run = rc; rc.__els.set(myIdx, built.wb);
+        built.wb.classList.add("wrun");
+        if (myIdx === rc.idx[0]) built.wb.classList.add("wrun-first");
+        if (myIdx === rc.idx[rc.idx.length - 1]) built.wb.classList.add("wrun-last");
+      }
       // A commentary attached at this word gets its handle here, standing in
       // the line right after the words it covers, and it opens here too — a
       // reader should not have to look anywhere else to find what they pressed.
