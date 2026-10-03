@@ -52,6 +52,8 @@ for (const id of OVERLAYS) {
     off.length ? `${off.length} of ${man.files.length} differ: ${off.slice(0, 4).map((f) => f.path).join(", ")}` : `${man.files.length} files · store_version ${man.store_version}`);
 }
 
+// the resting-off record's version, so a pass sets its own state over it
+const DEFAULTS_VER = existsSync(join("data", "source-defaults-v1.json")) ? String(JSON.parse(readFileSync(join("data", "source-defaults-v1.json"), "utf8")).version || "") : "";
 // every source id the overlays bring, read off their own indexes
 const OV_IDS = [];
 for (const id of OVERLAYS) for (const m of Object.keys(JSON.parse(readFileSync(join("data", "overlays", id, "index.json"), "utf8")).m_sources || {})) OV_IDS.push(m);
@@ -68,10 +70,13 @@ const SAMPLE = 30;
 
 const pass = async (state) => {
   await p.goto(`${BASE}?b=${BOOK}`, { waitUntil: "networkidle" });
-  await p.evaluate(({ ovs, ids, off }) => {
+  await p.evaluate(({ ovs, ids, off, ver }) => {
     for (const id of ovs) localStorage.removeItem(`fh.overlay.${id}`);
+    // a reader who has seen the resting-off defaults (source-defaults-rule-v1)
+    // and set every chip as this pass asks
+    localStorage.setItem("fh.sources.defaults", ver);
     localStorage.setItem("fh.sources.off", JSON.stringify(off ? ids : []));
-  }, { ovs: OVERLAYS, ids: OV_IDS, off: state === "off" });
+  }, { ovs: OVERLAYS, ids: OV_IDS, off: state === "off", ver: DEFAULTS_VER });
   await p.reload({ waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   // the sources row is drawn once the page's records have arrived, which can
@@ -144,7 +149,7 @@ const pick = on.cards.findIndex((c) => c.ov.some(Boolean));
 if (pick < 0) check("O6  an overlay's reading names its overlay in the card", false, `no overlay reading among the first ${SAMPLE} cards of ${BOOK}`);
 else {
   await p.goto(`${BASE}?b=${BOOK}`, { waitUntil: "networkidle" });
-  await p.evaluate(() => localStorage.setItem("fh.sources.off", "[]"));
+  await p.evaluate((ver) => { localStorage.setItem("fh.sources.defaults", ver); localStorage.setItem("fh.sources.off", "[]"); }, DEFAULTS_VER);
   await p.reload({ waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   const want = on.cards[pick].pool[on.cards[pick].ov.findIndex(Boolean)];

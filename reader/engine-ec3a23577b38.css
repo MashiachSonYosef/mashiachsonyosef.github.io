@@ -1009,6 +1009,15 @@
   /* the last thing a card gives up on a window too short for its bands: the
      bands' own labels, so the pills stand unlabelled but stand */
   #hud .rows.tight .band > .r-label { display: none; }
+  /* and after the labels, the prose around them: the bands' own notes ("2 of
+     301 records withheld…") and the reading's label and how-it-was-chosen line.
+     On a window 440px tall a run's three bands needed 122px of a 73px region,
+     and with only the labels gone the readings still stood below it, every
+     pill present and none pressable. The reading itself (.v) stays, and the
+     sources row still says what is switched off. The head's explainer under a
+     large or small letter goes too; the line saying which letter stays. */
+  #hud.tight .rows .band > .kq-role, #hud.tight .rows .band > .r-piece, #hud.tight .r-now .k, #hud.tight .r-now .n,
+  #hud.tight .head .kq-key { display: none; }
   /* overflow-x hidden as well as overflow-y auto: setting one axis to auto makes
      the other auto too, and a horizontal scrollbar nobody asked for took nine
      pixels off the height — so a box given exactly three rows had room to show
@@ -1069,7 +1078,12 @@
      between the two and lost the record entirely, foot standing on nothing.
      The record's floor is three lines, not one: a floor of one line is
      clipping wearing a scrollbar's clothes. */
-  #hud .d-slot { flex: 0 0 auto; max-height: max(32vh, 10rem); overflow-y: auto; }
+  /* and its resting cap is a quarter of the window, not a third: a record that
+     took a third left the readings a single row on a tall card (the owner,
+     2026-10-03: "if the D+M cards get too big pixel wise since theyre locked
+     the actual R pills can be collapsed nearly entirely. maybe not such a
+     strict lock"). The whole record is one press away on its own control. */
+  #hud .d-slot { flex: 0 0 auto; max-height: max(26vh, 9rem); overflow-y: auto; }
   #hud .d-card { display: block; }
   #hud .d-body { min-height: 3.9rem; }
   #hud .d-foot { position: sticky; bottom: 0; background: var(--panel); padding-top: 0.15rem; }
@@ -1209,7 +1223,13 @@
     opacity: 0.4; cursor: default; }
   #hud .r-pills button { border: 1px solid var(--chip-line); background: none; color: var(--tekhelet-ink);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
-    max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
+    max-width: 100%; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* A PILL IS ONE LINE. A reading long enough to wrap inside its own pill (a
+     dictionary's whole entry cut as one "reading", two hundred characters of
+     it) stood several lines tall in a row of one-line pills, and every share
+     the card hands out in whole rows came out cut through the pills below it.
+     So a pill holds one line and ends in an ellipsis; its whole text is its
+     title, and pressed, the record under it prints every word. */
   /* the pressed pill is the reading's own ink, filled, with the linen showing
      through as its letters — pressed, not a box in a second color */
   #hud .r-pills button[aria-pressed="true"] { border-color: var(--tekhelet-ink);
