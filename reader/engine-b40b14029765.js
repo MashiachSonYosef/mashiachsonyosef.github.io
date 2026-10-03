@@ -427,6 +427,13 @@
   let OVERLAY_IX = [];
   // per book, what each overlay source gives (tools/bake-overlay-book-counts-v1.mjs)
   let OVERLAY_BOOKS = null;
+  // SOURCES THAT REST OFF (data/source-defaults-v1.json): a source the owner
+  // rules off by default, as Uhlemann's Latin (2026-10-03: "lets keep latin
+  // negative toggled for now, internal project only"). Each reader is given the
+  // record's defaults once per version; a reader who turns one back on keeps it.
+  // source-defaults-rule-v1-a-source-may-rest-off-by-the-owners-ruling-and-the-reader-may-turn-it-on
+  let SOURCE_DEFAULTS = null;
+  const DEFAULTS_KEY = "fh.sources.defaults";
   // THE RUN CARDS (the megacompspan, owner 2026-10-03: "1 single hud whereever
   // words happen to match across xyz span. A+...+V"; from the record: "ABC…V /
   // A+…+V unless you happened to get another match like ABC then it would
@@ -563,7 +570,7 @@
   };
   let zone, index;
   try {
-    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, RUN_CARDS, ...OVERLAY_IX] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -587,6 +594,8 @@
       fetch(`${ROOT}data/source-short-names-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // what each overlay source gives on each book: its chips on the sources row
       fetch(`${ROOT}data/overlay-book-counts-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // the sources that rest off until a reader turns them on
+      fetch(`${ROOT}data/source-defaults-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // which books have run cards; a book it does not list has none
       fetch(`${ROOT}data/run-cards/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // the overlays' own indexes; an overlay that did not arrive adds nothing
@@ -611,6 +620,16 @@
       } catch { /* nothing remembered, nothing to carry */ }
     });
     window.__overlays = Object.keys(OVERLAYS);
+    // the record's resting-off sources, once per version for this reader
+    if (SOURCE_DEFAULTS && SOURCE_DEFAULTS.off && index && index.m_sources) {
+      const ver = String(SOURCE_DEFAULTS.version || "");
+      let seen = null; try { seen = localStorage.getItem(DEFAULTS_KEY); } catch { /* a reader with no memory gets the defaults every visit */ }
+      if (seen !== ver) {
+        for (const [id, m] of Object.entries(index.m_sources)) if (m && SOURCE_DEFAULTS.off[m.key]) sourcesOff.add(id);
+        try { localStorage.setItem(SOURCES_KEY, JSON.stringify([...sourcesOff])); localStorage.setItem(DEFAULTS_KEY, ver); } catch { /* the choice still stands on this page */ }
+        window.__sourcesOff = [...sourcesOff];
+      }
+    }
     // the run cards, by section and word; a card for another book, or whose
     // words are not this zone's words, is not drawn
     if (RUN_CARDS && RUN_CARDS.books && RUN_CARDS.books[BOOK])
@@ -1898,13 +1917,25 @@
     if (prov) prov.hidden = false;
     if (vol) vol.hidden = false;
     rowsEl.classList.remove("tight");
+    hud.classList.remove("tight");
     for (const x of bands) { x.box.style.height = ""; x.box.style.maxHeight = ""; }
+    // what a band holds besides its box, summed child by child: a band in a
+    // column that overflows is shrunk by the flex layout, and its height less
+    // its box's then reads the shrink as chrome
+    const chromeOf = (x) => (x.box === x.el ? 0 : [...x.el.children].reduce((n, c) => {
+      if (c === x.box) return n;
+      const cs = getComputedStyle(c);
+      return cs.display === "none" ? n : n + c.offsetHeight + (parseFloat(cs.marginTop) || 0) + (parseFloat(cs.marginBottom) || 0);
+    }, 0));
     for (const x of bands) {
       x.rows = rowsOf(x.box);
-      x.chrome = Math.max(0, x.el.clientHeight - x.box.clientHeight);   // its label
+      x.chrome = chromeOf(x);   // its label and its notes
     }
     if (bands.some((x) => !x.rows.length)) return;
 
+    // (The record's floor here is two lines of its text above its source line,
+    // lowered from three on 2026-10-03 so the readings keep their two rows;
+    // the source line, the license, is never lent.)
     // One whole row each is what the bands are owed. If the card is too short
     // to owe them that — a word low on the page, with the card opening beneath
     // it — the record lends the difference: its text gives way down to three
@@ -1914,11 +1945,25 @@
     // the record, the provenance line, the one thing on the card nobody
     // presses.
     const cap = window.innerHeight >= 660 ? 3 : window.innerHeight >= 480 ? 2 : 1;
-    const floors = bands.reduce((n, x) => n + x.chrome + x.rows[0].bottom, 0);
-    if (floors > rowsEl.clientHeight && dSlot) {
+    // THE READINGS ARE OWED TWO ROWS, the thing the reader came to press (the
+    // owner, 2026-10-03: the R pills "can be collapsed nearly entirely"): the
+    // record lends toward their second row as it lends toward a band's first,
+    // down to its own floor and never its source line
+    const readOwed = (x) => (x.box === read ? Math.min(2, x.rows.length) : 1);
+    const floors = bands.reduce((n, x) => n + x.chrome + x.rows[readOwed(x) - 1].bottom, 0);
+    // THE RECORD'S FLOOR, in lines of its text above its source line — and
+    // the record's own head above the text is part of it: a floor of foot
+    // plus two lines, counted from the slot's top, left 35px of text where a
+    // short phone owes 49 once the readings were owed their second row
+    const recordFloor = (lines) => {
       const foot = hud.querySelector(".d-foot");
       const dLine = parseFloat(getComputedStyle(hud.querySelector(".d-text") || dSlot).lineHeight) || 26;
-      const floor = (foot ? foot.offsetHeight : 0) + Math.ceil(dLine * 3);
+      const body = hud.querySelector(".d-card .d-body");
+      const chromeAbove = body ? Math.max(0, Math.ceil(body.getBoundingClientRect().top - dSlot.getBoundingClientRect().top + dSlot.scrollTop)) : 0;
+      return (foot ? foot.offsetHeight : 0) + Math.ceil(dLine * lines) + chromeAbove;
+    };
+    if (floors > rowsEl.clientHeight && dSlot) {
+      const floor = recordFloor(2);
       const give = Math.min(floors - rowsEl.clientHeight, Math.max(0, dSlot.clientHeight - floor));
       if (give > 0) dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`;
     }
@@ -1956,8 +2001,11 @@
         // in it, the record and its source went off the card, and cards spilled
         // a hundred pixels past their own edges. A selector that fits is worth
         // nothing if it costs the reading it selects for.
-        bands.forEach((x, i) => { if (x.box !== read) grow(i, 2); });
+        // the readings' second row comes before a division's second row: the
+        // readings are what the card is for (the owner, 2026-10-03), and a
+        // division band at one row still scrolls to every division
         bands.forEach((x, i) => { if (x.box === read) grow(i, 2); });
+        bands.forEach((x, i) => { if (x.box !== read) grow(i, 2); });
         bands.forEach((x, i) => { if (x.box !== read) grow(i, cap); });
         bands.forEach((x, i) => { if (x.box === read) grow(i, x.rows.length); });
         bands.forEach((x, i) => {
@@ -1984,13 +2032,11 @@
     // own order: the record down to its floor — never the source line — and
     // after the record, the provenance line. Each yield is followed by a
     // fresh handout against the layout it actually produced.
-    const owedShort = () => bands.some((x, i) => x.box !== read && take[i] < Math.min(cap, x.rows.length));
+    const owedShort = () => bands.some((x, i) => (x.box !== read ? take[i] < Math.min(cap, x.rows.length) : take[i] < Math.min(2, x.rows.length)));
     if (owedShort() && dSlot && !dSlot.classList.contains("whole")) {
-      const foot = hud.querySelector(".d-foot");
-      const dLine = parseFloat(getComputedStyle(hud.querySelector(".d-text") || dSlot).lineHeight) || 26;
-      const floor = (foot ? foot.offsetHeight : 0) + Math.ceil(dLine * 3);
+      const floor = recordFloor(2);
       const shares = bands.reduce((n, x) => n + x.chrome
-        + x.rows[Math.min(x.box === read ? 1 : cap, x.rows.length) - 1].bottom, 0);
+        + x.rows[Math.min(x.box === read ? 2 : cap, x.rows.length) - 1].bottom, 0);
       const give = Math.min(Math.ceil(shares - rowsEl.clientHeight), Math.max(0, dSlot.clientHeight - floor));
       if (give > 0) { dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`; handOut(); }
     }
@@ -2076,14 +2122,10 @@
       // never less than one line above its source: on a window 440px tall
       // the three-line floor alone held 142px of a 382px card, and the
       // readings had nowhere left to stand
-      const foot = hud.querySelector(".d-foot");
-      const dLine = parseFloat(getComputedStyle(hud.querySelector(".d-text") || dSlot).lineHeight) || 26;
-      // the chrome above the record's text — its own head — is part of the
+      // (the chrome above the record's text, its own head, is part of the
       // floor: a floor of foot plus lines alone left 4px of text above the
-      // source on a card whose head took the line's room
-      const body = hud.querySelector(".d-card .d-body");
-      const chromeAbove = body ? Math.max(0, Math.ceil(body.getBoundingClientRect().top - dSlot.getBoundingClientRect().top + dSlot.scrollTop)) : 0;
-      const floor = (foot ? foot.offsetHeight : 0) + Math.ceil(dLine * cap) + chromeAbove;
+      // source on a card whose head took the line's room)
+      const floor = recordFloor(cap);
       const give = Math.min(Math.ceil(overrun()), Math.max(0, dSlot.clientHeight - floor));
       if (give > 0) { dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`; lastResort = true; handOut(); }
     }
@@ -2092,7 +2134,12 @@
     // bands give up their labels, which are the one thing in them nobody
     // presses: the pills stand unlabelled, and stand. Released at the top
     // of every fit, so a taller window has its labels back.
-    if (overrun() > 1) { rowsEl.classList.add("tight"); lastResort = true; handOut(); }
+    if (overrun() > 1) {
+      rowsEl.classList.add("tight"); hud.classList.add("tight");
+      // what the labels and notes held is the bands' again
+      for (const x of bands) x.chrome = chromeOf(x);
+      lastResort = true; handOut();
+    }
     // did every band end up with the row it is owed, in the space it actually
     // has, with nothing given up? The caller decides what to do about it —
     // there is nothing left here to take it out of.
@@ -2194,6 +2241,11 @@
         if (!cut) break;
         const rows = rowsOf(box);
         if (!rows.length) break;
+        // a row cut by less than a pixel is rounding, not a row too many: the
+        // box takes the pixel. Shrinking only, a 62px box over a second row
+        // ending at 62.5 counted that row as fitting and left it sliced
+        const sliver = rows.find((row) => row.top < box.clientHeight && row.bottom > box.clientHeight && row.bottom - box.clientHeight < 1);
+        if (sliver) { const up = Math.ceil(sliver.bottom); box.style.height = `${up}px`; box.style.maxHeight = `${up}px`; continue; }
         const fits = rows.filter((row) => row.bottom <= box.clientHeight + 0.5);
         const to = Math.ceil((fits.length ? fits[fits.length - 1] : rows[0]).bottom);
         if (to >= box.clientHeight) break;
@@ -2571,10 +2623,14 @@
     const i = lat.f.indexOf(fnv1a(`${row[1]}|${m ? m.label : ""}`));
     return i < 0 ? "-" : (gr.g[i] || "-");
   };
-  const poolFor = async (surface) => {
+  // opts.storeOnly: the pool the line is baked from, the store's own rows; the
+  // line under a word asks it when a switch moves the line (repaintLive), so the
+  // live line lands where the bake would, and an overlay's reading stands on the
+  // card, sorted like any other, not on the line
+  const poolFor = async (surface, opts = {}) => {
     const stored = await routesFor(surface);
     let extra = [];
-    for (const o of OVERLAY_DEFS) extra = extra.concat(await overlayRowsFor(o, surface).catch(() => []));
+    if (!opts.storeOnly) for (const o of OVERLAY_DEFS) extra = extra.concat(await overlayRowsFor(o, surface).catch(() => []));
     if (!stored && !extra.length) return null;
     const all = stored || [];
     // THE MASORAH FILTER, at the row grain, before the pool exists. Under
@@ -4092,6 +4148,7 @@
       const makePill = (route) => {
         const btn = document.createElement("button"); btn.type = "button";
         btn.textContent = spanJoin(route.text);
+        btn.title = spanJoin(route.text);
         // who carries it, on the pill and exposed, so a check can ask the
         // page whether a switched-off source still stands behind a reading
         btn.dataset.by = [...new Set(route.records.map((r) => r[3]))].sort().join(" ");
@@ -4181,9 +4238,12 @@
         const pressed = pills.querySelector('button[aria-pressed="true"]');
         if (!pressed) return;
         const top = pressed.offsetTop - pills.offsetTop;
-        if (top < pills.scrollTop) pills.scrollTop = top;
-        else if (top + pressed.offsetHeight > pills.scrollTop + pills.clientHeight)
-          pills.scrollTop = top + pressed.offsetHeight - pills.clientHeight;
+        // its row to the box's top either way: the box is fitted in whole
+        // rows, and lining the pill's bottom up with the box's bottom left
+        // the row it showed a pixel short — a 29px box scrolled 33px over
+        // rows 34px apart, the pressed reading sliced by its own band
+        if (top < pills.scrollTop || top + pressed.offsetHeight > pills.scrollTop + pills.clientHeight)
+          pills.scrollTop = top;
       });
     };
 
@@ -5417,11 +5477,15 @@
   // whatever number of ledger ids it carries
   const sourcesOffSay = () => {
     const rec = ((((zone.emitted_from || {}).toggles || {}).sources || {}).sources) || {};
+    // an overlay's source is a source like the rest (overlay-rule-v2): one
+    // resting off by the owner's ruling withholds its records here, and the
+    // note that counts them said "0 sources off" while it did
+    const ovRec = (OVERLAY_BOOKS && OVERLAY_BOOKS.books && OVERLAY_BOOKS.books[BOOK]) || {};
     const keys = new Set();
     for (const id of sourcesOff) {
       // an id this book's record does not know is another book's; it is
       // not a source off HERE, and it is not counted (the switch is shared)
-      const key = rec[id] && rec[id].key;
+      const key = (rec[id] && rec[id].key) || (ovRec[id] && ovRec[id].carries && (ovRec[id].key || id));
       if (key) keys.add(key);
     }
     return `${keys.size} source${keys.size === 1 ? "" : "s"} off`;
@@ -5462,12 +5526,13 @@
           continue;
         }
         let pool = null;
+        // the line is the store's: it asks the pool the bake was made from
         // a shard that did not arrive leaves the line as it stands — the baked
         // reading is a reading, and a network fault is not a bare word — but
         // MARKED: the line says the switch's answer is not known yet, its chip
         // names only the carriers still on (a chip naming a switched-off
         // source is wrong, the page's own rule), and it is asked once more
-        try { pool = await poolFor(k); } catch {
+        try { pool = await poolFor(k, { storeOnly: true }); } catch {
           if (gen !== switchGen || !st.ge.isConnected) return;
           st.ge.dataset.off = "unreachable";
           st.ge.title = "the catalog could not be reached for this word; what your switches leave of it is not known yet";
@@ -6055,7 +6120,8 @@
       btn.dataset.ids = g.ids.join(" "); btn.dataset.key = g.key; btn.dataset.year = String(g.y); btn.dataset.century = String(g.wcMain);
       btn.setAttribute("aria-pressed", String(on));
       btn.setAttribute("aria-label", `use ${g.label}`);
-      btn.title = `${on ? "switch off" : "switch back on"}: ${g.label}\n${g.costs}${g.wcSay ? `\n${g.wcSay}` : ""}`;
+      const rests = SOURCE_DEFAULTS && SOURCE_DEFAULTS.off && SOURCE_DEFAULTS.off[g.key];
+      btn.title = `${on ? "switch off" : "switch back on"}: ${g.label}${rests ? `\nrests off until you turn it on: ${rests.why}` : ""}\n${g.costs}${g.wcSay ? `\n${g.wcSay}` : ""}`;
       btn.addEventListener("click", () => {
         const nowOn = btn.getAttribute("aria-pressed") === "true";
         t.set(g.ids, !nowOn);

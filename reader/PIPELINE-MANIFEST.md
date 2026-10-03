@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-10-03.
 
-**118 rules declared · 112 named by a check · 6 unguarded.**
+**119 rules declared · 113 named by a check · 6 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -76,7 +76,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | check-numbering-gap-witnessed-v1 |
 | `orders-registered-together-rule-v1-a-reading-column-and-its-credit-column-are-one-registration` | tools/check-orders-registered-together-v1.mjs | check-orders-registered-together-v1 |
 | `overlay-book-counts-rule-v1-a-dictionary-beside-the-store-is-counted-per-book-like-every-other` | tools/bake-overlay-book-counts-v1.mjs | check-source-switch-v1 |
-| `overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores` | zone.html | check-overlays-v1, check-card-opens-on-the-line-v1 |
+| `overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores` | zone.html | check-overlays-v1, check-card-opens-on-the-line-v1, check-source-switch-v1 |
 | `partial-serve-rule-v1-a-work-served-in-part-says-so-where-the-part-is-missing` | zone.html | check-partial-serve-declared-v1 |
 | `parts-direction-rule-v1-the-first-part-of-a-hebrew-row-is-the-rightmost` | zone.html | check-parts-read-right-to-left-v1 |
 | `pass-through-rule-v1-a-sealed-layer-can-only-be-withheld-never-added` | tools/build-commentary-sidecar-v1.mjs, tools/build-commentary-sidecar-v2.mjs | check-sealed-layers-v1 |
@@ -103,6 +103,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `serve-from-stream-rule-v2-the-successor-stream-is-the-text-bridge-v2-is-its-identity-the-binding-is-the-rights` | tools/serve-from-stream-v2.mjs | check-stream-is-text-v1 |
 | `served-line-rule-v1-the-zones-gloss-field-is-the-line-the-page-draws-and-no-lane-need-model-the-sort` | tools/regloss-zone.mjs | check-disk-gloss-is-the-line-v1 |
 | `source-corpus-rule-v1-a-witness-names-the-body-it-describes-or-is-not-sorted-by-one` | tools/emit-source-corpus-v1.mjs | check-source-corpus-v1 |
+| `source-defaults-rule-v1-a-source-may-rest-off-by-the-owners-ruling-and-the-reader-may-turn-it-on` | zone.html | check-overlays-v1, check-source-switch-v1 |
 | `source-short-names-rule-v1-a-shelf-chip-wears-a-short-name-this-record-keeps-and-the-full-name-on-press` | tools/check-source-switch-v1.mjs | check-source-switch-v1 |
 | `source-switch-rule-v1-a-reading-remembers-who-carried-it` | tools/gloss-store-v1.mjs, zone.html, tools/gloss-m-v1.mjs | check-carrier-survives-v1, check-line-follows-card-v1, check-source-switch-v1 |
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | check-span-receipt-carried-identical-v1 |

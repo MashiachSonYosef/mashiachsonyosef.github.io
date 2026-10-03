@@ -35,7 +35,7 @@
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
 let bad = 0;
@@ -66,6 +66,32 @@ await p.goto(`${BASE}?b=${ZONE}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(600);
 console.log(`— ${ZONE} —`);
+
+// S0 · THE SOURCES THAT REST OFF (source-defaults-rule-v1). A fresh reader is
+// given the record's defaults: the sources it rests off are off, every other
+// chip is on. Then this check sets an all-on reader who has seen the defaults,
+// and presses the switches from there, as it always did.
+// THE LINE IS THE STORE'S (overlay-rule-v2): a dictionary beside the store
+// sorts on the card like any other, so a card's first pill can be Jastrow's,
+// or a store reading Jastrow's 1903 year lifted, while the line, baked from the
+// store, reads the store's. "The card's first pill" here is the first pill no
+// overlay source carries: the sort and the bake agree among the readings the
+// bake was made from (as check-card-opens-on-the-line-v1 C2 judges it).
+const OV_IDS = (() => { try { return readdirSync("data/overlays").filter((d) => existsSync(`data/overlays/${d}/index.json`)).flatMap((d) => Object.keys(JSON.parse(readFileSync(`data/overlays/${d}/index.json`, "utf8")).m_sources || {})); } catch { return []; } })();
+const DEFAULTS = existsSync("data/source-defaults-v1.json") ? JSON.parse(readFileSync("data/source-defaults-v1.json", "utf8")) : null;
+{
+  await p.waitForFunction(() => document.querySelectorAll('.rail .row[data-toggle="sources"] .dfp').length > 0, null, { timeout: 20000 }).catch(() => {});
+  const fresh = await p.evaluate(() => [...document.querySelectorAll('.rail .row[data-toggle="sources"] .dfp')].map((c) => ({ key: c.dataset.key, on: c.getAttribute("aria-pressed") === "true" })));
+  const rest = new Set(Object.keys((DEFAULTS && DEFAULTS.off) || {}));
+  const wrong = fresh.filter((c) => c.on === rest.has(c.key));
+  check("S0  a fresh reader finds the sources the record rests off switched off, and every other chip on", fresh.length > 0 && wrong.length === 0,
+    `${fresh.length} chips · ${fresh.filter((c) => !c.on).length} resting off${wrong.length ? ` · astray: ${wrong.slice(0, 3).map((c) => c.key).join(", ")}` : ""}`);
+  await p.evaluate((ver) => { localStorage.setItem("fh.sources.defaults", ver); localStorage.setItem("fh.sources.off", "[]"); }, String((DEFAULTS && DEFAULTS.version) || ""));
+  await p.reload({ waitUntil: "networkidle" });
+  await p.waitForSelector("section.seg .he-text .wb");
+  await p.waitForFunction(() => document.querySelectorAll('.rail .row[data-toggle="sources"] .dfp').length > 0, null, { timeout: 20000 }).catch(() => {});
+  await p.waitForTimeout(600);
+}
 
 // S1
 const rail = await p.evaluate(() => {
@@ -245,17 +271,18 @@ check("  a source that solely carries one visible line (with an alternate) and s
 // the Hebrew ink of the first section, without the English lines under it
 const inkOf = () => p.evaluate(() => { const c = document.querySelector("section.seg .he-text").cloneNode(true); c.querySelectorAll(".g").forEach((x) => x.remove()); return c.textContent; });
 // what a word's card offers first, and its line without the chip
-const leadOf = (i) => p.evaluate(async (i) => {
+const leadOf = (i) => p.evaluate(async ([i, ov]) => {
   const wb = document.querySelectorAll("section.seg .he-text .wb")[i];
   (wb.querySelector(".w span") || wb.querySelector(".w")).click();
   const t0 = Date.now(); while (Date.now() - t0 < 5000 && !document.querySelector("#hud .r-pills button")) await new Promise((r) => setTimeout(r, 50));
   await new Promise((r) => setTimeout(r, 300));
-  const first = ((document.querySelector("#hud .r-pills button") || {}).textContent || "").trim();
+  const ovs = new Set(ov);
+  const first = (([...document.querySelectorAll("#hud .r-pills button")].find((b) => !String(b.dataset.by || "").split(" ").some((m) => ovs.has(m))) || {}).textContent || "").trim();
   const x = document.querySelector("#hud .head button"); if (x) x.click();
   await new Promise((r) => setTimeout(r, 200));
   const g = wb.querySelector(".g").cloneNode(true); g.querySelectorAll(".g-lic").forEach((c) => c.remove());
   return { first, line: g.textContent.replace(/\s+/g, " ").trim() };
-}, i);
+}, [i, OV_IDS]);
 const sharedBefore = pick ? await leadOf(pick.shared.i) : null;
 const heBefore = await inkOf();
 
@@ -286,17 +313,19 @@ check("S4  the shared line stays carried: never dark, its card's first pill, and
 // S5 · open the card on the moved word
 await p.evaluate((i) => { const w = document.querySelectorAll("section.seg .he-text .wb")[i]; (w.querySelector(".w span") || w.querySelector(".w")).click(); }, pick ? pick.sole.i : 0);
 await p.waitForTimeout(900);
-const card = await p.evaluate(() => {
+const card = await p.evaluate((ov) => {
   const h = document.querySelector("#hud"); if (!h || h.hidden) return null;
   const pills = h.querySelector(".r-pills");
-  return { withheld: Number(pills.dataset.withheldBySources || 0), rows: Number(pills.dataset.rows || 0), note: (h.querySelector(".sources-withheld") || {}).textContent || "", first: (pills.querySelector("button") || {}).textContent || "", bys: [...pills.querySelectorAll("button")].map((x) => x.dataset.by || "") };
-});
+  const ovs = new Set(ov);
+  const firstStore = [...pills.querySelectorAll("button")].find((b) => !String(b.dataset.by || "").split(" ").some((m) => ovs.has(m)));
+  return { withheld: Number(pills.dataset.withheldBySources || 0), rows: Number(pills.dataset.rows || 0), note: (h.querySelector(".sources-withheld") || {}).textContent || "", first: (firstStore || {}).textContent || "", bys: [...pills.querySelectorAll("button")].map((x) => x.dataset.by || "") };
+}, OV_IDS);
 const off = new Set(pick ? pick.ids : []);
 const creditsOff = card ? card.bys.filter((by) => by.split(" ").every((m) => off.has(m))).length : -1;
 check("S5  the card says how many records the switch withheld, and no pill is carried only by the switched-off ids",
   card && card.withheld > 0 && /withheld by your source switch/u.test(card.note) && creditsOff === 0,
   card ? `${card.withheld} of ${card.rows} withheld · "${card.note}" · pills credited only to the off ids: ${creditsOff}` : "no card");
-check("    and the card's first pill is the line", card && pick && card.first.trim().toLowerCase() === after[0].line.replace(/\s*(CC|Public|License).*$/u, "").trim().toLowerCase(), card ? `pill "${card.first}" · line "${after[0].line}"` : "");
+check("    and the card's first pill no overlay source carries is the line", card && pick && card.first.trim().toLowerCase() === after[0].line.replace(/\s*(CC|Public|License).*$/u, "").trim().toLowerCase(), card ? `pill "${card.first}" · line "${after[0].line}"` : "");
 
 // S6
 const heAfter = await inkOf();
