@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-10-03.
 
-**119 rules declared · 113 named by a check · 6 unguarded.**
+**121 rules declared · 114 named by a check · 7 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -37,6 +37,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `dibbur-hamatchil-rule-v2-the-window-is-the-verse` | tools/generate-attachment-map-v2.mjs | check-nothing-hard-wired-v1 |
 | `division-evidence-rule-v1-a-division-we-have-not-established-is-not-offered` | tools/check-division-established-v1.mjs | check-division-established-v1 |
 | `doc-currency-rule-v1-an-undated-document-names-only-what-is-here` | tools/check-docs-name-what-is-here-v1.mjs | check-docs-name-what-is-here-v1 |
+| `door-filing-rule-v1-the-door-files-the-thirty-nine` | tools/door-filing-v1.mjs | **UNGUARDED** |
 | `edition-serve-rule-v1-the-edition-is-the-text-the-door-is-the-rights` | tools/serve-edition-v1.mjs | check-edition-serve-v1 |
 | `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | check-k-maqaf-preserved-v2 |
 | `exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf` | tools/k-normalization-v2.mjs | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1 |
@@ -82,6 +83,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `pass-through-rule-v1-a-sealed-layer-can-only-be-withheld-never-added` | tools/build-commentary-sidecar-v1.mjs, tools/build-commentary-sidecar-v2.mjs | check-sealed-layers-v1 |
 | `piece-gloss-rule-v1-a-piece-reads-what-its-source-said-at-this-position-not-what-the-key-means-in-general` | tools/project-piece-gloss-v1.mjs | **UNGUARDED** |
 | `pipeline-manifest-rule-v1-a-rule-with-no-guard-is-printed-as-having-none` | tools/pipeline-manifest-v1.mjs | check-manifest-prints-unguarded-v1 |
+| `place-order-rule-v1-the-line-reads-what-the-source-gives-at-this-place` | tools/check-line-reads-the-place-v1.mjs | check-line-reads-the-place-v1 |
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
 | `pointing-grade-rule-v1-a-row-is-graded-by-its-own-headwords-against-the-open-word` | tools/emit-pointing-grade-recount-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/proper-name-v1.mjs, zone.html | check-pointing-grade-v1, check-lattice-projection-v1 |
 | `pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said` | tools/verify-pointing-store-v1.mjs | check-pointing-store-landing-v1 |
@@ -152,7 +154,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 93 tools that are not checks.
+`build.sh` calls 19 of the 94 tools that are not checks.
 
 Not called by any build stage:
 
@@ -169,6 +171,7 @@ Not called by any build stage:
 - `tools/carry-span-receipt-v1.mjs`
 - `tools/commentary-span-findings-v1.mjs`
 - `tools/declaration-v1.mjs`
+- `tools/door-filing-v1.mjs`
 - `tools/emit-apparatus-baseline-v1.mjs`
 - `tools/emit-corpus-atlas-v1.mjs`
 - `tools/emit-language-sweep-record-v1.mjs`

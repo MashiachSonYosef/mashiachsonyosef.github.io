@@ -296,6 +296,18 @@
       say: "The reading an old source gives in its entry for this word, citing this verse, answers first \u2014 the corpus lane\u2019s witnessed order, entry column. The rest keep their own order under it." },
     { id: "witnessed_entry_and_lists", lab: "witnessed in lists", live: false, needs: "witnessed",
       say: "The reading an old source gives in its entry or its word lists, citing this verse, answers first \u2014 the corpus lane\u2019s witnessed order, entry-and-lists column. The rest keep their own order under it." },
+    // AT THIS PLACE (the owner, 2026-10-03: "we dont do blanket oldest first
+    // anymore thats a subtoggle"; and on Daniel 1:2, circling "X common",
+    // "puts ~ toshame" and "a house + \u00bf + God" under its words). The
+    // reading the source gives at this very place leads the line and the
+    // card: STEP's TAHOT, divided and worded as it reads here (the corpus
+    // lane's piece gloss, relay v59, carried byte for byte into each word's
+    // pg). Oldest first was the reading of the FORM, anywhere: a homograph's
+    // gloss (puts to shame for the vessels), a usage list's mark (X common),
+    // a question's he for the article's. Live where the book carries the
+    // pieces; a word they do not reach keeps oldest first.
+    { id: "place", lab: "at this place", live: false, needs: "place",
+      say: "The reading STEP\u2019s TAHOT gives at this very place answers first, divided and worded as it reads here \u2014 the corpus lane\u2019s piece gloss, carried byte for byte. A word it does not reach keeps oldest first, and the rest of every card keeps its own order under it." },
     { id: "oldest", lab: "oldest first", live: true,
       say: "The oldest source answers first, antiquity ahead of everything. The order this reader has always used." },
   ];
@@ -667,10 +679,14 @@
         if (p.needs === "lattice") p.live = hasLattice;
         if (p.needs === "corpus") p.live = !!CORPUS_REC;
         if (p.needs === "witnessed") p.live = !!(zone.gloss_orders && zone.gloss_orders[p.id] && Object.keys(zone.gloss_orders[p.id]).length);
+        if (p.needs === "place") p.live = (zone.sections || []).some((sec) => (sec.words || []).some((w) => Array.isArray(w.pg) && w.pg.length));
       }
       let held = null;
       try { held = localStorage.getItem(DEF_KEY); } catch { /* a device that remembers nothing still reads */ }
-      defOrder = DEF_POS.some((p) => p.id === held && p.live) ? held : "oldest";
+      // the default is the place where the book carries it (the owner,
+      // 2026-10-03); a position the reader chose is kept
+      const placeLive = DEF_POS.some((p) => p.id === "place" && p.live);
+      defOrder = DEF_POS.some((p) => p.id === held && p.live) ? held : placeLive ? "place" : "oldest";
       const pos = DEF_POS.find((p) => p.id === defOrder);
       // a remembered setting that reads the lattice — a lattice order, the
       // masorah switch, names as sound — fetches the sidecar now, and the
@@ -1492,9 +1508,9 @@
   };
   const leadRecord = (route) => [...route.records].sort(EARLIEST_FIRST)[0];
 
-  const attributionFor = async (surface, shownText) => {
+  const attributionFor = async (surface, shownText, at = null) => {
     let pool = null;
-    try { pool = await poolFor(surface); }
+    try { pool = await poolFor(surface, at && spanJoin(at.text) === shownText ? { place: at } : {}); }
     catch { return { ok: false, unreachable: true, why: "the catalog could not be reached for this form; export again" }; }
     if (!pool || !pool.length) return { ok: false, why: "no record in the catalog for this form" };
     const hit = pool.find((r) => spanJoin(r.text) === shownText) ||
@@ -1546,7 +1562,7 @@
       })() : "";
       const rec = { he: w.s, en: null, held: null, source: null };
       if (w.k && shown && shown !== "—") {
-        const a = await attributionFor(w.k, shown);
+        const a = await attributionFor(w.k, shown, placeLine(w));
         if (a.ok) { rec.en = a.text; rec.source = a; }
         else { rec.held = a.why; if (a.unreachable) rec.unreachable = true; }
       } else if (!w.k) rec.held = "held by the ledger; no reading is offered";
@@ -2632,6 +2648,9 @@
   // line under a word asks it when a switch moves the line (repaintLive), so the
   // live line lands where the bake would, and an overlay's reading stands on the
   // card, sorted like any other, not on the line
+  // the rows the page stands up for a place's own reading, so a record can say
+  // where it came from and a check can tell them from the store's
+  const PLACE_ROWS = new WeakSet();
   const poolFor = async (surface, opts = {}) => {
     const stored = await routesFor(surface);
     let extra = [];
@@ -2773,6 +2792,27 @@
     }
     // which pills stand on overlay rows alone, for a check to read off the pool
     for (const g of groups.values()) { const ovs = g.records.map((row) => OVERLAY_ROWS.get(row)); if (ovs.every(Boolean)) g.ov = ovs[0]; }
+    // AT THIS PLACE, TAHOT's reading for the word standing open: where no row
+    // of the store prints it, it stands as TAHOT's own row (its words at this
+    // place, byte for byte, the piece gloss's), and either way it answers first
+    let placeG = null;
+    if (opts.place && opts.place.text && opts.place.mId && index.m_sources[opts.place.mId] && !sourcesOff.has(opts.place.mId)) {
+      const d = drawn(opts.place.text);
+      placeG = [...groups.values()].find((g) => drawn(g.text) === d) || null;
+      // one reading, one pill, case folded: the pill that is the place's
+      // prints it as the line prints it (TAHOT's "Yahweh", not another
+      // row's "yahweh")
+      if (placeG) placeG.text = opts.place.text;
+      if (!placeG) {
+        const row = [0, opts.place.text, opts.place.text, opts.place.mId, null, null, null];
+        PLACE_ROWS.add(row);
+        placeG = { text: opts.place.text, year: Infinity, ledger: 0, records: [row], place: true };
+        groups.set(`\u0001${d}`, placeG);
+      }
+      // marked on the reading itself, so every re-sort of this pool (the row
+      // is redrawn from a fresh copy) still puts it first
+      placeG.placeFirst = true;
+    }
     const pool = sortPool([...groups.values()], surface);
     pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = all.length + extra.length;
     return pool;
@@ -2881,7 +2921,10 @@
       || (pos.needs === "lattice" && gr && gr.o && gr.o[pos.lattice])
       || (pos.needs === "witnessed" && wCol);
     const nameLead = (a, b) => (!nameLed || nameYields() ? 0 : (a.text === nameLed ? 0 : 1) - (b.text === nameLed ? 0 : 1));
-    return list.sort((a, b) => licPref(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
+    // AT THIS PLACE, the place's own reading first (marked by poolFor on the
+    // reading the word standing open reads here); the rest keep their order
+    const placeLead = (a, b) => (defOrder !== "place" ? 0 : (a.placeFirst ? 0 : 1) - (b.placeFirst ? 0 : 1));
+    return list.sort((a, b) => placeLead(a, b) || licPref(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
   };
 
   /**
@@ -3305,6 +3348,18 @@
     const routeKey = (r) => spanJoin(r.text) + " | " +
       (r.records && r.records[0] ? r.records[0][3] : "no m");
     const cache = new Map();           // cell surface -> pool (or null)
+    // AT THIS PLACE, the place a cell stands for: the word standing open, as
+    // a whole form, or in a run the run's own word at that cell
+    const placeOfCell = (surface) => {
+      if (bin !== zone) return null;
+      if (opts.run) {
+        const ws = opts.run.words;
+        const cell = ws ? cover.find((c) => c.surface === surface && c.from === c.to) : null;
+        const w = cell ? ws[cell.from] : null;
+        return w && w.k === surface ? placeLine(w) : null;
+      }
+      return word && surface === region.k ? placeLine(word) : null;
+    };
     const tried = new Map();           // cell surface -> fetches that did not arrive
     let pressedCut = null;             // a run's whole rung the reader pressed, remembered once read
 
@@ -3317,6 +3372,9 @@
     const textOfCell = (surface) => {
       const p = picked.get(surface);
       if (p) return spanJoin(p.text);
+      // at this place, the cell's place: the open word's, or in a run the
+      // run's own word at that cell, as the line under it prints
+      { const at = placeOfCell(surface); if (at) return spanJoin(at.text); }
       // the line's own law before the baked gloss: under the masorah's
       // "only", a lattice order, the headword lookup or a source switch, the
       // word's line is led by that position's leader (lineUnder), and an
@@ -3362,7 +3420,15 @@
     // witnesses agreed, and that the derivation the dictionary gives first
     // is still on the card, below, as a reading of the entry rather than of
     // the word. Said once, here, where the reader is looking at the choice.
-    if (bin === zone && zone.gloss_names && zone.gloss && cover.some((c) => Object.prototype.hasOwnProperty.call(zone.gloss_names, c.surface) && zone.gloss[c.surface] === zone.gloss_names[c.surface])) {
+    // AT THIS PLACE the reading standing is this place's, TAHOT's here, and
+    // not the form's, and the label says so in its own line's room (a second
+    // line of prose pushed the card past the room under a tall block). Once
+    // the reader presses a reading, the label says that reading's reach,
+    // every place the form stands (markRuled). The name does not lead where
+    // the place does, so its sentence is not said there.
+    const atPlace = !opts.run && bin === zone && !!word && !!placeLine(word);
+    if (atPlace) nowK.textContent = "reading \u00b7 TAHOT at this place";
+    if (!atPlace && bin === zone && zone.gloss_names && zone.gloss && cover.some((c) => Object.prototype.hasOwnProperty.call(zone.gloss_names, c.surface) && zone.gloss[c.surface] === zone.gloss_names[c.surface])) {
       const nn = document.createElement("span"); nn.className = "n";
       nn.textContent = "a name: the witness reading this place and the entry it belongs to name it alike, so the name leads; the derivation the entry gives first stands among the readings below";
       now.append(nn);
@@ -3386,7 +3452,7 @@
     // not holding that list in their head. It marks a ruling, not a visit:
     // opening a word and closing it again changes nothing and leaves no mark.
     let ruled = false;
-    const markRuled = () => { ruled = true; if (wbEl && wbEl.classList && !wordsOwn) wbEl.classList.add("chosen"); };
+    const markRuled = () => { ruled = true; if (wbEl && wbEl.classList && !wordsOwn) wbEl.classList.add("chosen"); nowK.textContent = "reading \u00b7 at every place this form stands"; };
 
     // The page's own reading is printed whole — that is why the ellipsis came
     // off. But a reading the reader chooses can be longer than the one the
@@ -3743,7 +3809,10 @@
       clampHud();
       let unreachable = null;
       if (!cache.has(surface)) {
-        try { cache.set(surface, await poolFor(surface)); }
+        try {
+          const at = placeOfCell(surface);
+          cache.set(surface, await poolFor(surface, at ? { place: at } : {}));
+        }
         catch (e) { unreachable = e; }
       }
       if (myGen !== hudGen) return;                        // the card is gone
@@ -3878,6 +3947,7 @@
           const t = (c2.textContent || "").trim();
           return t && t !== "\u2014" ? t.toLowerCase() : null;
         }
+        { const at = placeOfCell(surface); if (at) return spanJoin(at.text).toLowerCase(); }
         if (opts.run || !bin.gloss) return null;
         const led = bin === zone && word && surface === region.k ? lineUnder(word, zone.gloss) : null;
         const t = led ? led.text : bin.gloss[surface];
@@ -4194,6 +4264,8 @@
         window.__pool = sorted.map((r) => spanJoin(r.text));
         // and which of them stand on an overlay's rows alone, in the same order
         window.__poolOv = sorted.map((r) => r.ov || "");
+        // and which stand on a place's own reading, TAHOT's here, no row of the store printing it
+        window.__poolPlace = sorted.map((r) => r.records.some((row) => PLACE_ROWS.has(row)));
         // the source each reading is credited to, and every source behind it
         window.__poolLead = sorted.map((r) => leadRecord(r)[3]);
         window.__poolBy = sorted.map((r) => [...new Set(r.records.map((x) => x[3]))].join(" "));
@@ -4702,7 +4774,7 @@
     // compound's weld from a homograph. The welded and folded forms stay on
     // the card, offered and never chosen for the reader, until the corpus
     // lane's run ledger says which are the compound.
-    if (run.__key && run.__words) {
+    if (run.__key && run.__words && !(run.__table == null && run.__words.every((w) => placeLine(w)))) {
       const table = run.__table || zone.gloss || {};
       const gmT = run.__table ? null : zone.gloss_m;
       const form = runWholeForms(run.__words.map((w) => w.k)).slice(0, 1).find((f) => {
@@ -4852,10 +4924,30 @@
   // this position, so the headword wins the line and the card says which
   // headword it answered under. An order the page cannot honestly apply is
   // not applied quietly.
+  // THE PLACE'S OWN READING, under "at this place": TAHOT's pieces at this
+  // word, "/"-packed as the store packs a divided reading. A choice the reader
+  // made that moves the line (the headword, a licence preference, the
+  // Masorah's filter or its letters) still leads; TAHOT switched off, or a
+  // piece it leaves unglossed, gives the word back to oldest first.
+  const tahotWitness = () => {
+    const pc = ((((zone || {}).emitted_from || {}).toggles || {}).lattice || {}).pieces;
+    return pc && pc.witnesses && pc.witnesses.english_tahot ? pc.witnesses.english_tahot : null;
+  };
+  const placeLine = (word) => {
+    if (defOrder !== "place" || !word || !Array.isArray(word.pg) || !word.pg.length) return null;
+    if (lookup === "headword" || licencePref !== "any" || masorah === "only" || masorah === "letters") return null;
+    const who = tahotWitness();
+    if (who && sourcesOff.has(who.m)) return null;
+    const parts = word.pg.map((p) => String((p && p.g) || "").trim());
+    if (parts.some((t) => !t)) return null;
+    const m = who && index && index.m_sources ? index.m_sources[who.m] : null;
+    return { text: parts.join("/"), m: who ? { lic: licenseName(who.licence), m: m ? m.label : who.label, y: null } : null, why: "place", mId: who ? who.m : null };
+  };
   const lineUnder = (word, table) => {
     if (!word || table !== zone.gloss) return null;
     if (lookup === "headword" && word.hg && word.h && table[word.h])
       return { text: word.hg, m: word.hm ? { lic: licenseName(word.hm.lic), m: word.hm.m, y: word.hm.y, ya: "wording" } : null, why: "headword" };
+    { const at = placeLine(word); if (at) return at; }
     // THE SOURCE SWITCHES FIRST. A source the reader turned off cannot lead
     // the line. Every carrier of the printed reading is baked on the key
     // (gloss_m[k].by); if all of them are off, the baked alternate leads with
@@ -5204,7 +5296,7 @@
       const region = { s, k: runEl.__key };
       openHud(runEl, region, unitId, wordPos, {
         ...opts, bin, word: { s, k: runEl.__key, w: atoms }, regionIndex: -1, glossParts: null,
-        run: { keys: words.map((w) => w.k), clicked, el: runEl },
+        run: { keys: words.map((w) => w.k), clicked, el: runEl, words },
         mark: () => { runEl.classList.add("active"); },
       });
     };
@@ -5219,7 +5311,7 @@
       const k = chain ? chain.__key : rc.keys.join(" ");
       openHud(chain || built.wb, { s, k }, unitId, wordPos, {
         ...opts, bin, word: { s, k, w: atoms }, regionIndex: -1, glossParts: null,
-        run: { keys: rc.keys, clicked: Math.max(0, clicked), el: chain || built.wb, named: rc.named || [], chain: !!chain,
+        run: { keys: rc.keys, clicked: Math.max(0, clicked), el: chain || built.wb, named: rc.named || [], chain: !!chain, words,
           gaps: chain ? null : words.slice(0, -1).map((w) => (/\u05be$/u.test(String(w.s)) ? "\u05be" : " ")),
           wbs: rc.idx.map((i) => rc.__els.get(i) || null) },
         mark: () => { for (const el of rc.__els.values()) el.classList.add("active"); if (chain) chain.classList.add("active"); },
