@@ -548,7 +548,10 @@
       live: () => true,
       get: () => defOrder,
       set: (id) => chooseDefOrder(id),
-      now: () => "" },
+      now: () => {
+        const at = [{ id: "place", lab: "the source here" }, { id: "oldest", lab: "oldest first" }].find((x) => x.id === defOrder);
+        return at ? at.lab : `${(DEF_POS.find((x) => x.id === defOrder) || {}).lab || defOrder} (reads first)`;
+      } },
     { id: "sources", voice: "them", lab: "sources", why: "every dictionary this book's readings stand on, each one removable — a source turned off is not asked, and the card says how many records that withheld",
       live: () => !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.sources && zone.emitted_from.toggles.sources.sources),
       waits: "the per-source switch costs baked on this book (tools/regloss-zone.mjs)",
@@ -5983,12 +5986,18 @@
     // the sources first and in ink, since they lead the rail; every other
     // switch's state still said, so the line stays a full account of what is
     // applied, but quieter — those switches wait under the fold
-    const lead = TOGGLES.filter((t) => t.id === "sources").concat(TOGGLES.filter((t) => t.id !== "sources" && t.id !== "reads"));
+    // ONLY WHAT STANDS OUTSIDE THE FOLD (the owner, 2026-10-03: "even i am
+    // confused by which toggles we are saying are selected, lets try
+    // starting with the ones we have outside"): the line's order, the
+    // sources, the license sort. What waits under the fold still works and
+    // says its own position there; this line no longer recites it.
+    const lead = ["reads", "sources", "licence"].map((id) => TOGGLES.find((t) => t.id === id)).filter(Boolean);
     lead.forEach((t, i) => {
       if (i) now.append(Object.assign(document.createElement("i"), { textContent: "·" }));
-      const b = document.createElement("b"); b.textContent = t.now() || t.lab; b.dataset.toggle = t.id;
+      const b = document.createElement("b"); b.textContent = t.now() || t.lab;
+      // the line's order keeps the token the order has always answered to
+      b.dataset.toggle = t.id === "reads" ? "order" : t.id;
       if (!t.live()) b.style.color = "var(--faint)";
-      else if (t.id !== "sources") { b.style.color = "var(--muted)"; b.style.fontWeight = "500"; }
       now.append(b);
     });
   };
@@ -6586,6 +6595,16 @@
       why.textContent = t.live() ? t.why : `${t.why} — waiting on ${t.waits}`;
       row.append(lab, host, why);
       (LEAD.has(t.id) ? rows : more).append(row);
+    }
+    // the scribes' marks wait under the fold with the rest (the owner,
+    // 2026-10-03: "not sure if we are ready to highlight that"); the button
+    // is the same one, moved, and works as it did
+    const marks = document.getElementById("marksToggle");
+    if (marks) {
+      const mrow = document.createElement("div"); mrow.className = "row marks-row";
+      const mlab = document.createElement("span"); mlab.className = "lab"; mlab.textContent = "the scribes\u2019 marks";
+      mrow.append(mlab, marks);
+      more.append(mrow);
     }
     rows.append(more);
     readsSwitch();
