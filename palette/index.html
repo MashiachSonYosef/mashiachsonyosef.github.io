@@ -681,6 +681,16 @@
      without reading anything: the name is indented, and only the name, so
      the other three columns stay in the lines the heads named. */
   .atlas-row.built .col-en { padding-inline-start:1.9rem; }
+  /* THE WHOLE CARD OPENS ITS BOOK (the owner, 2026-10-03: "if i click
+     anywhere i highlighted red it should go into genesis"). The book's own
+     link is stretched over its card; the card's own controls (the attested
+     chip, the license, anything pressable on the Hebrew side) stand above it
+     and keep their own presses. A card listing several files has more than
+     one place to go, so it is left as it is. */
+  .atlas-row.built:not(.g24) { position:relative; }
+  .atlas-row.built:not(.g24) .col-en a.aw::after { content:""; position:absolute; inset:0; border-radius:inherit; }
+  .atlas-row.built:not(.g24) .chip, .atlas-row.built:not(.g24) .col-he a, .atlas-row.built:not(.g24) .col-he button,
+  .atlas-row.built:not(.g24) .col-he [role="button"], .atlas-row.built:not(.g24) .col-lic a { position:relative; z-index:1; }
   .col-att { grid-column:2; }
   .col-he { grid-column:3; }
   .col-lic { grid-column:4; }
