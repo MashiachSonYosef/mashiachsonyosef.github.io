@@ -3593,54 +3593,67 @@
       : "Citations: [H] marks the Hebrew; [1] [2] … mark each reading. Every mark has an entry under Sources naming the license that reading is released under, and the entry is the record the reading is cited from — the earliest attestation the store carries, the same one the reader sees on the card. The same source keeps the same number wherever it appears. Where a reading is attested by further records, they are named under the entry; they are not what it was cited from.");
     if (kind !== "he") {
       L.push("");
-      L.push("AS RECEIVED. This file holds the Hebrew text and, under each section, every dictionary record standing behind a reading on the page, each exactly as this site received it: the source's own headword, its reading and its definition, byte for byte \u2014 never cut, never joined to another record, never reworded, never reordered inside itself. The page arranges and underlines readings for reading; this file does not. Each record carries its citation number, and its source and license are under Sources. What this file adds of its own \u2014 headings, numbering and the notes saying where a record stands on the page \u2014 is CC0 1.0.");
+      L.push("AS RECEIVED. This file holds two things, never meshed: the Hebrew text, and then the dictionary records behind the readings on the page, listed one after another, each exactly as this site received it \u2014 the source's own headword, reading and definition, byte for byte, never cut, joined, reworded or reordered. Nothing here connects a Hebrew word to an English reading; the page does that for reading, and this file does not. Each record carries its own source, license and addresses. What this file adds of its own \u2014 headings, numbering and these notes \u2014 is CC0 1.0.");
     }
     L.push("");
     const allObl = new Set(); let held = 0, notReached = 0;
+    // TWO BLOCKS, NEVER MESHED: the Hebrew text first, section by section,
+    // and then the records, one after another down the file. Nothing in the
+    // file connects a Hebrew word to an English reading (the owner,
+    // 2026-10-03): the page arranges them for reading; a file that has left
+    // the page carries what was received, as it was received.
+    const recs = [];
+    if (kind !== "en") { L.push("# The Hebrew text [H]"); L.push(""); }
     for (const b of bundles) {
-      L.push(`## ${b.sec.label || ""}`);
-      L.push("");
-      // the section's own address in the chain — the unit it was served from
-      // and the c0 rows it stands on, which is what a checker walks back along
-      if (b.sec.unit) {
-        L.push(`unit: ${b.sec.unit}${b.sec.c0_first != null && b.sec.c0_last != null ? ` · c0 rows ${b.sec.c0_first}–${b.sec.c0_last}` : ""}`);
+      if (kind !== "en") {
+        L.push(`## ${b.sec.label || ""}`);
         L.push("");
-      }
-      // The Hebrew is marked on its label rather than on each word: it is one
-      // work under one license, and threading Latin digits through a right-to-
-      // left run would rearrange the text on the page it is pasted into.
-      // joined as the zone's presentation_join says the ink joins: a maqaf
-      // word meets the next with no space, exactly as the page draws it
-      if (kind !== "en") { if (kind === "both") L.push("Hebrew [H]"); L.push(b.words.map((w, i) => w.he + (i < b.words.length - 1 && !w.joinNext ? " " : "")).join("")); }
-      if (kind !== "he") {
-        // ONE ITEM PER RECORD, as received: the same record behind three
-        // words is one item, said once, with the words it stands under
-        // named in this file's own note. Nothing here is the page's line.
-        if (kind === "both") L.push("");
-        L.push("Records behind this section's readings, each as received");
-        L.push("");
-        const items = new Map();
-        b.words.forEach((w, i) => {
-          if (w.held || w.unreachable || !w.source || !w.source.received) return;
-          const r = w.source.received;
-          const id = `${r.mId}\u0001${r.headwords.join("\u0002")}\u0001${r.route}\u0001${r.definition}`;
-          if (!items.has(id)) items.set(id, { r, src: w.source, at: [] });
-          items.get(id).at.push(`word ${i + 1} (${w.he})`);
-        });
-        let k = 0;
-        for (const { r, src, at } of items.values()) {
-          k += 1;
-          L.push(`${k}. [${cite(src)}] ${src.label} \u00b7 ${licenseName(src.posture)}`);
-          if (r.headwords.length) L.push(`    headword: ${r.headwords.join(" | ")}`);
-          L.push(`    reading: ${r.route}`);
-          if (r.definition && r.definition !== r.route) L.push(`    definition: ${r.definition}`);
-          L.push(`    _where it stands on the page (our note): ${at.join(", ")}_`);
+        // the section's own address in the chain — the unit it was served from
+        // and the c0 rows it stands on, which is what a checker walks back along
+        if (b.sec.unit) {
+          L.push(`unit: ${b.sec.unit}${b.sec.c0_first != null && b.sec.c0_last != null ? ` · c0 rows ${b.sec.c0_first}–${b.sec.c0_last}` : ""}`);
+          L.push("");
         }
-        if (!items.size) L.push("No record stands behind a reading in this section.");
+        // joined as the zone's presentation_join says the ink joins: a maqaf
+        // word meets the next with no space, exactly as the page draws it
+        L.push(b.words.map((w, i) => w.he + (i < b.words.length - 1 && !w.joinNext ? " " : "")).join(""));
+        L.push("");
       }
-      L.push("");
-      for (const w of b.words) { if (w.unreachable) notReached += 1; else if (w.held) held += 1; }
+      for (const w of b.words) {
+        if (w.unreachable) notReached += 1; else if (w.held) held += 1;
+        else if (w.source && w.source.received) recs.push(w.source);
+      }
       b.obligations.forEach((o) => allObl.add(o));
+    }
+    if (kind !== "he") {
+      // ONE ITEM PER READING ON THE PAGE, IN PAGE ORDER, each a record as
+      // received and carrying its own credit and addresses: whoever takes one
+      // item out of this file takes its source and license with it
+      // an English-only file still names the sections it was cut from, by
+      // their chain addresses, so it can be walked back like the others
+      if (kind === "en") {
+        L.push("# The sections this file covers");
+        L.push("");
+        for (const b of bundles) if (b.sec.unit) L.push(`unit: ${b.sec.unit}${b.sec.c0_first != null && b.sec.c0_last != null ? ` · c0 rows ${b.sec.c0_first}–${b.sec.c0_last}` : ""} (${b.sec.label || ""})`);
+        L.push("");
+      }
+      L.push("# Records, as received");
+      L.push("");
+      if (!recs.length) L.push("No record stands behind a reading in this file.");
+      recs.forEach((src, i) => {
+        const r = src.received;
+        const head = [];
+        if (r.headwords.length) head.push(`headword: ${r.headwords.join(" | ")}`);
+        head.push(`reading: ${r.route}`);
+        if (r.definition && r.definition !== r.route) head.push(`definition: ${r.definition}`);
+        L.push(`${i + 1}. ${head[0]}`);
+        head.slice(1).forEach((h) => L.push(`    ${h}`));
+        L.push(`    source: [${cite(src)}] ${src.label}${src.year ? ` \u00b7 wording ${src.year}` : " \u00b7 wording year not supplied"}`);
+        const deed = licenseDeed(src.posture);
+        L.push(`    license: ${licenseName(src.posture)}${deed ? ` \u2014 ${deed}` : ""}`);
+        if (/^https?:\/\//u.test(src.pointer || "")) L.push(`    from: ${src.pointer}`);
+        L.push("");
+      });
     }
     L.push("---");
     L.push("");
