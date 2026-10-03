@@ -21,14 +21,21 @@ const OUT = arg("out", "data/license-postures-v1.json");
 
 const d = JSON.parse(readFileSync(DECL, "utf8"));
 const postures = {};
+// refuse_export_when.no_derivatives, applied where the page reads it: a
+// NoDerivatives posture is never projected as exportable, whatever its row says
+const ND = (key) => /(^|[^a-z])nd([^a-z]|$)/i.test(key) || /noderiv/i.test(key);
 for (const [key, row] of Object.entries(d.export_postures)) {
   if (!row.name || typeof row.name !== "string")
     throw new Error(`posture without a declared name: ${key} — a projection may not invent one`);
+  if (ND(key) && row.export) throw new Error(`NoDerivatives posture declared exportable: ${key} — refuse_export_when.no_derivatives forbids it`);
   postures[key] = {
     name: row.name,
-    export: row.export,
+    export: ND(key) ? false : row.export,
     attribution: row.attribution,
     obligations: row.obligations,
+    // the license deed, when the declaration names one: the chip and the
+    // export link it, since a CC license asks for its own address
+    ...(row.deed ? { deed: row.deed } : {}),
   };
 }
 

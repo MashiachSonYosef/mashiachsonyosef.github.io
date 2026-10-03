@@ -92,11 +92,18 @@ for (const f of bins) {
       ? `${forms.toLocaleString()} forms carry a component system`
       : `withheld — ${layer.status || "the file carries no component layer and says nothing about why"}`);
   // 2 · and the file says which sealed file it came from, or it cannot be
-  //     reproduced or audited by anyone downstream
+  //     reproduced or audited by anyone downstream. Since the corpus lane's
+  //     relay v59 (2026-10-03) a book's layer may instead be the lane's span
+  //     ledger, swapped in whole by tools/apply-span-ledger-v1.mjs: that tool
+  //     moves the template slice's receipt inside its own, as what it
+  //     replaced, and names the ledger file it was handed, by file and sha256,
+  //     under emitted_from.span_ledger.ledger. The ledger is a sealed file too,
+  //     so the question is asked of whichever receipt the zone carries.
   if (forms > 0) {
-    const src = layer.source || {};
+    const ledger = ((z.emitted_from || {}).span_ledger || {}).ledger || null;
+    const src = ledger ? { path: ledger.file, sha256: ledger.sha256 } : layer.source || {};
     check(`    and names the sealed file it came from`, !!(src.path && src.sha256),
-      src.path ? `${src.path} · ${(src.sha256 || "no sha").slice(0, 16)}…`
+      src.path ? `${src.path} · ${(src.sha256 || "no sha").slice(0, 16)}…${ledger ? " · the corpus lane's span ledger" : ""}`
         : "the spans are here and nothing records where they came from");
   }
 }

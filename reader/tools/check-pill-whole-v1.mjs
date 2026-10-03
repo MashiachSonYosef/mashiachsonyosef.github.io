@@ -109,7 +109,7 @@ check("every pill is still here, none dropped to make room", r.pillCount === r.p
 // carried, not of every honest worst case the store can hold.
 check("the row holding them is complete, however tall that makes it",
   r.pillsInDom === r.pillCount && !r.clippedV && !r.clippedH,
-  `${r.rowScrollH}px of pills, ${r.pillCount} pills, none clipped`);
+  `${r.rowScrollH}px of pills, ${r.pillCount} pills, ${r.clippedV || r.clippedH ? "the worst one clipped" : "none clipped"}`);
 check("the band scrolls, not the whole card", r.bandScrolls && !r.regionScrolls);
 check("the record is still in view", r.dStillBelow);
 {

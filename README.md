@@ -23,11 +23,14 @@ payment is taken — declared 2026-08-30, standing as long as the site serves.
 Some dictionary records carried here were released under noncommercial terms,
 and this declaration is how those terms are honored.
 
-Everything this site adds of its own — pages, arrangement, receipts, prose —
-is dedicated to the public domain under CC0 1.0
-(https://creativecommons.org/publicdomain/zero/1.0/). Every carried record
-keeps its own license, printed beside it wherever it appears and carried into
-every export; what a record allows is that record's own license to say.
+What this site adds of its own — its code, layout, receipts and the prose it
+writes — is dedicated to the public domain under CC0 1.0
+(https://creativecommons.org/publicdomain/zero/1.0/). That dedication covers
+none of the carried texts and readings: each keeps its own license, named with
+it on the page and carried into every export, and what a record allows is that
+record's own license to say. Where this site adapts a share-alike record (the
+Hebrew text as laid out here, a reading cut or joined for display), the
+adaptation is shared under that record's license, not CC0.
 
 ## The rules this code is held to
 

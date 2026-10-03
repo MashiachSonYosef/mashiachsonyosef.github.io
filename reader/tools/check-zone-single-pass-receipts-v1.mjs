@@ -155,6 +155,7 @@ const PATCH_MARKS = {
   "span_layer.projected_by": "tools/respan-zone-v1.mjs",
   "span_layer.receipt_carried": "tools/carry-span-receipt-v1.mjs",
   "piece_gloss": "tools/project-piece-gloss-v1.mjs",
+  "span_ledger": "tools/apply-span-ledger-v1.mjs",
 };
 for (const k of TOP_KEYS) if (!new RegExp(`\\b${k}\\b`).test(builderSrc))
   console.log(`  --  the builder no longer names "${k}"; the field lists here need re-reading against it`);

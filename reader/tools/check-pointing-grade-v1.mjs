@@ -25,8 +25,9 @@
 //       check counts from the shard with the same two steps
 //
 // SKIPS by name when no served zone carries the lattice layer.
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
+import { createHash } from "node:crypto";
 import { vowelForm, isPointed, rowCarriesHeadwords, gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { fnv1a } from "./lattice-lib-v1.mjs";
@@ -97,12 +98,26 @@ await p.goto(`${BASE}?b=${ZONE}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(600);
 console.log(`— ${ZONE} · store ${store.index.schema_version} ${store.index.store_version} —`);
-// the same two steps as the page, in node: the row's own headwords, else the lattice card
-const expectFor = (s) => {
+// the overlays' rows for a key, as the page asks them (overlay-rule-v2: rows
+// like the store's): the overlay's own shard beside its index, by the store's
+// shard rule, only the lanes its index marks ruled, folded to the seven slots
+const OVERLAYS = existsSync("data/overlays") ? readdirSync("data/overlays").filter((id) => existsSync(`data/overlays/${id}/index.json`)).map((id) => ({ id, ix: JSON.parse(readFileSync(`data/overlays/${id}/index.json`, "utf8")) })) : [];
+const overlayRowsFor = (key) => OVERLAYS.flatMap(({ id, ix }) => {
+  const f = `data/overlays/${id}/shards/${createHash("sha256").update(key, "utf8").digest("hex").slice(0, 2)}.bin`;
+  const data = existsSync(f) ? JSON.parse(gunzipSync(readFileSync(f)).toString("utf8")) : {};
+  const ruled = ix.lanes ? new Set(Object.entries(ix.lanes).filter(([, l]) => l && l.standing === "ruled").map(([l]) => l)) : null;
+  return (data[key] || []).filter((row) => !ruled || !row[7] || (row[7].lanes || [row[7].lane]).some((l) => ruled.has(l))).map((row) => row.slice(0, 7));
+});
+// the same two steps as the page, in node: the row's own headwords, else the
+// lattice card; an overlay's row by its own headwords alone, and one whose
+// source is switched off is withheld by that switch, not by the pointing
+const expectFor = (s, off) => {
   const gr = side.grades[s]; const lat = gr && side.routes[gr.k]; const rows = gr ? (store.routesFor(gr.k) || []) : [];
   const fp = lat ? new Map(lat.f.map((f, i) => [f, i])) : null;
   const grades = rows.filter((r) => store.index.m_sources[r[3]]).map((r) => { const sg = gradeRow(r, s); if (sg !== "-") return sg; if (!fp) return "-"; const src = store.index.m_sources[r[3]]; const i = fp.get(fnv1a(`${r[1]}|${src.label}`)); return i === undefined ? "-" : (gr.g[i] || "-"); });
-  return { rows: rows.length, x: grades.filter((g) => g === "x").length, fromHeadwords: rows.filter(rowCarriesHeadwords).length };
+  const ov = gr ? overlayRowsFor(gr.k) : [];
+  const ovX = ov.filter((r) => !off.has(r[3]) && gradeRow(r, s) === "x").length;
+  return { rows: rows.length + ov.length, x: grades.filter((g) => g === "x").length + ovX, fromHeadwords: rows.filter(rowCarriesHeadwords).length, overlay: ov.length, overlayX: ovX };
 };
 const target = await p.evaluate((grades) => {
   const wbs = [...document.querySelectorAll("section.seg .he-text .wb")];
@@ -136,10 +151,10 @@ if (target) {
   check("P5a every pill carries its grade", !!okGrades, keep ? `${keep.grades.length} pills · ${JSON.stringify(Object.fromEntries(["m", "n", "x", "-"].map((g) => [g, keep.grades.filter((x) => x === g).length])))}` : "no card");
   const pressed = await press("only this pointing");
   const only = await cardNow();
-  const want = expectFor(target.s);
+  const want = expectFor(target.s, new Set(await p.evaluate(() => window.__sourcesOff || [])));
   check("P5b under only, no pill graded x survives, and the card's withheld count is this check's own count from the shard",
     pressed && only && !only.grades.includes("x") && only.withheld === want.x && only.rows === want.rows,
-    only ? `withheld ${only.withheld} of ${only.rows} · counted ${want.x} of ${want.rows} · ${want.fromHeadwords} rows graded from their own headwords${v2 ? "" : " (v1 store: the lattice graded every row)"}` : "no card");
+    only ? `withheld ${only.withheld} of ${only.rows} · counted ${want.x} of ${want.rows} (${want.overlayX} of ${want.overlay} overlay rows) · ${want.fromHeadwords} store rows graded from their own headwords${v2 ? "" : " (v1 store: the lattice graded every row)"}` : "no card");
   await press("keep");
 }
 await b.close();
