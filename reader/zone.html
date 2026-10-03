@@ -694,8 +694,7 @@
   /* A word with its commentary standing open beneath it. */
   /* Opening a commentary on a word is something the reader did, so the word
      wears the selection, not the structure. */
-  .wb.c-open { border-radius: 0.25rem; box-shadow: inset 0 -2px 0 var(--sel-dim); }
-  .wb.c-open .w { text-decoration: underline dotted; text-underline-offset: 0.18em; text-decoration-color: var(--gold-dim); }
+  .wb.c-open { border-radius: 0.25rem; }
   /* A word the reader has ruled on keeps a mark after the card closes. That is
      the point of it: the page holds the list of what has been worked so the
      reader does not have to. But it kept that mark as the same filled blue box
@@ -772,18 +771,21 @@
   body.en .wjoin .wj-ink { order: 3; }
   .q-mark { font-size: 0.62em; vertical-align: super; color: var(--muted);
     margin-inline-start: 0.1em; cursor: help; }
-  .wb.has-q .w { border-bottom: 1px dotted var(--muted); }
   .wb.multi:hover .w { color: inherit; border-bottom-color: transparent; }
   .wb.multi.active .w { color: inherit; border-bottom: 1px dashed transparent; }
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
   .wr:hover { color: var(--hover-ink); border-bottom-color: var(--hover-line); }
-  /* the open half of a pair is underlined in its own ink; no fill, no amber */
-  .wr.on { border-bottom: 1px solid var(--shani-ink); }
+  /* AN UNDERLINE HAS TWO MEANINGS AND IS ONLY EVER ON THE HEBREW (the
+     owner, 2026-10-03): one card stands over these words (a maqaf run, a
+     span across words), or this is the half of a ketiv-qere pair the line is
+     reading. Both are gold. Nothing else on the page is underlined: not a
+     reading, not a word with a commentary open, not a variant site, not a
+     word carrying a source's mark. */
   /* The half of a source-marked pair that the shown English is reading from.
      An underline in the selection role, not a new color: it marks provenance
      of the gloss, never a choice about the text — both halves keep printing
      exactly as the source wrote them, and text-decoration moves no glyph. */
-  .wb.kq .wr.backs-en { text-decoration: underline; text-decoration-color: var(--tekhelet-ink);
+  .wb.kq .wr.backs-en { text-decoration: underline; text-decoration-color: var(--gold);
     text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   /* ...and the same mark on the English it backs: two underlines in the same
      color, stacked, are the two ends of one claim — this reading, that half.
@@ -793,10 +795,7 @@
   /* A variant site: the source's own mark is already in the carrier; the
      dotted line only says a record stands behind it. Structure's color,
      because the mark is the text's own apparatus, not a reader's act. */
-  .wb.vs .w { text-decoration: underline dotted; text-decoration-color: var(--muted);
-    text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
-  .wb.kq .g.backs-en { text-decoration: underline; text-decoration-color: var(--tekhelet-ink);
-    text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+
   .mq { color: var(--shani-dim); }
   /* The reading under a word is shown whole. It used to run one line and end in
      an ellipsis, which was the honest thing to do when the average reading was
@@ -1384,7 +1383,7 @@
   #hud .r-unreachable button:hover { border-color: var(--gold); color: var(--shesh); }
   /* a line the shelf could not answer under a switch: dotted, so a phone
      with no hover can tell it from a line that was answered */
-  .g[data-off="unreachable"] { border-bottom: 1px dotted var(--faint); }
+
   /* said again below the frame rule that gives every line a transparent
      border, which outranked this one and hid the mark */
   #hud .s-pills button[aria-pressed="true"] { border-color: var(--gold); color: var(--ink-strong);
@@ -1690,7 +1689,7 @@
   /* the reading wears no box (owner, 2026-09-11: "your boxes are getting
      further and further from usable"); the border is kept transparent so the
      line's metrics do not move the day one is wanted back */
-  .wb > .g[data-off="unreachable"]:not(.bare), .wjoin > .g[data-off="unreachable"]:not(.bare) { border-bottom: 1px dotted var(--faint) !important; }
+
   .wb > .g:not(.bare), .wjoin > .g:not(.bare) {
     border: 1px solid transparent; border-radius: 0.45em; padding: 0.1em 0.4em; }
   .g .g-part { display: inline-block; vertical-align: top; text-align: center; }
