@@ -42,7 +42,7 @@
      names now carry the soft values, and the olive-brown text of the neutral is
      the purple ink, since gold is never text at rest. No title is drawn in a color of its own. */
     --shani:#9d4355; --shani-dim:#b76670;
-    --wash-shani:#eedcd6; --shani-ink:#9d4355; --tekhelet-ink:#34649a; --wash-tekhelet:#dfe4f1; --shesh:#561f86; --shesh-bright:#44166c;
+    --wash-shani:#eedcd6; --shani-ink:#9d4355; --tekhelet-ink:#34649a; --tekhelet-bold:#22508a; --wash-tekhelet:#dfe4f1; --shesh:#561f86; --shesh-bright:#44166c;
     --tekhelet:#34649a; --tekhelet-dim:#7f8ba8;
     --argaman:#772ba3; --argaman-dim:#9c69b9; --link:#772ba3;
     --chip-bg:rgba(107,90,53,.10); --chip-line:rgba(107,90,53,.32);
@@ -419,8 +419,8 @@
   .pc-hudwrap .r-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
-.pc-hudwrap .r-pills button[aria-pressed="true"] { border-color: var(--sel);
-    color: var(--sel); }
+.pc-hudwrap .r-pills button[aria-pressed="true"] { border-color: var(--tekhelet-bold);
+    color: var(--tekhelet-bold); }
 .pc-hudwrap .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
 .pc-hudwrap .r-overflow { margin-top: 0.45rem; }
@@ -428,7 +428,7 @@
     background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
 .pc-hudwrap .r-overflow select:hover { border-color:var(--gold); }
-.pc-hudwrap .r-overflow select.on { color: var(--sel); border-color: var(--sel); }
+.pc-hudwrap .r-overflow select.on { color: var(--tekhelet-bold); border-color: var(--tekhelet-bold); }
 .pc-hudwrap .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
 /* P — the sources that carry the same record. A corroboration is not a
      louder kind of source, so it wears the same chip and the same weight as
@@ -470,8 +470,8 @@
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
 .pc-hudwrap .s-pills button:hover { border-color:var(--gold); color: var(--shesh); }
-.pc-hudwrap .s-pills button[aria-pressed="true"] { border-color: var(--shesh); color: var(--ink-strong);
-    background: var(--wash); }
+.pc-hudwrap .s-pills button[aria-pressed="true"] { border-color: var(--sel); color: var(--sel);
+    font-weight: 700; }
 .pc-hudwrap .s-pills button .none { font: 0.62rem/1 Georgia, serif; color:var(--argaman); margin-inline-start: 0.35rem; }
 .pc-hudwrap .b-q { flex: 0 0 auto; min-height: 0; }
 .pc-hudwrap .b-q .q-role { font: 0.6rem/1 Georgia, serif; letter-spacing: 0.06em;
@@ -522,7 +522,7 @@
 .pc-hudwrap .d-foot { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; }
 .pc-hudwrap { box-shadow: var(--shadow-hud); }
 .pc-hudwrap .r-pills button[aria-pressed="true"], .pc-hudwrap .s-pills button[aria-pressed="true"] {
-    box-shadow: 0 0 0 1px var(--sel-dim); }
+    box-shadow: 0 0 0 1px currentColor; }
   /* The reader's card is width: min(23rem, 92vw) because it FLOATS over the
      page and answers to the window. Standing inside a column it has to answer
      to the column instead, or it runs past the right edge and takes the close
@@ -725,7 +725,7 @@
     color:var(--faint); background:none; border:1px solid var(--line); border-radius:999px;
     padding:.2rem .6rem; cursor:pointer; }
   .filing-pick .fp:hover { color:var(--muted); border-color:var(--gold); }
-  .filing-pick .fp.on { color:var(--sel); border-color:var(--sel); background:var(--hover-wash); }
+  .filing-pick .fp.on { color:var(--sel); border-color:var(--sel); }
   .filing-24 { display:none; }
   body[data-filing="24"] .filing-39 { display:none; }
   body[data-filing="24"] .filing-24 { display:block; }
@@ -878,7 +878,7 @@
      arriving under the reader's hand and leaving with it, which is the thing
      the check asserts. */
 
-  .dfp.on { color:var(--sel); border-color:var(--sel-dim); background:var(--hover-wash); }
+  .dfp.on { color:var(--sel); border-color:var(--sel-dim); }
   .def-order .dfp.waiting { opacity:.45; cursor:not-allowed;
     text-decoration-thickness:1px; }
   #wcard .r-pills { display:flex; flex-wrap:wrap; gap:.35rem; direction:ltr;
@@ -893,8 +893,9 @@
   #wcard .r-pills button { border:1px solid var(--line); background:var(--panel2); color:var(--muted);
     border-radius:.9rem; padding:.22rem .7rem; font:inherit; font-size:.76rem; cursor:pointer;
     max-width:100%; text-align:left; white-space:normal; overflow-wrap:anywhere; }
-  #wcard .r-pills button[aria-pressed="true"] { border-color:var(--sel);
-    color:var(--sel); font-weight:bold; }
+  /* the pressed reading is the bold blue, worn bold, never filled (the owner, 2026-10-03) */
+  #wcard .r-pills button[aria-pressed="true"] { border-color:var(--tekhelet-bold);
+    color:var(--tekhelet-bold); font-weight:bold; }
   #wcard .d-card { margin-top:.55rem; border-top:1px solid var(--line); padding-top:.45rem;
     flex:0 0 auto; display:flex; flex-direction:column; overflow:hidden; max-height:32vh; }
   #wcard .d-body { flex:1 1 auto; min-height:1.2rem; overflow-y:auto; color:var(--ink); font-size:.86rem; }
@@ -1079,36 +1080,24 @@
      hidden means hidden, whatever else the element is. */
   [hidden] { display:none !important; }
 
-  /* THE SCROLL'S GROUND (the owner, 2026-10-03: "foxed flax lets do it", then "i kind
-     of want it to look like the dead sea scrolls", then "maybe just edges should be
-     burnt and torn and watermarked. maybe a woven pattern would be clean", then "lets
-     stay ultra professional with a hint of character / maybe a tear runs into the
-     book once in a while, or an edge is burnt, but i wouldnt spam it, same for
-     watermarks", and the edges "a bit too patterny", the center "a bit too strict").
-     Where the text stands, plain linen: warp and weft drawn by noise, so no two
-     threads are spaced alike, a long slub and a faint cloud under them. At the
-     margins, scrolling with the page, a mark only now and then: in each 4400px a
-     short tear and a small scorched nick on the left and one faint water line on
-     the right, none reaching past 12px, so none ever sits under a letter. Held to
-     the window, a soft warm edge, barely uneven. The bare ground stays light enough
-     that every ink clears 4.5:1 on it. Paint only: no box moves. */
+  /* THE SCROLL'S GROUND IS WOVEN LINEN, AND ONLY THAT (the owner, 2026-10-03:
+     "if you go that watermark sparse should we just take it out", "idk about
+     the watermarks or burnt edges. i like woven though"). Warp and weft drawn
+     by noise, so no two threads are spaced alike, a long slub and a faint
+     cloud under them; no tear, no scorch, no water mark, no rim. The bare
+     ground stays light enough that every ink clears 4.5:1 on it. Paint only:
+     no box moves. */
   body {
     background-color: var(--bg);
     background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='4400'%3E%3Cdefs%3E%3Cfilter id='r' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.12' numOctaves='3' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='4' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cfilter id='b' x='-80%25' y='-80%25' width='260%25' height='260%25'%3E%3CfeGaussianBlur stdDeviation='5'/%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M0 1300 L9 1305 L6 1309 L12 1314 L5 1318 L0 1324 Z' fill='%234a2c12' opacity='0.3' filter='url(%23r)'/%3E%3Cellipse cx='0' cy='3500' rx='16' ry='30' fill='%236a3c12' opacity='0.08' filter='url(%23b)'/%3E%3Cellipse cx='0' cy='3500' rx='5' ry='9' fill='%233a200c' opacity='0.28' filter='url(%23r)'/%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='4400'%3E%3Cdefs%3E%3Cfilter id='r' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.12' numOctaves='3' seed='11'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='4' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3C/defs%3E%3Ccircle cx='40' cy='2400' r='34' fill='%23a07a44' opacity='0.035'/%3E%3Ccircle cx='40' cy='2400' r='34' fill='none' stroke='%237a4e22' stroke-width='1.2' opacity='0.12' filter='url(%23r)'/%3E%3C/svg%3E"),
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.55' numOctaves='2' seed='21' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0.01 0.03 0.05 0.07'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55 0.012' numOctaves='2' seed='22' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0.01 0.025 0.045 0.06'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.18' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0.02 0.04 0.06 0.08'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.38 0 0 0 0 0.2 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.03 0.05 0.03 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 40px 4400px, 40px 4400px, 300px 300px, 300px 300px, 420px 420px, 600px 600px;
-    background-position: left 0 top 0, right 0 top 0, 0 0, 0 0, 0 0, 0 0;
-    background-repeat: repeat-y, repeat-y, repeat, repeat, repeat, repeat;
+    background-size: 300px 300px, 300px 300px, 420px 420px, 600px 600px;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+    background-repeat: repeat, repeat, repeat, repeat;
   }
-  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='5' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='1.6'/%3E%3C/filter%3E%3Cmask id='rim'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='3' y='3' width='394' height='894' rx='6' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%235a3a1c' opacity='0.2' mask='url(%23rim)'/%3E%3C/svg%3E") center / 100% 100% no-repeat, radial-gradient(ellipse 130% 105% at 50% 46%, transparent 66%, rgba(110, 76, 36, 0.07) 88%, rgba(92, 60, 26, 0.13) 100%); }
-  @media (min-width: 640px) { body::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 820 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='5' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='1.6'/%3E%3C/filter%3E%3Cmask id='rim'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='3' y='3' width='814' height='894' rx='6' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%235a3a1c' opacity='0.2' mask='url(%23rim)'/%3E%3C/svg%3E") center / 100% 100% no-repeat, radial-gradient(ellipse 130% 105% at 50% 46%, transparent 66%, rgba(110, 76, 36, 0.07) 88%, rgba(92, 60, 26, 0.13) 100%); } }
-  @media (min-width: 1100px) { body::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='5' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='1.6'/%3E%3C/filter%3E%3Cmask id='rim'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='3' y='3' width='1394' height='894' rx='6' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%235a3a1c' opacity='0.2' mask='url(%23rim)'/%3E%3C/svg%3E") center / 100% 100% no-repeat, radial-gradient(ellipse 130% 105% at 50% 46%, transparent 66%, rgba(110, 76, 36, 0.07) 88%, rgba(92, 60, 26, 0.13) 100%); } }
 
   /* the door's cards are woven like the page (the owner, 2026-10-03) */
   #wcard, #bkcard { background-image: repeating-linear-gradient(0deg, rgba(110, 84, 46, 0.035) 0 1px, transparent 1px 3px),
