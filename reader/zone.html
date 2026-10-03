@@ -4616,7 +4616,26 @@
       // and if the card cannot hold a row of every band at that height, it does
       // not hold them at that height. A card under the word with dead controls
       // in it is worse than a card that had to open somewhere else.
-      if (fitBands() === false) { hud.style.maxHeight = ""; fitBands(); }
+      if (fitBands() === false) {
+        hud.style.maxHeight = ""; fitBands();
+        // released, the card stands where its whole height fits: under the
+        // word or above it. Where it fits neither, the release only sent it
+        // over the word it belongs to, and under the word outranks every
+        // comfort inside the card: it stands under the word, fitted to the
+        // room there, its labels given up if they must be (a set's card on a
+        // short phone, 2026-10-03: seven pixels over, and it stood on the
+        // word's own reading)
+        // — unless the bands do not stand there either: dead controls under
+        // the word are worse than a card that had to open somewhere else, so
+        // a fit whose bands overrun their region is released again
+        const hFree = hud.offsetHeight || 0;
+        if (rect.bottom + pad + hFree > window.innerHeight - pad && rect.top - pad - hFree < pad) {
+          hud.style.maxHeight = `${Math.floor(room)}px`; fitBands();
+          const rowsEl = hud.querySelector(".rows");
+          const overrun = rowsEl ? [...rowsEl.children].reduce((n, c) => n + c.offsetHeight, 0) - rowsEl.clientHeight : 0;
+          if (overrun > 1) { hud.style.maxHeight = ""; fitBands(); }
+        }
+      }
       h = hud.offsetHeight || 0;
     }
     let top;
@@ -5470,10 +5489,39 @@
     const cellMap = (sf) => (wordsOwn && !/ /u.test(sf) ? memoryOf(sf).cells : mem.cells);
     const picked = wordsOwn ? { get: (sf) => cellMap(sf).get(sf), set: (sf, v) => cellMap(sf).set(sf, v) } : mem.cells;
     let cover = covers[0];
+    // THE SET IS FILED UNDER ITS DIVISION (the owner, 2026-10-03, on the
+    // heavens at Genesis 1:1: "should the full form ever have + signs? ...
+    // effectively theyre identical so like an illusion of choice. id file the
+    // AB under A+B"; and of TAHOT's reading, "its like theyre giving us 3
+    // definitions in 1 license. and we only apply it when the card is all 3").
+    // TAHOT's reading of a word it divides is a set: one gloss per piece,
+    // under one record and one license. It answers on the division that is
+    // its pieces, all of them at once: never on the whole form as one word,
+    // and never on a piece pressed in another division. The whole form keeps
+    // only readings of the form as one word, and a card whose line reads the
+    // set opens on the set's division, each block on its own gloss.
+    const placeSet = bin === zone && !opts.run && word && Array.isArray(word.pg) && word.pg.length > 1 && region
+      && word.pg.map((x) => (x && x.k) || "").join("") === region.k ? placeLine(word) : null;
+    const setCut = placeSet && placeSet.mId && index.m_sources[placeSet.mId]
+      ? covers.find((c) => c.length === word.pg.length && c.every((x, i) => x.surface === word.pg[i].k)) || null : null;
+    // the giveaway is the mark itself (the owner: "the dead giveaway is the +
+    // signs, our own mark, tahot used before us"): a reading whose text
+    // carries the division's "/", drawn as " + ", is a divided reading by its
+    // own text, whoever printed it, and is not a reading of the form as one
+    const isDividedReading = (g) => /\//u.test(String(g.text));
     if (mem.cut) {
       const found = covers.find((c) => cutKey(c) === mem.cut);
       if (found) cover = found;
-    }
+    } else if (setCut) cover = setCut;
+    // ONE SET, ONE PILL (the owner, 2026-10-03: "the key is to not fan out
+    // those R pills as if theyre solo ... the license is 1 whole still"). On
+    // the set's division the card first stands on the division whole, where
+    // the set is a single reading under its one record and license; no block
+    // is pressed and no piece of the set is offered as a reading on its own.
+    // Pressing a block is asking about that piece alone, and a piece alone is
+    // the dictionaries'. Pressing the division again stands on the set again.
+    const SET_KEY = "\u0002set";
+    let setWhole = !!(setCut && cover === setCut);
     // a run opens on the form its line reads: as written where a dictionary
     // published that, else word by word on the word pressed — never on a
     // weld, which the reader may press but the page does not choose
@@ -5505,8 +5553,15 @@
         const w = cell ? ws[cell.from] : null;
         return w && w.k === surface ? placeLine(w) : null;
       }
-      return word && surface === region.k ? placeLine(word) : null;
+      if (!word) return null;
+      // the set stands whole on its division, never on the whole form and
+      // never piece by piece
+      if (setCut) return null;
+      return surface === region.k ? placeLine(word) : null;
     };
+    // a block's pool is asked once per standing: the same letters stand for
+    // the set's piece on the set's division and for themselves on any other
+    const poolKey = (surface) => (placeOfCell(surface) ? `${surface}\u0001set` : surface);
     const tried = new Map();           // cell surface -> fetches that did not arrive
     let pressedCut = null;             // a run's whole rung the reader pressed, remembered once read
 
@@ -5519,6 +5574,12 @@
     const textOfCell = (surface) => {
       const p = picked.get(surface);
       if (p) return spanJoin(p.text);
+      // the whole form, where the set stands on its division: what the form
+      // as one word reads, never the set
+      if (setCut && surface === region.k) {
+        const pl = cache.get(poolKey(surface));
+        return pl && pl.length ? spanJoin(pl[0].text) : "\u2014";
+      }
       // at this place, the cell's place: the open word's, or in a run the
       // run's own word at that cell, as the line under it prints
       { const at = placeOfCell(surface); if (at) return spanJoin(at.text); }
@@ -5536,7 +5597,7 @@
       // painted that back over the line: "Dibri" on the card, "speak" under
       // the word, with the one carrier that ranked "speak" first switched off.
       if (sourcesOff.size && bin === zone && word && region && surface === region.k && partNeedsLive({ word }, surface, null)) {
-        const pl = cache.get(surface);
+        const pl = cache.get(poolKey(surface));
         if (pl && pl.length) return spanJoin(pl[0].text);
         if (glossEl && glossEl.dataset.live === "sources") {
           const c = glossEl.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
@@ -5588,11 +5649,13 @@
     };
     // a block the catalog has not answered yet is not a block the catalog
     // lacks: the row says it is asking, and says absence only once it knows
-    const pendingNow = () => cover.some((c) => !picked.get(c.surface) && !cache.has(c.surface) && !(bin.gloss && bin.gloss[c.surface]));
+    const pendingNow = () => !setWhole && cover.some((c) => !picked.get(c.surface) && !cache.has(poolKey(c.surface)) && !(bin.gloss && bin.gloss[c.surface]));
+    // what the open cover reads: the set whole, or its blocks joined
+    const coverText = () => (setWhole ? spanJoin(placeSet.text) : cover.map((c) => textOfCell(c.surface)).join(" + "));
     const ASKING = "asking the catalog for this block\u2026";
     // say it from the moment the card renders, not only once the readings
     // have come back from the shard
-    paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "), pendingNow() ? ASKING : undefined);
+    paintNow(coverText(), pendingNow() ? ASKING : undefined);
 
     // A word the reader has ruled on keeps a quiet mark once the card closes,
     // so the page itself says which words have been worked and the reader is
@@ -5680,7 +5743,7 @@
     };
 
     const paintGloss = () => {
-      const mine = cover.map((c) => textOfCell(c.surface)).join(" + ");
+      const mine = coverText();
       // the card says the reading plainly, where the reader can see it
       // without hunting a lit pill through a scrolling row
       paintNow(mine, pendingNow() ? ASKING : undefined);
@@ -5855,7 +5918,7 @@
         btn.lang = "he"; btn.dir = "rtl"; btn.textContent = joinCut(c);
         btn.setAttribute("aria-pressed", String(c === cover));
         btn.addEventListener("click", () => {
-          cover = c; cellIdx = 0;
+          cover = c; cellIdx = 0; setWhole = !!setCut && c === setCut;
           // a run's whole rung is remembered once it has been READ (the
           // readings band, on arrival), never on the press: remembered on the
           // press, a rung nothing answers reopened the card on itself and
@@ -5905,8 +5968,8 @@
           const roles = [...new Set(span.roles.slice(c.from, c.to + 1))].map((r) => ROLE_SAYS[r] || r).join(", ").replace(/_/gu, " ");
           if (roles) btn.title = roles;
         }
-        btn.setAttribute("aria-pressed", String(i === cellIdx));
-        btn.addEventListener("click", () => { cellIdx = i; renderCells(); renderReadings(); });
+        btn.setAttribute("aria-pressed", String(!setWhole && i === cellIdx));
+        btn.addEventListener("click", () => { setWhole = false; cellIdx = i; renderCells(); renderReadings(); });
         pills.append(btn);
       });
       cellRow.append(label, pills);
@@ -5947,39 +6010,56 @@
       return hit && hit.g ? hit : null;
     };
     const renderReadings = async () => {
-      const surface = cover[cellIdx].surface;
+      const surface = setWhole ? SET_KEY : cover[cellIdx].surface;
       readRow.replaceChildren();
       const label = document.createElement("p"); label.className = "r-label";
-      label.textContent = cover.length > 1 ? `Exact selectable routes · ${surface}` : "Exact selectable routes";
+      label.textContent = setWhole ? `Exact selectable routes · ${joinCut(cover)}` : cover.length > 1 ? `Exact selectable routes · ${surface}` : "Exact selectable routes";
+      // the set, one reading of the division whole: its source's own row at
+      // this place, the place's words byte for byte, one record, one license
+      if (setWhole && !cache.has(SET_KEY)) {
+        const row = [0, placeSet.text, placeSet.text, placeSet.mId, null, null, null];
+        PLACE_ROWS.add(row);
+        const one = [{ text: placeSet.text, year: Infinity, ledger: 0, records: [row], place: true, placeFirst: true }];
+        one.withheld = 0; one.withheldBySources = 0; one.rows = 1;
+        cache.set(SET_KEY, one);
+      }
       const wait = document.createElement("p"); wait.textContent = "Fetching one shard…";
       readRow.append(label, wait);
       // THE RECORD SLOT IS THIS BLOCK'S from the moment the block is pressed:
       // the last block's record stood under "Fetching one shard…" for the
       // whole fetch — the other word's definition under this block, which is
       // what the owner photographed
-      if (!cache.has(surface)) { dSlot.replaceChildren(); selectedRecordRef.m = null; }
+      if (!cache.has(poolKey(surface))) { dSlot.replaceChildren(); selectedRecordRef.m = null; }
       clampHud();
       let unreachable = null;
-      if (!cache.has(surface)) {
+      if (!cache.has(poolKey(surface))) {
         try {
           const at = placeOfCell(surface);
-          cache.set(surface, await poolFor(surface, at ? { place: at } : {}));
+          let got = await poolFor(surface, at ? { place: at } : {});
+          // the whole form, where the set has its division: the set is not a
+          // reading of the form as one word, and stands on its division
+          if (got && setCut && surface === region.k) {
+            const kept = got.filter((g) => !isDividedReading(g));
+            kept.withheld = got.withheld; kept.withheldBySources = got.withheldBySources; kept.rows = got.rows;
+            got = kept;
+          }
+          cache.set(poolKey(surface), got);
         }
         catch (e) { unreachable = e; }
       }
       if (myGen !== hudGen) return;                        // the card is gone
-      if (surface !== cover[cellIdx].surface) return;    // the reader moved on
+      if (surface !== (setWhole ? SET_KEY : cover[cellIdx].surface)) return;    // the reader moved on
       if (unreachable) {
         // once more on its own, a moment later — a phone between two cells —
         // and then in words, with the asking left to the reader
         const n = (tried.get(surface) || 0) + 1; tried.set(surface, n);
         if (n === 1) {
           await new Promise((r) => setTimeout(r, 1200));
-          if (myGen === hudGen && surface === cover[cellIdx].surface) renderReadings();
+          if (myGen === hudGen && surface === (setWhole ? SET_KEY : cover[cellIdx].surface)) renderReadings();
           return;
         }
       }
-      const pool = unreachable ? null : cache.get(surface);
+      const pool = unreachable ? null : cache.get(poolKey(surface));
       readRow.replaceChildren(label);
       // It leads and it is labelled. The store's readings for this key all
       // still stand below, in their own order: this is priority, never a
@@ -5992,7 +6072,8 @@
         // its own, the card looks up [he] in the dictionaries ... That's where TAHOT's
         // set stops and the dictionaries start"). The line stands on the whole
         // word, never on one of its pieces pressed alone.
-        const hit = cover.length === 1 ? pieceGloss(cover, cellIdx) : null;
+        const hit = setCut ? (setWhole ? { g: spanJoin(placeSet.text), s: word.pg[0].s } : null)
+          : cover.length === 1 ? pieceGloss(cover, cellIdx) : null;
         // WHO SAYS IT, AND UNDER WHAT LICENSE. The source's code on the piece
         // (tahot, macula) is resolved through the lattice's own witness
         // record, never a mapping typed here; a code the record does not

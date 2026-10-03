@@ -23,11 +23,18 @@
 //       count with no ledger row and the first with one, each opens offering
 //       every complete division of the form (2^(n-1) of them, the whole first),
 //       and its finest division's blocks are the source's pieces in order
-//   C3  the source's glosses carry only as a set (the owner's rule of 20
-//       September, relayed by the corpus lane 2026-10-03: "the piece gloss
-//       travels with the position"): under "the source here" the whole word
-//       opens pressed on the set, and a piece pressed alone is the
-//       dictionaries' own, with no "here the source reads" line on it
+//   C3  the source's set is filed under its division (the owner, 2026-10-03:
+//       "id file the AB under A+B", "the dead giveaway is the + signs, our own
+//       mark"; and the rule of 20 September, relayed by the corpus lane: "the
+//       piece gloss travels with the position"; "the key is to not fan out
+//       those R pills as if theyre solo ... the license is 1 whole still"):
+//       under "the source here" the card opens on the division that is the
+//       set's pieces, standing on it whole: no block pressed, one reading,
+//       the set, pressed, and the source's line the set; a block pressed
+//       alone carries neither the set nor the source's line, and pressing the
+//       division again stands on the set again; the whole form, pressed,
+//       offers no reading carrying the division's mark; and on any other
+//       division no block carries the source's line
 //
 // Run: node tools/check-compspan-coverage-v1.mjs [url]
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
@@ -112,19 +119,46 @@ for (const c of picks) {
     const finest = c.pieces.join(" + ");
     if (cuts[0] !== c.pieces.join("") || cuts[cuts.length - 1] !== finest) wrongFinest.push(`${c.label} ${c.s}: ${cuts[0]} … ${cuts[cuts.length - 1]}, owed ${c.pieces.join("")} … ${finest}`);
     else {
-      // C3: the whole word, as the card opens, pressed on the source's set
+      // C3: the card opens on the set's division, standing on it whole
       const set = c.glosses.join(" + ");
-      const whole = await p.evaluate(() => { const x = document.querySelector('#hud .r-pills button[aria-pressed="true"]'); return x ? x.textContent.trim() : null; });
-      if (whole !== set) notLed.push(`${c.label} ${c.s}: opens pressed on ${whole}, owed the set ${set}`);
-      // and each piece pressed alone carries no line of the source's
-      await p.evaluate((t) => { const x = [...document.querySelectorAll("#hud .b-cut .s-pills button")].find((e) => e.textContent === t); if (x) x.click(); }, finest);
-      await p.waitForTimeout(500);
-      for (let i = 0; i < c.n; i += 1) {
-        await p.evaluate((i2) => { const x = document.querySelectorAll("#hud .b-cell .s-pills button")[i2]; if (x) x.click(); }, i);
-        try { await p.waitForFunction((k) => (document.querySelector("#hud .b-read .r-label") || {}).textContent?.includes(k), c.pieces[i], { timeout: 15000 }); } catch { /* read below */ }
-        await p.waitForTimeout(150);
+      const opened = await p.evaluate(() => ({
+        cut: (document.querySelector('#hud .b-cut .s-pills button[aria-pressed="true"]') || {}).textContent || null,
+        blocks: document.querySelectorAll('#hud .b-cell .s-pills button[aria-pressed="true"]').length,
+        pills: [...document.querySelectorAll("#hud .r-pills button")].map((x) => (x.getAttribute("aria-pressed") === "true" ? "*" : "") + x.textContent.trim()),
+        line: (document.querySelector("#hud .r-piece b") || {}).textContent || null }));
+      if (opened.cut !== finest) notLed.push(`${c.label} ${c.s}: opens on ${opened.cut}, owed ${finest}`);
+      else if (opened.blocks) notLed.push(`${c.label} ${c.s}: opens with a block pressed`);
+      else if (opened.pills.length !== 1 || opened.pills[0] !== `*${set}`) notLed.push(`${c.label} ${c.s}: opens on ${opened.pills.slice(0, 3).join(", ")}, owed the one pill *${set}`);
+      else if (opened.line !== set) notLed.push(`${c.label} ${c.s}: the source's line reads ${opened.line}, owed the set ${set}`);
+      else {
+        // a block alone: neither the set nor the source's line
+        for (let i = 0; i < c.n; i += 1) {
+          await p.evaluate((i2) => { const x = document.querySelectorAll("#hud .b-cell .s-pills button")[i2]; if (x) x.click(); }, i);
+          try { await p.waitForFunction((k) => (document.querySelector("#hud .b-read .r-label") || {}).textContent?.includes(`· ${k} ·`), c.pieces[i], { timeout: 15000 }); } catch { /* read below */ }
+          await p.waitForTimeout(150);
+          const blk = await p.evaluate(() => ({ line: (document.querySelector("#hud .r-piece") || {}).textContent || null, pills: [...document.querySelectorAll("#hud .r-pills button")].map((x) => x.textContent.trim()) }));
+          if (blk.line) notLed.push(`${c.label} ${c.s} block ${c.pieces[i]} alone: "${blk.line.trim()}"`);
+          if (blk.pills.includes(set)) notLed.push(`${c.label} ${c.s} block ${c.pieces[i]} alone offers the set`);
+        }
+        // the division again: the set whole again
+        await p.evaluate((t) => { const x = [...document.querySelectorAll("#hud .b-cut .s-pills button")].find((e) => e.textContent === t); if (x) x.click(); }, finest);
+        await p.waitForTimeout(700);
+        const again = await p.evaluate(() => [...document.querySelectorAll('#hud .r-pills button[aria-pressed="true"]')].map((x) => x.textContent.trim()));
+        if (again.length !== 1 || again[0] !== set) notLed.push(`${c.label} ${c.s}: the division pressed again stands on ${again.join(", ") || "nothing"}, owed ${set}`);
+      }
+      // the whole form, pressed: no reading carrying the division's mark
+      await p.evaluate((t) => { const x = [...document.querySelectorAll("#hud .b-cut .s-pills button")].find((e) => e.textContent === t); if (x) x.click(); }, c.pieces.join(""));
+      try { await p.waitForFunction(() => !document.querySelector("#hud .b-cell .s-pills button"), null, { timeout: 15000 }); } catch { /* read below */ }
+      await p.waitForTimeout(700);
+      const whole = await p.evaluate(() => ({ marked: [...document.querySelectorAll("#hud .r-pills button")].map((x) => x.textContent.trim()).filter((t) => / \+ /u.test(t)), line: (document.querySelector("#hud .r-piece") || {}).textContent || null }));
+      if (whole.marked.length) notLed.push(`${c.label} ${c.s} whole form: offers ${whole.marked.slice(0, 2).join(", ")}`);
+      if (whole.line) notLed.push(`${c.label} ${c.s} whole form: "${whole.line.trim()}"`);
+      // any other division: no block carries the source's line
+      for (const other of cuts.slice(1, -1)) {
+        await p.evaluate((t) => { const x = [...document.querySelectorAll("#hud .b-cut .s-pills button")].find((e) => e.textContent === t); if (x) x.click(); }, other);
+        await p.waitForTimeout(700);
         const line = await p.evaluate(() => (document.querySelector("#hud .r-piece") || {}).textContent || null);
-        if (line) notLed.push(`${c.label} ${c.s} piece ${c.pieces[i]} alone: "${line.trim()}"`);
+        if (line) notLed.push(`${c.label} ${c.s} on ${other}: "${line.trim()}"`);
       }
     }
   }
@@ -135,9 +169,9 @@ const kinds = [...new Set(picks.map((c) => `${c.n} pieces${c.row ? " (ledger row
 check("C2  each card opens offering every complete division, its finest the source's pieces",
   picks.length > 0 && noDiv.length === 0 && wrongFinest.length === 0,
   `${picks.length} cards: ${kinds.join(", ")}` + (noDiv.length ? ` · ${noDiv.slice(0, 3).join("; ")}` : "") + (wrongFinest.length ? ` · ${wrongFinest.slice(0, 3).join("; ")}` : ""));
-check("C3  the source's glosses carry only as a set: the whole word opens on the set, a piece alone is the dictionaries'",
+check("C3  the source's set is one reading of its division, never fanned out, never on the whole form",
   picks.length > 0 && notLed.length === 0,
-  notLed.length ? notLed.slice(0, 3).join("; ") : "every whole word opened on its set; no piece alone carried the source's line");
+  notLed.length ? notLed.slice(0, 3).join("; ") : "every card opened on the set's division whole, the set its one pill; no block alone carried the set or the source's line; no whole form offered a divided reading");
 
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
