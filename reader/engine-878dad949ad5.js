@@ -2749,12 +2749,14 @@
     fitBands();
   };
   // Moving the card. Pointer events so a finger and a mouse take the same
-  // path; the close button is excluded so the reader can still hit it.
+  // path; the close button and the card's own switch are excluded so the
+  // reader can still hit them (the switch sits in the head, and a press on it
+  // was taken for a drag: the pointer was captured and the box never ticked).
   let drag = null;
   hud.addEventListener("pointerdown", (e) => {
     justDragged = false;
     const head = e.target.closest(".head");
-    if (!head || !hud.contains(head) || e.target.closest("button")) return;
+    if (!head || !hud.contains(head) || e.target.closest("button, input, label, select, a")) return;
     drag = { dx: e.clientX - (parseFloat(hud.style.left) || 0),
              dy: e.clientY - (parseFloat(hud.style.top) || 0) };
     head.setPointerCapture(e.pointerId);

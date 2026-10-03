@@ -20,9 +20,12 @@
     --gold: #96700f; --gold-dim: #9a7a28; --amber: #96700f;
     /* selection is amber on this face too — gold's in-process value, filled,
        with the tent's own ink on top of it */
-    /* a step deeper on the scroll's warmer ground, so the reader's selection
-       still clears 4.5:1 on it (2026-10-03) */
-    --sel: #86590b; --sel-dim: #b8871a;
+    /* A PRESSED CONTROL IS PURPLE, WORN BOLD (the owner, 2026-10-03: "idk if
+       turning purple to gold is a clear way to highlight toggle pills et al,
+       maybe bold purple would be better?"); amber until then. A purple
+       deeper than the page's own ink at rest, still inside the argaman the
+       color contract measures. */
+    --sel: #4f1789; --sel-dim: #845ba7;
     /* text the reader drags across: the same amber, as a tint the word reads
        through (the owner, 2026-10-03, on a word highlighted solid dark gold:
        "is that ideal?") */
@@ -89,27 +92,35 @@
   body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Georgia, "Times New Roman", serif;
     overflow-x: hidden; }
   /* THE SCROLL'S GROUND (the owner, 2026-10-03: "foxed flax lets do it", then "i kind
-     of want it to look like the dead sea scrolls", then "less watermarky or not
-     watermarky around words, maybe just edges should be burnt and torn and
-     watermarked. maybe a woven pattern would be clean"). Where the text stands,
-     clean linen: warp and weft, fine and even, a faint slub in each. At the
-     window's edges, held there as the page scrolls under them, the damage: a
-     torn rim burnt dark, a scorch inside it, and water stains dried to a tide
-     line in the margins only. The bare ground stays light enough that every ink
-     clears 4.5:1 on it. Paint only: no box moves. */
+     of want it to look like the dead sea scrolls", then "maybe just edges should be
+     burnt and torn and watermarked. maybe a woven pattern would be clean", then "lets
+     stay ultra professional with a hint of character / maybe a tear runs into the
+     book once in a while, or an edge is burnt, but i wouldnt spam it, same for
+     watermarks", and the edges "a bit too patterny", the center "a bit too strict").
+     Where the text stands, plain linen: warp and weft drawn by noise, so no two
+     threads are spaced alike, a long slub and a faint cloud under them. At the
+     margins, scrolling with the page, a mark only now and then: in each 4400px a
+     short tear and a small scorched nick on the left and one faint water line on
+     the right, none reaching past 12px, so none ever sits under a letter. Held to
+     the window, a soft warm edge, barely uneven. The bare ground stays light enough
+     that every ink clears 4.5:1 on it. Paint only: no box moves. */
   body {
     background-color: var(--bg);
     background-image:
-      repeating-linear-gradient(0deg, rgba(110, 84, 46, 0.045) 0 1px, transparent 1px 3px),
-      repeating-linear-gradient(90deg, rgba(110, 84, 46, 0.038) 0 1px, transparent 1px 3px),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.7' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0.02 0.05 0.08 0.11 0.14'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7 0.012' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0.02 0.05 0.08 0.11 0.14'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: auto, auto, 240px 240px, 240px 240px;
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='4400'%3E%3Cdefs%3E%3Cfilter id='r' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.12' numOctaves='3' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='4' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cfilter id='b' x='-80%25' y='-80%25' width='260%25' height='260%25'%3E%3CfeGaussianBlur stdDeviation='5'/%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M0 1300 L9 1305 L6 1309 L12 1314 L5 1318 L0 1324 Z' fill='%234a2c12' opacity='0.3' filter='url(%23r)'/%3E%3Cellipse cx='0' cy='3500' rx='16' ry='30' fill='%236a3c12' opacity='0.08' filter='url(%23b)'/%3E%3Cellipse cx='0' cy='3500' rx='5' ry='9' fill='%233a200c' opacity='0.28' filter='url(%23r)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='4400'%3E%3Cdefs%3E%3Cfilter id='r' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.12' numOctaves='3' seed='11'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='4' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3C/defs%3E%3Ccircle cx='40' cy='2400' r='34' fill='%23a07a44' opacity='0.035'/%3E%3Ccircle cx='40' cy='2400' r='34' fill='none' stroke='%237a4e22' stroke-width='1.2' opacity='0.12' filter='url(%23r)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.55' numOctaves='2' seed='21' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0.01 0.03 0.05 0.07'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55 0.012' numOctaves='2' seed='22' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0.01 0.025 0.045 0.06'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.18' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0.02 0.04 0.06 0.08'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.38 0 0 0 0 0.2 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.03 0.05 0.03 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 40px 4400px, 40px 4400px, 300px 300px, 300px 300px, 420px 420px, 600px 600px;
+    background-position: left 0 top 0, right 0 top 0, 0 0, 0 0, 0 0, 0 0;
+    background-repeat: repeat-y, repeat-y, repeat, repeat, repeat, repeat;
   }
   body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='4' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='16' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cfilter id='halo' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='3' seed='8'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='46' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Cfilter id='soft'%3E%3CfeGaussianBlur stdDeviation='26'/%3E%3C/filter%3E%3Cfilter id='water' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='3' seed='77'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.27 0 0 0 0 0.11 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.34 0.153 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cmask id='burn'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='8' y='8' width='384' height='884' rx='12' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3Cmask id='scorch'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='24' y='28' width='352' height='844' rx='26' fill='black' filter='url(%23halo)'/%3E%3C/mask%3E%3Cmask id='margin'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='60' y='80' width='280' height='740' rx='70' fill='black' filter='url(%23soft)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23water)' mask='url(%23margin)'/%3E%3Crect width='100%25' height='100%25' fill='%236a3c12' opacity='0.4' mask='url(%23scorch)'/%3E%3Crect width='100%25' height='100%25' fill='%231f1006' opacity='0.92' mask='url(%23burn)'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
-  @media (min-width: 640px) { body::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 820 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='4' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='16' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cfilter id='halo' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='3' seed='8'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='46' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Cfilter id='soft'%3E%3CfeGaussianBlur stdDeviation='26'/%3E%3C/filter%3E%3Cfilter id='water' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='3' seed='77'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.27 0 0 0 0 0.11 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.34 0.153 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cmask id='burn'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='8' y='8' width='804' height='884' rx='12' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3Cmask id='scorch'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='24' y='28' width='772' height='844' rx='26' fill='black' filter='url(%23halo)'/%3E%3C/mask%3E%3Cmask id='margin'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='96' y='80' width='628' height='740' rx='70' fill='black' filter='url(%23soft)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23water)' mask='url(%23margin)'/%3E%3Crect width='100%25' height='100%25' fill='%236a3c12' opacity='0.4' mask='url(%23scorch)'/%3E%3Crect width='100%25' height='100%25' fill='%231f1006' opacity='0.92' mask='url(%23burn)'/%3E%3C/svg%3E"); } }
-  @media (min-width: 1100px) { body::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='4' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='16' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cfilter id='halo' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='3' seed='8'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='46' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Cfilter id='soft'%3E%3CfeGaussianBlur stdDeviation='26'/%3E%3C/filter%3E%3Cfilter id='water' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='3' seed='77'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.27 0 0 0 0 0.11 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.34 0.153 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cmask id='burn'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='8' y='8' width='1384' height='884' rx='12' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3Cmask id='scorch'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='24' y='28' width='1352' height='844' rx='26' fill='black' filter='url(%23halo)'/%3E%3C/mask%3E%3Cmask id='margin'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='130' y='80' width='1140' height='740' rx='70' fill='black' filter='url(%23soft)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23water)' mask='url(%23margin)'/%3E%3Crect width='100%25' height='100%25' fill='%236a3c12' opacity='0.4' mask='url(%23scorch)'/%3E%3Crect width='100%25' height='100%25' fill='%231f1006' opacity='0.92' mask='url(%23burn)'/%3E%3C/svg%3E"); } }
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='5' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='1.6'/%3E%3C/filter%3E%3Cmask id='rim'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='3' y='3' width='394' height='894' rx='6' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%235a3a1c' opacity='0.2' mask='url(%23rim)'/%3E%3C/svg%3E") center / 100% 100% no-repeat, radial-gradient(ellipse 130% 105% at 50% 46%, transparent 66%, rgba(110, 76, 36, 0.07) 88%, rgba(92, 60, 26, 0.13) 100%); }
+  @media (min-width: 640px) { body::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 820 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='5' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='1.6'/%3E%3C/filter%3E%3Cmask id='rim'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='3' y='3' width='814' height='894' rx='6' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%235a3a1c' opacity='0.2' mask='url(%23rim)'/%3E%3C/svg%3E") center / 100% 100% no-repeat, radial-gradient(ellipse 130% 105% at 50% 46%, transparent 66%, rgba(110, 76, 36, 0.07) 88%, rgba(92, 60, 26, 0.13) 100%); } }
+  @media (min-width: 1100px) { body::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 900' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='rag' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='3'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='5' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='1.6'/%3E%3C/filter%3E%3Cmask id='rim'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='3' y='3' width='1394' height='894' rx='6' fill='black' filter='url(%23rag)'/%3E%3C/mask%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%235a3a1c' opacity='0.2' mask='url(%23rim)'/%3E%3C/svg%3E") center / 100% 100% no-repeat, radial-gradient(ellipse 130% 105% at 50% 46%, transparent 66%, rgba(110, 76, 36, 0.07) 88%, rgba(92, 60, 26, 0.13) 100%); } }
 
   /* The header holds the way out in its top corner, and the book's own title
      below it. On a narrow screen the two stack rather than fight. */
@@ -198,6 +209,13 @@
   .byline-fold > summary .s-lab { flex: 0 0 auto; min-width: 5.6rem; font-size: 0.6rem; letter-spacing: 0.18em; }
   .byline-fold > summary .s-val { flex: 1 1 12rem; min-width: 0; font-size: 0.8rem; letter-spacing: 0.02em;
     text-transform: none; color: var(--muted); }
+  /* THE ATTESTATION STANDS UNDER ITS NAME (the owner, 2026-10-03: "attested
+     wandered from its english, should be right under"): the name and its chip
+     are one block, the chip centered below the name at every width as a
+     line's chip stands under its reading, so a row too narrow for both never
+     sends the chip back to the row's start. */
+  header.top h1 .en-pair { display: inline-flex; flex-direction: column; align-items: center;
+    gap: 0.25rem; min-width: 0; }
   /* the attestation opens under a press, collapsed at rest (the owner, 2026-10-03) */
   #workLic[role="button"] { cursor: pointer; }
   #workLic:not([aria-expanded="true"]) .att-v { display: none; }
@@ -759,8 +777,12 @@
   body.en .wjoin .wj-ink { order: 3; }
   .q-mark { font-size: 0.62em; vertical-align: super; color: var(--muted);
     margin-inline-start: 0.1em; cursor: help; }
-  .wb.multi:hover .w { color: inherit; border-bottom-color: transparent; }
-  .wb.multi.active .w { color: inherit; border-bottom: 1px dashed transparent; }
+  /* the halves of a pair hover on their own, so the pair as a whole takes no
+     hover line; held, it keeps its ink like any word, and a ketiv-qere pair
+     keeps the one-card underline below */
+  .wb.multi:hover .w, .wb.multi.active .w { color: var(--shani-ink); }
+  .wb.multi:not(.kq):hover .w { border-bottom-color: transparent; }
+  .wb.multi.active:not(.kq) .w { border-bottom: 1px dashed transparent; }
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
   .wr:hover { color: var(--hover-ink); border-bottom-color: var(--hover-line); }
   /* AN UNDERLINE HAS TWO MEANINGS AND IS ONLY EVER ON THE HEBREW (the
@@ -773,7 +795,14 @@
      An underline in the selection role, not a new color: it marks provenance
      of the gloss, never a choice about the text — both halves keep printing
      exactly as the source wrote them, and text-decoration moves no glyph. */
-  .wb.kq .wr.backs-en { text-decoration: underline; text-decoration-color: var(--gold);
+  /* KETIV AND QERE (the owner, 2026-10-03): both halves open one card, so the
+     pair wears the one-card underline under both; the half the English is
+     reading from wears a gold bracket above it. All gold, all on the Hebrew. */
+  .wb.kq > .w { border-bottom: 1.5px solid var(--gold); border-radius: 0; }
+  .wb.kq .wr { position: relative; }
+  .wb.kq .wr.backs-en::before { content: ""; position: absolute; left: 0.05em; right: 0.05em; top: -0.12em;
+    height: 0.22em; border: 1.5px solid var(--gold); border-bottom: none; border-radius: 0.12em 0.12em 0 0; pointer-events: none; }
+  .wb.kq .wr.backs-en { text-decoration: none; text-decoration-color: var(--gold);
     text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
   /* ...and the same mark on the English it backs: two underlines in the same
      color, stacked, are the two ends of one claim — this reading, that half.
@@ -1017,6 +1046,10 @@
   .mode-btn { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
     border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
   .mode-btn.on { color: var(--sel); border-color: var(--sel); }
+  /* pressed, opened, armed: the selection is worn bold */
+  .mode-btn.on, #hud .def-order .dfp.on, #modeRow .def-order .dfp.on, .rail .def-order .dfp.on,
+  .rail .now b, .xp.armed, .vnum.at, #toc .chs a.on, .c-bar[aria-expanded="true"],
+  .c-mark[aria-expanded="true"], .hoh-head .lic-chip.on, .rail .decl-bx[aria-pressed="true"] { font-weight: 700; }
 
   /* The HUD floats. The Hebrew never moves — law of the house. */
   /* A card that always carries a whole record needs room for one; 55vh put
@@ -1244,7 +1277,17 @@
   #hud .hud-lift { flex: 1 1 100%; display: flex; align-items: flex-start; gap: 0.4rem;
     margin: 0.16rem 0 0; font-size: 0.66rem; line-height: 1.35; color: var(--faint);
     cursor: pointer; }
-  #hud .hud-lift input { margin: 0.12rem 0 0; accent-color: var(--sel); flex: none; }
+  /* THE CARD'S CHECKBOX IS DRAWN, NOT THE BROWSER'S (the owner, 2026-10-03:
+     "the checkbox is still bright"): the phone's own box is a white tile on
+     the linen. Same box as a source's in the switches: no fill, a hairline
+     border, a purple tick when pressed. Still a real checkbox to the keyboard
+     and to a screen reader. */
+  #hud .hud-lift input { -webkit-appearance: none; appearance: none; flex: none;
+    width: 0.82rem; height: 0.82rem; margin: 0.1rem 0 0; padding: 0; display: grid; place-content: center;
+    border: 1px solid var(--line); border-radius: 0.2rem; background: none; cursor: pointer; }
+  #hud .hud-lift input:checked { border-color: var(--sel); }
+  #hud .hud-lift input:checked::after { content: ""; width: 0.22rem; height: 0.44rem; margin-top: -0.08rem;
+    border: solid var(--sel); border-width: 0 1.5px 1.5px 0; transform: rotate(42deg); }
   #hud .hud-lift:hover { color: var(--muted); }
   #hud .hud-lift[data-on="true"] { color: var(--sel); }
   #hud .head .kq-role { flex: 1 1 100%; margin: 0; color: var(--muted);
