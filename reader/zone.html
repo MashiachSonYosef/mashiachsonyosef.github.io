@@ -4352,14 +4352,19 @@
       const pointingOnly = pointingNow(surface === openKey ? openPointed : null) === "only" && openPointed && surface === openKey;
       const kept = pointingOnly ? extra.filter((row) => gradeRow(row, openPointed) !== "x") : extra;
       withheld += extra.length - kept.length;
-      routes = routes.concat(kept);
+      extra = kept;
     }
     // ONE READING, ONE PILL (the owner, 2026-10-02: "shouldnt it be bundled into
     // 1 pill with 2 M"; the corpus lane's R pill ledger, resting position
-    // TOGETHER). Two readings are one pill when they print the same: the
-    // printed form (spanJoin: "/" pieces joined, one closing period dropped),
-    // lowercased. Grouped on the reading as written, "womb" and "womb." were two
-    // pills printing the same word on 5,597 cards.
+    // TOGETHER) is the printed form (spanJoin: "/" pieces joined, one closing
+    // period dropped), lowercased. The store's own rows still group on the
+    // reading as written, closing period and all, because the order columns the
+    // line reads are baked that way (tools/regloss-zone.mjs): grouped otherwise,
+    // the card and the line part (Amos אשר under the license preference). Its
+    // 7,645 period-split pills join when the bake does. An overlay's row joins
+    // the store's pill that prints the same, and otherwise its own pill, by the
+    // printed form, so "creation" and "creation." from the same dictionary are
+    // one pill.
     const drawn = (t) => spanJoin(t).toLowerCase();
     const groups = new Map();
     routes.forEach((row) => {
@@ -4371,7 +4376,7 @@
         const split = readingSplit(sense);
         if (split.damaged) return;
         split.readings.forEach((reading) => {
-          const key = drawn(reading);
+          const key = reading.toLowerCase();
           const g = groups.get(key);
           if (!g) groups.set(key, { text: reading, year: yr, ledger: Number(rank), records: [row] });
           else {
@@ -4395,6 +4400,30 @@
     // order — hiding one because it sorted late would be the page deciding
     // what may be weighed. The masorah "only" position is not an order and
     // was withheld above, row by row, with its count riding on the pool.
+    // the overlays' rows, by the printed form: into the store's pill that prints
+    // the same, or into a pill of their own; from here on they are rows like any
+    if (extra.length) {
+      const byDrawn = new Map();
+      for (const g of groups.values()) { const d = drawn(g.text); if (!byDrawn.has(d)) byDrawn.set(d, g); }
+      extra.forEach((row) => {
+        const [rank, routeText, , mId, year] = row;
+        if (!index.m_sources[mId]) return;
+        const y = Number.parseInt(year, 10);
+        const yr = Number.isInteger(y) ? y : Infinity;
+        senseSplit(routeText).forEach((sense) => {
+          const split = readingSplit(sense);
+          if (split.damaged) return;
+          split.readings.forEach((reading) => {
+            const d = drawn(reading);
+            let g = byDrawn.get(d);
+            if (!g) { g = { text: reading, year: yr, ledger: Number(rank), records: [] }; byDrawn.set(d, g); groups.set(`\u0000${d}`, g); }
+            g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank));
+            if (!g.records.includes(row)) g.records.push(row);
+          });
+        });
+      });
+      for (const g of groups.values()) g.records.sort(EARLIEST_FIRST);
+    }
     // which pills stand on overlay rows alone, for a check to read off the pool
     for (const g of groups.values()) { const ovs = g.records.map((row) => OVERLAY_ROWS.get(row)); if (ovs.every(Boolean)) g.ov = ovs[0]; }
     const pool = sortPool([...groups.values()], surface);

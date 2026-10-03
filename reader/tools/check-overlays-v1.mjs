@@ -23,8 +23,9 @@
 //       and every reading they add is carried by one of their sources
 //   O5  the line under every word is the same with the chips on and off
 //   O6  an overlay's reading, opened, names its overlay in the card
-//   O7  one reading is one pill: no card prints the same reading twice, on or off,
-//       so a reading the store and an overlay both give is one pill with both behind it
+//   O7  an overlay's reading is one pill: it joins the pill that prints the same and
+//       never stands beside it, so the chips add no reading printed twice (the store's
+//       own period-split pills, "womb" and "womb.", wait on the bake and are counted)
 //
 // Run: node tools/check-overlays-v1.mjs [zone url]   (with python3 -m http.server 8899 in reader/)
 import { readFileSync, existsSync } from "node:fs";
@@ -120,13 +121,19 @@ check("O4  on, every reading the card holds off is still there, and every readin
 const diffLines = on.lines.filter((t, i) => t !== off.lines[i]).length;
 check("O5  the line under every word is the same on and off", diffLines === 0 && on.lines.length === off.lines.length, `${on.lines.length} lines · ${diffLines} differ`);
 
-// O7 · one reading, one pill, on and off
+// O7 · an overlay's reading is one pill
 {
-  const dup = (cards) => cards.filter((c) => new Set(c.pool.map((t) => t.toLowerCase())).size !== c.pool.length).length;
-  let shared = 0;
-  on.cards.forEach((c) => c.by.forEach((by) => { const ids = String(by || "").split(" "); if (ids.some((m) => ovIdSet.has(m)) && ids.some((m) => m && !ovIdSet.has(m))) shared += 1; }));
-  check("O7  one reading is one pill: no card prints the same reading twice, on or off", dup(on.cards) === 0 && dup(off.cards) === 0,
-    `${shared} pills carried by an overlay's source and the store's together · cards printing a reading twice: on ${dup(on.cards)}, off ${dup(off.cards)}`);
+  const twice = (c) => { const n = new Map(); c.pool.forEach((t) => n.set(t.toLowerCase(), (n.get(t.toLowerCase()) || 0) + 1)); return [...n].filter(([, k]) => k > 1).map(([t]) => t); };
+  let beside = 0, shared = 0, storeTwice = 0;
+  on.cards.forEach((c, i) => {
+    const dupOn = twice(c), dupOff = new Set(twice(off.cards[i]));
+    storeTwice += dupOff.size;
+    // a reading printed twice with the chips on that was not printed twice off, or a twice-printed reading one of whose pills only an overlay carries
+    for (const t of dupOn) if (!dupOff.has(t) || c.pool.some((x, k) => x.toLowerCase() === t && c.ov[k])) beside += 1;
+    c.by.forEach((by) => { const ids = String(by || "").split(" "); if (ids.some((m) => ovIdSet.has(m)) && ids.some((m) => m && !ovIdSet.has(m))) shared += 1; });
+  });
+  check("O7  an overlay's reading is one pill: it joins the pill that prints the same, never stands beside it", beside === 0,
+    `${shared} pills carried by an overlay's source and the store's together · ${beside} overlay readings printed beside a pill that prints the same · ${storeTwice} store readings printed twice by a closing period, waiting on the bake`);
 }
 
 // O6 · open one overlay reading and read its mark
