@@ -110,7 +110,12 @@ const url = `${base}${base.includes("?") ? "&" : "?"}b=${pick.slug}&at=${encodeU
 const carriers = (zone.gloss_m[target.k] && zone.gloss_m[target.k].by) || [];
 const pw = await loadPlaywright();
 const b = await pw.chromium.launch(launchOptions());
+// THE ORDER THESE CLAIMS ARE WRITTEN AGAINST: oldest first. The owner made
+// "at this place" the default (2026-10-03: "we dont do blanket oldest first
+// anymore thats a subtoggle"); it leads wherever TAHOT reads the word, and it
+// has its own check (check-line-reads-the-place-v1). A stored choice is kept.
 const openNamed = async (ctx) => {
+  await ctx.addInitScript(() => { try { if (!localStorage.getItem("fh.def.order")) localStorage.setItem("fh.def.order", "oldest"); } catch { /* a device that remembers nothing still reads */ } });
   const p = await ctx.newPage();
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await p.goto(url, { waitUntil: "networkidle", timeout: 60000 });

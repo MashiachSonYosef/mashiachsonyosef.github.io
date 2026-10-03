@@ -90,6 +90,11 @@ const b = await pw.chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 await p.addInitScript(() => { try { localStorage.clear(); } catch { /* fresh reader */ } });
+// THE ORDER THESE CLAIMS ARE WRITTEN AGAINST: oldest first. The owner made
+// "at this place" the default (2026-10-03: "we dont do blanket oldest first
+// anymore thats a subtoggle"); it leads wherever TAHOT reads the word, and it
+// has its own check (check-line-reads-the-place-v1). A stored choice is kept.
+await p.addInitScript(() => { try { if (!localStorage.getItem("fh.def.order")) localStorage.setItem("fh.def.order", "oldest"); } catch { /* a device that remembers nothing still reads */ } });
 await p.goto(`${BASE}?b=${ZONE}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.evaluate(async () => { let g = 0; while (g < 4000) { const n = document.querySelector("section.seg.seg-wait"); if (!n) break; n.scrollIntoView({ block: "center" }); await new Promise((r) => setTimeout(r, 5)); g += 1; } });
