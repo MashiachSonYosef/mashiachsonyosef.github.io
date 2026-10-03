@@ -35,7 +35,7 @@
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
 let bad = 0;
@@ -48,6 +48,15 @@ for (const z of zonesServed()) {
 }
 if (!ZONE) { console.log("SKIPPED — no served zone carries the source switches' receipt; run tools/regloss-zone.mjs"); process.exit(3); }
 const rec = zone.emitted_from.toggles.sources;
+// THE OVERLAYS' CHIPS (overlay-book-counts-rule-v1): Jastrow's and the
+// Samaritan dictionaries' sources stand on the strip beside the receipt's, one
+// chip per source key that carries something on this book, from their own
+// per-book record. They never carry the line, so each costs nothing on it.
+const ovRec = existsSync("data/overlay-book-counts-v1.json") ? JSON.parse(readFileSync("data/overlay-book-counts-v1.json", "utf8")) : null;
+const ovBook = Object.fromEntries(Object.entries((ovRec && ovRec.books && ovRec.books[ZONE]) || {})
+  .filter(([, e]) => e.carries > 0 && existsSync(`data/overlays/${e.overlay}/index.json`)));
+const ovIds = new Set(Object.keys(ovBook));
+const ovKeys = new Set(Object.entries(ovBook).map(([id, e]) => e.key || id));
 
 const BASE = (defaultZoneUrl()).split("?")[0];
 const b = await pw.chromium.launch(launchOptions());
@@ -66,7 +75,7 @@ const rail = await p.evaluate(() => {
     dead: row.classList.contains("dead"),
     n: chips.length,
     allOn: chips.every((c) => c.getAttribute("aria-pressed") === "true"),
-    withIds: chips.filter((c) => /^M\d+( M\d+)*$/u.test(c.dataset.ids || "")).length,
+    withIds: chips.filter((c) => /^M[A-Z]*\d+( M[A-Z]*\d+)*$/u.test(c.dataset.ids || "")).length,
     keys: chips.map((c) => c.dataset.key),
     // what each chip says its switch costs, read off the chip — the two
     // numbers by value, in whatever words, never by the shape of a separator.
@@ -92,6 +101,7 @@ for (const [id, s] of Object.entries(rec.sources)) { const k = s.key || id; if (
 const costOf = new Map();
 const said = (j) => (typeof j.lines_change === "number" ? { changes: Number(j.lines_change) || 0, darkens: Number(j.lines_bare) || 0 } : { changes: Number(j.changes) || 0, darkens: Number(j.darkens) || 0 });
 for (const [k, ids] of idsByKey) { const j = joint && joint[[...ids].sort().join(" ")]; if (j) costOf.set(k, said(j)); }
+for (const k of ovKeys) costOf.set(k, { changes: 0, darkens: 0 });
 const wrongCost = rail ? rail.keys.filter((k) => {
   const want = costOf.get(k), said = (rail.said || {})[k] || [];
   if (!want) return !!joint;   // no joint price baked: not judged
@@ -112,7 +122,11 @@ const shelfCosts = await p.evaluate(() => {
   row.querySelector('.shelve-opt[data-shelving="century"]').click();
   return out;
 });
-const shelfWrong = joint ? shelfCosts.filter((s) => { const j = joint[s.ids]; if (!j) return !s.known ? false : true; const w = said(j); return (w.changes && !s.said.includes(w.changes)) || (w.darkens && !s.said.includes(w.darkens)); }) : [];
+// a shelf is priced by its store ids: an overlay's ids move no line
+for (const s of shelfCosts) s.storeIds = s.ids.split(" ").filter((id) => id && !ovIds.has(id)).join(" ");
+const shelfWrong = joint ? shelfCosts.filter((s) => {
+  if (!s.storeIds) return !s.known;   // a shelf of overlay sources alone: priced, and it moves no line
+  const j = joint[s.storeIds]; if (!j) return !s.known ? false : true; const w = said(j); return (w.changes && !s.said.includes(w.changes)) || (w.darkens && !s.said.includes(w.darkens)); }) : [];
 const shelfUnbaked = shelfCosts.filter((s) => !s.known);
 check("S1f every shelf says the joint price baked for its own set, or says it is not baked — never a sum",
   shelfWrong.length === 0 && (!joint || shelfUnbaked.length === 0),
@@ -200,8 +214,8 @@ check("S1e a shelf switch turns off exactly its shelf, says mixed when one comes
 // S2
 const byCount = Object.values(zone.gloss_m || {}).filter((e) => Array.isArray(e.by) && e.by.length).length;
 check("S2  the receipt agrees with the chips and with gloss_m",
-  rail && rail.n === keysInReceipt.size && rec.counts.keys_with_carriers === byCount && byCount > 0,
-  `${rail ? rail.n : "?"} chips vs ${keysInReceipt.size} source keys · ${byCount} keys carry their carriers (receipt ${rec.counts.keys_with_carriers})`);
+  rail && rail.n === keysInReceipt.size + ovKeys.size && rec.counts.keys_with_carriers === byCount && byCount > 0,
+  `${rail ? rail.n : "?"} chips vs ${keysInReceipt.size} source keys + ${ovKeys.size} beside the store · ${byCount} keys carry their carriers (receipt ${rec.counts.keys_with_carriers})`);
 
 // pick the switch: a source key whose ids solely carry some visible line with
 // a baked alternate, AND carry some other visible line with a second carrier

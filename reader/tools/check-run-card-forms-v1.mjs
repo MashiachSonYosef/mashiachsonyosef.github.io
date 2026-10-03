@@ -118,13 +118,16 @@ for (const run of sample) {
     return { form, cuts };
   }, run.key);
   if (!c) { r1.push(`${run.key}: run not drawn`); continue; }
-  const offeredWhole = c.cuts.filter((x) => !x.t.includes("+")).map((x) => x.t);
+  // a rung of words joined by a space is a run a dictionary names, added to
+  // the chain's card by the run cards (run-cards-rule-v1) and judged there,
+  // by check-run-cards-v1 R5; the chain's own whole forms are judged here
+  const offeredWhole = c.cuts.filter((x) => !x.t.includes("+") && !/ /u.test(x.t)).map((x) => x.t);
   const want = [run.key, run.weld, ...run.folds];
   const missing = want.filter((k) => !offeredWhole.includes(k));
   const extra = offeredWhole.filter((k) => !want.includes(k));
   if (missing.length || extra.length) r1.push(`${run.key}: missing ${missing.join(",") || "-"} extra ${extra.join(",") || "-"}`);
   if (c.cuts.some((x) => x.t.includes("+"))) r2 += 1;
-  const onWhole = c.cuts.find((x) => x.on && !x.t.includes("+"));
+  const onWhole = c.cuts.find((x) => x.on && !x.t.includes("+") && !/ /u.test(x.t));
   if (onWhole && onWhole.t !== run.key) r3.push(`${run.key}: card opened on ${onWhole.t}`);
   if (c.form && c.form !== run.key) r3.push(`${run.key}: line reads ${c.form}`);
   const asWritten = run.published.find((f) => f.form === "maqaf");

@@ -25,19 +25,20 @@
        the purple alone at its full depth.
        the deep red the titles wore and the royal blue are retired, and the deep names
        carry the soft values; the neutral's olive-brown text is the purple ink, since gold is never text at rest. no title has
-       a color of its own. */
-    --shani: #8b5560; --shani-dim: #a8797f;
+       a color of its own. the red raised one step, same lightness, more color (owner, 2026-10-03:
+       "our sites red is actually just one tone too muted"). */
+    --shani: #944c5b; --shani-dim: #b0737a;
     /* the inks the channels are written in, held muted: the corpus a quiet
        rose-red, the reading a quiet blue (owner, 2026-09-11: mockup 4, "i
        still might make that red like a little more muted somehow") */
-    --shani-ink: #8b5560; --tekhelet-ink: #34649a;
+    --shani-ink: #944c5b; --tekhelet-ink: #34649a;
     --wash-shani: #eedcd6;
     /* the held word: its own wash, more opaque — never a third color (owner,
        2026-09-11: "move away from gold as the highlighting itself and move
        toward just a more opaque red and blue") */
     --held-shani: #dbb9b6;
     --held-tekhelet: #b9c6e6;
-    --halo-shani: rgba(139, 85, 96, 0.75);
+    --halo-shani: rgba(148, 76, 91, 0.75);
     /* tekhelet the reading, argaman our own voice — both taken down for
        daylight, both above the AAA floor on linen */
     --tekhelet: #34649a; --tekhelet-dim: #7f8ba8;
@@ -61,7 +62,7 @@
     /* the scripture's own ink, darkened to the AAA floor the contrast judge
        holds body text to — still warm, never black; linen is not glare and
        ink is not tar, but thin niqqud marks need 7:1 to stay marks */
-    --c-word: #8b5560; --en-word: #8b5560;
+    --c-word: #944c5b; --en-word: #944c5b;
     --hover-ink: #6b4f0e; --hover-line: #bda15c;
     --chip-bg: rgba(43, 35, 56, 0.05); --chip-line: rgba(150, 112, 15, 0.34);
     --shadow-pop: 0 8px 24px rgba(96, 80, 48, 0.28);
@@ -612,6 +613,11 @@
   .wb.active { outline: 1.5px solid var(--gold); outline-offset: 3px; border-radius: 0.4rem; }
   /* a maqaf run's card is the run's: the whole run is what stands open */
   .wjoin.active { outline: 1.5px solid var(--gold); outline-offset: 3px; border-radius: 0.4rem; }
+  /* a named run: a license names these words as one thing. A thin blue rule
+     under each of its words, the reading's own color; open, the run's words
+     wear the selection together. */
+  .wb.wrun > .w { border-bottom: 1.5px solid var(--tekhelet-ink); border-radius: 0; }
+  .wb.wrun.active > .w { border-bottom-color: var(--mark-gold); }
   .wb.active .w { background: none; }
   .wb.mark.active .w { background: none; border-color: var(--gold); }
   /* A word the reader has ruled on keeps a mark after the card closes. Without

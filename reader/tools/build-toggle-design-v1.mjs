@@ -177,7 +177,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 <title>the switches</title>
 <style>
  :root { --ink:#561f86; --faint:#845ba7; --muted:#6c359e; --line:#d8cdbc; --paper:#f1e9d8; --sel:#8d5e0c;
-   --tekhelet:#34649a; --shani:#8b5560; --argaman:#772ba3; }
+   --tekhelet:#34649a; --shani:#944c5b; --argaman:#772ba3; }
  /* one face, linen, since 2026-09-10; the dark face came off this sheet 2026-10-02 */
  * { box-sizing: border-box; }
  body { margin:0; padding:1.2rem 16px 4rem; background:var(--paper); color:var(--ink);
