@@ -2,7 +2,7 @@
  "schema_version": 1,
  "rule_id": "ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for",
  "emitted_by": "tools/emit-ledger-index-v1.mjs",
- "emitted_on": "2026-09-27",
+ "emitted_on": "2026-10-03",
  "what_this_is": "which letter of the frame each of this lane's records is the ledger for, read from the '// LEDGER:' declaration in the header of the tool that writes it. Declared by the writer, never inferred here.",
  "letters_known_to_the_frame": [
   "A",
@@ -96,6 +96,20 @@
   ]
  },
  "by_tool": {
+  "apply-span-ledger-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This reads the corpus lane's span ledgers and, when given, its piece-gloss files, and rewrites the four span fields (and each word's pg) of the zones they name. Run it on a restored shelf, then re-pin.",
+   "writes": []
+  },
+  "bake-overlay-book-counts-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This reads the zones on disk and the overlays beside the store and writes one record, data/overlay-book-counts-v1.json.",
+   "writes": [
+    "overlay-book-counts-v1.json"
+   ]
+  },
   "build-chain-book-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
@@ -127,6 +141,7 @@
     "front-door-three-count-bindings-v1.json",
     "work-basis-v1.json",
     "book-grouping-v1.json",
+    "book-order-v1.json",
     "grouping-attestation-v1.json",
     "source-corpus-v1.json",
     "license-postures-v1.json",
@@ -196,6 +211,18 @@
    "writes": [
     "serve-gate-receipt-v1.json"
    ]
+  },
+  "check-card-opens-on-the-line-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the page and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-chapter-pages-v2.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the pages and judges them; it is not the ledger for one.",
+   "writes": []
   },
   "check-commentary-section-aligned-v1.mjs": {
    "letters": [],
@@ -307,6 +334,14 @@
    "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
    "writes": []
   },
+  "check-overlays-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This writes nothing: it reads the overlays the reader serves and the page it draws.",
+   "writes": [
+    "serving-rulings-v1.json"
+   ]
+  },
   "check-partial-serve-declared-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
@@ -326,6 +361,12 @@
    "writes": [
     "license-postures-v1.json"
    ]
+  },
+  "check-proper-name-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the zones and the page and judges them; it is not the ledger for one.",
+   "writes": []
   },
   "check-respan-projection-v1.mjs": {
    "letters": [],
@@ -358,6 +399,12 @@
    "letters": [],
    "updates_no_letter": true,
    "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": []
+  },
+  "check-run-cards-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This writes nothing: it reads data/run-cards/ and the page the reader draws from it.",
    "writes": []
   },
   "check-serve-oracle-checked-v1.mjs": {
@@ -679,10 +726,22 @@
     "license-postures-v1.json"
    ]
   },
+  "project-run-cards-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This reads a run-card ledger and the zones on disk and writes one small file per book; it decides no card.",
+   "writes": []
+  },
   "project-v-volume-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
    "why": "It creates no reading, grades no card and touches no word. It carries one number per verse, one per chapter and one per book, and the sentence that names what those numbers were counted over. A count with no scope is a claim about everything; a count with its scope is a measurement.",
+   "writes": []
+  },
+  "proper-name-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This changes no letter of the text and no row of the store: it is the one definition by which a key's line leads with a name instead of with the derivation a dictionary gives first, computed at projection time (tools/regloss-zone.mjs) and baked into the zone's own gloss table, so the line, the porch and the card read one field.",
    "writes": []
   },
   "pull-zones-from-store-v1.mjs": {
@@ -693,6 +752,15 @@
    "why": "the named stream: which zone bin is published, and its bytes. This writes bins to data/zones, but only bytes the record already pins — it restores O's stream from the shelf it was shipped to and originates nothing. GUARDS: zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight",
    "writes": [
     "zone-store-v1.json"
+   ]
+  },
+  "push-toggles-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This writes nothing into data/: it reads the queue (data/toggle-queue-v1.json), the lane state (data/lane-state-v1.json), the records the queue points at and the zones on the shelf, and prints what the next command is. --fetch writes a delivery under build/ledgers/, which is scratch the next stage reads and never a record.",
+   "writes": [
+    "toggle-queue-v1.json",
+    "lane-state-v1.json"
    ]
   },
   "regloss-zone.mjs": {

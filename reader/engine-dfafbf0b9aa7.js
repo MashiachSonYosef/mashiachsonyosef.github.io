@@ -2512,6 +2512,31 @@
     whole_token_only_v1: "recorded as one component",
     maqaf_run_v1: "joined by a maqaf: the run as written, joined, and word by word, in the forms a dictionary published",
   };
+  // THE SOURCES' OWN DIVISIONS (the corpus lane's span ledger v3, relay v59,
+  // 2026-10-03; tools/apply-span-ledger-v1.mjs): a row's rule names who divides
+  // the form this way, "declared_v1 | every place: tahot:main, macula:main |
+  // some places: tahot:variant:P". The card says it in words: which sources,
+  // and where in this book. The roles are the ledger's own names.
+  const SOURCE_SAYS = { tahot: "STEP TAHOT", macula: "MACULA" };
+  const sourceSays = (tok) => {
+    const [src, kind, which] = String(tok).trim().split(":");
+    const name = SOURCE_SAYS[src] || src;
+    return kind === "variant" && which ? `${name} (its variant ${which})` : name;
+  };
+  const listSays = (xs) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+  const provenanceOf = (rule) => {
+    if (SPLIT_PROVENANCE[rule]) return SPLIT_PROVENANCE[rule];
+    const parts = String(rule || "").split("|").map((x) => x.trim());
+    if (parts[0] !== "declared_v1") return rule;
+    const says = [];
+    for (const part of parts.slice(1)) {
+      const m = /^(every place|some places):\s*(.+)$/u.exec(part);
+      if (!m) continue;
+      says.push(`${m[1] === "every place" ? "at every place in this book" : "at some places"}: ${listSays(m[2].split(",").map(sourceSays))}`);
+    }
+    return says.length ? `divided this way by the sources themselves, ${says.join("; ")}` : rule;
+  };
+  const ROLE_SAYS = { source_piece: "piece", tahot_prefix: "prefix", tahot_root: "root", tahot_suffix: "suffix" };
   const spanOf = (bin, k) => {
     const row = bin && bin.spans ? bin.spans[k] : null;
     if (!row) return null;
@@ -3608,7 +3633,7 @@
         const btn = document.createElement("button"); btn.type = "button";
         btn.lang = "he"; btn.dir = "rtl"; btn.textContent = c.surface;
         if (span) {
-          const roles = [...new Set(span.roles.slice(c.from, c.to + 1))].join(", ").replace(/_/gu, " ");
+          const roles = [...new Set(span.roles.slice(c.from, c.to + 1))].map((r) => ROLE_SAYS[r] || r).join(", ").replace(/_/gu, " ");
           if (roles) btn.title = roles;
         }
         btn.setAttribute("aria-pressed", String(i === cellIdx));
@@ -4176,8 +4201,8 @@
       prov.textContent = "A division into parts was proposed for this form and is not shown: it has not been established";
     } else if (span) {
       prov.textContent = comps.length === 1
-        ? `${SPLIT_PROVENANCE[span.rule] || span.rule}`.replace(/^./u, (c) => c.toUpperCase())
-        : `${comps.length} components · ${SPLIT_PROVENANCE[span.rule] || span.rule}`;
+        ? `${provenanceOf(span.rule)}`.replace(/^./u, (c) => c.toUpperCase())
+        : `${comps.length} components · ${provenanceOf(span.rule)}`;
     } else if (bin.spans) {
       // this zone carries components and this form is not among them
       prov.textContent = "No component system recorded for this form.";

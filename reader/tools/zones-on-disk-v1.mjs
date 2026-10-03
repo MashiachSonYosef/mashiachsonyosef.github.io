@@ -151,9 +151,15 @@ export function zonesWithHoh(dir = ZONES) {
 
 /** The URL a check should open by default. Argv still wins, so a run can
  *  always be pointed somewhere on purpose. */
+// THE SHELF RESTORED. With every pinned bin on disk (RESTORE_OK, 2026-10-03)
+// the directory holds 3,480 works and the door serves 39 of them, and the
+// first work on disk is a commentary nobody can open from the site. A check
+// that opens "a page" means a page a reader can reach, so the default and the
+// sweep are the served zones, and the directory only where no gate receipt is.
+const servedOrOnDisk = (dir) => { const s = zonesServed(dir); return s.length ? s : zonesOnDisk(dir); };
 export function defaultZoneUrl(argv = process.argv[2], dir = ZONES) {
   if (argv) return argv;
-  const [first] = zonesOnDisk(dir);
+  const [first] = servedOrOnDisk(dir);
   if (!first) {
     console.error("no zone on disk to check — refusing to open a page for a work that is not here");
     process.exit(2);
@@ -163,7 +169,7 @@ export function defaultZoneUrl(argv = process.argv[2], dir = ZONES) {
 
 /** Every served zone, for a check that should sweep rather than sample. */
 export function zoneUrls(dir = ZONES) {
-  return zonesOnDisk(dir).map((z) => `${BASE}/zone.html?b=${z}`);
+  return servedOrOnDisk(dir).map((z) => `${BASE}/zone.html?b=${z}`);
 }
 
 /** The slug out of a url a check was handed. */
