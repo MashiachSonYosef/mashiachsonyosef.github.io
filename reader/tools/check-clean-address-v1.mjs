@@ -55,7 +55,9 @@ const site = join(K3, "..");
 // then measures is the unstyled one — the home link was reported out of its
 // corner on a page no reader ever sees (2026-09-06). The harness has to be
 // the faithful part or the check is testing the harness.
-const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8" };
+// as the host serves them: the drawn mark is an SVG and the faces are woff2,
+// and a stub that sent them as octet-stream showed a broken mark on the door
+const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".svg": "image/svg+xml", ".woff2": "font/woff2" };
 const srv = createServer(async (req, res) => {
   const p = normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, "");
   // the publication is served, the repository's plumbing is not

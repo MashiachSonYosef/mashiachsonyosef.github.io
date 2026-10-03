@@ -800,9 +800,11 @@
     if (zone.byline) {
       const ro = ((zone.emitted_from || {}).walk || {}).restore_oracle || null;
       const lic = ((((zone.emitted_from || {}).walk || {}).rights) || {}).raw_license || "";
-      sum.replaceChildren("source");
-      if (ro && ro.edition) sum.append(` \u00b7 ${ro.edition}`);
-      if (lic) { const c = document.createElement("span"); c.className = "lic"; c.textContent = lic; sum.append(" \u00b7 ", c); }
+      const sLab = document.createElement("span"); sLab.className = "s-lab"; sLab.textContent = "source";
+      const sVal = document.createElement("span"); sVal.className = "s-val";
+      if (ro && ro.edition) sVal.append(ro.edition);
+      if (lic) { const c = document.createElement("span"); c.className = "lic"; c.textContent = lic; sVal.append(ro && ro.edition ? " \u00b7 " : "", c); }
+      sum.replaceChildren(sLab, sVal);
       fold.hidden = false;
     }
   }
@@ -992,24 +994,15 @@
     if (deskShown) {
       /* the desk said it */
     } else if (wk && wk.restore_oracle) {
-      meta.append(`${pageMeasure.words.toLocaleString()} words on the read axis in ${nSec.toLocaleString()} ${unitName}${nSec === 1 ? "" : "s"}, with ${pageMeasure.c0_off.toLocaleString()} scribal mark${pageMeasure.c0_off === 1 ? "" : "s"} each at its own position`
-        + (wk && wk.restore_oracle ? `, served from the ${wk.restore_oracle.edition} edition as the corpus lane restored it. ` : `. `));
+      meta.append(`${pageMeasure.words.toLocaleString()} words in ${nSec.toLocaleString()} ${unitName}${nSec === 1 ? "" : "s"}, with ${pageMeasure.c0_off.toLocaleString()} scribal mark${pageMeasure.c0_off === 1 ? "" : "s"} each in its own place`
+        + (wk && wk.restore_oracle ? `, from the ${wk.restore_oracle.edition} edition. ` : `. `));
     } else {
-      meta.append(`${renderedWords.toLocaleString()} words in ${nSec.toLocaleString()} ${nSec === 1 ? "section" : "sections"}, served from the sealed chain. `);
+      meta.append(`${renderedWords.toLocaleString()} words in ${nSec.toLocaleString()} ${nSec === 1 ? "section" : "sections"}. `);
     }
-    const more = document.createElement("button");
-    more.type = "button"; more.className = "receipts-btn";
-    more.textContent = "receipts";
-    more.setAttribute("aria-expanded", "false");
-    const full = document.createElement("span");
-    full.className = "receipts-full"; full.hidden = true; full.textContent = receiptsText;
-    more.addEventListener("click", () => {
-      const on = full.hidden;
-      full.hidden = !on;
-      more.setAttribute("aria-expanded", String(on));
-      more.textContent = on ? "hide receipts" : "receipts";
-    });
-    meta.append(more, full);
+    // the receipts stand at the book's end, folded (the owner, 2026-10-03)
+    document.getElementById("receiptsFull").textContent = receiptsText;
+    document.getElementById("bookEnd").hidden = false;
+    if (!meta.textContent.trim()) meta.hidden = true;
   }
   // What this build stands on, and which slots stand open — said in the same
   // quiet register as the rest of the masthead. The frame is recorded as "a
@@ -1055,24 +1048,26 @@
     if (!entry) return;
     const basisEl = document.getElementById("basisLine");
     if (entry.basis === "TYPED_AWAITING_LEDGER") {
-      basisEl.append(`No record has been issued yet that names this book or numbers its chapters. It is shown anyway: its place in the sealed text store (${Number(entry.unit_count).toLocaleString()} passages) was entered by hand and is marked as such. Once the record is issued, the hand-entered numbers must be removed before this book will build again.`);
+      basisEl.append(`No record names this book or numbers its chapters yet, so its ${Number(entry.unit_count).toLocaleString()} passages were placed by hand, and are marked as such until the record comes.`);
       basisEl.hidden = false;
     } else if (entry.basis === "SEALED_Y_LEDGER") {
-      basisEl.append(`chapter names and order are read from this book\u2019s issued navigation record \u2014 ${entry.y_fixture || "record"}${zone.emitted_from.y_ledger?.status ? ` \u00b7 ${zone.emitted_from.y_ledger.status}` : ""}`);
+      // plain words only: no file, no ledger's name for itself
+      basisEl.append("Chapters and verses are numbered as the source text numbers them, in the order of this book\u2019s contents record. No chapter carries a name here: no source on this shelf gives one.");
       basisEl.hidden = false;
     }
     if (entry.held_commentaries > 0) {
       const holdsEl = document.getElementById("holdsLine");
-      holdsEl.append(`${Number(entry.held_commentaries).toLocaleString()} commentary slots stand open \u2014 `
+      holdsEl.append(`${Number(entry.held_commentaries).toLocaleString()} ${Number(entry.held_commentaries) === 1 ? "commentary waits" : "commentaries wait"} to be added \u2014 `
         + entry.holds.map((h) => h.title).join(", ")
-        + ` \u2014 each fills when its exact work id, body, and attachment are proven (${entry.holds_source}).`);
+        + ` \u2014 each once its text and where it attaches are confirmed.`);
       holdsEl.hidden = false;
     }
     if (entry.entries_without_own_license > 0) {
       const el = document.getElementById("rightsLine");
-      el.append(`${Number(entry.entries_without_own_license).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} printed commentary entries await their own license receipts from the commentary build \u2014 the work-level license shown for them is real, and the per-entry grain fills when that build runs.`);
+      el.append(`${Number(entry.entries_without_own_license).toLocaleString()} of ${Number(entry.printed_commentary_entries).toLocaleString()} commentary entries show the commentary\u2019s own license until each entry\u2019s license is recorded.`);
       el.hidden = false;
     }
+    if (["basisLine", "holdsLine", "rightsLine"].some((id) => !document.getElementById(id).hidden)) document.getElementById("bookEnd").hidden = false;
   })();
   document.getElementById("prov").textContent =
     `${zone.work_receipts && zone.work_receipts.b_n ? `${zone.work_receipts.b_n} · ` : ""}` +
@@ -6580,7 +6575,13 @@
       // in as if the name were expression — the category error the ruling
       // retired. The witness is still the oldest by the standing S law;
       // every other witness is one press away on the title word's record.
-      chip.textContent = `attested: ${a.label}`;
+      // collapsed at rest: "attested" and a caret; a press opens the name of
+      // the witness, which stays in the chip's text either way
+      const attV = document.createElement("span"); attV.className = "att-v"; attV.textContent = `: ${a.label}`;
+      chip.replaceChildren("attested", attV);
+      chip.setAttribute("role", "button"); chip.tabIndex = 0; chip.setAttribute("aria-expanded", "false");
+      chip.addEventListener("click", () => chip.setAttribute("aria-expanded", String(chip.getAttribute("aria-expanded") !== "true")));
+      chip.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); chip.click(); } });
       chip.title = [
         `${a.label}${hasYear(a.year) ? ` · ${a.year}` : ""} — attests this usage; the oldest witness leads by the standing rule. A name is an identification, not licensed expression.`,
         ...(a.also || []),
@@ -6785,7 +6786,7 @@
   if (commentaryStore && commentaryStore.counts && commentaryStore.counts.attached_sections) {
     const cc = commentaryStore.counts;
     const w0 = (commentaryStore.works || [])[0] || {};
-    const full = document.querySelector("#meta .receipts-full");
+    const full = document.getElementById("receiptsFull");
     if (full) full.textContent +=
       ` · ${cc.attached_sections.toLocaleString()} of ${cc.base_sections.toLocaleString()} sections carry ` +
       `${w0.title || "a commentary"} (${w0.license || "license unrecorded"}), served from the same sealed chain and ` +
@@ -6793,7 +6794,7 @@
   }
   if (hohStore && hohStore.counts) {
     const hc = hohStore.counts, hs = hohStore.source || {};
-    const full = document.querySelector("#meta .receipts-full");
+    const full = document.getElementById("receiptsFull");
     if (full) full.textContent +=
       ` · ${(hs.work && hs.work.author) || "a dictionary"} defines ${hc.served.toLocaleString()} of this book's headwords in Hebrew` +
       ` (${hc.held_by_volume + hc.held_by_asterisk} held: ${hc.held_by_volume} by volume, ${hc.held_by_asterisk} by asterisk), served from volumes ${(hs.served_volumes || []).join(", ")} by the owner's ruling${hs.ruling ? ` of ${hs.ruling.on}` : ""}`;
@@ -7973,7 +7974,7 @@
   {
     const t = scopeCensus();
     window.__scopeCensus = t;
-    const full = document.querySelector("#meta .receipts-full");
+    const full = document.getElementById("receiptsFull");
     if (full && t.total) {
       const named = t[1] + t[2] + t[3];
       full.textContent += ` · ${t.total.toLocaleString()} commentary attachments, ` +

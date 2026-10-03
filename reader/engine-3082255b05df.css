@@ -19,6 +19,10 @@
     /* selection is amber on this face too — gold's in-process value, filled,
        with the tent's own ink on top of it */
     --sel: #8d5e0c; --sel-dim: #b8871a;
+    /* text the reader drags across: the same amber, as a tint the word reads
+       through (the owner, 2026-10-03, on a word highlighted solid dark gold:
+       "is that ideal?") */
+    --sel-text: rgba(196, 146, 28, 0.3);
     /* the mark's own gold, brighter than the frame's so the .com never reads as the red beside it (the owner, 2026-10-02); used by the name and nothing else */
     --mark-gold: #c4921c;
     /* four colors, ruled 2026-10-02: one soft red, one soft blue, the gold and the purple,
@@ -123,7 +127,7 @@
   header.top h1 .he-t .title-row { display: inline-block; text-align: right; }
   header.top h1 .he-t .title-row .wb { margin-bottom: 0; }
   header.top h1 .he-t .title-row .w { font-size: 2.1rem; }
-  header.top h1 .he-t .title-row .g { font-size: 0.62rem; max-width: 12em; }
+  header.top h1 .he-t .title-row .g { font-size: 0.82rem; max-width: 12em; }
   header.top h1 .t-note { font-size: 0.6rem; letter-spacing: 0.06em; color: var(--muted);
     font-variant: normal; text-transform: none; }
   /* The third register: a machine's guess, named by its author. The chip is
@@ -163,9 +167,26 @@
   .byline-fold > summary::-webkit-details-marker { display: none; }
   .byline-fold > summary::before { content: "\25B8 "; color: var(--muted); }
   .byline-fold[open] > summary::before { content: "\25BE "; }
+  /* a label and its value, in the columns the title rows above stand in (the
+     owner, 2026-10-03: "columns fail") */
+  .byline-fold > summary { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
+  .byline-fold > summary .s-lab { flex: 0 0 auto; min-width: 5.6rem; font-size: 0.6rem; letter-spacing: 0.18em; }
+  .byline-fold > summary .s-val { flex: 1 1 12rem; min-width: 0; font-size: 0.8rem; letter-spacing: 0.02em;
+    text-transform: none; color: var(--muted); }
+  /* the attestation opens under a press, collapsed at rest (the owner, 2026-10-03) */
+  #workLic[role="button"] { cursor: pointer; }
+  #workLic:not([aria-expanded="true"]) .att-v { display: none; }
+  #workLic:not([aria-expanded="true"])::after { content: " \25B8"; font-size: 0.8em; }
   .byline-fold > summary .lic { color: var(--ink-strong); }
   .byline-fold > summary:hover { color: var(--muted); }
   #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; max-width: 62rem; }
+  /* the page's own gutter, and room under it for the floating chapter bar */
+  #bookEnd { margin: 2.4rem 0 0; padding: 1rem 1.5rem 6rem; border-top: 1px solid var(--line); }
+  #bookEnd > * { max-width: 62rem; }
+  .receipts-fold { margin: 0.8rem 0 0; }
+  .receipts-fold > summary { cursor: pointer; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .receipts-fold > summary:hover { color: var(--muted); }
+  .receipts-fold .receipts-full { margin: 0.5rem 0 0; font-size: 0.78rem; color: var(--faint); }
   .wb.ov .w { background: var(--chip-bg); }
   .wb.ov-first .w { border-start-start-radius: 0.25rem; border-end-start-radius: 0.25rem; padding-inline-start: 0.15rem; }
   .wb.ov-last .w { border-start-end-radius: 0.25rem; border-end-end-radius: 0.25rem; padding-inline-end: 0.15rem; }
@@ -1525,7 +1546,7 @@
      selection in the reader's own blue, elevation that says what floats. */
   * { -webkit-tap-highlight-color: transparent; }
   body { font-kerning: normal; }
-  ::selection { background: var(--sel-dim); color: var(--ink-strong); }
+  ::selection { background: var(--sel-text); color: inherit; }
   button, select { transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease; }
   button:hover:not([disabled]) { border-color: var(--muted); }
   button:active:not([disabled]) { transform: translateY(0.5px); }

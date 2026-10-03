@@ -24,7 +24,7 @@
   try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
-<link rel="stylesheet" href="/reader/engine-38b4f00c9d46.css">
+<link rel="stylesheet" href="/reader/engine-3082255b05df.css">
 </head>
 <body>
 <header class="top">
@@ -67,9 +67,6 @@
        zone's own receipts — which rule, and whether the ink was carried from
        a named source or typed because no source we hold carries the mark. -->
   <p id="demoLine" hidden></p>
-  <p id="basisLine" hidden></p>
-  <p id="holdsLine" hidden></p>
-  <p id="rightsLine" hidden></p>
   <!-- Navigation carries coordinates, not corpus text. A book's title is corpus
        text and belongs where it can be tapped and defined — the masthead, out
        of the ledger, with its records behind it. The Hebrew that stood here was
@@ -120,7 +117,18 @@
   <nav class="porch-chs"><a href="/ii-chronicles/1/" aria-label="II Chronicles 1">1</a><a href="/ii-chronicles/2/" aria-label="II Chronicles 2">2</a><a href="/ii-chronicles/3/" aria-label="II Chronicles 3">3</a><a href="/ii-chronicles/4/" aria-label="II Chronicles 4">4</a><a href="/ii-chronicles/5/" aria-label="II Chronicles 5">5</a><a href="/ii-chronicles/6/" aria-label="II Chronicles 6">6</a><a href="/ii-chronicles/7/" aria-label="II Chronicles 7">7</a><a href="/ii-chronicles/8/" aria-label="II Chronicles 8">8</a><a href="/ii-chronicles/9/" aria-label="II Chronicles 9">9</a><a href="/ii-chronicles/10/" aria-label="II Chronicles 10">10</a><a href="/ii-chronicles/11/" aria-label="II Chronicles 11">11</a><a href="/ii-chronicles/12/" aria-label="II Chronicles 12">12</a><a href="/ii-chronicles/13/" aria-label="II Chronicles 13">13</a><a href="/ii-chronicles/14/" aria-label="II Chronicles 14">14</a><a href="/ii-chronicles/15/" aria-label="II Chronicles 15">15</a><a href="/ii-chronicles/16/" aria-label="II Chronicles 16">16</a><a href="/ii-chronicles/17/" aria-label="II Chronicles 17">17</a><a href="/ii-chronicles/18/" aria-label="II Chronicles 18">18</a><a href="/ii-chronicles/19/" aria-label="II Chronicles 19">19</a><a href="/ii-chronicles/20/" aria-label="II Chronicles 20">20</a><a href="/ii-chronicles/21/" aria-label="II Chronicles 21">21</a><a href="/ii-chronicles/22/" aria-label="II Chronicles 22">22</a><a href="/ii-chronicles/23/" aria-label="II Chronicles 23">23</a><a href="/ii-chronicles/24/" aria-label="II Chronicles 24">24</a><a href="/ii-chronicles/25/" aria-label="II Chronicles 25">25</a><a href="/ii-chronicles/26/" aria-label="II Chronicles 26">26</a><a href="/ii-chronicles/27/" aria-label="II Chronicles 27">27</a><a href="/ii-chronicles/28/" aria-label="II Chronicles 28">28</a><a href="/ii-chronicles/29/" aria-label="II Chronicles 29">29</a><a href="/ii-chronicles/30/" aria-label="II Chronicles 30">30</a><a href="/ii-chronicles/31/" aria-label="II Chronicles 31">31</a><a href="/ii-chronicles/32/" aria-label="II Chronicles 32">32</a><a href="/ii-chronicles/33/" aria-label="II Chronicles 33">33</a><a href="/ii-chronicles/34/" aria-label="II Chronicles 34">34</a><a href="/ii-chronicles/35/" aria-label="II Chronicles 35">35</a><a href="/ii-chronicles/36/" aria-label="II Chronicles 36">36</a></nav>
 </section>
 <div id="hud" hidden></div>
-<footer id="prov"></footer>
-<script src="/reader/engine-a068da04351b.js"></script>
+<!-- THE BOOK'S OWN RECORD, AT ITS END (the owner, 2026-10-03: "if we need to
+     say the receipts section id put it at the bottom of the book probably",
+     and "the internal language like Y ledger should never appear"). How this
+     book's chapters are numbered and what waits to be added are said after
+     the text, in plain words; the build's receipts and fingerprints, which
+     are the build's own language, are folded under one press. -->
+<section id="bookEnd" hidden>
+  <p id="basisLine" hidden></p>
+  <p id="holdsLine" hidden></p>
+  <p id="rightsLine" hidden></p>
+  <details id="receiptsFold" class="receipts-fold"><summary>receipts</summary><p class="receipts-full" id="receiptsFull"></p><footer id="prov"></footer></details>
+</section>
+<script src="/reader/engine-04ea70253aab.js"></script>
 </body>
 </html>

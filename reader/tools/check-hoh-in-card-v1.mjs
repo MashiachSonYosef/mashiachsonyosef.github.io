@@ -65,7 +65,7 @@ for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the Engli
   await p.waitForTimeout(600);
   console.log(`— ${ZONE}, ${reader} —`);
   const loaded = await p.evaluate(() => ({ store: !!window.__hohStore, refused: window.__hohRefused || null,
-    receipts: (document.querySelector("#meta .receipts-full")?.textContent || "") }));
+    receipts: (document.querySelector(".receipts-full")?.textContent || "") }));
   check("  the sidecar loaded and passed its seal", loaded.store && !loaded.refused, loaded.refused || "");
   check("  and the receipts say what it defines", /defines \d+ of this book's headwords in Hebrew/.test(loaded.receipts));
 

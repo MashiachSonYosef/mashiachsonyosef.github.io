@@ -404,7 +404,7 @@ for (const book of WITH_COMMENTARY) {
       `${t.quoted_differs} of ${t[2]} spans differ from their own opening quotation`);
     // The page says so on its own face, so a book that changes shape says it
     // before anyone thinks to look.
-    const said = await p.evaluate(() => (document.querySelector("#meta .receipts-full")?.textContent || ""));
+    const said = await p.evaluate(() => (document.querySelector(".receipts-full")?.textContent || ""));
     check("  and the receipts say so on the page's own face",
       /commentary attachments/.test(said) && /shape/.test(said));
   }
