@@ -714,6 +714,14 @@
   /* a named run: a license names these words as one thing. A thin blue rule
      under each of its words, the reading's own color; open, the run's words
      wear the selection together. */
+  /* EVERY WORD IS UNDERLINED, for now (the owner, 2026-10-03: "i think
+     underlining is nondistracting and can be added to every word for now",
+     an underlining ledger to follow): every word opens one card, so every
+     word wears the one-card line, thin and dim, as a maqaf compound does. A
+     compound keeps its one line under the whole; a named run and a
+     ketiv-qere pair keep their heavier gold; a scribe's mark is not a word. */
+  .wb > .w { border-bottom: 1px solid var(--gold-dim); border-radius: 0; }
+  .wjoin .wb > .w, .wb.mark > .w { border-bottom-color: transparent; }
   .wb.wrun > .w { border-bottom: 1.5px solid var(--gold); border-radius: 0; }
   .wb.wrun.active > .w { border-bottom-color: var(--mark-gold); }
   .wb.active .w { background: none; }
@@ -810,10 +818,10 @@
   .wb.multi.active:not(.kq) .w { border-bottom: 1px dashed transparent; }
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
   .wr:hover { color: var(--hover-ink); border-bottom-color: var(--hover-line); }
-  /* AN UNDERLINE HAS TWO MEANINGS AND IS ONLY EVER ON THE HEBREW (the
-     owner, 2026-10-03): one card stands over these words (a maqaf run, a
-     span across words), or this is the half of a ketiv-qere pair the line is
-     reading. Both are gold. Nothing else on the page is underlined: not a
+  /* AN UNDERLINE IS ONLY EVER ON THE HEBREW, AND MEANS ONE CARD HERE (the
+     owner, 2026-10-03): every word, thin and dim (above, with the runs); a
+     maqaf run or a span across words, one line under the whole; a ketiv-qere
+     pair, one line under both halves, its read half bracketed. All gold. Nothing else on the page is underlined: not a
      reading, not a word with a commentary open, not a variant site, not a
      word carrying a source's mark. */
   /* The half of a source-marked pair that the shown English is reading from.
