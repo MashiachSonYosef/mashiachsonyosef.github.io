@@ -52,8 +52,11 @@
      three pixels apart */
   .wordmark:has(img.wm-mark) { max-width:100%; box-sizing:border-box; }
   .wordmark img.wm-mark { display:block; width:26rem; max-width:min(100%, calc(100vw - 2.5rem)); height:auto; }
+  /* the same mark, small, is the way home on every other page of the door (the owner, 2026-10-08: no page prints an older drawing of the name) */
+  a.wordmark { border-bottom:none; padding-bottom:0; }
+  a.wordmark img.wm-mark-s { display:block; height:1.5rem; width:auto; max-width:min(100%, calc(100vw - 2.5rem)); }
   /* (the window caps it too: a mark that failed to load has no shape of its own, and its box stood 416px wide on a 412px phone) */
-  .wordmark .wm-fire { color:var(--shani); } .wordmark .wm-and { color:var(--mark-gold); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { .wordmark .wm-and { background-image:linear-gradient(90deg, var(--shani) 0%, var(--mark-gold) 36%, var(--mark-gold) 64%, var(--tekhelet) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } .wordmark .wm-tld { background-image:linear-gradient(90deg, var(--tekhelet) 0%, var(--argaman) 30%, var(--argaman) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } } .wordmark .wm-hail { color:var(--tekhelet); } .wordmark .wm-tld { color:var(--argaman); }
+  .wordmark .wm-fire { color:var(--shani); } .wordmark .wm-and { color:var(--mark-gold); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { .wordmark .wm-tld { background-image:linear-gradient(90deg, var(--tekhelet) 0%, var(--argaman) 30%, var(--argaman) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } } .wordmark .wm-hail { color:var(--tekhelet); } .wordmark .wm-tld { color:var(--argaman); }
   p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }
   /* The face speaks plainly; the audited panel stands whole behind one quiet
      fold, its grains and receipts byte-identical for the count guard. What a
