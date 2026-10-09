@@ -82,8 +82,12 @@ const p = await ctx.newPage();
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 
 // the whole book built, so every card's words exist on the page
+// the HUD record's runs (data/hud-runs, check-hud-runs-v1) ride the same lane;
+// this check reads the run cards alone, so both loads go without them
 const load = async (withRuns) => {
   await p.unroute("**/data/run-cards/**").catch(() => {});
+  await p.unroute("**/data/hud-runs/**").catch(() => {});
+  await p.route("**/data/hud-runs/**", (r) => r.fulfill({ status: 404, body: "" }));
   if (!withRuns) await p.route("**/data/run-cards/**", (r) => r.fulfill({ status: 404, body: "" }));
   await p.goto(`${BASE}?b=${BOOK}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
@@ -91,11 +95,19 @@ const load = async (withRuns) => {
   // (its body waits on the section as __body); a fast scroll can pass one by
   await p.evaluate(() => { for (const el of document.querySelectorAll("section.seg")) if (el.__body) { const f = el.__body; el.__body = null; f(); } });
   await p.waitForTimeout(500);
+  // word by word: each word's own line (in a cell, the part under it; a part
+  // the signs switch drops reads as none), and each word's Hebrew
   return p.evaluate(() => ({
-    lines: [...document.querySelectorAll(".wb > .g, .wjoin > .g")].map((g) => g.textContent),
-    ink: [...document.querySelectorAll("section.seg .he-text")].map((h) => { const c = h.cloneNode(true); c.querySelectorAll(".g").forEach((x) => x.remove()); return c.textContent; }).join("\n"),
+    lines: [...document.querySelectorAll("section.seg .he-text .wb")].map((wb) => {
+      const j = wb.closest(".wjoin");
+      if (!j) return (wb.querySelector(":scope > .g") || { textContent: "" }).textContent;
+      const wi = [...j.querySelectorAll(":scope > .wj-ink > .wb")].indexOf(wb);
+      const part = j.querySelector(`:scope > .g.parts > .g-part[data-wi="${wi}"]`);
+      return part ? part.textContent : "";
+    }),
+    ink: [...document.querySelectorAll("section.seg .he-text .wb > .w")].map((w) => w.textContent).join("\n"),
     cards: window.__runCards || 0,
-    marked: document.querySelectorAll(".wb.wrun").length,
+    marked: [...document.querySelectorAll(".wjoin.lic .wb")].filter((w) => w.__run).length,
   }));
 };
 const without = await load(false);
@@ -110,8 +122,9 @@ check("R3  the line under every word and the Hebrew are the same with run cards 
 // R4 and R5: open cards, the space runs and the chains apart
 const opened = await p.evaluate(async () => {
   const out = [];
-  const firsts = [...document.querySelectorAll(".wb.wrun-first")].filter((w) => w.__run);
-  const pick = [...firsts.filter((w) => !w.closest(".wjoin")).slice(0, 8), ...firsts.filter((w) => w.closest(".wjoin")).slice(0, 4)];
+  // a run's first word, from its cell; a chain is a run that is exactly a maqaf chain
+  const firsts = [...document.querySelectorAll(".wjoin.lic")].filter((j) => j.__run).map((j) => j.__run.__els.get(j.__run.idx[0])).filter(Boolean);
+  const pick = [...firsts.filter((w) => !w.closest(".wjoin").__chain).slice(0, 8), ...firsts.filter((w) => w.closest(".wjoin").__chain).slice(0, 4)];
   for (const w of pick) {
     const rc = w.__run;
     window.__pool = null;
@@ -120,7 +133,7 @@ const opened = await p.evaluate(async () => {
     const t0 = Date.now(); while (Date.now() - t0 < 5000 && !document.querySelector("#hud .s-pills button")) await new Promise((r) => setTimeout(r, 40));
     await new Promise((r) => setTimeout(r, 250));
     out.push({
-      chain: !!w.closest(".wjoin"), n: rc.idx.length, named: rc.named, keys: rc.keys,
+      chain: !!w.closest(".wjoin").__chain, n: rc.idx.length, named: rc.named, keys: rc.keys,
       // the divisions row only: the block row under it holds the open division's cells
       cuts: [...((document.querySelector("#hud .s-pills") || { querySelectorAll: () => [] }).querySelectorAll("button"))].map((x) => ({ t: x.textContent, on: x.getAttribute("aria-pressed") === "true" })),
       active: [...rc.__els.values()].every((el) => el.classList.contains("active")),

@@ -93,7 +93,7 @@ const picks = await p.evaluate(async (per) => {
     const words = (z.sections[si] || {}).words || [];
     if (wbs.length !== words.length) continue;
     words.forEach((w, wi) => {
-      if (!Array.isArray(w.pg) || w.pg.length < 2 || w.w || wbs[wi].closest(".wjoin") || wbs[wi].classList.contains("wrun")) return;
+      if (!Array.isArray(w.pg) || w.pg.length < 2 || w.w || wbs[wi].closest(".wjoin")) return;
       if (w.pg.map((x) => x.k).join("") !== w.k || !w.pg.every((x) => x.g && x.s === w.pg[0].s)) return;
       const row = !!(z.spans && z.spans[w.k]);
       if (row && z.spans[w.k][0].join("|") !== w.pg.map((x) => x.k).join("|")) return;   // a ledger division unlike the place's: not this claim
