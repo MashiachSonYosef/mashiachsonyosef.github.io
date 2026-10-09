@@ -339,7 +339,11 @@ for (const [mode, btn, agree] of [["the Hebrew reader", "#modeHe", false], ["the
     const s = document.querySelectorAll("section.seg")[ix];
     const els = [...s.querySelectorAll(".he-text .wb .g, .he-text .wjoin > .g")].filter((x) => x.getClientRects().length);
     const doc = els.map((e) => e.textContent.trim());
-    const eye = els.map((e) => { const r = e.getBoundingClientRect(); return { t: e.textContent.trim(), y: Math.round(r.y / 14), x: r.x }; })
+    // the eye reads line by line: a line is where the Hebrew stands (the
+    // cells of a line share the Hebrew's height in both readers since
+    // 2026-10-09; the readings above it in the English reader do not, a
+    // two-line reading starting higher than its neighbors'), then left to right
+    const eye = els.map((e) => { const r = e.getBoundingClientRect(); const w = (e.closest(".wb, .wjoin") || e).querySelector(".w"); const wr = w ? w.getBoundingClientRect() : r; return { t: e.textContent.trim(), y: Math.round(wr.y / 14), x: r.x }; })
       .sort((a, b) => a.y - b.y || a.x - b.x).map((z) => z.t);
     return { doc, eye, agree: doc.join("|") === eye.join("|") };
   }, VERSE_IX);

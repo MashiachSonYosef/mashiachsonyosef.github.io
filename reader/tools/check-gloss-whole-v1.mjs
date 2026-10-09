@@ -124,7 +124,9 @@ const after = await p.evaluate((i) => {
     docHeight: document.body.scrollHeight,
     clipped: g ? g.scrollHeight > g.clientHeight + 1 || g.scrollWidth > g.clientWidth + 1 : true,
     widthHeld: !!(wb && wb.style.width),
-    text: g ? g.textContent.trim().length : 0,
+    // the reading's own length: a ruled line wears the chosen record's chip
+    // since 2026-10-08, and the chip is not the reading
+    text: g ? (() => { const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove()); return c.textContent.trim().length; })() : 0,
     title: g ? (g.title || "").length : 0,
   };
 }, ruledIx);

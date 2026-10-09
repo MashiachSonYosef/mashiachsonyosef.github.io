@@ -6,6 +6,12 @@
   // that reason. One read, before the address changes, and nothing downstream
   // has to know the order.
   const QUERY = new URLSearchParams(location.search);
+  // THE BROWSER'S OWN RESTORING OF A SCROLL OFFSET IS OFF. It restores a
+  // height, and a page that builds its sections as the reader nears them is
+  // never the height it was, so a reopened tab landed chapters from where the
+  // reader had been (the owner, 2026-10-08, Joshua: "i swear i was on 1:16").
+  // The place is kept by verse instead, below (SPOT_KEY).
+  try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch { /* a browser that will not be told still reads */ }
   // Which work this page is, and where the reader's own files live. A work's
   // address serves the reader itself, and the build wrote both facts into
   // this page's head — nothing here guesses, and the address in the bar is
@@ -434,6 +440,10 @@
   // never leaves a word with nothing under it (the owner, 2026-10-03: "the
   // 4th word of genesis loaded blank due to set default <obj>").
   const trimSigns = (pieces) => { const keep = pieces.filter((x) => !signOnly(x)); return keep.length ? keep : pieces; };
+  // a line as the page prints it under the signs switch: its sign-only pieces
+  // undrawn when the signs are off, whatever order led it there (the owner,
+  // 2026-10-08, Judges 1:31 under oldest first: "and + <obj.> + Ahlab")
+  const signsOffLine = (text) => (signsPref === "off" ? trimSigns(String(text).split(" + ")).join(" + ") : String(text));
   // the place's reading as the line draws it under "off": its sign-only
   // pieces left undrawn, the rest as printed; the whole stays on .full
   const placeShown = (at) => {
@@ -1399,6 +1409,36 @@
     if (alt && Array.isArray(alt.by) && alt.by.length && !alt.by.every((id) => sourcesOff.has(id)) && alt.text) return spanJoin(alt.text);
     return "\u2014";
   };
+  // THE LICENSE RIDES THE CHOSEN READING TOO (the owner, 2026-10-08: "if i
+  // select a new R pill ... doesnt show the CC license on the english
+  // runner"). A pick remembers the record it was pressed on; the chip under
+  // a ruled line is built from those records, one per block, with the baked
+  // witness standing in for a block the reader left alone. A block whose
+  // witness cannot be named leaves the whole line without a chip — absent
+  // over wrong, as ever.
+  const mOfPick = (p) => {
+    const m = p && p.mId && index && index.m_sources ? index.m_sources[p.mId] : null;
+    return m ? { lic: licenseName(m.licensePosture), m: m.label, y: m.sourceYear, wy: p.wy } : null;
+  };
+  const ruledMs = (k, table) => {
+    const m = pickedByForm.get(k);
+    if (!m || (!m.cut && !m.cells.size)) return null;
+    const run = k.includes("\u05be") && !(table && table[k]);
+    const surfaces = m.cut ? m.cut.split("+") : run ? k.split("\u05be") : [k];
+    const ms = [];
+    for (const s of surfaces) {
+      const p = m.cells.get(s);
+      if (p) { const w = mOfPick(p); if (!w) return null; ms.push(w); continue; }
+      const gm = table === zone.gloss && zone.gloss_m ? zone.gloss_m[s] : null;
+      if (!gm) return null;
+      const alt = carriersOff(s) ? gm.alt : null;
+      const use = alt && alt.by && !alt.by.every((id) => sourcesOff.has(id)) ? alt : carriersOff(s) ? null : gm;
+      if (!use || !use.lic) return null;
+      ms.push({ lic: use.lic, m: use.m, y: use.y, wy: use.wy });
+    }
+    return ms.length ? ms : null;
+  };
+  const ruledChip = (k, table) => { const ms = ruledMs(k, table); return ms ? chipOfMs(ms) : null; };
   const ruledLine = (k, table) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
@@ -1467,11 +1507,30 @@
   // enrolled — a ruling is the reader's own decision about that word and
   // outranks the order they put the rest of the book in.
   const GLOSS_STANDS = [];
-  /** Which branch of a pair backs the English, and what it fell back from. */
-  const kqPick = (regions, parts, table) => {
+  /** THE SOURCE READS ONE HALF OF A PAIR. Under "the source here", TAHOT's
+      pieces at a pair spell one of its halves (Joshua 2:13: "sisters/ my" is
+      the qere); that half backs the English and the line says what the card
+      says. Before this the pair kept to the gloss table under the ketiv-first
+      rule, and Joshua 2:13 read its ketiv through Strong's "(an-)other" while
+      the card said the source reads "sisters + my" here (the owner,
+      2026-10-08: "the qere ketiv megacompspan didnt come out right"). Null
+      where the source does not read the place, or spells neither half. */
+  const kqPlace = (word, regions, table) => {
+    if (!word || !regions || table !== zone.gloss) return null;
+    const at = placeLine(word);
+    if (!at) return null;
+    const spelled = word.pg.map((x) => (x && x.k) || "").join("");
+    const i = regions.findIndex((r) => r.k === spelled);
+    return i >= 0 ? { i, at: placeShown(at) } : null;
+  };
+  /** Which branch of a pair backs the English, and what it fell back from;
+      `at` where the source's own reading of the place is what it backs. */
+  const kqPick = (regions, parts, table, word) => {
     const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—";
     const ruledIdx = regions.findIndex((r) => ruledLine(r.k, table) !== null);
     if (ruledIdx >= 0) return { i: ruledIdx, fellFrom: null };
+    const pl = kqPlace(word, regions, table);
+    if (pl) return { i: pl.i, fellFrom: null, at: pl.at };
     const wanted = kqOrder === "QERE" ? regions.findIndex((r) => r.role !== "KETIV")
       : kqOrder === "SOURCE" ? 0
       : regions.findIndex((r) => r.role === "KETIV");
@@ -1525,6 +1584,7 @@
   };
   /** Repaint every pair on the page under the order now set. */
   const paintPairs = () => {
+    const runs = new Set();
     for (const s of KQ_STANDS) {
       // each half's reading is re-read from the table as it stands NOW: the
       // parts captured when the pair was drawn went stale the moment an order
@@ -1536,21 +1596,29 @@
         const g = s.table ? s.table[r.k] : null;
         return g ? spanJoin(g) : "\u2014";
       });
-      const { i, fellFrom } = kqPick(s.regions, s.parts, s.table);
-      const line = i >= 0 && s.parts[i] !== "—" ? s.parts[i] : "";
+      const { i, fellFrom, at } = kqPick(s.regions, s.parts, s.table, s.word);
+      const line = signsOffLine(at ? spanJoin(at.text) : i >= 0 && s.parts[i] !== "—" ? s.parts[i] : "");
       s.ge.replaceChildren(line || " ");
       s.ge.classList.toggle("bare", !line);
       s.ge.title = line;
       const ruled = s.regions.findIndex((r) => ruledLine(r.k, s.table) !== null) >= 0;
       if (line && !ruled && s.table === zone.gloss) {
-        const chip = licChipFor([s.regions[i].k]);
+        const chip = at ? (at.m ? chipOfMs([at.m]) : null) : licChipFor([s.regions[i].k]);
+        if (chip) s.ge.append(chip);
+      } else if (line && ruled && i >= 0 && s.table === zone.gloss) {
+        const chip = ruledChip(s.regions[i].k, s.table);
         if (chip) s.ge.append(chip);
       }
       s.regionEls.forEach((el, j) => el.classList.toggle("backs-en", !!line && j === i));
       s.ge.classList.toggle("backs-en", !!line && i >= 0);
       s.fellFrom = fellFrom;
       s.shown = i;
+      // a pair inside a maqaf run: the run prints its words' lines once,
+      // together, so it is made again from the line this repaint changed
+      const run = s.ge.parentElement && s.ge.parentElement.closest && s.ge.parentElement.closest(".wjoin");
+      if (run) runs.add(run);
     }
+    for (const r of runs) refreshJoinGloss(r);
   };
 
   // ---- the exporter ---------------------------------------------------
@@ -2111,6 +2179,10 @@
     }
     return rows.sort((a, c) => a.top - c.top);
   };
+  // how far the bands overrun the region that holds them, in pixels: the one
+  // measure of dead controls (labels given up are not), used wherever a cap
+  // is kept or released
+  const rowsOverrun = () => { const rowsEl = hud.querySelector(".rows"); return rowsEl ? [...rowsEl.children].reduce((n, c) => n + c.offsetHeight, 0) - rowsEl.clientHeight : 0; };
   const fitBands = () => {
     if (hud.hidden) return;
     const rowsEl = hud.querySelector(".rows");
@@ -2427,7 +2499,10 @@
     // page that moved, and cannot read a license that is not there. So the
     // height still goes back when the bands cannot be served, and the scrolling
     // region stands as what catches the overflow that remains.
-    if (fitBands() === false && !hudMoved && hud.style.maxHeight) {
+    // ...and only when they overrun: a card capped to the room beside its
+    // word, its labels given up, is what the owner asked for over a page
+    // that moves (2026-10-08); released here it grew over the word
+    if (fitBands() === false && !hudMoved && hud.style.maxHeight && rowsOverrun() > 1) {
       hud.style.maxHeight = "";
       fitBands();
     }
@@ -2450,7 +2525,10 @@
     if (hudAnchor && hudAnchor.isConnected) {
       const newTop = Math.max(pad, Math.min(top, window.innerHeight - h - pad));
       const a = hudAnchor.getBoundingClientRect();
-      if (newTop < top - 0.5 && a.bottom > newTop + 0.5 && a.top < newTop + h - 0.5) { placeHud(); return; }
+      // a card standing above its word that grew downward reaches the word
+      // without the clamp moving it at all (2026-10-08), so any card that
+      // would stand on its word is placed again under the whole law
+      if (a.bottom > newTop + 0.5 && a.top < newTop + h - 0.5) { placeHud(); return; }
     }
     hud.style.top = `${Math.max(pad, Math.min(top, window.innerHeight - h - pad))}px`;
     hud.style.left = `${Math.max(pad, Math.min(left, window.innerWidth - w - pad))}px`;
@@ -2647,14 +2725,22 @@
   // their edge is cutting.
   (function cardLoop() { drawTether(); snapBands(); requestAnimationFrame(cardLoop); })();
   const placeHud = (el) => {
+    // the record of what each side offered, and of a move, is the open
+    // card's: it starts over for another word, not for a second placement
+    if (el && el !== hudAnchor) { delete hud.dataset.sides; delete hud.dataset.moved; delete hud.dataset.movedSides; }
     if (el) hudAnchor = el;
     if (!hudAnchor) return;
     hud.hidden = false;
     // A card the reader has taken hold of belongs to the reader. It is not
     // moved back to a word again, only kept on screen.
     if (hudMoved) { clampHud(); return; }
-    // a height fixed for a previous word's placement is not this word's
+    // a height fixed for a previous word's placement is not this word's —
+    // and neither are the bands' heights fitted under it: measured with
+    // those still imposed, a 758px card read 650px, "fit" above its word
+    // uncapped, and grew onto it (2026-10-09). The bands are refitted to the
+    // uncapped card before anything is measured.
     hud.style.maxHeight = "";
+    fitBands();
     // The card must clear the word's whole block, not just the span that was
     // pressed: a ruled reading painted under the word grows the block (the
     // growth law), and a card anchored on the span alone covered the ruled
@@ -2701,14 +2787,14 @@
       if (fitBands() === false) { hud.style.maxHeight = ""; fitBands(); }
       h = hud.offsetHeight || 0;
     }
-    const want = window.innerHeight - pad - h - pad;   // where the word's foot has to be
-    if (rect.bottom > want) {
-      const by = Math.min(rect.bottom - want, Math.max(0, rect.top - pad));
-      if (by > 0) {
-        window.scrollBy(0, by);
-        rect = anchorBlock.getBoundingClientRect();
-      }
-    }
+    // THE PAGE IS NOT MOVED WHILE A SIDE OF THE WORD CAN HOLD THE CARD. The
+    // scroll that stood here brought the word up whenever the room beneath it
+    // was short, and the owner read it as the Hebrew jumping (2026-10-08, a
+    // card of many readings: "it was so big it shifted the screen down, id
+    // rather the hud go off the screen, hebrew moving is maximally
+    // confusing"). The card now takes the room there is, beneath or above the
+    // word, and scrolls inside itself; the page moves only when neither side
+    // can serve the card's bands (the branch below, a short window).
     // If the word is already as high as it goes and the card still does not
     // fit beneath it, the card gives up height rather than position. It can
     // afford to: every band inside it scrolls, so a shorter card holds the same
@@ -2754,6 +2840,50 @@
     // usefully shrink does it go above, and then it is the lesser harm
     else if (rect.top - pad - h >= pad) top = rect.top - pad - h;
     else {
+      // NEITHER FITS WHOLE. Each side of the word with the floor's room is
+      // tried, the larger first: the card capped to it, its bands fitted, and
+      // the side taken unless the bands overrun their region there — labels
+      // given up are not dead controls (2026-10-03), and a card that scrolls
+      // inside itself is what the owner asked for over a page that moves
+      // (2026-10-08). The old whole-height placement above the word stands
+      // first because it covers nothing the card needs.
+      const roomAbove = rect.top - pad - pad;
+      const overrunNow = rowsOverrun;
+      const sides = [[room, false], [roomAbove, true]].filter(([r]) => r >= FLOOR).sort((a, b) => b[0] - a[0]);
+      // what each side offered and how far the bands overran there, written
+      // on the card so a check can read why the page moved when it did
+      const tried = [];
+      for (const [r, above] of sides) {
+        hud.style.maxHeight = `${Math.floor(r)}px`; fitBands();
+        const over = overrunNow();
+        tried.push(`${above ? "above" : "beneath"}:${Math.floor(r)}:${Math.round(over)}`);
+        hud.dataset.sides = tried.join(" ");
+        if (over > 1) continue;
+        h = hud.offsetHeight || 0;
+        top = above ? rect.top - pad - h : rect.bottom + pad;
+        break;
+      }
+      if (top === undefined) {
+        // NO SIDE SERVES (a short window: neither above nor beneath holds a
+        // card of the floor's height). The one case the page still moves,
+        // as it always did: the word is brought up as far as the page
+        // allows, and the card stands beneath it, capped to the room there.
+        hud.style.maxHeight = ""; fitBands(); h = hud.offsetHeight || 0;
+        const want = window.innerHeight - pad - h - pad;   // where the word's foot has to be
+        if (rect.bottom > want) {
+          const by = Math.min(rect.bottom - want, Math.max(0, rect.top - pad));
+          if (by > 0) {
+            hud.dataset.moved = String((Number(hud.dataset.moved) || 0) + Math.round(by));
+            hud.dataset.movedSides = tried.join(" ") || "none";
+            window.scrollBy(0, by); rect = anchorBlock.getBoundingClientRect();
+          }
+        }
+        const roomUp = window.innerHeight - pad - rect.bottom - pad;
+        if (rect.bottom + pad + h <= window.innerHeight - pad) top = rect.bottom + pad;
+        else if (roomUp >= FLOOR) { hud.style.maxHeight = `${Math.floor(roomUp)}px`; fitBands(); h = hud.offsetHeight || 0; top = rect.bottom + pad; }
+      }
+    }
+    if (top === undefined) {
       // Neither fits: a small phone and a block grown tall by a ruled
       // reading (360x640, a 118-character ruling, caught 2026-09-02). The
       // block is the Hebrew line and, under it, the reading the reader
@@ -3787,11 +3917,11 @@
     // "in + beginni…", and on a phone the cut line spilled over the
     // license chip. The ellipsis stayed after the card closed (the owner,
     // 2026-10-03, Genesis 1:1 and 1:2). The display is never changed now.
-    const holdAndPaint = (box, lineIn) => {
+    const holdAndPaint = (box, lineIn, chipIn = null) => {
       // signs off: the card paints the line as the page does, its sign-only
       // pieces undrawn ("<obj.>" stood back on the object marker's line the moment its card
       // opened, the owner, 2026-10-03)
-      const line = signsPref === "off" ? trimSigns(String(lineIn).split(" + ")).join(" + ") : lineIn;
+      const line = signsOffLine(lineIn);
       if (!box.style.height) {
         const h = box.getBoundingClientRect().height;
         if (h) box.style.height = `${h}px`;
@@ -3814,7 +3944,10 @@
       const was = (chip ? box.textContent.replace(chip.textContent, "") : box.textContent).trim();
       if (!String(line).trim()) { box.textContent = " "; box.title = ""; box.classList.add("bare"); }
       else { box.textContent = line; box.title = line; box.classList.remove("bare"); }
-      if (chip && was === String(line).trim()) box.append(chip);
+      // a changed reading wears the chip of the record it was chosen from
+      // (ruledChip); the same words back keep the chip they had
+      if (chipIn && String(line).trim()) box.append(chipIn);
+      else if (chip && was === String(line).trim()) box.append(chip);
       // Shown whole outranks held still. The clamp above was settled for
       // the line that painted first, and a ruled compspan reading joins its
       // cells with " + " — longer than the gloss it replaced, and clipped
@@ -3863,8 +3996,9 @@
         cover.forEach((c, j) => {
           if (c.from !== c.to || !memoryOf(c.surface).cells.get(c.surface)) return;
           const t = textOfCell(c.surface);
+          const own = mOfPick(memoryOf(c.surface).cells.get(c.surface));
           for (const st of standsOf.get(c.surface) || []) {
-            holdAndPaint(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t);
+            holdAndPaint(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t, st.glossParts || !own ? null : chipOfMs([own]));
             st.wb.classList.add("chosen");
             if (j === cellIdx && selectedRecordRef.m) {
               st.wb.dataset.source = selectedRecordRef.m.label || "";
@@ -3900,9 +4034,10 @@
       // same form card by card is not a way to work through a book. Places
       // in sections not yet built recall the ruling as they are built.
       const stands = standsOf.get(region.k) || [];
+      const ruledM = ruledChip(region.k, bin.gloss);
       for (const s of stands) {
         const line = s.glossParts ? (s.glossParts[s.partIndex] = mine, s.glossParts.join(" + ")) : mine;
-        holdAndPaint(s.glossEl, line);
+        holdAndPaint(s.glossEl, line, s.glossParts || !ruledM ? null : ruledM.cloneNode(true));
         // a ruling on one half of a pair moves the provenance mark with it:
         // the English now reads from the ruled branch, everywhere it stands —
         // and the English wears the matching mark, the other end of the claim
@@ -3919,7 +4054,7 @@
       }
       // a tapped word outside the registry (a commentary word) still paints
       if (!stands.some((s) => s.glossEl === glossEl)) {
-        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine);
+        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts || !ruledM ? null : ruledM.cloneNode(true));
         const wbEl2 = glossEl.closest(".wb");
         if (wbEl2 && selectedRecordRef.m) {
           wbEl2.dataset.source = selectedRecordRef.m.label || "";
@@ -4511,7 +4646,7 @@
             b.title = `${m.label} — go to this reading`;
             b.addEventListener("click", (ev) => {
               ev.stopPropagation();
-              selected = group; picked.set(surface, { key: routeKey(group.records[0]) });
+              selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: group.records[0][3], wy: group.records[0][4] });
               [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String(x.textContent === group.text)));
               paintNow(group.text); renderDCard(); clampHud();
             });
@@ -4533,7 +4668,7 @@
               ev.stopPropagation();
               const x = more[Number(sel.value)];
               if (!x) return;
-              selected = x.group; picked.set(surface, { key: routeKey(x.group.records[0]) });
+              selected = x.group; picked.set(surface, { key: routeKey(x.group.records[0]), text: x.group.text, mId: x.group.records[0][3], wy: x.group.records[0][4] });
               [...pills.children].forEach((y) => y.setAttribute("aria-pressed", String(y.textContent === x.group.text)));
               paintNow(x.group.text); renderDCard(); clampHud();
             });
@@ -4578,7 +4713,7 @@
         body.append(more, drawer);
       };
       const choose = (route) => {
-        selected = route; picked.set(surface, { key: routeKey(route), text: route.text });
+        selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4] });
         markRuled();
         selectedRecordRef.m = index.m_sources[route.records[0][3]] || null;
         renderDCard(); paintGloss(); clampHud();
@@ -5132,8 +5267,13 @@
     // the reader ruled on the run itself: its line is that ruling, as any
     // ruled word's line is, with no chip (absent over wrong)
     const heldRun = run.__key ? ruledLine(run.__key, run.__table || zone.gloss) : null;
+    const memRun = heldRun !== null ? pickedByForm.get(run.__key) : null;
     const lineEl = () => { let l = run.__gloss; if (!l) { l = document.createElement("span"); l.className = "g"; run.append(l); run.__gloss = l; } return l; };
-    if (heldRun !== null) {
+    // a run ruled word by word (no division pressed) is drawn below as its
+    // words' lines, each chosen word with the chip of the record it was
+    // chosen from (the owner, 2026-10-08); a run ruled on a division of its
+    // whole form reads that ruling as one line
+    if (heldRun !== null && memRun && memRun.cut) {
       const l = lineEl();
       delete l.dataset.off;
       l.replaceChildren(); l.textContent = heldRun; l.title = heldRun; l.classList.remove("bare");
@@ -5149,7 +5289,7 @@
     // compound's weld from a homograph. The welded and folded forms stay on
     // the card, offered and never chosen for the reader, until the corpus
     // lane's run ledger says which are the compound.
-    if (run.__key && run.__words && !(run.__table == null && run.__words.every((w) => placeLine(w)))) {
+    if (heldRun === null && run.__key && run.__words && !(run.__table == null && run.__words.every((w) => placeLine(w)))) {
       const table = run.__table || zone.gloss || {};
       const gmT = run.__table ? null : zone.gloss_m;
       const form = runWholeForms(run.__words.map((w) => w.k)).slice(0, 1).find((f) => {
@@ -5170,7 +5310,14 @@
     }
     const wbs = [...run.__ink.querySelectorAll(":scope > .wb")];
     const parts = [];
-    for (const wb of wbs) {
+    if (heldRun !== null) run.classList.add("chosen");
+    for (const [j, wb] of wbs.entries()) {
+      const chosen = memRun && run.__words && run.__words[j] ? memRun.cells.get(run.__words[j].k) : null;
+      if (chosen && chosen.text) {
+        const wm = mOfPick(chosen);
+        parts.push({ t: spanJoin(chosen.text), lic: wm ? chipOfMs([wm]) : null });
+        continue;
+      }
       const g = wb.querySelector(":scope > .g");
       if (!g) continue;
       const c = g.cloneNode(true);
@@ -5193,6 +5340,9 @@
     // piece that carries the reading ("<obj.> + Tubal-" draws "Tubal-"); every
     // piece a sign, they all stand, as on a single word's line (trimSigns)
     if (signsPref === "off") {
+      // first inside each word's own line ("and + <obj.>" reads "and"), then
+      // across the words of the run
+      for (const p of parts) if (p.t) p.t = signsOffLine(p.t);
       const keep = parts.filter((p) => !p.t || !signOnly(p.t));
       if (keep.some((p) => p.t)) parts.splice(0, parts.length, ...keep);
     }
@@ -5249,6 +5399,10 @@
     if (host.__wjoin && !joinNext) {
       const ws = host.__wjoin.__words || [];
       if (ws.length > 1 && ws.every((w) => w.k && !w.kq)) host.__wjoin.__key = ws.map((w) => w.k).join("\u05be");
+      // a run with no key of its own (a pair inside it) is one breath and
+      // several cards, and wears the one-card underline under each word
+      // rather than one line under all of them (the owner, 2026-10-08)
+      if (!host.__wjoin.__key) host.__wjoin.classList.add("apart");
     }
     if (joinNext) {
       const sep = String((pj && pj.separator_between_group_records) || "");
@@ -5595,10 +5749,16 @@
     // law applied to the pair. A ketiv the catalog cannot read falls back to
     // the qere, marked as such by the mark itself.
     let kqShown = -1;
-    if (word.kq && regions) kqShown = kqPick(regions, parts, table).i;
-    const line = heldJoint != null ? (wasRuled = true, heldJoint)
-      : word.kq && regions ? (kqShown >= 0 && parts[kqShown] !== "—" ? parts[kqShown] : "")
-      : (parts.filter((p) => p !== "—").length ? parts.join(" + ") : "");
+    if (word.kq && regions) {
+      const pick = kqPick(regions, parts, table, word);
+      kqShown = pick.i;
+      // the source's own reading of the place leads the pair's line, with
+      // the source's own chip, as it leads any one word's (kqPlace)
+      if (pick.at) lineMoved = pick.at;
+    }
+    const line = signsOffLine(heldJoint != null ? (wasRuled = true, heldJoint)
+      : word.kq && regions ? (lineMoved ? spanJoin(lineMoved.text) : kqShown >= 0 && parts[kqShown] !== "—" ? parts[kqShown] : "")
+      : (parts.filter((p) => p !== "—").length ? parts.join(" + ") : ""));
     if (word.kq && kqShown >= 0 && line) regionEls[kqShown] && regionEls[kqShown].classList.add("backs-en");
     const ge = document.createElement("span"); ge.className = "g";
     if (word.kq && kqShown >= 0 && line) ge.classList.add("backs-en");
@@ -5620,6 +5780,11 @@
       // absent over wrong, always
       const chip = lineMoved ? (lineMoved.m ? chipOfMs([lineMoved.m]) : null) : licChipFor(ks);
       if (chip) ge.append(chip);
+    } else if (line && wasRuled && heldJoint == null && table === zone.gloss) {
+      const rk = word.kq && regions ? (kqShown >= 0 ? regions[kqShown].k : null)
+        : regions && regions.length === 1 ? regions[0].k : !regions && word.k ? word.k : null;
+      const chip = rk ? ruledChip(rk, table) : null;
+      if (chip) ge.append(chip);
     }
     if (table === zone.gloss && !wasRuled && !word.kq) {
       GLOSS_STANDS.push({ ge, ks: regions ? regions.map((r) => r.k) : (word.k ? [word.k] : []),
@@ -5631,7 +5796,7 @@
     // branches, their readings, and the elements the provenance mark moves
     // between. Sections drawn later join it as they are built, already
     // wearing the order the reader set.
-    if (word.kq && regions) KQ_STANDS.push({ ge, regionEls, parts, regions, table });
+    if (word.kq && regions) KQ_STANDS.push({ ge, regionEls, parts, regions, table, word });
     // every place this form stands goes on the ledger, so a ruling made at
     // any one of them can be painted at all of them. A pair's stand carries
     // its branch elements too, so a ruling can move the provenance mark to
@@ -5643,7 +5808,7 @@
     joined.forEach((r) => standAt(r.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 }));
     if (wasRuled) wb.classList.add("chosen");
     return { wb, regionEls, markEls, joined, glossParts: parts,
-      kqStand: word.kq && regions && regions.length > 1 ? { regions, parts, table } : null };
+      kqStand: word.kq && regions && regions.length > 1 ? { regions, parts, table, word } : null };
   };
 
   /**
@@ -5705,7 +5870,7 @@
       if (picked != null && picked < st.regions.length) return { i: picked };
       const ruled = st.regions.findIndex((r) => ruledLine(r.k, st.table) !== null);
       if (ruled >= 0) return { i: ruled };
-      const { i } = kqPick(st.regions, st.parts, st.table);
+      const { i } = kqPick(st.regions, st.parts, st.table, st.word);
       if (i >= 0) return { i };
       const wanted = kqOrder === "QERE" ? st.regions.findIndex((r) => r.role !== "KETIV")
         : kqOrder === "SOURCE" ? 0 : st.regions.findIndex((r) => r.role === "KETIV");
@@ -5888,6 +6053,7 @@
       if (held !== null) {
         st.ge.replaceChildren(); delete st.ge.dataset.off; delete st.ge.dataset.live;
         st.ge.textContent = held; st.ge.title = held; st.ge.classList.remove("bare");
+        { const chip = ruledChip(st.word.k, zone.gloss); if (chip) st.ge.append(chip); }
         const run0 = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
         if (run0) runs.add(run0);
         continue;
@@ -5895,7 +6061,7 @@
       const moved = st.ks.length === 1 ? lineUnder(st.word, zone.gloss) : null;
       const parts = moved ? [spanJoin(moved.text)]
         : st.ks.map((k) => { const g = zone.gloss[lookupKey(st.word, k, zone.gloss)]; return g ? spanJoin(g) : "\u2014"; });
-      const line = parts.filter((x) => x !== "\u2014").length ? parts.join(" + ") : "";
+      const line = signsOffLine(parts.filter((x) => x !== "\u2014").length ? parts.join(" + ") : "");
       st.ge.replaceChildren();
       delete st.ge.dataset.off; delete st.ge.dataset.live;   // a repaint from the table is a fresh answer
       if (line) { st.ge.textContent = line; st.ge.title = line; st.ge.classList.remove("bare"); }
@@ -7247,6 +7413,14 @@
   // verse, so the page lands on the chapter head and marks nothing.
   const hashAt = decodeURIComponent(location.hash || "").replace(/^#/, "");
   const openAt = (QUERY.get("at") || (/^v[0-9a-z-]+$/i.test(hashAt) ? hashAt : "") || META("reader-at") || "").trim();
+  // THE PLACE THIS DEVICE KEEPS FOR THIS BOOK (the owner, 2026-10-08: "we
+  // should think about scroll control. such as can we cache spots?"): the
+  // verse the reader was at, written as they read, kept on the device per
+  // book and nowhere else, and read only when no address names a place — a
+  // verse or chapter in the address, or a hash a link carried, still wins.
+  const SPOT_KEY = BOOK ? `fh.at.${BOOK}` : "";
+  const spotKept = (() => { try { return SPOT_KEY ? String(localStorage.getItem(SPOT_KEY) || "") : ""; } catch { return ""; } })();
+  const openSpot = !openAt && !hashAt && spotKept ? spotKept : "";
   // ?palette=tabernacle used to live here, as a link somebody followed on
   // purpose so the page every other reader got stayed untouched. The owner
   // looked at it and ruled it in on 2026-09-10, so there is nothing left to
@@ -8616,24 +8790,27 @@
   applyGlossOrder(defOrder);
   repaintGlossOrder();
   defSwitch();
-  if (openAt) {
+  if (openAt || openSpot) {
+    const landing = openAt || openSpot;
     // a verse: by its label, or by its porch heading id (#v3-7 is the label
     // "3:7" with every run of punctuation folded to one hyphen)
     const foldId = (label) => `v${String(label).replace(/[^0-9a-z]+/gi, "-")}`;
-    let label = byLabel.has(openAt) ? openAt : null;
-    if (!label && /^v/i.test(openAt)) for (const l of byLabel.keys()) if (foldId(l) === openAt) { label = l; break; }
+    let label = byLabel.has(landing) ? landing : null;
+    if (!label && /^v/i.test(landing)) for (const l of byLabel.keys()) if (foldId(l) === landing) { label = l; break; }
     if (label) {
       const target = document.getElementById(byLabel.get(label));
       if (target) {
         materialise(target);
         window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 80);
-        target.querySelector(".vnum")?.classList.add("at");
+        // the kept place is where the reader was, not a verse anyone asked
+        // for, so it wears no mark
+        if (openAt) target.querySelector(".vnum")?.classList.add("at");
       }
     } else {
       // a chapter: the first section whose label is the chapter's own or
       // stands under it; the page lands on that chapter's head where the
       // book draws one, and marks no verse, because none was asked for
-      const first = zone.sections.find((sec) => sec.label === openAt || String(sec.label || "").startsWith(`${openAt}:`));
+      const first = zone.sections.find((sec) => sec.label === landing || String(sec.label || "").startsWith(`${landing}:`));
       if (first) {
         const head = document.getElementById(`n${first.node}`);
         const target = head || document.getElementById(byLabel.get(first.label));
@@ -8706,18 +8883,72 @@
     navPrev.disabled = atNode === 0;
     navNext.disabled = atNode >= heads.length - 1;
     nav.hidden = window.scrollY < 200 || !hud.hidden;
+    if (nav.hidden) closeChPick();
   };
   document.getElementById("navTop").addEventListener("click", () => goTo(0));
-  navChapter.addEventListener("click", () => jump(heads[atNode].el));
+  // "Chapter N" opens the chapters (the owner, 2026-10-08); the chapter's own
+  // top is the first cell of the picker, so nothing was lost
+  const chPick = document.getElementById("chPick");
+  const closeChPick = () => { if (chPick.hidden) return; chPick.hidden = true; navChapter.setAttribute("aria-expanded", "false"); };
+  const openChPick = () => {
+    chPick.replaceChildren();
+    const here = nodes[heads[atNode].node] || {};
+    const topBtn = document.createElement("button"); topBtn.type = "button"; topBtn.className = "ch-top";
+    topBtn.textContent = `top of ${NAMED_SHAPE && here.name_en ? here.name_en : `chapter ${here.num || heads[atNode].node + 1}`}`;
+    topBtn.addEventListener("click", () => { closeChPick(); jump(heads[atNode].el); });
+    chPick.append(topBtn);
+    heads.forEach((h, i) => {
+      const n = nodes[h.node] || {};
+      const b = document.createElement("button"); b.type = "button";
+      b.textContent = NAMED_SHAPE && n.name_en ? n.name_en : String(n.num || h.node + 1);
+      if (n.name_en && !NAMED_SHAPE) b.title = n.name_en;
+      if (i === atNode) { b.classList.add("on"); b.setAttribute("aria-pressed", "true"); }
+      b.addEventListener("click", () => { closeChPick(); jump(h.el); });
+      chPick.append(b);
+    });
+    chPick.hidden = false; navChapter.setAttribute("aria-expanded", "true");
+    const on = chPick.querySelector("button.on");
+    if (on) chPick.scrollTop = Math.max(0, on.offsetTop - chPick.clientHeight / 2);
+  };
+  navChapter.addEventListener("click", () => { if (chPick.hidden) openChPick(); else closeChPick(); });
+  document.addEventListener("click", (e) => { if (!chPick.hidden && !chPick.contains(e.target) && !navChapter.contains(e.target)) closeChPick(); });
   navPrev.addEventListener("click", () => { if (atNode > 0) jump(heads[atNode - 1].el); });
   navNext.addEventListener("click", () => { if (atNode < heads.length - 1) jump(heads[atNode + 1].el); });
   // a page this size can starve requestAnimationFrame, so the bar repaints
   // on a plain time throttle and on arrival at any anchor
   let lastPaint = 0;
+  // the section under the top of the window, found by halving over the
+  // sections in order (a book this long is thousands of them)
+  const spotOf = () => {
+    let lo = 0, hi = sectionEls.length - 1, at = -1;
+    while (lo <= hi) {
+      const mid = (lo + hi) >> 1;
+      if (sectionEls[mid].el.getBoundingClientRect().bottom > 80) { at = mid; hi = mid - 1; } else lo = mid + 1;
+    }
+    return at >= 0 ? sectionEls[at] : null;
+  };
+  let spotLast = "";
+  const rememberSpot = () => {
+    if (!SPOT_KEY) return;
+    const s = spotOf();
+    const label = s && s.sec && s.sec.label ? String(s.sec.label) : "";
+    if (!label || label === spotLast) return;
+    spotLast = label;
+    try { localStorage.setItem(SPOT_KEY, label); } catch { /* a device that remembers nothing still reads */ }
+    // a hash the reader has scrolled away from is not where they are: left in
+    // the address, a reopened tab would land on it instead of the kept place
+    if (location.hash) {
+      const tgt = document.getElementById(location.hash.slice(1));
+      const r = tgt && tgt.getClientRects().length ? tgt.getBoundingClientRect() : null;
+      if (!r || r.bottom < 0 || r.top > window.innerHeight) {
+        try { history.replaceState(null, "", location.pathname + location.search); } catch { /* the hash stays; the kept place still does */ }
+      }
+    }
+  };
   window.addEventListener("scroll", () => {
     const t = performance.now();
     if (t - lastPaint < 120) return;
-    lastPaint = t; paintNav();
+    lastPaint = t; paintNav(); rememberSpot();
   }, { passive: true });
   window.addEventListener("hashchange", () => setTimeout(paintNav, 0));
   paintNav();

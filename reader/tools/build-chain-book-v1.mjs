@@ -41,7 +41,8 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gunzipSync, gzipSync } from "node:zlib";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 
 export const CHAIN_RULE_ID = "chain-book-rule-v1-the-same-book-with-the-meaning-taken-out-so-only-the-joins-are-left";
@@ -144,6 +145,7 @@ export function writeIndex(dir, servedWords = null) {
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>the chain</title>
+${canon("/chain/")}
 <style>${CHAIN_CSS}</style></head><body><div class="wrap">
 <h1>the chain</h1>
 <p class="lede">These are books this site serves, with the meaning taken out. Every word is the fingerprint of its own bytes, every reading is the fingerprint of its own text, and the line between them is the line a reader is shown on the reading page. <b>Nothing in them is written by this project.</b> Strip the language away and only the joins are left, so a stranger can walk a whole book without reading a sentence of our prose or believing any of it.</p>
@@ -168,6 +170,13 @@ ${away}
   console.log(`${join(dir, "index.html")} · ${books.length} books · ${tot.words.toLocaleString()} words · ${tot.links.toLocaleString()} links · ${(tot.kb / 1024).toFixed(1)} MB on disk`);
   return { books: books.length, words: tot.words, links: tot.links };
 }
+
+// THE PAGE NAMES ITS OWN ADDRESS (Search Console, 2026-10-08: pages with no
+// canonical were filed as duplicates of each other). The host is the one the
+// site answers at, read from CNAME beside the site root as the door reads it;
+// a checkout with no CNAME writes no canonical rather than a guessed one.
+const SITE_HOST = (() => { try { return readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "..", "CNAME"), "utf8").trim(); } catch { return ""; } })();
+const canon = (path) => (SITE_HOST ? `<link rel="canonical" href="https://${SITE_HOST}${path}">` : "");
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   if (process.argv.includes("--index")) {
@@ -274,6 +283,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(slug)} · the same book with the meaning taken out</title>
+${canon(`/chain/${slug}/`)}
 <style>${CHAIN_CSS}</style></head><body><div class="wrap">
 <h1><a href="../">the chain</a> · ${esc(slug)}</h1>
 <p class="lede">This is the same book this site serves, with the meaning taken out. Every word is the fingerprint of its own bytes, every reading is the fingerprint of its own text, and the line between them is the line the reader is shown. <b>Nothing here is written by this project.</b> Strip the language away and only the joins are left, so you can walk the whole book without reading a sentence of our prose or believing any of it.</p>

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>census · fireandhail.com</title>
+<link rel="canonical" href="https://fireandhail.com/census/">
 <meta name="description" content="A Hebrew reader built on a sealed chain: every reading traceable to the record that carries it, and every record to the license it was released under.">
 <script>
 // One face since 2026-09-10, so there is nothing to decide and nothing to
@@ -5411,11 +5412,13 @@
     <p class="w-open" hidden><span class="lab">commonly force read as</span><span class="slot"></span></p>
     <p class="r-now"><span class="k">reading</span><span class="v"></span></p>
     <p class="r-label">Exact selectable routes</p>
-    <!-- WHICH READING ANSWERS FIRST. Seven positions, the owner's, and the
-         page says plainly which of them it can answer today: a position whose
-         evidence is not on this disk is offered dead with the reason on it,
-         rather than left off the list as though it had never been asked for. -->
-    <div class="def-order" role="group" aria-label="which reading answers first"></div>
+    <!-- NO SWITCHES IN A CARD. The order row stood here (seven positions, the
+         owner's) and a reader who pressed one on the door had set the whole
+         reader's order without knowing it: every book then read "oldest
+         first" under its words (the owner, 2026-10-08, I Chronicles: "how did
+         these get into a hud?"). The card reads under the order the reader
+         set in the reader's own rail, and says which in its last line; the
+         bench at /toggles/ still describes every position. -->
     <div class="r-pills"></div>
     <div class="d-card"><div class="d-body"></div><div class="d-foot"></div></div>
     <p class="prov"></p>
@@ -5531,38 +5534,6 @@
   // a reader who asks for the era's own lexicons still sees every reading the
   // catalogue holds, in a different order. Hiding a reading because it sorted
   // late would be the page deciding what the reader may weigh.
-  // The row of positions itself, built once per card opening and told how to
-  // redraw. A dead position is a real button that says why it is dead: the
-  // reader can see the question was asked and what the answer waits on.
-  function orderRow(redraw) {
-    var row = wcard.querySelector(".def-order");
-    if (!row) return;
-    row.replaceChildren();
-    // THE ONES THAT CAN ANSWER COME FIRST (owner, 2026-09-08: rearrange them
-    // rather than cross them out). A struck control reads as withdrawn, and
-    // none of these was withdrawn — they were asked for and their records
-    // have not arrived. The book page was corrected that day; this row is the
-    // same switch and was left behind, so it is corrected here too.
-    DEF_POS.slice().sort(function (a, c) { return (a.live ? 0 : 1) - (c.live ? 0 : 1); }).forEach(function (pos) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.className = "dfp" + (pos.live ? "" : " waiting") + (pos.id === defOrder ? " on" : "");
-      b.textContent = pos.lab;
-      b.title = pos.say;
-      b.setAttribute("aria-pressed", String(pos.id === defOrder));
-      if (!pos.live) { b.disabled = true; b.setAttribute("aria-disabled", "true"); }
-      else b.addEventListener("click", function () {
-        defOrder = pos.id;
-        try { localStorage.setItem(DEF_KEY, pos.id); } catch (e) { /* the choice still stands on this page */ }
-        [].slice.call(row.children).forEach(function (x) {
-          var on = x.textContent === pos.lab;
-          x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on));
-        });
-        redraw();
-      });
-      row.append(b);
-    });
-  }
   function sortRows(rows) {
     var r = rows.slice();
     if (defOrder === "characters") return r.sort(function (a, b) { return a[0] - b[0]; });
@@ -5935,7 +5906,6 @@
             raw.length + " reading" + (raw.length === 1 ? "" : "s") + " · " +
             (pos ? pos.lab : defOrder) + " · " + (idx.rule_id || "the route store");
         }
-        orderRow(function () { draw(); stamp(); });
         draw();
         stamp();
       });

@@ -25,7 +25,7 @@
   try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
-<link rel="stylesheet" href="/reader/engine-e04956c83627.css">
+<link rel="stylesheet" href="/reader/engine-caf115c66765.css">
 </head>
 <body>
 <header class="top">
@@ -115,10 +115,15 @@
 <div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
 <div id="nav" hidden>
   <button id="navTop" type="button" title="Back to the top of the page">Top</button>
-  <button id="navChapter" type="button" title="Back to the top of this chapter">Chapter</button>
+  <button id="navChapter" type="button" title="Choose a chapter" aria-haspopup="true" aria-expanded="false" aria-controls="chPick">Chapter</button>
   <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
   <button id="navNext" type="button" aria-label="Next chapter" title="Next chapter">&rsaquo;</button>
 </div>
+<!-- THE CHAPTERS, one press from the bar (the owner, 2026-10-08: pressing
+     "Chapter 24" should open a picker, not jump to the chapter's top). The
+     chapter's top is the first cell; the page scrolls only when a cell is
+     pressed. -->
+<div id="chPick" hidden role="dialog" aria-label="chapters"></div>
 <main id="text"></main>
 <section id="porch" lang="en" dir="ltr">
   <h2>Psalms 33</h2>
@@ -191,6 +196,6 @@
 <section id="bookEnd">
   <p id="cc0Line" class="open-claim">Noncommercial: nothing sold, no advertising, no payment taken — declared 2026-08-30, standing as long as this page serves. That is how the records here released on noncommercial terms are honored. Every carried text and reading keeps its own license, named with it; nothing here relicenses it. What this site adds of its own — its code, layout, receipts and the words it writes — is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>. Where it adapts a share-alike record (the Hebrew as laid out here, a reading cut or joined for display), the adaptation stays under that record’s license.</p>
 </section>
-<script src="/reader/engine-718865a185d3.js"></script>
+<script src="/reader/engine-0ea79fb13c8a.js"></script>
 </body>
 </html>
