@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-10-09.
 
-**123 rules declared · 116 named by a check · 7 unguarded.**
+**124 rules declared · 116 named by a check · 8 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -109,6 +109,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `source-corpus-rule-v1-a-witness-names-the-body-it-describes-or-is-not-sorted-by-one` | tools/emit-source-corpus-v1.mjs | check-source-corpus-v1 |
 | `source-defaults-rule-v1-a-source-may-rest-off-by-the-owners-ruling-and-the-reader-may-turn-it-on` | zone.html | check-overlays-v1, check-source-switch-v1 |
 | `source-short-names-rule-v1-a-shelf-chip-wears-a-short-name-this-record-keeps-and-the-full-name-on-press` | tools/check-source-switch-v1.mjs | check-source-switch-v1 |
+| `source-suggested-rule-v1-a-running-bible-reads-the-whole-word-and-is-credited-by-name` | tools/project-source-suggested-v1.mjs | **UNGUARDED** |
 | `source-switch-rule-v1-a-reading-remembers-who-carried-it` | tools/gloss-store-v1.mjs, zone.html, tools/gloss-m-v1.mjs | check-carrier-survives-v1, check-line-follows-card-v1, check-source-switch-v1 |
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | check-span-receipt-carried-identical-v1 |
 | `span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole` | tools/apply-span-ledger-v1.mjs | check-respan-projection-v1 |
@@ -156,7 +157,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 95 tools that are not checks.
+`build.sh` calls 19 of the 96 tools that are not checks.
 
 Not called by any build stage:
 
@@ -210,6 +211,7 @@ Not called by any build stage:
 - `tools/project-lattice-v12-v1.mjs`
 - `tools/project-piece-gloss-v1.mjs`
 - `tools/project-run-cards-v1.mjs`
+- `tools/project-source-suggested-v1.mjs`
 - `tools/project-toggle-headword-v1.mjs`
 - `tools/project-v-volume-v1.mjs`
 - `tools/proper-name-v1.mjs`
