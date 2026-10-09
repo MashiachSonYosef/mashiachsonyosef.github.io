@@ -35,7 +35,7 @@
 // kept inside the new one as what it replaced; counts.w_regions_with_a_
 // component_system is recounted over the new table.
 //
-// Run: node tools/apply-span-ledger-v1.mjs --ledger <dir> [--pg <dir>] --stamp <stamp> [--zones data/zones] [--only <slug>]
+// Run: node tools/apply-span-ledger-v1.mjs --ledger <dir> [--pg <dir>] --stamp <stamp> [--relay <text>] [--zones data/zones] [--only <slug>]
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
@@ -85,12 +85,18 @@ if (TYPE_ONLY) {
   process.exit(0);
 }
 
-const books = readdirSync(LEDGER).filter((f) => f.endsWith(".spans-ledger-v3.json")).map((f) => f.replace(/\.spans-ledger-v3\.json$/u, "")).filter((b) => !ONLY || b === ONLY).sort();
+// the ledger's file series: v3 (v13.5, relay v59) or v5 (v13.8, relay v59.3;
+// the same served keys, a places file beside each ledger, and one new key,
+// span_lookup, the seam pieces' lookup aid, which no field of the zone carries
+// yet: the four served fields are what the page reads)
+const SERIES = (readdirSync(LEDGER).map((f) => (f.match(/\.spans-ledger-(v\d+)\.json$/u) || [])[1]).filter(Boolean).sort().pop()) || "v3";
+const RELAY = arg("relay", "corpus lane v59, 2026-10-03");
+const books = readdirSync(LEDGER).filter((f) => f.endsWith(`.spans-ledger-${SERIES}.json`)).map((f) => f.replace(new RegExp(`\\.spans-ledger-${SERIES}\\.json$`, "u"), "")).filter((b) => !ONLY || b === ONLY).sort();
 let bad = 0;
 for (const slug of books) {
   const zPath = join(ZONES, `${slug}.bin`);
   if (!existsSync(zPath)) { console.log(`  --  ${slug}: no zone on this shelf`); continue; }
-  const lPath = join(LEDGER, `${slug}.spans-ledger-v3.json`);
+  const lPath = join(LEDGER, `${slug}.spans-ledger-${SERIES}.json`);
   const lBytes = readFileSync(lPath);
   const L = JSON.parse(lBytes.toString("utf8"));
   if (L.book !== slug) { console.log(`FAIL  ${slug}: the ledger names ${L.book}`); bad += 1; continue; }
@@ -112,7 +118,7 @@ for (const slug of books) {
     rows_before: before,
     rows_after: Object.keys(L.spans).length,
     the_ledger_read_this_zone: readMatches,
-    relay: "corpus lane v59, 2026-10-03",
+    relay: RELAY,
   };
   // the piece words, by j
   if (PG) {

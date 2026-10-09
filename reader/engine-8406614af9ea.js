@@ -467,6 +467,27 @@
   // a line that had a reading.
   const LOOKUP_KEY = "fh.lookup";
   let lookup = (() => { try { return localStorage.getItem(LOOKUP_KEY) === "headword" ? "headword" : "form"; } catch { return "form"; } })();
+  // SOURCE SUGGESTED (source-suggested-rule-v1-a-running-bible-reads-the-whole-
+  // word-and-is-credited-by-name): how a running English Bible puts the WHOLE
+  // word into its sentence at this place, the Berean Standard Bible's own cell
+  // byte for byte (data/source-suggested/<book>.json, laid by
+  // tools/project-source-suggested-v1.mjs from the corpus lane's relay v63.1),
+  // on the card under the readings and never on the line. The owner,
+  // 2026-10-03: "we can use BSB as primary source suggested". Off until a
+  // reader turns it on; the book's file is fetched the first time it is.
+  const SUGGESTED_KEY = "fh.suggested";
+  let suggested = (() => { try { return localStorage.getItem(SUGGESTED_KEY) === "bsb" ? "bsb" : "off"; } catch { return "off"; } })();
+  let SUGGESTED_IX = null, SUGGESTED = null, suggestedWait = null;
+  const WORD_N = new WeakMap();   // each word of the zone -> its place: one-based over every entry, marks included, in section order
+  const suggestedReady = () => {
+    if (SUGGESTED) return Promise.resolve(SUGGESTED);
+    if (!suggestedWait) suggestedWait = fetch(`${ROOT}data/source-suggested/${BOOK}.json`).then((r) => (r.ok ? r.json() : null))
+      .then((f) => { SUGGESTED = f && f.book === BOOK && Array.isArray(f.places) ? f : null; window.__suggested = { on: suggested, laid: SUGGESTED ? SUGGESTED.counts.laid : 0 }; return SUGGESTED; }).catch(() => null);
+    return suggestedWait;
+  };
+  // what the BSB means by a cell that is a sign, and why a place has none, in words
+  const SUG_KIND_SAYS = { DASH: "the BSB leaves this word without English", THREE_DOTS: "the neighboring English carries it", VVV: "the neighboring English carries it", EMPTY: "the BSB's cell is empty" };
+  const SUG_WHY_SAYS = { UNMATCHED_LETTERS_DIFFER: "the BSB's Hebrew spells this word otherwise", UNMATCHED_ONLY_OURS: "the BSB's Hebrew lacks this word", UNMATCHED_ORDER_DIFFERS: "the BSB's Hebrew orders these words otherwise", AMBIGUOUS: "the BSB's words could pair with this place more than one way", ONE_BSB_WORD_OVER_SEVERAL_PLACES: "one BSB word covers this place with its neighbor" };
   const lookupKey = (word, k, table) => (lookup === "headword" && word && word.h && table && table[word.h] ? word.h : k);
   // THE TOGGLES, as a registry: the rail draws itself from this list. Each
   // entry says what it is, its positions, what makes it live on this zone,
@@ -620,6 +641,23 @@
       get: () => lookup,
       set: (id) => { lookup = id; try { localStorage.setItem(LOOKUP_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); },
       now: () => (lookup === "headword" ? "the headword" : "the form") },
+    // SOURCE SUGGESTED — see the note above SUGGESTED_KEY. A source's own
+    // reading of the whole word at this place, credited and licensed as the
+    // BSB; the card shows it beside the readings, the line never moves.
+    { id: "suggested", voice: "them", lab: "source suggested", why: "how a running English Bible puts the whole word into its sentence at this place: the Berean Standard Bible's own cell, byte for byte, on the card under the readings — never on the line",
+      positions: [{ id: "off", lab: "off" }, { id: "bsb", lab: "the BSB" }],
+      live: () => !!SUGGESTED_IX,
+      waits: "the corpus lane's source-suggested ledger laid on this book (tools/project-source-suggested-v1.mjs)",
+      get: () => suggested,
+      set: (id) => {
+        if (!["off", "bsb"].includes(id)) return;
+        suggested = id; window.__suggested = { on: id, laid: SUGGESTED ? SUGGESTED.counts.laid : 0 };
+        try { localStorage.setItem(SUGGESTED_KEY, id); } catch { /* the choice still stands on this page */ }
+        // the card re-opens with the row, after the book's file is here
+        const reopen = () => { if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } };
+        if (id === "bsb" && !SUGGESTED) suggestedReady().then(reopen); else reopen();
+      },
+      now: () => (suggested === "bsb" ? "the BSB" : "off") },
     { id: "maqaf", voice: "text", lab: "joined words", why: "the scribes join words with a small stroke. Look the run up as separate words, as written with the stroke, joined into one word, or in the spelling a dictionary used for it — whichever of those a dictionary actually published",
       positions: [{ id: "pieces", lab: "as separate words" }, { id: "maqaf", lab: "as written" }, { id: "weld", lab: "joined" }, { id: "folded", lab: "the source’s spelling" }],
       live: () => false, waits: "the joined runs carried per book — the zones hold none today, so there is nothing for this to move", now: () => "each piece" },
@@ -687,7 +725,7 @@
   };
   let zone, index;
   try {
-    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, ...OVERLAY_IX] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -717,6 +755,8 @@
       fetch(`${ROOT}data/run-cards/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // which books have HUD runs from the corpus lane's record (hud-runs-rule-v1)
       fetch(`${ROOT}data/hud-runs/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // which books carry the source-suggested ledger (the BSB), and its credit
+      fetch(`${ROOT}data/source-suggested/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // the overlays' own indexes; an overlay that did not arrive adds nothing
       ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
     ]);
@@ -800,6 +840,12 @@
       }
     }
     window.__hudRuns = { laid: hudLaid, cards: HUD_RUNS && HUD_RUNS.cards ? HUD_RUNS.cards.length : 0, branch: HUD_RUNS ? HUD_RUNS.branch : null };
+    // the words' places for the source-suggested ledger: one-based over every
+    // entry, marks included, in section order (as the lane and
+    // tools/apply-span-ledger-v1.mjs number them)
+    { let n = 0; for (const sec of zone.sections || []) for (const w of sec.words || []) WORD_N.set(w, ++n); }
+    if (!(SUGGESTED_IX && SUGGESTED_IX.books && SUGGESTED_IX.books[BOOK])) SUGGESTED_IX = null;
+    if (suggested === "bsb" && SUGGESTED_IX) suggestedReady();
     window.__runCards = [...RUNS_AT.values()].reduce((n, m) => n + new Set(m.values()).size, 0);
     // The zone as it arrived, by the same rule the commentary sidecar is
     // exposed under: a check should be able to ask the record what it says
@@ -4373,6 +4419,36 @@
           if (whoM) {
             const chip = chipOfMs([{ lic: licenseName(whoM.licensePosture), m: whoM.label || who.label || who.m, y: whoM.sourceYear || "" }]);
             if (chip) { chip.title = `${whoM.label || who.label} — the source that reads this word so at this place${hasYear(whoM.sourceYear) ? ` · edition ${whoM.sourceYear}` : ""}`; line.append(" ", chip); }
+          }
+          readRow.append(line);
+        }
+      }
+      // SOURCE SUGGESTED, on the card (source-suggested-rule-v1): the BSB's
+      // rendering of the whole word at this place, its cell byte for byte in
+      // the title and trimmed to the eye; a cell that is a sign (-, . . .,
+      // vvv, empty) says in words what the BSB means by it; a place the lane
+      // could not pair says why. Credited and licensed as the BSB, by the
+      // lane's own record of the terms page; never on the line.
+      if (suggested === "bsb" && SUGGESTED && word && !(opts && opts.run)) {
+        const n = WORD_N.get(word);
+        const at = n ? SUGGESTED.places[n - 1] : null;
+        const why = n && !at && SUGGESTED.held ? SUGGESTED.held[String(n)] : null;
+        if (at || why) {
+          const line = document.createElement("p"); line.className = "r-piece r-sug";
+          const lab2 = document.createElement("i"); lab2.textContent = "source suggested · the BSB reads the whole word here ";
+          const val = document.createElement("b");
+          if (at) {
+            const shown = String(at[0]).trim();
+            val.textContent = shown || "(an empty cell)";
+            val.title = `the BSB's cell, byte for byte: ${JSON.stringify(String(at[0]))}${at[3] ? ` · ${at[3]}` : ""}`;
+            const says = SUG_KIND_SAYS[at[1]];
+            if (says) { const note = document.createElement("span"); note.className = "n"; note.textContent = ` — ${says}`; val.append(note); }
+          } else val.textContent = `no rendering — ${SUG_WHY_SAYS[why] || String(why).toLowerCase().replace(/_/gu, " ")}`;
+          line.append(lab2, val);
+          const m = SUGGESTED_IX && SUGGESTED_IX.m;
+          if (m) {
+            const chip = chipOfMs([{ lic: licenseName("public_domain"), m: m.credit_line, y: m.year, ya: "dedication" }]);
+            if (chip) { chip.title = `${m.name} — ${(m.licence_text || []).join(" ")}`; line.append(" ", chip); }
           }
           readRow.append(line);
         }
