@@ -59,7 +59,13 @@ const LINES = () => {
       // piece is one, and then the sign is the whole reading and stands
       const all = w.pg.map((p) => String(p.g || "").trim());
       const plain = all.filter((t) => !(window.__signs === "off" && /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(t)));
-      out.push({ si, i, k: w.k, line: lineOf(wb), place: spanJoin((plain.length ? plain : all).join("/")), base: z.gloss && z.gloss[w.k] ? spanJoin(z.gloss[w.k]) : null, by: (z.gloss_m && z.gloss_m[w.k] && z.gloss_m[w.k].by) || [] });
+      // the baked line wears the same signs switch as the place's (2026-10-08:
+      // a sign-only piece is undrawn under every order, not only "the source
+      // here"), so the expectation is trimmed the same way
+      const isSign = (x) => window.__signs === "off" && /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(x);
+      const baseAll = z.gloss && z.gloss[w.k] ? String(z.gloss[w.k]).split("/").map((x) => x.trim()).filter(Boolean) : null;
+      const basePlain = baseAll ? baseAll.filter((x) => !isSign(x)) : null;
+      out.push({ si, i, k: w.k, line: lineOf(wb), place: spanJoin((plain.length ? plain : all).join("/")), base: baseAll ? spanJoin((basePlain.length ? basePlain : baseAll).join("/")) : null, by: (z.gloss_m && z.gloss_m[w.k] && z.gloss_m[w.k].by) || [] });
     });
   }
   return { out, judged, skipped };

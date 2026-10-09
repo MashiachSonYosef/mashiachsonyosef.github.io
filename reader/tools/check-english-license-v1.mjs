@@ -72,8 +72,11 @@ check("a copy carries the reading and never the chip",
   !!copied && !copied.text.includes(copied.lic),
   copied ? JSON.stringify(copied.text.slice(0, 60)) : "no chipped gloss to copy");
 
-// 4 · a ruling repaints the line and the baked chip goes with it — an
-// absent chip over a wrong one
+// 4 · a ruling repaints the line and the chip with it: the chosen reading
+// wears the license of the record it was chosen from, named on its hover
+// (the owner, 2026-10-08: "if i select a new R pill ... doesnt show the CC
+// license on the english runner"). Before that day a ruled line wore no
+// chip at all — absent over wrong; now the chip is the chosen record's own.
 await p.click("#modeHe");
 await p.waitForTimeout(400);
 const ruled = await p.evaluate(async () => {
@@ -87,16 +90,21 @@ const ruled = await p.evaluate(async () => {
       other.click();
       await new Promise((r) => setTimeout(r, 500));
       const g = wb.querySelector(".g");
+      // the record the pill was chosen from, as the card names it
+      const att = document.querySelector("#hud .d-card .att");
+      const named = att ? att.textContent.split(" · ")[0].trim() : "";
+      const chipEl = g.querySelector(".g-lic");
       document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-      return { chip: !!g.querySelector(".g-lic"), text: g.textContent.trim().slice(0, 40) };
+      return { chip: !!chipEl, lic: chipEl ? chipEl.textContent : "", hover: chipEl ? chipEl.title : "", named, text: g.textContent.trim().slice(0, 40) };
     }
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
     await new Promise((r) => setTimeout(r, 120));
   }
   return null;
 });
-check("a ruling repaints the line and the baked chip goes with it",
-  !!ruled && ruled.chip === false, ruled ? `"${ruled.text}" · chip ${ruled.chip}` : "no second reading offered in forty words");
+check("a ruling repaints the line and the chosen record's chip rides it",
+  !!ruled && ruled.chip === true && /^CC |^Public|^GFDL|^License/.test(ruled.lic) && (!ruled.named || ruled.hover.includes(ruled.named)),
+  ruled ? `"${ruled.text}" · ${ruled.lic || "no chip"} · hover names ${ruled.named ? (ruled.hover.includes(ruled.named) ? "the chosen record" : "another record: " + ruled.hover.slice(0, 60)) : "(record unread)"}` : "no second reading offered in forty words");
 
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

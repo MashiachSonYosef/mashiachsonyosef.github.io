@@ -129,8 +129,21 @@ for (const vp of VIEWPORTS) {
 
     // ---- 3 · the card opens under the word ---------------------------
     let below = 0, covering = 0, n = 0, example = null, lineOnly = 0;
+    let moved = 0, movedExample = null;
     for (let i = 0; i < Math.min(wbs.length, 10); i += 1) {
       try {
+        // where the word stood and how much room each side of it had before
+        // the press (the word first brought on screen, so the press itself
+        // moves nothing): the page may move only when no side served — the
+        // card writes on itself what each side offered and how far the bands
+        // overran there (hud.dataset.sides), and a move is lawful only when
+        // every side it tried overran
+        await wbs[i].scrollIntoViewIfNeeded();
+        await p.waitForTimeout(120);
+        const pre = await wbs[i].evaluate((el) => {
+          const r = el.getBoundingClientRect(); const pad = 8, FLOOR = 200;
+          return { y: window.scrollY, beneath: innerHeight - pad - r.bottom - pad, above: r.top - pad - pad, served: innerHeight - pad - r.bottom - pad >= FLOOR || r.top - pad - pad >= FLOOR };
+        });
         await wbs[i].click();
         await p.waitForSelector("#hud .r-pills button", { timeout: 8000 });
         // the law is about settled geometry: the card's final clamp lands in
@@ -170,6 +183,10 @@ for (const vp of VIEWPORTS) {
           const blockClearable = wb.bottom - Math.max(0, wb.top - pad) + pad + FLOOR + pad <= innerHeight;
           return {
             below: h.top >= wb.bottom - 0.5,
+            // THE CARD MAY STAND ABOVE ITS WORD (the owner, 2026-10-08: the
+            // page is not moved for a card while a side of the word can hold
+            // it): above the whole block, clear of it, is a lawful stand
+            above: h.bottom <= wb.top + 0.5,
             belowLine: h.top >= line.bottom - 0.5,
             blockClearable,
             covers: h.top < line.bottom - 0.5 && h.bottom > line.top + 0.5,
@@ -178,11 +195,20 @@ for (const vp of VIEWPORTS) {
           };
         });
         n += 1;
-        if (o.below) below += 1;
+        if (o.below || o.above) below += 1;
         else if (!o.blockClearable && o.belowLine) { below += 1; lineOnly += 1; }
         else if (!example) example = o;
         if (o.covers) covering += 1;
         if (!o.wordOnScreen && !example) example = o;
+        const post = await p.evaluate(() => { const h = document.getElementById("hud"); return { y: window.scrollY, sides: h.dataset.movedSides || "", by: h.dataset.moved || "" }; });
+        if (pre.served && Math.abs(post.y - pre.y) > 0.5) {
+          // lawful only when the page itself moved (hud.dataset.moved) and
+          // every side it had tried at that moment overran, or no side had
+          // the floor's room
+          const tried = post.sides && post.sides !== "none" ? post.sides.split(" ").map((s) => s.split(":")) : [];
+          const lawful = !!post.by && (post.sides === "none" || (tried.length > 0 && tried.every((s) => Number(s[2]) > 1)));
+          if (!lawful) { moved += 1; if (!movedExample) movedExample = { ...pre, post: post.y, sides: post.sides || (post.by ? "none" : "no move of the page's own") }; }
+        }
       } catch { /* a word with no card is not this check's business */ }
       await p.keyboard.press("Escape");
       await p.waitForTimeout(50);
@@ -190,6 +216,8 @@ for (const vp of VIEWPORTS) {
     check("  the card opens under the word it belongs to", below === n,
       example ? `word block ${example.word.join("..")}, Hebrew line ${example.line.join("..")}, card ${example.card.join("..")}` : `${below} of ${n}${lineOnly ? ` · ${lineOnly} under the Hebrew line only, the block too tall to clear in this window` : ""}`);
     check("  and never over it", covering === 0, `${covering} covering the Hebrew line`);
+    check("  and the page did not move while a side of the word could hold the card", moved === 0,
+      movedExample ? `scrolled ${Math.round(movedExample.post - movedExample.y)}px with ${Math.round(movedExample.beneath)}px beneath and ${Math.round(movedExample.above)}px above · sides tried: ${movedExample.sides || "none"}` : `${n} presses, none moved the page unlawfully`);
     await p.close();
   }
 }
