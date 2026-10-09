@@ -834,6 +834,25 @@
      was never altered by the line — the checks hold it byte for byte — and
      now nothing is drawn across it either. */
   .wjoin > .g { display: block; text-align: center; }
+  /* A RUN'S PARTS STAND UNDER THEIR WORDS (the owner, 2026-10-09: "you tell
+     me which word means all and which word means who" — the parts were laid
+     left to right under Hebrew running right to left, so each stood above
+     the wrong word). The row runs in the Hebrew's direction, each part its
+     own column under its own word, the + between them, and the English of
+     a run is read from the Hebrew's side, inside the one card; nothing is
+     reordered. The cell grows to the row. */
+  .wjoin > .g.parts { display: flex; direction: rtl; justify-content: space-around; align-items: flex-start; gap: 0.35rem; width: max-content; max-width: none; }
+  .wjoin > .g.parts .g-part { display: inline-flex; flex-direction: column; align-items: center; direction: ltr; unicode-bidi: isolate; white-space: nowrap; margin: 0; }
+  .wjoin > .g.parts .g-sep { color: var(--tekhelet-dim); align-self: flex-start; }
+  /* THE TIE: a soft gold shape behind each word of a run, as wide as the
+     word at the letters, hugging their top, flowing down to sit around the
+     word's own English (the owner, 2026-10-09, concept 2 of the bridges:
+     "extend it right up over the hebrew"). Drawn behind the ink and under
+     the cell's glaze, so the letters stand on it; in the English reader it
+     rises from the word to the reading above it. */
+  .wjoin { position: relative; }
+  .wjoin > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+  .wjoin > .wj-ink, .wjoin > .g { position: relative; z-index: 1; }
   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
      body.en .w order 2). A run's ink wrapper carries no order of its own, so
      a joined word printed its reading BELOW its ink while every word beside
