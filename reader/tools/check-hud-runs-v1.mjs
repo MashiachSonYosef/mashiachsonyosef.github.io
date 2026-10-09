@@ -2,7 +2,9 @@
 // check-hud-runs-v1 · the HUD record's runs stand on the page as the file lays them
 //
 // RULE: hud-runs-rule-v1-a-stretch-the-record-puts-in-one-hud-wears-one-line
-// LEDGER: data/hud-runs/<book>.json (tools/project-hud-runs-v1.mjs)
+// LEDGER: -
+// no frame letter. This writes nothing: it reads data/hud-runs/ (written by
+// tools/project-hud-runs-v1.mjs) and the page.
 //
 // H1  the page lays the book's HUD runs: every card in the file whose words
 //     are the zone's stands as one run on the page (the run cards' lane), or
@@ -17,8 +19,8 @@
 //     words' order under the words (no reordering)
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { readFileSync } from "node:fs";
-const PORT = process.env.SERVE_PORT || "8911";
-const BOOKS = (process.argv.slice(2).filter((a) => !a.startsWith("--")));
+const PORT = process.env.SERVE_PORT || "8899";   // the runner serves 8899; a hand run says its own
+const BOOKS = (process.argv.slice(2).filter((a) => !a.startsWith("--") && !/^https?:/u.test(a)));   // the runner hands a URL; the books are named here
 const books = BOOKS.length ? BOOKS : ["amos", "joshua"];
 let bad = 0;
 const check = (name, ok, say) => { console.log(`${ok ? "  ok " : "FAIL "} ${name}${say ? `  ·  ${say}` : ""}`); if (!ok) bad += 1; };

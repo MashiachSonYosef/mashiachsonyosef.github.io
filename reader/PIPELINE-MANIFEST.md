@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-10-09.
 
-**124 rules declared · 117 named by a check · 7 unguarded.**
+**125 rules declared · 118 named by a check · 7 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -56,6 +56,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `hoh-fixture-rule-v1-a-real-chapter-with-entries-made-only-of-its-own-verses` | tools/make-hoh-fixture-v1.mjs | check-hoh-sidecar-v1 |
 | `hoh-sidecar-rule-v1-a-hebrew-definition-is-served-by-volume-and-quotes-only-from-the-floor` | tools/build-hoh-sidecar-v1.mjs, zone.html | check-hoh-in-card-v1, check-hoh-sidecar-v1 |
 | `hud-runs-rule-v1-a-stretch-the-record-puts-in-one-hud-wears-one-line` | tools/project-hud-runs-v1.mjs, zone.html | check-hud-runs-v1 |
+| `hud-toggles-rule-v1-a-part-of-the-family-turned-off-re-lays-the-huds-from-the-groups-that-stand` | tools/project-hud-toggles-v1.mjs, zone.html | check-hud-toggles-v1 |
 | `implicit-maqaf-rule-v1-a-joiner-is-not-a-word-and-not-a-q-site` | tools/check-implicit-maqaf-v1.mjs | check-implicit-maqaf-v1 |
 | `import-side-effect-rule-v1-a-check-that-rebuilds-its-own-baseline-cannot-fail` | tools/check-no-import-side-effects-v1.mjs | check-no-import-side-effects-v1 |
 | `joint-switch-cost-rule-v1-a-set-of-switches-is-priced-thrown-together-and-read-by-its-own-ids` | tools/gloss-m-v1.mjs, zone.html | check-source-switch-v1 |
@@ -157,7 +158,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 96 tools that are not checks.
+`build.sh` calls 19 of the 97 tools that are not checks.
 
 Not called by any build stage:
 
@@ -208,6 +209,7 @@ Not called by any build stage:
 - `tools/pointing-grade-v1.mjs`
 - `tools/project-declarations-v1.mjs`
 - `tools/project-hud-runs-v1.mjs`
+- `tools/project-hud-toggles-v1.mjs`
 - `tools/project-lattice-v12-v1.mjs`
 - `tools/project-piece-gloss-v1.mjs`
 - `tools/project-run-cards-v1.mjs`
