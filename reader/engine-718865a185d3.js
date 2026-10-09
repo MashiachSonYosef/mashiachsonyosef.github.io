@@ -27,11 +27,14 @@
   // project's working name. Typed in one place, shown in two.
   const SITE = META("site-name") || "The Tabernacle";
   { const h = document.querySelector("#home a.home"); if (h) {
-    // the mark's four parts (the owner, 2026-10-02); a name this does not
-    // match stands whole. The drawn mark stands on the door alone (the owner,
-    // 2026-10-03: "just our 1 logo on the homepage alone")
+    // The drawn mark, where the door builder has handed one in (meta
+    // site-mark; the owner, 2026-10-08: the home button is the one mark, not
+    // an older text drawing of it). Without one, the mark's four parts (the
+    // owner, 2026-10-02); a name this does not match stands whole.
+    const mark = META("site-mark");
     const p = /^(fire)(and)(hail)(\..+)$/u.exec(SITE);
-    if (!p) h.textContent = SITE;
+    if (mark) { h.textContent = ""; const im = document.createElement("img"); im.className = "wm-mark-s"; im.src = mark; im.alt = SITE; im.width = 710; im.height = 88; h.appendChild(im); }
+    else if (!p) h.textContent = SITE;
     else { h.textContent = ""; ["fire", "and", "hail", "tld"].forEach((k, i) => { const s = document.createElement("span"); s.className = "wm-" + k; s.textContent = p[i + 1]; h.appendChild(s); }); }
   } }
   const unpack = async (res) =>
