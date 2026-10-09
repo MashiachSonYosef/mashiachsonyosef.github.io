@@ -854,6 +854,25 @@
      was never altered by the line — the checks hold it byte for byte — and
      now nothing is drawn across it either. */
   .wjoin > .g { display: block; text-align: center; }
+  /* A RUN'S PARTS STAND UNDER THEIR WORDS (the owner, 2026-10-09: "you tell
+     me which word means all and which word means who" — the parts were laid
+     left to right under Hebrew running right to left, so each stood above
+     the wrong word). The row runs in the Hebrew's direction, each part its
+     own column under its own word, the + between them, and the English of
+     a run is read from the Hebrew's side, inside the one card; nothing is
+     reordered. The cell grows to the row. */
+  .wjoin > .g.parts { display: flex; direction: rtl; justify-content: space-around; align-items: flex-start; gap: 0.35rem; width: max-content; max-width: none; }
+  .wjoin > .g.parts .g-part { display: inline-flex; flex-direction: column; align-items: center; direction: ltr; unicode-bidi: isolate; white-space: nowrap; margin: 0; }
+  .wjoin > .g.parts .g-sep { color: var(--tekhelet-dim); align-self: flex-start; }
+  /* THE TIE: a soft gold shape behind each word of a run, as wide as the
+     word at the letters, hugging their top, flowing down to sit around the
+     word's own English (the owner, 2026-10-09, concept 2 of the bridges:
+     "extend it right up over the hebrew"). Drawn behind the ink and under
+     the cell's glaze, so the letters stand on it; in the English reader it
+     rises from the word to the reading above it. */
+  .wjoin { position: relative; }
+  .wjoin > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+  .wjoin > .wj-ink, .wjoin > .g { position: relative; z-index: 1; }
   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
      body.en .w order 2). A run's ink wrapper carries no order of its own, so
      a joined word printed its reading BELOW its ink while every word beside
@@ -7240,8 +7259,9 @@
     if (heldRun !== null && memRun && memRun.cut) {
       const l = lineEl();
       delete l.dataset.off;
-      l.replaceChildren(); l.textContent = heldRun; l.title = heldRun; l.classList.remove("bare");
+      l.replaceChildren(); l.textContent = heldRun; l.title = heldRun; l.classList.remove("bare", "parts");
       run.classList.add("chosen");
+      drawTies(run);
       return;
     }
     // a run a dictionary published WHOLE, AS WRITTEN (the joiner kept), reads
@@ -7265,10 +7285,11 @@
         const l = lineEl();
         delete l.dataset.off;
         const text = spanJoin(table[form]);
-        l.replaceChildren(); l.textContent = text; l.title = text; l.classList.remove("bare");
+        l.replaceChildren(); l.textContent = text; l.title = text; l.classList.remove("bare", "parts");
         l.dataset.form = form;
         const chip = gmT && gmT[form] ? chipOfMs([gmT[form]]) : null;
         if (chip) l.append(chip);
+        drawTies(run);
         return;
       }
     }
@@ -7279,7 +7300,7 @@
       const chosen = memRun && run.__words && run.__words[j] ? memRun.cells.get(run.__words[j].k) : null;
       if (chosen && chosen.text) {
         const wm = mOfPick(chosen);
-        parts.push({ t: spanJoin(chosen.text), lic: wm ? chipOfMs([wm]) : null });
+        parts.push({ t: spanJoin(chosen.text), lic: wm ? chipOfMs([wm]) : null, wi: j });
         continue;
       }
       const g = wb.querySelector(":scope > .g");
@@ -7291,7 +7312,7 @@
       const said = t && t !== "\u2014" ? t : "";
       // a chip may never be dropped for want of a reading beside it
       if (!said && !lic) continue;
-      parts.push({ t: said, lic });
+      parts.push({ t: said, lic, wi: j });
     }
     let line = run.__gloss;
     if (!line) {
@@ -7319,27 +7340,74 @@
     if (!parts.some((p) => p.t)) {
       line.textContent = " ";
       line.classList.add("bare");
+      line.classList.remove("parts");
+      drawTies(run);
       return;
     }
     line.title = unreached ? "the catalog could not be reached for a word of this run; what your switches leave of it is not known yet" : text;
     line.classList.remove("bare");
+    line.classList.add("parts");
     parts.forEach((part, i) => {
+      // the joiner stands between the cells now that the row never wraps
+      // (each part a column under its own word, 2026-10-09)
+      if (i) { const sep = document.createElement("span"); sep.className = "g-sep"; sep.textContent = "+"; line.append(sep); }
       const cell = document.createElement("span");
       cell.className = "g-part";
-      // The joiner opens the piece it joins to, rather than standing between
-      // the cells: a narrow column wraps this line, and a joiner of its own
-      // is left stranded at the end of a row with nothing after it.
-      if (i) {
-        const j = document.createElement("span");
-        j.className = "g-join";
-        j.textContent = "+ ";
-        cell.append(j);
-      }
+      cell.dataset.wi = String(part.wi);   // the word of the run this part reads, for the tie
       cell.append(document.createTextNode(part.t || "\u2014"));
       if (part.lic) cell.append(part.lic.cloneNode(true));
       line.append(cell);
     });
+    drawTies(run);
   };
+  // THE TIE, DRAWN FROM WHERE THINGS STAND. One shape per word of a run:
+  // the word's own width at the letters (the box's, less a breath so two
+  // words' shapes stay apart), hugging the letters' top, flowing to the
+  // width of the word's English at its far edge. Softness is three layers
+  // of the same shape, each a little wider, rather than a blur the phone
+  // would pay for on every cell. Drawn again whenever the geometry moves:
+  // a section placed, the reader switched, the window resized, the face
+  // arriving, the run's line made again.
+  const TIE_NS = "http://www.w3.org/2000/svg";
+  const drawTies = (run) => {
+    if (!run || !run.__ink || !run.isConnected) return;
+    let svg = run.querySelector(":scope > svg.wj-tie");
+    const g = run.__gloss;
+    const words = [...run.__ink.querySelectorAll(":scope > .wb > .w")];
+    const parts = g && g.classList.contains("parts") ? [...g.querySelectorAll(":scope > .g-part")] : [];
+    // each part to the word it reads; a part dropped under the signs switch
+    // leaves its word with no tie, and the others keep theirs
+    const pairs = parts.map((p) => [words[Number(p.dataset.wi)], p]).filter(([w]) => w);
+    if (!pairs.length) { if (svg) svg.remove(); return; }
+    if (!svg) { svg = document.createElementNS(TIE_NS, "svg"); svg.setAttribute("class", "wj-tie"); svg.setAttribute("aria-hidden", "true"); run.prepend(svg); }
+    const R = run.getBoundingClientRect();
+    if (!R.width || !R.height) return;
+    svg.setAttribute("viewBox", `0 0 ${R.width} ${R.height}`);
+    const en = document.body.classList.contains("en");
+    const INSET = 3, HUG = 3;
+    const inkOf = (el) => { const rg = document.createRange(); rg.selectNodeContents(el); const rs = [...rg.getClientRects()].filter((r) => r.width > 0); return rs.length ? rs[0] : el.getBoundingClientRect(); };
+    const out = [];
+    pairs.forEach(([w, part]) => {
+      const a = w.getBoundingClientRect(), ink = inkOf(w), tr = inkOf(part);
+      // the word's edge, and the English's, each in the run's own frame
+      const wL = a.left - R.left + INSET, wR = a.right - R.left - INSET;
+      const eL = tr.left - R.left - 2, eR = tr.right - R.left + 2;
+      const wFar = en ? ink.bottom - R.top - HUG : ink.top - R.top + HUG;   // the hugged edge of the letters
+      const eFar = en ? tr.top - R.top - 1 : tr.bottom - R.top + 1;         // the far edge of the English
+      const yMid = en ? (tr.bottom + a.top) / 2 - R.top : (a.bottom + tr.top) / 2 - R.top;
+      const top = en ? { L: eL, R: eR, y: eFar } : { L: wL, R: wR, y: wFar };
+      const bot = en ? { L: wL, R: wR, y: wFar } : { L: eL, R: eR, y: eFar };
+      for (const [grow, op] of [[3, 0.035], [1.5, 0.045], [0, 0.055]]) {
+        const d = `M${top.L - grow} ${top.y - grow} L${top.R + grow} ${top.y - grow} C ${top.R + grow} ${yMid}, ${bot.R + grow} ${yMid}, ${bot.R + grow} ${bot.y + grow} L${bot.L - grow} ${bot.y + grow} C ${bot.L - grow} ${yMid}, ${top.L - grow} ${yMid}, ${top.L - grow} ${top.y - grow} Z`;
+        out.push(`<path d="${d}" fill="var(--gold)" fill-opacity="${op}"/>`);
+      }
+    });
+    svg.innerHTML = out.join("");
+  };
+  let tieTimer = 0;
+  const drawAllTies = () => { clearTimeout(tieTimer); tieTimer = setTimeout(() => { for (const r of document.querySelectorAll(".he-text .wjoin")) drawTies(r); }, 60); };
+  try { if (document.fonts) document.fonts.addEventListener("loadingdone", drawAllTies); } catch { /* no font events: the next draw is the window's */ }
+  window.addEventListener("resize", drawAllTies);
 
   const appendWord = (host, built, word) => {
     const pj = word && word.presentation_join;
@@ -8906,6 +8974,7 @@
     btnHe.classList.toggle("on", m !== "en");
     btnEn.classList.toggle("on", m === "en");
     pick(m === "en" ? "en" : "he");
+    drawAllTies();
   };
   btnHe.addEventListener("click", () => setMode("he"));
   btnEn.addEventListener("click", () => setMode("en"));
@@ -10234,6 +10303,7 @@
     const placeLineHandles = (sectionEl) => {
       const para = sectionEl.querySelector(".he-text");
       if (!para) return;
+      for (const r of para.querySelectorAll(".wjoin")) drawTies(r);
       for (let pass = 0; pass < 3; pass += 1) {
         para.querySelectorAll(".c-mark-row, .c-choose").forEach((x) => x.remove());
         // the verse's own words. A commentary's words are blocks too, and they
