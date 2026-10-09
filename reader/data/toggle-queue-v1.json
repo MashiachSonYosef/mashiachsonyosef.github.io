@@ -687,6 +687,46 @@
     "tools/project-piece-gloss-v1.mjs:42-70,80-136",
     "PIPELINE-MANIFEST.md, the unguarded rules"
    ]
+  },
+  {
+   "id": "source-suggested",
+   "what": "source suggested: how a running English Bible (the Berean Standard Bible) puts the whole word into its sentence at this place, one rendering per place, the BSB’s own cell byte for byte, under its public-domain dedication",
+   "feeds": [
+    "suggested"
+   ],
+   "feeds_note": "the TOGGLES row suggested (off / the BSB); the card shows the row under the readings (renderReadings in zone.html, r-sug); the line never moves",
+   "r2_prefix": "corpus-lane-builds/moses-source-suggested-v1/v1.1/build/out/source-suggested-bsb/",
+   "r2_prefix_note": "relay FOR-ELIJAH-v63.1.md at corpus-lane-builds/moses-source-suggested-v1/v1.1/; v1 (refuted) was never wired; the per-book dictionary-suggested files (BDB suggested, Strong’s suggested) stand beside it under v1/build/out/dictionary-suggested/ and are not wired yet",
+   "delivery_shape": "per-book ledger: <slug>.source-suggested-bsb-v1.1.json, places keyed by j (shelf-wide from 0) with i_book, zone_word_n (one-based, marks counted), ref, s, match, bsb[{rendering, rendering_kind, hebrew, strong, verse_id, tsv_line}], plus coverage-source-suggested-bsb-v1.1.json carrying the m record (credit, licence_text, licence_html, file sha256)",
+   "objects": [
+    "<slug>.source-suggested-bsb-v1.1.json",
+    "coverage-source-suggested-bsb-v1.1.json"
+   ],
+   "projection_tool": "tools/project-source-suggested-v1.mjs",
+   "projection_scope": "every served zone in one run, to a sidecar data/source-suggested/<slug>.json and data/source-suggested/index.json; a place whose word is not the zone’s byte for byte is counted as mismatched and the run fails; nothing is written on the zone",
+   "status": "served",
+   "landed": "data/source-suggested/<slug>.json on the 39 books, laid 2026-10-09 from v1.1; each file names the lane’s file and sha256 under from; the index carries the credit and the licence’s two paragraphs under m",
+   "carried_by": {
+    "kind": "sidecar",
+    "path": "data/source-suggested/<slug>.json"
+   },
+   "waits_on": "nothing; the dictionary-suggested family waits on a ruling of its own (where the per-dictionary branches show)",
+   "ruling_owed": true,
+   "ruling_receipt_field": "none yet",
+   "ruling_what": "whether the BSB’s rendering may also lead the line (a reads-first position), and how the <dictionary> suggested toggles show; until ruled, the card only, the switch off by default",
+   "receipt_pins": [
+    "from.sha256",
+    "from.relay"
+   ],
+   "record_pins": [],
+   "next": [
+    "node tools/project-source-suggested-v1.mjs --in build/ledgers/source-suggested-v1.1/source-suggested-bsb   (after --fetch; sidecar only, no re-pin)",
+    "node tools/check-source-suggested-v1.mjs"
+   ],
+   "guards": [
+    "check-source-suggested-v1 (S1 the files on the zone’s words and the credit; S2-S4 the card row, off and on, the line unmoved)"
+   ],
+   "stop": "the ruling above; the BSB never leads the line until the owner rules it"
   }
  ],
  "loop": [
