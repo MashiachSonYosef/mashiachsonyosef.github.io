@@ -2477,6 +2477,39 @@
   // what the BSB means by a cell that is a sign, and why a place has none, in words
   const SUG_KIND_SAYS = { DASH: "the BSB leaves this word without English", THREE_DOTS: "the neighboring English carries it", VVV: "the neighboring English carries it", EMPTY: "the BSB's cell is empty" };
   const SUG_WHY_SAYS = { UNMATCHED_LETTERS_DIFFER: "the BSB's Hebrew spells this word otherwise", UNMATCHED_ONLY_OURS: "the BSB's Hebrew lacks this word", UNMATCHED_ORDER_DIFFERS: "the BSB's Hebrew orders these words otherwise", AMBIGUOUS: "the BSB's words could pair with this place more than one way", ONE_BSB_WORD_OVER_SEVERAL_PLACES: "one BSB word covers this place with its neighbor" };
+  // THE MEGACOMPSPAN TOGGLES (hud-toggles-rule-v1; the corpus lane's
+  // megacompspan toggle ledger v1, the v66 relay, candidate only, laid on
+  // this book by tools/project-hud-toggles-v1.mjs as data/hud-toggles/
+  // <book>.json). Every part of the family that can make a HUD is its own
+  // switch, and the lattice of HUDs is laid again from the groups that still
+  // stand: with every part on it is the HUD record's union branch the page
+  // draws today (the tie, asked again by the projector). Two parts move a
+  // HUD's edge, so two switches stand on the rail: the maqaf (P1: a chain of
+  // the ink as one cell, or each word its own) and license runs (P2: off,
+  // the entry's own naming, or any naming the record admits). The owner,
+  // 8 October 2026: "each megacompspan-family part as its own toggle
+  // ledger". Both rest at the page's own default (the chain as written, the
+  // entry's own runs) until a reader moves them; the book's file is fetched
+  // the first time a switch leaves the default.
+  const MAQAF_JOIN_KEY = "fh.maqaf-join", RUNS_KEY = "fh.runs";
+  let maqafJoin = (() => { try { return localStorage.getItem(MAQAF_JOIN_KEY) === "pieces" ? "pieces" : "maqaf"; } catch { return "maqaf"; } })();
+  let runsPref = (() => { try { const v = localStorage.getItem(RUNS_KEY); return ["off", "own", "all"].includes(v) ? v : "own"; } catch { return "own"; } })();
+  let HUD_TOGGLES_IX = null, HUD_TOGGLES = null, hudTogglesWait = null;
+  const HUD_LANES = { lay: null, relaySections: null };
+  const hudTogglesReady = () => {
+    if (HUD_TOGGLES) return Promise.resolve(HUD_TOGGLES);
+    if (!hudTogglesWait) hudTogglesWait = fetch(`${ROOT}data/hud-toggles/${BOOK}.json`).then((r) => (r.ok ? r.json() : null))
+      .then((f) => { HUD_TOGGLES = f && f.book === BOOK && Array.isArray(f.runs) && f.sets ? f : null; return HUD_TOGGLES; }).catch(() => null);
+    return hudTogglesWait;
+  };
+  // which lattice the two switches reach: null is the served HUD runs file
+  // (every part on, the entry's own admission: the page's own default)
+  const hudSetFor = () => {
+    if (!HUD_TOGGLES_IX) return null;
+    if (maqafJoin === "maqaf" && runsPref === "own") return null;
+    const set = runsPref === "off" ? (maqafJoin === "maqaf" ? "ALL_BUT_P2" : "P4") : (maqafJoin === "maqaf" ? "ALL_ON" : "ALL_BUT_P1");
+    return `${set}/${runsPref === "all" ? "ALL" : "OWN"}`;
+  };
   const lookupKey = (word, k, table) => (lookup === "headword" && word && word.h && table && table[word.h] ? word.h : k);
   // THE TOGGLES, as a registry: the rail draws itself from this list. Each
   // entry says what it is, its positions, what makes it live on this zone,
@@ -2647,9 +2680,21 @@
         if (id === "bsb" && !SUGGESTED) suggestedReady().then(reopen); else reopen();
       },
       now: () => (suggested === "bsb" ? "the BSB" : "off") },
-    { id: "maqaf", voice: "text", lab: "joined words", why: "the scribes join words with a small stroke. Look the run up as separate words, as written with the stroke, joined into one word, or in the spelling a dictionary used for it — whichever of those a dictionary actually published",
-      positions: [{ id: "pieces", lab: "as separate words" }, { id: "maqaf", lab: "as written" }, { id: "weld", lab: "joined" }, { id: "folded", lab: "the source’s spelling" }],
-      live: () => false, waits: "the joined runs carried per book — the zones hold none today, so there is nothing for this to move", now: () => "each piece" },
+    // THE MAQAF and LICENSE RUNS — see the note above MAQAF_JOIN_KEY: the two
+    // parts of the megacompspan family whose switch moves a HUD's edge, each
+    // re-laying the cells from the lattice the corpus lane cut for that
+    // setting. The joined and folded spellings a dictionary used for a chain
+    // (the pills, part P4) are not carried on the page yet.
+    { id: "maqaf", voice: "text", lab: "joined words", why: "the scribes join words with a small stroke: read the chain as one word with one line and one card, or each of its words as its own; a chain a dictionary names inside a run stays in that run either way. The joined or folded spelling a dictionary used for a chain waits on the weld ledger",
+      positions: [{ id: "maqaf", lab: "as written" }, { id: "pieces", lab: "as separate words" }],
+      live: () => !!HUD_TOGGLES_IX, waits: "the corpus lane’s megacompspan toggle ledger laid on this book (tools/project-hud-toggles-v1.mjs)",
+      get: () => maqafJoin, set: (id) => chooseHudToggle("maqaf", id),
+      now: () => (maqafJoin === "pieces" && HUD_TOGGLES_IX ? "as separate words" : "as written") },
+    { id: "runs", voice: "them", lab: "license runs", why: "a spaced run a dictionary names as one thing stands as one cell with one line and one card: off; only the runs an entry’s own naming gives (the record’s OWN); or also runs named unsurely or inside a sub-entry’s phrase, some by sources the catalog does not serve (the record’s ALL)",
+      positions: [{ id: "off", lab: "off" }, { id: "own", lab: "the entry’s own" }, { id: "all", lab: "any naming" }],
+      live: () => !!HUD_TOGGLES_IX, waits: "the corpus lane’s megacompspan toggle ledger laid on this book (tools/project-hud-toggles-v1.mjs)",
+      get: () => runsPref, set: (id) => chooseHudToggle("runs", id),
+      now: () => (HUD_TOGGLES_IX ? { off: "off", own: "the entry’s own", all: "any naming" }[runsPref] : "the entry’s own") },
     // A SORT, never a filter: readings under the chosen class answer first
     // and every other reading keeps its place under them. The class is read
     // off each source's posture key; a source the site refuses never reaches
@@ -2714,7 +2759,7 @@
   };
   let zone, index;
   try {
-    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, ...OVERLAY_IX] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -2746,6 +2791,8 @@
       fetch(`${ROOT}data/hud-runs/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // which books carry the source-suggested ledger (the BSB), and its credit
       fetch(`${ROOT}data/source-suggested/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // which books carry the megacompspan toggle ledger (hud-toggles-rule-v1)
+      fetch(`${ROOT}data/hud-toggles/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // the overlays' own indexes; an overlay that did not arrive adds nothing
       ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
     ]);
@@ -2783,31 +2830,34 @@
     if (RUN_CARDS && RUN_CARDS.books && RUN_CARDS.books[BOOK])
       RUN_CARDS = await fetch(`${ROOT}data/run-cards/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
     else RUN_CARDS = null;
-    if (RUN_CARDS && RUN_CARDS.book === BOOK && Array.isArray(RUN_CARDS.cards)) {
+    // THE RUN LANES, laid as one and laid again when a switch moves them.
+    // First the run cards (data/run-cards: a run a dictionary names, with its
+    // names), then THE HUD RECORD'S RUNS (hud-runs-rule-v1; the corpus lane's
+    // HUD record v1.2, the v64.2 relay, candidate only, laid on this book's
+    // sections by tools/project-hud-runs-v1.mjs). A stretch the record puts
+    // in one HUD is one line, one strip and one card here, by the same lane
+    // the run cards take; where a run card already stands on the same words
+    // it stays (it carries the names), and where two overlap a word opens the
+    // longer one. The owner, 2026-10-09: "gold underline will indicate how
+    // many words are in a single hud". Under the megacompspan toggles the
+    // same lane is laid from the lattice the switches reach instead
+    // (hud-toggles-rule-v1): license runs off takes the run cards off too,
+    // since a run card is a run a dictionary names.
+    const layRunLanes = (hudCards, withRunCards) => {
+      RUNS_AT.clear();
       const secs = new Map((zone.sections || []).map((sec) => [sec.unit, sec]));
-      for (const rc of RUN_CARDS.cards) {
-        const sec = secs.get(rc.unit);
-        if (!sec || !Array.isArray(rc.idx) || rc.idx.length < 2 || rc.idx.some((i, j) => !sec.words[i] || sec.words[i].k !== rc.keys[j])) continue;
-        rc.__sec = sec; rc.__els = new Map();
-        const m = RUNS_AT.get(rc.unit) || new Map();
-        for (const i of rc.idx) { const had = m.get(i); if (!had || had.idx.length < rc.idx.length) m.set(i, rc); }
-        RUNS_AT.set(rc.unit, m);
+      if (withRunCards && RUN_CARDS && RUN_CARDS.book === BOOK && Array.isArray(RUN_CARDS.cards)) {
+        for (const rc of RUN_CARDS.cards) {
+          const sec = secs.get(rc.unit);
+          if (!sec || !Array.isArray(rc.idx) || rc.idx.length < 2 || rc.idx.some((i, j) => !sec.words[i] || sec.words[i].k !== rc.keys[j])) continue;
+          rc.__sec = sec; rc.__els = new Map();
+          const m = RUNS_AT.get(rc.unit) || new Map();
+          for (const i of rc.idx) { const had = m.get(i); if (!had || had.idx.length < rc.idx.length) m.set(i, rc); }
+          RUNS_AT.set(rc.unit, m);
+        }
       }
-    }
-    // THE HUD RECORD'S RUNS (hud-runs-rule-v1; the corpus lane's HUD record
-    // v1.2, the v64.2 relay, candidate only, laid on this book's sections by
-    // tools/project-hud-runs-v1.mjs). A stretch the record puts in one HUD is
-    // one line, one strip and one card here, by the same lane the run cards
-    // take; where a run card already stands on the same words it stays (it
-    // carries the names), and where two overlap a word opens the longer one.
-    // The owner, 2026-10-09: "gold underline will indicate how many words are
-    // in a single hud".
-    HUD_RUNS = HUD_RUNS && HUD_RUNS.books && HUD_RUNS.books[BOOK] && HUD_RUNS.books[BOOK].runs
-      ? await fetch(`${ROOT}data/hud-runs/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null) : null;
-    let hudLaid = 0;
-    if (HUD_RUNS && HUD_RUNS.book === BOOK && Array.isArray(HUD_RUNS.cards)) {
-      const secs = new Map((zone.sections || []).map((sec) => [sec.unit, sec]));
-      for (const rc of HUD_RUNS.cards) {
+      let hudLaid = 0;
+      for (const rc of hudCards || []) {
         const sec = secs.get(rc.unit);
         if (!sec || !Array.isArray(rc.idx) || rc.idx.length < 2 || rc.idx.some((i, j) => !sec.words[i] || sec.words[i].k !== rc.keys[j])) continue;
         const m = RUNS_AT.get(rc.unit) || new Map();
@@ -2827,8 +2877,38 @@
         for (const i of rc.idx) { const had = m.get(i); if (!had || had.idx.length < rc.idx.length) m.set(i, rc); }
         RUNS_AT.set(rc.unit, m); hudLaid += 1;
       }
-    }
-    window.__hudRuns = { laid: hudLaid, cards: HUD_RUNS && HUD_RUNS.cards ? HUD_RUNS.cards.length : 0, branch: HUD_RUNS ? HUD_RUNS.branch : null };
+      window.__hudRuns = { laid: hudLaid, cards: (hudCards || []).length, branch: HUD_RUNS ? HUD_RUNS.branch : null };
+      window.__runCards = [...RUNS_AT.values()].reduce((n, m) => n + new Set(m.values()).size, 0);
+      return hudLaid;
+    };
+    HUD_RUNS = HUD_RUNS && HUD_RUNS.books && HUD_RUNS.books[BOOK] && HUD_RUNS.books[BOOK].runs
+      ? await fetch(`${ROOT}data/hud-runs/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null) : null;
+    const hudRunCards = HUD_RUNS && HUD_RUNS.book === BOOK && Array.isArray(HUD_RUNS.cards) ? HUD_RUNS.cards : [];
+    // the toggle ledger's runs of one lattice, in the HUD runs' own shape
+    const hudToggleCards = new Map();
+    const hudCardsOf = (name) => {
+      if (!HUD_TOGGLES || !Array.isArray(HUD_TOGGLES.sets[name])) return [];
+      if (hudToggleCards.has(name)) return hudToggleCards.get(name);
+      const secs = new Map((zone.sections || []).map((sec) => [sec.unit, sec]));
+      const cards = HUD_TOGGLES.sets[name].map((n) => HUD_TOGGLES.runs[n]).filter(Boolean).map(([unit, idx, keys, kind, hud]) => {
+        const sec = secs.get(unit);
+        return { unit, label: sec ? sec.label : "", idx, keys, hud, kind, text: sec ? idx.map((i) => (sec.words[i] || {}).s || "").join(" ") : "" };
+      });
+      hudToggleCards.set(name, cards);
+      return cards;
+    };
+    if (!(HUD_TOGGLES_IX && HUD_TOGGLES_IX.books && HUD_TOGGLES_IX.books[BOOK])) HUD_TOGGLES_IX = null;
+    // lay the lanes for the switches as they stand; a switch away from the
+    // default waits for the book's file first, so the sections build into it
+    HUD_LANES.lay = async () => {
+      const name = hudSetFor();
+      let cards = hudRunCards;
+      if (name) { const f = await hudTogglesReady(); cards = f ? hudCardsOf(name) : hudRunCards; }
+      const laid = layRunLanes(cards, runsPref !== "off" || !name);
+      window.__hudToggles = { maqaf: HUD_TOGGLES_IX ? maqafJoin : "maqaf", runs: HUD_TOGGLES_IX ? runsPref : "own", set: name || "hud-runs", laid, file: !!HUD_TOGGLES };
+      return laid;
+    };
+    await HUD_LANES.lay();
     // the words' places for the source-suggested ledger: one-based over every
     // entry, marks included, in section order (as the lane and
     // tools/apply-span-ledger-v1.mjs number them)
@@ -7569,8 +7649,13 @@
     const pj = word && word.presentation_join;
     const pjNext = !!(pj && pj.join_next_without_separator);
     const pjPrev = !!(pj && pj.join_previous_without_separator);
-    const joinNext = pjNext || !!(link && link.next);
-    const joinPrev = pjPrev || !!(link && link.prev);
+    // the maqaf switch (hud-toggles-rule-v1, part P1): with the chain read
+    // as separate words, the stroke joins nothing here; a run still joins
+    // the words it holds, and the ink's own joiner stands in the text either
+    // way (no space is written where the scribes wrote none)
+    const maqafOn = maqafJoin !== "pieces" || !HUD_TOGGLES_IX;
+    const joinNext = (pjNext && maqafOn) || !!(link && link.next);
+    const joinPrev = (pjPrev && maqafOn) || !!(link && link.prev);
     if (joinPrev && host.__wjoin) {
       if (!pjPrev) { const sp = document.createElement("span"); sp.className = "wj-sp"; sp.textContent = " "; host.__wjoin.__ink.append(sp); }
       host.__wjoin.__ink.append(built.wb); host.__wjoin.__words.push(word); host.__wjoin.__runs.push((link && link.rc) || null);
@@ -7594,7 +7679,7 @@
     // remembered by
     if (host.__wjoin && !joinNext) {
       const ws = host.__wjoin.__words || [];
-      const chain = ws.length > 1 && ws.slice(0, -1).every((w) => w.presentation_join && w.presentation_join.join_next_without_separator);
+      const chain = maqafOn && ws.length > 1 && ws.slice(0, -1).every((w) => w.presentation_join && w.presentation_join.join_next_without_separator);
       host.__wjoin.__chain = chain;
       // the cell is a run's own when every word of it is that one run's;
       // a cell over two runs sharing a word, or a run inside a longer maqaf
@@ -8532,6 +8617,17 @@
     });
   };
   // one segmented row of positions, the position in force in amber
+  // a megacompspan switch moved: remember it, lay the lanes from the lattice
+  // it reaches (the book's file fetched the first time), and lay the built
+  // sections again into them; a section not built yet builds into them when
+  // it comes within reach
+  const chooseHudToggle = (which, id) => {
+    if (!HUD_TOGGLES_IX) return;
+    if (which === "maqaf") { if (!["maqaf", "pieces"].includes(id)) return; maqafJoin = id; try { localStorage.setItem(MAQAF_JOIN_KEY, id); } catch { /* the choice still stands on this page */ } }
+    else { if (!["off", "own", "all"].includes(id)) return; runsPref = id; try { localStorage.setItem(RUNS_KEY, id); } catch { /* same */ } }
+    if (!HUD_LANES.lay) return;
+    HUD_LANES.lay().then(() => { if (HUD_LANES.relaySections) HUD_LANES.relaySections(); });
+  };
   const segRow = (t, positions, current, onPick) => {
     const seg = document.createElement("span"); seg.className = "def-order"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
     const alive = t.live();
@@ -10650,6 +10746,7 @@
     s.append(row);
     s.__sec = sec;
     s.__body = buildBody;
+    s.__rebuild = buildBody;   // kept past the first build, for a switch that lays the section again
     s.__place = placeLineHandles;
     s.__words = (sec.words || []).length;
     sectionEls.push({ sec, el: s });
@@ -10857,6 +10954,28 @@
   // reads the readings off the page, and an anchor has to land on the section
   // at the height it is going to be, not the height it was reserved.
   const materialiseAll = () => { sectionEls.forEach(({ el }) => materialise(el)); };
+  // A switch that moves the cells (the maqaf, license runs) lays every built
+  // section again, in place, from the lanes as they now stand: the card
+  // closes, the section's text and its rows are taken down and built as a
+  // section coming within reach is built, and the lines' registry forgets
+  // the elements that went. A section not built yet needs nothing.
+  const relayBuiltSections = () => {
+    if (!sectionEls.length) return;
+    closeHud();
+    let relaid = 0;
+    for (const { el } of sectionEls) {
+      if (el.__body || !el.__rebuild) continue;
+      for (const x of [...el.children]) if (["he-text", "c-bar", "c-slot", "xp-row"].some((c) => x.classList.contains(c))) x.remove();
+      el.__body = el.__rebuild;
+      if (materialise(el)) relaid += 1;
+    }
+    for (let i = GLOSS_STANDS.length - 1; i >= 0; i -= 1) if (!GLOSS_STANDS[i].ge || !GLOSS_STANDS[i].ge.isConnected) GLOSS_STANDS.splice(i, 1);
+    placeAllHandles();
+    drawAllTies();
+    window.__hudRelaid = (window.__hudRelaid || 0) + relaid;
+    return relaid;
+  };
+  HUD_LANES.relaySections = relayBuiltSections;
   {
     const fold = window.innerHeight * 2.5;
     const built = [];

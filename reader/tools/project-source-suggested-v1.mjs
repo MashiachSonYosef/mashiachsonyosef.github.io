@@ -2,8 +2,10 @@
 // project-source-suggested-v1 · the BSB's whole-word rendering at every place, laid on the zone's words
 //
 // RULE: source-suggested-rule-v1-a-running-bible-reads-the-whole-word-and-is-credited-by-name
-// LEDGER: data/source-suggested/<book>.json (this tool), from the corpus lane's
-//         moses-source-suggested-v1/v1.1/build/out/source-suggested-bsb/<book>.source-suggested-bsb-v1.1.json
+// LEDGER: -
+// no frame letter. This writes one small file per book under data/source-suggested/
+// (and its index) from the corpus lane's moses-source-suggested-v1/v1.1/build/out/
+// source-suggested-bsb/<book>.source-suggested-bsb-v1.1.json; it writes nothing on a zone.
 //
 // The corpus lane's relay FOR-ELIJAH-v63.1 (Moses, 4 October 2026 AD, READY,
 // candidate only): how the Berean Standard Bible's translation tables put the

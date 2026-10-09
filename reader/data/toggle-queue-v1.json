@@ -727,6 +727,47 @@
     "check-source-suggested-v1 (S1 the files on the zone’s words and the credit; S2-S4 the card row, off and on, the line unmoved)"
    ],
    "stop": "the ruling above; the BSB never leads the line until the owner rules it"
+  },
+  {
+   "id": "megacompspan-toggles",
+   "what": "each part of the megacompspan family as its own switch: the lattice of HUDs laid again from the groups that still stand when a part is off (P1 the maqaf, P2 license runs; P3 ketiv/qere, P4 weld/fold pills, P5 in-word pieces move no HUD edge; P6 abbreviations is empty), under the HUD record’s two admissions (OWN, ALL)",
+   "feeds": [
+    "maqaf",
+    "runs"
+   ],
+   "feeds_note": "the TOGGLES rows maqaf (as written / as separate words) and runs (off / the entry’s own / any naming); the cells re-lay in place from the lattice the two switches reach (layRunLanes, relayBuiltSections in zone.html)",
+   "r2_prefix": "corpus-lane-builds/moses-megacompspan-toggles-v1/build/toggles-v1/",
+   "r2_prefix_note": "relay FOR-ELIJAH-v66.md at corpus-lane-builds/moses-megacompspan-toggles-v1/; the groups files (build/groups-v1/<slug>.jsonl, one line per group with its rung or pill byte for byte) stand beside and are not fetched by the projector",
+   "delivery_shape": "per-book ledger: <slug>.json carrying 13 toggle sets × 2 admissions = 26 lattices as segments [first p, last p, kind] tiling the book, the tie to the HUD record v1.2 (ALL_ON/OWN vs OWN/UNION, ALL_ON/ALL vs ALL/UNION), HUD counts per set; p is the record’s shelf place (first_shelf_place per book)",
+   "objects": [
+    "<slug>.json"
+   ],
+   "projection_tool": "tools/project-hud-toggles-v1.mjs",
+   "projection_scope": "every served zone in one run, to a sidecar data/hud-toggles/<slug>.json and data/hud-toggles/index.json; the runs (a HUD of two or more places that is not a maqaf chain alone) of the lattices the switches reach (ALL_ON, ALL_BUT_P1, ALL_BUT_P2, P4; OWN and ALL); the tie is asked again against data/hud-runs/<slug>.json before anything is written; nothing is written on the zone",
+   "status": "served",
+   "landed": "data/hud-toggles/<slug>.json on the 39 books, laid 2026-10-09 from the v66 delivery; each file names the lane’s file and sha256 under from and carries the lane’s tie and the projector’s own tie under tie; the runs rest on the HUD record v1.2’s P2 namings from L-RUNS-BW (candidate, not yet passed: 2 of 3 verifiers refuted it) and L-RUNSTORE (refused), as the served HUD runs already do, and no seat of the lane re-read those states (the groups inherit them through their rungs)",
+   "carried_by": {
+    "kind": "sidecar",
+    "path": "data/hud-toggles/<slug>.json"
+   },
+   "waits_on": "nothing for the two switches; the weld and fold pills (P4) wait on the weld ledger (L-WELD candidate, superseded); P3 and P5 are the page’s own pairs switch and parts band and take nothing from this ledger",
+   "ruling_owed": true,
+   "ruling_receipt_field": "none yet",
+   "ruling_what": "whether the ALL admission (runs named unsurely or inside a sub-entry’s phrase, about half by sources the catalog does not serve) may stay on the rail as a position, and whether license runs off should keep the run cards (today it takes them off, since a run card is a run a dictionary names)",
+   "receipt_pins": [
+    "from.sha256",
+    "from.relay",
+    "tie.here.hud_runs_sha256"
+   ],
+   "record_pins": [],
+   "next": [
+    "node tools/project-hud-toggles-v1.mjs --in build/ledgers/megacompspan-toggles-v1/toggles-v1   (after --fetch; sidecar only, no re-pin)",
+    "node tools/check-hud-toggles-v1.mjs"
+   ],
+   "guards": [
+    "check-hud-toggles-v1 (G1 the files tie to the served HUD runs; G2-G6 the switches on the page, the default unmoved, a rail press re-laying in place)"
+   ],
+   "stop": "the rulings above; every part rests at the page’s default (the chain as written, the entry’s own runs) until a reader moves it"
   }
  ],
  "loop": [
