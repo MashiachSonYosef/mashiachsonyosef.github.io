@@ -5415,14 +5415,17 @@
     });
     drawTies(run);
   };
-  // THE TIE, DRAWN FROM WHERE THINGS STAND. One shape per word of a run:
+  // THE TIE, DRAWN FROM WHERE THINGS STAND. One blob per word of a run:
   // the word's own width at the letters (the box's, less a breath so two
-  // words' shapes stay apart), hugging the letters' top, flowing to the
-  // width of the word's English at its far edge. Softness is three layers
-  // of the same shape, each a little wider, rather than a blur the phone
-  // would pay for on every cell. Drawn again whenever the geometry moves:
-  // a section placed, the reader switched, the window resized, the face
-  // arriving, the run's line made again.
+  // words' blobs stay apart), hugging the letters' top, flowing to the
+  // width of the word's English at its far edge, its corners rounded. The
+  // blob is linen a shade bolder than the cell, with the dim gold around
+  // it and not around the cell (the owner, 2026-10-09: "linen is our blob
+  // color to connect the hebrew and english. and the dimmed gold is around
+  // that blob, not the full card"; of the second round of mockups, "now you
+  // got it"). Drawn again whenever the geometry moves: a section placed,
+  // the reader switched, the window resized, the face arriving, the run's
+  // line made again.
   const TIE_NS = "http://www.w3.org/2000/svg";
   // the shapes for a host (a maqaf run, or one word of a run) from its pairs
   // of [Hebrew word element, English element]
@@ -5437,9 +5440,9 @@
     const INSET = 3, HUG = 3;
     const inkOf = (el) => { const rg = document.createRange(); rg.selectNodeContents(el); const rs = [...rg.getClientRects()].filter((r) => r.width > 0); return rs.length ? rs[0] : el.getBoundingClientRect(); };
     const out = [];
-    // a trial dress for the tie, set by a screenshot probe only (the live
-    // page never sets it): one shape in a fill, an outline, or walls
-    const T = window.__tie || null;
+    // the blob's dress; a screenshot probe may set a trial one on window.__tie
+    // (a fill, an outline, walls, the corners' radius), the live page never does
+    const T = window.__tie || { fill: "var(--tie-wash)", stroke: "var(--gold-dim)", strokeW: 1, strokeOp: 0.7, round: 8 };
     const boxes = [];
     pairs.forEach(([w, part]) => {
       const a = w.getBoundingClientRect(), ink = inkOf(w), tr = inkOf(part);
@@ -5457,10 +5460,6 @@
         // the corners rounded by r: a blob, not a tent
         return `M${tL + r} ${tY} L${tR - r} ${tY} Q ${tR} ${tY}, ${tR} ${tY + r} C ${tR} ${yMid}, ${bR} ${yMid}, ${bR} ${bY - r} Q ${bR} ${bY}, ${bR - r} ${bY} L${bL + r} ${bY} Q ${bL} ${bY}, ${bL} ${bY - r} C ${bL} ${yMid}, ${tL} ${yMid}, ${tL} ${tY + r} Q ${tL} ${tY}, ${tL + r} ${tY} Z`;
       };
-      if (!T) {
-        for (const [grow, op] of [[3, 0.035], [1.5, 0.045], [0, 0.055]]) out.push(`<path d="${shape(grow)}" fill="var(--gold)" fill-opacity="${op}"/>`);
-        return;
-      }
       const g = T.grow || 0;
       out.push(`<path d="${shape(g, T.round || 0)}" fill="${T.fill || "none"}" fill-opacity="${T.fillOp == null ? 1 : T.fillOp}" stroke="${!T.sides && T.stroke ? T.stroke : "none"}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linejoin="round"/>`);
       if (T.sides && T.stroke) {
@@ -5469,7 +5468,7 @@
       }
       boxes.push({ L: Math.min(top.L, bot.L) - g, R: Math.max(top.R, bot.R) + g, y0: top.y - g, y1: bot.y + g });
     });
-    if (T && T.sep && boxes.length > 1) {
+    if (T.sep && boxes.length > 1) {
       boxes.sort((p, q) => p.L - q.L);
       for (let i = 0; i < boxes.length - 1; i += 1) {
         const x = (boxes[i].R + boxes[i + 1].L) / 2, y0 = Math.min(boxes[i].y0, boxes[i + 1].y0), y1 = Math.max(boxes[i].y1, boxes[i + 1].y1);
