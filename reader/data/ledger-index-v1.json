@@ -27,6 +27,9 @@
   "O"
  ],
  "by_letter": {
+  "(tools/project-hud-runs-v1.mjs)": [
+   "check-hud-runs-v1.mjs"
+  ],
   "B": [
    "build-front-door-v1.mjs",
    "emit-corpus-atlas-v1.mjs",
@@ -93,6 +96,9 @@
   ],
   "Z": [
    "build-zone.mjs"
+  ],
+  "data/hud-runs/<book>.json": [
+   "check-hud-runs-v1.mjs"
   ]
  },
  "by_tool": {
@@ -295,6 +301,15 @@
    "writes": [
     "ben-yehuda-posture-v1.json"
    ]
+  },
+  "check-hud-runs-v1.mjs": {
+   "letters": [
+    "data/hud-runs/<book>.json",
+    "(tools/project-hud-runs-v1.mjs)"
+   ],
+   "updates_no_letter": false,
+   "why": "",
+   "writes": []
   },
   "check-k-maqaf-preserved-v2.mjs": {
    "letters": [],
@@ -736,6 +751,12 @@
     "source-declarations-receipt-v1.json"
    ]
   },
+  "project-hud-runs-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This reads the corpus lane's HUD record (moses-hud-record-v1, one line per place, which HUD the place sits in under each branch) and the zones on disk, and writes one small file per book; it decides no HUD.",
+   "writes": []
+  },
   "project-lattice-v12-v1.mjs": {
    "letters": [
     "R",
@@ -874,6 +895,9 @@
   "store-before-strike-witness-v1.json",
   "v-volume-receipt-v1.json"
  ],
- "letters_declared_that_the_frame_does_not_name": [],
+ "letters_declared_that_the_frame_does_not_name": [
+  "check-hud-runs-v1.mjs declares data/hud-runs/<book>.json",
+  "check-hud-runs-v1.mjs declares (tools/project-hud-runs-v1.mjs)"
+ ],
  "standing_caveat": "this indexes THIS LANE only. A letter with no tool here is not a letter nobody keeps — the corpus lane keeps most of them. An empty list under a letter means this lane writes nothing to it, never that the letter is unowned."
 }

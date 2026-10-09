@@ -533,6 +533,7 @@
   // own card, as before.
   // run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling
   let RUN_CARDS = null;
+  let HUD_RUNS = null;   // the HUD record's runs for this book (data/hud-runs/<book>.json)
   const RUNS_AT = new Map();   // section unit -> (word index -> card)
   const runAt = (unit, idx) => { const m = RUNS_AT.get(unit); return m ? m.get(idx) || null : null; };
   // every way to cover a run's n words left to right with its named runs and
@@ -686,7 +687,7 @@
   };
   let zone, index;
   try {
-    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, ...OVERLAY_IX] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -714,6 +715,8 @@
       fetch(`${ROOT}data/source-defaults-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // which books have run cards; a book it does not list has none
       fetch(`${ROOT}data/run-cards/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // which books have HUD runs from the corpus lane's record (hud-runs-rule-v1)
+      fetch(`${ROOT}data/hud-runs/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // the overlays' own indexes; an overlay that did not arrive adds nothing
       ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
     ]);
@@ -762,6 +765,41 @@
         RUNS_AT.set(rc.unit, m);
       }
     }
+    // THE HUD RECORD'S RUNS (hud-runs-rule-v1; the corpus lane's HUD record
+    // v1.2, the v64.2 relay, candidate only, laid on this book's sections by
+    // tools/project-hud-runs-v1.mjs). A stretch the record puts in one HUD is
+    // one line, one strip and one card here, by the same lane the run cards
+    // take; where a run card already stands on the same words it stays (it
+    // carries the names), and where two overlap a word opens the longer one.
+    // The owner, 2026-10-09: "gold underline will indicate how many words are
+    // in a single hud".
+    HUD_RUNS = HUD_RUNS && HUD_RUNS.books && HUD_RUNS.books[BOOK] && HUD_RUNS.books[BOOK].runs
+      ? await fetch(`${ROOT}data/hud-runs/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null) : null;
+    let hudLaid = 0;
+    if (HUD_RUNS && HUD_RUNS.book === BOOK && Array.isArray(HUD_RUNS.cards)) {
+      const secs = new Map((zone.sections || []).map((sec) => [sec.unit, sec]));
+      for (const rc of HUD_RUNS.cards) {
+        const sec = secs.get(rc.unit);
+        if (!sec || !Array.isArray(rc.idx) || rc.idx.length < 2 || rc.idx.some((i, j) => !sec.words[i] || sec.words[i].k !== rc.keys[j])) continue;
+        const m = RUNS_AT.get(rc.unit) || new Map();
+        // the same words under a run card already: the card stands, with its names
+        const same = m.get(rc.idx[0]);
+        if (same && same.idx.length === rc.idx.length && same.idx.every((i, j) => i === rc.idx[j])) continue;
+        rc.__sec = sec; rc.__els = new Map(); rc.named = rc.named || [];
+        // a run card inside this longer run is one of its names: the card's
+        // whole span, and the names the card carries, at their place in the run
+        for (const had of new Set(rc.idx.map((i) => m.get(i)).filter(Boolean))) {
+          if (had.idx.length >= rc.idx.length || !had.idx.every((i) => rc.idx.includes(i))) continue;
+          const off = rc.idx.indexOf(had.idx[0]);
+          for (const [f, t] of [[0, had.idx.length - 1], ...(had.named || [])]) {
+            if (!rc.named.some(([a, b]) => a === f + off && b === t + off)) rc.named.push([f + off, t + off]);
+          }
+        }
+        for (const i of rc.idx) { const had = m.get(i); if (!had || had.idx.length < rc.idx.length) m.set(i, rc); }
+        RUNS_AT.set(rc.unit, m); hudLaid += 1;
+      }
+    }
+    window.__hudRuns = { laid: hudLaid, cards: HUD_RUNS && HUD_RUNS.cards ? HUD_RUNS.cards.length : 0, branch: HUD_RUNS ? HUD_RUNS.branch : null };
     window.__runCards = [...RUNS_AT.values()].reduce((n, m) => n + new Set(m.values()).size, 0);
     // The zone as it arrived, by the same rule the commentary sidecar is
     // exposed under: a check should be able to ask the record what it says
@@ -5386,24 +5424,23 @@
   // a section placed, the reader switched, the window resized, the face
   // arriving, the run's line made again.
   const TIE_NS = "http://www.w3.org/2000/svg";
-  const drawTies = (run) => {
-    if (!run || !run.__ink || !run.isConnected) return;
-    let svg = run.querySelector(":scope > svg.wj-tie");
-    const g = run.__gloss;
-    const words = [...run.__ink.querySelectorAll(":scope > .wb > .w")];
-    const parts = g && g.classList.contains("parts") ? [...g.querySelectorAll(":scope > .g-part")] : [];
-    // each part to the word it reads; a part dropped under the signs switch
-    // leaves its word with no tie, and the others keep theirs
-    const pairs = parts.map((p) => [words[Number(p.dataset.wi)], p]).filter(([w]) => w);
+  // the shapes for a host (a maqaf run, or one word of a run) from its pairs
+  // of [Hebrew word element, English element]
+  const drawPairs = (host, pairs) => {
+    let svg = host.querySelector(":scope > svg.wj-tie");
     if (!pairs.length) { if (svg) svg.remove(); return; }
-    if (!svg) { svg = document.createElementNS(TIE_NS, "svg"); svg.setAttribute("class", "wj-tie"); svg.setAttribute("aria-hidden", "true"); run.prepend(svg); }
-    const R = run.getBoundingClientRect();
+    if (!svg) { svg = document.createElementNS(TIE_NS, "svg"); svg.setAttribute("class", "wj-tie"); svg.setAttribute("aria-hidden", "true"); host.prepend(svg); }
+    const R = host.getBoundingClientRect();
     if (!R.width || !R.height) return;
     svg.setAttribute("viewBox", `0 0 ${R.width} ${R.height}`);
     const en = document.body.classList.contains("en");
     const INSET = 3, HUG = 3;
     const inkOf = (el) => { const rg = document.createRange(); rg.selectNodeContents(el); const rs = [...rg.getClientRects()].filter((r) => r.width > 0); return rs.length ? rs[0] : el.getBoundingClientRect(); };
     const out = [];
+    // a trial dress for the tie, set by a screenshot probe only (the live
+    // page never sets it): one shape in a fill, an outline, or walls
+    const T = window.__tie || null;
+    const boxes = [];
     pairs.forEach(([w, part]) => {
       const a = w.getBoundingClientRect(), ink = inkOf(w), tr = inkOf(part);
       // the word's edge, and the English's, each in the run's own frame
@@ -5414,24 +5451,66 @@
       const yMid = en ? (tr.bottom + a.top) / 2 - R.top : (a.bottom + tr.top) / 2 - R.top;
       const top = en ? { L: eL, R: eR, y: eFar } : { L: wL, R: wR, y: wFar };
       const bot = en ? { L: wL, R: wR, y: wFar } : { L: eL, R: eR, y: eFar };
-      for (const [grow, op] of [[3, 0.035], [1.5, 0.045], [0, 0.055]]) {
-        const d = `M${top.L - grow} ${top.y - grow} L${top.R + grow} ${top.y - grow} C ${top.R + grow} ${yMid}, ${bot.R + grow} ${yMid}, ${bot.R + grow} ${bot.y + grow} L${bot.L - grow} ${bot.y + grow} C ${bot.L - grow} ${yMid}, ${top.L - grow} ${yMid}, ${top.L - grow} ${top.y - grow} Z`;
-        out.push(`<path d="${d}" fill="var(--gold)" fill-opacity="${op}"/>`);
+      const shape = (grow, r) => {
+        const tL = top.L - grow, tR = top.R + grow, tY = top.y - grow, bL = bot.L - grow, bR = bot.R + grow, bY = bot.y + grow;
+        if (!r) return `M${tL} ${tY} L${tR} ${tY} C ${tR} ${yMid}, ${bR} ${yMid}, ${bR} ${bY} L${bL} ${bY} C ${bL} ${yMid}, ${tL} ${yMid}, ${tL} ${tY} Z`;
+        // the corners rounded by r: a blob, not a tent
+        return `M${tL + r} ${tY} L${tR - r} ${tY} Q ${tR} ${tY}, ${tR} ${tY + r} C ${tR} ${yMid}, ${bR} ${yMid}, ${bR} ${bY - r} Q ${bR} ${bY}, ${bR - r} ${bY} L${bL + r} ${bY} Q ${bL} ${bY}, ${bL} ${bY - r} C ${bL} ${yMid}, ${tL} ${yMid}, ${tL} ${tY + r} Q ${tL} ${tY}, ${tL + r} ${tY} Z`;
+      };
+      if (!T) {
+        for (const [grow, op] of [[3, 0.035], [1.5, 0.045], [0, 0.055]]) out.push(`<path d="${shape(grow)}" fill="var(--gold)" fill-opacity="${op}"/>`);
+        return;
       }
+      const g = T.grow || 0;
+      out.push(`<path d="${shape(g, T.round || 0)}" fill="${T.fill || "none"}" fill-opacity="${T.fillOp == null ? 1 : T.fillOp}" stroke="${!T.sides && T.stroke ? T.stroke : "none"}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linejoin="round"/>`);
+      if (T.sides && T.stroke) {
+        for (const d of [`M${top.L - g} ${top.y - g} C ${top.L - g} ${yMid}, ${bot.L - g} ${yMid}, ${bot.L - g} ${bot.y + g}`, `M${top.R + g} ${top.y - g} C ${top.R + g} ${yMid}, ${bot.R + g} ${yMid}, ${bot.R + g} ${bot.y + g}`])
+          out.push(`<path d="${d}" fill="none" stroke="${T.stroke}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linecap="round"/>`);
+      }
+      boxes.push({ L: Math.min(top.L, bot.L) - g, R: Math.max(top.R, bot.R) + g, y0: top.y - g, y1: bot.y + g });
     });
+    if (T && T.sep && boxes.length > 1) {
+      boxes.sort((p, q) => p.L - q.L);
+      for (let i = 0; i < boxes.length - 1; i += 1) {
+        const x = (boxes[i].R + boxes[i + 1].L) / 2, y0 = Math.min(boxes[i].y0, boxes[i + 1].y0), y1 = Math.max(boxes[i].y1, boxes[i + 1].y1);
+        out.push(`<path d="M${x} ${y0} L${x} ${y1}" fill="none" stroke="${T.sep}" stroke-width="${T.sepW || 1}" stroke-opacity="${T.sepOp == null ? 1 : T.sepOp}" stroke-linecap="round"/>`);
+      }
+    }
     svg.innerHTML = out.join("");
+  };
+  const drawTies = (run) => {
+    if (!run || !run.__ink || !run.isConnected) return;
+    const g = run.__gloss;
+    const words = [...run.__ink.querySelectorAll(":scope > .wb > .w")];
+    const parts = g && g.classList.contains("parts") ? [...g.querySelectorAll(":scope > .g-part")] : [];
+    // each part to the word it reads; a part dropped under the signs switch
+    // leaves its word with no tie, and the others keep theirs
+    drawPairs(run, parts.map((p) => [words[Number(p.dataset.wi)], p]).filter(([w]) => w));
   };
   let tieTimer = 0;
   const drawAllTies = () => { clearTimeout(tieTimer); tieTimer = setTimeout(() => { for (const r of document.querySelectorAll(".he-text .wjoin")) drawTies(r); }, 60); };
   try { if (document.fonts) document.fonts.addEventListener("loadingdone", drawAllTies); } catch { /* no font events: the next draw is the window's */ }
   window.addEventListener("resize", drawAllTies);
+  window.__drawAllTies = drawAllTies;   // for a screenshot probe trying a dress on the tie
 
-  const appendWord = (host, built, word) => {
+  // A RUN IS BUILT AS A MAQAF CHAIN IS (the owner, 2026-10-09: the strip of
+  // fused cells "arent as clear as our maqaf ones ... id really just make it
+  // the gold underline itself as a single unit across the hebrew"): the words
+  // a license names as one thing stand in one cell, one ink row with one line
+  // under all of it, one row of parts under their words, one card. `link`
+  // says a word is joined to the one before or after by a run; where the text
+  // writes a space between them a spacer keeps it, where it writes a maqaf
+  // the maqaf is the join, as ever.
+  const appendWord = (host, built, word, link) => {
     const pj = word && word.presentation_join;
-    const joinNext = !!(pj && pj.join_next_without_separator);
-    const joinPrev = !!(pj && pj.join_previous_without_separator);
-    if (joinPrev && host.__wjoin) { host.__wjoin.__ink.append(built.wb); host.__wjoin.__words.push(word); }
-    else if (joinNext) {
+    const pjNext = !!(pj && pj.join_next_without_separator);
+    const pjPrev = !!(pj && pj.join_previous_without_separator);
+    const joinNext = pjNext || !!(link && link.next);
+    const joinPrev = pjPrev || !!(link && link.prev);
+    if (joinPrev && host.__wjoin) {
+      if (!pjPrev) { const sp = document.createElement("span"); sp.className = "wj-sp"; sp.textContent = " "; host.__wjoin.__ink.append(sp); }
+      host.__wjoin.__ink.append(built.wb); host.__wjoin.__words.push(word); host.__wjoin.__runs.push((link && link.rc) || null);
+    } else if (joinNext) {
       const wrap = document.createElement("span");
       wrap.className = "wjoin";
       const ink = document.createElement("span");
@@ -5440,21 +5519,35 @@
       wrap.append(ink);
       wrap.__ink = ink;
       wrap.__words = [word];
+      wrap.__runs = [(link && link.rc) || null];
       host.append(wrap);
       host.__wjoin = wrap;
     } else host.append(built.wb);
-    // the run's key once its last word is in: the words' own keys joined by
-    // the joiner the text wrote — the key its card is ruled and remembered by
+    if (host.__wjoin && link && link.rc) host.__wjoin.classList.add("lic");
+    // the run's key once its last word is in: a maqaf chain's is its words'
+    // keys joined by the joiner the text wrote; a license run's is its card's
+    // (the words' keys joined by a space) — the key its card is ruled and
+    // remembered by
     if (host.__wjoin && !joinNext) {
       const ws = host.__wjoin.__words || [];
-      if (ws.length > 1 && ws.every((w) => w.k && !w.kq)) host.__wjoin.__key = ws.map((w) => w.k).join("\u05be");
+      const chain = ws.length > 1 && ws.slice(0, -1).every((w) => w.presentation_join && w.presentation_join.join_next_without_separator);
+      host.__wjoin.__chain = chain;
+      // the cell is a run's own when every word of it is that one run's;
+      // a cell over two runs sharing a word, or a run inside a longer maqaf
+      // chain, is one cell with one line and no run of its own (a press on
+      // a word opens that word's run, boxed on the run's words)
+      const rs = host.__wjoin.__runs || [];
+      host.__wjoin.__run = rs.length && rs[0] && rs.every((r) => r === rs[0]) ? rs[0] : null;
+      if (chain && ws.every((w) => w.k && !w.kq)) host.__wjoin.__key = ws.map((w) => w.k).join("\u05be");
+      else if (host.__wjoin.__run) host.__wjoin.__key = host.__wjoin.__run.keys.join(" ");
+      else if (host.__wjoin.classList.contains("lic") && ws.every((w) => w.k)) host.__wjoin.__key = ws.map((w) => w.k).join(" ");
       // a run with no key of its own (a pair inside it) is one breath and
       // several cards, and wears the one-card underline under each word
       // rather than one line under all of them (the owner, 2026-10-08)
       if (!host.__wjoin.__key) host.__wjoin.classList.add("apart");
     }
     if (joinNext) {
-      const sep = String((pj && pj.separator_between_group_records) || "");
+      const sep = pjNext ? String((pj && pj.separator_between_group_records) || "") : "";
       if (sep) ((host.__wjoin && host.__wjoin.__ink) || host).append(document.createTextNode(sep));
       return;
     }
@@ -5903,14 +5996,17 @@
       const words = rc.idx.map((i) => rc.__sec.words[i]);
       const s = words.map((w) => w.s).join(" ");
       const atoms = words.map((w) => ({ s: String(w.s).replace(/\u05be+$/u, ""), k: w.k }));
-      const chain = runEl && runEl.__key && runEl.__words && runEl.__words.length === words.length && runEl.__words.every((w, j) => w === words[j]) ? runEl : null;
+      const chain = runEl && runEl.__chain && runEl.__key && runEl.__words && runEl.__words.length === words.length && runEl.__words.every((w, j) => w === words[j]) ? runEl : null;
+      // the run's cell (the one wrapper whose run this is), so its one line
+      // turns the pressed gold with its words
+      const cell = runEl && runEl.__run === rc ? runEl : null;
       const k = chain ? chain.__key : rc.keys.join(" ");
-      openHud(chain || built.wb, { s, k }, unitId, wordPos, {
+      openHud(chain || cell || built.wb, { s, k }, unitId, wordPos, {
         ...opts, bin, word: { s, k, w: atoms }, regionIndex: -1, glossParts: null,
         run: { keys: rc.keys, clicked: Math.max(0, clicked), el: chain || built.wb, named: rc.named || [], chain: !!chain, words,
           gaps: chain ? null : words.slice(0, -1).map((w) => (/\u05be$/u.test(String(w.s)) ? "\u05be" : " ")),
           wbs: rc.idx.map((i) => rc.__els.get(i) || null) },
-        mark: () => { for (const el of rc.__els.values()) el.classList.add("active"); if (chain) chain.classList.add("active"); },
+        mark: () => { for (const el of rc.__els.values()) el.classList.add("active"); if (chain || cell) (chain || cell).classList.add("active"); },
       });
     };
     const kqLead = () => {
@@ -5951,7 +6047,7 @@
         // shown word by word.
         const runEl = built.wb.closest && built.wb.closest(".wjoin");
         if (built.wb.__run && bin === zone && wordPos != null) { openNamedRun(built.wb.__run, built.wb.__run.idx.indexOf(wordPos), runEl); return; }
-        if (runEl && runEl.__key && runEl.__words && runEl.__words.length > 1) { openRun(runEl, runEl.__words.indexOf(word)); return; }
+        if (runEl && runEl.__chain && runEl.__key && runEl.__words && runEl.__words.length > 1) { openRun(runEl, runEl.__words.indexOf(word)); return; }
         if (built.kqStand) { const lead = kqLead(); openAt(lead.i, built.regionEls[lead.i] || target); return; }
         openAt(i, target);
       });
@@ -8437,14 +8533,18 @@
       const built = wordBlock(word, zone.gloss);
       const myIdx = wIdx; wIdx += 1;
       wireWord(built, word, zone, sec.unit, myIdx);
-      appendWord(he, built, word);
       const rc = runAt(sec.unit, myIdx);
-      if (rc) {
-        built.wb.__run = rc; rc.__els.set(myIdx, built.wb);
-        built.wb.classList.add("wrun");
-        if (myIdx === rc.idx[0]) built.wb.classList.add("wrun-first");
-        if (myIdx === rc.idx[rc.idx.length - 1]) built.wb.classList.add("wrun-last");
-      }
+      // a run's words are one cell (appendWord): this word joins the one
+      // before it and the one after it where one run holds both — its own,
+      // or the neighbor's where two runs share a word (Numbers 33:7, al-pi
+      // and Pi-hahiroth: one cell over the three, as the HUD record unions
+      // partial overlaps)
+      const rcPrev = runAt(sec.unit, myIdx - 1), rcNext = runAt(sec.unit, myIdx + 1);
+      const prev = !!((rc && rc.idx.includes(myIdx - 1)) || (rcPrev && rcPrev.idx.includes(myIdx)));
+      const next = !!((rc && rc.idx.includes(myIdx + 1)) || (rcNext && rcNext.idx.includes(myIdx)));
+      const link = rc || prev || next ? { rc, prev, next } : null;
+      appendWord(he, built, word, link);
+      if (rc) { built.wb.__run = rc; rc.__els.set(myIdx, built.wb); }
       // A commentary attached at this word gets its handle here, standing in
       // the line right after the words it covers, and it opens here too — a
       // reader should not have to look anywhere else to find what they pressed.

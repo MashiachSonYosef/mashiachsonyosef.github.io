@@ -722,6 +722,9 @@
   .wb.active { outline: 1.5px solid var(--gold); outline-offset: 3px; border-radius: 0.4rem; }
   /* a maqaf run's card is the run's: the whole run is what stands open */
   .wjoin.active { outline: 1.5px solid var(--gold); outline-offset: 3px; border-radius: 0.4rem; }
+  /* a pressed run is one pressed cell: its words keep their selected state
+     for the card, and wear no box of their own inside the cell's */
+  .wjoin.active .wb.active { outline: none; background: none; }
   /* a named run: a license names these words as one thing. A thin blue rule
      under each of its words, the reading's own color; open, the run's words
      wear the selection together. */
@@ -741,21 +744,22 @@
      first word is the second of et-Adoni) wears its own one-card line and
      no second line under it; the word outside the name keeps its own (the
      owner, 2026-10-08, read the two lines as a pair's mark) */
-  .wjoin:has(.wb.wrun) .wj-ink { border-bottom-color: transparent; }
-  .wjoin:has(.wb.wrun) .wb:not(.wrun):not(.kq) > .w { border-bottom-color: var(--gold-dim); }
-  .wb.wrun > .w { border-bottom: 1.5px solid var(--gold); border-radius: 0; }
-  /* A NAMED RUN IS ONE STRIP OF CELLS WITH ONE UNBROKEN LINE (the owner,
+  /* A RUN A LICENSE NAMES IS ONE CELL, AS A MAQAF RUN IS (the owner,
      2026-10-09: "gold underline will indicate how many words are in a single
-     hud"). The run's cells close up at their seams, each word's line reaches
-     its cell's edges, and the line runs through; the strip breaks only where
-     the line of text does. A run whose first word ends a maqaf run (Judges
-     1:5, et-Adoni-bezek) closes that cell's end seam the same way. */
-  .he-text .wb.wrun > .w { align-self: stretch; text-align: center; padding: 0 0.24rem; box-sizing: border-box; }
-  .he-text .wb.wrun:not(.wrun-last) { margin-inline-end: 0; padding-inline-end: 0; border-start-end-radius: 0; border-end-end-radius: 0; }
-  .he-text .wb.wrun:not(.wrun-first) { margin-inline-start: 0; padding-inline-start: 0; border-start-start-radius: 0; border-end-start-radius: 0; }
-  .he-text .wjoin:has(> .wj-ink > .wb.wrun:not(.wrun-last):last-child) { margin-inline-end: 0; padding-inline-end: 0; border-start-end-radius: 0; border-end-end-radius: 0; }
-  .he-text .wjoin:has(> .wj-ink > .wb.wrun:not(.wrun-first):first-child) { margin-inline-start: 0; padding-inline-start: 0; border-start-start-radius: 0; border-end-start-radius: 0; }
-  .wb.wrun.active > .w { border-bottom-color: var(--mark-gold); }
+     hud", and, of the strip of fused cells that stood here for a day, "id
+     really just make it the gold underline itself as a single unit across
+     the hebrew"). Its ink row wears the one-card line whole, in the run's
+     gold; a spacer stands where the text writes a space between its words.
+     A run too wide for the page wraps inside its cell rather than past it. */
+  .wjoin.lic .wj-ink { border-bottom: 1.5px solid var(--gold); }
+  /* the space the text writes between a run's words: a real space (so a copy
+     of the line keeps it) held at a word gap's width inside the flex row,
+     which would drop a bare one */
+  .wjoin .wj-ink .wj-sp { display: inline-block; width: 0.45em; white-space: pre; overflow: hidden; }
+  .wjoin { max-width: 100%; }
+  .wjoin .wj-ink { flex-wrap: wrap; justify-content: center; }
+  .wjoin > .g.parts { flex-wrap: wrap; }
+  .wjoin.lic.active .wj-ink { border-bottom-color: var(--mark-gold); }
   .wb.active .w { background: none; }
   .wb.mark.active .w { background: none; border-color: var(--gold); }
   /* A word the reader has ruled on keeps a mark after the card closes. Without

@@ -121,6 +121,11 @@ const openNamed = async (ctx) => {
   await p.goto(url, { waitUntil: "networkidle", timeout: 60000 });
   await p.waitForSelector("section.seg .he-text .wb", { timeout: 30000 });
   await p.waitForTimeout(800);
+  // every section built: the name is sought on its own, outside any run (a
+  // word in a run opens the run's card), and the first such may stand far
+  // from the section the page opened at, in a section not yet built
+  await p.evaluate(() => { for (const el of document.querySelectorAll("section.seg")) if (el.__body) { const f = el.__body; el.__body = null; f(); } });
+  await p.waitForTimeout(400);
   return p.evaluate(async (surface) => {
     const wait = (ms) => new Promise((x) => setTimeout(x, ms));
     const MARKS = new RegExp("[\\u0591-\\u05C7]", "g");
