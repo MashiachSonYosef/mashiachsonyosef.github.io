@@ -2648,8 +2648,11 @@ Served from the \`main\` branch.
 `;
 
 // The work's address serves the reader itself. There is no second hop, no
-// ?b=&clean= handshake, and no address rewrite: the address a reader keeps
-// is the address the page is served from. zone.html stays the one
+// ?b=&clean= handshake, and no redirect: the address a reader arrives at is
+// the address the page is served from. Once the reader is reading, the
+// engine may replace the bar in place with another address this build
+// writes, a chapter address of the same book (the reading place, the owner,
+// 2026-10-09; zone.html states the rule in full). zone.html stays the one
 // hand-written reader; this emits it with two generated lines in its head —
 // which work this page is, and where the reader's own files live — both
 // derived at build time, neither typed. The bare instrument zone.html still

@@ -62,6 +62,15 @@
     --sel-text: rgba(196, 146, 28, 0.3);
     /* the mark's own gold, brighter than the frame's so the .com never reads as the red beside it (the owner, 2026-10-02); used by the name and nothing else */
     --mark-gold: #c4921c;
+    /* THE MASORETIC MARKS' OWN GOLD (the owner's vote, relayed by Moses on
+       2026-10-11: "every mark gold, vowels included"; asked on 2026-10-10:
+       "im actually right now leaning toward making all masoretic marks
+       gold"). The family's hue, 38, taken deep enough to be read at a
+       vowel's size: 5.4:1 on the linen, 4.9:1 in a word's cell, 4.5:1 on a
+       pressed one, where the frame's gold gives a mark 3.1:1. It is apart
+       from the red by its hue, not its lightness. It is the one gold that is
+       ink at rest, and it is ink only on a mark. */
+    --mark-ink: #76500c;
     /* four colors, ruled 2026-10-02: one soft red, one soft blue, the gold and the purple,
        the purple alone at its full depth.
        the deep red the titles wore and the royal blue are retired, and the deep names
@@ -346,6 +355,29 @@
   .lm-small { font-size: 0.68em; }
   .lm-suspended { vertical-align: 0.5em; font-size: 0.82em; }
   .lm-dotted { color: var(--shani); }
+  /* EVERY MASORETIC MARK GOLD, BY ITS CLASS (the owner's vote, 2026-10-11;
+     masoretic-marks-rule-v1; the script's EVERY MARK GOLD says which
+     characters). A browser paints a mark in its letter's color whatever
+     element holds it, so the word is drawn twice in one place: the word
+     whole in the marks' gold, and over it, out of the same box, its letters
+     alone in the word's own ink (data-l, the word with its marks taken out,
+     written by the script). The letters drawn over are generated content: not
+     selected, not copied, not found, and silent to a screen reader (the
+     empty alternative after the slash), so the text a reader takes away is
+     the word as the source wrote it, once. They start where the word starts
+     and run the way it runs, from a box of no width, so they lie on the
+     word's own letters wherever the word stands. Where a browser cannot
+     give generated content an alternative, nothing here applies and the
+     word stays one color, as before. A mark that stands alone (the maqaf
+     between a word's parts, the sof pasuq, a paseq) is simply gold. A
+     leaf's ::before is the gold's: nothing else may draw one there. */
+  @supports (content: "x" / "") {
+    :root[data-mark-ink="gold"] .he-text .mg, :root[data-mark-ink="gold"] .he-text .mg-all { -webkit-text-fill-color: var(--mark-ink); }
+    :root[data-mark-ink="gold"] .he-text .mg { white-space: nowrap; }
+    :root[data-mark-ink="gold"] .he-text .mg::before { content: attr(data-l) / ""; display: inline-block; width: 0;
+      white-space: nowrap; -webkit-text-fill-color: currentColor; text-shadow: none; pointer-events: none;
+      user-select: none; -webkit-user-select: none; }
+  }
   /* THE STAMP. The count of this book on every named axis, and beside it the
      figures other men reached for the same book: a row per witness, the
      difference shown with its sign. Gold is exact, scarlet differs, the linen
@@ -520,6 +552,25 @@
   #chPick button.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); font-weight: 700; }
   #chPick button.ch-top { grid-column: 1 / -1; font-variant: small-caps; letter-spacing: 0.06em; color: var(--ink-strong); }
   @media (max-width: 520px) { #nav { left: 0.9rem; right: 0.9rem; justify-content: center; } }
+  /* THE WAY BACK (asked of the owner on 2026-10-09, who left it to us: "you
+     tell me"; THE READING PLACE in the script). A link that opened another
+     chapter than the one this device kept offers the kept verse one tap
+     away: just above the bar, with a little air between them so the two read
+     as two controls, and in the bar's own place while the bar stands down.
+     It is fixed, so it never moves the Hebrew, and it wears the bar's own
+     veil, line and small capitals. Pressed is a deeper ink, never a fill,
+     and never a heavier weight, which would widen the pill under the
+     finger. */
+  #placeBack { position: fixed; z-index: 60; right: 0.9rem; bottom: 3.6rem;
+    background: var(--nav-veil); border: 1px solid var(--line); border-radius: 999px;
+    box-shadow: var(--shadow-pop); backdrop-filter: blur(4px); color: var(--muted);
+    font: inherit; font-size: 0.75rem; letter-spacing: 0.08em; font-variant: small-caps;
+    padding: 0.42rem 0.95rem; cursor: pointer; white-space: nowrap; }
+  #nav[hidden] + #placeBack { bottom: 0.9rem; }
+  #placeBack[hidden] { display: none; }
+  #placeBack:hover { color: var(--ink-strong); }
+  #placeBack:active { color: var(--sel); }
+  @media (max-width: 520px) { #placeBack { right: auto; left: 50%; transform: translateX(-50%); } }
 
   #toc .toc-note { margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--faint); }
   #toc .part { margin: 0 0 0.65rem; }
@@ -906,10 +957,12 @@
      exactly as the source wrote them, and text-decoration moves no glyph. */
   /* KETIV AND QERE (the owner, 2026-10-03): both halves open one card, so the
      pair wears the one-card underline under both; the half the English is
-     reading from wears a gold bracket above it. All gold, all on the Hebrew. */
+     reading from wears a gold bracket above it. All gold, all on the Hebrew.
+     The bracket is drawn by ::after: a half's ::before carries its letters
+     when its marks are gold (EVERY MASORETIC MARK GOLD). */
   .wb.kq > .w { border-bottom: 1.5px solid var(--gold); border-radius: 0; }
   .wb.kq .wr { position: relative; }
-  .wb.kq .wr.backs-en::before { content: ""; position: absolute; left: 0.05em; right: 0.05em; top: -0.12em;
+  .wb.kq .wr.backs-en::after { content: ""; position: absolute; left: 0.05em; right: 0.05em; top: -0.12em;
     height: 0.22em; border: 1.5px solid var(--gold); border-bottom: none; border-radius: 0.12em 0.12em 0 0; pointer-events: none; }
   .wb.kq .wr.backs-en { text-decoration: none; text-decoration-color: var(--gold);
     text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
@@ -1989,11 +2042,12 @@
 </section>
 <script>
 (async () => {
-  // Every ?param this page reads, taken once and here. The rewrite a few lines
-  // down empties location.search, so anything read after it sees nothing — and
-  // ?at= reached through a clean address was already arriving empty for exactly
-  // that reason. One read, before the address changes, and nothing downstream
-  // has to know the order.
+  // Every ?param this page reads, taken once and here, before anything can
+  // change the address: once the reader moves, the reading place (THE READING
+  // PLACE, far below) replaces the bar with a chapter address that no longer
+  // carries ?at=, ?c= or ?t=, so a read of location.search after that would
+  // find nothing. One read, before the address changes, and nothing
+  // downstream has to know the order.
   const QUERY = new URLSearchParams(location.search);
   // THE BROWSER'S OWN RESTORING OF A SCROLL OFFSET IS OFF. It restores a
   // height, and a page that builds its sections as the reader nears them is
@@ -2004,10 +2058,24 @@
   // Which work this page is, and where the reader's own files live. A work's
   // address serves the reader itself, and the build wrote both facts into
   // this page's head — nothing here guesses, and the address in the bar is
-  // the work's own from the first byte, never rewritten. The bare instrument
-  // zone.html carries no metas: it still answers ?b= for the checks, locates
-  // its files beside itself, and with no book named it says so rather than
-  // assuming one.
+  // the work's own from the first byte. ARRIVAL IS NEVER REWRITTEN BY A
+  // REDIRECT OR A SECOND HOP: the page the reader arrives at is the page
+  // served at that address. After arrival the bar is changed in place
+  // (history.replaceState: no reload, no step for the back button) in two
+  // ways only. The first is the reading place, which the owner allowed on
+  // 2026-10-09 (THE READING PLACE, below): on a book's own address or one of
+  // its chapter addresses, for a book that has chapter addresses, the bar
+  // names /<book>/<chapter>/ once the reader's own input has moved the page
+  // and it comes to rest in another chapter (or still carries the ?at= of a
+  // link), and a book's own address that lands on the place this device
+  // kept names that place's chapter as it lands. The second is older
+  // (rememberSpot): once the reader has moved, a hash whose place is not in
+  // view is dropped at the next write of the kept verse (a #v hash at once,
+  // since its heading is the porch's and the porch is hidden), so a reopened
+  // tab is not sent back to it. The bare instrument zone.html carries no
+  // metas, and its bar is never touched by the reading place: it still
+  // answers ?b= for the checks, locates its files beside itself, and with no
+  // book named it says so rather than assuming one.
   const META = (name) => document.querySelector(`meta[name="${name}"]`)?.content || "";
   // The slug alphabet is letters in any script, digits, and hyphens — most
   // of this shelf's recorded ids are the works' own Hebrew opening words,
@@ -2495,6 +2563,7 @@
   let maqafJoin = (() => { try { return localStorage.getItem(MAQAF_JOIN_KEY) === "pieces" ? "pieces" : "maqaf"; } catch { return "maqaf"; } })();
   let runsPref = (() => { try { const v = localStorage.getItem(RUNS_KEY); return ["off", "own", "all"].includes(v) ? v : "own"; } catch { return "own"; } })();
   let HUD_TOGGLES_IX = null, HUD_TOGGLES = null, hudTogglesWait = null;
+  let MARKS_REC = null;
   const HUD_LANES = { lay: null, relaySections: null };
   const hudTogglesReady = () => {
     if (HUD_TOGGLES) return Promise.resolve(HUD_TOGGLES);
@@ -2759,7 +2828,7 @@
   };
   let zone, index;
   try {
-    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, ...OVERLAY_IX] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -2794,6 +2863,10 @@
       // which books carry the megacompspan toggle ledger (hud-toggles-rule-v1)
       fetch(`${ROOT}data/hud-toggles/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // the overlays' own indexes; an overlay that did not arrive adds nothing
+      // which characters of the 39 books are Masoretic marks, by the corpus
+      // lane's classes (EVERY MARK GOLD, below); without it every word is one
+      // color, as it was
+      fetch(`${ROOT}data/masoretic-marks-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
     ]);
     // an overlay's sources join the index's under their own ids, which the store
@@ -3039,7 +3112,11 @@
   // "Amos 3" in the head must not be handed "Amos" once the page has drawn,
   // or fifty chapter addresses of one book read as one page fifty times.
   const AT_META = META("reader-at");
-  document.title = `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work}${AT_META ? ` ${AT_META}` : ""} · ${SITE}`;
+  // One form, because a bar that follows the reader into a chapter (THE
+  // READING PLACE, below) titles the tab exactly as that chapter's own page
+  // is titled once drawn.
+  const titleAt = (ch) => `${zone.work_he ? `${zone.work_he} · ` : ""}${zone.work}${ch ? ` ${ch}` : ""} · ${SITE}`;
+  document.title = titleAt(AT_META);
   // THE CREDIT, FOLDED, WITH ITS TERMS STILL IN THE OPEN. The full byline is
   // unchanged and one press away; the summary carries the two facts a license
   // actually requires a reader to be able to see — which edition this is, and
@@ -7899,6 +7976,110 @@
     box.append(foot);
     slot.append(box);
   };
+  // EVERY MARK GOLD (the owner's vote, relayed by Moses on 2026-10-11:
+  // "Colour by class, never by code point range. The owner's vote: every mark
+  // gold, vowels included."). Which characters are marks is the corpus lane's
+  // call, character by character (moses-masoretic-marks-v1, relay v72.2.1),
+  // and data/masoretic-marks-v1.json is that call proved at every character
+  // of the 39 books and written as the code points that are marks in a word
+  // and in a mark the zone draws between words
+  // (tools/project-masoretic-marks-v1.mjs, masoretic-marks-rule-v1). Nothing
+  // here names a character. A book the record does not carry, a commentary,
+  // or a page without the record keeps every word one color.
+  //
+  // Each run of text in a word that holds a mark is made a leaf: its own
+  // element, or a span around it where it shares one. A leaf of marks alone
+  // is gold. A leaf of letters and marks is gold under its letters drawn
+  // again in the word's own ink (the CSS, EVERY MASORETIC MARK GOLD). A mark
+  // that is a cluster of its own (the maqaf, in a word the page did not
+  // divide at it) is first cut out as a leaf of its own, because the letters
+  // laid over must take exactly the room the run they lie on takes. Whether
+  // a character is a cluster of its own is Unicode's word for it (a
+  // combining mark, \p{M}, rides the letter before it); whether it is gold
+  // is the lane's.
+  //
+  // THE GUARD. The letters laid over lie on the word's own only where the
+  // marks take no room in the face that draws them. Where a face lacks a mark
+  // and the browser draws the whole cluster from another face, they would
+  // not, and a ghost of gold letters would show. So each run is measured,
+  // whole and without its marks, in the line's own face, and where the two
+  // differ the run keeps one color. When more than one run in twenty of the
+  // first two hundred differs, this face cannot carry the gold, and every
+  // word goes back to one color.
+  const MARK_INK = { sets: undefined, ctx: undefined, fit: new Map(), runs: 0, off: 0 };
+  const markSets = () => {
+    if (MARK_INK.sets !== undefined) return MARK_INK.sets;
+    const r = MARKS_REC;
+    const ok = !!(r && r.gold && Array.isArray(r.books) && r.books.includes(BOOK)
+      && window.CSS && CSS.supports && CSS.supports("content", '"x" / ""'));
+    const set = (a) => new Set((a || []).map((h) => String.fromCodePoint(parseInt(h, 16))));
+    MARK_INK.sets = ok ? { word: set(r.gold.places), mark: set(r.gold.mark_words) } : null;
+    if (MARK_INK.sets) document.documentElement.dataset.markInk = "gold";
+    return MARK_INK.sets;
+  };
+  const markRunFits = (text, letters) => {
+    if (MARK_INK.ctx === undefined) {
+      const probe = document.createElement("p"); probe.className = "he-text"; probe.hidden = true;
+      document.body.append(probe);
+      const family = getComputedStyle(probe).fontFamily;
+      probe.remove();
+      MARK_INK.ctx = document.createElement("canvas").getContext("2d") || null;
+      if (MARK_INK.ctx) MARK_INK.ctx.font = `100px ${family}`;
+    }
+    if (!MARK_INK.ctx) return false;
+    if (!MARK_INK.fit.has(text)) {
+      const fits = Math.abs(MARK_INK.ctx.measureText(text).width - MARK_INK.ctx.measureText(letters).width) <= 0.5;
+      MARK_INK.fit.set(text, fits);
+      MARK_INK.runs += 1;
+      if (!fits) MARK_INK.off += 1;
+      if (MARK_INK.runs === 200 && MARK_INK.off * 20 > MARK_INK.runs) {
+        MARK_INK.sets = null;
+        document.documentElement.dataset.markInk = "off";
+      }
+    }
+    return MARK_INK.fit.get(text);
+  };
+  const goldMarks = (wb, word) => {
+    const sets = markSets();
+    if (!sets) return;
+    const gold = word.mark ? sets.mark : sets.word;
+    const w = wb.querySelector(":scope > .w");
+    if (!w) return;
+    const texts = [];
+    const walk = document.createTreeWalker(w, NodeFilter.SHOW_TEXT);
+    for (let n = walk.nextNode(); n; n = walk.nextNode()) texts.push(n);
+    const leaf = (el) => {
+      const chars = [...el.textContent];
+      const letters = chars.filter((c) => !gold.has(c)).join("");
+      if (!letters) { el.classList.add("mg-all"); return; }
+      if (!markRunFits(el.textContent, letters)) return;
+      el.dataset.l = letters;
+      el.classList.add("mg");
+    };
+    for (const t of texts) {
+      const chars = [...t.data];
+      if (!chars.some((c) => gold.has(c))) continue;
+      const pieces = [];
+      let buf = "";
+      for (const c of chars) {
+        if (gold.has(c) && !/\p{M}/u.test(c)) { if (buf) pieces.push(buf); pieces.push(c); buf = ""; }
+        else buf += c;
+      }
+      if (buf) pieces.push(buf);
+      const host = t.parentNode;
+      if (pieces.length === 1 && host !== w && host.childNodes.length === 1) { leaf(host); continue; }
+      if (pieces.length === 1 && host === w && w.childNodes.length === 1) { leaf(w); continue; }
+      const frag = document.createDocumentFragment();
+      for (const piece of pieces) {
+        if (![...piece].some((c) => gold.has(c))) { frag.append(document.createTextNode(piece)); continue; }
+        const span = document.createElement("span");
+        span.textContent = piece;
+        frag.append(span);
+        leaf(span);
+      }
+      t.replaceWith(frag);
+    }
+  };
   const wordBlock = (word, table) => {
     const wb = document.createElement("span");
     wb.className = word.held ? "wb held" : "wb";
@@ -9724,9 +9905,28 @@
   // verse the reader was at, written as they read, kept on the device per
   // book and nowhere else, and read only when no address names a place — a
   // verse or chapter in the address, or a hash a link carried, still wins.
+  // It is read once, here, and held as it was at load: reading on overwrites
+  // what the device keeps, and the way back (THE READING PLACE, below) has to
+  // offer the place the reader left, not the one they are reading now.
   const SPOT_KEY = BOOK ? `fh.at.${BOOK}` : "";
   const spotKept = (() => { try { return SPOT_KEY ? String(localStorage.getItem(SPOT_KEY) || "") : ""; } catch { return ""; } })();
-  const openSpot = !openAt && !hashAt && spotKept ? spotKept : "";
+  // A verse label's chapter is what stands before its colon ("7:14" is
+  // chapter "7"). That is the door build's cut for the chapter addresses
+  // wherever a label has a colon. A label with no colon, which the build
+  // gives an address of its own, is left alone here: it names no chapter,
+  // and a section with no chapter in its label changes nothing. It is not
+  // named chOf, as check-chapter-pages-v2's helper is, because that one
+  // makes the build's whole cut, no-colon labels included.
+  const verseChapterOf = (label) => { const m = /^([^:]+):/u.exec(String(label || "")); return m ? m[1] : ""; };
+  // ONE EXCEPTION, which follows from the owner's ruling of 2026-10-09 (THE
+  // READING PLACE, below): a chapter address gives way to the kept verse
+  // when that verse lies inside its chapter. The bar follows the reader
+  // chapter by chapter, so a reopened tab stands at the kept verse's own
+  // chapter, and it comes back to the line, not the top of the chapter. Only
+  // the chapter meta gives way; ?at= and a #v hash name a verse, and still
+  // win outright.
+  const keptInChapter = !QUERY.get("at") && !hashAt && !!AT_META && verseChapterOf(spotKept) === AT_META.trim();
+  const openSpot = (!openAt || keptInChapter) && !hashAt && spotKept ? spotKept : "";
   // ?palette=tabernacle used to live here, as a link somebody followed on
   // purpose so the page every other reader got stayed untouched. The owner
   // looked at it and ruled it in on 2026-09-10, so there is nothing left to
@@ -10691,6 +10891,7 @@
     let wIdx = 0;
     sec.words.forEach((word) => {
       const built = wordBlock(word, zone.gloss);
+      goldMarks(built.wb, word);
       const myIdx = wIdx; wIdx += 1;
       wireWord(built, word, zone, sec.unit, myIdx);
       const rc = runAt(sec.unit, myIdx);
@@ -10947,13 +11148,26 @@
     if (el.__place) el.__place(el);
     return true;
   };
+  const REACH = 1400;
   io = new IntersectionObserver((entries) => {
     for (const e of entries) if (e.isIntersecting) materialise(e.target);
-  }, { rootMargin: "1400px 0px" });
+  }, { rootMargin: `${REACH}px 0px` });
   // Anything that reaches into a section's words builds it first: the export
   // reads the readings off the page, and an anchor has to land on the section
   // at the height it is going to be, not the height it was reserved.
   const materialiseAll = () => { sectionEls.forEach(({ el }) => materialise(el)); };
+  // A verse is landed on (an address, the kept place, the way back) at the
+  // reading line with what stands above it, as far as the observer reaches,
+  // already built. Built after the scroll, the section above the verse grew
+  // in place while the browser held that section's top, so the verse
+  // settled a hundred pixels or more below the line and the verse above it
+  // read as the reader's place, which is what the kept verse then recorded.
+  const landOn = (target, line) => {
+    materialise(target);
+    let i = sectionEls.findIndex(({ el }) => el === target), above = 0;
+    while (--i >= 0 && above < REACH + line) { materialise(sectionEls[i].el); above += sectionEls[i].el.offsetHeight; }
+    window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - line);
+  };
   // A switch that moves the cells (the maqaf, license runs) lays every built
   // section again, in place, from the lanes as they now stand: the card
   // closes, the section's text and its rows are taken down and built as a
@@ -11124,8 +11338,15 @@
   applyGlossOrder(defOrder);
   repaintGlossOrder();
   defSwitch();
+  // where the arrival landed, at which line, in which chapter, and whether
+  // on the kept place: THE READING PLACE, below, works from these
+  let landedEl = null, landedLine = 0, landedCh = "", landedKept = false;
   if (openAt || openSpot) {
-    const landing = openAt || openSpot;
+    // the kept verse leads where no address names a place, and where a
+    // chapter address's own chapter holds it (keptInChapter, above), while
+    // the book still carries that verse; otherwise the address leads
+    const kept = openSpot && byLabel.has(openSpot) ? openSpot : "";
+    const landing = kept || openAt || openSpot;
     // a verse: by its label, or by its porch heading id (#v3-7 is the label
     // "3:7" with every run of punctuation folded to one hyphen)
     const foldId = (label) => `v${String(label).replace(/[^0-9a-z]+/gi, "-")}`;
@@ -11134,11 +11355,11 @@
     if (label) {
       const target = document.getElementById(byLabel.get(label));
       if (target) {
-        materialise(target);
-        window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 80);
+        landOn(target, 80);
         // the kept place is where the reader was, not a verse anyone asked
         // for, so it wears no mark
-        if (openAt) target.querySelector(".vnum")?.classList.add("at");
+        if (!kept) target.querySelector(".vnum")?.classList.add("at");
+        landedEl = target; landedLine = 80; landedCh = verseChapterOf(label); landedKept = !!kept;
       }
     } else {
       // a chapter: the first section whose label is the chapter's own or
@@ -11151,6 +11372,7 @@
         if (target) {
           if (!head) materialise(target);
           window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - 24);
+          landedEl = target; landedLine = 24; landedCh = verseChapterOf(first.label);
         }
       }
     }
@@ -11261,9 +11483,39 @@
     }
     return at >= 0 ? sectionEls[at] : null;
   };
+  // THE READER'S OWN MOVE. The kept verse is written, and the bar follows
+  // (THE READING PLACE, below), only once the reader has moved the page: a
+  // wheel, a touch, a key or a press of their own (isTrusted), on every page.
+  // A scroll the page makes itself is not the reader reading: the landing,
+  // ?c=open bringing a commentary into view, the browser holding its place
+  // while sections fill in. Written on those, a book reopened and left
+  // untouched could hand back a verse earlier each time, whenever a section
+  // filling in carried the landed verse below the reading line, and a link
+  // merely opened overwrote the place the reader had left before they read
+  // a word of it. Dragging the page's own scrollbar, in a browser that fires
+  // no pointer event for it, is not counted either (the owner, 2026-10-09:
+  // "agree scrollbar dragging doesnt count"); the next touch, key or press
+  // counts.
+  let readerMoved = false;
+  for (const type of ["wheel", "touchmove", "keydown", "pointerdown", "click"])
+    window.addEventListener(type, (e) => { if (e.isTrusted) readerMoved = true; }, { capture: true, passive: true });
+  // The landing is made once more when the page's fonts have all arrived,
+  // unless the reader has moved by then. A face arriving after the landing
+  // re-wraps the words of the section that straddles the top of the window,
+  // the browser holds that section's top, and the landed verse slides below
+  // the line (Psalms 23:4 landed at 169px, under 23:3). Not where the address
+  // asks the page to open something (?c=open, ?t=open), which carries the
+  // reader on from the landing, and not once anything has taken the page a
+  // window away from it.
+  if (landedEl && document.fonts && QUERY.get("c") !== "open" && QUERY.get("t") !== "open") {
+    document.fonts.ready.then(() => {
+      const off = landedEl.getBoundingClientRect().top - landedLine;
+      if (!readerMoved && off && Math.abs(off) < window.innerHeight) window.scrollTo(0, window.scrollY + off);
+    }, () => { /* no fonts to wait for: the landing stands */ });
+  }
   let spotLast = "";
   const rememberSpot = () => {
-    if (!SPOT_KEY) return;
+    if (!SPOT_KEY || !readerMoved) return;
     const s = spotOf();
     const label = s && s.sec && s.sec.label ? String(s.sec.label) : "";
     if (!label || label === spotLast) return;
@@ -11279,10 +11531,135 @@
       }
     }
   };
+  // THE READING PLACE (the owner, 2026-10-09). Three questions were put to the owner.
+  // (1) Should the address follow you as you read, /amos/7 to /amos/8,
+  // with no reload and no extra back-button steps? "seems like yes if that
+  // works". (2) Should opening /amos jump to your saved chapter? "id say yes
+  // if you ask me". (3) Should a chapter link someone sends you be overridden
+  // by your saved place? "maybe a popup confirmation idk you tell me". The
+  // owner left (3) to us, and our call was no popup: a link opens where it
+  // says, and when the place this device kept in that book is in another
+  // chapter, a small "Back to 7:14" stands just above the bottom bar; a tap
+  // goes there, and reading on lets it go. A chapter address whose own
+  // chapter holds the kept verse is the one address the kept place leads
+  // (keptInChapter, above).
+  //
+  // WHICH PAGES. Only a book's own address or one of its chapter addresses,
+  // and only for a book that has chapter addresses, because the bar must
+  // never name an address that does not answer. What says a book has them
+  // is the page itself: the door build writes the porch (#porch) into a
+  // book's page and into each of its chapter pages in the same pass that
+  // writes those chapter addresses, and writes no porch for a book it gives
+  // none (bookPorch returns nothing). That is the build's own word, standing
+  // in every served page already: nothing is rebuilt, nothing is fetched,
+  // and the build's rule for which books qualify (a count stamp and an
+  // English name, today) is not copied here, where it could drift from the
+  // build and send the bar to a 404. The chapter the bar names is always
+  // read off a section label the zone carries (verseChapterOf), by the cut
+  // the build made the addresses by, so it can only be a chapter that has
+  // one. The bare instrument carries neither reader-book nor a porch. And
+  // the page must stand at its own address, slash optional: /<book>/ for
+  // the book's page, /<book>/<n>/ for the chapter page whose meta names n.
+  const BAR_FOLLOWS = (() => {
+    if (!META("reader-book") || !document.getElementById("porch")) return false;
+    let path = location.pathname;
+    try { path = decodeURIComponent(path); } catch { /* compared as the browser spells it */ }
+    const seg = path.replace(/\/$/u, "").split("/");
+    return seg[1] === BOOK && (seg.length === 2 ? !AT_META : seg.length === 3 && seg[2] === AT_META.trim());
+  })();
+  // The bar is replaced, never pushed, so following the reader adds no step
+  // for the back button. It carries no hash, and none of the query that named
+  // a place or pressed something on arrival (?at=, ?c=, ?t=): it says where
+  // the reader is, not what a link asked. The rest of the query stays,
+  // because it is how the reader asked to read, and nothing else carries it
+  // to the next load: ?mode=en is the English reader. The bar is replaced
+  // only when the scrolling comes to rest in another chapter (the trailing
+  // call, below), because Safari throws a SecurityError past about a hundred
+  // history calls in thirty seconds, and a scrub through Psalms crosses
+  // chapters faster than that. Refused, the bar and the tab keep what they
+  // said, the kept verse still holds the place, and the next rest tries
+  // again.
+  let barCh = "", barAsks = !!QUERY.get("at");
+  const nameChapter = (ch) => {
+    const was = barCh;
+    barCh = ch;
+    try {
+      const q = new URLSearchParams(location.search);
+      for (const k of ["at", "c", "t"]) q.delete(k);
+      const rest = String(q);
+      history.replaceState(null, "", `/${encodeURIComponent(BOOK)}/${encodeURIComponent(ch)}/${rest ? `?${rest}` : ""}`);
+      document.title = titleAt(ch);
+      barAsks = false;
+    } catch { barCh = was; }
+  };
+  // NOT ON ARRIVAL, SAVE (2) BELOW. The bar follows only once the reader's
+  // own input has moved the page (readerMoved, above). So /amos stays /amos
+  // until the reader moves, unless this device keeps a place in the book:
+  // then the landing names that place's chapter, (2) below.
+  // check-clean-address-v1 asserts the arrival address before any input of
+  // the reader's, on books its walk has kept no place for.
+  //
+  // The bar already stands for the chapter the arrival is in: a chapter
+  // address names it, and a book's own address opens on it.
+  { const s = spotOf(); barCh = verseChapterOf(s && s.sec ? s.sec.label : ""); }
+  const followChapter = () => {
+    if (!BAR_FOLLOWS || !readerMoved) return;
+    const s = spotOf();
+    const ch = verseChapterOf(s && s.sec ? s.sec.label : "");
+    // A section with no chapter in its label changes nothing. A ?at= still
+    // in the bar once the reader has moved is renamed once, even inside its
+    // own chapter, so a reload comes back to the line they read on to, not
+    // to the verse the link asked for.
+    if (ch && (ch !== barCh || barAsks)) nameChapter(ch);
+  };
+  // (2) A book's own address with a kept place has landed on it, above, and
+  // the bar names that place's chapter as it lands. Not where the address
+  // asks the page to open something (?c=open, ?t=open): that carries the
+  // reader on from the kept place, and the bar waits for them to move.
+  if (BAR_FOLLOWS && landedKept && !AT_META && landedCh && QUERY.get("c") !== "open" && QUERY.get("t") !== "open") nameChapter(landedCh);
+  // (3) A link that named a place in another chapter than the kept verse
+  // has landed where it says, above, and offers the way back: the kept verse
+  // as it stood at load (spotKept), by its own label. A tap goes there as
+  // the landing goes to a verse. It also goes by itself once the reader is
+  // about a window's height from where the link landed, measured on what
+  // the link landed on, so the browser holding its place while sections fill
+  // in does not count as reading on.
+  let placeBack = null, backGone = () => false;
+  if (BAR_FOLLOWS && openAt && !landedKept && byLabel.has(spotKept) && verseChapterOf(spotKept) && verseChapterOf(spotKept) !== landedCh) {
+    placeBack = document.createElement("button");
+    placeBack.type = "button"; placeBack.id = "placeBack";
+    placeBack.textContent = `Back to ${spotKept}`;
+    // the accessible name keeps the visible words whole, so a voice that
+    // says what it sees reaches it, and names the book after them
+    placeBack.setAttribute("aria-label", `Back to ${spotKept} in ${zone.work}`);
+    placeBack.addEventListener("click", () => {
+      const target = document.getElementById(byLabel.get(spotKept));
+      placeBack.remove(); placeBack = null;
+      if (target) landOn(target, 80);
+    });
+    // it stands down while a word's card is open, as the bar does, so only
+    // one thing ever asks for a tap
+    placeBack.hidden = !hud.hidden;
+    new MutationObserver(() => { if (placeBack) placeBack.hidden = !hud.hidden; })
+      .observe(hud, { attributes: true, attributeFilter: ["hidden"] });
+    nav.after(placeBack);
+    const from = landedEl || main, fromTop = from.getBoundingClientRect().top;
+    backGone = () => Math.abs(from.getBoundingClientRect().top - fromTop) > window.innerHeight;
+  }
+  const onScrolled = () => {
+    paintNav(); rememberSpot();
+    if (placeBack && backGone()) { placeBack.remove(); placeBack = null; }
+  };
+  let scrollRest = 0;
   window.addEventListener("scroll", () => {
+    // and once more when the scrolling stops, so where a jump or a fling
+    // comes to rest is what the bar, the kept verse and the address say, even
+    // when the throttle swallowed the event that arrived there; the address
+    // follows only here, once per rest (nameChapter, above)
+    clearTimeout(scrollRest); scrollRest = setTimeout(() => { onScrolled(); followChapter(); }, 160);
     const t = performance.now();
     if (t - lastPaint < 120) return;
-    lastPaint = t; paintNav(); rememberSpot();
+    lastPaint = t; onScrolled();
   }, { passive: true });
   window.addEventListener("hashchange", () => setTimeout(paintNav, 0));
   paintNav();
