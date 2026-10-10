@@ -2,7 +2,7 @@
  "schema_version": 1,
  "rule_id": "ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for",
  "emitted_by": "tools/emit-ledger-index-v1.mjs",
- "emitted_on": "2026-10-09",
+ "emitted_on": "2026-10-10",
  "what_this_is": "which letter of the frame each of this lane's records is the ledger for, read from the '// LEDGER:' declaration in the header of the tool that writes it. Declared by the writer, never inferred here.",
  "letters_known_to_the_frame": [
   "A",
@@ -351,6 +351,15 @@
    "updates_no_letter": true,
    "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
    "writes": []
+  },
+  "check-masoretic-gold-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This writes nothing: it reads data/masoretic-marks-v1.json (written by tools/project-masoretic-marks-v1.mjs) and the page.",
+   "writes": [
+    "masoretic-marks-v1.json",
+    "zone-store-v1.json"
+   ]
   },
   "check-numbering-gap-witnessed-v1.mjs": {
    "letters": [],
@@ -775,6 +784,14 @@
    "why": "R because every order this tool projects is a SELECTION over readings the store already holds — masoretic, vowels differ, cites here, licence, names as sound — and rule 1 above is that it adds, removes and reorders nothing in the store itself. D because the parts band carries a named source's English for a COMPcell, two witnesses per piece, carried and never composed into a reading of the word. It creates no M and no S; it carries the ones the card it grades already names.",
    "writes": [
     "license-postures-v1.json"
+   ]
+  },
+  "project-masoretic-marks-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This writes one small file, data/masoretic-marks-v1.json, from the corpus lane's moses-masoretic-marks-v1/build-v1.2/ (classes-v1.2.json, outputs/counts.json, marks-v1.2/<book>.jsonl) and its build/mark-words-v1.jsonl; it writes nothing on a zone.",
+   "writes": [
+    "masoretic-marks-v1.json"
    ]
   },
   "project-run-cards-v1.mjs": {

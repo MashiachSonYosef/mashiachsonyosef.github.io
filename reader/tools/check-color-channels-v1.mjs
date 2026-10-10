@@ -387,8 +387,17 @@ if (commentaryHere) {
       // what this page answers under, which is the reader's own choice shown back
       // in gold; and the site's name, whose .com is gold as a mark, not as ink
       if (e.closest('.rail .now, #home a.home, .wordmark')) continue;
+      // and one the owner voted (relayed by Moses, 2026-10-11): "every mark
+      // gold, vowels included". A Masoretic mark is gold at rest, by its
+      // class (masoretic-marks-rule-v1); the letters laid over it keep the
+      // corpus's ink, and check-masoretic-gold-v1 holds both. Nothing else
+      // on the page is excused by it.
+      if (e.closest('.he-text .mg, .he-text .mg-all')) continue;
       if (![...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())) continue;
-      const c = getComputedStyle(e).color;
+      // the ink a glyph is filled with, which is its color unless a fill
+      // says otherwise: a gold fill under a red color is a gold glyph
+      const cs = getComputedStyle(e);
+      const c = cs.webkitTextFillColor && cs.webkitTextFillColor !== "currentcolor" ? cs.webkitTextFillColor : cs.color;
       const m = String(c).match(/(\d+(?:\.\d+)?)/gu);
       if (!m || m.length < 3) continue;
       out.push({ c, r: +m[0], g: +m[1], b: +m[2], where: e.tagName.toLowerCase() + (typeof e.className === "string" && e.className.trim() ? "." + e.className.trim().split(/\s+/u).join(".") : "") });

@@ -42,6 +42,15 @@
     --sel-text: rgba(196, 146, 28, 0.3);
     /* the mark's own gold, brighter than the frame's so the .com never reads as the red beside it (the owner, 2026-10-02); used by the name and nothing else */
     --mark-gold: #c4921c;
+    /* THE MASORETIC MARKS' OWN GOLD (the owner's vote, relayed by Moses on
+       2026-10-11: "every mark gold, vowels included"; asked on 2026-10-10:
+       "im actually right now leaning toward making all masoretic marks
+       gold"). The family's hue, 38, taken deep enough to be read at a
+       vowel's size: 5.4:1 on the linen, 4.9:1 in a word's cell, 4.5:1 on a
+       pressed one, where the frame's gold gives a mark 3.1:1. It is apart
+       from the red by its hue, not its lightness. It is the one gold that is
+       ink at rest, and it is ink only on a mark. */
+    --mark-ink: #76500c;
     /* four colors, ruled 2026-10-02: one soft red, one soft blue, the gold and the purple,
        the purple alone at its full depth.
        the deep red the titles wore and the royal blue are retired, and the deep names
@@ -326,6 +335,29 @@
   .lm-small { font-size: 0.68em; }
   .lm-suspended { vertical-align: 0.5em; font-size: 0.82em; }
   .lm-dotted { color: var(--shani); }
+  /* EVERY MASORETIC MARK GOLD, BY ITS CLASS (the owner's vote, 2026-10-11;
+     masoretic-marks-rule-v1; the script's EVERY MARK GOLD says which
+     characters). A browser paints a mark in its letter's color whatever
+     element holds it, so the word is drawn twice in one place: the word
+     whole in the marks' gold, and over it, out of the same box, its letters
+     alone in the word's own ink (data-l, the word with its marks taken out,
+     written by the script). The letters drawn over are generated content: not
+     selected, not copied, not found, and silent to a screen reader (the
+     empty alternative after the slash), so the text a reader takes away is
+     the word as the source wrote it, once. They start where the word starts
+     and run the way it runs, from a box of no width, so they lie on the
+     word's own letters wherever the word stands. Where a browser cannot
+     give generated content an alternative, nothing here applies and the
+     word stays one color, as before. A mark that stands alone (the maqaf
+     between a word's parts, the sof pasuq, a paseq) is simply gold. A
+     leaf's ::before is the gold's: nothing else may draw one there. */
+  @supports (content: "x" / "") {
+    :root[data-mark-ink="gold"] .he-text .mg, :root[data-mark-ink="gold"] .he-text .mg-all { -webkit-text-fill-color: var(--mark-ink); }
+    :root[data-mark-ink="gold"] .he-text .mg { white-space: nowrap; }
+    :root[data-mark-ink="gold"] .he-text .mg::before { content: attr(data-l) / ""; display: inline-block; width: 0;
+      white-space: nowrap; -webkit-text-fill-color: currentColor; text-shadow: none; pointer-events: none;
+      user-select: none; -webkit-user-select: none; }
+  }
   /* THE STAMP. The count of this book on every named axis, and beside it the
      figures other men reached for the same book: a row per witness, the
      difference shown with its sign. Gold is exact, scarlet differs, the linen
@@ -500,6 +532,25 @@
   #chPick button.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); font-weight: 700; }
   #chPick button.ch-top { grid-column: 1 / -1; font-variant: small-caps; letter-spacing: 0.06em; color: var(--ink-strong); }
   @media (max-width: 520px) { #nav { left: 0.9rem; right: 0.9rem; justify-content: center; } }
+  /* THE WAY BACK (asked of the owner on 2026-10-09, who left it to us: "you
+     tell me"; THE READING PLACE in the script). A link that opened another
+     chapter than the one this device kept offers the kept verse one tap
+     away: just above the bar, with a little air between them so the two read
+     as two controls, and in the bar's own place while the bar stands down.
+     It is fixed, so it never moves the Hebrew, and it wears the bar's own
+     veil, line and small capitals. Pressed is a deeper ink, never a fill,
+     and never a heavier weight, which would widen the pill under the
+     finger. */
+  #placeBack { position: fixed; z-index: 60; right: 0.9rem; bottom: 3.6rem;
+    background: var(--nav-veil); border: 1px solid var(--line); border-radius: 999px;
+    box-shadow: var(--shadow-pop); backdrop-filter: blur(4px); color: var(--muted);
+    font: inherit; font-size: 0.75rem; letter-spacing: 0.08em; font-variant: small-caps;
+    padding: 0.42rem 0.95rem; cursor: pointer; white-space: nowrap; }
+  #nav[hidden] + #placeBack { bottom: 0.9rem; }
+  #placeBack[hidden] { display: none; }
+  #placeBack:hover { color: var(--ink-strong); }
+  #placeBack:active { color: var(--sel); }
+  @media (max-width: 520px) { #placeBack { right: auto; left: 50%; transform: translateX(-50%); } }
 
   #toc .toc-note { margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--faint); }
   #toc .part { margin: 0 0 0.65rem; }
@@ -886,10 +937,12 @@
      exactly as the source wrote them, and text-decoration moves no glyph. */
   /* KETIV AND QERE (the owner, 2026-10-03): both halves open one card, so the
      pair wears the one-card underline under both; the half the English is
-     reading from wears a gold bracket above it. All gold, all on the Hebrew. */
+     reading from wears a gold bracket above it. All gold, all on the Hebrew.
+     The bracket is drawn by ::after: a half's ::before carries its letters
+     when its marks are gold (EVERY MASORETIC MARK GOLD). */
   .wb.kq > .w { border-bottom: 1.5px solid var(--gold); border-radius: 0; }
   .wb.kq .wr { position: relative; }
-  .wb.kq .wr.backs-en::before { content: ""; position: absolute; left: 0.05em; right: 0.05em; top: -0.12em;
+  .wb.kq .wr.backs-en::after { content: ""; position: absolute; left: 0.05em; right: 0.05em; top: -0.12em;
     height: 0.22em; border: 1.5px solid var(--gold); border-bottom: none; border-radius: 0.12em 0.12em 0 0; pointer-events: none; }
   .wb.kq .wr.backs-en { text-decoration: none; text-decoration-color: var(--gold);
     text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
